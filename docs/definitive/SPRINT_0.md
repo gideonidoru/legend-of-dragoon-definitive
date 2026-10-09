@@ -25,7 +25,7 @@ Evidence for completed build/setup items: VALIDATION.md. The new planning items 
 ## Days 4–7: hardware and artwork readiness
 
 - [ ] Identify test Deck model/SteamOS and an authorized execution session.
-- [ ] Receive user-provided game files privately; keep content out of repository and CI.
+- [x] Receive user-provided game files privately; four BIN/CUE pairs are in top-level isos/, expected US disc IDs checked and bytes preserved during cleanup. All remain ignored; extraction/gameplay not run.
 - [ ] Obtain a creator-approved HD artifact/version and rights record; do not assume public galleries are packs.
 - [ ] Record representative scene IDs/layers, pack gaps and original-art fallback.
 

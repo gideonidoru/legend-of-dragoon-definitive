@@ -36,7 +36,7 @@ This selects Linux x64 dependencies and the Steam Deck launcher. Output goes to 
 
 ## Game files and later execution
 
-Compilation is separate from play. Later, provide your own supported disc images privately in `isos/`; the engine extracts them into `files/` at runtime. Do not add either directory's contents to Git. `saves/` is likewise local. This milestone did not supply images or launch the engine.
+Compilation is separate from play. Provide your own supported disc images privately in the top level of `isos/`; discovery does not recurse through subfolders. The engine extracts them into `files/` at runtime. Do not add either directory's contents to Git. `saves/` is likewise local. The initial build milestone did not use images or launch the engine. On 2026-10-09 the owner supplied four BIN/CUE pairs locally; expected US disc IDs were checked and bytes preserved during folder cleanup. No extraction or engine execution followed.
 
 The [community Steam Deck guide](https://legendofdragoon.org/guides/setup-steamdeck/) describes extracting the portable package in Desktop Mode, providing disc images, checking executable permissions for `launch` and `download-java`, and adding `launch` as a non-Steam game. Its first-run flow requires network access for Java and time for extraction. These instructions have not been exercised here; Definitive installation automation remains future work. A relocated package needs its Steam shortcut path updated.
 

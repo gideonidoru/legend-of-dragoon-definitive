@@ -33,7 +33,7 @@ No automatic upstream merges. Preserve upstream licensing/credits at every sync.
 
 Put presentation/content adapters in separate mod JARs using the existing mod loader, with stable namespaced registry IDs, explicit compatibility ranges and optional settings. Keep artwork external with a versioned manifest (creator, source, permissions, checksum, supported engine SHA, mapping and memory budget). Do not assume an API annotated version is a stable release contract.
 
-Use project-specific documentation under `docs/definitive/`. Future installation/package tooling and manifests should have separate directories and explicit inputs. Separate gameplay convenience mods from presentation mods so faithful mode can independently disable them. Prefer existing configuration and events over duplicating engine systems. If an engine seam is missing, propose one small upstream-compatible change with behavior tests, rather than maintaining a broad fork patch.
+Use project-specific documentation under `docs/definitive/`. The root README describes Definitive; the unmodified initial upstream README is retained at `docs/upstream/README.md`. During sync, review newer upstream documentation for relevant changes without replacing the project overview or silently rewriting the historical baseline copy. Future installation/package tooling and manifests should have separate directories and explicit inputs. Separate gameplay convenience mods from presentation mods so faithful mode can independently disable them. Prefer existing configuration and events over duplicating engine systems. If an engine seam is missing, propose one small upstream-compatible change with behavior tests, rather than maintaining a broad fork patch.
 
 ## Release boundaries needing resolution
 

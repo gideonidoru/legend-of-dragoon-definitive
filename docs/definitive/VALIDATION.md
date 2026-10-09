@@ -2,6 +2,10 @@
 
 This is the historical unmodified-baseline record. The subsequent project updater target adjustment is recorded separately in [UPDATER_TARGET.md](UPDATER_TARGET.md); the upstream-feed blocker below describes the original milestone state. Later CI/test-control changes are recorded in [BUILD_CONTROLS.md](BUILD_CONTROLS.md); the original test-exclusion blocker is historical as well.
 
+## Later private-input checkpoint
+
+On 2026-10-09, after the recorded baseline builds, the owner supplied four BIN/CUE pairs privately. Files were moved to top-level isos/ for nonrecursive engine discovery; expected US disc IDs were read from volume descriptors and SHA-256 hashes verified unchanged after cleanup. Emulator/patch/archive extras were moved to recoverable Trash. Inputs remain ignored, not committed. Extraction, gameplay and Deck execution remain not run; this header check does not establish complete disc integrity or gameplay compatibility. The historical results below are unchanged.
+
 ## Identity, provenance and scope
 
 - Terminal/filesystem access confirmed on **AVALON**, `system_profiler` reports **Mac Studio**, model **Mac17,14**, **Apple M5 Max**, 18 cores (6 Super + 12 Performance), **64 GB RAM**.

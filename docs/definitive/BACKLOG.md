@@ -14,7 +14,7 @@ Reconstructed from the owner's plan because its interactive priority table was a
 | D08 / P1 | Existing artwork provenance/coverage manifest | 5 / 1 | Skurfa v1.1.0 candidate; artifact hashes/terms still to verify; outreach separately authorized | Version/checksum/terms/credits/mapping recorded; code/art licensing distinguished; absent pack handled explicitly |
 | D09 / P2 | Existing HD mod trial and layer checks | 5 / 3 | D03, D08 | Evaluate Skurfa adapter first: small scene, transition/mask case, high-layer cut 21; fallback and disable cleanly; measured texture memory/frame-time cost |
 | D10 / P2 | Inventory navigation/equipment comparison | 4 / 3 | D06–D07, relevant API audit | Adapt QoL sort/filter/quantity workflows to current storage; binding-aware prompts; full-bag/gold/cancel checks without inventory loss |
-| D11 / P2 | Faithful and convenience preset contract | 5 / 2 | D03, complete config audit | Explicit reversible per-campaign settings; no silent migration; retail behavior checks |
+| D11 / P2 | Faithful and convenience preset contract | 5 / 2 | D03, complete config/mod audit | Explicit per-campaign settings and persistent-effect disclosure; no silent migration; retail behavior checks; reward-handler ownership and mod registry/save dependencies recorded |
 | D12 / P3 | Addition training/feedback mod | 4 / 4 | D03, D11, timing/API audit | Assess QoL feedback and failed-input event seam; practice isolated from progression/rewards; controller-only; timing unchanged outside training |
 | D13 / P3 | Optional journey journal/hints | 3 / 4 | D11, progression event coverage | Reliable entries, spoiler control, reload behavior, no progression-flag mutation |
 | D14 / P4 | Evidence-led rendering/optional CAS | 3 / 4 | D03, D09, proven bottleneck | Equal-scene A/B quality/power/frame-time improvement; no input/timing regression |
@@ -22,6 +22,15 @@ Reconstructed from the owner's plan because its interactive priority table was a
 
 Prefer D01–D08 and visible wins before ambitious journal/training/rendering work. D08 can be investigated independently, but D09 needs both usable assets and a device baseline. Schedule gates in PROJECT_PLAN.md do not override these dependencies.
 
-D01 is complete: local builds and seven control scenarios pass, and both hosted platform jobs pass. Evidence is in BUILD_CONTROLS.md. D02 is partially complete: the updater targets the project repository, but package/version pairing and rollback policy remain. Device-dependent work is still blocked by private files/hardware and execution permission.
+D01 is complete: local builds and seven control scenarios pass, and both hosted platform jobs pass. Evidence is in BUILD_CONTROLS.md. D02 is partially complete: the updater targets the project repository, but package/version pairing and rollback policy remain. Private disc inputs are now present locally; device-dependent work still needs hardware details and execution permission. Extraction and full asset/gameplay validation have not run.
 
 External reuse research: [Skurfa HD pack](SKURFA_RESEARCH.md) and [QoL fork](QOL_FORK_RESEARCH.md). D08 source/API assessment is complete, including a successful source-only compilation; release contents, artwork redistribution terms and runtime/Deck checks remain open. QoL assessment supports selective interface adaptation, not a whole-fork merge or save-format replacement.
+
+## Four-project candidate shortlist
+
+The owner's shortlist includes Skurfa, Quality of Life+, Dragoon Modifier and Battle Rewards. Keep presentation candidates ahead of optional balance work. A common package should present clear choices; all four are not assumed to be jointly compatible.
+
+- **Skurfa:** existing standalone artwork adapter first; D08/D09 retain pack terms, scene and performance gates.
+- **Quality of Life+:** selectively adapt action hints, inventory interactions and feedback under D06/D10/D12, retaining source notices and current persistence APIs.
+- **Dragoon Modifier:** [assessment](DRAGOON_MODIFIER_RESEARCH.md) supports an isolated optional overhaul profile under D11, after licensing, stat-control fixes, exact preset provenance and save/restart/removal checks. Keep its registry/progression replacements out of faithful mode.
+- **Battle Rewards:** [assessment](BATTLE_REWARDS_RESEARCH.md) supports optional reward controls using current APIs after source repair/provenance checks. Track D11's persistent reward effects and D15's save/upgrade checks. Define one reward owner or explicit composition with Dragoon Modifier before enabling both.

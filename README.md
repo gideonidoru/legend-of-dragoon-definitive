@@ -1,106 +1,84 @@
 # Legend of Dragoon: Definitive
 
-A Steam Deck-first modernization project built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains). Unofficial community project; not affiliated with Sony or the upstream maintainers.
+**A Steam Deck-first modernization of The Legend of Dragoon, built on Severed Chains.**
 
-**Milestone 1: repository setup, baseline build validation, and planning.** No engine behavior changes or playable Definitive release yet. Preserve a faithful mode; prioritize existing HD artwork, installation, controller usability, readable menus, and optional conveniences. No engine rewrite.
+Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with optional community HD artwork and gameplay conveniences. A planned faithful mode will preserve the original gameplay experience while keeping presentation and accessibility choices separate.
 
-- [Full project plan and Sprint 0](docs/definitive/PROJECT_PLAN.md)
-- [Setup and build](docs/definitive/SETUP.md)
-- [Upstream synchronization](docs/definitive/UPSTREAM.md)
-- [Architecture and mod extension points](docs/definitive/ARCHITECTURE.md)
-- [Steam Deck-first roadmap](docs/definitive/ROADMAP.md)
-- [HD artwork reuse assessment](docs/definitive/SKURFA_RESEARCH.md) and [QoL fork assessment](docs/definitive/QOL_FORK_RESEARCH.md)
-- [Verified results and next steps](docs/definitive/VALIDATION.md)
+This is an unofficial community project in early development. **There is no playable Definitive release yet.** The candidate integrations below are being evaluated; listing them does not mean they are included or compatible.
 
-The checkout requires **Java 25**, with the **Gradle 9.1.0 wrapper**. The Java 21 note in the preserved upstream README below is stale relative to `build.gradle` and upstream CI. Code remains under the unchanged [AGPL v3 license](LICENSE); retain [CREDITS](CREDITS) and [credits.txt](credits.txt), including artwork attribution. Game disc images, extracted game assets, saves, credentials, and local runtimes must remain outside version control. Build-only CI replaces inherited publishing workflows; gameplay tests remain explicitly opt-in. See [build and test controls](docs/definitive/BUILD_CONTROLS.md).
+## Where this project comes from
 
----
+[Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains), developed by the Legend of Dragoon Modding community, is a Java port of the game with a modding API. It supplies Definitive's engine, platform support, game systems, extraction tools, and mod infrastructure. Definitive builds on that work and the wider modding community's contributions.
 
-## Preserved upstream README
+This repository preserves Severed Chains' Git history, license, credits, and source notices. The initial validated upstream commit is [`fba1543543865e29ee572f479003d9b47158eeb3`](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains/commit/fba1543543865e29ee572f479003d9b47158eeb3), retained on `upstream-baseline`. Development continues here, with the official repository configured as `upstream` and reviewed merges used to incorporate its updates.
 
-Like what you see? Send me a tip! You can also subscribe to our [YouTube channel](https://www.youtube.com/@legend-of-dragoon). We do devstreams most Wednesdays at 8:00PM Atlantic Time.
+Project changes should stay modular: separate mods, settings, installation tools, and small engine hooks when needed. An engine rewrite is outside the project's goals. See the [upstream synchronization strategy](docs/definitive/UPSTREAM.md) and [architecture](docs/definitive/ARCHITECTURE.md).
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W4HFVW9)
+## Goals
 
-# Severed Chains
+- **Existing HD artwork:** evaluate community packs, retain original-art fallback, and check foreground layers, transitions, memory use, and handheld readability.
+- **Straightforward installation:** a guided Steam Deck setup with clear disc-import errors, safe upgrades, and recoverable saves/settings.
+- **Controller comfort:** complete controller-only navigation, accurate button hints, remapping, reconnect support, and reliable Steam Input behavior.
+- **Readable menus:** useful font, contrast, and spacing options at 1280×800 without clipped text or hidden actions.
+- **Optional conveniences:** reuse existing settings and suitable mods for text speed, encounters, Addition assistance, and progression options, with explicit campaign choices.
+- **Measured performance:** establish real Deck frame-time, loading, memory, and power evidence before rendering improvements or upscaling experiments.
 
-A project to reverse engineer Legend of Dragoon into a high-level language with a modding API. This is not an emulator, but assembly code disassembled and rewritten in Java.
+Faithful mode is a planned, audited preset—not a claim that current upstream defaults match the retail game. Gameplay changes will remain optional. Disabling a reward or progression modifier later cannot undo rewards already earned.
 
-### Current Progress
+## Candidate community integrations
 
-- Game engine is fully functional with a few minor glitches that don't negatively affect gameplay
-- Modding API is actively in development
-- Game is fully playable with no known crashes
+These four projects form the initial evaluation shortlist. Credit and compatibility will be recorded per source revision and release.
 
-### Interested in playing?
+| Candidate | Intended role | Evaluation status |
+| --- | --- | --- |
+| [Skurfa's upscaled HDR backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds) | Optional HD field artwork | Source compiles against our baseline; limited scene coverage. Artwork rights, scene correctness, SDR appearance, and Deck memory/performance still need validation. [Assessment](docs/definitive/SKURFA_RESEARCH.md). |
+| [Quality of Life+](https://github.com/FrancisDionne/Severed-Chains/releases/tag/experimental) | Contextual action hints, inventory workflows, and training feedback | Selectively adapt interface ideas. It is a modified engine fork with divergent saves and unproven release-to-source correspondence. [Assessment](docs/definitive/QOL_FORK_RESEARCH.md). |
+| [Dragoon Modifier](https://github.com/Legend-of-Dragoon-Modding/sc-dragoon-modifier) | Optional difficulty and balance presets | All 46 Java sources compile against our baseline. It is a broad campaign overhaul with stat-control defects and unresolved licensing; evaluate only as an optional profile. [Assessment](docs/definitive/DRAGOON_MODIFIER_RESEARCH.md). |
+| [Battle Rewards Mod](https://github.com/DennytXVII/BattleRewardsMod/releases) | Optional experience and gold reward controls | AGPL source fails a compile check against our baseline; release tags are stale. Evaluate a current-API adaptation and reward overlap before adoption. [Assessment](docs/definitive/BATTLE_REWARDS_RESEARCH.md). |
 
-Visit our player guide here! https://legendofdragoon.org/projects/severed-chains/
+The shortlist is not a bundled modpack. Do not assume all four can run together: save compatibility, overlapping reward changes, licensing, and exact engine/API versions must be checked. Artwork remains external to this source repository.
 
-### Interested in the code?
+## Current status
 
-Visit our discord and drop into the [#modding channel](https://discord.com/channels/307164262063669248/318595603636551701)!
+As of October 9, 2026:
 
-A strong knowledge of Java and MIPS assembly is recommended. If you are interested in contributing (or just curious), the following steps should get you up and running:
-1. Install a git client and ensure the installation includes command line integration
-2. Clone this repository to your local computer using git
-3. Copy your ISOs or BINs of the LoD disks into the `isos` directory.
-4. Open your local copy of this repository in your IDE (IntelliJ recommended)
-5. Gradle should automatically attempt to configure the project and download all dependencies. If it doesn't, expand the gradle tab and click refresh. This process should succeed; resolve any errors if it does not. (lack of command line git can cause issues here)
-6. Run the project
+- Public repository, upstream history/remotes, documentation, and prioritized backlog are established.
+- Unmodified baseline builds passed on the development Mac; hosted macOS ARM64 and Linux x64/Steam Deck package builds also passed.
+- Seven headless scenarios verified gameplay-test controls. Ordinary builds skip gameplay tests; these checks do not execute the game.
+- The updater targets this project's repository. Release versioning, compatible mod sets, and save-safe upgrade/rollback remain to be designed and verified.
+- Four private disc images are available locally and their expected US disc IDs were checked. They are excluded from Git; extraction and gameplay have not run.
+- No candidate mods are integrated, faithful mode is not implemented, and no actual Steam Deck validation has occurred.
 
-Note: Java 21 is required. It is **strongly** recommended to run with assertions enabled.
+[Baseline evidence](docs/definitive/VALIDATION.md) · [Build and test controls](docs/definitive/BUILD_CONTROLS.md) · [Roadmap](docs/definitive/ROADMAP.md) · [Prioritized backlog](docs/definitive/BACKLOG.md)
 
-### Controls ###
+## Build from source
 
-Controllers and gamepads are fully supported. Keyboard controls may be changed in the in-game options menu.
+Install **JDK 25** and use the checked-in **Gradle 9.1.0 wrapper**. Compilation does not require game files.
 
-Default keyboard controls:
-- D-pad - arrow keys
-- Shape buttons - WASD
-- Start - enter
-- Select - space
-- L1 - Q
-- L2 - 1
-- L3 - Z
-- R1 - E
-- R2 - 3
-- R3 - C
-- F11 - pause
-- F12 - open debug tools (developer features - can easily cause crashes)
-- DEL - kill sounds (rarely, a sound may get stuck playing)
-- Tab - VRAM viewer
+```sh
+git clone https://github.com/gideonidoru/legend-of-dragoon-definitive.git
+cd legend-of-dragoon-definitive
+./gradlew --no-daemon --console=plain clean build
+```
 
-To set up a controller, simply connect it before or after starting the game,
-and select it from the controller dropdown in the in-game options menu.
+To compile/package the Linux x64 Steam Deck target:
 
-**NOTE**: There are known issues with using DS4windows, and possibly other controller emulators. Severed Chains supports 1800+ controllers out of the box so it's very likely you can just plug in your controller, set it up, and play. If you find a controller that isn't in our controller database, please contact us and we'll work with you to get it added. If you do use DS4windows, make sure your controller isn't hidden and close DS4windows.
+```sh
+./gradlew --no-daemon --console=plain clean build -Pos=linux -Parch=x86_64 -Psteamdeck=true
+```
 
-### Updating
+Output is generated in `build/libs/`. Building a Deck package on another computer does not prove Deck gameplay or native-library compatibility. See [setup and build instructions](docs/definitive/SETUP.md) for JDK configuration, dependencies, private disc input, and test controls. No game launch is part of these build commands.
 
-When a new version is available, an "Update Available" button appears on the title screen. Clicking it downloads and applies the update automatically if a platform-specific release is available, otherwise it opens the release page in your browser for manual download.
+## Roadmap and contributions
 
-The automatic updater preserves your saves, mods, ISOs, extracted files, and config. After the update completes, restart the game. A log of each update is written to `update_log.txt` in the game directory.
-### GPU Selection
+The next milestone focuses on package identity, compatible mod versions, and save-safe installation/upgrade contracts. Then establish a real Deck baseline and test representative artwork scenes, controller flows, and menu readability. Expand optional gameplay features after the faithful-mode and persistence contracts are clear.
 
-Severed Chains supports GPU preference settings for systems with multiple graphics cards (laptops with integrated and discrete GPUs).
+The [full project plan](docs/definitive/PROJECT_PLAN.md), [Sprint 0 checklist](docs/definitive/SPRINT_0.md), and [Deck test plan](docs/definitive/DECK_TEST_PLAN.md) define the work and its acceptance evidence. Contributions should identify the player benefit, upstream/mod overlap, license and credits, faithful-mode implications, and validation performed. Small, reversible changes with clear compatibility boundaries are preferred.
 
-**Linux/Steam Deck**: GPU preference is applied automatically based on your `launch.conf` setting. No additional setup required.
+## License and acknowledgments
 
-**Windows**: GPU preference requires one-time configuration. You have two options:
+Engine code remains under the unchanged [GNU Affero General Public License v3](LICENSE). Preserve [CREDITS](CREDITS), [credits.txt](credits.txt), and applicable per-file notices. Community mods and artwork have their own terms; this engine license does not grant redistribution rights to game discs or remastered game artwork.
 
-1. **Easy Setup (Recommended)**: After running launch.bat Run `gpu-optional-setup.bat` and follow the prompts. This is optional but makes GPU selection automatic.
-   
-2. **Manual Setup**: Add Severed Chains to Windows Graphics Settings:
-   - Open Windows Settings > Display > Graphics
-   - Click "Add desktop app" or "Browse"
-   - Navigate to your Severed Chains folder and select `jdk25\bin\java.exe`
-   - Click "Options" and choose your preferred GPU (Power saving or High performance)
+Thanks to the Severed Chains maintainers, the Legend of Dragoon Modding community, and the creators of the candidate projects linked above. Definitive is not affiliated with or endorsed by Sony, the original rights holders, the upstream maintainers, or those mod creators.
 
-To configure GPU preference in UNIX systems, edit `launch.conf` in your game folder:
-- `GPU_PREFERENCE=0` - Auto (let the system decide)
-- `GPU_PREFERENCE=1` - Discrete GPU (NVIDIA/AMD dedicated graphics)
-- `GPU_PREFERENCE=2` - Integrated GPU (Intel/AMD integrated graphics)
-
-### Copyright Information
-
-Even though it is not an emulator, Legend of Dragoon Java can not be played without the user providing the LoD disk images. Assets are extracted from the ROMs at runtime. This codebase does not include any official Legend of Dragoon code or assets.
+Supply your own supported game disc images privately in `isos/`. Never commit disc images, extracted game files, saves, private configuration, credentials, or local runtimes. No game disc content or third-party pack is distributed by this project. The [original upstream README](docs/upstream/README.md) is preserved for historical context; its Java 21 note predates this checkout's Java 25 build requirement.
