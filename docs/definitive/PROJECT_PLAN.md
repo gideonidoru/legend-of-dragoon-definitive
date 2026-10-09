@@ -14,7 +14,7 @@ The initial repository milestone is complete as recorded in [VALIDATION.md](VALI
 | --- | --- | --- |
 | Playability | All four discs without project-introduced progression blockers | Checkpoint matrix and full playthrough reports at the release SHA |
 | Installation | Guided setup without an end-user terminal | Fresh-device installation and offline second launch |
-| Visual quality | Consistent HD art without obvious seams or mismatched layers | Approved scene comparison and foreground/mask checks |
+| Visual quality | Consistent HD backgrounds and enhanced legacy model textures without obvious seams or mismatched layers | Approved scene/model comparison, UV/alpha/palette checks, original-art fallback and measured Deck budgets |
 | Performance | Stable engine-supported rates and Addition timing | Per-state frame-time and input results, not just an FPS counter |
 | Controls | Complete controller-only play | Title, setup, menus, battle, saves and recovery walkthrough |
 | Reliability | Safe save/load, updates and suspend/resume | Backup/restore checks, cold launch and cycle records |
@@ -34,10 +34,12 @@ These are areas of responsibility for one primary developer, not staffed teams o
 | Stream | Deliverables | Exit evidence |
 | --- | --- | --- |
 | A — Platform/reliability | Pinned Linux packages, guided private game import, safe updates, controller profile, backups, crash diagnostics, offline launch and suspend/resume | Ten consecutive cold launches; twenty suspend/resume cycles; save/load across fields, towns and battles without new failures |
-| B — Visual remaster | Asset inventory, existing pack adapter, masks/background validation, UI art and screenshot comparisons | Approved scenes free of visible seams, occlusion errors, aspect mismatches and excessive sharpening; measured memory/frame-time cost |
+| B — Visual remaster | Asset inventory, existing pack adapter, masks/background validation, optional model-texture upscaling pipeline, UI art and screenshot comparisons | Approved scenes free of visible seams, occlusion errors, aspect mismatches and excessive sharpening; measured memory/frame-time cost |
 | C — Gameplay/interface | Readable hierarchy, inventory/equipment comparisons, Addition practice, optional journal/hints, accessibility | Controller-only flows, opt-in behavior, faithful mode and valid progression/save state |
 | D — Performance | CPU/GPU timings, memory tracking, shader/battery measurements, native-resolution profiles; possible CAS | Measured improvement to consistency, quality or power with no timing/responsiveness regression |
 | E — Release/QA | Build CI, tracked tasks, compatibility matrix, versioned packages, rollback and regression suite | Clean install/upgrade/restore, matching source and notices, four-disc QA against selected baseline |
+
+The [legacy model/texture upscaling goal](TEXTURE_UPSCALING.md) adds a reproducible optional asset-enhancement pipeline, starting with original geometry and animation. Whole-frame upscaling remains a separate renderer experiment; higher-detail mesh replacement needs its own scope and acceptance evidence. No upscaler implementation or selected AI/tool model exists yet.
 
 HD pack access and redistribution permission are prerequisites to bundling. Use clearly licensed synthetic fixtures for pipeline tests if needed; do not commit extracted game artwork. No creator outreach has occurred. Filtering, anti-aliasing, sharpening and CAS are gated experiments after performance evidence. FSR 2/3 and frame generation are research only.
 
@@ -49,7 +51,7 @@ Assumption: one primary developer with AI assistance and actual Deck access. Add
 | --- | --- | --- |
 | 1–2 | Capability/source audit, package/update decisions, test plans and Deck baseline | M0 — build + architecture audit + actual Deck evidence |
 | 3–6 | Guided setup, controls, backup/restore, offline launch and suspend/resume | M1 — Deck Alpha |
-| 5–12 | Pack provenance/coverage, representative HD adapter and scene regression | M2 — Visual Alpha |
+| 5–12 | Pack provenance/coverage, representative HD adapter, small model-texture upscaling trial and scene regression | M2 — Visual Alpha |
 | 9–18 | Readability/inventory first, then training/journal proofs of concept | M3 — Modern UX Beta |
 | 17–22 | Compatibility, four-disc checkpoints, soak tests and freeze | M4 — Release Candidate |
 | 23–24 | Install/upgrade/restore verification, source/notices and sign-off | M5 — 1.0 |
@@ -78,6 +80,7 @@ No empty implementation scaffolding was added. Prefer existing settings/events a
 | --- | --- | --- |
 | No usable/redistributable HD pack | High | Confirm artifact, terms, mapping and creator attribution before integration; limited fixtures if unavailable |
 | Upstream API churn | High | Pin engine/mod versions and run compatibility checks at each sync |
+| Upscaled texture artifacts or model mismatch | High | Check UV seams, alpha, palette variants and animation; retain original textures and reject invented detail or excessive sharpening |
 | Mask/tile defects | High | Layer-aware scene comparisons and handheld visual review |
 | Addition timing changes | High | Repeat input scenarios and correlate with frame-time traces |
 | Expansion into a remake | High | Small vertical slices and an explicit release freeze |

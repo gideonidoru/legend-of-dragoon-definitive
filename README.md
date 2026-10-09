@@ -2,7 +2,7 @@
 
 **A Steam Deck-first modernization of The Legend of Dragoon, built on Severed Chains.**
 
-Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with optional community HD artwork and gameplay conveniences. A planned faithful mode will preserve the original gameplay experience while keeping presentation and accessibility choices separate.
+Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with optional community HD artwork, enhanced model textures, and gameplay conveniences. A planned faithful mode will preserve the original gameplay experience while keeping presentation and accessibility choices separate.
 
 This is an unofficial community project in early development. **There is no playable Definitive release yet.** The candidate integrations below are being evaluated; listing them does not mean they are included or compatible.
 
@@ -17,6 +17,7 @@ Project changes should stay modular: separate mods, settings, installation tools
 ## Goals
 
 - **Existing HD artwork:** evaluate community packs, retain original-art fallback, and check foreground layers, transitions, memory use, and handheld readability.
+- **Legacy model and texture upscaling:** develop an optional, reproducible enhancement pipeline for character, enemy, and environment textures, preserving the original art direction, silhouettes, and animation. Evaluate whole-frame upscaling separately using Deck evidence. [Scope and acceptance](docs/definitive/TEXTURE_UPSCALING.md).
 - **Straightforward installation:** a guided Steam Deck setup with clear disc-import errors, safe upgrades, and recoverable saves/settings.
 - **Controller comfort:** complete controller-only navigation, accurate button hints, remapping, reconnect support, and reliable Steam Input behavior.
 - **Readable menus:** useful font, contrast, and spacing options at 1280×800 without clipped text or hidden actions.
@@ -71,7 +72,7 @@ Output is generated in `build/libs/`. Building a Deck package on another compute
 
 ## Roadmap and contributions
 
-The next milestone focuses on package identity, compatible mod versions, and save-safe installation/upgrade contracts. Then establish a real Deck baseline and test representative artwork scenes, controller flows, and menu readability. Expand optional gameplay features after the faithful-mode and persistence contracts are clear.
+The next milestone focuses on package identity, compatible mod versions, and save-safe installation/upgrade contracts. Then establish a real Deck baseline and test representative artwork scenes, controller flows, and menu readability. Add a small model-texture upscaling proof of concept once texture mapping and Deck budgets are established. Expand optional gameplay features after the faithful-mode and persistence contracts are clear.
 
 The [full project plan](docs/definitive/PROJECT_PLAN.md), [Sprint 0 checklist](docs/definitive/SPRINT_0.md), and [Deck test plan](docs/definitive/DECK_TEST_PLAN.md) define the work and its acceptance evidence. Contributions should identify the player benefit, upstream/mod overlap, license and credits, faithful-mode implications, and validation performed. Small, reversible changes with clear compatibility boundaries are preferred.
 
