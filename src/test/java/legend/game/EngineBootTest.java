@@ -165,6 +165,26 @@ class EngineBootTest {
     LOGGER.info("[E2E] PASS: campaignPresetsAreDetachedAndRoundTrip");
   }
 
+  @Test
+  void test5_sparsePresetsResetCampaignScopesAndPreserveGlobal() {
+    final var choices = legend.game.saves.ConfigPresetManager.loadDefaultPresets();
+    final var target = new legend.game.saves.ConfigCollection(false);
+    target.setConfig(CoreMod.MASTER_VOLUME_CONFIG.get(), 0.37f);
+    final var scopes = java.util.EnumSet.of(legend.game.saves.ConfigStorageLocation.CAMPAIGN, legend.game.saves.ConfigStorageLocation.SAVE);
+    target.replaceConfigFrom(choices.get(0).getPreset().config, scopes);
+    assertEquals(BattleTransitionMode.FAST, target.getConfig(CoreMod.BATTLE_TRANSITION_MODE_CONFIG.get()));
+    target.replaceConfigFrom(choices.get(2).getPreset().config, scopes);
+    assertEquals(CoreMod.BATTLE_TRANSITION_MODE_CONFIG.get().getDefaultValue(), target.getConfig(CoreMod.BATTLE_TRANSITION_MODE_CONFIG.get()));
+    assertEquals(CoreMod.TRANSFORMATION_MODE_CONFIG.get().getDefaultValue(), target.getConfig(CoreMod.TRANSFORMATION_MODE_CONFIG.get()));
+    assertEquals(0.37f, target.getConfig(CoreMod.MASTER_VOLUME_CONFIG.get()));
+    target.replaceConfigFrom(choices.get(0).getPreset().config, scopes);
+    target.replaceConfigFrom(choices.get(3).getPreset().config, scopes);
+    assertEquals(CoreMod.BATTLE_TRANSITION_MODE_CONFIG.get().getDefaultValue(), target.getConfig(CoreMod.BATTLE_TRANSITION_MODE_CONFIG.get()));
+    assertFalse(target.getConfig(CoreMod.SAVE_ANYWHERE_CONFIG.get()));
+    assertEquals(0.37f, target.getConfig(CoreMod.MASTER_VOLUME_CONFIG.get()));
+    LOGGER.info("[E2E] PASS: sparsePresetsResetCampaignScopesAndPreserveGlobal");
+  }
+
   @AfterAll
   void shutdownEngine() {
     // Definitive (2026-10-09): process owner closes the Mac first-thread engine.

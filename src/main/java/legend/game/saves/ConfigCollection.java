@@ -115,6 +115,13 @@ public class ConfigCollection {
     this.presetState = null;
   }
 
+  /** Apply a complete preset in selected scopes, resetting omitted entries to registry defaults. */
+  public void replaceConfigFrom(final ConfigCollection other, final Set<ConfigStorageLocation> locations) {
+    if(other == this) return;
+    for(final ConfigStorageLocation location : locations) this.clearConfig(location);
+    this.copyConfigFrom(other, locations);
+  }
+
   public void lockConfig(final ConfigEntry<?> config) {
     final Class<?> caller = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass();
     MODS.setActiveModByClassloader(caller.getClassLoader());

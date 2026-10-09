@@ -27,7 +27,7 @@ public final class ReleaseUpdates {
     final var request = HttpRequest.newBuilder(URI.create("https://api.github.com/repos/" + REPO + "/releases?per_page=20")).timeout(Duration.ofSeconds(20)).header("Accept", "application/vnd.github+json").header("User-Agent", "Legend-of-Dragoon-Definitive").GET().build();
     final var response = HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream());
     final byte[] body;
-    try(final var input = response.body()) { body = input.readNBytes(2 * 1024 * 1024 + 1); }
+    try(final var input = response.body(); final var output = new java.io.ByteArrayOutputStream()) { DownloadBody.copy(input, output, 2 * 1024 * 1024, Duration.ofSeconds(30)); body = output.toByteArray(); }
     if(response.statusCode() != 200 || body.length > 2 * 1024 * 1024) throw new IOException("Updates unavailable right now. You can still play offline.");
     return new String(body, java.nio.charset.StandardCharsets.UTF_8);
   }
@@ -57,8 +57,7 @@ public final class ReleaseUpdates {
       final var response = HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream());
       try(final var input = response.body(); final var output = Files.newOutputStream(download)) {
         if(response.statusCode() != 200) throw new IOException("Update download failed. Your current installation is unchanged.");
-        final byte[] buffer = new byte[1024 * 1024]; long total = 0;
-        for(int n; (n = input.read(buffer)) != -1;) { if((total += n) > 1024L * 1024 * 1024) throw new IOException("Update exceeds its download limit."); output.write(buffer, 0, n); }
+        DownloadBody.copy(input, output, 1024L * 1024 * 1024, Duration.ofMinutes(15));
       }
       if(!PackageManifest.sha256(download).equals(candidate.sha256())) throw new IOException("Update checksum mismatch. Your current installation is unchanged.");
       return store.install(download, candidate.assetId());

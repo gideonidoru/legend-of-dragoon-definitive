@@ -112,18 +112,15 @@ public class NewCampaignScreen extends VerticalLayoutScreen {
     ConfigPresetManager.loadDefaultPresets().forEach(this.optionPresets::addOption);
     ConfigPresetManager.loadPresetList().forEach(this.optionPresets::addOption);
     this.optionPresets.onSelection(this::onPresetSelected);
-    // Definitive (2026-10-09): apply the displayed initial choice for a fresh campaign.
-    this.applyPreset(this.optionPresets.getSelectedOption());
-    this.appliedPreset = IoHelper.slugName(this.optionPresets.getSelectedOption().getName().get());
-
+    // Select the remembered entry first, then apply exactly that preset once.
     for(int i = 0; i < this.optionPresets.size(); i++) {
       if(IoHelper.slugName(this.optionPresets.getOption(i).getName().get()).equals(Config.getLastConfigPreset())) {
         this.optionPresets.setSelectedIndex(i);
-        if(this.applyPreset(this.optionPresets.getSelectedOption())) {
-          this.appliedPreset = Config.getLastConfigPreset();
-        }
         break;
       }
+    }
+    if(this.applyPreset(this.optionPresets.getSelectedOption())) {
+      this.appliedPreset = IoHelper.slugName(this.optionPresets.getSelectedOption().getName().get());
     }
 
     final Button editPresets = new Button(new I18nText("lod_core.ui.new_campaign.edit_presets"));
@@ -224,7 +221,7 @@ public class NewCampaignScreen extends VerticalLayoutScreen {
   }
 
   private void updateConfig(final ConfigCollection newConfig) {
-    CONFIG.copyConfigFrom(newConfig, EnumSet.of(ConfigStorageLocation.CAMPAIGN, ConfigStorageLocation.SAVE));
+    CONFIG.replaceConfigFrom(newConfig, EnumSet.of(ConfigStorageLocation.CAMPAIGN, ConfigStorageLocation.SAVE));
     InputBindings.initBindings();
     InputBindings.loadBindings(CONFIG);
   }

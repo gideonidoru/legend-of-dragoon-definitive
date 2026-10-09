@@ -55,7 +55,7 @@ As of October 9, 2026:
 - Unmodified baseline builds passed on the development Mac; hosted macOS ARM64 and Linux x64/Steam Deck package builds also passed.
 - Seven headless scenarios verified gameplay-test controls. Ordinary builds skip gameplay tests; these checks do not execute the game.
 - The updater targets this project's repository. The guided manager pairs verified engine/mod packages, keeps private data separate, retains pre-update snapshots, and restores the prior engine with its prior data. Headless recovery fixtures pass; real Deck update recovery remains to be exercised.
-- Four private discs were extracted locally; normal engine startup and four automated Mac gameplay smoke tests passed with the source-built Skurfa mod. Disc images, extracted retail assets and test campaigns remain excluded from Git.
+- Four private discs were extracted locally; normal engine startup and five automated Mac gameplay smoke tests passed with the source-built Skurfa mod. Disc images, extracted retail assets and test campaigns remain excluded from Git.
 - The optional 2× texture comparison pilot processes private character/enemy atlases and validates exact field-pack identity. Multi-palette real-game coverage remains blocked; it stays off by default. [Evidence and visual direction](docs/definitive/TEXTURE_UPSCALING.md).
 - Skurfa source/build integration and the first QoL interface slice are implemented. Definitive/Faithful presets and their configuration round trips pass on Mac; actual Steam Deck validation remains outstanding; these smoke tests do not establish artwork quality, controller usability or a complete playthrough.
 

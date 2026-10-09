@@ -4,5 +4,5 @@ Name=Install Legend of Dragoon: Definitive
 Comment=Guided Steam Deck setup
 Icon=applications-games
 Terminal=false
-Exec=/bin/bash -c "set -e; d=\\$(mktemp -d); trap 'rm -rf \\"\\$d\\"' EXIT; curl --fail --location --proto '=https' --proto-redir '=https' --output \\"\\$d/install.sh\\" 'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09/Install-Definitive.sh'; echo '234fad97e5be30230e242da70fa5d1ef7f1a2a1fd43ab72a6d4c77d150f9e5db  ' \\"\\$d/install.sh\\" | sha256sum --check --status; /bin/bash \\"\\$d/install.sh"
+Exec=/bin/bash -c "set -e; d=\\$(mktemp -d); trap 'rm -rf \\"\\$d\\"' EXIT; curl --fail --location --proto '=https' --proto-redir '=https' --output \\"\\$d/install.sh\\" 'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09/Install-Definitive.sh'; echo '7ead7f0d7aa7921937a2a46e6acb87c4f18911ac9269cc16e3530d3ac6e4c979  ' \\"\\$d/install.sh\\" | sha256sum --check --status; /bin/bash \\"\\$d/install.sh\\";"
 Categories=Game;
