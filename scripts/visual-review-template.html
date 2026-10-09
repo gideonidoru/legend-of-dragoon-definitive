@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- Definitive private artwork review template. AGPL v3; see LICENSE. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Definitive · Material study</title>
+<style>
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#101a17;color:#f1efe7}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#253d33,transparent 65%);min-height:100vh}
+main{max-width:1080px;margin:auto;padding:36px 32px 28px}header{display:flex;justify-content:space-between;align-items:start;gap:24px;margin-bottom:30px}
+.eyebrow{margin:0 0 9px;color:#c4b28c;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+h1{font-weight:500;font-size:clamp(28px,4vw,42px);letter-spacing:-.045em;margin:0}p{line-height:1.55}.scope{max-width:310px;font-size:13px;color:#bac7bd;margin:6px 0 0}
+.workbench{display:grid;grid-template-columns:280px minmax(0,1fr);gap:40px}.controls{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:18px}label{display:block;font-size:12px;color:#bdc8c0}select{font:inherit;font-size:14px;color:#f1efe7;background:#25352d;border:1px solid #4a5b4e;border-radius:12px;width:100%;height:48px;margin-top:8px;padding:0 12px}
+select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #e7c691;outline-offset:4px}
+.stage{position:relative;aspect-ratio:384/448;max-width:540px;margin:auto;overflow:hidden;border-radius:22px;background:radial-gradient(ellipse at 50% 38%,#2a3a31,#17221c);border:1px solid #425045}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:scale(var(--zoom,1));transform-origin:var(--focus,50% 50%)}
+.candidate-layer{position:absolute;inset:0;clip-path:inset(0 0 0 var(--split,50%))}.divider{position:absolute;top:0;bottom:0;left:var(--split,50%);width:1px;background:#e9d4ac;pointer-events:none}
+.divider:after{content:"↔";position:absolute;top:50%;left:-15px;width:31px;height:31px;display:grid;place-items:center;border-radius:50%;background:#e9d4ac;color:#213426;font-size:19px;box-shadow:0 4px 20px #0005}
+.legend{display:flex;justify-content:space-between;gap:16px;max-width:540px;margin:14px auto 0;font-size:12px;color:#c2cdc5}.legend span{min-width:0;overflow-wrap:anywhere}.legend span:last-child{max-width:75%;text-align:right}
+.range{max-width:540px;margin:18px auto 0}.range label{display:flex;justify-content:space-between}.range input{display:block;width:100%;height:44px;margin:0;accent-color:#d5bc8c;touch-action:pan-y}
+.status{font-size:13px;color:#c4cfc7;margin:15px 0 22px;min-height:40px}.status strong{font-weight:500;color:#eee8d9}
+details{border-top:1px solid #425045;padding-top:15px;font-size:12px;color:#adbbb0}summary{width:max-content;max-width:100%;min-height:44px;display:flex;align-items:center;cursor:pointer;color:#d5caae}
+dl{display:grid;grid-template-columns:1fr;gap:6px}dt{color:#d5caae}dd{margin:0 0 8px;overflow-wrap:anywhere;font-family:ui-monospace,monospace;font-size:11px}
+@media(min-width:800px){.stage,.legend,.range{max-width:384px}}
+@media(max-width:799px){.workbench{grid-template-columns:1fr;gap:20px}.controls{grid-template-columns:1fr 1fr}.status{margin-bottom:12px}.tools details{margin-bottom:0}}
+@media(max-width:640px){main{padding:24px 18px}header{display:block;margin-bottom:24px}.scope{max-width:none;margin-top:14px}.controls{gap:12px}}
+@media(prefers-reduced-motion:no-preference){select{transition:border-color .18s}}
+</style>
+</head>
+<body>
+<main id="material-study">
+<header><div><p class="eyebrow">Legend of Dragoon · Definitive</p><h1>Material study</h1></div><p class="scope">Private, offline model inspection. Original geometry and keyframes. Native rendering and Steam Deck performance remain unverified.</p></header>
+<div class="workbench"><div class="tools">
+<div class="controls">
+<label for="pose">View<select id="pose"></select></label>
+<label for="comparison">Candidate<select id="comparison"></select></label>
+<label for="zoom">Preview zoom<select id="zoom"><option value="1">1× · full model</option><option value="2">2× · detail</option><option value="3">3× · detail</option></select></label>
+<label for="focus">Inspect<select id="focus"><option value="50% 50%">Costume</option><option value="50% 18%">Face</option><option value="50% 83%">Boots</option></select></label>
+</div>
+<p class="status" id="status" aria-live="polite"></p>
+<details><summary>Source identities</summary><dl id="identities"></dl></details>
+</div><div class="preview">
+<div class="stage" role="img" aria-label="Original model on the left and selected candidate on the right">
+<img id="original" alt="Original per-face palette model">
+<div class="candidate-layer"><img id="candidate" alt="Selected material candidate"></div>
+<div class="divider" aria-hidden="true"></div>
+</div>
+<div class="legend"><span>Original</span><span id="candidate-label"></span></div>
+<div class="range"><label for="split"><span>Reveal candidate</span><output id="split-value">50%</output></label><input id="split" type="range" min="0" max="100" value="50" aria-label="Original and candidate comparison boundary"></div>
+</div></div>
+</main>
+<script>
+(() => {
+  const data=__VISUAL_REVIEW_DATA__;
+  const root=document.getElementById('material-study');
+  const get=id=>root.querySelector('#'+id), pose=get('pose'), comparison=get('comparison'), stage=root.querySelector('.stage');
+  const add=(select,label,value)=>{const option=document.createElement('option');option.textContent=label;option.value=value;select.append(option);};
+  data.views.forEach((view,index)=>add(pose,view.label,index));
+  data.labels.slice(1).forEach((label,index)=>add(comparison,label,index+1));
+  comparison.value=data.labels.length>2?'2':'1';
+  const update=()=>{
+    const index=Number(comparison.value), view=data.views[Number(pose.value)];
+    get('original').src=view.images[0];get('candidate').src=view.images[index];
+    get('candidate').alt=data.labels[index];get('candidate-label').textContent=data.labels[index];
+    stage.style.setProperty('--zoom',get('zoom').value);stage.style.setProperty('--focus',get('focus').value);
+    const bytes=data.allocatedRgbaBytes[index];
+    get('status').textContent=bytes===null?'Offline raster preview · no native performance measurement':(bytes/1048576).toLocaleString(undefined,{maximumFractionDigits:3})+' MiB allocated atlas RGBA · excludes driver overhead and runtime residency';
+  };
+  for(const id of ['pose','comparison','zoom','focus'])get(id).addEventListener('change',update);
+  const reveal=()=>{const value=Number(get('split').value);stage.style.setProperty('--split',(100-value)+'%');get('split-value').textContent=value+'%';};
+  get('split').addEventListener('input',reveal);
+  for(const [name,key] of [['Model','sourceModelSha256'],['Texture','sourceTimSha256'],['Animation','sourceAnimationSha256'],['Inspection','inspectionManifestSha256']]){
+    const term=document.createElement('dt'),value=document.createElement('dd');term.textContent=name;value.textContent=data[key];get('identities').append(term,value);
+  }
+  update();reveal();
+})();
+</script>
+</body>
+</html>
