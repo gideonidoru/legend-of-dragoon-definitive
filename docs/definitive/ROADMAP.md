@@ -1,5 +1,7 @@
 # Steam Deck-first roadmap
 
+Full program scope and provisional 24-week gates: [PROJECT_PLAN.md](PROJECT_PLAN.md). Proposed implementation briefs: [BACKLOG.md](BACKLOG.md). First-14-day checklist: [SPRINT_0.md](SPRINT_0.md). This roadmap preserves the immediate player-impact ordering.
+
 Deliver visible improvements through mods, configuration and packaging. Keep faithful mode available, with no engine rewrite. This is a prioritized plan, not a promise of already working features.
 
 | Priority | Deliverable | Acceptance evidence / dependency |

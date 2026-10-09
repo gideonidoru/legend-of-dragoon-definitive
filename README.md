@@ -4,6 +4,7 @@ A Steam Deck-first modernization project built on [Severed Chains](https://githu
 
 **Milestone 1: repository setup, baseline build validation, and planning.** No engine behavior changes or playable Definitive release yet. Preserve a faithful mode; prioritize existing HD artwork, installation, controller usability, readable menus, and optional conveniences. No engine rewrite.
 
+- [Full project plan and Sprint 0](docs/definitive/PROJECT_PLAN.md)
 - [Setup and build](docs/definitive/SETUP.md)
 - [Upstream synchronization](docs/definitive/UPSTREAM.md)
 - [Architecture and mod extension points](docs/definitive/ARCHITECTURE.md)
