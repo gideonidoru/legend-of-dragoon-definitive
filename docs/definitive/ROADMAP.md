@@ -14,7 +14,7 @@ Deliver visible improvements through mods, configuration and packaging. Keep fai
 | P2 / model visuals | Optional legacy model-texture upscaler and enhancement pack | Pin tools/model versions and private input hashes; start with representative character/enemy/environment textures; preserve UVs, alpha, palette-dependent variants and animation; original-texture fallback; compare quality, seams, frame times and memory on Deck; no geometry rewrite |
 | P2 / convenience | Opt-in quick text, save convenience, encounter control and addition assistance | Reuse existing settings first; evaluate Dragoon Modifier and Battle Rewards as separate optional profiles with explicit reward ownership; explain persistent effects and record choices per campaign; faithful preset audit including retail defaults; save/load and disabling mods tested |
 | P3 / measured rendering | Targeted renderer tuning and optional whole-frame upscaling | Only after Deck baseline and HD-pack timings; bottleneck evidence and equal-scene A/B results; improve worst frametimes without broken UI/occlusion or altered timing; no engine rewrite |
-| Release gate | Reproducible, licensed, maintainable package | Source + license + attribution, no disc/assets/saves/tokens/runtimes in Git, compatible update channel, asset-pack terms, Deck install/upgrade/gameplay evidence |
+| Release gate | Reproducible, licensed, maintainable package | Source + license + attribution, no private discs/extracted retail assets/saves/tokens/runtimes in Git; pinned community-artwork source and notices, compatible update channel, asset-pack terms, Deck install/upgrade/gameplay evidence |
 
 ## Measurement plan before graphics expansion
 
@@ -25,9 +25,9 @@ Provisional goals: responsive stable 60 fps where the engine supports it (16.7 m
 ## First implementation slice after this milestone
 
 1. Build-only CI is complete. Finish package/version pairing and save-safe upgrade/restore policy before distributing fork binaries; configure a durable local JDK 25.
-2. Private disc inputs are present locally; extraction/gameplay remain not run. Obtain device details and separately authorized gameplay/device tests, then establish an actual Steam Deck baseline.
-3. Verify Skurfa v1.1.0 artifact contents/hashes and installation terms. Source API compilation has passed; trial its existing mod on representative scenes after the device baseline. Keep artwork external and record coverage limits.
+2. Private discs are extracted and Mac gameplay smoke tests pass. Obtain Deck details and establish an actual Steam Deck baseline. The owner has authorized local game testing.
+3. Skurfa v1.1.0 is now a public pinned submodule with inclusive recursive cloning and source-built packaging. Artifact hashes and startup loading are verified; trial representative scenes and measure Deck performance.
 4. Adapt one readable menu/control flow using current binding-aware input APIs and selected QoL interaction ideas. Use a narrow artwork shim only if the existing mod needs it. Compare to faithful mode and baseline performance before broadening.
 5. Audit model-texture paths and prototype the [legacy texture upscaler](TEXTURE_UPSCALING.md) on a licensed fixture first, then representative private textures in an authorized validation session. Keep geometry replacement and whole-frame upscaling as separately evaluated options.
 
-Research and evidence: [Skurfa HD backgrounds](SKURFA_RESEARCH.md), [Quality of Life+ fork](QOL_FORK_RESEARCH.md), [Dragoon Modifier](DRAGOON_MODIFIER_RESEARCH.md), [Battle Rewards](BATTLE_REWARDS_RESEARCH.md). These are four candidates, not a validated combined modpack. None is runtime-validated on this project or a Steam Deck.
+Research and evidence: [Skurfa HD backgrounds](SKURFA_RESEARCH.md), [Quality of Life+ fork](QOL_FORK_RESEARCH.md), [Dragoon Modifier](DRAGOON_MODIFIER_RESEARCH.md), [Battle Rewards](BATTLE_REWARDS_RESEARCH.md). Skurfa and selective QoL interface adaptation are the primary track; Dragoon Modifier and Battle Rewards stay optional candidates. Skurfa loads on Mac; no physical Deck validation has occurred. [Current implementation and evidence](INTEGRATION_ALPHA.md).

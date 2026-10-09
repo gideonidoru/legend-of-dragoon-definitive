@@ -23,13 +23,13 @@ Reconstructed from the owner's plan because its interactive priority table was a
 
 Prefer D01–D08 and visible wins before ambitious journal/training/rendering work. D08 can be investigated independently, but D09 needs both usable assets and a device baseline. Schedule gates in PROJECT_PLAN.md do not override these dependencies.
 
-D01 is complete: local builds and seven control scenarios pass, and both hosted platform jobs pass. Evidence is in BUILD_CONTROLS.md. D02 is partially complete: the updater targets the project repository, but package/version pairing and rollback policy remain. Private disc inputs are now present locally; device-dependent work still needs hardware details and execution permission. Extraction and full asset/gameplay validation have not run.
+D01 is complete: local builds and seven control scenarios pass, and both hosted platform jobs pass. Evidence is in BUILD_CONTROLS.md. D02 is partially complete: the updater targets the project repository, but package/version pairing and rollback policy remain. Private discs are extracted. Mac startup and three gameplay smoke tests pass; physical Deck details and validation remain outstanding. The owner authorized local launches/tests.
 
-External reuse research: [Skurfa HD pack](SKURFA_RESEARCH.md) and [QoL fork](QOL_FORK_RESEARCH.md). D08 source/API assessment is complete, including a successful source-only compilation; release contents, artwork redistribution terms and runtime/Deck checks remain open. QoL assessment supports selective interface adaptation, not a whole-fork merge or save-format replacement.
+External reuse research: [Skurfa HD pack](SKURFA_RESEARCH.md) and [QoL fork](QOL_FORK_RESEARCH.md). D08 source/API assessment is complete, including a successful source-only compilation; the pinned release hashes and source-built JAR/resources are verified, and Skurfa loads on Mac. Public source/artwork integration uses a pinned submodule with original notices. Scene quality and Deck checks remain open. QoL assessment supports selective interface adaptation, not a whole-fork merge or save-format replacement.
 
-## Four-project candidate shortlist
+## Integration selection
 
-The owner's shortlist includes Skurfa, Quality of Life+, Dragoon Modifier and Battle Rewards. Keep presentation candidates ahead of optional balance work. A common package should present clear choices; all four are not assumed to be jointly compatible.
+The owner selected Skurfa and selective Quality of Life+ interface work as primary integrations, with Dragoon Modifier and Battle Rewards optional. Keep presentation candidates ahead of optional balance work. A common package should present clear choices; all four are not assumed to be jointly compatible.
 
 - **Skurfa:** existing standalone artwork adapter first; D08/D09 retain pack terms, scene and performance gates.
 - **Quality of Life+:** selectively adapt action hints, inventory interactions and feedback under D06/D10/D12, retaining source notices and current persistence APIs.
@@ -37,3 +37,5 @@ The owner's shortlist includes Skurfa, Quality of Life+, Dragoon Modifier and Ba
 - **Battle Rewards:** [assessment](BATTLE_REWARDS_RESEARCH.md) supports optional reward controls using current APIs after source repair/provenance checks. Track D11's persistent reward effects and D15's save/upgrade checks. Define one reward owner or explicit composition with Dragoon Modifier before enabling both.
 
 D16 adds the owner-requested [legacy model and texture upscaling goal](TEXTURE_UPSCALING.md). Its new ID preserves existing briefs; P2 is its proposed priority. Offline asset enhancement and D14 whole-frame scaling are distinct. The existing community upscale effort is historical context, not a dependency on a promised future release.
+
+D06 first slice: EquipmentScreen now exposes binding-aware Equip/Sort/Unequip/Back footer actions through the existing menu API. D08 source integration/build packaging is implemented; D09 scene/performance checks and D10 inventory workflow extensions remain. See [INTEGRATION_ALPHA.md](INTEGRATION_ALPHA.md).

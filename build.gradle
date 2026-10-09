@@ -298,3 +298,9 @@ sourceSets {
     }
   }
 }
+
+// Definitive modification (2026-10-09): explicit Mac first-thread test runner.
+apply from: 'gradle/macos-gameplay-test.gradle'
+
+// Definitive modification (2026-10-09): source-linked HD background mod.
+apply from: 'gradle/skurfa.gradle'

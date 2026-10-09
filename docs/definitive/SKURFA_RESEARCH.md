@@ -1,5 +1,7 @@
 # Skurfa's HD backgrounds — reuse assessment
 
+Historical assessment: later source/build integration and the first QoL slice are recorded in [INTEGRATION_ALPHA.md](INTEGRATION_ALPHA.md). Skurfa is now public and source-linked by owner request.
+
 Inspected 2026-10-09. First concrete external-artwork integration candidate; prefer evaluating the existing mod before writing a duplicate adapter. No artwork or release binaries downloaded, no mod installed, no engine launched, no creator contacted.
 
 ## Pinned source and release

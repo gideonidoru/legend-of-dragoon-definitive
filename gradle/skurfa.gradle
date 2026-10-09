@@ -1,0 +1,45 @@
+// Definitive integration (2026-10-09), AGPL v3; see LICENSE.
+// Compile the pinned public submodule against this checkout, without its standalone build.
+final def skurfaRoot = file('integrations/skurfa')
+final def skurfaClasses = layout.buildDirectory.dir('skurfa/classes')
+
+tasks.register('requireSkurfa') {
+  // Missing submodules must not silently produce an empty mod.
+  doFirst {
+    if(!new File(skurfaRoot, 'src/main/java/scbackgroundhd/BackgroundHdMod.java').isFile()) {
+      throw new GradleException('Initialize Skurfa with git submodule update --init --recursive')
+    }
+  }
+}
+
+tasks.register('compileSkurfa', JavaCompile) {
+  dependsOn classes, requireSkurfa
+  source fileTree(new File(skurfaRoot, 'src/main/java')) { include '**/*.java' }
+  classpath = sourceSets.main.output + configurations.compileClasspath
+  destinationDirectory = skurfaClasses
+  options.release = 25
+  options.encoding = 'UTF-8'
+}
+
+tasks.register('skurfaJar', Jar) {
+  dependsOn compileSkurfa, jar
+  archiveFileName = 'Skurfas-HDR-Backgrounds-v1.1.0.jar'
+  destinationDirectory = layout.buildDirectory.dir('libs/mods')
+  from skurfaClasses
+  from new File(skurfaRoot, 'src/main/resources')
+  from new File(skurfaRoot, 'runtime-assets')
+  into('META-INF/skurfa') {
+    from new File(skurfaRoot, 'LICENSE')
+    from new File(skurfaRoot, 'THIRD_PARTY_NOTICES.md')
+    from new File(skurfaRoot, 'README.md')
+  }
+  manifest {
+    attributes 'Implementation-Title': "Skurfa's HDR Backgrounds",
+      'Implementation-Version': '1.1.0',
+      'Definitive-Skurfa-Source': '3c9e4b3ecefc31cb32fd1281a7857f3a08f56081'
+  }
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
+}
+
+tasks.named('build') { dependsOn skurfaJar }

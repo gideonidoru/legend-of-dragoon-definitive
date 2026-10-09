@@ -82,7 +82,11 @@ public class EquipmentScreen extends MenuScreen {
     this.characterCard = this.addControl(new CharacterCard());
     this.characterCard.setPos(8, 20);
 
-    this.addHotkey(new I18nText("lod_core.ui.equipment.unequip"), INPUT_ACTION_MENU_UNEQUIP, this::menuUnequip);
+    // Definitive (2026-10-09): contextual, binding-aware actions inspired by QoL+.
+    this.addHotkey(new I18nText("lod_core.ui.equipment.equip"), INPUT_ACTION_MENU_CONFIRM, () -> this.runReadyAction(this::menuSelect));
+    this.addHotkey(new I18nText("lod_core.ui.equipment.sort"), INPUT_ACTION_MENU_SORT, () -> this.runReadyAction(this::menuItemSort));
+    this.addHotkey(new I18nText("lod_core.ui.equipment.unequip"), INPUT_ACTION_MENU_UNEQUIP, () -> this.runReadyAction(this::menuUnequip));
+    this.addHotkey(new I18nText("lod_core.ui.equipment.back"), INPUT_ACTION_MENU_BACK, () -> this.runReadyAction(this::menuEscape));
   }
 
   @Override
@@ -143,6 +147,12 @@ public class EquipmentScreen extends MenuScreen {
         this.renderEquipmentScreen(this.charSlot, this.selectedSlot, this.slotScroll, 0);
         this.unload.run();
         break;
+    }
+  }
+
+  private void runReadyAction(final Runnable action) {
+    if(this.loadingStage == 3) {
+      action.run();
     }
   }
 

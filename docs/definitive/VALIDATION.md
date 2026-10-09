@@ -75,3 +75,7 @@ Both builds used the unmodified upstream source/build configuration. Final docum
 ## Next steps
 
 Follow [ROADMAP.md](ROADMAP.md): stabilize install/release boundaries, measure a real Deck baseline with user-provided private files and authorized execution, confirm HD-pack terms/compatibility, then implement small mod/config improvements for art, controller flow and readable menus. Rendering/upscaling experiments follow measured evidence.
+
+## Later integration checkpoint
+
+The initial evidence above remains historical. Public Skurfa source/artwork integration, current package builds and authorized Mac gameplay smoke results are recorded in [INTEGRATION_ALPHA.md](INTEGRATION_ALPHA.md). No physical Deck or complete playthrough validation is implied.

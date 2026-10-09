@@ -1,5 +1,7 @@
 # Quality of Life+ fork research
 
+Historical assessment: later source/build integration and the first QoL slice are recorded in [INTEGRATION_ALPHA.md](INTEGRATION_ALPHA.md). Skurfa is now public and source-linked by owner request.
+
 Inspected 2026-10-09 against official baseline `fba1543543865e29ee572f479003d9b47158eeb3`. Recommendation: selectively adapt interface ideas on the current engine; do not merge this fork wholesale or substitute its binaries.
 
 ## Verified release and source facts

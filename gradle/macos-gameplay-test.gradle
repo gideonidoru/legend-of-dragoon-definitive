@@ -1,0 +1,24 @@
+// Definitive Mac test tooling (2026-10-09), AGPL v3; see LICENSE.
+// Explicit task only: ordinary builds never launch this runner.
+tasks.register('macGameplayTest', JavaExec) {
+  dependsOn testClasses, jar
+  // Load engine mods from the packaged JAR, where their resource roots are valid.
+  classpath = sourceSets.test.output + files(tasks.jar.archiveFile) + configurations.testRuntimeClasspath
+  mainClass = 'legend.game.FirstThreadGameplayRunner'
+  workingDir = projectDir
+  jvmArgs '-XstartOnFirstThread', '-ea', '--enable-native-access=ALL-UNNAMED',
+    '--add-opens=java.base/java.util=ALL-UNNAMED',
+    '--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED'
+  doFirst {
+    if(!System.getProperty('os.name').toLowerCase().contains('mac')) {
+      throw new GradleException('macGameplayTest requires macOS')
+    }
+    final String optIn = providers.gradleProperty('runTests').orNull
+    if(!(optIn in ['', 'true'])) {
+      throw new GradleException('macGameplayTest requires explicit -PrunTests opt-in')
+    }
+    if(!file('files/version').isFile()) {
+      throw new GradleException('macGameplayTest requires complete private game extraction')
+    }
+  }
+}

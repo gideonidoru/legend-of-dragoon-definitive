@@ -10,7 +10,7 @@ Tests are not headless. A display is required (or a virtual framebuffer on CI).
 
 - Java 25 - set JAVA_HOME explicitly to a JDK outside version control; the wrapper does not install a development JDK.
 - Privately unpacked game files, including the completed extraction marker `files/version`. The Gradle test task fails before starting tests if the marker is missing. A fresh checkout's `files/.gitignore` is not extracted game data. Do not launch just to extract assets without permission.
-- Windows tested. Linux/macOS should work but untested
+- macOS smoke suite verified using the explicit first-thread runner below; Linux remains untested here.
 
 ## Running from IntelliJ
 
@@ -29,12 +29,23 @@ $env:JAVA_HOME = "$PWD\jdk25.0.0_36"
 .\gradlew.bat test --tests "legend.game.EngineBootTest" -PrunTests --rerun-tasks
 ```
 
-### Linux/macOS
+### Linux
 
 ```bash
 export JAVA_HOME="$PWD/jdk25.0.0_36"
 ./gradlew test --tests "legend.game.EngineBootTest" -PrunTests --rerun-tasks
 ```
+
+### macOS
+
+```sh
+export JAVA_HOME="/absolute/path/to/jdk25/Contents/Home"
+./gradlew --no-daemon --console=plain macGameplayTest -PrunTests
+```
+
+macOS requires SDL/OpenGL on the native first thread. This explicit runner keeps the engine there and executes the same JUnit suite on a worker. Registry/texture initialization is queued on the rendering thread. It loads packaged engine resources, injects test-only SDL input targeted at the engine window, and exits nonzero on failed/skipped tests or premature window closure. It does not run on ordinary builds or hosted CI. The owner authorized local game testing for this project on October 9, 2026.
+
+The suite uses root `mods/`, not the package's mod directory. To exercise the source-built pack, build first and copy its JAR from `build/libs/mods/` into local `mods/` (preserve any existing pack before replacing it). Keep local mod binaries and the generated `E2E-Test` campaign untracked. [Verified integration record](../../docs/definitive/INTEGRATION_ALPHA.md).
 
 `-PrunTests` (or `-PrunTests=true`) explicitly enables the supported `EngineBootTest` suite. Absent or `-PrunTests=false` skips the test task; other values are rejected. `--rerun-tasks` forces re-run even if inputs have not changed. `--tests` can narrow the suite to a method. `ExampleTest` remains excluded: it is an interactive manual sandbox that depends on saves and may wait indefinitely.
 

@@ -49,3 +49,9 @@ Faithful mode is a planned preset, not implemented. It should disable Definitive
 The [community Upscaled Graphics Mod](https://legendofdragoon.org/projects/image-upscaling/) previously explored model textures as well as backgrounds/UI. Its latest visible update is March 2025 and describes paused work with no completion date. The owner reports it was abandoned; current abandonment is not independently confirmed by that page. Treat it as historical context and credit its contributors, without depending on a future release or importing gallery images. The new [legacy model/texture upscaling goal](TEXTURE_UPSCALING.md) is separately scoped and remains unimplemented.
 
 See the [community modding index](https://legendofdragoon.org/modding/) for ecosystem context; current source controls API details.
+
+## Current project integration seams
+
+Skurfa remains an independent `scbackgroundhd` mod in the pinned `integrations/skurfa` submodule. Its `BackgroundHdMod` subscribes to the existing background replacement event and loads namespaced resources; the engine renderer is not rewritten. `gradle/skurfa.gradle` builds the JAR against the current engine classpath, separately from the engine JAR.
+
+The first QoL interface slice extends `EquipmentScreen` using `MenuScreen.addHotkey` and existing input action delegates. The existing binding-aware glyph mechanism supplies labels, and current inventory/saves remain in use. Further filters/quantity flows and Addition feedback require their own narrow current-API changes. Test-only Mac first-thread orchestration is isolated under `src/test` and an explicit Gradle task. [Integration evidence](INTEGRATION_ALPHA.md).

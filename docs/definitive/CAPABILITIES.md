@@ -23,3 +23,7 @@ Pinned engine: `fba1543543865e29ee572f479003d9b47158eeb3`. Source evidence below
 The [community project page](https://legendofdragoon.org/projects/severed-chains/) still identifies 60 FPS battles as later upstream work; its feature list is not proof for this SHA. The [HD project page](https://legendofdragoon.org/projects/image-upscaling/) identifies an artwork effort, not a verified downloadable/redistributable pack for this checkout.
 
 Faithful mode is a product contract requiring a complete audit beyond these examples. List each setting and mod, retail target, current default, chosen preset value, storage scope, save consequences and a regression scenario before implementing it.
+
+## Integration checkpoint
+
+Skurfa is now a pinned public submodule with source-built packaging. The first equipment action-hint slice uses the existing menu API. The explicit Mac first-thread runner passed all three gameplay smoke tests, with Skurfa loaded, after private disc extraction. These are limited state/battle checks; visual artwork/controller/Deck validation remains open. See [INTEGRATION_ALPHA.md](INTEGRATION_ALPHA.md).

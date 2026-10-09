@@ -87,6 +87,27 @@ public final class Harness {
   }
 
   public static void createFreshGameState() {
+    // Definitive (2026-10-09): registry boot uploads textures; use the GL owner.
+    final var initialized = new java.util.concurrent.CompletableFuture<Void>();
+    GameEngine.RENDERER.addTask(() -> {
+      try {
+        createFreshGameStateOnHardwareThread();
+        initialized.complete(null);
+      } catch(final Throwable failure) {
+        initialized.completeExceptionally(failure);
+      }
+    });
+    try {
+      initialized.get(30, java.util.concurrent.TimeUnit.SECONDS);
+    } catch(final InterruptedException failure) {
+      Thread.currentThread().interrupt();
+      throw new AssertionError("Interrupted while creating test game state", failure);
+    } catch(final java.util.concurrent.ExecutionException | java.util.concurrent.TimeoutException failure) {
+      throw new AssertionError("Could not create test game state on the hardware thread", failure);
+    }
+  }
+
+  private static void createFreshGameStateOnHardwareThread() {
     GameEngine.bootRegistries();
     Scus94491BpeSegment_800b.campaignType = LodMod.RETAIL_CAMPAIGN_TYPE;
     final GameState52c state = new GameState52c();

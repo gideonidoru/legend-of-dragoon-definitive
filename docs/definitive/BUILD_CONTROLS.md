@@ -56,3 +56,7 @@ Repository policy verified after completion: Actions enabled, allowed_actions se
 ## Remaining limitations
 
 No gameplay tests have executed. No real Steam Deck has been tested. Upgrade/save rollback, compatible release assets and version/channel stamping remain separate release work. This milestone does not publish a playable Definitive release or validate faithful presets.
+
+## Later integration checkpoint
+
+The initial evidence above remains historical. Public Skurfa source/artwork integration, current package builds and authorized Mac gameplay smoke results are recorded in [INTEGRATION_ALPHA.md](INTEGRATION_ALPHA.md). No physical Deck or complete playthrough validation is implied.

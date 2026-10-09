@@ -129,8 +129,13 @@ class EngineBootTest {
 
     Wait.waitForPlayerTurn();
     Harness.selectBattleMenuIcon(1);
+    final var battle = (legend.game.combat.Battle)legend.game.EngineStates.currentEngineState_8004dd04;
+    Wait.waitFor(() -> battle.hud.battleMenu_800c6c34.state_00 == 2,
+      30_000, "Guard menu ready after icon movement");
     Input.sendKeyPress(InputKey.RETURN);
-
+    // Definitive (2026-10-09): observe action consumption before the next turn.
+    Wait.waitFor(() -> (battle.hud.battleMenu_800c6c34.highlightState_02 & 0x2) == 0,
+      30_000, "Guard consumed the player turn");
     Wait.waitForPlayerTurn();
 
     final int hpAfter = hp.getCurrent();
@@ -140,6 +145,11 @@ class EngineBootTest {
 
   @AfterAll
   void shutdownEngine() {
+    // Definitive (2026-10-09): process owner closes the Mac first-thread engine.
+    if(Bootstrapper.isExternallyStarted()) {
+      LOGGER.info("[E2E] First-thread runner owns engine shutdown");
+      return;
+    }
     if(engine != null) {
       LOGGER.info("[E2E] Shutting down engine thread...");
       engine.interrupt();
