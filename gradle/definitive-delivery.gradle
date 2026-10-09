@@ -86,6 +86,26 @@ tasks.register('deliveryTest', Test) {
 }
 tasks.named('check') { dependsOn deliveryTest }
 
+// Read-only material preflight, kept outside the portable manager and runtime activation.
+tasks.register('materialAtlasCheck', JavaExec) {
+  dependsOn classes
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = 'legend.definitive.materials.MaterialAtlasCheck'
+  systemProperty 'java.awt.headless', 'true'
+  doFirst {
+    final List<String> names = ['materialModel', 'materialTim', 'materialPack']
+    if(names.any { !providers.gradleProperty(it).isPresent() }) throw new GradleException('Supply private -PmaterialModel, -PmaterialTim and -PmaterialPack paths.')
+    args names.collect { providers.gradleProperty(it).get() }
+  }
+}
+
+tasks.register('materialAtlasInterop', Exec) {
+  dependsOn classes
+  doFirst {
+    commandLine providers.gradleProperty('visualPython').getOrElse('python3'), 'scripts/test-material-atlas-java.py', '--java', new File(System.getProperty('java.home'), 'bin/java').absolutePath, '--classpath', sourceSets.main.runtimeClasspath.asPath
+  }
+}
+
 // Small transferable UI/bootstrap, without the engine, HD mod payload or a local JDK.
 tasks.register('portableInstaller', Zip) {
   dependsOn managerJar, copyUpdaterConfig, copySupportFiles

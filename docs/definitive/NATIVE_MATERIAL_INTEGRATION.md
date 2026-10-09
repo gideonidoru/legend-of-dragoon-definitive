@@ -30,7 +30,7 @@ Palette colors also need an explicit comparison tolerance: the original shaders 
 
 ## Next implementation and proof
 
-1. Read and validate the bounded private atlas format in Java against unchanged model/TIM identities. Start with standard TIMs, and retain rejection of the SC field padding variant until a separate strict decoder check is added. Verify full palette references, atlas bounds/nonoverlap, scale, STP/discard/visible black and explicitly preserved pixels. Cross-check the same synthetic and private control artifacts with both languages.
+1. The [bounded Java preflight](JAVA_MATERIAL_PREFLIGHT.md) now implements source identity, complete deterministic mapping, STP/discard/visible black, preserved pixels and immutable atlas/map pairing. It retains rejection of the SC field padding variant. Cross-language original fixtures and private standard-TIM packs establish format consistency; no native activation is implied.
 2. Add the smallest typed UV-map input at vertex construction with old callers unchanged. Preflight all faces before mesh replacement, and establish per-owner mesh lifetime. Test original versus nearest controls with contrasting palette reuse, fractional UVs, missing maps and mod precedence.
 3. Run an explicitly opted-in native comparison harness with the current shaders, source geometry and original keyframes, before integrating scene loading. Record screenshots, sampler state, blend modes, source identities and resource counts. Keep private images and extraction outside Git.
 4. Integrate field and combat routes independently. Test idle/walk/combat, transitions, teardown, aliases and existing overrides. Then profile resident bytes, decode/upload time, p95/p99 frame time and power on an actual Deck at 1280×800.
