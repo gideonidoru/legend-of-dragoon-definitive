@@ -11,6 +11,13 @@ spec.loader.exec_module(footprints)
 
 
 class SamplingFootprintTest(unittest.TestCase):
+    def test_integer_minimum_belongs_to_its_floor_indexed_texel(self):
+        mask = footprints.triangle_cells(4, 4, [(1, 1), (2, 1), (1, 2)])
+        self.assertFalse(mask[0, :].any())
+        self.assertFalse(mask[:, 0].any())
+        self.assertTrue(mask[1, 1])
+        self.assertTrue(mask[1, 2])
+
     def test_fractional_triangle_coverage_and_bounds(self):
         mask = footprints.triangle_cells(4, 4, [(0, 0), (3, 1), (0, 3)])
         self.assertTrue(mask[0, 2])  # Fractional points enter this cell despite no integer vertex there.

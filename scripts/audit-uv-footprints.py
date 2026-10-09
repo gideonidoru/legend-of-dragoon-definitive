@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Private conservative UV-cell footprint audit, AGPL v3; see LICENSE.
-Checks whole source texel cells intersecting UV triangles, including boundary touches.
-Closed-cell overlap may overestimate actual fragments; it is a conservative rejection gate.
+Checks source cells for floor-index sampling: integer edges belong to the upper/right texel.
+Closed intersections within those bounds can overestimate fragments; native filtering is separate.
 """
 import argparse
 import hashlib
@@ -26,6 +26,9 @@ def triangle_cells(width, height, triangle):
     if np.any(high < low): return result
     xx, yy = np.meshgrid(np.arange(low[0], high[0]+1)+0.5, np.arange(low[1], high[1]+1)+0.5)
     valid = np.ones(xx.shape, dtype=bool)
+    # Floor bounds honor half-open texel ownership at integer min/max UVs. A cell below
+    # an integer minimum merely touches its exclusive upper edge and cannot be sampled.
+    # Closed SAT within that range conservatively retains other edge/corner touches.
     # The bounding box already supplies the two rectangle axes. Triangle edge normals
     # supply the remaining separating axes, so narrow/degenerate UV triangles are retained.
     for start, end in zip(vertices, np.roll(vertices, -1, axis=0)):
@@ -74,7 +77,7 @@ def footprint_report(model, tim):
             if len(values) > 1:
                 conflicts += 1
                 if len(samples) < 32: samples.append({'x': x, 'y': y, 'palettes': active, 'psxValues': sorted(values)})
-    report.update({'pipeline': 'definitive-private-uv-footprints-1', 'footprintAdditionalTexels': expanded, 'footprintOverlappingTexels': overlap, 'footprintConflictingColourTexels': conflicts, 'conflictSamples': samples, 'scope': 'Conservative closed UV-cell intersection. Boundary touches can overestimate native fragments. Conflicting colors reject a flat RGBA atlas until a per-material mapping or more exact native sampling proof resolves them.'})
+    report.update({'pipeline': 'definitive-private-uv-footprints-1', 'footprintAdditionalTexels': expanded, 'footprintOverlappingTexels': overlap, 'footprintConflictingColourTexels': conflicts, 'conflictSamples': samples, 'scope': 'Conservative floor-index UV-cell coverage with half-open ownership at integer bounds. Closed intersections inside those bounds may overestimate fragments; native filtering and precision remain separate. Conflicting colors reject a flat RGBA atlas until a per-material mapping or more exact native sampling proof resolves them.'})
     return report
 
 

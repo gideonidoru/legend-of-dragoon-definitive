@@ -20,6 +20,11 @@ fixtures = load('fixtures', 'test-model-material-audit.py')
 
 
 class ModelPoseTest(unittest.TestCase):
+    def test_animation_excursion_is_included_in_common_framing(self):
+        ordinary = [np.array([[0, 0, 0], [10, 20, 0]])]
+        excursion = [np.array([[-100, -200, 0], [150, 300, 0]])]
+        self.assertEqual(poses.framing_bounds([ordinary, excursion]), (-100, 150, -200, 300))
+
     def test_keyframes_match_parts_and_apply_rotation_then_translation(self):
         animation = struct.pack('<4I6h', 12, 0, 0, 1 | 2 << 16, 0, 0, 1024, 10, 20, 30)
         frames = poses.read_keyframes(animation, 1)

@@ -103,6 +103,13 @@ def posed_vertices(parts, keyframe, yaw):
     return [(vertices @ rotation(*(transform[:3] * (2 * math.pi / 4096))).T + transform[3:]) @ camera.T for (vertices, _), transform in zip(parts, keyframe)]
 
 
+def framing_bounds(poses):
+    vertices = np.concatenate([part for pose in poses for part in pose])
+    if not len(vertices):
+        raise ValueError('No model vertices to frame')
+    return (vertices[:, 0].min(), vertices[:, 0].max(), vertices[:, 1].min(), vertices[:, 1].max())
+
+
 def render(parts, positions, tim, candidate, bounds, size=(384, 448)):
     width, height, cw, ch, colors, indices = materials.texture(tim)
     palette = np.array(colors, dtype=np.uint16)
@@ -193,8 +200,9 @@ def main():
         candidates.append((args.label[index] if args.label else path.parent.name, image, digest))
     frame_indices = sorted(set([0, len(keyframes)//2, len(keyframes)-1]))
     poses = [posed_vertices(parts, keyframes[index], yaw) for index, yaw in zip(frame_indices, [0, math.pi/3, -math.pi/3])]
-    all_vertices = np.concatenate([vertices for pose in poses for vertices in pose])
-    bounds = (all_vertices[:, 0].min(), all_vertices[:, 0].max(), all_vertices[:, 1].min(), all_vertices[:, 1].max())
+    animation_frames = sorted(set(np.linspace(0, len(keyframes)-1, min(len(keyframes), 16)).astype(int)))
+    animation_positions = [posed_vertices(parts, keyframes[frame], 0) for frame in animation_frames]
+    bounds = framing_bounds([*poses, *animation_positions])
     args.output.mkdir(exist_ok=False)
     columns = [('Original per-face CLUT', None, None), *candidates]
     board = Image.new('RGB', (32+400*len(columns), 128+490*len(poses)), '#f6f4ef')
@@ -219,9 +227,7 @@ def main():
     board.save(args.output/'comparison.png')
     animation_images = []
     animation_coverage = []
-    animation_frames = sorted(set(np.linspace(0, len(keyframes)-1, min(len(keyframes), 16)).astype(int)))
-    for frame in animation_frames:
-        positions = posed_vertices(parts, keyframes[frame], 0)
+    for frame, positions in zip(animation_frames, animation_positions):
         sheet = Image.new('RGB', (32+400*len(columns), 512), '#f6f4ef')
         caption = ImageDraw.Draw(sheet)
         original_render = render(parts, positions, tim, None, bounds)
