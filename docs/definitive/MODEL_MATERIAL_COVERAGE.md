@@ -32,6 +32,8 @@ The private packing/pose tools now exercise this representation on Haschel and M
 
 Start with the inspected field sample and original versus nearest controls, then a conflicted character such as Haschel. Require native idle/walk/combat comparisons and physical Deck measurements before defaults. The battle atlas path needs its own integration audit; the field-object event alone does not supply it.
 
+The [native integration source audit](NATIVE_MATERIAL_INTEGRATION.md) now traces both routes, including shared part-table/GPU-mesh ownership, pre-mutation source identity, RGBA versus indexed texture units, STP blending and color-quantization differences. It defines a bounded cross-language validator and native control harness as the next implementation steps.
+
 ## Art direction and community review
 
 Use original faces, costumes, weapon silhouettes and Skurfa's painted world as references. Keep source-size eye, mouth, buckle and emblem crops alongside enlarged views; smoother pixels can erase markings. Preserve originals in sensitive regions when reconstruction changes their meaning; use hand-authored restoration where warranted. Texture enhancement does not add geometry or fix joints.
@@ -40,4 +42,4 @@ Present equal-scene controls with neutral labels, disclose resolution/performanc
 
 Reviewed source `3fad47641963b81b5f0be0db3431ab10cca38158` passes fifteen original synthetic visual checks and Linux/Mac build/package jobs in [CI run 37999771780](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/37999771780). The corrected field candidate has zero coverage differences in the limited posed/keyframe inspection. Native replacement, real Deck performance and community acceptance remain open.
 
-The subsequent packing increment adds five original synthetic checks (twenty total locally), including contrasting texels immediately below fractional UV boundaries. Standards review found no actionable issue; Spec review found the UV cancellation defect, which was fixed, tested and re-reviewed successfully. Its new CI result must be recorded separately from the already-passed run above; the published alpha remains unchanged.
+The subsequent packing increment `ea6004eb3017abdac1941895cacede6ce1885407` adds five original synthetic checks (twenty total), including contrasting texels immediately below fractional UV boundaries. Standards review found no actionable issue; Spec review found the UV cancellation defect, which was fixed, tested and re-reviewed successfully. All twenty visual checks and Linux/Mac build/package jobs pass in [CI run 38002119371](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38002119371). The published alpha remains unchanged.
