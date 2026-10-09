@@ -34,7 +34,7 @@ This is a Java port with a modding API, not an emulator. Keep the existing engin
 
 ## Faithful mode requirements
 
-Faithful mode is a planned preset, not implemented. It should disable Definitive gameplay overrides, retain normal additions, retail encounter behavior, original party restrictions/inventory limits and retail save rules, with a separate original-artwork toggle. Upstream defaults are not necessarily retail: `SaveAnywhereConfig` defaults true, encounter rate defaults AVERAGE, and quick text defaults ALWAYS. Inventory/party/timing settings need a complete source and play audit before naming a preset faithful. Persist choices explicitly and never silently change an existing campaign. Rendering/accessibility options should remain independent of gameplay changes.
+Definitive and Faithful are implemented through the existing preset API; see [audited choices and evidence](PRESETS.md). The following describes the continuing fidelity contract. It should disable Definitive gameplay overrides, retain normal additions, retail encounter behavior, original party restrictions/inventory limits and retail save rules, with a separate original-artwork toggle. Upstream defaults are not necessarily retail: `SaveAnywhereConfig` defaults true, encounter rate defaults AVERAGE, and quick text defaults ALWAYS. Inventory/party/timing settings need a complete source and play audit before naming a preset faithful. Persist choices explicitly and never silently change an existing campaign. Rendering/accessibility options should remain independent of gameplay changes.
 
 ## Concrete reuse candidates
 

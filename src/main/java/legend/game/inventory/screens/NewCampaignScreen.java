@@ -112,6 +112,8 @@ public class NewCampaignScreen extends VerticalLayoutScreen {
     ConfigPresetManager.loadDefaultPresets().forEach(this.optionPresets::addOption);
     ConfigPresetManager.loadPresetList().forEach(this.optionPresets::addOption);
     this.optionPresets.onSelection(this::onPresetSelected);
+    // Definitive (2026-10-09): apply the displayed initial choice for a fresh campaign.
+    this.applyPreset(this.optionPresets.getSelectedOption());
     this.appliedPreset = IoHelper.slugName(this.optionPresets.getSelectedOption().getName().get());
 
     for(int i = 0; i < this.optionPresets.size(); i++) {

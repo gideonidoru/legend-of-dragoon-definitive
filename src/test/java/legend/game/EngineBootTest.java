@@ -143,6 +143,28 @@ class EngineBootTest {
     LOGGER.info("[E2E] PASS: guardDoesNotChangeMonsterHp - HP=%d (unchanged)", hpAfter);
   }
 
+  @Test
+  void test4_campaignPresetsAreDetachedAndRoundTrip() throws Exception {
+    final boolean originalSaveAnywhere = CONFIG.getConfig(CoreMod.SAVE_ANYWHERE_CONFIG.get());
+    for(final var definition : java.util.List.of(legend.definitive.presets.PresetDefinition.definitive(), legend.definitive.presets.PresetDefinition.faithful())) {
+      final var preset = legend.game.saves.DefinitivePresets.create(definition);
+      assertEquals(originalSaveAnywhere, CONFIG.getConfig(CoreMod.SAVE_ANYWHERE_CONFIG.get()), "Creating a preset must not mutate live campaign settings");
+      assertEquals("Definitive".equals(definition.name()), preset.config.getConfig(CoreMod.SAVE_ANYWHERE_CONFIG.get()));
+      assertEquals(32, preset.config.getConfig(CoreMod.INVENTORY_SIZE_CONFIG.get()));
+      assertEquals(1.0f, preset.config.getConfig(CoreMod.ADDITION_TIMING_WINDOW_CONFIG.get()));
+      assertEquals(0.5f, preset.config.getConfig(CoreMod.SECONDARY_CHARACTER_XP_MULTIPLIER_CONFIG.get()));
+      final var data = new legend.game.unpacker.FileData(new byte[100 * 1024]);
+      final var size = new legend.core.memory.types.IntRef();
+      legend.game.saves.ConfigStorage.saveConfig(preset.config, legend.game.saves.ConfigStorageLocation.CAMPAIGN, data, size);
+      final var loaded = new legend.game.saves.ConfigCollection(false);
+      legend.game.saves.ConfigStorage.loadConfig(loaded, legend.game.saves.ConfigStorageLocation.CAMPAIGN, data.slice(0, size.get()));
+      assertEquals(preset.config.getConfig(CoreMod.SAVE_ANYWHERE_CONFIG.get()), loaded.getConfig(CoreMod.SAVE_ANYWHERE_CONFIG.get()));
+      assertEquals(preset.config.getConfig(CoreMod.QUICK_TEXT_CONFIG.get()), loaded.getConfig(CoreMod.QUICK_TEXT_CONFIG.get()));
+      assertEquals(preset.config.getConfig(CoreMod.ENCOUNTER_RATE_CONFIG.get()), loaded.getConfig(CoreMod.ENCOUNTER_RATE_CONFIG.get()));
+    }
+    LOGGER.info("[E2E] PASS: campaignPresetsAreDetachedAndRoundTrip");
+  }
+
   @AfterAll
   void shutdownEngine() {
     // Definitive (2026-10-09): process owner closes the Mac first-thread engine.

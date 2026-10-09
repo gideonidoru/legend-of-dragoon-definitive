@@ -127,7 +127,7 @@ public final class ConfigPresetManager {
 
       final String name = tag.get("name").asString().get();
 
-      final ConfigCollection config = new ConfigCollection();
+      final ConfigCollection config = new ConfigCollection(false);
       for(final ConfigStorageLocation location : ConfigStorageLocation.values()) {
         ConfigStorage.loadConfig(config, location, tag);
       }
@@ -195,6 +195,11 @@ public final class ConfigPresetManager {
     final ConfigPreset speedrunner = getSpeedrunnerDefaults();
 
     final List<ConfigPresetEntry> presets = new ArrayList<>();
+    // Definitive (2026-10-09): explicit campaign choices, built without live callbacks.
+    for(final var definition : List.of(legend.definitive.presets.PresetDefinition.definitive(), legend.definitive.presets.PresetDefinition.faithful())) {
+      final ConfigPreset preset = DefinitivePresets.create(definition);
+      presets.add(new ConfigPresetEntry(null, preset.name, CompletableFuture.completedFuture(preset), false));
+    }
     presets.add(new ConfigPresetEntry(null, severedChains.name, CompletableFuture.completedFuture(severedChains), false));
     presets.add(new ConfigPresetEntry(null, vanilla.name, CompletableFuture.completedFuture(vanilla), false));
     presets.add(new ConfigPresetEntry(null, speedrunner.name, CompletableFuture.completedFuture(speedrunner), false));
@@ -204,11 +209,11 @@ public final class ConfigPresetManager {
   }
 
   private static ConfigPreset getSeveredChainsDefaults() {
-    return new ConfigPreset(new I18nText("lod_core.config_presets.severed_chains"), new ConfigCollection());
+    return new ConfigPreset(new I18nText("lod_core.config_presets.severed_chains"), new ConfigCollection(false));
   }
 
   private static ConfigPreset getVanillaDefaults() {
-    final ConfigCollection config = new ConfigCollection();
+    final ConfigCollection config = new ConfigCollection(false);
     config.setConfig(EXTENDED_DRAGOON_ACTIONS.get(), false);
     config.setConfig(EQUIP_EFFECTS_IN_DRAGOON.get(), false);
     config.setConfig(SAVE_ANYWHERE_CONFIG.get(), false);
@@ -226,7 +231,7 @@ public final class ConfigPresetManager {
   }
 
   private static ConfigPreset getSpeedrunnerDefaults() {
-    final ConfigCollection config = new ConfigCollection();
+    final ConfigCollection config = new ConfigCollection(false);
     config.setConfig(BATTLE_TRANSITION_MODE_CONFIG.get(), BattleTransitionMode.INSTANT);
     config.setConfig(TRANSFORMATION_MODE_CONFIG.get(), TransformationMode.SHORT);
     config.setConfig(AUTO_TEXT_CONFIG.get(), true);

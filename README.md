@@ -2,7 +2,7 @@
 
 **A Steam Deck-first modernization of The Legend of Dragoon, built on Severed Chains.**
 
-Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with community HD artwork, planned enhanced model textures, and optional gameplay conveniences. A planned faithful mode will preserve the original gameplay experience while keeping presentation and accessibility choices separate.
+Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with community HD artwork, planned enhanced model textures, and optional gameplay conveniences. Selectable Definitive and Faithful campaign presets keep gameplay choices separate from presentation and accessibility.
 
 This is an unofficial community project in early development. **The first guided installer is an alpha; physical Steam Deck validation is pending.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively. Physical Steam Deck validation is still pending.
 
@@ -32,7 +32,7 @@ Project changes should stay modular: separate mods, settings, installation tools
 - **Optional conveniences:** reuse existing settings and suitable mods for text speed, encounters, Addition assistance, and progression options, with explicit campaign choices.
 - **Measured performance:** establish real Deck frame-time, loading, memory, and power evidence before rendering improvements or upscaling experiments.
 
-Faithful mode is a planned, audited preset—not a claim that current upstream defaults match the retail game. Gameplay changes will remain optional. Disabling a reward or progression modifier later cannot undo rewards already earned.
+[Definitive and Faithful presets](docs/definitive/PRESETS.md) explicitly choose campaign settings. Faithful retains retail-oriented mechanics; it does not claim bit-perfect retail equivalence. Gameplay changes will remain optional. Disabling a reward or progression modifier later cannot undo rewards already earned.
 
 ## Community integrations
 
@@ -55,8 +55,8 @@ As of October 9, 2026:
 - Unmodified baseline builds passed on the development Mac; hosted macOS ARM64 and Linux x64/Steam Deck package builds also passed.
 - Seven headless scenarios verified gameplay-test controls. Ordinary builds skip gameplay tests; these checks do not execute the game.
 - The updater targets this project's repository. The guided manager pairs verified engine/mod packages, keeps private data separate, retains pre-update snapshots, and restores the prior engine with its prior data. Headless recovery fixtures pass; real Deck update recovery remains to be exercised.
-- Four private discs were extracted locally; normal engine startup and three automated Mac gameplay smoke tests passed with the source-built Skurfa mod. Disc images, extracted retail assets and test campaigns remain excluded from Git.
-- Skurfa source/build integration and the first QoL interface slice are implemented. Faithful mode and actual Steam Deck validation remain outstanding; these smoke tests do not establish artwork quality, controller usability or a complete playthrough.
+- Four private discs were extracted locally; normal engine startup and four automated Mac gameplay smoke tests passed with the source-built Skurfa mod. Disc images, extracted retail assets and test campaigns remain excluded from Git.
+- Skurfa source/build integration and the first QoL interface slice are implemented. Definitive/Faithful presets and their configuration round trips pass on Mac; actual Steam Deck validation remains outstanding; these smoke tests do not establish artwork quality, controller usability or a complete playthrough.
 
 [Baseline evidence](docs/definitive/VALIDATION.md) · [Build and test controls](docs/definitive/BUILD_CONTROLS.md) · [Roadmap](docs/definitive/ROADMAP.md) · [Prioritized backlog](docs/definitive/BACKLOG.md)
 
