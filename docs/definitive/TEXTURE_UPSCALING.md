@@ -155,3 +155,5 @@ python3 scripts/inspect-model-poses.py \
 ```
 
 Fifteen original synthetic checks cover these tools, including malformed CLUT columns that would otherwise alias later rows, vertex/keyframe references, aggregate vertex budgets, high palette indices, rotational transforms, animation excursions, integer-edge ownership and fractional UV-cell coverage. CI runs them using original fixtures without game assets or neural weights. Before runtime activation, add exact model/TIM binding, reject animated/conflicting materials, verify native filtering/blending and other mod overrides, and measure the actual Deck cost. The current published pilot still rejects these multi-palette textures.
+
+The broader [nine-character material inventory and proposed loader seam](MODEL_MATERIAL_COVERAGE.md) identifies conflicting palette reuse in Haschel and Meru; those require separate material addressing rather than flattening.
