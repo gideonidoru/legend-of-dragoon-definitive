@@ -112,7 +112,19 @@ def framing_bounds(poses):
     return (vertices[:, 0].min(), vertices[:, 0].max(), vertices[:, 1].min(), vertices[:, 1].max())
 
 
-def render(parts, positions, tim, candidate, bounds, size=(384, 448)):
+def packed_coordinates(uv, mapping):
+    left, top, right, bottom = mapping['sourceCrop']
+    x, y, width, height = mapping['atlasRect']
+    scale = width//(right-left)
+    # Quantize before integer translation: adding padding first can round a
+    # nextafter-boundary UV into the next source texel through cancellation.
+    coordinates = np.floor(uv*scale).astype(int)
+    ux = np.clip(coordinates[..., 0]-left*scale+x, x, x+width-1)
+    vy = np.clip(coordinates[..., 1]-top*scale+y, y, y+height-1)
+    return ux, vy
+
+
+def render(parts, positions, tim, candidate, bounds, size=(384, 448), material_map=None):
     width, height, cw, ch, colors, indices = materials.texture(tim)
     palette = np.array(colors, dtype=np.uint16)
     packed = np.frombuffer(indices[:width * height // 2], dtype=np.uint8)
@@ -147,17 +159,20 @@ def render(parts, positions, tim, candidate, bounds, size=(384, 448)):
                 rgb = weights @ colors_rgb[list(triangle)]
                 if uvs is not None:
                     uv = weights @ uvs[list(triangle)]
+                    clut_index = ((clut >> 6) & 15)*(cw//16)+(clut & 3)
                     if candidate_pixels is None:
                         # Original colors follow each polygon's own CLUT, not a flattened atlas.
                         ux = np.clip(uv[..., 0].astype(int), 0, width-1)
                         vy = np.clip(uv[..., 1].astype(int), 0, height-1)
-                        clut_index = ((clut >> 6) & 15)*(cw//16)+(clut & 3)
                         value = palette[clut_index*16+index_map[vy, ux]]
                         tex_rgb = np.stack((value & 31, (value >> 5) & 31, (value >> 10) & 31), axis=-1).astype(float)*255/31
                         valid &= value != 0
                     else:
-                        ux = np.clip((uv[..., 0]*candidate.width/width).astype(int), 0, candidate.width-1)
-                        vy = np.clip((uv[..., 1]*candidate.height/height).astype(int), 0, candidate.height-1)
+                        if material_map is not None:
+                            ux, vy = packed_coordinates(uv, material_map[clut_index])
+                        else:
+                            ux = np.clip((uv[..., 0]*candidate.width/width).astype(int), 0, candidate.width-1)
+                            vy = np.clip((uv[..., 1]*candidate.height/height).astype(int), 0, candidate.height-1)
                         tex = candidate_pixels[vy, ux]
                         tex_rgb = tex[..., :3]
                         valid &= np.any(tex != 0, axis=-1)
@@ -180,13 +195,15 @@ def main():
     parser.add_argument('--tim', type=Path, required=True)
     parser.add_argument('--animation', type=Path, required=True)
     parser.add_argument('--candidate', type=Path, action='append', default=[], help='Private engine-STP PNG; up to three')
+    parser.add_argument('--packed-candidate', type=Path, action='append', default=[], help='Validated private palette-aware atlas folder')
     parser.add_argument('--label', action='append', default=[], help='One display label per candidate')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     if args.output.resolve().is_relative_to(Path(__file__).resolve().parents[1]): parser.error('Use a new private output outside the source checkout')
     if PIL.__version__ != '12.3.0' or np.__version__ != '2.5.1': parser.error('Use the recorded Pillow and NumPy versions')
-    if len(args.candidate) > 3: parser.error('Compare at most three candidates')
-    if args.label and len(args.label) != len(args.candidate): parser.error('Provide one label for each candidate')
+    count = len(args.candidate)+len(args.packed_candidate)
+    if count > 3: parser.error('Compare at most three candidates')
+    if args.label and len(args.label) != count: parser.error('Provide one label for each candidate')
     model, tim, animation = [materials.bounded_read(path) for path in (args.model, args.tim, args.animation)]
     materials.audit(model, tim)
     parts = read_geometry(model)
@@ -199,14 +216,19 @@ def main():
             parser.error('Candidate must match the original TIM aspect and 2x/4x scale')
         if any(alpha not in (0, 255) for alpha in image.getchannel('A').get_flattened_data()):
             parser.error('Candidate must retain binary STP encoding')
-        candidates.append((args.label[index] if args.label else path.parent.name, image, digest))
+        candidates.append((args.label[index] if args.label else path.parent.name, image, digest, None))
+    if args.packed_candidate:
+        packing = load_module('packing', 'pack-model-materials.py')
+        for index, folder in enumerate(args.packed_candidate, start=len(args.candidate)):
+            image, uv_map, report = packing.validate_pack(folder, model, tim)
+            candidates.append((args.label[index] if args.label else folder.name, image, report['atlasEngineSha256'], uv_map))
     frame_indices = sorted(set([0, len(keyframes)//2, len(keyframes)-1]))
     poses = [posed_vertices(parts, keyframes[index], yaw) for index, yaw in zip(frame_indices, [0, math.pi/3, -math.pi/3])]
     animation_frames = sorted(set(np.linspace(0, len(keyframes)-1, min(len(keyframes), 16)).astype(int)))
     animation_positions = [posed_vertices(parts, keyframes[frame], 0) for frame in animation_frames]
     bounds = framing_bounds([*poses, *animation_positions])
     args.output.mkdir(exist_ok=False)
-    columns = [('Original per-face CLUT', None, None), *candidates]
+    columns = [('Original per-face CLUT', None, None, None), *candidates]
     board = Image.new('RGB', (32+400*len(columns), 128+490*len(poses)), '#f6f4ef')
     draw = ImageDraw.Draw(board)
     try: font = ImageFont.truetype('/System/Library/Fonts/Helvetica.ttc', 18)
@@ -218,8 +240,8 @@ def main():
     coverage = []
     for row, (frame, positions) in enumerate(zip(frame_indices, poses)):
         original_render = render(parts, positions, tim, None, bounds)
-        for col, (name, candidate, _) in enumerate(columns):
-            image = render(parts, positions, tim, candidate, bounds)
+        for col, (name, candidate, _, uv_map) in enumerate(columns):
+            image = render(parts, positions, tim, candidate, bounds, material_map=uv_map)
             filename = f'pose-{frame}-candidate-{col}.png'
             image.save(args.output/filename)
             hashes.append({'path': filename, 'sha256': hashlib.sha256((args.output/filename).read_bytes()).hexdigest()})
@@ -234,8 +256,8 @@ def main():
         sheet = Image.new('RGB', (32+400*len(columns), 512), '#f6f4ef')
         caption = ImageDraw.Draw(sheet)
         original_render = render(parts, positions, tim, None, bounds)
-        for col, (name, candidate, _) in enumerate(columns):
-            image = render(parts, positions, tim, candidate, bounds)
+        for col, (name, candidate, _, uv_map) in enumerate(columns):
+            image = render(parts, positions, tim, candidate, bounds, material_map=uv_map)
             caption.text((32+400*col, 16), f'Keyframe {frame} / {name[:30]}', font=font, fill='#244e40')
             sheet.paste(image, (32+400*col, 48))
             if col:
@@ -243,7 +265,9 @@ def main():
         animation_images.append(sheet)
     animation_images[0].save(args.output/'keyframe-inspection.gif', save_all=True, append_images=animation_images[1:], duration=100, loop=0)
     hashes.extend({'path': filename, 'sha256': hashlib.sha256((args.output/filename).read_bytes()).hexdigest()} for filename in ('comparison.png', 'keyframe-inspection.gif'))
-    report = {'pipeline': 'definitive-private-pose-inspection-1', 'environment': platform.platform(), 'pillow': PIL.__version__, 'numpy': np.__version__, 'scriptSha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'dependencyScriptHashes': {file: hashlib.sha256(Path(__file__).with_name(file).read_bytes()).hexdigest() for file in ('audit-model-materials.py', 'preserve-texture-transparency.py')}, 'modelSha256': hashlib.sha256(model).hexdigest(), 'timSha256': hashlib.sha256(tim).hexdigest(), 'animationSha256': hashlib.sha256(animation).hexdigest(), 'candidates': [{'label': name, 'sha256': digest} for name, _, digest in candidates], 'keyframes': frame_indices, 'cameraYawRadians': [0, math.pi/3, -math.pi/3][:len(poses)], 'outputs': hashes, 'coverage': coverage, 'animationCoverage': animation_coverage, 'animationKeyframes': [int(frame) for frame in animation_frames], 'gifSamplingMilliseconds': 100, 'command': [sys.executable, *sys.argv], 'scope': 'Offline orthographic, affine-UV, nearest-sampling inspection only. Coverage is a raster-preview check. GIF shows sampled original keyframes at an inspection speed, not native animation timing. No native lights, blending, PS1 projection, culling, interpolation, occlusion scripts or gameplay/Deck evidence.'}
+    report = {'pipeline': 'definitive-private-pose-inspection-1', 'environment': platform.platform(), 'pillow': PIL.__version__, 'numpy': np.__version__, 'scriptSha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'dependencyScriptHashes': {file: hashlib.sha256(Path(__file__).with_name(file).read_bytes()).hexdigest() for file in ('audit-model-materials.py', 'preserve-texture-transparency.py')}, 'modelSha256': hashlib.sha256(model).hexdigest(), 'timSha256': hashlib.sha256(tim).hexdigest(), 'animationSha256': hashlib.sha256(animation).hexdigest(), 'candidates': [{'label': name, 'sha256': digest, 'materialMapSha256': hashlib.sha256(json.dumps(uv_map, sort_keys=True).encode()).hexdigest() if uv_map is not None else None} for name, _, digest, uv_map in candidates], 'keyframes': frame_indices, 'cameraYawRadians': [0, math.pi/3, -math.pi/3][:len(poses)], 'outputs': hashes, 'coverage': coverage, 'animationCoverage': animation_coverage, 'animationKeyframes': [int(frame) for frame in animation_frames], 'gifSamplingMilliseconds': 100, 'command': [sys.executable, *sys.argv], 'scope': 'Offline orthographic, affine-UV, nearest-sampling inspection only. Coverage is a raster-preview check. GIF shows sampled original keyframes at an inspection speed, not native animation timing. No native lights, blending, PS1 projection, culling, interpolation, occlusion scripts or gameplay/Deck evidence.'}
+    if args.packed_candidate:
+        report['dependencyScriptHashes'].update({file: hashlib.sha256(Path(__file__).with_name(file).read_bytes()).hexdigest() for file in ('pack-model-materials.py', 'audit-uv-footprints.py', 'compare-material-islands.py', 'compare-neural-textures.py')})
     (args.output/'manifest.json').write_text(json.dumps(report, indent=2)+'\n')
     print('Private pose comparison:', args.output)
 

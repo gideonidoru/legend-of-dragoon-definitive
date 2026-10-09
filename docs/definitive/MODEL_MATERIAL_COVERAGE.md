@@ -18,9 +18,11 @@ The sampled containers declare neither CLUT animations nor the extra container s
 
 Reproduce with `scripts/audit-model-materials.py` and `scripts/audit-uv-footprints.py` against your privately extracted matching pairs, using new output directories outside the checkout. See [versions, commands and acceptance limits](TEXTURE_UPSCALING.md).
 
-## Proposed narrow extension
+## Private atlas prototype and proposed native extension
 
 Prefer a packed atlas with explicit per-material UV remapping over one full high-resolution texture for every available palette. The renderer already builds floating-point GPU UVs, so a loader seam may supply an atlas transform per original face palette without changing geometry, rigs, scripts, saves or the fundamental renderer. This is a proposal: the current texture event supplies a builder only and does not expose that contract.
+
+The private packing/pose tools now exercise this representation on Haschel and Meru, including their overlapping palette colors. Source-bound nearest controls, neural comparisons and a Haschel variant retaining original head palettes have zero raster-preview coverage differences across three views and twelve sampled keyframes each. Packing uses 11 MiB and 9.125 MiB of 4× RGBA respectively, versus 72 MiB and 56 MiB for full layers of their used palettes. These are allocation estimates, not runtime residency or performance. Flat atlases remain potentially cheaper for non-conflicting pairs. [Commands, source identities, art observations and limits](TEXTURE_UPSCALING.md#separate-material-atlas-prototype).
 
 1. Bind a private pack to original TIM **and model** identities, dimensions, disk/cut/object or character variant, CLUT layout, tool/model versions, atlas hashes and the complete material map. Match before UV relocation or packet mutation; filenames alone are insufficient.
 2. Extract used regions with verified sampling coverage and padding. Separate conflicting palettes into different atlas rectangles. Preserve STP/discard and primitive translucency. Reject animated palettes until they have a tested representation.
@@ -37,3 +39,5 @@ Use original faces, costumes, weapon silhouettes and Skurfa's painted world as r
 Present equal-scene controls with neutral labels, disclose resolution/performance tradeoffs, and collect reasons for preference: identity, paint, material readability, seams, motion stability and handheld readability. Community preference has not been collected. Do not call a candidate community-approved or AAA-ready from a texture sheet, build or developer preference alone.
 
 Reviewed source `3fad47641963b81b5f0be0db3431ab10cca38158` passes fifteen original synthetic visual checks and Linux/Mac build/package jobs in [CI run 37999771780](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/37999771780). The corrected field candidate has zero coverage differences in the limited posed/keyframe inspection. Native replacement, real Deck performance and community acceptance remain open.
+
+The subsequent packing increment adds five original synthetic checks (twenty total locally), including contrasting texels immediately below fractional UV boundaries. Standards review found no actionable issue; Spec review found the UV cancellation defect, which was fixed, tested and re-reviewed successfully. Its new CI result must be recorded separately from the already-passed run above; the published alpha remains unchanged.

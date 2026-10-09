@@ -157,3 +157,41 @@ python3 scripts/inspect-model-poses.py \
 Fifteen original synthetic checks cover these tools, including malformed CLUT columns that would otherwise alias later rows, vertex/keyframe references, aggregate vertex budgets, high palette indices, rotational transforms, animation excursions, integer-edge ownership and fractional UV-cell coverage. CI runs them using original fixtures without game assets or neural weights. Before runtime activation, add exact model/TIM binding, reject animated/conflicting materials, verify native filtering/blending and other mod overrides, and measure the actual Deck cost. The current published pilot still rejects these multi-palette textures.
 
 The broader [nine-character material inventory and proposed loader seam](MODEL_MATERIAL_COVERAGE.md) identifies conflicting palette reuse in Haschel and Meru; those require separate material addressing rather than flattening.
+
+### Separate material atlas prototype
+
+`scripts/pack-model-materials.py` now demonstrates that separate addressing privately, without changing game behavior. Each used palette gets a conservative UV-region crop with eight source texels of padding, a deterministic non-rotated atlas rectangle, and an affine UV transform. Crops can contain disconnected regions; this is bounded shelf packing, not globally optimal island packing. Exact original model/TIM SHA256 identities, scale, full map, output hashes, binary STP, discarded texels and visible black are validated before the pose inspector accepts a pack. Nearest controls and explicitly preserved palettes additionally require byte-exact material RGBA. Neural mode checks the pinned weight/parameter pair; its executable hash is an observed local identity, not a publisher signature.
+
+Use `--algorithm nearest` first. Neural mode uses the pinned external engine/models and a 50% RGB blend by default, and supports repeated `--preserve-palette` options. Animated CLUTs and extra container dependencies remain unsupported. Atlas dimensions are bounded to 4096, source files and PNGs remain bounded, and each neural process is limited to 30 seconds within a five-minute processing budget. Neural restoration retains the existing 512-pixel source-tile limit: a full 512-pixel crop plus padding can be rejected; do not silently enlarge that limit. There is no native model loader for this format yet.
+
+```sh
+python3 scripts/test-material-packing.py
+python3 scripts/pack-model-materials.py \
+  --model "$PRIVATE_MODEL" --tim "$PRIVATE_TIM" \
+  --algorithm nearest --scale 4 --output "$NEW_PRIVATE_PACK"
+python3 scripts/inspect-model-poses.py \
+  --model "$PRIVATE_MODEL" --tim "$PRIVATE_TIM" --animation "$PRIVATE_ANIMATION" \
+  --packed-candidate "$NEW_PRIVATE_PACK" --label 'Nearest material control' \
+  --output "$NEW_PRIVATE_POSES"
+```
+
+For a neural comparison, add `--algorithm neural --engine "$NCNN_ENGINE" --models "$NCNN_MODELS"` to the packing command. At 2×, also select `--neural-model realesr-animevideov3`; the default illustration model is 4× only. All outputs, originals, logs and weights stay outside Git. The inspector accepts up to three combined flat/packed candidates; labels follow flat candidates first, then packed candidates.
+
+On the Mac Studio, Haschel and Meru's nearest controls and 50% illustration candidates have zero missing/extra raster-preview pixels in three rotated views and all twelve keyframes of their sampled `models/combat/0` animations. A Haschel comparison preserves palettes 16, 20, 24 and 60, used by the inspected head parts; shared body regions using those palettes also remain original. Those regions validate byte-exact against nearest-scaled source RGBA. Visual inspection prefers retaining original face detail and finds cleaner clothing edges, but also softened weave and small changed motifs. Meru's candidate has cleaner ornament curves while changing small painted shapes. Neither is an accepted art pack; original references and community review still control acceptance.
+
+| Private candidate | Atlas | Allocated RGBA | Full layers for used palettes | Local processing seconds | Engine atlas SHA256 |
+| --- | --- | ---: | ---: | ---: | --- |
+| Haschel, 4× nearest | 2048×1408 | 11 MiB | 72 MiB | 0.061 | `2c7aecd62b5dafeaa5ae0af2f074d3b064c858e4df980d9293a5ab1a3cf62899` |
+| Haschel, 4× neural, original head palettes | 2048×1408 | 11 MiB | 72 MiB | 4.608 | `25077d538657f564de27d3ffb305a3e5b81fe8cbca86e4c25d37c49531d43af3` |
+| Haschel, 2× AnimeVideo v3, original head palettes | 1024×704 | 2.75 MiB | 18 MiB | 2.161 | `ed0770da555a9180c408a90c6f029eb0cd77b75fbfc44b6f6739a0bb77bf37ae` |
+| Meru, 4× nearest | 1024×2336 | 9.125 MiB | 56 MiB | 0.055 | `487e8e823ff9e21a90e511ba8af2b76cfa9c59eac2503344fdd3116f7c182b9f` |
+| Meru, 4× neural | 1024×2336 | 9.125 MiB | 56 MiB | 4.562 | `9a0810f78efb6d223cf5c693a45d0596f78d906c8d098b36d99735e1a7fb65d3` |
+| Meru, 4× neural, original head palettes | 1024×2336 | 9.125 MiB | 56 MiB | 3.804 | `1f49a1ace3b7e868bea07626fa2c24ae61505e46838652e81c66cffa7a9196f6` |
+
+After the fractional sampling correction below, regenerated Haschel nearest/curated-4×/curated-2× and Meru nearest/neural/curated comparisons each retain zero missing/extra pixels in all three rotated views and twelve sampled keyframes. Meru's curated version preserves palettes 12, 44 and 52 used by the inspected head part, including shared body regions. The 2× Haschel candidate costs one quarter of its 4× atlas; the two neural models also differ, so this comparison does not isolate resolution as its only variable.
+
+Haschel source model/TIM SHA256: `285ec5c257b9a94b6fc27d902be5135f3b377f19c020a085771049b61576e885` / `0dc9340a7c081b18ced9890325cd5171aa5b402c302581f38245931bf858d6a9`; animation `e830fb9283bf6eeda25e23300ac55e1db9e691b6f4903af68c0a8d9f378c74c8`. Meru model/TIM: `84341ec030afdb03d69cb08114acf34edcb3438f386cb580bf6503a331ab4691` / `601a01d5149a7fa083b32d977b290a361344daa4c0393b757d06f52e9e7814cc`; animation `d80895d1a81684693882a634bac6561abb9db55ba1b8e343e86bd15721982721`. Private manifests retain exact commands, environment and source/tool/model/output identities.
+
+These allocation estimates exclude mipmaps, driver overhead, decode/upload temporaries and actual residency. The bounded per-palette layouts for all nine sampled pairs total 21.301 MiB at 2× and 85.148 MiB at 4×; this is a hypothetical sum, not a proposal to keep nine characters resident. A non-conflicting single 4× 256×256 atlas is only 4 MiB: separate palette rectangles can cost more than the existing flat experiment where colors do not conflict. Choose representation per verified source pair and measure real Deck costs before choosing a default.
+
+Twenty original synthetic visual checks now run locally, including conflicting palettes rendered separately, deterministic nonoverlap, rejected source/map changes, preserved-region pixel changes, wrong neural weights and altered STP even when PNG hashes are refreshed. Review exposed fractional UV cancellation when adding padding before quantization; the inspector now quantizes scaled source UVs before integer translation, with contrasting adjacent-texel fixtures immediately below boundaries on both axes at 2×/4×. CI adds these original fixtures without game assets, GPU inference or model weights. Native blending, UV precision/filtering, texture lifetime, mod priority, gameplay and physical Deck evidence are still prerequisites for activation.
