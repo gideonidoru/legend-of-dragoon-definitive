@@ -1,0 +1,13 @@
+# Desktop bootstrap correction
+
+On 2026-10-09 the owner reported that the Steam Deck desktop entry appeared to do nothing. Copying its Exec command into a shell produced `curl: (2) no URL specified`.
+
+The shipped literal Exec text reproduced that exact error in a deterministic, network-free fixture: curl received the output filename **and download URL as one argument** after `--output`, and no independent URL argument. The nested Desktop Entry/Exec escaping survived the earlier GLib launch fixture, but that fixture's permissive download stand-in did not check the URL. It did not test a literal shell copy. `Terminal=false` also concealed failures before the graphical installer could start. The actual cause of Dolphin's initial silent refusal remains distinct from the proven copied-command error; KDE trust/executable handling and device behavior must be checked on the Deck.
+
+The replacement uses one quoted Exec argument with no nested dollar, backtick, double-quote, backslash or percent-field escaping. `mktemp` supplies an owned, private directory under a fixed no-space `/tmp` template; `xargs` passes that directory to `env -C` separately from the literal shell command. Curl receives a distinct HTTPS URL and output filename. The original script SHA256 is checked before execution, and both the portable ZIP and script remain unchanged.
+
+`Terminal=true` makes startup visible. Output persists in `~/.cache/legend-of-dragoon-definitive/desktop-bootstrap.log`. Download/checksum/installer failures name both bootstrap logs and hold the terminal until Enter. Successful setup removes its tiny temporary script and directory. A failed attempt can retain the owned temporary directory for diagnosis. No GUI/game is launched by the fixture and no personal cache is written.
+
+`python3 scripts/verify-desktop-entry.py` drives the exact shipped Exec text. It asserts the URL is a separate curl argument, validates the stand-in output destination, checks successful startup, and deliberately fails both download and checksum. Failures must prevent setup, persist the specific error and show a diagnostic location/Enter prompt. On Linux it also launches the same Exec through the native GLib Desktop Entry parser with only Terminal suppressed in a private fixture, avoiding a real window in CI. That parser check is not a physical KDE terminal/trust test.
+
+Local Mac literal-command success and failure regressions pass. The corresponding Linux parser/package CI and public downloaded-asset checks are recorded with the published correction. Redownload the corrected `.desktop`; in Dolphin enable **Properties → Permissions → Is executable** and allow execution when asked. If a launch still stops, the named log provides the next concrete failure.
