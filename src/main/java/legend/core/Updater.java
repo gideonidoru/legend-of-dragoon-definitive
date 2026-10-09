@@ -22,7 +22,8 @@ import java.util.function.Consumer;
 public class Updater {
   private static final Logger LOGGER = LogManager.getFormatterLogger(Updater.class);
 
-  private static final String UPDATE_URL = "https://api.github.com/repos/Legend-of-Dragoon-Modding/Severed-Chains/releases";
+  // Definitive modification (2026-10-09): use this project's releases instead of upstream's.
+  private static final String UPDATE_URL = "https://api.github.com/repos/gideonidoru/legend-of-dragoon-definitive/releases";
 
   private HttpClient client;
 

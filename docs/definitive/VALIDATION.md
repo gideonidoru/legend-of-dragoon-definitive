@@ -1,5 +1,7 @@
 # Milestone 1 validation — 2026-10-09
 
+This is the historical unmodified-baseline record. The subsequent project updater target adjustment is recorded separately in [UPDATER_TARGET.md](UPDATER_TARGET.md); the upstream-feed blocker below describes the original milestone state.
+
 ## Identity, provenance and scope
 
 - Terminal/filesystem access confirmed on **AVALON**, `system_profiler` reports **Mac Studio**, model **Mac17,14**, **Apple M5 Max**, 18 cores (6 Super + 12 Performance), **64 GB RAM**.
