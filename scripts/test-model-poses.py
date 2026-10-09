@@ -20,6 +20,12 @@ fixtures = load('fixtures', 'test-model-material-audit.py')
 
 
 class ModelPoseTest(unittest.TestCase):
+    def test_shared_vertex_ranges_cannot_exceed_aggregate_pose_budget(self):
+        table = struct.pack('<7I', 84, 20000, 160084, 1, 160092, 1, 0)*3
+        data = struct.pack('<6I', 12, 0, 0, 0x41, 0, 3) + table + bytes(160000) + bytes(8) + fixtures.model()[-24:]
+        with self.assertRaisesRegex(ValueError, 'Aggregate vertex'):
+            poses.read_geometry(data)
+
     def test_animation_excursion_is_included_in_common_framing(self):
         ordinary = [np.array([[0, 0, 0], [10, 20, 0]])]
         excursion = [np.array([[-100, -200, 0], [150, 300, 0]])]

@@ -40,6 +40,8 @@ def read_geometry(data):
     offset, = materials.take(data, 0, '<I')
     _, _, count = materials.take(data, offset, '<3I')
     table = offset + 12
+    if sum(materials.take(data, table + index * 28 + 4, '<I')[0] for index in range(count)) > 50000:
+        raise ValueError('Aggregate vertex count exceeds the private pose budget')
     parts = []
     for index in range(count):
         vertex_offset, nv, _, nn, primitive_offset, face_count, scale = materials.take(data, table + index * 28, '<7I')
@@ -210,7 +212,8 @@ def main():
     try: font = ImageFont.truetype('/System/Library/Fonts/Helvetica.ttc', 18)
     except OSError: font = ImageFont.load_default(size=18)
     draw.text((32, 24), 'Definitive | Private pose inspection', font=font, fill='#244e40')
-    draw.text((32, 54), 'Original geometry and keyframes. Offline orthographic preview; native gameplay acceptance remains open.', font=font, fill='#68716b')
+    draw.text((32, 54), 'Original geometry and keyframes. Offline orthographic inspection.', font=font, fill='#68716b')
+    draw.text((32, 78), 'Native rendering and Deck performance remain unverified.', font=font, fill='#68716b')
     hashes = []
     coverage = []
     for row, (frame, positions) in enumerate(zip(frame_indices, poses)):
