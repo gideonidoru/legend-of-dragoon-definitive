@@ -2,7 +2,7 @@
 
 ## Change
 
-Replaced the two inherited publishing workflows with `.github/workflows/build.yml`. Original files remain in upstream Git history. New CI builds macOS and Linux x64/Steam Deck packages using the checked-in Gradle 9.1.0 wrapper and pinned Temurin 25.0.0+36. Official checkout/setup-java actions are pinned to full commits. The job records its environment, compiles engine/test sources, packages support files, and exercises a separate headless test-control fixture.
+Replaced the two inherited publishing workflows with `.github/workflows/build.yml`. Original files remain in upstream Git history. New CI builds macOS and Linux x64/Steam Deck packages using the checked-in Gradle 9.1.0 wrapper and pinned Temurin 25.0.0+36.0.LTS (the setup action's normalized version name). Official checkout/setup-java actions are pinned to full commits. The job records its environment, compiles engine/test sources, packages support files, and exercises a separate headless test-control fixture.
 
 The workflow uses `contents: read` and does not persist checkout credentials. There are no upstream service secrets, metadata scrapers, Maven publications, release writes, binary uploads or gameplay invocations. Triggers are source changes on main, pull requests, and manual dispatch. Documentation-only changes skip automatic runs; manual dispatch remains available. Concurrency cancels superseded runs; each platform job has a 20-minute timeout.
 
@@ -40,7 +40,9 @@ Evidence (trailing whitespace normalized): [macOS build](evidence/build-controls
 
 ## GitHub verification
 
-Pending first hosted run. Repository Actions remains disabled while the safe workflow is prepared; enable it only after the publishing workflows are removed from main, then dispatch the new build-only workflow. Record the exact hosted run and results here after completion.
+Actions is enabled with a selected-actions policy permitting only the exact checkout/setup-java commits used in the workflow. General GitHub-owned and verified-publisher action allowances are disabled; adding or updating an action requires updating this explicit allowlist.
+
+The [first hosted run](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/37978307460) failed at Java setup on both platforms: the version input `25.0.0+36` did not match the provider's normalized `25.0.0+36.0.LTS`. No engine or fixture tests ran in that attempt. The version pin is corrected; the next hosted run result will be recorded here after completion.
 
 ## Remaining limitations
 
