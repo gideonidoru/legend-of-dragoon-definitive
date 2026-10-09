@@ -304,3 +304,6 @@ apply from: 'gradle/macos-gameplay-test.gradle'
 
 // Definitive modification (2026-10-09): source-linked HD background mod.
 apply from: 'gradle/skurfa.gradle'
+
+// Definitive modification (2026-10-09): managed installation and safe updates.
+apply from: 'gradle/definitive-delivery.gradle'

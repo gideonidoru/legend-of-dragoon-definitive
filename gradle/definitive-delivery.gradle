@@ -1,0 +1,108 @@
+// Copy after cleanup even when several delivery targets are requested together.
+tasks.named('copyLibs') { dependsOn clearOutput }
+// Definitive installation/package tooling (2026-10-09), AGPL v3; see LICENSE.
+tasks.named('processResources') {
+  dependsOn requireSkurfa
+  from('integrations/skurfa/runtime-assets/scbackgroundhd/cut5/background.png') {
+    into 'legend/definitive/manager'
+    rename { 'hero.png' }
+  }
+}
+
+tasks.register('managerJar', Jar) {
+  dependsOn classes
+  archiveFileName = 'definitive-manager.jar'
+  destinationDirectory = layout.buildDirectory.dir('libs')
+  from(sourceSets.main.output) { include 'legend/definitive/manager/**' }
+  from('integrations/skurfa') { include 'LICENSE', 'THIRD_PARTY_NOTICES.md'; into 'META-INF/skurfa' }
+  manifest { attributes 'Main-Class': 'legend.definitive.manager.ManagerMain' }
+}
+
+// Official portable 7-Zip, pinned to upstream GitHub asset digests. Never stored in Git.
+tasks.register('archiveHelper') {
+  inputs.property('targetOs', providers.gradleProperty('os').getOrElse(System.getProperty('os.name')))
+  outputs.dir(layout.buildDirectory.dir('definitive/archive-helper'))
+  doLast {
+    final String target = providers.gradleProperty('os').getOrElse(System.getProperty('os.name').toLowerCase().contains('mac') ? 'macos' : 'linux')
+    final String name = target.startsWith('mac') ? '7z2604-mac.tar.xz' : '7z2604-linux-x64.tar.xz'
+    final String expected = target.startsWith('mac') ? 'bee04358cbcbc7106273cee0e8d72916db2696c48067a3538c34d8cd6fd16578' : 'fc0327ba27e89bd086cf426dff17d77de582953cdbbc10a6576540a06853ffcd'
+    final File archive = layout.buildDirectory.file('definitive/' + name).get().asFile
+    archive.parentFile.mkdirs()
+    providers.exec { commandLine 'curl', '--fail', '--location', '--proto', '=https', '--proto-redir', '=https', '--retry', '2', '--output', archive.absolutePath, 'https://github.com/ip7z/7zip/releases/download/26.04/' + name }.result.get().assertNormalExitValue()
+    final String actual = java.security.MessageDigest.getInstance('SHA-256').digest(archive.bytes).encodeHex().toString()
+    if(actual != expected) throw new GradleException('Official 7-Zip archive checksum mismatch')
+    final File dest = layout.buildDirectory.dir('definitive/archive-helper').get().asFile
+    dest.mkdirs()
+    providers.exec { commandLine 'tar', '-xJf', archive.absolutePath, '-C', dest.absolutePath }.result.get().assertNormalExitValue()
+  }
+}
+
+tasks.register('stageDefinitivePackage', Sync) {
+  dependsOn jar, skurfaJar, managerJar, archiveHelper
+  into layout.buildDirectory.dir('definitive/package')
+  from(layout.buildDirectory.dir('libs')) {
+    include 'lod-game-*.jar', 'definitive-manager.jar', 'libs/**', 'gfx/**', 'patches/**', 'lang/**', 'LICENSE', 'credits.txt', 'README.md', 'log4j2.xml', 'gamecontrollerdb.txt'
+    exclude '*-sources.jar'
+  }
+  into('bundled-mods') { from layout.buildDirectory.dir('libs/mods') }
+  into('tools') { from(layout.buildDirectory.dir('definitive/archive-helper')) { include '7zz', 'License.txt', 'readme.txt', 'History.txt' } }
+  from 'CREDITS'
+  from 'delivery/installer'
+}
+
+tasks.register('definitiveManifest', JavaExec) {
+  dependsOn stageDefinitivePackage
+  classpath = files(tasks.managerJar.archiveFile)
+  mainClass = 'legend.definitive.manager.ManagerMain'
+  doFirst {
+    final String targetOs = providers.gradleProperty('os').getOrElse(System.getProperty('os.name').toLowerCase().contains('mac') ? 'macos' : 'linux')
+    final String targetArch = providers.gradleProperty('arch').getOrElse(System.getProperty('os.arch'))
+    final String platform = (targetOs.startsWith('mac') ? 'macos' : targetOs == 'linux' ? 'linux' : 'unsupported') + '-' + (targetArch.startsWith('arm') || targetArch.startsWith('aarch64') ? 'arm64' : 'x64')
+    final String revision = providers.exec { commandLine 'git', 'rev-parse', 'HEAD' }.standardOutput.asText.get().trim()
+    final String dirty = providers.exec { commandLine 'git', 'status', '--porcelain' }.standardOutput.asText.get().trim().isEmpty() ? '' : '-working-tree'
+    systemProperty 'definitive.releaseTag', providers.gradleProperty('releaseTag').getOrElse('local-' + revision + dirty)
+    args '--package', layout.buildDirectory.dir('definitive/package').get().asFile.absolutePath, platform, revision + dirty
+  }
+}
+
+tasks.register('definitivePackage', Zip) {
+  dependsOn definitiveManifest
+  final String targetOs = providers.gradleProperty('os').getOrElse(System.getProperty('os.name').toLowerCase().contains('mac') ? 'macos' : 'linux')
+  final String targetArch = providers.gradleProperty('arch').getOrElse(System.getProperty('os.arch'))
+  final String platform = (targetOs.startsWith('mac') ? 'macos' : 'linux') + '-' + (targetArch.startsWith('arm') || targetArch.startsWith('aarch64') ? 'arm64' : 'x64')
+  archiveFileName = 'Legend-of-Dragoon-Definitive-' + platform + '.zip'
+  destinationDirectory = layout.buildDirectory.dir('distributions')
+  from layout.buildDirectory.dir('definitive/package')
+  filesMatching(['Install.sh', 'bootstrap-java', 'tools/7zz']) { permissions { unix('rwxr-xr-x') } }
+}
+
+tasks.register('deliveryTest', Test) {
+  dependsOn testClasses
+  testClassesDirs = sourceSets.test.output.classesDirs
+  classpath = sourceSets.test.runtimeClasspath
+  useJUnitPlatform()
+  include 'legend/definitive/**'
+  systemProperty 'java.awt.headless', 'true'
+}
+tasks.named('check') { dependsOn deliveryTest }
+
+// Small transferable UI/bootstrap, without the engine, HD mod payload or a local JDK.
+tasks.register('portableInstaller', Zip) {
+  dependsOn managerJar, copyUpdaterConfig, copySupportFiles
+  archiveFileName = 'Definitive-Installer.zip'
+  destinationDirectory = layout.buildDirectory.dir('distributions')
+  from(tasks.managerJar.archiveFile)
+  from('delivery/installer') { include 'Install.sh', 'bootstrap-java' }
+  from('LICENSE')
+  from('CREDITS')
+  filesMatching(['Install.sh', 'bootstrap-java']) { permissions { unix('rwxr-xr-x') } }
+}
+
+configurations { managerRuntime }
+dependencies {
+  managerRuntime "org.lwjgl:lwjgl:${lwjglVersion}"
+  managerRuntime "org.lwjgl:lwjgl-sdl:${lwjglVersion}"
+  managerRuntime "org.lwjgl:lwjgl:${lwjglVersion}:natives-linux"
+  managerRuntime "org.lwjgl:lwjgl-sdl:${lwjglVersion}:natives-linux"
+}
+tasks.named('portableInstaller') { into('manager-libs') { from configurations.managerRuntime } }

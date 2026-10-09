@@ -4,7 +4,15 @@
 
 Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with community HD artwork, planned enhanced model textures, and optional gameplay conveniences. A planned faithful mode will preserve the original gameplay experience while keeping presentation and accessibility choices separate.
 
-This is an unofficial community project in early development. **There is no playable Definitive release yet.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively. Physical Steam Deck validation is still pending.
+This is an unofficial community project in early development. **The first guided installer is an alpha; physical Steam Deck validation is pending.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively. Physical Steam Deck validation is still pending.
+
+## Install on Steam Deck
+
+**[Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09/Install-Definitive.desktop)**
+
+In Desktop Mode, download and open the installer in Dolphin. Allow execution if KDE asks. It takes care of our build, Java, HD artwork, disc import/preparation and an optional Steam library shortcut. Choose your four US BIN/raw ISO images or ZIP, RAR and 7z containers. Your originals stay untouched; bundled emulators and patches are left out. The default location is `/home/deck/Games/Legend-of-Dragoon-Definitive`.
+
+The entry download is tiny; the portable interface is about 9 MB. Java, the game engine and HD artwork download during setup. The launcher centers on **Play**, checks our releases automatically, and keeps artwork/mod choices and version restore secondary. Touch-sized controls and controller navigation are implemented; physical Deck input and Gaming Mode verification remain pending. **[Installer details and recovery](docs/definitive/INSTALLER.md)** · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09/Definitive-Installer.zip).
 
 ## Where this project comes from
 
@@ -46,7 +54,7 @@ As of October 9, 2026:
 - Public repository, upstream history/remotes, documentation, and prioritized backlog are established.
 - Unmodified baseline builds passed on the development Mac; hosted macOS ARM64 and Linux x64/Steam Deck package builds also passed.
 - Seven headless scenarios verified gameplay-test controls. Ordinary builds skip gameplay tests; these checks do not execute the game.
-- The updater targets this project's repository. Release versioning, compatible mod sets, and save-safe upgrade/rollback remain to be designed and verified.
+- The updater targets this project's repository. The guided manager pairs verified engine/mod packages, keeps private data separate, retains pre-update snapshots, and restores the prior engine with its prior data. Headless recovery fixtures pass; real Deck update recovery remains to be exercised.
 - Four private discs were extracted locally; normal engine startup and three automated Mac gameplay smoke tests passed with the source-built Skurfa mod. Disc images, extracted retail assets and test campaigns remain excluded from Git.
 - Skurfa source/build integration and the first QoL interface slice are implemented. Faithful mode and actual Steam Deck validation remain outstanding; these smoke tests do not establish artwork quality, controller usability or a complete playthrough.
 
@@ -65,14 +73,14 @@ cd legend-of-dragoon-definitive
 To compile/package the Linux x64 Steam Deck target:
 
 ```sh
-./gradlew --no-daemon --console=plain clean build -Pos=linux -Parch=x86_64 -Psteamdeck=true
+./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -Pos=linux -Parch=x86_64 -Psteamdeck=true
 ```
 
 For an existing checkout, run `git submodule update --init --recursive` before building. Output is generated in `build/libs/`, including `mods/Skurfas-HDR-Backgrounds-v1.1.0.jar` compiled from the pinned source and artwork. Ordinary builds never launch the game. Building a Deck package on another computer does not prove Deck gameplay or native-library compatibility. See [setup and build instructions](docs/definitive/SETUP.md) for JDK configuration, dependencies, private disc input, and test controls. No game launch is part of these build commands.
 
 ## Roadmap and contributions
 
-The next milestone focuses on package identity, compatible mod versions, and save-safe installation/upgrade contracts. Next validate representative Skurfa scenes and the equipment footer, extend the selected QoL inventory workflows, and establish a real Deck baseline. Add a small model-texture upscaling proof of concept once texture mapping and Deck budgets are established. Expand optional gameplay features after the faithful-mode and persistence contracts are clear.
+The guided installer establishes package identity, paired mod versions, and save-safe installation/upgrade contracts. Next validate representative Skurfa scenes and the equipment footer, extend the selected QoL inventory workflows, and establish a real Deck baseline. Add a small model-texture upscaling proof of concept once texture mapping and Deck budgets are established. Expand optional gameplay features after the faithful-mode and persistence contracts are clear.
 
 The [full project plan](docs/definitive/PROJECT_PLAN.md), [Sprint 0 checklist](docs/definitive/SPRINT_0.md), and [Deck test plan](docs/definitive/DECK_TEST_PLAN.md) define the work and its acceptance evidence. Contributions should identify the player benefit, upstream/mod overlap, license and credits, faithful-mode implications, and validation performed. Small, reversible changes with clear compatibility boundaries are preferred.
 

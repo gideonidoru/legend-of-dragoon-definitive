@@ -36,6 +36,12 @@ public class Updater {
   }
 
   public void check(final Consumer<Release> onComplete) {
+    // Definitive (2026-10-09): managed installs update transactionally outside the game.
+    if(Boolean.getBoolean("definitive.managedInstall")) {
+      LOGGER.info("Managed installation: use Manage Installation for verified updates");
+      onComplete.accept(null);
+      return;
+    }
     synchronized(this) {
       if(this.client == null) {
         try {

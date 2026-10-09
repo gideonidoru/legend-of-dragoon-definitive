@@ -1,0 +1,41 @@
+#!/bin/bash
+# Definitive runtime bootstrap (2026-10-09), AGPL v3; see LICENSE.
+set -euo pipefail
+ROOT="${1:?Choose a runtime storage directory}"
+is_java25() { "$1" -XshowSettings:properties -version 2>&1 | grep -q 'java.specification.version = 25$'; }
+if [[ -n "${JAVA_HOME:-}" && -x "$JAVA_HOME/bin/java" ]] && is_java25 "$JAVA_HOME/bin/java"; then printf '%s\n' "$JAVA_HOME/bin/java"; exit 0; fi
+if [[ -f "$ROOT/.java-path" ]]; then
+  IFS= read -r RECORDED < "$ROOT/.java-path"
+  if [[ -x "$RECORDED" ]] && is_java25 "$RECORDED"; then printf '%s\n' "$RECORDED"; exit 0; fi
+fi
+case "$(uname -s):$(uname -m)" in
+  Linux:x86_64) artifact=amazon-corretto-25-x64-linux-jdk.tar.gz; relative=bin/java ;;
+  Darwin:arm64) artifact=amazon-corretto-25-aarch64-macos-jdk.tar.gz; relative=Contents/Home/bin/java ;;
+  Darwin:x86_64) artifact=amazon-corretto-25-x64-macos-jdk.tar.gz; relative=Contents/Home/bin/java ;;
+  *) echo 'This installer supports Steam Deck/Linux x64 and Intel/Apple Silicon Mac.' >&2; exit 1 ;;
+esac
+JAVA="$ROOT/runtime-jdk25/$relative"
+if [[ -x "$JAVA" ]] && is_java25 "$JAVA"; then printf '%s\n' "$JAVA"; exit 0; fi
+if command -v java >/dev/null && is_java25 "$(command -v java)"; then command -v java; exit 0; fi
+if [[ -e "$ROOT/runtime-jdk25" ]]; then echo 'Existing runtime is not Java 25. It has been preserved; configure JAVA_HOME or choose another folder.' >&2; exit 1; fi
+mkdir -p -- "$ROOT"
+# Serialize downloads, including the final rename. Never nest one runtime inside another.
+LOCK="$ROOT/.java-bootstrap-lock"
+mkdir -- "$LOCK" 2>/dev/null || { echo 'Another Java setup is running. Wait for it to finish and retry.' >&2; exit 1; }
+STAGE=$(mktemp -d "$ROOT/.java-download.XXXXXX")
+trap 'rm -rf -- "$STAGE"; rmdir -- "$LOCK"' EXIT
+printf '%s\n' 'Downloading Java 25 from Amazon Corretto; first setup needs internet access…' >&2
+curl --fail --location --silent --show-error --proto '=https' --proto-redir '=https' "https://corretto.aws/downloads/latest/$artifact" --output "$STAGE/runtime.tar.gz"
+curl --fail --location --silent --show-error --proto '=https' --proto-redir '=https' "https://corretto.aws/downloads/latest_sha256/$artifact" --output "$STAGE/checksum"
+EXPECTED=$(awk '{print $1; exit}' "$STAGE/checksum")
+[[ "$EXPECTED" =~ ^[a-fA-F0-9]{64}$ ]] || { echo 'Invalid official runtime checksum; nothing installed.' >&2; exit 1; }
+if command -v sha256sum >/dev/null; then ACTUAL=$(sha256sum "$STAGE/runtime.tar.gz" | awk '{print $1}'); else ACTUAL=$(shasum -a 256 "$STAGE/runtime.tar.gz" | awk '{print $1}'); fi
+[[ "$(printf %s "$ACTUAL" | tr A-F a-f)" == "$(printf %s "$EXPECTED" | tr A-F a-f)" ]] || { echo 'Java download checksum mismatch; nothing installed.' >&2; exit 1; }
+mkdir "$STAGE/jdk"
+tar -xzf "$STAGE/runtime.tar.gz" -C "$STAGE/jdk" --strip-components=1
+[[ -x "$STAGE/jdk/$relative" ]] && is_java25 "$STAGE/jdk/$relative" || { echo 'Downloaded runtime is not a usable Java 25 installation.' >&2; exit 1; }
+printf '%s\n' "$ACTUAL  $artifact" > "$STAGE/jdk/definitive-runtime.sha256"
+# Never delete or replace an existing runtime, even if another setup finished first.
+[[ ! -e "$ROOT/runtime-jdk25" ]] || { echo 'A runtime appeared during setup; it has been preserved.' >&2; exit 1; }
+mv -- "$STAGE/jdk" "$ROOT/runtime-jdk25"
+printf '%s\n' "$JAVA"

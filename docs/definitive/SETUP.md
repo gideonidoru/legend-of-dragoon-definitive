@@ -1,5 +1,7 @@
 # Setup and build
 
+For players, use the [guided installer](INSTALLER.md) linked in the README. It installs our edition, imports and prepares private discs, then offers Steam integration. The instructions below are for contributors.
+
 ## Requirements verified on 2026-10-09
 
 - Git with command line integration; authenticated `gh` only needed for repository administration.
@@ -24,7 +26,7 @@ The initialization checkout is `/Users/markmurray/Downloads/Development/legend-o
 
 A temporary Amazon Corretto 25.0.0.36.2 JDK was used for validation, matching upstream's pinned `download-java` version. It is located at `/private/tmp/lod-definitive-tooling/amazon-corretto-25.jdk/Contents/Home`, with `GRADLE_USER_HOME=/private/tmp/lod-definitive-tooling/gradle`. Temporary storage is disposable; install/configure a maintained JDK 25 outside the repository for ongoing development. Neither the runtime nor cache is tracked.
 
-Existing clones need `git submodule update --init --recursive`. Ordinary builds compile Skurfa into `build/libs/mods/Skurfas-HDR-Backgrounds-v1.1.0.jar`, including its artwork and notices. Building requires the initialized submodule; do not use GitHub’s parent-only source ZIP for an inclusive checkout. To play with original backgrounds, remove this JAR from a local package before launch. Faithful preset automation is still planned.
+Existing clones need `git submodule update --init --recursive`. Ordinary builds compile Skurfa into `build/libs/mods/Skurfas-HDR-Backgrounds-v1.1.0.jar`, including its artwork and notices. Building requires the initialized submodule; do not use GitHub’s parent-only source ZIP for an inclusive checkout. In a managed installation, use Mods & artwork for original-background fallback; keep the verified release immutable. Campaign preset automation is documented separately.
 
 ## Steam Deck package configuration
 
@@ -40,7 +42,7 @@ This selects Linux x64 dependencies and the Steam Deck launcher. Output goes to 
 
 Compilation is separate from play. Provide your own supported disc images privately in the top level of `isos/`; discovery does not recurse through subfolders. The engine extracts them into `files/` at runtime. Do not add either directory's contents to Git. `saves/` is likewise local. The initial build milestone did not use images or launch the engine. On 2026-10-09 the owner supplied four BIN/CUE pairs locally; expected US disc IDs were checked and bytes preserved during folder cleanup. A later integration session extracted all four discs and passed Mac startup/gameplay smoke tests; see [INTEGRATION_ALPHA.md](INTEGRATION_ALPHA.md).
 
-The [community Steam Deck guide](https://legendofdragoon.org/guides/setup-steamdeck/) describes extracting the portable package in Desktop Mode, providing disc images, checking executable permissions for `launch` and `download-java`, and adding `launch` as a non-Steam game. Its first-run flow requires network access for Java and time for extraction. These instructions have not been exercised here; Definitive installation automation remains future work. A relocated package needs its Steam shortcut path updated.
+The [community Steam Deck guide](https://legendofdragoon.org/guides/setup-steamdeck/) describes extracting the portable package in Desktop Mode, providing disc images, checking executable permissions for `launch` and `download-java`, and adding `launch` as a non-Steam game. Its first-run flow requires network access for Java and time for extraction. That upstream manual flow is retained as background. Definitive now provides a separate guided installer and stable managed Steam target; see [INSTALLER.md](INSTALLER.md). A relocated managed installation needs its Steam shortcut updated.
 
 Do not launch the game, UI tests, or change desktop focus without the owner's permission. Upstream recommends assertions for gameplay; audit launch arguments before relying on assertion/heap flags (the checked-in Steam Deck script places `-Xmx2G -ea` after the main class).
 
@@ -56,7 +58,7 @@ python3 scripts/verify-test-controls.py
 
 This runs a synthetic JUnit fixture that shares the production Gradle policy and has no engine classes, game assets or window code. It verifies skipping, explicit opt-in, prerequisite rejection and sandbox exclusion.
 
-`.github/workflows/build.yml` builds macOS and Linux x64/Steam Deck packages with the wrapper, then verifies the controls with this fixture. It uses read-only repository access, pinned official action commits and JDK 25. It does not launch gameplay, create releases, upload binaries, publish Maven packages or use upstream service credentials. Build-only CI results and limitations are recorded in [BUILD_CONTROLS.md](BUILD_CONTROLS.md).
+`.github/workflows/build.yml` builds macOS and Linux x64/Steam Deck packages with the wrapper, then verifies the controls with this fixture. It uses read-only repository access, pinned official action commits and JDK 25. It does not launch gameplay, create public releases, publish Maven packages or use upstream service credentials. It retains verified installer/package artifacts privately for release assembly. Build-only CI results and limitations are recorded in [BUILD_CONTROLS.md](BUILD_CONTROLS.md).
 
 ## Publication hygiene
 
