@@ -59,6 +59,19 @@ public final class ConfigPresetManager {
   private static final Path configPath = Path.of("config");
   public static final PathMatcher CONFIG_MATCHER = FileSystems.getDefault().getPathMatcher("glob:*.dpre");
 
+  /** Resolve startup selection before applying any settings; invalid remembered entries use a valid default. */
+  public static int initialPresetIndex(final List<ConfigPresetEntry> choices, final String remembered) {
+    for(int i = 0; i < choices.size(); i++) {
+      if(IoHelper.slugName(choices.get(i).getName().get()).equals(remembered)) {
+        if(choices.get(i).getPreset() != null) return i;
+        LOGGER.warn("Remembered preset {} is unavailable; using a valid built-in choice", remembered);
+        break;
+      }
+    }
+    for(int i = 0; i < choices.size(); i++) if(choices.get(i).getPreset() != null) return i;
+    throw new IllegalStateException("No valid campaign preset is available");
+  }
+
   public static boolean presetExists(final String name) {
     final String slugged = IoHelper.slugName(name);
 

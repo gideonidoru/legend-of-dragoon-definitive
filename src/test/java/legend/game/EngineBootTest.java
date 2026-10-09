@@ -168,6 +168,11 @@ class EngineBootTest {
   @Test
   void test5_sparsePresetsResetCampaignScopesAndPreserveGlobal() {
     final var choices = legend.game.saves.ConfigPresetManager.loadDefaultPresets();
+    final var remembered = legend.core.IoHelper.slugName(choices.get(2).getName().get());
+    assertEquals(2, legend.game.saves.ConfigPresetManager.initialPresetIndex(choices, remembered));
+    final var withInvalid = new java.util.ArrayList<>(choices);
+    withInvalid.add(new legend.game.saves.ConfigPresetEntry(null, new legend.core.lang.RawText("Broken"), java.util.concurrent.CompletableFuture.completedFuture(null), true));
+    assertEquals(0, legend.game.saves.ConfigPresetManager.initialPresetIndex(withInvalid, "broken"));
     final var target = new legend.game.saves.ConfigCollection(false);
     target.setConfig(CoreMod.MASTER_VOLUME_CONFIG.get(), 0.37f);
     final var scopes = java.util.EnumSet.of(legend.game.saves.ConfigStorageLocation.CAMPAIGN, legend.game.saves.ConfigStorageLocation.SAVE);

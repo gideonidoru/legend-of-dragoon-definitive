@@ -74,3 +74,8 @@ gradle-app.setting
 /local-runtimes/
 __pycache__/
 *.pyc
+
+# Private model/texture pilot packs and local visual work
+/texture-packs/
+/visual-tooling/
+/visual-comparisons/

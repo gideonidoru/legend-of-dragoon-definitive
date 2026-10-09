@@ -109,16 +109,11 @@ public class NewCampaignScreen extends VerticalLayoutScreen {
         ? CONFIG.getPresetDisplayName() : e.getName()
     );
     this.addRow(new I18nText("lod_core.ui.new_campaign.options_presets"), this.optionPresets);
-    ConfigPresetManager.loadDefaultPresets().forEach(this.optionPresets::addOption);
-    ConfigPresetManager.loadPresetList().forEach(this.optionPresets::addOption);
+    final List<ConfigPresetEntry> presetChoices = new ArrayList<>(ConfigPresetManager.loadDefaultPresets());
+    presetChoices.addAll(ConfigPresetManager.loadPresetList());
+    presetChoices.forEach(this.optionPresets::addOption);
     this.optionPresets.onSelection(this::onPresetSelected);
-    // Select the remembered entry first, then apply exactly that preset once.
-    for(int i = 0; i < this.optionPresets.size(); i++) {
-      if(IoHelper.slugName(this.optionPresets.getOption(i).getName().get()).equals(Config.getLastConfigPreset())) {
-        this.optionPresets.setSelectedIndex(i);
-        break;
-      }
-    }
+    this.optionPresets.setSelectedIndex(ConfigPresetManager.initialPresetIndex(presetChoices, Config.getLastConfigPreset()));
     if(this.applyPreset(this.optionPresets.getSelectedOption())) {
       this.appliedPreset = IoHelper.slugName(this.optionPresets.getSelectedOption().getName().get());
     }
