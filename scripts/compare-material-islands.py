@@ -90,6 +90,7 @@ def main():
     parser.add_argument('--models', type=Path, required=True)
     parser.add_argument('--neural-model', choices=list(neural.MODELS), default='realesrgan-x4plus-anime')
     parser.add_argument('--strength', type=float, default=0.5, help='RGB blend 0..1; experiment only')
+    parser.add_argument('--sampling-footprint', choices=['integer', 'uv-cells'], default='integer', help='Conservative source texel coverage; uv-cells also requires NumPy 2.5.1')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     if args.output.resolve().is_relative_to(Path(__file__).resolve().parents[1]):
@@ -109,6 +110,14 @@ def main():
     width, height, cw, ch, _, _ = materials.texture(tim)
     _, packets, _, _ = materials.faces(model)
     masks, _ = materials.material_masks(width, height, cw, ch, packets)
+    if args.sampling_footprint == 'uv-cells':
+        footprints = load_module('footprints', 'audit-uv-footprints.py')
+        if footprints.np.__version__ != '2.5.1':
+            parser.error('UV-cell comparisons require NumPy 2.5.1')
+        masks = {palette: Image.fromarray(mask.astype('uint8')*255).convert('1') for palette, mask in footprints.footprint_masks(model, tim).items()}
+        report, original_preview, original_stp = materials.audit(model, tim, masks)
+        if report['overlappingTexels']:
+            parser.error('Sampling footprints need a per-material mapping; a flat atlas is ambiguous')
     if not masks or len(masks) > 64:
         parser.error('Material count exceeds the comparison limit')
     args.output.mkdir(exist_ok=False)
@@ -140,6 +149,10 @@ def main():
     preview.save(args.output / 'candidate-preview.png')
     original_preview.resize(preview.size, Image.Resampling.NEAREST).save(args.output / 'nearest-preview.png')
     report.update({'pipeline': 'definitive-palette-isolated-neural-1', 'environment': platform.platform(), 'pillow': PIL.__version__, 'scriptSha256': neural.sha(__file__), 'dependencyScriptHashes': {file: neural.sha(Path(__file__).with_name(file)) for file in ('audit-model-materials.py', 'compare-neural-textures.py', 'preserve-texture-transparency.py')}, 'engineSha256': neural.sha(args.engine), 'weightsSha256': weights_hash, 'paramsSha256': params_hash, 'scale': scale, 'strength': args.strength, 'paddingSourceTexels': 8, 'steps': steps, 'seconds': round(time.monotonic() - started, 3), 'command': [sys.executable, *sys.argv], 'engineStpSha256': neural.sha(args.output / 'candidate-engine-stp.png'), 'previewSha256': neural.sha(args.output / 'candidate-preview.png'), 'scope': 'Private palette-isolated experiment. Binary STP/discard coverage restored; UV rasterization, inferred detail, disconnected same-palette islands, filtering, animated seams and runtime compatibility still need verification.'})
+    report['samplingFootprint'] = args.sampling_footprint
+    if args.sampling_footprint == 'uv-cells':
+        report['numpy'] = footprints.np.__version__
+        report['dependencyScriptHashes']['audit-uv-footprints.py'] = neural.sha(Path(__file__).with_name('audit-uv-footprints.py'))
     (args.output / 'manifest.json').write_text(json.dumps(report, indent=2) + '\n')
     print('Private palette-isolated comparison:', args.output)
 

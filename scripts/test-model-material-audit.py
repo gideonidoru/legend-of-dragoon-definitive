@@ -24,6 +24,16 @@ def tim(padded=False):
     return struct.pack('<3I4H',0x10,8,76,0,0,32,1) + struct.pack('<32H',*colours) + struct.pack('<I4H',size,0,0,words,height) + pixels
 
 class MaterialAuditTest(unittest.TestCase):
+    def test_invalid_palette_columns_cannot_alias_later_rows(self):
+        triangle = [(0, 0), (3, 0), (0, 3)]
+        for clut_width, bad_column in [(16, 1), (32, 2), (32, 3)]:
+            with self.assertRaises(ValueError):
+                materials.material_masks(4, 4, clut_width, 4, [(0, bad_column, triangle)])
+        with self.assertRaises(ValueError):
+            materials.material_masks(4, 4, 16, 2, [(0, 2 << 6, triangle)])
+        masks, _ = materials.material_masks(4, 4, 16, 2, [(0, 1 << 6, triangle)])
+        self.assertEqual(list(masks), [1])
+
     def test_colours_follow_materials_and_conflicts_fail_flattening(self):
         report, preview, engine = materials.audit(model(), tim())
         self.assertEqual(report['conflictingColourTexels'],0)

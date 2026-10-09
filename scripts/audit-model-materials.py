@@ -71,18 +71,23 @@ def material_masks(width, height, cw, ch, packets):
     masks = {}; palette_faces = collections.Counter()
     for part, clut, coords in packets:
         # Existing UvAdjustmentMetrics14 retains relative CLUT x/y bits before relocation.
-        palette = ((clut >> 6) & 15) * (cw // 16) + (clut & 3)
-        if palette >= cw * ch // 16 or any(not (0 <= u < width and 0 <= v < height) for u,v in coords): raise ValueError('Material mapping falls outside this TIM')
+        column, row = clut & 3, (clut >> 6) & 15
+        if column >= cw // 16 or row >= ch or any(not (0 <= u < width and 0 <= v < height) for u,v in coords): raise ValueError('Material mapping falls outside this TIM')
+        palette = row * (cw // 16) + column
         palette_faces[palette] += 1
         mask = masks.setdefault(palette, Image.new('1', (width, height)))
         draw = ImageDraw.Draw(mask); draw.polygon(coords[:3], fill=1)
         if len(coords) == 4: draw.polygon([coords[1], coords[3], coords[2]], fill=1)
     return masks, palette_faces
 
-def audit(model, tim):
+def audit(model, tim, sampling_masks=None):
     width, height, cw, ch, colours, indices = texture(tim)
     parts, packets, animation, extra = faces(model)
     masks, palette_faces = material_masks(width, height, cw, ch, packets)
+    if sampling_masks is not None:
+        if set(sampling_masks) != set(masks) or any(mask.size != (width, height) for mask in sampling_masks.values()):
+            raise ValueError('Sampling masks differ from the mapped materials')
+        masks = sampling_masks
     preview = Image.new('RGBA', (width, height)); engine = Image.new('RGBA', (width, height))
     overlap = conflicts = covered = 0
     for y in range(height):

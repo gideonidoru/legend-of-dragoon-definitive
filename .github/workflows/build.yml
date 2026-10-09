@@ -17,6 +17,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  visual-fixtures:
+    name: Original synthetic visual fixtures
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out source without game or mod assets
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check offline mapping, transparency and pose tools
+        run: |
+          python3 -m venv "$RUNNER_TEMP/definitive-visual-checks"
+          "$RUNNER_TEMP/definitive-visual-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
+          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints; do
+            "$RUNNER_TEMP/definitive-visual-checks/bin/python" "scripts/test-$fixture.py"
+          done
   build:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.runner }}

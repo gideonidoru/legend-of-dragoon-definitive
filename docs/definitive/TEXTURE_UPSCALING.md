@@ -131,3 +131,27 @@ python3 scripts/compare-material-islands.py \
 ```
 
 Use Pillow 12.3.0. Each output directory must be new and outside this checkout. Six original synthetic checks currently cover bounds/zero-padding, conflicting palette colors, STP/discard semantics, invalid scales, cross-material border isolation and blending confined to original coverage. Next inspect posed models and source-size facial detail; determine which material regions need hand-authored restoration. The conservative single-palette runtime guard remains intact.
+
+### Posed inspection and sampling-footprint correction
+
+`scripts/inspect-model-poses.py` now compares the original **per-face** palettes against candidate atlases on the original geometry and standard TMD keyframes. It produces three views, a sampled-keyframe GIF, source/output hashes and missing/extra coverage counts. It is a private orthographic software inspection tool: it does not reproduce native lighting, PS1 projection, blending, culling, interpolation, scene scripts or Deck behavior. The GIF uses 100 ms per sampled keyframe for inspection, not a claim about gameplay timing.
+
+This check exposed a concrete defect in the integer-rasterized material atlases: the first field candidate lost 43, 7 and 16 pixels in the three posed views, and 42–44 pixels across its ten front-view keyframes. Binary atlas-mask equality alone did not establish correct UV sampling. Merely dilating masks one pixel also created hundreds of palette-color conflicts and was rejected.
+
+`scripts/audit-uv-footprints.py` instead conservatively intersects UV triangles with complete source texel cells. It adds 753 Dart and 424 field texels to the material coverage without overlapping palettes or conflicting colors in these samples. Boundary touches can overestimate native fragments; it remains a conservative audit gate. The palette-isolated tool's explicit `--sampling-footprint uv-cells` option uses that coverage, rejects overlaps and records this dependency and its version. NumPy 2.5.1 is required alongside Pillow 12.3.0; pinned offline dependencies are in `scripts/requirements-visual.txt` ([Pillow](https://pypi.org/project/pillow/12.3.0/), [NumPy](https://pypi.org/project/numpy/2.5.1/)).
+
+The corrected field candidate has **zero missing and extra pixels** in all three views and all ten original keyframes in this nearest-sampled offline inspection. Its engine-STP PNG SHA256 is `ac8ca7443a6cb2f271cf55c70fc1392e4fae9296ed0ad394f5c054ccd6e8f91b`; local material processing took 2.839 seconds. Animation input SHA256: `8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0`. All artifacts remain private. The 50% isolated treatment keeps more of the original painted cloth and belt detail than the full neural treatment in visual inspection; that is a developer assessment, not community preference or release acceptance.
+
+```sh
+python3 scripts/audit-uv-footprints.py "$PRIVATE_MODEL" "$PRIVATE_TIM" "$NEW_PRIVATE_FOOTPRINTS"
+python3 scripts/compare-material-islands.py \
+  --model "$PRIVATE_MODEL" --tim "$PRIVATE_TIM" \
+  --engine "$NCNN_ENGINE" --models "$NCNN_MODELS" \
+  --sampling-footprint uv-cells --output "$NEW_PRIVATE_COMPARISON"
+python3 scripts/inspect-model-poses.py \
+  --model "$PRIVATE_MODEL" --tim "$PRIVATE_TIM" --animation "$PRIVATE_ANIMATION" \
+  --candidate "$NEW_PRIVATE_COMPARISON/candidate-engine-stp.png" \
+  --label 'Isolated material candidate' --output "$NEW_PRIVATE_POSES"
+```
+
+Twelve original synthetic checks cover these tools, including malformed CLUT columns that would otherwise alias later rows, vertex/keyframe references, high palette indices, rotational transforms and fractional UV-cell coverage. CI runs them using original fixtures without game assets or neural weights. Before runtime activation, add exact model/TIM binding, reject animated/conflicting materials, verify native filtering/blending and other mod overrides, and measure the actual Deck cost. The current published pilot still rejects these multi-palette textures.
