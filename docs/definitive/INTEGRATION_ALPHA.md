@@ -26,7 +26,7 @@ For development launched from the repository root, `mods/` is separate from `bui
 
 ## Exact source and environment
 
-Upstream engine baseline: `fba1543543865e29ee572f479003d9b47158eeb3`. Parent before this slice: `1ca64c98cad71d6a6fa421e605ea62f21be5f609`; this record accompanies the integration changes, with publication revision recorded after CI. No newer engine merge was performed. QoL research source: `FrancisDionne/Severed-Chains`, branch `Everything-QoL`, commit `35a7b14616d038d9616a6012f4c44002379cf914`; interaction ideas are selectively reimplemented against the current APIs.
+Upstream engine baseline: `fba1543543865e29ee572f479003d9b47158eeb3`. Parent before this slice: `1ca64c98cad71d6a6fa421e605ea62f21be5f609`; implementation revision: [`eb5461a046bcc3843e49abeda43927607f33e9a4`](https://github.com/gideonidoru/legend-of-dragoon-definitive/commit/eb5461a046bcc3843e49abeda43927607f33e9a4). No newer engine merge was performed. QoL research source: `FrancisDionne/Severed-Chains`, branch `Everything-QoL`, commit `35a7b14616d038d9616a6012f4c44002379cf914`; interaction ideas are selectively reimplemented against the current APIs.
 
 Local validation: AVALON Mac Studio, Apple M5 Max, 64 GB, Mac17,14, ARM64; macOS 27.0.1 (26A434). Corretto 25.0.0.36.2, Java 25+36-LTS; Gradle wrapper 9.1.0. OpenGL reported `4.1 Metal - 91.7`. GitHub authentication reconfirmed as `gideonidoru`; origin/upstream point to the owner/official repositories respectively.
 
@@ -59,7 +59,9 @@ Normal startup command, executed with the external JDK from the repository root:
 
 The initial normal startup used the verified published Skurfa release JAR; the final three-test run used our source-built JAR. The release archive SHA256 is `a62583eb3c1e1d436f1b17078323024c97eca2d3b86056d94591cb2c4288c7ad`, and its original JAR SHA256 is `9578d357d01a747f3460737be7ffb90224a6be383fd77c4b5efc9f671989c1c8`. Source-built JAR metadata/notices differ, so these hashes should not match.
 
-Local logs are retained in `/private/tmp/lod-definitive-tooling/`: `integration-game.log`, `integration-source-build.log`, `integration-source-deck-build.log`, `integration-gameplay-source.log`, and `integration-test-controls.log`. They are private evidence, not repository artifacts. The owner began without saves; the harness creates a local `E2E-Test` campaign.
+Local logs are retained in `/private/tmp/lod-definitive-tooling/`: `integration-game.log`, `integration-source-build.log`, `integration-source-deck-build.log`, `integration-gameplay-source.log`, `integration-test-controls.log`, `integration-final-macos-build.log`, and `integration-hosted-ci.log`. A final clean Mac rebuild after the Deck check passed in 12 seconds, restoring local Mac-native packaging. They are private evidence, not repository artifacts. The owner began without saves; the harness creates a local `E2E-Test` campaign.
+
+Hosted build-only CI also passed both macOS and Linux x64/Steam Deck jobs, including recursive checkout, source-built Skurfa packaging and all seven headless control scenarios, at implementation revision `eb5461a046bcc3843e49abeda43927607f33e9a4`: [run 37984243580](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/37984243580). No game files, gameplay or binary publication were used by CI.
 
 ## Failures resolved and limits
 
