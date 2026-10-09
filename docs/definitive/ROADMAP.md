@@ -8,8 +8,8 @@ Deliver visible improvements through mods, configuration and packaging. Keep fai
 | --- | --- | --- |
 | P0 / milestone 1 | Public source repository, preserved upstream/license, baseline builds and documents | Validation report; no engine behavior changes |
 | P1 / next | Reliable Deck installation and baseline measurement | Native Linux x64 portable package, clear private disc import, executable permissions, Steam shortcut guidance, actionable first-run errors, no shell typing after setup; fresh Deck install and upgrade preserve saves/mods/config; fix release/updater policy first |
-| P1 / visible art | Integrate existing HD artwork as an optional pack | Confirm author/version/permission; manifest and disk/cut mapping; representative backgrounds, foreground occlusion and transitions; original-art fallback; cap texture memory and compare frametimes; no new generated upscale pipeline |
-| P1 / controls | Comfortable controller-only flow | Boot/title/options/save/load/battle reachable; appropriate glyphs, reliable confirm/cancel, remapping, deadzones; Steam Input on/off, reconnect and overlay do not double-input; test handheld and external controller |
+| P1 / visible art | Integrate existing HD artwork as an optional pack | Evaluate Skurfa v1.1.0 standalone mod first; verify artifact hashes/terms and disk/cut mapping; representative backgrounds, foreground occlusion and transitions; original-art fallback; cap texture memory and compare frametimes; no new generated upscale pipeline |
+| P1 / controls | Comfortable controller-only flow | Boot/title/options/save/load/battle reachable; binding-aware action hints adapted from QoL ideas, appropriate glyphs, reliable confirm/cancel, remapping, deadzones; Steam Input on/off, reconnect and overlay do not double-input; test handheld and external controller |
 | P1 / readability | Legible 1280x800 handheld menus | Font/contrast/spacing options; no clipping in inventory, combat, dialogue or long labels; compare photographed handheld reading at normal distance; retain original presentation option |
 | P2 / convenience | Opt-in quick text, save convenience, encounter control and addition assistance | Reuse existing settings first, explain effects, record choices per campaign; faithful preset audit including retail defaults; save/load and disabling mods tested |
 | P3 / measured rendering | Targeted renderer tuning and optional upscaling | Only after Deck baseline and HD-pack timings; bottleneck evidence and equal-scene A/B results; improve worst frametimes without broken UI/occlusion or altered timing; no engine rewrite |
@@ -23,7 +23,9 @@ Provisional goals: responsive stable 60 fps where the engine supports it (16.7 m
 
 ## First implementation slice after this milestone
 
-1. Configure a durable JDK 25 and replace imported publishing workflows with build-only CI; resolve updater policy before distributing fork binaries.
+1. Build-only CI is complete. Finish package/version pairing and save-safe upgrade/restore policy before distributing fork binaries; configure a durable local JDK 25.
 2. User supplies game files privately and separately authorizes gameplay/device tests. Establish an actual Steam Deck baseline.
-3. Confirm the existing HD pack's author-approved artifact, terms, API compatibility and scene coverage. If unavailable, continue installation/controls/readability work while treating HD integration as blocked.
-4. Prototype one reversible artwork adapter and one readable menu/control flow using established mod/config seams. Compare to faithful mode and baseline performance before broadening.
+3. Verify Skurfa v1.1.0 artifact contents/hashes and installation terms. Source API compilation has passed; trial its existing mod on representative scenes after the device baseline. Keep artwork external and record coverage limits.
+4. Adapt one readable menu/control flow using current binding-aware input APIs and selected QoL interaction ideas. Use a narrow artwork shim only if the existing mod needs it. Compare to faithful mode and baseline performance before broadening.
+
+Research and evidence: [Skurfa HD backgrounds](SKURFA_RESEARCH.md), [Quality of Life+ fork](QOL_FORK_RESEARCH.md). Neither is runtime-validated on this project or a Steam Deck.

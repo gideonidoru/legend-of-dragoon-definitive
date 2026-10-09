@@ -1,0 +1,5 @@
+Source: IntiArtHub/skurfas-upscaled-hdr-backgrounds @ 3c9e4b3ecefc31cb32fd1281a7857f3a08f56081
+Engine API: baseline fba1543543865e29ee572f479003d9b47158eeb3 plus project updater/build tooling changes
+Command: javac --release 25 -cp <local built engine JAR and dependency JARs> -d <temporary classes> BackgroundHdMod.java
+Exit code: 0
+Compilation only; no images downloaded, no mod or engine executed.
