@@ -287,11 +287,8 @@ publishing {
   }
 }
 
-test {
-  useJUnitPlatform()
-  // Don't automatically run tests in build process
-  exclude '**/*'
-}
+// Definitive modification (2026-10-09): explicit gameplay test opt-in.
+apply from: 'gradle/gameplay-tests.gradle'
 
 sourceSets {
   main {

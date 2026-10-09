@@ -1,0 +1,58 @@
+# Definitive build-only CI (2026-10-09). No game files, gameplay, or publishing.
+name: Build and test controls
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['docs/**', '**/*.md']
+  pull_request:
+    paths-ignore: ['docs/**', '**/*.md']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Linux x64 / Steam Deck package
+            runner: ubuntu-24.04
+            args: -Pos=linux -Parch=x86_64 -Psteamdeck=true
+          - name: macOS package
+            runner: macos-15
+            args: ''
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Java 25
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '25.0.0+36'
+          cache: gradle
+          cache-dependency-path: |
+            build.gradle
+            gradle/*.gradle
+            gradle/wrapper/gradle-wrapper.properties
+          overwrite-settings: false
+      - name: Record build environment
+        run: |
+          uname -a
+          java -version
+          ./gradlew --version
+      - name: Compile and package without gameplay tests
+        run: ./gradlew --no-daemon --console=plain clean build ${{ matrix.args }}
+      - name: Verify test opt-in using a headless fixture
+        run: python3 scripts/verify-test-controls.py

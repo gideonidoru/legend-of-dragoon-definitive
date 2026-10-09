@@ -22,4 +22,4 @@ Reconstructed from the owner's plan because its interactive priority table was a
 
 Prefer D01–D08 and visible wins before ambitious journal/training/rendering work. D08 can be investigated independently, but D09 needs both usable assets and a device baseline. Schedule gates in PROJECT_PLAN.md do not override these dependencies.
 
-Ready for the next authorized engineering slice: D01 (build/test tooling), with D02 as a documentation/architecture decision. Neither requires changing engine gameplay. Device-dependent work remains blocked by private files/hardware and permission.
+D01 is implemented and locally verified; hosted CI status is in BUILD_CONTROLS.md. D02 is partially complete: the updater targets the project repository, but package/version pairing and rollback policy remain. Device-dependent work is still blocked by private files/hardware and execution permission.

@@ -11,7 +11,7 @@ A Steam Deck-first modernization project built on [Severed Chains](https://githu
 - [Steam Deck-first roadmap](docs/definitive/ROADMAP.md)
 - [Verified results and next steps](docs/definitive/VALIDATION.md)
 
-The checkout requires **Java 25**, with the **Gradle 9.1.0 wrapper**. The Java 21 note in the preserved upstream README below is stale relative to `build.gradle` and upstream CI. Code remains under the unchanged [AGPL v3 license](LICENSE); retain [CREDITS](CREDITS) and [credits.txt](credits.txt), including artwork attribution. Game disc images, extracted game assets, saves, credentials, and local runtimes must remain outside version control. GitHub Actions is disabled pending replacement of inherited upstream publishing workflows.
+The checkout requires **Java 25**, with the **Gradle 9.1.0 wrapper**. The Java 21 note in the preserved upstream README below is stale relative to `build.gradle` and upstream CI. Code remains under the unchanged [AGPL v3 license](LICENSE); retain [CREDITS](CREDITS) and [credits.txt](credits.txt), including artwork attribution. Game disc images, extracted game assets, saves, credentials, and local runtimes must remain outside version control. Build-only CI replaces inherited publishing workflows; gameplay tests remain explicitly opt-in. See [build and test controls](docs/definitive/BUILD_CONTROLS.md).
 
 ---
 

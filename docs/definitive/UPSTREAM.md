@@ -37,7 +37,7 @@ Use project-specific documentation under `docs/definitive/`. Future installation
 
 ## Release boundaries needing resolution
 
-GitHub Actions is disabled at repository level. Imported workflows publish to upstream metadata services, reference unavailable upstream secrets, alter version fields and automatically publish on main. They are retained for provenance, but must be replaced with source/build-only CI before re-enabling Actions. Future releases need a clean package allowlist, source/license/credit inclusion and a private-data audit.
+The imported publishing workflows were removed from the active tree (preserved in Git history) and replaced with `.github/workflows/build.yml`. Only build/packaging and synthetic test-control checks run; there are no release, package publishing or upstream metadata steps. Actions can be enabled after this safe workflow is pushed. During upstream sync, retain the build-only workflow and do not restore upstream publishing jobs automatically. Future releases need a clean package allowlist, source/license/credit inclusion and a private-data audit. See [BUILD_CONTROLS.md](BUILD_CONTROLS.md) for activation and verification status.
 
 As of 2026-10-09, `src/main/java/legend/core/Updater.java` queries `https://api.github.com/repos/gideonidoru/legend-of-dragoon-definitive/releases`. The project release feed replaces the official upstream feed. Preserve this small project change during upstream merges. Milestone 1's original build evidence remains unchanged; this adjustment is recorded in [UPDATER_TARGET.md](UPDATER_TARGET.md).
 

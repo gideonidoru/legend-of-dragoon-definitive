@@ -3,7 +3,7 @@
 ## Requirements verified on 2026-10-09
 
 - Git with command line integration; authenticated `gh` only needed for repository administration.
-- JDK 25: `build.gradle` sets source and target to `JavaVersion.VERSION_25`; both upstream GitHub workflows use Temurin 25. The upstream README says 21, but the executable build configuration controls this checkout.
+- JDK 25: `build.gradle` sets source and target to `JavaVersion.VERSION_25`; upstream CI at the baseline used Temurin 25; current build-only CI uses pinned Temurin 25. The upstream README says 21, but the executable build configuration controls this checkout.
 - Use the checked-in `./gradlew` (Windows: `gradlew.bat`), which selects Gradle 9.1.0. Do not substitute a system Gradle.
 - Network access for wrapper and Maven dependencies. No disc images are needed for compilation.
 - Upstream recommends IntelliJ and familiarity with Java and MIPS. No CONTRIBUTING.md or repository AGENTS.md was found at the baseline commit. Consult the upstream README and community modding channel for contribution discussions.
@@ -42,9 +42,19 @@ The [community Steam Deck guide](https://legendofdragoon.org/guides/setup-steamd
 
 Do not launch the game, UI tests, or change desktop focus without the owner's permission. Upstream recommends assertions for gameplay; audit launch arguments before relying on assertion/heap flags (the checked-in Steam Deck script places `-Xmx2G -ea` after the main class).
 
-## Test caveat
+## Test controls and CI
 
-`build.gradle` unconditionally excludes `**/*` in `test`; a successful build compiles test sources but executes no tests. `src/test/E2E_TESTING.md` describes windowed, asset-dependent tests and suggests `-PrunTests`, but the current build file has no conditional that reads that property. Do not claim that switch enables tests on this baseline. Repair/verify the test opt-in in a later scoped change before running gameplay tests with permission and private game files.
+Ordinary builds compile engine test sources but skip the `test` task explicitly. `gradle/gameplay-tests.gradle` enables only the supported EngineBootTest suite with `-PrunTests` or `-PrunTests=true`; `-PrunTests=false` skips it and invalid values fail. An opted-in task requires the private extraction marker `files/version` before tests start. ExampleTest remains excluded as an interactive sandbox. This policy applies to Gradle, not direct IDE JUnit execution.
+
+After permission and complete private game extraction, use the command documented in [E2E_TESTING.md](../../src/test/E2E_TESTING.md). Do not run that command for headless validation. Instead run:
+
+```sh
+python3 scripts/verify-test-controls.py
+```
+
+This runs a synthetic JUnit fixture that shares the production Gradle policy and has no engine classes, game assets or window code. It verifies skipping, explicit opt-in, prerequisite rejection and sandbox exclusion.
+
+`.github/workflows/build.yml` builds macOS and Linux x64/Steam Deck packages with the wrapper, then verifies the controls with this fixture. It uses read-only repository access, pinned official action commits and JDK 25. It does not launch gameplay, create releases, upload binaries, publish Maven packages or use upstream service credentials. Build-only CI results and limitations are recorded in [BUILD_CONTROLS.md](BUILD_CONTROLS.md).
 
 ## Publication hygiene
 

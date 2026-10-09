@@ -18,7 +18,7 @@ Pinned engine: `fba1543543865e29ee572f479003d9b47158eeb3`. Source evidence below
 | Mod registration/artwork | GameEngine discovery; registries and SubmapEnvironmentTextureEvent/SubmapObjectTextureEvent | Package contract, lifetime/masks and actual pack compatibility pending |
 | Controllers | SDL layer, binding configs, Steam Input handling, controller database | Source support exists; Deck reconnection, glyphs, overlay and doubled inputs pending |
 | Updates | Updater now queries gideonidoru/legend-of-dragoon-definitive releases (2026-10-09 project change) | See UPDATER_TARGET.md; compatible version pairing and upgrade/rollback validation remain pending |
-| E2E tests | build.gradle unconditionally excludes all tests | Guide's -PrunTests not functional in current build configuration; opt-in tooling needed |
+| E2E tests | Gradle gameplay-tests policy supports explicit runTests opt-in for EngineBootTest only; default task skipped | Synthetic control checks do not establish gameplay correctness; private assets and execution permission remain required |
 
 The [community project page](https://legendofdragoon.org/projects/severed-chains/) still identifies 60 FPS battles as later upstream work; its feature list is not proof for this SHA. The [HD project page](https://legendofdragoon.org/projects/image-upscaling/) identifies an artwork effort, not a verified downloadable/redistributable pack for this checkout.
 

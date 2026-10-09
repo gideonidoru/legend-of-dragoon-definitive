@@ -1,13 +1,15 @@
 # E2E Testing - Severed Chains
 
+Definitive build/test controls updated 2026-10-09. These tests launch the game; obtain the owner's permission before running them. Ordinary builds and CI do not run them.
+
 End-to-end tests that boot the full game engine and exercise gameplay scenarios (battle, menus) inside a real LWJGL/SDL window.
 
 Tests are not headless. A display is required (or a virtual framebuffer on CI).
 
 ## Prerequisites
 
-- Java 25 - bundled JDK at `jdk25.0.0_36/` is used automatically by gradlew
-- Unpacked game files - the `files/` directory must exist at the repo root. Place ISOs in `isos/` and run the game once to unpack. If `files/` is missing the tests are skipped not failed
+- Java 25 - set JAVA_HOME explicitly to a JDK outside version control; the wrapper does not install a development JDK.
+- Privately unpacked game files, including the completed extraction marker `files/version`. The Gradle test task fails before starting tests if the marker is missing. A fresh checkout's `files/.gitignore` is not extracted game data. Do not launch just to extract assets without permission.
 - Windows tested. Linux/macOS should work but untested
 
 ## Running from IntelliJ
@@ -34,7 +36,17 @@ export JAVA_HOME="$PWD/jdk25.0.0_36"
 ./gradlew test --tests "legend.game.EngineBootTest" -PrunTests --rerun-tasks
 ```
 
-`-PrunTests` is required to override the default test exclusion in build.gradle. `--rerun-tasks` forces re-run even if inputs have not changed.
+`-PrunTests` (or `-PrunTests=true`) explicitly enables the supported `EngineBootTest` suite. Absent or `-PrunTests=false` skips the test task; other values are rejected. `--rerun-tasks` forces re-run even if inputs have not changed. `--tests` can narrow the suite to a method. `ExampleTest` remains excluded: it is an interactive manual sandbox that depends on saves and may wait indefinitely.
+
+The task checks only the extraction marker, not completeness of every asset. Complete extraction and valid private files are still required. The Gradle policy does not control IntelliJ's direct JUnit gutter runner; use the Gradle task with these controls instead.
+
+For safe headless verification without real game classes/assets:
+
+```sh
+python3 scripts/verify-test-controls.py
+```
+
+This uses an isolated synthetic JUnit fixture and verifies seven scenarios: default off, explicit false, missing private files, bare/true opt-ins, invalid value, and excluded sandbox. It does not run engine tests.
 
 ## Test Overview
 
@@ -79,7 +91,7 @@ Both files are created in the repo root.
 
 ## Troubleshooting
 
-- Tests skipped: `files/` directory is missing. Unpack game ISOs first
+- Missing extraction marker: the opted-in task fails with a `files/version` prerequisite error before launching tests.
 - Gradle skips tests: you forgot `-PrunTests`
 - Timeout on engine loading: first run may be slow while shaders compile. Increase timeout in `Bootstrapper.java`
 - Timed out waiting for player turn: battle may not have loaded fully. Check `e2e-test.log` for the last loading stage

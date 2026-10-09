@@ -1,6 +1,6 @@
 # Milestone 1 validation — 2026-10-09
 
-This is the historical unmodified-baseline record. The subsequent project updater target adjustment is recorded separately in [UPDATER_TARGET.md](UPDATER_TARGET.md); the upstream-feed blocker below describes the original milestone state.
+This is the historical unmodified-baseline record. The subsequent project updater target adjustment is recorded separately in [UPDATER_TARGET.md](UPDATER_TARGET.md); the upstream-feed blocker below describes the original milestone state. Later CI/test-control changes are recorded in [BUILD_CONTROLS.md](BUILD_CONTROLS.md); the original test-exclusion blocker is historical as well.
 
 ## Identity, provenance and scope
 

@@ -1,0 +1,19 @@
+// Definitive build policy (2026-10-09), AGPL v3; see LICENSE.
+// Current engine tests open a real game window; ordinary builds only compile them.
+final String runTestsValue = providers.gradleProperty('runTests').orNull
+if(runTestsValue != null && !(runTestsValue in ['', 'true', 'false'])) {
+  throw new GradleException('runTests must be absent, empty, true, or false')
+}
+final boolean runGameplayTests = runTestsValue != null && runTestsValue != 'false'
+
+tasks.named('test', Test) {
+  useJUnitPlatform()
+  // Explicitly select the supported suite. ExampleTest is an interactive sandbox.
+  include '**/EngineBootTest.class'
+  onlyIf('Gameplay tests require explicit -PrunTests opt-in') { runGameplayTests }
+  doFirst {
+    if(!file('files/version').isFile()) {
+      throw new GradleException('Gameplay tests require completed private game extraction (files/version). No game will be started.')
+    }
+  }
+}
