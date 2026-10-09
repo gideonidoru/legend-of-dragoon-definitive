@@ -15,3 +15,7 @@ Built-in selectable Definitive and Faithful campaign presets through existing AP
 ## Upscaling pilot acceptance
 
 Offline reproducible 2x texture tool with original/nearest comparison and a licensed synthetic fixture, source/output hashes, limits and alpha/palette handling. Small private character/enemy inputs; no derived retail textures in Git. Runtime pilot through the existing field-object texture event, with exact mapping, validated dimensions/hashes, opt-in and missing/invalid-pack fallback. No geometry/renderer rewrite or automatic AI enhancement claims; battle texture coverage and Deck performance only claimed with evidence.
+
+## Owner visual steering
+
+Seek the highest possible coherent visual fidelity for backgrounds, character/enemy/environment models, textures, effects and menus. Iterate offline neural comparisons and model enhancement planning beyond the initial Scale2x control. Preserve art direction and faithful fallback, report palette/mapping limits, and take maximum useful advantage of the Steam Deck APU through measured scene budgets and targeted existing-engine improvements. Do not invent hardware or community validation.

@@ -2,7 +2,7 @@
 
 **A Steam Deck-first modernization of The Legend of Dragoon, built on Severed Chains.**
 
-Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with community HD artwork, planned enhanced model textures, and optional gameplay conveniences. Selectable Definitive and Faithful campaign presets keep gameplay choices separate from presentation and accessibility.
+Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with community HD artwork, experimental model-texture enhancement tools, and optional gameplay conveniences. Selectable Definitive and Faithful campaign presets keep gameplay choices separate from presentation and accessibility.
 
 This is an unofficial community project in early development. **The first guided installer is an alpha; physical Steam Deck validation is pending.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively. Physical Steam Deck validation is still pending.
 
@@ -56,6 +56,7 @@ As of October 9, 2026:
 - Seven headless scenarios verified gameplay-test controls. Ordinary builds skip gameplay tests; these checks do not execute the game.
 - The updater targets this project's repository. The guided manager pairs verified engine/mod packages, keeps private data separate, retains pre-update snapshots, and restores the prior engine with its prior data. Headless recovery fixtures pass; real Deck update recovery remains to be exercised.
 - Four private discs were extracted locally; normal engine startup and four automated Mac gameplay smoke tests passed with the source-built Skurfa mod. Disc images, extracted retail assets and test campaigns remain excluded from Git.
+- The optional 2× texture comparison pilot processes private character/enemy atlases and validates exact field-pack identity. Multi-palette real-game coverage remains blocked; it stays off by default. [Evidence and visual direction](docs/definitive/TEXTURE_UPSCALING.md).
 - Skurfa source/build integration and the first QoL interface slice are implemented. Definitive/Faithful presets and their configuration round trips pass on Mac; actual Steam Deck validation remains outstanding; these smoke tests do not establish artwork quality, controller usability or a complete playthrough.
 
 [Baseline evidence](docs/definitive/VALIDATION.md) · [Build and test controls](docs/definitive/BUILD_CONTROLS.md) · [Roadmap](docs/definitive/ROADMAP.md) · [Prioritized backlog](docs/definitive/BACKLOG.md)
@@ -80,7 +81,7 @@ For an existing checkout, run `git submodule update --init --recursive` before b
 
 ## Roadmap and contributions
 
-The guided installer establishes package identity, paired mod versions, and save-safe installation/upgrade contracts. Next validate representative Skurfa scenes and the equipment footer, extend the selected QoL inventory workflows, and establish a real Deck baseline. Add a small model-texture upscaling proof of concept once texture mapping and Deck budgets are established. Expand optional gameplay features after the faithful-mode and persistence contracts are clear.
+The guided installer establishes package identity, paired mod versions, and save-safe installation/upgrade contracts. Next validate representative Skurfa scenes and the equipment footer, extend the selected QoL inventory workflows, and establish a real Deck baseline. The offline texture comparison pilot is implemented; palette-aware model mapping and real Deck budgets remain prerequisites for useful runtime coverage. Expand optional gameplay features after the faithful-mode and persistence contracts are clear.
 
 The [full project plan](docs/definitive/PROJECT_PLAN.md), [Sprint 0 checklist](docs/definitive/SPRINT_0.md), and [Deck test plan](docs/definitive/DECK_TEST_PLAN.md) define the work and its acceptance evidence. Contributions should identify the player benefit, upstream/mod overlap, license and credits, faithful-mode implications, and validation performed. Small, reversible changes with clear compatibility boundaries are preferred.
 

@@ -39,7 +39,7 @@ These are areas of responsibility for one primary developer, not staffed teams o
 | D — Performance | CPU/GPU timings, memory tracking, shader/battery measurements, native-resolution profiles; possible CAS | Measured improvement to consistency, quality or power with no timing/responsiveness regression |
 | E — Release/QA | Build CI, tracked tasks, compatibility matrix, versioned packages, rollback and regression suite | Clean install/upgrade/restore, matching source and notices, four-disc QA against selected baseline |
 
-The [legacy model/texture upscaling goal](TEXTURE_UPSCALING.md) adds a reproducible optional asset-enhancement pipeline, starting with original geometry and animation. Whole-frame upscaling remains a separate renderer experiment; higher-detail mesh replacement needs its own scope and acceptance evidence. No upscaler implementation or selected AI/tool model exists yet.
+The [legacy model/texture upscaling goal](TEXTURE_UPSCALING.md) adds a reproducible optional asset-enhancement pipeline, starting with original geometry and animation. Whole-frame upscaling remains a separate renderer experiment; higher-detail mesh replacement needs its own scope and acceptance evidence. The initial Scale2x comparison tool is implemented; palette-aware runtime coverage and stronger neural comparisons are separate work.
 
 HD pack access and redistribution permission are prerequisites to bundling. Use clearly licensed synthetic fixtures for pipeline tests if needed; do not commit extracted game artwork. No creator outreach has occurred. Filtering, anti-aliasing, sharpening and CAS are gated experiments after performance evidence. FSR 2/3 and frame generation are research only.
 

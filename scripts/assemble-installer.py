@@ -12,8 +12,13 @@ text = re.sub(r'^EXPECTED=.*$', 'EXPECTED=' + digest, script.read_text(), flags=
 script.write_text(text)
 script.chmod(0o755)
 script_hash = hashlib.sha256(script.read_bytes()).hexdigest()
-# Desktop Entry quoting: escaped quotes reach bash; %k supplies this launcher file's path.
-command = f'''Exec=/bin/bash -c "set -e; d=$(mktemp -d); trap 'rm -rf \\\"$d\\\"' EXIT; curl --fail --location --proto '=https' --proto-redir '=https' --output \\\"$d/install.sh\\\" 'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09/Install-Definitive.sh'; echo '{script_hash}  ' \\\"$d/install.sh\\\" | sha256sum --check --status; /bin/bash \\\"$d/install.sh\\\""'''
+# Two escaping layers: Desktop Entry string escapes, then Exec argument quoting.
+def quote_exec_argument(value):
+    quoted = ''.join('\\' + ch if ch in '\\"`$' else ch for ch in value)
+    return '"' + quoted.replace('\\', '\\\\') + '"'
+
+shell = f"""set -e; d=$(mktemp -d); trap 'rm -rf "$d"' EXIT; curl --fail --location --proto '=https' --proto-redir '=https' --output "$d/install.sh" 'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09/Install-Definitive.sh'; echo '{script_hash}  ' "$d/install.sh" | sha256sum --check --status; /bin/bash "$d/install.sh"""
+command = 'Exec=/bin/bash -c ' + quote_exec_argument(shell)
 desktop = root / 'delivery/Install-Definitive.desktop'
 desktop.write_text('[Desktop Entry]\nType=Application\nName=Install Legend of Dragoon: Definitive\nComment=Guided Steam Deck setup\nIcon=applications-games\nTerminal=false\n' + command + '\nCategories=Game;\n')
 desktop.chmod(0o755)

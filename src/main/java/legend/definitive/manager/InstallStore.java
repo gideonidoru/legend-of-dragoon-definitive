@@ -60,7 +60,9 @@ public final class InstallStore {
     @Override public void close() throws IOException { this.lock.release(); this.channel.close(); }
   }
 
-  public String install(final Path source) throws IOException {
+  public String install(final Path source) throws IOException { return this.install(source, ""); }
+
+  String install(final Path source, final String releaseAssetId) throws IOException {
     try(final var operation = this.lock()) {
       final Path staged = Files.createTempDirectory(this.root, ".package-");
       try {
@@ -76,7 +78,10 @@ public final class InstallStore {
         final Path release = this.root.resolve("releases").resolve(manifest.id());
         if(Files.exists(release)) {
           PackageManifest.read(release).verify(release, PackageManifest.hostPlatform());
-          if(manifest.id().equals(old.getProperty("version"))) return "This version is already installed.";
+          if(manifest.id().equals(old.getProperty("version"))) {
+            if(!releaseAssetId.isEmpty()) { old.setProperty("releaseAssetId", releaseAssetId); atomicProperties(this.root.resolve("state.properties"), old); }
+            return "This version is already installed.";
+          }
         } else Files.move(staged, release, StandardCopyOption.ATOMIC_MOVE);
 
         final String dataId = "data-" + UUID.randomUUID();
@@ -103,6 +108,9 @@ public final class InstallStore {
         next.setProperty("previousArtwork", old.getProperty("artwork", "hd"));
         next.setProperty("previousReleaseAssetId", old.getProperty("releaseAssetId", ""));
         next.setProperty("artwork", old.getProperty("artwork", "hd"));
+        next.setProperty("legacyTextures", old.getProperty("legacyTextures", "false"));
+        next.setProperty("previousLegacyTextures", old.getProperty("legacyTextures", "false"));
+        if(!releaseAssetId.isEmpty()) next.setProperty("releaseAssetId", releaseAssetId);
         this.writeLaunchers(release);
         atomicProperties(this.root.resolve("state.properties"), next);
         return old.containsKey("version") ? "Update installed. Previous engine and pre-update data are retained for rollback." : "Installed. Import your discs, then add Play Game.sh to Steam.";
@@ -131,6 +139,8 @@ public final class InstallStore {
       current.setProperty("releaseAssetId", current.getProperty("previousReleaseAssetId", ""));
       current.remove("previousReleaseAssetId");
       current.remove("previousArtwork");
+      current.setProperty("legacyTextures", current.getProperty("previousLegacyTextures", "false"));
+      current.remove("previousLegacyTextures");
       current.remove("previousVersion");
       current.remove("previousSnapshot");
       atomicProperties(this.root.resolve("state.properties"), current);
@@ -214,6 +224,23 @@ public final class InstallStore {
     }
   }
 
+  public boolean discsPrepared() throws IOException {
+    final Properties state = this.state();
+    final String version = state.getProperty("version", ""), data = state.getProperty("data", "");
+    child(this.root.resolve("releases"), version, "alpha-[a-f0-9]{16}");
+    this.data(state);
+    return Files.isRegularFile(this.root.resolve("workspaces").resolve(version + "-" + data).resolve("files/version"));
+  }
+
+  public void setLegacyTextures(final boolean enabled) throws IOException {
+    try(final var operation = this.lock()) {
+      final Properties state = this.state();
+      if(!state.containsKey("version")) throw new IOException("Install a package first.");
+      state.setProperty("legacyTextures", Boolean.toString(enabled));
+      atomicProperties(this.root.resolve("state.properties"), state);
+    }
+  }
+
   public int play() throws IOException, InterruptedException {
     try(final var operation = this.lock()) {
       DiscImporter.validateSet(this.root.resolve("isos"));
@@ -224,6 +251,7 @@ public final class InstallStore {
       final var command = new ArrayList<String>();
       command.add(Path.of(System.getProperty("java.home"), "bin", "java").toString());
       if(PackageManifest.hostPlatform().startsWith("macos")) command.add("-XstartOnFirstThread");
+      command.add("-Ddefinitive.legacyTextures=" + Boolean.parseBoolean(state.getProperty("legacyTextures", "false")));
       command.addAll(java.util.List.of("-ea", "-Xmx2G", "-Ddefinitive.managedInstall=true", "-Djoml.fastmath", "-Djoml.sinLookup", "-Djoml.useMathFma", "--enable-native-access=ALL-UNNAMED", "--add-opens=java.base/java.util=ALL-UNNAMED", "--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED", "-cp", release.resolve(gameJar) + java.io.File.pathSeparator + release.resolve("libs/*"), "legend.game.Main"));
       final Process game = new ProcessBuilder(command).directory(workspace.toFile()).inheritIO().start();
       try { return game.waitFor(); }

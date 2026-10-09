@@ -61,11 +61,7 @@ public final class ReleaseUpdates {
         for(int n; (n = input.read(buffer)) != -1;) { if((total += n) > 1024L * 1024 * 1024) throw new IOException("Update exceeds its download limit."); output.write(buffer, 0, n); }
       }
       if(!PackageManifest.sha256(download).equals(candidate.sha256())) throw new IOException("Update checksum mismatch. Your current installation is unchanged.");
-      final String result = store.install(download);
-      try(final var operation = store.lock()) {
-        final var state = store.state(); state.setProperty("releaseAssetId", candidate.assetId()); InstallStore.atomicProperties(store.root().resolve("state.properties"), state);
-      }
-      return result;
+      return store.install(download, candidate.assetId());
     } finally { Files.deleteIfExists(download); }
   }
 

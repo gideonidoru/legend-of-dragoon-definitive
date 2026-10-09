@@ -28,20 +28,22 @@ class InstallStoreTest {
   @Test void updateAndRollbackPreservePriorAndNewerData() throws Exception {
     final InstallStore store = new InstallStore(this.temporary.resolve("installed"));
     final Path one = this.pack("v1", PackageManifest.hostPlatform());
-    store.install(one);
+    store.install(one, "111");
     final Properties state1 = store.state(); final Path data1 = store.data(state1);
     Files.writeString(data1.resolve("saves/campaign.dsav"), "before-update");
     Files.writeString(data1.resolve("config.conf"), "old-settings");
     Files.writeString(data1.resolve("mods/my-mod.jar"), "custom-mod");
     Files.writeString(store.root().resolve("isos/owner.bin"), "private-disc");
     store.setArtwork(false);
-    store.install(this.pack("v2", PackageManifest.hostPlatform()));
+    store.setLegacyTextures(true);
+    store.install(this.pack("v2", PackageManifest.hostPlatform()), "222");
     final Properties state2 = store.state(); final Path data2 = store.data(state2);
     assertNotEquals(data1, data2);
     assertEquals("before-update", Files.readString(data2.resolve("saves/campaign.dsav")));
     Files.writeString(data2.resolve("saves/campaign.dsav"), "newer-save-format");
     Files.writeString(data2.resolve("config.conf"), "new-settings");
     store.setArtwork(true);
+    store.setLegacyTextures(false);
     store.rollback();
     final Properties restored = store.state(); final Path old = store.data(restored);
     assertEquals(state1.getProperty("version"), restored.getProperty("version"));
@@ -51,6 +53,8 @@ class InstallStoreTest {
     assertEquals("newer-save-format", Files.readString(data2.resolve("saves/campaign.dsav")));
     assertEquals("private-disc", Files.readString(store.root().resolve("isos/owner.bin")));
     assertEquals("original", restored.getProperty("artwork"));
+    assertEquals("true", restored.getProperty("legacyTextures"));
+    assertEquals("111", restored.getProperty("releaseAssetId"));
   }
 
   @Test void corruptOrExtraPackageNeverChangesActiveState() throws Exception {
@@ -176,7 +180,7 @@ class InstallStoreTest {
   @Test void launcherAndDiscStepRender() throws Exception {
     final InstallStore store = new InstallStore(this.temporary.resolve("preview"));
     store.install(this.pack("preview-package", PackageManifest.hostPlatform()));
-    final byte[] bytes = disc("SCUS94491");
+    Files.writeString(store.prepareLaunch().resolve("files/version"), "prepared-fixture");
     for(final String id : DiscImporter.IDS) Files.write(store.root().resolve("isos/" + id + ".bin"), disc(id));
     javax.swing.SwingUtilities.invokeAndWait(() -> {
       final var panel = ManagerMain.buildPanel(null, null, store.root());

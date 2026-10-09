@@ -30,7 +30,7 @@ final class ManagerView extends JPanel {
     this.frame = frame; this.packageRoot = packageRoot; this.root = root;
     this.launcher = packageRoot == null && Files.isRegularFile(root.resolve("state.properties"));
     if(this.launcher) {
-      try { DiscImporter.validateSet(root.resolve("isos")); }
+      try { DiscImporter.validateSet(root.resolve("isos")); if(!new InstallStore(root).discsPrepared()) { this.launcher = false; this.step = 1; } }
       catch(final Exception e) { this.launcher = false; this.step = 1; }
     }
     this.destination = new JTextField(root.toString()); this.destination.setFont(font(15, false)); this.destination.setAlignmentX(LEFT_ALIGNMENT);
@@ -154,8 +154,10 @@ final class ManagerView extends JPanel {
   private void mods() {
     this.run("Loading your preferences…", () -> !"original".equals(new InstallStore(this.root).state().getProperty("artwork", "hd")), hd -> {
       final JCheckBox artwork = new JCheckBox("Skurfa HD backgrounds", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
-      final JPanel options = column(); options.add(artwork); options.add(Box.createVerticalStrut(12)); options.add(copy("Artwork is independent of Faithful / Definitive gameplay. Add optional mod JARs in the active data folder’s mods directory.", 16, MUTED));
-      if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save preference")) this.run("Saving your preference…", () -> { new InstallStore(this.root).setArtwork(artwork.isSelected()); return "Artwork preference saved for your next Play."; }, () -> { });
+      final JCheckBox pilot = new JCheckBox("Model texture pilot · experimental", false); pilot.setFont(font(18, false)); pilot.setOpaque(false); pilot.setMaximumSize(new Dimension(520, 52)); pilot.setPreferredSize(new Dimension(520, 52));
+      try { pilot.setSelected(Boolean.parseBoolean(new InstallStore(this.root).state().getProperty("legacyTextures", "false"))); } catch(final Exception ignored) { }
+      final JPanel options = column(); options.add(artwork); options.add(pilot); options.add(Box.createVerticalStrut(12)); options.add(copy("Artwork is independent of gameplay. The texture pilot requires a private, validated field pack; it stays off by default. Add optional mod JARs in the active data folder’s mods directory.", 16, MUTED));
+      if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save preference")) this.run("Saving your preference…", () -> { new InstallStore(this.root).setArtwork(artwork.isSelected()); new InstallStore(this.root).setLegacyTextures(pilot.isSelected()); return "Artwork preference saved for your next Play."; }, () -> { });
     });
   }
   private void checkUpdates() {

@@ -654,6 +654,11 @@ public class RetailSubmap extends Submap {
     }
   }
 
+  /** Original texture identity for exact-match optional texture packs. */
+  public Tim getObjectTexture(final int index) {
+    return index >= 0 && index < this.pxls.size() ? this.pxls.get(index) : null;
+  }
+
   private void loadTextureOverrides() {
     this.sobjTextureOverrides.clear();
     this.sobjTextureOverrides.putAll(EVENTS.postEvent(new SubmapObjectTextureEvent(this.smap, gameState_800babc8, this, drgnBinIndex_800bc058, this.cut)).textures);

@@ -66,7 +66,7 @@ public final class DiscImporter {
         Files.delete(destination);
         try { Files.move(staged, destination, StandardCopyOption.ATOMIC_MOVE); }
         catch(final IOException failure) { Files.createDirectories(destination); throw failure; }
-        return "Four discs imported and copy checksums verified. First Play extracts them privately; later launches reuse the extraction.";
+        return "Four discs imported and copy checksums verified. Prepare discs extracts them privately; later launches reuse the extraction.";
       } finally { InstallStore.deleteOwnedTree(staged); }
     }
   }

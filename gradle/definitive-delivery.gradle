@@ -13,7 +13,7 @@ tasks.register('managerJar', Jar) {
   dependsOn classes
   archiveFileName = 'definitive-manager.jar'
   destinationDirectory = layout.buildDirectory.dir('libs')
-  from(sourceSets.main.output) { include 'legend/definitive/manager/**' }
+  from(sourceSets.main.output) { include 'legend/definitive/manager/**', 'legend/definitive/textures/**' }
   from('integrations/skurfa') { include 'LICENSE', 'THIRD_PARTY_NOTICES.md'; into 'META-INF/skurfa' }
   manifest { attributes 'Main-Class': 'legend.definitive.manager.ManagerMain' }
 }
