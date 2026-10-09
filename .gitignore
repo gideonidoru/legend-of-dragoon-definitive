@@ -56,3 +56,19 @@ gradle-app.setting
 
 # JDK files
 /jdk*
+
+# Definitive: private user data and external pack/runtime storage
+*.iso
+*.bin
+*.cue
+*.chd
+*.img
+*.sav
+.env
+.env.*
+*.pem
+*.key
+/credentials*
+/private-assets/
+/external-artwork/
+/local-runtimes/

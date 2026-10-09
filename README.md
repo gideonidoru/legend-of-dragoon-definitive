@@ -1,3 +1,21 @@
+# Legend of Dragoon: Definitive
+
+A Steam Deck-first modernization project built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains). Unofficial community project; not affiliated with Sony or the upstream maintainers.
+
+**Milestone 1: repository setup, baseline build validation, and planning.** No engine behavior changes or playable Definitive release yet. Preserve a faithful mode; prioritize existing HD artwork, installation, controller usability, readable menus, and optional conveniences. No engine rewrite.
+
+- [Setup and build](docs/definitive/SETUP.md)
+- [Upstream synchronization](docs/definitive/UPSTREAM.md)
+- [Architecture and mod extension points](docs/definitive/ARCHITECTURE.md)
+- [Steam Deck-first roadmap](docs/definitive/ROADMAP.md)
+- [Verified results and next steps](docs/definitive/VALIDATION.md)
+
+The checkout requires **Java 25**, with the **Gradle 9.1.0 wrapper**. The Java 21 note in the preserved upstream README below is stale relative to `build.gradle` and upstream CI. Code remains under the unchanged [AGPL v3 license](LICENSE); retain [CREDITS](CREDITS) and [credits.txt](credits.txt), including artwork attribution. Game disc images, extracted game assets, saves, credentials, and local runtimes must remain outside version control. GitHub Actions is disabled pending replacement of inherited upstream publishing workflows.
+
+---
+
+## Preserved upstream README
+
 Like what you see? Send me a tip! You can also subscribe to our [YouTube channel](https://www.youtube.com/@legend-of-dragoon). We do devstreams most Wednesdays at 8:00PM Atlantic Time.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W4HFVW9)
