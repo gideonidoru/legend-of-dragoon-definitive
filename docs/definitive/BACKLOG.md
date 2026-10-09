@@ -1,6 +1,6 @@
 # Proposed prioritized backlog
 
-Reconstructed from the owner's plan because its interactive priority table was absent. Impact/effort are provisional 1–5 estimates (5 = greatest). Stages are delivery order, not severity. These are local briefs, not created GitHub issues. No implementation is claimed.
+Reconstructed from the owner's plan because its interactive priority table was absent. Impact/effort are provisional 1–5 estimates (5 = greatest). Stages are delivery order, not severity. These are local briefs, not created GitHub issues. Implementation status is recorded below the table; acceptance targets are not blanket completion claims.
 
 | ID / stage | Work | Impact / effort | Dependencies | Acceptance |
 | --- | --- | --- | --- | --- |
@@ -22,4 +22,4 @@ Reconstructed from the owner's plan because its interactive priority table was a
 
 Prefer D01–D08 and visible wins before ambitious journal/training/rendering work. D08 can be investigated independently, but D09 needs both usable assets and a device baseline. Schedule gates in PROJECT_PLAN.md do not override these dependencies.
 
-D01 is implemented and locally verified; hosted CI status is in BUILD_CONTROLS.md. D02 is partially complete: the updater targets the project repository, but package/version pairing and rollback policy remain. Device-dependent work is still blocked by private files/hardware and execution permission.
+D01 is complete: local builds and seven control scenarios pass, and both hosted platform jobs pass. Evidence is in BUILD_CONTROLS.md. D02 is partially complete: the updater targets the project repository, but package/version pairing and rollback policy remain. Device-dependent work is still blocked by private files/hardware and execution permission.

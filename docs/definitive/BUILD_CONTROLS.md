@@ -42,7 +42,16 @@ Evidence (trailing whitespace normalized): [macOS build](evidence/build-controls
 
 Actions is enabled with a selected-actions policy permitting only the exact checkout/setup-java commits used in the workflow. General GitHub-owned and verified-publisher action allowances are disabled; adding or updating an action requires updating this explicit allowlist.
 
-The [first hosted run](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/37978307460) failed at Java setup on both platforms: the version input `25.0.0+36` did not match the provider's normalized `25.0.0+36.0.LTS`. No engine or fixture tests ran in that attempt. The version pin is corrected; the next hosted run result will be recorded here after completion.
+The [first hosted run](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/37978307460) failed at Java setup on both platforms: the version input `25.0.0+36` did not match the provider's normalized `25.0.0+36.0.LTS`. No engine or fixture tests ran in that attempt. The corrected [hosted run 37978460823](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/37978460823) passed at code commit `6c036610be623f595244a591d79be5620452520a`:
+
+| Hosted target | Compilation/packaging | Control fixture | Job result |
+| --- | --- | --- | --- |
+| Ubuntu 24.04 / Linux x64 Steam Deck configuration | BUILD SUCCESSFUL in 37s; engine test task SKIPPED | All seven scenarios passed | Success, 1m34s |
+| macOS 15 / ARM64 | BUILD SUCCESSFUL in 49s; engine test task SKIPPED | All seven scenarios passed | Success, 2m13s |
+
+[Selected hosted log evidence](evidence/hosted-build-controls.txt) records Java 25, target selection, builds, skipped engine tests and fixture results. Full logs remain linked to the hosted run. Subsequent documentation-only evidence updates do not alter the verified build/test code and intentionally do not trigger another automatic run.
+
+Repository policy verified after completion: Actions enabled, allowed_actions selected, only the two pinned official action commits allowed. Updating action pins in build.yml also requires updating the repository allowlist. No general third-party action permission was enabled.
 
 ## Remaining limitations
 

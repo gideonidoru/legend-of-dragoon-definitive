@@ -34,4 +34,4 @@ GRADLE_USER_HOME=/private/tmp/lod-definitive-tooling/gradle \
 
 ## Remaining release work
 
-Publish compatible version-stamped releases with matching tags and platform assets only after defining package/mod version pairing and testing upgrade/restore. Source feed redirection is complete; actual update installation, rollback and Steam Deck execution remain unverified. Actions remains disabled. See UPSTREAM.md and BACKLOG.md for release boundaries.
+Publish compatible version-stamped releases with matching tags and platform assets only after defining package/mod version pairing and testing upgrade/restore. Source feed redirection is complete; actual update installation, rollback and Steam Deck execution remain unverified. Actions was disabled for this updater-target milestone; build-only CI was subsequently enabled as recorded in [BUILD_CONTROLS.md](BUILD_CONTROLS.md). See UPSTREAM.md and BACKLOG.md for release boundaries.

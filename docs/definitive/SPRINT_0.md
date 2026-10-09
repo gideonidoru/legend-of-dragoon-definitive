@@ -16,7 +16,7 @@ Evidence for completed build/setup items: VALIDATION.md. The new planning items 
 
 ## Days 3–5: safe delivery contracts
 
-- [x] Implement source/build-only CI; reviewed workflow has no publishers or game invocations. Hosted activation/run status: BUILD_CONTROLS.md.
+- [x] Implement source/build-only CI; reviewed workflow has no publishers or game invocations. Actions enabled with two pinned official actions; both hosted jobs passed. Evidence: BUILD_CONTROLS.md.
 - [x] Make gameplay-test activation an explicit opt-in and verify it with seven headless fixture scenarios; no engine launched.
 - [ ] Choose package/version/update ownership and prevent cross-channel replacement.
 - [ ] Specify private file validation, save backup and failure recovery before installer coding.

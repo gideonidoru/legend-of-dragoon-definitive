@@ -1,0 +1,26 @@
+Selected hosted log evidence; full run: https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/37978460823
+
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:11:07.9828632Z openjdk version "25" 2025-09-16 LTS
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:11:19.0209835Z Building for linux x86_64
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:11:48.8168260Z > Task :test SKIPPED
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:11:48.8171798Z BUILD SUCCESSFUL in 37s
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:11:55.2682443Z PASS default-off
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:12:00.8011430Z PASS explicit-false
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:12:07.1749820Z PASS missing-private-files
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:12:13.5034844Z PASS bare-opt-in
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:12:19.9846709Z PASS true-opt-in
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:12:24.4249101Z PASS invalid-value
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:12:29.9459070Z PASS sandbox-excluded
+Linux x64 / Steam Deck package	UNKNOWN STEP	2026-10-09T19:12:29.9459968Z Seven test-control scenarios passed; no engine code or game assets loaded.
+macOS package	Record build environment	2026-10-09T19:11:18.8296130Z openjdk version "25" 2025-09-16 LTS
+macOS package	Compile and package without gameplay tests	2026-10-09T19:11:35.5945580Z Building for os x aarch64
+macOS package	Compile and package without gameplay tests	2026-10-09T19:12:13.1356790Z > Task :test SKIPPED
+macOS package	Compile and package without gameplay tests	2026-10-09T19:12:13.2402170Z BUILD SUCCESSFUL in 49s
+macOS package	Verify test opt-in using a headless fixture	2026-10-09T19:12:19.9869160Z PASS default-off
+macOS package	Verify test opt-in using a headless fixture	2026-10-09T19:12:26.2438140Z PASS explicit-false
+macOS package	Verify test opt-in using a headless fixture	2026-10-09T19:12:35.5678890Z PASS missing-private-files
+macOS package	Verify test opt-in using a headless fixture	2026-10-09T19:12:44.1192980Z PASS bare-opt-in
+macOS package	Verify test opt-in using a headless fixture	2026-10-09T19:12:51.4280580Z PASS true-opt-in
+macOS package	Verify test opt-in using a headless fixture	2026-10-09T19:12:56.0206120Z PASS invalid-value
+macOS package	Verify test opt-in using a headless fixture	2026-10-09T19:13:01.3962690Z PASS sandbox-excluded
+macOS package	Verify test opt-in using a headless fixture	2026-10-09T19:13:01.3964770Z Seven test-control scenarios passed; no engine code or game assets loaded.
