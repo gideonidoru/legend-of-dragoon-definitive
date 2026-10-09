@@ -85,3 +85,49 @@ Environment: Mac Studio M5 Max, official NCNN executable above, tile 256, one pr
 Visual inspection found smoother armor curves and cleaner enemy outlines, with altered tiny markings and some softened painted detail. The illustrated candidate produces stronger drawn edges; the general candidate sometimes produces a glossy/waxy material impression. Neither is approved for a finished pack. Enemy alpha changes demonstrate why conventional neural output cannot simply replace STP-encoded textures. Current palette guards correctly leave all these samples offline. Model-space seams, animation and player preference remain untested.
 
 Next compare alpha-preserving island processing and palette-aware material reconstruction, then evaluate on animated models against the original and enhanced backgrounds. See [visual quality and Deck budgets](VISUAL_QUALITY.md).
+
+## Palette-aware material and mask experiments
+
+Post-alpha work on 2026-10-09 adds three private tools. None changes the engine, the published alpha or the default artwork.
+
+- `scripts/audit-model-materials.py` reads bounded unpacked TMD containers and 4-bit TIMs, follows per-face relative CLUT/UV references, reports overlaps and conflicting palette colors, and emits a comparison atlas only when colors can be flattened without conflicts. It recognizes one strictly bounded SC field zero-padding layout in addition to standard TIMs. This does **not** broaden the shipped runtime TIM reader.
+- `scripts/preserve-texture-transparency.py` reapplies the original binary STP and black-discard semantics to 2×/4× neural RGB. It preserves visible STP black and prevents newly black RGB from discarding originally visible pixels. Input/output/script hashes, dimensions, environment and command are recorded.
+- `scripts/compare-material-islands.py` gives each used palette its own padded tile, fills its border from that material only, runs pinned neural weights, blends inferred RGB with original paint, and restores the original STP/discard coverage. The current experiment uses eight source texels of padding, illustration x4plus-anime at 4×, and a 50% RGB blend. Those values are experiments, not approved defaults. Disconnected regions sharing a palette can still influence each other; inclusive UV rasterization is a heuristic, not a filtering-footprint or runtime seam guarantee. Overlapping palette coverage, CLUT animations and extra container subfiles are rejected.
+
+The earlier palette-zero previews could not represent whole models correctly. Auditing actual material references established:
+
+| Private sample | Dimensions | Model parts / textured faces | Used / available palettes | Conflicting / overlapping texels |
+| --- | --- | --- | --- | --- |
+| Dart combat model 32 | 256×256 | 17 / 253 | 11 / 64 | 0 / 0 |
+| DRGN21 field asset folder 35, object 0 | 128×112 | 15 / 313 | 13 / 32 | 0 / 0 |
+
+Neither sampled container declares CLUT animation or the extra subfile. This limited observation does not establish global animation compatibility. Source identities:
+
+| Sample | Original model SHA256 | Original TIM SHA256 |
+| --- | --- | --- |
+| Dart | `c8b7ebc75104ccc9fe00f38f51a044b90bdf45fff33d41980f520a41754e30be` | `1deccd3e23a34ce6f3ebfec1c75db9e110411c03f1b4b90dbe791c413645a928` |
+| Field sample | `c98e332eba70ca91eaf5b3d8ee09dd97b04f365d40182e2feb6f07bbed404d1d` | `d529ad4c3eeb9fa7021eac168e44381dd1e26c4a6ae1a3d7738e87f9d31f2666` |
+
+Correctly mapped whole-atlas neural comparisons still changed 23,502 Dart and 11,681 field alpha pixels in the 4× candidates resampled for 2× inspection. Both the full-atlas mask-restored pass and the palette-isolated pass subsequently produced **zero STP/discard mismatches** against the nearest-scaled original material atlas at native output size. This is pixel-coverage evidence, not a quality score or gameplay result.
+
+| Palette-isolated sample | Output | Local offline seconds | Engine-encoded output SHA256 |
+| --- | --- | --- | --- |
+| Dart | 1024×1024 | 4.187 | `42460442c2c2faf36cf26643455f3f772b75b9e026da26d307addbd78f08aaa6` |
+| Field sample | 512×448 | 2.834 | `24e5908a9518aa273d7e6a445f86f7e8959426fd65b91ef546b4c5fdce214447` |
+
+Timing includes local NCNN startup and processing on the Mac Studio, with script composition. It is neither Deck runtime performance nor a benchmark across models. The first sandboxed run could not access Metal; its failed logs remain private. Successful runs used permitted GPU access. All originals, generated tiles, previews, logs, neural weights and manifests remain outside Git.
+
+Reproduce with your own privately extracted assets and the pinned publisher tooling:
+
+```sh
+python3 scripts/test-model-material-audit.py
+python3 scripts/test-texture-transparency.py
+python3 scripts/test-material-islands.py
+python3 scripts/audit-model-materials.py "$PRIVATE_MODEL" "$PRIVATE_TIM" "$NEW_PRIVATE_AUDIT"
+python3 scripts/compare-material-islands.py \
+  --model "$PRIVATE_MODEL" --tim "$PRIVATE_TIM" \
+  --engine "$NCNN_ENGINE" --models "$NCNN_MODELS" \
+  --output "$NEW_PRIVATE_COMPARISON"
+```
+
+Use Pillow 12.3.0. Each output directory must be new and outside this checkout. Six original synthetic checks currently cover bounds/zero-padding, conflicting palette colors, STP/discard semantics, invalid scales, cross-material border isolation and blending confined to original coverage. Next inspect posed models and source-size facial detail; determine which material regions need hand-authored restoration. The conservative single-palette runtime guard remains intact.
