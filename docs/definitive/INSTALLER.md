@@ -6,17 +6,25 @@ The [delivery reliability repair](DELIVERY_RELIABILITY.md) records the reported 
 
 ## Steam Deck Desktop Mode
 
-Download **Install-Definitive.desktop** from the alpha release linked at the top of the README. In Dolphin, right-click it, open **Properties → Permissions**, enable **Is executable**, then open it and allow execution if KDE asks. The bootstrap opens a terminal while preparing the graphical installer. No terminal typing, system package installation, GitHub sign-in, or game download is needed. The entry point is a small text file; it verifies and downloads the roughly 9 MB portable installer. First use also downloads a checksum-verified Java 25 runtime into the user's cache. The engine, HD artwork and dependencies are a separate, larger download.
+Download **Install-Definitive.desktop** from the alpha release linked at the top of the README. In Dolphin, right-click it, open **Properties → Permissions**, enable **Is executable**, then open it and allow execution if KDE asks. The bootstrap opens a terminal while preparing the graphical installer. No terminal typing, system package installation, GitHub sign-in, or game download is needed. The entry point is a small text file; it verifies and downloads the small portable installer. First use also downloads a checksum-verified Java 25 runtime into the user's cache. The engine, HD artwork and dependencies are a separate, larger download.
 
-Operation phases and full errors are saved to `~/.cache/legend-of-dragoon-definitive/installer.log`; the stopped screen provides **Show error details** and a retry action. Progress shows actual download/copy sizes and extraction tasks rather than a bouncing bar. Startup output is saved to `~/.cache/legend-of-dragoon-definitive/desktop-bootstrap.log`; later preparation details are in `installer-bootstrap.log` in that folder. Download and checksum failures keep the terminal open until Enter is pressed. If KDE has not executed the file, no bootstrap log can be created; executable/trust handling remains a separate Deck check. The [bootstrap correction](BOOTSTRAP_FIX.md) records the reproduced quoting error and regression coverage.
+Operation phases and full errors are saved to `~/.cache/legend-of-dragoon-definitive/installer.log`; the stopped screen provides **Show error details** and a retry action. Overall progress shows download/copy sizes and extraction tasks. A second progress bar identifies the current file and component when transferring individual files. Startup output is saved to `~/.cache/legend-of-dragoon-definitive/desktop-bootstrap.log`; later preparation details are in `installer-bootstrap.log` in that folder. Download and checksum failures keep the terminal open until Enter is pressed. If KDE has not executed the file, no bootstrap log can be created; executable/trust handling remains a separate Deck check. The [bootstrap correction](BOOTSTRAP_FIX.md) records the reproduced quoting error and regression coverage.
 
-1. **Install:** use the default `$HOME/Games/Legend-of-Dragoon-Definitive` (`/home/deck/Games/Legend-of-Dragoon-Definitive` on a standard Deck), or choose another location. A compatible platform package from `gideonidoru/legend-of-dragoon-definitive` is preferred. If no matching release exists, the installer recursively clones this repository and uses its Gradle wrapper to build the edition. An unavailable network or invalid release metadata produces an error instead of silently substituting code.
+1. **Install:** use the default `$HOME/Games/Legend-of-Dragoon-Definitive` (`/home/deck/Games/Legend-of-Dragoon-Definitive` on a standard Deck), or choose another location. A compatible platform package from `gideonidoru/legend-of-dragoon-definitive` is preferred. If no matching release exists, the installer checks out its embedded exact clean source commit with pinned submodules and uses its Gradle wrapper to build the edition. An unavailable network or invalid release metadata produces an error instead of silently substituting code.
 2. **Your discs:** select four US BIN/raw ISO images, any mixture of ZIP/RAR/7z containers containing them, or use previously imported discs. The installer identifies the disc headers, excludes unrelated utilities and patches, preserves originals, verifies copies, and runs the upstream extraction pipeline privately without opening the game. For archives, only image candidates are unpacked into owned staging; archive paths never become destination paths.
 3. **Steam:** optionally add a non-Steam shortcut. The installer requests a graceful Steam exit, waits for it to close, adds and verifies the shortcut, then restarts Steam. It never force-kills the client. A blocked exit or failed restart shows an error with a retry path. If there are multiple local accounts, select one. Existing shortcuts are preserved and the original `shortcuts.vdf` is backed up. A verified installation-complete screen precedes this choice. Successful Steam addition and **Finish without Steam** close the installer. Return to Gaming Mode afterward.
 
 Use the Steam shortcut or **Play Game.sh** for the launcher. **Play** is its primary action. It automatically checks our repository's compatible release assets without blocking offline play. Installing an offered update is a separate action. Artwork/mod preferences and restore are secondary. Gameplay presets are selected inside the game when creating a campaign.
 
 Touch targets are 48–60 pixels; the file picker has 54-pixel rows, tap selection without Ctrl-click, and drag scrolling. D-pad/left stick navigate, A selects, B goes back/cancels, and shoulder buttons page through files. Native SDL gamepad events and keyboard navigation share UI actions. Touch, keyboard and Steam's Desktop Mode pointer controls remain available. Direct controller operation in Desktop Mode depends on Steam exposing a gamepad rather than only its desktop mouse mapping. The native shortcut disables desktop-controller substitution. Physical Deck controller/reconnect/overlay behavior remains a device acceptance item, not proven by Mac or CI tests.
+
+## Repair, Reinstall and Update
+
+**Repair / reinstall** opens maintenance. Repair checks SHA256 for every managed file in the installed release, downloads only missing/different files, and preserves prepared extraction and personal data. Healthy Repair only retrieves the small verified inventory. Reinstall downloads and replaces the complete application and creates fresh workspace/preparation state while retaining saves, settings, custom mods and imported discs. Update copies unchanged checksum-verified files, downloads changed/new files and excludes removed files from its new active version. Previous local versions remain available for Restore.
+
+Normal downloads include FxHD, EnvHD, CharHD, ModelsHD, FMVHD, UIHD and Skurfa. The matching modules are linked into the engine workspace. Configure EnvHD, CharHD, FxHD, UIHD and FMVHD in the game's Mods menu; the existing installer artwork preference controls Skurfa/ModelsHD.
+
+Only the current hosted release is retained. An older release that has been removed cannot supply its exact Repair files; use the current installer and complete Reinstall. Git source history and player-owned local Restore data are retained. Required checksum-pinned FMV build input is carried in the current release. [Delivery format and hosted retention](FILE_DELIVERY.md).
 
 ## Disc support and space
 
@@ -40,12 +48,13 @@ Restore reactivates the previous engine with a fresh copy of its verified pre-up
 ## Building and assembling delivery
 
 ```sh
-./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=<release-tag>
+./gradlew --no-daemon --console=plain clean build definitivePackage definitiveFileDelivery portableInstaller -PreleaseTag=<release-tag>
 # Linux / Deck target:
-./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller \
+./gradlew --no-daemon --console=plain clean build definitivePackage definitiveFileDelivery portableInstaller \
   -Pos=linux -Parch=x86_64 -Psteamdeck=true -PreleaseTag=<release-tag>
 python3 scripts/verify-disc-archives.py
-python3 scripts/assemble-installer.py
+python3 scripts/assemble-installer.py --output-dir build/distributions --tag <release-tag>
+python3 scripts/verify-desktop-entry.py --entries-dir build/distributions
 ```
 
 The assembly script stamps the versioned entry script and desktop launcher with the portable ZIP's exact SHA256. Re-run it after changing the UI/bootstrap package. Do not upload a different ZIP beneath those hashes. The desktop entry and source script are tiny transferable entry points; the portable ZIP works when unpacked and its `Install.sh` is run. Public release packages contain source-correlated engine and mods, notices, libraries and a portable 7-Zip helper, never local Java runtimes, discs, saves or extracted retail files. Preserve the release's corresponding source commit and recursive Skurfa revision.
