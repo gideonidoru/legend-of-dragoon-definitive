@@ -48,9 +48,13 @@ with tempfile.TemporaryDirectory(prefix='definitive-archive-fixture-') as folder
     subprocess.run([str(helper), 'a', '-t7z', str(seven), str(inputs / '*')], check=True, stdout=subprocess.DEVNULL)
     for archive in (archive, seven):
         install = root / archive.suffix[1:]
-        subprocess.run([str(java), '-jar', str(manager), '--install', str(package), str(install)], check=True, stdout=subprocess.DEVNULL)
-        subprocess.run([str(java), '-jar', str(manager), '--import', str(install), str(archive)], check=True)
-        assert sorted(p.name for p in (install / 'isos').iterdir()) == sorted([i + '.bin' for i in ids] + ['disc-checksums.properties'])
+        command = [str(java), '-Ddefinitive.installerLog=' + str(root / 'installer.log'),
+                   '-Ddefinitive.locationRegistry=' + str(root / 'locations.properties'), '-jar', str(manager)]
+        subprocess.run(command + ['--install', str(package), str(install)], check=True, stdout=subprocess.DEVNULL)
+        subprocess.run(command + ['--import', str(install), str(archive)], check=True)
+        assert sorted(p.name for p in (install / 'isos').iterdir()) == sorted([i + '.bin' for i in ids] + ['disc-import-checksums.properties', '.definitive-disc-stage'])
+        # A verified physical copy is not yet an accepted prepared-disc baseline.
+        assert not (install / 'isos/disc-checksums.properties').exists()
         for identifier in ids:
             assert (install / 'isos' / (identifier + '.bin')).read_bytes() == disc(identifier)
         assert archive.exists()

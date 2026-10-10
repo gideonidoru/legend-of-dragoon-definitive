@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "ebc07eeca6c52be43c266dfec7722573487ddb7a404cdb0b6719de49e05f8170",
+  "outputSha256": "c827d049dc6c6a6a43a678c3b92a438867d44224fe55fda11c129d7bd0640f02",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-giganto-stone-stage29-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Nearby field cut265 confirms ancient carved stone figures with folded hands and decorated lower panels. The battle source crops their heads out: keep the exact cropped torsos/arms and black upper gap. The generation prompt called these relief panels; output correctly preserves the original figures rather than inventing plain columns or new heads.",
+    "style": "Weathered brown stone, restrained relief detail and deep interior darkness match the Skurfa material finish; no torches, doors, altar or field composition transplanted.",
+    "layout": "Two repeated figures, folded-hand bands, carved lower panels, narrow flanking stone ribs and low rock fragments retain the original crop and placements.",
+    "wrap": "Near-black joined borders and dim side stone connect without a broad step; output edge difference3.26 versus source2.71. Native scene acceptance pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.7083332538604736,
+    "outputEdgeMeanDifference": 3.2638888359069824
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19"
+}

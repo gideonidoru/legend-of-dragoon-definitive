@@ -1,6 +1,24 @@
 package legend.core.renderer;
 
 public class ShaderOptionsStandard extends ShaderOptionsBase {
+  private ShaderUniformInt uiArtwork;
+  private ShaderUniformVec4 uiArtworkBounds;
+
+  public void uiArtworkUniforms(final Shader<?> shader) {
+    this.uiArtwork = shader.uniformInt("uiArtworkEnabled");
+    this.uiArtworkBounds = shader.uniformVec4("uiArtworkBounds");
+    shader.use();
+    shader.uniformInt("uiArtworkTex").set(2);
+    shader.uniformInt("uiSourceTex").set(3);
+  }
+
+  public void uiArtwork(final boolean enabled, final org.joml.Vector4f bounds) {
+    if(this.uiArtwork != null) {
+      this.uiArtwork.set(enabled ? 1 : 0);
+      if(enabled) this.uiArtworkBounds.set(bounds);
+    }
+  }
+
   private final ShaderUniformFloat translucency;
   private final ShaderUniformFloat alpha;
   private final ShaderUniformFloat useTextureAlpha;

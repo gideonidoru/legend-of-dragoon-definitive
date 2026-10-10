@@ -54,6 +54,10 @@ public class AttachedSobjEffect {
   private Obj tmdDust;
   private Obj footprints;
   private Obj quadDust;
+  private Obj quadDustHd;
+  private legend.definitive.effects.EffectArtwork dustHd;
+  private final Obj[] footprintsHd = new Obj[2];
+  private final legend.definitive.effects.EffectArtwork[] footprintArtwork = new legend.definitive.effects.EffectArtwork[2];
   private final MV transforms = new MV();
 
   @Method(0x800f0370L)
@@ -112,6 +116,41 @@ public class AttachedSobjEffect {
         .uvSize(32, 32)
         .posSize(1.0f, 1.0f)
         .build();
+    }
+
+    if(this.dustHd == null) {
+      this.dustHd = legend.definitive.effects.EffectArtwork.load("dust", "dust", "dust", 16 | 15, 465 << 6 | 60, 64, 0);
+      if(this.dustHd != null) {
+        try {
+          this.quadDustHd = new QuadBuilder("FxHD dust").bpp(Bpp.BITS_24)
+            .translucency(Translucency.B_PLUS_F).monochrome(1.0f).uv(0, 0).uvSize(1, 1).posSize(1, 1).build();
+        } catch(final RuntimeException failure) {
+          this.dustHd.close();
+          this.dustHd = null;
+          org.apache.logging.log4j.LogManager.getLogger().warn("FxHD retained original dust", failure);
+        }
+      }
+    }
+    for(int foot = 0; foot < 2; foot++) {
+      if(this.footprintArtwork[foot] == null) {
+        final String name = foot == 0 ? "left_foot" : "right_foot";
+        this.footprintArtwork[foot] = legend.definitive.effects.EffectArtwork.load(name, name, name, 16 | 15, 472 << 6 | 62, 96 + foot * 16, 0);
+        if(this.footprintArtwork[foot] != null) {
+          try {
+            final float left = foot == 0 ? -12.0f : 2.0f, right = foot == 0 ? -2.0f : 12.0f;
+            this.footprintsHd[foot] = new PolyBuilder("FxHD " + name, VertexOrder.TRIANGLE_STRIP)
+              .bpp(Bpp.BITS_24).translucency(Translucency.B_MINUS_F)
+              .addVertex(left, 0, -8).monochrome(1).uv(0, 0)
+              .addVertex(right, 0, -8).uv(1, 0)
+              .addVertex(left, 0, 8).uv(0, 1)
+              .addVertex(right, 0, 8).uv(1, 1).build();
+          } catch(final RuntimeException failure) {
+            this.footprintArtwork[foot].close();
+            this.footprintArtwork[foot] = null;
+            org.apache.logging.log4j.LogManager.getLogger().warn("FxHD retained original footprint", failure);
+          }
+        }
+      }
     }
 
     this.lawPodTrail_800d4f90.clear();
@@ -386,6 +425,8 @@ public class AttachedSobjEffect {
   }
 
   private void renderFootprints(final float screenOffsetX, final float screenOffsetY) {
+    final boolean leftHd = this.footprintArtwork[0] != null && this.footprintArtwork[0].matchesNative();
+    final boolean rightHd = this.footprintArtwork[1] != null && this.footprintArtwork[1].matchesNative();
     for(int i = 0; i < this.footprintTrail.size(); i++) {
       final FootprintParticle54 inst = this.footprintTrail.get(i);
       if(inst.tick_04 < inst.maxTicks_06 * (3 - vsyncMode_8007a3b8)) {
@@ -397,8 +438,11 @@ public class AttachedSobjEffect {
           }
         }
 
-        RENDERER.queueModel(this.footprints, inst.transforms, QueuedModelStandard.class)
-          .vertices(inst.textureIndex_02 * 4, 4)
+        final int foot = inst.textureIndex_02;
+        final boolean hd = foot == 0 && leftHd || foot == 1 && rightHd;
+        final var queued = RENDERER.queueModel(hd ? this.footprintsHd[foot] : this.footprints, inst.transforms, QueuedModelStandard.class);
+        if(hd) queued.texture(this.footprintArtwork[foot].texture);
+        queued.vertices(hd ? 0 : foot * 4, 4)
           .monochrome(inst.brightness_48)
           .screenspaceOffset(GPU.getOffsetX() + GTE.getScreenOffsetX() - 184, GPU.getOffsetY() + GTE.getScreenOffsetY() - 120);
         inst.tick_04++;
@@ -409,6 +453,7 @@ public class AttachedSobjEffect {
   }
 
   private void renderOrthoDustTrailEffect(final float screenOffsetX, final float screenOffsetY) {
+    final boolean hd = this.dustHd != null && this.dustHd.matchesNative();
     //LAB_800ef9cc
     for(int i = 0; i < this.orthoDustTrail_800d4e68.size(); i++) {
       //LAB_800efa08
@@ -430,8 +475,9 @@ public class AttachedSobjEffect {
 
         inst.transforms.scaling(inst.size_08);
         inst.transforms.transfer.set(GPU.getOffsetX() + screenOffsetX - inst.x_18 + inst.sxy0_20.x, GPU.getOffsetY() + screenOffsetY - inst.y_1c + inst.sxy0_20.y, inst.z_4c * 4.0f);
-        RENDERER.queueOrthoModel(this.quadDust, inst.transforms, QueuedModelStandard.class)
+        final var queued = RENDERER.queueOrthoModel(hd ? this.quadDustHd : this.quadDust, inst.transforms, QueuedModelStandard.class)
           .monochrome(inst.brightness_48);
+        if(hd) queued.texture(this.dustHd.texture);
         inst.tick_04++;
       } else {
         inst.free();
@@ -512,7 +558,13 @@ public class AttachedSobjEffect {
       this.footprints = null;
     }
 
+    for(int foot = 0; foot < 2; foot++) {
+      if(this.footprintsHd[foot] != null) { this.footprintsHd[foot].delete(); this.footprintsHd[foot] = null; }
+      if(this.footprintArtwork[foot] != null) { this.footprintArtwork[foot].close(); this.footprintArtwork[foot] = null; }
+    }
     this.orthoDustTrail_800d4e68.clear();
+    if(this.quadDustHd != null) { this.quadDustHd.delete(); this.quadDustHd = null; }
+    if(this.dustHd != null) { this.dustHd.close(); this.dustHd = null; }
     if(this.quadDust != null) {
       this.quadDust.delete();
       this.quadDust = null;

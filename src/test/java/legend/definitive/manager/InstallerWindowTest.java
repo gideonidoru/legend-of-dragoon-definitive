@@ -25,6 +25,12 @@ class InstallerWindowTest {
     }
     fail("Focus did not reach " + action.getText());
   }
+  private static void awaitEntries(final JList<?> list) {
+    final var loop = Toolkit.getDefaultToolkit().getSystemEventQueue().createSecondaryLoop();
+    final long deadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(10);
+    final Timer timer = new Timer(20, event -> { if(list.getModel().getSize() > 0 || System.nanoTime() > deadline) loop.exit(); });
+    timer.start(); loop.enter(); timer.stop(); assertTrue(list.getModel().getSize() > 0, "Asynchronous picker did not load fixture files");
+  }
   @Test void repeatedPickerActivationOpensOneWindowWithRealCheckboxSelection() throws Exception {
     Files.writeString(this.temporary.resolve("disc.bin"), "fixture");
     SwingUtilities.invokeAndWait(() -> {
@@ -33,8 +39,8 @@ class InstallerWindowTest {
       final var visible = java.util.Arrays.stream(Window.getWindows()).filter(w -> w instanceof JDialog && w.isVisible()).toList();
       assertEquals(1, visible.size(), "Repeated A / keyboard activation must never duplicate the picker");
       final var picker = (JDialog)visible.getFirst(); final var all = new ArrayList<Component>(); InstallStoreTest.collect(picker.getContentPane(), all);
-      @SuppressWarnings("unchecked") final var list = (JList<Path>)all.stream().filter(c -> c instanceof JList<?>).findFirst().orElseThrow();
-      list.setSelectedIndex(0); list.getActionMap().get("activate").actionPerformed(new java.awt.event.ActionEvent(list, 0, "activate"));
+      @SuppressWarnings("unchecked") final var list = (JList<PickerFiles.Entry>)all.stream().filter(c -> c instanceof JList<?>).findFirst().orElseThrow();
+      awaitEntries(list); list.setSelectedIndex(0); list.getActionMap().get("activate").actionPerformed(new java.awt.event.ActionEvent(list, 0, "activate"));
       final var row = (Container)list.getCellRenderer().getListCellRendererComponent(list, list.getModel().getElementAt(0), 0, true, true);
       final var cells = new ArrayList<Component>(); InstallStoreTest.collect(row, cells);
       assertTrue(cells.stream().anyMatch(c -> c instanceof JCheckBox box && box.isSelected()), "Selection must have a visible checkbox, independent of font glyphs");
@@ -105,7 +111,7 @@ class InstallerWindowTest {
       });
       final var picker = (JDialog)java.util.Arrays.stream(Window.getWindows()).filter(w -> w instanceof JDialog && w.isVisible()).findFirst().orElseThrow();
       final var components = new ArrayList<Component>(); InstallStoreTest.collect(picker.getContentPane(), components);
-      final var list = (JList<?>)components.stream().filter(c -> c instanceof JList<?>).findFirst().orElseThrow(); list.setSelectedIndex(0);
+      final var list = (JList<?>)components.stream().filter(c -> c instanceof JList<?>).findFirst().orElseThrow(); awaitEntries(list); list.setSelectedIndex(0);
       list.getActionMap().get("activate").actionPerformed(new java.awt.event.ActionEvent(list, 0, "activate"));
       final var image = new java.awt.image.BufferedImage(picker.getWidth(), picker.getHeight(), java.awt.image.BufferedImage.TYPE_INT_RGB);
       final var graphics = image.createGraphics(); picker.paint(graphics); graphics.dispose();
@@ -117,7 +123,7 @@ class InstallerWindowTest {
     SwingUtilities.invokeAndWait(() -> {
       try {
         final var view = (ManagerView)this.frame.getContentPane();
-        final var step = ManagerView.class.getDeclaredField("step"); step.setAccessible(true); step.setInt(view, 2);
+        final var screen = ManagerView.class.getDeclaredField("screen"); screen.setAccessible(true); screen.set(view, ManagerView.Screen.STEAM);
         final var render = ManagerView.class.getDeclaredMethod("render"); render.setAccessible(true); render.invoke(view);
         final var components = new ArrayList<Component>(); InstallStoreTest.collect(view, components);
         components.stream().filter(c -> c instanceof JButton b && b.getText().equals("Finish without Steam")).map(c -> (JButton)c).findFirst().orElseThrow().doClick();

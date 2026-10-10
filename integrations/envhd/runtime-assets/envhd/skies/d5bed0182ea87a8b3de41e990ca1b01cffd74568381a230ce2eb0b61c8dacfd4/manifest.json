@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "a78538f409c9b93f27bfcf4195b28d11334960d7e0d62c94dda1a7fb09418f48",
+  "outputSha256": "6142738d5552eea2948ea711caef698443e49fae280634927f5951e8a015afd5",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage38-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Very subdued dark grey smoky cloud field with a faint warm lower glow. Source-backed usage: stages38; stage-bound panorama, no documented field random-encounter alias.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 1.8055555820465088,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "a78538f409c9b93f27bfcf4195b28d11334960d7e0d62c94dda1a7fb09418f48",
+    "action": "upscale-original",
+    "outputSha256": "6142738d5552eea2948ea711caef698443e49fae280634927f5951e8a015afd5",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "a78538f409c9b93f27bfcf4195b28d11334960d7e0d62c94dda1a7fb09418f48",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "d5bed0182ea87a8b3de41e990ca1b01cffd74568381a230ce2eb0b61c8dacfd4",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "d5bed0182ea87a8b3de41e990ca1b01cffd74568381a230ce2eb0b61c8dacfd4"
+}

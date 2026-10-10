@@ -1,6 +1,5 @@
 package legend.game.fmv;
 
-import legend.core.Config;
 import legend.definitive.fmv.StreamingMovie;
 import legend.definitive.fmv.MoviePlayback;
 import legend.core.audio.GenericSource;
@@ -45,6 +44,7 @@ public final class VideoPlayer {
 
   private static Runnable oldRenderer;
   private static int oldFps;
+  private static boolean oldCinematicPlayback;
   private static boolean oldAllowWidescreen;
 
   private static StreamingMovie movie;
@@ -96,6 +96,9 @@ public final class VideoPlayer {
 
       oldRenderer = RENDERER.setRenderCallback(() -> { });
       stateCaptured = true;
+      oldCinematicPlayback = RENDERER.setCinematicPlayback(true);
+      RENDERER.window().setFpsLimit(60);
+      PLATFORM.setInputTickRate(60);
       imageBuffer = MemoryUtil.memAlloc(videoWidth * videoHeight * 3);
 
       LOGGER.info("Video size %dx%d", videoWidth, videoHeight);
@@ -131,8 +134,8 @@ public final class VideoPlayer {
             return;
           }
 
-          RENDERER.window().setFpsLimit(60 * Config.getGameSpeedMultiplier());
-          PLATFORM.setInputTickRate(60 * Config.getGameSpeedMultiplier());
+          RENDERER.window().setFpsLimit(60);
+          PLATFORM.setInputTickRate(60);
 
           final long playedMicros;
           try { playedMicros = playback.tick(source, volume); }
@@ -215,6 +218,7 @@ public final class VideoPlayer {
     stateCaptured = false;
     CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), oldAllowWidescreen);
     RENDERER.setRenderCallback(oldRenderer);
+    RENDERER.setCinematicPlayback(oldCinematicPlayback);
     RENDERER.window().setFpsLimit(oldFps);
     PLATFORM.setInputTickRate(oldFps);
     RENDERER.setRenderMode(oldRenderMode);

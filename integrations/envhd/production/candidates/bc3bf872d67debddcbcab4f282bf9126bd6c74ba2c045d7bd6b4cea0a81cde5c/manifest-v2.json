@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "7f05ed65b21bd0f436358c0f3c7238c70170701a1a0204ed073a029844051693",
+  "outputSha256": "edd3043ca292580aa04782f796f75e197dd1cdbeed1a5f1da98bce4e05e753a0",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "intent-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-snowfield-stage46-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Snow-covered dead wood retained rather than invented bone or stone. Revision still moves the distant bank too high relative to the original; not selected.",
+    "style": "Fine cold snow and dark weathered bark match the Skurfa detail direction.",
+    "layout": "Original source bank begins near y179/384, while revision begins near y600/1536 rather than the required y716. Several wood groups remain shifted; further source-layout correction required.",
+    "wrap": "Repeat contact remains unaccepted; native scene review pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.118055582046509,
+    "outputEdgeMeanDifference": 15.495442390441895
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c"
+}

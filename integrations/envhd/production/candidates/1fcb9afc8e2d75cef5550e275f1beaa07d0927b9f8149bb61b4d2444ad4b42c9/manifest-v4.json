@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "2afe4a54ab85bfd997cabe2a3547d44da7e4ce44fea0586826b8c4fd24f907a8",
+  "outputSha256": "19a0b07ffd48c327c7db49f604d78e0c3ba47d24e1f69b362fa3bd8ff38c6bca",
+  "scale": 4,
+  "generationVersion": 4,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "prompt": "prompts/source-edges-stage28-v4.txt",
+  "imageFile": "image-v4.png",
+  "review": {
+    "intent": "Giganto Home bare grey mountain basin beneath violet-blue sky and thin white clouds. Source positions and scene identity compared directly with original.",
+    "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+    "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+    "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 4.791666507720947,
+    "outputEdgeMeanDifference": 1.5047743320465088
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "2afe4a54ab85bfd997cabe2a3547d44da7e4ce44fea0586826b8c4fd24f907a8",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "action": "upscale-original",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "masterSourceSha256": "1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9",
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "sourceSize": [
+      256,
+      384
+    ],
+    "repairBorderPixels": 0,
+    "decodedRgbaSha256": "2afe4a54ab85bfd997cabe2a3547d44da7e4ce44fea0586826b8c4fd24f907a8",
+    "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "outputSha256": "19a0b07ffd48c327c7db49f604d78e0c3ba47d24e1f69b362fa3bd8ff38c6bca"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9"
+}

@@ -1,0 +1,237 @@
+{
+  "pipeline": "definitive-private-material-pack-1",
+  "modelSha256": "84341ec030afdb03d69cb08114acf34edcb3438f386cb580bf6503a331ab4691",
+  "timSha256": "601a01d5149a7fa083b32d977b290a361344daa4c0393b757d06f52e9e7814cc",
+  "sourceSize": [
+    256,
+    256
+  ],
+  "scale": 4,
+  "paddingSourceTexels": 8,
+  "atlasSize": [
+    1024,
+    2336
+  ],
+  "materials": [
+    {
+      "palette": 0,
+      "sourceCrop": [
+        -8,
+        -8,
+        168,
+        200
+      ],
+      "atlasRect": [
+        0,
+        0,
+        704,
+        832
+      ]
+    },
+    {
+      "palette": 4,
+      "sourceCrop": [
+        152,
+        -8,
+        232,
+        72
+      ],
+      "atlasRect": [
+        0,
+        1408,
+        320,
+        320
+      ]
+    },
+    {
+      "palette": 8,
+      "sourceCrop": [
+        120,
+        -8,
+        248,
+        136
+      ],
+      "atlasRect": [
+        0,
+        832,
+        512,
+        576
+      ]
+    },
+    {
+      "palette": 12,
+      "sourceCrop": [
+        168,
+        56,
+        248,
+        136
+      ],
+      "atlasRect": [
+        320,
+        1408,
+        320,
+        320
+      ]
+    },
+    {
+      "palette": 16,
+      "sourceCrop": [
+        24,
+        120,
+        88,
+        204
+      ],
+      "atlasRect": [
+        512,
+        832,
+        256,
+        336
+      ]
+    },
+    {
+      "palette": 20,
+      "sourceCrop": [
+        216,
+        40,
+        256,
+        96
+      ],
+      "atlasRect": [
+        768,
+        1728,
+        160,
+        224
+      ]
+    },
+    {
+      "palette": 24,
+      "sourceCrop": [
+        72,
+        120,
+        120,
+        176
+      ],
+      "atlasRect": [
+        576,
+        1728,
+        192,
+        224
+      ]
+    },
+    {
+      "palette": 28,
+      "sourceCrop": [
+        104,
+        112,
+        248,
+        168
+      ],
+      "atlasRect": [
+        0,
+        1728,
+        576,
+        224
+      ]
+    },
+    {
+      "palette": 32,
+      "sourceCrop": [
+        152,
+        120,
+        232,
+        168
+      ],
+      "atlasRect": [
+        0,
+        1952,
+        320,
+        192
+      ]
+    },
+    {
+      "palette": 36,
+      "sourceCrop": [
+        104,
+        152,
+        160,
+        200
+      ],
+      "atlasRect": [
+        640,
+        1952,
+        224,
+        192
+      ]
+    },
+    {
+      "palette": 40,
+      "sourceCrop": [
+        152,
+        152,
+        200,
+        200
+      ],
+      "atlasRect": [
+        0,
+        2144,
+        192,
+        192
+      ]
+    },
+    {
+      "palette": 44,
+      "sourceCrop": [
+        24,
+        168,
+        104,
+        216
+      ],
+      "atlasRect": [
+        320,
+        1952,
+        320,
+        192
+      ]
+    },
+    {
+      "palette": 48,
+      "sourceCrop": [
+        184,
+        152,
+        232,
+        200
+      ],
+      "atlasRect": [
+        192,
+        2144,
+        192,
+        192
+      ]
+    },
+    {
+      "palette": 52,
+      "sourceCrop": [
+        88,
+        184,
+        152,
+        224
+      ],
+      "atlasRect": [
+        384,
+        2144,
+        256,
+        160
+      ]
+    }
+  ],
+  "algorithm": "neural",
+  "strength": 0.75,
+  "preservedPalettes": [],
+  "weightsSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+  "paramsSha256": "2b8fb6e0ae4d2d85704ca08c119a2f5ea40add4f2ecd512eb7f4cd44b6127ed4",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "atlasEngineSha256": "7a4099b72661ecd68064b82c3fc67d3509ee339903798bca03ae2576d7db45b9",
+  "scope": "CharHD 4x restoration development candidate; not final AA art or native gameplay acceptance",
+  "productionMethod": "palette-isolated-real-esrgan-illustration-75-percent",
+  "reviewStatus": "pending-pose-review"
+}

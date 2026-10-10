@@ -319,6 +319,8 @@ public class SMap extends EngineState<SMap> {
   private boolean hasSavePoint_800d5620;
   private final Vector3f savePointPos_800d5622 = new Vector3f();
   private Obj savepointObj;
+  private Obj savepointCircleHd;
+  private legend.definitive.effects.EffectArtwork savepointArtwork;
 
   private final SavePointRenderData44[] savePoint_800d5630 = new SavePointRenderData44[32];
   {
@@ -3319,7 +3321,9 @@ public class SMap extends EngineState<SMap> {
 
         this.cameraPos_800c6aa0.set(rview2_800bd7e8.viewpoint_00).sub(rview2_800bd7e8.refpoint_0c);
 
-        new Tim(Loader.loadFileSync("SUBMAP/alert.tim")).uploadToGpu();
+        final Tim alert = new Tim(Loader.loadFileSync("SUBMAP/alert.tim"));
+        alert.uploadToGpu();
+        legend.game.textures.NativeUiTextureEvent.uploaded("indicator_alert", alert);
         this.resetTriangleIndicators();
 
         //LAB_800e1ecc
@@ -4839,9 +4843,16 @@ public class SMap extends EngineState<SMap> {
       this.savepointObj = null;
     }
 
+    this.releaseSavepointArtwork();
+
     final QuadBuilder builder = new QuadBuilder("Savepoint Blobs");
 
     this.hasSavePoint_800d5620 = script.params_20[0].get() != 0;
+    if(this.hasSavePoint_800d5620) {
+      this.savepointArtwork = legend.definitive.effects.EffectArtwork.load("savepoint_big_circle", "savepoint_big_circle", "savepoint_big_circle",
+        this.texPages_800d6050[5], this.cluts_800d6068[5], 160, 64);
+    }
+    final QuadBuilder hdBuilder = new QuadBuilder("FxHD savepoint glow");
     GsInitCoordinate2(null, coord2);
 
     coord2.coord.transfer.set(script.params_20[1].getFloat(), script.params_20[2].getFloat(), script.params_20[3].getFloat());
@@ -4888,6 +4899,10 @@ public class SMap extends EngineState<SMap> {
       struct.screenOffsetX_20 = this.screenOffset_800cb568.x;
       struct.screenOffsetY_24 = this.screenOffset_800cb568.y;
 
+      if(this.savepointArtwork != null) {
+        hdBuilder.add().bpp(Bpp.BITS_24).translucency(Translucency.B_PLUS_F)
+          .posSize(x1 - x0, y1 - y0).uv(0, 0).uvSize(31.0f / 32.0f, 31.0f / 32.0f);
+      }
       builder
         .add()
         .bpp(Bpp.of(this.texPages_800d6050[5] >>> 7 * 0b11))
@@ -4912,6 +4927,14 @@ public class SMap extends EngineState<SMap> {
       .uv(176, 48);
 
     this.savepointObj = builder.build();
+    if(this.savepointArtwork != null) {
+      try {
+        this.savepointCircleHd = hdBuilder.build();
+      } catch(final RuntimeException failure) {
+        this.releaseSavepointArtwork();
+        LOGGER.warn("FxHD retained original savepoint glow", failure);
+      }
+    }
 
     return FlowControl.CONTINUE;
   }
@@ -5306,6 +5329,7 @@ public class SMap extends EngineState<SMap> {
 
     //LAB_800f2a44
     // This loop renders the central circle
+    final boolean hdCircle = this.savepointArtwork != null && this.savepointArtwork.matchesNative();
     for(int i = 0; i < 2; i++) {
       final SavePointRenderData44 s0 = this.savePoint_800d5598[i];
 
@@ -5350,10 +5374,11 @@ public class SMap extends EngineState<SMap> {
       }
 
       s0.transforms.transfer.set(GPU.getOffsetX() + x0, GPU.getOffsetY() + y0, s0.z_40 * 4.0f);
-      RENDERER.queueOrthoModel(this.savepointObj, s0.transforms, QueuedModelStandard.class)
+      final QueuedModelStandard circle = RENDERER.queueOrthoModel(hdCircle ? this.savepointCircleHd : this.savepointObj, s0.transforms, QueuedModelStandard.class)
         .vertices(i * 4, 4)
         .monochrome(s0.colour_34)
         .emissive(CONFIG.getConfig(REDUCE_MOTION_FLASHING_CONFIG.get()) ? 0.0f : 0.5f);
+      if(hdCircle) circle.texture(this.savepointArtwork.texture);
     }
 
     final float sp80 = (minX - maxX) / 2.0f;
@@ -5648,6 +5673,7 @@ public class SMap extends EngineState<SMap> {
 
   @Method(0x800f3b3cL)
   private void deallocateSavePoint() {
+    this.releaseSavepointArtwork();
     this.hasSavePoint_800d5620 = false;
 
     if(this.savepointObj != null) {
@@ -5656,6 +5682,17 @@ public class SMap extends EngineState<SMap> {
     }
 
     this.savePointModel_800d5eb0.deleteModelParts();
+  }
+
+  private void releaseSavepointArtwork() {
+    if(this.savepointCircleHd != null) {
+      this.savepointCircleHd.delete();
+      this.savepointCircleHd = null;
+    }
+    if(this.savepointArtwork != null) {
+      this.savepointArtwork.close();
+      this.savepointArtwork = null;
+    }
   }
 
   @Method(0x800f3c98L)
@@ -5745,6 +5782,7 @@ public class SMap extends EngineState<SMap> {
       this.cluts_800d6068[textureIndex] = tim.getClutRect().y << 6 | (tim.getClutRect().x & 0x3f0) >>> 4;
 
       GPU.uploadData15(tim.getClutRect(), tim.getClutData());
+      if(textureIndex < 2) legend.game.textures.NativeUiTextureEvent.uploaded(textureIndex == 0 ? "indicator_big_arrow" : "indicator_small_arrow", tim);
     }
 
     //LAB_800f48a8

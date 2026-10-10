@@ -146,7 +146,15 @@ public final class SteamLibrary {
       final Value stored = fields.stream().filter(v -> v.type == 2 && v.key.equalsIgnoreCase("appid")).findFirst().orElseThrow(() -> new IOException("Existing Steam shortcut has no app ID."));
       appid = leInt((byte[])stored.data);
       final int iconIndex = java.util.stream.IntStream.range(0, fields.size()).filter(i -> fields.get(i).key.equalsIgnoreCase("icon")).findFirst().orElse(-1);
-      if(iconIndex < 0) fields.add(string("icon", icon.toString())); else fields.set(iconIndex, string("icon", icon.toString()));
+      if(iconIndex < 0) fields.add(string("icon", icon.toString()));
+      else {
+        final Value existing = fields.get(iconIndex);
+        boolean valid = false;
+        if(existing.type == 1 && existing.data instanceof String value && !value.isBlank()) {
+          try { valid = Files.isRegularFile(Path.of(value)); } catch(final InvalidPathException ignored) { /* Repair an unusable path only. */ }
+        }
+        if(!valid) fields.set(iconIndex, string("icon", icon.toString()));
+      }
     } else {
     fields.add(integer("appid", appid)); fields.add(string("AppName", name)); fields.add(string("exe", exe));
     fields.add(string("StartDir", '"' + install.toAbsolutePath().normalize().toString() + '"'));

@@ -99,11 +99,6 @@ public class CoreMod {
   public static final String MOD_ID = "lod_core";
 
   @EventListener
-  public static void definitiveFieldTextures(final legend.game.modding.events.submap.SubmapObjectTextureEvent event) {
-    DefinitiveTexturePilot.apply(event);
-  }
-
-  @EventListener
   public static void definitiveBackgroundPreparation(final legend.game.modding.events.submap.SubmapEnvironmentPreloadEvent event) {
     legend.definitive.rendering.DefaultBackgroundPrewarming.preload(event);
   }

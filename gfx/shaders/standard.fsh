@@ -44,6 +44,10 @@ layout(location = 2) out vec4 outInterface;
 uniform bool uiLayer;
 uniform float emission;
 uniform bool hdTexture;
+uniform bool uiArtworkEnabled;
+uniform vec4 uiArtworkBounds;
+uniform sampler2D uiArtworkTex;
+uniform sampler2D uiSourceTex;
 
 void main() {
   // Older Intel iGPUs are buggy and don't implement scissoring properly, causing the Shirley fight to lock up when
@@ -99,6 +103,23 @@ void main() {
         texColour.a = source.a;
       } else {
         texColour = texture(tex24, uv);
+      }
+    }
+
+    // Keep live palette changes and original STP/discard authoritative. The reference
+    // is decoded locally from the owner's TIM, never shipped as original game data.
+    if(uiLayer && uiArtworkEnabled && vertBpp == 0) {
+      vec2 local = vertUv + uvOffset - uiArtworkBounds.xy;
+      if(all(greaterThanEqual(local, vec2(0.0))) && all(lessThan(local, uiArtworkBounds.zw))) {
+        ivec2 pixel = ivec2(local);
+        vec4 source = texelFetch(uiSourceTex, pixel, 0);
+        bool visible = texColour.a != 0.0 || any(notEqual(texColour.rgb, vec3(0.0)));
+        bool unchanged = all(lessThanEqual(abs(texColour.rgb - source.rgb), vec3(1.0 / 255.0 + 0.000001)))
+          && (texColour.a != 0.0) == (source.a != 0.0);
+        if(visible && unchanged) {
+          vec3 restored = texture(uiArtworkTex, local / uiArtworkBounds.zw).rgb;
+          if(any(notEqual(restored, vec3(0.0)))) texColour.rgb = restored;
+        }
       }
     }
 

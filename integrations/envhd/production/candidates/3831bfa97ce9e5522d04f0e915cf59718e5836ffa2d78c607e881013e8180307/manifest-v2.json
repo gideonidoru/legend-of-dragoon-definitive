@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "42ee5b93c2a61366fe82c1a5f9ec86128fc4a767b5c4ed555ec85883e9ea59e9",
+  "outputSha256": "d19d28a68c6c643660dd08f1faac8d925fc7de49cd9d927769b90057c5db700f",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage54-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Mayfil repeated teal stone niches and masonry above bright cyan lower fog. Source-backed usage: stages54; Mayfil.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Masonry forms a mirrored contact column. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 4.347222328186035,
+    "outputEdgeMeanDifference": 0.0457899309694767
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v1.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "42ee5b93c2a61366fe82c1a5f9ec86128fc4a767b5c4ed555ec85883e9ea59e9",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "d19d28a68c6c643660dd08f1faac8d925fc7de49cd9d927769b90057c5db700f",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "89267ed8bb3909ded75b96ebdd33bfef05522413510e43e1b547c39ac9e4fc6d",
+    "weightsSha256": null,
+    "masterSourceSha256": "3831bfa97ce9e5522d04f0e915cf59718e5836ffa2d78c607e881013e8180307",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "3831bfa97ce9e5522d04f0e915cf59718e5836ffa2d78c607e881013e8180307"
+}

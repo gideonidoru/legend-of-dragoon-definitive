@@ -1,0 +1,37 @@
+{
+  "kind": "location-thumbnail",
+  "sourceSha256": "98c832b7e644e854ff1949f088dde72370c568d5194a7c84a2ecf1c67f1ab02e",
+  "decodedRgbaSha256": "82b22ee9809b72de728048899e67621c7ece4d09677413bd53c319517a7fe826",
+  "sourceSize": [
+    120,
+    90
+  ],
+  "sourceFiles": [
+    "SECT/DRGN0.BIN/5671"
+  ],
+  "locations": [
+    "Donau the  Flower City"
+  ],
+  "targetSize": [
+    480,
+    360
+  ],
+  "outputSha256": "000af02dd5b6d5b05a34f3933e664047356683b5d5472ebf8af79a5870e0e705",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+  "edgeAveraging": false,
+  "review": {
+    "intent": "Donau rounded green buildings, stairway and flowers. Source-backed engine usage: Donau the  Flower City.",
+    "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+    "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+    "verdict": "visual-reviewed-native-pending"
+  },
+  "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+  "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

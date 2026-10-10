@@ -81,6 +81,10 @@ public final class TmdObjLoader {
   }
 
   public static MeshObj fromObjTable(final String name, final TmdObjTable1c objTable, final int specialFlags, final int textureWidth, final int textureHeight) {
+    return fromObjTable(name, objTable, specialFlags, textureWidth, textureHeight, null);
+  }
+
+  public static MeshObj fromObjTable(final String name, final TmdObjTable1c objTable, final int specialFlags, final int textureWidth, final int textureHeight, final legend.definitive.artwork.MaterialUv materials) {
     TmdObjTable1c geometry = objTable;
     if(objTable.getClass() == TmdObjTable1c.class && !objTable.isAuthoredGeometry() && !objTable.requiresNativeVertexIndices()) {
       try {
@@ -109,17 +113,33 @@ public final class TmdObjLoader {
       }
     }
     try {
-      final MeshObj result = fromObjTableRaw(name, geometry, specialFlags, textureWidth, textureHeight);
+      final MeshObj result = fromObjTableRaw(name, geometry, specialFlags, textureWidth, textureHeight, materials);
       if(geometry != objTable) objTable.refinedObj = result;
       return result;
     } catch(final RuntimeException failure) {
       if(geometry == objTable) throw failure;
       LogManager.getLogger().warn("Optional geometry allocation kept original {}: {}", name, failure.getMessage());
-      return fromObjTableRaw(name, objTable, specialFlags, textureWidth, textureHeight);
+      return fromObjTableRaw(name, objTable, specialFlags, textureWidth, textureHeight, materials);
     }
   }
 
+  /** Independently owned HD meshes, retaining optional geometry and its authored material flags. */
+  public static MeshObj fromObjTableMapped(final String name, final TmdObjTable1c source,
+                                          final legend.definitive.materials.MaterialUvMap mapping) {
+    final TmdObjTable1c geometry = EVENTS.postEvent(new TmdGeometryEvent(source, 0, 0, 0)).geometry;
+    if(geometry == null) throw new IllegalArgumentException("Missing optional geometry");
+    final MeshObj result = fromObjTableRaw(name, geometry, 0, 0, 0, mapping);
+    result.surfaceMaterial = geometry.surfaceMaterial();
+    return result;
+  }
+
   private static MeshObj fromObjTableRaw(final String name, final TmdObjTable1c objTable, final int specialFlags, final int textureWidth, final int textureHeight) {
+    return fromObjTableRaw(name, objTable, specialFlags, textureWidth, textureHeight, null);
+  }
+
+  private static MeshObj fromObjTableRaw(final String name, final TmdObjTable1c objTable, final int specialFlags,
+                                         final int textureWidth, final int textureHeight,
+                                         final legend.definitive.materials.MaterialUvMap mapping) {
     final TmdObjLoaderMeshes tmdMeshes = getTranslucencySizes(objTable, specialFlags);
 
     // Backface culling is on by default for opaque primitives. LOD sets some untextured primitives to translucent
@@ -166,7 +186,7 @@ public final class TmdObjLoader {
       final Polygon poly = new Polygon(vertexCount);
 
       for(final byte[] data : primitive.data()) {
-        final legend.core.renderer.SurfaceResponse surface = objTable.faceSurface(surfaceFace++);
+        legend.core.renderer.SurfaceResponse surface = objTable.faceSurface(surfaceFace++);
         TmdObjLoaderMesh mesh = tmdMeshes.opaque;
 
         // Read data from TMD ---
@@ -286,7 +306,13 @@ public final class TmdObjLoader {
             final Bpp bpp = Bpp.of(poly.tpage >>> 7 & 0b11);
 
             // 24bpp textures use normalized coordinates
-            if(bpp == Bpp.BITS_24) {
+            if(mapping != null) {
+              final float[] uv = mapping.map(poly.clut, vertex.u, vertex.v, primitive.header());
+              mesh.vertices[mesh.vertexOffset++] = uv[0];
+              mesh.vertices[mesh.vertexOffset++] = uv[1];
+              final var authored = mapping.surface(poly.clut);
+              if(authored != null) surface = authored;
+            } else if(bpp == Bpp.BITS_24) {
               if((textureWidth | textureHeight) == 0) {
                 throw new RuntimeException("24bpp textures must have texture width/height specified");
               }
@@ -298,7 +324,7 @@ public final class TmdObjLoader {
               mesh.vertices[mesh.vertexOffset++] = vertex.v;
             }
 
-            mesh.vertices[mesh.vertexOffset++] = poly.tpage;
+            mesh.vertices[mesh.vertexOffset++] = mapping == null ? poly.tpage : (poly.tpage & ~0x180) | 0x180;
             mesh.vertices[mesh.vertexOffset++] = poly.clut;
           } else {
             mesh.vertexOffset += UV_SIZE + TPAGE_SIZE + CLUT_SIZE;

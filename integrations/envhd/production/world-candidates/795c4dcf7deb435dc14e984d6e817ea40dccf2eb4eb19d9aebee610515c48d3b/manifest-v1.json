@@ -1,0 +1,37 @@
+{
+  "kind": "location-thumbnail",
+  "sourceSha256": "795c4dcf7deb435dc14e984d6e817ea40dccf2eb4eb19d9aebee610515c48d3b",
+  "decodedRgbaSha256": "d39d26711c97d7cce162be8b4da27ef97aaaa992fa968ed98fb0a2dc50d5d210",
+  "sourceSize": [
+    120,
+    90
+  ],
+  "sourceFiles": [
+    "SECT/DRGN0.BIN/5661"
+  ],
+  "locations": [
+    "Town of Hoax"
+  ],
+  "targetSize": [
+    480,
+    360
+  ],
+  "outputSha256": "e4dd148d15024bd854f857f84f8cc9d5e22c0495639c5ccd180693c2d7e83fed",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+  "edgeAveraging": false,
+  "review": {
+    "intent": "Hoax intact orange rooftops and circular fortification walls. Source-backed engine usage: Town of Hoax.",
+    "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+    "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+    "verdict": "visual-reviewed-native-pending"
+  },
+  "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+  "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

@@ -66,8 +66,14 @@ public final class MaterialAtlas {
 
   public static MaterialAtlas read(final Path folder, final byte[] originalModel, final byte[] originalTim) throws IOException {
     if(originalModel.length > 16 * 1024 * 1024 || originalTim.length > 16 * 1024 * 1024 || Files.isSymbolicLink(folder)) throw bad("Input exceeds atlas bounds or uses a linked folder.");
+    return read(readBounded(folder.resolve("manifest.json"), 65536), readBounded(folder.resolve("atlas-engine-stp.png"), 32 * 1024 * 1024), originalModel, originalTim);
+  }
+
+  public static MaterialAtlas read(final byte[] manifestBytes, final byte[] png, final byte[] originalModel, final byte[] originalTim) throws IOException {
+    if(manifestBytes.length > 65536 || png.length > 32 * 1024 * 1024 || originalModel.length > 16 * 1024 * 1024 || originalTim.length > 16 * 1024 * 1024)
+      throw bad("Input exceeds atlas bounds.");
     final byte[] model = originalModel.clone(), tim = originalTim.clone();
-    final Map<String, Object> manifest = object(json(readBounded(folder.resolve("manifest.json"), 65536)));
+    final Map<String, Object> manifest = object(json(manifestBytes));
     final String modelHash = TexturePilot.sha256(model), timHash = TexturePilot.sha256(tim);
     if(!"definitive-private-material-pack-1".equals(manifest.get("pipeline")) || !modelHash.equals(manifest.get("modelSha256")) || !timHash.equals(manifest.get("timSha256"))) throw bad("Atlas does not match the original model and TIM.");
     final int scale = integer(manifest.get("scale"));
@@ -85,12 +91,17 @@ public final class MaterialAtlas {
     final List<Integer> preserved = integers(manifest.getOrDefault("preservedPalettes", List.of()));
     if(new HashSet<>(preserved).size() != preserved.size() || !used.containsAll(preserved)) throw bad("Invalid preserved palette selection.");
     final Object algorithm = manifest.get("algorithm");
-    if(!"nearest".equals(algorithm) && !"neural".equals(algorithm)) throw bad("Unsupported material processing description.");
+    if(!"nearest".equals(algorithm) && !"neural".equals(algorithm) && !"authored".equals(algorithm)) throw bad("Unsupported material processing description.");
+    if("authored".equals(algorithm)) {
+      final var provenance = object(manifest.get("authoring"));
+      for(final String key : List.of("baseAtlasSha256", "generatedImageSha256", "promptSha256")) {
+        if(!(provenance.get(key) instanceof String hash) || !hash.matches("[0-9a-f]{64}")) throw bad("Missing authored material provenance.");
+      }
+    }
     if("neural".equals(algorithm)) {
       if(!(manifest.get("strength") instanceof Number strength) || !Double.isFinite(strength.doubleValue()) || strength.doubleValue() < 0 || strength.doubleValue() > 1) throw bad("Invalid neural strength.");
       if(WEIGHTS.stream().noneMatch(weights -> weights.scale == scale && weights.bin.equals(manifest.get("weightsSha256")) && weights.parameters.equals(manifest.get("paramsSha256")))) throw bad("Neural weights differ from the pinned comparison models.");
     }
-    final byte[] png = readBounded(folder.resolve("atlas-engine-stp.png"), 32 * 1024 * 1024);
     final String atlasHash = TexturePilot.sha256(png);
     final ByteBuffer header = ByteBuffer.wrap(png).order(ByteOrder.BIG_ENDIAN);
     if(png.length < 33 || header.getLong(0) != 0x89504e470d0a1a0aL || header.getInt(8) != 13 || header.getInt(12) != 0x49484452 || header.getInt(16) != layout.width() || header.getInt(20) != layout.height() || png[24] != 8 || png[25] != 6 || !atlasHash.equals(manifest.get("atlasEngineSha256"))) throw bad("Requires the matching bounded 8-bit RGBA atlas PNG.");

@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "292a3df499f14b031ca899ac9f298a332716c846b849745a2b4644effbb32712",
+  "outputSha256": "a5afc3d28e9fc1057ca87c8d7a969150ecd1004a67eb2b757d2c2db52f11b9a2",
+  "scale": 4,
+  "generationVersion": 3,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "prompt": "prompts/source-edges-stage37-v3.txt",
+  "imageFile": "image-v3.png",
+  "review": {
+    "intent": "Forbidden Land tilted intricate bronze-gold machinery or architecture immersed in orange haze. Source positions and scene identity compared directly with original.",
+    "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+    "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+    "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.9513888359069824,
+    "outputEdgeMeanDifference": 1.1258680820465088
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "292a3df499f14b031ca899ac9f298a332716c846b849745a2b4644effbb32712",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "action": "upscale-original",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "masterSourceSha256": "8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d",
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "sourceSize": [
+      256,
+      384
+    ],
+    "repairBorderPixels": 0,
+    "decodedRgbaSha256": "292a3df499f14b031ca899ac9f298a332716c846b849745a2b4644effbb32712",
+    "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "outputSha256": "a5afc3d28e9fc1057ca87c8d7a969150ecd1004a67eb2b757d2c2db52f11b9a2"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d"
+}

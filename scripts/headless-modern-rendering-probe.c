@@ -116,6 +116,31 @@ int main(int argc,char **argv) {
   glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);integer(standard,"hdTexture",0);clearTargets();draw(standard,0,v);readTarget(0,a);assertCoverage(a,b);
   printf("PASS: mipmapped HD RGB filtering preserves source transparency and STP partition coverage.\n");
 
+  // UIHD changes RGB only. Live indexed VRAM still controls discard and STP.
+  GLuint uiVram;glGenTextures(1,&uiVram);glActiveTexture(GL_TEXTURE1);glBindTexture(GL_TEXTURE_2D,uiVram);
+  unsigned int *uiWords=calloc(1024*512,4);uiWords[0]=0x0010;uiWords[1]=0x83e0;uiWords[2]=0;uiWords[3]=0x8000;
+  for(int y=256;y<258;y++)uiWords[y*1024+256]=0x3210;
+  glTexImage2D(GL_TEXTURE_2D,0,GL_R32UI,1024,512,0,GL_RED_INTEGER,GL_UNSIGNED_INT,uiWords);free(uiWords);
+  glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+  unsigned char uiSource[]={131,0,0,0,0,255,0,255,0,0,0,0,0,0,0,255},uiPixels[64];
+  for(int y=0;y<2;y++)for(int x=0;x<8;x++){int i=(y*8+x)*4,j=(x/2)*4;memcpy(uiPixels+i,uiSource+j,4);if(x<2){uiPixels[i]=255;uiPixels[i+2]=80;}if(x>=2&&x<4)uiPixels[i+2]=100;}
+  GLuint uiArt=texture(2,8,2,GL_RGBA8,GL_RGBA,uiPixels),uiOriginal=texture(3,4,1,GL_RGBA8,GL_RGBA,uiSource);
+  uniforms(standard,lights);integer(standard,"uiLayer",1);integer(standard,"hdTexture",0);integer(standard,"uiArtworkTex",2);integer(standard,"uiSourceTex",3);
+  glUniform4f(glGetUniformLocation(standard,"uiArtworkBounds"),0,0,4,1);quad(v,6,0);
+  for(int i=0;i<6;i++){v[i*16+7]*=4;v[i*16+8]=.5f;v[i*16+9]=20;}
+  integer(standard,"uiArtworkEnabled",0);clearTargets();draw(standard,0,v);readTarget(0,a);
+  integer(standard,"uiArtworkEnabled",1);clearTargets();draw(standard,0,v);readTarget(0,b);assertCoverage(a,b);require(differences(a,b)>0,"UIHD restores RGB without changing indexed discard or STP coverage");
+  readTarget(1,c);require(c[center]==0&&c[center+1]==0&&c[center+2]==0,"UIHD retains zero scene emission");
+  integer(standard,"uiLayer",0);clearTargets();draw(standard,0,v);readTarget(0,c);require(memcmp(a,c,sizeof a)==0,"UIHD cannot alter scene primitives");integer(standard,"uiLayer",1);
+  unsigned int changedPalette=0x7c00;glActiveTexture(GL_TEXTURE1);glBindTexture(GL_TEXTURE_2D,uiVram);glTexSubImage2D(GL_TEXTURE_2D,0,0,0,1,1,GL_RED_INTEGER,GL_UNSIGNED_INT,&changedPalette);
+  integer(standard,"uiArtworkEnabled",0);clearTargets();draw(standard,0,v);readTarget(0,a);
+  integer(standard,"uiArtworkEnabled",1);clearTargets();draw(standard,0,v);readTarget(0,b);assertCoverage(a,b);
+  for(int y=0;y<H;y++)for(int x=0;x<W/4;x++){int i=(y*W+x)*4;require(memcmp(a+i,b+i,4)==0,"live changed palette falls back to original RGB");}
+  require(differences(a,b)>0,"unchanged palette entries remain enhanced");
+  integer(standard,"uiArtworkEnabled",0);clearTargets();draw(standard,0,v);readTarget(0,c);require(memcmp(a,c,sizeof a)==0,"UIHD metadata reset restores native draw exactly");
+  glDeleteTextures(1,&uiVram);glDeleteTextures(1,&uiArt);glDeleteTextures(1,&uiOriginal);
+  printf("PASS: UIHD RGB, original STP/discard coverage, live palette fallback, scene exclusion and state reset.\n");
+
   // Reuse scene MRT textures as post inputs, with a distinct output target.
   GLuint output=texture(5,W,H,GL_RGBA8,GL_RGBA,NULL);glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,output,0);glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT1,GL_TEXTURE_2D,0,0);glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT2,GL_TEXTURE_2D,0,0);glDrawBuffers(1,targets);glReadBuffer(GL_COLOR_ATTACHMENT0);
   float q[]={-1,-1,0,0,1,-1,1,0,1,1,1,1,-1,-1,0,0,1,1,1,1,-1,1,0,1};GLuint qvao;glGenVertexArrays(1,&qvao);glBindVertexArray(qvao);glBindBuffer(GL_ARRAY_BUFFER,vbo);glBufferData(GL_ARRAY_BUFFER,sizeof q,q,GL_STREAM_DRAW);glEnableVertexAttribArray(0);glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,16,0);glEnableVertexAttribArray(1);glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,16,(void*)8);

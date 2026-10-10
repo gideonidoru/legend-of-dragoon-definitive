@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "2ddf7df713f26ae3b2460f3076bd8ab4d9a2b99cdab1e3d26e137a15ea704f95",
+  "outputSha256": "ce4c882977c922faf5940ee3db9d150aee77303e8f9dd16c2b32fba8654d02f9",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage10-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Marshland mossy trunks, twisting branches and narrow hazy light gaps. Source-backed usage: stages10; Marshland.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Trunks and branches form mirrored contact patterns. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 6.673611164093018,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v1.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "2ddf7df713f26ae3b2460f3076bd8ab4d9a2b99cdab1e3d26e137a15ea704f95",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "ce4c882977c922faf5940ee3db9d150aee77303e8f9dd16c2b32fba8654d02f9",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "543bf7a5c7dad2a5f82e7bbd1d30fc137af513bc56c9f282e790d377342627bb",
+    "weightsSha256": null,
+    "masterSourceSha256": "9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e"
+}

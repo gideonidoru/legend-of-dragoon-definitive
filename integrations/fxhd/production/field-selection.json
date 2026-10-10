@@ -1,0 +1,344 @@
+{
+  "version": "0.2.0",
+  "pipeline": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1",
+  "selectedBindings": 6,
+  "activeTextureBytes": 81920,
+  "provisionalTextureBudgetBytes": 16777216,
+  "scriptSha256": "93288af71b83af2d09093f69001bcfa092972626a642137d6a122a74c840fc4f",
+  "status": "Offline reviewed; native and physical Deck acceptance pending",
+  "assets": [
+    {
+      "name": "dust",
+      "sourceSha256": "738980a1f51d119ceb6a3715caf2adc47ecc11772648bb75a1f30136a1ecde14",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "palette": 0,
+      "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1",
+      "tools": {
+        "engine": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+        "weights": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "parameters": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+      },
+      "reviewStatus": "selected-offline-review",
+      "candidates": [
+        {
+          "scale": 2,
+          "file": "dust-2x.png",
+          "sha256": "9ab6cdf9be92088c1425649b922999aa270f7712ff80d15b037956fa71c3b268",
+          "rgbaBytes": 16384
+        },
+        {
+          "scale": 4,
+          "file": "dust-4x.png",
+          "sha256": "21f1064d0075c6a32fd17fdcf5063d81106a3bb7dcca3f4644dec87c5cb9ba91",
+          "rgbaBytes": 65536
+        }
+      ],
+      "selected": true,
+      "nativeValidated": false,
+      "deckValidated": false,
+      "reason": "Static verified binding; 2x preferred at field-effect display size",
+      "runtime": {
+        "file": "dust.png",
+        "sha256": "9ab6cdf9be92088c1425649b922999aa270f7712ff80d15b037956fa71c3b268",
+        "scale": 2,
+        "rgbaBytes": 16384,
+        "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1"
+      },
+      "priorSelection": {
+        "version": "0.1.0",
+        "sha256": "e27b5cc9e15142f39802c41fcbf342a60ac9115bc6981aea82992e861a2ef2df",
+        "scale": 4,
+        "verdict": "Compared at equal native size; production 2x replaces the harsher prior baseline"
+      }
+    },
+    {
+      "name": "smoke_1",
+      "sourceSha256": "80b874c43394ccd94dad193af358ca511986bb19be573f27d54745c60f5fc18e",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "palette": 0,
+      "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1",
+      "tools": {
+        "engine": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+        "weights": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "parameters": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+      },
+      "reviewStatus": "selected-offline-review",
+      "candidates": [
+        {
+          "scale": 2,
+          "file": "smoke_1-2x.png",
+          "sha256": "5282d759dfa24d1514175bac27dfe4255e8eb86bcbbbb10e16ca50b1187c5f93",
+          "rgbaBytes": 16384
+        },
+        {
+          "scale": 4,
+          "file": "smoke_1-4x.png",
+          "sha256": "20a77a5ccf99a175f70efcae9cc79bc8a43597e97e0b3a9f11ae0376813c6701",
+          "rgbaBytes": 65536
+        }
+      ],
+      "selected": true,
+      "nativeValidated": false,
+      "deckValidated": false,
+      "reason": "Neural shading added grain; one source-faithful smooth repair selected",
+      "repair": {
+        "recipe": "source-bicubic-exact-stp-v1",
+        "predecessor": "smoke_1-2x.png",
+        "sha256": "a2fb3bc709920e26be1b086ec0f64414841adda2f2bbb59b692e76e4b926c4c9"
+      },
+      "runtime": {
+        "file": "smoke_1.png",
+        "sha256": "a2fb3bc709920e26be1b086ec0f64414841adda2f2bbb59b692e76e4b926c4c9",
+        "scale": 2,
+        "rgbaBytes": 16384,
+        "recipe": "source-bicubic-exact-stp-v1"
+      }
+    },
+    {
+      "name": "smoke_2",
+      "sourceSha256": "e5bf2443adbc04ac0e1701661586ff32422a4c5604172261833f23d203bf5a8d",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "palette": 0,
+      "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1",
+      "tools": {
+        "engine": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+        "weights": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "parameters": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+      },
+      "reviewStatus": "deferred-original-retained",
+      "candidates": [
+        {
+          "scale": 2,
+          "file": "smoke_2-2x.png",
+          "sha256": "1960b0616264d81200eaa6f1e0a3aec0ba8c87b022c7beb675fe8ee42fcdfddc",
+          "rgbaBytes": 16384
+        },
+        {
+          "scale": 4,
+          "file": "smoke_2-4x.png",
+          "sha256": "f74110f7ca5d13aab1c942ddca3f15c51a99c5ad299f699f17700bdcc464e6e4",
+          "rgbaBytes": 65536
+        }
+      ],
+      "selected": false,
+      "nativeValidated": false,
+      "deckValidated": false,
+      "reason": "Wrong palette for native cloud"
+    },
+    {
+      "name": "left_foot",
+      "sourceSha256": "20427e14ed280045bcc7231593f6a64f2eec47a1b738bd8f5a4dc78d10840e2d",
+      "sourceSize": [
+        16,
+        32
+      ],
+      "palette": 0,
+      "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1",
+      "tools": {
+        "engine": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+        "weights": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "parameters": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+      },
+      "reviewStatus": "selected-offline-review",
+      "candidates": [
+        {
+          "scale": 2,
+          "file": "left_foot-2x.png",
+          "sha256": "d76a8ebcb6f93140341d5ed6e3ad47198a85f3157cdf95c49c37e93b29121c0a",
+          "rgbaBytes": 8192
+        },
+        {
+          "scale": 4,
+          "file": "left_foot-4x.png",
+          "sha256": "c173fcf9660f662c763e1707971a39b83c9e1e841d7279a423fbbb48485b7638",
+          "rgbaBytes": 32768
+        }
+      ],
+      "selected": true,
+      "nativeValidated": false,
+      "deckValidated": false,
+      "reason": "Static verified binding; 2x preferred at field-effect display size",
+      "runtime": {
+        "file": "left_foot.png",
+        "sha256": "d76a8ebcb6f93140341d5ed6e3ad47198a85f3157cdf95c49c37e93b29121c0a",
+        "scale": 2,
+        "rgbaBytes": 8192,
+        "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1"
+      }
+    },
+    {
+      "name": "right_foot",
+      "sourceSha256": "3b00837f6aed6b1c02d63f0bcb74f554428ee445a85580200977ae1b2d6c8158",
+      "sourceSize": [
+        16,
+        32
+      ],
+      "palette": 0,
+      "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1",
+      "tools": {
+        "engine": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+        "weights": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "parameters": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+      },
+      "reviewStatus": "selected-offline-review",
+      "candidates": [
+        {
+          "scale": 2,
+          "file": "right_foot-2x.png",
+          "sha256": "a7a409cb3c2ba36fa3a99daacf5fd13b903ff119ddbdfae634009bb9456def1c",
+          "rgbaBytes": 8192
+        },
+        {
+          "scale": 4,
+          "file": "right_foot-4x.png",
+          "sha256": "e6df3bcb1a5b66fdc36b2e1ae5256ca1aef4307d513f681f8af756febb48ca2d",
+          "rgbaBytes": 32768
+        }
+      ],
+      "selected": true,
+      "nativeValidated": false,
+      "deckValidated": false,
+      "reason": "Static verified binding; 2x preferred at field-effect display size",
+      "runtime": {
+        "file": "right_foot.png",
+        "sha256": "a7a409cb3c2ba36fa3a99daacf5fd13b903ff119ddbdfae634009bb9456def1c",
+        "scale": 2,
+        "rgbaBytes": 8192,
+        "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1"
+      }
+    },
+    {
+      "name": "smoke_2_dust_palette",
+      "sourceSha256": "22be9c6a4afa22f24be09002c9abcf2bcfbc9eb57ada2f4712371e72bbbe3ebd",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "palette": 0,
+      "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1",
+      "tools": {
+        "engine": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+        "weights": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "parameters": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+      },
+      "reviewStatus": "selected-offline-review",
+      "candidates": [
+        {
+          "scale": 2,
+          "file": "smoke_2_dust_palette-2x.png",
+          "sha256": "45e855c1ee05a922183e1ae24afdf8ee75ca86f5e9a1e58293a1a92549e1841d",
+          "rgbaBytes": 16384
+        },
+        {
+          "scale": 4,
+          "file": "smoke_2_dust_palette-4x.png",
+          "sha256": "837a08309149200ec0973546355fd14e4fafbcee8c9d5bf231c87f42d8af8370",
+          "rgbaBytes": 65536
+        }
+      ],
+      "selected": true,
+      "nativeValidated": false,
+      "deckValidated": false,
+      "reason": "Static verified binding; 2x preferred at field-effect display size",
+      "runtime": {
+        "file": "smoke_2_dust_palette.png",
+        "sha256": "45e855c1ee05a922183e1ae24afdf8ee75ca86f5e9a1e58293a1a92549e1841d",
+        "scale": 2,
+        "rgbaBytes": 16384,
+        "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1"
+      }
+    },
+    {
+      "name": "savepoint",
+      "sourceSha256": "7ec204cf8836949f182fe890697cc6e80e116d83b73914db61888ff39a42d1d8",
+      "sourceSize": [
+        48,
+        64
+      ],
+      "palette": 0,
+      "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1",
+      "tools": {
+        "engine": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+        "weights": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "parameters": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+      },
+      "reviewStatus": "deferred-original-retained",
+      "candidates": [
+        {
+          "scale": 2,
+          "file": "savepoint-2x.png",
+          "sha256": "6198e7ddf2ff7ba3f3e08e0652cc828e5d5c33c3684f8ce077820218278f7b1b",
+          "rgbaBytes": 49152
+        },
+        {
+          "scale": 4,
+          "file": "savepoint-4x.png",
+          "sha256": "6befde336394fdd38f36566c2eacd4c620369fc5c6e9f9c07990242d2d10c44e",
+          "rgbaBytes": 196608
+        }
+      ],
+      "selected": false,
+      "nativeValidated": false,
+      "deckValidated": false,
+      "reason": "Sheet/model consumer scrolls and overlaps VRAM; retain original animation"
+    },
+    {
+      "name": "savepoint_big_circle",
+      "sourceSha256": "1c6e8fc965675e12804c7b7845432f2b0eb5671d776fd7da08664ad29b0e6b8a",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "palette": 0,
+      "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1",
+      "tools": {
+        "engine": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+        "weights": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "parameters": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+      },
+      "reviewStatus": "selected-offline-review",
+      "candidates": [
+        {
+          "scale": 2,
+          "file": "savepoint_big_circle-2x.png",
+          "sha256": "ce5abac51ba5fd1c6ac9e04379205afd169aff76d4e2ce06bde672eb4dd63943",
+          "rgbaBytes": 16384
+        },
+        {
+          "scale": 4,
+          "file": "savepoint_big_circle-4x.png",
+          "sha256": "9bd350a925a78a1454b6aab2980ec1ebd549b2236f41cd72267724283dd25017",
+          "rgbaBytes": 65536
+        }
+      ],
+      "selected": true,
+      "nativeValidated": false,
+      "deckValidated": false,
+      "reason": "Static verified binding; 2x preferred at field-effect display size",
+      "runtime": {
+        "file": "savepoint_big_circle.png",
+        "sha256": "ce5abac51ba5fd1c6ac9e04379205afd169aff76d4e2ce06bde672eb4dd63943",
+        "scale": 2,
+        "rgbaBytes": 16384,
+        "recipe": "real-esrgan-x4plus-clamped16-blend65-exact-stp-v1"
+      }
+    }
+  ],
+  "accounting": {
+    "gpuTextures": 81920,
+    "sharedDecodedCache": 81920,
+    "sceneImageAndPaletteControls": "less than 8 KiB",
+    "uploadStaging": "one selected sprite at a time; at most 16 KiB before renderer/driver overhead",
+    "sampling": "nearest, clamped, no mipmaps; exact STP and discard",
+    "physicalDeckMeasured": false
+  }
+}

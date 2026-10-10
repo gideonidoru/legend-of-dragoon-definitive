@@ -2261,9 +2261,11 @@ public class Battle extends EngineState<Battle> {
       }
 
       final int enemyIndex = a0.charIndex_1a2;
+      final int materialGeneration = a0.materials.generation();
 
       if(Loader.exists("monsters/%d/textures/combat".formatted(enemyIndex))) {
-        loadFile("monsters/%d/textures/combat".formatted(enemyIndex)).thenAccept(files -> this.loadCombatantTim(a0, files));
+        loadFile("monsters/%d/textures/combat".formatted(enemyIndex)).thenAccept(files ->
+          a0.materials.runIfCurrent(materialGeneration, () -> this.loadCombatantTim(a0, files)));
       }
     }
   }
@@ -2273,11 +2275,13 @@ public class Battle extends EngineState<Battle> {
   public void loadPartyTims() {
     for(int charSlot = 0; charSlot < gameState_800babc8.charIds_88.size(); charSlot++) {
       final CharacterData2c character = gameState_800babc8.getCharacterBySlot(charSlot);
-      final int finalCharSlot = charSlot;
+      final var bent = battleState_8006e398.playerBents_e40.get(charSlot).innerStruct_00;
+      final var combatant = bent.combatant_144;
+      final int materialGeneration = combatant.materials.generation();
 
       Loader
-        .loadFile(character.getBattleTexturePath(battleState_8006e398.playerBents_e40.get(charSlot).innerStruct_00))
-        .thenAccept(files -> this.loadCharacterTim(files, finalCharSlot))
+        .loadFile(character.getBattleTexturePath(bent))
+        .thenAccept(files -> combatant.materials.runIfCurrent(materialGeneration, () -> this.loadCombatantTim(combatant, files)))
       ;
     }
   }
@@ -2294,11 +2298,13 @@ public class Battle extends EngineState<Battle> {
   public void loadPartyTmdAndAnims() {
     for(int charSlot = 0; charSlot < gameState_800babc8.charIds_88.size(); charSlot++) {
       final CharacterData2c character = gameState_800babc8.getCharacterBySlot(charSlot);
-      final int finalCharSlot = charSlot;
+      final var bent = battleState_8006e398.playerBents_e40.get(charSlot).innerStruct_00;
+      final var combatant = bent.combatant_144;
+      final int materialGeneration = combatant.materials.generation();
 
       Loader
-        .loadDirectory(character.getBattleModelPath(battleState_8006e398.playerBents_e40.get(charSlot).innerStruct_00))
-        .thenAccept(files -> this.loadCharTmdAndAnims(files, finalCharSlot))
+        .loadDirectory(character.getBattleModelPath(bent))
+        .thenAccept(files -> combatant.materials.runIfCurrent(materialGeneration, () -> this.combatantTmdAndAnimLoadedCallback(files, combatant, false)))
       ;
     }
   }
@@ -2476,10 +2482,7 @@ public class Battle extends EngineState<Battle> {
       this.setStageHasNoModel();
       this.deleteBattleStageModel();
 
-      if(battlePreloadedEntities_1f8003f4.skyboxObj != null) {
-        battlePreloadedEntities_1f8003f4.skyboxObj.delete();
-        battlePreloadedEntities_1f8003f4.skyboxObj = null;
-      }
+      battlePreloadedEntities_1f8003f4.deleteSkybox();
 
       this.playerBattleScript_800c66fc = null;
 
@@ -2547,7 +2550,11 @@ public class Battle extends EngineState<Battle> {
     //LAB_800c8604
   }
 
+  private long stageLoadGeneration;
+
   private void deleteBattleStageModel() {
+    final BattleStage stage = battlePreloadedEntities_1f8003f4.stage_963c;
+    if(stage.artwork != null) { stage.artwork.delete(); stage.artwork = null; }
     if(battlePreloadedEntities_1f8003f4.stage_963c.dobj2s_00 != null) {
       for(int i = 0; i < battlePreloadedEntities_1f8003f4.stage_963c.dobj2s_00.length; i++) {
         battlePreloadedEntities_1f8003f4.stage_963c.dobj2s_00[i].tmd_08.delete();
@@ -2594,6 +2601,7 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800c8748L)
   public void FUN_800c8748() {
+    this.stageLoadGeneration++;
     battlePreloadedEntities_1f8003f4 = null;
     battleState_8006e398 = null;
     this.targetBents_800c71f0 = null;
@@ -2601,6 +2609,10 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800c8774L)
   public void loadStageTmdAndAnim(final String modelName, final List<FileData> files) {
+    this.loadStageTmdAndAnim(modelName, files, null);
+  }
+
+  private void loadStageTmdAndAnim(final String modelName, final List<FileData> files, final byte[] originalTim) {
     LOGGER.info("Battle stage %s loaded", modelName);
 
     this.setStageHasNoModel();
@@ -2609,7 +2621,14 @@ public class Battle extends EngineState<Battle> {
     if(files.get(0).size() > 0 && files.get(1).size() > 0 && files.get(2).size() > 0) {
       final BattleStage stage = battlePreloadedEntities_1f8003f4.stage_963c;
       stage.name = modelName;
+      final byte[] originalModel = files.get(0).getBytes().clone();
       this.loadStageTmd(stage, new CContainer(modelName, files.get(0), 10), new TmdAnimationFile(files.get(1)));
+      if(originalTim != null) {
+        try {
+          final var event = EVENTS.postEvent(new legend.game.modding.events.battle.BattleStageTextureEvent(originalModel, originalTim));
+          if(event.replacement != null) stage.artwork = legend.definitive.artwork.StageArtwork.create(stage, event.replacement, originalModel, originalTim);
+        } catch(final Exception failure) { LOGGER.warn("EnvHD stage retained original artwork: {}", failure.getMessage()); }
+      }
       stage.coord2_558.coord.transfer.set(0, 0, 0);
       stage.param_5a8.rotate.set(0.0f, MathHelper.TWO_PI / 4.0f, 0.0f);
 
@@ -2636,9 +2655,18 @@ public class Battle extends EngineState<Battle> {
       }
 
       if(battlePreloadedEntities_1f8003f4.skyboxObj == null) {
-        battlePreloadedEntities_1f8003f4.skyboxObj = new McqBuilder("Battle Skybox", mcq)
-          .vramOffset(320, 0)
-          .build();
+        try {
+          final var event = EVENTS.postEvent(new legend.game.modding.events.battle.BattleSkyTextureEvent(mcq.source()));
+          if(event.replacement != null) {
+            battlePreloadedEntities_1f8003f4.skyArtwork = legend.definitive.artwork.SkyArtwork.create(mcq, event.replacement);
+            battlePreloadedEntities_1f8003f4.skyboxObj = battlePreloadedEntities_1f8003f4.skyArtwork.mesh;
+          }
+        } catch(final java.io.IOException | RuntimeException failure) {
+          LOGGER.warn("Retained original battle panorama: {}", failure.getMessage());
+        }
+        if(battlePreloadedEntities_1f8003f4.skyboxObj == null) {
+          battlePreloadedEntities_1f8003f4.skyboxObj = new McqBuilder("Battle Skybox", mcq).vramOffset(320, 0).build();
+        }
       }
 
       this.mcqOffsetX_800c6774 += this.mcqStepX_800c676c;
@@ -2651,8 +2679,9 @@ public class Battle extends EngineState<Battle> {
 
       for(int i = -1; i < segments + 1; i++) {
         battlePreloadedEntities_1f8003f4.skyboxTransforms.transfer.set(-totalWidth / 2.0f + i * mcq.screenWidth_14 + x0, y, 60000.0f);
-        RENDERER.queueOrthoModel(battlePreloadedEntities_1f8003f4.skyboxObj, battlePreloadedEntities_1f8003f4.skyboxTransforms, QueuedModelStandard.class)
+        final var queued = RENDERER.queueOrthoModel(battlePreloadedEntities_1f8003f4.skyboxObj, battlePreloadedEntities_1f8003f4.skyboxTransforms, QueuedModelStandard.class)
           .monochrome(this.mcqColour_800fa6dc / 128.0f);
+        if(battlePreloadedEntities_1f8003f4.skyArtwork != null) queued.texture(battlePreloadedEntities_1f8003f4.skyArtwork.texture).useTextureAlpha();
       }
 
       //LAB_800c89d4
@@ -2682,12 +2711,12 @@ public class Battle extends EngineState<Battle> {
   public void loadStage(final int stage) {
     LOGGER.info("Loading battle stage %d", stage);
 
-    if(battlePreloadedEntities_1f8003f4.skyboxObj != null) {
-      battlePreloadedEntities_1f8003f4.skyboxObj.delete();
-      battlePreloadedEntities_1f8003f4.skyboxObj = null;
-    }
+    battlePreloadedEntities_1f8003f4.deleteSkybox();
 
     // GH#1931
+    final long generation = ++this.stageLoadGeneration;
+    final var owner = battlePreloadedEntities_1f8003f4;
+
     // Disable texture animations so we don't corrupt the texture of the loading stage due to the old stage model still being loaded...
     if(stage_800bda0c != null) {
       for(int i = 0; i < 10; i++) {
@@ -2697,17 +2726,23 @@ public class Battle extends EngineState<Battle> {
 
     // ... and defer loading to the next frame so that any texture animations currently in the pipeline finish
     RENDERER.addTask(() -> {
-      loadDrgnDir(0, 2497 + stage).thenAccept(files -> {
-        if(files.get(1).hasVirtualSize()) {
-          this.loadStageMcq(new McqHeader(files.get(1)));
-        }
-
-        if(files.get(2).size() != 0) {
-          this.loadStageTim(files.get(2));
-        }
-      });
-
-      loadDrgnDir(0, (2497 + stage) + "/0").thenAccept(files -> this.loadStageTmdAndAnim("DRGN0/" + (2497 + stage) + "/0", files));
+      final var textureFiles = loadDrgnDir(0, 2497 + stage);
+      final var modelFiles = loadDrgnDir(0, (2497 + stage) + "/0");
+      legend.definitive.artwork.StageLoad.apply(modelFiles, textureFiles, RENDERER::addTask,
+        () -> this.stageLoadGeneration == generation && battlePreloadedEntities_1f8003f4 == owner,
+        (models, textures) -> {
+          if(textures.get(1).hasVirtualSize()) {
+            this.loadStageMcq(new McqHeader(textures.get(1)));
+          }
+          final byte[] originalTim = textures.get(2).size() == 0 ? null : textures.get(2).getBytes().clone();
+          if(originalTim != null) {
+            this.loadStageTim(textures.get(2));
+          }
+          this.loadStageTmdAndAnim("DRGN0/" + (2497 + stage) + "/0", models, originalTim);
+        }).exceptionally(failure -> {
+          LOGGER.error("Battle stage loading failed", failure);
+          return null;
+        });
     });
 
     this.currentStage_800c66a4 = stage;
@@ -2869,6 +2904,9 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800c9170L)
   public void deallocateCombatant(final CombatantStruct1a8 combatant) {
+    combatant.materials.invalidate();
+    if(combatant.materialModel != null) combatant.materialModel.clearMaterialAppearance();
+    combatant.materialModel = null;
     //LAB_800c91bc
     if(combatant.mrg_00 != null) {
       combatant.mrg_00 = null;
@@ -2903,6 +2941,7 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800c9290L)
   public void loadCombatantTmdAndAnims(final CombatantStruct1a8 combatant) {
+    final int materialGeneration = combatant.materials.generation();
     if(combatant.charIndex_1a2 >= 0) {
       if((combatant.flags_19e & 0x8) == 0) {
         if(combatant.mrg_00 == null) {
@@ -2911,7 +2950,9 @@ public class Battle extends EngineState<Battle> {
           if((combatant.flags_19e & 0x4) == 0) {
             // Enemy TMDs
             final int fileIndex = 3137 + combatant.charIndex_1a2;
-            loadDrgnDir(0, fileIndex).thenAccept(files -> this.combatantTmdAndAnimLoadedCallback(files, combatant, true));
+            loadDrgnDir(0, fileIndex).thenAccept(files -> {
+              combatant.materials.runIfCurrent(materialGeneration, () -> this.combatantTmdAndAnimLoadedCallback(files, combatant, true));
+            });
           } else {
             // Player TMDs
             //LAB_800c9334
@@ -2921,7 +2962,9 @@ public class Battle extends EngineState<Battle> {
 
             Loader
               .loadDirectory(character.getBattleModelPath(combatant.playerBent))
-              .thenAccept(files -> this.combatantTmdAndAnimLoadedCallback(files, combatant, false))
+              .thenAccept(files -> {
+                combatant.materials.runIfCurrent(materialGeneration, () -> this.combatantTmdAndAnimLoadedCallback(files, combatant, false));
+              })
             ;
           }
         }
@@ -2962,15 +3005,22 @@ public class Battle extends EngineState<Battle> {
     }
   }
 
+  private static byte[] boundedMaterialSource(final FileData source) {
+    return source.size() <= 16 * 1024 * 1024 ? source.getBytes().clone() : null;
+  }
+
   @Method(0x800c952cL)
   public static void loadCombatantModelAndAnimation(final Battle battle, final BattleEntity27c bent, final CombatantStruct1a8 combatant) {
     bent.model_148.deleteModelParts();
 
     final CContainer tmd;
+    final byte[] materialModelSource;
     if(combatant._1a4 >= 0) {
+      materialModelSource = boundedMaterialSource(battleState_8006e398.getGlobalAsset(combatant._1a4).data_00);
       tmd = new CContainer(bent.model_148.name, battleState_8006e398.getGlobalAsset(combatant._1a4).data_00);
       //LAB_800c9590
     } else if(combatant.mrg_00 != null && combatant.mrg_00.get(32).hasVirtualSize()) {
+      materialModelSource = boundedMaterialSource(combatant.mrg_00.get(32));
       tmd = new CContainer(bent.model_148.name, combatant.mrg_00.get(32));
     } else {
       throw new RuntimeException("Invalid state");
@@ -2994,10 +3044,26 @@ public class Battle extends EngineState<Battle> {
 
     TmdObjLoader.fromModel("CombatantModel (%s)".formatted(bent), bent.model_148);
 
+    combatant.materialModel = bent.model_148;
     EVENTS.postEvent(new CombatantModelLoadedEvent(battle, combatant, bent.model_148));
+    combatant.materials.modelReady(bent.model_148, materialModelSource);
 
     //LAB_800c9680
     combatant.assets_14[0]._09++;
+  }
+
+  /** Resolve each changed source pair on the rendering thread, in either arrival order. */
+  public static void applyCombatantMaterials(final Battle battle, final Model124 model, final CombatantStruct1a8 combatant) {
+    final var update = combatant.materials.takeUpdate(model);
+    if(update == null) return;
+    model.clearMaterialAppearance();
+    if(update.ready() && model.clutAnimations_a4 == null && model.ptr_a8 == null) {
+      try {
+        final var event = EVENTS.postEvent(new legend.game.modding.events.battle.CombatantMaterialEvent(battle, model, update.modelSource(), update.timSource()));
+        if(event.replacement != null) model.materialAppearance = legend.definitive.materials.CharacterAppearance.create(model, event.replacement,
+          new Tim(new FileData(update.timSource())).getClutRect().w / 16, event.surfaces, update.modelSource());
+      } catch(final Exception failure) { LOGGER.warn("Character material kept original: {}", failure.getMessage()); }
+    }
   }
 
   @Method(0x800c9708L)
@@ -3289,12 +3355,15 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800ca55cL)
   public void loadCombatantTextures(final CombatantStruct1a8 combatant) {
+    final int materialGeneration = combatant.materials.generation();
     if(combatant.charIndex_1a2 >= 0) {
       final CharacterData2c character = gameState_800babc8.getCharacterBySlot(combatant.charSlot_19c);
 
       Loader
         .loadFile(character.getBattleTexturePath(combatant.playerBent))
-        .thenAccept(files -> this.loadCombatantTim(combatant, files))
+        .thenAccept(files -> {
+          combatant.materials.runIfCurrent(materialGeneration, () -> this.loadCombatantTim(combatant, files));
+        })
       ;
     }
 
@@ -3316,6 +3385,9 @@ public class Battle extends EngineState<Battle> {
 
     //LAB_800ca7d0
     final Tim tim = new Tim(timFile);
+    if(combatant != null) {
+      combatant.materials.textureReady(boundedMaterialSource(timFile));
+    }
 
     if(vramSlot == -1) {
       combatant.tim = tim;
@@ -8040,8 +8112,10 @@ public class Battle extends EngineState<Battle> {
         GTE.setTransforms(ls);
         Renderer.renderDobj2(part, true, 0);
 
-        RENDERER.queueModel(part.tmd_08.getObj(), lw, QueuedModelBattleTmd.class)
-          .depthOffset(stage.z_5e8 * 4)
+        final boolean useArtwork = stage.artwork != null && !stage.artworkDarkened && java.util.Arrays.stream(stage._618).allMatch(value -> value == 0);
+        final var queued = RENDERER.queueModel(useArtwork ? stage.artwork.meshes[i] : part.tmd_08.getObj(), lw, QueuedModelBattleTmd.class);
+        if(useArtwork) queued.texture(stage.artwork.texture);
+        queued.depthOffset(stage.z_5e8 * 4)
           .lightDirection(lightDirectionMatrix_800c34e8)
           .lightColour(lightColourMatrix_800c3508)
           .backgroundColour(GTE.backgroundColour)
@@ -8119,6 +8193,7 @@ public class Battle extends EngineState<Battle> {
   /** Stage darkening for counterattacks change the clut, this saves a backup copy */
   @Method(0x800ec8d0L)
   public void backupStageClut(final FileData timFile) {
+    battlePreloadedEntities_1f8003f4.stage_963c.artworkDarkened = false;
     final BattleStageDarkening1800 darkening = stageDarkening_800c6958;
 
     //LAB_800ec8ec
@@ -8350,6 +8425,8 @@ public class Battle extends EngineState<Battle> {
         rect.w = 16;
         rect.h = 16;
         GPU.uploadData15(rect, tim.getClutData());
+        legend.game.textures.NativeUiTextureEvent.post(new legend.game.textures.NativeUiTextureEvent("battle_hud_" + fileIndex,
+          legend.game.textures.NativeUiTextureEvent.withPalette(new Tim(files.get(0)), tim), 704, 256, rect.x, rect.y));
         this.countCombatUiFilesLoaded_800c6cf4++;
       }
     }

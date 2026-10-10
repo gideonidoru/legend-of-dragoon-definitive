@@ -33,7 +33,7 @@ public abstract class Texture {
     return legend.definitive.rendering.PngAssets.SHARED.prewarm(() -> owner.getResourceAsStream(resource));
   }
 
-  static boolean imageCachingEnabled() {
+  public static boolean imageCachingEnabled() {
     final var setting = legend.game.modding.coremod.CoreMod.IMAGE_CACHE_CONFIG;
     return !setting.isValid() || legend.core.GameEngine.CONFIG.getConfig(setting.get());
   }
@@ -159,6 +159,17 @@ public abstract class Texture {
 
   public void delete() {
     this.deleted = true;
+  }
+
+  /** Renderer-thread retirement for exclusively owned cache entries no longer used by this frame.
+   * Unlike ordinary deletion, this also bounds caches while paused. The caller must
+   * invalidate all retained draw references before invoking this method.
+   */
+  public final void deleteOwnedCacheEntry() {
+    if(texList.remove(this)) {
+      this.deleted = true;
+      this.performDelete();
+    }
   }
 
   public static void deleteTextures() {

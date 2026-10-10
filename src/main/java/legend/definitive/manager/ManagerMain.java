@@ -23,22 +23,22 @@ public final class ManagerMain {
     if(args.length >= 3 && args[0].equals("--import")) { System.out.println(DiscSources.importSelected(new InstallStore(Path.of(args[1])), Arrays.stream(args).skip(2).map(Path::of).toList())); return; }
     final Path packageRoot = args.length == 2 && args[0].equals("--setup") ? Path.of(args[1]).toAbsolutePath() : null;
     final Path installedRoot = args.length == 2 && (args[0].equals("--manage") || args[0].equals("--play")) ? Path.of(args[1]).toAbsolutePath() : InstallLocation.discover().orElse(Path.of(System.getProperty("user.home"), "Games", "Legend-of-Dragoon-Definitive"));
-    // The managed root bootstrap routes to the currently active manager, including after rollback.
+    // Keep the current hardened manager while selecting an older engine for rollback.
+    // Its dependencies come from the verified package owning the root bootstrap pair.
     if(args.length == 2 && (args[0].equals("--manage") || args[0].equals("--play"))) {
       final Path self = Path.of(ManagerMain.class.getProtectionDomain().getCodeSource().getLocation().toURI()).toAbsolutePath();
-      if(self.equals(installedRoot.resolve("definitive-manager.jar"))) {
-        final var state = new InstallStore(installedRoot).state();
-        final Path active = InstallStore.child(installedRoot.resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
-        PackageManifest.read(active).verify(active, PackageManifest.hostPlatform());
-        System.exit(new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(), "--enable-native-access=ALL-UNNAMED", "-cp", active.resolve("definitive-manager.jar") + java.io.File.pathSeparator + active.resolve("libs/*"), "legend.definitive.manager.ManagerMain", args[0], installedRoot.toString()).inheritIO().start().waitFor());
+      if(self.equals(installedRoot.resolve("definitive-manager.jar")) && !Boolean.getBoolean("definitive.routerReady")) {
+        final Path router = new InstallStore(installedRoot).verifiedRouterRelease();
+        System.exit(runRouter(new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(), "--enable-native-access=ALL-UNNAMED", "-Ddefinitive.routerReady=true", "-Ddefinitive.installerLog=" + InstallerLog.path(), "-cp", self + java.io.File.pathSeparator + router.resolve("libs/*"), "legend.definitive.manager.ManagerMain", args[0], installedRoot.toString()), installedRoot));
       }
     }
     if(args.length == 2 && args[0].equals("--play")) {
       final var store = new InstallStore(installedRoot);
       final int code = store.play();
-      if(code != 0 && code != 130 && code != 143) {
-        System.err.println("Game exited with code " + code + ". Details: " + store.gameLog());
-        try(final var lines = Files.lines(store.gameLog())) { final var tail = lines.toList(); tail.subList(Math.max(0, tail.size() - 24), tail.size()).forEach(System.err::println); }
+      if(!ProcessResult.successful(code)) {
+        System.err.println("Game exited with code " + code + '.');
+        try { ProcessResult.printDiagnostics(store.gameLog(), System.err); }
+        catch(final IOException diagnosticFailure) { System.err.println("Could not locate game diagnostics: " + diagnosticFailure.getMessage()); }
       }
       System.exit(code); return;
     }
@@ -52,6 +52,15 @@ public final class ManagerMain {
     });
     SwingUtilities.invokeAndWait(() -> window.set(show(packageRoot, installedRoot)));
     DeckControls.loop(window);
+  }
+
+  static int runRouter(final ProcessBuilder command, final Path root) throws IOException, InterruptedException {
+    final Path log = root.resolve("manager-router.log");
+    try(final var running = ProcessRunner.start(command, log, false)) {
+      final int code = running.await();
+      if(!ProcessResult.successful(code)) { System.err.println("Manager exited with code " + code + '.'); ProcessResult.printDiagnostics(log, System.err); }
+      return code;
+    }
   }
 
   private static JFrame show(final Path packageRoot, final Path initialRoot) {

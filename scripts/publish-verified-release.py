@@ -12,6 +12,8 @@ import re
 import subprocess
 import sys
 import zipfile
+import tempfile
+from package_validation import verify_package, verify_installer, inventory, file_delivery_assets, properties
 
 REPO = 'gideonidoru/legend-of-dragoon-definitive'
 NAMES = {'Install-Definitive.desktop', 'Install-Definitive.sh', 'Definitive-Installer.zip',
@@ -20,6 +22,54 @@ NAMES = {'Install-Definitive.desktop', 'Install-Definitive.sh', 'Definitive-Inst
 
 def gh(*arguments):
     return subprocess.check_output(['gh', *arguments], text=True, stderr=subprocess.PIPE)
+
+
+def verify_ci_artifacts(run_id, source, expected):
+    pages = json.loads(gh('api', f'repos/{REPO}/actions/runs/{run_id}/artifacts?per_page=100', '--paginate', '--slurp'))
+    artifacts = [a for page in pages for a in page['artifacts']]
+    for artifact_name, names in {
+        'delivery-ubuntu-24.04': {'Definitive-Installer.zip', 'Install-Definitive.sh', 'Install-Definitive.desktop', 'Legend-of-Dragoon-Definitive-linux-x64.zip'},
+        'delivery-macos-15': {'Legend-of-Dragoon-Definitive-macos-arm64.zip'},
+    }.items():
+        matched = [a for a in artifacts if a['name'] == artifact_name]
+        if len(matched) != 1:
+            raise ValueError('Required CI artifact is missing or ambiguous: ' + artifact_name)
+        artifact = matched[0]
+        if artifact['expired'] or artifact['workflow_run']['id'] != int(run_id) or artifact['workflow_run']['head_sha'] != source:
+            raise ValueError('CI artifact does not belong to the approved source/run')
+        platform = 'linux-x64' if 'ubuntu' in artifact_name else 'macos-arm64'
+        contents_name = 'Definitive-Contents-' + platform + '.zip'
+        if contents_name in expected: names = names | {contents_name}
+        if 'FMVHD-v0.1.0-videos.zip' in expected: names = names | {'FMVHD-v0.1.0-videos.zip'}
+        with tempfile.TemporaryFile() as output:
+            subprocess.run(['gh', 'api', f'repos/{REPO}/actions/artifacts/{artifact["id"]}/zip'],
+                           stdout=output, stderr=subprocess.PIPE, check=True, timeout=1800)
+            output.seek(0)
+            if artifact.get('digest') != 'sha256:' + hashlib.file_digest(output, 'sha256').hexdigest():
+                raise ValueError('Downloaded CI artifact digest mismatch')
+            output.seek(0)
+            with zipfile.ZipFile(output) as archive:
+                entries = inventory(archive)
+                if 'FMVHD-v0.1.0-videos.zip' not in expected and any(n.split('/')[-1] == 'FMVHD-v0.1.0-videos.zip' for n in entries): raise ValueError('CI source payload cannot be omitted from publication')
+                if contents_name not in expected and any(n.split('/')[-1] == contents_name for n in entries): raise ValueError('CI file delivery inventory cannot be omitted from publication')
+                if contents_name in expected:
+                    candidates = [e for n, e in entries.items() if n.split('/')[-1] == contents_name and not e.is_dir()]
+                    if len(candidates) != 1 or candidates[0].file_size > 8 * 1024**2: raise ValueError('Missing bounded CI contents inventory')
+                    data = archive.read(candidates[0])
+                    if (len(data), hashlib.sha256(data).hexdigest()) != expected[contents_name]: raise ValueError('Contents inventory differs from approved CI bytes')
+                    import io
+                    with zipfile.ZipFile(io.BytesIO(data)) as contents:
+                        hashes = properties(contents.read('definitive-files.properties'))
+                    names |= {'file-' + digest for digest in hashes.values()}
+                for name in names:
+                    candidates = [e for n, e in entries.items() if n.split('/')[-1] == name and not e.is_dir()]
+                    if len(candidates) != 1:
+                        raise ValueError('Approved CI upload is missing or ambiguous: ' + name)
+                    entry = candidates[0]
+                    with archive.open(entry) as stream:
+                        actual = entry.file_size, hashlib.file_digest(stream, 'sha256').hexdigest()
+                    if actual != expected[name]:
+                        raise ValueError('Upload bytes differ from the approved CI artifact: ' + name)
 
 
 def verify_release(release, tag, source, expected):
@@ -65,29 +115,49 @@ def main():
     parser.add_argument('--tag', required=True)
     parser.add_argument('--source-sha', required=True)
     parser.add_argument('--run', required=True, help='Successful hosted build ID for this source')
-    parser.add_argument('--assets-dir', type=Path, required=True, help='Five upload inputs and SHA256SUMS')
+    parser.add_argument('--assets-dir', type=Path, required=True, help='Complete upload inputs and SHA256SUMS')
     parser.add_argument('--notes-file', type=Path, required=True)
     parser.add_argument('--check-only', action='store_true')
     args = parser.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9._-]+', args.tag) or not re.fullmatch(r'[a-f0-9]{40}', args.source_sha) or not args.run.isdecimal():
         raise ValueError('Invalid release tag, source SHA or build ID')
     if not args.notes_file.is_file():raise ValueError('Release notes are missing')
-    if {p.name for p in args.assets_dir.iterdir()} != NAMES | {'SHA256SUMS'}:
-        raise ValueError('Release staging must contain only the six approved upload files')
+    names = set(NAMES)
+    has_contents = any(p.name.startswith('Definitive-Contents-') for p in args.assets_dir.iterdir())
+    if has_contents:
+        blobs = {}
+        for platform in ('linux-x64', 'macos-arm64'):
+            name = f'Definitive-Contents-{platform}.zip'
+            names.add(name)
+            for blob, identity in file_delivery_assets(args.assets_dir / f'Legend-of-Dragoon-Definitive-{platform}.zip', args.assets_dir / name).items():
+                if blob in blobs and blobs[blob] != identity: raise ValueError('Conflicting platform blob identity')
+                blobs[blob] = identity
+        names.update(blobs)
+        needs_source = False
+        for platform in ('linux-x64', 'macos-arm64'):
+            with zipfile.ZipFile(args.assets_dir / f'Definitive-Contents-{platform}.zip') as archive:
+                needs_source |= 'bundled-mods/FMVHD-v0.1.0.jar' in properties(archive.read('definitive-files.properties'))
+        if needs_source:
+            name = 'FMVHD-v0.1.0-videos.zip'
+            names.add(name)
+            lock = properties(subprocess.check_output(['git', 'show', args.source_sha + ':integrations/fmvhd/release.properties'], cwd=Path(__file__).resolve().parents[1]))
+            with (args.assets_dir / name).open('rb') as stream:
+                if hashlib.file_digest(stream, 'sha256').hexdigest() != lock.get('sha256'): raise ValueError('FMVHD source payload differs from the checked source pin')
+    if len(names) + 1 > 1000 or {p.name for p in args.assets_dir.iterdir()} != names | {'SHA256SUMS'}:
+        raise ValueError('Release staging must contain exactly the complete approved upload inventory')
     expected = {}
-    for name in NAMES | {'SHA256SUMS'}:
+    for name in names | {'SHA256SUMS'}:
         path = args.assets_dir / name
         if path.is_symlink() or not path.is_file():raise ValueError('Invalid upload file: ' + name)
         with path.open('rb') as stream:digest = hashlib.file_digest(stream, 'sha256').hexdigest()
         expected[name] = (path.stat().st_size, digest)
     sums = (args.assets_dir / 'SHA256SUMS').read_text().splitlines()
-    if len(sums) != len(NAMES) or set(sums) != {expected[n][1] + '  ' + n for n in NAMES}:
+    if len(sums) != len(names) or set(sums) != {expected[n][1] + '  ' + n for n in names}:
         raise ValueError('SHA256SUMS does not match the complete upload set')
+    if has_contents and any(expected[name] != identity for name, identity in blobs.items()): raise ValueError('Per-file blob checksum or size mismatch')
     for platform in ('linux-x64', 'macos-arm64'):
-        with zipfile.ZipFile(args.assets_dir / f'Legend-of-Dragoon-Definitive-{platform}.zip') as archive:
-            properties = dict(line.split('=', 1) for line in archive.read('definitive-package.properties').decode().splitlines() if '=' in line and not line.startswith('#'))
-        if any(properties.get(k) != v for k, v in {'sourceRevision': args.source_sha, 'releaseTag': args.tag, 'platform': platform, 'format': '1', 'java': '25'}.items()):
-            raise ValueError('Package source/tag/platform mismatch: ' + platform)
+        verify_package(args.assets_dir / f'Legend-of-Dragoon-Definitive-{platform}.zip', platform, args.source_sha, args.tag)
+    verify_installer(args.assets_dir / 'Definitive-Installer.zip')
     script = (args.assets_dir / 'Install-Definitive.sh').read_text()
     if f'TAG={args.tag}\n' not in script or f'EXPECTED={expected["Definitive-Installer.zip"][1]}\n' not in script:
         raise ValueError('Portable entry point has stale tag/checksum')
@@ -103,7 +173,14 @@ def main():
     checked = [j for j in jobs if j['name'] in required]
     if len(checked) != len(required) or {j['name'] for j in checked} != required or any(j['status'] != 'completed' or j['conclusion'] != 'success' for j in checked):
         raise ValueError('Required packaging/test jobs are missing or did not pass')
-    def read():return json.loads(gh('release', 'view', args.tag, '-R', REPO, '--json', 'tagName,targetCommitish,isDraft,url,assets'))
+    verify_ci_artifacts(args.run, args.source_sha, expected)
+    def read():
+        release = json.loads(gh('release', 'view', args.tag, '-R', REPO, '--json', 'databaseId,tagName,targetCommitish,isDraft,url,assets'))
+        if len(expected) > 100:
+            if not isinstance(release.get('databaseId'), int): raise ValueError('Invalid release API identity')
+            pages = json.loads(gh('api', f'repos/{REPO}/releases/{release["databaseId"]}/assets?per_page=100', '--paginate', '--slurp'))
+            release['assets'] = [dict(asset, url=asset['browser_download_url']) for page in pages for asset in page]
+        return release
     release = read()
     verify_release(release, args.tag, args.source_sha, expected)
     verify_tag(args.tag, args.source_sha, required=not release['isDraft'])
@@ -113,7 +190,7 @@ def main():
     if not release['isDraft']:
         print('PASS: identical verified release is already public; no changes made')
         return
-    gh('release', 'edit', args.tag, '-R', REPO, '--notes-file', str(args.notes_file), '--draft=false')
+    gh('release', 'edit', args.tag, '-R', REPO, '--notes-file', str(args.notes_file), '--draft=false', '--prerelease=false', '--latest')
     published = read()
     verify_release(published, args.tag, args.source_sha, expected)
     verify_tag(args.tag, args.source_sha, required=True)
@@ -123,6 +200,6 @@ def main():
 
 if __name__ == '__main__':
     try:main()
-    except (ValueError, OSError, KeyError, zipfile.BadZipFile, subprocess.CalledProcessError) as failure:
+    except (ValueError, OSError, KeyError, zipfile.BadZipFile, subprocess.CalledProcessError, subprocess.TimeoutExpired) as failure:
         print('Publication stopped: ' + str(failure), file=sys.stderr)
         raise SystemExit(1)
