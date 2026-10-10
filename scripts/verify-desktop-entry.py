@@ -8,6 +8,7 @@ import ctypes.util
 import hashlib
 import json
 import os
+import re
 import subprocess
 import tempfile
 import time
@@ -16,7 +17,9 @@ repo = Path(__file__).resolve().parents[1]
 desktop = repo/'delivery/Install-Definitive.desktop'
 text = desktop.read_text()
 command = next(line[5:] for line in text.splitlines() if line.startswith('Exec='))
-url = 'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09-presentation-2/Install-Definitive.sh'
+tag_match = re.search(r'^TAG=([A-Za-z0-9._-]+)$', (repo/'delivery/Install-Definitive.sh').read_text(), flags=re.M)
+assert tag_match, 'Portable entry point needs a valid release tag'
+url = f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/{tag_match[1]}/Install-Definitive.sh'
 digest = hashlib.sha256((repo/'delivery/Install-Definitive.sh').read_bytes()).hexdigest()
 assert digest in command, 'Desktop checksum must match the shipped setup script'
 

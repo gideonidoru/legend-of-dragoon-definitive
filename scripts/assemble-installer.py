@@ -9,6 +9,10 @@ archive = root / 'build/distributions/Definitive-Installer.zip'
 script = root / 'delivery/Install-Definitive.sh'
 digest = hashlib.sha256(archive.read_bytes()).hexdigest()
 text = re.sub(r'^EXPECTED=.*$', 'EXPECTED=' + digest, script.read_text(), flags=re.M)
+tag_match = re.search(r'^TAG=([A-Za-z0-9._-]+)$', text, flags=re.M)
+if tag_match is None:
+    raise ValueError('Portable entry point needs a valid release tag')
+tag = tag_match[1]
 script.write_text(text)
 script.chmod(0o755)
 script_hash = hashlib.sha256(script.read_bytes()).hexdigest()
@@ -19,7 +23,7 @@ def quote_exec_argument(value):
         raise ValueError('Bootstrap Exec must not require nested escapes or field codes')
     return '"' + value + '"'
 
-shell = f"""set -o pipefail; umask 077; mkdir -p ~/.cache/legend-of-dragoon-definitive; (echo Legend of Dragoon - Definitive setup; mktemp -d /tmp/definitive-installer.XXXXXX | xargs -I DEF_STAGE /usr/bin/env -C DEF_STAGE /bin/bash -c 'set -euo pipefail; echo Downloading the verified installer; curl --fail --location --show-error --proto =https --proto-redir =https --retry 2 --connect-timeout 20 --max-time 180 --output install.sh https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09-presentation-2/Install-Definitive.sh; sha256sum install.sh | grep -q ^{script_hash} || {{ echo Installer checksum mismatch. No installer was launched.; exit 1; }}; /bin/bash install.sh; rm -f install.sh; pwd | xargs rmdir') 2>&1 | tee ~/.cache/legend-of-dragoon-definitive/desktop-bootstrap.log || {{ echo Setup could not start.; echo Diagnostic logs:; echo ~/.cache/legend-of-dragoon-definitive/desktop-bootstrap.log; echo ~/.cache/legend-of-dragoon-definitive/installer-bootstrap.log; echo ~/.cache/legend-of-dragoon-definitive/installer.log; echo Press Enter to close.; read -r; exit 1; }}"""
+shell = f"""set -o pipefail; umask 077; mkdir -p ~/.cache/legend-of-dragoon-definitive; (echo Legend of Dragoon - Definitive setup; mktemp -d /tmp/definitive-installer.XXXXXX | xargs -I DEF_STAGE /usr/bin/env -C DEF_STAGE /bin/bash -c 'set -euo pipefail; echo Downloading the verified installer; curl --fail --location --show-error --proto =https --proto-redir =https --retry 2 --connect-timeout 20 --max-time 180 --output install.sh https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/{tag}/Install-Definitive.sh; sha256sum install.sh | grep -q ^{script_hash} || {{ echo Installer checksum mismatch. No installer was launched.; exit 1; }}; /bin/bash install.sh; rm -f install.sh; pwd | xargs rmdir') 2>&1 | tee ~/.cache/legend-of-dragoon-definitive/desktop-bootstrap.log || {{ echo Setup could not start.; echo Diagnostic logs:; echo ~/.cache/legend-of-dragoon-definitive/desktop-bootstrap.log; echo ~/.cache/legend-of-dragoon-definitive/installer-bootstrap.log; echo ~/.cache/legend-of-dragoon-definitive/installer.log; echo Press Enter to close.; read -r; exit 1; }}"""
 command = 'Exec=/bin/bash -c ' + quote_exec_argument(shell)
 desktop = root / 'delivery/Install-Definitive.desktop'
 desktop.write_text('[Desktop Entry]\nType=Application\nName=Install Legend of Dragoon: Definitive\nComment=Guided Steam Deck setup with visible startup diagnostics\nIcon=applications-games\nTerminal=true\n' + command + '\nCategories=Game;\n')

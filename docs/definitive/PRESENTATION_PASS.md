@@ -1,5 +1,13 @@
 # Installer, launcher and updater refinement
 
+## October 10 progress refinement
+
+A follow-up review reproduced clipped progress detail when an installation path exceeded the progress card's fixed text height. The regression rendered the actual Swing components at the minimum 1024 × 660 client area and failed on clipped wrapped copy. Work detail now has a bounded, Unicode-safe summary; the full detail is retained in the tooltip and accessible description. The elapsed timer has its own line, so its updates do not reflow the work description. Existing phase names, completed-work percentages and operation logs remain in use.
+
+The presentation checks now measure plain-label text against its actual available width, in addition to checking component bounds and wrapped-copy height. The long-detail case covers 1024, 1100 and 1280-pixel widths. Installer, launcher, update review, update completion, restore and error layouts remain covered. Steam integration still performs a graceful close, backed-up shortcut write, verification and restart; blocked shutdown and failed restart produce an error rather than success.
+
+The local Corretto 25 / Gradle 9.1.0 build and focused presentation, installer-flow and Steam lifecycle suites passed on the Mac Studio without operating real Steam or opening desktop windows. The hosted package and physical Deck acceptance are separate checks; this correction does not establish commercial release readiness or a reliability guarantee.
+
 The presentation milestone follows the owner's October 9 request for restrained, polished, readable screens and automatic Steam integration. It changes the delivery UI and Steam lifecycle only; engine rendering and gameplay are unchanged.
 
 ## Presentation

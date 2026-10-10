@@ -47,6 +47,10 @@ class PresentationTest {
         assertTrue(component.getWidth() <= component.getParent().getWidth(), name + ": content outside card: " + component + " parent width=" + component.getParent().getWidth());
         assertTrue(component.getX() >= 0 && component.getY() >= 0 && component.getX() + component.getWidth() <= component.getParent().getWidth() && component.getY() + component.getHeight() <= component.getParent().getHeight(), name + ": card clips its content: " + component);
         if(component instanceof JLabel label && label.getText().startsWith("<html>")) assertTrue(label.getHeight() >= label.getPreferredSize().height, name + ": wrapped copy is clipped");
+        if(component instanceof JLabel label && !label.getText().startsWith("<html>")) {
+          final Insets insets = label.getInsets();
+          assertTrue(label.getFontMetrics(label.getFont()).stringWidth(label.getText()) <= label.getWidth() - insets.left - insets.right, name + ": text is truncated: " + label.getText());
+        }
         if(component instanceof JButton) assertTrue(component.getHeight() >= 44, name + ": action too small");
       }
     }
@@ -91,6 +95,31 @@ class PresentationTest {
         final String path = components.stream().filter(c -> c instanceof JLabel l && l.getText().contains("/home/deck/Games/")).map(c -> ((JLabel)c).getText()).findFirst().orElseThrow();
         assertFalse(path.matches("(?s).*<br>[A-Za-z0-9]</div>.*"));
         assertTrue(path.contains("a".repeat(8) + "</div>"));
+      } catch(final Exception error) { throw new RuntimeException(error); }
+    });
+  }
+  @Test void longProgressDetailsRemainReadableAtMinimumSize() throws Exception {
+    SwingUtilities.invokeAndWait(() -> {
+      try {
+        final var view = new ManagerView(null, this.temporary, this.temporary.resolve("installation"));
+        field(view, "busy", true); field(view, "started", System.nanoTime());
+        final var bodyField = ManagerView.class.getDeclaredField("body"); bodyField.setAccessible(true);
+        ((JPanel)bodyField.get(view)).removeAll();
+        final var heading = ManagerView.class.getDeclaredMethod("heading", String.class, String.class); heading.setAccessible(true);
+        heading.invoke(view, "Installing Definitive", "Keep this window open while this step finishes.");
+        final var panelField = ManagerView.class.getDeclaredField("progressPanel"); panelField.setAccessible(true);
+        ((JPanel)panelField.get(view)).setVisible(true);
+        final var phaseField = ManagerView.class.getDeclaredField("progressPhase"); phaseField.setAccessible(true);
+        ((JLabel)phaseField.get(view)).setText("Installing game and HD artwork");
+        final var percentField = ManagerView.class.getDeclaredField("progressPercent"); percentField.setAccessible(true);
+        ((JLabel)percentField.get(view)).setText("70%");
+        final var barField = ManagerView.class.getDeclaredField("progress"); barField.setAccessible(true);
+        ((JProgressBar)barField.get(view)).setValue(70);
+        final String detail = "Unpacking the verified package into /home/deck/Games/" + "a-long-installation-folder/".repeat(16);
+        field(view, "progressDetail", detail); invoke(view, "progressStatus");
+        for(final int width : new int[]{1024, 1100, 1280}) inspect(view, width, 660, "long-progress");
+        final var statusField = ManagerView.class.getDeclaredField("status"); statusField.setAccessible(true);
+        assertEquals(detail, ((JLabel)statusField.get(view)).getToolTipText(), "The full work detail must remain available");
       } catch(final Exception error) { throw new RuntimeException(error); }
     });
   }

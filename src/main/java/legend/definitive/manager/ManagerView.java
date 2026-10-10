@@ -26,6 +26,7 @@ final class ManagerView extends JPanel {
   private final JPanel progressPanel = card();
   private final JLabel progressPhase = label("Starting…", 18, INK);
   private final JLabel progressPercent = label("0%", 14, MUTED);
+  private final JLabel progressElapsed = label("", 12, MUTED);
   private final JTextField destination;
   private boolean busy;
   private boolean failed;
@@ -69,7 +70,8 @@ final class ManagerView extends JPanel {
     final JPanel phase = new JPanel(new BorderLayout(12, 0)); phase.setOpaque(false); phase.setAlignmentX(LEFT_ALIGNMENT); phase.setMaximumSize(new Dimension(520, 28));
     this.progressPhase.setFont(font(18, true)); phase.add(this.progressPhase, BorderLayout.CENTER); phase.add(this.progressPercent, BorderLayout.EAST);
     this.progressPanel.add(phase); this.progressPanel.add(Box.createVerticalStrut(18)); this.progressPanel.add(this.progress); this.progressPanel.add(Box.createVerticalStrut(14));
-    this.status.setMaximumSize(new Dimension(480, 90)); this.progressPanel.add(this.status); this.progressPanel.setVisible(false);
+    this.status.setMaximumSize(new Dimension(480, 90)); this.progressPanel.add(this.status);
+    this.progressPanel.add(Box.createVerticalStrut(10)); this.progressPanel.add(this.progressElapsed); this.progressPanel.setVisible(false);
     content.add(this.progressPanel); content.add(Box.createVerticalGlue());
     this.updates.setMaximumSize(new Dimension(520, 50)); content.add(this.updates);
     content.add(Box.createVerticalStrut(10)); content.add(label("D-pad  Move     A  Select     B  Back", 12, MUTED));
@@ -329,7 +331,17 @@ final class ManagerView extends JPanel {
   }
   private void progressStatus() {
     final long seconds = Math.max(0, (System.nanoTime() - this.started) / 1_000_000_000L);
-    this.message(this.progressDetail + " · Elapsed " + seconds / 60 + ":" + String.format(java.util.Locale.ROOT, "%02d", seconds % 60));
+    // Keep a changing timer from reflowing file paths or crowding out the work detail.
+    this.message(progressSummary(this.progressDetail));
+    this.status.setToolTipText(this.progressDetail);
+    this.status.getAccessibleContext().setAccessibleDescription(this.progressDetail);
+    this.progressElapsed.setText("Elapsed " + seconds / 60 + ":" + String.format(java.util.Locale.ROOT, "%02d", seconds % 60));
+  }
+  private static String progressSummary(final String detail) {
+    if(detail.codePointCount(0, detail.length()) <= 96) return detail;
+    final int limit = detail.offsetByCodePoints(0, 95);
+    final int space = detail.lastIndexOf(' ', limit);
+    return detail.substring(0, space >= detail.offsetByCodePoints(0, 64) ? space : limit).stripTrailing() + "…";
   }
   void showFailure(final Throwable failure) {
     this.failed = true;
