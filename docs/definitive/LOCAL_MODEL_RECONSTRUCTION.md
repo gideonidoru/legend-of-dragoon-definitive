@@ -1,6 +1,6 @@
 # Local head reconstruction on Apple Silicon
 
-Updated 2026-10-09. **The first local Haschel head reconstruction and two reduced, textured meshes now exist privately.** They are static authoring candidates, not accepted character art or an installed game feature. The approved concept supplies the design direction; the unchanged original head supplies the source reference. No cloud inference, paid generator, whole-body rig, native import or engine change was used.
+Updated 2026-10-10. **The first local Haschel head reconstruction and reduced, textured meshes now exist privately.** The [subsequent connectivity audit and corrected reduction](MESH_TOPOLOGY_REFINEMENT.md) supersede the earlier 4,000/8,000-triangle candidates for further development. They remain static authoring candidates, not accepted character art or an installed game feature. The approved concept supplies the design direction; the unchanged original head supplies the source reference. No cloud inference, paid generator, whole-body rig, native import or engine change was used.
 
 The initial vendor investigation downloaded source text and metadata only. The executed experiment below records the subsequent isolated runtime, verified weights, offline inference, texture baking, failures and review checks. Vendor comparisons and the initial proposed recipe remain dated research; they do not establish other models' current availability or execution on this host.
 
