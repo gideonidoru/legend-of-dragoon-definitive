@@ -99,9 +99,14 @@ final class GameLease {
     // tick rounding can place an after-spawn child before receipt.created.
     final boolean couldBeChild = process.started().map(start -> !start.isBefore(launcherStarted)).orElse(true);
     if(!couldBeChild) return;
+    // The managed spawn path is jspawnhelper -> bash supervisor -> java.
+    // Other known executables cannot be that child, even when macOS omits
+    // their argument vectors (for example a concurrent repository scan).
+    // Positive launch-token evidence above always takes precedence.
+    if(process.command().isPresent() && !Set.of("java", "jspawnhelper", "bash").contains(Path.of(process.command().get()).getFileName().toString())) return;
     final boolean knownArguments = process.arguments().filter(args -> args.length > 0).isPresent();
     final boolean spawning = process.command().map(command -> Path.of(command).getFileName().toString().equals("jspawnhelper")).orElse(false);
-    if(process.user().isEmpty() || !knownArguments || spawning) throw new IOException("Cannot resolve an interrupted game launch safely. Close surviving game/launcher processes and retry.");
+    if(process.user().isEmpty() || process.command().isEmpty() || !knownArguments || spawning) throw new IOException("Cannot resolve an interrupted game launch safely. Close surviving game/launcher processes and retry.");
   }
   static void finished(final Path root, final String token) throws IOException {
     for(final String name : new String[]{RUNNING, PENDING}) {

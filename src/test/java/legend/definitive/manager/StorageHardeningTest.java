@@ -226,6 +226,19 @@ class StorageHardeningTest {
     final var older = new GameLease.LaunchProcess(Optional.empty(), Optional.of(launcher.minusMillis(1)), Optional.empty(), Optional.empty(), Optional.empty());
     assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, older));
   }
+  @Test void unrelatedExecutableWithHiddenArgumentsIsNotAnInterruptedGameChild() throws Exception {
+    final Instant started = Instant.parse("2026-10-10T18:12:20.010Z"); final String token = UUID.randomUUID().toString();
+    final var git = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(started), Optional.empty(), Optional.empty(), Optional.of("/usr/bin/git"));
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", started, git));
+    for(final String command : new String[]{"/jdk/bin/java", "/jdk/lib/jspawnhelper", "/bin/bash"}) {
+      final var uncertain = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(started), Optional.empty(), Optional.empty(), Optional.of(command));
+      assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", started, uncertain));
+    }
+    final var hiddenExecutable = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(started), Optional.of(new String[]{"25", "pipes"}), Optional.empty(), Optional.empty());
+    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", started, hiddenExecutable));
+    final var tokenBearing = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(started), Optional.empty(), Optional.of("git -Ddefinitive.launchToken=" + token), Optional.of("/usr/bin/git"));
+    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", started, tokenBearing), "Positive token evidence must still block regardless of executable");
+  }
   @Test void recordedProcessExitDuringIdentityReadIsIdleButLivingMissingIdentityBlocks() throws Exception {
     final Instant started = Instant.now(); final var reads = new java.util.concurrent.atomic.AtomicInteger();
     assertFalse(GameLease.recordedAlive(started, () -> false, () -> { fail("Dead process must not be inspected"); return Optional.empty(); }));
