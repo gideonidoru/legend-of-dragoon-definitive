@@ -113,6 +113,10 @@ public class QuadParticle extends ParticleEffectData98 {
 
     final Vector3f colour = new Vector3f();
     final Vector3f colourMod = new Vector3f();
+    final int blend = manager.params_10.flags_00 >>> 28 & 3;
+    final boolean luminous = (manager.params_10.flags_00 & 0x4000_0000) != 0 && (blend == 1 || blend == 3) && !CONFIG.getConfig(REDUCE_MOTION_FLASHING_CONFIG.get());
+    final MV lightTransform = new MV();
+    final Vector3f lightPosition = new Vector3f();
     final Vector3f colourStep = new Vector3f();
 
     //LAB_800fe180
@@ -162,7 +166,13 @@ public class QuadParticle extends ParticleEffectData98 {
           this.transforms.transfer.z = (instZ + effectZ) * 4.0f;
           RENDERER.queueOrthoModel(this.obj, this.transforms, QueuedModelStandard.class)
             .screenspaceOffset(GPU.getOffsetX(), GPU.getOffsetY())
-            .colour(colour);
+            .colour(colour)
+            .emissive(luminous ? 0.65f : 0.0f);
+          if(luminous) {
+            lightTransform.rotationXYZ(inst.managerRotation_68);
+            inst.particlePosition_50.mul(lightTransform, lightPosition).add(inst.managerTranslation_2c);
+            RENDERER.effectLight(lightPosition, colour.x, colour.y, colour.z, 256.0f);
+          }
         }
 
         //LAB_800fe564
@@ -189,7 +199,8 @@ public class QuadParticle extends ParticleEffectData98 {
               particleSub.transforms.transfer.z = instZ + effectZ;
               final QueuedModelStandard model = RENDERER.queueOrthoModel(this.obj, particleSub.transforms, QueuedModelStandard.class)
                 .screenspaceOffset(GPU.getOffsetX(), GPU.getOffsetY())
-                .colour(colour);
+                .colour(colour)
+                .emissive(luminous ? 0.4f : 0.0f);
 
               if(CONFIG.getConfig(REDUCE_MOTION_FLASHING_CONFIG.get())) {
                 model.colour(colour.x / 2.0f, colour.y / 2.0f, colour.z / 2.0f);

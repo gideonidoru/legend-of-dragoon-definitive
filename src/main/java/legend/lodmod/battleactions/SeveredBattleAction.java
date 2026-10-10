@@ -52,7 +52,7 @@ public abstract class SeveredBattleAction extends BattleAction {
       this.frameIndex %= this.frameCount;
     }
 
-    RENDERER.queueOrthoModel(battle.hud.battleIconQuad, menu.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(battle.hud.battleIconQuad, menu.transforms, QueuedModelStandard.class)
       .uvOffset(iconU, iconV)
       .texture(battle.hud.battleIconsTexture)
       .useTextureAlpha();

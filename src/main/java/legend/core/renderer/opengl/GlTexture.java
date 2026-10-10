@@ -72,6 +72,29 @@ public final class GlTexture extends Texture {
   public final boolean wrapT;
 
   private boolean actuallyDeleted;
+  private boolean mipDirty = true;
+  private boolean qualityEnabled;
+  private int appliedMipLevels = -1;
+
+  private void applyQuality(final int activeTexture) {
+    if(this.hdMipLevels < 0) return;
+    final boolean enabled = legend.core.GameEngine.CONFIG.getConfig(legend.game.modding.coremod.CoreMod.HD_TEXTURE_FILTERING_CONFIG.get());
+    if(this.qualityEnabled == enabled && this.appliedMipLevels == this.hdMipLevels && (!enabled || !this.mipDirty)) return;
+    glActiveTexture(GL_TEXTURE0 + activeTexture);
+    glTexParameteri(GL_TEXTURE_2D, org.lwjgl.opengl.GL12C.GL_TEXTURE_MAX_LEVEL, enabled ? this.hdMipLevels : 0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, enabled ? org.lwjgl.opengl.GL11C.GL_LINEAR_MIPMAP_LINEAR : (this.minFilter ? GL_LINEAR : GL_NEAREST));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, enabled ? GL_LINEAR : (this.magFilter ? GL_LINEAR : GL_NEAREST));
+    if(org.lwjgl.opengl.GL.getCapabilities().GL_EXT_texture_filter_anisotropic) {
+      final float maximum = org.lwjgl.opengl.GL11C.glGetFloat(0x84ff);
+      org.lwjgl.opengl.GL11C.glTexParameterf(GL_TEXTURE_2D, 0x84fe, enabled ? Math.min(4.0f, maximum) : 1.0f);
+    }
+    if(enabled && (this.mipDirty || this.appliedMipLevels != this.hdMipLevels)) {
+      org.lwjgl.opengl.GL30C.glGenerateMipmap(GL_TEXTURE_2D);
+      this.mipDirty = false;
+    }
+    this.qualityEnabled = enabled;
+    this.appliedMipLevels = this.hdMipLevels;
+  }
 
   GlTexture(@Nullable final Buffer buffer, final String name, final int w, final int h, final TextureInternalFormat internalFormat, final TextureDataFormat dataFormat, final TextureDataType dataType, final boolean minFilter, final boolean magFilter, final boolean wrapS, final boolean wrapT) {
     super(name, w, h);
@@ -98,6 +121,7 @@ public final class GlTexture extends Texture {
     final int internalFormatVal = switch(internalFormat) {
       case RGB_8 -> GL_RGB8;
       case RGBA_8 -> GL_RGBA8;
+      case R_8 -> org.lwjgl.opengl.GL30C.GL_R8;
       case R_32_UINT -> GL_R32UI;
       case DEPTH_COMPONENT -> GL_DEPTH_COMPONENT;
     };
@@ -114,6 +138,7 @@ public final class GlTexture extends Texture {
       case RGB -> GL_RGB;
       case RGBA -> GL_RGBA;
       case RED_INT -> GL_RED_INTEGER;
+      case RED -> org.lwjgl.opengl.GL30C.GL_RED;
       case DEPTH_COMPONENT -> GL_DEPTH_COMPONENT;
     };
   }
@@ -129,13 +154,17 @@ public final class GlTexture extends Texture {
   @Override
   public void data(final int x, final int y, final int w, final int h, final TextureDataType dataType, final ByteBuffer data) {
     this.use();
+    glActiveTexture(GL_TEXTURE0);
     glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, w, h, this.getDataFormat(this.dataFormat), this.getDataType(dataType), data);
+    this.mipDirty = true;
   }
 
   @Override
   public void data(final int x, final int y, final int w, final int h, final TextureDataType dataType, final int[] data) {
     this.use();
+    glActiveTexture(GL_TEXTURE0);
     glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, w, h, this.getDataFormat(this.dataFormat), this.getDataType(dataType), data);
+    this.mipDirty = true;
   }
 
   @Override
@@ -150,6 +179,7 @@ public final class GlTexture extends Texture {
       glActiveTexture(GL_TEXTURE0 + activeTexture);
       glBindTexture(GL_TEXTURE_2D, this.id);
     }
+    this.applyQuality(activeTexture);
   }
 
   @Override

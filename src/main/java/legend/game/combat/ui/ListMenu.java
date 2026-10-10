@@ -442,7 +442,7 @@ public abstract class ListMenu {
           //LAB_800f5d90
           this.transforms.identity();
           this.transforms.transfer.set(this.textX_18 - 16, this.listStartY_1a + this.listIndex_24 * 14 + 2, 124.0f);
-          RENDERER.queueOrthoModel(this.menuObj, this.transforms, QueuedModelStandard.class)
+          RENDERER.queueUiOrthoModel(this.menuObj, this.transforms, QueuedModelStandard.class)
             .vertices(this.arrowObjOffset + this.selectionArrowFrame_84 * 4, 4)
             .translucency(Translucency.B_PLUS_F);
 
@@ -466,7 +466,7 @@ public abstract class ListMenu {
           if(this.listScroll_1e > 0) {
             this.transforms.identity();
             this.transforms.transfer.set(this.x_04 + 82, this.y_06 + t0 - 100, 124.0f);
-            RENDERER.queueOrthoModel(this.menuObj, this.transforms, QueuedModelStandard.class)
+            RENDERER.queueUiOrthoModel(this.menuObj, this.transforms, QueuedModelStandard.class)
               .vertices(this.upObjOffset, 4);
           }
 
@@ -474,7 +474,7 @@ public abstract class ListMenu {
           if(this.listScroll_1e + 6 < this.getListCount() - 1) {
             this.transforms.identity();
             this.transforms.transfer.set(this.x_04 + 82, this.y_06 + s1 - 7, 124.0f);
-            RENDERER.queueOrthoModel(this.menuObj, this.transforms, QueuedModelStandard.class)
+            RENDERER.queueUiOrthoModel(this.menuObj, this.transforms, QueuedModelStandard.class)
               .vertices(this.downObjOffset, 4);
           }
         }

@@ -104,6 +104,24 @@ class ModelPackTest {
     var src=source(0x20);var obj=(MeshObj)src.getObj();obj.meshes[0].vertices()[7]=123f;assertThrows(IllegalArgumentException.class,()->TextureCompatibility.requireNativeAddressing(new TmdObjTable1c[]{src}));assertEquals(123f,obj.meshes[0].vertices()[7]);assertFalse(api.created.get(0).deleted);
   }
   @Test void unknownSourceRejected(){var src=source(0x20);var p=pack(src);p.addProperty("sourceGeometrySha256","0".repeat(64));assertThrows(java.io.IOException.class,()->read(p,src));}
+  @Test void authoredSurfaceSurvivesReplacementAndRebuild() throws Exception {
+    var src = source(0x20);
+    var p = pack(src);
+    p.getAsJsonArray("parts").get(0).getAsJsonObject().addProperty("surface", "metal");
+    var replacement = read(p, src)[0];
+    assertEquals(SurfaceMaterial.METAL, replacement.buildObjLike(src).surfaceMaterial);
+    replacement.rebuildObj(512, 256);
+    assertEquals(SurfaceMaterial.METAL, replacement.getObj().surfaceMaterial);
+  }
+  @Test void omittedSurfaceInheritsActiveSourceAndMalformedSurfaceFailsClosed() throws Exception {
+    var src = source(0x20);
+    src.surfaceMaterial(SurfaceMaterial.SKIN);
+    assertEquals(SurfaceMaterial.SKIN, read(pack(src), src)[0].buildObjLike(src).surfaceMaterial);
+    var p = pack(src);
+    p.getAsJsonArray("parts").get(0).getAsJsonObject().addProperty("surface", "unknown");
+    assertThrows(java.io.IOException.class, () -> read(p, src));
+    assertEquals(SurfaceMaterial.SKIN, src.getObj().surfaceMaterial);
+  }
   @Test void missingAnimationPartRejected(){var a=source(0x20);var b=source(0x20);assertThrows(java.io.IOException.class,()->read(pack(a),a,b));}
   @Test void malformedCornerWeightsRejected(){var src=source(0x20);var p=pack(src);p.getAsJsonArray("parts").get(0).getAsJsonObject().getAsJsonArray("faces").get(0).getAsJsonObject().getAsJsonArray("sourceWeights").get(0).getAsJsonArray().set(0,new com.google.gson.JsonPrimitive(.5));assertThrows(java.io.IOException.class,()->read(p,src));}
   @Test void invalidNormalRejected(){var src=source(0x20);var p=pack(src);p.getAsJsonArray("parts").get(0).getAsJsonObject().getAsJsonArray("normals").get(0).getAsJsonArray().set(2,new com.google.gson.JsonPrimitive(0));assertThrows(java.io.IOException.class,()->read(p,src));}

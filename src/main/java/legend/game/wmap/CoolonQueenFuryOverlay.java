@@ -91,7 +91,7 @@ public class CoolonQueenFuryOverlay {
 
     this.iconTransforms.transfer.set(GPU.getOffsetX() + 106.0f, GPU.getOffsetY() + 84.0f, 52.0f);
     RENDERER
-      .queueOrthoModel(icon, this.iconTransforms, QueuedModelStandard.class)
+      .queueUiOrthoModel(icon, this.iconTransforms, QueuedModelStandard.class)
       .vertices(iconState * 4, 4)
     ;
   }

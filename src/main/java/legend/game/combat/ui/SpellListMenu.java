@@ -65,7 +65,7 @@ public class SpellListMenu extends ListMenu {
 
     this.transforms.scaling(0.75f);
     this.transforms.transfer.set(x + 152, y, 124.0f);
-    RENDERER.queueOrthoModel(this.menuObj, this.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(this.menuObj, this.transforms, QueuedModelStandard.class)
       .vertices(this.mpObjOffset, 4);
   }
 

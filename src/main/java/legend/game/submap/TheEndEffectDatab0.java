@@ -158,7 +158,7 @@ public class TheEndEffectDatab0 {
 
       //LAB_800eeb0c
       this.transforms.transfer.set(GPU.getOffsetX(), GPU.getOffsetY(), 0.0f);
-      RENDERER.queueOrthoModel(this.text, this.transforms, QueuedModelStandard.class)
+      RENDERER.queueUiOrthoModel(this.text, this.transforms, QueuedModelStandard.class)
         .monochrome(this.brightness_0c);
     }
 

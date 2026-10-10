@@ -39,5 +39,11 @@ public interface RenderApi {
 
   void wireframe(final boolean enable);
 
+  /** Interface coverage must not inherit PS1 color blending. */
+  default void postProcessMask(final boolean write) { }
+
+  /** Auxiliary attachments always start at zero, regardless of scene clear color. */
+  default void clearPostProcessTargets() { }
+
   boolean debugEnabled();
 }

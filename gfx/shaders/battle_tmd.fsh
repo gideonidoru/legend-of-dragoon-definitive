@@ -7,6 +7,9 @@ in GS_OUT {
   flat int vertBpp;
   smooth vec4 vertColour;
   smooth vec3 lightingNormal;
+  smooth vec3 worldPosition;
+  smooth vec3 worldNormal;
+  smooth vec3 localViewDirection;
   smooth vec3 lightingColour;
   flat int lightingIndex;
   flat int vertFlags;
@@ -59,6 +62,52 @@ uniform sampler2D tex24;
 uniform usampler2D tex15;
 
 layout(location = 0) out vec4 outColour;
+layout(location = 1) out vec4 outEmission;
+layout(location = 2) out vec4 outInterface;
+uniform bool uiLayer;
+uniform float emission;
+uniform bool hdTexture;
+uniform bool materialLighting;
+uniform vec2 surfaceResponse;
+uniform int effectLightCount;
+uniform vec4 effectPositions[4];
+uniform vec4 effectColours[4];
+
+vec3 surfaceLight() {
+  vec3 result = vec3(0.0);
+  float n2 = dot(lightingNormal, lightingNormal);
+  float v2 = dot(localViewDirection, localViewDirection);
+  if(n2 > 1e-8 && v2 > 1e-8 && materialLighting) {
+    vec3 n = lightingNormal * inversesqrt(n2);
+    vec3 v = localViewDirection * inversesqrt(v2);
+    Light l = lights[lightingIndex];
+    for(int i = 0; i < 3; i++) {
+      vec3 direction = vec3(l.lightDirection[0][i], l.lightDirection[1][i], l.lightDirection[2][i]);
+      float d2 = dot(direction, direction);
+      if(d2 <= 1e-8) continue;
+      vec3 d = direction * inversesqrt(d2);
+      vec3 h = d + v;
+      float h2 = dot(h, h);
+      if(h2 > 1e-8) {
+        float highlight = pow(max(dot(n, h * inversesqrt(h2)), 0.0), surfaceResponse.x);
+        result += l.lightColour[i] * (highlight * surfaceResponse.y * max(dot(n, d), 0.0));
+      }
+    }
+  }
+  float wn2 = dot(worldNormal, worldNormal);
+  if(wn2 > 1e-8) {
+    vec3 n = worldNormal * inversesqrt(wn2);
+    for(int i = 0; i < min(effectLightCount, 4); i++) {
+      vec3 delta = effectPositions[i].xyz - worldPosition;
+      float distanceSquared = dot(delta, delta);
+      float radius = max(effectPositions[i].w, 0.001);
+      float falloff = max(1.0 - distanceSquared / (radius * radius), 0.0);
+      float facing = max(dot(n, delta * inversesqrt(max(distanceSquared, 1e-8))), 0.0);
+      result += effectColours[i].rgb * (falloff * falloff * facing);
+    }
+  }
+  return clamp(result, 0.0, 0.35);
+}
 
 void main() {
   // Older Intel iGPUs are buggy and don't implement scissoring properly, causing the Shirley fight to lock up when
@@ -130,7 +179,18 @@ void main() {
       texColour.g = float(pixel >>  5 & 0x1fu) / 31.0;
       texColour.r = float(pixel       & 0x1fu) / 31.0;
     } else {
-      texColour = texture(tex24, vertUv + uvOffset);
+      vec2 uv = vertUv + uvOffset;
+      if(hdTexture) {
+        vec2 uvDx = dFdx(uv), uvDy = dFdy(uv);
+        ivec2 size = textureSize(tex24, 0);
+        vec4 source = texelFetch(tex24, clamp(ivec2(uv * vec2(size)), ivec2(0), size - 1), 0);
+        // Full-canvas HD foregrounds contain large empty regions: reject them before filtered reads.
+        if(all(equal(source, vec4(0.0)))) discard;
+        texColour = textureGrad(tex24, uv, uvDx, uvDy);
+        texColour.a = source.a;
+      } else {
+        texColour = texture(tex24, uv);
+      }
     }
 
     // Discard if (0, 0, 0)
@@ -151,6 +211,10 @@ void main() {
     }
   }
 
+  if((vertFlags & 0x1) != 0 && !translucent && !uiLayer && !uniformLit) {
+    outColour.rgb += surfaceLight() * lightingColour;
+  }
+
   outColour.rgb *= recolour;
 
   if(translucent && translucencyMode == 1) { // (B+F)/2 translucency
@@ -158,4 +222,6 @@ void main() {
   } else {
     outColour.a = 1.0;
   }
+  outEmission = vec4(uiLayer ? vec3(0.0) : outColour.rgb * emission, outColour.a);
+  outInterface = vec4(uiLayer ? 1.0 : 0.0);
 }

@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -71,6 +73,7 @@ public class GlShader<Options extends ShaderOptions> implements Shader<Options> 
   private final Function<Shader<Options>, Supplier<Options>> optionsSupplier;
   private Supplier<Options> options;
   private int shader = -1;
+  private final Map<String, Uniform> uniforms = new HashMap<>();
 
   GlShader(final String name, final Path vert, final Path frag, final Function<Shader<Options>, Supplier<Options>> options) throws IOException {
     LOGGER.info("Compiling shader %s vs[%s] fs[%s]", name, vert, frag);
@@ -101,15 +104,18 @@ public class GlShader<Options extends ShaderOptions> implements Shader<Options> 
     boolean error = false;
     int i = 0;
 
-    for(final var entry : this.stages.object2IntEntrySet()) {
-      stages[i] = this.compileShader(entry.getKey(), entry.getIntValue());
-
-      if(stages[i] == 0) {
-        error = true;
-        break;
+    try {
+      for(final var entry : this.stages.object2IntEntrySet()) {
+        stages[i] = this.compileShader(entry.getKey(), entry.getIntValue());
+        if(stages[i] == 0) {
+          error = true;
+          break;
+        }
+        i++;
       }
-
-      i++;
+    } catch(final IOException e) {
+      this.deleteShaders(stages);
+      throw e;
     }
 
     // Clear out errors
@@ -120,17 +126,20 @@ public class GlShader<Options extends ShaderOptions> implements Shader<Options> 
     // Delete stages that were compiled and bail
     if(error) {
       this.deleteShaders(stages);
+      if(this.shader == -1) throw new IOException("Initial shader compilation failed: " + this.name);
       return;
     }
 
-    // Delete the old shader after loading the parts of the new one so
-    // that we can keep using the old one if the new one fails to load
-    if(this.shader != -1) {
-      this.delete();
-    }
-
-    this.shader = this.linkProgram(stages);
+    // Retain the working program through both compilation and linking failures.
+    final int candidate = this.linkProgram(stages);
     this.deleteShaders(stages);
+    if(candidate == 0) {
+      if(this.shader == -1) throw new IOException("Initial shader linking failed: " + this.name);
+      return;
+    }
+    if(this.shader != -1) this.delete();
+    this.shader = candidate;
+    for(final Uniform uniform : this.uniforms.values()) uniform.refresh();
     this.options = this.optionsSupplier.apply(this);
   }
 
@@ -143,12 +152,15 @@ public class GlShader<Options extends ShaderOptions> implements Shader<Options> 
   }
 
   private int compileShader(final Path file, final int type) throws IOException {
+    final String source = Files.readString(file);
     final int shader = glCreateShader(type);
-    glShaderSource(shader, Files.readString(file));
+    glShaderSource(shader, source);
     glCompileShader(shader);
 
     if(glGetShaderi(shader, GL_COMPILE_STATUS) == 0) {
       LOGGER.error("Shader compile error %s: %s", file, glGetShaderInfoLog(shader));
+      glDeleteShader(shader);
+      return 0;
     }
 
     return shader;
@@ -165,6 +177,8 @@ public class GlShader<Options extends ShaderOptions> implements Shader<Options> 
 
     if(glGetProgrami(shader, GL_LINK_STATUS) == 0) {
       LOGGER.error("Program link error: %s", glGetProgramInfoLog(shader));
+      glDeleteProgram(shader);
+      return 0;
     }
 
     if(RENDERER.api().debugEnabled()) {
@@ -203,42 +217,47 @@ public class GlShader<Options extends ShaderOptions> implements Shader<Options> 
 
   @Override
   public ShaderUniformVec2 uniformVec2(final String name) {
-    return new UniformVec2(name);
+    return (UniformVec2)this.uniforms.computeIfAbsent("Vec2:" + name, ignored -> new UniformVec2(name));
   }
 
   @Override
   public ShaderUniformVec3 uniformVec3(final String name) {
-    return new UniformVec3(name);
+    return (UniformVec3)this.uniforms.computeIfAbsent("Vec3:" + name, ignored -> new UniformVec3(name));
   }
 
   @Override
   public ShaderUniformVec4 uniformVec4(final String name) {
-    return new UniformVec4(name);
+    return (UniformVec4)this.uniforms.computeIfAbsent("Vec4:" + name, ignored -> new UniformVec4(name));
   }
 
   @Override
   public ShaderUniformMat4 uniformMat4(final String name) {
-    return new UniformMat4(name);
+    return (UniformMat4)this.uniforms.computeIfAbsent("Mat4:" + name, ignored -> new UniformMat4(name));
   }
 
   @Override
   public ShaderUniformInt uniformInt(final String name) {
-    return new UniformInt(name);
+    return (UniformInt)this.uniforms.computeIfAbsent("Int:" + name, ignored -> new UniformInt(name));
   }
 
   @Override
   public ShaderUniformFloat uniformFloat(final String name) {
-    return new UniformFloat(name);
+    return (UniformFloat)this.uniforms.computeIfAbsent("Float:" + name, ignored -> new UniformFloat(name));
   }
 
   private class Uniform {
-    final int loc;
+    private final String name;
+    int loc;
 
     private Uniform(final String name) {
-      this.loc = glGetUniformLocation(GlShader.this.shader, name);
+      this.name = name;
+      this.refresh();
+    }
 
+    private void refresh() {
+      this.loc = glGetUniformLocation(GlShader.this.shader, this.name);
       if(this.loc == GL_INVALID_INDEX) {
-        LOGGER.error("Uniform %s not found in shader %d", name, GlShader.this.shader);
+        LOGGER.error("Uniform %s not found in shader %d", this.name, GlShader.this.shader);
       }
     }
   }
