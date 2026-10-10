@@ -44,6 +44,8 @@ public final class VideoPlayer {
 
   private static Runnable oldRenderer;
   private static int oldFps;
+  private static int oldInputTickRate;
+  private static java.util.function.Consumer<Boolean> oldPauseCallback;
   private static boolean oldCinematicPlayback;
   private static boolean oldAllowWidescreen;
 
@@ -90,6 +92,7 @@ public final class VideoPlayer {
       videoHeight = movie.height;
       oldAllowWidescreen = CONFIG.getConfig(ALLOW_WIDESCREEN_CONFIG.get());
       oldFps = RENDERER.window().getFpsLimit();
+      oldInputTickRate = PLATFORM.getInputTickRate();
       oldProjectionSize.set(RENDERER.getNativeWidth(), RENDERER.getNativeHeight());
       oldRenderMode = RENDERER.getRenderMode();
       oldClearColour.set(clearRed_8007a3a8, clearGreen_800bb104, clearBlue_800babc0);
@@ -121,6 +124,7 @@ public final class VideoPlayer {
       click = RENDERER.events().onMouseRelease((window, x, y, button, mods) -> shouldStop = true);
 
       source = AUDIO_THREAD.addSource(new GenericSource(AL_FORMAT_STEREO16, 48_000));
+      oldPauseCallback = RENDERER.setCinematicPauseCallback(VideoPlayer::setPaused);
       final float volume = CONFIG.getConfig(CoreMod.FMV_VOLUME_CONFIG.get()) * CONFIG.getConfig(CoreMod.MASTER_VOLUME_CONFIG.get());
 
       RENDERER.setRenderCallback(() -> {
@@ -213,6 +217,11 @@ public final class VideoPlayer {
     });
   }
 
+  private static void setPaused(final boolean paused) {
+    if(playback != null) playback.setPaused(paused);
+    if(source != null) source.setPlaybackPaused(paused);
+  }
+
   private static void restoreRenderer() {
     if(!stateCaptured) return;
     stateCaptured = false;
@@ -220,7 +229,7 @@ public final class VideoPlayer {
     RENDERER.setRenderCallback(oldRenderer);
     RENDERER.setCinematicPlayback(oldCinematicPlayback);
     RENDERER.window().setFpsLimit(oldFps);
-    PLATFORM.setInputTickRate(oldFps);
+    PLATFORM.setInputTickRate(oldInputTickRate);
     RENDERER.setRenderMode(oldRenderMode);
     RENDERER.setProjectionSize(oldProjectionSize.x, oldProjectionSize.y);
     clearRed_8007a3a8 = oldClearColour.x;
@@ -234,6 +243,10 @@ public final class VideoPlayer {
   }
 
   private static void cleanup() {
+    if(oldPauseCallback != null) {
+      safely(() -> RENDERER.setCinematicPauseCallback(oldPauseCallback));
+      oldPauseCallback = null;
+    }
     if(movie != null) { safely(movie::close); movie = null; playback = null; }
     if(texturedObj != null) { safely(texturedObj::delete); texturedObj = null; }
     if(displayTexture != null) { safely(displayTexture::delete); displayTexture = null; }
