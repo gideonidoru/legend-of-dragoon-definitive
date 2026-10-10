@@ -1949,7 +1949,10 @@ public class WMap extends EngineState<WMap> {
   @Method(0x800d6880L)
   private void loadWmapTextures() {
     this.filesLoadedFlags_800c66b8.updateAndGet(val -> val & 0xffff_efff);
-    loadDrgnDir(0, 5695).thenAccept(files -> this.timsLoaded(files, 0x1_1000));
+    loadDrgnDir(0, 5695).thenAccept(files -> {
+      this.timsLoaded(files, 0x1_1000);
+      legend.game.textures.NativeUiTextureEvent.uploaded("world_map", new Tim(files.get(0)));
+    });
     this.modelAndAnimData_800c66a8.mapTextureBrightness_20 = 0.0f;
   }
 
@@ -2057,7 +2060,8 @@ public class WMap extends EngineState<WMap> {
           this.mapState_800c6798.pathDots.transforms.transfer.add(intersectionPoint).y -= 1.0f;
 
           final QueuedModelStandard model = RENDERER.queueModel(this.mapState_800c6798.pathDots.dots, this.mapState_800c6798.pathDots.transforms, QueuedModelStandard.class)
-            .vertices(bigDotStateIndex * 4, 4);
+            .vertices(bigDotStateIndex * 4, 4)
+            .ui();
 
           //LAB_800d7df0
           if(this.modelAndAnimData_800c66a8.zoomState_1f8 == ZoomState.LOCAL_0) {
@@ -2115,7 +2119,8 @@ public class WMap extends EngineState<WMap> {
               this.mapState_800c6798.pathDots.transforms.transfer.add(pathPoint.x, pathPoint.y, pathPoint.z).y -= 1.0f;
 
               final QueuedModelStandard model = RENDERER.queueModel(this.mapState_800c6798.pathDots.dots, this.mapState_800c6798.pathDots.transforms, QueuedModelStandard.class)
-                .vertices(12, 4);
+                .vertices(12, 4)
+                .ui();
 
               //LAB_800d87fc
               if(zoomState == ZoomState.LOCAL_0) {

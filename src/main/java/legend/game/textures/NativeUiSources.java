@@ -8,20 +8,20 @@ import java.util.function.Consumer;
 /** Private in-memory native sources permit mod changes without rereading game archives. */
 public final class NativeUiSources {
   public static final NativeUiSources CURRENT = new NativeUiSources();
-  private static final int MAX_FAMILIES = 16;
+  private static final int MAX_FAMILIES = 64;
   private static final long MAX_BYTES = 2L * 1024 * 1024;
   private final Map<String, NativeUiTextureEvent> sources = new LinkedHashMap<>();
   private long bytes;
 
   public synchronized void remember(final NativeUiTextureEvent event) {
     if(event.encodedBytes() > MAX_BYTES) return;
-    final NativeUiTextureEvent previous = this.sources.remove(event.id);
+    final NativeUiTextureEvent previous = this.sources.remove(event.slot);
     if(previous != null) this.bytes -= previous.encodedBytes();
     while(!this.sources.isEmpty() && (this.sources.size() >= MAX_FAMILIES || this.bytes + event.encodedBytes() > MAX_BYTES)) {
       final String oldest = this.sources.keySet().iterator().next();
       this.bytes -= this.sources.remove(oldest).encodedBytes();
     }
-    this.sources.put(event.id, event);
+    this.sources.put(event.slot, event);
     this.bytes += event.encodedBytes();
   }
 

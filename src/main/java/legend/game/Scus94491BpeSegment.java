@@ -145,10 +145,7 @@ public final class Scus94491BpeSegment {
       gameState_800babc8.timestamp_a0 += vsyncMode_8007a3b8;
     }
 
-    final int frames = Math.max(1, vsyncMode_8007a3b8);
-    final int hz = 60 / frames * Config.getGameSpeedMultiplier();
-    RENDERER.window().setFpsLimit(hz);
-    PLATFORM.setInputTickRate(hz);
+    setGameplayTiming();
 
     loadQueuedOverlay();
 
@@ -190,6 +187,13 @@ public final class Scus94491BpeSegment {
     GPU.endFrame();
 
     DISCORD.tick();
+  }
+
+  private static void setGameplayTiming() {
+    final int frames = Math.max(1, vsyncMode_8007a3b8);
+    final int hz = 60 / frames * Config.getGameSpeedMultiplier();
+    RENDERER.window().setFpsLimit(hz);
+    PLATFORM.setInputTickRate(hz);
   }
 
   public static void bindRendererEvents() {

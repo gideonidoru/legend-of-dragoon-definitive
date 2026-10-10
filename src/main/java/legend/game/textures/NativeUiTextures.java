@@ -44,6 +44,8 @@ public final class NativeUiTextures {
     Texture sourceTexture, artworkTexture;
     boolean uploadFailed;
     long lastUsed = -1;
+    Object owner;
+    String slot;
     Region(final Binding binding, final Image original, final Image enhanced) {
       this.binding = binding; this.original = original; this.enhanced = enhanced; this.provider = null;
       this.bytes = (long)original.data.length + enhanced.data.length;
@@ -63,6 +65,32 @@ public final class NativeUiTextures {
     return true;
   }
 
+  /** Source changes in a reused slot retire the previous owner's selection. Other mods keep priority. */
+  public static synchronized void beginSelection(final Object owner, final String slot) {
+    final var iterator = REGIONS.iterator();
+    while(iterator.hasNext()) {
+      final Region region = iterator.next();
+      if(region.owner != owner || !slot.equals(region.slot)) continue;
+      iterator.remove();
+      final var palettes = PALETTES.get(paletteKey(region.binding));
+      palettes.remove(region);
+      if(palettes.isEmpty()) PALETTES.remove(paletteKey(region.binding));
+      if(region.artworkTexture != null) {
+        RESIDENT.remove(region.artworkTexture);
+        region.sourceTexture.delete(); region.artworkTexture.delete();
+        RETIRED.add(region.sourceTexture); RETIRED.add(region.artworkTexture);
+        allocated -= region.bytes;
+      }
+    }
+  }
+
+  public static synchronized boolean registerDeferred(final Object owner, final String slot, final Binding binding, final long bytes, final java.util.function.Supplier<Images> provider) {
+    if(!registerDeferred(binding, bytes, provider)) return false;
+    final Region region = REGIONS.getLast();
+    region.owner = owner; region.slot = slot;
+    return true;
+  }
+
   /** Pooled/paused draws must not retain a selection that was cleared or evicted. */
   public static synchronized boolean touch(final Texture artwork) {
     final Region region = RESIDENT.get(artwork);
@@ -75,7 +103,9 @@ public final class NativeUiTextures {
     if(tim.getBpp() != Bpp.BITS_4 || !tim.hasClut()) throw new IllegalArgumentException("Native UI requires 4-bit indexed artwork");
     final var rect = tim.getImageRect();
     final var colours = tim.getClutData();
-    final var pixels = tim.getImageData();
+    // Some retail credits have inaccurate image-block lengths. GPU uploads use
+    // the rectangle; read that same bounded rectangle from the original file.
+    final var pixels = tim.getData().slice(tim.getImageOffset(), rect.w * rect.h * 2);
     if(x < 0 || y < 0 || width < 1 || height < 1 || width > 512 || height > 512
       || x + width > rect.w * 4 || y + height > rect.h || palette < 0 || (palette + 1) * 32 > colours.size()) {
       throw new IllegalArgumentException("Native UI crop or palette exceeds source");

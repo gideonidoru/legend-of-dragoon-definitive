@@ -355,7 +355,14 @@ public final class GameEngine {
     GPU.reselectEffectArtwork(EVENTS::postEvent);
     final long artworkGeneration = ++uiArtworkGeneration;
     if(UI_TEXTURE != null) RENDERER.addTask(() -> {
-      if(artworkGeneration == uiArtworkGeneration) reloadUiTexture();
+      if(artworkGeneration == uiArtworkGeneration) {
+        reloadUiTexture();
+        if(eyeTexture != null) {
+          final Texture previousEye = eyeTexture;
+          eyeTexture = legend.game.textures.UiTextures.load("Loading eye", Path.of("gfx", "textures", "loading.png")).texture();
+          previousEye.delete();
+        }
+      }
     });
     return missingMods;
   }
@@ -473,7 +480,7 @@ public final class GameEngine {
 
     reloadUiTexture();
 
-    eyeTexture = Texture.png("Loading eye", Path.of("gfx", "textures", "loading.png"));
+    eyeTexture = legend.game.textures.UiTextures.load("Loading eye", Path.of("gfx", "textures", "loading.png")).texture();
 
     texturedObj = new QuadBuilder("Textured Obj")
       .bpp(Bpp.BITS_24)
@@ -563,7 +570,7 @@ public final class GameEngine {
       final MV transforms = new MV();
       transforms.scaling(16.0f, 16.0f, 1.0f);
       transforms.transfer.set(4.0f, 220.0f, 29.0f);
-      RENDERER.queueOrthoModel(texturedObj, transforms, QueuedModelStandard.class)
+      RENDERER.queueUiOrthoModel(texturedObj, transforms, QueuedModelStandard.class)
         .translucency(Translucency.HALF_B_PLUS_HALF_F)
         .texture(eyeTexture)
         .useTextureAlpha()

@@ -74,7 +74,7 @@ public class ZoomOverlay {
     this.transforms.transfer.set(0.0f, 0.0f, 79.0f);
 
     for(int i = 0; i < 2; i++) {
-      RENDERER.queueOrthoModel(this.overlayTranslucent, this.transforms, QueuedModelStandard.class)
+      RENDERER.queueUiOrthoModel(this.overlayTranslucent, this.transforms, QueuedModelStandard.class)
         .vertices(i * 4, 4)
         .monochrome(brightness);
     }
@@ -82,7 +82,7 @@ public class ZoomOverlay {
     for(int i = 0; i < 5; i++) {
       this.transforms.transfer.set(0.0f, 0.0f, 80.0f + i * 0.1f);
 
-      final QueuedModelStandard model = RENDERER.queueOrthoModel(this.overlayOpaque, this.transforms, QueuedModelStandard.class)
+      final QueuedModelStandard model = RENDERER.queueUiOrthoModel(this.overlayOpaque, this.transforms, QueuedModelStandard.class)
         .vertices(i * 4, 4)
         .monochrome(brightness);
 

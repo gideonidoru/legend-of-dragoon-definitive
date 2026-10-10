@@ -38,22 +38,62 @@ def native(data, palette, crop, atlas=False):
         raise ValueError('Native UI requires indexed TIM')
     block = struct.unpack_from('<I', data, 8)[0]
     cx, cy, cw, ch = struct.unpack_from('<4H', data, 12)
-    if block != 12 + cw * ch * 2 or cw != 16 or not 1 <= ch <= 16:
+    if block != 12 + cw * ch * 2 or cw not in (16, 256) or not 1 <= ch <= 16:
         raise ValueError('Unexpected UI palette layout')
     offset = 8 + block
     size, ix, iy, words, height = struct.unpack_from('<I4H', data, offset)
-    if size != 12 + words * height * 2 or offset + size > len(data) or not 1 <= words <= 128 or not 1 <= height <= 512:
+    if offset + 12 + words * height * 2 > len(data) or not 1 <= words <= 128 or not 1 <= height <= 512:
         raise ValueError('Unexpected UI image layout')
     x, y, w, h = crop
     if not 0 <= palette < ch or min(x, y) < 0 or min(w, h) < 1 or x + w > words * 4 or y + h > height:
         raise ValueError('UI crop outside indexed artwork')
-    packed = np.frombuffer(data[offset + 12:offset + size], dtype=np.uint8).reshape(height, words * 2)
+    packed = np.frombuffer(data[offset + 12:offset + 12 + words * height * 2], dtype=np.uint8).reshape(height, words * 2)
     indices = np.stack((packed & 15, packed >> 4), axis=-1).reshape(height, words * 4)[y:y+h, x:x+w]
-    colours = np.frombuffer(data[20 + palette * 32:52 + palette * 32], dtype='<u2')[indices]
+    colours = np.frombuffer(data[20 + palette * cw * 2:52 + palette * cw * 2], dtype='<u2')[indices]
     scale_colour = (lambda c: c * 8) if atlas else (lambda c: c * 255 // 31)
     pixels = np.stack((scale_colour(colours & 31), scale_colour(colours >> 5 & 31),
                        scale_colour(colours >> 10 & 31), np.where(colours & 0x8000, 255, 0)), axis=-1).astype(np.uint8)
     return Image.fromarray(pixels)
+
+
+def direct_tim(data, palette_data):
+    flags = struct.unpack_from('<I', data,4)[0]
+    bpp = flags & 3
+    if flags not in (8,9): raise ValueError('Direct UI source is not indexed')
+    offset = 8 + struct.unpack_from('<I',data,8)[0]
+    _,_,_,words,height = struct.unpack_from('<I4H',data,offset)
+    packed = np.frombuffer(data[offset+12:offset+12+words*height*2],dtype=np.uint8).reshape(height,words*2)
+    indices = np.stack((packed & 15, packed >> 4),axis=-1).reshape(height,words*4) if bpp==0 else packed
+    palette_width = struct.unpack_from('<H',palette_data,16)[0]
+    colours = np.frombuffer(palette_data[20:20+palette_width*2],dtype='<u2')[indices]
+    return Image.fromarray(np.stack(((colours&31)*8, (colours>>5&31)*8, (colours>>10&31)*8,
+                                    np.where(colours&0x8000,255,0)),axis=-1).astype(np.uint8))
+
+
+def mcq(data):
+    _,offset,vw,vh,cx,cy,u,v,width,height=struct.unpack_from('<2I8H',data)
+    words=np.frombuffer(data[offset:],dtype='<u2')
+    def word(x,y):
+        if min(x,y)<0 or x>=vw or y>=vh or y*vw+x>=len(words): raise ValueError('UI MCQ samples outside source')
+        return int(words[y*vw+x])
+    page_x=u&0x3c0;page_y=v&0x100;u=u*4&0xfc
+    rgba=np.zeros((height,width,4),dtype=np.uint8)
+    for x in range(0,width,16):
+        for y in range(0,height,16):
+            palette=[word(cx+i,cy) for i in range(16)]
+            for dy in range(16):
+                for dx in range(16):
+                    tx=(u+dx)&255;ty=(v+dy)&255
+                    c=int(palette[word(page_x+tx//4,page_y+ty)>>((tx&3)*4)&15])
+                    rgba[y+dy,x+dx]=((c&31)*8,(c>>5&31)*8,(c>>10&31)*8,255 if c else 0)
+            v=(v+16)&0xf0
+            if v==0:
+                u=(u+16)&0xfc
+                if u==0: page_x+=64
+            cy=(cy+1)&255
+            if cy==0: cx+=16
+            cy|=page_y
+    return Image.fromarray(rgba)
 
 
 def preserve(source, rgb, scale, indexed=False):
@@ -193,6 +233,51 @@ def jobs(args):
             result.append(({'id': family + '-' + str(palette), 'kind': 'native', 'family': family,
                             'sourcePath': path, 'sourceOffset': offset, 'sourceSha256': digest(data),
                             'paletteSourcePath': palette_path, 'palette': palette, 'crop': list(crop)}, image, scale, None))
+    extra = [('world_map', 'SECT/DRGN0.BIN/5695/0', 2),
+             ('indicator_big_arrow', 'SUBMAP/big_arrow.tim', 4),
+             ('indicator_small_arrow', 'SUBMAP/small_arrow.tim', 4),
+             ('indicator_alert', 'SUBMAP/alert.tim', 4),
+             ('the_end', 'SECT/DRGN0.BIN/7610', 4)]
+    for chapter in range(4):
+        for frame in list(range(6)) + list(range(8, 14)):
+            extra.append((f'chapter_{chapter}_{frame}', f'SECT/DRGN0.BIN/{6670+chapter}/{frame}', 4))
+    for source in sorted((p for p in (args.files / 'SECT/DRGN0.BIN/5720').iterdir() if p.name.isdigit()), key=lambda p: int(p.name)):
+        if source.is_file() and source.stat().st_size:
+            extra.append(('credit_' + source.name, 'SECT/DRGN0.BIN/5720/' + source.name, 4))
+    for family, path, scale in extra:
+        data = read(args.files / path)
+        offset = 8 + struct.unpack_from('<I', data, 8)[0]
+        _, _, _, words, height = struct.unpack_from('<I4H', data, offset)
+        crop = (0, 0, words * 4, height)
+        for palette in range(struct.unpack_from('<H', data, 18)[0]):
+            result.append(({'id': family + '-' + str(palette), 'kind': 'native', 'family': family,
+                           'sourcePath': path, 'sourceOffset': 0, 'sourceSha256': digest(data),
+                           'palette': palette, 'crop': list(crop)}, native(data,palette,crop), scale, None))
+    path = 'gfx/textures/loading.png'
+    data = read(args.source / path)
+    with Image.open(args.source / path) as image:
+        result.append(({'id':'loading_eye','kind':'png','sourcePath':path,'sourceSha256':digest(data)},image.convert('RGBA'),4,None))
+    for family, paths, direction, scale in [
+        ('title_background',['SECT/DRGN0.BIN/5718/0','SECT/DRGN0.BIN/5718/1'],'vertical',2),
+        ('title_trademark',['SECT/DRGN0.BIN/5718/4'],None,4),
+        ('title_copyright',['SECT/DRGN0.BIN/5718/5','SECT/DRGN0.BIN/5718/6'],'horizontal',4)]:
+        sources = [read(args.files / p) for p in paths]
+        images = [direct_tim(data, sources[0]) for data in sources]
+        image = images[0]
+        if direction:
+            size = (image.width, sum(p.height for p in images)) if direction == 'vertical' else (sum(p.width for p in images),image.height)
+            image = Image.new('RGBA',size)
+            x = y = 0
+            for part in images:
+                image.paste(part,(x,y))
+                if direction == 'vertical': y += part.height
+                else: x += part.width
+        result.append(({'id':family,'kind':'raster','family':family,'sourcePath':paths[0],
+                       'sourcePaths':paths,'sourceSha256':digest(b''.join(sources))},image,scale,None))
+    path = 'SECT/DRGN0.BIN/6667'
+    data = read(args.files / path)
+    result.append(({'id':'game_over','kind':'raster','family':'game_over','sourcePath':path,
+                   'sourceSha256':digest(data)}, mcq(data), 2, None))
     return result
 
 
@@ -216,12 +301,12 @@ def execute(args):
             if digest(raw) != reuse['outputSha256']: raise ValueError('Reused artwork identity differs')
             with Image.open(args.reuse / 'assets' / reuse['resource']) as selected: candidate = selected.convert('RGBA')
         else:
-            candidate = restore(original, args, entry['id'], scale, entry['kind'] == 'native', tile)
+            candidate = restore(original, args, entry['id'], scale, entry['kind'] in ('native','raster'), tile)
         for box in PROTECTED.get(entry['id'], []):
             candidate.paste(original.crop(box).resize(((box[2]-box[0])*scale, (box[3]-box[1])*scale), Image.Resampling.NEAREST), (box[0]*scale, box[1]*scale))
-        candidate = preserve(original, candidate, scale, entry['kind'] == 'native')
+        candidate = preserve(original, candidate, scale, entry['kind'] in ('native','raster'))
         entry['protectedSourceRegions'] = PROTECTED.get(entry['id'], [])
-        coverage = np.dstack((np.asarray(original)[:,:,3], np.all(np.asarray(original)[:,:,:3] == 0, axis=2).astype(np.uint8))) if entry['kind'] == 'native' else np.asarray(original)[:,:,3:4]
+        coverage = np.dstack((np.asarray(original)[:,:,3], np.all(np.asarray(original)[:,:,:3] == 0, axis=2).astype(np.uint8))) if entry['kind'] in ('native','raster') else np.asarray(original)[:,:,3:4]
         entry['sourceCoverageSha256'] = digest(coverage.tobytes())
         filename = entry['id'] + '.png'
         candidate.save(args.output / filename)
