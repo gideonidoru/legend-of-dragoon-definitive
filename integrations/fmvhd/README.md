@@ -4,6 +4,8 @@ Restored cinematic pack for Legend of Dragoon: Definitive, independently enabled
 
 Code is AGPL-3.0 under the repository LICENSE. Enhanced videos are derived from original Legend of Dragoon footage and remain distinct from the code license. The user explicitly approved public distribution of these derived FMVHD assets as a project asset-policy exception on October 10, 2026; that policy exception is not a grant of rights by the original footage's owner.
 
+Videos are materialized into `cache/fmvhd` inside the active game workspace, so managed removal includes that cache. First playback caches a video; cached videos are hash-checked before reuse. This uses additional disk space, up to the payload size after all films have played.
+
 Large enhanced MP4s are published as a pinned GitHub release ZIP, not committed as Git objects. No discs, extracted IKI files, decoded AVI masters, private saves or production cache are published. RealESRGAN and jPSXdec are external offline production tools, not engine runtime dependencies. Their notice links and pinned tool hashes are recorded in the production manifest.
 
 First pack: 18 videos, logical 5:3 proportions, 1280x768 H.264, original 15 fps, 48 kHz stereo AAC. Original FMV playback halves XA volume; the enhanced audio encodes that same 0.5 gain. The normal FMV and master volume controls apply at playback.
