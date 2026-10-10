@@ -198,6 +198,7 @@ public class RenderEngine {
       return () -> {
         final ShaderOptionsStandard options = new ShaderOptionsStandard(modelIndex, recolour, uvOffset, clutOverride, tpageOverride, discardTranslucency, translucency, alpha, useTextureAlpha);
         options.metadataUniforms(shader);
+        options.uiArtworkUniforms(shader);
         return options;
       };
     }

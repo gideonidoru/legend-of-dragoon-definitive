@@ -15,6 +15,18 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
   private boolean hasTranslucencyOverride;
   private float alpha;
   private boolean useTextureAlpha;
+  private boolean uiArtwork;
+  private final Vector4f uiArtworkBounds = new Vector4f();
+
+  /** Enhance RGB only; indexed VRAM continues to decide visibility and blend mode. */
+  public QueuedModelStandard uiArtwork(final Texture artwork, final Texture source, final float x, final float y, final float width, final float height) {
+    if(this.textures[0] != null || this.textures[1] != null || this.textures[2] != null || this.textures[3] != null) return this;
+    this.uiArtwork = true;
+    this.uiArtworkBounds.set(x, y, width, height);
+    this.texture(artwork, 2).texture(source, 3).ui();
+    return this;
+  }
+
 
   final Matrix4f lightTransforms = new Matrix4f();
   final FloatBuffer lightingBuffer;
@@ -48,11 +60,18 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
   }
 
   @Override
+  void useTexture() {
+    if(this.uiArtwork) legend.core.GameEngine.GPU.useVramTexture();
+    super.useTexture();
+  }
+
+  @Override
   void acquire(final Obj obj, final int sequence) {
     super.acquire(obj, sequence);
     this.hasTranslucencyOverride = false;
     this.alpha = -1.0f;
     this.useTextureAlpha = false;
+    this.uiArtwork = false;
   }
 
   @Override
@@ -126,6 +145,7 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
       this.shaderOptions.opaque();
     }
 
+    this.shaderOptions.uiArtwork(this.uiArtwork, this.uiArtworkBounds);
     this.shaderOptions.alpha(this.alpha);
     this.shaderOptions.useTextureAlpha(this.useTextureAlpha);
 
