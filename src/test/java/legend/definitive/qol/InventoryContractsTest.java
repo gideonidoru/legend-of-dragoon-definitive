@@ -73,6 +73,34 @@ class InventoryContractsTest {
     assertFalse(ShopQuantity.sameForSale(inventory.get(0), inventory.get(1)));
   }
 
+  @Test void purchasedStackRetainsHookMutations() {
+    final Inventory inventory = new Inventory();
+    inventory.disableEvents();
+    inventory.setMaxSize(2);
+    final ItemStack template = new ItemStack(item(1));
+    final StringTag marker = new StringTag("purchase hook");
+    assertTrue(ShopQuantity.purchaseItem(inventory, template, 10, () -> 20,
+      unit -> unit.setExtraData(marker)));
+    assertEquals(marker.get(), ((StringTag)inventory.get(0).getExtraData()).get());
+    assertNull(template.getExtraData());
+    assertFalse(ShopQuantity.purchaseItem(inventory, template, 10, () -> 0, unit -> { }));
+    assertEquals(1, inventory.getSize());
+  }
+
+  @Test void saleMaximumExcludesProtectedMatchingStacks() {
+    final Inventory inventory = new Inventory();
+    inventory.disableEvents();
+    inventory.setMaxSize(2);
+    final Item protectedItem = new Item(ItemIcon.SWORD, 10) {
+      @Override public boolean isProtected(final ItemStack stack) { return stack.getSize() > 1; }
+      @Override public boolean canBeUsed(final ItemStack stack, final UsageLocation location) { return true; }
+      @Override public boolean canTarget(final ItemStack stack, final TargetType type) { return true; }
+    };
+    inventory.give(new ItemStack(protectedItem));
+    inventory.give(new ItemStack(protectedItem, 2));
+    assertEquals(1, ShopQuantity.saleCount(inventory, inventory.get(0)));
+  }
+
   @Test void integratedSettingsPersistPerCampaignWithoutLeakingAcrossCampaigns(@TempDir final Path directory) throws Exception {
     final ConfigCollection first = new ConfigCollection(false);
     final ConfigCollection second = new ConfigCollection(false);

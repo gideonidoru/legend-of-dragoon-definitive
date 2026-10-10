@@ -64,8 +64,9 @@ public class ItemShopExtension extends ShopExtension<ItemStack> {
         menuStack.pushScreen(new QuantityScreen(new I18nText("lod_core.ui.quantity.buy", new I18nText(entry.item.getNameTranslationKey())), maximum, entry.price, quantity -> {
           if(quantity == 0) return;
           final int completed = ShopQuantity.purchase(quantity, entry.price, () -> gameState.gold_94,
-            () -> EVENTS.postEvent(new ShopBuyEvent(shop, entry.item.copy())),
-            () -> gameState.items_2e9.give(entry.item.copy()).isEmpty(),
+            () -> { },
+            () -> ShopQuantity.purchaseItem(gameState.items_2e9, entry.item, entry.price,
+              () -> gameState.gold_94, unit -> EVENTS.postEvent(new ShopBuyEvent(shop, unit))),
             cost -> gameState.gold_94 -= cost);
           if(completed < quantity) screen.deferAction(() -> menuStack.pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.quantity.partial", completed, quantity), MessageBoxType.ALERT, result -> { })));
         }));

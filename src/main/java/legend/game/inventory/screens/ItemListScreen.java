@@ -123,6 +123,9 @@ public class ItemListScreen extends MenuScreen {
       this.equipmentList.add(item);
     }
 
+    this.equipmentList.sort(java.util.Comparator.comparing(entry -> entry.item_00,
+      CONFIG.getConfig(CoreMod.EQUIPMENT_SORT_CONFIG.get()).comparator(e -> I18n.translate(e.getNameTranslationKey()))));
+
     this.updateDescription(this.itemList.getSelectedItem());
   }
 

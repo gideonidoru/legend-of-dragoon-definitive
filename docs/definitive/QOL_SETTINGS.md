@@ -73,10 +73,17 @@ an installed external reward multiplier therefore compounds with these settings.
 Headless checks cover valid/corrupt configuration, campaign reload and separation,
 0/0.25/1/10x rewards, per-enemy rounding, arithmetic bounds, Addition feedback outcomes
 and expiry, sorting/filter semantics, quantity cancellation, affordability, denied
-insertion, ordinary stack capacity and data-bearing sale grouping.
+insertion, ordinary stack capacity, purchase-hook mutations, protected stacks and
+data-bearing sale grouping.
 
 Source builds and these checks do not establish handheld readability, physical controller
 navigation, counter animations, a full campaign, mod-overhaul compatibility or Steam Deck
 performance. Device acceptance must include quantity confirmation/cancel, full inventories,
 remapped/reconnected controls, all equipment filters, manual/automatic/counter Additions,
 reward distribution and save/restart. No desktop game launch is needed for the headless suite.
+
+Headless verification on October 10, 2026, including the latest main audio changes:
+`deliveryTest modelsHdTests jar skurfaJar` passed. Delivery: 167 passed, 7 skipped;
+ModelsHD: 24 passed. The skips are four installer-window checks and three optional
+FMV fixture checks. Standards review found one purchase-hook issue; spec review found
+two sorting/protection issues. All three were corrected before publication.

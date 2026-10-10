@@ -4,6 +4,7 @@ import legend.game.inventory.Inventory;
 import legend.game.inventory.ItemStack;
 
 import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
 import java.util.function.IntConsumer;
 import java.util.function.IntSupplier;
 
@@ -41,9 +42,17 @@ public final class ShopQuantity {
   public static int saleCount(final Inventory inventory, final ItemStack selected) {
     long count = 0;
     for(final ItemStack stack : inventory) {
-      if(sameForSale(selected, stack)) count += stack.getSize();
+      if(!stack.isProtected() && sameForSale(selected, stack)) count += stack.getSize();
     }
     return (int)Math.min(count, MAX_QUANTITY);
+  }
+
+  /** Pass the same purchased stack through the hook and ordinary insertion. */
+  public static boolean purchaseItem(final Inventory inventory, final ItemStack template, final int price,
+                                     final IntSupplier gold, final Consumer<ItemStack> beforeGive) {
+    final ItemStack unit = template.copy();
+    beforeGive.accept(unit);
+    return affordable(gold.getAsInt(), price, 1) == 1 && inventory.give(unit).isEmpty();
   }
 
   /** Ordinary per-unit hooks; a rejected unit stops the purchase, and is never charged. */
