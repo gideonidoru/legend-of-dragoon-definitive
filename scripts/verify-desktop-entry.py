@@ -3,6 +3,7 @@
 No network, GUI, personal cache or game is touched. KDE terminal/trust UX needs a real Deck.
 """
 from pathlib import Path
+import argparse
 import ctypes
 import ctypes.util
 import hashlib
@@ -14,13 +15,16 @@ import tempfile
 import time
 
 repo = Path(__file__).resolve().parents[1]
-desktop = repo/'delivery/Install-Definitive.desktop'
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--entries-dir', type=Path, default=repo/'delivery')
+entries = parser.parse_args().entries_dir
+desktop = entries/'Install-Definitive.desktop'
 text = desktop.read_text()
 command = next(line[5:] for line in text.splitlines() if line.startswith('Exec='))
-tag_match = re.search(r'^TAG=([A-Za-z0-9._-]+)$', (repo/'delivery/Install-Definitive.sh').read_text(), flags=re.M)
+tag_match = re.search(r'^TAG=([A-Za-z0-9._-]+)$', (entries/'Install-Definitive.sh').read_text(), flags=re.M)
 assert tag_match, 'Portable entry point needs a valid release tag'
 url = f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/{tag_match[1]}/Install-Definitive.sh'
-digest = hashlib.sha256((repo/'delivery/Install-Definitive.sh').read_bytes()).hexdigest()
+digest = hashlib.sha256((entries/'Install-Definitive.sh').read_bytes()).hexdigest()
 assert digest in command, 'Desktop checksum must match the shipped setup script'
 
 

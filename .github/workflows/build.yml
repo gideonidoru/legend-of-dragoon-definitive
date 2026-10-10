@@ -109,7 +109,11 @@ jobs:
         if: runner.os == 'Linux'
         run: LIBGL_ALWAYS_SOFTWARE=1 xvfb-run -a ./gradlew --no-daemon --console=plain nativeBattleShaderProbe -PshaderProbeOutput=build/reports/native-shader ${{ matrix.args }}
       - name: Verify Linux installer shortcut parsing
-        run: python3 scripts/verify-desktop-entry.py
+        run: |
+          python3 scripts/verify-desktop-entry.py
+          if [ "${{ runner.os }}" = "Linux" ]; then
+            python3 scripts/verify-desktop-entry.py --entries-dir build/distributions
+          fi
       - name: Verify portable setup progress and failure cleanup
         run: python3 scripts/verify-portable-bootstrap.py
       - name: Verify immutable runtime pins and safe version upgrades
