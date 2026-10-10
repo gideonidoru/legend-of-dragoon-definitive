@@ -55,6 +55,8 @@ def main():
             if any(fresh[k]!=release[k] for k in ('id','tag_name','draft','created_at','updated_at')):raise ValueError('Historical release changed during cleanup')
             gh('api','--method','DELETE',f'repos/{REPO}/releases/{release["id"]}');result['deletedReleases'].append(release['tag_name'])
         for artifact in removable:
+            verify_current()
+            if json.loads(gh('api',f'repos/{REPO}/actions/runs/{artifact["workflow_run"]["id"]}'))['status']!='completed':continue
             gh('api','--method','DELETE',f'repos/{REPO}/actions/artifacts/{artifact["id"]}');result['deletedArtifacts'].append(artifact['id'])
         verify_current()
         remaining=[r for page in pages(f'repos/{REPO}/releases?per_page=100') for r in page]
