@@ -550,6 +550,7 @@ public class RenderEngine {
   public SimulationClock.Snapshot simulationTiming() { return this.simulationClock.snapshot(); }
 
   public void delete() {
+    this.resetBatches();
     this.smaa.delete();
     legend.definitive.rendering.DefaultMaterialMaps.delete();
     Texture.deleteTextures();
@@ -561,6 +562,8 @@ public class RenderEngine {
     Texture.setShouldLog(false);
     Texture.clearTextureList(true);
     Texture.setShouldLog(true);
+    Obj.deleteObjects();
+    Texture.deleteTextures();
   }
 
   public static <Options extends ShaderOptions> Shader<Options> loadShader(final String name, final String vsh, final String fsh, final Function<Shader<Options>, Supplier<Options>> options) {
