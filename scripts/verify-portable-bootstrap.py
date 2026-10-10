@@ -12,11 +12,15 @@ import tempfile
 import zipfile
 
 source = (Path(__file__).resolve().parents[1] / 'delivery/Install-Definitive.sh').read_text()
-for failure in ('none', 'download', 'checksum', 'runtime', 'java', 'mktemp'):
+for failure in ('none', 'download', 'checksum', 'runtime', 'java', 'mktemp', 'linked-log'):
     with tempfile.TemporaryDirectory(prefix='definitive-portable-check-') as directory:
         root = Path(directory)
         tools = root / 'tools'
         tools.mkdir()
+        if failure == 'linked-log':
+            (root / 'cache').mkdir()
+            (root / 'victim').write_text('external file retained')
+            (root / 'cache/installer-bootstrap.log').symlink_to(root / 'victim')
         def tool(name, code):
             file = tools / name
             file.write_text('#!/usr/bin/env python3\n' + code)
@@ -64,8 +68,9 @@ else:raise AssertionError(sys.argv)
                    FIXTURE_PROGRESS=str(root / 'progress'), FIXTURE_ERROR=str(root / 'error'))
         result = subprocess.run(['/bin/bash', str(entry)], env=env, capture_output=True, text=True, timeout=10)
         assert not (root / 'cache/.portable-lock').is_dir(), 'Failure left a directory lock'
-        if failure == 'none':
+        if failure in ('none', 'linked-log'):
             assert result.returncode == 0 and (root / 'result').read_text() == 'success', result.stderr
+            if failure == 'linked-log':assert (root / 'victim').read_text() == 'external file retained'
             progress = (root / 'progress').read_text()
             assert all(value in progress.splitlines() for value in ('5', '35', '55', '90', '100'))
             assert 'Checking the installer checksum' in progress and 'Preparing Java 25' in progress

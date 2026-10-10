@@ -49,7 +49,7 @@ public class RetailBattleAction extends BattleAction {
     menu.transforms.identity();
     menu.transforms.transfer.set(menuElementBaseX, menuElementBaseY, 123.8f);
 
-    RENDERER.queueOrthoModel(menu.menuObj, menu.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(menu.menuObj, menu.transforms, QueuedModelStandard.class)
       .vertices(menu.actionIconObjOffset + iconId * 12 + iconState * 4, 4)
       .translucency(Translucency.of(battleMenuIconMetrics_800fb674[iconId].translucencyMode_06));
 

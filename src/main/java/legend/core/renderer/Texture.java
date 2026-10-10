@@ -16,10 +16,26 @@ public abstract class Texture {
 
   public static Texture create(final String name, final Consumer<TextureBuilder> callback) {
     final TextureBuilder builder = new TextureBuilder(name);
-    callback.accept(builder);
-    final Texture texture = builder.build();
-    builder.free();
-    return texture;
+    try {
+      callback.accept(builder);
+      return builder.build();
+    } finally { builder.free(); }
+  }
+
+  /** Decode upcoming artwork off the renderer thread; GPU upload stays with normal texture creation. */
+  public static java.util.concurrent.CompletableFuture<Boolean> prewarmPng(final Path path) {
+    if(!imageCachingEnabled()) return java.util.concurrent.CompletableFuture.completedFuture(false);
+    return legend.definitive.rendering.PngAssets.SHARED.prewarm(path);
+  }
+
+  public static java.util.concurrent.CompletableFuture<Boolean> prewarmPng(final Class<?> owner, final String resource) {
+    if(!imageCachingEnabled()) return java.util.concurrent.CompletableFuture.completedFuture(false);
+    return legend.definitive.rendering.PngAssets.SHARED.prewarm(() -> owner.getResourceAsStream(resource));
+  }
+
+  static boolean imageCachingEnabled() {
+    final var setting = legend.game.modding.coremod.CoreMod.IMAGE_CACHE_CONFIG;
+    return !setting.isValid() || legend.core.GameEngine.CONFIG.getConfig(setting.get());
   }
 
   public static Texture empty(final String name, final int w, final int h) {
@@ -85,6 +101,30 @@ public abstract class Texture {
   public final String name;
   public final int width;
   public final int height;
+  protected int hdMipLevels = -1;
+
+  /** Full-image HD color texture. Never call for indexed palettes or unpadded atlases. */
+  public Texture hdFiltering() {
+    return this.hdFiltering(31);
+  }
+
+  /** Explicit LOD cap; atlas producers should use hdAtlasFiltering instead. */
+  public Texture hdFiltering(final int maxMipLevel) {
+    if(this.internalFormat() != TextureInternalFormat.RGBA_8 && this.internalFormat() != TextureInternalFormat.RGB_8) {
+      throw new IllegalArgumentException("HD filtering requires a color texture");
+    }
+    if(maxMipLevel < 0) throw new IllegalArgumentException("Negative mip level");
+    this.hdMipLevels = Math.min(maxMipLevel, 31 - Integer.numberOfLeadingZeros(Math.max(this.width, this.height)));
+    return this;
+  }
+
+  public boolean isHdFiltered() { return this.hdMipLevels >= 0; }
+
+  /** Conservative gutter budget including the maximum 4x anisotropic footprint. */
+  public Texture hdAtlasFiltering(final int duplicatedGutterPixels) {
+    if(duplicatedGutterPixels < 4) throw new IllegalArgumentException("HD atlas filtering requires at least four duplicated edge pixels");
+    return this.hdFiltering(Math.max(0, 31 - Integer.numberOfLeadingZeros(duplicatedGutterPixels) - 2));
+  }
 
   protected Texture(final String name, final int width, final int height) {
     this.name = name;
@@ -97,6 +137,9 @@ public abstract class Texture {
   public abstract void data(int x, int y, int w, int h, TextureDataType dataType, int[] data);
   public abstract void use(int activeTexture);
   public abstract void use();
+
+  /** Scoped linear sampling for renderer-owned post-process inputs; restores constructor filters. */
+  public void linearSampling(final boolean enabled) { }
 
   public abstract TextureInternalFormat internalFormat();
   public abstract TextureDataFormat dataFormat();

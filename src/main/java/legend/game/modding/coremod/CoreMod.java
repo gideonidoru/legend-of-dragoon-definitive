@@ -1,6 +1,9 @@
 package legend.game.modding.coremod;
 
 import legend.core.GameEngine;
+import legend.definitive.qol.EquipmentSort;
+import legend.game.modding.coremod.config.RewardMultiplierConfigEntry;
+import legend.game.saves.EnumConfigEntry;
 import legend.core.font.RetailFontConfigEntry;
 import legend.core.platform.input.AxisInputActivation;
 import legend.core.platform.input.ButtonInputActivation;
@@ -95,6 +98,11 @@ import static legend.core.GameEngine.REGISTRIES;
 public class CoreMod {
   public static final String MOD_ID = "lod_core";
 
+  @EventListener
+  public static void definitiveBackgroundPreparation(final legend.game.modding.events.submap.SubmapEnvironmentPreloadEvent event) {
+    legend.definitive.rendering.DefaultBackgroundPrewarming.preload(event);
+  }
+
   private static final Registrar<Item, ItemRegistryEvent> ITEM_REGISTRAR = new Registrar<>(GameEngine.REGISTRIES.items, MOD_ID);
 
   public static final RegistryDelegate<Item> NOTHING = ITEM_REGISTRAR.register("nothing", NothingItem::new);
@@ -134,6 +142,59 @@ public class CoreMod {
   public static final RegistryDelegate<LanguageConfigEntry> LANGUAGE_CONFIG = CONFIG_REGISTRAR.register("language", LanguageConfigEntry::new);
 
   // Shader config
+  public static final RegistryDelegate<BoolConfigEntry> PROTECT_INTERFACE_CONFIG = CONFIG_REGISTRAR.register("protect_interface", () -> graphicsToggle());
+  public static final RegistryDelegate<BoolConfigEntry> HD_TEXTURE_FILTERING_CONFIG = CONFIG_REGISTRAR.register("hd_texture_filtering", () -> graphicsToggle());
+  public static final RegistryDelegate<BoolConfigEntry> MATERIAL_LIGHTING_CONFIG = CONFIG_REGISTRAR.register("material_lighting", () -> graphicsToggle());
+  public static final RegistryDelegate<BoolConfigEntry> EFFECT_LIGHTS_CONFIG = CONFIG_REGISTRAR.register("effect_lights", () -> graphicsToggle());
+  public static final RegistryDelegate<FloatConfigEntry> SCENE_BLOOM_CONFIG = CONFIG_REGISTRAR.register("scene_bloom", () -> graphicsStrength(0.25f));
+  public static final RegistryDelegate<FloatConfigEntry> SCENE_SHARPENING_CONFIG = CONFIG_REGISTRAR.register("scene_sharpening", () -> graphicsStrength(0.2f));
+
+  private static BoolConfigEntry graphicsToggle() {
+    return new BoolConfigEntry(true, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
+      @Override public boolean hasHelp() { return true; }
+    };
+  }
+
+  public static final RegistryDelegate<BoolConfigEntry> SMAA_CONFIG = CONFIG_REGISTRAR.register("smaa", CoreMod::graphicsToggle);
+  public static final RegistryDelegate<BoolConfigEntry> DEFAULT_SURFACE_DETAIL_CONFIG = CONFIG_REGISTRAR.register("default_surface_detail", CoreMod::graphicsToggle);
+  public static final RegistryDelegate<BoolConfigEntry> ENVIRONMENT_LIGHTING_CONFIG = CONFIG_REGISTRAR.register("environment_lighting", CoreMod::graphicsToggle);
+  public static final RegistryDelegate<BoolConfigEntry> IMAGE_CACHE_CONFIG = CONFIG_REGISTRAR.register("image_cache", () -> new BoolConfigEntry(true, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
+    @Override public boolean hasHelp() { return true; }
+    @Override public void onChange(final legend.game.saves.ConfigCollection collection, final Boolean oldValue, final Boolean newValue) {
+      legend.definitive.rendering.PngAssets.SHARED.retention(newValue);
+    }
+  });
+
+  private static FloatConfigEntry graphicsStrength(final float value) {
+    return new FloatConfigEntry(value, 0.05f, 0.1f, 0.0f, 1.0f, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
+      @Override public boolean hasHelp() { return true; }
+    };
+  }
+  public static final RegistryDelegate<BoolConfigEntry> SOFT_CONTACT_SHADOWS_CONFIG = CONFIG_REGISTRAR.register("soft_contact_shadows", () -> new BoolConfigEntry(true, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
+    @Override
+    public boolean hasHelp() {
+      return true;
+    }
+  });
+  public static final RegistryDelegate<BoolConfigEntry> SCENE_MATCHED_LIGHTING_CONFIG = CONFIG_REGISTRAR.register("scene_matched_lighting", () -> new BoolConfigEntry(true, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
+    @Override
+    public boolean hasHelp() {
+      return true;
+    }
+  });
+  public static final RegistryDelegate<BoolConfigEntry> SMOOTH_MODEL_LIGHTING_CONFIG = CONFIG_REGISTRAR.register("smooth_model_lighting", () -> new BoolConfigEntry(true, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
+    @Override
+    public boolean hasHelp() {
+      return true;
+    }
+  });
+  public static final RegistryDelegate<FloatConfigEntry> EDGE_SMOOTHING_CONFIG = CONFIG_REGISTRAR.register("edge_smoothing", () -> new FloatConfigEntry(0.5f, 0.1f, 0.25f, 0.0f, 1.0f, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
+    @Override
+    public boolean hasHelp() {
+      return true;
+    }
+  });
+
   public static final RegistryDelegate<BoolConfigEntry> SHADER_ENABLE_CRT_CONFIG = CONFIG_REGISTRAR.register("shader_enable_crt", () -> new BoolConfigEntry(false, ConfigStorageLocation.GLOBAL, ConfigCategory.POSTPROCESSING));
   public static final RegistryDelegate<FloatConfigEntry> SHADER_SCANLINES_OPACITY_CONFIG = CONFIG_REGISTRAR.register("shader_scanlines_opacity", () -> new FloatConfigEntry(0.4f, 0.05f, 0.1f, 0.0f, 1.0f, ConfigStorageLocation.GLOBAL, ConfigCategory.POSTPROCESSING));
   public static final RegistryDelegate<FloatConfigEntry> SHADER_GRILLE_OPACITY_CONFIG = CONFIG_REGISTRAR.register("shader_grille_opacity", () -> new FloatConfigEntry(0.0f, 0.05f, 0.1f, 0.0f, 1.0f, ConfigStorageLocation.GLOBAL, ConfigCategory.POSTPROCESSING));
@@ -164,6 +225,21 @@ public class CoreMod {
   public static final RegistryDelegate<IndicatorModeConfigEntry> INDICATOR_MODE_CONFIG = CONFIG_REGISTRAR.register("indicator_mode", IndicatorModeConfigEntry::new);
   public static final RegistryDelegate<InventorySizeConfigEntry> INVENTORY_SIZE_CONFIG = CONFIG_REGISTRAR.register("inventory_size", InventorySizeConfigEntry::new);
   public static final RegistryDelegate<EncounterRateConfigEntry> ENCOUNTER_RATE_CONFIG = CONFIG_REGISTRAR.register("encounter_rate", EncounterRateConfigEntry::new);
+  // Definitive integrated QoL and progression controls. No separate mod dependency.
+  public static final RegistryDelegate<BoolConfigEntry> ACTION_HINTS_CONFIG = CONFIG_REGISTRAR.register("action_hints", () -> new BoolConfigEntry(true, ConfigStorageLocation.GLOBAL, ConfigCategory.USER_INTERFACE) {
+    @Override public boolean hasHelp() { return true; }
+  });
+  public static final RegistryDelegate<BoolConfigEntry> SHOP_QUANTITIES_CONFIG = CONFIG_REGISTRAR.register("shop_quantities", () -> new BoolConfigEntry(true, ConfigStorageLocation.CAMPAIGN, ConfigCategory.USER_INTERFACE) {
+    @Override public boolean hasHelp() { return true; }
+  });
+  public static final RegistryDelegate<EnumConfigEntry<EquipmentSort>> EQUIPMENT_SORT_CONFIG = CONFIG_REGISTRAR.register("equipment_sort", () -> new EnumConfigEntry<>(EquipmentSort.class, EquipmentSort.SLOT, ConfigStorageLocation.CAMPAIGN, ConfigCategory.USER_INTERFACE) {
+    @Override public boolean hasHelp() { return true; }
+  });
+  public static final RegistryDelegate<BoolConfigEntry> ADDITION_FEEDBACK_CONFIG = CONFIG_REGISTRAR.register("addition_feedback", () -> new BoolConfigEntry(false, ConfigStorageLocation.CAMPAIGN, ConfigCategory.GAMEPLAY) {
+    @Override public boolean hasHelp() { return true; }
+  });
+  public static final RegistryDelegate<RewardMultiplierConfigEntry> ENEMY_XP_MULTIPLIER_CONFIG = CONFIG_REGISTRAR.register("enemy_xp_multiplier", RewardMultiplierConfigEntry::new);
+  public static final RegistryDelegate<RewardMultiplierConfigEntry> ENEMY_GOLD_MULTIPLIER_CONFIG = CONFIG_REGISTRAR.register("enemy_gold_multiplier", RewardMultiplierConfigEntry::new);
   public static final RegistryDelegate<AdditionModeConfigEntry> ADDITION_MODE_CONFIG = CONFIG_REGISTRAR.register("addition_mode", AdditionModeConfigEntry::new);
   public static final RegistryDelegate<BoolConfigEntry> AUTO_DRAGOON_ADDITION_CONFIG = CONFIG_REGISTRAR.register("auto_dragoon_addition", () -> new BoolConfigEntry(false, ConfigStorageLocation.CAMPAIGN, ConfigCategory.GAMEPLAY));
   public static final RegistryDelegate<AdditionOverlayConfigEntry> ADDITION_OVERLAY_CONFIG = CONFIG_REGISTRAR.register("addition_overlay_mode", AdditionOverlayConfigEntry::new);

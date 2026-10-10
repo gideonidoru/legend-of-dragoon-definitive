@@ -1,21 +1,22 @@
 package legend.game.inventory.screens;
 
+import java.util.Set;
 import legend.core.MathHelper;
 import legend.core.lang.I18nText;
 import legend.core.memory.Method;
 import legend.core.platform.input.InputAction;
 import legend.core.platform.input.InputMod;
+import legend.definitive.qol.EquipmentSort;
 import legend.game.characters.CharacterData2c;
 import legend.game.i18n.I18n;
 import legend.game.inventory.EquipItemResult;
 import legend.game.inventory.Equipment;
 import legend.game.inventory.screens.controls.CharacterCard;
+import legend.game.inventory.screens.controls.Label;
 import legend.game.types.EquipmentSlot;
 import legend.game.types.MenuEntries;
 import legend.game.types.MenuEntryStruct04;
 import legend.game.types.Renderable58;
-
-import java.util.Set;
 
 import static legend.core.GameEngine.CONFIG;
 import static legend.game.FullScreenEffects.startFadeEffect;
@@ -28,22 +29,21 @@ import static legend.game.SItem.equipItem;
 import static legend.game.SItem.equipmentGlyphs_80114180;
 import static legend.game.SItem.giveEquipment;
 import static legend.game.SItem.initHighlight;
-import static legend.game.SItem.loadItemsAndEquipmentForDisplay;
-import static legend.game.SItem.menuEquipmentSlotComparator;
 import static legend.game.SItem.renderCharacterEquipment;
 import static legend.game.SItem.renderCharacterStats;
 import static legend.game.SItem.renderGlyphs;
 import static legend.game.SItem.renderMenuItems;
 import static legend.game.SItem.renderString;
-import static legend.game.SItem.setInventoryFromDisplay;
 import static legend.game.SItem.takeEquipment;
 import static legend.game.Scus94491BpeSegment_800b.characterIndices_800bdbb8;
 import static legend.game.Scus94491BpeSegment_800b.gameState_800babc8;
+import static legend.game.modding.coremod.CoreMod.EQUIPMENT_SORT_CONFIG;
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_BACK;
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_BOTTOM;
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_CONFIRM;
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_DOWN;
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_END;
+import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_HELP;
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_HOME;
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_LEFT;
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_PAGE_DOWN;
@@ -56,12 +56,15 @@ import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_UP;
 import static legend.game.modding.coremod.CoreMod.REDUCE_MOTION_FLASHING_CONFIG;
 import static legend.game.sound.Audio.playMenuSound;
 
+
 public class EquipmentScreen extends MenuScreen {
   private int loadingStage;
   private double scrollAccumulator;
   private final Runnable unload;
 
   private final CharacterCard characterCard;
+  private EquipmentSlot slotFilter;
+  private final Label workflow = new Label(new I18nText("lod_core.ui.equipment.filter.ALL"));
   private int slotScroll;
   private int selectedSlot;
   private int charSlot;
@@ -86,6 +89,10 @@ public class EquipmentScreen extends MenuScreen {
     this.addHotkey(new I18nText("lod_core.ui.equipment.equip"), INPUT_ACTION_MENU_CONFIRM, () -> this.runReadyAction(this::menuSelect));
     this.addHotkey(new I18nText("lod_core.ui.equipment.sort"), INPUT_ACTION_MENU_SORT, () -> this.runReadyAction(this::menuItemSort));
     this.addHotkey(new I18nText("lod_core.ui.equipment.unequip"), INPUT_ACTION_MENU_UNEQUIP, () -> this.runReadyAction(this::menuUnequip));
+    this.addHotkey(new I18nText("lod_core.ui.equipment.filter"), INPUT_ACTION_MENU_HELP, () -> this.runReadyAction(this::menuFilter));
+    this.workflow.setPos(194, 74);
+    this.workflow.setScale(0.66f);
+    this.addControl(this.workflow);
     this.addHotkey(new I18nText("lod_core.ui.equipment.back"), INPUT_ACTION_MENU_BACK, () -> this.runReadyAction(this::menuEscape));
   }
 
@@ -115,6 +122,8 @@ public class EquipmentScreen extends MenuScreen {
         this.itemHighlight.y_44 = this.menuHighlightPositionY(this.selectedSlot);
         this.equipmentCount = this.getEquippableItemsForCharacter(characterIndices_800bdbb8.getInt(this.charSlot));
         this.slotScroll = Math.clamp(this.slotScroll, 0, Math.max(0, this.equipmentCount - 4));
+        this.selectedSlot = Math.clamp(this.selectedSlot, 0, Math.max(0, Math.min(3, this.equipmentCount - this.slotScroll - 1)));
+        this.itemHighlight.y_44 = this.menuHighlightPositionY(this.selectedSlot);
 
         this.renderEquipmentScreen(this.charSlot, this.selectedSlot, this.slotScroll, 0xff);
         this.loadingStage++;
@@ -168,7 +177,7 @@ public class EquipmentScreen extends MenuScreen {
     for(int equipmentSlot = 0; equipmentSlot < gameState_800babc8.equipment_1e8.size(); equipmentSlot++) {
       final CharacterData2c character = gameState_800babc8.charData_32c.get(charIndex);
       final Equipment equipment = gameState_800babc8.equipment_1e8.get(equipmentSlot);
-      if(character.canEquip(equipment.slot, equipment)) {
+      if(EquipmentSort.matches(this.slotFilter, equipment) && character.canEquip(equipment.slot, equipment)) {
         if(equipment != gameState_800babc8.charData_32c.get(charIndex).getEquipment(equipment.slot)) {
           final MenuEntryStruct04<Equipment> menuEntry = new MenuEntryStruct04<>(equipment);
           menuEntry.itemSlot_01 = equipmentSlot;
@@ -177,6 +186,11 @@ public class EquipmentScreen extends MenuScreen {
       }
     }
 
+    this.menuItems.sort(java.util.Comparator.comparing(entry -> entry.item_00,
+      CONFIG.getConfig(EQUIPMENT_SORT_CONFIG.get()).comparator(e -> I18n.translate(e.getNameTranslationKey()))));
+    this.workflow.setText(new I18nText("lod_core.ui.equipment.workflow",
+      new I18nText("lod_core.ui.equipment.filter." + (this.slotFilter == null ? "ALL" : this.slotFilter.name())),
+      new I18nText("lod_core.config.equipment_sort." + CONFIG.getConfig(EQUIPMENT_SORT_CONFIG.get()).name())));
     return this.menuItems.size();
   }
 
@@ -259,21 +273,7 @@ public class EquipmentScreen extends MenuScreen {
         this.selectedSlot = slot;
         this.itemHighlight.y_44 = this.menuHighlightPositionY(slot);
 
-        final int itemIndex = this.selectedSlot + this.slotScroll;
-        if(itemIndex < this.menuItems.size()) {
-          final Equipment equipment = this.menuItems.get(itemIndex).item_00;
-          final EquipItemResult previousEquipment = equipItem(equipment, characterIndices_800bdbb8.getInt(this.charSlot));
-          takeEquipment(this.menuItems.get(itemIndex).itemSlot_01);
-
-          if(previousEquipment.previousEquipment != null) {
-            giveEquipment(previousEquipment.previousEquipment);
-          }
-
-          playMenuSound(2);
-          addHp(characterIndices_800bdbb8.getInt(this.charSlot), 0);
-          addMp(characterIndices_800bdbb8.getInt(this.charSlot), 0);
-          this.loadingStage = 2;
-        }
+        this.menuSelect();
 
         return InputPropagation.HANDLED;
       }
@@ -413,11 +413,21 @@ public class EquipmentScreen extends MenuScreen {
 
     if(itemIndex < this.menuItems.size()) {
       final Equipment equipment = this.menuItems.get(itemIndex).item_00;
+      final java.util.List<Equipment> inventoryBefore = new java.util.ArrayList<>(gameState_800babc8.equipment_1e8);
       final EquipItemResult previousEquipment = equipItem(equipment, characterIndices_800bdbb8.getInt(this.charSlot));
-      takeEquipment(this.menuItems.get(itemIndex).itemSlot_01);
-
-      if(previousEquipment.previousEquipment != null) {
-        giveEquipment(previousEquipment.previousEquipment);
+      if(!previousEquipment.success) {
+        playMenuSound(40);
+        return;
+      }
+      if(!takeEquipment(this.menuItems.get(itemIndex).itemSlot_01)
+        || previousEquipment.previousEquipment != null && !giveEquipment(previousEquipment.previousEquipment)) {
+        // A denied inventory event must leave both equipment and the bag intact.
+        gameState_800babc8.equipment_1e8.clear();
+        gameState_800babc8.equipment_1e8.addAll(inventoryBefore);
+        gameState_800babc8.charData_32c.get(characterIndices_800bdbb8.getInt(this.charSlot)).equip(equipment.slot, previousEquipment.previousEquipment);
+        playMenuSound(40);
+        this.loadingStage = 2;
+        return;
       }
 
       playMenuSound(2);
@@ -431,10 +441,18 @@ public class EquipmentScreen extends MenuScreen {
 
   private void menuItemSort() {
     playMenuSound(2);
-    final MenuEntries<Equipment> equipment = new MenuEntries<>();
-    loadItemsAndEquipmentForDisplay(equipment, null, 1);
-    equipment.sort(menuEquipmentSlotComparator());
-    setInventoryFromDisplay(equipment, gameState_800babc8.equipment_1e8, equipment.size());
+    CONFIG.setConfig(EQUIPMENT_SORT_CONFIG.get(), CONFIG.getConfig(EQUIPMENT_SORT_CONFIG.get()).next());
+    this.selectedSlot = 0;
+    this.slotScroll = 0;
+    this.loadingStage = 2;
+  }
+
+  private void menuFilter() {
+    playMenuSound(2);
+    this.slotFilter = this.slotFilter == null ? EquipmentSlot.WEAPON
+      : this.slotFilter == EquipmentSlot.ACCESSORY ? null : EquipmentSlot.values()[this.slotFilter.ordinal() + 1];
+    this.selectedSlot = 0;
+    this.slotScroll = 0;
     this.loadingStage = 2;
   }
 
@@ -444,10 +462,10 @@ public class EquipmentScreen extends MenuScreen {
     final CharacterData2c character = gameState_800babc8.charData_32c.get(characterIndices_800bdbb8.getInt(this.charSlot));
 
     for(final EquipmentSlot slot : EquipmentSlot.values()) {
-      final Equipment old = character.equip(slot, null);
-
+      final Equipment old = character.getEquipment(slot);
       if(old != null) {
-        giveEquipment(old);
+        if(giveEquipment(old)) character.equip(slot, null);
+        else playMenuSound(40);
       }
     }
 
@@ -528,7 +546,7 @@ public class EquipmentScreen extends MenuScreen {
       return InputPropagation.HANDLED;
     }
 
-    if(action == INPUT_ACTION_MENU_SORT.get()) {
+    if(action == INPUT_ACTION_MENU_SORT.get() && !repeat) {
       this.menuItemSort();
       return InputPropagation.HANDLED;
     }

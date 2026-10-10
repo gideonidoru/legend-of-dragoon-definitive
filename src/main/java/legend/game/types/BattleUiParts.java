@@ -322,7 +322,7 @@ public class BattleUiParts {
 
     this.mv.scaling(widthScale, heightScale, 1.0f);
     this.mv.transfer.set(left - offsetX + displayWidth_1f8003e0 / 2.0f, top - offsetY + displayHeight_1f8003e4 / 2.0f, 2.0f);
-    RENDERER.queueOrthoModel(this.obj, this.mv, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(this.obj, this.mv, QueuedModelStandard.class)
       .vertices(vertexIndex, 4)
       .clutOverride(clutX & 0x3f0, clutY)
       .tpageOverride(704, 256)

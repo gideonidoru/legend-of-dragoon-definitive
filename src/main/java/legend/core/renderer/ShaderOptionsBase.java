@@ -4,6 +4,49 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 public class ShaderOptionsBase implements ShaderOptions {
+  public void surface(final SurfaceMaterial material) { }
+  private ShaderUniformInt uiLayer;
+  private ShaderUniformFloat emission;
+  private ShaderUniformInt hdTexture;
+  private ShaderUniformInt normalMap, roughnessMap;
+  private ShaderUniformFloat normalStrength;
+  private ShaderUniformInt defaultMaps;
+
+  public void metadataUniforms(final Shader<?> shader) {
+    this.uiLayer = shader.uniformInt("uiLayer");
+    this.emission = shader.uniformFloat("emission");
+    this.hdTexture = shader.uniformInt("hdTexture");
+    this.normalMap = shader.uniformInt("normalMapEnabled");
+    this.roughnessMap = shader.uniformInt("roughnessMapEnabled");
+    this.normalStrength = shader.uniformFloat("normalMapStrength");
+    this.defaultMaps = shader.uniformInt("defaultSurfaceMaps");
+    shader.use();
+    shader.uniformInt("normalMapTex").set(4);
+    shader.uniformInt("roughnessMapTex").set(5);
+  }
+
+  public void materialMaps(final boolean normal, final boolean roughness, final float strength) {
+    if(this.normalMap != null) {
+      this.normalMap.set(normal ? 1 : 0);
+      this.roughnessMap.set(roughness ? 1 : 0);
+      this.normalStrength.set(strength);
+    }
+  }
+
+  public void defaultSurfaceMaps(final boolean enabled) {
+    if(this.defaultMaps != null) this.defaultMaps.set(enabled ? 1 : 0);
+  }
+
+  public void hdTexture(final boolean enabled) {
+    if(this.hdTexture != null) this.hdTexture.set(enabled ? 1 : 0);
+  }
+
+  public void renderMetadata(final boolean ui, final float emission) {
+    if(this.uiLayer != null) {
+      this.uiLayer.set(ui ? 1 : 0);
+      this.emission.set(ui ? 0.0f : emission);
+    }
+  }
   private final ShaderUniformFloat modelIndex;
   private final ShaderUniformVec3 colourUniform;
   private final ShaderUniformVec2 uvOffsetUniform;

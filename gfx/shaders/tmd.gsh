@@ -8,6 +8,14 @@ in VS_OUT {
   flat vec2 vertClut;
   flat int vertBpp;
   smooth vec4 vertColour;
+  smooth vec3 lightingNormal;
+  smooth vec3 worldPosition;
+  smooth vec3 localPosition;
+  smooth vec3 worldNormal;
+  smooth vec3 localViewDirection;
+  smooth vec3 worldViewDirection;
+  smooth vec3 lightingColour;
+  flat int lightingIndex;
   flat int vertFlags;
 
   flat int translucency;
@@ -29,6 +37,14 @@ out GS_OUT {
   flat vec2 vertClut;
   flat int vertBpp;
   smooth vec4 vertColour;
+  smooth vec3 lightingNormal;
+  smooth vec3 worldPosition;
+  smooth vec3 localPosition;
+  smooth vec3 worldNormal;
+  smooth vec3 localViewDirection;
+  smooth vec3 worldViewDirection;
+  smooth vec3 lightingColour;
+  flat int lightingIndex;
   flat int vertFlags;
 
   flat int translucency;
@@ -96,6 +112,14 @@ void emit(int i, float depth) {
   gs_out.vertClut = vs_out[i].vertClut;
   gs_out.vertBpp = vs_out[i].vertBpp;
   gs_out.vertColour = vs_out[i].vertColour;
+  gs_out.lightingNormal = vs_out[i].lightingNormal;
+  gs_out.worldPosition = vs_out[i].worldPosition;
+  gs_out.localPosition = vs_out[i].localPosition;
+  gs_out.worldNormal = vs_out[i].worldNormal;
+  gs_out.localViewDirection = vs_out[i].localViewDirection;
+  gs_out.worldViewDirection = vs_out[i].worldViewDirection;
+  gs_out.lightingColour = vs_out[i].lightingColour;
+  gs_out.lightingIndex = vs_out[i].lightingIndex;
   gs_out.vertFlags = vs_out[i].vertFlags;
   gs_out.translucency = vs_out[i].translucency;
   gs_out.widthMultiplier = vs_out[i].widthMultiplier;

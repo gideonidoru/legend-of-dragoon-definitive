@@ -1091,6 +1091,7 @@ public class Ttle extends EngineState<Ttle> {
       //LAB_800c8a8c
       RENDERER
         .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(0xf8 / 255.0f, 0x80 / 255.0f, 0x10 / 255.0f)
         .alpha(alpha / 128.0f)
@@ -1105,6 +1106,7 @@ public class Ttle extends EngineState<Ttle> {
 
       RENDERER
         .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(this.normalColour.lerp(this.highlightColour, (alpha - 0x40) / (float)0x60, this.tempColour))
         .alpha(alpha / 128.0f)
@@ -1123,6 +1125,7 @@ public class Ttle extends EngineState<Ttle> {
 
       RENDERER
         .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(0xf8 / 255.0f, 0x80 / 255.0f, 0x10 / 255.0f)
         .alpha(this.menuUpdateTransparency / 128.0f)
@@ -1137,6 +1140,7 @@ public class Ttle extends EngineState<Ttle> {
 
       RENDERER
         .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(this.normalColour)
         .alpha(this.menuUpdateTransparency / 128.0f)
@@ -1151,6 +1155,7 @@ public class Ttle extends EngineState<Ttle> {
 
       RENDERER
         .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(this.normalColour)
         .alpha(this.menuUpdateTransparency / 128.0f)
@@ -1171,6 +1176,7 @@ public class Ttle extends EngineState<Ttle> {
 
       RENDERER
         .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(0xf8 / 255.0f, 0x80 / 255.0f, 0x10 / 255.0f)
         .alpha(this.menuUpdateTransparency / 128.0f)
@@ -1185,6 +1191,7 @@ public class Ttle extends EngineState<Ttle> {
 
       RENDERER
         .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(this.normalColour)
         .alpha(this.menuUpdateTransparency / 128.0f)
@@ -1199,6 +1206,7 @@ public class Ttle extends EngineState<Ttle> {
 
       RENDERER
         .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(this.normalColour)
         .alpha(this.menuUpdateTransparency / 128.0f)
@@ -1241,6 +1249,7 @@ public class Ttle extends EngineState<Ttle> {
     //LAB_800cabe8
     RENDERER
       .queueOrthoModel(this.copyrightObj, transforms, QueuedModelStandard.class)
+      .ui()
       .monochrome(this.copyrightFadeInAmount)
       .texture(this.copyrightTex);
   }
@@ -1262,6 +1271,7 @@ public class Ttle extends EngineState<Ttle> {
 
     RENDERER
       .queueOrthoModel(this.logoObj, transforms, QueuedModelStandard.class)
+      .ui()
       .translucency(Translucency.B_PLUS_F)
       .alpha(this.logoFadeInAmount)
       .useTextureAlpha()
@@ -1271,6 +1281,7 @@ public class Ttle extends EngineState<Ttle> {
 
     RENDERER
       .queueOrthoModel(this.trademarkObj, transforms, QueuedModelStandard.class)
+      .ui()
       .monochrome(this.logoFadeInAmount)
       .texture(this.trademarkTex);
   }

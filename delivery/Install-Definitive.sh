@@ -2,9 +2,9 @@
 # Portable Definitive entry point (2026-10-09), AGPL v3; see repository LICENSE.
 set -euo pipefail
 umask 077
-TAG=definitive-alpha-2026-10-10-deck-recovery
+TAG=definitive-alpha-2026-10-10-all-hd-repair
 # Updated by scripts/assemble-installer.py after building the small portable UI package.
-EXPECTED=a7c744120fa8976e90cbf667d952f99e10669fae0b1abb44873c5785d4b706bf
+EXPECTED=78bdc9bbd5d76430bf1db3a151db58a535e84b179169e4929be90cb2225651b9
 CACHE="$HOME/.cache/legend-of-dragoon-definitive"
 mkdir -p -- "$CACHE"
 [[ ! -L "$CACHE" ]] || { echo 'Choose a real installer cache directory.' >&2; exit 1; }
@@ -28,6 +28,13 @@ cleanup() {
 }
 trap cleanup EXIT
 STAGE=$(mktemp -d "$CACHE/.portable.XXXXXX")
+# Open a private inode first; atomically replace the log name without following links.
+exec 8> "$STAGE/bootstrap.log"
+case "$(uname -s)" in
+  Linux) mv -fT -- "$STAGE/bootstrap.log" "$LOG" ;;
+  Darwin) mv -fh -- "$STAGE/bootstrap.log" "$LOG" ;;
+  *) echo 'Unsupported logging platform.' >&2; exit 1 ;;
+esac
 prepare() {
   printf '%s\n' '5' '# Downloading the installer from GitHub…' >&3
   for tool in curl unzip; do command -v "$tool" >/dev/null || { echo "$tool is needed to prepare the installer."; return 1; }; done
@@ -42,9 +49,9 @@ prepare() {
   printf '%s\n' '90' '# Starting the guided installer…' >&3
 }
 if command -v zenity >/dev/null; then
-  (prepare 3>&1 > "$LOG" 2>&1 || exit 1; echo 100) | zenity --progress --auto-close --no-cancel --title='The Legend of Dragoon · Definitive' --text='Preparing the installer…' || { zenity --error --text="Setup could not start. See $LOG for details."; exit 1; }
+  (prepare 3>&1 >&8 2>&1 || exit 1; echo 100) | zenity --progress --auto-close --no-cancel --title='The Legend of Dragoon · Definitive' --text='Preparing the installer…' || { zenity --error --text="Setup could not start. See $LOG for details."; exit 1; }
 else
-  prepare 3>/dev/null > "$LOG" 2>&1 || { command -v kdialog >/dev/null && kdialog --error "Setup could not start. See $LOG for details."; exit 1; }
+  prepare 3>/dev/null >&8 2>&1 || { command -v kdialog >/dev/null && kdialog --error "Setup could not start. See $LOG for details."; exit 1; }
 fi
 IFS= read -r JAVA < "$STAGE/java-path"
 "$JAVA" --enable-native-access=ALL-UNNAMED -cp "$STAGE/installer/definitive-manager.jar:$STAGE/installer/manager-libs/*" legend.definitive.manager.ManagerMain --setup "$STAGE/installer"

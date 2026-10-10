@@ -1,5 +1,8 @@
 package legend.game.combat;
 
+import legend.definitive.rendering.ActorShadow;
+import legend.definitive.rendering.ContactShadow;
+
 import legend.core.DebugHelper;
 import legend.core.MathHelper;
 import legend.core.renderer.BufferUsage;
@@ -105,6 +108,7 @@ import java.util.Arrays;
 import java.util.function.BiFunction;
 
 import static legend.core.GameEngine.CONFIG;
+import static legend.game.modding.coremod.CoreMod.REDUCE_MOTION_FLASHING_CONFIG;
 import static legend.core.GameEngine.GPU;
 import static legend.core.GameEngine.GTE;
 import static legend.core.GameEngine.PLATFORM;
@@ -357,7 +361,7 @@ public final class SEffe {
     zMax_1f8003cc = oldZMax;
     zMin = oldZMin;
 
-    RENDERER.queueModel(obj, seffeTransforms, QueuedModelBattleTmd.class)
+    final QueuedModelBattleTmd queued = RENDERER.queueModel(obj, seffeTransforms, QueuedModelBattleTmd.class)
       .depthOffset(effectParams.z_22 * 4)
       .lightDirection(lightDirectionMatrix_800c34e8)
       .lightColour(lightColourMatrix_800c3508)
@@ -365,6 +369,15 @@ public final class SEffe {
       .ctmdFlags(0x20 | ((dobj2.attribute_00 & 0x4000_0000) != 0 ? 0x12 : 0x0))
       .tmdTranslucency(tmdGp0Tpage_1f8003ec >>> 5 & 0b11)
       .battleColour(((Battle)currentEngineState_8004dd04)._800c6930.colour_00);
+    final int effectBlend = tmdGp0Tpage_1f8003ec >>> 5 & 3;
+    if((dobj2.attribute_00 & 0x4000_0000) != 0 && (effectBlend == 1 || effectBlend == 3) && !ActorShadow.isSoft(obj) && !CONFIG.getConfig(REDUCE_MOTION_FLASHING_CONFIG.get())) {
+      queued.emissive(0.65f);
+      RENDERER.effectLight(seffeTransforms.transfer, effectParams.colour_1c.x / 255.0f, effectParams.colour_1c.y / 255.0f, effectParams.colour_1c.z / 255.0f, 256.0f);
+    }
+    if(ActorShadow.isSoft(obj)) {
+      final Vector3f tint = ((Battle)currentEngineState_8004dd04)._800c6930.colour_00;
+      queued.colour(ContactShadow.effectTint(tint.x), ContactShadow.effectTint(tint.y), ContactShadow.effectTint(tint.z));
+    }
 
     //LAB_800de528
   }
@@ -828,7 +841,8 @@ public final class SEffe {
     GsGetLw(shadow.modelParts_00[0].coord2_04, lw);
 
     RENDERER
-      .queueModel(shadow.modelParts_00[0].tmd_08.getObj(), lw, QueuedModelTmd.class)
+      .queueModel(ActorShadow.get(shadow.modelParts_00[0].tmd_08), lw, QueuedModelTmd.class)
+      .tmdTranslucency(Translucency.B_MINUS_F.ordinal())
       .lightDirection(lightDirectionMatrix_800c34e8)
       .lightColour(lightColourMatrix_800c3508)
       .backgroundColour(GTE.backgroundColour);

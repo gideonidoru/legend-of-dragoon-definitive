@@ -3,6 +3,10 @@ package legend.core.renderer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import legend.core.Config;
+import legend.definitive.rendering.SceneLighting;
+import legend.definitive.rendering.SceneLightingUniforms;
+import legend.definitive.rendering.EffectLights;
+import legend.definitive.rendering.ModernLightingUniforms;
 import legend.core.LitModel;
 import legend.core.MathHelper;
 import legend.core.QueuePool;
@@ -28,6 +32,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
+import org.joml.Vector3fc;
 import org.lwjgl.BufferUtils;
 
 import java.io.IOException;
@@ -74,6 +79,14 @@ import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_GENERAL_TOGGLE_SP
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_GENERAL_TURBO;
 import static legend.game.modding.coremod.CoreMod.LEGACY_WIDESCREEN_MODE_CONFIG;
 import static legend.game.modding.coremod.CoreMod.RESOLUTION_CONFIG;
+import static legend.game.modding.coremod.CoreMod.SMOOTH_MODEL_LIGHTING_CONFIG;
+import static legend.game.modding.coremod.CoreMod.SCENE_MATCHED_LIGHTING_CONFIG;
+import static legend.game.modding.coremod.CoreMod.EDGE_SMOOTHING_CONFIG;
+import static legend.game.modding.coremod.CoreMod.SCENE_SHARPENING_CONFIG;
+import static legend.game.modding.coremod.CoreMod.SCENE_BLOOM_CONFIG;
+import static legend.game.modding.coremod.CoreMod.PROTECT_INTERFACE_CONFIG;
+import static legend.game.modding.coremod.CoreMod.MATERIAL_LIGHTING_CONFIG;
+import static legend.game.modding.coremod.CoreMod.EFFECT_LIGHTS_CONFIG;
 import static legend.game.modding.coremod.CoreMod.SHADER_ABERRATION_CONFIG;
 import static legend.game.modding.coremod.CoreMod.SHADER_BLOOM_INTENSITY_CONFIG;
 import static legend.game.modding.coremod.CoreMod.SHADER_BLOOM_RADIUS_CONFIG;
@@ -117,6 +130,22 @@ public class RenderEngine {
   private ShaderUniformBuffer clutAnimationUniform;
   private final FloatBuffer transformsBuffer = BufferUtils.createFloatBuffer(4 * 4 * 2);
   private final FloatBuffer transforms2Buffer = BufferUtils.createFloatBuffer((4 * 4 + 4) * 128);
+  private final EffectLights effectLights = new EffectLights();
+  private final legend.definitive.rendering.SmaaPipeline smaa = new legend.definitive.rendering.SmaaPipeline();
+  private ModernLightingUniforms tmdModernLighting;
+  private ModernLightingUniforms battleModernLighting;
+
+  public void effectLight(final Vector3fc position, final float r, final float g, final float b, final float radius) {
+    if(!this.mainBatch.modelPool.ignoreQueues && CONFIG.getConfig(EFFECT_LIGHTS_CONFIG.get())) {
+      this.effectLights.add(position, r, g, b, radius);
+    }
+  }
+
+  private SceneLightingUniforms tmdSceneLighting;
+  private SceneLightingUniforms battleSceneLighting;
+  private ShaderUniformInt smoothTmdLighting;
+  private ShaderUniformInt smoothBattleLighting;
+  private ShaderUniformFloat edgeSmoothing;
   private final FloatBuffer lightBuffer = BufferUtils.createFloatBuffer((4 * 4 + 3 * 4 + 4) * 128); // 3*4 since glsl std140 means mat3's are basically 3 vec4s
   private final FloatBuffer projectionBuffer = BufferUtils.createFloatBuffer(4);
   final FloatBuffer scissorBuffer = BufferUtils.createFloatBuffer(4);
@@ -166,7 +195,11 @@ public class RenderEngine {
       final ShaderUniformFloat translucency = shader.uniformFloat("translucency");
       final ShaderUniformFloat alpha = shader.uniformFloat("alpha");
       final ShaderUniformFloat useTextureAlpha = shader.uniformFloat("useTextureAlpha");
-      return () -> new ShaderOptionsStandard(modelIndex, recolour, uvOffset, clutOverride, tpageOverride, discardTranslucency, translucency, alpha, useTextureAlpha);
+      return () -> {
+        final ShaderOptionsStandard options = new ShaderOptionsStandard(modelIndex, recolour, uvOffset, clutOverride, tpageOverride, discardTranslucency, translucency, alpha, useTextureAlpha);
+        options.metadataUniforms(shader);
+        return options;
+      };
     }
   );
 
@@ -190,7 +223,11 @@ public class RenderEngine {
       final ShaderUniformFloat discardTranslucency = shader.uniformFloat("discardTranslucency");
       final ShaderUniformInt tmdTranslucency = shader.uniformInt("tmdTranslucency");
       final ShaderUniformInt usePs1Depth = shader.uniformInt("usePs1Depth");
-      return () -> new ShaderOptionsTmd(modelIndex, recolour, uvOffset, clutOverride, tpageOverride, discardTranslucency, tmdTranslucency, usePs1Depth);
+      return () -> {
+        final ShaderOptionsTmd options = new ShaderOptionsTmd(modelIndex, recolour, uvOffset, clutOverride, tpageOverride, discardTranslucency, tmdTranslucency, usePs1Depth);
+        options.metadataUniforms(shader);
+        return options;
+      };
     }
   );
 
@@ -216,7 +253,11 @@ public class RenderEngine {
       final ShaderUniformInt usePs1Depth = shader.uniformInt("usePs1Depth");
       final ShaderUniformInt ctmdFlags = shader.uniformInt("ctmdFlags");
       final ShaderUniformVec3 battleColour = shader.uniformVec3("battleColour");
-      return () -> new ShaderOptionsBattleTmd(modelIndex, recolour, uvOffset, clutOverride, tpageOverride, discardTranslucency, tmdTranslucency, usePs1Depth, ctmdFlags, battleColour);
+      return () -> {
+        final ShaderOptionsBattleTmd options = new ShaderOptionsBattleTmd(modelIndex, recolour, uvOffset, clutOverride, tpageOverride, discardTranslucency, tmdTranslucency, usePs1Depth, ctmdFlags, battleColour);
+        options.metadataUniforms(shader);
+        return options;
+      };
     }
   );
 
@@ -260,6 +301,17 @@ public class RenderEngine {
   Shader<ShaderOptionsBattleTmd> battleTmdShader;
   ShaderOptionsBattleTmd battleTmdShaderOptions;
   private final FrameBuffer[] renderBuffers = new FrameBuffer[RENDER_BUFFER_COUNT];
+  private final Texture[] emissionTextures = new Texture[RENDER_BUFFER_COUNT];
+  private final Texture[] interfaceTextures = new Texture[RENDER_BUFFER_COUNT];
+  private int uiScopeDepth;
+
+  public void pushUiScope() { this.uiScopeDepth++; }
+  public void popUiScope() {
+    if(this.uiScopeDepth == 0) throw new IllegalStateException("Unbalanced UI scope");
+    this.uiScopeDepth--;
+  }
+  public boolean isUiScope() { return this.uiScopeDepth != 0; }
+
   private final Texture[] renderTextures = new Texture[RENDER_BUFFER_COUNT];
   private Texture depthTexture;
   private int renderBufferIndex;
@@ -345,6 +397,7 @@ public class RenderEngine {
 
   private void resetBatches() {
     this.mainBatch.reset();
+    this.effectLights.clear();
 
     for(int i = 0; i < this.batches.size(); i++) {
       this.batches.get(i).reset();
@@ -431,6 +484,10 @@ public class RenderEngine {
   }
 
   public void delete() {
+    this.smaa.delete();
+    legend.definitive.rendering.DefaultMaterialMaps.delete();
+    Texture.deleteTextures();
+    legend.definitive.rendering.PngAssets.SHARED.clear();
     ShaderManager.delete();
     Obj.setShouldLog(false);
     Obj.clearObjList(true);
@@ -489,12 +546,20 @@ public class RenderEngine {
     ShaderManager.addShader(COPY_SHADER);
     final Shader<ShaderOptionsScreen> screenShader = ShaderManager.addShader(SCREEN_SHADER);
     final ShaderOptionsScreen screenShaderOptions = screenShader.makeOptions();
+    screenShaderOptions.sceneUniforms(screenShader);
     this.standardShader = ShaderManager.addShader(STANDARD_SHADER);
     this.standardShaderOptions = this.standardShader.makeOptions();
     this.tmdShader = ShaderManager.addShader(TMD_SHADER);
     this.tmdShaderOptions = this.tmdShader.makeOptions();
     this.battleTmdShader = ShaderManager.addShader(BATTLE_TMD_SHADER);
     this.battleTmdShaderOptions = this.battleTmdShader.makeOptions();
+    this.tmdSceneLighting = new SceneLightingUniforms(this.tmdShader);
+    this.tmdModernLighting = new ModernLightingUniforms(this.tmdShader);
+    this.battleSceneLighting = new SceneLightingUniforms(this.battleTmdShader);
+    this.battleModernLighting = new ModernLightingUniforms(this.battleTmdShader);
+    this.smoothTmdLighting = this.tmdShader.uniformInt("smoothLighting");
+    this.smoothBattleLighting = this.battleTmdShader.uniformInt("smoothLighting");
+    this.edgeSmoothing = screenShader.uniformFloat("edgeSmoothing");
 
     this.transformsUniform = this.api.makeUniformBuffer((long)this.transformsBuffer.capacity() * Float.BYTES, ShaderUniformBuffer.TRANSFORM);
     this.transforms2Uniform = ShaderManager.addUniformBuffer("transforms2", this.api.makeUniformBuffer((long)this.transforms2Buffer.capacity() * Float.BYTES, ShaderUniformBuffer.TRANSFORM2));
@@ -662,6 +727,23 @@ public class RenderEngine {
       }
 
       if(legacyMode == 0) {
+        final int smoothLighting = CONFIG.getConfig(SMOOTH_MODEL_LIGHTING_CONFIG.get()) ? 1 : 0;
+        final SceneLighting sceneLighting = CONFIG.getConfig(SCENE_MATCHED_LIGHTING_CONFIG.get()) ? SceneLighting.ENHANCED : SceneLighting.ORIGINAL;
+        legend.definitive.rendering.EnvironmentLight environment = legend.definitive.rendering.EnvironmentLight.NONE;
+        if(CONFIG.getConfig(legend.game.modding.coremod.CoreMod.ENVIRONMENT_LIGHTING_CONFIG.get()) && currentEngineState_8004dd04 != null) {
+          environment = currentEngineState_8004dd04.environmentLighting();
+          if(environment.influence() == 0 && currentEngineState_8004dd04.nativeEnvironmentLighting()) {
+            environment = legend.definitive.rendering.NativeSceneLighting.profile(legend.game.Graphics.lightDirectionMatrix_800c34e8, legend.game.Graphics.lightColourMatrix_800c3508, legend.core.GameEngine.GTE.backgroundColour);
+          }
+        }
+        this.tmdShader.use();
+        this.smoothTmdLighting.set(smoothLighting);
+        this.tmdSceneLighting.set(sceneLighting);
+        this.tmdModernLighting.set(CONFIG.getConfig(MATERIAL_LIGHTING_CONFIG.get()), CONFIG.getConfig(EFFECT_LIGHTS_CONFIG.get()), this.effectLights, environment);
+        this.battleTmdShader.use();
+        this.smoothBattleLighting.set(smoothLighting);
+        this.battleSceneLighting.set(sceneLighting);
+        this.battleModernLighting.set(CONFIG.getConfig(MATERIAL_LIGHTING_CONFIG.get()), CONFIG.getConfig(EFFECT_LIGHTS_CONFIG.get()), this.effectLights, environment);
         // Gross hack bro
         if(currentEngineState_8004dd04 instanceof final Battle battle && battle._800c6930 != null) {
           this.battleTmdShader.use();
@@ -671,7 +753,9 @@ public class RenderEngine {
         this.renderBuffers[this.renderBufferIndex].bind();
 
         if(this.frameSkipIndex == 0) {
+          this.api.postProcessMask(true);
           this.api.clear(true, false, false);
+          this.api.clearPostProcessTargets();
 
           // Render batches
           for(int i = 0; i < this.batches.size(); i++) {
@@ -688,6 +772,17 @@ public class RenderEngine {
         this.api.disableDepthTest();
         this.api.translucency(null);
 
+        final boolean enableCrt = CONFIG.getConfig(SHADER_ENABLE_CRT_CONFIG.get());
+        final float edgeAmount = CONFIG.getConfig(EDGE_SMOOTHING_CONFIG.get());
+        final boolean enableSmaa = !enableCrt && CONFIG.getConfig(legend.game.modding.coremod.CoreMod.SMAA_CONFIG.get()) && edgeAmount > 0;
+        final Texture scenePresentation;
+        if(enableSmaa) {
+          scenePresentation = this.smaa.apply(this.api, this.renderTextures[this.renderBufferIndex], this.interfaceTextures[this.renderBufferIndex], postQuad, edgeAmount, CONFIG.getConfig(PROTECT_INTERFACE_CONFIG.get()));
+        } else {
+          this.smaa.releaseTargets();
+          scenePresentation = this.renderTextures[this.renderBufferIndex];
+        }
+
         // bind backbuffer
         this.api.unbindFramebuffer();
         this.api.clear(false, true, false);
@@ -695,8 +790,10 @@ public class RenderEngine {
         // use screen shader
         screenShader.use();
 
-        final boolean enableCrt = CONFIG.getConfig(SHADER_ENABLE_CRT_CONFIG.get());
         screenShaderOptions.enableCrt(enableCrt);
+        screenShaderOptions.sceneEffects(CONFIG.getConfig(SCENE_BLOOM_CONFIG.get()), CONFIG.getConfig(SCENE_SHARPENING_CONFIG.get()), CONFIG.getConfig(PROTECT_INTERFACE_CONFIG.get()));
+        // Intentional CRT pixels keep their original sampling. No temporal history.
+        this.edgeSmoothing.set(enableCrt || scenePresentation != this.renderTextures[this.renderBufferIndex] ? 0.0f : edgeAmount);
 
         if(enableCrt) {
           screenShaderOptions.enableCrt(true);
@@ -780,7 +877,9 @@ public class RenderEngine {
 
         // draw final screen quad
         this.api.viewport(0, 0, this.window.getWidth(), this.window.getHeight());
-        this.renderTextures[this.renderBufferIndex].use();
+        scenePresentation.use();
+        this.emissionTextures[this.renderBufferIndex].use(2);
+        this.interfaceTextures[this.renderBufferIndex].use(3);
         postQuad.draw();
 
         // If we don't unbind the framebuffer textures, window resizing will crash since it has to resize the framebuffer
@@ -835,6 +934,17 @@ public class RenderEngine {
 
         try {
           ShaderManager.reload();
+          this.standardShaderOptions.metadataUniforms(this.standardShader);
+          this.tmdShaderOptions.metadataUniforms(this.tmdShader);
+          this.battleTmdShaderOptions.metadataUniforms(this.battleTmdShader);
+          this.tmdSceneLighting = new SceneLightingUniforms(this.tmdShader);
+          this.tmdModernLighting = new ModernLightingUniforms(this.tmdShader);
+          this.battleSceneLighting = new SceneLightingUniforms(this.battleTmdShader);
+          this.battleModernLighting = new ModernLightingUniforms(this.battleTmdShader);
+          this.smoothTmdLighting = this.tmdShader.uniformInt("smoothLighting");
+          this.smoothBattleLighting = this.battleTmdShader.uniformInt("smoothLighting");
+          this.edgeSmoothing = screenShader.uniformFloat("edgeSmoothing");
+          screenShaderOptions.sceneUniforms(screenShader);
         } catch(final IOException e) {
           LOGGER.error("Failed to reload shaders", e);
         }
@@ -889,6 +999,7 @@ public class RenderEngine {
     }
 
     this.api.translucency(null);
+    this.api.postProcessMask(true);
     this.api.backfaceCulling(backFaceCulling);
 
     for(int i = 0; i < pool.size(); i++) {
@@ -967,21 +1078,25 @@ public class RenderEngine {
         for(int layer = 0; layer < entry.getLayers(); layer++) {
           if(entry.shouldRender(Translucency.HALF_B_PLUS_HALF_F, layer)) {
             this.api.translucency(Translucency.HALF_B_PLUS_HALF_F);
+            this.api.postProcessMask(entry.uiLayer);
             entry.render(Translucency.HALF_B_PLUS_HALF_F, layer);
           }
 
           if(entry.shouldRender(Translucency.B_PLUS_F, layer)) {
             this.api.translucency(Translucency.B_PLUS_F);
+            this.api.postProcessMask(entry.uiLayer);
             entry.render(Translucency.B_PLUS_F, layer);
           }
 
           if(entry.shouldRender(Translucency.B_MINUS_F, layer)) {
             this.api.translucency(Translucency.B_MINUS_F);
+            this.api.postProcessMask(entry.uiLayer);
             entry.render(Translucency.B_MINUS_F, layer);
           }
 
           if(entry.shouldRender(Translucency.B_PLUS_QUARTER_F, layer)) {
             this.api.translucency(Translucency.B_PLUS_F);
+            this.api.postProcessMask(entry.uiLayer);
             entry.render(Translucency.B_PLUS_QUARTER_F, layer);
           }
         }
@@ -1195,6 +1310,24 @@ public class RenderEngine {
     return this.mainBatch.queueOrthoModel(obj, type);
   }
 
+  public <T extends QueuedModel<?, ?>> T queueUiOrthoModel(final Obj obj, final Class<T> type) {
+    final T entry = this.queueOrthoModel(obj, type);
+    entry.ui();
+    return entry;
+  }
+
+  public <T extends QueuedModel<?, ?>> T queueUiOrthoModel(final Obj obj, final MV transforms, final Class<T> type) {
+    final T entry = this.queueOrthoModel(obj, transforms, type);
+    entry.ui();
+    return entry;
+  }
+
+  public <T extends QueuedModel<?, ?>> T queueUiOrthoModel(final Obj obj, final Matrix4f transforms, final Class<T> type) {
+    final T entry = this.queueOrthoModel(obj, transforms, type);
+    entry.ui();
+    return entry;
+  }
+
   public <T extends QueuedModel<?, ?>> T queueOrthoModel(final Obj obj, final MV mv, final Class<T> type) {
     return this.mainBatch.queueOrthoModel(obj, mv, type);
   }
@@ -1220,6 +1353,7 @@ public class RenderEngine {
     this.setProjectionMode(ProjectionMode._3D);
 
     // Render scene
+    this.api.postProcessMask(true);
     this.api.clear(true, true, false);
   }
 
@@ -1249,7 +1383,7 @@ public class RenderEngine {
   }
 
   private void onResize(final Window window, final int width, final int height) {
-    if(width == 0 && height == 0) {
+    if(width <= 0 || height <= 0) {
       return;
     }
 
@@ -1297,6 +1431,17 @@ public class RenderEngine {
         builder.minFilter(true);
       });
       this.renderTextures[i].persistent = true;
+      if(this.emissionTextures[i] != null) this.emissionTextures[i].delete();
+      if(this.interfaceTextures[i] != null) this.interfaceTextures[i].delete();
+      this.emissionTextures[i] = Texture.filteredEmpty("Scene emission " + i, this.renderWidth, this.renderHeight);
+      this.interfaceTextures[i] = Texture.create("Interface coverage " + i, builder -> {
+        builder.size(this.renderWidth, this.renderHeight);
+        builder.internalFormat(TextureInternalFormat.R_8);
+        builder.dataFormat(TextureDataFormat.RED);
+        builder.dataType(TextureDataType.UBYTE);
+      });
+      this.emissionTextures[i].persistent = true;
+      this.interfaceTextures[i].persistent = true;
     }
 
     if(this.depthTexture != null) {
@@ -1320,6 +1465,8 @@ public class RenderEngine {
       final int finalI = i;
       this.renderBuffers[i] = FrameBuffer.create("Render buffer " + i, builder -> {
         builder.attachment(FrameBufferAttachmentType.COLOUR, this.renderTextures[finalI]);
+        builder.attachment(FrameBufferAttachmentType.COLOUR, this.emissionTextures[finalI]);
+        builder.attachment(FrameBufferAttachmentType.COLOUR, this.interfaceTextures[finalI]);
         builder.attachment(FrameBufferAttachmentType.DEPTH, this.depthTexture);
       });
     }

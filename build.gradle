@@ -64,6 +64,12 @@ repositories {
   maven { url = "https://jitpack.io" }
 }
 
+// Reviewed dependency graph and artifact checksums travel with the source pin.
+dependencyLocking {
+  lockAllConfigurations()
+  lockMode = LockMode.STRICT
+}
+
 dependencies {
   api 'org.legendofdragoon:mod-loader:4.3.4'
   api 'org.legendofdragoon:script-recompiler:0.7.11'
@@ -308,5 +314,10 @@ apply from: 'gradle/skurfa.gradle'
 // Definitive modification (2026-10-09): managed installation and safe updates.
 apply from: 'gradle/definitive-delivery.gradle'
 
+// Optional geometry mod and headless native-loader checks; no assets or default activation.
+apply from: 'gradle/modelshd.gradle'
+
+// Default cinematic pack with a checksum-pinned enhanced video payload.
+apply from: 'gradle/fmvhd.gradle'
 // Independent optional presentation mods.
 apply from: 'gradle/hd-mods.gradle'

@@ -11,6 +11,8 @@ import java.nio.FloatBuffer;
 import java.util.Arrays;
 
 import static legend.core.GameEngine.GPU;
+import static legend.core.GameEngine.CONFIG;
+import static legend.game.modding.coremod.CoreMod.HD_TEXTURE_FILTERING_CONFIG;
 
 public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends QueuedModel<Options, T>> {
   protected final RenderBatch batch;
@@ -21,6 +23,40 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
 
   Obj obj;
   int sequence;
+  boolean uiLayer;
+  float emission;
+  SurfaceMaterial surfaceMaterial;
+  private Texture normalMap, roughnessMap;
+  private float normalMapStrength;
+  private boolean materialMapsAuthored, defaultSurfaceMaps;
+
+  /** Optional linear-data maps sharing normalized HD albedo UVs; caller retains texture ownership. */
+  public T materialMaps(final Texture normal, final Texture roughness, final float strength) {
+    for(final Texture texture : new Texture[] {normal, roughness}) {
+      if(texture != null && texture.internalFormat() != TextureInternalFormat.RGB_8 && texture.internalFormat() != TextureInternalFormat.RGBA_8) throw new IllegalArgumentException("Material maps require RGB/RGBA data");
+    }
+    if(!Float.isFinite(strength) || strength < 0 || strength > 1) throw new IllegalArgumentException("Normal strength must be in [0, 1]");
+    this.materialMapsAuthored = true;
+    this.normalMap = normal; this.roughnessMap = roughness; this.normalMapStrength = strength;
+    return (T)this;
+  }
+
+  public T surface(final SurfaceMaterial material) {
+    this.surfaceMaterial = java.util.Objects.requireNonNull(material);
+    return (T)this;
+  }
+
+  /** Protect this draw from scene-only presentation effects. */
+  public T ui() {
+    this.uiLayer = true;
+    return (T)this;
+  }
+
+  /** Explicit emission, independent of pixel brightness or palette index. */
+  public T emissive(final float amount) {
+    this.emission = Float.isFinite(amount) ? Math.max(0.0f, Math.min(2.0f, amount)) : 0.0f;
+    return (T)this;
+  }
   final Matrix4f transforms = new Matrix4f();
   final Vector3f screenspaceOffset = new Vector3f();
   final Vector3f colour = new Vector3f();
@@ -165,6 +201,12 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
   void acquire(final Obj obj, final int sequence) {
     this.obj = obj;
     this.sequence = sequence;
+    this.uiLayer = this.batch.engine.isUiScope();
+    this.emission = 0.0f;
+    this.normalMap = this.roughnessMap = null;
+    this.normalMapStrength = 0;
+    this.materialMapsAuthored = this.defaultSurfaceMaps = false;
+    this.surfaceMaterial = obj.surfaceMaterial == null ? SurfaceMaterial.MATTE : obj.surfaceMaterial;
     this.screenspaceOffset.zero();
     this.colour.set(1.0f, 1.0f, 1.0f);
     this.clutOverride.zero();
@@ -197,6 +239,13 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
     } else {
       GPU.useVramTexture();
     }
+    if(this.normalMap != null) this.normalMap.use(4);
+    if(this.roughnessMap != null) this.roughnessMap.use(5);
+    if(this.defaultSurfaceMaps && !legend.definitive.rendering.DefaultMaterialMaps.bind()) {
+      this.defaultSurfaceMaps=false;
+      this.shaderOptions.defaultSurfaceMaps(false);
+      this.shaderOptions.materialMaps(false,false,0);
+    }
   }
 
   public Rect4i worldScissor() {
@@ -217,6 +266,16 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
 
   public void useShader(final int modelIndex, final int discardMode) {
     this.shader.use();
+    this.shaderOptions.renderMetadata(this.uiLayer, this.emission);
+    this.shaderOptions.surface(this.surfaceMaterial);
+    this.defaultSurfaceMaps = !this.materialMapsAuthored && !this.uiLayer && this.obj.hasTexture()
+      && (this instanceof QueuedModelTmd || this instanceof QueuedModelBattleTmd)
+      && this.textures[4] == null && this.textures[5] == null
+      && CONFIG.getConfig(legend.game.modding.coremod.CoreMod.DEFAULT_SURFACE_DETAIL_CONFIG.get())
+      && CONFIG.getConfig(legend.game.modding.coremod.CoreMod.MATERIAL_LIGHTING_CONFIG.get());
+    this.shaderOptions.defaultSurfaceMaps(this.defaultSurfaceMaps);
+    this.shaderOptions.materialMaps(this.defaultSurfaceMaps || this.normalMap != null, this.defaultSurfaceMaps || this.roughnessMap != null, this.defaultSurfaceMaps ? legend.definitive.rendering.DefaultMaterialMaps.STRENGTH : this.normalMapStrength);
+    this.shaderOptions.hdTexture(this.textures[0] != null && this.textures[0].isHdFiltered() && CONFIG.getConfig(HD_TEXTURE_FILTERING_CONFIG.get()));
     this.shaderOptions.discardMode(discardMode);
     this.shaderOptions.modelIndex(modelIndex);
     this.shaderOptions.clut(this.clutOverride);

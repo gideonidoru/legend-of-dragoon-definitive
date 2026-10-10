@@ -446,3 +446,75 @@ lod_core.input_actions.debug_frame_advance.name=Debug: frame advance
 lod_core.input_actions.debug_frame_advance_hold.name=Debug: frame advance (hold)
 lod_core.input_actions.debug_toggle_wireframe.name=Debug: toggle wireframe
 lod_core.input_actions.debug_reload_shaders.name=Debug: reload shaders
+
+# Definitive rendering controls. Device performance acceptance remains open.
+lod_core.config.smooth_model_lighting.label=Smooth Model Lighting
+lod_core.config.smooth_model_lighting.help=Smoother scene lighting on opaque models. Disable to use original vertex lighting.
+lod_core.config.edge_smoothing.label=Edge Smoothing
+lod_core.config.edge_smoothing.help=Control spatial anti-aliasing strength. SMAA supplies more detailed edge reconstruction when enabled. Zero disables both filters; inactive with CRT effects.
+lod_core.config.smaa.label=Detailed Anti-Aliasing (SMAA)
+lod_core.config.smaa.help=Reconstruct diagonal edges with SMAA 1x High. No frame history or jitter. Uses Edge Smoothing strength and protects interface pixels. Adds three bounded rendering passes.
+lod_core.config.environment_lighting.label=Artwork-Matched Lighting
+lod_core.config.environment_lighting.help=Match opaque models with authored scene profiles. Default scenes derive a restrained profile from their original light directions, colors and ambient, including scripted changes. Mod profiles take precedence.
+lod_core.config.image_cache.label=Artwork Loading Cache
+lod_core.config.image_cache.help=Reuse decoded images with a 64 MiB CPU cache and allow background prewarming. Helps revisits and prepared artwork packs; GPU texture lifetime is unchanged. Disabling releases cached images.
+
+lod_core.config.scene_matched_lighting.label=Enhanced Scene Lighting
+lod_core.config.scene_matched_lighting.help=Softer light transitions and restrained contrast using each scene's existing light colors, throughout field maps, battles, cutscenes, and the world map.
+
+lod_core.config.soft_contact_shadows.label=Soft Contact Shadows
+lod_core.config.soft_contact_shadows.help=Rounder, feathered contact shadows for field and battle actors, scripted shadow effects, and the world-map traveler. Disable for original shadows.
+
+lod_core.config.protect_interface.label=Protect Interface
+lod_core.config.protect_interface.help=Keep dialogue, menus, battle HUD and Addition prompts crisp while applying scene effects. CRT styling remains intentional.
+lod_core.config.hd_texture_filtering.label=HD Texture Filtering
+lod_core.config.hd_texture_filtering.help=Use mipmaps and up to 4x anisotropic filtering on HD backgrounds and explicitly padded HD textures. Original palettes and transparency bits remain exact.
+lod_core.config.material_lighting.label=Material Lighting
+lod_core.config.material_lighting.help=Add subtle highlights using authored lights. Model surface tags control cloth, skin, matte and metal response; unknown surfaces stay matte.
+lod_core.config.effect_lights.label=Effect Lights
+lod_core.config.effect_lights.help=Allow luminous magic and fire effects to illuminate nearby 3D surfaces. At most four lights are evaluated; painted backgrounds retain their authored lighting.
+lod_core.config.scene_bloom.label=Scene Bloom
+lod_core.config.scene_bloom.help=Soft glow from explicitly luminous effects, independent of CRT styling. Zero disables it; interface pixels are protected.
+lod_core.config.scene_sharpening.label=Scene Sharpening
+lod_core.config.scene_sharpening.help=Gently enhance scene detail with contrast-adaptive sharpening and bounded edges. Zero disables it; interface pixels are protected.
+
+# Definitive integrated quality-of-life and campaign reward controls
+lod_core.config.action_hints.label=Contextual Action Hints
+lod_core.config.action_hints.help=Show current keyboard or controller bindings in menu footers. Hiding hints does not disable shortcuts.
+lod_core.config.shop_quantities.label=Shop Quantity Selection
+lod_core.config.shop_quantities.help=Buy or sell up to 99 matching items at once, within existing gold, inventory and stack limits. Multiple equipment purchases go into your bag; one retains the equip prompt.
+lod_core.config.equipment_sort.label=Equipment Sorting
+lod_core.config.equipment_sort.help=Sort by slot, name or power. Power ranks attack for weapons, defence for helmets/armour, and speed for boots/accessories. Special effects still need comparison. Sort in the equipment menu cycles these choices.
+lod_core.config.equipment_sort.SLOT=Slot
+lod_core.config.equipment_sort.NAME=Name
+lod_core.config.equipment_sort.POWER=Power
+lod_core.config.addition_feedback.label=Addition Timing Feedback
+lod_core.config.addition_feedback.help=Show Early, Late, Wrong Button, Good or Perfect after manual Addition inputs. Perfect means the centre timing tick, with no bonus damage or mastery. Normal timing and combat rules stay unchanged; automatic hits have no feedback.
+lod_core.config.enemy_xp_multiplier.label=Enemy XP Multiplier
+lod_core.config.enemy_xp_multiplier.help=Enemy XP from 0 to 10x in 0.25x steps; 1x is normal. Applies from the next battle, after other mods set base rewards. Each enemy rounds separately; drops and party/reserve distribution are unchanged. Returning to 1x cannot undo earned progression.
+lod_core.config.enemy_gold_multiplier.label=Enemy Gold Multiplier
+lod_core.config.enemy_gold_multiplier.help=Enemy gold from 0 to 10x in 0.25x steps; 1x is normal. Applies from the next battle, after other mods set base rewards. Each enemy rounds separately. Drops, shop prices and scripted gold are unchanged. Returning to 1x cannot undo gold already earned.
+lod_core.ui.equipment.filter=Filter
+lod_core.ui.equipment.filter.ALL=All slots
+lod_core.ui.equipment.filter.WEAPON=Weapons
+lod_core.ui.equipment.filter.HELMET=Helmets
+lod_core.ui.equipment.filter.ARMOUR=Armour
+lod_core.ui.equipment.filter.BOOTS=Boots
+lod_core.ui.equipment.filter.ACCESSORY=Accessories
+lod_core.ui.equipment.workflow=%s / %s
+lod_core.ui.actions.use=Use
+lod_core.ui.actions.select=Select
+lod_core.ui.quantity.buy=Buy %s
+lod_core.ui.quantity.buy_equipment=Buy %s (multiple: bag)
+lod_core.ui.quantity.sell=Sell %s
+lod_core.ui.quantity.total=Total: %s gold
+lod_core.ui.quantity.change=Quantity
+lod_core.ui.quantity.partial=Completed %s of %s. The rest could not be transferred.\nOnly completed transfers changed your gold.
+lod_core.ui.addition_feedback.EARLY=Early
+lod_core.ui.addition_feedback.LATE=Late
+lod_core.ui.addition_feedback.WRONG_BUTTON=Wrong Button
+lod_core.ui.addition_feedback.SUCCESS=Good
+lod_core.ui.addition_feedback.PERFECT=Perfect
+
+lod_core.config.default_surface_detail.label=Default Surface Detail
+lod_core.config.default_surface_detail.help=Apply subtle shared normal and roughness detail to opaque lit models, including original indexed assets. Preserves palette animation and painted colors. Authored maps take precedence.

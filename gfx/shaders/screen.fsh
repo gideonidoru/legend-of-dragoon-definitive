@@ -10,6 +10,50 @@ layout(location = 0) out vec4 frag;
 uniform sampler2D screen;
 
 uniform bool enableCrt;
+uniform float edgeSmoothing;
+uniform sampler2D sceneEmission;
+uniform sampler2D interfaceCoverage;
+uniform bool protectInterface;
+uniform float sceneBloom;
+uniform float sharpening;
+
+bool isInterface(vec2 uv) {
+  if(!protectInterface) return false;
+  ivec2 size = textureSize(interfaceCoverage, 0);
+  ivec2 p = ivec2(uv * vec2(size));
+  // Protect one extra texel around glyph edges from neighborhood filters.
+  for(int y = -1; y <= 1; y++) {
+    for(int x = -1; x <= 1; x++) {
+      if(texelFetch(interfaceCoverage, clamp(p + ivec2(x, y), ivec2(0), size - 1), 0).r > 0.5) return true;
+    }
+  }
+  return false;
+}
+
+vec3 sceneGlow(vec2 uv) {
+  vec2 step = 1.5 / vec2(textureSize(sceneEmission, 0));
+  vec3 glow = vec3(0.0);
+  for(int y = -1; y <= 1; y++) {
+    for(int x = -1; x <= 1; x++) {
+      float weight = (x == 0 ? 2.0 : 1.0) * (y == 0 ? 2.0 : 1.0);
+      glow += texture(sceneEmission, uv + vec2(x, y) * step).rgb * weight;
+    }
+  }
+  return glow * (sceneBloom / 16.0);
+}
+
+vec3 sharpenScene(vec2 uv, vec3 center) {
+  vec2 step = 1.0 / vec2(textureSize(screen, 0));
+  vec3 n = texture(screen, uv + vec2(0, step.y)).rgb;
+  vec3 s = texture(screen, uv - vec2(0, step.y)).rgb;
+  vec3 e = texture(screen, uv + vec2(step.x, 0)).rgb;
+  vec3 w = texture(screen, uv - vec2(step.x, 0)).rgb;
+  vec3 low = min(center, min(min(n, s), min(e, w)));
+  vec3 high = max(center, max(max(n, s), max(e, w)));
+  // Reduce enhancement at high-contrast edges and clamp against ringing.
+  vec3 gain = sharpening * (1.0 - clamp(high - low, 0.0, 1.0));
+  return clamp(center + gain * (center - (n + s + e + w) * 0.25), low, high);
+}
 
 uniform float time;
 
@@ -132,10 +176,45 @@ float vignette(vec2 uv) {
 	return pow(vignette, vignette_intensity * vignette_opacity);
 }
 
+// Bounded spatial edge filter: flat areas return unchanged, no extra render target.
+// Explicit minifying derivatives select the existing linear min filter, irrespective of output size.
+vec3 sampleScreen(vec2 uv) {
+  vec2 size = vec2(textureSize(screen, 0));
+  return textureGrad(screen, clamp(uv, 0.5 / size, 1.0 - 0.5 / size), vec2(2.0 / size.x, 0.0), vec2(0.0, 2.0 / size.y)).rgb;
+}
+
+vec3 smoothEdges(vec2 uv, vec3 center) {
+  vec2 texel = 1.0 / vec2(textureSize(screen, 0));
+  vec3 nw = sampleScreen(uv + texel * vec2(-1.0, -1.0));
+  vec3 ne = sampleScreen(uv + texel * vec2(1.0, -1.0));
+  vec3 sw = sampleScreen(uv + texel * vec2(-1.0, 1.0));
+  vec3 se = sampleScreen(uv + texel * vec2(1.0, 1.0));
+  vec3 luma = vec3(0.299, 0.587, 0.114);
+  float m = dot(center, luma);
+  float a = dot(nw, luma), b = dot(ne, luma);
+  float c = dot(sw, luma), d = dot(se, luma);
+  float low = min(m, min(min(a, b), min(c, d)));
+  float high = max(m, max(max(a, b), max(c, d)));
+  if(high - low < max(0.0312, high * 0.125)) return center;
+
+  vec2 direction = vec2(-((a + b) - (c + d)), (a + c) - (b + d));
+  float reduction = max((a + b + c + d) * (0.25 / 8.0), 1.0 / 128.0);
+  direction = clamp(direction / (min(abs(direction.x), abs(direction.y)) + reduction), -4.0, 4.0) * texel;
+  vec3 inner = 0.5 * (sampleScreen(uv - direction / 6.0) + sampleScreen(uv + direction / 6.0));
+  vec3 outer = inner * 0.5 + 0.25 * (sampleScreen(uv - direction * 0.5) + sampleScreen(uv + direction * 0.5));
+  float resultLuma = dot(outer, luma);
+  vec3 filtered = resultLuma < low || resultLuma > high ? inner : outer;
+  return mix(center, filtered, clamp(edgeSmoothing, 0.0, 1.0));
+}
+
 void main() {
   frag = vec4(texture(screen, vertUv).rgb, 1.0f);
 
   if(!enableCrt) {
+    if(isInterface(vertUv)) return;
+    if(edgeSmoothing > 0.0) frag.rgb = smoothEdges(vertUv, frag.rgb);
+    if(sharpening > 0.0) frag.rgb = sharpenScene(vertUv, frag.rgb);
+    if(sceneBloom > 0.0) frag.rgb = clamp(frag.rgb + sceneGlow(vertUv), 0.0, 1.0);
     return;
   }
 

@@ -1,3 +1,23 @@
+// Packaged fallback builds must use the exact clean source that produced this manager.
+tasks.register('fallbackPin') {
+  outputs.upToDateWhen { false }
+  outputs.dir(layout.buildDirectory.dir('generated/definitive-pin'))
+  doLast {
+    final String revision = providers.exec { commandLine 'git', 'rev-parse', 'HEAD' }.standardOutput.asText.get().trim()
+    final boolean clean = providers.exec { commandLine 'git', 'status', '--porcelain' }.standardOutput.asText.get().trim().isEmpty()
+    final File pin = layout.buildDirectory.file('generated/definitive-pin/legend/definitive/manager/definitive-fallback.properties').get().asFile
+    pin.parentFile.mkdirs()
+    pin.text = clean ? 'sourceRevision=' + revision + '\n' : '# Development build: source fallback is disabled.\n'
+  }
+}
+tasks.named('processResources') {
+  dependsOn fallbackPin
+  from(layout.buildDirectory.dir('generated/definitive-pin'))
+}
+tasks.withType(AbstractArchiveTask).configureEach {
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
+}
 // Copy after cleanup even when several delivery targets are requested together.
 tasks.named('copyLibs') { dependsOn clearOutput }
 // Definitive installation/package tooling (2026-10-09), AGPL v3; see LICENSE.
@@ -28,7 +48,7 @@ tasks.register('archiveHelper') {
     final String expected = target.startsWith('mac') ? 'bee04358cbcbc7106273cee0e8d72916db2696c48067a3538c34d8cd6fd16578' : 'fc0327ba27e89bd086cf426dff17d77de582953cdbbc10a6576540a06853ffcd'
     final File archive = layout.buildDirectory.file('definitive/' + name).get().asFile
     archive.parentFile.mkdirs()
-    providers.exec { commandLine 'curl', '--fail', '--location', '--proto', '=https', '--proto-redir', '=https', '--retry', '2', '--output', archive.absolutePath, 'https://github.com/ip7z/7zip/releases/download/26.04/' + name }.result.get().assertNormalExitValue()
+    providers.exec { commandLine 'curl', '--fail', '--location', '--proto', '=https', '--proto-redir', '=https', '--retry', '2', '--connect-timeout', '20', '--max-time', '180', '--speed-limit', '1024', '--speed-time', '60', '--output', archive.absolutePath, 'https://github.com/ip7z/7zip/releases/download/26.04/' + name }.result.get().assertNormalExitValue()
     final String actual = java.security.MessageDigest.getInstance('SHA-256').digest(archive.bytes).encodeHex().toString()
     if(actual != expected) throw new GradleException('Official 7-Zip archive checksum mismatch')
     final File dest = layout.buildDirectory.dir('definitive/archive-helper').get().asFile
@@ -38,13 +58,14 @@ tasks.register('archiveHelper') {
 }
 
 tasks.register('stageDefinitivePackage', Sync) {
-  dependsOn jar, skurfaJar, managerJar, archiveHelper
+  dependsOn jar, skurfaJar, managerJar, archiveHelper, 'modelsHdJar'
   into layout.buildDirectory.dir('definitive/package')
   from(layout.buildDirectory.dir('libs')) {
     include 'lod-game-*.jar', 'definitive-manager.jar', 'libs/**', 'gfx/**', 'patches/**', 'lang/**', 'LICENSE', 'credits.txt', 'README.md', 'log4j2.xml', 'gamecontrollerdb.txt'
     exclude '*-sources.jar'
   }
   into('bundled-mods') { from layout.buildDirectory.dir('libs/mods') }
+  into('bundled-mods') { from { tasks.named('modelsHdJar').get().archiveFile.get() } }
   into('tools') { from(layout.buildDirectory.dir('definitive/archive-helper')) { include '7zz', 'License.txt', 'readme.txt', 'History.txt' } }
   from 'CREDITS'
   from 'delivery/installer'
@@ -192,3 +213,9 @@ dependencies {
   managerRuntime "org.lwjgl:lwjgl-sdl:${lwjglVersion}:natives-linux"
 }
 tasks.named('portableInstaller') { into('manager-libs') { from configurations.managerRuntime } }
+
+// Per-file downloads are emitted from the same verified archive, without recompression.
+tasks.register('definitiveFileDelivery', Exec) {
+  dependsOn definitivePackage
+  doFirst { commandLine 'python3', 'scripts/assemble-file-delivery.py', '--package', tasks.definitivePackage.archiveFile.get().asFile.absolutePath, '--output', layout.buildDirectory.dir('distributions').get().asFile.absolutePath }
+}

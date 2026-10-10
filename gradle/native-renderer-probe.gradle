@@ -1,0 +1,31 @@
+// Optional windowless macOS backend probe. Use with -I and -PrendererContextPath.
+// Kept outside ordinary checks so they never create a graphics context.
+allprojects {
+  afterEvaluate {
+    if (project == rootProject) {
+      tasks.register('nativeRendererProbe', JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'legend.definitive.rendering.NativeRendererProbe'
+        jvmArgs '-Djava.awt.headless=true', '--enable-native-access=ALL-UNNAMED'
+        doFirst {
+          def contextPath = providers.gradleProperty('rendererContextPath').orNull
+          if (!contextPath) throw new GradleException('Supply -PrendererContextPath with the compiled windowless JNI library.')
+          args contextPath
+          if (providers.gradleProperty('rendererBenchmark').isPresent()) args 'benchmark'
+        }
+      }
+      tasks.register('assetStreamingProbe', JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'legend.definitive.rendering.AssetStreamingProbe'
+        jvmArgs '-Djava.awt.headless=true', '--enable-native-access=ALL-UNNAMED'
+        doFirst {
+          def imagePath = providers.gradleProperty('assetProbePath').orNull
+          if (!imagePath) throw new GradleException('Supply -PassetProbePath with one local PNG path.')
+          args imagePath
+        }
+      }
+    }
+  }
+}

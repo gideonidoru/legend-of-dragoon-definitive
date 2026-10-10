@@ -162,6 +162,109 @@ class InstallStoreTest {
     assertNotEquals(first, next); assertFalse(Files.exists(next.resolve("files/version"))); assertEquals("old-extraction", Files.readString(first.resolve("files/version")));
   }
 
+  @Test void bundledModelsFollowArtworkAndVersionRollbackWithoutTouchingCustomMods() throws Exception {
+    final InstallStore store=new InstallStore(this.temporary.resolve("models-installed"));
+    final Path one=this.pack("models-v1",PackageManifest.hostPlatform());Files.writeString(one.resolve("bundled-mods/ModelsHD-0.3.0.jar"),"geometry-one");Files.delete(one.resolve(PackageManifest.METADATA));Files.delete(one.resolve(PackageManifest.HASHES));ManagerMain.makeManifest(one,PackageManifest.hostPlatform(),"models-fixture");store.install(one);
+    final Path data=store.data(store.state());Files.writeString(data.resolve("mods/unrelated.jar"),"keep");Files.writeString(data.resolve("mods/ModelsHD-0.2.0.jar"),"previous-manual-mod");
+    final Path first=store.prepareLaunch();assertEquals("geometry-one",Files.readString(first.resolve("mods/ModelsHD-0.3.0.jar")));
+    assertFalse(Files.exists(first.resolve("mods/ModelsHD-0.2.0.jar")));assertEquals("previous-manual-mod",Files.readString(data.resolve("mods/ModelsHD-0.2.0.jar")));
+    store.setArtwork(false);store.prepareLaunch();assertFalse(Files.exists(first.resolve("mods/ModelsHD-0.3.0.jar")));assertEquals("keep",Files.readString(data.resolve("mods/unrelated.jar")));
+    assertFalse(Files.exists(first.resolve("mods/ModelsHD-0.2.0.jar")));
+    store.setArtwork(true);
+    final Path two=this.pack("models-v2",PackageManifest.hostPlatform());Files.writeString(two.resolve("bundled-mods/ModelsHD-0.4.0.jar"),"geometry-two");Files.delete(two.resolve(PackageManifest.METADATA));Files.delete(two.resolve(PackageManifest.HASHES));ManagerMain.makeManifest(two,PackageManifest.hostPlatform(),"models-fixture");store.install(two);
+    final Path next=store.prepareLaunch();assertEquals("geometry-two",Files.readString(next.resolve("mods/ModelsHD-0.4.0.jar")));assertFalse(Files.exists(next.resolve("mods/ModelsHD-0.3.0.jar")));
+    store.rollback();final Path restored=store.prepareLaunch();assertEquals("geometry-one",Files.readString(restored.resolve("mods/ModelsHD-0.3.0.jar")));assertFalse(Files.exists(restored.resolve("mods/ModelsHD-0.4.0.jar")));assertEquals("keep",Files.readString(store.data(store.state()).resolve("mods/unrelated.jar")));
+  }
+
+  private InstallStore bundledModelsStore(final String name) throws Exception {
+    final Path source = this.pack(name + "-pack", PackageManifest.hostPlatform());
+    Files.writeString(source.resolve("bundled-mods/ModelsHD-0.3.0.jar"), "bundled custom geometry");
+    Files.delete(source.resolve(PackageManifest.METADATA)); Files.delete(source.resolve(PackageManifest.HASHES));
+    ManagerMain.makeManifest(source, PackageManifest.hostPlatform(), "models-fixture");
+    final var store = new InstallStore(this.temporary.resolve(name)); store.install(source); return store;
+  }
+
+  private static void modJar(final Path file, final String className) throws Exception {
+    try(final var zip = new ZipOutputStream(Files.newOutputStream(file))) {
+      zip.putNextEntry(new ZipEntry(className));
+      zip.write("Identity inspection must never execute or decode this class payload".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+      zip.closeEntry();
+    }
+  }
+
+  @Test void renamedModelsHdCopiesAreSuppressedWithoutChangingUserBytes() throws Exception {
+    final var store = this.bundledModelsStore("renamed-models"); final Path custom = store.data(store.state()).resolve("mods");
+    for(final String name : List.of("ModelsHD.jar", "ModelsHD-0.2.0 (1).jar", "my-models.jar")) modJar(custom.resolve(name), "modelshd/ModelsHdMod.class");
+    modJar(custom.resolve("other-mod.jar"), "anothermod/Entry.class");
+    final var originals = new java.util.HashMap<String, byte[]>();
+    try(final var files = Files.list(custom)) { for(final Path file : files.toList()) originals.put(file.getFileName().toString(), Files.readAllBytes(file)); }
+    final Path workspace = store.prepareLaunch();
+    assertTrue(Files.isSymbolicLink(workspace.resolve("mods/ModelsHD-0.3.0.jar")));
+    for(final var original : originals.entrySet()) {
+      assertArrayEquals(original.getValue(), Files.readAllBytes(custom.resolve(original.getKey())));
+      assertEquals(original.getKey().equals("other-mod.jar"), Files.exists(workspace.resolve("mods").resolve(original.getKey())));
+    }
+  }
+
+  @Test void unrelatedAssetHeavyJarIsInspectedWithoutReadingItsPayloadOrRejectingItsSize() throws Exception {
+    final var store = this.bundledModelsStore("large-unrelated");
+    final Path mod = store.data(store.state()).resolve("mods/large-artwork.jar"); modJar(mod, "artwork/Entry.class");
+    final byte[] original = Files.readAllBytes(mod);
+    final var end = java.nio.ByteBuffer.wrap(original).order(java.nio.ByteOrder.LITTLE_ENDIAN);
+    final int endOffset = original.length - 22, directoryOffset = end.getInt(endOffset + 16);
+    final long sparseDirectoryOffset = 1024L * 1024 * 1024;
+    final byte[] footer = java.util.Arrays.copyOfRange(original, directoryOffset, original.length);
+    java.nio.ByteBuffer.wrap(footer).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(footer.length - 6, (int)sparseDirectoryOffset);
+    try(final var file = new java.io.RandomAccessFile(mod.toFile(), "rw")) { file.seek(sparseDirectoryOffset); file.write(footer); }
+    final long size = Files.size(mod);
+    // Ordinary ZIP consumers can still read the actual entry; the gap is sparse.
+    try(final var zip = new java.util.zip.ZipFile(mod.toFile()); final var input = zip.getInputStream(zip.getEntry("artwork/Entry.class"))) {
+      assertTrue(new String(input.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8).startsWith("Identity inspection"));
+    }
+    final Path workspace = store.prepareLaunch();
+    assertTrue(Files.isSymbolicLink(workspace.resolve("mods/large-artwork.jar"))); assertEquals(size, Files.size(mod));
+  }
+
+  @Test void zip64RenamedModelsHdIdentityIsDetectedWithoutInflatingEntries() throws Exception {
+    final var store = this.bundledModelsStore("zip64-models");
+    final Path mod = store.data(store.state()).resolve("mods/renamed-zip64.jar"); modJar(mod, "modelshd/ModelsHdMod.class");
+    final byte[] original = Files.readAllBytes(mod);
+    final int endOffset = original.length - 22;
+    final var oldEnd = java.nio.ByteBuffer.wrap(original).order(java.nio.ByteOrder.LITTLE_ENDIAN);
+    final var footer = java.nio.ByteBuffer.allocate(98).order(java.nio.ByteOrder.LITTLE_ENDIAN);
+    footer.putInt(0x06064b50).putLong(44).putShort((short)45).putShort((short)45).putInt(0).putInt(0);
+    footer.putLong(1).putLong(1).putLong(Integer.toUnsignedLong(oldEnd.getInt(endOffset + 12))).putLong(Integer.toUnsignedLong(oldEnd.getInt(endOffset + 16)));
+    footer.putInt(0x07064b50).putInt(0).putLong(endOffset).putInt(1);
+    footer.put(original, endOffset, 22); footer.putInt(92, -1);
+    try(final var file = new java.io.RandomAccessFile(mod.toFile(), "rw")) { file.seek(endOffset); file.write(footer.array()); }
+    final byte[] before = Files.readAllBytes(mod);
+    final Path workspace = store.prepareLaunch();
+    assertFalse(Files.exists(workspace.resolve("mods/renamed-zip64.jar"))); assertArrayEquals(before, Files.readAllBytes(mod));
+  }
+
+  @Test void malformedCustomModDirectoryStopsLaunchAndPreservesUserFiles() throws Exception {
+    final var store = this.bundledModelsStore("bad-mod-directory");
+    final Path mod = store.data(store.state()).resolve("mods/renamed.jar"); modJar(mod, "modelshd/ModelsHdMod.class");
+    final byte[] before = Files.readAllBytes(mod);
+    java.nio.ByteBuffer.wrap(before).order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(before.length - 10, Integer.MAX_VALUE);
+    Files.write(mod, before);
+    assertThrows(java.io.IOException.class, store::prepareLaunch); assertArrayEquals(before, Files.readAllBytes(mod));
+  }
+
+  @Test void fmvHdRemainsAvailableWithOriginalBackgrounds() throws Exception {
+    final Path pack = this.pack("fmv-release", PackageManifest.hostPlatform());
+    Files.writeString(pack.resolve("bundled-mods/FMVHD-v0.1.0.jar"), "cinematics");
+    Files.delete(pack.resolve(PackageManifest.METADATA));
+    Files.delete(pack.resolve(PackageManifest.HASHES));
+    ManagerMain.makeManifest(pack, PackageManifest.hostPlatform(), "fixture");
+    final InstallStore store = new InstallStore(this.temporary.resolve("installed"));
+    store.install(pack);
+    store.setArtwork(false);
+    final Path workspace = store.prepareLaunch();
+    assertFalse(Files.exists(workspace.resolve("mods/Skurfa.jar")));
+    assertTrue(Files.isSymbolicLink(workspace.resolve("mods/FMVHD-v0.1.0.jar")));
+  }
+
   @Test void discSelectionErrorsLeaveOriginalInputsAndDestinationUntouched() throws Exception {
     final InstallStore store = new InstallStore(this.temporary.resolve("installed"));
     final var discs = new java.util.ArrayList<Path>();

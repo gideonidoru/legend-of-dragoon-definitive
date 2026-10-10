@@ -5,7 +5,10 @@ package legend.definitive.manager;
 @FunctionalInterface
 public interface InstallProgress {
   InstallProgress NONE = update -> { };
-  record Update(String phase, String detail, int startPercent, int endPercent, long completed, long total) {
+  record Update(String phase, String detail, int startPercent, int endPercent, long completed, long total, String file, long fileCompleted, long fileTotal) {
+    public Update(final String phase, final String detail, final int startPercent, final int endPercent, final long completed, final long total) { this(phase, detail, startPercent, endPercent, completed, total, "", 0, 0); }
+    public Update scaled(final int start, final int end) { return new Update(this.phase, this.detail, start, end, this.completed, this.total, this.file, this.fileCompleted, this.fileTotal); }
+    public int filePercent() { return this.fileTotal <= 0 ? 0 : (int)(100 * Math.min(1.0, (double)this.fileCompleted / this.fileTotal)); }
     public int percent() {
       return this.total <= 0 ? this.startPercent : this.startPercent + (int)((this.endPercent - this.startPercent) * Math.min(1.0, (double)this.completed / this.total));
     }

@@ -1,17 +1,21 @@
 package legend.game.modding.coremod.shops;
 
 import legend.core.GameEngine;
+import legend.core.lang.I18nText;
 import legend.core.platform.input.InputAction;
+import legend.definitive.qol.ShopQuantity;
 import legend.game.characters.CharacterData2c;
 import legend.game.i18n.I18n;
 import legend.game.inventory.EquipItemResult;
 import legend.game.inventory.Equipment;
 import legend.game.inventory.screens.InputPropagation;
 import legend.game.inventory.screens.MessageBoxScreen;
+import legend.game.inventory.screens.QuantityScreen;
 import legend.game.inventory.screens.ShopExtension;
 import legend.game.inventory.screens.ShopScreen;
 import legend.game.inventory.screens.controls.AtlasIcon;
 import legend.game.inventory.screens.controls.Glyph;
+import legend.game.modding.coremod.CoreMod;
 import legend.game.types.EquipmentSlot;
 import legend.game.types.GameState52c;
 import legend.game.types.MessageBoxResult;
@@ -19,6 +23,7 @@ import legend.game.types.MessageBoxType;
 import legend.game.types.Renderable58;
 import legend.game.types.Shop;
 
+import static legend.core.GameEngine.CONFIG;
 import static legend.game.SItem.UI_TEXT;
 import static legend.game.SItem.allocateOneFrameGlyph;
 import static legend.game.SItem.allocateUiElement;
@@ -40,6 +45,7 @@ import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_CONFIRM;
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_LEFT;
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_MENU_RIGHT;
 import static legend.game.sound.Audio.playMenuSound;
+
 
 public class EquipmentShopExtension extends ShopExtension<Equipment> {
   private static final int PORTRAIT_COUNT = 7;
@@ -261,6 +267,29 @@ public class EquipmentShopExtension extends ShopExtension<Equipment> {
 
   @Override
   public boolean selectEntry(final ShopScreen screen, final Shop shop, final GameState52c gameState, final ShopScreen.ShopEntry<Equipment> entry, final int index) {
+    if(CONFIG.getConfig(CoreMod.SHOP_QUANTITIES_CONFIG.get())) {
+      final int maximum = ShopQuantity.affordable(gameState.gold_94, entry.price, 255 - gameState.equipment_1e8.size());
+      if(maximum == 0) {
+        final String reason = entry.price < 0 || gameState.gold_94 < entry.price ? "not_enough_gold" : "inventory_full";
+        screen.deferAction(() -> menuStack.pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.shop." + reason), MessageBoxType.ALERT, result -> { })));
+      } else {
+        menuStack.pushScreen(new QuantityScreen(new I18nText("lod_core.ui.quantity.buy_equipment", new I18nText(entry.item.getNameTranslationKey())), maximum, entry.price, quantity -> {
+          if(quantity == 1) {
+            // Character selection and equip confirmation remain the stock single-item path.
+            if(this.selectSingle(screen, shop, gameState, entry, index)) screen.setMenuState(ShopScreen.MenuState.EXTENSION_5);
+          } else if(quantity > 1) {
+            final int completed = ShopQuantity.purchase(quantity, entry.price, () -> gameState.gold_94,
+              () -> { }, () -> giveEquipment(entry.item), cost -> gameState.gold_94 -= cost);
+            if(completed < quantity) screen.deferAction(() -> menuStack.pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.quantity.partial", completed, quantity), MessageBoxType.ALERT, result -> { })));
+          }
+        }));
+      }
+      return false;
+    }
+    return this.selectSingle(screen, shop, gameState, entry, index);
+  }
+
+  private boolean selectSingle(final ShopScreen screen, final Shop shop, final GameState52c gameState, final ShopScreen.ShopEntry<Equipment> entry, final int index) {
     this.screen = screen;
     this.entry = entry;
     this.selectedCharSlot = this.getFirstEquippableCharSlot();

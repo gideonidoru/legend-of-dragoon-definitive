@@ -1,5 +1,7 @@
 package legend.game.submap;
 
+import legend.definitive.rendering.ActorShadow;
+
 import de.jcm.discordgamesdk.activity.Activity;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -233,6 +235,17 @@ public class SMap extends EngineState<SMap> {
 
   public Submap submap;
 
+  @Override
+  public legend.definitive.rendering.EnvironmentLight environmentLighting() {
+    return this.submap == null ? legend.definitive.rendering.EnvironmentLight.NONE : this.submap.environmentLighting;
+  }
+
+  @Override
+  public void environmentLighting(final legend.definitive.rendering.EnvironmentLight lighting) {
+    super.environmentLighting(lighting);
+    if(this.submap != null) this.submap.environmentLighting = lighting;
+  }
+
   private SubmapMediaState mediaLoadingStage_800c68e4;
   private final SubmapCaches80 caches_800c68e8 = new SubmapCaches80();
 
@@ -264,7 +277,7 @@ public class SMap extends EngineState<SMap> {
   private final MapTransitionData4c mapTransitionData_800cab24 = new MapTransitionData4c();
   private int mapTransitionTicks_800cab28;
 
-  public SubmapState smapLoadingStage_800cb430 = SubmapState.INIT_0;
+  public volatile SubmapState smapLoadingStage_800cb430 = SubmapState.INIT_0;
   public Runnable menuTransition;
 
   private boolean returnedToSameSubmapAfterBattle_800cb448;
@@ -1265,7 +1278,8 @@ public class SMap extends EngineState<SMap> {
     GsGetLw(partCoord, this.smapShadowLw);
 
     RENDERER
-      .queueModel(modelPart.tmd_08.getObj(), this.smapShadowLw, QueuedModelTmd.class)
+      .queueModel(ActorShadow.get(modelPart.tmd_08), this.smapShadowLw, QueuedModelTmd.class)
+      .tmdTranslucency(Translucency.B_MINUS_F.ordinal())
       .screenspaceOffset(GPU.getOffsetX() + GTE.getScreenOffsetX() - 184, GPU.getOffsetY() + GTE.getScreenOffsetY() - 120)
       .depthOffset(shadowModel_800bda10.zOffset_a0 * 4)
       .lightDirection(lightDirectionMatrix_800c34e8)
@@ -4089,7 +4103,10 @@ public class SMap extends EngineState<SMap> {
         this.submap = new RetailSubmap(this, submapCut_80052c30, this.newrootPtr_800cab04, this.screenOffset_800cb568, this.collisionGeometry_800cbe08);
 
         this.smapLoadingStage_800cb430 = SubmapState.WAIT_FOR_ENVIRONMENT;
-        this.submap.loadEnv().thenAccept(v -> this.smapLoadingStage_800cb430 = SubmapState.START_LOADING_MEDIA_10);
+        final Submap loadingSubmap=this.submap;
+        loadingSubmap.loadEnv().thenAccept(v -> RENDERER.addTask(() -> {
+          if(legend.game.EngineStates.currentEngineState_8004dd04 == this && this.submap == loadingSubmap && this.smapLoadingStage_800cb430 == SubmapState.WAIT_FOR_ENVIRONMENT) this.smapLoadingStage_800cb430 = SubmapState.START_LOADING_MEDIA_10;
+        }));
       }
 
       case CHANGE_SUBMAP_4 -> {
@@ -5278,6 +5295,9 @@ public class SMap extends EngineState<SMap> {
     applyModelRotationAndScale(model);
     animateModel(model, 4 / vsyncMode_8007a3b8);
     this.renderSmapModel(model, null);
+    if(!CONFIG.getConfig(REDUCE_MOTION_FLASHING_CONFIG.get())) {
+      RENDERER.effectLight(this.savePointPos_800d5622, 0.4f, 0.55f, 1.0f, 180.0f);
+    }
 
     GPU.queueCommand(1, new GpuCommandCopyVramToVram(984, 288 + this._800f9ea0, 992, 288, 8, 64 - this._800f9ea0));
     GPU.queueCommand(1, new GpuCommandCopyVramToVram(984, 288, 992, 352 - this._800f9ea0, 8, this._800f9ea0));
@@ -5332,7 +5352,8 @@ public class SMap extends EngineState<SMap> {
       s0.transforms.transfer.set(GPU.getOffsetX() + x0, GPU.getOffsetY() + y0, s0.z_40 * 4.0f);
       RENDERER.queueOrthoModel(this.savepointObj, s0.transforms, QueuedModelStandard.class)
         .vertices(i * 4, 4)
-        .monochrome(s0.colour_34);
+        .monochrome(s0.colour_34)
+        .emissive(CONFIG.getConfig(REDUCE_MOTION_FLASHING_CONFIG.get()) ? 0.0f : 0.5f);
     }
 
     final float sp80 = (minX - maxX) / 2.0f;

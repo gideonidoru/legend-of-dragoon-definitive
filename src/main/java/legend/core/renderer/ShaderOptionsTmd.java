@@ -1,6 +1,17 @@
 package legend.core.renderer;
 
 public class ShaderOptionsTmd extends ShaderOptionsBase {
+  private ShaderUniformVec2 surface;
+
+  @Override
+  public void metadataUniforms(final Shader<?> shader) {
+    super.metadataUniforms(shader);
+    this.surface = shader.uniformVec2("surfaceResponse");
+  }
+
+  public void surface(final SurfaceMaterial material) {
+    if(this.surface != null) this.surface.set(material.exponent, material.strength);
+  }
   private final ShaderUniformInt tmdTranslucency;
   private final ShaderUniformInt usePs1Depth;
 

@@ -1,6 +1,10 @@
 package legend.game.fmv;
 
 import legend.core.Config;
+import legend.definitive.fmv.StreamingMovie;
+import legend.definitive.fmv.MoviePlayback;
+import legend.definitive.fmv.RumbleTimeline;
+import legend.game.modding.events.fmv.FmvPlaybackEvent;
 import legend.core.MathHelper;
 import legend.core.audio.GenericSource;
 import legend.core.gpu.Bpp;
@@ -32,6 +36,8 @@ import org.joml.Vector2i;
 import org.joml.Vector3i;
 
 import java.nio.ByteBuffer;
+import java.io.IOException;
+import org.lwjgl.system.MemoryUtil;
 import java.util.Arrays;
 import java.util.List;
 
@@ -244,6 +250,13 @@ public final class Fmv {
 
   private static RumbleData[] rumbleData;
   private static int rumbleFrames;
+  private static StreamingMovie hdMovie;
+  private static ByteBuffer hdUpload;
+  private static String restartOriginal;
+  private static String currentFile;
+  private static MoviePlayback hdPlayback;
+  private static RumbleTimeline hdRumble;
+  private static boolean stopping;
 
   private static InputClass currentInputSource;
   private static int skipTextFramesRemained;
@@ -310,6 +323,10 @@ public final class Fmv {
   }
 
   private static void play(final String file, final boolean doubleSpeed) {
+    play(file, doubleSpeed, true);
+  }
+
+  private static void play(final String file, final boolean doubleSpeed, final boolean allowReplacement) {
     LOGGER.info("Playing FMV %s", file);
 
     shouldStop = false;
@@ -324,6 +341,26 @@ public final class Fmv {
     final FrameHeader frameHeader = new FrameHeader(demuxedRaw);
 
     final FileData fileData = Loader.loadFileSync(file);
+    currentFile = file;
+    stopping = false;
+    hdRumble = new RumbleTimeline(rumbleData);
+    if(allowReplacement) {
+      try {
+        final FmvPlaybackEvent event = legend.core.GameEngine.EVENTS.postEvent(new FmvPlaybackEvent(file, fileData.getBytes()));
+        if(event.replacement != null) {
+          hdMovie = new StreamingMovie(event.replacement);
+          if(hdMovie.width != 1280 || hdMovie.height != 768 || Math.abs(hdMovie.frameRate - 15.0) > 0.01) {
+            hdMovie.close();
+            hdMovie = null;
+            hdPlayback = null;
+            LOGGER.warn("FMV replacement has incompatible dimensions or cadence; keeping original");
+          }
+        }
+      } catch(final IOException | RuntimeException e) {
+        LOGGER.warn("FMV replacement unavailable; keeping original", e);
+      }
+    }
+    if(hdMovie != null) hdPlayback = new MoviePlayback(hdMovie);
     sector = 0;
     frame = 0;
     skipText = null;
@@ -334,364 +371,409 @@ public final class Fmv {
     oldRenderMode = RENDERER.getRenderMode();
     oldClearColour.set(clearRed_8007a3a8, clearGreen_800bb104, clearBlue_800babc0);
 
-    CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), true);
-    RENDERER.setRenderMode(EngineState.RenderMode.PERSPECTIVE);
-    RENDERER.setProjectionSize(320, 240);
-    RENDERER.api().clearColour(0.0f, 0.0f, 0.0f);
+    oldRenderer = RENDERER.setRenderCallback(() -> { });
+    try {
+      CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), true);
+      RENDERER.setRenderMode(EngineState.RenderMode.PERSPECTIVE);
+      RENDERER.setProjectionSize(320, 240);
+      RENDERER.api().clearColour(0.0f, 0.0f, 0.0f);
 
-    source = AUDIO_THREAD.addSource(new GenericSource(AL_FORMAT_STEREO16, 37800));
-    volume = CONFIG.getConfig(CoreMod.FMV_VOLUME_CONFIG.get()) * CONFIG.getConfig(CoreMod.MASTER_VOLUME_CONFIG.get());
+      source = AUDIO_THREAD.addSource(new GenericSource(AL_FORMAT_STEREO16, hdMovie == null ? 37800 : 48_000));
+      volume = CONFIG.getConfig(CoreMod.FMV_VOLUME_CONFIG.get()) * CONFIG.getConfig(CoreMod.MASTER_VOLUME_CONFIG.get());
 
-    skipButton = null;
-    skipKey = null;
-    skipScancode = null;
+      skipButton = null;
+      skipKey = null;
+      skipScancode = null;
 
-    final List<InputActivation> activations = InputBindings.getActivationsForAction(INPUT_ACTION_FMV_SKIP.get());
+      final List<InputActivation> activations = InputBindings.getActivationsForAction(INPUT_ACTION_FMV_SKIP.get());
 
-    for(final InputActivation activation : activations) {
-      if(activation instanceof final ButtonInputActivation button) {
-        skipButton = button.button;
-      } else if(activation instanceof final KeyInputActivation key) {
-        skipKey = key.key;
-      } else if(activation instanceof final ScancodeInputActivation key) {
-        skipScancode = key.key;
-      }
-    }
-
-    keyPress = RENDERER.events().onKeyPress((window, key, scancode, mods, repeat) -> {
-      if(!isControllerInput && !shouldStop && !repeat) {
-        isKeyboardInput = true;
-      }
-    });
-
-    buttonPressed = RENDERER.events().onButtonPress((window, action, repeat) -> {
-      if(!isKeyboardInput && !shouldStop && !repeat) {
-        isControllerInput = true;
-      }
-    });
-
-    inputActionPressed = RENDERER.events().onInputActionPressed((window, action, repeat) -> {
-      if(action == INPUT_ACTION_FMV_SKIP.get()) {
-        if(isValidSkipInput(window.getInputClass()) && !repeat) {
-          shouldStop = true;
-        } else {
-          handleSkipText();
+      for(final InputActivation activation : activations) {
+        if(activation instanceof final ButtonInputActivation button) {
+          skipButton = button.button;
+        } else if(activation instanceof final KeyInputActivation key) {
+          skipKey = key.key;
+        } else if(activation instanceof final ScancodeInputActivation key) {
+          skipScancode = key.key;
         }
       }
-    });
 
-    click = RENDERER.events().onMouseRelease((window, x, y, button, mods) -> {
-      if(isValidSkipInput(InputClass.MOUSE)) {
-        shouldStop = true;
-      } else {
-        setSkipText(I18n.translate("lod_core.config.fmv.skip_mouse"), InputClass.MOUSE);
-      }
-    });
+      keyPress = RENDERER.events().onKeyPress((window, key, scancode, mods, repeat) -> {
+        if(!isControllerInput && !shouldStop && !repeat) {
+          isKeyboardInput = true;
+        }
+      });
 
-    oldRenderer = RENDERER.setRenderCallback(() -> {
-      if(shouldStop) {
-        stop();
-        return;
-      }
+      buttonPressed = RENDERER.events().onButtonPress((window, action, repeat) -> {
+        if(!isKeyboardInput && !shouldStop && !repeat) {
+          isControllerInput = true;
+        }
+      });
 
-      RENDERER.window().setFpsLimit(15 * Config.getGameSpeedMultiplier());
-      PLATFORM.setInputTickRate(15 * Config.getGameSpeedMultiplier());
+      inputActionPressed = RENDERER.events().onInputActionPressed((window, action, repeat) -> {
+        if(action == INPUT_ACTION_FMV_SKIP.get()) {
+          if(isValidSkipInput(window.getInputClass()) && !repeat) {
+            shouldStop = true;
+          } else {
+            handleSkipText();
+          }
+        }
+      });
 
-      int demuxedSize = 0;
+      click = RENDERER.events().onMouseRelease((window, x, y, button, mods) -> {
+        if(isValidSkipInput(InputClass.MOUSE)) {
+          shouldStop = true;
+        } else {
+          setSkipText(I18n.translate("lod_core.config.fmv.skip_mouse"), InputClass.MOUSE);
+        }
+      });
 
-      // Demultiplex the sectors
-      Arrays.fill(demuxedRaw, (byte)0);
-      for(int sectorIndex = 0, videoSectorIndex = 0; sectorIndex < sectorCount; sectorIndex++, sector++) {
-        fileData.read(sector * data.length, data, 0, data.length);
-
-        if(header.submode.isEof()) {
+      RENDERER.setRenderCallback(() -> {
+        if(shouldStop) {
           stop();
           return;
         }
 
-        if(header.submode.getType() == SectorHeader.TYPE.DATA) {
-          if(sectorIndex == 0) {
-            demuxedSize = video.getDemuxedSize();
+        if(hdMovie != null) {
+          try { renderHd(); }
+          catch(final IOException | RuntimeException e) {
+            LOGGER.warn("FMVHD playback failed; restarting original", e);
+            restartOriginal = currentFile;
+            stop();
           }
-
-          video.readSector(demuxedRaw, videoSectorIndex++);
+          return;
         }
 
-        if(header.submode.getType() == SectorHeader.TYPE.AUDIO) {
-          final short[] decodedXaAdpcm = XaAdpcm.decode(data, data[19]);
+        RENDERER.window().setFpsLimit(15 * Config.getGameSpeedMultiplier());
+        PLATFORM.setInputTickRate(15 * Config.getGameSpeedMultiplier());
 
-          // Halve the volume
-          for(int i = 0; i < decodedXaAdpcm.length; i++) {
-            decodedXaAdpcm[i] >>= 1;
-            decodedXaAdpcm[i] *= volume;
+        int demuxedSize = 0;
+
+        // Demultiplex the sectors
+        Arrays.fill(demuxedRaw, (byte)0);
+        for(int sectorIndex = 0, videoSectorIndex = 0; sectorIndex < sectorCount; sectorIndex++, sector++) {
+          fileData.read(sector * data.length, data, 0, data.length);
+
+          if(header.submode.isEof()) {
+            stop();
+            return;
           }
 
-          synchronized(source) {
-            if(source.canBuffer()) {
-              source.bufferOutput(decodedXaAdpcm);
-            }
-          }
-        }
-      }
-
-      demuxed.position(10);
-      final int blockW = (frameHeader.getWidth() + 15) / 16;
-      final int blockH = (frameHeader.getHeight() + 15) / 16;
-      final int chromaW = blockW * 8;
-      final int chromaH = blockH * 8;
-      final int lumaW = blockW * 16;
-      final int lumaH = blockH * 16;
-
-      final int macroblockCount = blockW * blockH;
-      final int uncompressedSize = macroblockCount * 6 * 2;
-      final ByteBuffer initialBlockCodes = ByteBuffer.allocate(uncompressedSize);
-
-      // Decompress initial block codes
-      outer:
-      while(initialBlockCodes.position() < uncompressedSize) {
-        final int flags = demuxed.get();
-        int mask = 1;
-
-        for(int bit = 0; bit < 8; bit++) {
-          if((flags & mask) == 0) {
-            initialBlockCodes.put(demuxed.get());
-          } else {
-            final int copySize = (demuxed.get() & 0xff) + 3;
-            int copyOffset = demuxed.get() & 0xff;
-
-            if((copyOffset & 0x80) != 0) {
-              copyOffset = (copyOffset & 0x7f) << 8 | demuxed.get() & 0xff;
+          if(header.submode.getType() == SectorHeader.TYPE.DATA) {
+            if(sectorIndex == 0) {
+              demuxedSize = video.getDemuxedSize();
             }
 
-            copyOffset++;
+            video.readSector(demuxedRaw, videoSectorIndex++);
+          }
 
-            for(int i = 0; i < copySize; i++) {
-              initialBlockCodes.put(initialBlockCodes.get(initialBlockCodes.position() - copyOffset));
+          if(header.submode.getType() == SectorHeader.TYPE.AUDIO) {
+            final short[] decodedXaAdpcm = XaAdpcm.decode(data, data[19]);
+
+            // Halve the volume
+            for(int i = 0; i < decodedXaAdpcm.length; i++) {
+              decodedXaAdpcm[i] >>= 1;
+              decodedXaAdpcm[i] *= volume;
             }
-          }
 
-          if(initialBlockCodes.position() >= uncompressedSize) {
-            break outer;
-          }
-
-          mask <<= 1;
-        }
-      }
-
-      final int[] chromaMacroBlockOffsetLookup = new int[blockW * blockH];
-      final int[] lumaBlockOffsetLookup = new int[blockW * blockH * 4];
-
-      // build a table that holds the starting index of every (macro)block
-      // in the output buffer so we don't have to do this calculation during decoding
-      {
-        int macroblockIndex = 0;
-        for(int macroblockX = 0; macroblockX < blockW; macroblockX++) {
-          for(int macroblockY = 0; macroblockY < blockH; macroblockY++) {
-            chromaMacroBlockOffsetLookup[macroblockIndex] = macroblockX * 8 + macroblockY * 8 * chromaW;
-            int blockIndex = 0;
-            for(int blockX = 0; blockX < 2; blockX++) {
-              for(int blockY = 0; blockY < 2; blockY++) {
-                lumaBlockOffsetLookup[macroblockIndex * 4 + blockIndex] = macroblockX * 16 + blockY * 8 + (macroblockY * 16 + blockX * 8) * lumaW;
-                blockIndex++;
+            synchronized(source) {
+              if(source.canBuffer()) {
+                source.bufferOutput(decodedXaAdpcm);
               }
             }
-            macroblockIndex++;
           }
         }
-      }
 
-      // Dequantize and apply inverse discrete cosine transform
-      final VariableLengthCode vlc = new VariableLengthCode();
-      final ArrayBitReader bitReader = new ArrayBitReader(demuxedRaw, demuxedSize, true, 10 + frameHeader.getCompressedCodesSize());
-      final int[] cr = new int[chromaW * chromaH];
-      final int[] cb = new int[chromaW * chromaH];
-      final int[] luma = new int[lumaW * lumaH];
+        demuxed.position(10);
+        final int blockW = (frameHeader.getWidth() + 15) / 16;
+        final int blockH = (frameHeader.getHeight() + 15) / 16;
+        final int chromaW = blockW * 8;
+        final int chromaH = blockH * 8;
+        final int lumaW = blockW * 16;
+        final int lumaH = blockH * 16;
 
-      for(int macroblockIndex = 0; macroblockIndex < macroblockCount; macroblockIndex++) {
-        for(int blockIndex = 0; blockIndex < 6; blockIndex++) { // for Cr, Cb, Y1, Y2, Y3, Y4
-          final int[] coefficients = new int[64];
-          int vectorPos = 0;
+        final int macroblockCount = blockW * blockH;
+        final int uncompressedSize = macroblockCount * 6 * 2;
+        final ByteBuffer initialBlockCodes = ByteBuffer.allocate(uncompressedSize);
 
-          final int initialCode = (initialBlockCodes.get(macroblockIndex * 6 + blockIndex) & 0xff) << 8 | initialBlockCodes.get(macroblockIndex * 6 + blockIndex + uncompressedSize / 2) & 0xff;
-          final int dc = initialCode << 22 >> 22; // 10-bit signed
-          final int blockQuant = initialCode >>> 10; // 6-bit unsigned
+        // Decompress initial block codes
+        outer:
+        while(initialBlockCodes.position() < uncompressedSize) {
+          final int flags = demuxed.get();
+          int mask = 1;
 
-          int nonZeroCount;
-          if(dc != 0) {
-            coefficients[0] = dc * quantizationMatrix[0];
-            nonZeroCount = 1;
-          } else {
-            nonZeroCount = 0;
+          for(int bit = 0; bit < 8; bit++) {
+            if((flags & mask) == 0) {
+              initialBlockCodes.put(demuxed.get());
+            } else {
+              final int copySize = (demuxed.get() & 0xff) + 3;
+              int copyOffset = demuxed.get() & 0xff;
+
+              if((copyOffset & 0x80) != 0) {
+                copyOffset = (copyOffset & 0x7f) << 8 | demuxed.get() & 0xff;
+              }
+
+              copyOffset++;
+
+              for(int i = 0; i < copySize; i++) {
+                initialBlockCodes.put(initialBlockCodes.get(initialBlockCodes.position() - copyOffset));
+              }
+            }
+
+            if(initialBlockCodes.position() >= uncompressedSize) {
+              break outer;
+            }
+
+            mask <<= 1;
           }
+        }
 
-          while(getNextVlc(vlc, bitReader)) {
-            vectorPos += vlc.zeroes + 1;
+        final int[] chromaMacroBlockOffsetLookup = new int[blockW * blockH];
+        final int[] lumaBlockOffsetLookup = new int[blockW * blockH * 4];
 
-            if(vlc.coefficient != 0) {
-              final int zigzagPos = reverseZigzag[vectorPos];
-              coefficients[zigzagPos] = vlc.coefficient * quantizationMatrix[zigzagPos] * blockQuant + 4 >> 3; // (int)Math.round(i / 8.0)
-              nonZeroCount++;
-            }
-          }
-
-          if(vectorPos > 63) {
-            throw new RuntimeException("Too many AC coefficients codes (" + vectorPos + ')');
-          }
-
-          final int[] outputBuffer;
-          int iOutOffset;
-          final int iOutWidth;
-          switch(blockIndex) {
-            case 0 -> {
-              outputBuffer = cr;
-              iOutOffset = chromaMacroBlockOffsetLookup[macroblockIndex];
-              iOutWidth = chromaW;
-            }
-            case 1 -> {
-              outputBuffer = cb;
-              iOutOffset = chromaMacroBlockOffsetLookup[macroblockIndex];
-              iOutWidth = chromaW;
-            }
-            default -> {
-              outputBuffer = luma;
-              iOutOffset = lumaBlockOffsetLookup[macroblockIndex * 4 + blockIndex - 2];
-              iOutWidth = lumaW;
-            }
-          }
-
-          if(nonZeroCount == 0) {
-            for(int i = 0; i < 8; i++, iOutOffset += iOutWidth) {
-              Arrays.fill(outputBuffer, iOutOffset, iOutOffset + 8, 0);
-            }
-          } else {
-            idct(coefficients, 0, coefficients);
-
-            // TODO: have IDCT write to the destination location directly
-            for(int i = 0, iSrcOfs = 0; i < 8; i++, iSrcOfs += 8, iOutOffset += iOutWidth) {
-              System.arraycopy(coefficients, iSrcOfs, outputBuffer, iOutOffset, 8);
+        // build a table that holds the starting index of every (macro)block
+        // in the output buffer so we don't have to do this calculation during decoding
+        {
+          int macroblockIndex = 0;
+          for(int macroblockX = 0; macroblockX < blockW; macroblockX++) {
+            for(int macroblockY = 0; macroblockY < blockH; macroblockY++) {
+              chromaMacroBlockOffsetLookup[macroblockIndex] = macroblockX * 8 + macroblockY * 8 * chromaW;
+              int blockIndex = 0;
+              for(int blockX = 0; blockX < 2; blockX++) {
+                for(int blockY = 0; blockY < 2; blockY++) {
+                  lumaBlockOffsetLookup[macroblockIndex * 4 + blockIndex] = macroblockX * 16 + blockY * 8 + (macroblockY * 16 + blockX * 8) * lumaW;
+                  blockIndex++;
+                }
+              }
+              macroblockIndex++;
             }
           }
         }
-      }
 
-      // Build YCbCr pixel array
-      final int[] framePixels = new int[frameHeader.getWidth() * frameHeader.getHeight()];
-      readDecodedRgb(chromaW, lumaW, cr, cb, luma, frameHeader.getWidth(), frameHeader.getHeight(), framePixels, 0, frameHeader.getWidth());
+        // Dequantize and apply inverse discrete cosine transform
+        final VariableLengthCode vlc = new VariableLengthCode();
+        final ArrayBitReader bitReader = new ArrayBitReader(demuxedRaw, demuxedSize, true, 10 + frameHeader.getCompressedCodesSize());
+        final int[] cr = new int[chromaW * chromaH];
+        final int[] cb = new int[chromaW * chromaH];
+        final int[] luma = new int[lumaW * lumaH];
 
-      if(displayTexture == null || displayTexture.width != frameHeader.getWidth() || displayTexture.height != frameHeader.getHeight()) {
-        if(displayTexture != null) {
-          displayTexture.delete();
+        for(int macroblockIndex = 0; macroblockIndex < macroblockCount; macroblockIndex++) {
+          for(int blockIndex = 0; blockIndex < 6; blockIndex++) { // for Cr, Cb, Y1, Y2, Y3, Y4
+            final int[] coefficients = new int[64];
+            int vectorPos = 0;
+
+            final int initialCode = (initialBlockCodes.get(macroblockIndex * 6 + blockIndex) & 0xff) << 8 | initialBlockCodes.get(macroblockIndex * 6 + blockIndex + uncompressedSize / 2) & 0xff;
+            final int dc = initialCode << 22 >> 22; // 10-bit signed
+            final int blockQuant = initialCode >>> 10; // 6-bit unsigned
+
+            int nonZeroCount;
+            if(dc != 0) {
+              coefficients[0] = dc * quantizationMatrix[0];
+              nonZeroCount = 1;
+            } else {
+              nonZeroCount = 0;
+            }
+
+            while(getNextVlc(vlc, bitReader)) {
+              vectorPos += vlc.zeroes + 1;
+
+              if(vlc.coefficient != 0) {
+                final int zigzagPos = reverseZigzag[vectorPos];
+                coefficients[zigzagPos] = vlc.coefficient * quantizationMatrix[zigzagPos] * blockQuant + 4 >> 3; // (int)Math.round(i / 8.0)
+                nonZeroCount++;
+              }
+            }
+
+            if(vectorPos > 63) {
+              throw new RuntimeException("Too many AC coefficients codes (" + vectorPos + ')');
+            }
+
+            final int[] outputBuffer;
+            int iOutOffset;
+            final int iOutWidth;
+            switch(blockIndex) {
+              case 0 -> {
+                outputBuffer = cr;
+                iOutOffset = chromaMacroBlockOffsetLookup[macroblockIndex];
+                iOutWidth = chromaW;
+              }
+              case 1 -> {
+                outputBuffer = cb;
+                iOutOffset = chromaMacroBlockOffsetLookup[macroblockIndex];
+                iOutWidth = chromaW;
+              }
+              default -> {
+                outputBuffer = luma;
+                iOutOffset = lumaBlockOffsetLookup[macroblockIndex * 4 + blockIndex - 2];
+                iOutWidth = lumaW;
+              }
+            }
+
+            if(nonZeroCount == 0) {
+              for(int i = 0; i < 8; i++, iOutOffset += iOutWidth) {
+                Arrays.fill(outputBuffer, iOutOffset, iOutOffset + 8, 0);
+              }
+            } else {
+              idct(coefficients, 0, coefficients);
+
+              // TODO: have IDCT write to the destination location directly
+              for(int i = 0, iSrcOfs = 0; i < 8; i++, iSrcOfs += 8, iOutOffset += iOutWidth) {
+                System.arraycopy(coefficients, iSrcOfs, outputBuffer, iOutOffset, 8);
+              }
+            }
+          }
         }
 
-        displayTexture = Texture.filteredEmpty("FMV", frameHeader.getWidth(), frameHeader.getHeight());
+        // Build YCbCr pixel array
+        final int[] framePixels = new int[frameHeader.getWidth() * frameHeader.getHeight()];
+        readDecodedRgb(chromaW, lumaW, cr, cb, luma, frameHeader.getWidth(), frameHeader.getHeight(), framePixels, 0, frameHeader.getWidth());
+
+        if(displayTexture == null || displayTexture.width != frameHeader.getWidth() || displayTexture.height != frameHeader.getHeight()) {
+          if(displayTexture != null) {
+            displayTexture.delete();
+          }
+
+          displayTexture = Texture.filteredEmpty("FMV", frameHeader.getWidth(), frameHeader.getHeight());
+        }
+
+        if(texturedObj == null) {
+          texturedObj = new QuadBuilder("FMV")
+            .bpp(Bpp.BITS_24)
+            .size(1.0f, 1.0f)
+            .build();
+        }
+
+        displayTexture.use();
+        displayTexture.data(0, 0, frameHeader.getWidth(), frameHeader.getHeight(), TextureDataType.UBYTE, framePixels);
+
+        final float windowHeight = RENDERER.getNativeHeight();
+        final float windowWidth = windowHeight * RENDERER.getRenderAspectRatio();
+
+        final float scaleW = windowWidth / 320.0f;
+        final float scaleH = windowHeight / frameHeader.getHeight();
+        final float scale = Math.min(scaleW, scaleH);
+
+        final float w = 320.0f * scale;
+        final float h = frameHeader.getHeight() * scale;
+
+        final float l = (windowWidth - w) / 2.0f;
+        final float t = (windowHeight - h) / 2.0f;
+
+        transforms
+          .translation(l, t, 100.0f)
+          .scale(w, h, 1.0f)
+        ;
+
+        RENDERER.queueOrthoModel(texturedObj, transforms, QueuedModelStandard.class)
+          .texture(displayTexture)
+        ;
+
+        if(rumbleData != null) {
+          for(final RumbleData rumble : rumbleData) {
+            if(rumble.frame == frame) {
+              startRumbleIntensity(0, rumble.initialIntensity);
+              adjustRumbleOverTime(0, rumble.endingIntensity, rumble.duration, 1);
+              rumbleFrames = rumble.duration;
+            }
+          }
+
+          rumbleFrames--;
+          if(rumbleFrames == 0) {
+            stopRumble(0);
+          }
+        }
+
+        handleSkipText();
+        displaySkipText();
+        frame++;
+
+        DISCORD.tick();
+      });
+    } catch(final RuntimeException e) {
+      LOGGER.warn("FMV initialization failed", e);
+      if(hdMovie != null) restartOriginal = currentFile;
+      stop();
+    }
+  }
+
+  private static void renderHd() throws IOException {
+    RENDERER.window().setFpsLimit(60 * Config.getGameSpeedMultiplier());
+    PLATFORM.setInputTickRate(60 * Config.getGameSpeedMultiplier());
+    final long playedMicros = hdPlayback.tick(source, volume);
+    final StreamingMovie.VideoFrame image = hdMovie.pollVideo(playedMicros);
+    if(image != null) {
+      if(displayTexture == null) {
+        displayTexture = Texture.filteredEmpty("FMVHD", hdMovie.width, hdMovie.height);
+        hdUpload = MemoryUtil.memAlloc(hdMovie.width * hdMovie.height * 4);
       }
-
-      if(texturedObj == null) {
-        texturedObj = new QuadBuilder("FMV")
-          .bpp(Bpp.BITS_24)
-          .size(1.0f, 1.0f)
-          .build();
-      }
-
-      displayTexture.use();
-      displayTexture.data(0, 0, frameHeader.getWidth(), frameHeader.getHeight(), TextureDataType.UBYTE, framePixels);
-
+      // Texture.filteredEmpty uses RGBA; expand into one reusable upload buffer.
+      hdUpload.clear();
+      final byte[] rgb = image.rgb();
+      for(int i = 0; i < rgb.length; i += 3) hdUpload.put(rgb[i]).put(rgb[i + 1]).put(rgb[i + 2]).put((byte)0xff);
+      hdUpload.flip();
+      displayTexture.data(0, 0, hdMovie.width, hdMovie.height, TextureDataType.UBYTE, hdUpload);
+    }
+    if(displayTexture != null) {
+      if(texturedObj == null) texturedObj = new QuadBuilder("FMVHD").bpp(Bpp.BITS_24).size(1.0f, 1.0f).build();
       final float windowHeight = RENDERER.getNativeHeight();
       final float windowWidth = windowHeight * RENDERER.getRenderAspectRatio();
-
-      final float scaleW = windowWidth / 320.0f;
-      final float scaleH = windowHeight / frameHeader.getHeight();
-      final float scale = Math.min(scaleW, scaleH);
-
-      final float w = 320.0f * scale;
-      final float h = frameHeader.getHeight() * scale;
-
-      final float l = (windowWidth - w) / 2.0f;
-      final float t = (windowHeight - h) / 2.0f;
-
-      transforms
-        .translation(l, t, 100.0f)
-        .scale(w, h, 1.0f)
-      ;
-
-      RENDERER.queueOrthoModel(texturedObj, transforms, QueuedModelStandard.class)
-        .texture(displayTexture)
-      ;
-
-      if(rumbleData != null) {
-        for(final RumbleData rumble : rumbleData) {
-          if(rumble.frame == frame) {
-            startRumbleIntensity(0, rumble.initialIntensity);
-            adjustRumbleOverTime(0, rumble.endingIntensity, rumble.duration, 1);
-            rumbleFrames = rumble.duration;
-          }
-        }
-
-        rumbleFrames--;
-        if(rumbleFrames == 0) {
-          stopRumble(0);
-        }
+      final float scale = Math.min(windowWidth / 320.0f, windowHeight / 192.0f);
+      final float w = 320.0f * scale, h = 192.0f * scale;
+      transforms.translation((windowWidth - w) / 2.0f, (windowHeight - h) / 2.0f, 100.0f).scale(w, h, 1.0f);
+      RENDERER.queueOrthoModel(texturedObj, transforms, QueuedModelStandard.class).texture(displayTexture);
+    }
+    final int targetFrame = (int)(playedMicros * 15 / 1_000_000);
+    if(targetFrame >= frame) {
+      final RumbleTimeline.Update rumble = hdRumble.advance(frame, targetFrame);
+      if(rumble.initial() >= 0) {
+        startRumbleIntensity(0, rumble.initial());
+        adjustRumbleOverTime(0, rumble.ending(), rumble.remainingFrames(), 1);
       }
-
+      if(rumble.stop()) stopRumble(0);
       handleSkipText();
-      displaySkipText();
-      frame++;
-
-      DISCORD.tick();
-    });
+      frame = targetFrame + 1;
+    }
+    displaySkipText();
+    DISCORD.tick();
+    if(hdMovie.drained() && !source.hasQueuedOutput() && playedMicros >= hdMovie.durationMicros) stop();
   }
 
   public static void stop() {
-    isPlaying = false;
+    if(stopping) return;
+    stopping = true;
+    isPlaying = restartOriginal != null;
     RENDERER.setRenderCallback(() -> {
-      if(texturedObj != null) {
-        texturedObj.delete();
-        texturedObj = null;
-      }
-
-      if(displayTexture != null) {
-        displayTexture.delete();
-        displayTexture = null;
-      }
-
-      if(inputActionPressed != null) {
-        RENDERER.events().removeInputActionPressed(inputActionPressed);
-        inputActionPressed = null;
-      }
-
-      if(keyPress != null) {
-        RENDERER.events().removeKeyPress(keyPress);
-        keyPress = null;
-      }
-
-      if(click != null) {
-        RENDERER.events().removeMouseRelease(click);
-        click = null;
-      }
-
-      if(buttonPressed != null) {
-        RENDERER.events().removeButtonPress(buttonPressed);
-        buttonPressed = null;
-      }
-
-      CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), oldAllowWidescreen);
-      RENDERER.setRenderCallback(oldRenderer);
-      RENDERER.window().setFpsLimit(oldFps);
-      PLATFORM.setInputTickRate(oldFps);
-      RENDERER.setRenderMode(oldRenderMode);
-      RENDERER.setProjectionSize(oldProjectionSize.x, oldProjectionSize.y);
+      if(hdMovie != null) { safely(hdMovie::close); hdMovie = null; hdPlayback = null; }
+      if(hdUpload != null) { safely(() -> MemoryUtil.memFree(hdUpload)); hdUpload = null; }
+      if(texturedObj != null) { safely(texturedObj::delete); texturedObj = null; }
+      if(displayTexture != null) { safely(displayTexture::delete); displayTexture = null; }
+      if(inputActionPressed != null) { safely(() -> RENDERER.events().removeInputActionPressed(inputActionPressed)); inputActionPressed = null; }
+      if(keyPress != null) { safely(() -> RENDERER.events().removeKeyPress(keyPress)); keyPress = null; }
+      if(click != null) { safely(() -> RENDERER.events().removeMouseRelease(click)); click = null; }
+      if(buttonPressed != null) { safely(() -> RENDERER.events().removeButtonPress(buttonPressed)); buttonPressed = null; }
+      safely(() -> CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), oldAllowWidescreen));
+      safely(() -> RENDERER.setRenderCallback(oldRenderer));
+      safely(() -> RENDERER.window().setFpsLimit(oldFps));
+      safely(() -> PLATFORM.setInputTickRate(oldFps));
+      safely(() -> RENDERER.setRenderMode(oldRenderMode));
+      safely(() -> RENDERER.setProjectionSize(oldProjectionSize.x, oldProjectionSize.y));
       clearRed_8007a3a8 = oldClearColour.x;
       clearGreen_800bb104 = oldClearColour.y;
       clearBlue_800babc0 = oldClearColour.z;
-
       oldRenderer = null;
-
-      AUDIO_THREAD.removeSource(source);
-      source = null;
-
-      stopRumble(0);
-      rumbleData = null;
+      if(source != null) { safely(() -> AUDIO_THREAD.removeSource(source)); source = null; }
+      safely(() -> stopRumble(0));
+      if(restartOriginal != null) {
+        final String file = restartOriginal;
+        restartOriginal = null;
+        play(file, true, false);
+      } else {
+        rumbleData = null;
+      }
     });
+  }
+
+  private static void safely(final Runnable cleanup) {
+    try { cleanup.run(); } catch(final RuntimeException e) { LOGGER.warn("FMV cleanup failed", e); }
   }
 
   private static boolean getNextVlc(final VariableLengthCode vlc, final ArrayBitReader bitReader) {

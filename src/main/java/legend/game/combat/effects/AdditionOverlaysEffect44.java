@@ -1,16 +1,19 @@
 package legend.game.combat.effects;
 
+import java.util.Arrays;
 import legend.core.Config;
 import legend.core.MathHelper;
-import legend.core.renderer.QueuedModelStandard;
 import legend.core.gte.MV;
 import legend.core.memory.Method;
-import legend.core.renderer.Obj;
-import legend.core.renderer.QuadBuilder;
 import legend.core.platform.input.InputAction;
 import legend.core.platform.input.InputCodepoints;
+import legend.core.renderer.Obj;
+import legend.core.renderer.QuadBuilder;
+import legend.core.renderer.QueuedModelStandard;
+import legend.core.renderer.Translucency;
 import legend.game.additions.AdditionHitProperties10;
 import legend.game.additions.AdditionSound;
+import legend.game.combat.Battle;
 import legend.game.combat.bent.BattleEntity27c;
 import legend.game.combat.ui.AdditionOverlayMode;
 import legend.game.inventory.screens.FontOptions;
@@ -18,18 +21,16 @@ import legend.game.inventory.screens.HorizontalAlign;
 import legend.game.inventory.screens.TextColour;
 import legend.game.modding.coremod.CoreMod;
 import legend.game.scripting.ScriptState;
-import legend.core.renderer.Translucency;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joml.Math;
-
-import java.util.Arrays;
 
 import static legend.core.GameEngine.CONFIG;
 import static legend.core.GameEngine.GPU;
 import static legend.core.GameEngine.PLATFORM;
 import static legend.core.GameEngine.RENDERER;
 import static legend.core.GameEngine.SCRIPTS;
+import static legend.game.EngineStates.currentEngineState_8004dd04;
 import static legend.game.Scus94491BpeSegment.battlePreloadedEntities_1f8003f4;
 import static legend.game.Text.renderText;
 import static legend.game.combat.SEffe.additionBorderColours_800fb7f0;
@@ -40,6 +41,7 @@ import static legend.game.modding.coremod.CoreMod.ADDITION_TIMING_WINDOW_CONFIG;
 import static legend.game.modding.coremod.CoreMod.REDUCE_MOTION_FLASHING_CONFIG;
 import static legend.lodmod.LodMod.INPUT_ACTION_BTTL_ATTACK;
 import static legend.lodmod.LodMod.INPUT_ACTION_BTTL_COUNTER;
+
 
 public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.VoidType> {
   private static final Logger LOGGER = LogManager.getFormatterLogger(AdditionOverlaysEffect44.class);
@@ -94,6 +96,7 @@ public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.Void
     this.attackerScriptIndex_00 = attackerScriptIndex;
     this.targetScriptIndex_04 = targetScriptIndex;
     this.currentFrame_34 = 0;
+    ((Battle)currentEngineState_8004dd04).additionFeedback.clear();
     this.pauseTickerAndRenderer_31 = 0;
     this.additionComplete_32 = 0;
     this.numFramesToRenderCenterSquare_38 = 0;
@@ -307,7 +310,7 @@ public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.Void
 
         effect.transforms.scaling(squareSize, squareSize, 1.0f);
         effect.transforms.transfer.set(GPU.getOffsetX(), GPU.getOffsetY() + 30.0f, 120.0f);
-        final QueuedModelStandard model = RENDERER.queueOrthoModel(RENDERER.centredQuadBPlusF, effect.transforms, QueuedModelStandard.class);
+        final QueuedModelStandard model = RENDERER.queueUiOrthoModel(RENDERER.centredQuadBPlusF, effect.transforms, QueuedModelStandard.class);
 
         if(completionState == 1) {  // Success
           model.monochrome(1.0f);
@@ -344,7 +347,7 @@ public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.Void
       .scaling(10.0f, borderSize, 1.0f)
       .rotateLocalZ(angle);
 
-    RENDERER.queueOrthoModel(this.reticleBorderShadow, this.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(this.reticleBorderShadow, this.transforms, QueuedModelStandard.class)
       .monochrome(colour / 255.0f);
   }
 
@@ -370,9 +373,9 @@ public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.Void
 
         // Set translucent if button press is failure and border sideEffects_0d not innermost rotating border or target (15)
         if((borderOverlay.sideEffects_0d == 0 || borderOverlay.sideEffects_0d == -1) && currentHitCompletionState >= 0) {
-          model = RENDERER.queueOrthoModel(RENDERER.lineBox, this.transforms, QueuedModelStandard.class);
+          model = RENDERER.queueUiOrthoModel(RENDERER.lineBox, this.transforms, QueuedModelStandard.class);
         } else {
-          model = RENDERER.queueOrthoModel(RENDERER.lineBoxBPlusF, this.transforms, QueuedModelStandard.class);
+          model = RENDERER.queueUiOrthoModel(RENDERER.lineBoxBPlusF, this.transforms, QueuedModelStandard.class);
         }
 
         if(hitArray[hitNum].isCounter_1c && borderNum != 16) {
@@ -507,6 +510,7 @@ public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.Void
         if(this.currentFrame_34 == hitArray[hitNum].frameSuccessUpperBound_12 + 1) {
           if(additionHitCompletionState_8011a014[hitNum] == 0) {
             additionHitCompletionState_8011a014[hitNum] = -2;
+            this.recordFeedback(hitNum);
             this.propagateFailedAdditionHitFlag(hitArray, hitNum);
 
             //LAB_80107478
@@ -588,6 +592,7 @@ public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.Void
                     hitOverlay.hitSuccessful_01 = true;
                   }
 
+                  this.recordFeedback(hitNum);
                   //LAB_801076f0
                   if(additionHitCompletionState_8011a014[hitNum] < 0) {
                     this.propagateFailedAdditionHitFlag(hitArray, hitNum);
@@ -622,6 +627,14 @@ public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.Void
       }
     }
     //LAB_80107764
+  }
+
+  private void recordFeedback(final int hitNum) {
+    if(CONFIG.getConfig(CoreMod.ADDITION_FEEDBACK_CONFIG.get())) {
+      final AdditionOverlaysHit20 hit = this.hitOverlays_40[hitNum];
+      ((Battle)currentEngineState_8004dd04).additionFeedback.record(additionHitCompletionState_8011a014[hitNum], this.currentFrame_34,
+        hit.frameSuccessLowerBound_10, hit.frameSuccessUpperBound_12, this.autoCompleteType_3a != 0);
+    }
   }
 
   @Override

@@ -141,6 +141,9 @@ public class RetailSubmap extends Submap {
   private int envBackgroundTextureCount_800cb57c;
   private int envForegroundTextureCount_800cb580;
   private int envTextureCount_800cb584;
+  private volatile legend.definitive.rendering.NativeEnvironmentImages.Segment[] preparedEnvironment;
+  private volatile CompletableFuture<?> environmentPreparation;
+  private volatile int environmentGeneration;
 
   private final EnvironmentForegroundTextureMetrics[] envForegroundMetrics_800cb590 = new EnvironmentForegroundTextureMetrics[32];
   private final EnvironmentRenderingMetrics24[] envRenderMetrics_800cb710 = new EnvironmentRenderingMetrics24[32];
@@ -204,9 +207,44 @@ public class RetailSubmap extends Submap {
 
     drgnBinIndex_800bc058 = drgnIndex.get();
 
+    final int generation=++this.environmentGeneration;
+    final var preload=EVENTS.postEvent(new legend.game.modding.events.submap.SubmapEnvironmentPreloadEvent(this.smap, gameState_800babc8, this, drgnIndex.get(), this.cut));
+
     return
       loadDrgnDir(2, fileIndex.get())
-      .thenAccept(files -> this.loadBackground("DRGN2" + drgnIndex.get() + '/' + fileIndex.get(), files));
+      .thenCompose(files -> {
+        synchronized(this) {
+          if(generation != this.environmentGeneration) return CompletableFuture.<Void>completedFuture(null);
+          this.loadBackground("DRGN2" + drgnIndex.get() + '/' + fileIndex.get(), files);
+          return this.prewarmEnvironment(generation);
+        }
+      })
+      .thenCombine(preload.preparation(),(nativeImages,artwork)->null);
+  }
+
+  private CompletableFuture<Void> prewarmEnvironment(final int generation) {
+    if(!legend.core.GameEngine.CONFIG.getConfig(legend.game.modding.coremod.CoreMod.IMAGE_CACHE_CONFIG.get())) return CompletableFuture.completedFuture(null);
+    final var tiles=new legend.definitive.rendering.NativeEnvironmentImages.Tile[this.envTextureCount_800cb584];
+    for(int i=0;i<tiles.length;i++) {
+      final EnvironmentRenderingMetrics24 metrics=this.envRenderMetrics_800cb710[i];
+      for(final Tim texture : this.envTextures) {
+        if(texture.getImageRect().contains((metrics.tpage_04 & 15)*64,(metrics.tpage_04 & 16) != 0 ? 256 : 0)) {
+          tiles[i]=new legend.definitive.rendering.NativeEnvironmentImages.Tile(texture,metrics.u_14,metrics.v_15,metrics.w_18,metrics.h_1a,i >= this.envBackgroundTextureCount_800cb57c);
+          break;
+        }
+      }
+    }
+    final var preparation=legend.definitive.rendering.NativeEnvironmentImages.prewarm(tiles);
+    this.environmentPreparation=preparation;
+    return preparation.handle((images,failure) -> {
+      synchronized(this) {
+        if(generation == this.environmentGeneration) {
+          if(failure == null) this.preparedEnvironment=images;
+          else LOGGER.warn("Native environment prewarming unavailable for cut %d; retaining normal preparation",this.cut);
+        }
+      }
+      return null;
+    });
   }
 
   @Override
@@ -470,7 +508,11 @@ public class RetailSubmap extends Submap {
   }
 
   @Override
-  public void unload() {
+  public synchronized void unload() {
+    this.environmentGeneration++;
+    if(this.environmentPreparation != null) this.environmentPreparation.cancel(false);
+    this.environmentPreparation=null;
+    this.preparedEnvironment=null;
     previousSubmapCut_800bda08 = this.cut;
 
     if(this.theEnd_800d4bd0 != null) {
@@ -834,12 +876,13 @@ public class RetailSubmap extends Submap {
     }
 
     final SubmapEnvironmentTextureEvent event = EVENTS.postEvent(new SubmapEnvironmentTextureEvent(this.smap, gameState_800babc8, this, drgnBinIndex_800bc058, this.cut, this.envForegroundTextureCount_800cb580));
+    this.environmentLighting = event.lighting == null ? legend.definitive.rendering.EnvironmentLight.NONE : event.lighting;
 
     this.backgroundRect = Rect4i.bound(rects);
     final IntBuffer empty = BufferUtils.createIntBuffer(this.backgroundRect.w * this.backgroundRect.h);
 
     if(event.background != null) {
-      this.backgroundTexture = event.background;
+      this.backgroundTexture = event.background.hdFiltering();
     } else {
       this.backgroundTexture = Texture.create("Submap background", builder -> {
         builder.data(empty, this.backgroundRect.w, this.backgroundRect.h);
@@ -852,17 +895,15 @@ public class RetailSubmap extends Submap {
       for(int i = 0; i < this.envBackgroundTextureCount_800cb57c; i++) {
         if(tims[i] != null) {
           final EnvironmentRenderingMetrics24 metrics = this.envRenderMetrics_800cb710[i];
-          final VramTextureSingle texture = VramTextureLoader.textureFromTim(tims[i]);
-          final VramTextureSingle palette = VramTextureLoader.palettesFromTim(tims[i])[0];
-
           final Rect4i rect = rects[i];
-          final int[] data = texture.applyPalette(palette, new Rect4i(metrics.u_14, metrics.v_15, rect.w, rect.h));
-
-          // Set alpha so the fragments don't get culled
-          for(int n = 0; n < data.length; n++) {
-            if(data[n] != 0) {
-              data[n] |= 0xff << 24;
-            }
+          final int[] data;
+          if(this.preparedEnvironment != null && this.preparedEnvironment[i] != null) {
+            data=this.preparedEnvironment[i].rgba();
+          } else {
+            final VramTextureSingle texture = VramTextureLoader.textureFromTim(tims[i]);
+            final VramTextureSingle palette = VramTextureLoader.palettesFromTim(tims[i])[0];
+            data = texture.applyPalette(palette, new Rect4i(metrics.u_14, metrics.v_15, rect.w, rect.h));
+            for(int n=0;n<data.length;n++) if(data[n] != 0) data[n] |= 0xff000000;
           }
 
           this.backgroundTexture.data(metrics.offsetX_1c - this.backgroundRect.x, metrics.offsetY_1e - this.backgroundRect.y, rect.w, rect.h, TextureDataType.UBYTE, data);
@@ -871,33 +912,30 @@ public class RetailSubmap extends Submap {
     }
 
     this.foregroundTextures = event.foregrounds;
+    if(this.foregroundTextures != null) {
+      for(final Texture texture : this.foregroundTextures) {
+        if(texture != null) texture.hdFiltering();
+      }
+    }
 
     // Create one texture per foreground and position the foreground in the correct spot
     for(int i = 0; i < this.envForegroundTextureCount_800cb580; i++) {
       if(this.foregroundTextures[i] == null && tims[this.envBackgroundTextureCount_800cb57c + i] != null) {
         final EnvironmentRenderingMetrics24 metrics = this.envRenderMetrics_800cb710[this.envBackgroundTextureCount_800cb57c + i];
-        final VramTextureSingle texture = VramTextureLoader.textureFromTim(tims[this.envBackgroundTextureCount_800cb57c + i]);
-        final VramTextureSingle palette = VramTextureLoader.palettesFromTim(tims[this.envBackgroundTextureCount_800cb57c + i])[0];
-
         final Rect4i rect = rects[this.envBackgroundTextureCount_800cb57c + i];
         final Rect4i appliedRect = new Rect4i(metrics.u_14, metrics.v_15, rect.w, rect.h);
-
-        // Neet flashback in lumberjack's shack (DRGN21/712) has a busted cutout that's way taller than the texture
-        if(appliedRect.right() > texture.rect.w) {
-          appliedRect.w = texture.rect.w - appliedRect.x;
-        }
-
-        if(appliedRect.bottom() > texture.rect.h) {
-          appliedRect.h = texture.rect.h - appliedRect.y;
-        }
-
-        final int[] data = texture.applyPalette(palette, appliedRect);
-
-        // Set alpha so the fragments don't get culled
-        for(int n = 0; n < data.length; n++) {
-          if(data[n] != 0) {
-            data[n] |= 0xff << 24;
-          }
+        final int[] data;
+        final var prepared=this.preparedEnvironment == null ? null : this.preparedEnvironment[this.envBackgroundTextureCount_800cb57c+i];
+        if(prepared != null) {
+          appliedRect.w=prepared.width(); appliedRect.h=prepared.height(); data=prepared.rgba();
+        } else {
+          final VramTextureSingle texture = VramTextureLoader.textureFromTim(tims[this.envBackgroundTextureCount_800cb57c + i]);
+          final VramTextureSingle palette = VramTextureLoader.palettesFromTim(tims[this.envBackgroundTextureCount_800cb57c + i])[0];
+          // Neet flashback has a cutout taller than its texture.
+          if(appliedRect.right() > texture.rect.w) appliedRect.w=texture.rect.w-appliedRect.x;
+          if(appliedRect.bottom() > texture.rect.h) appliedRect.h=texture.rect.h-appliedRect.y;
+          data=texture.applyPalette(palette,appliedRect);
+          for(int n=0;n<data.length;n++) if(data[n] != 0) data[n] |= 0xff000000;
         }
 
         this.foregroundTextures[i] = Texture.create("Submap foreground " + i, builder -> {
@@ -912,6 +950,8 @@ public class RetailSubmap extends Submap {
     }
 
     this.envTextures = null;
+    this.preparedEnvironment = null;
+    this.environmentPreparation = null;
   }
 
   @Override

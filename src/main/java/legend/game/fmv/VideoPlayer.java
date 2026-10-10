@@ -1,6 +1,8 @@
 package legend.game.fmv;
 
 import legend.core.Config;
+import legend.definitive.fmv.StreamingMovie;
+import legend.definitive.fmv.MoviePlayback;
 import legend.core.audio.GenericSource;
 import legend.core.gpu.Bpp;
 import legend.core.platform.WindowEvents;
@@ -15,9 +17,6 @@ import legend.game.EngineState;
 import legend.game.modding.coremod.CoreMod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bytedeco.ffmpeg.global.avutil;
-import org.bytedeco.javacv.FFmpegFrameGrabber;
-import org.bytedeco.javacv.Frame;
 import org.joml.Matrix4f;
 import org.joml.Vector2i;
 import org.joml.Vector3i;
@@ -26,7 +25,6 @@ import org.lwjgl.system.MemoryUtil;
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.ShortBuffer;
 import java.nio.file.Path;
 
 import static legend.core.GameEngine.AUDIO_THREAD;
@@ -49,16 +47,15 @@ public final class VideoPlayer {
   private static int oldFps;
   private static boolean oldAllowWidescreen;
 
-  private static FFmpegFrameGrabber grabber;
-  private static Frame currentFrame;
+  private static StreamingMovie movie;
+  private static boolean stopping;
+  private static MoviePlayback playback;
 
   private static int videoWidth;
   private static int videoHeight;
 
   private static GenericSource source;
-  private static ByteBuffer pcmBuffer;
-  /** Used to end video when buffered audio loops */
-  private static float lastPosition;
+  private static ByteBuffer imageBuffer;
 
   private static WindowEvents.KeyPressed keyPress;
   private static WindowEvents.ButtonPressed buttonPressed;
@@ -72,236 +69,174 @@ public final class VideoPlayer {
   private static final Vector3i oldClearColour = new Vector3i();
   private static final Matrix4f transforms = new Matrix4f();
 
+  private static boolean stateCaptured;
   private static Runnable onRender;
   private static Runnable onFinish;
 
   public static void play(final Path video, @Nullable final Runnable onRender, @Nullable final Runnable onFinish) throws IOException {
     LOGGER.info("Playing FMV %s", video);
 
+    if(movie != null) throw new IOException("A movie is already playing");
     VideoPlayer.onRender = onRender;
     VideoPlayer.onFinish = onFinish;
-
     shouldStop = false;
+    stopping = false;
+    stateCaptured = false;
 
-    grabber = new FFmpegFrameGrabber(video.toFile());
+    try {
+      movie = new StreamingMovie(video);
+      playback = new MoviePlayback(movie);
+      videoWidth = movie.width;
+      videoHeight = movie.height;
+      oldAllowWidescreen = CONFIG.getConfig(ALLOW_WIDESCREEN_CONFIG.get());
+      oldFps = RENDERER.window().getFpsLimit();
+      oldProjectionSize.set(RENDERER.getNativeWidth(), RENDERER.getNativeHeight());
+      oldRenderMode = RENDERER.getRenderMode();
+      oldClearColour.set(clearRed_8007a3a8, clearGreen_800bb104, clearBlue_800babc0);
 
-    // Tell FFmpeg to do the YUV -> RGB conversion for us
-    grabber.setPixelFormat(avutil.AV_PIX_FMT_RGB24);
-    grabber.start();
+      oldRenderer = RENDERER.setRenderCallback(() -> { });
+      stateCaptured = true;
+      imageBuffer = MemoryUtil.memAlloc(videoWidth * videoHeight * 3);
 
-    videoWidth = grabber.getImageWidth();
-    videoHeight = grabber.getImageHeight();
+      LOGGER.info("Video size %dx%d", videoWidth, videoHeight);
 
-    LOGGER.info("Video size %dx%d", videoWidth, videoHeight);
+      displayTexture = Texture.create("Video", builder -> {
+        builder.size(videoWidth, videoHeight);
+        builder.internalFormat(TextureInternalFormat.RGB_8);
+        builder.dataFormat(TextureDataFormat.RGB);
+        builder.minFilter(true);
+        builder.magFilter(true);
+      });
 
-    displayTexture = Texture.create("Video", builder -> {
-      builder.size(videoWidth, videoHeight);
-      builder.internalFormat(TextureInternalFormat.RGB_8);
-      builder.dataFormat(TextureDataFormat.RGB);
-      builder.minFilter(true);
-      builder.magFilter(true);
-    });
+      CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), true);
+      RENDERER.setRenderMode(EngineState.RenderMode.PERSPECTIVE);
+      RENDERER.setProjectionSize(320, 240);
+      RENDERER.api().clearColour(0.0f, 0.0f, 0.0f);
 
-    oldAllowWidescreen = CONFIG.getConfig(ALLOW_WIDESCREEN_CONFIG.get());
-    oldFps = RENDERER.window().getFpsLimit();
-    oldProjectionSize.set(RENDERER.getNativeWidth(), RENDERER.getNativeHeight());
-    oldRenderMode = RENDERER.getRenderMode();
-    oldClearColour.set(clearRed_8007a3a8, clearGreen_800bb104, clearBlue_800babc0);
+      keyPress = RENDERER.events().onKeyPress((window, key, scancode, mods, repeat) -> shouldStop = true);
+      buttonPressed = RENDERER.events().onButtonPress((window, action, repeat) -> shouldStop = true);
+      click = RENDERER.events().onMouseRelease((window, x, y, button, mods) -> shouldStop = true);
 
-    CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), true);
-    RENDERER.setRenderMode(EngineState.RenderMode.PERSPECTIVE);
-    RENDERER.setProjectionSize(320, 240);
-    RENDERER.api().clearColour(0.0f, 0.0f, 0.0f);
+      source = AUDIO_THREAD.addSource(new GenericSource(AL_FORMAT_STEREO16, 48_000));
+      final float volume = CONFIG.getConfig(CoreMod.FMV_VOLUME_CONFIG.get()) * CONFIG.getConfig(CoreMod.MASTER_VOLUME_CONFIG.get());
 
-    keyPress = RENDERER.events().onKeyPress((window, key, scancode, mods, repeat) -> shouldStop = true);
-    buttonPressed = RENDERER.events().onButtonPress((window, action, repeat) -> shouldStop = true);
-    click = RENDERER.events().onMouseRelease((window, x, y, button, mods) -> shouldStop = true);
+      RENDERER.setRenderCallback(() -> {
+        try {
+          if(onRender != null) {
+            onRender.run();
+          }
 
-    source = AUDIO_THREAD.addSource(new GenericSource(AL_FORMAT_STEREO16, 48_000));
-    final float volume = CONFIG.getConfig(CoreMod.FMV_VOLUME_CONFIG.get()) * CONFIG.getConfig(CoreMod.MASTER_VOLUME_CONFIG.get());
+          if(shouldStop) {
+            stop();
+            return;
+          }
 
-    // Buffer audio
-    grabber.setCloseInputStream(false);
+          RENDERER.window().setFpsLimit(60 * Config.getGameSpeedMultiplier());
+          PLATFORM.setInputTickRate(60 * Config.getGameSpeedMultiplier());
 
-    final int sampleRate = grabber.getSampleRate();
-    final int channels = grabber.getAudioChannels();
+          final long playedMicros;
+          try { playedMicros = playback.tick(source, volume); }
+          catch(final IOException | RuntimeException e) {
+            LOGGER.warn("Error while playing video", e);
+            stop();
+            return;
+          }
+          final StreamingMovie.VideoFrame image = movie.pollVideo(playedMicros);
+          if(image != null) {
+            imageBuffer.clear();
+            imageBuffer.put(image.rgb()).flip();
+            displayTexture.data(0, 0, videoWidth, videoHeight, TextureDataType.UBYTE, imageBuffer);
+          }
 
-    final double durationSec = grabber.getLengthInTime() / 1_000_000.0;
-    final int maxBytes = (int)(durationSec * sampleRate * channels * 2) + 4096; // 4kb padding
+          if(texturedObj == null) {
+            texturedObj = new QuadBuilder("FMV")
+              .bpp(Bpp.BITS_24)
+              .size(1.0f, 1.0f)
+              .build();
+          }
 
-    pcmBuffer = MemoryUtil.memAlloc(maxBytes);
+          displayTexture.use();
 
-    while((currentFrame = grabber.grabFrame()) != null) {
-      if(currentFrame.samples != null) {
-        final ShortBuffer sb = (ShortBuffer)currentFrame.samples[0];
-        for(int i = 0; i < sb.limit(); i++) {
-          pcmBuffer.putShort((short)(sb.get(i) * volume));
+          final float windowHeight = RENDERER.getNativeHeight();
+          final float windowWidth = windowHeight * RENDERER.getRenderAspectRatio();
+
+          final float scaleW = windowWidth / videoWidth;
+          final float scaleH = windowHeight / videoHeight;
+          final float scale = Math.min(scaleW, scaleH);
+
+          final float w = videoWidth * scale;
+          final float h = videoHeight * scale;
+
+          final float l = (windowWidth - w) / 2.0f;
+          final float t = (windowHeight - h) / 2.0f;
+
+          transforms
+            .translation(l, t, 100.0f)
+            .scale(w, h, 1.0f)
+          ;
+
+          RENDERER.queueOrthoModel(texturedObj, transforms, QueuedModelStandard.class)
+            .texture(displayTexture)
+          ;
+
+          DISCORD.tick();
+
+          if(movie.drained() && !source.hasQueuedOutput() && playedMicros >= movie.durationMicros) stop();
+        } catch(final RuntimeException e) {
+          LOGGER.warn("Video rendering failed", e);
+          stop();
         }
-      }
+      });
+    } catch(final IOException | RuntimeException e) {
+      cleanup();
+      restoreRenderer();
+      VideoPlayer.onRender = null;
+      VideoPlayer.onFinish = null;
+      throw new IOException("Could not initialize video playback", e);
     }
-
-    pcmBuffer.flip();
-    source.bufferOutput(pcmBuffer);
-    lastPosition = 0.0f;
-
-    grabber.setFrameNumber(0);
-    grabber.setCloseInputStream(true);
-
-    currentFrame = grabber.grabImage();
-
-    oldRenderer = RENDERER.setRenderCallback(() -> {
-      if(onRender != null) {
-        onRender.run();
-      }
-
-      if(shouldStop) {
-        stop();
-        return;
-      }
-
-      RENDERER.window().setFpsLimit(60 * Config.getGameSpeedMultiplier());
-      PLATFORM.setInputTickRate(60 * Config.getGameSpeedMultiplier());
-
-      // We pin video playback to audio playback
-      final long audioTimeMicro = (long)(source.getPosition() * 1_000_000L);
-      final long toleranceMicro = 15_000L; // 15ms tolerance
-
-      try {
-        while(true) {
-          final long videoTimeMicro = currentFrame.timestamp;
-
-          if(videoTimeMicro < audioTimeMicro - toleranceMicro) {
-            // BEHIND: skip frames until we catch up
-            currentFrame = grabber.grabImage();
-            if(currentFrame == null) {
-              stop();
-              return;
-            }
-
-            continue;
-          }
-
-          if(videoTimeMicro > audioTimeMicro + toleranceMicro) {
-            // AHEAD: wait for the next loop tick, render the existing rawRgbData
-            break;
-          }
-
-          // IN SYNC: decode and process the frame
-          final ByteBuffer buffer = (ByteBuffer)currentFrame.image[0];
-          displayTexture.data(0, 0, videoWidth, videoHeight, TextureDataType.UBYTE, buffer);
-          break;
-        }
-      } catch(final Exception e) {
-        LOGGER.warn("Error while playing video", e);
-      }
-
-      if(texturedObj == null) {
-        texturedObj = new QuadBuilder("FMV")
-          .bpp(Bpp.BITS_24)
-          .size(1.0f, 1.0f)
-          .build();
-      }
-
-      displayTexture.use();
-
-      final float windowHeight = RENDERER.getNativeHeight();
-      final float windowWidth = windowHeight * RENDERER.getRenderAspectRatio();
-
-      final float scaleW = windowWidth / 320.0f;
-      final float scaleH = windowHeight / videoHeight;
-      final float scale = Math.min(scaleW, scaleH);
-
-      final float w = videoWidth * scale;
-      final float h = videoHeight * scale;
-
-      final float l = (windowWidth - w) / 2.0f;
-      final float t = (windowHeight - h) / 2.0f;
-
-      transforms
-        .translation(l, t, 100.0f)
-        .scale(w, h, 1.0f)
-      ;
-
-      RENDERER.queueOrthoModel(texturedObj, transforms, QueuedModelStandard.class)
-        .texture(displayTexture)
-      ;
-
-      DISCORD.tick();
-
-      if(!source.isActive() || source.getPosition() < lastPosition) {
-        stop();
-      }
-
-      lastPosition = source.getPosition();
-    });
   }
 
   public static void stop() {
+    if(stopping || movie == null) return;
+    stopping = true;
     RENDERER.setRenderCallback(() -> {
-      if(texturedObj != null) {
-        texturedObj.delete();
-        texturedObj = null;
-      }
-
-      if(displayTexture != null) {
-        displayTexture.delete();
-        displayTexture = null;
-      }
-
-      if(keyPress != null) {
-        RENDERER.events().removeKeyPress(keyPress);
-        keyPress = null;
-      }
-
-      if(click != null) {
-        RENDERER.events().removeMouseRelease(click);
-        click = null;
-      }
-
-      if(buttonPressed != null) {
-        RENDERER.events().removeButtonPress(buttonPressed);
-        buttonPressed = null;
-      }
-
-      CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), oldAllowWidescreen);
-      RENDERER.setRenderCallback(oldRenderer);
-      RENDERER.window().setFpsLimit(oldFps);
-      PLATFORM.setInputTickRate(oldFps);
-      RENDERER.setRenderMode(oldRenderMode);
-      RENDERER.setProjectionSize(oldProjectionSize.x, oldProjectionSize.y);
-      clearRed_8007a3a8 = oldClearColour.x;
-      clearGreen_800bb104 = oldClearColour.y;
-      clearBlue_800babc0 = oldClearColour.z;
-
-      oldRenderer = null;
-
-      if(grabber != null) {
-        try {
-          grabber.stop();
-          grabber.release();
-        } catch(final FFmpegFrameGrabber.Exception e) {
-          LOGGER.warn("Failed to clean up ffmpeg", e);
-        }
-      }
-
-      if(onRender != null) {
-        onRender.run();
-      }
-
-      if(onFinish != null) {
-        onFinish.run();
-      }
-
+      cleanup();
+      restoreRenderer();
+      final Runnable render = onRender, finish = onFinish;
       onRender = null;
       onFinish = null;
-
-      if(pcmBuffer != null) {
-        MemoryUtil.memFree(pcmBuffer);
-        pcmBuffer = null;
-      }
-
-      AUDIO_THREAD.removeSource(source);
-      source = null;
+      try { if(render != null) render.run(); }
+      finally { if(finish != null) finish.run(); }
     });
+  }
+
+  private static void restoreRenderer() {
+    if(!stateCaptured) return;
+    stateCaptured = false;
+    CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), oldAllowWidescreen);
+    RENDERER.setRenderCallback(oldRenderer);
+    RENDERER.window().setFpsLimit(oldFps);
+    PLATFORM.setInputTickRate(oldFps);
+    RENDERER.setRenderMode(oldRenderMode);
+    RENDERER.setProjectionSize(oldProjectionSize.x, oldProjectionSize.y);
+    clearRed_8007a3a8 = oldClearColour.x;
+    clearGreen_800bb104 = oldClearColour.y;
+    clearBlue_800babc0 = oldClearColour.z;
+    oldRenderer = null;
+  }
+
+  private static void safely(final Runnable cleanup) {
+    try { cleanup.run(); } catch(final RuntimeException e) { LOGGER.warn("Video resource cleanup failed", e); }
+  }
+
+  private static void cleanup() {
+    if(movie != null) { safely(movie::close); movie = null; playback = null; }
+    if(texturedObj != null) { safely(texturedObj::delete); texturedObj = null; }
+    if(displayTexture != null) { safely(displayTexture::delete); displayTexture = null; }
+    if(keyPress != null) { safely(() -> RENDERER.events().removeKeyPress(keyPress)); keyPress = null; }
+    if(click != null) { safely(() -> RENDERER.events().removeMouseRelease(click)); click = null; }
+    if(buttonPressed != null) { safely(() -> RENDERER.events().removeButtonPress(buttonPressed)); buttonPressed = null; }
+    if(imageBuffer != null) { MemoryUtil.memFree(imageBuffer); imageBuffer = null; }
+    if(source != null) { safely(() -> AUDIO_THREAD.removeSource(source)); source = null; }
   }
 }

@@ -7,6 +7,13 @@ import java.nio.IntBuffer;
 import java.util.Arrays;
 
 import static org.lwjgl.openal.AL10.AL_BUFFERS_PROCESSED;
+import static org.lwjgl.openal.AL10.AL_BUFFERS_QUEUED;
+import static org.lwjgl.openal.AL10.AL_BUFFER;
+import static org.lwjgl.openal.AL10.AL_SIZE;
+import static org.lwjgl.openal.AL10.AL_BITS;
+import static org.lwjgl.openal.AL10.AL_CHANNELS;
+import static org.lwjgl.openal.AL10.AL_FREQUENCY;
+import static org.lwjgl.openal.AL10.alGetBufferi;
 import static org.lwjgl.openal.AL10.AL_PLAYING;
 import static org.lwjgl.openal.AL10.AL_SOURCE_STATE;
 import static org.lwjgl.openal.AL10.alBufferData;
@@ -19,12 +26,14 @@ import static org.lwjgl.openal.AL10.alGetSourcei;
 import static org.lwjgl.openal.AL10.alSourcePlay;
 import static org.lwjgl.openal.AL10.alSourceQueueBuffers;
 import static org.lwjgl.openal.AL10.alSourceStop;
+import static org.lwjgl.openal.AL10.alSourcei;
 import static org.lwjgl.openal.AL10.alSourceUnqueueBuffers;
 import static org.lwjgl.openal.AL11.AL_SEC_OFFSET;
 import static org.lwjgl.system.MemoryUtil.memFree;
 
 public abstract class AudioSource {
   private final int[] buffers;
+  private final int[] allocatedBuffers;
   private int bufferIndex;
   private int sourceId;
 
@@ -32,10 +41,12 @@ public abstract class AudioSource {
 
   private IntBuffer tmp;
 
-  private float playTime;
+  private double playTime;
+  private int generation;
 
   public AudioSource(final int bufferCount) {
     this.buffers = new int[bufferCount];
+    this.allocatedBuffers = new int[bufferCount];
   }
 
   protected boolean isInitialized() {
@@ -43,10 +54,12 @@ public abstract class AudioSource {
   }
 
   protected void init() {
+    this.generation++;
     this.sourceId = alGenSources();
     this.tmp = MemoryUtil.memAllocInt(1);
 
-    alGenBuffers(this.buffers);
+    alGenBuffers(this.allocatedBuffers);
+    System.arraycopy(this.allocatedBuffers, 0, this.buffers, 0, this.buffers.length);
     this.bufferIndex = this.buffers.length - 1;
 
     this.playTime = 0.0f;
@@ -56,20 +69,15 @@ public abstract class AudioSource {
     this.active = false;
     alSourceStop(this.sourceId);
 
-    alGetSourcei(this.sourceId, AL_BUFFERS_PROCESSED, this.tmp);
-    final int processedBufferCount = this.tmp.get(0);
-
-    for(int buffer = 0; buffer < processedBufferCount; buffer++) {
-      final int processedBufferName = alSourceUnqueueBuffers(this.sourceId);
-      alDeleteBuffers(processedBufferName);
-    }
-
-    alDeleteBuffers(this.buffers);
+    // Detach even an INITIAL queue: stopping an unstarted source need not mark it processed.
+    alSourcei(this.sourceId, AL_BUFFER, 0);
+    alDeleteBuffers(this.allocatedBuffers);
     alDeleteSources(this.sourceId);
 
     memFree(this.tmp);
 
     Arrays.fill(this.buffers, 0);
+    Arrays.fill(this.allocatedBuffers, 0);
     this.sourceId = 0;
     this.tmp = null;
 
@@ -81,6 +89,14 @@ public abstract class AudioSource {
     if(this.isActive()) {
       this.play();
     }
+  }
+
+  public int generation() { synchronized(this) { return this.generation; } }
+  public boolean outputAvailable() { synchronized(this) { return this.isInitialized(); } }
+
+  /** Number of free OpenAL buffers. Streaming callers leave one free so the audio tick can start playback. */
+  public int availableBuffers() {
+    synchronized(this) { return this.isInitialized() ? this.bufferIndex + 1 : 0; }
   }
 
   public boolean canBuffer() {
@@ -99,16 +115,13 @@ public abstract class AudioSource {
       for(int buffer = 0; buffer < processedBufferCount; buffer++) {
         final int unqueuedBufferId = alSourceUnqueueBuffers(this.sourceId);
 
-/*
-        // Calculate how much time was in that specific buffer and add it to the total
         final int sizeBytes = alGetBufferi(unqueuedBufferId, AL_SIZE);
         final int channels = alGetBufferi(unqueuedBufferId, AL_CHANNELS);
-        final int freq = alGetBufferi(unqueuedBufferId, AL_FREQUENCY);
-
-        // Bytes / bytes per sample * channels * samples per second
-        final float bufferDuration = (float)sizeBytes / (2.0f * channels * freq);
-        this.playTime += bufferDuration;
-*/
+        final int frequency = alGetBufferi(unqueuedBufferId, AL_FREQUENCY);
+        if(channels > 0 && frequency > 0) {
+          final int bits = alGetBufferi(unqueuedBufferId, AL_BITS);
+          this.playTime += (double)sizeBytes / ((bits / 8.0) * channels * frequency);
+        }
 
         this.buffers[++this.bufferIndex] = unqueuedBufferId;
       }
@@ -161,12 +174,44 @@ public abstract class AudioSource {
     }
   }
 
+  /** Discard queued audio when replacing a recording, including a never-started queue. */
+  protected void flushOutput() {
+    synchronized(this) {
+      this.active = false;
+      if(this.isInitialized()) {
+        alSourceStop(this.sourceId);
+        alSourcei(this.sourceId, AL_BUFFER, 0);
+        System.arraycopy(this.allocatedBuffers, 0, this.buffers, 0, this.buffers.length);
+        this.bufferIndex = this.buffers.length - 1;
+      }
+      this.playTime = 0.0f;
+    }
+  }
+
   protected void setActive(final boolean active) {
     this.active = active;
   }
 
   public boolean isActive() {
     return this.active;
+  }
+
+  /** Total played time across processed buffers; callers must not use wall time during underflow. */
+  public float getPlaybackPosition() {
+    return (float)this.getPlaybackPositionSeconds();
+  }
+
+  /** Precise accumulated clock for frame-accurate recovery of long recordings. */
+  public double getPlaybackPositionSeconds() {
+    synchronized(this) {
+      return this.playTime + this.getPosition();
+    }
+  }
+
+  public boolean hasQueuedOutput() {
+    synchronized(this) {
+      return this.isInitialized() && alGetSourcei(this.sourceId, AL_BUFFERS_QUEUED) > 0;
+    }
   }
 
   /** NOTE: this method will return the play time of the current buffer, so if you're using more than one buffer it's likely not going to return what you expect */

@@ -391,6 +391,7 @@ public class GlApi implements RenderApi {
         // Do not update the depth mask so that we don't prevent things further away than this from rendering
         glDepthMask(false);
         glEnable(GL_BLEND);
+        org.lwjgl.opengl.GL30C.glDisablei(GL_BLEND, 2);
       } else if(translucency == null) {
         // Update the depth mask so nothing further away than this will render
         glDepthMask(true);
@@ -428,6 +429,29 @@ public class GlApi implements RenderApi {
       glPolygonMode(GL_FRONT_AND_BACK, enable ? GL_LINE : GL_FILL);
       this.wireframeEnabled = enable;
     }
+  }
+
+  private boolean interfaceWrite = true;
+
+  @Override
+  public void postProcessMask(final boolean write) {
+    if(this.interfaceWrite != write) {
+      org.lwjgl.opengl.GL30C.glColorMaski(2, write, write, write, write);
+      this.interfaceWrite = write;
+    }
+  }
+
+  private static final float[] ZERO_COLOUR = {0, 0, 0, 0};
+
+  @Override
+  public void clearColourAttachment(final int attachment) {
+    org.lwjgl.opengl.GL30C.glClearBufferfv(org.lwjgl.opengl.GL30C.GL_COLOR, attachment, ZERO_COLOUR);
+  }
+
+  @Override
+  public void clearPostProcessTargets() {
+    org.lwjgl.opengl.GL30C.glClearBufferfv(org.lwjgl.opengl.GL30C.GL_COLOR, 1, ZERO_COLOUR);
+    org.lwjgl.opengl.GL30C.glClearBufferfv(org.lwjgl.opengl.GL30C.GL_COLOR, 2, ZERO_COLOUR);
   }
 
   @Override

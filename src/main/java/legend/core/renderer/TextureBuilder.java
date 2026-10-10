@@ -1,7 +1,5 @@
 package legend.core.renderer;
 
-import org.lwjgl.system.MemoryStack;
-
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.nio.Buffer;
@@ -13,10 +11,6 @@ import java.util.List;
 
 import static legend.core.GameEngine.RENDERER;
 import static legend.core.IoHelper.pathToByteBuffer;
-import static org.lwjgl.stb.STBImage.stbi_failure_reason;
-import static org.lwjgl.stb.STBImage.stbi_load_from_memory;
-import static org.lwjgl.system.MemoryStack.stackPush;
-import static org.lwjgl.system.MemoryUtil.memFree;
 
 public class TextureBuilder {
   private final String name;
@@ -60,20 +54,9 @@ public class TextureBuilder {
   }
 
   public void png(final ByteBuffer imageBuffer) {
-    try(final MemoryStack stack = stackPush()) {
-      final IntBuffer w = stack.mallocInt(1);
-      final IntBuffer h = stack.mallocInt(1);
-      final IntBuffer comp = stack.mallocInt(1);
-
-      final ByteBuffer data = stbi_load_from_memory(imageBuffer, w, h, comp, 4);
-      if(data == null) {
-        throw new RuntimeException("Failed to load image: " + stbi_failure_reason());
-      }
-
-      this.data(data, w.get(0), h.get(0));
-
-      this.cleanup.add(() -> memFree(data));
-    }
+    final legend.definitive.rendering.PngAssets.Image image = (Texture.imageCachingEnabled() ? legend.definitive.rendering.PngAssets.SHARED : legend.definitive.rendering.PngAssets.UNCACHED).acquire(imageBuffer);
+    this.cleanup.add(image::close);
+    this.data(image.pixels(), image.width(), image.height());
   }
 
   public void size(final int w, final int h) {

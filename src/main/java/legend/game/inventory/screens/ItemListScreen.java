@@ -123,6 +123,9 @@ public class ItemListScreen extends MenuScreen {
       this.equipmentList.add(item);
     }
 
+    this.equipmentList.sort(java.util.Comparator.comparing(entry -> entry.item_00,
+      CONFIG.getConfig(CoreMod.EQUIPMENT_SORT_CONFIG.get()).comparator(e -> I18n.translate(e.getNameTranslationKey()))));
+
     this.updateDescription(this.itemList.getSelectedItem());
   }
 
@@ -194,7 +197,10 @@ public class ItemListScreen extends MenuScreen {
   private void menuSort() {
     playMenuSound(2);
     this.itemList.sort(menuItemIconComparator(List.of(LodMod.ITEM_IDS), stack -> stack.getItem().getRegistryId()));
-    this.equipmentList.sort(menuEquipmentSlotComparator());
+    final var setting = CoreMod.EQUIPMENT_SORT_CONFIG.get();
+    CONFIG.setConfig(setting, CONFIG.getConfig(setting).next());
+    this.equipmentList.sort(java.util.Comparator.comparing(entry -> entry.item_00,
+      CONFIG.getConfig(setting).comparator(e -> I18n.translate(e.getNameTranslationKey()))));
     setInventoryFromDisplay(this.itemList.getItems(), gameState_800babc8.items_2e9, gameState_800babc8.items_2e9.getSize());
     setInventoryFromDisplay(this.equipmentList.getItems(), gameState_800babc8.equipment_1e8, this.equipmentList.getItems().size());
     this.itemList.removeIf(MenuEntryStruct04::isEmpty);

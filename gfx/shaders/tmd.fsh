@@ -6,6 +6,14 @@ in GS_OUT {
   flat vec2 vertClut;
   flat int vertBpp;
   smooth vec4 vertColour;
+  smooth vec3 lightingNormal;
+  smooth vec3 worldPosition;
+  smooth vec3 localPosition;
+  smooth vec3 worldNormal;
+  smooth vec3 localViewDirection;
+  smooth vec3 worldViewDirection;
+  smooth vec3 lightingColour;
+  flat int lightingIndex;
   flat int vertFlags;
 
   flat int translucency;
@@ -33,6 +41,20 @@ layout(std140) uniform scissor {
   float scissorH;
 };
 
+// Definitive: reuse the authored scene lights, evaluated on interpolated normals.
+struct Light {
+  mat4 lightDirection;
+  mat3 lightColour;
+  vec4 backgroundColour;
+};
+layout(std140) uniform lighting {
+  Light[128] lights;
+};
+uniform bool smoothLighting;
+uniform bool sceneLighting;
+uniform vec3 sceneKeyTint;
+uniform vec3 sceneAmbientTint;
+
 uniform vec3 recolour;
 uniform vec2 uvOffset;
 uniform float discardTranslucency;
@@ -41,8 +63,131 @@ uniform sampler2D tex24;
 uniform usampler2D tex15;
 
 layout(location = 0) out vec4 outColour;
+layout(location = 1) out vec4 outEmission;
+layout(location = 2) out vec4 outInterface;
+uniform bool uiLayer;
+uniform float emission;
+uniform bool hdTexture;
+uniform bool materialLighting;
+uniform vec2 surfaceResponse;
+uniform int effectLightCount;
+uniform vec4 effectPositions[4];
+uniform vec4 effectColours[4];
+
+uniform vec4 environmentDirection;
+uniform vec3 environmentColour;
+uniform vec3 environmentAmbient;
+uniform bool normalMapEnabled;
+uniform bool defaultSurfaceMaps;
+uniform bool roughnessMapEnabled;
+uniform sampler2D normalMapTex;
+uniform sampler2D roughnessMapTex;
+uniform float normalMapStrength;
+vec3 materialNormal;
+vec3 materialWorldNormal;
+vec2 detailUv;
+vec2 detailGradientX;
+vec2 detailGradientY;
+
+mat3 detailFrame(vec3 n, vec3 dpX, vec3 dpY, vec2 uvX, vec2 uvY) {
+  vec3 px = cross(dpY, n);
+  vec3 py = cross(n, dpX);
+  vec3 t = px * uvX.x + py * uvY.x;
+  vec3 b = px * uvX.y + py * uvY.y;
+  float size = max(dot(t,t), dot(b,b));
+  if(size < 1e-12) return mat3(vec3(0), vec3(0), n);
+  return mat3(t * inversesqrt(size), b * inversesqrt(size), n);
+}
+
+void prepareMaterial() {
+  materialNormal = lightingNormal;
+  materialWorldNormal = worldNormal;
+  if((normalMapEnabled || roughnessMapEnabled) && (vertFlags & 0x1) != 0 && (vertFlags & 0x8) == 0 && !uiLayer) {
+    // Derivatives precede transparency/scissor discards; exact alpha/STP lookup stays separate.
+    detailUv = vertUv + uvOffset;
+    if(defaultSurfaceMaps) detailUv *= vertBpp == 3 ? 8.0 : 1.0/32.0;
+    detailGradientX = dFdx(detailUv);
+    detailGradientY = dFdy(detailUv);
+    if(normalMapEnabled && (vertBpp == 3 || defaultSurfaceMaps) && normalMapStrength > 0.0 && dot(worldNormal,worldNormal) > 1e-8 && dot(lightingNormal,lightingNormal) > 1e-8) {
+      vec3 detail = textureGrad(normalMapTex, detailUv, detailGradientX, detailGradientY).xyz * 2.0 - 1.0;
+      detail.xy *= normalMapStrength;
+      detail.z = max(detail.z, 0.01);
+      materialNormal = detailFrame(normalize(lightingNormal), dFdx(localPosition), dFdy(localPosition), detailGradientX, detailGradientY) * detail;
+      materialWorldNormal = detailFrame(normalize(worldNormal), dFdx(worldPosition), dFdy(worldPosition), detailGradientX, detailGradientY) * detail;
+    }
+  }
+}
+
+vec2 faceResponse() {
+  vec2 response = surfaceResponse;
+  if((vertFlags & 0x20) != 0) {
+    int kind = (vertFlags >> 6) & 7;
+    float roughness = max(0.05, float((vertFlags >> 9) & 255) / 255.0);
+    response.x = mix(128.0, 4.0, roughness * roughness);
+    response.y = kind == 1 ? 0.008 : kind == 2 || kind == 4 ? 0.035 : kind == 3 ? 0.16 : 0.018;
+  }
+  if(roughnessMapEnabled && (vertBpp == 3 || defaultSurfaceMaps)) {
+    float roughness = clamp(textureGrad(roughnessMapTex, detailUv, detailGradientX, detailGradientY).r, 0.05, 1.0);
+    if(defaultSurfaceMaps) roughness = clamp(sqrt(clamp((128.0-response.x)/124.0,0.0,1.0)) * (0.96 + roughness*0.08), 0.05, 1.0);
+    response.x = mix(128.0, 4.0, roughness * roughness);
+  }
+  return response;
+}
+
+vec3 environmentDiffuse(vec3 albedo, vec3 legacy) {
+  float size = dot(materialWorldNormal, materialWorldNormal);
+  if(environmentDirection.w <= 0.0 || size <= 1e-8) return legacy;
+  float facing = max(dot(materialWorldNormal * inversesqrt(size), environmentDirection.xyz), 0.0);
+  vec3 lit = albedo * (environmentAmbient + environmentColour * facing);
+  return mix(legacy, lit, environmentDirection.w);
+}
+
+vec3 surfaceLight() {
+  vec2 response = faceResponse();
+  vec3 result = vec3(0.0);
+  float n2 = dot(materialNormal, materialNormal);
+  float v2 = dot(localViewDirection, localViewDirection);
+  if(n2 > 1e-8 && v2 > 1e-8 && materialLighting) {
+    vec3 n = materialNormal * inversesqrt(n2);
+    vec3 v = localViewDirection * inversesqrt(v2);
+    Light l = lights[lightingIndex];
+    for(int i = 0; i < 3; i++) {
+      vec3 direction = vec3(l.lightDirection[0][i], l.lightDirection[1][i], l.lightDirection[2][i]);
+      float d2 = dot(direction, direction);
+      if(d2 <= 1e-8) continue;
+      vec3 d = direction * inversesqrt(d2);
+      vec3 h = d + v;
+      float h2 = dot(h, h);
+      if(h2 > 1e-8) {
+        float highlight = pow(max(dot(n, h * inversesqrt(h2)), 0.0), response.x);
+        result += l.lightColour[i] * (highlight * response.y * max(dot(n, d), 0.0) * (1.0 - environmentDirection.w));
+      }
+    }
+  }
+  float wn2 = dot(materialWorldNormal, materialWorldNormal);
+  if(wn2 > 1e-8) {
+    vec3 n = materialWorldNormal * inversesqrt(wn2);
+    float viewSize = dot(worldViewDirection, worldViewDirection);
+    if(materialLighting && environmentDirection.w > 0.0 && viewSize > 1e-8) {
+      vec3 halfDirection = environmentDirection.xyz + worldViewDirection * inversesqrt(viewSize);
+      float halfSize = dot(halfDirection, halfDirection);
+      if(halfSize > 1e-8) result += environmentColour * (pow(max(dot(n,halfDirection * inversesqrt(halfSize)),0.0),response.x) * response.y * max(dot(n,environmentDirection.xyz),0.0) * environmentDirection.w);
+    }
+    for(int i = 0; i < min(effectLightCount, 4); i++) {
+      vec3 delta = effectPositions[i].xyz - worldPosition;
+      float distanceSquared = dot(delta, delta);
+      float radius = max(effectPositions[i].w, 0.001);
+      float falloff = max(1.0 - distanceSquared / (radius * radius), 0.0);
+      float facing = max(dot(n, delta * inversesqrt(max(distanceSquared, 1e-8))), 0.0);
+      result += effectColours[i].rgb * (falloff * falloff * facing);
+    }
+  }
+  return clamp(result, 0.0, 0.35);
+}
 
 void main() {
+  prepareMaterial();
+  vec3 materialAlbedo = lightingColour;
   // Older Intel iGPUs are buggy and don't implement scissoring properly, causing the Shirley fight to lock up when
   // she transforms into another character. This is a workaround and reimplements scissoring at the shader level.
   if(gl_FragCoord.x < scissorX || gl_FragCoord.x >= scissorX + scissorW || gl_FragCoord.y < scissorY || gl_FragCoord.y >= scissorY + scissorH) {
@@ -59,6 +204,28 @@ void main() {
   bool translucent = (vertFlags & 0x8) != 0;
   bool textured = (vertFlags & 0x2) != 0;
   outColour = vertColour;
+  if(smoothLighting && (vertFlags & 0x1) != 0 && !translucent) {
+    float normalLengthSquared = dot(materialNormal, materialNormal);
+    // Degenerate normals retain the legacy result instead of producing NaNs.
+    if(normalLengthSquared > 1e-8) {
+      vec3 normal = materialNormal * inversesqrt(normalLengthSquared);
+      Light l = lights[lightingIndex];
+      float range = textured ? 2.0 : 1.0;
+      vec3 diffuse = (l.lightDirection * vec4(normal, 1.0)).rgb;
+      // A small wrap softens the terminator using the scene's own light colors.
+      // Zero-color lights stay dark; unit-facing highlights keep their authored intensity.
+      if(sceneLighting) {
+        diffuse = max(diffuse, (diffuse + vec3(0.08)) / 1.08);
+      }
+      vec3 direct = l.lightColour * clamp(diffuse, 0.0, 8.0);
+      vec3 ambient = l.backgroundColour.rgb;
+      if(sceneLighting) {
+        direct *= sceneKeyTint;
+        ambient *= sceneAmbientTint;
+      }
+      outColour.rgb = clamp(clamp(direct + ambient, 0.0, 8.0) * lightingColour, 0.0, range);
+    }
+  }
 
   int translucencyMode = translucency + 1;
   if(translucent && !textured) {
@@ -88,7 +255,18 @@ void main() {
       texColour.g = float(pixel >>  5 & 0x1fu) / 31.0;
       texColour.r = float(pixel       & 0x1fu) / 31.0;
     } else {
-      texColour = texture(tex24, vertUv + uvOffset);
+      vec2 uv = vertUv + uvOffset;
+      if(hdTexture) {
+        vec2 uvDx = dFdx(uv), uvDy = dFdy(uv);
+        ivec2 size = textureSize(tex24, 0);
+        vec4 source = texelFetch(tex24, clamp(ivec2(uv * vec2(size)), ivec2(0), size - 1), 0);
+        // Full-canvas HD foregrounds contain large empty regions: reject them before filtered reads.
+        if(all(equal(source, vec4(0.0)))) discard;
+        texColour = textureGrad(tex24, uv, uvDx, uvDy);
+        texColour.a = source.a;
+      } else {
+        texColour = texture(tex24, uv);
+      }
     }
 
     // Discard if (0, 0, 0)
@@ -101,12 +279,18 @@ void main() {
       discard;
     }
 
+    materialAlbedo *= texColour.rgb;
     outColour = clamp(outColour * texColour, 0.0, 1.0);
   } else {
     // Untextured translucent primitives don't have a translucency bit so we always discard during the appropriate discard modes
     if(discardTranslucency == 1 && translucent || discardTranslucency == 2 && !translucent) {
       discard;
     }
+  }
+
+  if((vertFlags & 0x1) != 0 && !translucent && !uiLayer) {
+    outColour.rgb = environmentDiffuse(materialAlbedo, outColour.rgb);
+    outColour.rgb += surfaceLight() * materialAlbedo;
   }
 
   outColour.rgb *= recolour;
@@ -116,4 +300,6 @@ void main() {
   } else {
     outColour.a = 1.0;
   }
+  outEmission = vec4(uiLayer ? vec3(0.0) : outColour.rgb * emission, outColour.a);
+  outInterface = vec4(uiLayer ? 1.0 : 0.0);
 }
