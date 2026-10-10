@@ -89,7 +89,7 @@ def retains_selection(root, group):
     return True
 
 
-def plan(root, files):
+def plan(root, files, source_edge_baselines=False):
     production = root / 'integrations/envhd/production'
     assets = sky.read_json(production / 'battle-skies.json')['assets']
     tasks = sky.read_json(production / 'battle-generation-tasks.json')['tasks']
@@ -118,7 +118,7 @@ def plan(root, files):
             raise ValueError('Batch only supports the source-bound 4x layout')
         action = 'retain-selected' if retains_selection(root, group) else 'upscale-original'
         input_hash = master['decodedRgbaSha256']
-        if action != 'retain-selected' and master['status'] in REPAIRABLE:
+        if action != 'retain-selected' and master['status'] in REPAIRABLE and not source_edge_baselines:
             _, input_hash = candidate(root, master)
             action = 'repair-reviewed-layout'
         job = {'masterSourceSha256': master['sourceMcqSha256'],
@@ -175,7 +175,7 @@ def private_output(root, files, output):
         raise ValueError('Private inference inputs and logs must stay outside the project and original extraction')
 
 
-def execute(root, files, output, jobs, by_hash, engine, models):
+def execute(root, files, output, jobs, by_hash, engine, models, source_edge_baselines=False):
     private_output(root, files, output)
     if file_digest(engine) != ENGINE or file_digest(models / 'realesrgan-x4plus.bin') != WEIGHTS or file_digest(models / 'realesrgan-x4plus.param') != PARAMETERS:
         raise ValueError('Inference tool or weights differ from pinned versions')
@@ -185,6 +185,8 @@ def execute(root, files, output, jobs, by_hash, engine, models):
     for job in jobs:
         if job['action'] == 'retain-selected':
             continue
+        if source_edge_baselines and job['action'] != 'upscale-original':
+            raise ValueError('Source-edge baselines must start from the original artwork')
         entry = by_hash[job['masterSourceSha256']]
         source = original(files, entry)
         key = job['masterSourceSha256']
@@ -211,10 +213,10 @@ def execute(root, files, output, jobs, by_hash, engine, models):
                 if image.size != ((source.width + 128) * 4, (source.height + 32) * 4):
                     raise ValueError('Inference changed the padded source layout')
                 pixels = np.asarray(image.convert('RGB').crop((256, 64, 256 + source.width * 4, 64 + source.height * 4)))
-            method = 'real-esrgan-x4plus-periodic-python-border-repair'
+            method = 'real-esrgan-x4plus-periodic-preserved-source-edges' if source_edge_baselines else 'real-esrgan-x4plus-periodic-python-border-repair'
         rgba, protected = preserve_visibility(source, pixels)
-        border = min(32, rgba.shape[1] // 8)
-        repaired, _ = preserve_visibility(source, join_edges(rgba, protected, border)[:, :, :3])
+        border = 0 if source_edge_baselines else min(32, rgba.shape[1] // 8)
+        repaired = rgba if source_edge_baselines else preserve_visibility(source, join_edges(rgba, protected, border)[:, :, :3])[0]
         Image.fromarray(repaired).save(output / f'{key}.png')
         result = dict(job, method=method, outputSha256=file_digest(output / f'{key}.png'),
                       reviewStatus='pending-source-intent-style-layout-wrap-review',
@@ -233,15 +235,16 @@ if __name__ == '__main__':
     for name in ('root', 'files', 'output'):
         parser.add_argument('--' + name, type=Path, required=True)
     parser.add_argument('--execute', action='store_true', help='Only after the user approves the alternate pixel-edit workflow')
+    parser.add_argument('--source-edge-baselines', action='store_true', help='Upscale remaining originals with periodic context, preserving structural edges without reflected border averaging')
     parser.add_argument('--engine', type=Path)
     parser.add_argument('--models', type=Path)
     args = parser.parse_args()
     if args.execute and (args.engine is None or args.models is None):
         parser.error('Execution requires explicit pinned engine and model paths')
-    jobs, by_hash = plan(args.root.resolve(), args.files.resolve())
+    jobs, by_hash = plan(args.root.resolve(), args.files.resolve(), args.source_edge_baselines)
     private_output(args.root, args.files, args.output)
     args.output.mkdir(parents=True, exist_ok=False)
     (args.output / 'plan.json').write_bytes(sky.json_bytes({'jobs': jobs, 'executionRequested': args.execute, 'installed': False}))
     print(json.dumps({'jobs': len(jobs), 'actions': {a: sum(j['action'] == a for j in jobs) for a in sorted({j['action'] for j in jobs})}, 'executionRequested': args.execute}))
     if args.execute:
-        execute(args.root.resolve(), args.files.resolve(), args.output, jobs, by_hash, args.engine.resolve(), args.models.resolve())
+        execute(args.root.resolve(), args.files.resolve(), args.output, jobs, by_hash, args.engine.resolve(), args.models.resolve(), args.source_edge_baselines)

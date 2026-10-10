@@ -98,13 +98,14 @@ def resource_path(runtime, key, metadata):
 
 def batch_provenance(production, entry, png, version, value):
     methods = {'python-border-repair': 'repair-reviewed-layout',
+               'real-esrgan-x4plus-periodic-preserved-source-edges': 'upscale-original',
                'real-esrgan-x4plus-periodic-python-border-repair': 'upscale-original'}
     method = value.get('method')
     if method not in methods or value.get('action') != methods[method]:
         raise ValueError('Unsupported batch production method')
     expected = {'masterSourceSha256': entry['sourceMcqSha256'], 'decodedRgbaSha256': entry['decodedRgbaSha256'],
                 'outputSha256': digest(png), 'sourceSize': entry['sourceSize'], 'targetSize': entry['targetSize'],
-                'repairBorderPixels': min(32, entry['targetSize'][0] // 8),
+                'repairBorderPixels': 0 if method == 'real-esrgan-x4plus-periodic-preserved-source-edges' else min(32, entry['targetSize'][0] // 8),
                 'sourceVisibility': 'exact-nearest-4x-discard-and-visible-black',
                 'reviewStatus': 'pending-source-intent-style-layout-wrap-review'}
     if any(value.get(key) != item for key, item in expected.items()) or entry['targetSize'] != [size * 4 for size in entry['sourceSize']]:

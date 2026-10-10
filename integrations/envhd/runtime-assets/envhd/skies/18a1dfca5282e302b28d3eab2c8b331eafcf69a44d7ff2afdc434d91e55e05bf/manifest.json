@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "cb52675ca594fd22af8d0b0f75d0c7e9446486562db55e5d884c364cbab8ce40",
+  "outputSha256": "52ea7d59c069c799d513b193d1479bdbbc4ced342c37d3cede6e85050e0d790f",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage53-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Zenebatos pale yellow cloud sea, scattered rock peaks and warm diffuse lower mist. Source-backed usage: stages53; Zenebatos.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.2083332538604736,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "cb52675ca594fd22af8d0b0f75d0c7e9446486562db55e5d884c364cbab8ce40",
+    "action": "upscale-original",
+    "outputSha256": "52ea7d59c069c799d513b193d1479bdbbc4ced342c37d3cede6e85050e0d790f",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "cb52675ca594fd22af8d0b0f75d0c7e9446486562db55e5d884c364cbab8ce40",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "18a1dfca5282e302b28d3eab2c8b331eafcf69a44d7ff2afdc434d91e55e05bf",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "18a1dfca5282e302b28d3eab2c8b331eafcf69a44d7ff2afdc434d91e55e05bf"
+}

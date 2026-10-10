@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "31bd6c68f21ac63901f1f36fb4101bfeb07e6bbb45c7d8831648ec7a2605ea16",
+  "outputSha256": "11f4a164bed8067392947f84167d2de9a385bcc7b0eeffd6c5a3e33fddf334f3",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage58-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Moon large dark green cracked organic spheres with pale green rims and scattered luminous points. Source-backed usage: stages58; Moon.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.694444417953491,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "31bd6c68f21ac63901f1f36fb4101bfeb07e6bbb45c7d8831648ec7a2605ea16",
+    "action": "upscale-original",
+    "outputSha256": "11f4a164bed8067392947f84167d2de9a385bcc7b0eeffd6c5a3e33fddf334f3",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "31bd6c68f21ac63901f1f36fb4101bfeb07e6bbb45c7d8831648ec7a2605ea16",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "25c0a2ecee4a279c8dd353f0d363d82182e4de79be50d762d3a52f7a430a2b85",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "25c0a2ecee4a279c8dd353f0d363d82182e4de79be50d762d3a52f7a430a2b85"
+}

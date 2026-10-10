@@ -1,54 +1,60 @@
 # Environment batch production
 
-The existing generative panorama pass has 39 revisions across 28 of 70 restoration
-masters, with seven selected after image review. Layout drift and repeating joins
-prevent most drafts from entering the installed mod. This batch workflow is
-prepared as an alternate production method; actual artwork pixel editing awaits
-the owner's explicit choice. No new artwork is claimed by preparing the pipeline.
+The owner explicitly authorized the batch pipeline and Python image repair on
+2026-10-10. EnvHD now selects all 70 distinct non-uniform battle panorama masters,
+covering 73 original MCQ/header variants with shared images. One verified uniform
+opaque-black panorama needs no artwork. There are 123 public custom revisions;
+none has native gameplay or Steam Deck visual acceptance yet.
+
+The first executed batch produced 63 candidates: 18 border repairs of existing
+layout-reviewed generative drafts and 45 source-preserving neural upscales. Visual
+comparison selected 42 and held 21 because opposite-edge averaging reflected or
+doubled architectural, root, cliff and other hard structures. A second batch
+upscaled those 21 original sources without edge averaging. Original/output and
+original/output repeat-strip review found no new structural or source-intent hold
+at review-sheet scale. Existing original repeat discontinuities remain.
+
+Seven earlier generative selections and five repaired generative selections are
+retained. The other 58 selections are source-faithful neural development baselines.
+Neural smoothing can simplify bark, masonry and atmospheric detail; selective
+bespoke reconstruction remains necessary for the final Skurfa-quality target.
+Full panorama source coverage does not mean full EnvHD completion.
 
 `scripts/batch-envhd-skies.py` defaults to planning only. It rehashes and decodes
-each original MCQ variant, checks the shared artwork owner and source dimensions,
-and validates the recorded candidate bytes before scheduling a border repair.
-Pixel-identical stage/header variants remain one job. Verified uniform opaque
-black is excluded. The current plan retains seven selections, repairs 18 drafts
-whose source layout passed review, and upscales 45 originals (42 ungenerated and
-three whose generated layout failed).
+original MCQ variants, verifies shared artwork ownership and dimensions, and
+validates recorded candidates. Pixel-identical stage/header variants share a job;
+verified uniform opaque black is excluded. Execution uses pinned Real-ESRGAN
+executable and weights. Original-image jobs receive periodic horizontal and
+clamped vertical context, then crop back to the exact 4x source rectangle.
 
-Execution is an explicit `--execute` operation using the already pinned local
-Real-ESRGAN executable and weights. Original-image jobs receive periodic horizontal
-context and clamped vertical context before inference; output is cropped back to
-the exact 4x source rectangle. Repair jobs keep their existing central artwork.
-Both receive a narrow smooth border correction while protecting original discard
-coverage and opaque visible-black pixels. Opposite protected coverage classes are
-never blended. The border correction does not repair misplaced silhouettes or
-prove a seam invisible; each result still needs visual review.
+The original mode repairs a narrow border while protecting original discard and
+opaque visible-black classes. Matching edge colors cannot prove coherent joins.
+`--source-edge-baselines` schedules unselected masters from originals and skips
+opposite-edge averaging entirely. Its distinct production method is
+`real-esrgan-x4plus-periodic-preserved-source-edges`, with `repairBorderPixels: 0`.
+It preserves source structure rather than claiming newly seamless reconstruction.
 
-Outputs and provenance go into a new private staging folder outside both the
-repository and original extraction. `private-work` contains original-derived
-inputs and logs and must never be published. The custom output PNGs and their
-production-method records will be published after review under the existing owner
-authorization, including rejected/development revisions. Neural-tool binaries,
-weights, original extraction and diagnostic comparisons remain separate.
+Outputs and provenance are staged privately outside the repository and extraction.
+`private-work` contains original-derived inputs and logs and is never published.
+Reviewed custom PNGs, saved recipes, individual reviews and actual production
+identities are versioned publicly, including held revisions. Original extraction,
+comparison sheets, tool binaries and weights remain separate.
 
-The batch tool never edits the ownership ledger, installed resources or selected
-runtime manifests. Its candidates remain pending source-intent, Skurfa-style,
-layout and repeat review. A source-preserving neural upscale is a baseline;
-matching Skurfa's material quality still requires inspection and selective bespoke
-reconstruction. No automatic score selects artwork or proves native acceptance.
-`scripts/import-envhd-sky.py --production-record <candidates.json>` verifies and
-records the actual batch method, source/input/output identities, predecessor
-review and pinned tool hashes. A neural upscale or Python repair is never labeled
-as a new image-generation result. Skurfa references are explicitly review-only
-for these methods. Original source colors are restored wherever rounding or
-inference would otherwise introduce a new opaque-black texel.
+The batch tool does not edit installed resources or ownership ledgers.
+`scripts/import-envhd-sky.py --production-record <candidates.json>` checks the
+actual method, source/input/output identities, predecessor reviews and pinned tool
+hashes before recording and selecting reviewed artwork. It preserves the source
+alpha/discard/visible-black classes. Neural upscales and Python repairs are not
+labeled as new image-generation results. Skurfa references are visual-review-only
+for these methods. All existing Skurfa assets and notices remain unchanged.
 
-Skurfa retains its resources, notices and independent activation. This command
-addresses the battle-panorama task ledger only; it does not generate field scenes
-or replace Skurfa packs. The field ownership exclusions remain authoritative when
-production moves on to the remaining environment categories.
+This pipeline currently covers battle panoramas. World-map artwork, battle
+materials and unowned field scenes remain part of EnvHD's wider production queue;
+field ownership exclusions prevent redoing Skurfa packs or source-identical aliases.
+UIHD and FxHD are handled by other threads.
 
-`scripts/test-envhd-sky-batch.py` uses synthetic fixtures to verify shared header
-variants, retain-selected behavior, source/candidate/tool drift rejection,
-uniform-black exclusion, exact source visibility, unchanged central artwork,
-private-output restrictions, and candidate-only execution. It invokes no neural
-runtime, real game artwork, game window or desktop application.
+Synthetic regression tests cover shared variants, retain-selected behavior,
+source/candidate/tool drift rejection, uniform-black exclusion, exact visibility,
+private staging restrictions, unchanged central artwork, and unchanged asymmetric
+source-edge output. Import tests reject false border provenance before publishing.
+These checks invoke no game window or desktop application.

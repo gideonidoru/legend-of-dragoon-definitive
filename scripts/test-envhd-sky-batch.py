@@ -214,6 +214,51 @@ class BatchTest(unittest.TestCase):
         self.assertEqual(batch.ENGINE, metadata['productionRecord']['engineSha256'])
         self.assertEqual('visual-review-only', metadata['styleReferenceUse'])
 
+    def test_source_edge_baseline_preserves_asymmetric_structure_and_records_no_border_mix(self):
+        self.fixture.record(verdict='repeat-boundary-revision-needed')
+        jobs, entries = batch.plan(self.root, self.files, source_edge_baselines=True)
+        self.assertEqual('upscale-original', jobs[0]['action'])
+        self.assertEqual(self.fixture.group, jobs[0]['inputSha256'])
+        expected = None
+
+        def synthetic_inference(command, **kwargs):
+            nonlocal expected
+            with Image.open(command[command.index('-i') + 1]) as im:
+                pixels = np.zeros((im.height * 4, im.width * 4, 3), dtype=np.uint8)
+            pixels[:, :, 0] = np.arange(pixels.shape[1]) % 251 + 1
+            pixels[:, :, 1:] = 60
+            Image.fromarray(pixels).save(command[command.index('-o') + 1])
+            original = batch.original(self.files, entries[self.fixture.master])
+            expected, _ = batch.preserve_visibility(original, pixels[64:192, 256:320])
+            return type('Run', (), {'returncode': 0, 'stdout': b'', 'stderr': b''})()
+
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            pins = {'engine': batch.ENGINE, 'realesrgan-x4plus.bin': batch.WEIGHTS,
+                    'realesrgan-x4plus.param': batch.PARAMETERS}
+            def digest(path):
+                return pins[path.name] if path.name in pins else batch.sky.digest(path.read_bytes())
+            with patch.object(batch, 'file_digest', side_effect=digest), patch.object(batch.subprocess, 'run', side_effect=synthetic_inference):
+                records = batch.execute(self.root, self.files, output, jobs, entries, output / 'engine', output / 'models', source_edge_baselines=True)
+            candidate = output / (self.fixture.master + '.png')
+            with Image.open(candidate) as image:
+                np.testing.assert_array_equal(expected, np.asarray(image))
+            self.assertFalse(np.array_equal(expected[:, 0], expected[:, -1]))
+            record = records[0]
+            self.assertEqual(0, record['repairBorderPixels'])
+            self.assertEqual('real-esrgan-x4plus-periodic-preserved-source-edges', record['method'])
+            before = self.fixture.snapshot()
+            with self.assertRaisesRegex(ValueError, 'provenance differs'):
+                batch.sky.record(self.root, self.files, candidate, self.fixture.master, 2,
+                                 self.fixture.prompt, 'visual-reviewed-native-pending', self.fixture.notes,
+                                 dict(record, repairBorderPixels=8))
+            self.assertEqual(before, self.fixture.snapshot())
+            batch.sky.record(self.root, self.files, candidate, self.fixture.master, 2,
+                             self.fixture.prompt, 'visual-reviewed-native-pending', self.fixture.notes, record)
+            metadata = json.loads(self.fixture.manifest(self.fixture.master).read_text())
+            self.assertEqual(record['method'], metadata['method'])
+            self.assertEqual(0, metadata['productionRecord']['repairBorderPixels'])
+
     def test_repair_import_requires_recorded_reviewed_predecessor(self):
         self.fixture.record(verdict='repeat-boundary-revision-needed')
         predecessor = self.fixture.production / 'candidates' / self.fixture.master / 'image-v1.png'

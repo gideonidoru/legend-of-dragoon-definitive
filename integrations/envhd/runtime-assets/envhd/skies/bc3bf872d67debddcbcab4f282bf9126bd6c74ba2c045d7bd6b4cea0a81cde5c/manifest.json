@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "7f05ed65b21bd0f436358c0f3c7238c70170701a1a0204ed073a029844051693",
+  "outputSha256": "ba3dc21555272135d9c7bfcd3c56bb7752eb63dd40f9cc3bc943a97ae85d2396",
+  "scale": 4,
+  "generationVersion": 3,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage46-v3.txt",
+  "imageFile": "image-v3.png",
+  "review": {
+    "intent": "Snowfield pale snow-covered hills, small dark curved forms and plain violet upper sky. Source-backed usage: stages46; Snowfield.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.118055582046509,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "7f05ed65b21bd0f436358c0f3c7238c70170701a1a0204ed073a029844051693",
+    "action": "upscale-original",
+    "outputSha256": "ba3dc21555272135d9c7bfcd3c56bb7752eb63dd40f9cc3bc943a97ae85d2396",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "7f05ed65b21bd0f436358c0f3c7238c70170701a1a0204ed073a029844051693",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c"
+}

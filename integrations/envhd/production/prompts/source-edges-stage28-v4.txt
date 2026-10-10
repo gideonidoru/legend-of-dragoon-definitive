@@ -1,0 +1,22 @@
+{
+  "artifact": "EnvHD battle panorama",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "stages": [
+    28
+  ],
+  "sourceMcqSha256": "1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9",
+  "decodedRgbaSha256": "2afe4a54ab85bfd997cabe2a3547d44da7e4ce44fea0586826b8c4fd24f907a8",
+  "sourceSize": [
+    256,
+    384
+  ],
+  "targetSize": [
+    1024,
+    1536
+  ],
+  "originalIntent": "Giganto Home bare grey mountain basin beneath violet-blue sky and thin white clouds",
+  "recipe": "Original-source 4x neural inference with periodic64px horizontal and clamped16px vertical context, cropped to source bounds. No opposite-edge averaging or reflection. Exact original alpha/discard/visible-black classes preserved.",
+  "styleReferences": "Skurfa cut5/cut37 visual-review-only; existing Skurfa art is protected and unchanged.",
+  "quality": "Source-faithful development baseline. Existing original repeat discontinuities remain; no claim of newly seamless repeats, native acceptance or final Skurfa-equivalent bespoke detail."
+}

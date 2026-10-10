@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "2ddf7df713f26ae3b2460f3076bd8ab4d9a2b99cdab1e3d26e137a15ea704f95",
+  "outputSha256": "2dcca8d22aacb5588eed831563d99a216b344efc5b6589d0d67ec1c918348aaf",
+  "scale": 4,
+  "generationVersion": 3,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "prompt": "prompts/source-edges-stage10-v3.txt",
+  "imageFile": "image-v3.png",
+  "review": {
+    "intent": "Marshland mossy trunks, twisting branches and narrow hazy light gaps. Source positions and scene identity compared directly with original.",
+    "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+    "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+    "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 6.673611164093018,
+    "outputEdgeMeanDifference": 2.462890625
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "2ddf7df713f26ae3b2460f3076bd8ab4d9a2b99cdab1e3d26e137a15ea704f95",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "action": "upscale-original",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "masterSourceSha256": "9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e",
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "sourceSize": [
+      256,
+      384
+    ],
+    "repairBorderPixels": 0,
+    "decodedRgbaSha256": "2ddf7df713f26ae3b2460f3076bd8ab4d9a2b99cdab1e3d26e137a15ea704f95",
+    "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "outputSha256": "2dcca8d22aacb5588eed831563d99a216b344efc5b6589d0d67ec1c918348aaf"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e"
+}

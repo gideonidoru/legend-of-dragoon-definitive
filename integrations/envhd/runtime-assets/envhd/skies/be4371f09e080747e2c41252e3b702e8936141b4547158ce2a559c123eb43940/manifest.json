@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "cad01c03913948bf39efbce136cb2a25186116b76b21940f09ae95ae1e47f8e6",
+  "outputSha256": "9e49ca58db89d9d6b04a469c043cc77ff34d23f15ee4056074f577fc76dec083",
+  "scale": 4,
+  "generationVersion": 3,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "prompt": "prompts/source-edges-stage49-v3.txt",
+  "imageFile": "image-v3.png",
+  "review": {
+    "intent": "Vellweb sun-bleached cylindrical stone ruin walls above a broad pale masonry floor. Source positions and scene identity compared directly with original.",
+    "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+    "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+    "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.493055582046509,
+    "outputEdgeMeanDifference": 0.5707465410232544
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "cad01c03913948bf39efbce136cb2a25186116b76b21940f09ae95ae1e47f8e6",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "action": "upscale-original",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "masterSourceSha256": "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940",
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "sourceSize": [
+      256,
+      384
+    ],
+    "repairBorderPixels": 0,
+    "decodedRgbaSha256": "cad01c03913948bf39efbce136cb2a25186116b76b21940f09ae95ae1e47f8e6",
+    "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "outputSha256": "9e49ca58db89d9d6b04a469c043cc77ff34d23f15ee4056074f577fc76dec083"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940"
+}
