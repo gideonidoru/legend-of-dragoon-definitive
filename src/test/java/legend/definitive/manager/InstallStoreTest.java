@@ -15,6 +15,26 @@ class InstallStoreTest {
   @TempDir Path temporary;
   @org.junit.jupiter.api.BeforeEach void useRealTemporaryPath() throws Exception { this.temporary = this.temporary.toRealPath(); }
 
+  @Test void bundledFxHdSupersedesManualPilotWithoutDeletingItOrChangingModSettings() throws Exception {
+    final Path pack = this.pack("effects", PackageManifest.hostPlatform());
+    Files.writeString(pack.resolve("bundled-mods/FxHD-v0.2.0.jar"), "selected-effects");
+    Files.delete(pack.resolve(PackageManifest.METADATA)); Files.delete(pack.resolve(PackageManifest.HASHES));
+    ManagerMain.makeManifest(pack, PackageManifest.hostPlatform(), "fxhd-fixture");
+    final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack);
+    final Path data = store.data(store.state());
+    Files.writeString(data.resolve("mods/FxHD-v0.1.0.jar"), "manual-pilot");
+    Files.writeString(data.resolve("mods/custom.jar"), "unrelated-mod");
+    Files.writeString(data.resolve("config.dcnf"), "saved-game-mod-selection");
+    final Path workspace = store.prepareLaunch();
+    assertEquals("selected-effects", Files.readString(workspace.resolve("mods/FxHD-v0.2.0.jar")));
+    assertFalse(Files.exists(workspace.resolve("mods/FxHD-v0.1.0.jar")));
+    assertEquals("manual-pilot", Files.readString(data.resolve("mods/FxHD-v0.1.0.jar")));
+    assertEquals("unrelated-mod", Files.readString(workspace.resolve("mods/custom.jar")));
+    assertEquals("saved-game-mod-selection", Files.readString(data.resolve("config.dcnf")));
+    store.prepareLaunch();
+    assertEquals("selected-effects", Files.readString(workspace.resolve("mods/FxHD-v0.2.0.jar")));
+  }
+
   Path pack(final String name, final String platform) throws Exception {
     final Path root = this.temporary.resolve(name); Files.createDirectory(root);
     for(final String path : PackageManifest.ROOT_FILES) Files.writeString(root.resolve(path), name + path);

@@ -313,3 +313,6 @@ apply from: 'gradle/modelshd.gradle'
 
 // Default cinematic pack with a checksum-pinned enhanced video payload.
 apply from: 'gradle/fmvhd.gradle'
+
+// Independent effects artwork, bundled by default.
+apply from: 'gradle/fxhd.gradle'

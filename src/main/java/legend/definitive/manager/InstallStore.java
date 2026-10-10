@@ -253,12 +253,17 @@ public final class InstallStore {
       }
     }
     final boolean bundledModels = Files.isDirectory(release.resolve("bundled-mods")) && hasBundledModels(release.resolve("bundled-mods"));
+    final boolean bundledEffects = Files.isDirectory(release.resolve("bundled-mods")) && hasBundledEffects(release.resolve("bundled-mods"));
     if(Files.isDirectory(data.resolve("mods"))) try(final var files = Files.list(data.resolve("mods"))) {
       for(final Path mod : files.toList()) if(mod.toString().endsWith(".jar")) {
         // A manual copy of our older artifact must not duplicate the bundled mod ID.
         // Retain the actual file in user data; only rebuild workspace-owned links.
         if(bundledModels && isModelsHdArtifact(mod)) {
           InstallerLog.write("Using the release's ModelsHD version; manual copy retained at " + mod);
+          continue;
+        }
+        if(bundledEffects && isFxHdArtifact(mod)) {
+          InstallerLog.write("Using the release's FxHD version; manual copy retained at " + mod);
           continue;
         }
         link(mods.resolve(mod.getFileName()), mod);
@@ -280,6 +285,14 @@ public final class InstallStore {
 
   private static boolean hasBundledModels(final Path directory) throws IOException {
     try(final var files = Files.list(directory)) { return files.anyMatch(InstallStore::isModelsHdArtifact); }
+  }
+
+  private static boolean isFxHdArtifact(final Path file) {
+    return file.getFileName().toString().matches("FxHD-v[0-9]+\\.[0-9]+\\.[0-9]+\\.jar");
+  }
+
+  private static boolean hasBundledEffects(final Path directory) throws IOException {
+    try(final var files = Files.list(directory)) { return files.anyMatch(InstallStore::isFxHdArtifact); }
   }
 
   static void configureFullscreen(final Path data, final boolean fullscreen) throws IOException {
