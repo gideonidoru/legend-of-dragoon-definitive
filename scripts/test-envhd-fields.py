@@ -122,6 +122,8 @@ batch_spec=importlib.util.spec_from_file_location('field_batch',Path(__file__).w
 batch=importlib.util.module_from_spec(batch_spec);batch_spec.loader.exec_module(batch)
 publication_spec=importlib.util.spec_from_file_location('field_publication',Path(__file__).with_name('import-envhd-fields.py'))
 publication=importlib.util.module_from_spec(publication_spec);publication_spec.loader.exec_module(publication)
+repair_spec=importlib.util.spec_from_file_location('field_repair',Path(__file__).with_name('repair-envhd-field-edges.py'))
+repair=importlib.util.module_from_spec(repair_spec);repair_spec.loader.exec_module(repair)
 
 
 class FieldBatchTest(unittest.TestCase):
@@ -319,6 +321,66 @@ class FieldPublicationTest(unittest.TestCase):
                 self.assertEqual(png,public_png.read_bytes())
                 public_png.write_bytes(b'altered immutable version')
                 with self.assertRaises(FileExistsError):publication.publish(files,staging,legacy,review)
+
+
+class FieldRepairTest(unittest.TestCase):
+    def test_source_color_region_and_one_pixel_perimeter_are_exact_without_averaging(self):
+        source=np.full((10,12,4),[40,32,24,255],dtype=np.uint8);source[2:6,3:7]=[0,248,0,255]
+        source[0,0]=[0,0,0,0];source[9,11]=[0,0,0,255]
+        item=dict(image=Image.fromarray(source),decodedRgbaSha256=repair.terrain.fingerprint(Image.fromarray(source)),sourceSize=[12,10],owners=['envhd'],bindings=[dict(kind='background')])
+        rgb=np.full((40,48,3),[56,40,32],dtype=np.uint8)
+        rgb[8:24,12:28]=[8,240,8]
+        inferred,_=repair.terrain.preserve_stp(item['image'],rgb);stream=io.BytesIO();inferred.save(stream,format='PNG');data=stream.getvalue()
+        pixels=repair.repaired_pixels(item,data)
+        expected_guard=np.zeros((10,12),dtype=bool);expected_guard[1:7,2:8]=True
+        self.assertTrue(np.array_equal(expected_guard,repair.guard(item)))
+        enlarged=np.repeat(np.repeat(expected_guard,4,axis=0),4,axis=1)
+        native=np.repeat(np.repeat(source,4,axis=0),4,axis=1)
+        self.assertTrue(np.array_equal(pixels[enlarged],native[enlarged]))
+        self.assertTrue(np.array_equal(pixels[~enlarged],np.asarray(inferred)[~enlarged]))
+        input_record=repair.batch.candidate_record(item,repair.terrain.digest(data))
+        stream=io.BytesIO();Image.fromarray(pixels).save(stream,format='PNG');output=stream.getvalue()
+        r=repair.record(item,input_record,repair.terrain.digest(output));repair.validate(item,input_record,data,r,output)
+        self.assertNotIn('engineSha256',r);self.assertEqual(input_record,r['inputCandidate'])
+        pixels[0,4,:3]=[72,40,32];stream=io.BytesIO();Image.fromarray(pixels).save(stream,format='PNG');changed=stream.getvalue()
+        with self.assertRaisesRegex(ValueError,'exact source-color'):repair.validate(item,input_record,data,repair.record(item,input_record,repair.terrain.digest(changed)),changed)
+
+    def test_small_saturated_accents_and_independent_foregrounds_are_not_guarded(self):
+        source=np.full((10,12,4),[40,32,24,255],dtype=np.uint8);source[2:5,3:7]=[0,248,0,255]
+        item=dict(image=Image.fromarray(source),bindings=[dict(kind='background')])
+        self.assertFalse(repair.guard(item).any())
+        source[2:6,3:7]=[0,248,0,255];item['image']=Image.fromarray(source);item['bindings']=[dict(kind='foreground')]
+        self.assertFalse(repair.guard(item).any())
+        item['bindings']=[dict(kind='background')];source[2:6,3:7,3]=0;item['image']=Image.fromarray(source)
+        self.assertFalse(repair.guard(item).any())
+
+    def test_repair_batch_requires_whole_source_history_and_resumes_without_mutating_input(self):
+        import json,contextlib
+        item,report,data,input_record,plan,png,note=FieldPublicationTest().fixture();key=item['decodedRgbaSha256']
+        with tempfile.TemporaryDirectory() as tmp:
+            base=Path(tmp);files=base/'files';files.mkdir();staging=base/'neural';legacy=base/'legacy';output=base/'repaired'
+            for path,control in [(staging,publication.publication.json_bytes(plan)),(legacy,data)]:
+                path.mkdir();(path/'source-plan.json').write_bytes(control);(path/'candidates.json').write_text(json.dumps([input_record]));(path/(key+'.png')).write_bytes(png)
+            with mock.patch.object(repair,'module',return_value=publication),mock.patch.object(repair.batch.fields,'census',return_value=report),mock.patch.object(repair.batch,'sources',return_value=([item],[])),contextlib.redirect_stdout(io.StringIO()):
+                records=repair.execute(files,staging,legacy,output);self.assertEqual(1,len(records))
+                self.assertEqual(records,repair.execute(files,staging,legacy,output));self.assertEqual(png,(staging/(key+'.png')).read_bytes())
+                self.assertEqual(png,(output/(key+'.png')).read_bytes())
+                self.assertEqual(0,records[0]['guardedNativePixels'])
+                for overlap in (staging,legacy,staging/'nested-repair',base):
+                    with self.assertRaisesRegex(ValueError,'separate from both input'):repair.execute(files,staging,legacy,overlap)
+                self.assertFalse((staging/'repair-plan.json').exists());self.assertFalse((legacy/'repair-plan.json').exists())
+                original_validate=repair.batch.validate
+                original_controls={name:(staging/name).read_bytes() for name in ('source-plan.json','candidates.json')}
+                for name in original_controls:
+                    def drift(*args,**kwargs):
+                        original_validate(*args,**kwargs)
+                        (staging/name).write_bytes(b'[]' if name=='candidates.json' else b'{}')
+                    with mock.patch.object(repair.batch,'validate',side_effect=drift):
+                        with self.assertRaisesRegex(ValueError,'controls changed during preflight'):repair.execute(files,staging,legacy,base/('drift-'+name))
+                    self.assertFalse((base/('drift-'+name)).exists());(staging/name).write_bytes(original_controls[name])
+                (staging/'candidates.json').write_text('[]')
+                with self.assertRaisesRegex(ValueError,'complete unique'):repair.execute(files,staging,legacy,base/'bad')
+                self.assertFalse((base/'bad').exists())
 
 
 if __name__=='__main__':unittest.main()
