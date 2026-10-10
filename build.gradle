@@ -307,3 +307,6 @@ apply from: 'gradle/skurfa.gradle'
 
 // Definitive modification (2026-10-09): managed installation and safe updates.
 apply from: 'gradle/definitive-delivery.gradle'
+
+// Optional geometry mod and headless native-loader checks; no assets or default activation.
+apply from: 'gradle/modelshd.gradle'

@@ -1,0 +1,33 @@
+// ModelsHD (2026-10-10), AGPL v3; see LICENSE.
+sourceSets {
+  modelshd {
+    java.srcDir 'integrations/modelshd/src/main/java'
+    resources.srcDir 'integrations/modelshd/src/main/resources'
+    compileClasspath += sourceSets.main.output + configurations.compileClasspath
+    runtimeClasspath += sourceSets.main.output + configurations.runtimeClasspath
+  }
+  modelshdTest {
+    java.srcDir 'integrations/modelshd/src/test/java'
+    compileClasspath += sourceSets.modelshd.output + sourceSets.main.output + configurations.testCompileClasspath
+    runtimeClasspath += sourceSets.modelshd.output + sourceSets.main.output + configurations.testRuntimeClasspath
+  }
+}
+tasks.register('modelsHdTests', Test) {
+  description = 'Headless geometry, active texture addressing and replacement rollback checks. No game window.'
+  testClassesDirs = sourceSets.modelshdTest.output.classesDirs
+  classpath = sourceSets.modelshdTest.runtimeClasspath
+  useJUnitPlatform()
+  systemProperty 'java.awt.headless', 'true'
+  workingDir = layout.buildDirectory.dir('modelshd-test-home').get().asFile
+  doFirst { workingDir.mkdirs() }
+}
+tasks.register('modelsHdJar', Jar) {
+  dependsOn sourceSets.modelshd.classesTaskName
+  archiveFileName = 'ModelsHD-0.1.0.jar'
+  destinationDirectory = layout.buildDirectory.dir('modelshd')
+  from sourceSets.modelshd.output
+  into('META-INF/modelshd') { from 'LICENSE' }
+  manifest { attributes 'Implementation-Title': 'ModelsHD', 'Implementation-Version': '0.1.0' }
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
+}

@@ -25,6 +25,54 @@ public class TmdObjTable1c {
   public final int scale_18;
 
   Obj obj;
+  private int textureWidth;
+  private int textureHeight;
+  private String meshName;
+
+  /** Owned floating-point geometry for model mods. No parsed source table is mutated. */
+  public TmdObjTable1c(final String name, final Vector3f[] vertices, final Vector3f[] normals, final Primitive[] primitives) {
+    this.name = name;
+    if(vertices.length == 0 || vertices.length > 65535 || normals.length > 65535 || primitives.length > 50000) {
+      throw new IllegalArgumentException("Authored geometry exceeds part limits");
+    }
+    this.vert_top_00 = copyVectors(vertices);
+    this.normal_top_08 = copyVectors(normals);
+    this.primitives_10 = new Primitive[primitives.length];
+    int packets = 0;
+    for(int i = 0; i < primitives.length; i++) {
+      final Primitive primitive = primitives[i];
+      if(primitive.width() <= 0 || primitive.width() > 64 || primitive.data().length == 0) {
+        throw new IllegalArgumentException("Invalid authored primitive");
+      }
+      final byte[][] data = new byte[primitive.data().length][];
+      for(int j = 0; j < data.length; j++) {
+        if(primitive.data()[j].length != primitive.width()) {
+          throw new IllegalArgumentException("Authored packet width differs from data");
+        }
+        data[j] = primitive.data()[j].clone();
+      }
+      packets = Math.addExact(packets, data.length);
+      if(packets > 50000) {
+        throw new IllegalArgumentException("Too many authored packets");
+      }
+      this.primitives_10[i] = new Primitive(primitive.offset(), primitive.width(), primitive.header(), data);
+    }
+    this.n_vert_04 = vertices.length;
+    this.n_normal_0c = normals.length;
+    this.n_primitive_14 = packets;
+    this.scale_18 = 0;
+  }
+
+  private static Vector3f[] copyVectors(final Vector3f[] input) {
+    final Vector3f[] output = new Vector3f[input.length];
+    for(int i = 0; i < input.length; i++) {
+      if(input[i] == null || !input[i].isFinite() || input[i].lengthSquared() > 1_000_000_000.0f) {
+        throw new IllegalArgumentException("Invalid authored vector");
+      }
+      output[i] = new Vector3f(input[i]);
+    }
+    return output;
+  }
 
   public TmdObjTable1c(final String name, final FileData data, final FileData baseOffset) {
     this.name = name;
@@ -79,10 +127,32 @@ public class TmdObjTable1c {
 
   public Obj getObj() {
     if(this.obj == null) {
-      this.obj = TmdObjLoader.fromObjTable(this.name, this);
+      this.obj = TmdObjLoader.fromObjTable(this.meshName == null ? this.name : this.meshName, this, 0, this.textureWidth, this.textureHeight);
     }
 
     return this.obj;
+  }
+
+  public void rebuildObj(final int textureWidth, final int textureHeight) {
+    this.rebuildObj(this.name, textureWidth, textureHeight);
+  }
+
+  public void rebuildObj(final String meshName, final int textureWidth, final int textureHeight) {
+    if(textureWidth < 0 || textureHeight < 0 || (textureWidth == 0) != (textureHeight == 0)) {
+      throw new IllegalArgumentException("Texture dimensions must both be zero or positive");
+    }
+    this.delete();
+    this.meshName = meshName;
+    this.textureWidth = textureWidth;
+    this.textureHeight = textureHeight;
+    this.getObj();
+  }
+
+  /** Retain the source's indexed or RGBA texture normalization when replacing geometry. */
+  public Obj buildObjLike(final TmdObjTable1c source) {
+    this.textureWidth = source.textureWidth;
+    this.textureHeight = source.textureHeight;
+    return this.getObj();
   }
 
   public void delete() {

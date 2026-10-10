@@ -73,6 +73,8 @@ jobs:
         run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-deck-recovery ${{ matrix.args }}
       - name: Verify test opt-in using a headless fixture
         run: python3 scripts/verify-test-controls.py
+      - name: Check optional ModelsHD geometry and texture handoff
+        run: ./gradlew --no-daemon --console=plain modelsHdTests modelsHdJar ${{ matrix.args }}
       - name: Exercise installer window lifecycle in an isolated virtual display
         if: runner.os == 'Linux'
         run: xvfb-run -a ./gradlew --no-daemon --console=plain managerWindowTest ${{ matrix.args }}
@@ -107,5 +109,7 @@ jobs:
             build/reports/installer-*.png
             build/reports/focused-*.png
             build/reports/native-shader/**
+            build/modelshd/ModelsHD-*.jar
+            build/reports/tests/modelsHdTests/**
           if-no-files-found: error
           retention-days: 14
