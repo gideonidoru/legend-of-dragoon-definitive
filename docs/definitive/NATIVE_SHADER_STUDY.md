@@ -36,6 +36,8 @@ The combined 2,048 × 2,432 RGBA atlas occupies 19,922,944 bytes before driver o
 
 The test source at [`bee207319cead455afc925f29c9a4032a2105314`](https://github.com/gideonidoru/legend-of-dragoon-definitive/commit/bee207319cead455afc925f29c9a4032a2105314) passed all three jobs in [run 38034609351](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38034609351), including the Linux software-OpenGL controls. Test helpers are excluded from the shipped engine JAR. This did not require a new installer release.
 
+The [body/material follow-up](BODY_MATERIAL_STUDY.md) replaces the broad skin repaint with a selective treatment and compares two softer shoulder profiles. Its separate pixel, topology and recorded-anchor checks do not establish native deformation, art acceptance or Deck performance.
+
 | Checked shader | SHA256 |
 | --- | --- |
 | `battle_tmd.vsh` | `466cff5a65ac167baddf639da1f34539d9d4005140e4617fc27f8a2d32d5883f` |
