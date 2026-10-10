@@ -2,6 +2,8 @@
 
 October 10 follow-up to the [held surface-response experiments](MATERIAL_RESPONSE_STUDY.md). The new work changes costume artwork and garment forms rather than continuing to increase shader strength. It produces a clearer woven-cloth and ivory-ornament treatment on the actual character model. **The artwork still needs seam/material review, and both sculpted vest candidates are held for recorded contacts. Nothing in this study is installed or shipped.**
 
+The owner subsequently selected the stitched treatment as the preferred direction. The [head/neck refinement](NECK_ALIGNMENT_REFINEMENT.md) responds to the excessive head turn and broken neck-base transition while preserving the costume. Native acceptance remains open.
+
 ## Authored vest forms
 
 Two local candidates reshape the existing 1,033-vertex, 2,048-triangle torso. Explicit chest, cinched-waist and converging-fold zones change positions; source-edge distance falloff tapers those changes around the retained anchors. They use maximum displacements of approximately 17.9 and 31.8 original model units. Topology, original UVs, per-face colors and palette ownership remain fixed, and smooth normals are regenerated. This is deliberate local mesh authoring, not generated geometry, cloth simulation or a new animation system.
