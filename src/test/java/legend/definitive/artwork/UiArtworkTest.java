@@ -49,6 +49,7 @@ class UiArtworkTest {
   @Test void atlasRetriesRemainReusableAndPayloadsStayInBounds() {
     final var packer=new TexturePacker("test");final var id=new RegistryId("test:icon");packer.add(id,enlarged());
     assertThrows(RuntimeException.class,()->packer.packToBytes(2,2));
+    assertThrows(TexturePacker.AtlasCapacityException.class,()->packer.packGrowing(2,2,2));
     final var packed=packer.packToBytes(8,8);assertEquals(256,packed.length);
     final var rect=packer.getRect(id);assertEquals(4,rect.w);assertEquals(2,rect.h);
     assertEquals(50,packed[(rect.y*8+rect.x)*4]);

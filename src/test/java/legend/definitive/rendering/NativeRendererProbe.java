@@ -142,6 +142,32 @@ public final class NativeRendererProbe {
     System.out.println("PASS: source-bound UI disable/re-enable, logical dimensions, predecessor deletion, native first-owner precedence, stale preparation rejection and exact STP upload/deletion.");
   }
 
+  private static void verifyUiAtlas() throws Exception {
+    final var packer=new legend.game.textures.TexturePacker("default UI layout");
+    final Path assets=Path.of("integrations/uihd/runtime-assets/uihd/assets");
+    final var catalog=new org.json.JSONObject(Files.readString(assets.getParent().resolve("catalog.json"))).getJSONArray("assets");
+    org.legendofdragoon.modloader.registries.RegistryId first=null;
+    for(int i=0;i<catalog.length();i++) {
+      final var entry=catalog.getJSONObject(i);if(!entry.getString("kind").equals("atlas"))continue;
+      final var id=new org.legendofdragoon.modloader.registries.RegistryId(entry.getString("registryId"));
+      if(first==null)first=id;
+      packer.add(id,legend.game.textures.UiTextures.decode(Files.readAllBytes(assets.resolve(entry.getString("resource")))));
+    }
+    // Layout-equivalent placeholders match the nine original 48² portraits and
+    // 24 spirit frames plus two overlays, without bundling private game pixels.
+    for(int i=0;i<9;i++)packer.add(new org.legendofdragoon.modloader.registries.RegistryId("probe:portrait"+i),new legend.game.textures.Image(new byte[48*48*4],48,48));
+    for(int i=0;i<24;i++)packer.add(new org.legendofdragoon.modloader.registries.RegistryId("probe:spirit"+i),new legend.game.textures.Image(new byte[16*16*4],16,16));
+    for(int i=0;i<2;i++)packer.add(new org.legendofdragoon.modloader.registries.RegistryId("probe:overlay"+i),new legend.game.textures.Image(new byte[8*16*4],8,16));
+    final var atlas=packer.packGrowing(512,512,2048);
+    require(atlas.texture.width==1024&&atlas.texture.height==512,"default UIHD layout fits a 2 MiB GPU atlas");
+    require(!GameEngine.RENDERER.isUiScope(),"atlas test starts outside a menu UI scope");
+    final var model=atlas.getIcon(first).render(new legend.core.gte.MV());
+    final var ui=QueuedModel.class.getDeclaredField("uiLayer");ui.setAccessible(true);require(ui.getBoolean(model),"atlas portraits/spirits remain protected UI even outside menu scope");
+    atlas.texture.use(0);final int id=glGetInteger(GL_TEXTURE_BINDING_2D);atlas.delete();Texture.deleteTextures();
+    require(!glIsTexture(id)&&glGetError()==GL_NO_ERROR,"grown UI atlas retires cleanly");
+    System.out.println("PASS: default-layout UIHD atlas grows to 1024x512 (2 MiB), protects out-of-menu atlas icons and deletes cleanly; other mod layouts remain separate.");
+  }
+
   public static void main(final String[] args) throws Exception {
     System.load(args[0]);
     final long context = open(); require(context != 0, "windowless context");
@@ -209,6 +235,7 @@ public final class NativeRendererProbe {
       Files.delete(vertex); Files.delete(fragment); Files.delete(directory);
       System.out.println("PASS: actual OpenGL backend MRT/R8 setup, blend/mask state, auxiliary clears, atlas mip cap, filtering toggles, texture updates and deletion.");
       verifyUiLifecycle();
+      verifyUiAtlas();
       verifySmaa(api, args.length > 1 && args[1].equals("benchmark"));
       require(DefaultMaterialMaps.bind(),"shared default surface maps load");
       glActiveTexture(GL_TEXTURE4); final int normalId=glGetInteger(GL_TEXTURE_BINDING_2D);

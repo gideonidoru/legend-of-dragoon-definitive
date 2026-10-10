@@ -45,13 +45,16 @@ public class TexturePacker {
   }
 
   private static final class AtlasFull extends RuntimeException { }
+  public static final class AtlasCapacityException extends IllegalStateException {
+    public AtlasCapacityException() { super("UI atlas exceeds bounded size"); }
+  }
 
   public TextureAtlas packGrowing(int width, int height, final int maximum) {
     if(width < 1 || height < 1 || maximum > 2048 || maximum < width || maximum < height) throw new IllegalArgumentException("Atlas dimensions exceed budget");
     while(true) {
       try { return this.pack(width, height); }
       catch(final AtlasFull full) {
-        if(width == maximum && height == maximum) throw new IllegalStateException("UI atlas exceeds bounded size");
+        if(width == maximum && height == maximum) throw new AtlasCapacityException();
         if(width <= height && width < maximum) width = Math.min(maximum, width * 2);
         else height = Math.min(maximum, height * 2);
       }

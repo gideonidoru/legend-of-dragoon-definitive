@@ -384,12 +384,19 @@ public final class GameEngine {
 
     final Map<RegistryId, Image> images = new HashMap<>();
     EVENTS.postEvent(new RegisterAtlasTexturesEvent(images));
+    final Map<RegistryId, Image> registeredImages = new HashMap<>(images);
     EVENTS.postEvent(new legend.game.textures.ReplaceAtlasTexturesEvent(images));
 
     final TexturePacker packer = new TexturePacker("Mod atlas");
     images.forEach(packer::add);
-
-    TEXTURE_ATLAS = packer.packGrowing(512, 512, 2048);
+    try {
+      TEXTURE_ATLAS = packer.packGrowing(512, 512, 2048);
+    } catch(final TexturePacker.AtlasCapacityException full) {
+      LOGGER.warn("Optional atlas artwork exceeds capacity; retaining registered mod artwork");
+      final TexturePacker fallback = new TexturePacker("Mod atlas (registered artwork)");
+      registeredImages.forEach(fallback::add);
+      TEXTURE_ATLAS = fallback.packGrowing(512, 512, 2048);
+    }
     TEXTURE_ATLAS.setPersistent(true);
 
     LOGGER.info("Texture atlas created in %.02fs", (System.nanoTime() - t) / 1_000_000_000.0f);
