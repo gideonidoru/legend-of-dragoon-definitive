@@ -2,6 +2,12 @@
 
 Target: a beautiful 2026 AA presentation that preserves The Legend of Dragoon's recognizable character designs, color language and painted retro heritage. Resolution alone is not acceptance. Geometry remains the ModelsHD workstream; portraits remain UIHD; spell effects remain FxHD.
 
+## Full scope
+
+CharHD covers the entire character texture program: party battle forms, party field/world appearances, enemies and bosses, story and generic NPCs, and scripted character variants. The 19 named playable battle forms are the first production subset, not the mod's total scope or completion denominator.
+
+`integrations/charhd/production/full-scope-coverage.json` tracks these categories separately. Current extraction contains 244 nonempty enemy/boss battle texture files with 226 distinct raw texture hashes; duplicates and source-bound model consumers must be reconciled before counting finished enemy assets. Party field/world discovery has 15 model/TIM pairs using 13 texture identities. The geometry catalog also has 536 unresolved actor containers requiring ownership classification; that number is not a verified NPC population. Story/generic NPCs and scripted variants need a complete consumer census. No whole-game completion percentage is valid yet.
+
 ## Current delivery
 
 CharHD 0.2.0 builds independently on the current main engine and is included by the normal package staging task. Its source-bound battle adapter loads validated per-palette color atlases and optional explicit surface/roughness metadata. The bundled development pilot is Dart's normal battle armor. The original field texture pilot adapter remains available; comprehensive field, NPC and enemy artwork is still open.
