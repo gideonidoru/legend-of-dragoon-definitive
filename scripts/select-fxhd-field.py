@@ -39,8 +39,8 @@ def validate(source, image):
     empty = np.all(control[:, :, :3] == 0, axis=2)
     if np.any(pixels[empty, :3] != 0):
         raise ValueError('Discarded or visible black changed')
-    if np.any(np.all(pixels[:, :, :3] == 0, axis=2) & (pixels[:, :, 3] == 0) & ~empty):
-        raise ValueError('Created discarded pixels')
+    if not np.array_equal(empty, np.all(pixels[:, :, :3] == 0, axis=2)):
+        raise ValueError('Created discarded or visible-black pixels')
 
 def blend_board(source, selected, mode, destination):
     board = Image.new('RGB', (640, 420), (35, 38, 45))
@@ -76,11 +76,16 @@ def select(args):
     if (production / 'candidates').exists():
         raise ValueError('Existing candidate archive is preserved')
     records = []
-    with tempfile.TemporaryDirectory(dir=target.parent) as scratch:
-        staged = Path(scratch) / 'fxhd'
-        staged.mkdir()
-        candidates = Path(scratch) / 'candidates'
-        candidates.mkdir()
+    mod_root = ROOT / 'integrations/fxhd'
+    scratch = Path(tempfile.mkdtemp(dir=mod_root.parent, prefix='.fxhd-import-'))
+    preserve_scratch = False
+    try:
+        staged_mod = scratch / 'new'
+        shutil.copytree(mod_root, staged_mod, symlinks=True)
+        staged = staged_mod / 'runtime-assets/fxhd'
+        staged.mkdir(exist_ok=True)
+        candidates = staged_mod / 'production/candidates'
+        candidates.mkdir(parents=True)
         for name, entry in by_name.items():
             data = source_bytes(args.files, name)
             if hashlib.sha256(data).hexdigest() != entry['sourceSha256'] or entry['tools'] != batch.PINS or entry['recipe'] != batch.RECIPE:
@@ -118,17 +123,27 @@ def select(args):
                 record['runtime'] = {'file': name + '.png', 'sha256': batch.digest(output), 'scale': 2, 'rgbaBytes': image.width * image.height * 4, 'recipe': method}
                 blend_board(source, image, 'subtractive' if 'foot' in name else 'additive', args.work / (name + '-blend-review.png'))
             records.append(record)
-        # All controls/candidates are verified before modifying the selected directory.
-        if target.exists():
-            target.rmdir()
-        os.replace(staged, target)
-        production.mkdir(parents=True, exist_ok=True)
-        os.replace(candidates, production / 'candidates')
-    ledger = {'version': '0.2.0', 'pipeline': batch.RECIPE, 'selectedBindings': len(SELECTED),
-        'activeTextureBytes': sum(r.get('runtime', {}).get('rgbaBytes', 0) for r in records),
-        'provisionalTextureBudgetBytes': 16 * 1024 * 1024, 'scriptSha256': batch.digest(Path(__file__)),
-        'status': 'Offline reviewed; native and physical Deck acceptance pending', 'assets': records}
-    (production / 'field-selection.json').write_text(json.dumps(ledger, indent=2) + '\n')
+        ledger = {'version': '0.2.0', 'pipeline': batch.RECIPE, 'selectedBindings': len(SELECTED),
+            'activeTextureBytes': sum(r.get('runtime', {}).get('rgbaBytes', 0) for r in records),
+            'provisionalTextureBudgetBytes': 16 * 1024 * 1024, 'scriptSha256': batch.digest(Path(__file__)),
+            'status': 'Offline reviewed; native and physical Deck acceptance pending', 'assets': records}
+        (staged_mod / 'production/field-selection.json').write_text(json.dumps(ledger, indent=2) + '\n')
+        # Publish resources, archive and provenance together. Keep the complete old
+        # tree until success; if publication fails it is restored without data loss.
+        backup = scratch / 'previous'
+        os.replace(mod_root, backup)
+        try:
+            os.replace(staged_mod, mod_root)
+        except BaseException:
+            try:
+                os.replace(backup, mod_root)
+            except BaseException:
+                preserve_scratch = True
+                raise RuntimeError('Import recovery requires the retained backup at ' + str(backup))
+            raise
+    finally:
+        if not preserve_scratch:
+            shutil.rmtree(scratch)
     print(json.dumps({k: ledger[k] for k in ('selectedBindings', 'activeTextureBytes', 'status')}))
 
 if __name__ == '__main__':

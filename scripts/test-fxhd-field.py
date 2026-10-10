@@ -45,7 +45,7 @@ class FieldFixtures(unittest.TestCase):
         source = selection.batch.packer.source_palette(tim(), 0)
         correct = source.resize((8, 2), Image.Resampling.NEAREST)
         selection.validate(source, correct)
-        for position, colour in [((0, 0), (1, 0, 0, 0)), ((2, 0), (0, 0, 0, 0)), ((4, 0), (1, 0, 0, 255)), ((6, 0), (255, 0, 0, 0))]:
+        for position, colour in [((0, 0), (1, 0, 0, 0)), ((2, 0), (0, 0, 0, 0)), ((4, 0), (1, 0, 0, 255)), ((6, 0), (255, 0, 0, 0)), ((6, 0), (0, 0, 0, 255))]:
             wrong = correct.copy(); wrong.putpixel(position, colour)
             with self.assertRaises(ValueError): selection.validate(source, wrong)
         with self.assertRaises(ValueError): selection.validate(source, source)
@@ -65,6 +65,30 @@ class FieldFixtures(unittest.TestCase):
                 self.assertEqual(before, {p.name: p.read_bytes() for p in runtime.iterdir()})
                 self.assertFalse(any(p.suffix == '.tim' or 'comparison' in p.name for p in root.rglob('*')))
             finally: selection.ROOT = original_root
+
+    def test_publication_and_provenance_write_failure_restore_the_previous_tree(self):
+        from unittest.mock import patch
+        for failure in ('publish', 'ledger'):
+            with tempfile.TemporaryDirectory() as directory:
+                root, args = self.fixture(Path(directory)); original_root = selection.ROOT; selection.ROOT = root
+                mod_root = root / 'integrations/fxhd'; (mod_root / 'keep.txt').write_text('previous code and settings')
+                before = {str(p.relative_to(mod_root)): p.read_bytes() for p in mod_root.rglob('*') if p.is_file()}
+                replace = selection.os.replace; write = Path.write_text; calls = []
+                def interrupted_replace(source, target):
+                    calls.append((source, target))
+                    if failure == 'publish' and len(calls) == 2: raise OSError('synthetic publication failure')
+                    return replace(source, target)
+                def interrupted_write(path, *values, **keywords):
+                    if failure == 'ledger' and path.name == 'field-selection.json': raise OSError('synthetic provenance failure')
+                    return write(path, *values, **keywords)
+                try:
+                    with patch.object(selection.os, 'replace', interrupted_replace), patch.object(Path, 'write_text', interrupted_write):
+                        with self.assertRaises(OSError): selection.select(args)
+                    after = {str(p.relative_to(mod_root)): p.read_bytes() for p in mod_root.rglob('*') if p.is_file()}
+                    self.assertEqual(before, after)
+                    selection.select(args)  # A failed transaction remains safely resumable.
+                    self.assertTrue((mod_root / 'production/field-selection.json').is_file())
+                finally: selection.ROOT = original_root
 
     def test_changed_candidate_or_source_cannot_partially_install(self):
         for tamper in ('candidate', 'source'):

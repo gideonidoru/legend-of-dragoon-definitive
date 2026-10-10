@@ -287,12 +287,16 @@ public final class InstallStore {
     try(final var files = Files.list(directory)) { return files.anyMatch(InstallStore::isModelsHdArtifact); }
   }
 
-  private static boolean isFxHdArtifact(final Path file) {
-    return file.getFileName().toString().matches("FxHD-v[0-9]+\\.[0-9]+\\.[0-9]+\\.jar");
+  private static boolean isFxHdArtifact(final Path file) throws IOException {
+    if(file.getFileName().toString().matches("FxHD-v[0-9]+\\.[0-9]+\\.[0-9]+\\.jar")) return true;
+    return file.getFileName().toString().endsWith(".jar") && ModArchiveIdentity.containsClass(file, "fxhd/FxHdMod.class");
   }
 
   private static boolean hasBundledEffects(final Path directory) throws IOException {
-    try(final var files = Files.list(directory)) { return files.anyMatch(InstallStore::isFxHdArtifact); }
+    try(final var files = Files.list(directory)) {
+      for(final Path file : files.toList()) if(isFxHdArtifact(file)) return true;
+      return false;
+    }
   }
 
   static void configureFullscreen(final Path data, final boolean fullscreen) throws IOException {

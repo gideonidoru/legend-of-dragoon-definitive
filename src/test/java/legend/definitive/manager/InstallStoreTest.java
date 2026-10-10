@@ -24,10 +24,15 @@ class InstallStoreTest {
     final Path data = store.data(store.state());
     Files.writeString(data.resolve("mods/FxHD-v0.1.0.jar"), "manual-pilot");
     Files.writeString(data.resolve("mods/custom.jar"), "unrelated-mod");
+    try(final var zip = new ZipOutputStream(Files.newOutputStream(data.resolve("mods/Renamed-FxHD.jar")))) {
+      zip.putNextEntry(new ZipEntry("fxhd/FxHdMod.class")); zip.write(new byte[]{1, 2, 3}); zip.closeEntry();
+    }
     Files.writeString(data.resolve("config.dcnf"), "saved-game-mod-selection");
     final Path workspace = store.prepareLaunch();
     assertEquals("selected-effects", Files.readString(workspace.resolve("mods/FxHD-v0.2.0.jar")));
     assertFalse(Files.exists(workspace.resolve("mods/FxHD-v0.1.0.jar")));
+    assertFalse(Files.exists(workspace.resolve("mods/Renamed-FxHD.jar")));
+    assertTrue(Files.isRegularFile(data.resolve("mods/Renamed-FxHD.jar")));
     assertEquals("manual-pilot", Files.readString(data.resolve("mods/FxHD-v0.1.0.jar")));
     assertEquals("unrelated-mod", Files.readString(workspace.resolve("mods/custom.jar")));
     assertEquals("saved-game-mod-selection", Files.readString(data.resolve("config.dcnf")));

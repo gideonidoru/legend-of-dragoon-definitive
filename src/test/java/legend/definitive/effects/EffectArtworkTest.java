@@ -78,6 +78,8 @@ class EffectArtworkTest {
     assertThrows(IOException.class, () -> EffectArtwork.validate(original, candidate));
     candidate.data[0] = 0; candidate.data[4 * 4] = 1;
     assertThrows(IOException.class, () -> EffectArtwork.validate(original, candidate));
+    final Image newBlack = scaled(original); Arrays.fill(newBlack.data, 24, 27, (byte)0);
+    assertThrows(IOException.class, () -> EffectArtwork.validate(original, newBlack));
     final Image discarded = scaled(original); Arrays.fill(discarded.data, 8, 12, (byte)0);
     assertThrows(IOException.class, () -> EffectArtwork.validate(original, discarded));
     assertThrows(IOException.class, () -> EffectArtwork.validate(original, new Image(new byte[16], 4, 1)));

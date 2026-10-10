@@ -94,7 +94,7 @@ public final class EffectArtwork implements AutoCloseable {
       final int expected = source.pixels()[(y / scale) * source.width() + x / scale], index = (y * image.width + x) * 4;
       final int rgb = Byte.toUnsignedInt(image.data[index]) << 16 | Byte.toUnsignedInt(image.data[index + 1]) << 8 | Byte.toUnsignedInt(image.data[index + 2]);
       final int alpha = Byte.toUnsignedInt(image.data[index + 3]);
-      if(alpha != expected >>> 24 || (rgb == 0 && alpha == 0) != (expected == 0) || (expected & 0xffffff) == 0 && rgb != 0) {
+      if(alpha != expected >>> 24 || (rgb == 0 && alpha == 0) != (expected == 0) || (rgb == 0) != ((expected & 0xffffff) == 0)) {
         throw new IOException("Effect STP/discard/visible-black changed");
       }
     }

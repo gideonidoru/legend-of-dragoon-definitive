@@ -28,7 +28,7 @@ Memory accounting separates 80 KiB of selected GPU texels, up to 80 KiB of share
 
 ## Validation and delivery
 
-Focused tests cover immutable source events, previous replacement priority, malformed TIMs, wrong native address/palette/BPP, exact STP/discard/black, CPU-side VRAM mutation/restoration, repeated owner cleanup, resource hashes and installer preservation of manual FxHD copies/settings. The opt-in fxHdSourceProbe checks all six resources against the user's local extraction without a game window. Synthetic Python fixtures prove failed imports do not partly select assets or publish original controls.
+Focused tests cover immutable source events, previous replacement priority, malformed TIMs, wrong native address/palette/BPP, exact STP/discard/black, CPU-side VRAM mutation/restoration, repeated owner cleanup, resource hashes and installer preservation of manual FxHD copies/settings, including renamed official older copies identified without loading their classes. The opt-in fxHdSourceProbe checks all six resources against the user's local extraction without a game window. Four synthetic Python fixtures cover corrupt inputs, visibility preservation and failures while writing provenance or swapping the complete module tree. Publication failure restores the previous tree and a retry succeeds. The stricter visible-black checks also pass on all six actual selected resources.
 
 Native rendered gameplay, all-campaign appearance, busy-scene performance, suspend/resume and physical Steam Deck acceptance remain pending. The six selections are development quality, not final AA acceptance.
 
