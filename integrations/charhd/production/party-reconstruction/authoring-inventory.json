@@ -1,0 +1,266 @@
+{
+  "format": 1,
+  "date": "2026-10-10",
+  "state": "public-development-authoring-not-a-release",
+  "currentRuntimeSelection": "Accepted Dart only; runtime assets unchanged",
+  "headProbe": {
+    "status": "passed",
+    "combinations": 192,
+    "reportSha256": "d54990c794b7d931573b8c23b8819c8aef227cfa6393c0a3d7046ef226e3d9c1",
+    "scope": "Actual Java CPU construction, not gameplay or Deck",
+    "diagnostic": "Empty headless working directory logs missing gfx/fonts/default.json during static initialization; construction assertions pass."
+  },
+  "landmarksSha256": "40b1fe2d885b322d4cceaf3253a73ef7dbd6e8359a839768db5a1da79ebadf92",
+  "characters": [
+    {
+      "character": "dart",
+      "headState": "accepted-runtime-reference",
+      "headFormMeasurements": [],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 16,
+      "combatBodyPartsTargeted": 16,
+      "combatTriangles": 21236,
+      "missingCombatPartIndices": [],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": true,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "rose",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 9,
+          "scale": 23.80952380952381,
+          "posedBodyToSkullHeightRatio": 5.961687272135898
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 10,
+          "scale": 252.5396825396824,
+          "posedBodyToSkullHeightRatio": 8.23649971805915
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 16,
+      "combatBodyPartsTargeted": 17,
+      "combatTriangles": 21897,
+      "missingCombatPartIndices": [
+        9
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "lavitz",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 18.95701209039869,
+          "posedBodyToSkullHeightRatio": 6.000000000000002
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 8,
+          "scale": 230.89743589743577,
+          "posedBodyToSkullHeightRatio": 6.997739816827214
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 9,
+      "combatBodyPartsTargeted": 15,
+      "combatTriangles": 23197,
+      "missingCombatPartIndices": [
+        1,
+        5,
+        6,
+        7,
+        11,
+        13
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "shana",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 18.547829070205918,
+          "posedBodyToSkullHeightRatio": 5.999999999999999
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 12,
+          "scale": 222.48275862068957,
+          "posedBodyToSkullHeightRatio": 7.880843891547854
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 18,
+      "combatBodyPartsTargeted": 19,
+      "combatTriangles": 21094,
+      "missingCombatPartIndices": [
+        4
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "haschel",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 18.37434988312918,
+          "posedBodyToSkullHeightRatio": 5.900000000000002
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 7,
+          "scale": 257.9220779220778,
+          "posedBodyToSkullHeightRatio": 5.949647532729106
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 13,
+      "combatBodyPartsTargeted": 14,
+      "combatTriangles": 21482,
+      "missingCombatPartIndices": [
+        5
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "albert",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 19.12717420650482,
+          "posedBodyToSkullHeightRatio": 5.999999999999999
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 8,
+          "scale": 218.8079470198676,
+          "posedBodyToSkullHeightRatio": 7.595036319612589
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 19,
+      "combatBodyPartsTargeted": 20,
+      "combatTriangles": 22873,
+      "missingCombatPartIndices": [
+        1
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "meru",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 6,
+          "scale": 22.203389830508467,
+          "posedBodyToSkullHeightRatio": 6.084142850241008
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 8,
+          "scale": 304.57627118644075,
+          "posedBodyToSkullHeightRatio": 6.823224815802447
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 16,
+      "combatBodyPartsTargeted": 16,
+      "combatTriangles": 20535,
+      "missingCombatPartIndices": [],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "kongol",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 29.999999999999982,
+          "posedBodyToSkullHeightRatio": 6.847152546881614
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 7,
+          "scale": 328.125,
+          "posedBodyToSkullHeightRatio": 7.687319529526567
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 17,
+      "combatBodyPartsTargeted": 17,
+      "combatTriangles": 22661,
+      "missingCombatPartIndices": [],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "miranda",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 20.000000000000004,
+          "posedBodyToSkullHeightRatio": 6.327321965013649
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 11,
+          "scale": 239.29577464788716,
+          "posedBodyToSkullHeightRatio": 8.094761624484997
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 14,
+      "combatBodyPartsTargeted": 18,
+      "combatTriangles": 21994,
+      "missingCombatPartIndices": [
+        4,
+        5,
+        8,
+        10
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    }
+  ]
+}
