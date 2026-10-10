@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "29e1dd34ca283d1a66a5420931fdbcd149a21bfbac5bfc3c78330d21d1804c7f",
+  "outputSha256": "bb9a85aa266b25e85142d4d9ff8a4b9e2c25b865da0a52820c3fc48cedaecd87",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage50-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Vellweb dark cracked and mottled grey rock wall with no added scene objects. Source-backed usage: stages50; Vellweb.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 5.354166507720947,
+    "outputEdgeMeanDifference": 0.1228298619389534
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v1.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "29e1dd34ca283d1a66a5420931fdbcd149a21bfbac5bfc3c78330d21d1804c7f",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "bb9a85aa266b25e85142d4d9ff8a4b9e2c25b865da0a52820c3fc48cedaecd87",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "250d11669f81ee31b30308be5fe2b2736be701390d2c8eda06fcd0981e8b5ce5",
+    "weightsSha256": null,
+    "masterSourceSha256": "788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc"
+}

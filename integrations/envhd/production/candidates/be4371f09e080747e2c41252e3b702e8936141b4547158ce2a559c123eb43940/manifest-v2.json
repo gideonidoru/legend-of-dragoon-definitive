@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "cad01c03913948bf39efbce136cb2a25186116b76b21940f09ae95ae1e47f8e6",
+  "outputSha256": "da8c95d4a5ede509f46b7064f01c8af54123e934daf55e8d24664e4e5a55ac0c",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage49-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Vellweb sun-bleached cylindrical stone ruin walls above a broad pale masonry floor. Source-backed usage: stages49; Vellweb.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Masonry edges flatten into artificial repeated bands. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.493055582046509,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v1.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "cad01c03913948bf39efbce136cb2a25186116b76b21940f09ae95ae1e47f8e6",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "da8c95d4a5ede509f46b7064f01c8af54123e934daf55e8d24664e4e5a55ac0c",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "c2b49cef129eff396938fe8c6e765cfe072d2ca303d2814a5b02ae322b0e5229",
+    "weightsSha256": null,
+    "masterSourceSha256": "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940"
+}

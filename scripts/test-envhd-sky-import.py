@@ -108,6 +108,10 @@ class SkyImportTest(unittest.TestCase):
         self.assertFalse(self.image(1).exists())
         self.assertTrue((self.production / 'candidates' / self.master / 'image-v1.png').exists())
         self.assertEqual(0, json.loads((self.production / 'coverage.json').read_text())['integrated'])
+        for entry in json.loads((self.production / 'battle-skies.json').read_text())['assets']:
+            self.assertEqual('repeat-boundary-revision-needed', entry['status'])
+            self.assertNotIn('runtimeOutput', entry)
+            self.assertNotIn('runtimeReviewStatus', entry)
 
     def test_selected_revision_cleans_only_unreferenced_runtime_version(self):
         self.record()

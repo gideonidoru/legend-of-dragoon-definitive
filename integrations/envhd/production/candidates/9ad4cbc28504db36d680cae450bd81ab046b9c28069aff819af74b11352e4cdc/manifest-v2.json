@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "dfe127af7183428858539db8599630c3ed4c91ca2ea54a6b75a606f768414c07",
+  "outputSha256": "65e82e5100be73cf7891a93a72f4bb56a6c9b8ed7da1ed48b4a2bac665e5f6a9",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage2-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Giganto Home orange sunset clouds above dark forest and distant angular mountain ridges. Source-backed usage: stages2; Giganto Home.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.0,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v1.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "dfe127af7183428858539db8599630c3ed4c91ca2ea54a6b75a606f768414c07",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "65e82e5100be73cf7891a93a72f4bb56a6c9b8ed7da1ed48b4a2bac665e5f6a9",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "6b5853cafcd669a751c21ef66c934fb3e00a20930fc991c7fadb6cc9b0f9c53a",
+    "weightsSha256": null,
+    "masterSourceSha256": "9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc"
+}

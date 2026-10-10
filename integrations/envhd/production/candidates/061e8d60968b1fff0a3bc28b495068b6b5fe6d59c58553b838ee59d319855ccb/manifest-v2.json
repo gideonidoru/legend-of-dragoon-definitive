@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "e6dc30bb44bd6099fa09f8248bad2b82b8e42a7cd43462ef9664ad0d8463f4dd",
+  "outputSha256": "5937ff3adfc94241e7683053270e705e27aa720d9c41019cc2362b8dc6cbd154",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage47-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Fort Magrad ruined grey towers and broken walls under dark storm clouds. Source-backed usage: stages47; Fort Magrad.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Ruin silhouettes double through contact. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 5.361111164093018,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v1.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "e6dc30bb44bd6099fa09f8248bad2b82b8e42a7cd43462ef9664ad0d8463f4dd",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "5937ff3adfc94241e7683053270e705e27aa720d9c41019cc2362b8dc6cbd154",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "c85f35dfca73518da8921e4e5f608e0d3867c66588a1422c722b6579772adb31",
+    "weightsSha256": null,
+    "masterSourceSha256": "061e8d60968b1fff0a3bc28b495068b6b5fe6d59c58553b838ee59d319855ccb",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "061e8d60968b1fff0a3bc28b495068b6b5fe6d59c58553b838ee59d319855ccb"
+}

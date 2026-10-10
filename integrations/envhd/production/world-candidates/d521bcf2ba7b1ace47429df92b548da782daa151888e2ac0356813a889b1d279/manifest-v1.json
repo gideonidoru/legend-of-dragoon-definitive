@@ -1,0 +1,37 @@
+{
+  "kind": "location-thumbnail",
+  "sourceSha256": "d521bcf2ba7b1ace47429df92b548da782daa151888e2ac0356813a889b1d279",
+  "decodedRgbaSha256": "f2484e848a20adf931c8d35d6155fe3f0b16a74c9c5692f0b3081d982d777690",
+  "sourceSize": [
+    120,
+    90
+  ],
+  "sourceFiles": [
+    "SECT/DRGN0.BIN/5674"
+  ],
+  "locations": [
+    "Village of Lidiera"
+  ],
+  "targetSize": [
+    480,
+    360
+  ],
+  "outputSha256": "c889443ddb21426b1297fcb1b9e9d908c2c148511e0f64881413393b48034736",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+  "edgeAveraging": false,
+  "review": {
+    "intent": "Lidiera waterside timber buildings and docks beside cyan-blue water. Source-backed engine usage: Village of Lidiera.",
+    "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+    "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+    "verdict": "visual-reviewed-native-pending"
+  },
+  "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+  "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

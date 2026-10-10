@@ -9,6 +9,11 @@ environment descriptor plus ordered source texture hashes. The current audit
 protects 38 Skurfa packs, 43 runtime bindings, and 87 source-identical cut/period
 mappings. There are 612 remaining source scene configurations before rendered
 pixel deduplication. The five existing Skurfa runtime aliases remain in Skurfa.
+The 87 protected mappings are generation exclusions, not a claim that all 87
+already have runtime bindings. When extending field coverage, route any additional
+verified source-identical mapping to its existing Skurfa pack, without creating
+a second artwork master or copying its PNGs into EnvHD. Keep the original artist's
+resources, attribution and activation under the Skurfa mod.
 
 Before field generation, refresh the ownership audit against the private source
 census and current extraction using `scripts/audit-envhd-ownership.py`. It checks
@@ -36,6 +41,15 @@ placement and clear-color behavior. No scene is regenerated for a different ID.
 Visual review, source/layout validation, runtime integration, and native scene
 acceptance are separate states. The overall goal is still incomplete; no inventory
 or build result is a claim of 100% visual coverage.
+
+Current development coverage is 36 custom revisions across 26 of the 70 battle
+restoration masters. Seven are selected after source-intent, style, layout and
+repeat review; sixteen need repeat corrections and three need layout corrections.
+Forty-four masters remain ungenerated and native scene acceptance is pending for
+all selections. `coverage.json` and the per-source review ledgers are the detailed
+controls. World-map encounter-table evidence is recorded separately from field
+usage; stage86's 8x8 MCQ is below the renderer's drawable threshold and requires no
+panorama generation. Its other battle materials remain in the backlog.
 
 All custom artwork candidates and revisions are public, versioned project assets
 under the owner's October 10 authorization. Rejected/development revisions retain

@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "3ff42b3eb54916fac6ba06d5da3d9da536894b54e03ccf22fa7f58b5c3a813de",
+  "outputSha256": "fe6ae40383f6eca95e2c6d2d298476dfa9d793655f14c952bbc6ad8d2d4b569a",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage16-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Pale lavender sky over ivy-covered stone ruins, columns, broken bridge edges and green water. Source-backed usage: stages16; stage-bound panorama, no documented field random-encounter alias.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Bridge arches and ruin silhouettes double at contact. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 7.083333492279053,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "3ff42b3eb54916fac6ba06d5da3d9da536894b54e03ccf22fa7f58b5c3a813de",
+    "action": "upscale-original",
+    "outputSha256": "fe6ae40383f6eca95e2c6d2d298476dfa9d793655f14c952bbc6ad8d2d4b569a",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "3ff42b3eb54916fac6ba06d5da3d9da536894b54e03ccf22fa7f58b5c3a813de",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "80ea20f10d35c0945eae2e77fdf324d5d9563dc1aa325348853db059c3356334",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "80ea20f10d35c0945eae2e77fdf324d5d9563dc1aa325348853db059c3356334"
+}

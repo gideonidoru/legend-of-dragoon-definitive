@@ -21,11 +21,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Amber horizontal cloud bands above low green forested mounds, warm haze and dark lower fade. Source-backed usage: stages0; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.458333492279053,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "e9ca2cf61159e27b8b952a3ee19a9b86fb3a2d32abf1e595359fd82bbe199926"
+      },
       "priority": 1,
       "decodedRgbaSha256": "0745d5ef6c98736aad7ddf9c06e4cdf0d38e3ff6866689d870413e4078723e8d",
-      "generationMasterSourceSha256": "e9ca2cf61159e27b8b952a3ee19a9b86fb3a2d32abf1e595359fd82bbe199926"
+      "generationMasterSourceSha256": "e9ca2cf61159e27b8b952a3ee19a9b86fb3a2d32abf1e595359fd82bbe199926",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/0745d5ef6c98736aad7ddf9c06e4cdf0d38e3ff6866689d870413e4078723e8d/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/e9ca2cf61159e27b8b952a3ee19a9b86fb3a2d32abf1e595359fd82bbe199926/image-v1.png"
     },
     {
       "id": "battle-sky-a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6",
@@ -90,7 +106,8 @@
       "decodedRgbaSha256": "17e12093491e8d7bbc39d445c831fbc1a7c472115ef8ab5a978da62c7f5b8895",
       "generationMasterSourceSha256": "a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6",
       "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/17e12093491e8d7bbc39d445c831fbc1a7c472115ef8ab5a978da62c7f5b8895/image-v2.png",
-      "runtimeReviewStatus": "visual-reviewed-native-pending"
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "worldMapUsage": []
     },
     {
       "id": "battle-sky-9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc",
@@ -116,26 +133,27 @@
         1024,
         1536
       ],
-      "status": "layout-reviewed-wrap-pending",
+      "status": "visual-reviewed-native-pending",
       "review": {
-        "intent": "Giganto Home sunset, green forest and original mountain/cloud layout retained; warm modern natural detail.",
-        "style": "Modern Skurfa detail direction; source colors and intent retained",
+        "intent": "Giganto Home orange sunset clouds above dark forest and distant angular mountain ridges. Source-backed usage: stages2; Giganto Home.",
+        "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
         "dimensions": [
           1024,
           1536
         ],
         "sourceEdgeMeanDifference": 3.0,
-        "outputEdgeMeanDifference": 8.44444465637207,
-        "remaining": [
-          "Native scene verification",
-          "Review repeat-boundary contact"
-        ],
-        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-batch2.png"
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc"
       },
       "priority": 1,
       "decodedRgbaSha256": "dfe127af7183428858539db8599630c3ed4c91ca2ea54a6b75a606f768414c07",
       "generationMasterSourceSha256": "9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc",
-      "output": "integrations/envhd/production/candidates/9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc/image-v1.png"
+      "output": "integrations/envhd/production/candidates/9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc/image-v2.png",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/dfe127af7183428858539db8599630c3ed4c91ca2ea54a6b75a606f768414c07/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
@@ -155,11 +173,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Dark ochre cavern, hanging rock points, multiple ledges, ladders and small barred openings. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 6.63194465637207,
+        "outputEdgeMeanDifference": 1.5277777910232544,
+        "generationMasterSourceSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704"
+      },
       "priority": 1,
       "decodedRgbaSha256": "e054eb92eb8cb2f71419616a6f1b0c067b326e1c84a7b1c3344c94c2bc6e96b5",
-      "generationMasterSourceSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704"
+      "generationMasterSourceSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/e054eb92eb8cb2f71419616a6f1b0c067b326e1c84a7b1c3344c94c2bc6e96b5/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30",
@@ -179,11 +213,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Near-black multi-tier wall bands with small amber lights and repeated dark openings. Source-backed usage: stages4; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.277777671813965,
+        "outputEdgeMeanDifference": 0.0987413227558136,
+        "generationMasterSourceSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30"
+      },
       "priority": 1,
       "decodedRgbaSha256": "44413504e4779c99e9ea7874214b1efb028441b1bb58eb3e0ed5e29d8b2de351",
-      "generationMasterSourceSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30"
+      "generationMasterSourceSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/44413504e4779c99e9ea7874214b1efb028441b1bb58eb3e0ed5e29d8b2de351/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30/image-v1.png"
     },
     {
       "id": "battle-sky-2fb4e54f28a0b5f850f8f74ff6c27fc733549be683d38100ae189afcfeb1eab5",
@@ -203,11 +253,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Sawtooth grey mountain ridge beneath blue-to-orange twilight sky and sparse clouds. Source-backed usage: stages5; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 6.270833492279053,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "2fb4e54f28a0b5f850f8f74ff6c27fc733549be683d38100ae189afcfeb1eab5"
+      },
       "priority": 1,
       "decodedRgbaSha256": "d21e50a5e970dac4eddc971bb2fc28d87b9c9673a801f2f7961034e819be72a6",
-      "generationMasterSourceSha256": "2fb4e54f28a0b5f850f8f74ff6c27fc733549be683d38100ae189afcfeb1eab5"
+      "generationMasterSourceSha256": "2fb4e54f28a0b5f850f8f74ff6c27fc733549be683d38100ae189afcfeb1eab5",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/d21e50a5e970dac4eddc971bb2fc28d87b9c9673a801f2f7961034e819be72a6/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/2fb4e54f28a0b5f850f8f74ff6c27fc733549be683d38100ae189afcfeb1eab5/image-v1.png"
     },
     {
       "id": "battle-sky-2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c",
@@ -258,26 +324,88 @@
         1024,
         1536
       ],
-      "status": "repeat-boundary-revision-needed",
+      "status": "visual-reviewed-native-pending",
       "review": {
-        "intent": "Original Prairie intent retained; repeat edge worsened, so do not select this revision.",
-        "style": "Matches Skurfa material-detail direction; references used only for style",
+        "intent": "Prairie blue sky, white cloud clusters, low mountains, isolated small tree and grass plain. Source-backed usage: stages6; Prairie.",
+        "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
         "dimensions": [
           1024,
           1536
         ],
-        "sourceEdgeMeanDifference": 4.3055553,
-        "outputEdgeMeanDifference": 9.306423,
-        "remaining": [
-          "Repair visible repeat-boundary discontinuity",
-          "Native scene verification"
-        ],
-        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-v3.png"
+        "sourceEdgeMeanDifference": 4.30555534362793,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c"
       },
       "priority": 1,
-      "output": "integrations/envhd/production/candidates/2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c/image-v3.png",
+      "output": "integrations/envhd/production/candidates/2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c/image-v4.png",
       "decodedRgbaSha256": "040967f180bd059a8a514445c3c6a73ff926aace72d99a2e256c0fb2f5ab1657",
-      "generationMasterSourceSha256": "2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c"
+      "generationMasterSourceSha256": "2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c",
+      "worldMapUsage": [
+        {
+          "directionalPathTableIndex": 10,
+          "pathIndex": 5,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 10,
+          "modelIndex": 0,
+          "configuredStage": 6,
+          "battleStage": 6
+        },
+        {
+          "directionalPathTableIndex": 11,
+          "pathIndex": 5,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 11,
+          "modelIndex": 0,
+          "configuredStage": 6,
+          "battleStage": 6
+        },
+        {
+          "directionalPathTableIndex": 12,
+          "pathIndex": 6,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 12,
+          "modelIndex": 0,
+          "configuredStage": 6,
+          "battleStage": 6
+        },
+        {
+          "directionalPathTableIndex": 13,
+          "pathIndex": 6,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 13,
+          "modelIndex": 0,
+          "configuredStage": 6,
+          "battleStage": 6
+        },
+        {
+          "directionalPathTableIndex": 32,
+          "pathIndex": 16,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 32,
+          "modelIndex": 0,
+          "configuredStage": 6,
+          "battleStage": 6
+        },
+        {
+          "directionalPathTableIndex": 33,
+          "pathIndex": 16,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 33,
+          "modelIndex": 0,
+          "configuredStage": 6,
+          "battleStage": 6
+        }
+      ],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/040967f180bd059a8a514445c3c6a73ff926aace72d99a2e256c0fb2f5ab1657/image-v4.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545",
@@ -343,26 +471,27 @@
         1024,
         1536
       ],
-      "status": "repeat-boundary-revision-needed",
+      "status": "visual-reviewed-native-pending",
       "review": {
-        "intent": "Upper wall and original ledge heights restored; cool natural cave.",
-        "style": "Matches Skurfa material-detail direction; references used only for style",
+        "intent": "Cool grey cavern shelves and small rock points surrounding dark blue-green water. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
         "dimensions": [
           1024,
           1536
         ],
-        "sourceEdgeMeanDifference": 2.7569444,
-        "outputEdgeMeanDifference": 9.931207,
-        "remaining": [
-          "Repair visible repeat-boundary discontinuity",
-          "Native scene verification"
-        ],
-        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-v3.png"
+        "sourceEdgeMeanDifference": 2.756944417953491,
+        "outputEdgeMeanDifference": 0.5750868320465088,
+        "generationMasterSourceSha256": "0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545"
       },
       "priority": 1,
-      "output": "integrations/envhd/production/candidates/0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545/image-v3.png",
+      "output": "integrations/envhd/production/candidates/0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545/image-v5.png",
       "decodedRgbaSha256": "231a501d6e2c8737e79c61596bede472a7a638b464a2ef7d45d5db8eb2f95830",
-      "generationMasterSourceSha256": "0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545"
+      "generationMasterSourceSha256": "0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/231a501d6e2c8737e79c61596bede472a7a638b464a2ef7d45d5db8eb2f95830/image-v5.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3",
@@ -382,26 +511,27 @@
         1024,
         1536
       ],
-      "status": "layout-reviewed-wrap-pending",
+      "status": "visual-reviewed-native-pending",
       "review": {
-        "intent": "Natural dark green-blue cavern, hollow and stalagmite/pool arrangement retained; no architecture copied from Skurfa.",
-        "style": "Modern Skurfa detail direction; source colors and intent retained",
+        "intent": "Dim grey-green deep cave, jagged ceiling, large dark opening and still pool. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
         "dimensions": [
           1024,
           1536
         ],
         "sourceEdgeMeanDifference": 4.486111164093018,
-        "outputEdgeMeanDifference": 14.300347328186035,
-        "remaining": [
-          "Native scene verification",
-          "Review repeat-boundary contact"
-        ],
-        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-batch2.png"
+        "outputEdgeMeanDifference": 1.1644965410232544,
+        "generationMasterSourceSha256": "152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3"
       },
       "priority": 1,
       "decodedRgbaSha256": "1f2f6b275f677cb3cadd1e38a625f89f012b42a2cbdce1179f45c77c26458c0d",
       "generationMasterSourceSha256": "152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3",
-      "output": "integrations/envhd/production/candidates/152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3/image-v1.png"
+      "output": "integrations/envhd/production/candidates/152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3/image-v3.png",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/1f2f6b275f677cb3cadd1e38a625f89f012b42a2cbdce1179f45c77c26458c0d/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a",
@@ -440,7 +570,8 @@
       "generationMasterSourceSha256": "6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a",
       "output": "integrations/envhd/production/candidates/6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a/image-v1.png",
       "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/c9a1899f210fe593308bb905eab012b5d68d399b0872a749f5a90d0e861d8e56/image-v1.png",
-      "runtimeReviewStatus": "visual-reviewed-native-pending"
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "worldMapUsage": []
     },
     {
       "id": "battle-sky-9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e",
@@ -486,26 +617,27 @@
         1024,
         1536
       ],
-      "status": "layout-reviewed-wrap-pending",
+      "status": "visual-reviewed-native-pending",
       "review": {
-        "intent": "Marshland mossy trunks, roots and dim olive light retained; central trunk and distant opening stay aligned.",
-        "style": "Modern Skurfa detail direction; source colors and intent retained",
+        "intent": "Marshland mossy trunks, twisting branches and narrow hazy light gaps. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
         "dimensions": [
           1024,
           1536
         ],
         "sourceEdgeMeanDifference": 6.673611164093018,
-        "outputEdgeMeanDifference": 21.19118881225586,
-        "remaining": [
-          "Native scene verification",
-          "Review repeat-boundary contact"
-        ],
-        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-batch2.png"
+        "outputEdgeMeanDifference": 2.462890625,
+        "generationMasterSourceSha256": "9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e"
       },
       "priority": 1,
       "decodedRgbaSha256": "2ddf7df713f26ae3b2460f3076bd8ab4d9a2b99cdab1e3d26e137a15ea704f95",
       "generationMasterSourceSha256": "9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e",
-      "output": "integrations/envhd/production/candidates/9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e/image-v1.png"
+      "output": "integrations/envhd/production/candidates/9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e/image-v3.png",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/2ddf7df713f26ae3b2460f3076bd8ab4d9a2b99cdab1e3d26e137a15ea704f95/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0",
@@ -566,27 +698,27 @@
         1024,
         1536
       ],
-      "status": "intent-revision-needed",
+      "status": "visual-reviewed-native-pending",
       "review": {
-        "intent": "Volcanic rock and ochre smoky intent retained, but foreground-right boulder and higher ridge drift from source; revise geometry.",
-        "style": "Modern Skurfa detail direction; source colors and intent retained",
+        "intent": "Vol. Villude distant jagged spires in orange-grey haze with dark foreground rocks. Source-backed usage: stages11,12,91; Vol. Villude.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
         "dimensions": [
           1024,
           1536
         ],
         "sourceEdgeMeanDifference": 2.0138888359069824,
-        "outputEdgeMeanDifference": 7.773003578186035,
-        "remaining": [
-          "Correct foreground-right boulder and original ridge height",
-          "Review repeat boundary",
-          "Native scene verification"
-        ],
-        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-batch2.png"
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0"
       },
       "priority": 1,
       "decodedRgbaSha256": "2ba67142b83cbe817d74ba7032546e599d2894dea9e0c9bfc70373503c4ac573",
       "generationMasterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0",
-      "output": "integrations/envhd/production/candidates/9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0/image-v1.png"
+      "output": "integrations/envhd/production/candidates/9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0/image-v3.png",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/2ba67142b83cbe817d74ba7032546e599d2894dea9e0c9bfc70373503c4ac573/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-a1e5d38c163afa0bc0e87c1a6c783931948d14b1817b9a3be0da834195886f16",
@@ -606,13 +738,27 @@
         1024,
         1536
       ],
-      "status": "reuse-generation-master",
+      "status": "visual-reviewed-native-pending",
       "review": {
-        "intent": "Pixel-identical decoded artwork; generate the master once and reuse it. Original stage header placement and clear colors remain separate."
+        "intent": "Vol. Villude distant jagged spires in orange-grey haze with dark foreground rocks. Source-backed usage: stages11,12,91; Vol. Villude.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.0138888359069824,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0"
       },
       "priority": 1,
       "decodedRgbaSha256": "2ba67142b83cbe817d74ba7032546e599d2894dea9e0c9bfc70373503c4ac573",
-      "generationMasterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0"
+      "generationMasterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/2ba67142b83cbe817d74ba7032546e599d2894dea9e0c9bfc70373503c4ac573/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1",
@@ -668,11 +814,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Dim grey-green forest, tightly spaced vertical trunks, high grey fog and near-black bottom fade retained. Field cut153 confirms surrounding forest/shrine context; no shrine architecture inserted into this battle texture.",
+        "style": "Natural bark, restrained fine foliage and soft mist match the Skurfa detail direction while retaining the source green darkness.",
+        "layout": "Native-size side-by-side review retains the main trunk bands, source framing and absence of a visible floor/clearing.",
+        "wrap": "Joined-edge review shows continuous dim forest and haze without a broad vertical seam; edge difference4.77 versus source3.54. Native scene acceptance pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.5416667461395264,
+        "outputEdgeMeanDifference": 4.76953125,
+        "generationMasterSourceSha256": "ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1"
+      },
       "priority": 1,
       "decodedRgbaSha256": "374399087fdf349761b9e7b75a5a18a922228b3fb292378a79094ade33f08000",
-      "generationMasterSourceSha256": "ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1"
+      "generationMasterSourceSha256": "ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/374399087fdf349761b9e7b75a5a18a922228b3fb292378a79094ade33f08000/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1/image-v1.png"
     },
     {
       "id": "battle-sky-80ea20f10d35c0945eae2e77fdf324d5d9563dc1aa325348853db059c3356334",
@@ -692,11 +854,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Pale lavender sky over ivy-covered stone ruins, columns, broken bridge edges and green water. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 7.083333492279053,
+        "outputEdgeMeanDifference": 3.755425453186035,
+        "generationMasterSourceSha256": "80ea20f10d35c0945eae2e77fdf324d5d9563dc1aa325348853db059c3356334"
+      },
       "priority": 1,
       "decodedRgbaSha256": "3ff42b3eb54916fac6ba06d5da3d9da536894b54e03ccf22fa7f58b5c3a813de",
-      "generationMasterSourceSha256": "80ea20f10d35c0945eae2e77fdf324d5d9563dc1aa325348853db059c3356334"
+      "generationMasterSourceSha256": "80ea20f10d35c0945eae2e77fdf324d5d9563dc1aa325348853db059c3356334",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/80ea20f10d35c0945eae2e77fdf324d5d9563dc1aa325348853db059c3356334/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/3ff42b3eb54916fac6ba06d5da3d9da536894b54e03ccf22fa7f58b5c3a813de/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-a6a20e2ae9b5128c3324dffeb941122b6cb4c46af108db19c16ed53aaa6e5c90",
@@ -716,11 +894,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Dark architectural facade with multiple small green glowing windows and crossing stairs. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.9791667461395264,
+        "outputEdgeMeanDifference": 0.7009548544883728,
+        "generationMasterSourceSha256": "a6a20e2ae9b5128c3324dffeb941122b6cb4c46af108db19c16ed53aaa6e5c90"
+      },
       "priority": 1,
       "decodedRgbaSha256": "28cfa9758e3619edac05c89ce5bb724aa7388b2402b4190d7dab9596bf0e57c7",
-      "generationMasterSourceSha256": "a6a20e2ae9b5128c3324dffeb941122b6cb4c46af108db19c16ed53aaa6e5c90"
+      "generationMasterSourceSha256": "a6a20e2ae9b5128c3324dffeb941122b6cb4c46af108db19c16ed53aaa6e5c90",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/a6a20e2ae9b5128c3324dffeb941122b6cb4c46af108db19c16ed53aaa6e5c90/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/28cfa9758e3619edac05c89ce5bb724aa7388b2402b4190d7dab9596bf0e57c7/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523",
@@ -756,11 +950,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Barrens low rocky cliff skyline beneath large white clouds and clear blue sky. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 6.3125,
+        "outputEdgeMeanDifference": 2.055772542953491,
+        "generationMasterSourceSha256": "b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523"
+      },
       "priority": 1,
       "decodedRgbaSha256": "5d957b5807ddc295dac151a35a217efdae74932a5ce8553d5a89b6081285bd44",
-      "generationMasterSourceSha256": "b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523"
+      "generationMasterSourceSha256": "b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523/image-v4.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/5d957b5807ddc295dac151a35a217efdae74932a5ce8553d5a89b6081285bd44/image-v4.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-e3c50336c42e1ff131c9d0d2804a2cf81c11bb1823ab748ce3f671e7e3b3000e",
@@ -780,11 +990,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Blue-violet sky over flat-topped green canyon walls, waterfalls and deep blue water. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.9375,
+        "outputEdgeMeanDifference": 1.1770833730697632,
+        "generationMasterSourceSha256": "e3c50336c42e1ff131c9d0d2804a2cf81c11bb1823ab748ce3f671e7e3b3000e"
+      },
       "priority": 1,
       "decodedRgbaSha256": "ed7c69fdf09ae24ef963116a5abbd1a5b29c832163583b00d6055b095954add1",
-      "generationMasterSourceSha256": "e3c50336c42e1ff131c9d0d2804a2cf81c11bb1823ab748ce3f671e7e3b3000e"
+      "generationMasterSourceSha256": "e3c50336c42e1ff131c9d0d2804a2cf81c11bb1823ab748ce3f671e7e3b3000e",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/e3c50336c42e1ff131c9d0d2804a2cf81c11bb1823ab748ce3f671e7e3b3000e/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/ed7c69fdf09ae24ef963116a5abbd1a5b29c832163583b00d6055b095954add1/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188",
@@ -835,11 +1061,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Valley source remains the unusual suspended-rock field in olive/brown storm haze, with near-black upper sky and no invented ground plane, ridge, lightning or magical glows.",
+        "style": "Weathered angular stone and restrained storm depth follow the modern Skurfa material detail; source darkness retained.",
+        "layout": "Source comparison retains the dominant upper-left, upper-center, center-right, lower-left and lower-right rocks, smaller interstitial rock pattern and original framing.",
+        "wrap": "Edge-neighborhood review retains unobtrusive low-contrast cloud continuation and source edge rock fragments; output edge difference3.53 versus source3.12. Native scene acceptance pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.118055582046509,
+        "outputEdgeMeanDifference": 3.5260417461395264,
+        "generationMasterSourceSha256": "1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188"
+      },
       "priority": 1,
       "decodedRgbaSha256": "cd94c27a98319e7b9825e389f74ab460d16ef8be04b63e19a36f27fc1d270101",
-      "generationMasterSourceSha256": "1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188"
+      "generationMasterSourceSha256": "1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/cd94c27a98319e7b9825e389f74ab460d16ef8be04b63e19a36f27fc1d270101/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188/image-v1.png"
     },
     {
       "id": "battle-sky-12b2fbff5e822c4c857915268209668c71ba3adfee4ad0fa3016ba2fd897a45b",
@@ -859,11 +1101,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Dark layered grey cloud bands above scattered suspended brown rock fragments. Source-backed usage: stages27; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.694444417953491,
+        "outputEdgeMeanDifference": 0.01692708395421505,
+        "generationMasterSourceSha256": "12b2fbff5e822c4c857915268209668c71ba3adfee4ad0fa3016ba2fd897a45b"
+      },
       "priority": 1,
       "decodedRgbaSha256": "6ed8d2fc0c53c1f7324874dc9793dd43167c7f9ca1cc57f83e3247e22cf3b2c5",
-      "generationMasterSourceSha256": "12b2fbff5e822c4c857915268209668c71ba3adfee4ad0fa3016ba2fd897a45b"
+      "generationMasterSourceSha256": "12b2fbff5e822c4c857915268209668c71ba3adfee4ad0fa3016ba2fd897a45b",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/6ed8d2fc0c53c1f7324874dc9793dd43167c7f9ca1cc57f83e3247e22cf3b2c5/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/12b2fbff5e822c4c857915268209668c71ba3adfee4ad0fa3016ba2fd897a45b/image-v1.png"
     },
     {
       "id": "battle-sky-1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9",
@@ -899,11 +1157,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Giganto Home bare grey mountain basin beneath violet-blue sky and thin white clouds. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.791666507720947,
+        "outputEdgeMeanDifference": 1.5047743320465088,
+        "generationMasterSourceSha256": "1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9"
+      },
       "priority": 1,
       "decodedRgbaSha256": "2afe4a54ab85bfd997cabe2a3547d44da7e4ce44fea0586826b8c4fd24f907a8",
-      "generationMasterSourceSha256": "1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9"
+      "generationMasterSourceSha256": "1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9/image-v4.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/2afe4a54ab85bfd997cabe2a3547d44da7e4ce44fea0586826b8c4fd24f907a8/image-v4.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19",
@@ -929,11 +1203,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Nearby field cut265 confirms ancient carved stone figures with folded hands and decorated lower panels. The battle source crops their heads out: keep the exact cropped torsos/arms and black upper gap. The generation prompt called these relief panels; output correctly preserves the original figures rather than inventing plain columns or new heads.",
+        "style": "Weathered brown stone, restrained relief detail and deep interior darkness match the Skurfa material finish; no torches, doors, altar or field composition transplanted.",
+        "layout": "Two repeated figures, folded-hand bands, carved lower panels, narrow flanking stone ribs and low rock fragments retain the original crop and placements.",
+        "wrap": "Near-black joined borders and dim side stone connect without a broad step; output edge difference3.26 versus source2.71. Native scene acceptance pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.7083332538604736,
+        "outputEdgeMeanDifference": 3.2638888359069824,
+        "generationMasterSourceSha256": "d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19"
+      },
       "priority": 1,
       "decodedRgbaSha256": "ebc07eeca6c52be43c266dfec7722573487ddb7a404cdb0b6719de49e05f8170",
-      "generationMasterSourceSha256": "d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19"
+      "generationMasterSourceSha256": "d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/ebc07eeca6c52be43c266dfec7722573487ddb7a404cdb0b6719de49e05f8170/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19/image-v1.png"
     },
     {
       "id": "battle-sky-cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f",
@@ -953,11 +1243,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Bright blue open sea and straight horizon beneath pale layered cloud banks. Source-backed usage: stages30; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.194444417953491,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f"
+      },
       "priority": 1,
       "decodedRgbaSha256": "02ba20a1908a42371affce7fa01651ab08191cf6faf871a24e49f63f6fb1057a",
-      "generationMasterSourceSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f"
+      "generationMasterSourceSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/02ba20a1908a42371affce7fa01651ab08191cf6faf871a24e49f63f6fb1057a/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f/image-v1.png"
     },
     {
       "id": "battle-sky-3d833fdcfe169ae82a5dcc07f0470b81aa72631dd59f723c18246bad522558cf",
@@ -977,11 +1283,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Dark blue night haze with sparse subdued grey cloud patches. Source-backed usage: stages31; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.2638888359069824,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "3d833fdcfe169ae82a5dcc07f0470b81aa72631dd59f723c18246bad522558cf"
+      },
       "priority": 1,
       "decodedRgbaSha256": "a5569ba53722139d747881e72780940b893a01eb1ba7ba8c7e8e12c2c2483cf6",
-      "generationMasterSourceSha256": "3d833fdcfe169ae82a5dcc07f0470b81aa72631dd59f723c18246bad522558cf"
+      "generationMasterSourceSha256": "3d833fdcfe169ae82a5dcc07f0470b81aa72631dd59f723c18246bad522558cf",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/a5569ba53722139d747881e72780940b893a01eb1ba7ba8c7e8e12c2c2483cf6/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/3d833fdcfe169ae82a5dcc07f0470b81aa72631dd59f723c18246bad522558cf/image-v1.png"
     },
     {
       "id": "battle-sky-ac2efcff1f93f7fdfee945ad2772208bf59bbfa089039fcee80c811cc794e97c",
@@ -1001,11 +1323,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Dark blue-grey rocky wall and water beneath a nearly black upper field. Source-backed usage: stages35; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 1.8402777910232544,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "ac2efcff1f93f7fdfee945ad2772208bf59bbfa089039fcee80c811cc794e97c"
+      },
       "priority": 1,
       "decodedRgbaSha256": "3db8ac4264af8cb455f3204231fbb3216adb0abf184f6603d8a38e1646b89ddc",
-      "generationMasterSourceSha256": "ac2efcff1f93f7fdfee945ad2772208bf59bbfa089039fcee80c811cc794e97c"
+      "generationMasterSourceSha256": "ac2efcff1f93f7fdfee945ad2772208bf59bbfa089039fcee80c811cc794e97c",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/3db8ac4264af8cb455f3204231fbb3216adb0abf184f6603d8a38e1646b89ddc/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/ac2efcff1f93f7fdfee945ad2772208bf59bbfa089039fcee80c811cc794e97c/image-v1.png"
     },
     {
       "id": "battle-sky-279a55aa308a752227199b9edcccaa3a79ac32a069960aba166dba2021666fa5",
@@ -1061,11 +1399,148 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Evergreen forest edge in front of broad grey mountain ridges and pale blue clouded sky. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.8333332538604736,
+        "outputEdgeMeanDifference": 0.8747829794883728,
+        "generationMasterSourceSha256": "279a55aa308a752227199b9edcccaa3a79ac32a069960aba166dba2021666fa5"
+      },
       "priority": 1,
       "decodedRgbaSha256": "5f8226d59013b51515001b1c522ab6092fd5baec4575e3b7c03f95e1accf94b0",
-      "generationMasterSourceSha256": "279a55aa308a752227199b9edcccaa3a79ac32a069960aba166dba2021666fa5"
+      "generationMasterSourceSha256": "279a55aa308a752227199b9edcccaa3a79ac32a069960aba166dba2021666fa5",
+      "worldMapUsage": [
+        {
+          "directionalPathTableIndex": 74,
+          "pathIndex": 37,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 74,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 75,
+          "pathIndex": 37,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 75,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 76,
+          "pathIndex": 38,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 76,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 77,
+          "pathIndex": 38,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 77,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 78,
+          "pathIndex": 39,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 78,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 79,
+          "pathIndex": 39,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 79,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 80,
+          "pathIndex": 40,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 80,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 81,
+          "pathIndex": 40,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 81,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 82,
+          "pathIndex": 41,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 82,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 83,
+          "pathIndex": 41,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 83,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 84,
+          "pathIndex": 42,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 84,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        },
+        {
+          "directionalPathTableIndex": 85,
+          "pathIndex": 42,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 85,
+          "modelIndex": 0,
+          "configuredStage": 36,
+          "battleStage": 36
+        }
+      ],
+      "output": "integrations/envhd/production/candidates/279a55aa308a752227199b9edcccaa3a79ac32a069960aba166dba2021666fa5/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/5f8226d59013b51515001b1c522ab6092fd5baec4575e3b7c03f95e1accf94b0/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d",
@@ -1151,11 +1626,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Forbidden Land tilted intricate bronze-gold machinery or architecture immersed in orange haze. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.9513888359069824,
+        "outputEdgeMeanDifference": 1.1258680820465088,
+        "generationMasterSourceSha256": "8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d"
+      },
       "priority": 1,
       "decodedRgbaSha256": "292a3df499f14b031ca899ac9f298a332716c846b849745a2b4644effbb32712",
-      "generationMasterSourceSha256": "8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d"
+      "generationMasterSourceSha256": "8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/292a3df499f14b031ca899ac9f298a332716c846b849745a2b4644effbb32712/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-d5bed0182ea87a8b3de41e990ca1b01cffd74568381a230ce2eb0b61c8dacfd4",
@@ -1175,11 +1666,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Very subdued dark grey smoky cloud field with a faint warm lower glow. Source-backed usage: stages38; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 1.8055555820465088,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "d5bed0182ea87a8b3de41e990ca1b01cffd74568381a230ce2eb0b61c8dacfd4"
+      },
       "priority": 1,
       "decodedRgbaSha256": "a78538f409c9b93f27bfcf4195b28d11334960d7e0d62c94dda1a7fb09418f48",
-      "generationMasterSourceSha256": "d5bed0182ea87a8b3de41e990ca1b01cffd74568381a230ce2eb0b61c8dacfd4"
+      "generationMasterSourceSha256": "d5bed0182ea87a8b3de41e990ca1b01cffd74568381a230ce2eb0b61c8dacfd4",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/a78538f409c9b93f27bfcf4195b28d11334960d7e0d62c94dda1a7fb09418f48/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/d5bed0182ea87a8b3de41e990ca1b01cffd74568381a230ce2eb0b61c8dacfd4/image-v1.png"
     },
     {
       "id": "battle-sky-0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728",
@@ -1265,11 +1772,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Mortal Dragon Mountain storm mist retains the near-black upper region, subdued blue-grey middle clouds and pale diffuse lower haze, with no invented terrain, dragon, structures or lightning.",
+        "style": "Soft refined cloud/mist detail complements Skurfa without introducing sharp subjects or warm lighting.",
+        "layout": "Native-size comparison preserves the original tonal gradient and broad fog bands; cloud microdetail is restoration, not recovered source information.",
+        "wrap": "Low-contrast joined haze is visually unobtrusive without a broad edge step; difference4.24 versus source2.40. Native scene acceptance pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.3958332538604736,
+        "outputEdgeMeanDifference": 4.241970539093018,
+        "generationMasterSourceSha256": "0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728"
+      },
       "priority": 1,
       "decodedRgbaSha256": "21c0e744184c1b160b310332b70f964611e23750100b3f41df476a881694688d",
-      "generationMasterSourceSha256": "0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728"
+      "generationMasterSourceSha256": "0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/21c0e744184c1b160b310332b70f964611e23750100b3f41df476a881694688d/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728/image-v1.png"
     },
     {
       "id": "battle-sky-d1a6962e8a9bbd5dbf367c276922b566d13954c823a9f36c50eceda5e2d24030",
@@ -1289,11 +1812,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Rust-red haze with distant dim rock spires and a soft shadowy central formation. Source-backed usage: stages40; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.5,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "d1a6962e8a9bbd5dbf367c276922b566d13954c823a9f36c50eceda5e2d24030"
+      },
       "priority": 1,
       "decodedRgbaSha256": "46218a4323a3595c0ea5be6757c8ebd938ca438c04a70cdeb0de36e135008535",
-      "generationMasterSourceSha256": "d1a6962e8a9bbd5dbf367c276922b566d13954c823a9f36c50eceda5e2d24030"
+      "generationMasterSourceSha256": "d1a6962e8a9bbd5dbf367c276922b566d13954c823a9f36c50eceda5e2d24030",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/46218a4323a3595c0ea5be6757c8ebd938ca438c04a70cdeb0de36e135008535/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/d1a6962e8a9bbd5dbf367c276922b566d13954c823a9f36c50eceda5e2d24030/image-v1.png"
     },
     {
       "id": "battle-sky-b2395a437daff20d87cfda72a507b4e34ffbe8bb26916ef3d379fe68f8d26b67",
@@ -1313,11 +1852,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Grey ruined landscape and sparse bare pale vegetation with distant low mountains. Source-backed usage: stages41; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 5.034722328186035,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "b2395a437daff20d87cfda72a507b4e34ffbe8bb26916ef3d379fe68f8d26b67"
+      },
       "priority": 1,
       "decodedRgbaSha256": "a9c8043d9214e2f20195aa74fda947c6fe98aa915e9aa9861b49c0930cb8be51",
-      "generationMasterSourceSha256": "b2395a437daff20d87cfda72a507b4e34ffbe8bb26916ef3d379fe68f8d26b67"
+      "generationMasterSourceSha256": "b2395a437daff20d87cfda72a507b4e34ffbe8bb26916ef3d379fe68f8d26b67",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/a9c8043d9214e2f20195aa74fda947c6fe98aa915e9aa9861b49c0930cb8be51/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/b2395a437daff20d87cfda72a507b4e34ffbe8bb26916ef3d379fe68f8d26b67/image-v1.png"
     },
     {
       "id": "battle-sky-8f91d4124afa4ca0c6f69988838f2b577f6904fb7248577a5f764abf28e1c216",
@@ -1373,11 +1928,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Kashua Glacier blue-white ice faces and horizontal terraces below bright icy peaks. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 9.541666984558105,
+        "outputEdgeMeanDifference": 2.2174479961395264,
+        "generationMasterSourceSha256": "8f91d4124afa4ca0c6f69988838f2b577f6904fb7248577a5f764abf28e1c216"
+      },
       "priority": 1,
       "decodedRgbaSha256": "15c0d626de4ad8f6f33219f1009e930fea3797a7926d297e657f807568fae5ba",
-      "generationMasterSourceSha256": "8f91d4124afa4ca0c6f69988838f2b577f6904fb7248577a5f764abf28e1c216"
+      "generationMasterSourceSha256": "8f91d4124afa4ca0c6f69988838f2b577f6904fb7248577a5f764abf28e1c216",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/8f91d4124afa4ca0c6f69988838f2b577f6904fb7248577a5f764abf28e1c216/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/15c0d626de4ad8f6f33219f1009e930fea3797a7926d297e657f807568fae5ba/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c",
@@ -1418,11 +1989,68 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Snowfield pale snow-covered hills, small dark curved forms and plain violet upper sky. Source-backed usage: stages46; Snowfield.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.118055582046509,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c"
+      },
       "priority": 1,
       "decodedRgbaSha256": "7f05ed65b21bd0f436358c0f3c7238c70170701a1a0204ed073a029844051693",
-      "generationMasterSourceSha256": "bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c"
+      "generationMasterSourceSha256": "bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c",
+      "worldMapUsage": [
+        {
+          "directionalPathTableIndex": 88,
+          "pathIndex": 44,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 88,
+          "modelIndex": 0,
+          "configuredStage": 46,
+          "battleStage": 46
+        },
+        {
+          "directionalPathTableIndex": 89,
+          "pathIndex": 44,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 89,
+          "modelIndex": 0,
+          "configuredStage": 46,
+          "battleStage": 46
+        },
+        {
+          "directionalPathTableIndex": 90,
+          "pathIndex": 45,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 90,
+          "modelIndex": 0,
+          "configuredStage": 46,
+          "battleStage": 46
+        },
+        {
+          "directionalPathTableIndex": 91,
+          "pathIndex": 45,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 91,
+          "modelIndex": 0,
+          "configuredStage": 46,
+          "battleStage": 46
+        }
+      ],
+      "output": "integrations/envhd/production/candidates/bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/7f05ed65b21bd0f436358c0f3c7238c70170701a1a0204ed073a029844051693/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-061e8d60968b1fff0a3bc28b495068b6b5fe6d59c58553b838ee59d319855ccb",
@@ -1453,11 +2081,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Fort Magrad ruined grey towers and broken walls under dark storm clouds. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 5.361111164093018,
+        "outputEdgeMeanDifference": 1.2113715410232544,
+        "generationMasterSourceSha256": "061e8d60968b1fff0a3bc28b495068b6b5fe6d59c58553b838ee59d319855ccb"
+      },
       "priority": 1,
       "decodedRgbaSha256": "e6dc30bb44bd6099fa09f8248bad2b82b8e42a7cd43462ef9664ad0d8463f4dd",
-      "generationMasterSourceSha256": "061e8d60968b1fff0a3bc28b495068b6b5fe6d59c58553b838ee59d319855ccb"
+      "generationMasterSourceSha256": "061e8d60968b1fff0a3bc28b495068b6b5fe6d59c58553b838ee59d319855ccb",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/061e8d60968b1fff0a3bc28b495068b6b5fe6d59c58553b838ee59d319855ccb/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/e6dc30bb44bd6099fa09f8248bad2b82b8e42a7cd43462ef9664ad0d8463f4dd/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940",
@@ -1523,11 +2167,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Vellweb sun-bleached cylindrical stone ruin walls above a broad pale masonry floor. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.493055582046509,
+        "outputEdgeMeanDifference": 0.5707465410232544,
+        "generationMasterSourceSha256": "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940"
+      },
       "priority": 1,
       "decodedRgbaSha256": "cad01c03913948bf39efbce136cb2a25186116b76b21940f09ae95ae1e47f8e6",
-      "generationMasterSourceSha256": "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940"
+      "generationMasterSourceSha256": "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/cad01c03913948bf39efbce136cb2a25186116b76b21940f09ae95ae1e47f8e6/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc",
@@ -1568,11 +2228,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Vellweb dark cracked and mottled grey rock wall with no added scene objects. Source-backed usage: stages50; Vellweb.",
+        "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 5.354166507720947,
+        "outputEdgeMeanDifference": 0.1228298619389534,
+        "generationMasterSourceSha256": "788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc"
+      },
       "priority": 1,
       "decodedRgbaSha256": "29e1dd34ca283d1a66a5420931fdbcd149a21bfbac5bfc3c78330d21d1804c7f",
-      "generationMasterSourceSha256": "788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc"
+      "generationMasterSourceSha256": "788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/29e1dd34ca283d1a66a5420931fdbcd149a21bfbac5bfc3c78330d21d1804c7f/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-c0370a6c9c84e3866cdbb0d8a4b122782404f6559c32ecaec871034ff375f663",
@@ -1592,11 +2268,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Pale dunes and distant rock pinnacles beneath orange sunset cloud layers. Source-backed usage: stages51; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.9861111640930176,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "c0370a6c9c84e3866cdbb0d8a4b122782404f6559c32ecaec871034ff375f663"
+      },
       "priority": 1,
       "decodedRgbaSha256": "a0d14681d7241c48c58a0afa7968c9521f5589b31c58ea7a88030d5bcd1a49b1",
-      "generationMasterSourceSha256": "c0370a6c9c84e3866cdbb0d8a4b122782404f6559c32ecaec871034ff375f663"
+      "generationMasterSourceSha256": "c0370a6c9c84e3866cdbb0d8a4b122782404f6559c32ecaec871034ff375f663",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/a0d14681d7241c48c58a0afa7968c9521f5589b31c58ea7a88030d5bcd1a49b1/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/c0370a6c9c84e3866cdbb0d8a4b122782404f6559c32ecaec871034ff375f663/image-v1.png"
     },
     {
       "id": "battle-sky-901c29c6aea0abbec9f7d90eb745979d03468e695e117b69054dc1c2733e708e",
@@ -1616,11 +2308,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Black upper sky, red-orange volcanic rock pinnacles, glowing clouds and dark red ground. Source-backed usage: stages52; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.270833492279053,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "901c29c6aea0abbec9f7d90eb745979d03468e695e117b69054dc1c2733e708e"
+      },
       "priority": 1,
       "decodedRgbaSha256": "f37ea2793e65af42c190fb786e5b66b2ea8759d638fd417899c06a56b24fff8b",
-      "generationMasterSourceSha256": "901c29c6aea0abbec9f7d90eb745979d03468e695e117b69054dc1c2733e708e"
+      "generationMasterSourceSha256": "901c29c6aea0abbec9f7d90eb745979d03468e695e117b69054dc1c2733e708e",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/f37ea2793e65af42c190fb786e5b66b2ea8759d638fd417899c06a56b24fff8b/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/901c29c6aea0abbec9f7d90eb745979d03468e695e117b69054dc1c2733e708e/image-v1.png"
     },
     {
       "id": "battle-sky-18a1dfca5282e302b28d3eab2c8b331eafcf69a44d7ff2afdc434d91e55e05bf",
@@ -1661,11 +2369,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Zenebatos pale yellow cloud sea, scattered rock peaks and warm diffuse lower mist. Source-backed usage: stages53; Zenebatos.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.2083332538604736,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "18a1dfca5282e302b28d3eab2c8b331eafcf69a44d7ff2afdc434d91e55e05bf"
+      },
       "priority": 1,
       "decodedRgbaSha256": "cb52675ca594fd22af8d0b0f75d0c7e9446486562db55e5d884c364cbab8ce40",
-      "generationMasterSourceSha256": "18a1dfca5282e302b28d3eab2c8b331eafcf69a44d7ff2afdc434d91e55e05bf"
+      "generationMasterSourceSha256": "18a1dfca5282e302b28d3eab2c8b331eafcf69a44d7ff2afdc434d91e55e05bf",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/18a1dfca5282e302b28d3eab2c8b331eafcf69a44d7ff2afdc434d91e55e05bf/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/cb52675ca594fd22af8d0b0f75d0c7e9446486562db55e5d884c364cbab8ce40/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-3831bfa97ce9e5522d04f0e915cf59718e5836ffa2d78c607e881013e8180307",
@@ -1746,11 +2470,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Mayfil repeated teal stone niches and masonry above bright cyan lower fog. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.347222328186035,
+        "outputEdgeMeanDifference": 1.1979166269302368,
+        "generationMasterSourceSha256": "3831bfa97ce9e5522d04f0e915cf59718e5836ffa2d78c607e881013e8180307"
+      },
       "priority": 1,
       "decodedRgbaSha256": "42ee5b93c2a61366fe82c1a5f9ec86128fc4a767b5c4ed555ec85883e9ea59e9",
-      "generationMasterSourceSha256": "3831bfa97ce9e5522d04f0e915cf59718e5836ffa2d78c607e881013e8180307"
+      "generationMasterSourceSha256": "3831bfa97ce9e5522d04f0e915cf59718e5836ffa2d78c607e881013e8180307",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/3831bfa97ce9e5522d04f0e915cf59718e5836ffa2d78c607e881013e8180307/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/42ee5b93c2a61366fe82c1a5f9ec86128fc4a767b5c4ed555ec85883e9ea59e9/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-4da05efec31bafd8362191cc832450f8ce9964456a4039e522315e3f47f1b82c",
@@ -1826,11 +2566,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Aglis dim violet suspended structures, glowing round lights, curved platforms and dark haze. Source-backed usage: stages55; Aglis.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.020833492279053,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "4da05efec31bafd8362191cc832450f8ce9964456a4039e522315e3f47f1b82c"
+      },
       "priority": 1,
       "decodedRgbaSha256": "aec6c5c926bf0a8bdd2c2e4dc20ab504e3ac272af490ad97345cc55e11d59d91",
-      "generationMasterSourceSha256": "4da05efec31bafd8362191cc832450f8ce9964456a4039e522315e3f47f1b82c"
+      "generationMasterSourceSha256": "4da05efec31bafd8362191cc832450f8ce9964456a4039e522315e3f47f1b82c",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/aec6c5c926bf0a8bdd2c2e4dc20ab504e3ac272af490ad97345cc55e11d59d91/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/4da05efec31bafd8362191cc832450f8ce9964456a4039e522315e3f47f1b82c/image-v1.png"
     },
     {
       "id": "battle-sky-45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5",
@@ -1896,11 +2652,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Divine Tree golden organic interior, tall slanting woody strands, tangled middle root band and lower hanging roots. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 20.30555534362793,
+        "outputEdgeMeanDifference": 6.25282096862793,
+        "generationMasterSourceSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5"
+      },
       "priority": 1,
       "decodedRgbaSha256": "2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae",
-      "generationMasterSourceSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5"
+      "generationMasterSourceSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-25c0a2ecee4a279c8dd353f0d363d82182e4de79be50d762d3a52f7a430a2b85",
@@ -1941,11 +2713,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Moon large dark green cracked organic spheres with pale green rims and scattered luminous points. Source-backed usage: stages58; Moon.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.694444417953491,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "25c0a2ecee4a279c8dd353f0d363d82182e4de79be50d762d3a52f7a430a2b85"
+      },
       "priority": 1,
       "decodedRgbaSha256": "31bd6c68f21ac63901f1f36fb4101bfeb07e6bbb45c7d8831648ec7a2605ea16",
-      "generationMasterSourceSha256": "25c0a2ecee4a279c8dd353f0d363d82182e4de79be50d762d3a52f7a430a2b85"
+      "generationMasterSourceSha256": "25c0a2ecee4a279c8dd353f0d363d82182e4de79be50d762d3a52f7a430a2b85",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/31bd6c68f21ac63901f1f36fb4101bfeb07e6bbb45c7d8831648ec7a2605ea16/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/25c0a2ecee4a279c8dd353f0d363d82182e4de79be50d762d3a52f7a430a2b85/image-v1.png"
     },
     {
       "id": "battle-sky-23d211fe7b4d942812db259ecfbc1bae613cde11ae048832d61032ae01e55808",
@@ -1981,11 +2769,27 @@
         1536,
         1024
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Moon dim luminous branching web or plant forms, floating platforms and violet-white light motes. Source-backed usage: stages59; Moon.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "sourceEdgeMeanDifference": 14.479166984558105,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "23d211fe7b4d942812db259ecfbc1bae613cde11ae048832d61032ae01e55808"
+      },
       "priority": 1,
       "decodedRgbaSha256": "d45ddb3429e5b3d14c2953f1fc724b912522fbf57b809a7572fa8ee23656242d",
-      "generationMasterSourceSha256": "23d211fe7b4d942812db259ecfbc1bae613cde11ae048832d61032ae01e55808"
+      "generationMasterSourceSha256": "23d211fe7b4d942812db259ecfbc1bae613cde11ae048832d61032ae01e55808",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/d45ddb3429e5b3d14c2953f1fc724b912522fbf57b809a7572fa8ee23656242d/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/23d211fe7b4d942812db259ecfbc1bae613cde11ae048832d61032ae01e55808/image-v1.png"
     },
     {
       "id": "battle-sky-1411bbb899c05a53e942035fd85afa6f0f2614b0c4b98248c91e3c5e8c619f9f",
@@ -2022,7 +2826,8 @@
       },
       "priority": 1,
       "decodedRgbaSha256": "8ea18992ddbfeb21605ac80a971ceaa838b00def5d2a6445ed99af825a881837",
-      "generationMasterSourceSha256": "1411bbb899c05a53e942035fd85afa6f0f2614b0c4b98248c91e3c5e8c619f9f"
+      "generationMasterSourceSha256": "1411bbb899c05a53e942035fd85afa6f0f2614b0c4b98248c91e3c5e8c619f9f",
+      "worldMapUsage": []
     },
     {
       "id": "battle-sky-2def3b8e3a867f78252c811f319f257aff8420d0e8b57633c40be534ab9334f8",
@@ -2058,11 +2863,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Moon star field and purple mist around slender violet-lit towers and suspended architecture. Source-backed usage: stages61; Moon.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.3333332538604736,
+        "outputEdgeMeanDifference": 0.0030381944961845875,
+        "generationMasterSourceSha256": "2def3b8e3a867f78252c811f319f257aff8420d0e8b57633c40be534ab9334f8"
+      },
       "priority": 1,
       "decodedRgbaSha256": "9f12eaef3504da612fa2814577afc1259e94bea5fe73aa5c13b25bbb606f92eb",
-      "generationMasterSourceSha256": "2def3b8e3a867f78252c811f319f257aff8420d0e8b57633c40be534ab9334f8"
+      "generationMasterSourceSha256": "2def3b8e3a867f78252c811f319f257aff8420d0e8b57633c40be534ab9334f8",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/9f12eaef3504da612fa2814577afc1259e94bea5fe73aa5c13b25bbb606f92eb/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/2def3b8e3a867f78252c811f319f257aff8420d0e8b57633c40be534ab9334f8/image-v1.png"
     },
     {
       "id": "battle-sky-4f5565d04a63f7d3ca017b9e1fbfa798b8d087295388d13651e9863d8d09946b",
@@ -2088,11 +2909,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Moon bright gold patterned central opening framed by dark wooden or stone architectural bands. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 7.236111164093018,
+        "outputEdgeMeanDifference": 1.9529080390930176,
+        "generationMasterSourceSha256": "4f5565d04a63f7d3ca017b9e1fbfa798b8d087295388d13651e9863d8d09946b"
+      },
       "priority": 1,
       "decodedRgbaSha256": "bce52dd1c81a70ebe2ab876aac037e946bfd6aaa8923fa63fa6582c8ab44c2d7",
-      "generationMasterSourceSha256": "4f5565d04a63f7d3ca017b9e1fbfa798b8d087295388d13651e9863d8d09946b"
+      "generationMasterSourceSha256": "4f5565d04a63f7d3ca017b9e1fbfa798b8d087295388d13651e9863d8d09946b",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/4f5565d04a63f7d3ca017b9e1fbfa798b8d087295388d13651e9863d8d09946b/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/bce52dd1c81a70ebe2ab876aac037e946bfd6aaa8923fa63fa6582c8ab44c2d7/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-de6319c4be0db41d15defd278ea57db26907105cd7155890846c8a2aa281e469",
@@ -2128,11 +2965,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Moon dark block-like mosaic formations around a narrow pink-gold horizontal light band. Source-backed usage: stages63; Moon.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.777777671813965,
+        "outputEdgeMeanDifference": 0.0362413190305233,
+        "generationMasterSourceSha256": "de6319c4be0db41d15defd278ea57db26907105cd7155890846c8a2aa281e469"
+      },
       "priority": 1,
       "decodedRgbaSha256": "b3345f6136f02a1f4d432086a19d5477f8c28f6e27ddf8626d945e32fbc77645",
-      "generationMasterSourceSha256": "de6319c4be0db41d15defd278ea57db26907105cd7155890846c8a2aa281e469"
+      "generationMasterSourceSha256": "de6319c4be0db41d15defd278ea57db26907105cd7155890846c8a2aa281e469",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/b3345f6136f02a1f4d432086a19d5477f8c28f6e27ddf8626d945e32fbc77645/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/de6319c4be0db41d15defd278ea57db26907105cd7155890846c8a2aa281e469/image-v1.png"
     },
     {
       "id": "battle-sky-f27e5d5436688df985569d9dbfecdd8ff62466a6d45dd2d987bd983514b3f3f7",
@@ -2152,11 +3005,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Dim blue rocky cavern with a central opening and rough grey-blue foreground ledge. Source-backed usage: stages64; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.513888835906982,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "f27e5d5436688df985569d9dbfecdd8ff62466a6d45dd2d987bd983514b3f3f7"
+      },
       "priority": 1,
       "decodedRgbaSha256": "ce904bbb0146f7daf47630e3dfb0fcbd6896bfb5f46f051f42f438b52f325d9e",
-      "generationMasterSourceSha256": "f27e5d5436688df985569d9dbfecdd8ff62466a6d45dd2d987bd983514b3f3f7"
+      "generationMasterSourceSha256": "f27e5d5436688df985569d9dbfecdd8ff62466a6d45dd2d987bd983514b3f3f7",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/ce904bbb0146f7daf47630e3dfb0fcbd6896bfb5f46f051f42f438b52f325d9e/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/f27e5d5436688df985569d9dbfecdd8ff62466a6d45dd2d987bd983514b3f3f7/image-v1.png"
     },
     {
       "id": "battle-sky-dc216878fcd61e3279beae0e428ae97bd82852f1fe7ff4af2414524cba8f83ea",
@@ -2176,11 +3045,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Warm copper-brown cavern with rounded dark hollows and subdued rocky floor detail. Source-backed usage: stages65; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.770833492279053,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "dc216878fcd61e3279beae0e428ae97bd82852f1fe7ff4af2414524cba8f83ea"
+      },
       "priority": 1,
       "decodedRgbaSha256": "fd5ce05435e2ab36940979ea6af5e2e4e8632cc3ffbb2eafdfb1fa23ae87b0f8",
-      "generationMasterSourceSha256": "dc216878fcd61e3279beae0e428ae97bd82852f1fe7ff4af2414524cba8f83ea"
+      "generationMasterSourceSha256": "dc216878fcd61e3279beae0e428ae97bd82852f1fe7ff4af2414524cba8f83ea",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/fd5ce05435e2ab36940979ea6af5e2e4e8632cc3ffbb2eafdfb1fa23ae87b0f8/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/dc216878fcd61e3279beae0e428ae97bd82852f1fe7ff4af2414524cba8f83ea/image-v1.png"
     },
     {
       "id": "battle-sky-4b68da524dfe74962adae0a7264e591ab5486b8411f82a5aea755cd1c28ad4e6",
@@ -2211,11 +3096,27 @@
         1536,
         1024
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Moon pale blue circular and branching line patterns above soft green terrain and darker lower haze. Source-backed usage: stages66; Moon.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "sourceEdgeMeanDifference": 5.302083492279053,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "4b68da524dfe74962adae0a7264e591ab5486b8411f82a5aea755cd1c28ad4e6"
+      },
       "priority": 1,
       "decodedRgbaSha256": "e5360f4acc5dd17423a7e6ca9ce9ceffb210fb746e22fb612ace97c1cc550f5e",
-      "generationMasterSourceSha256": "4b68da524dfe74962adae0a7264e591ab5486b8411f82a5aea755cd1c28ad4e6"
+      "generationMasterSourceSha256": "4b68da524dfe74962adae0a7264e591ab5486b8411f82a5aea755cd1c28ad4e6",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/e5360f4acc5dd17423a7e6ca9ce9ceffb210fb746e22fb612ace97c1cc550f5e/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/4b68da524dfe74962adae0a7264e591ab5486b8411f82a5aea755cd1c28ad4e6/image-v1.png"
     },
     {
       "id": "battle-sky-fb3b850e919cae27a83bb26fcc35aea3d880cb8fc6cddbe9528bb716d702cf09",
@@ -2241,11 +3142,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Zenebatos tall dark towers and many pale yellow windows beneath bright lavender geometric backlighting. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 10.99305534362793,
+        "outputEdgeMeanDifference": 3.967230796813965,
+        "generationMasterSourceSha256": "fb3b850e919cae27a83bb26fcc35aea3d880cb8fc6cddbe9528bb716d702cf09"
+      },
       "priority": 1,
       "decodedRgbaSha256": "119e0e12024455352397d6fd2746bc6fa41767f63b9f0025e9ec98f71f2a250d",
-      "generationMasterSourceSha256": "fb3b850e919cae27a83bb26fcc35aea3d880cb8fc6cddbe9528bb716d702cf09"
+      "generationMasterSourceSha256": "fb3b850e919cae27a83bb26fcc35aea3d880cb8fc6cddbe9528bb716d702cf09",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/fb3b850e919cae27a83bb26fcc35aea3d880cb8fc6cddbe9528bb716d702cf09/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/119e0e12024455352397d6fd2746bc6fa41767f63b9f0025e9ec98f71f2a250d/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-8a72e359d72895378ae0dfcd976496215ad9a065966de409ddd99ab5005040c5",
@@ -2265,11 +3182,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Dark swirling blue organic or current-like field scattered with small green luminous flecks. Source-backed usage: stages69; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.638888835906982,
+        "outputEdgeMeanDifference": 0.0787760391831398,
+        "generationMasterSourceSha256": "8a72e359d72895378ae0dfcd976496215ad9a065966de409ddd99ab5005040c5"
+      },
       "priority": 1,
       "decodedRgbaSha256": "d9cf8f68211f16d8b5d262c63e589534e06be922b36edc825a4d7bd8dc413264",
-      "generationMasterSourceSha256": "8a72e359d72895378ae0dfcd976496215ad9a065966de409ddd99ab5005040c5"
+      "generationMasterSourceSha256": "8a72e359d72895378ae0dfcd976496215ad9a065966de409ddd99ab5005040c5",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/d9cf8f68211f16d8b5d262c63e589534e06be922b36edc825a4d7bd8dc413264/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/8a72e359d72895378ae0dfcd976496215ad9a065966de409ddd99ab5005040c5/image-v1.png"
     },
     {
       "id": "battle-sky-75fc97be4540e635d71a7b5d3ce48760baff2edb7e19fc6445e964d772c21b5d",
@@ -2289,11 +3222,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "red monochromatic embossed branching organic motif fading into soft matching colored haze. Source-backed usage: stages71; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 5.034722328186035,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "75fc97be4540e635d71a7b5d3ce48760baff2edb7e19fc6445e964d772c21b5d"
+      },
       "priority": 1,
       "decodedRgbaSha256": "f4f32276c635a508793496bf7678c301d0b3042046423cd046be8da8460c5d12",
-      "generationMasterSourceSha256": "75fc97be4540e635d71a7b5d3ce48760baff2edb7e19fc6445e964d772c21b5d"
+      "generationMasterSourceSha256": "75fc97be4540e635d71a7b5d3ce48760baff2edb7e19fc6445e964d772c21b5d",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/f4f32276c635a508793496bf7678c301d0b3042046423cd046be8da8460c5d12/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/75fc97be4540e635d71a7b5d3ce48760baff2edb7e19fc6445e964d772c21b5d/image-v1.png"
     },
     {
       "id": "battle-sky-fd0dfa22f310024b66019d862d3fbde9b13590f93d905924d0b7f91bd4c2eebb",
@@ -2313,11 +3262,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "green monochromatic embossed branching organic motif fading into soft matching colored haze. Source-backed usage: stages72; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 5.361111164093018,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "fd0dfa22f310024b66019d862d3fbde9b13590f93d905924d0b7f91bd4c2eebb"
+      },
       "priority": 1,
       "decodedRgbaSha256": "392627c3abc83c226c9d49afd60ee1f6682ff7cc5c2bbaf0b02b1717d3600c21",
-      "generationMasterSourceSha256": "fd0dfa22f310024b66019d862d3fbde9b13590f93d905924d0b7f91bd4c2eebb"
+      "generationMasterSourceSha256": "fd0dfa22f310024b66019d862d3fbde9b13590f93d905924d0b7f91bd4c2eebb",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/392627c3abc83c226c9d49afd60ee1f6682ff7cc5c2bbaf0b02b1717d3600c21/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/fd0dfa22f310024b66019d862d3fbde9b13590f93d905924d0b7f91bd4c2eebb/image-v1.png"
     },
     {
       "id": "battle-sky-ebcf22b2fcc622358f483d2e48cfbaa54fa63f84a06a6da2c2b695b37bd0a1ff",
@@ -2337,11 +3302,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "blue-violet monochromatic embossed branching organic motif fading into soft matching colored haze. Source-backed usage: stages73; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.666666507720947,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "ebcf22b2fcc622358f483d2e48cfbaa54fa63f84a06a6da2c2b695b37bd0a1ff"
+      },
       "priority": 1,
       "decodedRgbaSha256": "c3791525b478ade61f2a0e232bdb98b7a0fe07cb24e95da9671bd5fa183f04c1",
-      "generationMasterSourceSha256": "ebcf22b2fcc622358f483d2e48cfbaa54fa63f84a06a6da2c2b695b37bd0a1ff"
+      "generationMasterSourceSha256": "ebcf22b2fcc622358f483d2e48cfbaa54fa63f84a06a6da2c2b695b37bd0a1ff",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/c3791525b478ade61f2a0e232bdb98b7a0fe07cb24e95da9671bd5fa183f04c1/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/ebcf22b2fcc622358f483d2e48cfbaa54fa63f84a06a6da2c2b695b37bd0a1ff/image-v1.png"
     },
     {
       "id": "battle-sky-8d42455bbda369c236598605031b673f7bd00938c771917b8c0a1e0889db7c9d",
@@ -2361,11 +3342,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "dark violet monochromatic embossed branching organic motif fading into soft matching colored haze. Source-backed usage: stages74; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.1041667461395264,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "8d42455bbda369c236598605031b673f7bd00938c771917b8c0a1e0889db7c9d"
+      },
       "priority": 1,
       "decodedRgbaSha256": "d9fd375bc178e1dd3f3a3ff48da0cc4008979314fb9c24c54c71f04ef5abd745",
-      "generationMasterSourceSha256": "8d42455bbda369c236598605031b673f7bd00938c771917b8c0a1e0889db7c9d"
+      "generationMasterSourceSha256": "8d42455bbda369c236598605031b673f7bd00938c771917b8c0a1e0889db7c9d",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/d9fd375bc178e1dd3f3a3ff48da0cc4008979314fb9c24c54c71f04ef5abd745/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/8d42455bbda369c236598605031b673f7bd00938c771917b8c0a1e0889db7c9d/image-v1.png"
     },
     {
       "id": "battle-sky-c9dc762d480d819d3ede85b1f1a19d91eaf152c7d2906d25251b418c288118a4",
@@ -2385,11 +3382,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "pale lavender monochromatic embossed branching organic motif fading into soft matching colored haze. Source-backed usage: stages75; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 5.173611164093018,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "c9dc762d480d819d3ede85b1f1a19d91eaf152c7d2906d25251b418c288118a4"
+      },
       "priority": 1,
       "decodedRgbaSha256": "27d48c053ecc27ce43627f73a0728f158a492f3aca2d79345b087c0921c52fde",
-      "generationMasterSourceSha256": "c9dc762d480d819d3ede85b1f1a19d91eaf152c7d2906d25251b418c288118a4"
+      "generationMasterSourceSha256": "c9dc762d480d819d3ede85b1f1a19d91eaf152c7d2906d25251b418c288118a4",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/27d48c053ecc27ce43627f73a0728f158a492f3aca2d79345b087c0921c52fde/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/c9dc762d480d819d3ede85b1f1a19d91eaf152c7d2906d25251b418c288118a4/image-v1.png"
     },
     {
       "id": "battle-sky-8b2a9ac4d3b825a1e8eca169827968ec4d39a64bd6c376a76b5fc9c1bb861078",
@@ -2409,11 +3422,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "gold-olive monochromatic embossed branching organic motif fading into soft matching colored haze. Source-backed usage: stages76; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.625,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "8b2a9ac4d3b825a1e8eca169827968ec4d39a64bd6c376a76b5fc9c1bb861078"
+      },
       "priority": 1,
       "decodedRgbaSha256": "a299b26f5236def6f374c87e2be9d3190d880938478f6efcc765878516ec973d",
-      "generationMasterSourceSha256": "8b2a9ac4d3b825a1e8eca169827968ec4d39a64bd6c376a76b5fc9c1bb861078"
+      "generationMasterSourceSha256": "8b2a9ac4d3b825a1e8eca169827968ec4d39a64bd6c376a76b5fc9c1bb861078",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/a299b26f5236def6f374c87e2be9d3190d880938478f6efcc765878516ec973d/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/8b2a9ac4d3b825a1e8eca169827968ec4d39a64bd6c376a76b5fc9c1bb861078/image-v1.png"
     },
     {
       "id": "battle-sky-6459e11db6027880bf2f826cb3602ce2dc5aa9b0e22bcdf8674671090454d575",
@@ -2433,11 +3462,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "magenta-violet monochromatic embossed branching organic motif fading into soft matching colored haze. Source-backed usage: stages77; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 5.020833492279053,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "6459e11db6027880bf2f826cb3602ce2dc5aa9b0e22bcdf8674671090454d575"
+      },
       "priority": 1,
       "decodedRgbaSha256": "10137cc708fe1bceb9a470b7a0adac0ec085c417251cba8eb8d0d8411fc3e9aa",
-      "generationMasterSourceSha256": "6459e11db6027880bf2f826cb3602ce2dc5aa9b0e22bcdf8674671090454d575"
+      "generationMasterSourceSha256": "6459e11db6027880bf2f826cb3602ce2dc5aa9b0e22bcdf8674671090454d575",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/10137cc708fe1bceb9a470b7a0adac0ec085c417251cba8eb8d0d8411fc3e9aa/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/6459e11db6027880bf2f826cb3602ce2dc5aa9b0e22bcdf8674671090454d575/image-v1.png"
     },
     {
       "id": "battle-sky-8c115b28fafc98cf1130c56fb97cc3b0938cb72a3ef6a7bcc871b19bf988d11f",
@@ -2457,11 +3502,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Violet luminous branching columns or organic crystal forms immersed in lower purple-white mist. Source-backed usage: stages78; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 5.05555534362793,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "8c115b28fafc98cf1130c56fb97cc3b0938cb72a3ef6a7bcc871b19bf988d11f"
+      },
       "priority": 1,
       "decodedRgbaSha256": "b5a93a58e8a3245c87ae34cfbd624db04b45d446f51767d665400c5ed9165d5b",
-      "generationMasterSourceSha256": "8c115b28fafc98cf1130c56fb97cc3b0938cb72a3ef6a7bcc871b19bf988d11f"
+      "generationMasterSourceSha256": "8c115b28fafc98cf1130c56fb97cc3b0938cb72a3ef6a7bcc871b19bf988d11f",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/b5a93a58e8a3245c87ae34cfbd624db04b45d446f51767d665400c5ed9165d5b/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/8c115b28fafc98cf1130c56fb97cc3b0938cb72a3ef6a7bcc871b19bf988d11f/image-v1.png"
     },
     {
       "id": "battle-sky-eac2f0151b23bbe120f2dce0228813cd79a4a5da75898e06fa001d9651e754a4",
@@ -2487,11 +3548,27 @@
         1536,
         1024
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Moon dark green branching and circular line patterns over very subdued terrain and haze. Source-backed usage: stages79; Moon.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "sourceEdgeMeanDifference": 2.8333332538604736,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "eac2f0151b23bbe120f2dce0228813cd79a4a5da75898e06fa001d9651e754a4"
+      },
       "priority": 1,
       "decodedRgbaSha256": "13b31fc44019c9228b00da4e3ae5558708a25199da22e07894601a0bfc2cafd3",
-      "generationMasterSourceSha256": "eac2f0151b23bbe120f2dce0228813cd79a4a5da75898e06fa001d9651e754a4"
+      "generationMasterSourceSha256": "eac2f0151b23bbe120f2dce0228813cd79a4a5da75898e06fa001d9651e754a4",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/13b31fc44019c9228b00da4e3ae5558708a25199da22e07894601a0bfc2cafd3/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/eac2f0151b23bbe120f2dce0228813cd79a4a5da75898e06fa001d9651e754a4/image-v1.png"
     },
     {
       "id": "battle-sky-16f2e62661b9639dbc7e10b3bf525ab3ee338cb857adaadf7d131ea663da902a",
@@ -2517,11 +3594,27 @@
         1536,
         1024
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Moon pale blue circular branching line patterns above muted green terrain and dark lower haze. Source-backed usage: stages80; Moon.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "sourceEdgeMeanDifference": 5.3125,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "16f2e62661b9639dbc7e10b3bf525ab3ee338cb857adaadf7d131ea663da902a"
+      },
       "priority": 1,
       "decodedRgbaSha256": "dc600a78e1c68aac4be3930f87275b93224322c5ee7272d3167c1a7a1027b45d",
-      "generationMasterSourceSha256": "16f2e62661b9639dbc7e10b3bf525ab3ee338cb857adaadf7d131ea663da902a"
+      "generationMasterSourceSha256": "16f2e62661b9639dbc7e10b3bf525ab3ee338cb857adaadf7d131ea663da902a",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/dc600a78e1c68aac4be3930f87275b93224322c5ee7272d3167c1a7a1027b45d/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/16f2e62661b9639dbc7e10b3bf525ab3ee338cb857adaadf7d131ea663da902a/image-v1.png"
     },
     {
       "id": "battle-sky-10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339",
@@ -2562,11 +3655,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Moon lavender circular line patterns above brown suspended rocky platforms with small yellow-green tops. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 5.951388835906982,
+        "outputEdgeMeanDifference": 2.8072917461395264,
+        "generationMasterSourceSha256": "10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339"
+      },
       "priority": 1,
       "decodedRgbaSha256": "6f10d252670bdbe8e57e0b5560c55837550db871a7119878a822d7b209c65896",
-      "generationMasterSourceSha256": "10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339"
+      "generationMasterSourceSha256": "10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/6f10d252670bdbe8e57e0b5560c55837550db871a7119878a822d7b209c65896/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-99a9028709e85e9ccc5f91016f9c4e6e07dd2707af431e30a4e31d26c605c094",
@@ -2586,11 +3695,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Two dim rectangular carved stone formations crossed by dark hanging or branching strands. Source-backed usage: stages82; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.9236111640930176,
+        "outputEdgeMeanDifference": 0.0987413227558136,
+        "generationMasterSourceSha256": "99a9028709e85e9ccc5f91016f9c4e6e07dd2707af431e30a4e31d26c605c094"
+      },
       "priority": 1,
       "decodedRgbaSha256": "6350c3314c135b0ff8fb041a3ee0fb8123cff21b10f22782dcfe412b7199877b",
-      "generationMasterSourceSha256": "99a9028709e85e9ccc5f91016f9c4e6e07dd2707af431e30a4e31d26c605c094"
+      "generationMasterSourceSha256": "99a9028709e85e9ccc5f91016f9c4e6e07dd2707af431e30a4e31d26c605c094",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/6350c3314c135b0ff8fb041a3ee0fb8123cff21b10f22782dcfe412b7199877b/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/99a9028709e85e9ccc5f91016f9c4e6e07dd2707af431e30a4e31d26c605c094/image-v1.png"
     },
     {
       "id": "battle-sky-2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2",
@@ -2626,11 +3751,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Moon pale yellow-green upper haze, large curved interwoven tendrils and darker mottled olive lower field. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.5208332538604736,
+        "outputEdgeMeanDifference": 1.1610243320465088,
+        "generationMasterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2"
+      },
       "priority": 1,
       "decodedRgbaSha256": "580d5d2fc67a1bd345597a5823f1575960012a24fdd14234f7a42b8594eee083",
-      "generationMasterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2"
+      "generationMasterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2/image-v4.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/580d5d2fc67a1bd345597a5823f1575960012a24fdd14234f7a42b8594eee083/image-v4.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-685844c0ea122cbf02acceee25aa5c1df7fa8b670ecc869d9c739b7daaa323ac",
@@ -2656,13 +3797,27 @@
         1024,
         1536
       ],
-      "status": "reuse-generation-master",
+      "status": "visual-reviewed-native-pending",
       "review": {
-        "intent": "Pixel-identical decoded artwork; generate the master once and reuse it. Original stage header placement and clear colors remain separate."
+        "intent": "Moon pale yellow-green upper haze, large curved interwoven tendrils and darker mottled olive lower field. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.5208332538604736,
+        "outputEdgeMeanDifference": 1.1610243320465088,
+        "generationMasterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2"
       },
       "priority": 1,
       "decodedRgbaSha256": "580d5d2fc67a1bd345597a5823f1575960012a24fdd14234f7a42b8594eee083",
-      "generationMasterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2"
+      "generationMasterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2/image-v4.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/580d5d2fc67a1bd345597a5823f1575960012a24fdd14234f7a42b8594eee083/image-v4.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073",
@@ -2682,11 +3837,248 @@
         1536,
         1024
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "World-map battle stage87 has22 configured directional-route references. Original broad mountain ridge, low green hills, daytime sky and bare grassy plain retained; no new trees or buildings.",
+        "style": "Fine natural grass/stone and soft cloud detail follows Skurfa finish. Source atmospheric layers remain recognizable; native scene tone acceptance remains pending.",
+        "layout": "Native-size comparison retains broad central ridge, rounded nearer green hill and lower grassland proportions; exact1536x1024 dimensions verified.",
+        "wrap": "Three-repeat source/candidate preview retains continuous ridge and grassland, with no conspicuous new vertical seam at native viewing size. Edge difference6.39 versus source3.34. This is visual review only; native scene acceptance remains pending.",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "sourceEdgeMeanDifference": 3.34375,
+        "outputEdgeMeanDifference": 6.3857421875,
+        "generationMasterSourceSha256": "386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073"
+      },
       "priority": 1,
       "decodedRgbaSha256": "99b42dc1126262727759a48a0ac40fccaf14801da8f96d72b139964789ad9072",
-      "generationMasterSourceSha256": "386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073"
+      "generationMasterSourceSha256": "386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073",
+      "worldMapUsage": [
+        {
+          "directionalPathTableIndex": 14,
+          "pathIndex": 7,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 14,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 15,
+          "pathIndex": 7,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 15,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 24,
+          "pathIndex": 12,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 24,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 25,
+          "pathIndex": 12,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 25,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 26,
+          "pathIndex": 13,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 26,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 27,
+          "pathIndex": 13,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 27,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 28,
+          "pathIndex": 14,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 28,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 29,
+          "pathIndex": 14,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 29,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 48,
+          "pathIndex": 24,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 48,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 49,
+          "pathIndex": 24,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 49,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 58,
+          "pathIndex": 29,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 58,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 59,
+          "pathIndex": 29,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 59,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 60,
+          "pathIndex": 30,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 60,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 61,
+          "pathIndex": 30,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 61,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 68,
+          "pathIndex": 34,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 68,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 69,
+          "pathIndex": 34,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 69,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 70,
+          "pathIndex": 35,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 70,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 71,
+          "pathIndex": 35,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 71,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 72,
+          "pathIndex": 36,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 72,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 73,
+          "pathIndex": 36,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 73,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 86,
+          "pathIndex": 43,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 86,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        },
+        {
+          "directionalPathTableIndex": 87,
+          "pathIndex": 43,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 87,
+          "modelIndex": 0,
+          "configuredStage": 87,
+          "battleStage": 87
+        }
+      ],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/99b42dc1126262727759a48a0ac40fccaf14801da8f96d72b139964789ad9072/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073/image-v1.png"
     },
     {
       "id": "battle-sky-cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1",
@@ -2706,11 +4098,108 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "World sea battle bright blue sky, grouped white clouds, level horizon and cyan-blue ocean. Source-backed usage: stages88; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.722222328186035,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1"
+      },
       "priority": 1,
       "decodedRgbaSha256": "37561e937cd3622a8274e8be7b4ae39ec4498e823366896a0d227ca55b89da0e",
-      "generationMasterSourceSha256": "cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1"
+      "generationMasterSourceSha256": "cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1",
+      "worldMapUsage": [
+        {
+          "directionalPathTableIndex": 62,
+          "pathIndex": 31,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 62,
+          "modelIndex": 1,
+          "configuredStage": 88,
+          "battleStage": 88
+        },
+        {
+          "directionalPathTableIndex": 63,
+          "pathIndex": 31,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 63,
+          "modelIndex": 1,
+          "configuredStage": 88,
+          "battleStage": 88
+        },
+        {
+          "directionalPathTableIndex": 64,
+          "pathIndex": 32,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 64,
+          "modelIndex": 1,
+          "configuredStage": 88,
+          "battleStage": 88
+        },
+        {
+          "directionalPathTableIndex": 65,
+          "pathIndex": 32,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 65,
+          "modelIndex": 1,
+          "configuredStage": 88,
+          "battleStage": 88
+        },
+        {
+          "directionalPathTableIndex": 66,
+          "pathIndex": 33,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 66,
+          "modelIndex": 1,
+          "configuredStage": 88,
+          "battleStage": 88
+        },
+        {
+          "directionalPathTableIndex": 67,
+          "pathIndex": 33,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 67,
+          "modelIndex": 1,
+          "configuredStage": 88,
+          "battleStage": 88
+        },
+        {
+          "directionalPathTableIndex": 96,
+          "pathIndex": 48,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 96,
+          "modelIndex": 1,
+          "configuredStage": 88,
+          "battleStage": 88
+        },
+        {
+          "directionalPathTableIndex": 97,
+          "pathIndex": 48,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 97,
+          "modelIndex": 1,
+          "configuredStage": 88,
+          "battleStage": 88
+        }
+      ],
+      "output": "integrations/envhd/production/candidates/cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/37561e937cd3622a8274e8be7b4ae39ec4498e823366896a0d227ca55b89da0e/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c",
@@ -2730,11 +4219,148 @@
         1536,
         1024
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "World desert battle warm fine rocky rubble, low distant ridges and pale blue-grey-to-peach haze. Source-backed usage: stages89; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "sourceEdgeMeanDifference": 4.15625,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c"
+      },
       "priority": 1,
       "decodedRgbaSha256": "26675e0696cbce91b395b9f881f79e2d3c8a98683a276db5e4334adb106d4fcf",
-      "generationMasterSourceSha256": "119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c"
+      "generationMasterSourceSha256": "119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c",
+      "worldMapUsage": [
+        {
+          "directionalPathTableIndex": 50,
+          "pathIndex": 25,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 50,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 51,
+          "pathIndex": 25,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 51,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 52,
+          "pathIndex": 26,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 52,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 53,
+          "pathIndex": 26,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 53,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 54,
+          "pathIndex": 27,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 54,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 55,
+          "pathIndex": 27,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 55,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 56,
+          "pathIndex": 28,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 56,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 57,
+          "pathIndex": 28,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 57,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 92,
+          "pathIndex": 46,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 92,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 93,
+          "pathIndex": 46,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 93,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 94,
+          "pathIndex": 47,
+          "direction": "forward",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 94,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        },
+        {
+          "directionalPathTableIndex": 95,
+          "pathIndex": 47,
+          "direction": "reverse",
+          "configuredEncounterRate": 1,
+          "encounterTableIndex": 95,
+          "modelIndex": 0,
+          "configuredStage": 89,
+          "battleStage": 89
+        }
+      ],
+      "output": "integrations/envhd/production/candidates/119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/26675e0696cbce91b395b9f881f79e2d3c8a98683a276db5e4334adb106d4fcf/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-ffc76af45238eb245442d6033168d0003aec12df6f03aee7cf9b7c8c93ddb409",
@@ -2754,11 +4380,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Pale grey-blue cloud layers above low green hills and a dense darker forest foreground. Source-backed usage: stages90; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.1736111640930176,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "ffc76af45238eb245442d6033168d0003aec12df6f03aee7cf9b7c8c93ddb409"
+      },
       "priority": 1,
       "decodedRgbaSha256": "be33689c56a8a4685dd512ba508634bf993528c0c35cb83b00b1cfbd8d23d527",
-      "generationMasterSourceSha256": "ffc76af45238eb245442d6033168d0003aec12df6f03aee7cf9b7c8c93ddb409"
+      "generationMasterSourceSha256": "ffc76af45238eb245442d6033168d0003aec12df6f03aee7cf9b7c8c93ddb409",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/be33689c56a8a4685dd512ba508634bf993528c0c35cb83b00b1cfbd8d23d527/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/ffc76af45238eb245442d6033168d0003aec12df6f03aee7cf9b7c8c93ddb409/image-v1.png"
     },
     {
       "id": "battle-sky-5e07cf27cb26997deb97aad4232e86e77dff637795dcf005a48fc6192ee25b6c",
@@ -2778,13 +4420,27 @@
         1024,
         1536
       ],
-      "status": "reuse-generation-master",
+      "status": "visual-reviewed-native-pending",
       "review": {
-        "intent": "Pixel-identical decoded artwork; generate the master once and reuse it. Original stage header placement and clear colors remain separate."
+        "intent": "Vol. Villude distant jagged spires in orange-grey haze with dark foreground rocks. Source-backed usage: stages11,12,91; Vol. Villude.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.0138888359069824,
+        "outputEdgeMeanDifference": 0.0,
+        "generationMasterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0"
       },
       "priority": 1,
       "decodedRgbaSha256": "2ba67142b83cbe817d74ba7032546e599d2894dea9e0c9bfc70373503c4ac573",
-      "generationMasterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0"
+      "generationMasterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/2ba67142b83cbe817d74ba7032546e599d2894dea9e0c9bfc70373503c4ac573/image-v3.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-4c0d5a4c187968f9d70d126ee04591678d79f92b5c3683195f1712cbcac708df",
@@ -2804,11 +4460,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Violet-orange sky above pink-brown flat-topped canyon walls, waterfalls and dark water. Source positions and scene identity compared directly with original.",
+        "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+        "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+        "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.381944417953491,
+        "outputEdgeMeanDifference": 1.591796875,
+        "generationMasterSourceSha256": "4c0d5a4c187968f9d70d126ee04591678d79f92b5c3683195f1712cbcac708df"
+      },
       "priority": 1,
       "decodedRgbaSha256": "dee6d2daec87e35471c615d3e4f1ff47bc3add1afcf4d894309515acf6685246",
-      "generationMasterSourceSha256": "4c0d5a4c187968f9d70d126ee04591678d79f92b5c3683195f1712cbcac708df"
+      "generationMasterSourceSha256": "4c0d5a4c187968f9d70d126ee04591678d79f92b5c3683195f1712cbcac708df",
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/4c0d5a4c187968f9d70d126ee04591678d79f92b5c3683195f1712cbcac708df/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/dee6d2daec87e35471c615d3e4f1ff47bc3add1afcf4d894309515acf6685246/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-1624519994035d90954514952dcbb0dfa5457c9b64c5852e513f6938db20d8ba",
@@ -2828,14 +4500,47 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Bright cyan-blue celestial haze behind dim floating stone platforms and broken architectural edges. Source-backed usage: stages95; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+        "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+        "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 5.666666507720947,
+        "outputEdgeMeanDifference": 0.2625868022441864,
+        "generationMasterSourceSha256": "1624519994035d90954514952dcbb0dfa5457c9b64c5852e513f6938db20d8ba"
+      },
       "priority": 1,
       "decodedRgbaSha256": "e0ad8a64d1197f07e69f00c537c802ff8008c192d13ad63fb79c93858b1b2c21",
-      "generationMasterSourceSha256": "1624519994035d90954514952dcbb0dfa5457c9b64c5852e513f6938db20d8ba"
+      "generationMasterSourceSha256": "1624519994035d90954514952dcbb0dfa5457c9b64c5852e513f6938db20d8ba",
+      "worldMapUsage": [],
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/e0ad8a64d1197f07e69f00c537c802ff8008c192d13ad63fb79c93858b1b2c21/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending",
+      "output": "integrations/envhd/production/candidates/1624519994035d90954514952dcbb0dfa5457c9b64c5852e513f6938db20d8ba/image-v1.png"
     }
   ],
   "uniqueDecodedArtwork": 71,
   "restorationSources": 73,
-  "distinctPanoramasNeedingRestoration": 70
+  "distinctPanoramasNeedingRestoration": 70,
+  "usageEvidence": {
+    "field": "RetailSubmap.encounterData_800f64c4; positive-rate entries only",
+    "worldMap": "WmapStatics.directionalPathSegmentData_800f2248; WMap.handleEncounters maps stage -1 to stage1",
+    "limits": "Configured usage does not enumerate scripted battles, encounter mutations by other mods, or demonstrate live-game appearance."
+  },
+  "configuredWorldMapStageWithoutDrawableSky": {
+    "stage": 86,
+    "positiveRateRoutes": 34,
+    "sourceFile": "SECT/DRGN0.BIN/2583/1",
+    "sourceMcqSha256": "465f94270f5013675d223fc6168ea76150d042f0193719888790e55d36244af8",
+    "sourceSize": [
+      8,
+      8
+    ],
+    "action": "retain-original-no-panorama-generation",
+    "evidence": "Battle.renderSkybox returns for screen width or height below16; its battle geometry/materials remain in the separate environment backlog."
+  }
 }

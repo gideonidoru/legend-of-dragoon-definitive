@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "5f8226d59013b51515001b1c522ab6092fd5baec4575e3b7c03f95e1accf94b0",
+  "outputSha256": "9762bb752cdff764389c262816d95f99311bfa228c37ce86e0be559542bebc87",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-evergreen-stage36-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Evergreen Forest and configured world-map route context retained: cool daylight, mountain ridge, conifer belt and green foreground haze.",
+    "style": "Fine natural stone/evergreen detail follows Skurfa while keeping cool lighting.",
+    "layout": "Source comparison retains broad mountain envelope and cloud bands; tree heights remain close to the source conifer belt, with no new clearing or foreground subject.",
+    "wrap": "Joined edge has visible sky/cloud brightness and rock/forest discontinuity; difference7.01 versus source2.83. Hold outside runtime.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.8333332538604736,
+    "outputEdgeMeanDifference": 7.01063346862793
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "279a55aa308a752227199b9edcccaa3a79ac32a069960aba166dba2021666fa5"
+}

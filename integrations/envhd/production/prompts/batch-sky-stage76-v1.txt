@@ -1,0 +1,22 @@
+{
+  "artifact": "EnvHD battle panorama",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "stages": [
+    76
+  ],
+  "sourceMcqSha256": "8b2a9ac4d3b825a1e8eca169827968ec4d39a64bd6c376a76b5fc9c1bb861078",
+  "decodedRgbaSha256": "a299b26f5236def6f374c87e2be9d3190d880938478f6efcc765878516ec973d",
+  "sourceSize": [
+    256,
+    384
+  ],
+  "targetSize": [
+    1024,
+    1536
+  ],
+  "originalIntent": "gold-olive monochromatic embossed branching organic motif fading into soft matching colored haze",
+  "recipe": "4x source-preserving neural inference with periodic64px horizontal and clamped16px vertical context, or existing reviewed-layout draft; exact original coverage/visible-black preservation; smooth32px border correction. Actual method/tool/predecessor identities are in the production record.",
+  "styleReferences": "Skurfa cut5/cut37 visual-review-only; existing Skurfa art is protected and unchanged.",
+  "quality": "Source-faithful development baseline or repaired generative draft. Native/SteamDeck acceptance and final Skurfa-equivalent detail are not claimed."
+}

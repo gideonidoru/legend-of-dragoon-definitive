@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "42ee5b93c2a61366fe82c1a5f9ec86128fc4a767b5c4ed555ec85883e9ea59e9",
+  "outputSha256": "89267ed8bb3909ded75b96ebdd33bfef05522413510e43e1b547c39ac9e4fc6d",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-mayfil-stage54-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Mayfil source and cut540 context confirm cold dark masonry with duplicate recessed arches, thin plinth and luminous aqua lower haze; no statues or floor pools transplanted.",
+    "style": "Worn dark stone with restrained teal highlights complements Skurfa material finish; no new decorative symbols.",
+    "layout": "Front-facing paired arches, horizontal moulding and wall-panel proportions retained at original positions, with nearly black top and aqua bottom fade.",
+    "wrap": "Joined source/HD strip shows a pronounced mismatched side pier and stone brightness seam. Edge difference16.33 versus source4.35; do not select until repaired.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 4.347222328186035,
+    "outputEdgeMeanDifference": 16.328125
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "3831bfa97ce9e5522d04f0e915cf59718e5836ffa2d78c607e881013e8180307"
+}

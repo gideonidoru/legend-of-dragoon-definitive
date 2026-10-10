@@ -1,0 +1,40 @@
+{
+  "kind": "location-thumbnail",
+  "sourceSha256": "5bf4921ca7098fb09da51f0417782dcd233bf7ef586cc1f3b6a983b4ceb41221",
+  "decodedRgbaSha256": "e67b6ae4fa5c3819a17b3fdcf7e222a52b34ea5d58636106116e319dba750ef9",
+  "sourceSize": [
+    120,
+    90
+  ],
+  "sourceFiles": [
+    "SECT/DRGN0.BIN/5655"
+  ],
+  "locations": [
+    "Divine Tree",
+    "Forest",
+    "Moon That  Never Sets",
+    "Prison Island"
+  ],
+  "targetSize": [
+    480,
+    360
+  ],
+  "outputSha256": "1d978de9a8d25bc5e6748af0685fb4a47f9f9cc54908321a80a43be2af8c6af8",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+  "edgeAveraging": false,
+  "review": {
+    "intent": "Warm forest path bordered by golden leaves and dark tree trunks; other engine locations reuse this original forest image. Source-backed engine usage: Divine Tree, Forest, Moon That  Never Sets, Prison Island.",
+    "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+    "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+    "verdict": "visual-reviewed-native-pending"
+  },
+  "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+  "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "location-thumbnail",
+  "sourceSha256": "9a5e98ee51e294a4b301650def7fb734b6f22efa35668591effce600b6262a9e",
+  "decodedRgbaSha256": "5cd6a8b9fb53079ef4a80d82991a0721f76ab2d344e1e3eeb01102cf283ad456",
+  "sourceSize": [
+    120,
+    90
+  ],
+  "sourceFiles": [
+    "SECT/DRGN0.BIN/5670"
+  ],
+  "locations": [
+    "Barrens"
+  ],
+  "targetSize": [
+    480,
+    360
+  ],
+  "outputSha256": "9df817dee806f1f6ffb25b2a661ce7b1a7422ec1f8eee504fb5a12b06adcd10f",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+  "edgeAveraging": false,
+  "review": {
+    "intent": "Barrens winding pale canyon path and rough dark rock walls. Source-backed engine usage: Barrens.",
+    "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+    "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+    "verdict": "visual-reviewed-native-pending"
+  },
+  "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+  "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}
