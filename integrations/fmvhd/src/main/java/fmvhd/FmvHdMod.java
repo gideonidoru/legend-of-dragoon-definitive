@@ -28,7 +28,7 @@ public final class FmvHdMod {
     if(digest == null || !event.sourceSha256().equals(this.assets.getProperty(name + ".sourceSha256"))) return;
     try(final var resource = FmvHdMod.class.getResourceAsStream("/fmvhd/videos/" + name + ".mp4")) {
       if(resource == null) return;
-      final Path root = Path.of(System.getProperty("user.home"), ".cache", "legend-of-dragoon-definitive", "fmvhd");
+      final Path root = Path.of("cache", "fmvhd").toAbsolutePath();
       event.replacement = VideoCache.materialize(root, digest, Long.parseLong(this.assets.getProperty(name + ".bytes")), resource);
     } catch(final IOException | RuntimeException e) {
       LogManager.getLogger().warn("FMVHD retained original {}: {}", name, e.getMessage());

@@ -33,6 +33,7 @@ def main():
         properties.extend(f'{name}.{key}={record[key]}' for key in ('sha256','sourceSha256','bytes'))
     provenance = json.loads((args.production/'toolchain.json').read_text())
     provenance['videos'] = records
+    provenance['assetNotice'] = 'Enhanced from The Legend of Dragoon. Original footage copyright belongs to Sony Computer Entertainment and is not relicensed under the repository AGPL code license.'
     provenance['limitations'] = ['Framewise neural restoration can smooth detail or flicker.', 'Source extraction timing warnings are recorded per video.', 'Physical Steam Deck acceptance remains pending.']
     args.output.parent.mkdir(parents=True, exist_ok=True)
     def write(archive, name, data):
@@ -44,6 +45,7 @@ def main():
                 with data.open('rb') as source:
                     for block in iter(lambda: source.read(1048576), b''): destination.write(block)
     with zipfile.ZipFile(args.output, 'w', compression=zipfile.ZIP_STORED, allowZip64=True) as archive:
+        write(archive,'fmvhd/NOTICE.txt', (provenance['assetNotice']+'\nExternal production tools and notice links are recorded in provenance.json.\n').encode())
         write(archive,'fmvhd/assets.properties', ('\n'.join(properties)+'\n').encode())
         write(archive,'fmvhd/provenance.json', (json.dumps(provenance,indent=2)+'\n').encode())
         for name in NAMES: write(archive,'fmvhd/videos/'+name+'.mp4', args.production/'videos'/(name+'.mp4'))
