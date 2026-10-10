@@ -16,7 +16,7 @@ Use the existing `SurfaceResponse` flags to distinguish lacquered armor, cloth, 
 
 The optional meshes use the original CPU geometry, part identities and animation inputs. ModelsHD may provide its refined GPU geometry through the existing event seam. Texture ownership and geometry ownership remain separate. An earlier UV/packet override keeps priority; unknown authored geometry, native vertex-index consumers, CLUT animation or extra subfiles retain their original route. Malformed packs log a fallback and keep original assets. Optional GPU resources are released on model deletion, texture replacement and combatant teardown.
 
-The battle event receives bounded copies of the raw model and TIM before UV relocation. Packs match both hashes, validate every region and every STP/discard pixel, then allocate optional resources. Color is bound to the direct texture slot; native indexed effects and transforms remain in their original slots. Face-specific surface flags preserve part-wide materials when no palette assignment exists.
+The battle event receives bounded copies of the raw model and TIM before UV relocation. Independently arriving sources are paired and consumed on the render thread, in either completion order. Changed source pairs clear the prior appearance; delayed callbacks from an earlier combatant generation are rejected. Packs match both hashes, validate every region and every STP/discard pixel, then allocate optional resources. Color is bound to the direct texture slot; native indexed effects and transforms remain in their original slots. Face-specific surface flags preserve part-wide materials when no palette assignment exists.
 
 ## Evidence and limits
 
@@ -31,7 +31,7 @@ The 19 baseline atlases total 179,019,776 bytes of base-level RGBA data if all w
 1. Review Dart under native battle lights, blending, shadows, model changes and scene teardown. Compare CharHD off/on and ModelsHD off/on at normal playing distance. Adjust painted highlights and roughness together.
 2. Reconstruct faces and the remaining prominent costume materials for Dart, Haschel and Meru. Retain expressions, silhouettes and original details; inspect each result on the posed model before extending the style.
 3. Promote the remaining normal and Dragoon forms only after comparable art and native checks. Verified source associations do not make a generated asset finished.
-4. Deduplicate and validate party field consumers from the model catalog. The current ledger lists 1,026 bindings across ten party model identities; that is not 1,026 unique accepted textures. Audit enemy/NPC ownership independently.
+4. Review the deduplicated party field consumers from the model catalog. The 1,026 bindings reduce to 15 model/TIM byte pairs with 13 distinct textures, all source-format eligible. Two pairs still lack a named entity assignment. These are not accepted field textures; audit enemy/NPC ownership independently.
 5. Measure GPU residency, load/transition behavior, p95/p99 frametimes and power on a physical Steam Deck. Keep the default installer simple and activation in the game's existing Mods menu.
 
 When the separate four-artwork-mod build integration lands, reconcile its legacy CharHD 0.1 task with this specialized 0.2 source set so the package contains exactly one CharHD jar. Do not overwrite the active EnvHD production checkout.

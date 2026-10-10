@@ -169,11 +169,15 @@ public class Model124 {
 
   public legend.definitive.materials.CharacterAppearance materialAppearance;
 
-  public void deleteModelParts() {
+  public void clearMaterialAppearance() {
     if(this.materialAppearance != null) {
       this.materialAppearance.close();
       this.materialAppearance = null;
     }
+  }
+
+  public void deleteModelParts() {
+    this.clearMaterialAppearance();
     if(this.modelParts_00 != null) {
       for(final ModelPart10 part : this.modelParts_00) {
         part.delete();

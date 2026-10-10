@@ -22,6 +22,8 @@ public final class CharacterAppearance implements AutoCloseable {
   public static CharacterAppearance create(final Model124 model, final MaterialAtlas atlas, final int columns,
                                             final java.util.Map<Integer, legend.core.renderer.SurfaceResponse> surfaces, final byte[] originalModel) {
     requireNativeSource(model, originalModel);
+    if(model.clutAnimations_a4 != null || model.ptr_a8 != null)
+      throw new IllegalArgumentException("Active character has animated or extra material data");
     final TmdObjTable1c[] owners = new TmdObjTable1c[model.modelParts_00.length];
     final Obj[] meshes = new Obj[owners.length];
     Texture texture = null;
@@ -66,7 +68,7 @@ public final class CharacterAppearance implements AutoCloseable {
   }
 
   public boolean applies(final Model124 model) {
-    if(this.colour == null || model.modelParts_00 == null || model.modelParts_00.length != this.owners.length) return false;
+    if(this.colour == null || model.clutAnimations_a4 != null || model.ptr_a8 != null || model.modelParts_00 == null || model.modelParts_00.length != this.owners.length) return false;
     for(final boolean animation : model.animateTextures_ec) if(animation) return false;
     for(int i = 0; i < this.owners.length; i++) if(model.modelParts_00[i].tmd_08 != this.owners[i] || this.owners[i].requiresNativeVertexIndices()) return false;
     return true;

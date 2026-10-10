@@ -72,6 +72,12 @@ public final class CharacterSourceProbe {
           model.animateTextures_ec[0] = true;
           if(appearance.applies(model)) throw new AssertionError("Texture animation failed to retain original");
           model.animateTextures_ec[0] = false;
+          model.clutAnimations_a4 = new legend.game.types.ClutAnimations();
+          if(appearance.applies(model)) throw new AssertionError("Active CLUT animation failed to retain original");
+          model.clutAnimations_a4 = null;
+          model.ptr_a8 = new legend.game.types.CContainerSubfile2(new FileData(new byte[0]), 0);
+          if(appearance.applies(model)) throw new AssertionError("Active extra data failed to retain original");
+          model.ptr_a8 = null;
           model.modelParts_00[0].tmd_08.retainNativeVertexIndices();
           if(appearance.applies(model)) throw new AssertionError("Native deformation failed to retain original");
           model.deleteModelParts();

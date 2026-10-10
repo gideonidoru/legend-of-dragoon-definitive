@@ -38,7 +38,7 @@ public class CombatantStruct1a8 {
    */
   public int flags_19e;
   public int vramSlot_1a0;
-  public byte[] materialTimSource;
+  public final legend.definitive.materials.CharacterMaterialState materials = new legend.definitive.materials.CharacterMaterialState();
   public legend.game.types.Model124 materialModel;
   public Tim tim;
   public Gpu texture;

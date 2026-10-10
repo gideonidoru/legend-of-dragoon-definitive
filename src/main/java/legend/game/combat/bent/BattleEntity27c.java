@@ -744,6 +744,7 @@ public abstract class BattleEntity27c extends BattleObject {
 
   @Method(0x800ec974L)
   private void renderBttlModel(final Model124 model, final CombatantStruct1a8 combatant) {
+    Battle.applyCombatantMaterials(this.battle, model, combatant);
     if(combatant.vramSlot_1a0 == -1 && combatant.texture == null) {
       // This isn't the dumbest thing I've ever done, but it's up there
       combatant.texture = new Gpu();
