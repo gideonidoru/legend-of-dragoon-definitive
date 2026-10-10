@@ -35,6 +35,8 @@ Setup shows overall progress and current-file progress. Downloads and activation
 
 The visual goal is a polished modern AA game with a deliberate retro aesthetic. That means keeping the original compositions, silhouettes, costumes and atmosphere while improving the things that stand out on a modern screen: angular faces, blocky limbs, uneven material detail, jagged edges and low-resolution cinematics.
 
+The goal covers the whole campaign: every character category, environment, interface family, cinematic and effect. Early pilots help establish the style and runtime support; they do not narrow that goal or stand in for full coverage.
+
 There are several parts to making that work together:
 
 - **A consistent world.** Build around Skurfa's HD backgrounds, then fill missing environments, battle panoramas, world-map artwork and props. Keep foreground masks and scene placement correct so characters still walk behind the right trees, walls and doors.
@@ -48,9 +50,9 @@ Our approach is incremental: reuse good community work, add separate mods, and e
 
 ## ModelsHD: the broad first pass
 
-ModelsHD 0.4 inspects all **1,343 supported canonical model containers**. **964 receive some smoothing; 379 keep their originals** because their topology is unsafe or refinement adds no useful detail. The complete mod bundles **8,531 unique custom part replacements**, including the nine confirmed party field models and all 19 party battle forms, with eligible NPCs, bosses, enemies, scenery and world-map resources. Original animation/script data and active texture addressing remain intact.
+ModelsHD 0.4 inspects all **1,343 supported canonical model containers**. **964 receive some smoothing; 379 keep their originals** because their topology is unsafe or refinement adds no useful detail. The mod bundles **8,531 unique custom part replacements**, including the nine confirmed party field models and all 19 party battle forms, with eligible NPCs, bosses, enemies, scenery and world-map resources. Original animation/script data and active texture addressing remain intact.
 
-Version 0.4 is merged into main and included in the consolidated build under validation; the current public installer still carries version 0.3. This is a modest first geometry pass. Individual faces, hair, hands and costumes still need deliberate reconstruction. [Build and use ModelsHD](integrations/modelshd/README.md) · [Exact coverage and verification](docs/definitive/MODELS_HD_WORLD_PASS.md) · [Model catalog](docs/definitive/MODEL_CATALOG.md).
+Version 0.4 is merged into main and included in the consolidated source build; the current public installer still carries version 0.3. This is a modest first geometry pass. Individual faces, hair, hands and costumes still need deliberate reconstruction. [Build and use ModelsHD](integrations/modelshd/README.md) · [Exact coverage and verification](docs/definitive/MODELS_HD_WORLD_PASS.md) · [Model catalog](docs/definitive/MODEL_CATALOG.md).
 
 ## Before and after
 
@@ -74,23 +76,27 @@ Meru's battle mesh goes from **806 to 2,687 triangles**. The untextured view mak
 
 The normal installation supplies **Skurfa, ModelsHD, FMVHD, EnvHD, CharHD, UIHD and FxHD** as separate modules. Use the game's mod manager for individual choices; the launcher's original/HD artwork preference also controls managed Skurfa and ModelsHD selection.
 
-**The table covers the latest merged source and clearly marked pending work.** The current public all-HD repair release still carries the earlier model/artwork pilots. The orchestrator is validating one replacement installer with the newer models, rendering, audio, QoL and merged artwork together; the download button will follow it when published.
+**The table describes merged source, not everything in the current download.** The public all-HD repair release still carries ModelsHD 0.3 and earlier artwork pilots. Newer models, SMAA, audio, gameplay conveniences, UIHD and cinematic fixes are merged. A development alpha is being prepared for testing the playback fixes, with broader engine pacing checks required before publication. That test release will still have partial HD artwork coverage; the full-campaign restoration goal remains unchanged. The download button always points to the current published installer. Bundling all seven modules does not mean their artwork is finished.
 
-| Mod | What it contributes | Latest coverage |
+| Mod | Full scope | Merged coverage and remaining work |
 | --- | --- | --- |
-| **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Individually remastered field backgrounds and foreground layers; the foundation for our environment style. | Pinned v1.1.0: 38 distinct scene packs and their aliases. Existing artwork and attribution are preserved. |
-| **[ModelsHD](integrations/modelshd/README.md)** | Custom geometry with original animations, scripts and active texture bindings retained. | Merged v0.4: 964 supported containers receive refinement, including the nine party field models and all 19 party battle forms; 379 retain originals. |
-| **[FMVHD](integrations/fmvhd/README.md)** | Enhanced cinematics with streamed playback and original-video fallback. | All 18 films at 1280×768, original 15 fps cadence and 5:3 proportions. No generated motion frames. |
-| **[EnvHD](integrations/envhd/production/README.md)** | Missing battle and world-map environment art, extending Skurfa's style. | Merged: 70 distinct battle panoramas through 73 source bindings, 38 location landscapes and one parchment world-map backdrop, alongside two battle-material pilots. Terrain/scenery expansion is under review; broader field coverage remains open. |
-| **[CharHD](docs/definitive/CHARHD_PRODUCTION.md)** | Character artwork, with texture ownership separate from ModelsHD geometry. | Merged: source-bound battle adapter and selected Dart red-armor development pilot with explicit materials. All 19 playable battle forms have 4× candidates under review. Field characters, NPCs and enemies remain in scope; they are not yet restored. |
-| **[UIHD](docs/definitive/UIHD_PRODUCTION.md)** | Interface artwork, HUD and portraits. | Current source supplies complete default HUD and all nine portraits in 259 selected assets, with full menu pages, spirit frames, goods, controls and dialogue. Palette variants are not extra screens. Combined gameplay, visual acceptance and physical Deck measurements remain pending. |
-| **FxHD** | Source-bound effect textures with original timing, blending and transparency. | Under review: six selected 2× field textures—dust, both footprints, white smoke, brown smoke cloud and save-point glow—using about 80 KiB before driver overhead. Broader spells and transformations remain ahead. |
+| **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Existing community field backgrounds and foreground layers; the foundation for our environment style. | Pinned v1.1.0: 38 distinct scene packs and their aliases. Existing artwork and attribution are preserved. |
+| **[ModelsHD](integrations/modelshd/README.md)** | Party, NPC, enemy, boss, scenery and world-map geometry, preserving original animation and scripts. | Merged v0.4: 964 supported containers receive refinement, including the nine party field models and all 19 party battle forms; 379 retain originals. Bespoke faces, hair, hands and costume reconstruction remain unfinished. |
+| **[FMVHD](integrations/fmvhd/README.md)** | Every cinematic, with enhanced playback and original-video fallback. | All 18 films at 1280×768, original 15 fps cadence and 5:3 proportions. No generated motion frames. Full-game playback and physical Deck acceptance remain pending. |
+| **[EnvHD](integrations/envhd/production/README.md)** | Field scenes and foregrounds, battle environments, world-map terrain/scenery and environmental props, alongside Skurfa's existing work. | Merged: 70 distinct battle panoramas through 73 source bindings, 38 location landscapes and one parchment world-map backdrop, alongside two battle-material pilots. Terrain/scenery expansion is under review; unowned field scenes, remaining battle materials, props and animated surfaces remain unfinished. |
+| **[CharHD](docs/definitive/CHARHD_PRODUCTION.md)** | Party battle/field/world appearances, NPCs, enemies, bosses and scripted variants; texture ownership stays separate from ModelsHD geometry. | Merged: all 678 textured candidates from the initial restoration queue, plus the source-bound battle adapter and selected Dart armor pilot. Candidates are public development baselines, not 678 installed or accepted replacements. Actor identification, unsupported routes, runtime selection and final art remain open. |
+| **[UIHD](docs/definitive/UIHD_PRODUCTION.md)** | Default HUD, all nine portraits, menus, dialogue, symbols and controls, retaining existing HD fonts and procedural panels. | Merged: default HUD and all nine portraits in 259 selected assets, with full menu pages, spirit frames, goods, controls and dialogue. Palette variants are not extra screens. Combined gameplay, visual acceptance and physical Deck measurements remain pending. |
+| **[FxHD](integrations/fxhd/README.md)** | Field and battle effects, including spells, enemy attacks and transformations, preserving timing, blending and transparency. | Merged: six selected 2× field textures—dust, both footprints, white smoke, brown smoke cloud and save-point glow—using about 80 KiB before driver overhead. The wider field/battle effect catalog, spells, enemy attacks and transformations remain unfinished. |
 
-EnvHD's selected restoration is a source-faithful baseline, with native scene acceptance still pending. Static world-map terrain work has produced 293 candidates, 292 reviewed as development baselines; packing and special-case materials remain in progress. Animated water keeps its original path. These counts describe artwork and source bindings, not a whole-game completion percentage.
+EnvHD's selected restoration is a source-faithful baseline, with native scene acceptance still pending. Static world-map terrain work has produced 293 candidates, 292 reviewed as development baselines; packing and special-case materials remain in progress. Animated water keeps its original path. The field census also has 612 unowned configurations before shared images and empty layers are reconciled. These counts describe artwork and source bindings, not a whole-game completion percentage. [Environment coverage](docs/definitive/ENVHD_STATUS.md).
+
+CharHD's expanded audit found 816 model/texture pairs across 6,945 bindings. Its initial queue includes 678 textured candidates and 13 untextured entries; animated data, unsupported mappings, unbound routes and source failures still need work. The complete NPC and scripted-variant census is unresolved, and none of these candidates has final AA artwork or native/Deck acceptance.
 
 CharHD's source-bound battle adapter preserves palette coverage and native effects, supports explicit surface/roughness assignments and works with ModelsHD's separate geometry route. All 38 headless combinations of the 19 party forms with ModelsHD on/off have passed their mesh checks. Batch restoration alone remains too subtle for the final target; Dart's armor is the first focused reconstruction. Face, hair and remaining costume work still need deliberate treatment and native review.
 
-UIHD keeps original logical sizes, animation offsets and clipping while loading larger images. Palette or VRAM changes fall back to original pixels, and disabling the mod reloads persistent artwork correctly. FxHD likewise keeps original drawing when source pixels or palettes change, and integrates with effect lighting, save-point emission and reduced-flashing settings. These compatibility checks do not establish physical Deck appearance or performance.
+UIHD now covers the default combat page, shared UI and menu sheets, all nine portraits, all 21 goods icons, eight elements’ Dragoon spirit frames, divine overlays, command controls and dialogue borders/arrows. It keeps original logical sizes, animation offsets and clipping while loading larger images. Native palette variants load on demand within a 32 MiB artwork residency budget; current-frame resources stay pinned and unused pages can retire, including while paused. Existing smooth fonts and resolution-independent panels remain available.
+
+Palette or VRAM changes fall back to original pixels, and disabling the mod reloads persistent artwork correctly. FxHD likewise keeps original drawing when source pixels or palettes change, and integrates with effect lighting, save-point emission and reduced-flashing settings. These compatibility checks do not establish physical Deck appearance or performance.
 
 HD assets are prepared ahead of time; the Deck does not need to run the authoring tools or neural models. Custom meshes and artwork are public project deliverables, with only selected runtime assets entering the installed mods. Development candidates retain their review status.
 
@@ -98,7 +104,7 @@ FMVHD preserves the source timing and soundtrack content, with bounded buffering
 
 ## Engine and presentation improvements
 
-Severed Chains supplies the game port, rendering and audio foundations, input support, disc extraction and modding API. Definitive builds on those systems. The engine on **main** now includes the following improvements. The consolidated installer is being validated to bring these changes together with the published repair system and newly merged artwork:
+Severed Chains supplies the game port, rendering and audio foundations, input support, disc extraction and modding API. Definitive builds on those systems. The engine on **main** now includes the following improvements for the next consolidated installer:
 
 - **SMAA anti-aliasing:** cleaner silhouettes and diagonal edges through three spatial passes, with dialogue, menus, battle HUD and Addition prompts protected. It uses the original MIT-licensed [SMAA implementation](gfx/shaders/smaa/README.md), with the earlier edge filter available as fallback.
 - **Smoother lighting and soft contact shadows** across field maps, battles, the world map and model-based cutscenes, retaining the scene's original light directions and colors.
@@ -109,11 +115,11 @@ Severed Chains supplies the game port, rendering and audio foundations, input su
 - **Bounded artwork caching:** repeated PNG loads reuse decoded pixels within a 64 MiB retained cache. Prewarming hooks let artwork mods prepare images before display, and loading measurements help identify remaining stalls.
 - **Protected HD interface artwork:** UI atlas draws explicitly retain crisp coverage; source-bound replacements preserve live palette changes, native transparency, clipping and animation coordinates. Atlas-capacity fallback retains registered artwork, and mod reloads cannot resurrect an obsolete selection.
 - **Safer graphics handling:** failed shader reloads retain the working program, texture uploads and mipmap updates use the correct bindings, and deleted texture IDs no longer leave stale cached bindings.
-- **Enhanced cinematic playback:** bounded streaming, cancellation and synchronization retain the original timing and return-to-game behavior.
+- **Correct cinematic speed:** movies keep their own timing even when gameplay is sped up. Every cinematic frame reaches the renderer, including when playback starts on a skipped gameplay frame; normal gameplay settings return afterward. Streaming audio no longer counts unplayed buffers during empty starts or underruns, preventing the accelerated opening reported in the public build. [Playback fix and regression evidence](docs/definitive/CINEMATIC_TIMING.md).
 
 ### Default assets: detail, lighting and first visits
 
-These additions are also merged into **main**, ready for the consolidated release:
+These additions are also merged into **main**:
 
 - **Default surface detail** adds a subtle shared normal/roughness finish to supported original and HD models. Original palette animation and transparency stay live, and authored maps take precedence. This is a conservative baseline, not hand-painted skin, fabric or metal masks for every asset.
 - **Automatic scene-lighting profiles** follow the game's original lights and scripted changes when an artist profile is absent. They preserve the original lighting as the dominant input; they do not infer lighting from background images.
