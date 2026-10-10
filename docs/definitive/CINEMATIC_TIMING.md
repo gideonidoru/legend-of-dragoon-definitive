@@ -9,7 +9,7 @@ Two engine paths could accelerate playback:
 
 `AudioSource` now owns one refill transaction for byte, signed-16 and float packets. It pauses a playing native source while retiring the old queue and appending fresh audio, rewinds an empty stopped queue before append, and restores the previous playing state in `finally`. This preserves the current sample position and prevents the native mixer from reaching STOPPED inside the transaction. Empty queues never start. Restart drains a completed old tail rather than replaying it. The played-position accessor rechecks natural EOF after sampling the offset, so a tail finishing during that query cannot make the clock go backward.
 
-Cinematics use their own cadence: 15 fps for original video and 60 render callbacks per second for streamed video. Streamed frame selection follows actually played audio. The player's gameplay speed remains unchanged and normal rendering settings are restored afterward. Logs identify whether a cinematic selected FMVHD or original playback.
+Cinematics use their own cadence: 15 fps for original video and 60 render callbacks per second for streamed video. Streamed frame selection follows actually played audio. A scoped renderer mode also disables gameplay frame skipping and neutralizes the speed multiplier in vsync/FPS accounting during playback. Entering a movie clears any skipped-frame queue suppression immediately; cleanup restores the previous scope on completion, skip, fallback and initialization failure. The player's gameplay speed remains unchanged and normal rendering settings are restored afterward. Logs identify whether a cinematic selected FMVHD or original playback.
 
 ## Regression coverage
 
@@ -23,6 +23,6 @@ Cinematics use their own cadence: 15 fps for original video and 60 render callba
 - The shipped launch logo and the first eight seconds of the pinned OPENH payload follow rendered audio samples and retain future video frames.
 - The synthetic three-second audio-tail fixture takes at least 95 percent of its media duration to complete and cannot run its clock more than 100 ms ahead of elapsed time.
 
-`CinematicCadenceTest` runs the production cinematic scheduler through a virtual window at gameplay speed 8 and verifies approximately 15 original frames per elapsed second. Enhanced cadence is checked at gameplay speeds 1, 3, 8 and 16. No SDL window, GPU, Steam client or game session is launched by these tests.
+`CinematicCadenceTest` runs the production cinematic scheduler through a virtual window at gameplay speed 8 and verifies approximately 15 original frames per elapsed second. Enhanced cadence is checked at gameplay speeds 1, 3, 8 and 16. `CinematicRenderCadenceTest` exercises the actual buffer scheduler at speeds 1, 3, 8 and 16: every cinematic callback presents, even when playback begins on a skipped gameplay frame, and gameplay skipping resumes after cleanup. It checks nested scope restoration, queue acceptance and preserved disabled frame skipping. The original scheduler failed this test before the fix. No SDL window, GPU, Steam client or game session is launched by these tests.
 
 The native queue-state behavior follows the [OpenAL 1.1 specification](https://www.openal.org/documentation/openal-1.1-specification.pdf). These regressions establish engine behavior; physical Steam Deck playback remains a separate acceptance check.

@@ -266,6 +266,8 @@ public final class Fmv {
   private static boolean isKeyboardInput;
   private static boolean isControllerInput;
 
+  private static boolean oldCinematicPlayback;
+
   public static boolean isPlaying;
 
   public static void playCurrentFmv(final int fmvIndex, final EngineStateType<?> afterFmvState) {
@@ -372,7 +374,9 @@ public final class Fmv {
     oldClearColour.set(clearRed_8007a3a8, clearGreen_800bb104, clearBlue_800babc0);
 
     oldRenderer = RENDERER.setRenderCallback(() -> { });
+    oldCinematicPlayback = RENDERER.setCinematicPlayback(true);
     try {
+      setPlaybackTiming(hdMovie != null);
       CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), true);
       RENDERER.setRenderMode(EngineState.RenderMode.PERSPECTIVE);
       RENDERER.setProjectionSize(320, 240);
@@ -757,6 +761,7 @@ public final class Fmv {
       if(buttonPressed != null) { safely(() -> RENDERER.events().removeButtonPress(buttonPressed)); buttonPressed = null; }
       safely(() -> CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), oldAllowWidescreen));
       safely(() -> RENDERER.setRenderCallback(oldRenderer));
+      safely(() -> RENDERER.setCinematicPlayback(oldCinematicPlayback));
       safely(() -> RENDERER.window().setFpsLimit(oldFps));
       safely(() -> PLATFORM.setInputTickRate(oldFps));
       safely(() -> RENDERER.setRenderMode(oldRenderMode));
