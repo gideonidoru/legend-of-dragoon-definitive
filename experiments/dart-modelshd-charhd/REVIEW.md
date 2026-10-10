@@ -24,3 +24,5 @@ No concrete spec violation found. Shared framing and all six shape/texture combi
 Acceptance remains partial, as explicitly disclosed: animation/material integration and measured Steam Deck performance are not fulfilled by current evidence. Native battle CharHD playback is deferred; broader animation, scene lighting/transitions and physical Deck measurements remain promotion blockers. This is consistent with the experimental scope. Hair, hands and side/ear transitions remain development quality. The reviewer reran all three headless generator fixtures successfully.
 
 Initial Standards: two concrete findings plus one judgment call, all addressed and independently verified. Spec: zero concrete violations; artistic, gameplay and Deck acceptance remain required before promotion.
+
+The subsequent battle bandana correction was prompted by owner visual review and validated with failing-then-passing native/offline regressions. It is described in VALIDATION.md; the independent reviewer verdict above applies to the earlier commit only.

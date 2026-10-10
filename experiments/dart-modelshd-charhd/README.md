@@ -54,4 +54,6 @@ python3 experiments/dart-modelshd-charhd/build-study.py \
 
 The opt-in JAR is a CharHD face/field extension, not a replacement for the engine or ModelsHD. Shape payloads are separate experimental ModelsHD override packs; no automatic installer copies them. For a future authorized developer gameplay trial, build this branch's engine, enable ModelsHD and the experimental JAR, and stage the custom packs in its isolated `model-packs/modelshd/parts` directory. Removing the experimental mod and its overrides restores the normal route. Do not stage these into the user's normal installation or change release defaults without approval.
 
+Battle face mapping has been corrected after owner review: the original red bandana and hair materials are retained, and battle-specific eye/mouth alignment is shared by the offline and native paths. Field mapping and mesh geometry are unchanged.
+
 See [PROVENANCE.md](PROVENANCE.md), [receipt.json](receipt.json) and [VALIDATION.md](VALIDATION.md) for asset origins, hashes and the evidence limits.

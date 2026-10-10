@@ -53,4 +53,22 @@ class StudyTest(unittest.TestCase):
         self.assertEqual(original[0][2],0)
         np.testing.assert_array_equal(original[0][1],polygons[0][1])
 
+    def test_battle_face_paint_preserves_bandana_and_hair_materials(self):
+        # Native Dart battle head at the pinned model hash: these are red cloth / hair.
+        for face_id in (20,21,23,75,110,121,122):
+            source=self.triangle();source['faces'][0]['sourceFace']=face_id
+            polygons=[([],None,0,np.array([[109,15,12]]*3))]*(face_id+1)
+            _,painted=study.paint_face(source,(np.asarray(source['vertices']),polygons),'combat',967)
+            self.assertEqual(painted[0][2],0,f'Face paint overwrites protected face {face_id}')
+
+    def test_battle_landmarks_place_eyes_below_bandana(self):
+        source=self.triangle();source['faces'][0]['sourceFace']=0
+        # Bone-local landmarks: eye center qY=2.1, mouth center qY=5.4.
+        source['vertices']=[[-70,38.5,-35],[-70,38.5,35],[-70,-11,0]]
+        polygons=[([],None,0,np.ones((3,3))*128)]
+        _,painted=study.paint_face(source,(np.asarray(source['vertices']),polygons),'combat',967)
+        eye_v=painted[0][1][0,1];mouth_v=painted[0][1][2,1]
+        self.assertGreaterEqual(eye_v,.29);self.assertLessEqual(eye_v,.36)
+        self.assertGreaterEqual(mouth_v,.60);self.assertLessEqual(mouth_v,.68)
+
 if __name__ == '__main__': unittest.main()

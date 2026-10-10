@@ -129,7 +129,9 @@ public final class DartFacePaint {
           final var point = geometry.vert_top_00[vertex];
           final double x = field ? point.x : point.z / mapping.combatScale(), y = field ? point.y : (mapping.combatOriginY()-point.y) / mapping.combatScale();
           uv[corner*2] = (float)Math.clamp(.5 + x * mapping.projection(), 0, 1);
-          uv[corner*2+1] = (float)Math.clamp(.5 + (y-mapping.originY()) * mapping.projection(), 0, 1);
+          final double originY=field ? mapping.originY() : mapping.combatFaceOriginY();
+          final double verticalScale=field ? 1.0 : mapping.combatFaceVerticalScale();
+          uv[corner*2+1] = (float)Math.clamp(.5 + (y-originY) * mapping.projection() * verticalScale, 0, 1);
         }
         detailUvs[rendered] = uv;
         header &= ~0x02000000; // Selected authored face paint is opaque, not a PSX STP material.

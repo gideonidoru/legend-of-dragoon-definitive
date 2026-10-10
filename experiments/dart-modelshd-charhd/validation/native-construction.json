@@ -1,5 +1,4 @@
 {
-  "status": "passed",
   "scope": "Native CPU construction and source immutability; no GPU/gameplay/Deck acceptance",
   "checks": [
     {
@@ -82,5 +81,6 @@
       "faceTextures": 1,
       "form": "combat"
     }
-  ]
+  ],
+  "status": "passed"
 }

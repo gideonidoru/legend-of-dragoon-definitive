@@ -10,7 +10,8 @@ import java.util.Set;
 
 /** One bounded mapping resource shared by the offline study and native appearance module. */
 record DartFaceMapping(Set<Integer> fieldFaces, Set<Integer> combatFaces, double projection,
-                       double originY, double combatScale, double combatOriginY) {
+                       double originY, double combatScale, double combatOriginY,
+                       double combatFaceOriginY, double combatFaceVerticalScale) {
   static DartFaceMapping load() {
     try(final var input=DartFaceMapping.class.getResourceAsStream("/charhd-experiment/dart-face-mapping-v1.json")) {
       if(input==null)throw new IOException("Missing face mapping");
@@ -21,7 +22,8 @@ record DartFaceMapping(Set<Integer> fieldFaces, Set<Integer> combatFaces, double
       final double size=positive(root,"templateSize"),fit=positive(root,"templateFit"),span=positive(root,"templateSpan");
       if(size>2048 || fit>size)throw new IOException("Invalid template dimensions");
       return new DartFaceMapping(faces(root,"fieldFaces"),faces(root,"combatFaces"),fit/span/size,
-        finite(root,"originY"),positive(root,"combatScale"),finite(root,"combatOriginY"));
+        finite(root,"originY"),positive(root,"combatScale"),finite(root,"combatOriginY"),
+        finite(root,"combatFaceOriginY"),positive(root,"combatFaceVerticalScale"));
     } catch(final IOException failure) {throw new UncheckedIOException(failure);}
     catch(final RuntimeException failure) {throw new UncheckedIOException(new IOException("Invalid face mapping",failure));}
   }

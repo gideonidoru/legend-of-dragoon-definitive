@@ -78,6 +78,23 @@ class DartFacePaintTest {
     assertEquals(2,mesh.faceDetailTexture().width);
     for(final var part:mesh.meshes)for(final float value:part.vertices())assertTrue(Float.isFinite(value));
   }
+  @Test void battleBandanaAndHairRetainTheirMaterials() {
+    final var mapping=DartFaceMapping.load();
+    for(final int face:new int[]{20,21,23,75,110,121,122}) {
+      final var original=source(); original.sourceFaces(new int[]{face},148);
+      assertSame(original,DartFacePaint.paint(original,mapping.combatFaces(),paint(),false),"Protected face "+face);
+    }
+  }
+  @Test void battleEyeAndMouthLandmarksAlignWithPaint() {
+    final var original=source();
+    original.vert_top_00[0].set(-70,38.5f,-35);
+    original.vert_top_00[1].set(-70,38.5f,35);
+    original.vert_top_00[2].set(-70,-11,0);
+    final var colored=DartFacePaint.paint(original,DartFaceMapping.load().combatFaces(),paint(),false);
+    final float eye=colored.faceDetail().v(0,0), mouth=colored.faceDetail().v(0,2);
+    assertTrue(eye>=.29f && eye<=.36f,"Eye landmark "+eye);
+    assertTrue(mouth>=.60f && mouth<=.68f,"Mouth landmark "+mouth);
+  }
   @Test void unrelatedFaceRetainsItsTextureAndPacketBytes() {
     final var original=source();
     final var colored=DartFacePaint.paint(original,Set.of(9),paint(),false);

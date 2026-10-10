@@ -59,3 +59,13 @@ The standalone viewer contains 84 embedded model images and requires no server. 
 ## Promotion blockers
 
 Explicit user approval of the chosen visual direction; hair/hand/side-profile refinements if requested; production CharHD battle material-map integration; actual scene-lighting/STP/mod composition and transition testing; broader character animation coverage; measured physical Steam Deck frametime and memory. The user-directed faithful mode must keep the experimental face/art changes disabled. Nothing here claims universal mod compatibility or community acceptance.
+
+## Battle bandana correction — 2026-10-10
+
+Owner review identified that the battle eyes were too high and the bandana disappeared. A direct private-source check reproduced paint on red cloth source faces 21 and 23. A separate landmark regression reproduced the shared field projection placing the battle eye sample at V=0.44645 instead of the painted eye region. A selected hair face (75) was also removed from the face layer.
+
+The shared mapping now preserves all identified bandana faces (20, 21, 23, 110, 121, 122) and hair face 75. Battle-only vertical projection uses face origin 4.0 and scale multiplier 1.25; field mapping and all mesh payloads are unchanged. Offline and native paths read these values from the same bounded resource. The two new regressions failed before the fix in both Python and Java, then passed after it.
+
+Verification: 11 experimental Java tests, five Python generator tests and all eight actual-source native construction combinations passed; ModelsHD's existing 31 tests remain passing/up to date. All 84 comparisons regenerated. All 42 field images and all 12 custom mesh payloads remain byte-identical to the previous version. Three battle camera views and stored keys 0, 5, 9 were visually inspected after correction. The runtime probe used the previous private study's identical geometry packs, with the newly compiled face mapping. No game was launched; gameplay and physical Deck validation remain pending. The earlier full build and synthetic GPU results above were not rerun for this mapping-only correction.
+
+Revised private review: `Legend-of-Dragoon-Dart-Experiment-v2/index.html` and matching ZIP. Historical independent review above covered the earlier revision, not this owner-requested correction. Main/release approval remains required.

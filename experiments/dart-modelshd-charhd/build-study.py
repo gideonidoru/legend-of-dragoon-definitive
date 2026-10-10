@@ -187,7 +187,9 @@ def paint_face(part, source, form, clut):
     q = points if form == 'field' else np.column_stack((points[:,2]/scale, (FACE_MAPPING['combatOriginY']-points[:,1])/scale, -points[:,0]/scale))
     projection = FACE_MAPPING['templateFit'] / FACE_MAPPING['templateSpan'] / FACE_MAPPING['templateSize']
     u = .5 + q[:,0] * projection
-    v = .5 + (q[:,1]-FACE_MAPPING['originY']) * projection
+    origin_y = FACE_MAPPING['originY'] if form == 'field' else FACE_MAPPING['combatFaceOriginY']
+    vertical_scale = 1.0 if form == 'field' else FACE_MAPPING['combatFaceVerticalScale']
+    v = .5 + (q[:,1]-origin_y) * projection * vertical_scale
     uv = np.clip(np.column_stack((u, v)), 0, 1).astype(np.float32)
     result = []
     for face, polygon in zip(part['faces'], polygons):
