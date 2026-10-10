@@ -15,6 +15,8 @@ import static legend.game.Models.updateTmdPacketIlen;
 
 /** 0x1c bytes long */
 public class TmdObjTable1c {
+  /** Three signed 16-bit source coordinates, including large scenery and stages. */
+  public static final float MAX_GEOMETRY_VECTOR_LENGTH_SQUARED = 3_221_225_472.0f;
   public final String name;
 
   public final Vector3f[] vert_top_00;
@@ -24,6 +26,27 @@ public class TmdObjTable1c {
   public final Primitive[] primitives_10;
   public final int n_primitive_14;
   public final int scale_18;
+  private final boolean authoredGeometry;
+  private boolean nativeVertexIndices;
+  Obj refinedObj;
+  private boolean refinedCache;
+
+  public boolean requiresNativeVertexIndices() {
+    return this.nativeVertexIndices;
+  }
+
+  /** Deforming effects address the original CPU vertices, so retire only our refined cache. */
+  public void retainNativeVertexIndices() {
+    this.nativeVertexIndices = true;
+    if(this.refinedCache) {
+      this.delete();
+    }
+  }
+
+  /** Explicit geometry owners retain priority over optional automatic refinement. */
+  public boolean isAuthoredGeometry() {
+    return this.authoredGeometry;
+  }
 
   Obj obj;
   private int textureWidth;
@@ -32,6 +55,7 @@ public class TmdObjTable1c {
 
   /** Owned floating-point geometry for model mods. No parsed source table is mutated. */
   public TmdObjTable1c(final String name, final Vector3f[] vertices, final Vector3f[] normals, final Primitive[] primitives) {
+    this.authoredGeometry = true;
     this.name = name;
     if(vertices.length == 0 || vertices.length > 65535 || normals.length > 65535 || primitives.length > 50000) {
       throw new IllegalArgumentException("Authored geometry exceeds part limits");
@@ -67,7 +91,7 @@ public class TmdObjTable1c {
   private static Vector3f[] copyVectors(final Vector3f[] input) {
     final Vector3f[] output = new Vector3f[input.length];
     for(int i = 0; i < input.length; i++) {
-      if(input[i] == null || !input[i].isFinite() || input[i].lengthSquared() > 1_000_000_000.0f) {
+      if(input[i] == null || !input[i].isFinite() || input[i].lengthSquared() > MAX_GEOMETRY_VECTOR_LENGTH_SQUARED) {
         throw new IllegalArgumentException("Invalid authored vector");
       }
       output[i] = new Vector3f(input[i]);
@@ -76,6 +100,7 @@ public class TmdObjTable1c {
   }
 
   public TmdObjTable1c(final String name, final FileData data, final FileData baseOffset) {
+    this.authoredGeometry = false;
     this.name = name;
 
     final FileData verts = baseOffset.slice(data.readInt(0x0));
@@ -129,6 +154,7 @@ public class TmdObjTable1c {
   public Obj getObj() {
     if(this.obj == null) {
       this.obj = TmdObjLoader.fromObjTable(this.meshName == null ? this.name : this.meshName, this, 0, this.textureWidth, this.textureHeight);
+      this.refinedCache = this.obj == this.refinedObj;
       this.obj.surfaceMaterial = this.surfaceMaterial;
     }
 
@@ -191,6 +217,8 @@ public class TmdObjTable1c {
     }
 
     this.obj = null;
+    this.refinedObj = null;
+    this.refinedCache = false;
   }
 
   @Override
