@@ -16,13 +16,13 @@ HD artwork. Smoother models. Enhanced cinematics. One guided installation.
 
 Built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains), Definitive adds an integrated presentation and installation experience: custom model and texture upgrades, restored interface and effect artwork, enhanced films, lighting improvements, campaign presets, and a launcher for updates and recovery. The story, recognizable character designs, original music and Addition-based combat remain central to the experience.
 
-> **Alpha availability:** The current download contains the all-HD repair release. This feature tour also includes upcoming installer additions: broader model smoothing, full UIHD and FxHD artwork, SMAA, audio and playback fixes, and expanded convenience settings. The remaster is unfinished, and Steam Deck gameplay/performance testing is ongoing. [See what your download includes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
+> **Alpha availability:** The current download contains the all-HD repair release. This feature tour also includes upcoming installer additions: broader model smoothing, Dart’s reconstructed head and hair, full UIHD and FxHD artwork, SMAA, independent engine clocks, audio and playback fixes, and expanded convenience settings. The remaster is unfinished, and Steam Deck gameplay/performance testing is ongoing. [See what your download includes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
 
 ## More detail. The same unmistakable world.
 
 ### Characters with smoother shapes and richer detail
 
-ModelsHD refines angular surfaces on supported party, enemy, NPC and scenery models while retaining their original animations. CharHD includes Dart’s reconstructed face and sculpted hair, with restored painted detail on armor, clothing and weapons. Together, they target more convincing characters without losing the silhouettes and costume designs that define them.
+ModelsHD refines angular surfaces on supported party, enemy, NPC and scenery models while retaining their original animations. CharHD restores painted detail on armor, clothing and weapons. Dart’s reconstructed head and sculpted hair pair with a 2K painted material and custom body shapes, activated together through CharHD. ModelsHD remains available for the wider roster. The complete bespoke character work extends to faces, costumes, hands, boots and weapons across all nine party members. [Character reconstruction](docs/definitive/PARTY_RECONSTRUCTION.md).
 
 ### Painted environments, restored for a modern screen
 
@@ -92,15 +92,17 @@ Definitive extends Severed Chains' shared rendering, texture-loading, audio and 
 
 ### Cinematics, audio and pacing
 
-**All 18 enhanced films** use bounded streaming at 1280×768, retaining the original 15 fps motion and soundtrack. Enhanced video follows actually played audio; original-video fallback keeps its own 15 Hz cadence. Cinematic presentation bypasses gameplay frame skipping and restores normal gameplay settings afterward. Cancellation and original-video fallback remain available.
+**All 18 enhanced films** use bounded streaming at 1280×768, retaining the original 15 fps motion and soundtrack. Enhanced and original video follow actually played audio; original-video fallback preserves its native 15 fps cadence. Cinematic presentation bypasses gameplay frame skipping and restores normal gameplay settings afterward. Cancellation and original-video fallback remain available.
 
 **PCM audio preservation** avoids an additional lossy encode after decoding prerecorded XA clips. Queue handling preserves clip endings and does not count unplayed buffers during empty starts or underruns. Playback recovery resumes from the played position, retaining the original score, voices and effects.
 
-**Reliable rate transitions** reset the scheduler's deadline when callback speed changes, while repeated assignments preserve timing phase. Script ticks, model animation and sample-driven audio retain their respective clock ownership. This improves transitions between gameplay and movies without changing Addition windows.
+**Independent engine clocks** separate gameplay simulation from presentation. Monotonic fixed steps advance scripts, model animation and gameplay at the selected game speed, with bounded catch-up after a stall. Hardware/minigame timers and sample-driven audio keep their own rates. Movie exits restore input, display and pause state independently; skip prompts follow movie time. Addition windows remain unchanged.
 
 ### Graphics reliability and control
 
 Failed shader reloads retain the working program. Texture uploads select the correct binding, deleted textures clear cached bindings, and stale artwork callbacks cannot restore an obsolete mod selection. Shared resources have explicit limits and cleanup paths.
+
+Native character uploads and deferred texture retirement retain renderer-thread ownership, including cancellation and failed uploads.
 
 Presentation controls live in **Graphics**, independently of campaign presets. The pipeline uses conventional rendering with assets prepared before installation. Whole-campaign visual review and physical Steam Deck frame-time, memory and power measurements remain ongoing.
 
@@ -135,7 +137,7 @@ Choose artwork modules individually in the game's **Mods** menu. The launcher al
 | --- | --- |
 | **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Remastered field backgrounds and foreground layers. |
 | **[ModelsHD](integrations/modelshd/README.md)** | Refined character, enemy, NPC and scenery geometry. |
-| **[CharHD](docs/definitive/CHARHD_PRODUCTION.md)** | Restored character textures and authored costume detail. |
+| **[CharHD](integrations/charhd/README.md)** | Reconstructed character models, restored textures and authored costume detail. |
 | **[EnvHD](docs/definitive/ENVHD_STATUS.md)** | Battle panoramas, world-map artwork and environment restoration. |
 | **[UIHD](docs/definitive/UIHD_PRODUCTION.md)** | Portraits, menus, interface artwork and combat cues. |
 | **[FxHD](integrations/fxhd/README.md)** | Spell, attack, transformation and animated effect textures. |
