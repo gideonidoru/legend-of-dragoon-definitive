@@ -56,3 +56,16 @@ tasks.register('charHdReconstructionProbe', JavaExec) {
     args providers.gradleProperty('charFiles').get(), providers.gradleProperty('charReport').get()
   }
 }
+
+tasks.register('charHdPartyCandidateProbe', JavaExec) {
+  description = 'Explicit local-source development head probe; never runs in normal packaging.'
+  dependsOn 'charhdTestClasses', 'modelshdClasses'
+  classpath = sourceSets.charhdTest.runtimeClasspath + sourceSets.modelshd.output
+  mainClass = 'charhd.PartyCandidateSourceProbe'
+  jvmArgs '-Djava.awt.headless=true', '-Xmx2g'
+  workingDir = layout.buildDirectory.dir('charhd-probe-home').get().asFile
+  doFirst {
+    workingDir.mkdirs()
+    args providers.gradleProperty('charFiles').get(), file('integrations/charhd/production/party-reconstruction').absolutePath, providers.gradleProperty('charReport').get()
+  }
+}

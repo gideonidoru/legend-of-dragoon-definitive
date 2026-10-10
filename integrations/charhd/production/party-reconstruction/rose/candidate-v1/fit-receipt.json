@@ -1,0 +1,83 @@
+{
+  "format": 1,
+  "character": "rose",
+  "state": "development-not-runtime-selected",
+  "meshInputSha256": "94e7a60174e394c0931641e8193bab2b7ca3730b8804276798bf352f4d71aba1",
+  "landmarksSha256": "40b1fe2d885b322d4cceaf3253a73ef7dbd6e8359a839768db5a1da79ebadf92",
+  "textureSha256": "8949a5d28f6829a2bf6c9aecc81c324dbd42980ec6f19373bbc09b1de9f7c6e2",
+  "forms": [
+    {
+      "form": "field",
+      "source": "SECT/DRGN21.BIN/14/0",
+      "sourcePartIndex": 9,
+      "sourcePartGeometrySha256": "84b891d1e3b0fb28375ed2f9aa6b235383659f03c625dcf46ec6206d410a9477",
+      "geometrySha256": "f5c9d7193585f829c8279863f366641e4eff1b7fa911a43b428cadea495bf21d",
+      "sourceMaterialFace": 36,
+      "packSha256": "d61c841302d33b050d54906a26fefbb333b33050226efbd4e3a2f92b494b243d",
+      "triangles": 6000,
+      "vertices": 4819,
+      "scale": 23.80952380952381,
+      "offset": [
+        -1.8421802800425477,
+        -79.76190476190476,
+        -0.7699799105853238
+      ],
+      "rawCrownY": -0.325,
+      "rawChinY": 0.305,
+      "sourceCrownY": -87.5,
+      "sourceChinY": -72.5,
+      "targetCrownY": -87.5,
+      "posedBodyToSkullHeightRatio": 5.961687272135898,
+      "rawFrontAnchor": [
+        0.021900065514879923,
+        -0.09307610926528771,
+        -0.374605661465062
+      ],
+      "sourceFrontAnchor": [
+        -1.3207501487358828,
+        -79.97149504327336,
+        -9.689162326420135
+      ],
+      "storedPoseSamples": 4,
+      "fitStatus": "crown-chin-fit-needs-visual-and-native-review",
+      "otherPartsUnchanged": true
+    },
+    {
+      "form": "combat",
+      "source": "characters/rose/models/combat/32",
+      "sourcePartIndex": 10,
+      "sourcePartGeometrySha256": "d295bebfae397052bdc8ac739e073e962c2cdc2d00bf8291018f5d07767d4f4c",
+      "geometrySha256": "1c3c919a60fcd7f16b58f2f3559459346b0690aa5826f260d622252086ee3db6",
+      "sourceMaterialFace": 0,
+      "packSha256": "bdf19e571efca3693927039aaa74722c8137e37c31b8bbd0d8c9e6d9566f75d5",
+      "triangles": 6000,
+      "vertices": 4819,
+      "scale": 252.5396825396824,
+      "offset": [
+        -19.9284860530313,
+        -1222.9246031746031,
+        52.49862177294668
+      ],
+      "rawCrownY": -0.325,
+      "rawChinY": 0.305,
+      "sourceCrownY": -1305.0,
+      "sourceChinY": -1145.9,
+      "targetCrownY": -1305.0,
+      "posedBodyToSkullHeightRatio": 8.23649971805915,
+      "rawFrontAnchor": [
+        0.021900065514879923,
+        -0.09307610926528771,
+        -0.374605661465062
+      ],
+      "sourceFrontAnchor": [
+        -14.397850460305278,
+        -1200.7113281463007,
+        -42.10417305100782
+      ],
+      "storedPoseSamples": 20,
+      "fitStatus": "crown-chin-fit-needs-visual-and-native-review",
+      "otherPartsUnchanged": true
+    }
+  ],
+  "scope": "Source-bound crown/chin head fits and finite stored poses. Proportion ratios describe this pose, not standing anatomy. Does not prove attachments, native animation or Steam Deck performance."
+}

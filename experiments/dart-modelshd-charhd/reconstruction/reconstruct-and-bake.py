@@ -10,6 +10,9 @@ parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--tooling',type=Path,required=True)
 parser.add_argument('--image',type=Path,required=True)
 parser.add_argument('--output',type=Path,required=True)
+parser.add_argument('--character',default='dart',help='Authoring receipt identity; does not imply approval')
+parser.add_argument('--asset-kind',choices=['head','body'],default='head')
+parser.add_argument('--triangles',type=int,nargs='+',default=[6000,12000])
 args=parser.parse_args()
 import os,sys,json,time,hashlib,resource,socket,subprocess
 os.environ.update(HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_HUB_DISABLE_TELEMETRY='1',TORCH_FORCE_WEIGHTS_ONLY_LOAD='1')
@@ -24,7 +27,7 @@ def digest(p):
 assert digest(weights/'model.ckpt')=='429e2c6b22a0923967459de24d67f05962b235f79cde6b032aa7ed2ffcd970ee'
 assert subprocess.check_output(['git','-C',str(source),'rev-parse','HEAD'],text=True).strip()=='107cefdc244c39106fa830359024f6a2f1c78871'
 assert not subprocess.check_output(['git','-C',str(source),'status','--porcelain'],text=True).strip()
-manifest={'experiment':'dart-aa-head-reconstruction-1','sourceRevision':'107cefdc244c39106fa830359024f6a2f1c78871','inputSha256':digest(input_image),'weightsSha256':digest(weights/'model.ckpt'),'configSha256':digest(weights/'config.yaml'),'dinoConfigSha256':digest(weights/'dino-config.json'),'dependencyLockSha256':digest(root/'dependency-lock-round30.txt'),'runnerSha256':digest(__file__),'device':'cpu','threads':8,'resolution':256,'foregroundRatio':0.85,'networkDisabled':True,'nativeImport':False,'artAccepted':False}
+manifest={'experiment':'party-aa-head-reconstruction-1','character':args.character,'assetKind':args.asset_kind,'sourceRevision':'107cefdc244c39106fa830359024f6a2f1c78871','inputSha256':digest(input_image),'weightsSha256':digest(weights/'model.ckpt'),'configSha256':digest(weights/'config.yaml'),'dinoConfigSha256':digest(weights/'dino-config.json'),'dependencyLockSha256':digest(root/'dependency-lock-round30.txt'),'runnerSha256':digest(__file__),'device':'cpu','threads':8,'resolution':256,'foregroundRatio':0.85,'networkDisabled':True,'nativeImport':False,'artAccepted':False}
 began=time.monotonic(); stages={}
 def stage(name):print(json.dumps({'stage':name,'elapsedSeconds':round(time.monotonic()-began,3)}),flush=True)
 stage('Importing isolated runtime')
@@ -66,7 +69,8 @@ parts=mesh.split(only_watertight=False,repair=False)
 assert sum(len(p.faces) for p in parts)==len(mesh.faces)
 main=max(parts,key=lambda p:len(p.faces))
 manifest.update(sourceMeshSha256=digest(source_mesh),sourceTriangles=len(mesh.faces),mainComponentTriangles=len(main.faces),excludedComponentTriangles=[len(p.faces) for p in parts if p is not main],componentRepair=False,textureSize=[2048,2048],fastSimplification='0.2.0',xatlas='0.0.11',variants=[])
-for target in [6000,12000]:
+if not args.triangles or len(args.triangles)>3 or any(not 1000<=t<=30000 for t in args.triangles):raise ValueError('Invalid authoring density budget')
+for target in args.triangles:
  stage(f'Reducing experimental head to {target} triangles');t=time.monotonic()
  v,f=fast_simplification.simplify(np.asarray(main.vertices,dtype=np.float64),np.asarray(main.faces,dtype=np.int32),target_count=target,agg=5.0,preserve_border=True)
  reduced=trimesh.Trimesh(v,f,process=False);reduced.remove_unreferenced_vertices()

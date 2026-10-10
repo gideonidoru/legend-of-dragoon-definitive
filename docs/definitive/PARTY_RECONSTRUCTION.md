@@ -14,14 +14,14 @@ The owner approved Dart's accepted head/hair candidate for normal CharHD deliver
 | Character | Costume and hands | Boots and weapon | Current bespoke state |
 | --- | --- | --- | --- |
 | Dart | Crimson armor paneling, gloves/grip, cloth legs | Brown/armored boots, broadsword | Accepted head/hair; preferred body shapes and armor atlas; complete body pending |
-| Rose | Violet-black costume, gold trim, gloves | Tall fitted boots, slender sword | Source audited; custom head authoring started |
-| Lavitz | Original green/silver armor, gauntlets | Greaves/boots, spear | Source audited |
-| Shana | Original pale dress and decorative trim, natural hands | Original boots, bow/grip | Source audited |
-| Haschel | Original martial clothing, hands and bracers | Original footwear, fists/bracers | Source audited; earlier neck studies remain references |
-| Albert | Original royal armor/clothing, gauntlets | Original boots, spear | Source audited |
-| Meru | Original dancer clothing, wrists/hands | Original footwear, hammer/grip | Source audited |
-| Kongol | Original massive armor silhouette, large hands | Heavy footwear, axe/grip | Source audited |
-| Miranda | Original white/green outfit, gloves/hands | Original boots, bow/grip | Source audited |
+| Rose | Violet-black costume, gold trim, gloves | Tall fitted boots, slender sword | Development head fits; initial body partitions |
+| Lavitz | Original green/silver armor, gauntlets | Greaves/boots, spear | Development head fits; initial body partitions |
+| Shana | Original pale dress and decorative trim, natural hands | Original boots, bow/grip | Crown/chin proportion correction; initial body partitions |
+| Haschel | Original martial clothing, hands and bracers | Original footwear, fists/bracers | Development head fits; initial body partitions |
+| Albert | Original royal armor/clothing, gauntlets | Original boots, spear | Separate field/battle proportion correction; initial body partitions |
+| Meru | Original dancer clothing, wrists/hands | Original footwear, hammer/grip | Correct field face part 6; development head/body fits |
+| Kongol | Original massive armor silhouette, large hands | Heavy footwear, axe/grip | Development head fits; initial body partitions |
+| Miranda | Original white/red-brown and gold outfit, gloves/hands | Original boots, bow/grip | Development head fits; initial body partitions |
 
 The [source audit](../../integrations/charhd/production/party-reconstruction/source-audit.json) binds all 18 source containers and records every part's source identity and local/posed bounds. It contains metadata only. Semantic part roles stay pending until checked against the private isolated-part renders; a bounding box is not anatomical proof. Original reference images and actor controls remain outside Git.
 
@@ -30,5 +30,7 @@ The [source audit](../../integrations/charhd/production/party-reconstruction/sou
 `runtime-assets/charhd/characters/characters.json` selects accepted custom packs, known ModelsHD baseline identities and optional exact UV/material bindings. The appearance event runs after automatic geometry refinement. CharHD builds its candidate from the original source material packets and only accepts its recorded baseline as a handoff; another custom geometry or appearance owner keeps priority. Geometry and material are installed together, after all checks pass. The source CPU tables, native animation hierarchy and script-facing indices remain unchanged.
 
 The shared bounded engine reader is also used by ModelsHD, retaining its existing API facade and strict source/material interpolation rules. The head sampler uses texture unit 7, separate from current FxHD's integer sampler on unit 6. Normal CharHD packaging includes only selected resources and license notices; authoring images, editable GLBs and receipts remain public development assets.
+
+The [public authoring record](../../integrations/charhd/production/party-reconstruction/AUTHORING.md) describes the individual head proportion controls, the 192 passing development construction checks and all nine custom body/material studies. The [inventory](../../integrations/charhd/production/party-reconstruction/authoring-inventory.json) records partial combat part coverage and explicit validation limits. Body topology, grips, rear materials, field adaptations and shared material residency remain unfinished.
 
 This plan is in progress. The remaining eight heads and nine complete bodies are not yet finished or selected for release. Each candidate needs a comparison and actual model/material verification before being presented as an upgrade.
