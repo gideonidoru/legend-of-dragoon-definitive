@@ -100,6 +100,20 @@ tasks.register('nativePoseProbe', JavaExec) {
   }
 }
 
+// Explicit synthetic GPU inspection only; never part of the default build or game.
+tasks.register('nativeBattleShaderProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.materials.NativeBattleShaderProbe'
+  systemProperty 'java.awt.headless', 'true'
+  jvmArgs '--enable-native-access=ALL-UNNAMED'
+  if(System.getProperty('os.name').toLowerCase().contains('mac')) jvmArgs '-XstartOnFirstThread'
+  doFirst {
+    if(!providers.gradleProperty('shaderProbeOutput').isPresent()) throw new GradleException('Supply a new report directory with -PshaderProbeOutput.')
+    args projectDir.absolutePath, providers.gradleProperty('shaderProbeOutput').get()
+  }
+}
+
 // Opt-in only, under xvfb-run in Linux CI. No windows on the local desktop.
 tasks.register('managerWindowTest', Test) {
   dependsOn testClasses

@@ -76,6 +76,9 @@ jobs:
       - name: Exercise installer window lifecycle in an isolated virtual display
         if: runner.os == 'Linux'
         run: xvfb-run -a ./gradlew --no-daemon --console=plain managerWindowTest ${{ matrix.args }}
+      - name: Check original native shader fixtures with software OpenGL
+        if: runner.os == 'Linux'
+        run: LIBGL_ALWAYS_SOFTWARE=1 xvfb-run -a ./gradlew --no-daemon --console=plain nativeBattleShaderProbe -PshaderProbeOutput=build/reports/native-shader ${{ matrix.args }}
       - name: Verify Linux installer shortcut parsing
         run: python3 scripts/verify-desktop-entry.py
       - name: Verify portable setup progress and failure cleanup
@@ -101,5 +104,6 @@ jobs:
             build/reports/tests/deliveryTest/**
             build/reports/tests/managerWindowTest/**
             build/reports/installer-*.png
+            build/reports/native-shader/**
           if-no-files-found: error
           retention-days: 14

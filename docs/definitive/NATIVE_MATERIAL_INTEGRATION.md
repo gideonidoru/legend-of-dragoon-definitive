@@ -1,5 +1,7 @@
 # Native material integration audit
 
+The [October 10 GPU shader study](NATIVE_SHADER_STUDY.md) adds actual shader controls and a private fragment-lookup prototype. It identified an atlas-boundary rounding issue and verified quantization before integer atlas translation against six source-pose views. It does not deliver the adapter described below or establish in-game/Deck acceptance.
+
 Inspected source `ea6004eb3017abdac1941895cacede6ce1885407` on 2026-10-09. The separate-palette atlas is currently an offline comparison format. This audit identifies the next implementation boundaries; no native adapter or changed rendering behavior is delivered by it.
 
 ## Existing routes
