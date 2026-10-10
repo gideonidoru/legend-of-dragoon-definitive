@@ -61,11 +61,24 @@ final class GameLease {
     try(final var processes = ProcessHandle.allProcesses()) {
       for(final ProcessHandle process : processes.toList()) {
         if(!process.isAlive() || process.pid() == ProcessHandle.current().pid()) continue;
-        final var info = process.info();
-        checkInterruptedProcess(token, user, launcherStarted, new LaunchProcess(info.user(), info.startInstant(), info.arguments(), info.commandLine(), info.command()));
+        checkInterruptedProcess(token, user, launcherStarted, () -> {
+          final var info = process.info();
+          return new LaunchProcess(info.user(), info.startInstant(), info.arguments(), info.commandLine(), info.command());
+        }, process::isAlive);
       }
     } catch(final RuntimeException unavailable) { throw new IOException("Cannot inspect an interrupted game launch safely. Close surviving game/launcher processes and retry.", unavailable); }
     Files.delete(pending); InstallStore.forceDirectory(root);
+  }
+  // A process may exit between enumeration, metadata inspection and the
+  // ownership decision. Missing metadata from an exited process cannot write
+  // into the installation; uncertain metadata from a living one still blocks.
+  static void checkInterruptedProcess(final String token, final String user, final Instant launcherStarted,
+                                      final java.util.function.Supplier<LaunchProcess> inspect, final java.util.function.BooleanSupplier alive) throws IOException {
+    if(!alive.getAsBoolean()) return;
+    final LaunchProcess details = inspect.get();
+    if(!alive.getAsBoolean()) return;
+    try { checkInterruptedProcess(token, user, launcherStarted, details); }
+    catch(final IOException uncertain) { if(alive.getAsBoolean()) throw uncertain; }
   }
   record LaunchProcess(Optional<String> user, Optional<Instant> started, Optional<String[]> arguments, Optional<String> commandLine, Optional<String> command) { }
   static void checkInterruptedProcess(final String token, final String user, final Instant launcherStarted, final LaunchProcess process) throws IOException {

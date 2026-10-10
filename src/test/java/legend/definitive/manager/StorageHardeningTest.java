@@ -140,7 +140,7 @@ class StorageHardeningTest {
     }
     Files.delete(pack.resolve(PackageManifest.METADATA)); Files.delete(pack.resolve(PackageManifest.HASHES)); ManagerMain.makeManifest(pack, PackageManifest.hostPlatform(), "fixture"); return pack;
   }
-  @Test void killingInstalledRootRouterStopsInnerManagerAndGameAndReleasesMaintenance() throws Exception {
+  @org.junit.jupiter.api.RepeatedTest(5) void killingInstalledRootRouterStopsInnerManagerAndGameAndReleasesMaintenance() throws Exception {
     final var store = new InstallStore(this.temporary.resolve("root-router")); store.install(leasePackage()); DiscImporter.importDiscs(store, discs("router-"));
     final Path workspace = store.prepareLaunch(); Files.writeString(workspace.resolve("files/version"), "5");
     final Process outer = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin/java").toString(), "-Djava.awt.headless=true", "-Ddefinitive.installerLog=" + this.temporary.resolve("installer.log"), "-jar", store.root().resolve("definitive-manager.jar").toString(), "--play", store.root().toString()).redirectErrorStream(true).redirectOutput(this.temporary.resolve("root-router-output.log").toFile()).start();
@@ -225,6 +225,18 @@ class StorageHardeningTest {
     assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, beforeExec));
     final var older = new GameLease.LaunchProcess(Optional.empty(), Optional.of(launcher.minusMillis(1)), Optional.empty(), Optional.empty(), Optional.empty());
     assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, older));
+  }
+  @Test void exitingProcessesDoNotBlockInterruptedLaunchRecoveryButLivingUnknownProcessesDo() throws Exception {
+    final Instant started = Instant.now(); final String token = UUID.randomUUID().toString();
+    final var unknown = new GameLease.LaunchProcess(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    final var reads = new java.util.concurrent.atomic.AtomicInteger();
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", started, () -> { fail("A dead process must not be inspected"); return unknown; }, () -> false));
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", started, () -> unknown, () -> reads.incrementAndGet() == 1));
+    reads.set(0);
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", started, () -> unknown, () -> reads.incrementAndGet() < 3));
+    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", started, () -> unknown, () -> true));
+    final var livingChild = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(started), Optional.of(new String[]{"-Ddefinitive.launchToken=" + token}), Optional.empty(), Optional.of("/jdk/bin/java"));
+    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", started, () -> livingChild, () -> true));
   }
   @Test void successfulPreparationCommitsAcceptedDiscHashesAndNextReinstallReusesFiles() throws Exception {
     final Path pack = leasePackage();
