@@ -36,6 +36,8 @@ On October 10, the private extracted data scan examined 114,307 files. It recogn
 
 These numbers are **not a count of individual characters or required new sculpts**. A container can be a person, prop, multipart boss, effect or alternate scene representation. Different containers can be near-duplicates or share most components. Repeated source references are often the same geometry in different scenes. Standalone and other unsupported formats are not established as exhaustively covered. The detailed private inventory records aliases and held reasons; the custom party replacements are now public; the full original extraction and source controls are excluded.
 
+The [public model catalog](MODEL_CATALOG.md) now covers all **1,324** remaining containers and **7,544** appearances, with verified loading context or identity for **1,294**. Browse the [offline atlas](model-catalog/index.html) or [authoring CSV](model-catalog/model-catalog.csv). It separates 517 field objects, 466 field scene overlays and 305 battle-context containers, retains unresolved actor identities, and records 160 substantial component-reuse leads. Context counts overlap; the catalog explains the distinct scheduling buckets and format gaps.
+
 Reproduce the exact-duplicate inventory:
 
 ```sh
@@ -54,7 +56,7 @@ python scripts/inventory-modelshd-sources.py \
 | D | Common enemy families | Group geometry relatives and palette variants. Author a family master, map variants individually and retain their active textures. Validate a representative attack/damage/death cycle plus each topology exception. Measure crowded encounters on Deck. |
 | E | Remaining NPCs and visible 3D props | Prioritize assets that occupy meaningful screen area or distract from the improved party. Batch small background actors and shared props through proven templates; avoid polishing invisible geometry. Preserve collision and interaction behavior. |
 
-Before each phase, turn the private aliases into a semantic roster: actor/family name, contexts, source identities, shared components, special animation/visibility behavior, current texture owner and priority. Record unmapped containers as unresolved. Set a defensible unique authoring count only after this classification, rather than treating every file as a separate redesign.
+Before each phase, use the catalog's route/evidence records to confirm actor/family names, material owners and special animation/visibility contracts. Keep unresolved identities and measured reuse candidates distinct from proved names. Set a defensible unique authoring count after this review, rather than treating every file as a separate redesign.
 
 The mod is included in the normal install and remains selectable throughout. Texture packs keep their own images and selection; the rendering thread owns lighting and Deck APU features. For animated palettes, mixed bit depths, custom atlas layouts or new geometry owners, define and test an explicit material/geometry handoff before adding support.
 
