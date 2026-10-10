@@ -67,10 +67,15 @@ remain distinct states in `integrations/envhd/production`. Candidate/rejected ar
 stays outside runtime resources. These counts do not certify complete environment
 coverage or native gameplay acceptance.
 
-The current panorama batch has 13 custom revisions across eight restoration
-masters. Forest sunset and Star night passed visual review and are selected;
-native scene acceptance is pending. Five masters need repeat-boundary corrections
-and the volcanic master needs an intent/layout revision. All custom candidates
+The current panorama batch has 36 custom revisions across 26 restoration
+masters. Forest sunset, Star night, Shirley's Shrine forest, Valley suspended
+rocks, Giganto carved figures, Mortal Dragon Mountain storm mist, and world-map
+battle stage87 hills passed visual review and are selected; native scene
+acceptance is pending. Sixteen masters need repeat-boundary corrections and
+three need an intent/layout revision. Forty-four masters still await generation.
+Nearby original field context clarified snow-covered wood, carved figures,
+glacier ice, ruins, and Mayfil masonry. Skurfa's existing Vellweb artwork was also
+used as a material/palette reference for its separate battle viewpoint. All custom candidates
 and saved prompts are public production assets; original sources and comparison
 boards remain outside Git. Selected pixel-identical variants resolve to one PNG
 through separate source-bound manifests, preserving each original MCQ header.
@@ -78,7 +83,7 @@ through separate source-bound manifests, preserving each original MCQ header.
 Headless verification found 119 passing delivery tests and four desktop-only
 tests skipped. Five ownership and eight import regression tests passed. Independent
 decoders agree on all pixels of all 74 battle sources. The packaged Skurfa resources
-match the pinned integration byte-for-byte; the EnvHD package contains two reviewed
+match the pinned integration byte-for-byte; the EnvHD package contains seven reviewed
 panoramas and no production candidates. Import preflight and rollback tests cover
 source drift, corrupt prior resources, malformed controls, rejected revisions,
 version conflicts, oversized inputs and publication failure.

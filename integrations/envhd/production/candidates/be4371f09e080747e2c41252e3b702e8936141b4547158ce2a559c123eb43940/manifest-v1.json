@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "cad01c03913948bf39efbce136cb2a25186116b76b21940f09ae95ae1e47f8e6",
+  "outputSha256": "c2b49cef129eff396938fe8c6e765cfe072d2ca303d2814a5b02ae322b0e5229",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-vellweb-exterior-stage49-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Different Vellweb battle viewpoint retains pale cyan sky, low ruin wall, tapered cylindrical tower, leaning slabs and broad flat fractured paving. Skurfa field cut477 is left unchanged and used directly as additional material/palette reference.",
+    "style": "Weathered stone finish follows existing Skurfa Vellweb artwork without transplanting its field cliffs, floating debris, sculpture or layout.",
+    "layout": "Source tower/wall heights and flat floor geometry retained; no new chasms or tall foreground rubble.",
+    "wrap": "Visible floor/ruin edge discontinuity; difference15.18 versus source3.49. Hold outside runtime.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.493055582046509,
+    "outputEdgeMeanDifference": 15.18185806274414
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940"
+}

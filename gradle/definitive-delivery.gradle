@@ -121,6 +121,17 @@ tasks.register('skySourceAudit', JavaExec) {
   }
 }
 
+// Explicit private world artwork source check, without rendering.
+tasks.register('worldSourceAudit', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.WorldSourceAudit'
+  systemProperty 'java.awt.headless', 'true'
+  doFirst {
+    args providers.gradleProperty('worldSourceRoot').get(), providers.gradleProperty('worldBatch').get(), file('integrations/envhd/runtime-assets').absolutePath
+  }
+}
+
 // Explicit private animation inspection using the actual source methods, without rendering.
 tasks.register('nativePoseProbe', JavaExec) {
   dependsOn testClasses

@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "26675e0696cbce91b395b9f881f79e2d3c8a98683a276db5e4334adb106d4fcf",
+  "outputSha256": "17e84a03f374b1fe1ad42b3e5f190405264a375cb52009e8ed8c534bfec2eca8",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-world-desert-stage89-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Original stage89 desert is opaque across all pixels. This revision removes the mistakenly requested black band and restores continuous small-rubble terrain to the bottom; no dunes, cactus or buildings added.",
+    "style": "Pale peach haze, muted reddish rubble and soft distant hills now retain the original intent, with fine natural rock detail following Skurfa finish.",
+    "layout": "Three-repeat native-size comparison restores the original broad sky/terrain ratio, low hazy hill profile and full-width ground strip. All target1536x1024 pixels occupied; original source is fully opaque.",
+    "wrap": "Boundary still has a visible vertical sky/haze color step on repetition. Edge difference8.70 versus original4.16. Intent corrected, but keep outside installed mod until repeat boundary repair.",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sourceEdgeMeanDifference": 4.15625,
+    "outputEdgeMeanDifference": 8.696940422058105
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c"
+}

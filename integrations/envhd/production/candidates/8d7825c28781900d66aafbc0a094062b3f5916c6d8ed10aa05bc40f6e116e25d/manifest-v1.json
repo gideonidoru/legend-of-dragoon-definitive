@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "292a3df499f14b031ca899ac9f298a332716c846b849745a2b4644effbb32712",
+  "outputSha256": "87d39fed841e683aeef817e51244d1cc418e8888a268f985e0f6c1a1903ed949",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-forbidden-stage37-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Forbidden Land ornate ancient ruin mass, diagonal viewpoint and orange haze preserved; nearby field393 base confirms the material/setting. Complete field composite export was unavailable due an unmatched foreground slot; this review uses the verified base and battle source only.",
+    "style": "Bronze/ochre aged architectural detail and fog match source setting and Skurfa finish; no ordinary natural cliff substitution.",
+    "layout": "Main circular roof forms, ribbed upper member and descending central mass retained; fine ornament is reconstruction, not recovered original detail.",
+    "wrap": "Orange/architectural edge fragments show a visible discontinuity; difference7.17 versus source3.95. Hold outside runtime.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.9513888359069824,
+    "outputEdgeMeanDifference": 7.169270992279053
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d"
+}

@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "292a3df499f14b031ca899ac9f298a332716c846b849745a2b4644effbb32712",
+  "outputSha256": "21b14687586a60ecaca9ce008f98800aa4b2610eed0037fc6dea2ede7fc0832d",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage37-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Forbidden Land tilted intricate bronze-gold machinery or architecture immersed in orange haze. Source-backed usage: stages37; Forbidden Land.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Architecture ghosts across contact. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.9513888359069824,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v1.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "292a3df499f14b031ca899ac9f298a332716c846b849745a2b4644effbb32712",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "21b14687586a60ecaca9ce008f98800aa4b2610eed0037fc6dea2ede7fc0832d",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "87d39fed841e683aeef817e51244d1cc418e8888a268f985e0f6c1a1903ed949",
+    "weightsSha256": null,
+    "masterSourceSha256": "8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d"
+}

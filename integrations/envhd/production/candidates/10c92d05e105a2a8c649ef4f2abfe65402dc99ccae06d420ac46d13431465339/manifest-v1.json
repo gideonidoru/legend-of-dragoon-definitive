@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "6f10d252670bdbe8e57e0b5560c55837550db871a7119878a822d7b209c65896",
+  "outputSha256": "b965e2329fa58f360a74cccc7fea849dd9564c487da2e916f30e4127b2ce773f",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage81-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Moon lavender circular line patterns above brown suspended rocky platforms with small yellow-green tops. Source-backed usage: stages81; Moon.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Suspended platform ledges double at contact. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 5.951388835906982,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "6f10d252670bdbe8e57e0b5560c55837550db871a7119878a822d7b209c65896",
+    "action": "upscale-original",
+    "outputSha256": "b965e2329fa58f360a74cccc7fea849dd9564c487da2e916f30e4127b2ce773f",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "6f10d252670bdbe8e57e0b5560c55837550db871a7119878a822d7b209c65896",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339"
+}

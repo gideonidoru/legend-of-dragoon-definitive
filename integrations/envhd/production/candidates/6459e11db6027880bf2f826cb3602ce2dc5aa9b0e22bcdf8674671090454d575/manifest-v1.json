@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "10137cc708fe1bceb9a470b7a0adac0ec085c417251cba8eb8d0d8411fc3e9aa",
+  "outputSha256": "efce03dd403ba8a7c7bdbb0d92cdaeb9750b22ec8ca32620f81ba00a03d74656",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage77-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "magenta-violet monochromatic embossed branching organic motif fading into soft matching colored haze. Source-backed usage: stages77; stage-bound panorama, no documented field random-encounter alias.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 5.020833492279053,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "10137cc708fe1bceb9a470b7a0adac0ec085c417251cba8eb8d0d8411fc3e9aa",
+    "action": "upscale-original",
+    "outputSha256": "efce03dd403ba8a7c7bdbb0d92cdaeb9750b22ec8ca32620f81ba00a03d74656",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "10137cc708fe1bceb9a470b7a0adac0ec085c417251cba8eb8d0d8411fc3e9aa",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "6459e11db6027880bf2f826cb3602ce2dc5aa9b0e22bcdf8674671090454d575",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "6459e11db6027880bf2f826cb3602ce2dc5aa9b0e22bcdf8674671090454d575"
+}

@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "d21e50a5e970dac4eddc971bb2fc28d87b9c9673a801f2f7961034e819be72a6",
+  "outputSha256": "2ba78c39f2c46571345da4333435f84d4e58411fb25c6044237fd984769e8a8f",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage5-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Sawtooth grey mountain ridge beneath blue-to-orange twilight sky and sparse clouds. Source-backed usage: stages5; stage-bound panorama, no documented field random-encounter alias.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 6.270833492279053,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "d21e50a5e970dac4eddc971bb2fc28d87b9c9673a801f2f7961034e819be72a6",
+    "action": "upscale-original",
+    "outputSha256": "2ba78c39f2c46571345da4333435f84d4e58411fb25c6044237fd984769e8a8f",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "d21e50a5e970dac4eddc971bb2fc28d87b9c9673a801f2f7961034e819be72a6",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "2fb4e54f28a0b5f850f8f74ff6c27fc733549be683d38100ae189afcfeb1eab5",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "2fb4e54f28a0b5f850f8f74ff6c27fc733549be683d38100ae189afcfeb1eab5"
+}

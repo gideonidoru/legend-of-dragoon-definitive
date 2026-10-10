@@ -22,6 +22,11 @@ spec.loader.exec_module(decoder)
 
 VERDICTS = {'intent-revision-needed', 'layout-reviewed-wrap-pending', 'repeat-boundary-revision-needed', 'visual-reviewed-native-pending', 'native-accepted'}
 SELECTED = {'visual-reviewed-native-pending', 'native-accepted'}
+BATCH_TOOL_HASHES = {
+    'weightsSha256': '713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf',
+    'parametersSha256': '35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86',
+    'engineSha256': 'c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc',
+}
 
 
 def digest(data):
@@ -91,7 +96,37 @@ def resource_path(runtime, key, metadata):
     return runtime / 'envhd' / ('sky-images' if decoded is not None else 'skies') / (decoded or key) / filename
 
 
-def record(root, files, candidate, source_hash, version, prompt, verdict, notes):
+def batch_provenance(production, entry, png, version, value):
+    methods = {'python-border-repair': 'repair-reviewed-layout',
+               'real-esrgan-x4plus-periodic-preserved-source-edges': 'upscale-original',
+               'real-esrgan-x4plus-periodic-python-border-repair': 'upscale-original'}
+    method = value.get('method')
+    if method not in methods or value.get('action') != methods[method]:
+        raise ValueError('Unsupported batch production method')
+    expected = {'masterSourceSha256': entry['sourceMcqSha256'], 'decodedRgbaSha256': entry['decodedRgbaSha256'],
+                'outputSha256': digest(png), 'sourceSize': entry['sourceSize'], 'targetSize': entry['targetSize'],
+                'repairBorderPixels': 0 if method == 'real-esrgan-x4plus-periodic-preserved-source-edges' else min(32, entry['targetSize'][0] // 8),
+                'sourceVisibility': 'exact-nearest-4x-discard-and-visible-black',
+                'reviewStatus': 'pending-source-intent-style-layout-wrap-review'}
+    if any(value.get(key) != item for key, item in expected.items()) or entry['targetSize'] != [size * 4 for size in entry['sourceSize']]:
+        raise ValueError('Batch provenance differs from the reviewed source/output')
+    if methods[method] == 'upscale-original':
+        if value.get('inputSha256') != entry['decodedRgbaSha256'] or any(value.get(key) != item for key, item in BATCH_TOOL_HASHES.items()):
+            raise ValueError('Batch source or pinned tool identity differs')
+    else:
+        name = value.get('inputImageFile', '')
+        match = re.fullmatch(r'image-v([1-9][0-9]{0,3})\.png', name)
+        if match is None or int(match[1]) >= version or any(value.get(key) is not None for key in BATCH_TOOL_HASHES):
+            raise ValueError('Invalid border-repair predecessor or tool provenance')
+        path = production / 'candidates' / entry['sourceMcqSha256'] / name
+        metadata = read_json(path.with_name(f'manifest-v{int(match[1])}.json'))
+        if digest(read_bytes(path)) != value.get('inputSha256') or metadata['outputSha256'] != value.get('inputSha256') or metadata['sourceMcqSha256'] != entry['sourceMcqSha256'] or metadata.get('decodedRgbaSha256', entry['decodedRgbaSha256']) != entry['decodedRgbaSha256'] or metadata['reviewStatus'] not in {'repeat-boundary-revision-needed', 'layout-reviewed-wrap-pending'}:
+            raise ValueError('Border-repair predecessor differs from reviewed artwork')
+    keys = set(expected) | {'method', 'action', 'inputSha256', 'inputImageFile'} | set(BATCH_TOOL_HASHES)
+    return {key: value[key] for key in keys if key in value}
+
+
+def record(root, files, candidate, source_hash, version, prompt, verdict, notes, production_record=None):
     if verdict not in VERDICTS or not 1 <= version <= 9999 or not re.fullmatch('[0-9a-f]{64}', source_hash):
         raise ValueError('Invalid review verdict, version or source hash')
     if set(notes) != {'intent', 'style', 'layout', 'wrap'} or any(not value.strip() for value in notes.values()):
@@ -154,6 +189,10 @@ def record(root, files, candidate, source_hash, version, prompt, verdict, notes)
               'reviewStatus': verdict, 'method': 'built-in-imagegen', 'prompt': prompt_name,
               'imageFile': image_file, 'review': review,
               'styleReferences': ['scbackgroundhd/cut5/background.png', 'scbackgroundhd/cut37/background.png']}
+    if production_record is not None:
+        common['productionRecord'] = batch_provenance(production, source_entry, png, version, production_record)
+        common['method'] = common['productionRecord']['method']
+        common['styleReferenceUse'] = 'visual-review-only'
     runtime = root / 'integrations/envhd/runtime-assets'
     previous = {p.parent.name: read_json(p, 65536) for p in (runtime / 'envhd/skies').glob('*/manifest.json')}
     previous_paths = {resource_path(runtime, key, data): data['outputSha256'] for key, data in previous.items()}
@@ -187,6 +226,7 @@ def record(root, files, candidate, source_hash, version, prompt, verdict, notes)
                     current.pop(entry['sourceMcqSha256'])
                     entry.pop('runtimeOutput', None)
                     entry.pop('runtimeReviewStatus', None)
+                    entry['status'] = verdict
         entry['output'] = str(candidate_path.relative_to(root))
         entry['review'] = dict(review, generationMasterSourceSha256=source_hash)
     references = {resource_path(runtime, key, data) for key, data in current.items()}
@@ -229,10 +269,17 @@ if __name__ == '__main__':
     parser.add_argument('--source-hash', required=True)
     parser.add_argument('--version', type=int, required=True)
     parser.add_argument('--prompt', type=Path, required=True)
+    parser.add_argument('--production-record', type=Path, help='Batch candidates.json; actual method and source/input/output/tool hashes are verified')
     parser.add_argument('--verdict', choices=sorted(VERDICTS), required=True)
     for name in ('intent', 'style', 'layout', 'wrap'):
         parser.add_argument(f'--{name}-review', required=True)
     args = parser.parse_args()
+    production_record = None
+    if args.production_record is not None:
+        matches = [value for value in read_json(args.production_record)['candidates'] if value['masterSourceSha256'] == args.source_hash]
+        if len(matches) != 1:
+            parser.error('Batch record must have exactly one matching source candidate')
+        production_record = matches[0]
     result = record(args.root, args.files, args.candidate, args.source_hash, args.version, args.prompt,
-                    args.verdict, {name: getattr(args, name + '_review') for name in ('intent', 'style', 'layout', 'wrap')})
+                    args.verdict, {name: getattr(args, name + '_review') for name in ('intent', 'style', 'layout', 'wrap')}, production_record)
     print(json.dumps(result))

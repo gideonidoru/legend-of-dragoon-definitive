@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "231a501d6e2c8737e79c61596bede472a7a638b464a2ef7d45d5db8eb2f95830",
+  "outputSha256": "f28b058eb7316a35be3a4874fccba78476e03f71ed4bd9c66ebbd5cf68c8a443",
+  "scale": 4,
+  "generationVersion": 4,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage7-v4.txt",
+  "imageFile": "image-v4.png",
+  "review": {
+    "intent": "Cool grey cavern shelves and small rock points surrounding dark blue-green water. Source-backed usage: stages7; Cave.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Cave rock shelves mirror and repeat at contact. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.756944417953491,
+    "outputEdgeMeanDifference": 0.0349392369389534
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v3.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "231a501d6e2c8737e79c61596bede472a7a638b464a2ef7d45d5db8eb2f95830",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "f28b058eb7316a35be3a4874fccba78476e03f71ed4bd9c66ebbd5cf68c8a443",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "9cbd4045013b247294aa652ed60070531f9f97c9d330a00126d566facfbac0af",
+    "weightsSha256": null,
+    "masterSourceSha256": "0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545"
+}

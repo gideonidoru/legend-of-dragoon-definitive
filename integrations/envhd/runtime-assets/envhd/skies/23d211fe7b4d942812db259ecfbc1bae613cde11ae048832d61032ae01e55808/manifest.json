@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "d45ddb3429e5b3d14c2953f1fc724b912522fbf57b809a7572fa8ee23656242d",
+  "outputSha256": "06009a04270da6cb4c29661beca210a05afdb7edf1a85bc583a1ee962b829f9e",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage59-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Moon dim luminous branching web or plant forms, floating platforms and violet-white light motes. Source-backed usage: stages59; Moon.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sourceEdgeMeanDifference": 14.479166984558105,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      384,
+      256
+    ],
+    "targetSize": [
+      1536,
+      1024
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "d45ddb3429e5b3d14c2953f1fc724b912522fbf57b809a7572fa8ee23656242d",
+    "action": "upscale-original",
+    "outputSha256": "06009a04270da6cb4c29661beca210a05afdb7edf1a85bc583a1ee962b829f9e",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "d45ddb3429e5b3d14c2953f1fc724b912522fbf57b809a7572fa8ee23656242d",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "23d211fe7b4d942812db259ecfbc1bae613cde11ae048832d61032ae01e55808",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "23d211fe7b4d942812db259ecfbc1bae613cde11ae048832d61032ae01e55808"
+}

@@ -1,0 +1,1454 @@
+{
+  "schema": 1,
+  "assets": [
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "5bf4921ca7098fb09da51f0417782dcd233bf7ef586cc1f3b6a983b4ceb41221",
+      "decodedRgbaSha256": "e67b6ae4fa5c3819a17b3fdcf7e222a52b34ea5d58636106116e319dba750ef9",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5655"
+      ],
+      "locations": [
+        "Divine Tree",
+        "Forest",
+        "Moon That  Never Sets",
+        "Prison Island"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "1d978de9a8d25bc5e6748af0685fb4a47f9f9cc54908321a80a43be2af8c6af8",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Warm forest path bordered by golden leaves and dark tree trunks; other engine locations reuse this original forest image. Source-backed engine usage: Divine Tree, Forest, Moon That  Never Sets, Prison Island.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "5e223dc79bba3b4f5b656f16d10a3a920d7e58a8764b7ce529af5f36773853ad",
+      "decodedRgbaSha256": "e8785e8d5eb3690d2f802bb12485cc76fa4cefe70170855f1547c8b6fb4b374d",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5656"
+      ],
+      "locations": [
+        "Seles"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "0c683e8fa87e7eca3ea00450bdc57e467cb917e0c00173dc15f0dcfb80a8b328",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Ruined Seles houses and bare trees beneath ochre sky. Source-backed engine usage: Seles.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "a4f779830dd70fd8a26e20bfbc83a1db302a49761e8d2d2bcdabb2e9942e0b5d",
+      "decodedRgbaSha256": "23f7ab26b46a35125ce726bdcc05f516e42bc944c0c8127d1b172fb847a3326c",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5657"
+      ],
+      "locations": [
+        "Hellena Prison"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "9d7d5e6d94f63575468f5e3ab55a34a5722f2d09a553ccf98ba015a1a759e166",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Hellena dark tower, bridge and rock wall against fiery sunset. Source-backed engine usage: Hellena Prison.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "22a1c544c5a6ea47261d126129cf3e16d401d54d21f7bfd224a3bad5336bcfc3",
+      "decodedRgbaSha256": "8e30d4b1f69a342f6c26cb193a0e10f3c9e65e3a8fde7641191c63b2e0933aa7",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5658"
+      ],
+      "locations": [
+        "Prairie"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "f37d778bdc859da336e650315d01883a24477286d5aea1b806090fca586ed1b8",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Prairie forked pale dirt path, tree and small white stones among grass. Source-backed engine usage: Prairie.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "8c05dcc963163a56156dba3e7f7d398bb9214ba001f9959bb6b71ee43891b82d",
+      "decodedRgbaSha256": "842bfea86b392ed1e2bf5e7e24038364dc7f955b10ba54e1d551b12b78ba6880",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5659"
+      ],
+      "locations": [
+        "Limestone Cave"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "11debb64819536fdd942e58057c4736df57f49f8c31a0c102ec6837567358380",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Limestone cave stalactites, stone terraces and dim green-blue water. Source-backed engine usage: Limestone Cave.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "06a6cc50229abc292f2159e0f3bf753f6c75f9daaf21fa561b2cdc59c6a9b241",
+      "decodedRgbaSha256": "f24c1de200a57fb51e018bdbb7133c9dd9493bdc9cef41a94bd2da4d7eb1b83f",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5660"
+      ],
+      "locations": [
+        "Indels Castle  Capital Bale"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "23c5f42828acc5a236a010d09d05a6827803632dc78b01c81dc7213ca4112fde",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Bale rounded stone castle towers, rooftops and foreground bridge. Source-backed engine usage: Indels Castle  Capital Bale.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "795c4dcf7deb435dc14e984d6e817ea40dccf2eb4eb19d9aebee610515c48d3b",
+      "decodedRgbaSha256": "d39d26711c97d7cce162be8b4da27ef97aaaa992fa968ed98fb0a2dc50d5d210",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5661"
+      ],
+      "locations": [
+        "Town of Hoax"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "e4dd148d15024bd854f857f84f8cc9d5e22c0495639c5ccd180693c2d7e83fed",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Hoax intact orange rooftops and circular fortification walls. Source-backed engine usage: Town of Hoax.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "1124ae8e7e3d0ac6c6d92fb8973bc5fe89af61a2b985fc63417101e73a4ad297",
+      "decodedRgbaSha256": "2a6371225436aab334e058cc01d011c03a5928357046a35cf5b6641883816e6e",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5662"
+      ],
+      "locations": [
+        "Town of Hoax"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "c6b83e1ae6fb3f08794af58b3b9e20aafdf99b518399aff3fba1f3eb81c7e7a6",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Hoax ruined grey walls and roof remnants. Source-backed engine usage: Town of Hoax.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "a180e2664f8df2471dea07d7a74c9e6baf426d278264d45ca293c1f4b0f5987b",
+      "decodedRgbaSha256": "76cabe7a370e0e80c1d04a94c63aed6568be23e7ea7010d2d1b8f591f77c03e8",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5663"
+      ],
+      "locations": [
+        "Marshland"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "c04d3343eaea8b177af5b09a361bc54e1fc0a8d0b65a38b094e676827b49f8f8",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Marshland dark tree trunks, roots and luminous orange-green gaps. Source-backed engine usage: Marshland.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "3e7ae1504e500fe9b91b610766429a528badc6567d36156a795f001cf5fc836d",
+      "decodedRgbaSha256": "c3cb68b8a52903aba0907bd8168a9617f1935282abb0efda37d64b97c86cfc3c",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5664"
+      ],
+      "locations": [
+        "Volcano  Villude"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "c4e91802fecf389d420990f39477a23d7805722b5c7a54c40c3eee7a2aaa3ef0",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Villude volcanic stone ledges crossing orange lava. Source-backed engine usage: Volcano  Villude.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "17c35c769d61c3531e7c9372354a1018a4dbd8b0ff1c887ff26a0b405666d36e",
+      "decodedRgbaSha256": "fc342271479cefad3ccc6c5a309d400120e6a5713c804b249f6082deb0f515bc",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5665"
+      ],
+      "locations": [
+        "Nest of Dragon"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "90812b00c4974df57c09ea4b17903dfa195d807c33dca228b8a0f8c3cf5c7c71",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Nest of Dragon shadowed trees and branches beneath pale light. Source-backed engine usage: Nest of Dragon.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "5f11b549f51c300ca4d39cab32e73c8ea81bd84406ec1da0a7670fcd41be33d7",
+      "decodedRgbaSha256": "f140514db8997a24bdd4b37cc1709f6b4d8d472aa207997750b373ceab754194",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5666"
+      ],
+      "locations": [
+        "Commercial  Town of Lohan"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "2d58dde09ab3ab09930de204ffcba1b1ef6001cc8056f145f6407fa3b6937498",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Lohan crowded angular masonry and buildings around a central street. Source-backed engine usage: Commercial  Town of Lohan.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "3b43b2be5deab063c8cbd72234b4f4762aad5a7783759b68125614cd86a01e91",
+      "decodedRgbaSha256": "45c53b150f0ada1ab4fd53c3d76eb04c9896e148481e3203e196a298ac0e0984",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5667"
+      ],
+      "locations": [
+        "Shrine of  Shirley"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "dfad79573806666f4951434fc52a22794dbe481801ae4e7183d7ba0a8c65a921",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Shirley stone arches and overgrown ruined platforms. Source-backed engine usage: Shrine of  Shirley.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "f87188bb5e1a0f50cf3b0bd30f10446d9c42e509f89efa15217bf11f1f07b5be",
+      "decodedRgbaSha256": "c26a464c0a428768d6da026bc93a3e3deb09c56cb1679bb2e773f4b2a05d7961",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5668"
+      ],
+      "locations": [
+        "Black Castle in Kazas"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "f9865ec8c53e73758b99155990ef64bd4e50a3bb9bb6979f9b889699b3f71372",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Kazas dark central castle tower flanked by narrow city buildings. Source-backed engine usage: Black Castle in Kazas.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "932b3b25e7812117b32855e719ef236620c4c1229a9019618702c709158abf11",
+      "decodedRgbaSha256": "2f47dadb3c16ff299923e40cb39b2311f82e2303c9a0a8fe0745e09153e09623",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5669"
+      ],
+      "locations": [
+        "Twin Castle in Fletz"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "0573635357825d37e24598349ab0077e122b25835be7220301d95d1bc43bb861",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Fletz pale carved twin towers and foreground architectural details. Source-backed engine usage: Twin Castle in Fletz.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "9a5e98ee51e294a4b301650def7fb734b6f22efa35668591effce600b6262a9e",
+      "decodedRgbaSha256": "5cd6a8b9fb53079ef4a80d82991a0721f76ab2d344e1e3eeb01102cf283ad456",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5670"
+      ],
+      "locations": [
+        "Barrens"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "9df817dee806f1f6ffb25b2a661ce7b1a7422ec1f8eee504fb5a12b06adcd10f",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Barrens winding pale canyon path and rough dark rock walls. Source-backed engine usage: Barrens.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "98c832b7e644e854ff1949f088dde72370c568d5194a7c84a2ecf1c67f1ab02e",
+      "decodedRgbaSha256": "82b22ee9809b72de728048899e67621c7ece4d09677413bd53c319517a7fe826",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5671"
+      ],
+      "locations": [
+        "Donau the  Flower City"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "000af02dd5b6d5b05a34f3933e664047356683b5d5472ebf8af79a5870e0e705",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Donau rounded green buildings, stairway and flowers. Source-backed engine usage: Donau the  Flower City.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "821fc44c55710abf143ec625d540e87f9399a4883e91902cdfdd11ef1d2075c3",
+      "decodedRgbaSha256": "449d79655f55c0e5f6c72002385767b3daca9857eaa33e651505723719639775",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5672"
+      ],
+      "locations": [
+        "Valley of Corrupted Gravity"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "8e1bea476f45f4ad0837b55bc864f97ccc81b094e5fda8e516e7b4202c0b7b93",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Gravity valley floating cracked stone islands, exposed branching roots and mist. Source-backed engine usage: Valley of Corrupted Gravity.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "827be692372e12901146814ed5ce9fc1fb0ab496e3012f5503a0a232cfa30154",
+      "decodedRgbaSha256": "29eacf2522509ce93532be4734e2b5b17d563e07720836ded751b7241b9e0460",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5673"
+      ],
+      "locations": [
+        "Home of  Giganto"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "08b4f819c25fa914906d1ea633053fb94bd45482b86007c1f393852bc02e2d3d",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Giganto monumental carved stone faces flanking gateway and distant tower. Source-backed engine usage: Home of  Giganto.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "d521bcf2ba7b1ace47429df92b548da782daa151888e2ac0356813a889b1d279",
+      "decodedRgbaSha256": "f2484e848a20adf931c8d35d6155fe3f0b16a74c9c5692f0b3081d982d777690",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5674"
+      ],
+      "locations": [
+        "Village of Lidiera"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "c889443ddb21426b1297fcb1b9e9d908c2c148511e0f64881413393b48034736",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Lidiera waterside timber buildings and docks beside cyan-blue water. Source-backed engine usage: Village of Lidiera.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "6947cd1eed0003d62976ed95a33267c80e946d7846430fc060dc9ae97b5c3ebd",
+      "decodedRgbaSha256": "bc076b8436cb31079bd2678d98bb01211d64003759102f65534c77572953bc3d",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5675"
+      ],
+      "locations": [
+        "Undersea Cavern"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "96074b67806157dfdb3920b150bcb19c39440e39b84f2faece9f00729554fe61",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Undersea Cavern pale root-like bridge and dim cavern around blue water. Source-backed engine usage: Undersea Cavern.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "d5ee140e7f3d75342e52b5464f86cf2e23a9a4bc46b13abb04f86b0617ff7c09",
+      "decodedRgbaSha256": "989920d175e66a679f60add4f78187b7d8f7b9ebf6d596491336973aff6f80b4",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5676"
+      ],
+      "locations": [
+        "City of Fueno"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "e066796fa6142fe9106049f3f432b1a2c7e7c6e0119ecaed304471cca2d6f097",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Fueno rounded warm stone domes, arches and rooftop paths. Source-backed engine usage: City of Fueno.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "e7149b75a34397f379e2db3c0b4a1dd1542b8560eb122688e07eb1d2caa5f929",
+      "decodedRgbaSha256": "36e59c4663fb0c3c744e8c35a4b8b45799537631e983e5995e95e7851daafc4f",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5677"
+      ],
+      "locations": [
+        "Furni the Water City"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "8d2ce2d9a6a4d64f3f339dc927599521bf2d3a3231735ee223aabc67f35ee4b4",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Furni pale rounded buildings and trees seen from above. Source-backed engine usage: Furni the Water City.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "49b85788fd6d2b75349163f29a7bf6bf982be384f14759a1597c6d4a0a1593bd",
+      "decodedRgbaSha256": "81b1dee7edb8ca112bca5a381ba68f5bfc4d382e9d2f816be8cf4835e952540a",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5678"
+      ],
+      "locations": [
+        "Evergreen  Forest"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "3e89b80ce91608b1f0a43b97f1f05e358582c2cfa87888ea00a170e7fed002eb",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Evergreen Forest large foreground trunk with green moss and misty rocky stream. Source-backed engine usage: Evergreen  Forest.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "d5be05ec3c975fb8144f87ea45694a57caf0f005dad13cbf861246111e3f9e9c",
+      "decodedRgbaSha256": "20c94c43077fdacdd312ee9b4dfb151c5789fa14126a9948cb8bb3ab4563b09c",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5679"
+      ],
+      "locations": [
+        "Crystal Palace in Deningrad"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "26ddfba081faf2808e8e577fee749953617d67b51ea53f485b96d8a5844dcf0b",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Deningrad pale crystal architecture and dark blue tower beneath grey sky. Source-backed engine usage: Crystal Palace in Deningrad.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "a115730f7125d80d9e44cd7dc1720311ce8fa38db4d7ae4b1eceb96d0cd72da0",
+      "decodedRgbaSha256": "7f0c6314b202b8f3fc52d151dee1e9e86861f595b75d46e8a6c50a626b3c8c7a",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5680"
+      ],
+      "locations": [
+        "Crystal Palace in Deningrad"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "84d51629491eab13454b1f667c1d5c799868f9375dce6943daa405534adef8b1",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Deningrad alternate crystalline city, blue spires and red canopy under lavender sky. Source-backed engine usage: Crystal Palace in Deningrad.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "49b655da368e91e14529655efc95148ec5f4d1dc7fabfd88bde1943e8dc549a6",
+      "decodedRgbaSha256": "48ac3c1d71d8dc82c75753eac81a3cf2992c3048b39b631b88920afb949064ce",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5681"
+      ],
+      "locations": [
+        "Tragic Village of Neet"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "3e41be1a8ca5bd0c43928eda4f150fcccedb2d7473540136371a5356bbf346fb",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Neet pale frosted ruins and bare branching trees. Source-backed engine usage: Tragic Village of Neet.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "48d6e5d50b04133061e3890e1a24fa75e4ed56aff6ad097b4f958565a1e59ed0",
+      "decodedRgbaSha256": "ca9201d97947b5b3b1730b74fb3862c805d596396cfa657307d1dbdb146e2a5f",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5682"
+      ],
+      "locations": [
+        "Forest of  Winglies"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "cc378efdc2f69c1eda78d09657ea0b31b4f79114a0ff1aff78b23b4af337eaf2",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Forest of Winglies retail placeholder scene and the inherited word dummy; bespoke actual vista not claimed. Source-backed engine usage: Forest of  Winglies.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "452e3eea1dfc0b46e7cbeed15f87b177720e7aa71f6fa04e03d139af9cca0250",
+      "decodedRgbaSha256": "7997a489e474b10a638299d0e97c3bbd97b91a13ce1f21f1ef4e9706652acd3e",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5683"
+      ],
+      "locations": [
+        "Mountain of Mortal Dragon"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "4039a4558536ae3394638c1739a4a1bf3738a76a7749481ed47d74563031b5c9",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Mortal Dragon rocky volcanic slope with orange glowing crevices in haze. Source-backed engine usage: Mountain of Mortal Dragon.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "e6bdf943668ba9809927da7cb8c299af20d9a39e650ea34b438015afb14b83fc",
+      "decodedRgbaSha256": "65196135af575eaee1fb66f182ac80853c8acb518940e65fb69791a15fa5fefd",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5684"
+      ],
+      "locations": [
+        "Kashua Glacier"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "25b17edb228801a5d86535311cf1ed04c7f650f22a2faf5cac1c066d7033608a",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Kashua blue-white stepped ice terraces and fissures. Source-backed engine usage: Kashua Glacier.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "eb4de77f22c70d99f70364707bcb806e259ceddfc30696786cc8d94a98326918",
+      "decodedRgbaSha256": "d020a2a483d2319fbb5b7f76a2aa91c70ac92c2ccad86b6d23e45defb632d245",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5685"
+      ],
+      "locations": [
+        "Snowfield"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "956201770c52c685c93db2916b1ce1e7bbb507536457bfa21e8f6c4bdf2c8f0d",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Snowfield thick white snow banks bordered by dark rocky slopes. Source-backed engine usage: Snowfield.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "88c93eb9f3ce60638053661c234604701d5e4b666915cc1b313a2f4047c93ee9",
+      "decodedRgbaSha256": "7e574a5f85597a77430033edada0b849cc26a4e750ef064ff18026539c4be556",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5686"
+      ],
+      "locations": [
+        "Capital  Vellweb"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "3a874436d2a95a110165eeee5a73b5ece9f62826238156fdf377f38ef8e208fc",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Vellweb pale ruined cylindrical towers and cracked stone foreground. Source-backed engine usage: Capital  Vellweb.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "2a49125d9157ed4ef5fc7b013ce6326167c731b33bb5d1eace64177a5a6b787f",
+      "decodedRgbaSha256": "27f87a67e21d5fba628319c63ca9d12a032d61aa91854604d0f25d8003b81978",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5687"
+      ],
+      "locations": [
+        "Death Frontier"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "a43ca042cfd50d573f340da4cc635f7b3a600106e07d5c594f59d8704536ba2b",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Death Frontier pale dunes and rubble under dramatic red sky and luminous blue celestial sphere. Source-backed engine usage: Death Frontier.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "538fd10eb856a5aeb7ef03ad140fcdf4c2492ba355a7ab9c8011430e932b05c5",
+      "decodedRgbaSha256": "a7e76c48a99eaf5f7f4399c5780d02eb6dcd4328d62dd2d9d476b3b3449c7818",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5688"
+      ],
+      "locations": [
+        "Spring Breath Town, Ulara"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "8d5b30c9ff319aeaf6951e4d9d174e1c2ece191c54f8848a4581768e5813934e",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Ulara distant green settlement and mountainous plateau enveloped in pale mist. Source-backed engine usage: Spring Breath Town, Ulara.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "7cda1f44b55f67438b09d26158910aba607649323c0bd23c459db8cabd4f4941",
+      "decodedRgbaSha256": "edad6c9a413c02045bd4fc34a358f59b4c2810639a4642cd2598393e3dc307d7",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5689"
+      ],
+      "locations": [
+        "Law Capital Zenebatos"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "4ca0abb3bb6cd34a17d99f6ea3dc2f90fde572d6ee28f47008db4843d8847d3e",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Zenebatos floating layered rocky city plateau above yellow-green cloud sea. Source-backed engine usage: Law Capital Zenebatos.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "61caba4f9b1b01d4312f43c97c15f891af26583fc944065052c44b7992fdad0b",
+      "decodedRgbaSha256": "3bd2f7bc456b975068990eab682af9055aae8d9ae2176315df3d2c412df993da",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5690"
+      ],
+      "locations": [
+        "Barrier Station",
+        "Death Capital Mayfil"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "297a0605368e5cad6dcf36f7bf8604d22bbb6fe623a6b92c971694563f063f72",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Barrier Station and Mayfil retail parchment-map placeholder; actual city vista not claimed. Source-backed engine usage: Barrier Station, Death Capital Mayfil.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "89cd24faef3a4d37c8b3c160dc451632b64879ac4b0f9bc7f1875e7042006215",
+      "decodedRgbaSha256": "7001b94a59f1447bd6afecc516cd5fb0e92c13aa6e394b1a38d0b8920c12e2ff",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5691"
+      ],
+      "locations": [
+        "Magic Capital Aglis"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "af4d29b5cc6604f5d91dc97e118b7e4b6ab32d3e324f36d21c54a4f7e9a2faba",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Aglis violet magical cavern, suspended platforms and green illuminated spires. Source-backed engine usage: Magic Capital Aglis.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "location-thumbnail",
+      "sourceSha256": "f3c6c96753d98a91721ebc397c3dd2d577ebc6e17e2cdafc2d28e7e750457ad6",
+      "decodedRgbaSha256": "09df53e5ef804254d46ba427367bce4ad1352f1cd8d8bca821dcf76a7c05cd1c",
+      "sourceSize": [
+        120,
+        90
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5692"
+      ],
+      "locations": [
+        "Outland  Village Rouge"
+      ],
+      "targetSize": [
+        480,
+        360
+      ],
+      "outputSha256": "964671a7a374660b95ec63001b71902740057c1c34f9391ef697fe9ac662b3b5",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Rouge timber and thatch waterfront settlement, docks and clear blue water. Source-backed engine usage: Outland  Village Rouge.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    },
+    {
+      "kind": "world-backdrop",
+      "sourceSha256": "8e89e6ea72619d65eaeeb1955f09350b8a176db6362c19c354a628ced1b30404",
+      "decodedRgbaSha256": "3ee6c9454e1689919581d8070b8d089ea3212ba76c12b52e3f49176371398fc2",
+      "sourceSize": [
+        320,
+        256
+      ],
+      "sourceFiles": [
+        "SECT/DRGN0.BIN/5696"
+      ],
+      "locations": [
+        "World-map parchment and continent drawing"
+      ],
+      "targetSize": [
+        1280,
+        1024
+      ],
+      "outputSha256": "e899bf3ef1ca5eea607c9556168ede6ceeac16617e4ffa18fc2154ecc32e9c81",
+      "method": "real-esrgan-x4plus-clamped-source-layout",
+      "scale": 4,
+      "reviewStatus": "visual-reviewed-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+      "edgeAveraging": false,
+      "review": {
+        "intent": "Original parchment world map: retain continent geography, graticule, ornate border, inset drawing and inherited lettering without retyping. Source-backed engine usage: World-map parchment and continent drawing.",
+        "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+        "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+        "verdict": "visual-reviewed-native-pending"
+      },
+      "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+      "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+      "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+    }
+  ],
+  "selected": 39,
+  "nativeAccepted": 0
+}

@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "bce52dd1c81a70ebe2ab876aac037e946bfd6aaa8923fa63fa6582c8ab44c2d7",
+  "outputSha256": "e538648465c5e35ca2057ab0ccc912a77fed53d06ead20abe0a57f23211356dd",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "prompt": "prompts/source-edges-stage62-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Moon bright gold patterned central opening framed by dark wooden or stone architectural bands. Source positions and scene identity compared directly with original.",
+    "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+    "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+    "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 7.236111164093018,
+    "outputEdgeMeanDifference": 1.9529080390930176
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "bce52dd1c81a70ebe2ab876aac037e946bfd6aaa8923fa63fa6582c8ab44c2d7",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "action": "upscale-original",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "masterSourceSha256": "4f5565d04a63f7d3ca017b9e1fbfa798b8d087295388d13651e9863d8d09946b",
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "sourceSize": [
+      256,
+      384
+    ],
+    "repairBorderPixels": 0,
+    "decodedRgbaSha256": "bce52dd1c81a70ebe2ab876aac037e946bfd6aaa8923fa63fa6582c8ab44c2d7",
+    "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "outputSha256": "e538648465c5e35ca2057ab0ccc912a77fed53d06ead20abe0a57f23211356dd"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "4f5565d04a63f7d3ca017b9e1fbfa798b8d087295388d13651e9863d8d09946b"
+}

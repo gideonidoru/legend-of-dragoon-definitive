@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "26675e0696cbce91b395b9f881f79e2d3c8a98683a276db5e4334adb106d4fcf",
+  "outputSha256": "2549fa9e2fcc3193b62bc1b75dcdf1c81c6859985fe2ebb59f81b3892e42f5cf",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "intent-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-world-desert-stage89-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Source is an entirely opaque warm rocky desert panorama used by12 world-map stage89 route entries. Initial prompt mistakenly requested a black lower band; this invented band is rejected.",
+    "style": "Fine small rocky rubble follows the desired realistic texture direction, but saturation/contrast are stronger than source haze.",
+    "layout": "Generated horizon is too high and black begins around y795/1024. Source has no black visibility band: verified every source alpha pixel255, and RGB rubble/haze continues to bottom. Restore source horizon and full ground strip.",
+    "wrap": "Edge difference8.84 versus source4.16; repeating contact remains pending after full source-layout correction. Not selected.",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sourceEdgeMeanDifference": 4.15625,
+    "outputEdgeMeanDifference": 8.841471672058105
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c"
+}

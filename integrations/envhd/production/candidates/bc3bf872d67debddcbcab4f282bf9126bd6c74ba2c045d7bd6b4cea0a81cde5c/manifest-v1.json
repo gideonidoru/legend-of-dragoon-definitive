@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "7f05ed65b21bd0f436358c0f3c7238c70170701a1a0204ed073a029844051693",
+  "outputSha256": "7311d0b8f24c92fcd2effff95d6b721e843b71b8d591051b45c25b7a72768711",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "intent-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-snowfield-stage46-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Snowfield material correctly uses bent woody branches buried in snow, confirmed by field457; no creatures or rock horns substituted.",
+    "style": "Natural powder and weathered bark follow Skurfa material quality; original lavender sky retained.",
+    "layout": "Reject: highest snowbank moves from source near y.46 to output near y.39 and branch groups shift upward. Needs exact source-bound layout correction.",
+    "wrap": "Large visible snow/sky step; difference15.28 versus source3.12. Remains outside runtime.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.118055582046509,
+    "outputEdgeMeanDifference": 15.27907943725586
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c"
+}

@@ -1,0 +1,68 @@
+# EnvHD integration status
+
+This thread owns EnvHD only. CharHD, UIHD and FxHD production is handled separately.
+Custom artwork and code are public and included by the existing default bundle
+build. Keep installer releases consolidated through the delivery thread; do not
+publish a new download for each asset/code iteration.
+
+## Selected development artwork
+
+- 70 distinct battle panoramas cover 73 source/header variants. One uniform-black
+  source is deliberately exempt. The public panorama history has 123 revisions.
+- 38 source-bound location landscapes and one parchment world-map backdrop now
+  have reviewed 4x neural baselines. Their public source/provenance/review ledger
+  is `integrations/envhd/production/world-artwork.json`.
+- The pre-existing battle-material pilot covers 24 material regions on stages 0/6.
+- Native gameplay/Steam Deck visual acceptance remains pending. Neural smoothing
+  does not establish final Skurfa-equivalent bespoke detail.
+
+The world backdrop retains original placement, three rendering paths, brightness
+and additive blending. Location images retain the 120x90 popup display, source
+palette/visibility and fades. Optional replacements honor prior mods; invalid
+artwork falls back to original. Text, controls, characters and effects are not
+part of these replacements. Both normal and abrupt world teardown release artwork.
+Retail placeholders (Forest of Winglies' inherited `dummy` image and map-thumbnail
+aliases) remain truthful source baselines, rather than invented canonical vistas.
+
+## Skurfa protection
+
+Existing Skurfa artwork, code, notices and pinned resource bytes remain unchanged.
+The ownership ledger protects 38 packs and 87 source-identical cut/period mappings.
+Reuse those resources; produce only unowned gaps. No field background listener or
+new field artwork has been added by the panorama/world extension yet.
+
+## Verification and remaining work
+
+Independent Python/Java decoders agree on all 74 battle and 39 world sources.
+Seventeen batch, eight sky-import, eleven world and five ownership regression tests
+pass. On the combined main baseline `3472edf1e23b27fd06da1b81580e05985bf57d1e`,
+the Java delivery suite has 278 passes, seven skips, no failures. Run the audio
+regressions with their silent driver (`ALSOFT_DRIVERS=null`); an earlier run without
+that driver failed the unrelated audio-clock regression.
+Full original-source checks and packaged-byte validation accompany each final batch.
+No game window or visible desktop app was launched.
+
+The ready asset source is `766f926a52655fdde5c4dab0cdeac86dad816146`.
+Integration preserves the combined build's ModelsHD 0.4 geometry hooks, renderer,
+UI scaling and delivery code. The popup conflict keeps `queueUiOrthoModel` together
+with the optional EnvHD thumbnail texture. No other mod's production folders change.
+The staged EnvHD JAR contains 225 byte-matching runtime files: 109 panorama/world
+PNGs plus the two pre-existing material-pilot atlas PNGs. Its SHA-256 is
+`557d9da1eb1408d0e9cac6520ef4c52c978f074e50696387a89e6367177a49b7`.
+All 406 Skurfa runtime files match the pinned upstream source. This is integration
+evidence; the delivery thread publishes the single consolidated installation.
+
+The next terrain batch is independent on `codex/envhd-terrain`; its reviewed
+pipeline source is `90a2dc037`. It generated 293 unique private candidates for
+365 of 366 static material bindings across eight regions. One uniform-color
+candidate should retain native artwork, and one wrapped Tiberoa material remains
+held. Twelve pipeline regressions pass; all corrected candidates agree with fresh
+ordered VRAM source decoding. Visual baselines are reviewed, but no terrain runtime
+selection, native acceptance or final Skurfa-equivalent quality is claimed yet.
+
+Next production categories remain world terrain/scenery, remaining battle material
+regions, unowned field scenes and environmental props. The field census has 612
+unowned configurations before visual deduplication/empty-layer filtering; shared
+sources and Skurfa aliases must stay deduplicated. Full EnvHD completion is not
+claimed by these first two baseline batches. Improve bespoke materials and inspect
+native scene behavior before claiming final visual acceptance.

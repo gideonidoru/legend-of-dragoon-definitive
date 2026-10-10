@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "37561e937cd3622a8274e8be7b4ae39ec4498e823366896a0d227ca55b89da0e",
+  "outputSha256": "b8cffa431b47e8c9a8b8ce1b9762607cfa89a6cd9905b52ac04e8876510180a3",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-world-sea-stage88-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Verified8 world-map stage88 route entries, modelIndex1. Open sea, level horizon and white cloud groups retained without adding ships, shore or islands.",
+    "style": "Natural cloud detail and calm fine ocean ripples follow Skurfa finish; bottom retains dark green-teal hue.",
+    "layout": "Source horizon remains near y.66; main cloud groups stay recognizable, no land inserted.",
+    "wrap": "Joined edges have a conspicuous vertical cloud-brightness seam. Edge difference13.59 versus source3.72. Keep outside installed resources until border repair.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.722222328186035,
+    "outputEdgeMeanDifference": 13.59396743774414
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1"
+}

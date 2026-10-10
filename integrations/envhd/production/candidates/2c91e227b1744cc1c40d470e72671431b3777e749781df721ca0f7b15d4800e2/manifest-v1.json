@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "580d5d2fc67a1bd345597a5823f1575960012a24fdd14234f7a42b8594eee083",
+  "outputSha256": "3e1026adfb1939d8a005a03163967f7c532e7af9975dee6313da78fa32903bca",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-moon-green-stage83-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Shared Moon panorama for stages83 and84, four source-backed encounter cuts. Diffuse pale yellow-green upper haze, broad interwoven curved tendrils in the upper middle and mottled olive darkness below retained. No outdoor horizon, trunks, architecture, creatures or bright new objects.",
+    "style": "Refined organic fibrous surfaces and gentle cloudy material detail follow Skurfa realism while preserving source green palette and haze. Upper tendrils are more pronounced than original but overall subject and broad gradient plausible.",
+    "layout": "Exact1024x1536 fourfold rectangle. Main upper-middle curved strands, top haze and darker lower half retain broad source placement. Source/output fully opaque with zero opaque-black texels. Header variants83 and84 share one image.",
+    "wrap": "Independent repeat review found upper-middle20-45% contact strands terminate or change direction abruptly and a localized vertical light/dark shift. GlobalMAE7.55 versus original2.52 is diluted by smooth lower haze and does not establish a satisfactory join. Withdraw shared selected bindings; retain public draft pending narrow structural contact repair and native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.5208332538604736,
+    "outputEdgeMeanDifference": 7.550998210906982
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2"
+}
