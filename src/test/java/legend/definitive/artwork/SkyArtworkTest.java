@@ -68,4 +68,25 @@ class SkyArtworkTest {
     data[24] = 77; assertEquals(0, header.source()[24]); assertEquals(0, event.source()[24]);
     final byte[] returned = event.source(); returned[24] = 88; assertEquals(0, event.source()[24]);
   }
+
+  @Test void pixelIdenticalHeaderVariantsShareOneImageAndWrongGroupsAreRejected() throws Exception {
+    final byte[] png = png(), first = source(), second = source();
+    second[24] = 77; // differing clear-color header, identical decoded pixels
+    final String group = SkySource.fingerprint(SkySource.decode(first));
+    assertEquals(group, SkySource.fingerprint(SkySource.decode(second)));
+    final String base = new String(manifest(png, "native-accepted"), StandardCharsets.UTF_8);
+    final byte[] one = base.replace("\"scale\":2", "\"scale\":2,\"decodedRgbaSha256\":\"" + group + "\"").getBytes(StandardCharsets.UTF_8);
+    final byte[] two = new String(one, StandardCharsets.UTF_8).replace(legend.definitive.textures.TexturePilot.sha256(first), legend.definitive.textures.TexturePilot.sha256(second)).getBytes(StandardCharsets.UTF_8);
+    assertArrayEquals(SkyImage.read(one, png, first).data, SkyImage.read(two, png, second).data);
+    assertEquals("/envhd/sky-images/" + group + "/image-v1.png", SkyImage.resourcePath(one, "/envhd/skies/first"));
+    assertEquals(SkyImage.resourcePath(one, "/envhd/skies/first"), SkyImage.resourcePath(two, "/envhd/skies/second"));
+    final byte[] wrong = new String(one, StandardCharsets.UTF_8).replace(group, "0".repeat(64)).getBytes(StandardCharsets.UTF_8);
+    assertThrows(java.io.IOException.class, () -> SkyImage.read(wrong, png, first));
+    final byte[] escaped = new String(one, StandardCharsets.UTF_8).replace(group, "../other-mod").getBytes(StandardCharsets.UTF_8);
+    assertThrows(java.io.IOException.class, () -> SkyImage.resourcePath(escaped, "/envhd/skies/first"));
+    final byte[] versioned = new String(one, StandardCharsets.UTF_8).replace("\"scale\":2", "\"imageFile\":\"image-v2.png\",\"scale\":2").getBytes(StandardCharsets.UTF_8);
+    assertEquals("/envhd/sky-images/" + group + "/image-v2.png", SkyImage.resourcePath(versioned, "/envhd/skies/first"));
+    final byte[] escapedFile = new String(versioned, StandardCharsets.UTF_8).replace("image-v2.png", "../other-mod/image.png").getBytes(StandardCharsets.UTF_8);
+    assertThrows(java.io.IOException.class, () -> SkyImage.resourcePath(escapedFile, "/envhd/skies/first"));
+  }
 }

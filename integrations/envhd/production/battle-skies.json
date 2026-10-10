@@ -73,22 +73,24 @@
       ],
       "status": "visual-reviewed-native-pending",
       "review": {
-        "intent": "Original layout preserved; amber forest sunset.",
-        "style": "Matches Skurfa material-detail direction; references used only for style",
+        "intent": "Forest sunset, amber cloud bands and dark green canopy retained; no cliff or architecture transplanted from Skurfa.",
+        "style": "Modern natural foliage and cloud detail follows the Skurfa references.",
+        "layout": "Original horizon and layered forest placement retained; exact4x dimensions verified.",
+        "wrap": "Correction reduced boundary error from21.36 to6.15 versus original3.99. Bands reconnect; native scene acceptance remains pending.",
         "dimensions": [
           1024,
           1536
         ],
-        "sourceEdgeMeanDifference": 3.9861112,
+        "sourceEdgeMeanDifference": 3.9861111640930176,
         "outputEdgeMeanDifference": 6.1484375,
-        "remaining": [
-          "Native scene verification"
-        ]
+        "generationMasterSourceSha256": "a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6"
       },
       "priority": 1,
-      "output": "integrations/envhd/runtime-assets/envhd/skies/a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6/image-v1.png",
+      "output": "integrations/envhd/production/candidates/a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6/image-v2.png",
       "decodedRgbaSha256": "17e12093491e8d7bbc39d445c831fbc1a7c472115ef8ab5a978da62c7f5b8895",
-      "generationMasterSourceSha256": "a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6"
+      "generationMasterSourceSha256": "a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/17e12093491e8d7bbc39d445c831fbc1a7c472115ef8ab5a978da62c7f5b8895/image-v2.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc",
@@ -114,11 +116,26 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "layout-reviewed-wrap-pending",
+      "review": {
+        "intent": "Giganto Home sunset, green forest and original mountain/cloud layout retained; warm modern natural detail.",
+        "style": "Modern Skurfa detail direction; source colors and intent retained",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 3.0,
+        "outputEdgeMeanDifference": 8.44444465637207,
+        "remaining": [
+          "Native scene verification",
+          "Review repeat-boundary contact"
+        ],
+        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-batch2.png"
+      },
       "priority": 1,
       "decodedRgbaSha256": "dfe127af7183428858539db8599630c3ed4c91ca2ea54a6b75a606f768414c07",
-      "generationMasterSourceSha256": "9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc"
+      "generationMasterSourceSha256": "9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc",
+      "output": "integrations/envhd/production/candidates/9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc/image-v1.png"
     },
     {
       "id": "battle-sky-4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
@@ -365,11 +382,26 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "layout-reviewed-wrap-pending",
+      "review": {
+        "intent": "Natural dark green-blue cavern, hollow and stalagmite/pool arrangement retained; no architecture copied from Skurfa.",
+        "style": "Modern Skurfa detail direction; source colors and intent retained",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 4.486111164093018,
+        "outputEdgeMeanDifference": 14.300347328186035,
+        "remaining": [
+          "Native scene verification",
+          "Review repeat-boundary contact"
+        ],
+        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-batch2.png"
+      },
       "priority": 1,
       "decodedRgbaSha256": "1f2f6b275f677cb3cadd1e38a625f89f012b42a2cbdce1179f45c77c26458c0d",
-      "generationMasterSourceSha256": "152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3"
+      "generationMasterSourceSha256": "152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3",
+      "output": "integrations/envhd/production/candidates/152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3/image-v1.png"
     },
     {
       "id": "battle-sky-6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a",
@@ -389,11 +421,26 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "visual-reviewed-native-pending",
+      "review": {
+        "intent": "Original very dark violet starry night, subdued clouds, flat horizon and shadowed lower terrain retained; no moon, buildings or daylight added.",
+        "style": "Polished Skurfa material and atmospheric-detail direction; stronger tiny star highlights remain a native-size acceptance check.",
+        "layout": "Source framing, horizon and terrain silhouettes remain aligned; exact target dimensions verified.",
+        "wrap": "Edge difference 2.27 versus original 2.10; night darkness and horizontal horizon reconnect with no broad vertical seam. Native scene acceptance pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.097222328186035,
+        "outputEdgeMeanDifference": 2.265191078186035,
+        "generationMasterSourceSha256": "6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a"
+      },
       "priority": 1,
       "decodedRgbaSha256": "c9a1899f210fe593308bb905eab012b5d68d399b0872a749f5a90d0e861d8e56",
-      "generationMasterSourceSha256": "6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a"
+      "generationMasterSourceSha256": "6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a",
+      "output": "integrations/envhd/production/candidates/6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a/image-v1.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/c9a1899f210fe593308bb905eab012b5d68d399b0872a749f5a90d0e861d8e56/image-v1.png",
+      "runtimeReviewStatus": "visual-reviewed-native-pending"
     },
     {
       "id": "battle-sky-9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e",
@@ -439,11 +486,26 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "layout-reviewed-wrap-pending",
+      "review": {
+        "intent": "Marshland mossy trunks, roots and dim olive light retained; central trunk and distant opening stay aligned.",
+        "style": "Modern Skurfa detail direction; source colors and intent retained",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 6.673611164093018,
+        "outputEdgeMeanDifference": 21.19118881225586,
+        "remaining": [
+          "Native scene verification",
+          "Review repeat-boundary contact"
+        ],
+        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-batch2.png"
+      },
       "priority": 1,
       "decodedRgbaSha256": "2ddf7df713f26ae3b2460f3076bd8ab4d9a2b99cdab1e3d26e137a15ea704f95",
-      "generationMasterSourceSha256": "9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e"
+      "generationMasterSourceSha256": "9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e",
+      "output": "integrations/envhd/production/candidates/9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e/image-v1.png"
     },
     {
       "id": "battle-sky-9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0",
@@ -504,11 +566,27 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "intent-revision-needed",
+      "review": {
+        "intent": "Volcanic rock and ochre smoky intent retained, but foreground-right boulder and higher ridge drift from source; revise geometry.",
+        "style": "Modern Skurfa detail direction; source colors and intent retained",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.0138888359069824,
+        "outputEdgeMeanDifference": 7.773003578186035,
+        "remaining": [
+          "Correct foreground-right boulder and original ridge height",
+          "Review repeat boundary",
+          "Native scene verification"
+        ],
+        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-batch2.png"
+      },
       "priority": 1,
       "decodedRgbaSha256": "2ba67142b83cbe817d74ba7032546e599d2894dea9e0c9bfc70373503c4ac573",
-      "generationMasterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0"
+      "generationMasterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0",
+      "output": "integrations/envhd/production/candidates/9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0/image-v1.png"
     },
     {
       "id": "battle-sky-a1e5d38c163afa0bc0e87c1a6c783931948d14b1817b9a3be0da834195886f16",

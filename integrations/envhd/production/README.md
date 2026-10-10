@@ -36,3 +36,23 @@ placement and clear-color behavior. No scene is regenerated for a different ID.
 Visual review, source/layout validation, runtime integration, and native scene
 acceptance are separate states. The overall goal is still incomplete; no inventory
 or build result is a claim of 100% visual coverage.
+
+All custom artwork candidates and revisions are public, versioned project assets
+under the owner's October 10 authorization. Rejected/development revisions retain
+their review status and stay outside `runtime-assets`; only selected reviewed
+images enter the installed mod. Private original extraction and source-comparison
+diagnostic images remain outside this repository.
+
+Reviewed bitmaps live once under `envhd/sky-images/<decoded-pixel-hash>`. Each
+source MCQ variant has its own source-bound manifest in `envhd/skies/<source-hash>`.
+The loader checks the original source hash, decoded pixel fingerprint and output
+hash before reading the selected version. Shared bitmaps keep each stage's own
+retail offsets, camera scroll and clear colors.
+
+`scripts/import-envhd-sky.py` verifies all original variants in a shared group,
+existing selected resource hashes, bounded PNG bytes, output dimensions and version
+conflicts before writing. Rejected new revisions preserve the earlier selection;
+withdrawing the exact selected image removes its bindings and unreferenced runtime
+copy while preserving the public candidate. A failed local publication rolls back
+the touched files. Run `scripts/test-envhd-sky-import.py` for synthetic regression
+fixtures; they use no retail artwork or game window.

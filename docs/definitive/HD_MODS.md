@@ -67,6 +67,22 @@ remain distinct states in `integrations/envhd/production`. Candidate/rejected ar
 stays outside runtime resources. These counts do not certify complete environment
 coverage or native gameplay acceptance.
 
+The current panorama batch has 13 custom revisions across eight restoration
+masters. Forest sunset and Star night passed visual review and are selected;
+native scene acceptance is pending. Five masters need repeat-boundary corrections
+and the volcanic master needs an intent/layout revision. All custom candidates
+and saved prompts are public production assets; original sources and comparison
+boards remain outside Git. Selected pixel-identical variants resolve to one PNG
+through separate source-bound manifests, preserving each original MCQ header.
+
+Headless verification found 119 passing delivery tests and four desktop-only
+tests skipped. Five ownership and eight import regression tests passed. Independent
+decoders agree on all pixels of all 74 battle sources. The packaged Skurfa resources
+match the pinned integration byte-for-byte; the EnvHD package contains two reviewed
+panoramas and no production candidates. Import preflight and rollback tests cover
+source drift, corrupt prior resources, malformed controls, rejected revisions,
+version conflicts, oversized inputs and publication failure.
+
 Headless checks cover separated palette UV placement, source-page rejection, animation rejection, malformed PNGs, transparent colored pixels, existing-mod precedence, installer inclusion independent of Skurfa, and saved game-mod configuration through update/rollback. Existing delivery/material fixtures remain required. Build/package verification must confirm all four IDs, resources and notices, and source-correlated archives.
 
 Regression checks also cover both source-load completion orders, deferred scene execution, obsolete/failed loads, and repeated attached-effect teardown with and without an HD replacement. Teardown cannot post replacement events or recreate HD dust resources.

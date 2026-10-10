@@ -46,7 +46,10 @@ public final class SkySource {
 
   /** Retail zero texels remain holes; visible black (0x8000) remains opaque. */
   public static Image applyCoverage(final byte[] source, final Image replacement) throws IOException {
-    final Image original = decode(source);
+    return applyCoverage(decode(source), replacement);
+  }
+
+  static Image applyCoverage(final Image original, final Image replacement) throws IOException {
     final int scale = replacement.width / original.width;
     if(scale < 1 || scale > 8 || replacement.width > 4096 || replacement.height > 4096 || replacement.width != original.width * scale || replacement.height != original.height * scale || replacement.data.length != (long)replacement.width * replacement.height * 4) throw new IOException("Sky artwork differs from original layout");
     final byte[] pixels = replacement.data.clone();
@@ -57,6 +60,13 @@ public final class SkySource {
       pixels[p + 3] = visible ? (byte)255 : 0;
     }
     return new Image(pixels, replacement.width, replacement.height);
+  }
+
+  /** Pixel identity excludes placement/clear-color header fields, which remain retail. */
+  public static String fingerprint(final Image image) {
+    final var pixels = ByteBuffer.allocate(8 + image.data.length).order(ByteOrder.LITTLE_ENDIAN);
+    pixels.putInt(image.width).putInt(image.height).put(image.data);
+    return legend.definitive.textures.TexturePilot.sha256(pixels.array());
   }
 
   private static int unsigned(final ByteBuffer bytes, final int offset) { return Short.toUnsignedInt(bytes.getShort(offset)); }

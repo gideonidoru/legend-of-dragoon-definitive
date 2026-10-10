@@ -28,7 +28,10 @@ public final class SkySourceAudit {
       checked++;
       final Path candidate = resources.resolve(key);
       if(Files.isRegularFile(candidate.resolve("manifest.json"))) {
-        final var image = SkyImage.read(Files.readAllBytes(candidate.resolve("manifest.json")), Files.readAllBytes(candidate.resolve("image-v1.png")), source);
+        final byte[] metadata = Files.readAllBytes(candidate.resolve("manifest.json"));
+        final String imagePath = SkyImage.resourcePath(metadata, "/envhd/skies/" + key);
+        final Path png = resources.getParent().getParent().resolve(imagePath.substring(1));
+        final var image = SkyImage.read(metadata, Files.readAllBytes(png), source);
         System.out.println("Reviewed source-bound artwork " + key + ' ' + image.width + 'x' + image.height);
         reviewed++;
       }

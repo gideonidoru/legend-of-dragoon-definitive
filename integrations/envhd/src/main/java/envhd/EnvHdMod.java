@@ -18,9 +18,7 @@ public final class EnvHdMod {
       final byte[] source = event.source();
       final String base = "/envhd/skies/" + legend.definitive.textures.TexturePilot.sha256(source);
       try(final var exists = EnvHdMod.class.getResourceAsStream(base + "/manifest.json")) { if(exists == null) return; }
-      event.replacement = legend.definitive.artwork.SkyImage.read(
-        ArtworkResources.read(EnvHdMod.class, base + "/manifest.json", 65536),
-        ArtworkResources.read(EnvHdMod.class, base + "/image-v1.png", 32 * 1024 * 1024), source);
+      event.replacement = legend.definitive.artwork.SkyImage.load(EnvHdMod.class, base, source);
     } catch(final IOException | RuntimeException failure) { org.apache.logging.log4j.LogManager.getLogger().warn("EnvHD retained original sky: {}", failure.getMessage()); }
   }
   @EventListener public void replace(final BattleStageTextureEvent event) {

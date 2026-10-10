@@ -64,4 +64,10 @@ This runs a synthetic JUnit fixture that shares the production Gradle policy and
 
 Retain upstream history, LICENSE, CREDITS, credits.txt and per-file notices. New source modifications must identify changes and retain applicable licensing; distribute corresponding source alongside future covered binaries. Artwork has its own provenance and terms; upstream's code license does not grant rights to game images or third-party packs. Verify each pack's redistribution permission and attribution before bundling. Skurfa is linked as a pinned public submodule with source and runtime artwork. Preserve its LICENSE and THIRD_PARTY_NOTICES.md; its MIT license does not relicense derivative artwork. See the integration record for build output and version pins.
 
-Only explicitly stage source and documentation. Never stage images, extracted assets, saves, tokens, environment files, private configs or runtimes. The public Skurfa gitlink is intentionally tracked; private retail disc/extraction files and local mod binaries remain ignored.
+Explicitly stage source, documentation and custom Definitive assets. The owner's
+October 10 authorization includes public, versioned custom mod code, ModelsHD
+geometry and HD artwork, including labelled development revisions. Only selected,
+reviewed resources enter the installed mods. Never stage disc images, full original
+extractions, saves, tokens, environment files, private configs, local runtimes or
+diagnostic comparisons containing original artwork. The public Skurfa gitlink
+remains tracked; its artwork and notices stay in its own integration.
