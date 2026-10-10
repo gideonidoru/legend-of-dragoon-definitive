@@ -25,7 +25,7 @@ public final class MoviePlayback {
           source.bufferOutput(pcm);
         }
       }
-      this.playedMicros = Math.max(this.playedMicros, (long)(source.getPlaybackPosition() * 1_000_000));
+      this.playedMicros = Math.max(this.playedMicros, (long)(source.getPlaybackPositionSeconds() * 1_000_000));
     } else {
       // Disabled/unavailable audio must not block video or fill the audio queue forever.
       while(this.movie.pollAudio() != null) { }
