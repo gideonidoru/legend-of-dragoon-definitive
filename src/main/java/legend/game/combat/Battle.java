@@ -2531,7 +2531,7 @@ public class Battle extends EngineState<Battle> {
     //LAB_800c8604
   }
 
-  private byte[] stageArtworkTim;
+  private long stageLoadGeneration;
 
   private void deleteBattleStageModel() {
     final BattleStage stage = battlePreloadedEntities_1f8003f4.stage_963c;
@@ -2582,6 +2582,7 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800c8748L)
   public void FUN_800c8748() {
+    this.stageLoadGeneration++;
     battlePreloadedEntities_1f8003f4 = null;
     battleState_8006e398 = null;
     this.targetBents_800c71f0 = null;
@@ -2589,6 +2590,10 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800c8774L)
   public void loadStageTmdAndAnim(final String modelName, final List<FileData> files) {
+    this.loadStageTmdAndAnim(modelName, files, null);
+  }
+
+  private void loadStageTmdAndAnim(final String modelName, final List<FileData> files, final byte[] originalTim) {
     LOGGER.info("Battle stage %s loaded", modelName);
 
     this.setStageHasNoModel();
@@ -2599,10 +2604,10 @@ public class Battle extends EngineState<Battle> {
       stage.name = modelName;
       final byte[] originalModel = files.get(0).getBytes().clone();
       this.loadStageTmd(stage, new CContainer(modelName, files.get(0), 10), new TmdAnimationFile(files.get(1)));
-      if(this.stageArtworkTim != null) {
+      if(originalTim != null) {
         try {
-          final var event = EVENTS.postEvent(new legend.game.modding.events.battle.BattleStageTextureEvent(originalModel, this.stageArtworkTim));
-          if(event.replacement != null) stage.artwork = legend.definitive.artwork.StageArtwork.create(stage, event.replacement, originalModel, this.stageArtworkTim);
+          final var event = EVENTS.postEvent(new legend.game.modding.events.battle.BattleStageTextureEvent(originalModel, originalTim));
+          if(event.replacement != null) stage.artwork = legend.definitive.artwork.StageArtwork.create(stage, event.replacement, originalModel, originalTim);
         } catch(final Exception failure) { LOGGER.warn("EnvHD stage retained original artwork: {}", failure.getMessage()); }
       }
       stage.coord2_558.coord.transfer.set(0, 0, 0);
@@ -2683,7 +2688,8 @@ public class Battle extends EngineState<Battle> {
     }
 
     // GH#1931
-    this.stageArtworkTim = null;
+    final long generation = ++this.stageLoadGeneration;
+    final var owner = battlePreloadedEntities_1f8003f4;
 
     // Disable texture animations so we don't corrupt the texture of the loading stage due to the old stage model still being loaded...
     if(stage_800bda0c != null) {
@@ -2694,17 +2700,23 @@ public class Battle extends EngineState<Battle> {
 
     // ... and defer loading to the next frame so that any texture animations currently in the pipeline finish
     RENDERER.addTask(() -> {
-      loadDrgnDir(0, 2497 + stage).thenAccept(files -> {
-        if(files.get(1).hasVirtualSize()) {
-          this.loadStageMcq(new McqHeader(files.get(1)));
-        }
-
-        if(files.get(2).size() != 0) {
-          this.loadStageTim(files.get(2));
-        }
-      });
-
-      loadDrgnDir(0, (2497 + stage) + "/0").thenAccept(files -> this.loadStageTmdAndAnim("DRGN0/" + (2497 + stage) + "/0", files));
+      final var textureFiles = loadDrgnDir(0, 2497 + stage);
+      final var modelFiles = loadDrgnDir(0, (2497 + stage) + "/0");
+      legend.definitive.artwork.StageLoad.apply(modelFiles, textureFiles, RENDERER::addTask,
+        () -> this.stageLoadGeneration == generation && battlePreloadedEntities_1f8003f4 == owner,
+        (models, textures) -> {
+          if(textures.get(1).hasVirtualSize()) {
+            this.loadStageMcq(new McqHeader(textures.get(1)));
+          }
+          final byte[] originalTim = textures.get(2).size() == 0 ? null : textures.get(2).getBytes().clone();
+          if(originalTim != null) {
+            this.loadStageTim(textures.get(2));
+          }
+          this.loadStageTmdAndAnim("DRGN0/" + (2497 + stage) + "/0", models, originalTim);
+        }).exceptionally(failure -> {
+          LOGGER.error("Battle stage loading failed", failure);
+          return null;
+        });
     });
 
     this.currentStage_800c66a4 = stage;
@@ -2713,7 +2725,6 @@ public class Battle extends EngineState<Battle> {
   @Method(0x800c8c84L)
   public void loadStageTim(final FileData data) {
     LOGGER.info("Battle stage texture loaded");
-    this.stageArtworkTim = data.getBytes().clone();
 
     final Tim tim = new Tim(data);
 

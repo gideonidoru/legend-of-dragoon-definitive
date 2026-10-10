@@ -21,6 +21,8 @@ Managed launch links all four JARs even when the legacy Skurfa preference select
 
 EnvHD selects an immutable atlas by raw original model SHA256 and verifies the TIM, deterministic per-palette map, atlas hash, source discard/STP/visible-black classification and original texture-page references before creating GPU resources. It rejects animated/extra model dependencies and faces on other pages. Its meshes are separately owned and leave original geometry, packets, normals, lighting, animation and cached retail meshes untouched. The optional texture uses nearest sampling and clamp; translucent primitive modes retain their source TPAGE bits. Scene unload deletes both the optional meshes and texture.
 
+Stage loading joins the matching model and TIM futures before posting replacement events or constructing resources on the rendering thread. A scene-generation and owning-battle guard rejects a completed load after another stage/battle has taken its place. There is no shared pending TIM between loader workers.
+
 Counterattack darkening operates on original VRAM palettes. EnvHD switches to the original stage while that operation is active and returns to its replacement when the original multiplier is restored. Runtime-enabled texture animation likewise selects the original route. This preserves the legacy effect rather than freezing an undarkened HD scene. Shader color conversion still differs by up to eight-bit quantization from original five-bit color; visual/lighting equality is not claimed.
 
 UIHD runs after ordinary atlas registration. It requires the current original PNG hash and exact current pixel/dimension match, so an earlier mod's replacement is retained. Higher-resolution image UV dimensions are packed separately from GoodsIcon's fixed 16×16 display geometry. Alpha coverage is restored from the source. Candidates blend 55% reconstruction with 45% nearest control to protect icon structure. A corrupted/missing source or resource retains the original icon.
@@ -40,6 +42,8 @@ Stage 0's base-level RGBA atlas estimate is 7,569,408 bytes; stage 6's is 7,208,
 ## Acceptance and remaining work
 
 Headless checks cover separated palette UV placement, source-page rejection, animation rejection, malformed PNGs, transparent colored pixels, existing-mod precedence, installer inclusion independent of Skurfa, and saved game-mod configuration through update/rollback. Existing delivery/material fixtures remain required. Build/package verification must confirm all four IDs, resources and notices, and source-correlated archives.
+
+Regression checks also cover both source-load completion orders, deferred scene execution, obsolete/failed loads, and repeated attached-effect teardown with and without an HD replacement. Teardown cannot post replacement events or recreate HD dust resources.
 
 Source inspection and sampled texture visual review do not prove native scene rendering, combined-mod gameplay, physical Deck costs or player approval. Those remain explicit acceptance steps. No game or visible desktop application is launched by this implementation's headless build/tests. Pilot coverage is 24 material regions, five icons and one effect; CharHD has no new asset payload. Full environment/character/UI/effect coverage is not achieved.
 

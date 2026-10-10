@@ -555,23 +555,6 @@ public class AttachedSobjEffect {
 
   @Method(0x800f0e7cL)
   private void deallocateLawPodTrail() {
-    if(this.quadDustHd == null) {
-      try {
-        final var event = legend.core.GameEngine.EVENTS.postEvent(new legend.game.modding.events.submap.EffectTextureEvent("dust", legend.game.unpacker.Loader.loadFileSync("SUBMAP/dust.tim").getBytes()));
-        if(event.replacement != null) {
-          final var image = event.replacement;
-          this.dustHdTexture = legend.core.renderer.Texture.create("FxHD dust", builder -> {
-            final var buffer = org.lwjgl.BufferUtils.createByteBuffer(image.data.length); buffer.put(image.data).flip();
-            builder.data(buffer, image.width, image.height); builder.wrapS(false); builder.wrapT(false);
-          });
-          this.quadDustHd = new QuadBuilder("FxHD DustQuad").bpp(Bpp.BITS_24).translucency(Translucency.B_PLUS_F).monochrome(1.0f).uv(0, 0).uvSize(1, 1).posSize(1, 1).build();
-        }
-      } catch(final Exception failure) {
-        if(this.dustHdTexture != null) { this.dustHdTexture.delete(); this.dustHdTexture = null; }
-        org.apache.logging.log4j.LogManager.getLogger().warn("FxHD retained original dust: {}", failure.getMessage());
-      }
-    }
-
     this.lawPodTrail_800d4f90.clear();
     this.lawPodTrailCount_800f9e78 = 0;
     for(int i = 0; i < 8; i++) {

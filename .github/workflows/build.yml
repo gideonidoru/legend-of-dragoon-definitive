@@ -8,6 +8,12 @@ on:
   pull_request:
     paths-ignore: ['docs/**', '**/*.md']
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Package release tag
+        required: true
+        default: definitive-alpha-2026-10-10-deck-recovery
+        type: string
 
 permissions:
   contents: read
@@ -70,7 +76,9 @@ jobs:
           java -version
           ./gradlew --version
       - name: Compile and package without gameplay tests
-        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-deck-recovery ${{ matrix.args }}
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag || 'definitive-alpha-2026-10-10-deck-recovery' }}
+        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller "-PreleaseTag=$RELEASE_TAG" ${{ matrix.args }}
       - name: Verify test opt-in using a headless fixture
         run: python3 scripts/verify-test-controls.py
       - name: Exercise installer window lifecycle in an isolated virtual display
