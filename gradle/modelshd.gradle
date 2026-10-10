@@ -1,0 +1,52 @@
+// ModelsHD (2026-10-10), AGPL v3; see LICENSE.
+sourceSets {
+  modelshd {
+    java.srcDir 'integrations/modelshd/src/main/java'
+    resources.srcDir 'integrations/modelshd/src/main/resources'
+    compileClasspath += sourceSets.main.output + configurations.compileClasspath
+    runtimeClasspath += sourceSets.main.output + configurations.runtimeClasspath
+  }
+  modelshdTest {
+    java.srcDir 'integrations/modelshd/src/test/java'
+    compileClasspath += sourceSets.modelshd.output + sourceSets.main.output + configurations.testCompileClasspath
+    runtimeClasspath += sourceSets.modelshd.output + sourceSets.main.output + configurations.testRuntimeClasspath
+  }
+}
+tasks.register('modelsHdTests', Test) {
+  description = 'Headless geometry, active texture addressing and replacement rollback checks. No game window.'
+  testClassesDirs = sourceSets.modelshdTest.output.classesDirs
+  classpath = sourceSets.modelshdTest.runtimeClasspath
+  useJUnitPlatform()
+  systemProperty 'java.awt.headless', 'true'
+  workingDir = layout.buildDirectory.dir('modelshd-test-home').get().asFile
+  doFirst { workingDir.mkdirs() }
+}
+tasks.register('modelsHdJar', Jar) {
+  dependsOn sourceSets.modelshd.classesTaskName
+  archiveFileName = 'ModelsHD-0.2.0.jar'
+  destinationDirectory = layout.buildDirectory.dir('modelshd')
+  from sourceSets.modelshd.output
+  into('META-INF/modelshd') { from 'LICENSE' }
+  manifest { attributes 'Implementation-Title': 'ModelsHD', 'Implementation-Version': '0.2.0' }
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
+}
+tasks.register('modelsHdBundle', Zip) {
+  description = 'Optional ModelsHD code and local generation recipe. Contains no retail geometry.'
+  dependsOn 'modelsHdJar'
+  archiveFileName = 'ModelsHD-0.2.0-tools.zip'
+  destinationDirectory = layout.buildDirectory.dir('modelshd')
+  into('mods') { from tasks.named('modelsHdJar') }
+  from('integrations/modelshd/PACKAGE_README.md') { rename { 'ModelsHD-README.md' } }
+  into('docs/definitive') { from 'docs/definitive/MODELS_HD_ROADMAP.md' }
+  from 'LICENSE'
+  into('scripts') {
+    from 'scripts'
+    include 'build-modelshd-roster.py', 'inventory-modelshd-sources.py', 'export-modelshd-pilot.py',
+      'refine-model-surfaces.py', 'inspect-model-poses.py', 'audit-model-materials.py',
+      'preserve-texture-transparency.py', 'pack-model-materials.py', 'compare-material-islands.py',
+      'compare-neural-textures.py', 'audit-uv-footprints.py', 'requirements-visual.txt'
+  }
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
+}

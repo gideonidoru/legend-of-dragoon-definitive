@@ -446,3 +446,15 @@ lod_core.input_actions.debug_frame_advance.name=Debug: frame advance
 lod_core.input_actions.debug_frame_advance_hold.name=Debug: frame advance (hold)
 lod_core.input_actions.debug_toggle_wireframe.name=Debug: toggle wireframe
 lod_core.input_actions.debug_reload_shaders.name=Debug: reload shaders
+
+# Definitive rendering controls. Device performance acceptance remains open.
+lod_core.config.smooth_model_lighting.label=Smooth Model Lighting
+lod_core.config.smooth_model_lighting.help=Smoother scene lighting on opaque models. Disable to use original vertex lighting.
+lod_core.config.edge_smoothing.label=Edge Smoothing
+lod_core.config.edge_smoothing.help=Soften jagged edges without frame history. Zero disables it. Also affects text; inactive with CRT effects.
+
+lod_core.config.scene_matched_lighting.label=Enhanced Scene Lighting
+lod_core.config.scene_matched_lighting.help=Softer light transitions and restrained contrast using each scene's existing light colors, throughout field maps, battles, cutscenes, and the world map.
+
+lod_core.config.soft_contact_shadows.label=Soft Contact Shadows
+lod_core.config.soft_contact_shadows.help=Rounder, feathered contact shadows for field and battle actors, scripted shadow effects, and the world-map traveler. Disable for original shadows.

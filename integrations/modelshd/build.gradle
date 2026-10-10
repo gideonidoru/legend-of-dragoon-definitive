@@ -1,0 +1,17 @@
+plugins { id 'java' }
+group = 'modelshd'
+version = '0.2.0'
+java { sourceCompatibility = targetCompatibility = JavaVersion.VERSION_25 }
+def engine = providers.gradleProperty('scGameDir').orElse(providers.environmentVariable('SC_GAME_DIR'))
+if(!engine.isPresent()) throw new GradleException('Set SC_GAME_DIR to the engine build/libs directory')
+dependencies {
+  compileOnly fileTree(engine.get()) { include 'lod-game-*.jar'; exclude '*-sources.jar' }
+  compileOnly fileTree("${engine.get()}/libs") { include '*.jar' }
+}
+tasks.jar {
+  archiveFileName = 'ModelsHD-0.2.0.jar'
+  manifest { attributes('Implementation-Title': 'ModelsHD', 'Implementation-Version': version) }
+  into('META-INF/modelshd') { from '../../LICENSE' }
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
+}

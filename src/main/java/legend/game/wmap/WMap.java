@@ -2,6 +2,7 @@ package legend.game.wmap;
 
 import de.jcm.discordgamesdk.activity.Activity;
 import legend.core.MathHelper;
+import legend.definitive.rendering.ContactShadow;
 import legend.core.gpu.Bpp;
 import legend.core.gpu.Rect4i;
 import legend.core.gte.GsCOORDINATE2;
@@ -3088,27 +3089,7 @@ public class WMap extends EngineState<WMap> {
     modelAndAnimData.prevAnimIndex_ac = 2;
     modelAndAnimData.currAnimIndex_b0 = 2;
 
-    final float shadowAngleDelta = MathHelper.TWO_PI / 8.0f;
-
-    final PolyBuilder shadowBuilder = new PolyBuilder("Dart Shadow")
-      .translucency(Translucency.B_MINUS_F);
-
-    //LAB_800dff70
-    for(int i = 0; i < 8; i++) {
-      final float sin1 = MathHelper.sin(i * shadowAngleDelta);
-      final float cos1 = MathHelper.cosFromSin(sin1, i * shadowAngleDelta);
-      final float sin2 = MathHelper.sin((i + 1 & 0x7) * shadowAngleDelta);
-      final float cos2 = MathHelper.cosFromSin(sin2, (i + 1 & 0x7) * shadowAngleDelta);
-
-      shadowBuilder
-        .addVertex(0.0f, 0.0f, 0.0f)
-        .monochrome(0.5f)
-        .addVertex(cos1 * 32.0f, 0.0f, sin1 * 32.0f)
-        .monochrome(0.0f)
-        .addVertex(cos2 * 32.0f, 0.0f, sin2 * 32.0f);
-    }
-
-    modelAndAnimData.shadowObj = shadowBuilder.build();
+    this.buildDartShadow(modelAndAnimData);
 
     //LAB_800e002c
     modelAndAnimData.modelIndex_1e4 = directionalPathSegmentData_800f2248[this.mapState_800c6798.directionalPathIndex_12].modelIndex_06;
@@ -3406,8 +3387,28 @@ public class WMap extends EngineState<WMap> {
     this.rotateCoord2(modelAndAnimData.playerRotation_a4, modelAndAnimData.coord2_34);
   }
 
+  private boolean softDartShadow;
+
+  private void buildDartShadow(final WMapModelAndAnimData258 modelAndAnimData) {
+    final boolean soft = CONFIG.getConfig(legend.game.modding.coremod.CoreMod.SOFT_CONTACT_SHADOWS_CONFIG.get());
+    final PolyBuilder builder = new PolyBuilder("Dart Shadow").translucency(Translucency.B_MINUS_F);
+    final float[] data = ContactShadow.vertices(soft, 32.0f);
+    for(int i = 0; i < data.length; i += 4) {
+      builder.addVertex(data[i], data[i + 1], data[i + 2]).monochrome(data[i + 3]);
+    }
+    final Obj shadow = builder.build();
+    if(modelAndAnimData.shadowObj != null) {
+      modelAndAnimData.shadowObj.delete();
+    }
+    modelAndAnimData.shadowObj = shadow;
+    this.softDartShadow = soft;
+  }
+
   @Method(0x800e1740L)
   private void renderDartShadow() {
+    if(this.softDartShadow != CONFIG.getConfig(legend.game.modding.coremod.CoreMod.SOFT_CONTACT_SHADOWS_CONFIG.get())) {
+      this.buildDartShadow(this.modelAndAnimData_800c66a8);
+    }
     GsGetLw(this.modelAndAnimData_800c66a8.models_0c[this.modelAndAnimData_800c66a8.modelIndex_1e4].coord2_14, this.modelAndAnimData_800c66a8.shadowTransforms);
     RENDERER.queueModel(this.modelAndAnimData_800c66a8.shadowObj, this.modelAndAnimData_800c66a8.shadowTransforms, QueuedModelStandard.class);
   }

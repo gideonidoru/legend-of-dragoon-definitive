@@ -1,5 +1,7 @@
 package legend.game;
 
+import legend.definitive.rendering.ActorShadow;
+
 import javafx.application.Platform;
 import legend.core.Config;
 import legend.core.MathHelper;
@@ -649,6 +651,7 @@ public final class Scus94491BpeSegment {
 
   @Method(0x800e6998L)
   public static void loadShadow() {
+    ActorShadow.reset();
     submapId_800bd808 = 0;
 
     new Tim(Loader.loadFileSync("shadow.tim")).uploadToGpu();

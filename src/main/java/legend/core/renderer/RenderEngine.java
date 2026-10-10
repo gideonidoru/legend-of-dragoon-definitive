@@ -3,6 +3,8 @@ package legend.core.renderer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import legend.core.Config;
+import legend.definitive.rendering.SceneLighting;
+import legend.definitive.rendering.SceneLightingUniforms;
 import legend.core.LitModel;
 import legend.core.MathHelper;
 import legend.core.QueuePool;
@@ -74,6 +76,9 @@ import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_GENERAL_TOGGLE_SP
 import static legend.game.modding.coremod.CoreMod.INPUT_ACTION_GENERAL_TURBO;
 import static legend.game.modding.coremod.CoreMod.LEGACY_WIDESCREEN_MODE_CONFIG;
 import static legend.game.modding.coremod.CoreMod.RESOLUTION_CONFIG;
+import static legend.game.modding.coremod.CoreMod.SMOOTH_MODEL_LIGHTING_CONFIG;
+import static legend.game.modding.coremod.CoreMod.SCENE_MATCHED_LIGHTING_CONFIG;
+import static legend.game.modding.coremod.CoreMod.EDGE_SMOOTHING_CONFIG;
 import static legend.game.modding.coremod.CoreMod.SHADER_ABERRATION_CONFIG;
 import static legend.game.modding.coremod.CoreMod.SHADER_BLOOM_INTENSITY_CONFIG;
 import static legend.game.modding.coremod.CoreMod.SHADER_BLOOM_RADIUS_CONFIG;
@@ -117,6 +122,11 @@ public class RenderEngine {
   private ShaderUniformBuffer clutAnimationUniform;
   private final FloatBuffer transformsBuffer = BufferUtils.createFloatBuffer(4 * 4 * 2);
   private final FloatBuffer transforms2Buffer = BufferUtils.createFloatBuffer((4 * 4 + 4) * 128);
+  private SceneLightingUniforms tmdSceneLighting;
+  private SceneLightingUniforms battleSceneLighting;
+  private ShaderUniformInt smoothTmdLighting;
+  private ShaderUniformInt smoothBattleLighting;
+  private ShaderUniformFloat edgeSmoothing;
   private final FloatBuffer lightBuffer = BufferUtils.createFloatBuffer((4 * 4 + 3 * 4 + 4) * 128); // 3*4 since glsl std140 means mat3's are basically 3 vec4s
   private final FloatBuffer projectionBuffer = BufferUtils.createFloatBuffer(4);
   final FloatBuffer scissorBuffer = BufferUtils.createFloatBuffer(4);
@@ -495,6 +505,11 @@ public class RenderEngine {
     this.tmdShaderOptions = this.tmdShader.makeOptions();
     this.battleTmdShader = ShaderManager.addShader(BATTLE_TMD_SHADER);
     this.battleTmdShaderOptions = this.battleTmdShader.makeOptions();
+    this.tmdSceneLighting = new SceneLightingUniforms(this.tmdShader);
+    this.battleSceneLighting = new SceneLightingUniforms(this.battleTmdShader);
+    this.smoothTmdLighting = this.tmdShader.uniformInt("smoothLighting");
+    this.smoothBattleLighting = this.battleTmdShader.uniformInt("smoothLighting");
+    this.edgeSmoothing = screenShader.uniformFloat("edgeSmoothing");
 
     this.transformsUniform = this.api.makeUniformBuffer((long)this.transformsBuffer.capacity() * Float.BYTES, ShaderUniformBuffer.TRANSFORM);
     this.transforms2Uniform = ShaderManager.addUniformBuffer("transforms2", this.api.makeUniformBuffer((long)this.transforms2Buffer.capacity() * Float.BYTES, ShaderUniformBuffer.TRANSFORM2));
@@ -662,6 +677,14 @@ public class RenderEngine {
       }
 
       if(legacyMode == 0) {
+        final int smoothLighting = CONFIG.getConfig(SMOOTH_MODEL_LIGHTING_CONFIG.get()) ? 1 : 0;
+        final SceneLighting sceneLighting = CONFIG.getConfig(SCENE_MATCHED_LIGHTING_CONFIG.get()) ? SceneLighting.ENHANCED : SceneLighting.ORIGINAL;
+        this.tmdShader.use();
+        this.smoothTmdLighting.set(smoothLighting);
+        this.tmdSceneLighting.set(sceneLighting);
+        this.battleTmdShader.use();
+        this.smoothBattleLighting.set(smoothLighting);
+        this.battleSceneLighting.set(sceneLighting);
         // Gross hack bro
         if(currentEngineState_8004dd04 instanceof final Battle battle && battle._800c6930 != null) {
           this.battleTmdShader.use();
@@ -697,6 +720,8 @@ public class RenderEngine {
 
         final boolean enableCrt = CONFIG.getConfig(SHADER_ENABLE_CRT_CONFIG.get());
         screenShaderOptions.enableCrt(enableCrt);
+        // Intentional CRT pixels keep their original sampling. No temporal history.
+        this.edgeSmoothing.set(enableCrt ? 0.0f : CONFIG.getConfig(EDGE_SMOOTHING_CONFIG.get()));
 
         if(enableCrt) {
           screenShaderOptions.enableCrt(true);
@@ -835,6 +860,11 @@ public class RenderEngine {
 
         try {
           ShaderManager.reload();
+          this.tmdSceneLighting = new SceneLightingUniforms(this.tmdShader);
+          this.battleSceneLighting = new SceneLightingUniforms(this.battleTmdShader);
+          this.smoothTmdLighting = this.tmdShader.uniformInt("smoothLighting");
+          this.smoothBattleLighting = this.battleTmdShader.uniformInt("smoothLighting");
+          this.edgeSmoothing = screenShader.uniformFloat("edgeSmoothing");
         } catch(final IOException e) {
           LOGGER.error("Failed to reload shaders", e);
         }

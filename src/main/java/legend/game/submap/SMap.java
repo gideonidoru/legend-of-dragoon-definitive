@@ -1,5 +1,7 @@
 package legend.game.submap;
 
+import legend.definitive.rendering.ActorShadow;
+
 import de.jcm.discordgamesdk.activity.Activity;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -1265,7 +1267,8 @@ public class SMap extends EngineState<SMap> {
     GsGetLw(partCoord, this.smapShadowLw);
 
     RENDERER
-      .queueModel(modelPart.tmd_08.getObj(), this.smapShadowLw, QueuedModelTmd.class)
+      .queueModel(ActorShadow.get(modelPart.tmd_08), this.smapShadowLw, QueuedModelTmd.class)
+      .tmdTranslucency(Translucency.B_MINUS_F.ordinal())
       .screenspaceOffset(GPU.getOffsetX() + GTE.getScreenOffsetX() - 184, GPU.getOffsetY() + GTE.getScreenOffsetY() - 120)
       .depthOffset(shadowModel_800bda10.zOffset_a0 * 4)
       .lightDirection(lightDirectionMatrix_800c34e8)

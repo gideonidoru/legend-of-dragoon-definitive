@@ -10,6 +10,7 @@ layout(location = 0) out vec4 frag;
 uniform sampler2D screen;
 
 uniform bool enableCrt;
+uniform float edgeSmoothing;
 
 uniform float time;
 
@@ -132,10 +133,42 @@ float vignette(vec2 uv) {
 	return pow(vignette, vignette_intensity * vignette_opacity);
 }
 
+// Bounded spatial edge filter: flat areas return unchanged, no extra render target.
+// Explicit minifying derivatives select the existing linear min filter, irrespective of output size.
+vec3 sampleScreen(vec2 uv) {
+  vec2 size = vec2(textureSize(screen, 0));
+  return textureGrad(screen, clamp(uv, 0.5 / size, 1.0 - 0.5 / size), vec2(2.0 / size.x, 0.0), vec2(0.0, 2.0 / size.y)).rgb;
+}
+
+vec3 smoothEdges(vec2 uv, vec3 center) {
+  vec2 texel = 1.0 / vec2(textureSize(screen, 0));
+  vec3 nw = sampleScreen(uv + texel * vec2(-1.0, -1.0));
+  vec3 ne = sampleScreen(uv + texel * vec2(1.0, -1.0));
+  vec3 sw = sampleScreen(uv + texel * vec2(-1.0, 1.0));
+  vec3 se = sampleScreen(uv + texel * vec2(1.0, 1.0));
+  vec3 luma = vec3(0.299, 0.587, 0.114);
+  float m = dot(center, luma);
+  float a = dot(nw, luma), b = dot(ne, luma);
+  float c = dot(sw, luma), d = dot(se, luma);
+  float low = min(m, min(min(a, b), min(c, d)));
+  float high = max(m, max(max(a, b), max(c, d)));
+  if(high - low < max(0.0312, high * 0.125)) return center;
+
+  vec2 direction = vec2(-((a + b) - (c + d)), (a + c) - (b + d));
+  float reduction = max((a + b + c + d) * (0.25 / 8.0), 1.0 / 128.0);
+  direction = clamp(direction / (min(abs(direction.x), abs(direction.y)) + reduction), -4.0, 4.0) * texel;
+  vec3 inner = 0.5 * (sampleScreen(uv - direction / 6.0) + sampleScreen(uv + direction / 6.0));
+  vec3 outer = inner * 0.5 + 0.25 * (sampleScreen(uv - direction * 0.5) + sampleScreen(uv + direction * 0.5));
+  float resultLuma = dot(outer, luma);
+  vec3 filtered = resultLuma < low || resultLuma > high ? inner : outer;
+  return mix(center, filtered, clamp(edgeSmoothing, 0.0, 1.0));
+}
+
 void main() {
   frag = vec4(texture(screen, vertUv).rgb, 1.0f);
 
   if(!enableCrt) {
+    if(edgeSmoothing > 0.0) frag.rgb = smoothEdges(vertUv, frag.rgb);
     return;
   }
 

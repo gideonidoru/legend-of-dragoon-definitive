@@ -14,6 +14,9 @@ out VS_OUT {
   flat vec2 vertClut;
   flat int vertBpp;
   smooth vec4 vertColour;
+  smooth vec3 lightingNormal;
+  smooth vec3 lightingColour;
+  flat int lightingIndex;
   flat int vertFlags;
 
   flat int translucency;
@@ -32,6 +35,9 @@ out VS_OUT {
 uniform vec2 clutOverride;
 uniform vec2 tpageOverride;
 uniform float modelIndex;
+uniform bool sceneLighting;
+uniform vec3 sceneKeyTint;
+uniform vec3 sceneAmbientTint;
 
 struct ModelTransforms {
   mat4 model;
@@ -79,9 +85,13 @@ void main() {
   bool coloured = (vs_out.vertFlags & 0x4) != 0;
   bool textured = (vs_out.vertFlags & 0x2) != 0;
   bool lit = (vs_out.vertFlags & 0x1) != 0;
+  bool translucent = (vs_out.vertFlags & 0x8) != 0;
 
   ModelTransforms t = modelTransforms[int(modelIndex)];
   Light l = lights[int(modelIndex)];
+  vs_out.lightingNormal = inNorm;
+  vs_out.lightingColour = inColour.rgb;
+  vs_out.lightingIndex = int(modelIndex);
 
   if(lit) {
     float range = 1.0;
@@ -91,7 +101,19 @@ void main() {
       range = 2.0;
     }
 
-    vs_out.vertColour.rgb = clamp(clamp(l.lightColour * clamp(l.lightDirection * vec4(inNorm, 1.0), 0.0, 8.0).rgb + l.backgroundColour.rgb, 0.0, 8.0) * inColour.rgb, 0.0, range);
+    vec3 diffuse = (l.lightDirection * vec4(inNorm, 1.0)).rgb;
+    // A small wrap softens the terminator using the scene's own light colors.
+    // Zero-color lights stay dark; unit-facing highlights keep their authored intensity.
+    if(sceneLighting && !translucent) {
+      diffuse = max(diffuse, (diffuse + vec3(0.08)) / 1.08);
+    }
+    vec3 direct = l.lightColour * clamp(diffuse, 0.0, 8.0);
+    vec3 ambient = l.backgroundColour.rgb;
+    if(sceneLighting && !translucent) {
+      direct *= sceneKeyTint;
+      ambient *= sceneAmbientTint;
+    }
+    vs_out.vertColour.rgb = clamp(clamp(direct + ambient, 0.0, 8.0) * inColour.rgb, 0.0, range);
   } else if(coloured) {
     vs_out.vertColour = inColour;
   } else {

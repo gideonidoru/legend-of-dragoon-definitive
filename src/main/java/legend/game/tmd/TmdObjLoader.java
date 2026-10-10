@@ -63,11 +63,7 @@ public final class TmdObjLoader {
     for(int i = 0; i < model.modelParts_00.length; i++) {
       final ModelPart10 part = model.modelParts_00[i];
 
-      if(part.tmd_08.obj != null) {
-        part.tmd_08.obj.delete();
-      }
-
-      part.tmd_08.obj = TmdObjLoader.fromObjTable(name + " part " + i, part.tmd_08, 0, textureWidth, textureHeight);
+      part.tmd_08.rebuildObj(name + " part " + i, textureWidth, textureHeight);
     }
   }
 
@@ -308,54 +304,66 @@ public final class TmdObjLoader {
 
     final Mesh[] meshes = new Mesh[tmdMeshes.meshCount()];
     int meshIndex = 0;
+    try {
+      if(tmdMeshes.opaque != null) {
+        meshes[meshIndex++] = createMesh(name + " (opaque)", tmdMeshes.opaque);
+      }
 
-    if(tmdMeshes.opaque != null) {
-      meshes[meshIndex++] = createMesh(name + " (opaque)", tmdMeshes.opaque);
+      if(tmdMeshes.untexturedTranslucent != null) {
+        meshes[meshIndex++] = createMesh(name + " (untextured translucent)", tmdMeshes.untexturedTranslucent);
+      }
+
+      for(int i = 0; i < tmdMeshes.translucent.length; i++) {
+        meshes[meshIndex++] = createMesh(name + " (" + tmdMeshes.translucent[i].translucency + ')', tmdMeshes.translucent[i]);
+      }
+
+      final Mesh[] reversed = new Mesh[meshes.length];
+      Arrays.setAll(reversed, i -> meshes[meshes.length - i - 1]);
+      return new TmdMeshObj(name, reversed, backfaceCulling);
+    } catch(final RuntimeException | Error failure) {
+      for(final Mesh mesh : meshes) {
+        if(mesh != null) {
+          mesh.delete();
+        }
+      }
+      throw failure;
     }
-
-    if(tmdMeshes.untexturedTranslucent != null) {
-      meshes[meshIndex++] = createMesh(name + " (untextured translucent)", tmdMeshes.untexturedTranslucent);
-    }
-
-    for(int i = 0; i < tmdMeshes.translucent.length; i++) {
-      meshes[meshIndex++] = createMesh(name + " (" + tmdMeshes.translucent[i].translucency + ')', tmdMeshes.translucent[i]);
-    }
-
-    final Mesh[] reversed = new Mesh[meshes.length];
-    Arrays.setAll(reversed, i -> meshes[meshes.length - i - 1]);
-    return new TmdMeshObj(name, reversed, backfaceCulling);
   }
 
   private static Mesh createMesh(final String name, final TmdObjLoaderMesh tmdMesh) {
     final Mesh mesh = RENDERER.api().makeMesh(name, VertexOrder.TRIANGLES_ADJACENCY, tmdMesh.vertices, tmdMesh.indices, tmdMesh.textured, tmdMesh.translucent, tmdMesh.translucency, BufferUsage.STATIC);
+    try {
+      mesh.attribute(0, 0L, POS_SIZE, VERTEX_SIZE);
 
-    mesh.attribute(0, 0L, POS_SIZE, VERTEX_SIZE);
+      int meshIndex = 1;
+      int meshOffset = POS_SIZE;
 
-    int meshIndex = 1;
-    int meshOffset = POS_SIZE;
+      mesh.attribute(meshIndex, meshOffset, NORM_SIZE, VERTEX_SIZE);
+      meshIndex++;
+      meshOffset += NORM_SIZE;
 
-    mesh.attribute(meshIndex, meshOffset, NORM_SIZE, VERTEX_SIZE);
-    meshIndex++;
-    meshOffset += NORM_SIZE;
+      mesh.attribute(meshIndex, meshOffset, UV_SIZE, VERTEX_SIZE);
+      meshIndex++;
+      meshOffset += UV_SIZE;
 
-    mesh.attribute(meshIndex, meshOffset, UV_SIZE, VERTEX_SIZE);
-    meshIndex++;
-    meshOffset += UV_SIZE;
+      mesh.attribute(meshIndex, meshOffset, TPAGE_SIZE, VERTEX_SIZE);
+      meshIndex++;
+      meshOffset += TPAGE_SIZE;
 
-    mesh.attribute(meshIndex, meshOffset, TPAGE_SIZE, VERTEX_SIZE);
-    meshIndex++;
-    meshOffset += TPAGE_SIZE;
+      mesh.attribute(meshIndex, meshOffset, CLUT_SIZE, VERTEX_SIZE);
+      meshIndex++;
+      meshOffset += CLUT_SIZE;
 
-    mesh.attribute(meshIndex, meshOffset, CLUT_SIZE, VERTEX_SIZE);
-    meshIndex++;
-    meshOffset += CLUT_SIZE;
+      mesh.attribute(meshIndex, meshOffset, COLOUR_SIZE, VERTEX_SIZE);
+      meshIndex++;
+      meshOffset += COLOUR_SIZE;
 
-    mesh.attribute(meshIndex, meshOffset, COLOUR_SIZE, VERTEX_SIZE);
-    meshIndex++;
-    meshOffset += COLOUR_SIZE;
-
-    mesh.attribute(meshIndex, meshOffset, FLAGS_SIZE, VERTEX_SIZE);
-    return mesh;
+      mesh.attribute(meshIndex, meshOffset, FLAGS_SIZE, VERTEX_SIZE);
+      return mesh;
+    } catch(final RuntimeException | Error failure) {
+      mesh.delete();
+      throw failure;
+    }
   }
 
   private static TmdObjLoaderMeshes getTranslucencySizes(final TmdObjTable1c objTable, final int specialFlags) {

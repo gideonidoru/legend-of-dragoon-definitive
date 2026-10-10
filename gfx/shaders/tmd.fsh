@@ -6,6 +6,9 @@ in GS_OUT {
   flat vec2 vertClut;
   flat int vertBpp;
   smooth vec4 vertColour;
+  smooth vec3 lightingNormal;
+  smooth vec3 lightingColour;
+  flat int lightingIndex;
   flat int vertFlags;
 
   flat int translucency;
@@ -33,6 +36,20 @@ layout(std140) uniform scissor {
   float scissorH;
 };
 
+// Definitive: reuse the authored scene lights, evaluated on interpolated normals.
+struct Light {
+  mat4 lightDirection;
+  mat3 lightColour;
+  vec4 backgroundColour;
+};
+layout(std140) uniform lighting {
+  Light[128] lights;
+};
+uniform bool smoothLighting;
+uniform bool sceneLighting;
+uniform vec3 sceneKeyTint;
+uniform vec3 sceneAmbientTint;
+
 uniform vec3 recolour;
 uniform vec2 uvOffset;
 uniform float discardTranslucency;
@@ -59,6 +76,28 @@ void main() {
   bool translucent = (vertFlags & 0x8) != 0;
   bool textured = (vertFlags & 0x2) != 0;
   outColour = vertColour;
+  if(smoothLighting && (vertFlags & 0x1) != 0 && !translucent) {
+    float normalLengthSquared = dot(lightingNormal, lightingNormal);
+    // Degenerate normals retain the legacy result instead of producing NaNs.
+    if(normalLengthSquared > 1e-8) {
+      vec3 normal = lightingNormal * inversesqrt(normalLengthSquared);
+      Light l = lights[lightingIndex];
+      float range = textured ? 2.0 : 1.0;
+      vec3 diffuse = (l.lightDirection * vec4(normal, 1.0)).rgb;
+      // A small wrap softens the terminator using the scene's own light colors.
+      // Zero-color lights stay dark; unit-facing highlights keep their authored intensity.
+      if(sceneLighting) {
+        diffuse = max(diffuse, (diffuse + vec3(0.08)) / 1.08);
+      }
+      vec3 direct = l.lightColour * clamp(diffuse, 0.0, 8.0);
+      vec3 ambient = l.backgroundColour.rgb;
+      if(sceneLighting) {
+        direct *= sceneKeyTint;
+        ambient *= sceneAmbientTint;
+      }
+      outColour.rgb = clamp(clamp(direct + ambient, 0.0, 8.0) * lightingColour, 0.0, range);
+    }
+  }
 
   int translucencyMode = translucency + 1;
   if(translucent && !textured) {
