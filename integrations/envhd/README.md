@@ -2,8 +2,11 @@
 
 Independent presentation mod for Legend of Dragoon Definitive, release 0.1.0.
 
-Static battle material pilot for stages 0 and 6. Production is extending coverage
-to source-bound battle panoramas, then world-map art and remaining environments.
+Includes 70 battle panorama masters, 38 location images, one world parchment,
+and the static battle material pilot for stages 0 and 6. The separate terrain
+development branch adds eight source-bound atlases covering 292 reviewed world
+material masters. These are development baselines; gameplay and final bespoke
+visual acceptance remain pending.
 Skurfa's existing field scenes remain protected and are reused. See the
 [production ownership ledger](production/README.md) for gaps and review status.
 

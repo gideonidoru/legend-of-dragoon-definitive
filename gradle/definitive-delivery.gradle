@@ -132,6 +132,28 @@ tasks.register('worldSourceAudit', JavaExec) {
   }
 }
 
+// Explicit independent private static world texture check, without rendering.
+tasks.register('worldTerrainSourceAudit', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.WorldTerrainSourceAudit'
+  jvmArgs '-Xmx2g', '-Djava.awt.headless=true'
+  doFirst {
+    args providers.gradleProperty('terrainSourceRoot').get(), providers.gradleProperty('terrainBatch').get(), providers.gradleProperty('terrainAtlases').get()
+  }
+}
+
+// Actual world materials plus the packaged ModelsHD hook on a recording renderer.
+tasks.register('worldTerrainMeshProbe', JavaExec) {
+  dependsOn testClasses, 'modelshdClasses'
+  classpath = sourceSets.test.runtimeClasspath + sourceSets.modelshd.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.WorldTerrainMeshProbe'
+  jvmArgs '-Xmx2g', '-Djava.awt.headless=true'
+  doFirst {
+    args providers.gradleProperty('terrainSourceRoot').get(), providers.gradleProperty('terrainAtlases').get()
+  }
+}
+
 // Explicit private animation inspection using the actual source methods, without rendering.
 tasks.register('nativePoseProbe', JavaExec) {
   dependsOn testClasses

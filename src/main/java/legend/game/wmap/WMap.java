@@ -276,6 +276,8 @@ public class WMap extends EngineState<WMap> {
   private final MV mcqTransforms = new MV();
   private Obj mcqObj;
   private legend.definitive.artwork.SkyArtwork worldBackdropArtwork;
+  private final legend.definitive.artwork.WorldTerrainLoad worldTerrainLoad = new legend.definitive.artwork.WorldTerrainLoad();
+  private legend.definitive.artwork.WorldTerrainArtwork worldTerrainArtwork;
   private legend.game.textures.Image locationArtworkImage;
 
   private float mcqColour_800c6794;
@@ -921,6 +923,15 @@ public class WMap extends EngineState<WMap> {
             this.modelAndAnimData_800c66a8.tmdRendering_08.dobj2s_00[i].tmd_08 = this.modelAndAnimData_800c66a8.tmdRendering_08.tmd_14.tmd.objTable[i];
           }
 
+          final var terrainSource = this.worldTerrainLoad.ready();
+          if(terrainSource != null) {
+            try {
+              final var terrain = EVENTS.postEvent(new legend.game.modding.events.wmap.WorldTerrainTextureEvent(terrainSource.model(), terrainSource.bank()));
+              if(terrain.replacement != null) this.worldTerrainArtwork = legend.definitive.artwork.WorldTerrainArtwork.create(this.modelAndAnimData_800c66a8.tmdRendering_08, terrain.replacement, terrainSource);
+            } catch(final java.io.IOException | RuntimeException failure) {
+              LOGGER.warn("Retained original world terrain: {}", failure.getMessage());
+            }
+          }
           this.worldMapState_800c6698 = WorldMapState.INIT_MAP_ANIM_3;
         }
       }
@@ -2184,9 +2195,11 @@ public class WMap extends EngineState<WMap> {
 
   @Method(0x800d8e4cL)
   private void loadMapModelAndTexture(final int index) {
-    this.filesLoadedFlags_800c66b8.updateAndGet(val -> val & 0xffff_fffd);
-    loadDrgnDir(0, 5697 + index).thenAccept(files -> this.timsLoaded(files, 0x2));
-    loadDrgnFile(0, 5705 + index).thenAccept(files -> this.loadTmdCallback("Map model DRGN0/" + (5705 + index), files));
+    final long generation = this.worldTerrainLoad.begin();
+    if(this.worldTerrainArtwork != null) { this.worldTerrainArtwork.delete(); this.worldTerrainArtwork = null; }
+    this.filesLoadedFlags_800c66b8.updateAndGet(val -> val & ~0x6);
+    loadDrgnDir(0, 5697 + index).thenAccept(files -> this.worldTerrainLoad.bank(generation, files.stream().map(FileData::getBytes).toList(), () -> this.timsLoaded(files, 0x2)));
+    loadDrgnFile(0, 5705 + index).thenAccept(file -> this.worldTerrainLoad.model(generation, file.getBytes(), () -> this.loadTmdCallback("Map model DRGN0/" + (5705 + index), file)));
   }
 
   @Method(0x800d8efcL)
@@ -2263,7 +2276,9 @@ public class WMap extends EngineState<WMap> {
         this.mapLw.transfer.y += 6.0f;
       }
 
-      final QueuedModelTmd model = RENDERER.queueModel(dobj2.tmd_08.getObj(), this.mapLw, QueuedModelTmd.class);
+      final boolean terrainReplaced = this.worldTerrainArtwork != null && this.worldTerrainArtwork.meshes[i] != null;
+      final QueuedModelTmd model = RENDERER.queueModel(terrainReplaced ? this.worldTerrainArtwork.meshes[i] : dobj2.tmd_08.getObj(), this.mapLw, QueuedModelTmd.class);
+      if(terrainReplaced) model.texture(this.worldTerrainArtwork.texture);
 
       if(i == 0) {
         if(this.mapState_800c6798.continent_00.continentNum < 9) {
@@ -3042,8 +3057,11 @@ public class WMap extends EngineState<WMap> {
 
   @Method(0x800dcde8L)
   private void deallocateWorldMap() {
+    this.worldTerrainLoad.invalidate();
+    if(this.worldTerrainArtwork != null) { this.worldTerrainArtwork.delete(); this.worldTerrainArtwork = null; }
+    if(this.modelAndAnimData_800c66a8.tmdRendering_08 == null) return;
     for(int i = 0; i < this.modelAndAnimData_800c66a8.tmdRendering_08.dobj2s_00.length; i++) {
-      this.modelAndAnimData_800c66a8.tmdRendering_08.dobj2s_00[i].tmd_08.delete();
+      if(this.modelAndAnimData_800c66a8.tmdRendering_08.dobj2s_00[i].tmd_08 != null) this.modelAndAnimData_800c66a8.tmdRendering_08.dobj2s_00[i].tmd_08.delete();
     }
   }
 

@@ -30,7 +30,9 @@ visually reviewed development baselines. Their neural smoothing/detail is useful
 baseline work; this does not establish final bespoke quality. Native gameplay and
 Steam Deck acceptance remain pending. Original PNGs, review boards, inference files,
 logs and model weights stay outside Git; only custom candidate PNGs and source/review
-metadata are versioned. Runtime terrain selections remain zero.
+metadata are versioned. The separate terrain development branch now selects 292
+reviewed masters through eight runtime atlases; this is outside the frozen scope
+of the imminent combined installer release.
 
 ## Deliberate native retention
 
@@ -44,33 +46,52 @@ metadata are versioned. Runtime terrain selections remain zero.
   No single source rectangle covers its actual unsigned coordinates. The binding
   remains explicitly held until that source/render mapping is validated.
 
-## Runtime integration requirements
+## Runtime integration
 
-Pack the reviewed masters into bounded, padded continent atlases. Bind each atlas
-to the exact model and complete ordered texture-bank hashes. The UV mapper must
-key on both texture page and CLUT, preserve fractional authored UVs, and permit a
-native fallback for the uniform and wrapped bindings. A page or palette identity
-alone is insufficient for these mixed 4-bit/8-bit banks.
+`scripts/pack-envhd-terrain.py` reproduces deterministic shelves of whole decoded
+TIM rectangles with eight source texels (32 output pixels) of clamped padding.
+Atlas width is 4096, heights range from 1728 to 2560, and the eight custom PNGs total
+about 47 MiB. The 364 HD bindings exclude the held wrapped material and uniform
+exemption. `terrain-runtime-artwork.json` records the selected source/bank/atlas
+identities. Its native and final-quality acceptance remain explicitly pending.
 
-Construct optional textures and meshes only on the render thread after both fresh
-model and bank loads complete. Clear old snapshots at continent reload and guard
-against delayed callbacks. Preserve existing world transforms, floating terrain,
-lighting, depth, ocean behavior and all prior-mod replacements. Release optional
-resources on reload, normal teardown and abrupt transitions; allocation/source
-failure retains the native scene.
+The runtime independently reconstructs final VRAM, texture references, decoded
+pixel identities and packed placement from the fresh original sources. It rejects
+unknown/incomplete mappings, changed STP/discard/visible-black, non-clamped padding,
+nonempty packing gaps and unbounded/duplicate metadata. UV mapping keys both texture
+page and CLUT, retains fractional positions and returns a native indexed fallback
+for excluded materials within an otherwise replaced part.
 
-Texture remapping must retain ModelsHD's geometry refinement and surface responses.
-Do not rebuild a separate retail-only mesh that bypasses its hook. An optional
-atlas mesh must also avoid redirecting a model's ordinary cached mesh to one that
-requires a different texture: original fallback must remain valid after deletion.
+Optional textures and meshes are constructed on the render thread after both fresh
+model and bank loads complete. A shared generation gate prevents old callbacks from
+uploading or replacing the new native scene. It snapshots raw model bytes before
+TMD parsing mutates packet headers, clears both load flags at reload and invalidates
+pending loads on teardown. Existing transforms, floating terrain, lighting, depth,
+water animation and earlier artwork replacements retain their original paths.
+Optional resources release on reload/normal/abrupt teardown; allocation/source
+failure retains the native scene. The padded color atlas uses the existing HD
+filtering option with a gutter-limited mip budget and nearest source STP/discard.
+
+Texture remapping invokes the existing ModelsHD geometry hook, retains per-face
+surface flags and authored/source material responses, and does not write the
+optional mesh into the original table's geometry cache. Native fallback therefore
+remains usable after optional deletion. Synthetic recording-renderer checks exercise
+refinement, mixed HD/indexed faces, failed staged allocation and cache separation.
+The real eight-source mesh probe built 67 optional parts and 51,651 HD / 36 retained
+indexed vertices. The current bundled ModelsHD index selected no refinements for
+these raw continent parts (0 of 142 requests including later native rebuilds); the
+hook is preserved and exercised, but no continent geometry improvement is claimed.
 
 Seventeen synthetic pipeline/import regressions pass. Independent review validated
 all 293 corrected candidates and their private source snapshots against a fresh
 final-VRAM census. Publication checks full source/provenance records, bounded exact
 8-bit RGBA PNG bytes and output-bound reviews before any write. Existing candidate
 versions are immutable; a failed import rolls back touched files. These checks do
-not substitute for atlas sampling, native scene, blending and lifecycle acceptance.
+not substitute for native scene/blending or Steam Deck acceptance. Ten additional
+packing/selection regressions and ten Java source/mapping/callback/mesh regressions
+pass. The independent Java source audit agrees with Python on all eight scenes,
+366 static bindings and 293 unique decodes and validates all 364 HD atlas bindings.
 
-Keep this batch separate from the ready panorama/world integration while runtime
-work is unfinished. Installer downloads are published only by the consolidated
-delivery workflow, not per art iteration.
+Keep this batch separate from the frozen ready panorama/world release scope until
+the delivery coordinator selects a later candidate. Installer downloads are
+published only by the consolidated delivery workflow, not per art iteration.

@@ -52,19 +52,25 @@ PNGs plus the two pre-existing material-pilot atlas PNGs. Its SHA-256 is
 All 406 Skurfa runtime files match the pinned upstream source. This is integration
 evidence; the delivery thread publishes the single consolidated installation.
 
-The next terrain batch is independent on `codex/envhd-terrain`; its reviewed
+The terrain batch remains independent on `codex/envhd-terrain` (draft PR #10),
+outside the frozen imminent combined release scope. Its reviewed
 pipeline source is `90a2dc037`. It generated 293 unique candidates for
 365 of 366 static material bindings across eight regions. Their custom PNGs and
 source-bound reviews are now versioned in `integrations/envhd/production/terrain-candidates`
 and `terrain-artwork.json`; original decodes and diagnostics remain private. One uniform-color
 candidate should retain native artwork, and one wrapped Tiberoa material remains
-held. Seventeen pipeline/import regressions pass; all corrected candidates agree with fresh
-ordered VRAM source decoding. Visual baselines are reviewed, but no terrain runtime
-selection, native acceptance or final Skurfa-equivalent quality is claimed yet.
+held. Eight bounded, padded runtime atlases now select the 292 reviewed masters
+for 364 static bindings. Their selection ledger is `terrain-runtime-artwork.json`.
+Seventeen candidate/import and ten packing/selection regressions pass. Independent
+Java decoding agrees with all 293 source identities and validates all eight atlases.
+Ten Java regressions check source/mapping/callback and optional mesh behavior; the
+real continent mesh probe builds all 67 optional parts with the existing geometry
+hook and source-owned native exceptions. See `ENVHD_TERRAIN_PRODUCTION.md` for limits:
+native visual acceptance and final Skurfa-equivalent quality remain pending.
 
-Next production categories remain world terrain/scenery, remaining battle material
+Next production categories remain remaining battle material
 regions, unowned field scenes and environmental props. The field census has 612
 unowned configurations before visual deduplication/empty-layer filtering; shared
 sources and Skurfa aliases must stay deduplicated. Full EnvHD completion is not
-claimed by these first two baseline batches. Improve bespoke materials and inspect
+claimed by these baseline batches. Improve bespoke materials and inspect
 native scene behavior before claiming final visual acceptance.

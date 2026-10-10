@@ -186,6 +186,11 @@ public class TmdObjTable1c {
     if(this.obj != null) this.obj.surfaceMaterial = material;
   }
 
+  /** Optional meshes retain an authored geometry response or the source fallback. */
+  public SurfaceMaterial surfaceMaterialLike(final TmdObjTable1c source) {
+    return this.surfaceAuthored ? this.surfaceMaterial : source.surfaceMaterial;
+  }
+
   public void rebuildObj(final int textureWidth, final int textureHeight) {
     this.rebuildObj(this.name, textureWidth, textureHeight);
   }

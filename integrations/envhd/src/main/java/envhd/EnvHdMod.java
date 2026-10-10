@@ -12,6 +12,15 @@ import static legend.core.GameEngine.EVENTS;
 @Mod(id = "envhd", version = "3.0.0")
 public final class EnvHdMod {
   public EnvHdMod() { EVENTS.register(this); }
+  @EventListener public void replaceTerrain(final legend.game.modding.events.wmap.WorldTerrainTextureEvent event) {
+    if(event.replacement != null) return;
+    try {
+      final byte[] model = event.model();
+      final String base = "/envhd/world/terrain/" + legend.definitive.textures.TexturePilot.sha256(model);
+      try(final var exists = EnvHdMod.class.getResourceAsStream(base + "/manifest.json")) { if(exists == null) return; }
+      event.replacement = legend.definitive.artwork.WorldTerrainAtlas.load(EnvHdMod.class, base, model, event.bank());
+    } catch(final IOException | RuntimeException failure) { org.apache.logging.log4j.LogManager.getLogger().warn("EnvHD retained original terrain: {}", failure.getMessage()); }
+  }
   @EventListener public void replaceBackdrop(final legend.game.modding.events.wmap.WorldBackdropTextureEvent event) {
     if(event.replacement != null) return;
     try {
