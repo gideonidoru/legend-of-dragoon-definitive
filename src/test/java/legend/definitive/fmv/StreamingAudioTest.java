@@ -42,6 +42,29 @@ final class StreamingAudioTest {
     }
   }
 
+  @Test void cinematicPauseKeepsSamplesAndAudioTickCannotRestartIt() {
+    final long device = alcLoopbackOpenDeviceSOFT((java.nio.ByteBuffer)null);
+    assertNotEquals(0, device);
+    final var caps = ALC.createCapabilities(device);
+    final long context = alcCreateContext(device, new int[]{ALC_FREQUENCY, 48000, ALC_FORMAT_CHANNELS_SOFT, ALC_STEREO_SOFT, ALC_FORMAT_TYPE_SOFT, ALC_FLOAT_SOFT, 0});
+    assertNotEquals(0, context);
+    alcMakeContextCurrent(context); AL.createCapabilities(caps);
+    final Probe audio = new Probe();
+    try {
+      audio.initialize(); audio.bufferOutput(new short[960 * 2]); audio.tick();
+      final float[] output = new float[9600];
+      alcRenderSamplesSOFT(device, output, 480);
+      final double position = audio.getPlaybackPositionSeconds();
+      audio.setPlaybackPaused(true); audio.bufferOutput(new short[960 * 2]);
+      for(int tick = 0; tick < 10; tick++) { audio.tick(); alcRenderSamplesSOFT(device, output, 480); }
+      assertEquals(position, audio.getPlaybackPositionSeconds(), 0.000001);
+      assertTrue(audio.hasQueuedOutput());
+      audio.setPlaybackPaused(false); audio.tick(); alcRenderSamplesSOFT(device, output, 1920);
+      assertEquals(0.04, audio.getPlaybackPositionSeconds(), 0.000001);
+      assertFalse(audio.hasQueuedOutput());
+    } finally { audio.release(); assertEquals(AL_NO_ERROR, alGetError()); alcMakeContextCurrent(0); alcDestroyContext(context); alcCloseDevice(device); }
+  }
+
   @Test void refillingAllSampleFormatsPreservesContinuousAudioSamples() {
     for(int kind = 0; kind < 3; kind++) {
       assertArrayEquals(captureWaveform(kind, false), captureWaveform(kind, true), 0.00001f,

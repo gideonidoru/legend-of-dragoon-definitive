@@ -41,6 +41,7 @@ public abstract class AudioSource {
   private int sourceId;
 
   private boolean active;
+  private boolean playbackPaused;
 
   private IntBuffer tmp;
 
@@ -166,13 +167,22 @@ public abstract class AudioSource {
 
   protected void play() {
     synchronized(this) {
-      if(!this.isInitialized()) return;
+      if(!this.isInitialized() || this.playbackPaused) return;
       final int state = alGetSourcei(this.sourceId, AL_SOURCE_STATE);
       if(state == AL_PLAYING) return;
       // EOF may happen after the caller's retirement query; never restart that old tail.
       if(state == AL_STOPPED) this.handleProcessedBuffers();
       // Playing an empty queue changes INITIAL to STOPPED before the decoder can fill it.
       if(alGetSourcei(this.sourceId, AL_BUFFERS_QUEUED) > 0) alSourcePlay(this.sourceId);
+    }
+  }
+
+  /** Pause a cinematic without discarding buffers or resetting its played-sample position. */
+  public void setPlaybackPaused(final boolean paused) {
+    synchronized(this) {
+      this.playbackPaused = paused;
+      if(paused && this.isInitialized()) alSourcePause(this.sourceId);
+      else if(!paused && this.active) this.play();
     }
   }
 
