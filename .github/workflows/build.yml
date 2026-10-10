@@ -70,7 +70,15 @@ jobs:
           java -version
           ./gradlew --version
       - name: Compile and package without gameplay tests
-        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-modelshd ${{ matrix.args }}
+        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-fmvhd ${{ matrix.args }}
+      - name: Check streamed FMV playback and delivery without a window
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg libopenal1
+          ffmpeg -y -v error -f lavfi -i testsrc2=size=320x192:rate=15:duration=2 -f lavfi -i sine=frequency=440:sample_rate=48000:duration=2 -c:v libx264 -pix_fmt yuv420p -c:a aac -ac 2 "$RUNNER_TEMP/fmv-fixture.mp4"
+          ffmpeg -y -v error -f lavfi -i testsrc2=size=320x192:rate=15:duration=3 -f lavfi -i sine=frequency=440:sample_rate=48000:duration=1 -c:v libx264 -pix_fmt yuv420p -c:a aac -ac 2 "$RUNNER_TEMP/fmv-tail.mp4"
+          ./gradlew --no-daemon --console=plain deliveryTest -PfmvFixture="$RUNNER_TEMP/fmv-fixture.mp4" -PfmvTailFixture="$RUNNER_TEMP/fmv-tail.mp4" ${{ matrix.args }}
       - name: Verify test opt-in using a headless fixture
         run: python3 scripts/verify-test-controls.py
       - name: Check optional ModelsHD geometry and texture handoff
