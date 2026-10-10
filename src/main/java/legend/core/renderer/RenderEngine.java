@@ -346,6 +346,14 @@ public class RenderEngine {
   private float currentFps;
 
   private Runnable renderCallback = () -> { };
+  private final SimulationClock simulationClock;
+  private boolean retainedSimulationFrame;
+  private boolean preparedSimulationFrame;
+  private double simulationVsyncStep = 1;
+
+  private record SimulationCallback(Runnable callback) implements Runnable {
+    @Override public void run() { this.callback.run(); }
+  }
 
   private static final float MOVE_SPEED = 0.96f;
   private static final float MOUSE_SPEED = 0.00175f;
@@ -375,6 +383,11 @@ public class RenderEngine {
   private final Deque<Runnable> tasks = new LinkedList<>();
 
   public RenderEngine() {
+    this(new SimulationClock());
+  }
+
+  RenderEngine(final SimulationClock simulationClock) {
+    this.simulationClock = java.util.Objects.requireNonNull(simulationClock);
     this.mainBatch = new RenderBatch(this, this.lightBuffer);
     this.scissorStack = new ScissorStack(this, this.mainBatch);
   }
@@ -481,9 +494,24 @@ public class RenderEngine {
 
   public Runnable setRenderCallback(final Runnable renderCallback) {
     final Runnable oldCallback = this.renderCallback;
-    this.renderCallback = renderCallback;
+    this.renderCallback = java.util.Objects.requireNonNull(renderCallback);
+    if(oldCallback != renderCallback) this.simulationClock.reset(renderCallback instanceof SimulationCallback);
+    if(this.window != null) this.window.setSimulationConsumesInput(renderCallback instanceof SimulationCallback);
     return oldCallback;
   }
+
+  /** Register gameplay explicitly; saved/restored callbacks retain their clock ownership. */
+  public Runnable setSimulationCallback(final Runnable callback) {
+    return this.setRenderCallback(new SimulationCallback(java.util.Objects.requireNonNull(callback)));
+  }
+
+  public void setSimulationRate(final int hz) {
+    this.simulationClock.setRate(hz);
+    this.simulationVsyncStep = 60.0d * Config.getGameSpeedMultiplier() / hz;
+    this.window.setFpsLimit(this.frameSkip ? Math.max(1, hz / Config.getGameSpeedMultiplier()) : hz);
+  }
+
+  public SimulationClock.Snapshot simulationTiming() { return this.simulationClock.snapshot(); }
 
   public void delete() {
     this.smaa.delete();
@@ -527,9 +555,15 @@ public class RenderEngine {
   }
 
   public void init() {
+    this.init(PLATFORM.addWindow("Severed Chains " + Version.FULL_VERSION, Config.windowWidth(), Config.windowHeight()));
+  }
+
+  // Also permits a headless platform/backend to exercise the complete draw lifecycle.
+  void init(final Window window) {
     this.camera2d = new BasicCamera(0.0f, 0.0f);
     this.camera3d = new QuaternionCamera(0.0f, 0.0f, 0.0f);
-    this.window = PLATFORM.addWindow("Severed Chains " + Version.FULL_VERSION, Config.windowWidth(), Config.windowHeight());
+    this.window = java.util.Objects.requireNonNull(window);
+    this.window.setSimulationConsumesInput(this.renderCallback instanceof SimulationCallback);
     this.window.events().onClose(PLATFORM::stop);
     this.window.setFpsLimit(60);
     PLATFORM.setInputTickRate(60);
@@ -664,69 +698,89 @@ public class RenderEngine {
         this.resizeRenderBuffers();
       }
 
-      if(this.frameSkipIndex == 0) {
+      // Tasks can load/switch callbacks; ownership is decided after those handoffs.
+      final boolean simulation = this.renderCallback instanceof SimulationCallback;
+      if(!simulation && this.retainedSimulationFrame) {
+        this.releaseSimulationFrame();
+        this.renderBufferIndex = (this.renderBufferIndex + 1) % RENDER_BUFFER_COUNT;
+        this.retainedSimulationFrame = false;
+      }
+
+      if(!simulation && this.frameSkipIndex == 0) {
         this.pre();
       }
 
       EVENTS.clearStaleRefs();
 
-      if(this.togglePause) {
-        this.togglePause = false;
-        this.paused = !this.paused;
+      if(simulation) {
+        final int steps = this.tickSimulation();
+        if(steps > 0) {
+          GameOverlay.drawNotifications();
+          GameOverlay.drawFps();
+        } else if(legacyMode == 1) {
+          legend.core.GameEngine.GPU.drawDisplay();
+        } else if(legacyMode == 2) {
+          legend.core.GameEngine.GPU.drawVram();
+        }
+      } else {
+        if(this.togglePause) {
+          this.togglePause = false;
+          this.paused = !this.paused;
 
-        if(!this.paused) {
-          this.frameAdvanceSingle = false;
-          this.frameAdvance = false;
-          this.resetBatches();
+          if(!this.paused) {
+            this.frameAdvanceSingle = false;
+            this.frameAdvance = false;
+            this.resetBatches();
 
+            // Delete stuff marked for deletion
+            Obj.deleteObjects();
+            Texture.deleteTextures();
+
+            this.scissorStack.reset();
+          } else {
+            this.renderFrame();
+          }
+        }
+
+        if(this.frameAdvanceSingle || this.frameAdvance) {
           // Delete stuff marked for deletion
           Obj.deleteObjects();
           Texture.deleteTextures();
 
           this.scissorStack.reset();
-        } else {
+
+          this.renderBufferIndex = (this.renderBufferIndex + 1) % RENDER_BUFFER_COUNT;
+          this.resetBatches();
           this.renderFrame();
+
+          if(this.frameAdvanceSingle) {
+            this.frameAdvanceSingle = false;
+          }
         }
-      }
 
-      if(this.frameAdvanceSingle || this.frameAdvance) {
-        // Delete stuff marked for deletion
-        Obj.deleteObjects();
-        Texture.deleteTextures();
+        if(!this.paused) {
+          if(this.frameSkipIndex == 0) {
+            for(int i = 0; i < this.batches.size(); i++) {
+              this.batches.get(i).modelPool.ignoreQueues = false;
+              this.batches.get(i).orthoPool.ignoreQueues = false;
+            }
 
-        this.scissorStack.reset();
+            this.mainBatch.modelPool.ignoreQueues = false;
+            this.mainBatch.orthoPool.ignoreQueues = false;
+          } else {
+            for(int i = 0; i < this.batches.size(); i++) {
+              this.batches.get(i).modelPool.ignoreQueues = true;
+              this.batches.get(i).orthoPool.ignoreQueues = true;
+            }
 
-        this.renderBufferIndex = (this.renderBufferIndex + 1) % RENDER_BUFFER_COUNT;
-        this.resetBatches();
-        this.renderFrame();
-
-        if(this.frameAdvanceSingle) {
-          this.frameAdvanceSingle = false;
-        }
-      }
-
-      if(!this.paused) {
-        if(this.frameSkipIndex == 0) {
-          for(int i = 0; i < this.batches.size(); i++) {
-            this.batches.get(i).modelPool.ignoreQueues = false;
-            this.batches.get(i).orthoPool.ignoreQueues = false;
+            this.mainBatch.modelPool.ignoreQueues = true;
+            this.mainBatch.orthoPool.ignoreQueues = true;
           }
 
-          this.mainBatch.modelPool.ignoreQueues = false;
-          this.mainBatch.orthoPool.ignoreQueues = false;
-        } else {
-          for(int i = 0; i < this.batches.size(); i++) {
-            this.batches.get(i).modelPool.ignoreQueues = true;
-            this.batches.get(i).orthoPool.ignoreQueues = true;
-          }
-
-          this.mainBatch.modelPool.ignoreQueues = true;
-          this.mainBatch.orthoPool.ignoreQueues = true;
+          this.renderFrame();
+          GameOverlay.drawNotifications();
+          GameOverlay.drawFps();
         }
-
-        this.renderFrame();
-        GameOverlay.drawNotifications();
-        GameOverlay.drawFps();
       }
 
       if(legacyMode == 0) {
@@ -891,23 +945,27 @@ public class RenderEngine {
 
       // If we're paused, don't reset the pool so that we keep rendering the same scene over and over again
       if(!this.paused) {
-        if(this.frameSkipIndex == 0) {
-          this.resetBatches();
+        if(!simulation) {
+          if(this.frameSkipIndex == 0) {
+            this.resetBatches();
 
-          // Delete stuff marked for deletion
-          Obj.deleteObjects();
-          Texture.deleteTextures();
+            // Delete stuff marked for deletion
+            Obj.deleteObjects();
+            Texture.deleteTextures();
 
-          this.scissorStack.reset();
+            this.scissorStack.reset();
+          }
+
+          this.advanceRenderBuffer();
         }
-
-        this.advanceRenderBuffer();
 
         final long frameTime = System.nanoTime() - this.lastFrame;
         this.lastFrame = System.nanoTime();
-        this.vsyncCount += 60.0d * this.getRenderSpeedMultiplier() / this.window.getFpsLimit();
+        if(!simulation) this.vsyncCount += 60.0d * this.getRenderSpeedMultiplier() / this.window.getFpsLimit();
 
-        final int fpsLimit = Math.max(1, RENDERER.window().getFpsLimit() / this.getRenderSpeedMultiplier());
+        final int targetFps = simulation ? this.window.getFpsLimit() : Math.max(1, this.window.getFpsLimit() / this.getRenderSpeedMultiplier());
+        final int fpsLimit = Math.min(this.frameTimes.length, targetFps);
+        this.fpsIndex %= fpsLimit;
         this.frameTimes[this.fpsIndex] = frameTime;
         this.fpsIndex = (this.fpsIndex + 1) % fpsLimit;
 
@@ -918,7 +976,7 @@ public class RenderEngine {
           }
 
           this.currentFps = 1_000_000_000.0f * fpsLimit / avg;
-          RENDERER.window().setTitle("Severed Chains %s - FPS: %.2f/%d scale: %.2f res: %dx%d".formatted(Version.FULL_VERSION, this.currentFps, fpsLimit, RENDERER.getRenderHeight() / 240.0f, this.getNativeWidth(), this.getNativeHeight()));
+          RENDERER.window().setTitle("Severed Chains %s - FPS: %.2f/%d scale: %.2f res: %dx%d".formatted(Version.FULL_VERSION, this.currentFps, targetFps, RENDERER.getRenderHeight() / 240.0f, this.getNativeWidth(), this.getNativeHeight()));
         }
       }
 
@@ -945,6 +1003,7 @@ public class RenderEngine {
       }
 
       this.handleMovement();
+      this.window.setSimulationConsumesInput(simulation);
     });
   }
 
@@ -958,6 +1017,63 @@ public class RenderEngine {
     // Upload CLUT animations
     this.clutAnimationBuffer.put(this.clutAnimationBufferIndex, -1);
     this.clutAnimationUniform.set(this.clutAnimationBuffer);
+  }
+
+  private int tickSimulation() {
+    if(!(this.renderCallback instanceof SimulationCallback)) {
+      this.simulationClock.reset(false);
+      return 0;
+    }
+    this.preparedSimulationFrame = false;
+    this.frameSkipIndex = 0;
+    if(this.togglePause) {
+      this.togglePause = false;
+      this.paused = !this.paused;
+      this.simulationClock.reset(!this.paused);
+      if(!this.paused) { this.frameAdvanceSingle = false; this.frameAdvance = false; }
+    }
+    int steps = 0;
+    if(this.paused) {
+      this.simulationClock.reset(false);
+      if(this.frameAdvanceSingle || this.frameAdvance) {
+        this.simulateFrame();
+        this.frameAdvanceSingle = false;
+        steps = 1;
+      }
+    } else {
+      steps = this.simulationClock.advance(this::simulateFrame);
+    }
+    return steps;
+  }
+
+  private void releaseSimulationFrame() {
+    this.resetBatches();
+    Obj.deleteObjects();
+    Texture.deleteTextures();
+    this.scissorStack.reset();
+    this.mainBatch.modelPool.ignoreQueues = false;
+    this.mainBatch.orthoPool.ignoreQueues = false;
+    for(final RenderBatch batch : this.batches) {
+      batch.modelPool.ignoreQueues = false;
+      batch.orthoPool.ignoreQueues = false;
+    }
+  }
+
+  private void simulateFrame() {
+    // Advance image history once per presentation, never once per discarded tick.
+    if(!this.preparedSimulationFrame && this.retainedSimulationFrame) {
+      this.renderBufferIndex = (this.renderBufferIndex + 1) % RENDER_BUFFER_COUNT;
+    }
+    this.preparedSimulationFrame = true;
+    this.releaseSimulationFrame();
+    this.pre();
+    try {
+      this.renderFrame();
+      this.vsyncCount += this.simulationVsyncStep;
+      this.retainedSimulationFrame = true;
+    } finally {
+      PLATFORM.consumeTickInput();
+    }
   }
 
   private void renderBatch(final RenderBatch batch) {
@@ -1653,5 +1769,6 @@ public class RenderEngine {
 
   public void setFrameSkipOption(final boolean frameSkip) {
     this.frameSkip = frameSkip;
+    if(this.renderCallback instanceof SimulationCallback && this.window != null) this.setSimulationRate(this.simulationClock.rate());
   }
 }

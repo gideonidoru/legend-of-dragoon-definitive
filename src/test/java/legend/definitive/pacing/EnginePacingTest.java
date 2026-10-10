@@ -95,7 +95,7 @@ final class EnginePacingTest {
     }
   }
 
-  @Test void actualGameplayTimingKeepsInputAndRenderRatesTogether() throws Exception {
+  @Test void actualGameplayTimingSeparatesSimulationFromPresentationDuringFastForward() throws Exception {
     final var windowField = GameEngine.RENDERER.getClass().getDeclaredField("window");
     windowField.setAccessible(true);
     final Object previousWindow = windowField.get(GameEngine.RENDERER);
@@ -105,25 +105,33 @@ final class EnginePacingTest {
     inputField.setAccessible(true);
     final Action input = (Action)inputField.get(GameEngine.PLATFORM);
     final int previousInputRate = input.getExpectedFps();
+    final int previousSimulationRate = GameEngine.RENDERER.simulationTiming().rate();
     final var configure = Scus94491BpeSegment.class.getDeclaredMethod("setGameplayTiming");
     configure.setAccessible(true);
     final var window = new NoopWindow(new NoopPlatformManager(), 1280, 800);
+    final var skipField = GameEngine.RENDERER.getClass().getDeclaredField("frameSkip");
+    skipField.setAccessible(true);
+    final boolean previousSkip = skipField.getBoolean(GameEngine.RENDERER);
     try {
       windowField.set(GameEngine.RENDERER, window);
+      skipField.setBoolean(GameEngine.RENDERER, true);
       for(final int divisor : new int[]{1, 2, 3}) {
         Graphics.vsyncMode_8007a3b8 = divisor;
         for(int speed = 1; speed <= 16; speed++) {
           Config.setGameSpeedMultiplier(speed);
           configure.invoke(null);
-          assertEquals(60 / divisor * speed, window.getFpsLimit());
-          assertEquals(window.getFpsLimit(), input.getExpectedFps());
+          assertEquals(60 / divisor, window.getFpsLimit());
+          assertEquals(60 / divisor * speed, input.getExpectedFps());
+          assertEquals(input.getExpectedFps(), GameEngine.RENDERER.simulationTiming().rate());
         }
       }
     } finally {
-      windowField.set(GameEngine.RENDERER, previousWindow);
       input.setExpectedFps(previousInputRate);
       Config.setGameSpeedMultiplier(previousSpeed);
       Graphics.vsyncMode_8007a3b8 = previousMode;
+      skipField.setBoolean(GameEngine.RENDERER, previousSkip);
+      GameEngine.RENDERER.setSimulationRate(previousSimulationRate);
+      windowField.set(GameEngine.RENDERER, previousWindow);
     }
   }
 

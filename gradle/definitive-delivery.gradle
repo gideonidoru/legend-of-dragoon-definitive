@@ -112,6 +112,14 @@ tasks.register('deliveryTest', Test) {
 }
 tasks.named('check') { dependsOn deliveryTest }
 
+tasks.register('fixedStepPresentationProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.pacing.SimulationPresentationProbe'
+  jvmArgs '-Djava.awt.headless=true', '--add-opens=java.base/java.util=ALL-UNNAMED', '--enable-native-access=ALL-UNNAMED'
+}
+tasks.named('check') { dependsOn fixedStepPresentationProbe }
+
 // Explicit private sky decoding/layout check, with no game or renderer startup.
 tasks.register('skySourceAudit', JavaExec) {
   dependsOn testClasses
