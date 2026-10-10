@@ -374,6 +374,7 @@ public final class GameEngine {
 
     final Map<RegistryId, Image> images = new HashMap<>();
     EVENTS.postEvent(new RegisterAtlasTexturesEvent(images));
+    EVENTS.postEvent(new legend.game.textures.ReplaceAtlasTexturesEvent(images));
 
     final TexturePacker packer = new TexturePacker("Mod atlas");
     images.forEach(packer::add);

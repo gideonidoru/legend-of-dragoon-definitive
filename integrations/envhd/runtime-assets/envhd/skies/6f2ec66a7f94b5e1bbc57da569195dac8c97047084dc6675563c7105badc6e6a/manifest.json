@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "c9a1899f210fe593308bb905eab012b5d68d399b0872a749f5a90d0e861d8e56",
+  "outputSha256": "6103673fcbfd3499d3aeb61e7c5717c9212887015bd71e4789351794c5cc2f23",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-star-night-stage9-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Original very dark violet starry night, subdued clouds, flat horizon and shadowed lower terrain retained; no moon, buildings or daylight added.",
+    "style": "Polished Skurfa material and atmospheric-detail direction; stronger tiny star highlights remain a native-size acceptance check.",
+    "layout": "Source framing, horizon and terrain silhouettes remain aligned; exact target dimensions verified.",
+    "wrap": "Edge difference 2.27 versus original 2.10; night darkness and horizontal horizon reconnect with no broad vertical seam. Native scene acceptance pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.097222328186035,
+    "outputEdgeMeanDifference": 2.265191078186035
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a"
+}

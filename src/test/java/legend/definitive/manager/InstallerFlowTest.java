@@ -72,10 +72,12 @@ class InstallerFlowTest {
     for(final String id : DiscImporter.IDS) Files.write(target.resolve("isos/" + id + ".bin"), InstallStoreTest.disc(id));
     Files.writeString(store.prepareLaunch().resolve("files/version"), "prepared-fixture");
     final var closed = new java.util.concurrent.atomic.AtomicBoolean(); final var ref = new AtomicReference<ManagerView>();
+    SwingUtilities.invokeAndWait(() -> ref.set(new ManagerView(null, this.temporary, target, () -> closed.set(true))));
+    awaitIdle(ref.get());
     SwingUtilities.invokeAndWait(() -> {
       try {
-        final var panel = new ManagerView(null, this.temporary, target, () -> closed.set(true)); ref.set(panel);
-        final var step = ManagerView.class.getDeclaredField("step"); step.setAccessible(true); step.setInt(panel, 2);
+        final var panel = ref.get();
+        final var screen = ManagerView.class.getDeclaredField("screen"); screen.setAccessible(true); screen.set(panel, ManagerView.Screen.STEAM);
         final var render = ManagerView.class.getDeclaredMethod("render"); render.setAccessible(true); render.invoke(panel);
         button(panel, "Finish without Steam").doClick();
       } catch(final ReflectiveOperationException e) { throw new RuntimeException(e); }
@@ -111,7 +113,7 @@ class InstallerFlowTest {
       try {
         for(final int width : new int[]{1024, 1100}) for(final int stage : new int[]{0, 1, 2}) {
           final var panel = new ManagerView(null, this.temporary, Path.of("/home/deck/Games/Legend-of-Dragoon-Definitive"));
-          final var step = ManagerView.class.getDeclaredField("step"); step.setAccessible(true); step.setInt(panel, stage);
+          final var screen = ManagerView.class.getDeclaredField("screen"); screen.setAccessible(true); screen.set(panel, new ManagerView.Screen[]{ManagerView.Screen.INSTALL, ManagerView.Screen.DISCS, ManagerView.Screen.STEAM}[stage]);
           final var render = ManagerView.class.getDeclaredMethod("render"); render.setAccessible(true); render.invoke(panel);
           panel.setSize(width, 700); InstallStoreTest.layout(panel);
           final var all = new ArrayList<Component>(); collect(panel, all);

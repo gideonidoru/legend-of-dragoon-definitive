@@ -1,3 +1,5 @@
+> Historical publication checkpoints follow. Superseded downloads are retired under the current-only retention policy; use the [current release](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest) for installation. Git source tags remain available.
+
 # Installer, launcher and updater refinement
 
 ## Recovery and copy refinement

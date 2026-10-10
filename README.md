@@ -2,7 +2,7 @@
 
 ## [⬇ Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop)
 
-**Start here in Steam Deck Desktop Mode.** The guided installer downloads the engine, Java, bundled HD mods and enhanced cinematics, then prepares your own game discs  . No separate model transfer or asset-generation setup is needed.
+**Start here in Steam Deck Desktop Mode.** The guided installer downloads the engine, Java, bundled HD mods and enhanced cinematics, then prepares your own game discs. No separate model transfer or asset-generation setup is needed.
 
 [Release notes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Definitive-Installer.zip) · [Installation and recovery help](docs/definitive/INSTALLER.md)
 
@@ -23,9 +23,9 @@ Definitive is a Steam Deck-first modernization of *The Legend of Dragoon*, built
 
 The default folder is `/home/deck/Games/Legend-of-Dragoon-Definitive`; custom and SD-card locations are supported. The initial download is a small shortcut. Setup then downloads the roughly 13 MB installer interface, Java and a **roughly 1.7 GB game package**, in addition to preparing your discs. Game discs are not included, and your source images stay untouched.
 
-The launcher checks for updates and can restore a previous local version. **Repair** verifies managed files and downloads only missing or changed files, preserving prepared game data. **Update** reuses matching verified files and retrieves the changes. **Reinstall** downloads the full application and prepares a fresh workspace while retaining saves, settings, custom mods and imported discs. **Uninstall** removes ISOs only if you explicitly choose that option.
+The launcher checks for updates and can restore a previous local version. **Repair** verifies managed files and downloads only missing or changed files, preserving prepared game data. **Update** reuses matching verified files, retrieves changed/new files and omits removed files. **Reinstall** downloads the full application and prepares a fresh workspace while retaining saves, settings, custom mods and imported discs. **Uninstall** removes ISOs only if you explicitly choose that option.
 
-Setup shows overall progress and current-file progress. Downloads and activation are checked against the release inventory, with interruption recovery and protection against maintenance while the game is running. Only the current release is kept on GitHub, so use the download button above rather than an older shortcut. Local Restore versions and personal data are retained. [Installation and recovery help](https://github.com/gideonidoru/legend-of-dragoon-definitive/blob/codex/delivery-hardening/docs/definitive/INSTALLER.md).
+Setup shows overall progress and current-file progress. Downloads and activation are checked against the release inventory, with interruption recovery and protection against maintenance while the game is running. Only the current release is kept on GitHub, so use the download button above rather than an older shortcut. Local Restore versions and personal data are retained. [Installation and recovery help](docs/definitive/INSTALLER.md).
 
 ![Definitive launcher with Play, artwork choices, version restore and Steam library actions](docs/definitive/images/launcher-linux.png)
 

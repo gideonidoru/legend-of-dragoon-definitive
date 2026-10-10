@@ -23,7 +23,18 @@ tasks.register('fmvHdAssets') {
     target.parentFile.mkdirs()
     final String local = providers.gradleProperty('fmvHdAssets').getOrNull()
     if(local != null) java.nio.file.Files.copy(file(local).toPath(), target.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING)
-    else providers.exec { commandLine 'curl', '--fail', '--location', '--proto', '=https', '--proto-redir', '=https', '--connect-timeout', '20', '--max-time', '1800', '--retry', '2', '--output', target.absolutePath, metadata.getProperty('url') }.result.get().assertNormalExitValue()
+    else {
+      final def fetch = { String url -> providers.exec {
+        commandLine 'curl', '--fail', '--location', '--proto', '=https', '--proto-redir', '=https', '--connect-timeout', '20', '--max-time', '1800', '--retry', '2', '--output', target.absolutePath, url
+        ignoreExitValue = true
+      }.result.get() }
+      final def result = fetch(metadata.getProperty('url'))
+      if(result.exitValue != 0) {
+        final String migration = metadata.getProperty('migrationUrl', '')
+        if(migration.isEmpty()) result.assertNormalExitValue()
+        else fetch(migration).assertNormalExitValue()
+      }
+    }
     final def digest = java.security.MessageDigest.getInstance('SHA-256')
     target.withInputStream { input ->
       final byte[] buffer = new byte[65536]
@@ -54,3 +65,13 @@ tasks.named('deliveryTest') {
   if(providers.gradleProperty('fmvTailFixture').isPresent()) systemProperty 'fmvhd.tailFixture', providers.gradleProperty('fmvTailFixture').get()
   if(providers.gradleProperty('fmvFixture').isPresent()) systemProperty 'fmvhd.fixture', providers.gradleProperty('fmvFixture').get()
 }
+
+// Retain the checksum-pinned source input in the current release itself, so
+// historical mod releases can be removed without breaking future clean builds.
+tasks.register('fmvHdSourceBundle', Copy) {
+  dependsOn tasks.named('fmvHdAssets')
+  from(tasks.fmvHdAssets.outputs.files.singleFile)
+  into layout.buildDirectory.dir('distributions')
+  rename { 'FMVHD-v0.1.0-videos.zip' }
+}
+tasks.named('definitiveFileDelivery') { dependsOn tasks.named('fmvHdSourceBundle') }

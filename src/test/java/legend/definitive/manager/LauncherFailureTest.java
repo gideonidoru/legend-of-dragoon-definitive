@@ -18,7 +18,11 @@ class LauncherFailureTest {
     final var store = this.store();
     // Fixture bootstrap has no working Java command; this cannot open an app.
     final var builder = new ProcessBuilder("/bin/bash", store.root().resolve("Play Game.sh").toString()).redirectErrorStream(true);
-    final Path tools = Files.createDirectory(this.temporary.resolve("tools")); Files.createSymbolicLink(tools.resolve("dirname"), Path.of("/usr/bin/dirname"));
+    final Path tools = Files.createDirectory(this.temporary.resolve("tools"));
+    for(final String tool : java.util.List.of("dirname", "mktemp", "head", "cat", "uname", "mv", "rm", "rmdir")) {
+      final Path executable = Files.isExecutable(Path.of("/usr/bin", tool)) ? Path.of("/usr/bin", tool) : Path.of("/bin", tool);
+      Files.createSymbolicLink(tools.resolve(tool), executable);
+    }
     builder.environment().put("PATH", tools.toString());
     final var process = builder.start(); assertTrue(process.waitFor(5, TimeUnit.SECONDS));
     assertNotEquals(0, process.exitValue());
