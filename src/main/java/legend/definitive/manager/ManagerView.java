@@ -221,7 +221,7 @@ final class ManagerView extends JPanel {
   }
   private void launcher() {
     this.heading("Ready to play", "The Legend of Dragoon · Definitive");
-    this.body.add(infoCard("YOUR EDITION", "HD backgrounds. ModelsHD. Refined menus.", "Choose Faithful or Definitive when you start a new campaign."));
+    this.body.add(infoCard("YOUR EDITION", "HD backgrounds & ModelsHD", "Choose Faithful or Definitive when you start a new campaign."));
     this.body.add(Box.createVerticalStrut(30));
     this.primary("Play", () -> this.run("Game running", () -> {
       final var store = new InstallStore(this.root); final int code = store.play();
