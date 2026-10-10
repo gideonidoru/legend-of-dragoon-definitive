@@ -6,4 +6,6 @@ After the replacement passes exact-source CI and the complete publication gate, 
 
 Large CI delivery artifacts are retained only for explicit release builds, for one day. Remove artifacts from completed superseded runs after replacement verification. Preserve active runs and the current verification run during publication. This hosted retention policy does not delete player saves, imported discs, local installed rollback versions or recovery data.
 
+Refresh `delivery/Install-Definitive.sh` and `delivery/Install-Definitive.desktop` together from the verified release outputs before pruning, so their paired checksums target the retained download. Recording that entrypoint update does not require another published release.
+
 Use `scripts/prune-release-history.py` with the verified complete upload inventory after publication. It refuses an unpublished replacement, wrong source/build/inventory or a newer concurrent release. Never prune first and verify later.
