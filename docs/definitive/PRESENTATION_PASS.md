@@ -12,6 +12,20 @@ The launcher reserves at least 12 pixels between its last action and footer at t
 
 The first supported local Java 25 build and headless delivery suite passed: 88 cases, 85 passed, zero failures, three isolated-window cases deferred. The first hosted Linux build then caught clipping in the wide-folder regression. Publication was held. The verified-location card now uses a bounded middle summary, with the complete path retained in its tooltip and accessible description. Failure output includes full assertions, and CI retains reports even when a build fails. The corrected package and isolated-window checks must pass before publication. Physical Steam Deck touch, controller and real Steam acceptance remain open; these checks do not establish commercial release readiness.
 
+The final source [`d292d784df6cbea952fc6e547866e2bdf3dc0c26`](https://github.com/gideonidoru/legend-of-dragoon-definitive/commit/d292d784df6cbea952fc6e547866e2bdf3dc0c26) passed all three jobs in [run 38051581767](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38051581767). Each platform reported 89 delivery cases: 86 passed, zero failures, three window cases deferred. Linux separately passed all three window cases. Both downloaded packages passed complete inventory, source, tag, platform and hash checks: Linux `alpha-7b0acdbbf4aa1252`, Mac `alpha-687de100be674f71`. Their portable interfaces match each other and the reviewed local build byte for byte. The final Linux installer, Steam, launcher, update and error renders were inspected.
+
+The [refinement is public](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-alpha-2026-10-10-refinement-3) after the account, exact-source build, tag, complete-upload and checksum gate passed. Anonymous downloads of both public entry files match the checked uploads. [SHA256SUMS](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-refinement-3/SHA256SUMS) records the five download digests.
+
+A fresh isolated installation using the exact-source hosted manager selected this public release, downloaded and verified the Mac package, created the installation/data directories, installed the HD mod and wrote verified executable launchers. Source and release identity assertions passed. Disc preparation, gameplay and real Steam were not run in this probe.
+
+These are actual shipped components rendered at 1024 × 660, not a physical Deck capture:
+
+![Refined launcher spacing](images/refinement-3-launcher-linux.png)
+
+![Refined update copy](images/refinement-3-updater-linux.png)
+
+Open presentation item: sword emoji appear blank in the Ubuntu path stress render. The complete Unicode path remains intact in the label metadata and installation state; glyph coverage on stock SteamOS remains a device check. Bounds and character-preservation assertions do not establish font coverage.
+
 ## Controller focus refinement
 
 The shared actions now use a pale pine outline on primary buttons and a dark pine outline on secondary buttons. Focus remains clear through normal, hover and pressed states. The installation path uses the same dark outline when focused, with unchanged text insets and alignment. Disabled controls do not display an active focus ring.
