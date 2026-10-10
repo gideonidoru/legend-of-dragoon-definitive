@@ -40,3 +40,23 @@ Source: [Legend of Dragoon community merchandise archive](https://legendofdragoo
 Local environment: Mac Studio, macOS 27.0.1, Corretto Java 25, Gradle 9.1.0. `deliveryTest` drives actual installation, repair, disc import/comparison, settings serialization, shell routing, isolated Steam library edits and uninstall/reinstall. The final local delivery suite contains **109 cases: 105 passed, zero failures, four window cases deferred**. Four real Swing window cases run separately in Linux CI's virtual display. Synthetic ZIP/RAR4/7z fixtures contain no retail assets. Artwork and maintenance screens are rendered for layout inspection. The local full build compiles and packages the engine without gameplay tests.
 
 Required physical follow-up: launch the new package from Gaming Mode; confirm that the native game opens fullscreen; exercise slow taps, held D-pad, folder selection and controller reconnect; then reuse the existing discs through Reinstall. Mac and virtual-display checks do not establish physical Deck performance or gameplay. The private model/material studies remain outside this delivery release.
+
+## Published build identity
+
+Release: `definitive-alpha-2026-10-10-deck-recovery`. Source: `0a29faff2876ccfef515ac83ec029648b4d31240`. [Required build run 38061319093](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38061319093) passed all three jobs: synthetic visual fixtures, Linux x64/Steam Deck package and macOS package. Hosted runners used Temurin Java 25.0.0+36, Gradle 9.1.0, Ubuntu 24.04 and macOS 15.
+
+Build command: `./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-deck-recovery`; Linux adds `-Pos=linux -Parch=x86_64 -Psteamdeck=true`. Linux window command: `xvfb-run -a ./gradlew --no-daemon --console=plain managerWindowTest -Pos=linux -Parch=x86_64 -Psteamdeck=true`. Both delivery reports contain 109 cases, zero failures and four deferred window cases; the separate Linux window report passed all four without skips. These are compilation and isolated delivery/window results, not a game or Deck gameplay run.
+
+Downloaded hosted packages were unpacked and their complete manifest inventories verified with the Java 25 manager's `--verify` command. Both packages match the exact source, release tag and platform. Linux ID: `alpha-f1433d8e016b1afc`; macOS ID: `alpha-788d5f3a7b798235`. Both hosted portable installers match the local final installer byte for byte.
+
+| Artifact | SHA256 |
+| --- | --- |
+| Linux x64 package | `f88d055609df3caf0ea6acd1504f2c0450217d7e9c4e7c9afdf7e77d4869a7d4` |
+| macOS ARM64 package | `e305f7715dd5d74b1888ca31d25ac478ed63b33e838f169e35664bc5aa3420ae` |
+| Portable installer | `a7c744120fa8976e90cbf667d952f99e10669fae0b1abb44873c5785d4b706bf` |
+| Shell entry | `86d10ae6ad3e9f27f2790bf27aec5ced3146ee64bfdee0e90b3ee745a91b239b` |
+| Desktop entry | `373c1705309ac66b9382f0ffeec2be18cdabf89df7f9e6b9831749087ea00293` |
+
+The publication gate checks source/run/account identity, package manifests, entry-point pins and the complete six-file upload set before making the draft public. Older custom installations created before location receipts existed need their folder selected once; default-path installations are detected directly.
+
+Publication and post-publication checks completed October 10, 2026. The desktop entry downloaded anonymously and matched the checked file byte for byte. The published portable manager selected and downloaded the public macOS package, checked its GitHub digest, installed it into a new isolated temporary folder and verified the complete inventory. A custom location receipt was recorded and rediscovered, and the generated Play script used `--play`. Logs, registry and installation files for this check stayed under `/private/tmp/lod-definitive-tooling/release-deck-recovery-oct10/`; no owner installation, real Steam library, discs, saves, game window or desktop focus was used. This host check does not establish Linux runtime or physical Deck acceptance.
