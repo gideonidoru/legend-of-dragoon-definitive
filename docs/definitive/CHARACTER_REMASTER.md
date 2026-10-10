@@ -10,6 +10,8 @@ The owner further defined the target as a **2026 AA game with a slick, intention
 
 The tool emits offline images and a source-bound report. It does not write a replacement TMD, activate a mod, generate final normals, change engine behavior or claim native animation equivalence. The report uses a distinct `definitive-private-surface-study-1` pipeline so the existing original-geometry inspection contract cannot silently accept changed geometry.
 
+The later [surface response and costume relief study](MATERIAL_RESPONSE_STUDY.md) tests frozen character geometry with cloth, leather, painted guards and raised original motifs. Analytical and capture checks pass, but the visual change is too modest at handheld size. These candidates remain held. The next art priority is cleaner original-design costume detail and stronger authored forms, followed by shared native scene lighting; shader strength alone does not satisfy the visual target.
+
 Eight original synthetic fixtures cover pinned joint boundaries and creases, subdivision/quad order, unchanged input data, material seams, untextured faces, duplicate-face/disconnected-vertex-fan/degenerate rejection, parameter/reference validation, short-animation view selection and part counts. They join the twenty-three existing visual checks in CI. No retail assets or model weights are needed by those fixtures. Independent review identified disconnected vertex fans/duplicate faces that the initial edge-only guard missed, and lost camera selections in short animations. The guard now validates a connected disk/boundary fan at each referenced vertex, rejects duplicates, and retains all three camera selections with unique view-indexed filenames. Original regression fixtures cover these corrections.
 
 ## Private rounds 22–23
