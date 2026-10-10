@@ -257,8 +257,10 @@ public final class VideoPlayer {
     if(movie != null) { safely(movie::close); movie = null; playback = null; }
     if(texturedObj != null) { safely(texturedObj::delete); texturedObj = null; }
     if(displayTexture != null) { safely(displayTexture::delete); displayTexture = null; }
-    safely(Obj::deleteObjects);
-    safely(Texture::deleteTextures);
+    if(stateCaptured) {
+      safely(Obj::deleteObjects);
+      safely(Texture::deleteTextures);
+    }
     if(keyPress != null) { safely(() -> RENDERER.events().removeKeyPress(keyPress)); keyPress = null; }
     if(click != null) { safely(() -> RENDERER.events().removeMouseRelease(click)); click = null; }
     if(buttonPressed != null) { safely(() -> RENDERER.events().removeButtonPress(buttonPressed)); buttonPressed = null; }

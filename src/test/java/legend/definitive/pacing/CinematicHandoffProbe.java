@@ -119,12 +119,19 @@ public final class CinematicHandoffProbe {
     draw.invoke(window);
     require(renderer.setCinematicPlayback(false), "Nested playback restores the outer cinematic scope");
     require(window.getFpsLimit() == 30 && GameEngine.PLATFORM.getInputTickRate() == 120, "Nested cleanup restores distinct outer rates");
+    final var retained = new legend.core.renderer.QuadBuilder("Failed movie initialization preserves pending gameplay retirement").size(1,1).build();
+    retained.delete();
+    final var ownersField = legend.core.renderer.Obj.class.getDeclaredField("objList");ownersField.setAccessible(true);
+    final var owners = (java.util.List<?>)ownersField.get(null);
     try {
       VideoPlayer.play(fixture.resolveSibling("missing-cinematic-handoff-fixture.mp4"), null, null);
       throw new AssertionError("Missing media must fail initialization");
     } catch(final IOException expected) {
       require(window.getFpsLimit() == 30 && GameEngine.PLATFORM.getInputTickRate() == 120, "Failed initialization cannot change the previous timing owner");
       require(!window.simulationConsumesInput(), "Failed initialization preserves the previous presentation callback");
+      require(owners.contains(retained),"Failed media initialization must not retire the previous domain's resources");
+    } finally {
+      renderer.discardCinematicFrame();
     }
     System.out.println("PASS: actual streamed-player entry/cleanup restores independent input/presentation rates for all 48 gameplay combinations, 144 paused stop/button-skip/mouse-skip paths, nested cinematic scope and failed media initialization.");
   }

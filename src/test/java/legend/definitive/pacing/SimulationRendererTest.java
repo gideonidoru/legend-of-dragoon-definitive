@@ -161,6 +161,35 @@ final class SimulationRendererTest {
     state.cancel(); assertFalse(state.isPressed()); assertFalse(state.isRepeat());
   }
 
+  @Test void focusReleaseListenersObserveAllInputsAlreadyCancelled() throws Exception {
+    final var eventAccess=GameEngine.class.getDeclaredField("EVENT_ACCESS");eventAccess.setAccessible(true);
+    ((org.legendofdragoon.modloader.events.EventManager.Access)eventAccess.get(null)).initialize(GameEngine.MODS);
+    final var platform=(SdlPlatformManager)GameEngine.PLATFORM;
+    final var states=(Map<InputAction,InputActionState>)get(platform,"actionStates");
+    final var pressed=(Set<InputAction>)get(platform,"pressed");
+    final var first=InputAction.fixed(); final var second=InputAction.fixed(); final var tap=InputAction.fixed();
+    for(final var action:List.of(first,second,tap)) {
+      final var state=new InputActionState();state.press();state.axis(.75f);
+      if(action==tap)state.release();
+      states.put(action,state);pressed.add(action);
+    }
+    final var window=new NoopWindow(new NoopPlatformManager(),640,480);
+    final List<InputAction> released=new ArrayList<>();
+    window.events().onInputActionReleased((unused,action)->{
+      released.add(action);
+      for(final var check:List.of(first,second,tap)) {
+        assertFalse(platform.isActionPressed(check));assertFalse(platform.isActionRepeat(check));
+        assertFalse(platform.isActionHeld(check));assertEquals(0,platform.getAxis(check));
+      }
+    });
+    try {
+      final var cancel=SdlPlatformManager.class.getDeclaredMethod("cancelInactiveWindowInput",legend.core.platform.Window.class);
+      cancel.setAccessible(true);cancel.invoke(platform,window);
+      assertEquals(Set.of(first,second),Set.copyOf(released));
+      assertFalse(states.get(tap).isPressed(),"Already released quick taps are cancelled at focus loss");
+    } finally { for(final var action:List.of(first,second,tap)){states.remove(action);pressed.remove(action);} }
+  }
+
   @Test void pauseObserversReportTransitionsAndScopedRestorationImmediately() throws Exception {
     try(final var f=new Fixture()) {
       final List<Boolean> states=new ArrayList<>();
