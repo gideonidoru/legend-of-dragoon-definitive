@@ -64,6 +64,12 @@ repositories {
   maven { url = "https://jitpack.io" }
 }
 
+// Reviewed dependency graph and artifact checksums travel with the source pin.
+dependencyLocking {
+  lockAllConfigurations()
+  lockMode = LockMode.STRICT
+}
+
 dependencies {
   api 'org.legendofdragoon:mod-loader:4.3.4'
   api 'org.legendofdragoon:script-recompiler:0.7.11'
@@ -313,6 +319,6 @@ apply from: 'gradle/modelshd.gradle'
 
 // Default cinematic pack with a checksum-pinned enhanced video payload.
 apply from: 'gradle/fmvhd.gradle'
-
-// Independent effects artwork, bundled by default.
+// Independent presentation mods bundled through the normal installer.
+apply from: 'gradle/hd-mods.gradle'
 apply from: 'gradle/fxhd.gradle'

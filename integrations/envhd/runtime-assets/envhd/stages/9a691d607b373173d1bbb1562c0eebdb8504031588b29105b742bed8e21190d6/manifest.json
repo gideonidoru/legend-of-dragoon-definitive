@@ -1,0 +1,156 @@
+{
+  "pipeline": "definitive-private-material-pack-1",
+  "modelSha256": "9a691d607b373173d1bbb1562c0eebdb8504031588b29105b742bed8e21190d6",
+  "timSha256": "c7a5c0923df7ad784818b3bfaf006beae3823b073dbabacacf6f462a0aad0ce0",
+  "scale": 4,
+  "paddingSourceTexels": 8,
+  "atlasSize": [
+    2048,
+    880
+  ],
+  "materials": [
+    {
+      "palette": 0,
+      "sourceCrop": [
+        -8,
+        -8,
+        262,
+        70
+      ],
+      "atlasRect": [
+        948,
+        0,
+        1080,
+        312
+      ]
+    },
+    {
+      "palette": 4,
+      "sourceCrop": [
+        -8,
+        56,
+        71,
+        135
+      ],
+      "atlasRect": [
+        0,
+        0,
+        316,
+        316
+      ]
+    },
+    {
+      "palette": 8,
+      "sourceCrop": [
+        56,
+        56,
+        262,
+        134
+      ],
+      "atlasRect": [
+        0,
+        316,
+        824,
+        312
+      ]
+    },
+    {
+      "palette": 12,
+      "sourceCrop": [
+        -8,
+        120,
+        54,
+        198
+      ],
+      "atlasRect": [
+        1136,
+        316,
+        248,
+        312
+      ]
+    },
+    {
+      "palette": 16,
+      "sourceCrop": [
+        40,
+        120,
+        119,
+        199
+      ],
+      "atlasRect": [
+        316,
+        0,
+        316,
+        316
+      ]
+    },
+    {
+      "palette": 20,
+      "sourceCrop": [
+        104,
+        120,
+        183,
+        199
+      ],
+      "atlasRect": [
+        632,
+        0,
+        316,
+        316
+      ]
+    },
+    {
+      "palette": 24,
+      "sourceCrop": [
+        168,
+        120,
+        246,
+        198
+      ],
+      "atlasRect": [
+        824,
+        316,
+        312,
+        312
+      ]
+    },
+    {
+      "palette": 28,
+      "sourceCrop": [
+        -8,
+        184,
+        198,
+        247
+      ],
+      "atlasRect": [
+        0,
+        628,
+        824,
+        252
+      ]
+    },
+    {
+      "palette": 32,
+      "sourceCrop": [
+        184,
+        184,
+        248,
+        246
+      ],
+      "atlasRect": [
+        824,
+        628,
+        256,
+        248
+      ]
+    }
+  ],
+  "algorithm": "neural",
+  "strength": 0.7,
+  "preservedPalettes": [],
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "paramsSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "atlasEngineSha256": "69fc45f08cd990539bce747f81d217cf2a4a83ae972d8bb1ae723d8ea0730ce6",
+  "scope": "EnvHD 0.1 pilot; static stage materials, no skybox replacement; native and Deck visual acceptance pending."
+}

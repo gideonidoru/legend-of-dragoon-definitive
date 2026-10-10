@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "17e12093491e8d7bbc39d445c831fbc1a7c472115ef8ab5a978da62c7f5b8895",
+  "outputSha256": "98c9bac70f33dad221821c279fc1b33f1b43d2db13c48e8e3bfcbfec11f99f91",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-forest-stage1-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Forest sunset, amber cloud bands and dark green canopy retained; no cliff or architecture transplanted from Skurfa.",
+    "style": "Modern natural foliage and cloud detail follows the Skurfa references.",
+    "layout": "Original horizon and layered forest placement retained; exact4x dimensions verified.",
+    "wrap": "Correction reduced boundary error from21.36 to6.15 versus original3.99. Bands reconnect; native scene acceptance remains pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.9861111640930176,
+    "outputEdgeMeanDifference": 6.1484375
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6"
+}

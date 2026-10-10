@@ -4,21 +4,46 @@ set -euo pipefail
 umask 077
 ROOT="${1:?Choose a runtime storage directory}"
 is_java25() { "$1" -XshowSettings:properties -version 2>&1 | grep -q 'java.specification.version = 25$'; }
-if [[ -n "${JAVA_HOME:-}" && -x "$JAVA_HOME/bin/java" ]] && is_java25 "$JAVA_HOME/bin/java"; then printf '%s\n' "$JAVA_HOME/bin/java"; exit 0; fi
-if [[ -f "$ROOT/.java-path" ]]; then
+if [[ "${DEFINITIVE_MANAGED_JAVA:-0}" != 1 && -n "${JAVA_HOME:-}" && -x "$JAVA_HOME/bin/java" ]] && is_java25 "$JAVA_HOME/bin/java"; then printf '%s\n' "$JAVA_HOME/bin/java"; exit 0; fi
+# Reviewed upstream release: https://github.com/corretto/corretto-25/releases/tag/25.0.4.10.1
+# Bump version and all three digests together after platform acceptance.
+VERSION=25.0.4.10.1
+is_pinned_java() { "$1" -XshowSettings:properties -version 2>&1 | grep -q 'java.vendor.version = Corretto-25.0.4.10.1$'; }
+is_verified_legacy_java() {
+  local runtime receipt settings
+  case "$1" in
+    */runtime-jdk25/bin/java) runtime="${1%/bin/java}" ;;
+    */runtime-jdk25/Contents/Home/bin/java) runtime="${1%/Contents/Home/bin/java}" ;;
+    *) return 1 ;;
+  esac
+  receipt="$runtime/definitive-runtime.sha256"
+  [[ -f "$receipt" && ! -L "$receipt" && $(wc -c < "$receipt") -le 256 ]] || return 1
+  # The previous installer wrote this receipt only after checking the official
+  # archive digest. Grandfather that compatible runtime for offline continuity;
+  # newly downloaded runtimes still require the immutable pin above. A new
+  # portable setup uses the pin and refreshes the installation's runtime path.
+  grep -Eq '^[a-f0-9]{64}  amazon-corretto-25-(x64-linux|aarch64-macos|x64-macos)-jdk\.tar\.gz$' "$receipt" || return 1
+  settings=$("$1" -XshowSettings:properties -version 2>&1) || return 1
+  grep -q 'java.specification.version = 25$' <<< "$settings" && grep -Eq 'java.vendor.version = Corretto-25\.[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' <<< "$settings"
+}
+if [[ "${DEFINITIVE_MANAGED_JAVA:-0}" != 1 && -f "$ROOT/.java-path" && ! -L "$ROOT/.java-path" ]]; then
   IFS= read -r RECORDED < "$ROOT/.java-path"
-  if [[ -x "$RECORDED" ]] && is_java25 "$RECORDED"; then printf '%s\n' "$RECORDED"; exit 0; fi
+  # Portable setup stores its reviewed runtime outside the game folder. Reuse
+  # that receipt offline, including the verified compatible legacy cache.
+  if [[ -x "$RECORDED" ]] && { is_pinned_java "$RECORDED" || is_verified_legacy_java "$RECORDED" || { [[ "$RECORDED" != */runtime-jdk*/* ]] && is_java25 "$RECORDED"; }; }; then
+    printf '%s\n' "$RECORDED"; exit 0
+  fi
 fi
 case "$(uname -s):$(uname -m)" in
-  Linux:x86_64) artifact=amazon-corretto-25-x64-linux-jdk.tar.gz; relative=bin/java ;;
-  Darwin:arm64) artifact=amazon-corretto-25-aarch64-macos-jdk.tar.gz; relative=Contents/Home/bin/java ;;
-  Darwin:x86_64) artifact=amazon-corretto-25-x64-macos-jdk.tar.gz; relative=Contents/Home/bin/java ;;
+  Linux:x86_64) artifact=amazon-corretto-$VERSION-linux-x64.tar.gz; EXPECTED=a45f1d385da8221fe1225dde5b6afa8e932a6acb93571b55eff4a39a2ebe7378; relative=bin/java ;;
+  Darwin:arm64) artifact=amazon-corretto-$VERSION-macosx-aarch64.tar.gz; EXPECTED=ee05ff1a6a459be34c4e504a206b0cae7c77e42c58424a08408b76c451bdd4ef; relative=Contents/Home/bin/java ;;
+  Darwin:x86_64) artifact=amazon-corretto-$VERSION-macosx-x64.tar.gz; EXPECTED=6ec9249a53330e0bc8b0ddd928e890a9880eebbcb214ae92bc8363932df8424f; relative=Contents/Home/bin/java ;;
   *) echo 'This installer supports Steam Deck/Linux x64 and Intel/Apple Silicon Mac.' >&2; exit 1 ;;
 esac
-JAVA="$ROOT/runtime-jdk25/$relative"
-if [[ -x "$JAVA" ]] && is_java25 "$JAVA"; then printf '%s\n' "$JAVA"; exit 0; fi
-if command -v java >/dev/null && is_java25 "$(command -v java)"; then command -v java; exit 0; fi
-if [[ -e "$ROOT/runtime-jdk25" ]]; then echo 'Existing runtime is not Java 25. It has been preserved; configure JAVA_HOME or choose another folder.' >&2; exit 1; fi
+JAVA="$ROOT/runtime-jdk$VERSION/$relative"
+if [[ -x "$JAVA" ]] && is_pinned_java "$JAVA"; then printf '%s\n' "$JAVA"; exit 0; fi
+if [[ "${DEFINITIVE_MANAGED_JAVA:-0}" != 1 ]] && command -v java >/dev/null && is_java25 "$(command -v java)"; then command -v java; exit 0; fi
+if [[ -e "$ROOT/runtime-jdk$VERSION" ]]; then echo 'Existing runtime is not Java 25. It has been preserved; configure JAVA_HOME or choose another folder.' >&2; exit 1; fi
 mkdir -p -- "$ROOT"
 # Serialize downloads, including the final rename. Never nest one runtime inside another.
 LOCK="$ROOT/.java-bootstrap-lock"
@@ -41,17 +66,14 @@ cleanup() {
 trap cleanup EXIT
 STAGE=$(mktemp -d "$ROOT/.java-download.XXXXXX")
 printf '%s\n' 'Downloading Java 25 from Amazon Corretto; first setup needs internet access…' >&2
-curl --fail --location --silent --show-error --proto '=https' --proto-redir '=https' --connect-timeout 20 --max-time 900 --speed-limit 1024 --speed-time 60 --retry 2 "https://corretto.aws/downloads/latest/$artifact" --output "$STAGE/runtime.tar.gz"
-curl --fail --location --silent --show-error --proto '=https' --proto-redir '=https' --connect-timeout 20 --max-time 60 --retry 2 "https://corretto.aws/downloads/latest_sha256/$artifact" --output "$STAGE/checksum"
-EXPECTED=$(awk '{print $1; exit}' "$STAGE/checksum")
-[[ "$EXPECTED" =~ ^[a-fA-F0-9]{64}$ ]] || { echo 'Invalid official runtime checksum; nothing installed.' >&2; exit 1; }
+curl --fail --location --silent --show-error --proto '=https' --proto-redir '=https' --connect-timeout 20 --max-time 900 --speed-limit 1024 --speed-time 60 --retry 2 "https://corretto.aws/downloads/resources/$VERSION/$artifact" --output "$STAGE/runtime.tar.gz"
 if command -v sha256sum >/dev/null; then ACTUAL=$(sha256sum "$STAGE/runtime.tar.gz" | awk '{print $1}'); else ACTUAL=$(shasum -a 256 "$STAGE/runtime.tar.gz" | awk '{print $1}'); fi
 [[ "$(printf %s "$ACTUAL" | tr A-F a-f)" == "$(printf %s "$EXPECTED" | tr A-F a-f)" ]] || { echo 'Java download checksum mismatch; nothing installed.' >&2; exit 1; }
 mkdir "$STAGE/jdk"
 tar -xzf "$STAGE/runtime.tar.gz" -C "$STAGE/jdk" --strip-components=1
-[[ -x "$STAGE/jdk/$relative" ]] && is_java25 "$STAGE/jdk/$relative" || { echo 'Downloaded runtime is not a usable Java 25 installation.' >&2; exit 1; }
+[[ -x "$STAGE/jdk/$relative" ]] && is_pinned_java "$STAGE/jdk/$relative" || { echo 'Downloaded runtime is not a usable Java 25 installation.' >&2; exit 1; }
 printf '%s\n' "$ACTUAL  $artifact" > "$STAGE/jdk/definitive-runtime.sha256"
 # Never delete or replace an existing runtime, even if another setup finished first.
-[[ ! -e "$ROOT/runtime-jdk25" ]] || { echo 'A runtime appeared during setup; it has been preserved.' >&2; exit 1; }
-mv -- "$STAGE/jdk" "$ROOT/runtime-jdk25"
+[[ ! -e "$ROOT/runtime-jdk$VERSION" ]] || { echo 'A runtime appeared during setup; it has been preserved.' >&2; exit 1; }
+mv -- "$STAGE/jdk" "$ROOT/runtime-jdk$VERSION"
 printf '%s\n' "$JAVA"

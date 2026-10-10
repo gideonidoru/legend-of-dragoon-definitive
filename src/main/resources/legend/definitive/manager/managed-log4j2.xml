@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Managed children use descriptor-backed, bounded ProcessRunner diagnostics. -->
+<Configuration status="warn" name="Definitive managed diagnostics">
+  <Appenders>
+    <Console name="managed-console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %c{1}: %msg%n%throwable"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="info"><AppenderRef ref="managed-console"/></Root>
+  </Loggers>
+</Configuration>

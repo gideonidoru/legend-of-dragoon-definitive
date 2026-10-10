@@ -12,13 +12,16 @@ final class DownloadBody {
     return copy(input, output, limit, timeout, bytes -> { });
   }
   static long copy(final InputStream input, final OutputStream output, final long limit, final Duration timeout, final java.util.function.LongConsumer progress) throws IOException, InterruptedException {
+    if(limit < 0 || timeout.isNegative() || timeout.isZero()) throw new IllegalArgumentException("Choose positive transfer limits.");
     final var lastRead = new java.util.concurrent.atomic.AtomicLong(System.nanoTime());
+    final var cancelled = new java.util.concurrent.atomic.AtomicBoolean();
     final FutureTask<Long> transfer = new FutureTask<>(() -> {
       final byte[] buffer = new byte[65536]; long total = 0;
       for(int count; (count = input.read(buffer)) != -1;) {
-        if(Thread.currentThread().isInterrupted()) throw new InterruptedIOException("Download cancelled.");
-        if((total += count) > limit) throw new IOException("Download exceeds its size limit.");
-        output.write(buffer, 0, count);
+        if(cancelled.get() || Thread.currentThread().isInterrupted()) throw new InterruptedIOException("Download cancelled.");
+        if((total += count) > limit) throw new SizeLimitException();
+        try { output.write(buffer, 0, count); }
+        catch(final IOException failure) { throw new WriteException(failure); }
         lastRead.set(System.nanoTime()); progress.accept(total);
       }
       return total;
@@ -36,9 +39,13 @@ final class DownloadBody {
     catch(final TimeoutException e) { throw new IOException("Download stalled or took too long. Your current installation is unchanged; retry when connected.", e); }
     catch(final ExecutionException e) { if(e.getCause() instanceof IOException io) throw io; throw new IOException("Download could not complete.", e.getCause()); }
     finally {
+      cancelled.set(true);
       if(!transfer.isDone()) transfer.cancel(true);
-      input.close();
-      reader.join(1000);
+      try { input.close(); }
+      finally { reader.join(1000); }
+      if(reader.isAlive()) throw new IOException("Download worker did not stop after cancellation; retry after closing setup.");
     }
   }
+  static final class SizeLimitException extends IOException { SizeLimitException() { super("Download exceeds its size limit."); } }
+  static final class WriteException extends IOException { WriteException(final IOException cause) { super("Could not write the download. Check installation storage.", cause); } }
 }

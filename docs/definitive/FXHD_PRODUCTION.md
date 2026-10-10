@@ -34,7 +34,7 @@ Native rendered gameplay, all-campaign appearance, busy-scene performance, suspe
 
 FxHD is an independent normal bundled mod, selected through the existing Mods menu. Only selected runtime files enter its JAR; custom rejected/deferred candidates remain in production/candidates. The orchestrator owns the single combined public release. No release is created for this batch in isolation.
 
-Integration with the older four-mod pilot must remove FxHD from gradle/hd-mods.gradle, retaining EnvHD/CharHD/UIHD there, and use gradle/fxhd.gradle for FxHD 0.2.0. Replace the pilot event/adapter/dust-only hook with these source-and-live-palette controls. The older EffectLifecycleTest dustHdTexture reflection should be migrated to the owned EffectArtwork lifetime tests rather than restoring the retired texture field. This is necessary before landing alongside that pilot.
+Integration with the reviewed consolidated installer source f5651e420 retains EnvHD/CharHD/UIHD in gradle/hd-mods.gradle and builds only FxHD 0.2.0 through gradle/fxhd.gradle. The older event/adapter/dust-only hook is replaced by these source-and-live-palette controls. The existing exact-deletion lifecycle regression now exercises owned EffectArtwork. Current-only release retention, the pinned FMV input, selective file delivery and paired installer entrypoints are preserved.
 
 ## Next queue
 

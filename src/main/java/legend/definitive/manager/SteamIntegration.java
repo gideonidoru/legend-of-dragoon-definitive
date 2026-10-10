@@ -99,9 +99,23 @@ final class SteamIntegration {
     @Override public boolean running() { return SteamLibrary.steamRunning(); }
     @Override public boolean started() { return SteamLibrary.steamClientRunning(); }
     private Process command(final List<String> arguments) throws IOException {
-      if(Files.isSymbolicLink(this.log)) throw new IOException("Steam integration log changed to a link.");
       InstallerLog.write("Steam integration: " + arguments);
-      return new ProcessBuilder(arguments).redirectErrorStream(true).redirectOutput(ProcessBuilder.Redirect.appendTo(this.log.toFile())).start();
+      // Steam remains user-owned after setup exits. Drain its output independently,
+      // through a descriptor opened without following links before starting it.
+      final var output = DiagnosticLogs.openLog(this.log);
+      final Process process;
+      try { process = new ProcessBuilder(arguments).redirectErrorStream(true).start(); }
+      catch(final IOException failure) { output.close(); throw failure; }
+      Thread.ofVirtual().name("definitive-steam-output").start(() -> {
+        try(output; final var input = process.getInputStream()) {
+          final byte[] buffer = new byte[8192]; long remaining = DiagnosticLogs.ROTATE_BYTES;
+          for(int count; (count = input.read(buffer)) != -1;) {
+            final int accepted = (int)Math.min(count, remaining);
+            if(accepted > 0) { output.write(buffer, 0, accepted); remaining -= accepted; output.flush(); }
+          }
+        } catch(final IOException failure) { InstallerLog.failure(failure); }
+      });
+      return process;
     }
     @Override public void shutdown() throws IOException, InterruptedException {
       final var arguments = new ArrayList<>(this.launch); arguments.add("-shutdown"); final Process request = this.command(arguments);

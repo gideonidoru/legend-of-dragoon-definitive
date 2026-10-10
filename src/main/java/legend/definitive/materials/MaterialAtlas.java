@@ -67,7 +67,12 @@ public final class MaterialAtlas {
   public static MaterialAtlas read(final Path folder, final byte[] originalModel, final byte[] originalTim) throws IOException {
     if(originalModel.length > 16 * 1024 * 1024 || originalTim.length > 16 * 1024 * 1024 || Files.isSymbolicLink(folder)) throw bad("Input exceeds atlas bounds or uses a linked folder.");
     final byte[] model = originalModel.clone(), tim = originalTim.clone();
-    final Map<String, Object> manifest = object(json(readBounded(folder.resolve("manifest.json"), 65536)));
+    return read(readBounded(folder.resolve("manifest.json"), 65536), readBounded(folder.resolve("atlas-engine-stp.png"), 32 * 1024 * 1024), model, tim);
+  }
+
+  public static MaterialAtlas read(final byte[] manifestBytes, final byte[] png, final byte[] model, final byte[] tim) throws IOException {
+    if(manifestBytes.length > 65536 || png.length > 32 * 1024 * 1024 || model.length > 16 * 1024 * 1024 || tim.length > 16 * 1024 * 1024) throw bad("Atlas input exceeds its limit.");
+    final Map<String, Object> manifest = object(json(manifestBytes));
     final String modelHash = TexturePilot.sha256(model), timHash = TexturePilot.sha256(tim);
     if(!"definitive-private-material-pack-1".equals(manifest.get("pipeline")) || !modelHash.equals(manifest.get("modelSha256")) || !timHash.equals(manifest.get("timSha256"))) throw bad("Atlas does not match the original model and TIM.");
     final int scale = integer(manifest.get("scale"));
@@ -90,7 +95,6 @@ public final class MaterialAtlas {
       if(!(manifest.get("strength") instanceof Number strength) || !Double.isFinite(strength.doubleValue()) || strength.doubleValue() < 0 || strength.doubleValue() > 1) throw bad("Invalid neural strength.");
       if(WEIGHTS.stream().noneMatch(weights -> weights.scale == scale && weights.bin.equals(manifest.get("weightsSha256")) && weights.parameters.equals(manifest.get("paramsSha256")))) throw bad("Neural weights differ from the pinned comparison models.");
     }
-    final byte[] png = readBounded(folder.resolve("atlas-engine-stp.png"), 32 * 1024 * 1024);
     final String atlasHash = TexturePilot.sha256(png);
     final ByteBuffer header = ByteBuffer.wrap(png).order(ByteOrder.BIG_ENDIAN);
     if(png.length < 33 || header.getLong(0) != 0x89504e470d0a1a0aL || header.getInt(8) != 13 || header.getInt(12) != 0x49484452 || header.getInt(16) != layout.width() || header.getInt(20) != layout.height() || png[24] != 8 || png[25] != 6 || !atlasHash.equals(manifest.get("atlasEngineSha256"))) throw bad("Requires the matching bounded 8-bit RGBA atlas PNG.");
