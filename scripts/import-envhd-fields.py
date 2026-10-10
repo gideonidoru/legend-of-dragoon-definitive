@@ -22,12 +22,15 @@ def module(name,filename):
 
 batch=module('field_candidates','batch-envhd-fields.py')
 publication=module('field_publication','import-envhd-sky.py')
+repair=module('field_edge_publication','repair-envhd-field-edges.py')
 terrain,battle=batch.terrain,batch.battle
 DIRECTORY_GENERATION_COMMIT='8b9fc0b6d3ae373ae3061359ff729ecd67de20a9'
 DIRECTORY_SCRIPT_SHA256='fc8ab4285afeb6181d0d17dcf8eeb5a7ab508858f8b39720d5ecfabd9cb216ba'
 DIRECTORY_DEPENDENCIES=batch.LEGACY_DEPENDENCIES|{
     'census-envhd-fields.py':'061d791e6af5d3c3cf62ae814442e658ab5c2dcd7b5761b9756963669fee543b',
 }
+REPAIR_GENERATION_COMMIT='d75bc638537df42ca1b2e18bfac2303f16d4c231'
+REPAIR_SCRIPT_SHA256='28f10af0f12bc2ac589e2f0a91efaa662cbb7a0fbaae3dc6606d8f94af6d8b37'
 SCOPE='All unowned nonuniform visible field images; candidate-only, no runtime/native/final acceptance.'
 REVIEW_KEYS={'intent','style','layout','verdict','outputSha256','nativeAcceptance','finalQualityAcceptance'}
 
@@ -77,8 +80,8 @@ def verify_review(note,record):
         raise ValueError('Field review differs from candidate output or exceeds candidate acceptance')
 
 
-def publish(files,staging,legacy_staging,review_file):
-    for path in (staging,legacy_staging):
+def publish(files,staging,legacy_staging,review_file,repaired_staging=None):
+    for path in (staging,legacy_staging)+((repaired_staging,) if repaired_staging is not None else ()):
         battle.private_destination(files,path)
         if path.is_symlink() or path.resolve().is_relative_to(ROOT):
             raise ValueError('Field staging must remain private and unredirected')
@@ -86,37 +89,69 @@ def publish(files,staging,legacy_staging,review_file):
     masters,uniform=batch.sources(files,report)
     masters.sort(key=lambda m:(not any(b['kind']=='background' for b in m['bindings']),m['decodedRgbaSha256']))
     by_key={m['decodedRgbaSha256']:m for m in masters}
-    plan=batch.read_control(battle.staging_path(staging,'source-plan.json'))
+    plan_data=terrain.bounded_read(battle.staging_path(staging,'source-plan.json'),32*1024*1024)
+    plan=json.loads(plan_data)
     legacy_data=terrain.bounded_read(battle.staging_path(legacy_staging,'source-plan.json'),32*1024*1024)
     legacy_records=batch.read_control(battle.staging_path(legacy_staging,'candidates.json'))
     legacy_by_key=verify_plans(plan,report,masters,uniform,legacy_data,legacy_records)
-    records=batch.read_control(battle.staging_path(staging,'candidates.json'))
+    input_records_data=terrain.bounded_read(battle.staging_path(staging,'candidates.json'),32*1024*1024)
+    original_records=json.loads(input_records_data)
+    records=original_records
     reviews=batch.read_control(review_file)
     if not isinstance(reviews,dict) or set(reviews)!={'reviews'}:
         raise ValueError('Invalid field review controls')
-    notes=reviews['reviews'];verify_complete_records(masters,records,notes)
+    notes=reviews['reviews'];verify_complete_records(masters,original_records,notes)
+    original_by_key={r['decodedRgbaSha256']:r for r in original_records}
+    if repaired_staging is not None:
+        repair_plan=batch.read_control(battle.staging_path(repaired_staging,'repair-plan.json'))
+        expected_repair_plan=dict(schema=1,pipeline='envhd-field-source-color-perimeter-repair-1',algorithmSha256=REPAIR_SCRIPT_SHA256,
+                                 inputGenerationPlanSha256=terrain.digest(plan_data),inputCandidatesSha256=terrain.digest(input_records_data),
+                                 sourceCensus=report,masters=[{k:v for k,v in m.items() if k!='image'} for m in masters],
+                                 nativeAcceptance='pending',finalQualityAcceptance='pending')
+        if repair_plan!=expected_repair_plan:
+            raise ValueError('Field repair source or algorithm history differs')
+        records=batch.read_control(battle.staging_path(repaired_staging,'candidates.json'))
+        verify_complete_records(masters,records,notes)
     production=ROOT/'integrations/envhd/production'
     assets=[];copies=[]
     # Bounded per-image validation avoids loading gigabytes of PNGs at once.
     for record in records:
         key=record['decodedRgbaSha256'];item=by_key[key];note=notes[key]
-        source=battle.staging_path(staging,key+'.png')
-        png=terrain.bounded_read(source,32*1024*1024);batch.validate(item,record,png);verify_review(note,record)
+        original_record=original_by_key[key]
+        original_data=terrain.bounded_read(battle.staging_path(staging,key+'.png'),32*1024*1024)
+        batch.validate(item,original_record,original_data)
+        source=battle.staging_path(repaired_staging or staging,key+'.png')
+        png=terrain.bounded_read(source,32*1024*1024)
+        if repaired_staging is not None:
+            repair.validate(item,original_record,original_data,record,png)
+        else:
+            batch.validate(item,record,png)
+        verify_review(note,record)
         origin=legacy_by_key.get(key)
         if origin is not None:
             previous=terrain.bounded_read(battle.staging_path(legacy_staging,key+'.png'),32*1024*1024)
             batch.validate(item,origin,previous)
-            if record!=origin or png!=previous:
+            if original_record!=origin or original_data!=previous:
                 raise ValueError('Reused field pixels or record differ from their immutable predecessor')
-        metadata=dict(record,reviewStatus=note['verdict'],review=note,batchPipelineSha256=plan['scriptSha256'],
-                      batchDependencySha256=plan['dependencySha256'],generationCommit=DIRECTORY_GENERATION_COMMIT,
+        neural_generation=dict(commit=DIRECTORY_GENERATION_COMMIT,pipeline=plan['pipeline'],scriptSha256=plan['scriptSha256'],dependencySha256=plan['dependencySha256'])
+        if origin is not None:
+            neural_generation=dict(commit=batch.LEGACY_GENERATION_COMMIT,pipeline='envhd-complete-field-batch-1',scriptSha256=batch.LEGACY_SCRIPT_SHA256,
+                                   dependencySha256=batch.LEGACY_DEPENDENCIES,reuseOriginPlanSha256=terrain.digest(legacy_data))
+        metadata={k:v for k,v in item.items() if k!='image'}|dict(record,reviewStatus=note['verdict'],review=note,
+                      generationCommit=neural_generation['commit'],generationScriptSha256=neural_generation['scriptSha256'],
+                      batchPipelineSha256=neural_generation['scriptSha256'],batchDependencySha256=neural_generation['dependencySha256'],
                       sourceRole='Independent field background or foreground; native placement, depth and script state remain authoritative',
                       styleReferenceUse='Skurfa visual reference only; its resources are unchanged',
                       ownerApproval='Batch pipeline and Python repair explicitly authorized 2026-10-10')
-        if origin is not None:
-            metadata['generationCommit']=batch.LEGACY_GENERATION_COMMIT
-            metadata['generationScriptSha256']=batch.LEGACY_SCRIPT_SHA256
-            metadata['reuseOriginPlanSha256']=terrain.digest(legacy_data)
+        if repaired_staging is not None:
+            metadata['repairPipelineSha256']=repair_plan['algorithmSha256']
+            metadata['generationCommit']=REPAIR_GENERATION_COMMIT
+            metadata['generationScriptSha256']=REPAIR_SCRIPT_SHA256
+            metadata['batchPipelineSha256']=REPAIR_SCRIPT_SHA256
+            metadata.pop('batchDependencySha256')
+            metadata['inputGeneration']=neural_generation
+        elif origin is not None:
+            metadata['reuseOriginPlanSha256']=neural_generation['reuseOriginPlanSha256']
         directory=production/'field-candidates'/key
         target=battle.staging_path(ROOT,str((directory/'image-v1.png').relative_to(ROOT)))
         manifest=battle.staging_path(ROOT,str((directory/'manifest-v1.json').relative_to(ROOT)))
@@ -145,5 +180,6 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     for name in ('files','staging','legacy-staging','reviews'):
         parser.add_argument('--'+name,type=Path,required=True)
+    parser.add_argument('--repaired-staging',type=Path,help='Complete exact source-perimeter repair batch; reviews must name its final output hashes')
     args=parser.parse_args()
-    print('Versioned custom field candidates:',publish(args.files,args.staging,args.legacy_staging,args.reviews))
+    print('Versioned custom field candidates:',publish(args.files,args.staging,args.legacy_staging,args.reviews,args.repaired_staging))

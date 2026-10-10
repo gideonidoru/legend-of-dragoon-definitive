@@ -99,7 +99,7 @@ a checkpoint. The directory batch reuses those validated outputs with their exac
 origin-plan/source/output hashes, then restores the remaining complete worklist
 with backgrounds first. Eight real samples are pixel-identical between per-image
 and persistent-directory inference; the eight-sample directory run took 1.83
-seconds. Twenty-one synthetic fixtures now cover complete alias/render guards,
+seconds. Twenty-five synthetic fixtures now cover complete alias/render guards,
 pinned predecessor identity, altered reused-output rejection, fixed chunk identity
 across interruption, full-worklist/review publication, immutable revisions and
 interrupted imports. Both independent review axes accepted these safeguards.
@@ -120,3 +120,18 @@ foreground composition review before selection. Preserve source layers and
 script state; do not turn those placeholders into invented scenery or flatten
 all foregrounds into the backdrop. The comparison boards and original pixels
 remain private diagnostics.
+
+The complete directory generation pass finished all 5,162 images. Every candidate
+record and PNG output hash is verified in `field-generation-receipt.json`; this
+public metadata receipt contains no original or generated pixels and claims zero
+runtime selections or acceptance. Generated PNGs total approximately 2.4 GB.
+
+Source `d75bc6385` implements a separate Python source-color perimeter repair.
+Frequent exact native green/cyan/yellow/magenta regions in background-bound images
+and their one-pixel source perimeter are retained exactly at 4x; neural pixels
+elsewhere remain unchanged. The operation adds no hidden scenery, averaging or
+foreground flattening. Its complete input history is checked before output,
+drifting controls and overlapping input/output paths reject, and each repaired
+candidate retains the original neural record as its input provenance. Independent
+review accepted the repair and all regression fixtures. Repairs and their final
+output hashes must receive individual visual review before publication.

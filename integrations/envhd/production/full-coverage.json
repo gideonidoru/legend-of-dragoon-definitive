@@ -119,7 +119,7 @@
       "skurfaProtectedCutPeriodMappings": 87,
       "skurfaExistingDiskCutAdapterBindings": 43,
       "envhdUnownedConfigurations": 612,
-      "envhdGeneratedMasters": 0,
+      "envhdGeneratedMasters": 5162,
       "envhdSelectedConfigurations": 0,
       "uncoveredEnvhdConfigurations": 612,
       "emptyForegroundSlots": 123,
@@ -127,7 +127,7 @@
       "adapter": "Existing Skurfa 43 disk/cut bindings. EnvHD gap/alias source-bound listener not implemented. Protected source aliases are a reuse worklist, not 87 proven runtime replacements.",
       "ledger": "field-ownership.json",
       "remaining": [
-        "Restore all 5162 unowned nonuniform visible images, retaining three uniform sources and all native script-indexed empty/missing slots.",
+        "Repair and individually review all 5162 generated private field candidates, retaining three uniform native sources and native script-indexed empty/missing slots.",
         "Validate script reachability and all movable/hidden/translucent/alternate foreground-state families; exact pixel deduplication is complete for the decoded available source configurations.",
         "Reuse all 38 Skurfa packs and audit every protected alias; never regenerate them.",
         "Restore all 612 unowned configurations, preserving movable/hidden/translucent/alternate foregrounds separately.",
@@ -142,7 +142,10 @@
       "emptyBackgrounds": 1,
       "nativeMissingTextureSlots": 7,
       "pixelSourceLedger": "field-source-worklist.json",
-      "independentNativePixelAgreement": "650/650 configurations and 5528/5528 unique decodes"
+      "independentNativePixelAgreement": "650/650 configurations and 5528/5528 unique decodes",
+      "envhdPublishedCandidateMasters": 0,
+      "generationReceipt": "field-generation-receipt.json",
+      "generationStage": "Complete private candidate batch; source-color perimeter repair, individual review and runtime integration pending."
     },
     {
       "id": "field-environment-props-and-scene-overlays",
