@@ -4,7 +4,7 @@
 
 Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with community HD artwork, neural-assisted character reconstruction, and optional gameplay conveniences. The visual target is a polished modern AA game with an intentional retro style: recognizable characters, clearer faces, richer materials and carefully smoother models. Character reconstruction is planned; the current tools are experiments. Selectable Definitive and Faithful campaign presets keep gameplay choices separate from presentation and accessibility.
 
-This is an unofficial community project in early development. **The guided installer is an alpha. The recovery release adds Reinstall/Uninstall, existing-disc reuse, shared controller input handling, bundled Steam artwork and direct game launch; physical Deck acceptance remains pending.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively.
+This is an unofficial community project in early development. **The guided installer is an alpha. The recovery release adds Reinstall/Uninstall, existing-disc reuse, shared controller input handling, bundled Steam artwork and direct game launch; the owner now confirms installation and launcher operation on Deck, with broader device acceptance still open.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively.
 
 ## Install on Steam Deck
 
@@ -14,7 +14,7 @@ Download a fresh copy if you tried an earlier installer. Older entry files pin o
 
 In Desktop Mode, download and open the installer in Dolphin. Allow execution if KDE asks. It takes care of our build, Java, HD artwork, disc import/preparation and an optional Steam library shortcut. Reuse your installed discs, or choose your four US BIN/raw ISO images or ZIP, RAR and 7z containers. Identical images are reused; different images require confirmation. Your originals stay untouched; bundled emulators and patches are left out. The default location is `/home/deck/Games/Legend-of-Dragoon-Definitive`.
 
-The entry download is tiny; the portable interface is about 13 MB. Java, the game engine and HD artwork download during setup. The launcher centers on **Play**, checks our releases automatically, and keeps artwork/mod choices and version restore secondary. Touch-sized controls and controller navigation are implemented; physical Deck input and Gaming Mode verification remain pending. **[Installer details and recovery](docs/definitive/INSTALLER.md)** · [Presentation and verification](docs/definitive/PRESENTATION_PASS.md) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-deck-recovery/Definitive-Installer.zip).
+The entry download is tiny; the portable interface is about 13 MB. Java, the game engine and HD artwork download during setup. The launcher centers on **Play**, checks our releases automatically, and keeps artwork/mod choices and version restore secondary. Touch-sized controls and controller navigation are implemented; the owner confirms the installer and launcher work on Deck. Detailed input, display, update recovery and performance acceptance remain open. **[Installer details and recovery](docs/definitive/INSTALLER.md)** · [Presentation and verification](docs/definitive/PRESENTATION_PASS.md) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-deck-recovery/Definitive-Installer.zip).
 
 ## Where this project comes from
 
@@ -54,7 +54,7 @@ Skurfa is linked at a fixed commit under `integrations/skurfa`, preserving its o
 As of October 10, 2026:
 
 - Public repository, upstream history/remotes, documentation, and prioritized backlog are established.
-- The [Deck recovery release](docs/definitive/DECK_RECOVERY.md) passed complete Linux/macOS builds, 105 headless delivery cases on each platform, and four real Linux window cases in a virtual display. It repairs the Steam entry route, checks existing discs, records custom installation locations, and bundles the original key art. Physical Deck Gaming Mode, fullscreen and controller acceptance remain open.
+- The [Deck recovery release](docs/definitive/DECK_RECOVERY.md) passed complete Linux/macOS builds, 105 headless delivery cases on each platform, and four real Linux window cases in a virtual display. It repairs the Steam entry route, checks existing discs, records custom installation locations, and bundles the original key art. The owner subsequently confirmed installation and launcher operation on Deck; detailed display, controller, update recovery and performance acceptance remain open.
 - Unmodified baseline builds passed on the development Mac; hosted macOS ARM64 and Linux x64/Steam Deck package builds also passed.
 - Seven headless scenarios verified gameplay-test controls. Ordinary builds skip gameplay tests; these checks do not execute the game.
 - The updater targets this project's repository. The guided manager pairs verified engine/mod packages, keeps private data separate, retains pre-update snapshots, and restores the prior engine with its prior data. Headless recovery fixtures pass; real Deck update recovery remains to be exercised.
