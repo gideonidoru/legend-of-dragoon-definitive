@@ -1,0 +1,55 @@
+{
+  "decodedRgbaSha256": "c7b263a847c2ef323c41b95691a15390f7e737eef55abaa2b1ea2cc26dbe00c7",
+  "sourceSize": [
+    48,
+    48
+  ],
+  "bindings": [
+    {
+      "bank": 2,
+      "region": "Tiberoa",
+      "page": 22,
+      "clut": 31542,
+      "imageFile": 31,
+      "parts": [
+        12
+      ]
+    },
+    {
+      "bank": 6,
+      "region": "Death Frontier",
+      "page": 22,
+      "clut": 31732,
+      "imageFile": 5,
+      "parts": [
+        2
+      ]
+    }
+  ],
+  "targetSize": [
+    192,
+    192
+  ],
+  "outputSha256": "2ddf7094c1f9c4ffd0eb2a689b40e073e36d2e449ab89431b045e76a6e6a4038",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Earth-toned arched entrance in Death Frontier, Tiberoa. Retains source silhouette, surface organization and principal colors; location names identify source usage rather than invented scene details.",
+    "style": "Neural detail and smoothing provide a development baseline; bespoke Skurfa-equivalent finishing remains pending.",
+    "layout": "Compared source and 4x candidate on private boards 01\u201313, including a separate corrected-black review for six cloud materials. Source-owned opaque/discard/visible-black/STP classes are validated from the final ordered VRAM upload.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "2ddf7094c1f9c4ffd0eb2a689b40e073e36d2e449ab89431b045e76a6e6a4038",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "23ce08235491afd853f1cc15cc63b965928054f7f70ccd88c9c2085b9d51d948",
+  "sourceRole": "Static world-map model parts; original geometry and coordinates remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources remain unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

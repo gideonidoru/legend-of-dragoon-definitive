@@ -53,10 +53,12 @@ All 406 Skurfa runtime files match the pinned upstream source. This is integrati
 evidence; the delivery thread publishes the single consolidated installation.
 
 The next terrain batch is independent on `codex/envhd-terrain`; its reviewed
-pipeline source is `90a2dc037`. It generated 293 unique private candidates for
-365 of 366 static material bindings across eight regions. One uniform-color
+pipeline source is `90a2dc037`. It generated 293 unique candidates for
+365 of 366 static material bindings across eight regions. Their custom PNGs and
+source-bound reviews are now versioned in `integrations/envhd/production/terrain-candidates`
+and `terrain-artwork.json`; original decodes and diagnostics remain private. One uniform-color
 candidate should retain native artwork, and one wrapped Tiberoa material remains
-held. Twelve pipeline regressions pass; all corrected candidates agree with fresh
+held. Seventeen pipeline/import regressions pass; all corrected candidates agree with fresh
 ordered VRAM source decoding. Visual baselines are reviewed, but no terrain runtime
 selection, native acceptance or final Skurfa-equivalent quality is claimed yet.
 
