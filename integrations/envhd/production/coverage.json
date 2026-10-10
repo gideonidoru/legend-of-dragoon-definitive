@@ -28,21 +28,33 @@
   "distinctBattlePanoramasNeedingRestoration": 70,
   "sharedPixelIdenticalBattleVariants": 3,
   "verification": {
-    "headlessDeliveryTests": 123,
+    "headlessDeliveryTests": 126,
     "headlessDeliveryFailures": 0,
     "ownershipRegressionTests": 5,
     "verifiedFieldSourceFolders": 1044,
     "mcqSourcePixelAgreement": "74/74",
     "skurfaWorkingTree": "unchanged",
     "nativeSceneAcceptance": "pending",
-    "headlessDeliveryPassed": 119,
+    "headlessDeliveryPassed": 122,
     "headlessDeliverySkipped": 4,
     "skyImportRegressionTests": 8,
-    "skyBatchRegressionTests": 17
+    "skyBatchRegressionTests": 17,
+    "worldSourcePixelAgreement": "39/39",
+    "worldRegressionTests": 11
   },
   "repeatBoundaryRevisionSources": 0,
   "repeatBoundaryPendingSources": 0,
   "sourceFaithfulNeuralSelections": 58,
   "generativeSelections": 12,
-  "panoramaSourceBindings": 73
+  "panoramaSourceBindings": 73,
+  "worldMapArtwork": {
+    "selectedImages": 39,
+    "locationThumbnails": 38,
+    "parchmentBackdrops": 1,
+    "runtimeBindings": 39,
+    "nativeAccepted": 0,
+    "status": "source-faithful-development-baselines; bespoke quality pending",
+    "ledger": "world-artwork.json"
+  },
+  "scope": "EnvHD only. CharHD, UIHD and FxHD production is owned by other threads."
 }

@@ -274,6 +274,8 @@ public class WMap extends EngineState<WMap> {
   private McqHeader mcqHeader_800c6768;
   private final MV mcqTransforms = new MV();
   private Obj mcqObj;
+  private legend.definitive.artwork.SkyArtwork worldBackdropArtwork;
+  private legend.game.textures.Image locationArtworkImage;
 
   private float mcqColour_800c6794;
 
@@ -744,6 +746,17 @@ public class WMap extends EngineState<WMap> {
         .vramOffset(320, 0)
         .build();
 
+      final var backdrop = EVENTS.postEvent(new legend.game.modding.events.wmap.WorldBackdropTextureEvent(this.mcqHeader_800c6768.source()));
+      if(backdrop.replacement != null) {
+        try {
+          this.worldBackdropArtwork = legend.definitive.artwork.SkyArtwork.create(this.mcqHeader_800c6768, backdrop.replacement, Translucency.B_PLUS_F);
+          this.mcqObj.delete();
+          this.mcqObj = this.worldBackdropArtwork.mesh;
+        } catch(final java.io.IOException | RuntimeException failure) {
+          LOGGER.warn("Retained original world backdrop: {}", failure.getMessage());
+        }
+      }
+
       this.wmapState_800bb10c = WmapState.PLAY;
     }
   }
@@ -988,8 +1001,18 @@ public class WMap extends EngineState<WMap> {
     }
 
     if(this.mcqObj != null) {
-      this.mcqObj.delete();
+      if(this.worldBackdropArtwork != null) {
+        this.worldBackdropArtwork.delete();
+        this.worldBackdropArtwork = null;
+      } else {
+        this.mcqObj.delete();
+      }
       this.mcqObj = null;
+    }
+    this.locationArtworkImage = null;
+    if(this.wmapLocationPromptPopup != null) {
+      this.wmapLocationPromptPopup.deallocate();
+      this.wmapLocationPromptPopup = null;
     }
 
     this.coolonQueenFuryOverlay.deallocate();
@@ -1776,6 +1799,15 @@ public class WMap extends EngineState<WMap> {
   @Method(0x800d5768L)
   private void loadLocationThumbnailImage(final Tim tim) {
     this.loadLocationThumbnailImage(tim, 448, 256, 768, 508);
+    this.locationArtworkImage = null;
+    final var event = EVENTS.postEvent(new legend.game.modding.events.wmap.LocationThumbnailTextureEvent(tim.getData().getBytes()));
+    if(event.replacement != null) {
+      try {
+        this.locationArtworkImage = legend.definitive.artwork.LocationArtwork.coverage(tim.getData().getBytes(), event.replacement);
+      } catch(final java.io.IOException | RuntimeException failure) {
+        LOGGER.warn("Retained original location thumbnail: {}", failure.getMessage());
+      }
+    }
     this.filesLoadedFlags_800c66b8.updateAndGet(val -> val | 0x800);
 
     //LAB_800d5848
@@ -2395,7 +2427,7 @@ public class WMap extends EngineState<WMap> {
 
     //LAB_800d9ccc
     this.mcqTransforms.transfer.set(0.0f, -8.0f, 121);
-    RENDERER.queueOrthoModel(this.mcqObj, this.mcqTransforms, QueuedModelStandard.class)
+    this.queueWorldBackdrop()
       .monochrome(this.mcqBrightness_800ef1a4);
 
     //LAB_800d9d10
@@ -2884,7 +2916,7 @@ public class WMap extends EngineState<WMap> {
 
     //LAB_800dc114
     this.mcqTransforms.transfer.set(0.0f, -8.0f, 60000.0f);
-    RENDERER.queueOrthoModel(this.mcqObj, this.mcqTransforms, QueuedModelStandard.class)
+    this.queueWorldBackdrop()
       .monochrome(this.mcqBrightness_800ef1a4);
 
     //LAB_800dc164
@@ -4034,10 +4066,16 @@ public class WMap extends EngineState<WMap> {
 
     //LAB_800e4f04
     this.mcqTransforms.transfer.set(0.0f, -8.0f, 60000.0f);
-    RENDERER.queueOrthoModel(this.mcqObj, this.mcqTransforms, QueuedModelStandard.class)
+    this.queueWorldBackdrop()
       .monochrome(this.mcqColour_800c6794);
 
     //LAB_800e4f50
+  }
+
+  private QueuedModelStandard queueWorldBackdrop() {
+    final var queued = RENDERER.queueOrthoModel(this.mcqObj, this.mcqTransforms, QueuedModelStandard.class);
+    if(this.worldBackdropArtwork != null) queued.texture(this.worldBackdropArtwork.texture).useTextureAlpha();
+    return queued;
   }
 
   @Method(0x800e5150L)
@@ -4143,6 +4181,7 @@ public class WMap extends EngineState<WMap> {
           // Build Objs
           this.wmapLocationPromptPopup = new WmapPromptPopup(Objects.requireNonNull(places_800f0234[placeIndex].name_00), textZ_800bdf00 * 4.0f)
             .addOptionText("Don't enter");
+          this.wmapLocationPromptPopup.setThumbnailArtwork(this.locationArtworkImage);
 
           if(this.mapState_800c6798.submapCutTo_c8 == 999) { // Going to a different region
             final String dest1 = regions_800f01ec[this.mapState_800c6798.submapSceneTo_ca >>> 4 & 0xffff];

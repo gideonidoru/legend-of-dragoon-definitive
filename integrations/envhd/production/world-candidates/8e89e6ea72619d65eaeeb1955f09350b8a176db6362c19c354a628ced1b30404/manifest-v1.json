@@ -1,0 +1,37 @@
+{
+  "kind": "world-backdrop",
+  "sourceSha256": "8e89e6ea72619d65eaeeb1955f09350b8a176db6362c19c354a628ced1b30404",
+  "decodedRgbaSha256": "3ee6c9454e1689919581d8070b8d089ea3212ba76c12b52e3f49176371398fc2",
+  "sourceSize": [
+    320,
+    256
+  ],
+  "sourceFiles": [
+    "SECT/DRGN0.BIN/5696"
+  ],
+  "locations": [
+    "World-map parchment and continent drawing"
+  ],
+  "targetSize": [
+    1280,
+    1024
+  ],
+  "outputSha256": "e899bf3ef1ca5eea607c9556168ede6ceeac16617e4ffa18fc2154ecc32e9c81",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+  "edgeAveraging": false,
+  "review": {
+    "intent": "Original parchment world map: retain continent geography, graticule, ornate border, inset drawing and inherited lettering without retyping. Source-backed engine usage: World-map parchment and continent drawing.",
+    "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+    "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+    "verdict": "visual-reviewed-native-pending"
+  },
+  "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+  "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

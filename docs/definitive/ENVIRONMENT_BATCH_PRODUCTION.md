@@ -58,3 +58,23 @@ source/candidate/tool drift rejection, uniform-black exclusion, exact visibility
 private staging restrictions, unchanged central artwork, and unchanged asymmetric
 source-edge output. Import tests reject false border provenance before publishing.
 These checks invoke no game window or desktop application.
+
+## World-map batch
+
+The world batch has also executed: 38 distinct engine-referenced location TIM
+images and the 320x256 parchment-map MCQ backdrop. `batch-envhd-world.py` uses
+clamped input context on all four sides, preserves source layout and visibility,
+and never averages opposite edges. Every source is decoded from the exact bounded
+bytes that were hashed. `import-envhd-world.py` verifies the complete source census,
+pinned provenance, explicit individual reviews, exact 4x source classes and 8-bit
+RGBA PNG compatibility before transactional publication. Existing v1 revisions are
+immutable. Eleven synthetic world tests include corrupted provenance, alpha,
+16-bit PNG rejection and conflicting-version rollback.
+
+All 39 original/output comparisons passed development source-fidelity review;
+retail placeholders and lettering remain inherited, not re-authored. Independent
+Java decoding agrees on every source pixel. The rebuilt default installation
+bundle includes all 109 selected battle/world images through EnvHD. Source-based
+baselines still require bespoke detail and native acceptance; upcoming categories
+and the separate delivery thread's consolidated release remain tracked in
+`ENVHD_STATUS.md`.

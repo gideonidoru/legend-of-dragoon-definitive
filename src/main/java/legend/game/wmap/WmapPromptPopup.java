@@ -49,6 +49,8 @@ public class WmapPromptPopup {
   private final Vector3f altTextTranslation = new Vector3f();
 
   private MeshObj thumbnail;
+  private legend.game.textures.Image thumbnailArtwork;
+  private legend.core.renderer.Texture thumbnailTexture;
   private final Vector3f thumbnailTranslation = new Vector3f();
   private float currentThumbnailBrightness;
   private float previousThumbnailBrightness;
@@ -157,6 +159,27 @@ public class WmapPromptPopup {
     }
 
     if(this.thumbnail == null) {
+      try {
+        if(this.thumbnailArtwork != null && this.thumbnailTexture == null) {
+          this.thumbnailTexture = legend.core.renderer.Texture.create("EnvHD location landscape", builder -> {
+            final var pixels = org.lwjgl.BufferUtils.createByteBuffer(this.thumbnailArtwork.data.length);
+            pixels.put(this.thumbnailArtwork.data).flip();
+            builder.data(pixels, this.thumbnailArtwork.width, this.thumbnailArtwork.height);
+            builder.wrapS(false); builder.wrapT(false);
+          });
+        }
+        if(this.thumbnailTexture != null) {
+          this.thumbnail = new QuadBuilder("HD popup landscape")
+            .bpp(Bpp.BITS_24).pos(posX, posY, 0).posSize(w, h)
+            .uv(u / 120.0f, v / 90.0f).uvSize(w / 120.0f, h / 90.0f)
+            .monochrome(brightness).build();
+          return this;
+        }
+      } catch(final RuntimeException failure) {
+        if(this.thumbnailTexture != null) { this.thumbnailTexture.delete(); this.thumbnailTexture = null; }
+        this.thumbnailArtwork = null;
+        org.apache.logging.log4j.LogManager.getLogger().warn("Retained original popup landscape: {}", failure.getMessage());
+      }
       this.thumbnail = new QuadBuilder("PopupThumbnail")
         .bpp(Bpp.BITS_8)
         .clut(clutX, clutY)
@@ -169,6 +192,12 @@ public class WmapPromptPopup {
     }
 
     return this;
+  }
+
+  public void setThumbnailArtwork(final legend.game.textures.Image image) {
+    if(this.thumbnail != null) { this.thumbnail.delete(); this.thumbnail = null; }
+    if(this.thumbnailTexture != null) { this.thumbnailTexture.delete(); this.thumbnailTexture = null; }
+    this.thumbnailArtwork = image;
   }
 
   public WmapPromptPopup setHighlight(final HighlightMode mode, final WmapMenuTextHighlight40 highlight) {
@@ -269,7 +298,8 @@ public class WmapPromptPopup {
 
     if(this.thumbnail != null) {
       this.transforms.transfer.set(this.thumbnailTranslation);
-      RENDERER.queueOrthoModel(this.thumbnail, this.transforms, QueuedModelStandard.class);
+      final var queued = RENDERER.queueOrthoModel(this.thumbnail, this.transforms, QueuedModelStandard.class);
+      if(this.thumbnailTexture != null) queued.texture(this.thumbnailTexture).useTextureAlpha();
     }
 
     if(this.prompt != null) {
@@ -312,6 +342,8 @@ public class WmapPromptPopup {
       this.thumbnail.delete();
       this.thumbnail = null;
     }
+    if(this.thumbnailTexture != null) { this.thumbnailTexture.delete(); this.thumbnailTexture = null; }
+    this.thumbnailArtwork = null;
 
     if(this.shadow != null) {
       this.shadow.delete();
