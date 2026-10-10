@@ -1,5 +1,5 @@
 // Four independent mods, bundled by default; activation belongs to Severed Chains.
-['EnvHD': 'envhd', 'CharHD': 'charhd', 'UIHD': 'uihd', 'FxHD': 'fxhd'].each { title, id ->
+['EnvHD': 'envhd', 'UIHD': 'uihd', 'FxHD': 'fxhd'].each { title, id ->
   final def root = file("integrations/${id}")
   final def output = layout.buildDirectory.dir("${id}/classes")
   final def compileMod = tasks.register("compile${title}", JavaCompile) {

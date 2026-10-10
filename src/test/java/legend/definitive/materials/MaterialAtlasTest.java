@@ -132,4 +132,78 @@ class MaterialAtlasTest {
     final var directory = fixture(2); Files.delete(directory.folder.resolve("manifest.json")); Files.createDirectory(directory.folder.resolve("manifest.json"));
     assertThrows(IOException.class, () -> read(directory));
   }
+  @Test void authoredProvenanceDoesNotBypassSourceCoverageValidation() throws Exception {
+    final var fixture = fixture(2);
+    fixture.manifest.addProperty("algorithm", "authored"); save(fixture);
+    assertThrows(IOException.class, () -> read(fixture));
+    fixture.manifest.add("authoring", new Gson().toJsonTree(Map.of("baseAtlasSha256", "a".repeat(64), "generatedImageSha256", "b".repeat(64), "promptSha256", "c".repeat(64)))); save(fixture);
+    assertNotNull(read(fixture));
+    pixel(fixture, 0, 0, 0x00ff0000);
+    assertThrows(IOException.class, () -> read(fixture));
+  }
+
+  @Test void characterUvRestoresNativeRelocationWithoutCombiningConflictingPalettes() throws Exception {
+    final var atlas = read(fixture(4));
+    final var nativeUv = new legend.game.tmd.UvAdjustmentMetrics14(1, 320, 256);
+    final var map = new CharacterUv(atlas, 2, nativeUv);
+    final float[] first = map.map(0, 1.5f, 2.5f), second = map.map(1, 1.5f, 2.5f);
+    assertTrue(first[0] != second[0] || first[1] != second[1]);
+    final var shifted = new CharacterUv(atlas, 2, new legend.game.tmd.UvAdjustmentMetrics14(1, 0, 240, 16, 254));
+    assertThrows(IllegalArgumentException.class, () -> new CharacterUv(atlas, 2, new legend.game.tmd.UvAdjustmentMetrics14(1, 16, 254)));
+    assertArrayEquals(first, shifted.map(0, 65.5f, 0.5f), 0.000001f);
+    assertThrows(IllegalArgumentException.class, () -> map.map(3, 0, 0));
+    assertThrows(IllegalArgumentException.class, () -> map.map(0, 20, 0));
+    assertThrows(IllegalArgumentException.class, () -> map.map(0, Float.NaN, 0));
+  }
+
+  @Test void characterSurfacesAreExplicitAndIsolatedFromOtherPalettes() throws Exception {
+    final var atlas = read(fixture(2));
+    final var metal = new legend.core.renderer.SurfaceResponse(legend.core.renderer.SurfaceMaterial.METAL, 0.4f);
+    final var metadata = new java.util.HashMap<Integer, legend.core.renderer.SurfaceResponse>();
+    metadata.put(1, metal);
+    final var map = new CharacterUv(atlas, 2, legend.game.tmd.UvAdjustmentMetrics14.NONE, metadata);
+    metadata.clear();
+    assertSame(metal, map.surface(1));
+    assertNull(map.surface(0));
+  }
+
+  @Test void mappedMeshesKeepNativeGeometryPacketsAndTransparency() throws Exception {
+    final var renderer = legend.core.GameEngine.RENDERER.getClass().getDeclaredField("api");
+    renderer.setAccessible(true);
+    final var previous = renderer.get(legend.core.GameEngine.RENDERER);
+    renderer.set(legend.core.GameEngine.RENDERER, new legend.core.renderer.noop.NoopApi());
+    final var accessField = legend.core.GameEngine.class.getDeclaredField("EVENT_ACCESS");
+    accessField.setAccessible(true);
+    final var access = (org.legendofdragoon.modloader.events.EventManager.Access)accessField.get(null);
+    access.initialize(legend.core.GameEngine.MODS);
+    try {
+      final var input = fixture(4);
+      final var atlas = read(input);
+      final var model = new legend.game.types.CContainer("synthetic mapped palettes", new legend.game.unpacker.FileData(input.model.clone())).tmdPtr_00.tmd;
+      final var part = model.objTable[0];
+      final byte[] packet = part.primitives_10[0].data()[0].clone();
+      final var nativeMesh = legend.game.tmd.TmdObjLoader.fromObjTable("native control", part);
+      final var mapped = legend.game.tmd.TmdObjLoader.fromObjTableMapped("mapped control", part,
+        new CharacterUv(atlas, 2, legend.game.tmd.UvAdjustmentMetrics14.NONE));
+      for(int mesh = 0; mesh < nativeMesh.meshes.length; mesh++) {
+        final float[] original = nativeMesh.meshes[mesh].vertices(), enhanced = mapped.meshes[mesh].vertices();
+        assertEquals(original.length, enhanced.length);
+        assertEquals(nativeMesh.meshes[mesh].translucencyMode(), mapped.meshes[mesh].translucencyMode());
+        for(int row = 0; row < original.length; row += 16) {
+          for(int field = 0; field < 7; field++) assertEquals(original[row + field], enhanced[row + field]);
+          assertTrue(enhanced[row + 7] >= 0 && enhanced[row + 7] <= 1);
+          assertTrue(enhanced[row + 8] >= 0 && enhanced[row + 8] <= 1);
+          assertEquals(3, (int)enhanced[row + 9] >>> 7 & 3);
+          for(int field = 10; field < 16; field++) assertEquals(original[row + field], enhanced[row + field]);
+        }
+      }
+      assertArrayEquals(packet, part.primitives_10[0].data()[0]);
+      nativeMesh.delete();
+      mapped.delete();
+    } finally {
+      access.reset();
+      renderer.set(legend.core.GameEngine.RENDERER, previous);
+    }
+  }
+
 }

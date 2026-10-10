@@ -145,6 +145,7 @@ jobs:
             build/distributions/Definitive-Installer.zip
             build/distributions/Install-Definitive.*
             build/reports/tests/deliveryTest/**
+            build/reports/tests/charHdTests/**
             build/reports/tests/managerWindowTest/**
             build/reports/installer-*.png
             build/reports/focused-*.png

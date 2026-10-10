@@ -1,0 +1,347 @@
+{
+  "scope": "Source-bound atlas validation, native CPU mesh construction, ModelsHD on/off and lifetime/fallback; no GPU draw/gameplay/Deck proof",
+  "checks": [
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 1966,
+      "rgbaBytes": 5054464,
+      "character": "albert",
+      "modelsHd": false,
+      "parts": 21
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 6534,
+      "rgbaBytes": 5054464,
+      "character": "albert",
+      "modelsHd": true,
+      "parts": 21
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 2142,
+      "rgbaBytes": 9175040,
+      "character": "albert",
+      "modelsHd": false,
+      "parts": 29
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 8302,
+      "rgbaBytes": 9175040,
+      "character": "albert",
+      "modelsHd": true,
+      "parts": 29
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 1954,
+      "rgbaBytes": 14680064,
+      "character": "dart",
+      "modelsHd": false,
+      "parts": 17
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 8440,
+      "rgbaBytes": 14680064,
+      "character": "dart",
+      "modelsHd": true,
+      "parts": 17
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 2251,
+      "rgbaBytes": 8650752,
+      "character": "dart",
+      "modelsHd": false,
+      "parts": 29
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 7707,
+      "rgbaBytes": 8650752,
+      "character": "dart",
+      "modelsHd": true,
+      "parts": 29
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 2165,
+      "rgbaBytes": 5406720,
+      "character": "divine",
+      "modelsHd": false,
+      "parts": 17
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 7795,
+      "rgbaBytes": 5406720,
+      "character": "divine",
+      "modelsHd": true,
+      "parts": 17
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 1893,
+      "rgbaBytes": 11534336,
+      "character": "haschel",
+      "modelsHd": false,
+      "parts": 17
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 7225,
+      "rgbaBytes": 11534336,
+      "character": "haschel",
+      "modelsHd": true,
+      "parts": 17
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 2030,
+      "rgbaBytes": 7995392,
+      "character": "haschel",
+      "modelsHd": false,
+      "parts": 25
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 7032,
+      "rgbaBytes": 7995392,
+      "character": "haschel",
+      "modelsHd": true,
+      "parts": 25
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 1915,
+      "rgbaBytes": 8241152,
+      "character": "kongol",
+      "modelsHd": false,
+      "parts": 18
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 8210,
+      "rgbaBytes": 8241152,
+      "character": "kongol",
+      "modelsHd": true,
+      "parts": 18
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 2112,
+      "rgbaBytes": 8978432,
+      "character": "kongol",
+      "modelsHd": false,
+      "parts": 31
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 7854,
+      "rgbaBytes": 8978432,
+      "character": "kongol",
+      "modelsHd": true,
+      "parts": 31
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 1990,
+      "rgbaBytes": 6619136,
+      "character": "lavitz",
+      "modelsHd": false,
+      "parts": 16
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 8772,
+      "rgbaBytes": 6619136,
+      "character": "lavitz",
+      "modelsHd": true,
+      "parts": 16
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 2150,
+      "rgbaBytes": 9666560,
+      "character": "lavitz",
+      "modelsHd": false,
+      "parts": 29
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 8700,
+      "rgbaBytes": 9666560,
+      "character": "lavitz",
+      "modelsHd": true,
+      "parts": 29
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 1908,
+      "rgbaBytes": 9568256,
+      "character": "meru",
+      "modelsHd": false,
+      "parts": 22
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 7971,
+      "rgbaBytes": 9568256,
+      "character": "meru",
+      "modelsHd": true,
+      "parts": 22
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 2083,
+      "rgbaBytes": 11010048,
+      "character": "meru",
+      "modelsHd": false,
+      "parts": 29
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 8971,
+      "rgbaBytes": 11010048,
+      "character": "meru",
+      "modelsHd": true,
+      "parts": 29
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 1905,
+      "rgbaBytes": 10911744,
+      "character": "miranda",
+      "modelsHd": false,
+      "parts": 19
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 6049,
+      "rgbaBytes": 10911744,
+      "character": "miranda",
+      "modelsHd": true,
+      "parts": 19
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 2055,
+      "rgbaBytes": 4849664,
+      "character": "miranda",
+      "modelsHd": false,
+      "parts": 31
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 6885,
+      "rgbaBytes": 4849664,
+      "character": "miranda",
+      "modelsHd": true,
+      "parts": 31
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 1907,
+      "rgbaBytes": 11141120,
+      "character": "rose",
+      "modelsHd": false,
+      "parts": 19
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 8139,
+      "rgbaBytes": 11141120,
+      "character": "rose",
+      "modelsHd": true,
+      "parts": 19
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 2089,
+      "rgbaBytes": 9863168,
+      "character": "rose",
+      "modelsHd": false,
+      "parts": 32
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 8965,
+      "rgbaBytes": 9863168,
+      "character": "rose",
+      "modelsHd": true,
+      "parts": 32
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 1991,
+      "rgbaBytes": 11534336,
+      "character": "shana",
+      "modelsHd": false,
+      "parts": 20
+    },
+    {
+      "form": "combat",
+      "result": "passed",
+      "nativeVertices": 6849,
+      "rgbaBytes": 11534336,
+      "character": "shana",
+      "modelsHd": true,
+      "parts": 20
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 2149,
+      "rgbaBytes": 14139392,
+      "character": "shana",
+      "modelsHd": false,
+      "parts": 31
+    },
+    {
+      "form": "dragoon",
+      "result": "passed",
+      "nativeVertices": 8119,
+      "rgbaBytes": 14139392,
+      "character": "shana",
+      "modelsHd": true,
+      "parts": 31
+    }
+  ]
+}

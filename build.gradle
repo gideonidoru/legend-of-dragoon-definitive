@@ -321,3 +321,4 @@ apply from: 'gradle/modelshd.gradle'
 apply from: 'gradle/fmvhd.gradle'
 // Independent optional presentation mods.
 apply from: 'gradle/hd-mods.gradle'
+apply from: 'gradle/charhd.gradle'

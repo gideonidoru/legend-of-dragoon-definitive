@@ -5,7 +5,7 @@ The owner requested four independent artwork mods, installed with Definitive by 
 | Mod / ID | 0.1.0 content | Extension boundary |
 | --- | --- | --- |
 | EnvHD / `envhd` | 24 separately addressed palette regions on static battle stages 0 and 6; 4× reconstruction with source coverage preserved | Additional verified static stage packs, then field props/world-map surfaces. Existing Skurfa scene artwork is untouched. |
-| CharHD / `charhd` | The source-bound field texture adapter; no new character assets or geometry | Approved compatible packs from the model workstream. Existing adapter requires its single-palette 2× contract; multi-palette/remodeled-character runtime integration remains future work. |
+| CharHD / `charhd` | Source-bound battle material adapter with a Dart armor development pilot; field adapter retained | Explicit surface/roughness settings use current material lighting. Full character reconstruction and native/Deck acceptance remain open. See [production status](CHARHD_PRODUCTION.md). |
 | UIHD / `uihd` | 21 goods icons at 4×, ten elements, battle commands, checkbox sheet, menu frame and item palette variants, dialogue frame and arrow | First whole-game UIHD batch; bespoke portraits and remaining HUD still pending. See [UIHD production](UIHD_PRODUCTION.md). |
 | FxHD / `fxhd` | The orthographic field dust texture at 4× | Separately verified effects/animation families; spells and transformation sheets remain original. |
 
@@ -13,7 +13,7 @@ The mod sources live under `integrations/<id>`, with reviewed runtime resource c
 
 ## Build and delivery
 
-`gradle/hd-mods.gradle` compiles four independent mods against the current engine and produces `EnvHD-v0.1.0.jar`, `CharHD-v0.1.0.jar`, `UIHD-v0.1.0.jar` and `FxHD-v0.1.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
+`gradle/hd-mods.gradle` and the specialized `gradle/charhd.gradle` compile four independent mods against the current engine and produce `EnvHD-v0.1.0.jar`, `CharHD-v0.2.0.jar`, `UIHD-v0.1.0.jar` and `FxHD-v0.1.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
 
 Managed launch links all four JARs even when the legacy Skurfa preference selects original backgrounds. It preserves the game's saved enabled-mod configuration during updates/rollback. Bundling is not forced activation: existing players' in-game choices remain theirs. A player using original geometry/art can deactivate the corresponding mod without removing the package or changing saves. Standalone installation uses these four JARs in `mods/`, with this matching engine revision: EnvHD/UIHD/FxHD use the additive event/mesh hooks described below and are not drop-in compatible with unmodified upstream 3.0.0.
 
@@ -92,7 +92,7 @@ Headless checks cover separated palette UV placement, source-page rejection, ani
 
 Regression checks also cover both source-load completion orders, deferred scene execution, obsolete/failed loads, and repeated attached-effect teardown with and without an HD replacement. Teardown cannot post replacement events or recreate HD dust resources.
 
-Source inspection and sampled texture visual review do not prove native scene rendering, combined-mod gameplay, physical Deck costs or player approval. Those remain explicit acceptance steps. No game or visible desktop application is launched by this implementation's headless build/tests. The original pilot covered 24 material regions, five goods icons and one effect. Current UIHD coverage and remaining work are tracked in [UIHD production](UIHD_PRODUCTION.md); CharHD has no new asset payload. Full environment/character/UI/effect coverage is not achieved.
+Source inspection and sampled texture visual review do not prove native scene rendering, combined-mod gameplay, physical Deck costs or player approval. Those remain explicit acceptance steps. No game or visible desktop application is launched by this implementation's headless build/tests. The original pilot covered 24 material regions, five goods icons and one effect. CharHD now adds one authored Dart armor development pilot; current UIHD coverage and remaining work are tracked in [UIHD production](UIHD_PRODUCTION.md). Full environment/character/UI/effect coverage is not achieved.
 
 Environment production follows the owner's current order: battle sky/background
 panoramas; world-map sky and landscape thumbnails; world-map terrain and scenery;
