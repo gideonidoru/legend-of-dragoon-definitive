@@ -8,6 +8,7 @@ import unittest
 from unittest import mock
 from PIL import Image
 import io
+import copy
 import numpy as np
 
 spec=importlib.util.spec_from_file_location('fields',Path(__file__).with_name('census-envhd-fields.py'))
@@ -165,7 +166,7 @@ class FieldBatchTest(unittest.TestCase):
             base=Path(tmp);files=base/'files';files.mkdir();engine=base/'engine';engine.write_bytes(b'engine');models=base/'models';models.mkdir()
             (models/'realesrgan-x4plus.bin').write_bytes(b'weights');(models/'realesrgan-x4plus.param').write_bytes(b'params')
             pins={k:batch.terrain.digest(v) for k,v in [('engineSha256',b'engine'),('weightsSha256',b'weights'),('parametersSha256',b'params')]}
-            item=self.item();output=base/'private';report=dict(protectedSharedPixelImages=1)
+            item=self.item();output=base/'private';report=dict(protectedSharedPixelImages=1,pipeline='envhd-field-visible-pixel-census-1',pipelineSha256=batch.LEGACY_DEPENDENCIES['census-envhd-fields.py'])
             calls=[]
             def inference(command,**kwargs):
                 calls.append(command)
@@ -180,14 +181,31 @@ class FieldBatchTest(unittest.TestCase):
             # Reuse validates every source/output and records prior plan provenance.
             reused_output=base/'reused'
             report.pop('changed')
+            directory_plan=batch.read_control(output/'source-plan.json')
+            legacy_plan=directory_plan|dict(pipeline='envhd-complete-field-batch-1',scriptSha256=batch.LEGACY_SCRIPT_SHA256,dependencySha256=batch.LEGACY_DEPENDENCIES)
+            batch.battle.write_json(output/'source-plan.json',legacy_plan)
             with mock.patch.dict(batch.terrain.PINS,pins),mock.patch.object(batch.fields,'census',return_value=report),mock.patch.object(batch,'sources',return_value=([item],[])),mock.patch.object(batch.subprocess,'run',side_effect=inference):
                 before=len(calls);batch.execute(files,reused_output,engine,models,output);self.assertEqual(before,len(calls))
                 plan=batch.read_control(reused_output/'source-plan.json');self.assertEqual(records[0]['outputSha256'],plan['reusedOutputs'][0]['outputSha256'])
+                self.assertEqual(batch.LEGACY_GENERATION_COMMIT,plan['reusedOutputs'][0]['originGenerationCommit'])
+                batch.execute(files,reused_output,engine,models,output);self.assertEqual(before,len(calls))
                 altered=dict(item,sourceSize=[3,3])
                 with mock.patch.object(batch,'sources',return_value=([altered],[])):
                     with self.assertRaises(ValueError):batch.execute(files,base/'bad-reuse',engine,models,output)
+                # Matching local hashes cannot falsely retain old provenance.
+                path=reused_output/(item['decodedRgbaSha256']+'.png')
+                with Image.open(path) as im:pixels=np.asarray(im).copy()
+                pixels[0,0,:3]=[120,32,8]
+                Image.fromarray(pixels).save(path)
+                changed_record=batch.candidate_record(item,batch.terrain.digest(path.read_bytes()))
+                batch.validate(item,changed_record,path.read_bytes())
+                batch.battle.write_json(reused_output/'candidates.json',[changed_record])
+                controls_before=(reused_output/'candidates.json').read_bytes()
+                with self.assertRaisesRegex(ValueError,'pinned reuse origin'):batch.execute(files,reused_output,engine,models,output)
+                self.assertEqual(controls_before,(reused_output/'candidates.json').read_bytes())
             # A partially recorded directory chunk resumes with fixed input membership.
             import json
+            batch.battle.write_json(output/'source-plan.json',directory_plan)
             (output/'candidates.json').write_text('[]')
             (output/(item['decodedRgbaSha256']+'.png')).unlink()
             with mock.patch.dict(batch.terrain.PINS,pins),mock.patch.object(batch.fields,'census',return_value=report),mock.patch.object(batch,'sources',return_value=([item],[])),mock.patch.object(batch.subprocess,'run',side_effect=inference):
@@ -196,6 +214,19 @@ class FieldBatchTest(unittest.TestCase):
             with mock.patch.dict(batch.terrain.PINS,pins),mock.patch.object(batch.fields,'census',return_value=report),mock.patch.object(batch,'sources',return_value=([item],[])):
                 with self.assertRaises(ValueError):batch.execute(files,redirected,engine,models)
                 self.assertFalse((base/'outside').exists())
+
+    def test_reuse_rejects_unknown_code_and_unverified_ancestry(self):
+        plan=dict(schema=1,pipeline='envhd-complete-field-batch-1',scriptSha256=batch.LEGACY_SCRIPT_SHA256,
+                  dependencySha256=batch.LEGACY_DEPENDENCIES,
+                  sourceCensus=dict(pipeline='envhd-field-visible-pixel-census-1',pipelineSha256=batch.LEGACY_DEPENDENCIES['census-envhd-fields.py']))
+        batch.verify_reuse_origin(plan)
+        changes=[dict(schema=2),dict(pipeline='unreviewed'),dict(scriptSha256='0'*64),
+                 dict(dependencySha256=batch.LEGACY_DEPENDENCIES|{'census-envhd-fields.py':'0'*64}),
+                 dict(reusedOutputs=[]),dict(sourceCensus=plan['sourceCensus']|dict(pipelineSha256='0'*64)),
+                 dict(sourceCensus=plan['sourceCensus']|dict(pipeline='unknown'))]
+        for change in changes:
+            with self.subTest(change=change),self.assertRaisesRegex(ValueError,'pinned predecessor'):
+                batch.verify_reuse_origin(copy.deepcopy(plan)|change)
 
     def test_resume_after_completed_chunk_keeps_later_chunk_identity(self):
         import contextlib,json

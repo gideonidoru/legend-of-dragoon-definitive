@@ -19,6 +19,28 @@ spec=importlib.util.spec_from_file_location('field_sources',Path(__file__).with_
 fields=importlib.util.module_from_spec(spec);spec.loader.exec_module(fields)
 terrain,battle=fields.terrain,fields.battle
 
+# The only reusable predecessor is the published per-image generator. These
+# identities were checked against this exact Git revision; a metadata match is
+# insufficient evidence that an unknown generator produced a candidate.
+LEGACY_GENERATION_COMMIT='75f924ac4fa95737d6e58c5559d93c82522f54c9'
+LEGACY_SCRIPT_SHA256='23e2bf0d9e6482d6c3fa422c9253c767cbc6964440caa1cc76de001a3097a447'
+LEGACY_DEPENDENCIES={
+    'census-envhd-fields.py':'f1c1df5acd2774ff5a08fd9637a1c05854e3944d1157cf1c1668fdc601cfcc02',
+    'batch-envhd-battle-materials.py':'b6e15d1183cd2920b47fcf6225d5cbbe6d2c02e7df8690324b07f53841fbd23b',
+    'batch-envhd-terrain.py':'2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751',
+    'modelshd-field-map.py':'95f275c4178cf1bafca65f87082d579758eb09156d8f605f1d1d4130332194a9',
+}
+
+
+def verify_reuse_origin(plan):
+    if (plan.get('schema')!=1 or plan.get('pipeline')!='envhd-complete-field-batch-1'
+        or plan.get('scriptSha256')!=LEGACY_SCRIPT_SHA256
+        or plan.get('dependencySha256')!=LEGACY_DEPENDENCIES
+        or 'reusedOutputs' in plan
+        or plan.get('sourceCensus',{}).get('pipeline')!='envhd-field-visible-pixel-census-1'
+        or plan['sourceCensus'].get('pipelineSha256')!=LEGACY_DEPENDENCIES['census-envhd-fields.py']):
+        raise ValueError('Prior field generation is not a supported pinned predecessor')
+
 
 def sources(files,report):
     wanted={a['decodedRgbaSha256']:a for a in report['assets'] if a['owners']==['envhd']}
@@ -106,6 +128,7 @@ def execute(files,output,engine,models,reuse_batch=None):
             raise ValueError('Refusing redirected prior field staging')
         previous_plan_data=terrain.bounded_read(battle.staging_path(reuse_batch,'source-plan.json'),32*1024*1024)
         previous_plan=json.loads(previous_plan_data)
+        verify_reuse_origin(previous_plan)
         prior_census=dict(previous_plan['sourceCensus']);current_census=dict(report)
         prior_census.pop('pipelineSha256',None);current_census.pop('pipelineSha256',None)
         prior_masters={m['decodedRgbaSha256']:m for m in previous_plan['masters']}
@@ -121,7 +144,7 @@ def execute(files,output,engine,models,reuse_batch=None):
             if key not in by_key:
                 raise ValueError('Unknown prior field candidate')
             validate(by_key[key],record,terrain.bounded_read(battle.staging_path(reuse_batch,key+'.png'),32*1024*1024))
-        plan['reusedOutputs']=[dict(decodedRgbaSha256=r['decodedRgbaSha256'],outputSha256=r['outputSha256'],originPlanSha256=terrain.digest(previous_plan_data),originScriptSha256=previous_plan['scriptSha256']) for r in reusable]
+        plan['reusedOutputs']=[dict(decodedRgbaSha256=r['decodedRgbaSha256'],outputSha256=r['outputSha256'],originPlanSha256=terrain.digest(previous_plan_data),originScriptSha256=previous_plan['scriptSha256'],originGenerationCommit=LEGACY_GENERATION_COMMIT) for r in reusable]
     output.mkdir(parents=True,exist_ok=True)
     plan_path=battle.staging_path(output,'source-plan.json')
     if plan_path.exists() and read_control(plan_path)!=plan:
@@ -134,6 +157,12 @@ def execute(files,output,engine,models,reuse_batch=None):
     completed={r['decodedRgbaSha256']:r for r in records}
     if len(completed)!=len(records) or not completed.keys()<=by_key.keys():
         raise ValueError('Duplicate or unknown field candidate')
+    # Check all resumed provenance before copying or rewriting any candidates.
+    # A modified PNG plus matching local hash must not retain the old origin.
+    for record in reusable:
+        key=record['decodedRgbaSha256']
+        if key in completed and completed[key]!=record:
+            raise ValueError('Resumed field candidate differs from its pinned reuse origin')
     for record in reusable:
         key=record['decodedRgbaSha256']
         if key not in completed:
