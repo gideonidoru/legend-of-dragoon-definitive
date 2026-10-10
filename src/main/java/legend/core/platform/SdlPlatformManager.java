@@ -696,6 +696,7 @@ public class SdlPlatformManager extends PlatformManager {
   public void clearPressed() {
     synchronized(INPUT_LOCK) {
       this.pressed.clear();
+      this.actionStates.values().forEach(InputActionState::consumeTick);
     }
   }
 
