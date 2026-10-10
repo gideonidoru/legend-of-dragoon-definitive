@@ -124,6 +124,26 @@ final class SimulationRendererTest {
     }
   }
 
+  @Test void cancellationDiscardsStaleEdgesButNormalQuickTapsRemainLatched() {
+    final var state=new InputActionState();
+    state.press(); state.repeat(); state.repeat(); state.cancel();
+    assertFalse(state.isPressed()); assertFalse(state.isRepeat()); assertFalse(state.isHeld());
+    state.press(); state.release(); assertTrue(state.isPressed()); assertTrue(state.isRepeat());
+    state.cancel(); assertFalse(state.isPressed()); assertFalse(state.isRepeat());
+  }
+
+  @Test void pauseObserversReportTransitionsAndScopedRestorationImmediately() throws Exception {
+    try(final var f=new Fixture()) {
+      final List<Boolean> states=new ArrayList<>();
+      final var previous=f.renderer.setCinematicPauseCallback(states::add);
+      f.renderer.setSimulationCallback(()->{}); f.present();
+      set(f.renderer,"togglePause",true); f.present(); f.present(); assertTrue(f.renderer.isPaused());
+      set(f.renderer,"togglePause",true); f.present(); assertFalse(f.renderer.isPaused());
+      assertEquals(List.of(false,true,false),states);
+      f.renderer.setCinematicPauseCallback(previous);
+    }
+  }
+
   @Test void pressedAndRepeatEdgesAreConsumedOnceWhileHeldAxesRemainAvailable() throws Exception {
     final var platform=(SdlPlatformManager)GameEngine.PLATFORM;
     final var pressed=(Set<InputAction>)get(platform,"pressed");
