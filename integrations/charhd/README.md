@@ -2,7 +2,7 @@
 
 Independent presentation mod for Legend of Dragoon Definitive, development release 0.2.0.
 
-Source-bound battle material adapter with one bundled Dart armor development pilot. All 19 named playable battle forms have generated restoration candidates; those baseline candidates remain under art review and are not bundled. The original field texture adapter is retained; full field, enemy and NPC coverage remains open.
+Source-bound battle material adapter with one bundled Dart armor development pilot. The full baseline generation pass produced 678 source-bound restoration candidates across party, field/world, enemy, boss, NPC and unresolved actor routes. Another 13 audited models have no textured faces. These candidates remain under art review and are not selected for runtime delivery. The original field texture adapter is retained; full field, enemy and NPC coverage remains open.
 
 Included by the normal Definitive build/installer. Enable or disable `charhd` in the game’s Mods menu. No installer toggle. Requires the matching Definitive engine hooks; unmodified Severed Chains is not supported. See [production status](../../docs/definitive/CHARHD_PRODUCTION.md) for coverage, validation and limitations.
 
