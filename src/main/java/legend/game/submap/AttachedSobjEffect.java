@@ -54,6 +54,8 @@ public class AttachedSobjEffect {
   private Obj tmdDust;
   private Obj footprints;
   private Obj quadDust;
+  private Obj quadDustHd;
+  private legend.core.renderer.Texture dustHdTexture;
   private final MV transforms = new MV();
 
   @Method(0x800f0370L)
@@ -112,6 +114,23 @@ public class AttachedSobjEffect {
         .uvSize(32, 32)
         .posSize(1.0f, 1.0f)
         .build();
+    }
+
+    if(this.quadDustHd == null) {
+      try {
+        final var event = legend.core.GameEngine.EVENTS.postEvent(new legend.game.modding.events.submap.EffectTextureEvent("dust", legend.game.unpacker.Loader.loadFileSync("SUBMAP/dust.tim").getBytes()));
+        if(event.replacement != null) {
+          final var image = event.replacement;
+          this.dustHdTexture = legend.core.renderer.Texture.create("FxHD dust", builder -> {
+            final var buffer = org.lwjgl.BufferUtils.createByteBuffer(image.data.length); buffer.put(image.data).flip();
+            builder.data(buffer, image.width, image.height); builder.wrapS(false); builder.wrapT(false);
+          });
+          this.quadDustHd = new QuadBuilder("FxHD DustQuad").bpp(Bpp.BITS_24).translucency(Translucency.B_PLUS_F).monochrome(1.0f).uv(0, 0).uvSize(1, 1).posSize(1, 1).build();
+        }
+      } catch(final Exception failure) {
+        if(this.dustHdTexture != null) { this.dustHdTexture.delete(); this.dustHdTexture = null; }
+        org.apache.logging.log4j.LogManager.getLogger().warn("FxHD retained original dust: {}", failure.getMessage());
+      }
     }
 
     this.lawPodTrail_800d4f90.clear();
@@ -430,8 +449,8 @@ public class AttachedSobjEffect {
 
         inst.transforms.scaling(inst.size_08);
         inst.transforms.transfer.set(GPU.getOffsetX() + screenOffsetX - inst.x_18 + inst.sxy0_20.x, GPU.getOffsetY() + screenOffsetY - inst.y_1c + inst.sxy0_20.y, inst.z_4c * 4.0f);
-        RENDERER.queueOrthoModel(this.quadDust, inst.transforms, QueuedModelStandard.class)
-          .monochrome(inst.brightness_48);
+        final var queued = RENDERER.queueOrthoModel(this.quadDustHd != null ? this.quadDustHd : this.quadDust, inst.transforms, QueuedModelStandard.class).monochrome(inst.brightness_48);
+        if(this.quadDustHd != null) queued.texture(this.dustHdTexture);
         inst.tick_04++;
       } else {
         inst.free();
@@ -513,6 +532,8 @@ public class AttachedSobjEffect {
     }
 
     this.orthoDustTrail_800d4e68.clear();
+    if(this.quadDustHd != null) { this.quadDustHd.delete(); this.quadDustHd = null; }
+    if(this.dustHdTexture != null) { this.dustHdTexture.delete(); this.dustHdTexture = null; }
     if(this.quadDust != null) {
       this.quadDust.delete();
       this.quadDust = null;

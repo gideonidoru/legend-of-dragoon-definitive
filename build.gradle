@@ -319,3 +319,5 @@ apply from: 'gradle/modelshd.gradle'
 
 // Default cinematic pack with a checksum-pinned enhanced video payload.
 apply from: 'gradle/fmvhd.gradle'
+// Independent optional presentation mods.
+apply from: 'gradle/hd-mods.gradle'

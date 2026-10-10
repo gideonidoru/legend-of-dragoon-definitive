@@ -27,8 +27,10 @@ public class McqHeader {
   public final int screenOffsetY_2a;
 
   public final FileData imageData;
+  private final byte[] source;
 
   public McqHeader(final FileData data) {
+    this.source = data.getBytes().clone();
     this.magic_00 = data.readInt(0x00);
     this.imageDataOffset_04 = data.readInt(0x04);
     this.vramWidth_08 = data.readShort(0x08);
@@ -49,4 +51,6 @@ public class McqHeader {
 
     this.imageData = data.slice(this.imageDataOffset_04);
   }
+
+  public byte[] source() { return this.source.clone(); }
 }

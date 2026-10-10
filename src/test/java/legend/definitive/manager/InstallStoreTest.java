@@ -25,6 +25,25 @@ class InstallStoreTest {
     ManagerMain.makeManifest(root, platform, "fixture"); return root;
   }
 
+  @Test void hdModsAreAlwaysBundledAndGameConfigurationSurvivesUpdate() throws Exception {
+    final Path packageRoot = this.pack("four-mods", PackageManifest.hostPlatform());
+    for(final String name : List.of("EnvHD", "CharHD", "UIHD", "FxHD")) Files.writeString(packageRoot.resolve("bundled-mods/" + name + "-v0.1.0.jar"), name);
+    Files.delete(packageRoot.resolve("definitive-package.properties"));
+    Files.delete(packageRoot.resolve("definitive-files.properties"));
+    ManagerMain.makeManifest(packageRoot, PackageManifest.hostPlatform(), "four-mods");
+    final InstallStore store = new InstallStore(this.temporary.resolve("four-installed"));
+    store.install(packageRoot); store.setArtwork(false);
+    final Path data = store.data(store.state());
+    Files.writeString(data.resolve("config.conf"), "enabled_mods=lod,envhd,uihd");
+    final Path workspace = store.prepareLaunch();
+    for(final String name : List.of("EnvHD", "CharHD", "UIHD", "FxHD")) assertTrue(Files.isSymbolicLink(workspace.resolve("mods/" + name + "-v0.1.0.jar")));
+    assertFalse(Files.exists(workspace.resolve("mods/Skurfa.jar")));
+    store.install(this.pack("later", PackageManifest.hostPlatform()));
+    assertEquals("enabled_mods=lod,envhd,uihd", Files.readString(store.data(store.state()).resolve("config.conf")));
+    store.rollback();
+    assertEquals("enabled_mods=lod,envhd,uihd", Files.readString(store.data(store.state()).resolve("config.conf")));
+  }
+
   @Test void updateAndRollbackPreservePriorAndNewerData() throws Exception {
     final InstallStore store = new InstallStore(this.temporary.resolve("installed"));
     final Path one = this.pack("v1", PackageManifest.hostPlatform());
