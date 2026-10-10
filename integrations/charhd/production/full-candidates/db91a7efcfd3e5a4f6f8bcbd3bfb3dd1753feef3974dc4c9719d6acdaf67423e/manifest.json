@@ -1,0 +1,198 @@
+{
+  "pipeline": "definitive-private-material-pack-1",
+  "modelSha256": "cc75d7cb685d0111354147fe8cdae907778ce45510987b53deeb274375939151",
+  "timSha256": "67e8e492d2004b3ea117015b675a5d13985704c039ebae38867c29899b8b44ac",
+  "sourceSize": [
+    256,
+    256
+  ],
+  "scale": 4,
+  "paddingSourceTexels": 8,
+  "atlasSize": [
+    512,
+    1616
+  ],
+  "materials": [
+    {
+      "palette": 0,
+      "sourceCrop": [
+        120,
+        -8,
+        160,
+        72
+      ],
+      "atlasRect": [
+        224,
+        0,
+        160,
+        320
+      ]
+    },
+    {
+      "palette": 4,
+      "sourceCrop": [
+        152,
+        -8,
+        208,
+        144
+      ],
+      "atlasRect": [
+        0,
+        0,
+        224,
+        608
+      ]
+    },
+    {
+      "palette": 8,
+      "sourceCrop": [
+        200,
+        -8,
+        240,
+        72
+      ],
+      "atlasRect": [
+        0,
+        608,
+        160,
+        320
+      ]
+    },
+    {
+      "palette": 12,
+      "sourceCrop": [
+        120,
+        56,
+        160,
+        112
+      ],
+      "atlasRect": [
+        160,
+        608,
+        160,
+        224
+      ]
+    },
+    {
+      "palette": 16,
+      "sourceCrop": [
+        152,
+        56,
+        216,
+        104
+      ],
+      "atlasRect": [
+        0,
+        1136,
+        256,
+        192
+      ]
+    },
+    {
+      "palette": 20,
+      "sourceCrop": [
+        200,
+        56,
+        248,
+        100
+      ],
+      "atlasRect": [
+        256,
+        1136,
+        192,
+        176
+      ]
+    },
+    {
+      "palette": 24,
+      "sourceCrop": [
+        152,
+        88,
+        216,
+        128
+      ],
+      "atlasRect": [
+        0,
+        1328,
+        256,
+        160
+      ]
+    },
+    {
+      "palette": 28,
+      "sourceCrop": [
+        200,
+        84,
+        240,
+        124
+      ],
+      "atlasRect": [
+        256,
+        1328,
+        160,
+        160
+      ]
+    },
+    {
+      "palette": 32,
+      "sourceCrop": [
+        120,
+        96,
+        240,
+        148
+      ],
+      "atlasRect": [
+        0,
+        928,
+        480,
+        208
+      ]
+    },
+    {
+      "palette": 36,
+      "sourceCrop": [
+        152,
+        112,
+        184,
+        144
+      ],
+      "atlasRect": [
+        256,
+        1488,
+        128,
+        128
+      ]
+    },
+    {
+      "palette": 40,
+      "sourceCrop": [
+        -8,
+        120,
+        56,
+        152
+      ],
+      "atlasRect": [
+        0,
+        1488,
+        256,
+        128
+      ]
+    }
+  ],
+  "algorithm": "neural",
+  "strength": 0.75,
+  "preservedPalettes": [],
+  "weightsSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+  "paramsSha256": "2b8fb6e0ae4d2d85704ca08c119a2f5ea40add4f2ecd512eb7f4cd44b6127ed4",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "atlasEngineSha256": "a7e02d405d29b22dc8cbf807d98dcbc1feb655578f56b4a742ca02c3619632c5",
+  "scriptSha256": "86156a0ef59ccf147b6ccb4c23770bb19eaf7f4e7b788a2a873bc65112da2442",
+  "dependencyScriptHashes": {
+    "audit-model-materials.py": "9c531a7acb23d8315f24e90c8d17c251434bfdd6d21f9ddd88fa133359406252",
+    "audit-uv-footprints.py": "d11c9b22f84dcea5ba66e2552f82e84fd793d0aabe80daf6b2323a4f539878f7",
+    "compare-material-islands.py": "7e71e085d4f0e585d5883ab66d1929b3ff8f986aaea5da154717ceba4c537455",
+    "compare-neural-textures.py": "c45e5e98439fec0b73a5cbb5602709df0e2fb11399a7bd031aecc53ac36cb71b",
+    "preserve-texture-transparency.py": "aaa0875db82c68874fcbc3c9a0007b4c48eb31455875a18cbbda3a0f4561910c"
+  },
+  "scope": "Custom restoration candidate; AA art, native rendering and Steam Deck acceptance pending"
+}
