@@ -241,6 +241,79 @@ public final class NativeRendererProbe {
     System.out.println("PASS: default-layout UIHD atlas grows to 1024x1024 (4 MiB), protects out-of-menu atlas icons and deletes cleanly; other mod layouts remain separate.");
   }
 
+  private static int meshHandle(final Mesh mesh, final String name) throws Exception {
+    final var field = mesh.getClass().getDeclaredField(name);
+    field.setAccessible(true);
+    return field.getInt(mesh);
+  }
+
+  private static void verifyCharacterAtlasUploadAndRetirement() throws Exception {
+    final var accessField = GameEngine.class.getDeclaredField("EVENT_ACCESS");
+    accessField.setAccessible(true);
+    final var access = (org.legendofdragoon.modloader.events.EventManager.Access)accessField.get(null);
+    access.reset();
+    access.initialize(GameEngine.MODS);
+    final Path directory = Files.createTempDirectory("character-atlas-probe-");
+    try {
+      final var fixture = legend.definitive.materials.MaterialAtlasFixture.create(directory, 2);
+      final var atlas = legend.definitive.materials.MaterialAtlasFixture.read(fixture);
+      final var container = new legend.game.types.CContainer("synthetic character", new legend.game.unpacker.FileData(fixture.model()));
+      final var model = new legend.game.types.Model124("synthetic character");
+      final var parts = container.tmdPtr_00.tmd.objTable;
+      model.modelParts_00 = new legend.core.gte.ModelPart10[parts.length];
+      for(int i = 0; i < parts.length; i++) {
+        model.modelParts_00[i] = new legend.core.gte.ModelPart10();
+        model.modelParts_00[i].tmd_08 = parts[i];
+      }
+      final var appearance = legend.definitive.materials.CharacterAppearance.create(model, atlas, 2, java.util.Map.of(), fixture.model());
+      try {
+        require(appearance.applies(model), "synthetic character material owns matching model");
+        final var colourField = appearance.getClass().getDeclaredField("colour");
+        colourField.setAccessible(true);
+        final Texture colour = (Texture)colourField.get(appearance);
+        final byte[] expected = new byte[atlas.width() * atlas.height() * 4];
+        atlas.rgba().get(expected);
+        require(java.util.Arrays.equals(expected, pixels(colour)), "actual CharacterAppearance uploads all validated palette/STP bytes exactly");
+        final int colourId = glGetInteger(GL_TEXTURE_BINDING_2D);
+        final java.util.List<int[]> handles = new java.util.ArrayList<>();
+        for(int part = 0; part < parts.length; part++) {
+          final MeshObj obj = (MeshObj)appearance.mesh(part);
+          for(final Mesh mesh : obj.meshes) {
+            if(mesh != null) handles.add(new int[]{meshHandle(mesh, "vao"), meshHandle(mesh, "vbo"), meshHandle(mesh, "ebo")});
+          }
+        }
+        Texture.setShouldLog(false); Obj.setShouldLog(false);
+        try { Texture.clearTextureList(false); Obj.clearObjList(false); }
+        finally { Texture.setShouldLog(true); Obj.setShouldLog(true); }
+        require(glIsTexture(colourId), "scene clearing defers native deletion until retirement");
+        appearance.close();
+        Obj.deleteObjects(); Texture.deleteTextures();
+        require(!glIsTexture(colourId), "scene retirement deletes actual character atlas");
+        for(final int[] handle : handles) {
+          require(!glIsVertexArray(handle[0]) && !glIsBuffer(handle[1]) && (handle[2] == 0 || !glIsBuffer(handle[2])), "scene retirement deletes character mesh VAO/VBO/EBO");
+        }
+        Obj.deleteObjects(); Texture.deleteTextures();
+        require(glGetError() == GL_NO_ERROR, "repeated native retirement is safe");
+      } finally { appearance.close(); Obj.deleteObjects(); Texture.deleteTextures(); }
+      final Texture persistent = Texture.empty("shutdown fixture", 1, 1);
+      persistent.persistent = true;
+      persistent.use(0);
+      final int persistentId = glGetInteger(GL_TEXTURE_BINDING_2D);
+      final MeshObj persistentMesh = new QuadBuilder("shutdown mesh").build();
+      persistentMesh.persistent = true;
+      final int vao = meshHandle(persistentMesh.meshes[0], "vao");
+      final int vbo = meshHandle(persistentMesh.meshes[0], "vbo");
+      GameEngine.RENDERER.delete();
+      require(!glIsTexture(persistentId) && !glIsVertexArray(vao) && !glIsBuffer(vbo) && glGetError() == GL_NO_ERROR, "renderer shutdown drains persistent native resources before context destruction");
+      System.out.println("PASS: actual CharHD adapter pixel upload, deferred scene texture/mesh retirement, repeated cleanup and persistent renderer shutdown.");
+    } finally {
+      access.reset();
+      try(final var paths = Files.walk(directory)) {
+        for(final Path path : paths.sorted(java.util.Comparator.reverseOrder()).toList()) Files.delete(path);
+      }
+    }
+  }
+
   public static void main(final String[] args) throws Exception {
     System.load(args[0]);
     final long context = open(); require(context != 0, "windowless context");
@@ -325,6 +398,7 @@ public final class NativeRendererProbe {
       DefaultMaterialMaps.delete(); Texture.deleteTextures();
       require(!glIsTexture(normalId)&&!glIsTexture(roughnessId)&&glGetError()==GL_NO_ERROR,"default map ownership and deletion have no GL errors");
       System.out.println("PASS: generated default maps upload exactly, use mip filtering, reuse shared textures and delete cleanly.");
+      verifyCharacterAtlasUploadAndRetirement();
     } finally { close(context); }
   }
 }
