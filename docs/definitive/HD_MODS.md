@@ -6,18 +6,14 @@ The owner requested four independent artwork mods, installed with Definitive by 
 | --- | --- | --- |
 | EnvHD / `envhd` | 24 separately addressed palette regions on static battle stages 0 and 6; 4× reconstruction with source coverage preserved | Additional verified static stage packs, then field props/world-map surfaces. Existing Skurfa scene artwork is untouched. |
 | CharHD / `charhd` | Source-bound battle material adapter with a Dart armor development pilot; field adapter retained | Explicit surface/roughness settings use current material lighting. Full character reconstruction and native/Deck acceptance remain open. See [production status](CHARHD_PRODUCTION.md). |
-| UIHD / `uihd` | 21 goods icons at 4×, ten elements, battle commands, checkbox sheet, menu frame and item palette variants, dialogue frame and arrow | First whole-game UIHD batch; bespoke portraits and remaining HUD still pending. See [UIHD production](UIHD_PRODUCTION.md). |
+| UIHD / `uihd` | 259 selected custom PNGs covering all nine portraits, combat/basic palette banks, menus/items/character sheets, Dragoon spirit frames, goods, symbols, commands and dialogue | Complete default HUD and portrait coverage; original layout, timing, transparency and live palettes retained. See [UIHD production](UIHD_PRODUCTION.md) for source checks and acceptance status. |
 | FxHD / `fxhd` | Six source-bound 2× field textures: dust, both footprints, plume/cloud smoke and central save-point glow | Separately verified effects/animation families; spells and transformation sheets remain original. |
 
 The mod sources live under `integrations/<id>`, with reviewed runtime resource candidates in each `runtime-assets` folder. These are first pilot candidates, not an accepted whole-game remaster. Original extracted assets, raw meshes, local neural runtimes/weights and intermediate comparisons are not bundled. Underlying game artwork has separate notices from the AGPL source code. Explicit owner authorization in this implementation request covers publication of the derived pilot resources in this repository.
 
 ## Build and delivery
 
-<<<<<<< HEAD
-`gradle/hd-mods.gradle` compiles EnvHD and UIHD; specialized `gradle/charhd.gradle` and `gradle/fxhd.gradle` build CharHD and FxHD against the current engine. The outputs are `EnvHD-v0.1.0.jar`, `CharHD-v0.2.0.jar`, `UIHD-v0.1.0.jar` and `FxHD-v0.2.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
-=======
-`gradle/hd-mods.gradle` and the specialized `gradle/charhd.gradle` compile four independent mods against the current engine and produce `EnvHD-v0.1.0.jar`, `CharHD-v0.2.0.jar`, `UIHD-v0.2.0.jar` and `FxHD-v0.1.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
->>>>>>> origin/codex/uihd-complete-coverage
+`gradle/hd-mods.gradle` compiles EnvHD and UIHD; specialized `gradle/charhd.gradle` and `gradle/fxhd.gradle` build CharHD and FxHD against the current engine. The outputs are `EnvHD-v0.1.0.jar`, `CharHD-v0.2.0.jar`, `UIHD-v0.2.0.jar` and `FxHD-v0.2.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
 
 Managed launch links all four JARs even when the legacy Skurfa preference selects original backgrounds. It preserves the game's saved enabled-mod configuration during updates/rollback. Bundling is not forced activation: existing players' in-game choices remain theirs. A player using original geometry/art can deactivate the corresponding mod without removing the package or changing saves. Standalone installation uses these four JARs in `mods/`, with this matching engine revision: EnvHD/UIHD/FxHD use the additive event/mesh hooks described below and are not drop-in compatible with unmodified upstream 3.0.0.
 
