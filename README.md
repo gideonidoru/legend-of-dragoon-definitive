@@ -66,15 +66,45 @@ Matched pose, camera and lighting make the changes easy to compare. The smoothin
 
 These are offline previews, not Steam Deck gameplay captures. The geometry images depict ModelsHD 0.3; the broader 0.4 pass uses a more conservative smoothing treatment. [Comparison details](docs/definitive/images/comparisons/README.md).
 
-## A more polished presentation
+## Technical presentation
 
-**Cleaner edges and better lighting.** SMAA smooths jagged silhouettes while preserving crisp dialogue, menus and battle prompts. Smoother shading, soft contact shadows and material finishes help supported models fit the painted scene. Luminous effects and save points can cast colored light, with restrained bloom. Texture filtering and gentle sharpening improve supported HD artwork.
+Definitive extends Severed Chains' shared rendering, texture-loading, audio and timing systems. These improvements support the HD artwork across field maps, battles, the world map and model-based cutscenes, while retaining the game's original animation, palette effects and combat timing.
 
-**All 18 cinematics, enhanced.** FMVHD provides 1280×768 versions of the game's films, retaining their original 15 fps motion and soundtrack. Cinematic timing is independent of gameplay fast-forward. The footage is restored from the game sources, not the original studio masters.
+### Rendering and materials
 
-**The original sound, preserved.** Prerecorded clips retain decoded PCM quality, with improved endings, synchronization and playback recovery. The score, voices and sound effects remain the original soundtrack.
+| Technology | What it adds |
+| --- | --- |
+| **SMAA 1x High** | Three-pass spatial anti-aliasing for cleaner silhouettes and diagonals. Dedicated interface coverage protects dialogue, menus and Addition prompts. No temporal history or frame generation. |
+| **Per-fragment model lighting** | Normalized interpolated normals produce smoother light across supported surfaces, with restrained diffuse transitions and the scene's original light directions and colors. |
+| **Surface materials** | Cloth, skin, leather and metal responses, with per-face roughness and optional authored normal/roughness maps. A subtle shared surface finish also supports original models; authored maps take precedence. |
+| **Scene-aware lighting** | Artist-supplied profiles can match models to painted environments. Otherwise, restrained profiles follow the game's native lights and scripted changes, resetting between scenes. |
+| **Soft contact shadows** | Feathered shadows for field and battle actors, scripted shadow effects and the world-map traveler, retaining original placement and attachment behavior. |
+| **Dynamic effect lights** | Up to four nearby luminous effects or save-point emitters illuminate supported opaque geometry. Selective bloom adds glow to explicitly emissive content; reduced-flashing settings suppress these added contributions. |
+| **HD filtering and sharpening** | Mipmaps, supported anisotropic filtering up to 4×, and bounded contrast-adaptive sharpening. Palette textures, transparency masks and unpadded interface sheets retain their required sampling. |
 
-**Artwork prepared for play.** HD assets arrive ready to load. Shared caching and background preparation reduce repeated decoding work; no texture-generation tools run during gameplay. Graphics, artwork and audio choices are independent of campaign settings.
+### High-resolution artwork, original animation
+
+**Palette-live effects.** FxHD's shared indexed detail path resolves restored colors from the current palette. Texture writes, copies and scrolling retain native animation and transparency. One persistent **16 MiB GPU companion** serves the effect system, with no GPU texture allocation per particle.
+
+**Protected interface rendering.** UIHD keeps native clipping, logical coordinates, animation offsets and transparency while displaying larger artwork. Native palette variants load on demand within a **32 MiB source/restoration GPU budget**. Current-frame pages remain pinned; unused pages can be evicted, including while paused. Changed or invalid sources fall back to original artwork.
+
+**Bounded loading.** A shared **64 MiB decoded-artwork cache** reuses image data. Low-priority workers prepare native field backgrounds and eligible HD images during loading; GPU work stays on the renderer thread. Scene changes cancel obsolete preparation. These are component budgets, not a total game-memory or Steam Deck performance guarantee.
+
+### Cinematics, audio and pacing
+
+**All 18 enhanced films** use bounded streaming at 1280×768, retaining the original 15 fps motion and soundtrack. Enhanced video follows actually played audio; original-video fallback keeps its own 15 Hz cadence. Cinematic presentation bypasses gameplay frame skipping and restores normal gameplay settings afterward. Cancellation and original-video fallback remain available.
+
+**PCM audio preservation** avoids an additional lossy encode after decoding prerecorded XA clips. Queue handling preserves clip endings and does not count unplayed buffers during empty starts or underruns. Playback recovery resumes from the played position, retaining the original score, voices and effects.
+
+**Reliable rate transitions** reset the scheduler's deadline when callback speed changes, while repeated assignments preserve timing phase. Script ticks, model animation and sample-driven audio retain their respective clock ownership. This improves transitions between gameplay and movies without changing Addition windows.
+
+### Graphics reliability and control
+
+Failed shader reloads retain the working program. Texture uploads select the correct binding, deleted textures clear cached bindings, and stale artwork callbacks cannot restore an obsolete mod selection. Shared resources have explicit limits and cleanup paths.
+
+Presentation controls live in **Graphics**, independently of campaign presets. The pipeline uses conventional rendering with assets prepared before installation. Whole-campaign visual review and physical Steam Deck frame-time, memory and power measurements remain ongoing.
+
+[Rendering technology](docs/definitive/RENDERING_LIGHTING.md) · [Cinematic playback](docs/definitive/CINEMATIC_TIMING.md) · [Audio](docs/definitive/AUDIO_VALIDATION.md) · [Engine pacing](docs/definitive/ENGINE_PACING.md).
 
 ## Your campaign. Your preferences.
 
