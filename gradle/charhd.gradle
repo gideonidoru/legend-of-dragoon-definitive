@@ -3,6 +3,7 @@ sourceSets {
   charhd {
     java.srcDir 'integrations/charhd/src/main/java'
     resources.srcDir 'integrations/charhd/src/main/resources'
+    resources.srcDir 'integrations/charhd/runtime-assets'
     compileClasspath += sourceSets.main.output + configurations.compileClasspath
     runtimeClasspath += sourceSets.main.output + configurations.runtimeClasspath
   }
@@ -21,12 +22,12 @@ tasks.register('charHdTests', Test) {
 }
 tasks.register('charhdJar', Jar) {
   dependsOn 'charhdClasses'
-  archiveFileName = 'CharHD-v0.2.0.jar'
+  archiveFileName = 'CharHD-v0.3.0.jar'
   destinationDirectory = layout.buildDirectory.dir('libs/mods')
   from sourceSets.charhd.output
-  from 'integrations/charhd/runtime-assets'
   into('META-INF/charhd') { from 'LICENSE'; from 'integrations/charhd/README.md'; from 'integrations/charhd/ARTWORK-NOTICES.txt' }
-  manifest { attributes 'Implementation-Title': 'CharHD', 'Implementation-Version': '0.2.0' }
+  into('META-INF/charhd') { from 'experiments/dart-modelshd-charhd/reconstruction/TRIPOSR-LICENSE.txt' }
+  manifest { attributes 'Implementation-Title': 'CharHD', 'Implementation-Version': '0.3.0' }
   preserveFileTimestamps = false
   reproducibleFileOrder = true
 }
@@ -41,4 +42,17 @@ tasks.register('charHdSourceProbe', JavaExec) {
   mainClass = 'charhd.CharacterSourceProbe'
   jvmArgs '-Djava.awt.headless=true', '-Xmx2g'
   doFirst { args providers.gradleProperty('charFiles').get(), providers.gradleProperty('charCandidates').get(), providers.gradleProperty('charReport').get() }
+}
+
+tasks.register('charHdReconstructionProbe', JavaExec) {
+  description = 'Owner-input probe of bundled reconstructions; no game window.'
+  dependsOn 'charhdTestClasses', 'modelshdClasses'
+  classpath = sourceSets.charhdTest.runtimeClasspath + sourceSets.modelshd.output
+  mainClass = 'charhd.ReconstructionSourceProbe'
+  jvmArgs '-Djava.awt.headless=true', '-Xmx2g'
+  workingDir = layout.buildDirectory.dir('charhd-probe-home').get().asFile
+  doFirst {
+    workingDir.mkdirs()
+    args providers.gradleProperty('charFiles').get(), providers.gradleProperty('charReport').get()
+  }
 }

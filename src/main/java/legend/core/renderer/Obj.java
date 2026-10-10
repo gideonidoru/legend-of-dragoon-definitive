@@ -19,6 +19,18 @@ public abstract class Obj {
   protected boolean deleted;
   /** This Obj won't be deleted on state transition */
   public boolean persistent;
+  private Texture faceDetailTexture;
+
+  public Texture faceDetailTexture() { return this.faceDetailTexture; }
+
+  /** Takes ownership of one supplemental texture; released with the rendered object. */
+  public void faceDetailTexture(final Texture texture) {
+    if(this.faceDetailTexture != null || this.deleted) throw new IllegalStateException("Face detail already owned or object deleted");
+    this.faceDetailTexture = java.util.Objects.requireNonNull(texture);
+    // Object ownership determines lifetime, including persistent objects and state transitions.
+    this.faceDetailTexture.persistent = true;
+  }
+
   NativeUiQuad[] nativeUiQuads;
 
   public NativeUiQuad nativeUiQuad(final int start, final int count) {
@@ -53,6 +65,7 @@ public abstract class Obj {
 
   public void delete() {
     this.deleted = true;
+    if(this.faceDetailTexture != null) this.faceDetailTexture.delete();
   }
 
   protected abstract void performDelete();

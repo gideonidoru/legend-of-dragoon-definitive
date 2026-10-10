@@ -92,6 +92,7 @@ jobs:
           cp build/libs/mods/FxHD-v1.0.0.jar build/libs/mods/FxHD-v0.1.0.jar
           ./gradlew --no-daemon --console=plain stageDefinitivePackage ${{ matrix.args }}
           python3 scripts/verify-fxhd-package.py build/definitive/package --stale-fxhd build/libs/mods/FxHD-v0.1.0.jar
+          python3 scripts/verify-charhd-package.py build/definitive/package
       - name: Assemble reviewed portable entry points
         if: runner.os == 'Linux'
         run: python3 scripts/assemble-installer.py --output-dir build/distributions --tag "$RELEASE_TAG"

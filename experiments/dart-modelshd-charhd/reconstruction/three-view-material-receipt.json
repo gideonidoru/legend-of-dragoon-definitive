@@ -1,0 +1,26 @@
+{
+  "status": "experimental-not-approved",
+  "meshSourceSha256": "7aa36a5e408f2a4382b3581b1727c92dcee09050260d79bf9752b2262ccbd80b",
+  "paintSha256": "62cfdf308b0c57230dec256fbccf987c68438e497bb13b5f712ea795fb909c3f",
+  "geometryUnchanged": true,
+  "coveredTexels": 1020781,
+  "transferredTexels": 638773,
+  "views": [
+    {
+      "viewDegrees": 0,
+      "visibleTexels": 405474,
+      "weightedTexels": 263153
+    },
+    {
+      "viewDegrees": 90,
+      "visibleTexels": 443070,
+      "weightedTexels": 255654
+    },
+    {
+      "viewDegrees": 180,
+      "visibleTexels": 514580,
+      "weightedTexels": 261523
+    }
+  ],
+  "textureSha256": "3debbe9ac4aa748aebb555b8ad581c8a2a0edfda66eda5c20cc539db8dd8ea5a"
+}
