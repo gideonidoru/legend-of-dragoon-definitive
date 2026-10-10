@@ -27,7 +27,17 @@ class InstallStoreTest {
     try(final var zip = new ZipOutputStream(Files.newOutputStream(data.resolve("mods/Renamed-FxHD.jar")))) {
       zip.putNextEntry(new ZipEntry("fxhd/FxHdMod.class")); zip.write(new byte[]{1, 2, 3}); zip.closeEntry();
     }
-    Files.writeString(data.resolve("config.dcnf"), "saved-game-mod-selection");
+    final byte[] selectedMods = new legend.game.modding.coremod.config.EnabledModsConfigEntry().serializer.apply(new String[]{"lod", "envhd", "uihd"});
+    final var settings = java.nio.ByteBuffer.allocate(4 + 7 + "lod_core:enabled_mods".length() + selectedMods.length + 7 + "lod_core:fullscreen".length() + 1)
+      .order(java.nio.ByteOrder.LITTLE_ENDIAN).putInt(2);
+    for(final var entry : java.util.List.of(java.util.Map.entry("lod_core:enabled_mods", selectedMods), java.util.Map.entry("lod_core:fullscreen", new byte[]{1}))) {
+      final byte[] name = entry.getKey().getBytes(java.nio.charset.StandardCharsets.US_ASCII);
+      settings.put((byte)name.length).put((byte)0).put((byte)0).put(name).putInt(entry.getValue().length).put(entry.getValue());
+    }
+    final byte[] nativeSettings = settings.array();
+    Files.write(data.resolve("config.dcnf"), nativeSettings);
+    // Exercise Linux's launch-time settings parsing on every host.
+    InstallStore.configureFullscreen(data, true);
     final Path workspace = store.prepareLaunch();
     assertEquals("selected-effects", Files.readString(workspace.resolve("mods/FxHD-v0.2.0.jar")));
     assertFalse(Files.exists(workspace.resolve("mods/FxHD-v0.1.0.jar")));
@@ -35,7 +45,7 @@ class InstallStoreTest {
     assertTrue(Files.isRegularFile(data.resolve("mods/Renamed-FxHD.jar")));
     assertEquals("manual-pilot", Files.readString(data.resolve("mods/FxHD-v0.1.0.jar")));
     assertEquals("unrelated-mod", Files.readString(workspace.resolve("mods/custom.jar")));
-    assertEquals("saved-game-mod-selection", Files.readString(data.resolve("config.dcnf")));
+    assertArrayEquals(nativeSettings, Files.readAllBytes(data.resolve("config.dcnf")));
     store.prepareLaunch();
     assertEquals("selected-effects", Files.readString(workspace.resolve("mods/FxHD-v0.2.0.jar")));
   }
