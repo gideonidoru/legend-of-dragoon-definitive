@@ -7,14 +7,20 @@ public class InputActionState {
   private State state = State.RELEASED;
   private float axis;
   private long timestamp;
+  private boolean pendingPress;
+  private boolean pendingRepeat;
 
   public void press() {
+    this.pendingPress = true;
+    this.pendingRepeat = false;
     this.state = State.JUST_PRESSED;
     this.axis = 0.0f;
     this.timestamp = System.nanoTime();
   }
 
   public void release() {
+    // A short press/release still delivers its initial edge; release cancels held-key repeats.
+    this.pendingRepeat = false;
     this.axis = 0.0f;
     this.state = State.RELEASED;
   }
@@ -40,6 +46,7 @@ public class InputActionState {
 
     if(this.state == State.DELAY && time - this.timestamp >= REPEAT_DELAY) {
       this.state = State.REPEAT;
+      this.pendingRepeat = true;
       this.timestamp = time;
       return true;
     }
@@ -52,6 +59,7 @@ public class InputActionState {
 
     if(this.state == State.HELD && time - this.timestamp >= REPEAT_INTERVAL / 2) {
       this.state = State.REPEAT;
+      this.pendingRepeat = true;
       this.timestamp = time;
       return true;
     }
@@ -60,12 +68,14 @@ public class InputActionState {
   }
 
   public boolean isPressed() {
-    return this.state == State.JUST_PRESSED || this.state == State.PRESSED;
+    return this.pendingPress;
   }
 
   public boolean isRepeat() {
-    return this.isPressed() || this.state == State.REPEAT;
+    return this.pendingPress || this.pendingRepeat;
   }
+
+  public void consumeTick() { this.pendingPress = this.pendingRepeat = false; }
 
   public boolean isHeld() {
     return this.state != State.RELEASED;

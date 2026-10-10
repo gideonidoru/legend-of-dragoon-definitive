@@ -116,6 +116,9 @@ public abstract class PlatformManager {
 
   }
 
+  /** Consume edges once per gameplay tick; display-only callbacks do not consume them. */
+  public void consumeTickInput() { this.clearPressed(); }
+
   protected abstract void tickInput();
   public abstract void rumble(final float intensity, final int ms);
   public abstract void rumble(final float bigIntensity, final float smallIntensity, final int ms);
