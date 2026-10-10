@@ -43,7 +43,9 @@ A failed preferences write leaves the Mods/new-campaign screen available to retr
 or cancel, shows a plain error, and does not proceed to the campaign save/start.
 The preferences file is bounded to 8 KiB, validates known choices, refuses linked
 or non-regular targets, and preserves unknown future keys. No defaults file is
-created merely by booting. Campaign config saving otherwise retains upstream
+created merely by booting. Accepted writes synchronize the file and its containing
+directory after atomic replacement on the supported Linux/macOS platforms.
+Campaign config saving otherwise retains upstream
 behavior; the two separate files are not a cross-file crash transaction.
 
 ## Verification

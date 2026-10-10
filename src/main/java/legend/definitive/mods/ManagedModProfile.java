@@ -120,6 +120,12 @@ public final class ManagedModProfile {
       }
       checked(configuration.preferences);
       Files.move(temporary, configuration.preferences, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+      // Persist the new directory entry as well as the file's contents.
+      // Otherwise an accepted opt-out can disappear after abrupt power loss.
+      checked(configuration.preferences);
+      try(final FileChannel directory = FileChannel.open(configuration.preferences.getParent(), StandardOpenOption.READ, LinkOption.NOFOLLOW_LINKS)) {
+        directory.force(true);
+      }
     } finally { Files.deleteIfExists(temporary); }
   }
 
