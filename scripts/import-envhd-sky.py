@@ -225,6 +225,7 @@ def record(root, files, candidate, source_hash, version, prompt, verdict, notes,
                     current.pop(entry['sourceMcqSha256'])
                     entry.pop('runtimeOutput', None)
                     entry.pop('runtimeReviewStatus', None)
+                    entry['status'] = verdict
         entry['output'] = str(candidate_path.relative_to(root))
         entry['review'] = dict(review, generationMasterSourceSha256=source_hash)
     references = {resource_path(runtime, key, data) for key, data in current.items()}

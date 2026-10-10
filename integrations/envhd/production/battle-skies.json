@@ -2371,12 +2371,25 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "layout-reviewed-wrap-pending",
+      "review": {
+        "intent": "Divine Tree encounters across nine source-backed field cuts. Golden organic interior, tall slanting woody strands, central tangled root band, lower hanging roots and tan fog retained. No architecture, outdoor blue sky, ground or invented characters.",
+        "style": "Convincing fine bark grain and fibrous root surfaces follow Skurfa material detail. Original yellow-beige haze retained; Skurfa scene objects and warm outdoor composition not transplanted.",
+        "layout": "Exact1024x1536 fourfold frame. Pale opening at top center, flanking strands, central root band and lower suspended openings remain in their source regions. Source and output are fully opaque with no black texels.",
+        "wrap": "Source boundary difference20.31; output23.78. Private right-left contact diagnostic reveals root-band height discontinuity and cut woody strand endings. Keep public draft unselected pending narrow join repair and native scene verification.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 20.30555534362793,
+        "outputEdgeMeanDifference": 23.78125,
+        "generationMasterSourceSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5"
+      },
       "priority": 1,
       "decodedRgbaSha256": "2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae",
       "generationMasterSourceSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5",
-      "worldMapUsage": []
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5/image-v1.png"
     },
     {
       "id": "battle-sky-25c0a2ecee4a279c8dd353f0d363d82182e4de79be50d762d3a52f7a430a2b85",
@@ -3125,12 +3138,25 @@
         1024,
         1536
       ],
-      "status": "pending-generation",
-      "review": null,
+      "status": "repeat-boundary-revision-needed",
+      "review": {
+        "intent": "Moon stages83/84 shared organic haze and tendrils retained. Original pale yellow-green upper gradient, lower olive darkness and curved strand subject remain plausible; no landscape horizon or architecture introduced.",
+        "style": "Polished organic surfaces retain source palette and use Skurfa detail direction. Revision increases fine surface contrast slightly; no Skurfa scene objects transplanted.",
+        "layout": "Exact1024x1536 fourfold rectangle. Broad source layout unchanged. Targeted64-pixel-edge-only instruction was not followed exactly: central896-pixel area differs fromv1 by RGBMAE6.04; no new composition but fine central detail changed.",
+        "wrap": "Built-in focused correction reduced overall edge difference from7.55 to7.21, but privatev1/v2 contact diagnostic still shows abrupt upper-middle curved tendril contact and localized illumination break. Structural repeat defect remains; keep this revision unselected and public. No additional generative retry scheduled; exact narrow border repair awaits authorized alternate workflow. Native scene acceptance pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.5208332538604736,
+        "outputEdgeMeanDifference": 7.211154460906982,
+        "generationMasterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2"
+      },
       "priority": 1,
       "decodedRgbaSha256": "580d5d2fc67a1bd345597a5823f1575960012a24fdd14234f7a42b8594eee083",
       "generationMasterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2",
-      "worldMapUsage": []
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2/image-v2.png"
     },
     {
       "id": "battle-sky-685844c0ea122cbf02acceee25aa5c1df7fa8b670ecc869d9c739b7daaa323ac",
@@ -3156,14 +3182,25 @@
         1024,
         1536
       ],
-      "status": "reuse-generation-master",
+      "status": "repeat-boundary-revision-needed",
       "review": {
-        "intent": "Pixel-identical decoded artwork; generate the master once and reuse it. Original stage header placement and clear colors remain separate."
+        "intent": "Moon stages83/84 shared organic haze and tendrils retained. Original pale yellow-green upper gradient, lower olive darkness and curved strand subject remain plausible; no landscape horizon or architecture introduced.",
+        "style": "Polished organic surfaces retain source palette and use Skurfa detail direction. Revision increases fine surface contrast slightly; no Skurfa scene objects transplanted.",
+        "layout": "Exact1024x1536 fourfold rectangle. Broad source layout unchanged. Targeted64-pixel-edge-only instruction was not followed exactly: central896-pixel area differs fromv1 by RGBMAE6.04; no new composition but fine central detail changed.",
+        "wrap": "Built-in focused correction reduced overall edge difference from7.55 to7.21, but privatev1/v2 contact diagnostic still shows abrupt upper-middle curved tendril contact and localized illumination break. Structural repeat defect remains; keep this revision unselected and public. No additional generative retry scheduled; exact narrow border repair awaits authorized alternate workflow. Native scene acceptance pending.",
+        "dimensions": [
+          1024,
+          1536
+        ],
+        "sourceEdgeMeanDifference": 2.5208332538604736,
+        "outputEdgeMeanDifference": 7.211154460906982,
+        "generationMasterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2"
       },
       "priority": 1,
       "decodedRgbaSha256": "580d5d2fc67a1bd345597a5823f1575960012a24fdd14234f7a42b8594eee083",
       "generationMasterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2",
-      "worldMapUsage": []
+      "worldMapUsage": [],
+      "output": "integrations/envhd/production/candidates/2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2/image-v2.png"
     },
     {
       "id": "battle-sky-386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073",

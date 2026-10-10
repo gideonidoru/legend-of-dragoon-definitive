@@ -1,6 +1,6 @@
 # Environment batch production
 
-The existing generative panorama pass has 36 revisions across 26 of 70 restoration
+The existing generative panorama pass has 39 revisions across 28 of 70 restoration
 masters, with seven selected after image review. Layout drift and repeating joins
 prevent most drafts from entering the installed mod. This batch workflow is
 prepared as an alternate production method; actual artwork pixel editing awaits
@@ -10,8 +10,8 @@ the owner's explicit choice. No new artwork is claimed by preparing the pipeline
 each original MCQ variant, checks the shared artwork owner and source dimensions,
 and validates the recorded candidate bytes before scheduling a border repair.
 Pixel-identical stage/header variants remain one job. Verified uniform opaque
-black is excluded. The current plan retains seven selections, repairs 16 drafts
-whose source layout passed review, and upscales 47 originals (44 ungenerated and
+black is excluded. The current plan retains seven selections, repairs 18 drafts
+whose source layout passed review, and upscales 45 originals (42 ungenerated and
 three whose generated layout failed).
 
 Execution is an explicit `--execute` operation using the already pinned local
