@@ -22,7 +22,7 @@ Built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-C
 
 ### Characters with smoother shapes and richer detail
 
-ModelsHD refines angular surfaces on supported party, enemy, NPC and scenery models while retaining their original animations. CharHD restores painted detail on armor, clothing and weapons. Together, they target more convincing characters without losing the silhouettes and costume designs that define them.
+ModelsHD refines angular surfaces on supported party, enemy, NPC and scenery models while retaining their original animations. CharHD includes Dart’s reconstructed face and sculpted hair, with restored painted detail on armor, clothing and weapons. Together, they target more convincing characters without losing the silhouettes and costume designs that define them.
 
 ### Painted environments, restored for a modern screen
 

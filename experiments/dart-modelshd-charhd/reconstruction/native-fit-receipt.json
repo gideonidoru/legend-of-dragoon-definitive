@@ -1,0 +1,36 @@
+{
+  "status": "experimental-not-approved",
+  "scope": "Dart head reconstruction on previous custom body; not a complete bespoke AA body",
+  "meshSha256": "9a721e62accf746eefa3452cf2f11e66f173ae04f6bf4c4575b7468d4c4ba18d",
+  "textureSha256": "8e75f9c5297bca7981b9be3a77c3210636fa8a80f2304768c109954536fb4f38",
+  "fit": {
+    "scale": 17,
+    "yawDegrees": 20,
+    "translation": [
+      0,
+      1.3,
+      -1.3
+    ],
+    "neckCutY": 7.5
+  },
+  "forms": [
+    {
+      "form": "field",
+      "headTriangles": 5748,
+      "headVertices": 5211,
+      "sourcePartGeometrySha256": "b84e13a11adbd3419e1e4c5b810c8bd797f9dc68af5d41fe3c4736ce5c4f584b",
+      "candidateGeometrySha256": "8814dc36066fced448de5dd2975efb67fa2de06daf88a63eb00cfac9ed648818",
+      "headPackSha256": "247b3347ace8f9cd856563b2e2429af100bb0e25ef9f0c4e485db56f86d6b8b0",
+      "candidateTriangles": 7202
+    },
+    {
+      "form": "combat",
+      "headTriangles": 5748,
+      "headVertices": 5211,
+      "sourcePartGeometrySha256": "0bfd5ffdc6da5b99d770e75f3cab89c86718a541f996250eb362cfb07642f6bb",
+      "candidateGeometrySha256": "c7dcb52fe0bc114dceba14f7737a3acd29e478834b0d25538af94af23346253c",
+      "headPackSha256": "3a9dd61c03027c847c87a26e95cee95c5a20a5b4c3134c74ff7f891a86fe47e3",
+      "candidateTriangles": 8408
+    }
+  ]
+}

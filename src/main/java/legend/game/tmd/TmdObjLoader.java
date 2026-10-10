@@ -43,6 +43,8 @@ public final class TmdObjLoader {
   public static final int TRANSLUCENT_FLAG = 0x8;
   /** Used for culling quads that are too close to the screen */
   public static final int QUAD_FLAG = 0x10;
+  /** Supplemental CharHD face color, separate from indexed/RGBA body textures. */
+  public static final int FACE_DETAIL_FLAG = 0x20000;
 
   public static Obj[] fromTmd(final String name, final Tmd tmd) {
     return fromTmd(name, tmd, 0);
@@ -92,6 +94,24 @@ public final class TmdObjLoader {
         LogManager.getLogger().warn("Optional geometry kept original {}: {}", name, failure.getMessage());
       }
     }
+    TmdObjTable1c appearance = geometry;
+    if(objTable.getClass() == TmdObjTable1c.class && !objTable.isAuthoredGeometry() && !objTable.requiresNativeVertexIndices()) {
+      try {
+        appearance = EVENTS.postEvent(new legend.game.modding.events.tmd.TmdAppearanceEvent(objTable, geometry, specialFlags)).appearance;
+        if(appearance == null) appearance = geometry;
+      } catch(final RuntimeException failure) {
+        LogManager.getLogger().warn("Optional appearance retained geometry {}: {}", name, failure.getMessage());
+      }
+    }
+    if(appearance != geometry) {
+      try {
+        final MeshObj result = fromObjTableRaw(name, appearance, specialFlags, textureWidth, textureHeight, materials);
+        objTable.refinedObj = result;
+        return result;
+      } catch(final RuntimeException failure) {
+        LogManager.getLogger().warn("Optional appearance allocation retained geometry {}: {}", name, failure.getMessage());
+      }
+    }
     try {
       final MeshObj result = fromObjTableRaw(name, geometry, specialFlags, textureWidth, textureHeight, materials);
       if(geometry != objTable) objTable.refinedObj = result;
@@ -108,6 +128,24 @@ public final class TmdObjLoader {
                                           final legend.definitive.materials.MaterialUvMap mapping) {
     final TmdObjTable1c geometry = EVENTS.postEvent(new TmdGeometryEvent(source, 0, 0, 0)).geometry;
     if(geometry == null) throw new IllegalArgumentException("Missing optional geometry");
+    TmdObjTable1c appearance = geometry;
+    if(source.getClass() == TmdObjTable1c.class && !source.isAuthoredGeometry() && !source.requiresNativeVertexIndices()) {
+      try {
+        final var candidate = EVENTS.postEvent(new legend.game.modding.events.tmd.TmdAppearanceEvent(source, geometry, 0)).appearance;
+        if(candidate != null) appearance = candidate;
+      } catch(final RuntimeException failure) {
+        LogManager.getLogger().warn("Optional mapped appearance retained geometry {}: {}", name, failure.getMessage());
+      }
+    }
+    if(appearance != geometry) {
+      try {
+        final MeshObj result = fromObjTableRaw(name, appearance, 0, 0, 0, mapping);
+        result.surfaceMaterial = appearance.surfaceMaterial();
+        return result;
+      } catch(final RuntimeException failure) {
+        LogManager.getLogger().warn("Optional mapped appearance allocation retained geometry {}: {}", name, failure.getMessage());
+      }
+    }
     final MeshObj result = fromObjTableRaw(name, geometry, 0, 0, 0, mapping);
     result.surfaceMaterial = geometry.surfaceMaterial();
     return result;
@@ -252,7 +290,9 @@ public final class TmdObjLoader {
           mesh.indices[mesh.indexOffset++] = adjacent2;
         }
 
-        for(final Vertex vertex : poly.vertices) {
+        final boolean detail = objTable.faceDetail() != null && objTable.faceDetail().applies(surfaceFace-1);
+        for(int corner = 0; corner < poly.vertices.length; corner++) {
+          final Vertex vertex = poly.vertices[corner];
           final Vector3f pos = objTable.vert_top_00[vertex.vertexIndex];
           mesh.vertices[mesh.vertexOffset++] = pos.x;
           mesh.vertices[mesh.vertexOffset++] = pos.y;
@@ -275,7 +315,12 @@ public final class TmdObjLoader {
             mesh.vertexOffset += NORM_SIZE;
           }
 
-          if(textured) {
+          if(detail) {
+            mesh.vertices[mesh.vertexOffset++] = objTable.faceDetail().u(surfaceFace-1, corner);
+            mesh.vertices[mesh.vertexOffset++] = objTable.faceDetail().v(surfaceFace-1, corner);
+            mesh.vertices[mesh.vertexOffset++] = 0x180;
+            mesh.vertices[mesh.vertexOffset++] = 0;
+          } else if(textured) {
             final Bpp bpp = Bpp.of(poly.tpage >>> 7 & 0b11);
 
             // 24bpp textures use normalized coordinates
@@ -303,7 +348,12 @@ public final class TmdObjLoader {
             mesh.vertexOffset += UV_SIZE + TPAGE_SIZE + CLUT_SIZE;
           }
 
-          if(coloured) {
+          if(detail) {
+            mesh.vertices[mesh.vertexOffset++] = 1.0f;
+            mesh.vertices[mesh.vertexOffset++] = 1.0f;
+            mesh.vertices[mesh.vertexOffset++] = 1.0f;
+            mesh.vertices[mesh.vertexOffset++] = 1.0f;
+          } else if(coloured) {
             MathHelper.colourToFloat(vertex.colour, mesh.vertices, mesh.vertexOffset);
 
             // Textures recolours use a range of 0..2 instead of 0..1, so 0xff is actually 2x bright
@@ -328,9 +378,10 @@ public final class TmdObjLoader {
             flags |= LIT_FLAG;
           }
 
-          if(textured) {
+          if(textured || detail) {
             flags |= TEXTURED_FLAG;
           }
+          if(detail) flags |= FACE_DETAIL_FLAG;
 
           if(coloured) {
             flags |= COLOURED_FLAG;
@@ -371,7 +422,22 @@ public final class TmdObjLoader {
 
       final Mesh[] reversed = new Mesh[meshes.length];
       Arrays.setAll(reversed, i -> meshes[meshes.length - i - 1]);
-      return new TmdMeshObj(name, reversed, backfaceCulling);
+      legend.core.renderer.Texture detailTexture = null;
+      try {
+        if(objTable.faceDetail() != null) {
+          final var detail = objTable.faceDetail();
+          detailTexture = legend.core.renderer.Texture.create(name + " face detail", builder -> {
+            builder.data(detail.pixels(), detail.width, detail.height);
+            builder.minFilter(true); builder.magFilter(true); builder.wrapS(false); builder.wrapT(false);
+          });
+        }
+        final var result = new TmdMeshObj(name, reversed, backfaceCulling);
+        if(detailTexture != null) result.faceDetailTexture(detailTexture);
+        return result;
+      } catch(final RuntimeException | Error failure) {
+        if(detailTexture != null) detailTexture.delete();
+        throw failure;
+      }
     } catch(final RuntimeException | Error failure) {
       for(final Mesh mesh : meshes) {
         if(mesh != null) {
@@ -426,6 +492,7 @@ public final class TmdObjLoader {
     final int[] translucentVertexSizes = new int[Translucency.values().length];
     final int[] translucentIndexSizes = new int[Translucency.values().length];
     boolean anyTextured = false;
+    if(objTable.faceDetail() != null) anyTextured = true;
 
     for(int primitiveIndex = 0; primitiveIndex < objTable.primitives_10.length; primitiveIndex++) {
       final TmdObjTable1c.Primitive primitive = objTable.primitives_10[primitiveIndex];

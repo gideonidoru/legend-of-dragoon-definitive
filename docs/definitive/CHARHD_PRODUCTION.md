@@ -1,3 +1,5 @@
+> **October 10, 2026 update:** CharHD 0.3.0 now includes the owner-approved Dart head/hair reconstruction and matching 2K material, plus its preferred custom body shapes. Geometry/material activation is atomic and composes with the current body atlas. This passes 24 bundled CPU combinations and a six-check native Mac battle trial without experimental JARs or external packs. The full body and physical Deck remain unvalidated. See [party scope](PARTY_RECONSTRUCTION.md) and [promotion evidence](../../integrations/charhd/production/party-reconstruction/DART_PROMOTION.md). The 0.2 baseline census and historical pilot evidence below remain valid as historical records.
+
 # CharHD production, 10 October 2026
 
 Target: a beautiful 2026 AA presentation that preserves The Legend of Dragoon's recognizable character designs, color language and painted retro heritage. Resolution alone is not acceptance. Geometry remains the ModelsHD workstream; portraits remain UIHD; spell effects remain FxHD.

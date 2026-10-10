@@ -60,6 +60,7 @@ uniform vec2 uvOffset;
 uniform float discardTranslucency;
 uniform int tmdTranslucency;
 uniform sampler2D tex24;
+uniform sampler2D faceDetailTex;
 uniform usampler2D tex15;
 
 layout(location = 0) out vec4 outColour;
@@ -104,7 +105,7 @@ mat3 detailFrame(vec3 n, vec3 dpX, vec3 dpY, vec2 uvX, vec2 uvY) {
 void prepareMaterial() {
   materialNormal = lightingNormal;
   materialWorldNormal = worldNormal;
-  if((normalMapEnabled || roughnessMapEnabled) && (vertFlags & 0x1) != 0 && (vertFlags & 0x8) == 0 && !uiLayer) {
+  if((vertFlags & 0x20000) == 0 && (normalMapEnabled || roughnessMapEnabled) && (vertFlags & 0x1) != 0 && (vertFlags & 0x8) == 0 && !uiLayer) {
     // Derivatives precede transparency/scissor discards; exact alpha/STP lookup stays separate.
     detailUv = vertUv + uvOffset;
     if(defaultSurfaceMaps) detailUv *= vertBpp == 3 ? 8.0 : 1.0/32.0;
@@ -256,7 +257,10 @@ void main() {
   // Textured
   if(textured) {
     vec4 texColour;
-    if(vertBpp == 0 || vertBpp == 1) {
+    if((vertFlags & 0x20000) != 0) {
+      texColour = texture(faceDetailTex, vertUv);
+      texColour.a = 0.0; // Opaque authored face paint, independent of PSX STP.
+    } else if(vertBpp == 0 || vertBpp == 1) {
       // Calculate CLUT index
       ivec2 uv = ivec2(vertTpage.x + (vertUv.x + uvOffset.x) * widthMultiplier, vertTpage.y + vertUv.y + uvOffset.y);
       ivec4 indexVec = ivec4(texelFetch(tex15, uv, 0));
@@ -292,7 +296,7 @@ void main() {
     }
 
     // Discard if (0, 0, 0)
-    if(texColour.a == 0 && texColour.r == 0 && texColour.g == 0 && texColour.b == 0) {
+    if((vertFlags & 0x20000) == 0 && texColour.a == 0 && texColour.r == 0 && texColour.g == 0 && texColour.b == 0) {
       discard;
     }
 
