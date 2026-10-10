@@ -81,6 +81,7 @@ public class CreditsScreen extends MenuScreen {
   private float backgroundOpacity;
   private boolean scrolling;
 
+  private byte[] backgroundSource;
   private VramTexture backgroundTexture;
   private VramTexture[] backgroundPalettes;
   private Texture backgroundTex;
@@ -272,6 +273,9 @@ public class CreditsScreen extends MenuScreen {
   }
 
   private void menuTexturesMrgLoaded(final List<FileData> files) {
+    this.backgroundSource = new byte[files.get(0).size() + files.get(1).size()];
+    System.arraycopy(files.get(0).getBytes(), 0, this.backgroundSource, 0, files.get(0).size());
+    System.arraycopy(files.get(1).getBytes(), 0, this.backgroundSource, files.get(0).size(), files.get(1).size());
     this.backgroundTexture = stitchVertical(
       textureFromTim(new Tim(files.get(0))),
       textureFromTim(new Tim(files.get(1)))
@@ -283,7 +287,7 @@ public class CreditsScreen extends MenuScreen {
   }
 
   private void initBackground() {
-    this.backgroundTex = ((VramTextureSingle)this.backgroundTexture).createOpenglTexture("Credits background", (VramTextureSingle)this.backgroundPalettes[0]);
+    this.backgroundTex = legend.game.textures.UiRasters.upload("title_background", this.backgroundSource, (VramTextureSingle)this.backgroundTexture, (VramTextureSingle)this.backgroundPalettes[0]);
     this.fadeTex = Texture.png("Credits fade", Path.of("gfx/ui/credits_fade.png"));
 
     this.backgroundObj = new QuadBuilder("Title Screen Background")

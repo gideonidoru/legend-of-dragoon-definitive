@@ -107,6 +107,8 @@ public abstract class PlatformManager {
     this.input.setExpectedFps(hz);
   }
 
+  public int getInputTickRate() { return this.input.getExpectedFps(); }
+
   public void resetActionStates() {
 
   }
@@ -115,6 +117,9 @@ public abstract class PlatformManager {
   public void clearPressed() {
 
   }
+
+  /** Consume edges once per gameplay tick; display-only callbacks do not consume them. */
+  public void consumeTickInput() { this.clearPressed(); }
 
   protected abstract void tickInput();
   public abstract void rumble(final float intensity, final int ms);

@@ -1,0 +1,297 @@
+{
+  "pipeline": "definitive-private-material-pack-1",
+  "modelSha256": "d0d6548673cf0d393dbdb7778529e83903cf722f338147a7bf47a2b7f7419b46",
+  "timSha256": "88659fe53894a573e94fb1c55fd26198213a4db80c9e4f577b4e6677fac66003",
+  "sourceSize": [
+    256,
+    256
+  ],
+  "scale": 4,
+  "paddingSourceTexels": 8,
+  "atlasSize": [
+    2048,
+    1408
+  ],
+  "materials": [
+    {
+      "palette": 0,
+      "sourceCrop": [
+        120,
+        -8,
+        192,
+        56
+      ],
+      "atlasRect": [
+        1312,
+        800,
+        288,
+        256
+      ]
+    },
+    {
+      "palette": 1,
+      "sourceCrop": [
+        120,
+        168,
+        160,
+        192
+      ],
+      "atlasRect": [
+        1408,
+        1184,
+        160,
+        96
+      ]
+    },
+    {
+      "palette": 4,
+      "sourceCrop": [
+        120,
+        40,
+        200,
+        104
+      ],
+      "atlasRect": [
+        672,
+        800,
+        320,
+        256
+      ]
+    },
+    {
+      "palette": 5,
+      "sourceCrop": [
+        232,
+        32,
+        256,
+        52
+      ],
+      "atlasRect": [
+        1568,
+        1184,
+        96,
+        80
+      ]
+    },
+    {
+      "palette": 8,
+      "sourceCrop": [
+        120,
+        88,
+        200,
+        152
+      ],
+      "atlasRect": [
+        992,
+        800,
+        320,
+        256
+      ]
+    },
+    {
+      "palette": 12,
+      "sourceCrop": [
+        168,
+        -8,
+        240,
+        192
+      ],
+      "atlasRect": [
+        0,
+        0,
+        288,
+        800
+      ]
+    },
+    {
+      "palette": 16,
+      "sourceCrop": [
+        -8,
+        32,
+        248,
+        208
+      ],
+      "atlasRect": [
+        288,
+        0,
+        1024,
+        704
+      ]
+    },
+    {
+      "palette": 20,
+      "sourceCrop": [
+        216,
+        -8,
+        248,
+        48
+      ],
+      "atlasRect": [
+        0,
+        1184,
+        128,
+        224
+      ]
+    },
+    {
+      "palette": 24,
+      "sourceCrop": [
+        184,
+        72,
+        256,
+        168
+      ],
+      "atlasRect": [
+        0,
+        800,
+        288,
+        384
+      ]
+    },
+    {
+      "palette": 28,
+      "sourceCrop": [
+        216,
+        112,
+        256,
+        168
+      ],
+      "atlasRect": [
+        1888,
+        800,
+        160,
+        224
+      ]
+    },
+    {
+      "palette": 32,
+      "sourceCrop": [
+        -8,
+        120,
+        64,
+        176
+      ],
+      "atlasRect": [
+        1600,
+        800,
+        288,
+        224
+      ]
+    },
+    {
+      "palette": 36,
+      "sourceCrop": [
+        232,
+        -8,
+        256,
+        40
+      ],
+      "atlasRect": [
+        800,
+        1184,
+        96,
+        192
+      ]
+    },
+    {
+      "palette": 40,
+      "sourceCrop": [
+        56,
+        120,
+        96,
+        168
+      ],
+      "atlasRect": [
+        640,
+        1184,
+        160,
+        192
+      ]
+    },
+    {
+      "palette": 44,
+      "sourceCrop": [
+        88,
+        24,
+        256,
+        168
+      ],
+      "atlasRect": [
+        1312,
+        0,
+        672,
+        576
+      ]
+    },
+    {
+      "palette": 48,
+      "sourceCrop": [
+        120,
+        136,
+        216,
+        208
+      ],
+      "atlasRect": [
+        288,
+        800,
+        384,
+        288
+      ]
+    },
+    {
+      "palette": 52,
+      "sourceCrop": [
+        56,
+        152,
+        184,
+        204
+      ],
+      "atlasRect": [
+        128,
+        1184,
+        512,
+        208
+      ]
+    },
+    {
+      "palette": 56,
+      "sourceCrop": [
+        88,
+        152,
+        136,
+        192
+      ],
+      "atlasRect": [
+        1216,
+        1184,
+        192,
+        160
+      ]
+    },
+    {
+      "palette": 60,
+      "sourceCrop": [
+        88,
+        176,
+        168,
+        216
+      ],
+      "atlasRect": [
+        896,
+        1184,
+        320,
+        160
+      ]
+    }
+  ],
+  "algorithm": "neural",
+  "strength": 0.75,
+  "preservedPalettes": [],
+  "weightsSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+  "paramsSha256": "2b8fb6e0ae4d2d85704ca08c119a2f5ea40add4f2ecd512eb7f4cd44b6127ed4",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "atlasEngineSha256": "2f3cdb634ce2ef04332351a717c4dba0055902a81cdfa85da44109fb24588238",
+  "scope": "CharHD 4x restoration development candidate; not final AA art or native gameplay acceptance",
+  "productionMethod": "palette-isolated-real-esrgan-illustration-75-percent",
+  "reviewStatus": "pending-pose-review"
+}

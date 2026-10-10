@@ -194,6 +194,13 @@ public class ChapterTitleCard {
       .build();
   }
 
+  private void uploadFrame(final int frame) {
+    final Tim tim = new Tim(this.chapterTitleCardMrg_800c6710.get(frame));
+    tim.uploadToGpu();
+    legend.game.textures.NativeUiTextureEvent.uploaded("chapter_" + (this.chapterTitleNum_800c6738 - 1) + "_" + frame,
+      frame < 8 ? "chapter_name" : "chapter_number", tim);
+  }
+
   @Method(0x800e2648L)
   public void handleAndRenderChapterTitle() {
     if(this.chapterTitleNum_800c6738 == 0) {
@@ -225,8 +232,8 @@ public class ChapterTitleCard {
         //LAB_800e284c
         if(currentTick == 0) {
           //LAB_800e2860
-          new Tim(this.chapterTitleCardMrg_800c6710.get(5)).uploadToGpu();
-          new Tim(this.chapterTitleCardMrg_800c6710.get(13)).uploadToGpu();
+          this.uploadFrame(5);
+          this.uploadFrame(13);
 
           //LAB_800e2980
           this.chapterTitleBrightness_800c6728 = 0.0f;
@@ -267,32 +274,32 @@ public class ChapterTitleCard {
             if(currentTick >= 201 * (3 - vsyncMode_8007a3b8)) {
               //LAB_800e311c
               if(currentTick == 212 * (3 - vsyncMode_8007a3b8)) {
-                new Tim(this.chapterTitleCardMrg_800c6710.get(1)).uploadToGpu();
-                new Tim(this.chapterTitleCardMrg_800c6710.get(9)).uploadToGpu();
+                this.uploadFrame(1);
+                this.uploadFrame(9);
 
                 //LAB_800e3248
                 //LAB_800e3254
               } else if(currentTick == 216 * (3 - vsyncMode_8007a3b8)) {
-                new Tim(this.chapterTitleCardMrg_800c6710.get(2)).uploadToGpu();
-                new Tim(this.chapterTitleCardMrg_800c6710.get(10)).uploadToGpu();
+                this.uploadFrame(2);
+                this.uploadFrame(10);
 
                 //LAB_800e3384
                 //LAB_800e3390
               } else if(currentTick == 220 * (3 - vsyncMode_8007a3b8)) {
-                new Tim(this.chapterTitleCardMrg_800c6710.get(3)).uploadToGpu();
-                new Tim(this.chapterTitleCardMrg_800c6710.get(11)).uploadToGpu();
+                this.uploadFrame(3);
+                this.uploadFrame(11);
 
                 //LAB_800e34c0
                 //LAB_800e34cc
               } else if(currentTick == 224 * (3 - vsyncMode_8007a3b8)) {
-                new Tim(this.chapterTitleCardMrg_800c6710.get(4)).uploadToGpu();
-                new Tim(this.chapterTitleCardMrg_800c6710.get(12)).uploadToGpu();
+                this.uploadFrame(4);
+                this.uploadFrame(12);
 
                 //LAB_800e35fc
                 //LAB_800e3608
               } else if(currentTick == 228 * (3 - vsyncMode_8007a3b8)) {
-                new Tim(this.chapterTitleCardMrg_800c6710.get(5)).uploadToGpu();
-                new Tim(this.chapterTitleCardMrg_800c6710.get(13)).uploadToGpu();
+                this.uploadFrame(5);
+                this.uploadFrame(13);
               }
 
               //LAB_800e3744
@@ -306,32 +313,32 @@ public class ChapterTitleCard {
         } else if(currentTick > 0) {
           //LAB_800e29d4
           if(currentTick == 4 * (3 - vsyncMode_8007a3b8)) {
-            new Tim(this.chapterTitleCardMrg_800c6710.get(4)).uploadToGpu();
-            new Tim(this.chapterTitleCardMrg_800c6710.get(12)).uploadToGpu();
+            this.uploadFrame(4);
+            this.uploadFrame(12);
 
             //LAB_800e2afc
             //LAB_800e2b08
           } else if(currentTick == 8 * (3 - vsyncMode_8007a3b8)) {
-            new Tim(this.chapterTitleCardMrg_800c6710.get(3)).uploadToGpu();
-            new Tim(this.chapterTitleCardMrg_800c6710.get(11)).uploadToGpu();
+            this.uploadFrame(3);
+            this.uploadFrame(11);
 
             //LAB_800e2c38
             //LAB_800e2c44
           } else if(currentTick == 12 * (3 - vsyncMode_8007a3b8)) {
-            new Tim(this.chapterTitleCardMrg_800c6710.get(2)).uploadToGpu();
-            new Tim(this.chapterTitleCardMrg_800c6710.get(10)).uploadToGpu();
+            this.uploadFrame(2);
+            this.uploadFrame(10);
 
             //LAB_800e2d74
             //LAB_800e2d80
           } else if(currentTick == 16 * (3 - vsyncMode_8007a3b8)) {
-            new Tim(this.chapterTitleCardMrg_800c6710.get(1)).uploadToGpu();
-            new Tim(this.chapterTitleCardMrg_800c6710.get(9)).uploadToGpu();
+            this.uploadFrame(1);
+            this.uploadFrame(9);
 
             //LAB_800e2eb0
             //LAB_800e2ebc
           } else if(currentTick == 20 * (3 - vsyncMode_8007a3b8)) {
-            new Tim(this.chapterTitleCardMrg_800c6710.get(0)).uploadToGpu();
-            new Tim(this.chapterTitleCardMrg_800c6710.get(8)).uploadToGpu();
+            this.uploadFrame(0);
+            this.uploadFrame(8);
 
             //LAB_800e2fec
           }

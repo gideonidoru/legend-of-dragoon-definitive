@@ -639,24 +639,7 @@ public class SdlPlatformManager extends PlatformManager {
           }
         }
       } else {
-        this.pressed.clear();
-        this.ignoredKeys.clear();
-        this.axesHeld.clear();
-        this.buttonsHeld = 0;
-
-        for(final var entry : this.actionStates.entrySet()) {
-          final InputAction action = entry.getKey();
-          final InputActionState state = entry.getValue();
-
-          if(state.isHeld()) {
-            LOGGER.info(ACTIONS_MARKER, "Triggering release input action %s", action);
-            this.lastActiveWindow.events().onInputActionReleased(action);
-            state.release();
-            EVENTS.postEvent(new InputReleasedEvent(action));
-          }
-        }
-
-        this.axisActionStates.clear();
+        this.cancelInactiveWindowInput(this.lastActiveWindow);
       }
     }
 
@@ -679,6 +662,25 @@ public class SdlPlatformManager extends PlatformManager {
     }
   }
 
+  /** Cancel all focus-owned state before either synchronous release notification. */
+  private void cancelInactiveWindowInput(final Window window) {
+    this.pressed.clear();
+    this.ignoredKeys.clear();
+    this.axesHeld.clear();
+    this.buttonsHeld = 0;
+    this.axisActionStates.clear();
+    final List<InputAction> released = new ArrayList<>();
+    for(final var entry : this.actionStates.entrySet()) {
+      if(entry.getValue().isHeld()) released.add(entry.getKey());
+      entry.getValue().cancel();
+    }
+    for(final InputAction action : released) {
+      LOGGER.info(ACTIONS_MARKER, "Triggering release input action %s", action);
+      window.events().onInputActionReleased(action);
+      EVENTS.postEvent(new InputReleasedEvent(action));
+    }
+  }
+
   public void triggerBindingPress(final InputBinding<?> binding) {
     this.pressed.add(binding.action);
     this.lastActiveWindow.events().onInputActionPressed(binding.action, false);
@@ -696,6 +698,7 @@ public class SdlPlatformManager extends PlatformManager {
   public void clearPressed() {
     synchronized(INPUT_LOCK) {
       this.pressed.clear();
+      this.actionStates.values().forEach(InputActionState::consumeTick);
     }
   }
 

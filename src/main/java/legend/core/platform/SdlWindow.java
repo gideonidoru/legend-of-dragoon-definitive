@@ -451,6 +451,6 @@ public class SdlWindow extends Window {
   private void tick() {
     SDL_GL_SwapWindow(this.window);
     this.events().onDraw();
-    this.manager.clearPressed();
+    if(!this.simulationConsumesInput()) this.manager.clearPressed();
   }
 }

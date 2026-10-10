@@ -1,0 +1,50 @@
+{
+  "status": "experimental-not-approved",
+  "testedBase": "77e0694ce84fc9e71c4a45def2a993ec5f32699f",
+  "integratedMain": "63a08e9b079fe35dc3ff8c07d4704927a90d4283",
+  "sourceFiles": [
+    {
+      "path": "src/main/java/legend/definitive/materials/MaterialAtlas.java",
+      "sha256": "5459d79e9275bee93cbd76923a6b351dae1e280fd0f91cc92a4009af9e1df125"
+    },
+    {
+      "path": "src/main/java/legend/game/tmd/TmdObjLoader.java",
+      "sha256": "e470c8364fc7736b2aa10df80a9bd2bc85e2ac13ba9058ebed06469fe990f2c7"
+    },
+    {
+      "path": "experiments/dart-modelshd-charhd/java/charhd/DartHeadReconstruction.java",
+      "sha256": "e1e74543339a1a28eab8069b3388bf51a584ab9b9bb8819714df5b53b2bfc763"
+    },
+    {
+      "path": "experiments/dart-modelshd-charhd/java/charhd/DartFacePaint.java",
+      "sha256": "91fffe9b064b8b1e029a5c6ecd91bab0a3fc6a49fef2b99a410d1cd6037ab0b8"
+    }
+  ],
+  "privateGameTrials": [
+    {
+      "name": "trial-13-after-charhd-poses.log",
+      "sha256": "dbb8c05be9ff1a8992a5c4c64094d2b06b3543f29eee5b9009535d4f60d08394",
+      "scope": "candidate: six Mac checks, rendered head width 2048 and active CharHD body"
+    },
+    {
+      "name": "trial-14-before-charhd-poses.log",
+      "sha256": "79221964e276b1fd0a08b1a9696b9b9c385b04f35486e31b11aca0e562ac5ecb",
+      "scope": "baseline: six Mac checks, rendered preferred face width 1254 and active CharHD body"
+    }
+  ],
+  "harnessFiles": [
+    {
+      "name": "java/legend/game/DartLiveTest.java",
+      "sha256": "e4339f45bcf13ee08674ac50cb734086af1b8946892e3379b7c3b9881e773645"
+    },
+    {
+      "name": "java/legend/game/DartLiveRunner.java",
+      "sha256": "9171860851a0b2e1362c41fb56a9c197de74e770ed5db693651342c800ae389b"
+    },
+    {
+      "name": "live.init.gradle",
+      "sha256": "5066ce85f2427b3edef8e2f63514f5374ad32f1d9b588c133f95f787b8bd759b"
+    }
+  ],
+  "harnessSourceRecordRole": "Final baseline capture harness; candidate uses the same framing logic with expected width 2048 and a distinct capture folder."
+}

@@ -164,6 +164,8 @@ class UiHardeningTest {
     assertNotNull(acknowledgment.get());
     SwingUtilities.invokeAndWait(() -> { final var all = new java.util.ArrayList<Component>(); InstallStoreTest.collect(view.get(), all); assertFalse(all.stream().anyMatch(component -> component instanceof JButton button && button.getText().equals("Play"))); acknowledgment.get().doClick(); });
     while(Boolean.parseBoolean(store.state().getProperty("recoveryPending", "false")) && System.nanoTime() < deadline) Thread.sleep(10);
+    // Persisting the flag precedes worker cleanup and the next identity inspection.
+    awaitIdle(view.get());
     assertFalse(Boolean.parseBoolean(store.state().getProperty("recoveryPending", "false"))); assertEquals(state.getProperty("recoveryPreservedLocations"), store.state().getProperty("recoveryPreservedLocations"));
     final String report = DiagnosticsReport.collect(store.root()); assertTrue(report.contains("Earlier verified files recovered")); assertTrue(report.contains(state.getProperty("recoveryPreservedLocations")));
   }
@@ -211,6 +213,17 @@ class UiHardeningTest {
     assertEquals("preserved-save", Files.readString(data.resolve("saves/owner"))); assertFalse(Boolean.parseBoolean(recovered.state().getProperty("uninstalled", "false")));
     assertTrue(DiagnosticsReport.collect(store.root()).contains("Installation state was damaged"));
   }
+  private static void awaitIdle(final ManagerView view) throws Exception {
+    final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
+    while(System.nanoTime() < deadline) {
+      final var busy = new AtomicBoolean();
+      SwingUtilities.invokeAndWait(() -> busy.set(view.isBusy()));
+      if(!busy.get()) return;
+      Thread.sleep(20);
+    }
+    fail("Recovery worker did not finish within the test budget");
+  }
+
   private static JButton awaitButton(final ManagerView view, final String label) throws Exception {
     final var found = new AtomicReference<JButton>(); final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
     while(found.get() == null && System.nanoTime() < deadline) {

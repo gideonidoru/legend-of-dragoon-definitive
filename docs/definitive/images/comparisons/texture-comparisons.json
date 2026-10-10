@@ -1,0 +1,65 @@
+{
+  "scope": "Public presentation figures assembled from checksum-verified matched offline pose renders. Render pixels unchanged; no original extraction, atlases, machine paths or private boards included. No geometry change between before/after; not gameplay or Steam Deck evidence.",
+  "figures": [
+    {
+      "image": "dart-textures-before-after.png",
+      "sha256": "4df708d5856879b0b3a0cbe4d987d57f8afd9b72307c96a7fce901ed20c2e0e5",
+      "customAtlas": "integrations/charhd/production/authored-revisions/c8b7ebc75104ccc9fe00f38f51a044b90bdf45fff33d41980f520a41754e30be/armor-v1/atlas-engine-stp.png",
+      "customAtlasSha256": "050e926f9870f62d8aca7a6a4562e4a0f06ef7962a156757961e1656e94170a5",
+      "modelSha256": "c8b7ebc75104ccc9fe00f38f51a044b90bdf45fff33d41980f520a41754e30be",
+      "timSha256": "1deccd3e23a34ce6f3ebfec1c75db9e110411c03f1b4b90dbe791c413645a928",
+      "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+      "keyframes": [
+        0,
+        5
+      ],
+      "cameraYawRadians": [
+        0,
+        1.0471975511965976
+      ],
+      "renderPipeline": "definitive-private-pose-inspection-1",
+      "rendererScriptSha256": "8afa69a7199b589287660cad9e034195d4491a65cef829ca8bf0cef8d0188448",
+      "poseImageSha256": [
+        {
+          "pose-0-candidate-0.png": "138ff5b64dc1873cdaa8b32421be0300612372ef38c9900a32c544d207011e7c",
+          "pose-0-candidate-2.png": "9fe2fda17ff6017027832370354c2f8acc28ad1b5c7d7cb7ac95d1300c2c86f1"
+        },
+        {
+          "pose-5-candidate-0.png": "6c44510e66e6774ae2fcfb94c2e398fa6675500771c45ea78127721ccffb65ca",
+          "pose-5-candidate-2.png": "ec1bdb09801ac6aabea6fc6d549dfbce256357fdf9a2daf90beb14902573212a"
+        }
+      ],
+      "status": "Selected development pilot"
+    },
+    {
+      "image": "meru-textures-before-after.png",
+      "sha256": "24f77e3c6bd0ef23971a79343720f6067029f3f3e94ca4b71d98f82e6f0f0a2d",
+      "customAtlas": "integrations/charhd/production/candidates/84341ec030afdb03d69cb08114acf34edcb3438f386cb580bf6503a331ab4691/atlas-engine-stp.png",
+      "customAtlasSha256": "7a4099b72661ecd68064b82c3fc67d3509ee339903798bca03ae2576d7db45b9",
+      "modelSha256": "84341ec030afdb03d69cb08114acf34edcb3438f386cb580bf6503a331ab4691",
+      "timSha256": "601a01d5149a7fa083b32d977b290a361344daa4c0393b757d06f52e9e7814cc",
+      "animationSha256": "d80895d1a81684693882a634bac6561abb9db55ba1b8e343e86bd15721982721",
+      "keyframes": [
+        0,
+        6
+      ],
+      "cameraYawRadians": [
+        0,
+        1.0471975511965976
+      ],
+      "renderPipeline": "definitive-private-pose-inspection-1",
+      "rendererScriptSha256": "8afa69a7199b589287660cad9e034195d4491a65cef829ca8bf0cef8d0188448",
+      "poseImageSha256": [
+        {
+          "pose-0-candidate-0.png": "c85e0d3e2f01b33fd7b4dc38daa4919b8657246756a00970a6e3628610de473d",
+          "pose-0-candidate-1.png": "b09116921cebbc575b6fbf6aeffecb69019a40a4882d1a41824ae90869514a72"
+        },
+        {
+          "pose-6-candidate-0.png": "741b53d5fad0bee79fe39827f9dd7978c55e51cf605ea1df31bfd98c457a586c",
+          "pose-6-candidate-1.png": "3bc9f36ec530679d7084b8aea650c03cec17b8f5bbee56c0e3352c3be92e38ef"
+        }
+      ],
+      "status": "Development candidate; not selected runtime artwork"
+    }
+  ]
+}

@@ -109,6 +109,10 @@ public final class GameEngine {
 
   private static TextureAtlas TEXTURE_ATLAS;
   private static Texture UI_TEXTURE;
+  private static int UI_WIDTH = 32, UI_HEIGHT = 16;
+  private static volatile long uiArtworkGeneration;
+  public static int getUiWidth() { return UI_WIDTH; }
+  public static int getUiHeight() { return UI_HEIGHT; }
 
   public static final Gte GTE;
   public static final Gpu GPU;
@@ -241,7 +245,7 @@ public final class GameEngine {
 
     // Find and load all mods so their global config can be shown in the title screen options menu
     MOD_ACCESS.findMods(Path.of("./mods"), Version.VERSION);
-    bootMods(MODS.getAllModIds());
+    bootVisibleMods(MODS.getAllModIds());
 
     ConfigStorage.loadConfig(CONFIG, ConfigStorageLocation.GLOBAL, Path.of("config.dcnf"));
 
@@ -261,6 +265,7 @@ public final class GameEngine {
     openalThread.start();
 
     time = System.nanoTime();
+    introPresentation.reset(time);
 
     try {
       RENDERER.run();
@@ -299,6 +304,15 @@ public final class GameEngine {
 
   public static void addLangOverrides(final Map<String, String> lang) {
     LANG_ACCESS.addLangOverrides(lang);
+  }
+
+  /** Player-visible boots apply the managed installation profile; conversion boots stay raw. */
+  public static Set<String> bootVisibleMods(final Set<String> requested) {
+    return bootMods(legend.definitive.mods.ManagedModProfile.effective(requested, MODS.getAllModIds()));
+  }
+
+  public static Set<String> bootVisibleMods(final Set<String> requested, final Map<String, Boolean> staged) {
+    return bootMods(legend.definitive.mods.ManagedModProfile.effective(requested, MODS.getAllModIds(), staged));
   }
 
   /** Returns missing mod IDs, if any */
@@ -347,6 +361,19 @@ public final class GameEngine {
       GameOverlay.addNotification(7, new I18nText("lod_core.ui.mods.wrong_version", modId));
     }
 
+    legend.game.textures.NativeUiTextures.reselect(EVENTS::postEvent);
+    GPU.reselectEffectArtwork(EVENTS::postEvent);
+    final long artworkGeneration = ++uiArtworkGeneration;
+    if(UI_TEXTURE != null) RENDERER.addTask(() -> {
+      if(artworkGeneration == uiArtworkGeneration) {
+        reloadUiTexture();
+        if(eyeTexture != null) {
+          final Texture previousEye = eyeTexture;
+          eyeTexture = legend.game.textures.UiTextures.load("Loading eye", Path.of("gfx", "textures", "loading.png")).texture();
+          previousEye.delete();
+        }
+      }
+    });
     return missingMods;
   }
 
@@ -362,6 +389,8 @@ public final class GameEngine {
   }
 
   public static void bootRegistries() {
+    legend.game.textures.NativeUiTextures.reselect(EVENTS::postEvent);
+    GPU.reselectEffectArtwork(EVENTS::postEvent);
     REGISTRY_ACCESS.initializeRemaining();
     ItemIcon.loadIconMap();
 
@@ -374,12 +403,19 @@ public final class GameEngine {
 
     final Map<RegistryId, Image> images = new HashMap<>();
     EVENTS.postEvent(new RegisterAtlasTexturesEvent(images));
+    final Map<RegistryId, Image> registeredImages = new HashMap<>(images);
     EVENTS.postEvent(new legend.game.textures.ReplaceAtlasTexturesEvent(images));
 
     final TexturePacker packer = new TexturePacker("Mod atlas");
     images.forEach(packer::add);
-
-    TEXTURE_ATLAS = packer.pack(512, 512);
+    try {
+      TEXTURE_ATLAS = packer.packGrowing(512, 512, 2048);
+    } catch(final TexturePacker.AtlasCapacityException full) {
+      LOGGER.warn("Optional atlas artwork exceeds capacity; retaining registered mod artwork");
+      final TexturePacker fallback = new TexturePacker("Mod atlas (registered artwork)");
+      registeredImages.forEach(fallback::add);
+      TEXTURE_ATLAS = fallback.packGrowing(512, 512, 2048);
+    }
     TEXTURE_ATLAS.setPersistent(true);
 
     LOGGER.info("Texture atlas created in %.02fs", (System.nanoTime() - t) / 1_000_000_000.0f);
@@ -440,13 +476,21 @@ public final class GameEngine {
     }
   }
 
+  private static void reloadUiTexture() {
+    final Texture previous = UI_TEXTURE;
+    final var ui = legend.game.textures.UiTextures.load("UI", Path.of("gfx", "ui", "ui.png"));
+    UI_TEXTURE = ui.texture();
+    UI_WIDTH = ui.width(); UI_HEIGHT = ui.height();
+    UI_TEXTURE.persistent = true;
+    if(previous != null) previous.delete();
+  }
+
   private static void loadGfx() {
     RENDERER.api().translucency(Translucency.HALF_B_PLUS_HALF_F);
 
-    UI_TEXTURE = Texture.png("UI", Path.of("gfx", "ui", "ui.png"));
-    UI_TEXTURE.persistent = true;
+    reloadUiTexture();
 
-    eyeTexture = Texture.png("Loading eye", Path.of("gfx", "textures", "loading.png"));
+    eyeTexture = legend.game.textures.UiTextures.load("Loading eye", Path.of("gfx", "textures", "loading.png")).texture();
 
     texturedObj = new QuadBuilder("Textured Obj")
       .bpp(Bpp.BITS_24)
@@ -488,32 +532,17 @@ public final class GameEngine {
     }
 
     time = 0;
-    loadingFade = 1.0f;
-    eyeFade = 1.0f;
+    introPresentation.skip();
   }
 
   private static long time;
-  private static float loadingFade;
-  private static float eyeFade;
-  private static float eyeColour;
+  private static final IntroPresentation introPresentation = new IntroPresentation();
 
   private static void renderIntro() {
-    final long deltaMs = (System.nanoTime() - time) / 1_000_000;
-
-    if(deltaMs < 5000) {
-      eyeFade += 0.005f;
-      if(eyeFade > 1.0f) {
-        eyeFade = 1.0f;
-      }
-    }
+    introPresentation.advance(unpackerLoading, cinematicFinished);
 
     if(cinematicFinished) {
-      if(unpackerLoading) {
-        loadingFade += 0.02f;
-        if(loadingFade > 1.0f) {
-          loadingFade = 1.0f;
-        }
-      } else {
+      if(!unpackerLoading) {
         synchronized(UPDATER_LOCK) {
           if(UPDATE_CHECK_FINISHED) {
             transitionToGame();
@@ -528,27 +557,25 @@ public final class GameEngine {
 
     if(unpackerLoading) {
       // Offset sine wave delta to quickly shift between colours and then wait for a moment before repeating
-      eyeColour += Math.max(0.0f, MathHelper.sin(deltaMs / 300.0f % MathHelper.TWO_PI) * 0.75f + 0.25f) / 500.0f;
-
       final Vector3f colour = new Vector3f();
-      MathHelper.hsvToRgb(eyeColour, 1.0f, 1.0f, colour);
+      MathHelper.hsvToRgb(introPresentation.hue(), 1.0f, 1.0f, colour);
 
       final MV transforms = new MV();
       transforms.scaling(16.0f, 16.0f, 1.0f);
       transforms.transfer.set(4.0f, 220.0f, 29.0f);
-      RENDERER.queueOrthoModel(texturedObj, transforms, QueuedModelStandard.class)
+      RENDERER.queueUiOrthoModel(texturedObj, transforms, QueuedModelStandard.class)
         .translucency(Translucency.HALF_B_PLUS_HALF_F)
         .texture(eyeTexture)
         .useTextureAlpha()
-        .alpha(eyeFade)
+        .alpha(introPresentation.eyeFade())
         .colour(colour)
       ;
 
-      renderText(I18n.translate("unpacker.loading"), 24.0f, 223.0f, UI_WHITE, (model, shadow) -> model.alpha(loadingFade).translucency(Translucency.HALF_B_PLUS_HALF_F));
+      renderText(I18n.translate("unpacker.loading"), 24.0f, 223.0f, UI_WHITE, (model, shadow) -> model.alpha(introPresentation.loadingFade()).translucency(Translucency.HALF_B_PLUS_HALF_F));
     }
 
-    if(!statusText.isBlank() && loadingFade != 0.0f) {
-      renderMenuCentredText(DEFAULT_FONT, statusText, 160, 30, 300, fontOptions, (model, shadow) -> model.alpha(loadingFade).translucency(Translucency.HALF_B_PLUS_HALF_F));
+    if(!statusText.isBlank() && introPresentation.loadingFade() != 0.0f) {
+      renderMenuCentredText(DEFAULT_FONT, statusText, 160, 30, 300, fontOptions, (model, shadow) -> model.alpha(introPresentation.loadingFade()).translucency(Translucency.HALF_B_PLUS_HALF_F));
     }
 
     textZ_800bdf00 = oldTextZ;

@@ -211,6 +211,8 @@ public class BattleHud {
   public static final int ICON_SIZE = 16;
 
   public Texture battleIconsTexture;
+  public int battleIconsWidth = 64;
+  public int battleIconsHeight = 64;
   public Obj battleIconQuad;
 
   private Map<RegistryId, Texture> elementIcon;
@@ -438,14 +440,16 @@ public class BattleHud {
     //LAB_800effa0
     if(this.battle.countCombatUiFilesLoaded_800c6cf4 >= 6) {
       if(this.battleIconsTexture == null) {
-        this.battleIconsTexture = Texture.png("Battle icons", Path.of("gfx/ui/battle_icons.png"));
+        final var sheet = legend.game.textures.UiTextures.load("Battle icons", Path.of("gfx/ui/battle_icons.png"));
+        this.battleIconsTexture = sheet.texture();
+        this.battleIconsWidth = sheet.width(); this.battleIconsHeight = sheet.height();
       }
 
       if(this.battleIconQuad == null) {
         this.battleIconQuad = new QuadBuilder("battle icon")
           .bpp(Bpp.BITS_24)
           .size(1.0f, 1.0f)
-          .uvSize((float)ICON_SIZE / this.battleIconsTexture.width, (float)ICON_SIZE / this.battleIconsTexture.height)
+          .uvSize((float)ICON_SIZE / this.battleIconsWidth, (float)ICON_SIZE / this.battleIconsHeight)
           .build()
         ;
       }
@@ -453,7 +457,7 @@ public class BattleHud {
       if(this.elementIcon == null) {
         this.elementIcon = new HashMap<>();
 
-        REGISTRIES.elementIcons.forEach(icon -> this.elementIcon.put(icon, Texture.png("Element icons", REGISTRIES.elementIcons.getEntry(icon).get().path)));
+        REGISTRIES.elementIcons.forEach(icon -> this.elementIcon.put(icon, legend.game.textures.UiTextures.load("Element icons", REGISTRIES.elementIcons.getEntry(icon).get().path).texture()));
       }
 
       if(this.elementIconQuad == null) {

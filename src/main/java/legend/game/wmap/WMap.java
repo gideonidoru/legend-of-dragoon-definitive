@@ -674,6 +674,10 @@ public class WMap extends EngineState<WMap> {
       this.modelAndAnimData_800c66a8.imageData_2c = new FileData(new byte[0x1_0000]);
       this.modelAndAnimData_800c66a8.imageData_30 = new FileData(new byte[0x1_0000]);
 
+      GPU.releaseEffectArtwork(this.modelAndAnimData_800c66a8.effectsSnapshot);
+      GPU.releaseEffectArtwork(this.modelAndAnimData_800c66a8.backdropSnapshot);
+      this.modelAndAnimData_800c66a8.effectsSnapshot = GPU.captureEffectArtwork(this.storedEffectsRect_800c8700);
+      this.modelAndAnimData_800c66a8.backdropSnapshot = GPU.captureEffectArtwork(new Rect4i(320, 0, 64, 512));
       GPU.downloadData15(this.storedEffectsRect_800c8700, this.modelAndAnimData_800c66a8.imageData_2c);
       GPU.downloadData15(new Rect4i(320, 0, 64, 512), this.modelAndAnimData_800c66a8.imageData_30);
     }
@@ -687,6 +691,9 @@ public class WMap extends EngineState<WMap> {
     startFadeEffect(2, 15);
     GPU.uploadData15(this.storedEffectsRect_800c8700, modelAndAnimData.imageData_2c);
     GPU.uploadData15(new Rect4i(320, 0, 64, 512), modelAndAnimData.imageData_30);
+    GPU.restoreEffectArtwork(modelAndAnimData.effectsSnapshot);
+    GPU.restoreEffectArtwork(modelAndAnimData.backdropSnapshot);
+    modelAndAnimData.effectsSnapshot = modelAndAnimData.backdropSnapshot = null;
     modelAndAnimData.imageData_2c = null;
     modelAndAnimData.imageData_30 = null;
     this.initLighting();
@@ -1943,49 +1950,8 @@ public class WMap extends EngineState<WMap> {
     anim.currTick_1c += 1.0f / (3.0f / vsyncMode_8007a3b8);
 
     if(anim.currTick_1c >= 2.0f) {
-      final Rect4i src0 = new Rect4i();
-      final Rect4i src1 = new Rect4i();
-      final Rect4i dest0 = new Rect4i();
-      final Rect4i dest1 = new Rect4i();
-
-      //LAB_800d60f8
       anim.currTick_1c = 0.0f;
-
-      //LAB_800d6460
-      //LAB_800d6468
-      src0.set(
-        anim.x_00,
-        anim.y_02 + anim.h_06 - 1,
-        anim.w_04,
-        1
-      );
-
-      src1.set(
-        anim.x_00,
-        anim.y_02,
-        anim.w_04,
-        anim.h_06 - 1
-      );
-
-      dest0.set(
-        anim.x_00,
-        anim.y_02,
-        anim.w_04,
-        1
-      );
-
-      dest1.set(
-        anim.x_00,
-        anim.y_02 + 1,
-        anim.w_04,
-        anim.h_06 - 1
-      );
-
-      //LAB_800d67a8
-      GPU.downloadData15(src0, anim.imageData_0c);
-      GPU.downloadData15(src1, anim.imageData_08);
-      GPU.uploadData15(dest0, anim.imageData_0c);
-      GPU.uploadData15(dest1, anim.imageData_08);
+      GPU.rotateVramRows(new Rect4i(anim.x_00, anim.y_02, anim.w_04, anim.h_06), 1);
 
       //LAB_800d6804
     }
@@ -1994,7 +1960,10 @@ public class WMap extends EngineState<WMap> {
   @Method(0x800d6880L)
   private void loadWmapTextures() {
     this.filesLoadedFlags_800c66b8.updateAndGet(val -> val & 0xffff_efff);
-    loadDrgnDir(0, 5695).thenAccept(files -> this.timsLoaded(files, 0x1_1000));
+    loadDrgnDir(0, 5695).thenAccept(files -> {
+      this.timsLoaded(files, 0x1_1000);
+      legend.game.textures.NativeUiTextureEvent.uploaded("world_map", new Tim(files.get(0)));
+    });
     this.modelAndAnimData_800c66a8.mapTextureBrightness_20 = 0.0f;
   }
 
@@ -2102,7 +2071,8 @@ public class WMap extends EngineState<WMap> {
           this.mapState_800c6798.pathDots.transforms.transfer.add(intersectionPoint).y -= 1.0f;
 
           final QueuedModelStandard model = RENDERER.queueModel(this.mapState_800c6798.pathDots.dots, this.mapState_800c6798.pathDots.transforms, QueuedModelStandard.class)
-            .vertices(bigDotStateIndex * 4, 4);
+            .vertices(bigDotStateIndex * 4, 4)
+            .ui();
 
           //LAB_800d7df0
           if(this.modelAndAnimData_800c66a8.zoomState_1f8 == ZoomState.LOCAL_0) {
@@ -2160,7 +2130,8 @@ public class WMap extends EngineState<WMap> {
               this.mapState_800c6798.pathDots.transforms.transfer.add(pathPoint.x, pathPoint.y, pathPoint.z).y -= 1.0f;
 
               final QueuedModelStandard model = RENDERER.queueModel(this.mapState_800c6798.pathDots.dots, this.mapState_800c6798.pathDots.transforms, QueuedModelStandard.class)
-                .vertices(12, 4);
+                .vertices(12, 4)
+                .ui();
 
               //LAB_800d87fc
               if(zoomState == ZoomState.LOCAL_0) {
@@ -3221,6 +3192,10 @@ public class WMap extends EngineState<WMap> {
 
   @Method(0x800e05c4L)
   private void unloadWmapPlayerModels() {
+    GPU.releaseEffectArtwork(this.modelAndAnimData_800c66a8.effectsSnapshot);
+    GPU.releaseEffectArtwork(this.modelAndAnimData_800c66a8.backdropSnapshot);
+    this.modelAndAnimData_800c66a8.effectsSnapshot = this.modelAndAnimData_800c66a8.backdropSnapshot = null;
+
     //LAB_800e05d8
     for(int i = 0; i < 4; i++) {
       //LAB_800e05f4

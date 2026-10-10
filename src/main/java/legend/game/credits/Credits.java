@@ -516,6 +516,8 @@ public class Credits extends EngineState<Credits> {
 
         if(tim.hasClut()) {
           GPU.uploadData15(new Rect4i(896, creditSlot, 16, 1), tim.getClutData());
+          legend.game.textures.NativeUiTextureEvent.post(new legend.game.textures.NativeUiTextureEvent(
+            "credit_" + credit.index, "credit_slot_" + creditSlot, tim, imageRect.x, imageRect.y, 896, creditSlot, 1));
         }
       }
     }

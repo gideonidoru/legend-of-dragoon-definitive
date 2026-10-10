@@ -506,8 +506,9 @@ public final class Text {
           .scaling((right - left) / 16.0f, (bottom - top) / 16.0f, 1.0f);
       }
 
-      RENDERER.queueUiOrthoModel(textboxBorderObjs[borderIndex], textbox.borderTransforms[borderIndex], QueuedModelStandard.class)
-        .worldScissor().set(0, 0, RENDERER.getRenderWidth(), RENDERER.getRenderHeight());
+      final QueuedModelStandard border = RENDERER.queueUiOrthoModel(textboxBorderObjs[borderIndex], textbox.borderTransforms[borderIndex], QueuedModelStandard.class);
+      legend.game.textures.NativeUiTextures.apply(border, 896, 256, 832, 484, borderMetrics.u_04, borderMetrics.v_06, 16, 16);
+      border.worldScissor().set(0, 0, RENDERER.getRenderWidth(), RENDERER.getRenderHeight());
     }
 
     textbox.oldScaleW = textbox.animationWidth_20;
@@ -1929,8 +1930,9 @@ public final class Text {
       if((textboxText.flags_08 & TextboxText84.SHOW_ARROW) != 0) {
         textboxArrowTransforms.scaling(1.0f, 0.875f, 1.0f);
         textboxArrowTransforms.transfer.set(arrow.x_04, arrow.y_06,  textboxText.z_0c * 4.0f);
-        RENDERER.queueUiOrthoModel(textboxArrowObjs[arrow.spriteIndex_08], textboxArrowTransforms, QueuedModelStandard.class)
-          .worldScissor().set(0, 0, RENDERER.getRenderWidth(), RENDERER.getRenderHeight());
+        final QueuedModelStandard arrowModel = RENDERER.queueUiOrthoModel(textboxArrowObjs[arrow.spriteIndex_08], textboxArrowTransforms, QueuedModelStandard.class);
+        legend.game.textures.NativeUiTextures.apply(arrowModel, 896, 256, 1008, 484, 64 + arrow.spriteIndex_08 * 16, 0, 16, 14);
+        arrowModel.worldScissor().set(0, 0, RENDERER.getRenderWidth(), RENDERER.getRenderHeight());
       }
     }
 

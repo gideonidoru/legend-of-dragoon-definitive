@@ -15,6 +15,7 @@ import static org.lwjgl.openal.AL10.AL_CHANNELS;
 import static org.lwjgl.openal.AL10.AL_FREQUENCY;
 import static org.lwjgl.openal.AL10.alGetBufferi;
 import static org.lwjgl.openal.AL10.AL_PLAYING;
+import static org.lwjgl.openal.AL10.AL_STOPPED;
 import static org.lwjgl.openal.AL10.AL_SOURCE_STATE;
 import static org.lwjgl.openal.AL10.alBufferData;
 import static org.lwjgl.openal.AL10.alDeleteBuffers;
@@ -24,6 +25,8 @@ import static org.lwjgl.openal.AL10.alGenSources;
 import static org.lwjgl.openal.AL10.alGetSourcef;
 import static org.lwjgl.openal.AL10.alGetSourcei;
 import static org.lwjgl.openal.AL10.alSourcePlay;
+import static org.lwjgl.openal.AL10.alSourcePause;
+import static org.lwjgl.openal.AL10.alSourceRewind;
 import static org.lwjgl.openal.AL10.alSourceQueueBuffers;
 import static org.lwjgl.openal.AL10.alSourceStop;
 import static org.lwjgl.openal.AL10.alSourcei;
@@ -38,6 +41,7 @@ public abstract class AudioSource {
   private int sourceId;
 
   private boolean active;
+  private boolean playbackPaused;
 
   private IntBuffer tmp;
 
@@ -129,39 +133,56 @@ public abstract class AudioSource {
   }
 
   protected void bufferOutput(final int format, final ByteBuffer buffer, final int sampleRate) {
-    synchronized(this) {
-      if(this.isInitialized() && this.bufferIndex >= 0) {
-        final int bufferId = this.buffers[this.bufferIndex--];
-        alBufferData(bufferId, format, buffer, sampleRate);
-        alSourceQueueBuffers(this.sourceId, bufferId);
-      }
-    }
+    this.queueOutput(bufferId -> alBufferData(bufferId, format, buffer, sampleRate));
   }
 
   protected void bufferOutput(final int format, final short[] buffer, final int sampleRate) {
-    synchronized(this) {
-      if(this.isInitialized() && this.bufferIndex >= 0) {
-        final int bufferId = this.buffers[this.bufferIndex--];
-        alBufferData(bufferId, format, buffer, sampleRate);
-        alSourceQueueBuffers(this.sourceId, bufferId);
-      }
-    }
+    this.queueOutput(bufferId -> alBufferData(bufferId, format, buffer, sampleRate));
   }
 
   protected void bufferOutput(final int format, final float[] buffer, final int sampleRate) {
+    this.queueOutput(bufferId -> alBufferData(bufferId, format, buffer, sampleRate));
+  }
+
+  private void queueOutput(final java.util.function.IntConsumer upload) {
     synchronized(this) {
-      if(this.isInitialized() && this.bufferIndex >= 0) {
+      if(!this.isInitialized()) return;
+      final boolean resume = alGetSourcei(this.sourceId, AL_SOURCE_STATE) == AL_PLAYING;
+      // The Java monitor does not stop the native mixer. Preserve its sample position
+      // during this bounded refill, so it cannot enter STOPPED between retirement and append.
+      if(resume) alSourcePause(this.sourceId);
+      try {
+        this.handleProcessedBuffers();
+        if(this.bufferIndex < 0) return;
+        // Buffers appended to STOPPED are considered processed despite never playing.
+        if(alGetSourcei(this.sourceId, AL_BUFFERS_QUEUED) == 0) alSourceRewind(this.sourceId);
         final int bufferId = this.buffers[this.bufferIndex--];
-        alBufferData(bufferId, format, buffer, sampleRate);
+        upload.accept(bufferId);
         alSourceQueueBuffers(this.sourceId, bufferId);
+      } finally {
+        if(resume && alGetSourcei(this.sourceId, AL_BUFFERS_QUEUED) > 0) alSourcePlay(this.sourceId);
       }
     }
   }
 
   protected void play() {
-    alGetSourcei(this.sourceId, AL_SOURCE_STATE, this.tmp);
-    if(this.tmp.get(0) != AL_PLAYING) {
-      alSourcePlay(this.sourceId);
+    synchronized(this) {
+      if(!this.isInitialized() || this.playbackPaused) return;
+      final int state = alGetSourcei(this.sourceId, AL_SOURCE_STATE);
+      if(state == AL_PLAYING) return;
+      // EOF may happen after the caller's retirement query; never restart that old tail.
+      if(state == AL_STOPPED) this.handleProcessedBuffers();
+      // Playing an empty queue changes INITIAL to STOPPED before the decoder can fill it.
+      if(alGetSourcei(this.sourceId, AL_BUFFERS_QUEUED) > 0) alSourcePlay(this.sourceId);
+    }
+  }
+
+  /** Pause a cinematic without discarding buffers or resetting its played-sample position. */
+  public void setPlaybackPaused(final boolean paused) {
+    synchronized(this) {
+      this.playbackPaused = paused;
+      if(paused && this.isInitialized()) alSourcePause(this.sourceId);
+      else if(!paused && this.active) this.play();
     }
   }
 
@@ -204,7 +225,15 @@ public abstract class AudioSource {
   /** Precise accumulated clock for frame-accurate recovery of long recordings. */
   public double getPlaybackPositionSeconds() {
     synchronized(this) {
-      return this.playTime + this.getPosition();
+      this.handleProcessedBuffers();
+      final float offset = this.getPosition();
+      // Playback can reach EOF after the first processed-buffer query. At STOPPED,
+      // OpenAL resets the offset; retire that final tail before reporting its clock.
+      if(this.isInitialized() && alGetSourcei(this.sourceId, AL_SOURCE_STATE) == AL_STOPPED) {
+        this.handleProcessedBuffers();
+        return this.playTime;
+      }
+      return this.playTime + offset;
     }
   }
 

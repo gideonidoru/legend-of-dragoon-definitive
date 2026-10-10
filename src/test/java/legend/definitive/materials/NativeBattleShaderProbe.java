@@ -63,6 +63,24 @@ public final class NativeBattleShaderProbe {
     }
     return data;
   }
+  /** Independent palette oracle: same native visibility; two different subtexel mixtures. */
+  static byte[] expectedFx(final Sample sample) {
+    final byte[] data = expected(sample);
+    if((sample.flags & 2) == 0) return data;
+    for(int y = 0; y < HEIGHT; y++) for(int x = 0; x < WIDTH; x++) {
+      final int palette = x / (WIDTH / 2), index = (x % (WIDTH / 2) / 16 + 2 * (y / 16)) % 4;
+      final int value = PALETTES[palette][index];
+      if(!visible(value, sample) || (value & 0x7fff) == 0) continue;
+      final int other = PALETTES[palette][index == 2 ? 3 : 2];
+      final float fraction = (x % 16 < 8 ? 63 : 127) / 254.0f;
+      for(int channel = 0; channel < 3; channel++) {
+        final float a = ((value >>> (channel * 5)) & 31) / 31.0f, b = ((other >>> (channel * 5)) & 31) / 31.0f;
+        final float light = (sample.flags & 1) == 0 ? 1 : new float[]{.85f,.8f,.75f}[channel];
+        data[(y * WIDTH + x) * 4 + channel] = (byte)Math.round((a + (b - a) * fraction) * light * 255);
+      }
+    }
+    return data;
+  }
   record Difference(int coverageMismatches, int maximumChannelError, int visiblePixels, int visibleBlackPixels) { }
   static Difference compare(final byte[] expected, final byte[] actual) {
     if(expected.length != WIDTH * HEIGHT * 4 || actual.length != expected.length) throw new IllegalArgumentException("Expected bounded RGBA frames");
@@ -108,7 +126,7 @@ public final class NativeBattleShaderProbe {
   static final class Context implements AutoCloseable {
     long window, context;
     boolean initialised;
-    int program, vao, vertices, framebuffer, colour, tex15, tex24;
+    int program, vao, vertices, framebuffer, colour, tex15, tex24, detail;
     final List<Integer> buffers = new ArrayList<>();
     final Map<String, Integer> blockBytes = new LinkedHashMap<>();
     Context(final Map<String, String> shaders) {
@@ -125,6 +143,10 @@ public final class NativeBattleShaderProbe {
         this.context = SDL_GL_CreateContext(this.window);
         if(this.context == 0 || !SDL_GL_MakeCurrent(this.window, this.context)) throw new IllegalStateException("Hidden context creation failed: " + SDL_GetError());
         if(!GL.createCapabilities().OpenGL33) throw new IllegalStateException("OpenGL 3.3 is required by the checked shaders");
+        // Validate every shipping FX helper with the actual GLSL compiler.
+        for(final String name : List.of("standard.fsh", "tmd.fsh")) {
+          glDeleteShader(compile(GL_FRAGMENT_SHADER, shaders.get(name)));
+        }
         this.program = glCreateProgram();
         final List<Integer> compiled = new ArrayList<>();
         try {
@@ -136,9 +158,10 @@ public final class NativeBattleShaderProbe {
         } finally { for(final int id : compiled) { glDetachShader(this.program, id); glDeleteShader(id); } }
         glUseProgram(this.program);
         glUniform1i(glGetUniformLocation(this.program, "tex24"), 0); glUniform1i(glGetUniformLocation(this.program, "tex15"), 1);
+        glUniform1i(glGetUniformLocation(this.program, "effectDetailTex"), 6);
         glUniform3f(glGetUniformLocation(this.program, "recolour"), 1, 1, 1);
         glUniform1f(glGetUniformLocation(this.program, "modelIndex"), 0);
-        this.blocks(); this.textures(); this.target();
+        this.blocks(); this.textures(); this.detail(false); this.target();
         this.vao = glGenVertexArrays(); glBindVertexArray(this.vao);
         this.vertices = glGenBuffers(); glBindBuffer(GL_ARRAY_BUFFER, this.vertices);
         final int[] sizes = {4, 3, 2, 1, 1, 4, 1}; int offset = 0;
@@ -187,6 +210,18 @@ public final class NativeBattleShaderProbe {
         rgba.flip(); glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, 8, 4, 0, GL_RGBA, GL_UNSIGNED_BYTE, rgba);
       } finally { MemoryUtil.memFree(rgba); }
     }
+    private void detail(final boolean stale) {
+      if(this.detail == 0) this.detail = glGenTextures();
+      glActiveTexture(GL_TEXTURE6); glBindTexture(GL_TEXTURE_2D, this.detail); parameters();
+      final int[] values = new int[4 * 8];
+      for(int y = 0; y < 8; y++) for(int x = 0; x < 4; x++) {
+        final int index = (x + 2 * (y / 2)) % 4, other = index == 2 ? 3 : 2;
+        final int base = 0x8000 | (stale ? 15 : index) | other << 4;
+        values[y * 4 + x] = base | 63 << 8 | (base | 127 << 8) << 16;
+      }
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_R32UI, 4, 8, 0, GL_RED_INTEGER, GL_UNSIGNED_INT, values);
+      glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D, this.tex24);
+    }
     private void target() {
       this.framebuffer = glGenFramebuffers(); glBindFramebuffer(GL_FRAMEBUFFER, this.framebuffer);
       this.colour = glGenTextures(); glBindTexture(GL_TEXTURE_2D, this.colour); parameters();
@@ -195,7 +230,10 @@ public final class NativeBattleShaderProbe {
       if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) throw new IllegalStateException("Incomplete probe framebuffer");
       glBindTexture(GL_TEXTURE_2D, this.tex24);
     }
-    byte[] render(final Sample sample, final boolean rgba) {
+    byte[] render(final Sample sample, final boolean rgba) { return this.render(sample, rgba, false, false); }
+    byte[] render(final Sample sample, final boolean rgba, final boolean fx, final boolean ui) {
+      glUniform1i(glGetUniformLocation(this.program, "effectArtworkEnabled"), fx ? 1 : 0);
+      glUniform1i(glGetUniformLocation(this.program, "uiLayer"), ui ? 1 : 0);
       final List<Float> values = new ArrayList<>();
       for(int palette = 0; palette < 2; palette++) {
         final float left = -1 + palette, right = palette;
@@ -224,7 +262,7 @@ public final class NativeBattleShaderProbe {
         if(this.vertices != 0) glDeleteBuffers(this.vertices); if(this.vao != 0) glDeleteVertexArrays(this.vao);
         for(final int buffer : this.buffers) glDeleteBuffers(buffer);
         if(this.framebuffer != 0) glDeleteFramebuffers(this.framebuffer);
-        for(final int texture : new int[]{this.tex15,this.tex24,this.colour}) if(texture != 0) glDeleteTextures(texture);
+        for(final int texture : new int[]{this.tex15,this.tex24,this.colour,this.detail}) if(texture != 0) glDeleteTextures(texture);
         if(this.program != 0) glDeleteProgram(this.program);
         GL.setCapabilities(null); SDL_GL_DestroyContext(this.context); this.context = 0;
       }
@@ -237,7 +275,7 @@ public final class NativeBattleShaderProbe {
     if(args.length != 2) throw new IllegalArgumentException("Supply the checkout root and a new synthetic report folder");
     final Path root = Path.of(args[0]).toRealPath(), output = Path.of(args[1]).toAbsolutePath().normalize();
     final Map<String, String> sources = new LinkedHashMap<>(), hashes = new LinkedHashMap<>();
-    for(final String name : List.of("battle_tmd.vsh","tmd.gsh","battle_tmd.fsh")) {
+    for(final String name : List.of("battle_tmd.vsh","tmd.gsh","battle_tmd.fsh","standard.fsh","tmd.fsh")) {
       final String source = shader(root.resolve("gfx/shaders").resolve(name)); sources.put(name, source);
       hashes.put(name, HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(source.getBytes(java.nio.charset.StandardCharsets.UTF_8))));
     }
@@ -256,6 +294,19 @@ public final class NativeBattleShaderProbe {
           cases.add(Map.of("sample",sample.label(),"indexedReference",control,"rgbaReference",candidate,"indexedToRgba",between));
           if(control.coverageMismatches() != 0 || candidate.coverageMismatches() != 0 || control.maximumChannelError() > 1 || candidate.maximumChannelError() > 1 || between.maximumChannelError() > 1) throw new IllegalStateException("Shader fixture failed: " + sample.label() + " " + control + " " + candidate + " " + between);
         }
+        for(final Sample sample : Sample.values()) {
+          final byte[] frame = context.render(sample, false, true, false);
+          final Difference result = compare(expectedFx(sample), frame);
+          png(output.resolve(sample.label() + "-fx.png"), frame);
+          cases.add(Map.of("sample",sample.label() + "-live-palette-fx","result",result));
+          if(result.coverageMismatches() != 0 || result.maximumChannelError() > 1) throw new IllegalStateException("FX palette/mask fixture failed: " + sample.label() + " " + result);
+        }
+        final Sample opaque = Sample.OPAQUE_UNLIT;
+        final Difference protectedUi = compare(expected(opaque), context.render(opaque, false, true, true));
+        context.detail(true);
+        final Difference stale = compare(expected(opaque), context.render(opaque, false, true, false));
+        cases.add(Map.of("sample","fx-protected-ui","result",protectedUi)); cases.add(Map.of("sample","fx-stale-controls","result",stale));
+        if(protectedUi.maximumChannelError() > 1 || stale.maximumChannelError() > 1) throw new IllegalStateException("FX fallback/protected UI fixture failed");
         check("Final GPU check");
       }
       report.put("result", "passed"); report.put("probeCleanupCompleted", true);

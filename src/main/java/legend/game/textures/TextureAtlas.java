@@ -27,7 +27,7 @@ public class TextureAtlas {
   }
 
   protected QueuedModelStandard render(final MV transforms, final int vertex) {
-    return RENDERER.queueOrthoModel(this.obj, transforms, QueuedModelStandard.class)
+    return RENDERER.queueUiOrthoModel(this.obj, transforms, QueuedModelStandard.class)
       .vertices(vertex, 4)
       .texture(this.texture)
       .useTextureAlpha();

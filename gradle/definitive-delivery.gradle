@@ -64,8 +64,10 @@ tasks.register('stageDefinitivePackage', Sync) {
     include 'lod-game-*.jar', 'definitive-manager.jar', 'libs/**', 'gfx/**', 'patches/**', 'lang/**', 'LICENSE', 'credits.txt', 'README.md', 'log4j2.xml', 'gamecontrollerdb.txt'
     exclude '*-sources.jar'
   }
-  into('bundled-mods') { from layout.buildDirectory.dir('libs/mods') }
-  into('bundled-mods') { from { tasks.named('modelsHdJar').get().archiveFile.get() } }
+  // Stage declared current outputs, not stale JARs retained by an incremental build.
+  into('bundled-mods') {
+    from { ['skurfaJar', 'modelsHdJar', 'fmvHdJar', 'envhdJar', 'charhdJar', 'uihdJar', 'fxHdJar'].collect { name -> tasks.named(name).get().archiveFile.get() } }
+  }
   into('tools') { from(layout.buildDirectory.dir('definitive/archive-helper')) { include '7zz', 'License.txt', 'readme.txt', 'History.txt' } }
   from 'CREDITS'
   from 'delivery/installer'
@@ -109,6 +111,22 @@ tasks.register('deliveryTest', Test) {
   systemProperty 'definitive.locationRegistry', layout.buildDirectory.file('reports/test-installation-location.properties').get().asFile.absolutePath
 }
 tasks.named('check') { dependsOn deliveryTest }
+
+tasks.register('fixedStepPresentationProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.pacing.SimulationPresentationProbe'
+  jvmArgs '-Djava.awt.headless=true', '--add-opens=java.base/java.util=ALL-UNNAMED', '--enable-native-access=ALL-UNNAMED'
+}
+tasks.named('check') { dependsOn fixedStepPresentationProbe }
+
+tasks.register('cinematicHandoffProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.pacing.CinematicHandoffProbe'
+  jvmArgs '-Djava.awt.headless=true', '--add-opens=java.base/java.util=ALL-UNNAMED', '--enable-native-access=ALL-UNNAMED'
+  doFirst { args providers.gradleProperty('fmvFixture').get() }
+}
 
 // Explicit private sky decoding/layout check, with no game or renderer startup.
 tasks.register('skySourceAudit', JavaExec) {

@@ -92,6 +92,7 @@ public class TheEndEffectDatab0 {
     final Rect4i imageRect = this.tim_800d4bf0.getImageRect();
     this.tpage_800f9e5c.set(imageRect.x, imageRect.y);
     GPU.uploadData15(imageRect, this.tim_800d4bf0.getImageData());
+    legend.game.textures.NativeUiTextureEvent.uploaded("the_end", this.tim_800d4bf0);
   }
 
   @Method(0x800eec10L)

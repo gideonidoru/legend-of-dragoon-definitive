@@ -1,0 +1,292 @@
+{
+  "pipeline": "definitive-private-material-pack-1",
+  "modelSha256": "0e4d55fa11640f416ff5d5ec339ce906bd0d67613f887d902f7dac86945d7cf8",
+  "timSha256": "477b2c39ad9809524c8e8852af59a1beff219dc536f4b3e8dffd18c21d54c7c3",
+  "sourceSize": [
+    64,
+    112
+  ],
+  "scale": 4,
+  "paddingSourceTexels": 8,
+  "atlasSize": [
+    512,
+    880
+  ],
+  "atlasRgbaBytes": 1802240,
+  "fullUsedPaletteLayerRgbaBytes": 5505024,
+  "materials": [
+    {
+      "palette": 0,
+      "sourceCrop": [
+        -8,
+        -8,
+        24,
+        40
+      ],
+      "atlasRect": [
+        320,
+        0,
+        128,
+        192
+      ]
+    },
+    {
+      "palette": 1,
+      "sourceCrop": [
+        8,
+        -7,
+        40,
+        32
+      ],
+      "atlasRect": [
+        128,
+        624,
+        128,
+        156
+      ]
+    },
+    {
+      "palette": 2,
+      "sourceCrop": [
+        -8,
+        -8,
+        72,
+        108
+      ],
+      "atlasRect": [
+        0,
+        0,
+        320,
+        464
+      ]
+    },
+    {
+      "palette": 3,
+      "sourceCrop": [
+        40,
+        -8,
+        72,
+        32
+      ],
+      "atlasRect": [
+        0,
+        464,
+        128,
+        160
+      ]
+    },
+    {
+      "palette": 4,
+      "sourceCrop": [
+        24,
+        16,
+        56,
+        56
+      ],
+      "atlasRect": [
+        128,
+        464,
+        128,
+        160
+      ]
+    },
+    {
+      "palette": 5,
+      "sourceCrop": [
+        40,
+        16,
+        72,
+        56
+      ],
+      "atlasRect": [
+        256,
+        464,
+        128,
+        160
+      ]
+    },
+    {
+      "palette": 6,
+      "sourceCrop": [
+        -8,
+        24,
+        24,
+        64
+      ],
+      "atlasRect": [
+        384,
+        464,
+        128,
+        160
+      ]
+    },
+    {
+      "palette": 7,
+      "sourceCrop": [
+        8,
+        40,
+        40,
+        80
+      ],
+      "atlasRect": [
+        0,
+        624,
+        128,
+        160
+      ]
+    },
+    {
+      "palette": 8,
+      "sourceCrop": [
+        -8,
+        64,
+        24,
+        96
+      ],
+      "atlasRect": [
+        256,
+        624,
+        128,
+        128
+      ]
+    },
+    {
+      "palette": 9,
+      "sourceCrop": [
+        40,
+        80,
+        72,
+        104
+      ],
+      "atlasRect": [
+        384,
+        624,
+        128,
+        96
+      ]
+    },
+    {
+      "palette": 10,
+      "sourceCrop": [
+        8,
+        88,
+        40,
+        112
+      ],
+      "atlasRect": [
+        0,
+        784,
+        128,
+        96
+      ]
+    },
+    {
+      "palette": 11,
+      "sourceCrop": [
+        24,
+        88,
+        56,
+        112
+      ],
+      "atlasRect": [
+        128,
+        784,
+        128,
+        96
+      ]
+    }
+  ],
+  "algorithm": "neural",
+  "strength": 0.75,
+  "preservedPalettes": [],
+  "weightsSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+  "paramsSha256": "2b8fb6e0ae4d2d85704ca08c119a2f5ea40add4f2ecd512eb7f4cd44b6127ed4",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "atlasEngineSha256": "2607820a81bb683e301e85369efc931ad41b7498d264fb5eb91c06d09b0a8d7a",
+  "atlasPreviewSha256": "7cf606480001dff27e36b3164b81bec22c5322d64bc499389fcbf3ae3f1dc323",
+  "steps": [
+    {
+      "palette": 0,
+      "processing": "neural",
+      "inputSha256": "f965368b4ad030e7d3b97ad714fd97c7eafcd26ae343602a7c42c4687c64ce3e",
+      "neuralOutputSha256": "4a3cdf5911288e73b5322e097e034507dcc7aa7485029593f66153037a418164"
+    },
+    {
+      "palette": 1,
+      "processing": "neural",
+      "inputSha256": "23c25ce672da6d50affcf01891b7d07096883e64fb2b16b9af2df453875dbf51",
+      "neuralOutputSha256": "df7aae8b40f03d13ef59b824c571f715ad2654d1e8bdfdf5443ea31f8ed1e137"
+    },
+    {
+      "palette": 2,
+      "processing": "neural",
+      "inputSha256": "c05644c8baf513e298a8f44487a45060e52acf0c79426c42148ef4c0db27b242",
+      "neuralOutputSha256": "f6e4c05735ae23da4c4e638ffb25e2914eb441e1ea42026e00eaee41701d104c"
+    },
+    {
+      "palette": 3,
+      "processing": "neural",
+      "inputSha256": "663c3550e8cdc5e581a7151e68c8fc19633c45c6dbf366ae00fd65aa9c441dd6",
+      "neuralOutputSha256": "6342121f425775236f1a204ca0d6ac94de4384e7cf2a122315ac6a42ec52149e"
+    },
+    {
+      "palette": 4,
+      "processing": "neural",
+      "inputSha256": "8b274d7fdeae0229c5c66f91115de6198e107d9f2fa9f84560a899d478baa913",
+      "neuralOutputSha256": "96f10241e9349eb1516d61e7fa1d755c22d8189a778fdd90ec1f0eb0b0cc7ef6"
+    },
+    {
+      "palette": 5,
+      "processing": "neural",
+      "inputSha256": "36b6981c3da6f99877fc228f76ea0ff2de014d1389c2ab54225fa3b0b0262487",
+      "neuralOutputSha256": "51b81b0200cbf9942710687e9ed59ab24715f625b6e77beae9c8829fe3f2ff0c"
+    },
+    {
+      "palette": 6,
+      "processing": "neural",
+      "inputSha256": "8bc637b577529cb5fc928f343fdd5a84da4b41e41dedb392c2387034ca8fb74b",
+      "neuralOutputSha256": "5f84b4ba8cdd93d29e846cd2c84ea956a57c8660f061c93ecfa0f3fccfea4d63"
+    },
+    {
+      "palette": 7,
+      "processing": "neural",
+      "inputSha256": "645404890f5e881536341380e3ea5fc7f54316e5470035c9bb9741ed2bac3560",
+      "neuralOutputSha256": "590ac9cd21a2231d087b3aa3c3afdc0190b3bc0832c24943b11773b155ddd4a0"
+    },
+    {
+      "palette": 8,
+      "processing": "neural",
+      "inputSha256": "d5567fa5963df6b0cb1b4edb4441562f8ce3219968ee5c633f118371300f972a",
+      "neuralOutputSha256": "14a31e3918d5442cb539f0172f611d30a1d09b754d77b79d7326710fec5a0fc3"
+    },
+    {
+      "palette": 9,
+      "processing": "neural",
+      "inputSha256": "489704d4aa7728d7f87cc10ba6d49e0c661c70b0b73cf8c7b989a0fc82b795e0",
+      "neuralOutputSha256": "0224dc4ed2678471125cca53a137eb0ff5983a72e9767e0966567461db1b7f6c"
+    },
+    {
+      "palette": 10,
+      "processing": "neural",
+      "inputSha256": "7351ba36de7acf0f2b1e0e3c65fc07c2b3d41cbb8c3b7411dc447bf50670213e",
+      "neuralOutputSha256": "e59c4d20dc2e8d41dc7bc61b78ee0f1a5bf6edcaedadbaf358da3cdb4e4b8cef"
+    },
+    {
+      "palette": 11,
+      "processing": "neural",
+      "inputSha256": "8fbfd89647386c6c0e1df7492905092c66aae4141e258b7789240146d16b61de",
+      "neuralOutputSha256": "25231de1fa7c3517b17c0d59cf720e541fdde34f47a8fd6cbb7c5a35e436a8d9"
+    }
+  ],
+  "pillow": "12.3.0",
+  "numpy": "2.5.1",
+  "scriptSha256": "78f09971ca2480a24d744c933732badb229a62f970ed6e7bf513069be79a3a13",
+  "dependencyScriptHashes": {
+    "audit-model-materials.py": "9c531a7acb23d8315f24e90c8d17c251434bfdd6d21f9ddd88fa133359406252",
+    "audit-uv-footprints.py": "d11c9b22f84dcea5ba66e2552f82e84fd793d0aabe80daf6b2323a4f539878f7",
+    "compare-material-islands.py": "7e71e085d4f0e585d5883ab66d1929b3ff8f986aaea5da154717ceba4c537455",
+    "compare-neural-textures.py": "c45e5e98439fec0b73a5cbb5602709df0e2fb11399a7bd031aecc53ac36cb71b",
+    "preserve-texture-transparency.py": "aaa0875db82c68874fcbc3c9a0007b4c48eb31455875a18cbbda3a0f4561910c"
+  },
+  "scope": "Public experimental CharHD restoration snapshot; explicit approval required before main/release. Native battle body-atlas integration and gameplay/Deck acceptance remain unproven."
+}

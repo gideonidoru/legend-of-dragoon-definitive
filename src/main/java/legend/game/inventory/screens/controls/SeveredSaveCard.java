@@ -14,9 +14,7 @@ import legend.game.inventory.screens.FontOptions;
 import legend.game.inventory.screens.InputPropagation;
 import legend.game.modding.coremod.CoreMod;
 import legend.game.saves.SeveredSavedGame;
-import org.lwjgl.BufferUtils;
 
-import java.nio.ByteBuffer;
 
 import static legend.core.GameEngine.RENDERER;
 import static legend.game.SItem.UI_TEXT;
@@ -45,9 +43,10 @@ public class SeveredSaveCard extends BlankSaveCard {
   public SeveredSaveCard(final SeveredSavedGame savedGame) {
     this.savedGame = savedGame;
 
-    final ByteBuffer buffer = BufferUtils.createByteBuffer(savedGame.atlas.size());
-    savedGame.atlas.read(0, buffer, 0, savedGame.atlas.size());
-    this.texture = Texture.png("Save card " + savedGame.saveName + " (" + savedGame.fileName + ')', buffer);
+    final legend.game.textures.SavedPortraits.Selected selected;
+    try { selected = legend.game.textures.SavedPortraits.select(savedGame); }
+    catch(final java.io.IOException failure) { throw new IllegalStateException("Could not decode saved-card portraits", failure); }
+    this.texture = legend.game.textures.UiTextures.upload("Save card " + savedGame.saveName + " (" + savedGame.fileName + ')', selected.image());
 
     this.charIndices.addAll(savedGame.activeParty);
 
@@ -60,7 +59,7 @@ public class SeveredSaveCard extends BlankSaveCard {
 
       this.charVertices.add(builder.currentQuadIndex() * 4);
 
-      final Rect4i charPortrait = savedGame.charPortraits.get(i);
+      final Rect4i charPortrait = selected.rectangles().get(i);
 
       builder.add();
       builder.bpp(Bpp.BITS_24);

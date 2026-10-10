@@ -399,6 +399,10 @@ public final class Menus {
             }
 
             metrics.useTexture(model);
+            if((metrics.tpage_06 >>> 7 & 3) == 0) {
+              legend.game.textures.NativeUiTextures.apply(model, tpageX, (tpage & 16) != 0 ? 256 : 0, clutX, clut >>> 6,
+                metrics.u_00, metrics.v_01, metrics.textureWidth, metrics.textureHeight);
+            }
 
             if(renderable.widthCut != 0 || renderable.heightCut != 0) {
               final int y;

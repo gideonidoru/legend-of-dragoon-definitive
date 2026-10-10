@@ -120,8 +120,12 @@ def validate_pack(folder, model, tim):
     expected = [{'palette': palette, 'sourceCrop': list(crops[palette]), 'atlasRect': list(slots[palette])} for palette in sorted(masks)]
     algorithm = report.get('algorithm')
     preserved = report.get('preservedPalettes', [])
-    if algorithm not in ('nearest', 'neural') or not isinstance(preserved, list) or any(type(value) is not int for value in preserved) or len(set(preserved)) != len(preserved) or not set(preserved).issubset(masks):
+    if algorithm not in ('nearest', 'neural', 'authored') or not isinstance(preserved, list) or any(type(value) is not int for value in preserved) or len(set(preserved)) != len(preserved) or not set(preserved).issubset(masks):
         raise ValueError('Invalid material processing description')
+    if algorithm == 'authored':
+        provenance = report.get('authoring', {})
+        if not isinstance(provenance, dict) or any(not isinstance(provenance.get(key), str) or len(provenance[key]) != 64 or any(c not in '0123456789abcdef' for c in provenance[key]) for key in ('baseAtlasSha256', 'generatedImageSha256', 'promptSha256')):
+            raise ValueError('Missing authored material provenance')
     if algorithm == 'neural' and (type(report.get('strength')) not in (int, float) or not 0 <= report['strength'] <= 1):
         raise ValueError('Invalid neural material strength')
     if algorithm == 'neural' and not any(scale == item[0] and report.get('weightsSha256') == item[2] and report.get('paramsSha256') == item[3] for item in neural.MODELS.values()):

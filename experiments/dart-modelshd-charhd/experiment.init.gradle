@@ -1,0 +1,42 @@
+// Explicit opt-in only: ./gradlew -I experiments/dart-modelshd-charhd/experiment.init.gradle dartExperimentTests
+gradle.projectsEvaluated {
+  def project = rootProject
+  project.sourceSets {
+    dartExperiment {
+      java.srcDir 'experiments/dart-modelshd-charhd/java'
+      compileClasspath += project.sourceSets.main.output + project.sourceSets.modelshd.output + project.configurations.compileClasspath
+      runtimeClasspath += project.sourceSets.main.output + project.sourceSets.modelshd.output + project.configurations.runtimeClasspath
+      resources.srcDir 'experiments/dart-modelshd-charhd/resources'
+    }
+    dartExperimentTest {
+      java.srcDir 'experiments/dart-modelshd-charhd/test'
+      compileClasspath += project.sourceSets.dartExperiment.output + project.sourceSets.modelshdTest.output + project.sourceSets.main.output + project.sourceSets.modelshd.output + project.configurations.testCompileClasspath
+      runtimeClasspath += project.sourceSets.dartExperiment.output + project.sourceSets.modelshdTest.output + project.sourceSets.main.output + project.sourceSets.modelshd.output + project.configurations.testRuntimeClasspath
+    }
+  }
+  project.tasks.register('dartExperimentTests', Test) {
+    dependsOn 'dartExperimentTestClasses', 'modelshdTestClasses'
+    testClassesDirs = project.sourceSets.dartExperimentTest.output.classesDirs
+    classpath = project.sourceSets.dartExperimentTest.runtimeClasspath
+    useJUnitPlatform()
+    systemProperty 'java.awt.headless', 'true'
+    workingDir project.layout.buildDirectory.dir('dart-experiment-test-home').get().asFile
+    doFirst { workingDir.mkdirs() }
+  }
+  project.tasks.register('dartExperimentJar', Jar) {
+    dependsOn 'dartExperimentClasses'
+    archiveFileName = 'CharHD-Dart-EXPERIMENT-NOT-APPROVED.jar'
+    destinationDirectory = project.layout.buildDirectory.dir('dart-experiment')
+    from project.sourceSets.dartExperiment.output
+    into('META-INF/charhd-experiment') { from 'LICENSE'; from 'experiments/dart-modelshd-charhd/README.md' }
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+  }
+  project.tasks.register('dartExperimentProbe', JavaExec) {
+    dependsOn 'dartExperimentTestClasses', 'modelshdTestClasses'
+    classpath = project.sourceSets.dartExperimentTest.runtimeClasspath
+    mainClass = 'charhd.DartExperimentProbe'
+    jvmArgs '-Djava.awt.headless=true', '-Xmx2g'
+    doFirst { args project.providers.gradleProperty('dartFiles').get(), project.providers.gradleProperty('dartStudy').get(), project.providers.gradleProperty('dartReport').get() }
+  }
+}

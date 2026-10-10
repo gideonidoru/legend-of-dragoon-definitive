@@ -1,3 +1,5 @@
+> **Current party direction:** The owner approved Dart's reconstructed head/hair for CharHD on October 10, 2026. The remaining eight heads and armor/clothing, hands, boots and weapons for all nine normal party characters are now in scope. CharHD owns each selected reconstructed model/material transaction; ModelsHD retains the broad smoothing foundation and fallback. This explicitly extends the older geometry-only boundary below. See [the active party plan](PARTY_RECONSTRUCTION.md).
+
 # ModelsHD: the party first, then the world
 
 ModelsHD owns geometry, proportions, attachments and animation compatibility. The initial scope is **19 party battle models**, including all normal and Dragoon forms and Divine Dart. Texture artwork and rendering/lighting remain separate workstreams. The installer includes the complete mod and its public custom roster. It uses a small authored-geometry engine API; no engine rewrite is planned.

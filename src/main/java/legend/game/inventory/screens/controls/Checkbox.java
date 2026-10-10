@@ -79,7 +79,7 @@ public class Checkbox extends Control {
       obj = new QuadBuilder("Checkbox")
         .bpp(Bpp.BITS_24)
         .posSize(1.0f, 1.0f)
-        .uvSize(14.0f / tex.width, 14.0f / tex.height)
+        .uvSize(14.0f / GameEngine.getUiWidth(), 14.0f / GameEngine.getUiHeight())
         .build();
 
       obj.persistent = true;
@@ -103,11 +103,13 @@ public class Checkbox extends Control {
     this.transforms.scaling(scale, scale, 1.0f);
     final QueuedModelStandard model = RENDERER
       .queueOrthoModel(obj, this.transforms, QueuedModelStandard.class)
+      .ui()
       .texture(tex)
+      .useTextureAlpha()
     ;
 
     if(this.checked) {
-      model.uvOffset(16.0f / tex.width, 0.0f);
+      model.uvOffset(16.0f / GameEngine.getUiWidth(), 0.0f);
     }
   }
 

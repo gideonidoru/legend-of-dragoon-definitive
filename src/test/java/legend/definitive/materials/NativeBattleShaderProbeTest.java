@@ -33,6 +33,18 @@ class NativeBattleShaderProbeTest {
     assertEquals(217, Byte.toUnsignedInt(lit[0])); assertEquals(204, Byte.toUnsignedInt(lit[1])); assertEquals(191, Byte.toUnsignedInt(lit[2]));
     assertEquals(128, Byte.toUnsignedInt(translucent[32 * 4 + 3]));
   }
+  @Test void liveFxOracleChangesColoursAndSubtexelsWithoutChangingCoverageOrBlack() {
+    for(final Sample sample : Sample.values()) {
+      final byte[] nativePixels = expected(sample), fx = expectedFx(sample);
+      final Difference result = compare(nativePixels, fx);
+      assertEquals(0, result.coverageMismatches());
+      assertEquals(compare(nativePixels, nativePixels).visibleBlackPixels(), result.visibleBlackPixels());
+      if((sample.flags & 2) != 0 && result.visiblePixels() > 0) assertTrue(result.maximumChannelError() > 0);
+    }
+    final byte[] fx = expectedFx(Sample.OPAQUE_UNLIT);
+    assertNotEquals(fx[32 * 4], fx[40 * 4]);
+    assertNotEquals(fx[32 * 4], fx[96 * 4]);
+  }
   @Test void comparisonDetectsLostBlackWrongColourAndMalformedReadback() {
     final byte[] control = expected(Sample.OPAQUE_UNLIT), changed = control.clone();
     changed[16 * 4 + 3] = 0;

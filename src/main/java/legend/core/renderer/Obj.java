@@ -19,6 +19,40 @@ public abstract class Obj {
   protected boolean deleted;
   /** This Obj won't be deleted on state transition */
   public boolean persistent;
+  private Texture faceDetailTexture;
+
+  public Texture faceDetailTexture() { return this.faceDetailTexture; }
+
+  /** Takes ownership of one supplemental texture; released with the rendered object. */
+  public void faceDetailTexture(final Texture texture) {
+    if(this.faceDetailTexture != null || this.deleted) throw new IllegalStateException("Face detail already owned or object deleted");
+    this.faceDetailTexture = java.util.Objects.requireNonNull(texture);
+    // Object ownership determines lifetime, including persistent objects and state transitions.
+    this.faceDetailTexture.persistent = true;
+  }
+
+  NativeUiQuad[] nativeUiQuads;
+
+  public NativeUiQuad nativeUiQuad(final int start, final int count) {
+    if(this.nativeUiQuads == null || start < 0 || start % 4 != 0 || count < 0 || count % 4 != 0) return null;
+    final int first = count == 0 ? 0 : start / 4;
+    final int end = count == 0 ? this.nativeUiQuads.length : first + count / 4;
+    if(first >= end || end > this.nativeUiQuads.length) return null;
+    NativeUiQuad bounds = this.nativeUiQuads[first];
+    if(bounds == null) return null;
+    // Whole-object draws can share one page/reference without splitting geometry.
+    // Mixed native palettes remain authoritative rather than selecting a wrong page.
+    for(int i = first + 1; i < end; i++) {
+      final NativeUiQuad next = this.nativeUiQuads[i];
+      if(next == null || next.pageX() != bounds.pageX() || next.pageY() != bounds.pageY()
+        || next.clutX() != bounds.clutX() || next.clutY() != bounds.clutY()) return null;
+      final float u = Math.min(bounds.u(), next.u()), v = Math.min(bounds.v(), next.v());
+      bounds = new NativeUiQuad(bounds.pageX(), bounds.pageY(), bounds.clutX(), bounds.clutY(), u, v,
+        Math.max(bounds.u() + bounds.width(), next.u() + next.width()) - u,
+        Math.max(bounds.v() + bounds.height(), next.v() + next.height()) - v);
+    }
+    return bounds;
+  }
 
   public static void setShouldLog(final boolean shouldLog) {
     Obj.shouldLog = shouldLog;
@@ -31,6 +65,7 @@ public abstract class Obj {
 
   public void delete() {
     this.deleted = true;
+    if(this.faceDetailTexture != null) this.faceDetailTexture.delete();
   }
 
   protected abstract void performDelete();
@@ -57,7 +92,7 @@ public abstract class Obj {
         }
 
         obj.delete();
-        objList.remove(i);
+        // Retained draws may still refer to this mesh until renderer retirement.
       }
     }
   }

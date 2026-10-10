@@ -1,0 +1,78 @@
+{
+  "pipeline": "definitive-private-material-pack-1",
+  "modelSha256": "1081990266dbf6db31df3d530346c6887884870e467351d6e8a2071a5b724c94",
+  "timSha256": "7331a462fe139239a22c50fa95e68b47d0559e98b9e9629cbe6bc39bb76e83b4",
+  "sourceSize": [
+    256,
+    256
+  ],
+  "scale": 4,
+  "paddingSourceTexels": 8,
+  "atlasSize": [
+    2048,
+    864
+  ],
+  "materials": [
+    {
+      "palette": 0,
+      "sourceCrop": [
+        56,
+        -8,
+        200,
+        208
+      ],
+      "atlasRect": [
+        0,
+        0,
+        576,
+        864
+      ]
+    },
+    {
+      "palette": 4,
+      "sourceCrop": [
+        -8,
+        56,
+        200,
+        200
+      ],
+      "atlasRect": [
+        1120,
+        0,
+        832,
+        576
+      ]
+    },
+    {
+      "palette": 8,
+      "sourceCrop": [
+        120,
+        -8,
+        256,
+        208
+      ],
+      "atlasRect": [
+        576,
+        0,
+        544,
+        864
+      ]
+    }
+  ],
+  "algorithm": "neural",
+  "strength": 0.75,
+  "preservedPalettes": [],
+  "weightsSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+  "paramsSha256": "2b8fb6e0ae4d2d85704ca08c119a2f5ea40add4f2ecd512eb7f4cd44b6127ed4",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "atlasEngineSha256": "2b983956c555f4fa4d83457bd4653826d733f681c4c0b1cf65850554b914633d",
+  "scriptSha256": "86156a0ef59ccf147b6ccb4c23770bb19eaf7f4e7b788a2a873bc65112da2442",
+  "dependencyScriptHashes": {
+    "audit-model-materials.py": "9c531a7acb23d8315f24e90c8d17c251434bfdd6d21f9ddd88fa133359406252",
+    "audit-uv-footprints.py": "d11c9b22f84dcea5ba66e2552f82e84fd793d0aabe80daf6b2323a4f539878f7",
+    "compare-material-islands.py": "7e71e085d4f0e585d5883ab66d1929b3ff8f986aaea5da154717ceba4c537455",
+    "compare-neural-textures.py": "c45e5e98439fec0b73a5cbb5602709df0e2fb11399a7bd031aecc53ac36cb71b",
+    "preserve-texture-transparency.py": "aaa0875db82c68874fcbc3c9a0007b4c48eb31455875a18cbbda3a0f4561910c"
+  },
+  "scope": "Custom restoration candidate; AA art, native rendering and Steam Deck acceptance pending"
+}

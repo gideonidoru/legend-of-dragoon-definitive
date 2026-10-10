@@ -162,10 +162,11 @@ public final class V10Serializer {
       packer.add(character.template.getRegistryId(), character.template.loadPortrait());
     }
 
-    final byte[] atlas = packer.packToBytes(512, 512);
+    final var packed = packer.packWithReplacements(512, 512, 2048);
+    final byte[] atlas = packed.data();
     final ByteBuffer buffer = BufferUtils.createByteBuffer(atlas.length);
     buffer.put(0, atlas);
-    final byte[] compressed = PngWriter.compress(buffer, 512, 512);
+    final byte[] compressed = PngWriter.compress(buffer, packed.width(), packed.height());
 
     final MapTag tag = new MapTag();
 
@@ -175,8 +176,8 @@ public final class V10Serializer {
 
     final MapTag atlasTag = new MapTag();
     tag.set("atlas", atlasTag);
-    atlasTag.set("width", new IntTag(512));
-    atlasTag.set("height", new IntTag(512));
+    atlasTag.set("width", new IntTag(packed.width()));
+    atlasTag.set("height", new IntTag(packed.height()));
     atlasTag.set("data", new RawTag(compressed));
 
     final ListTag scriptDataTag = new ListTag();

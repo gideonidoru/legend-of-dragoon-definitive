@@ -1,0 +1,973 @@
+{
+  "scope": "Every effect and particle implementation/support source plus retail field/world/title/load dispatchers has an explicit route. Texture census counts source files rather than visual effect names.",
+  "entries": [
+    {
+      "source": "src/main/java/legend/game/combat/effects/AdditionCharEffectData0c.java",
+      "family": "AdditionCharEffectData0c",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/AdditionNameTextEffect1c.java",
+      "family": "AdditionNameTextEffect1c",
+      "route": "UIHD-owned",
+      "reason": "UI glyphs/reticles use explicit protected UI queues; FxHD does not replace UIHD"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/AdditionOverlaysBorder0e.java",
+      "family": "AdditionOverlaysBorder0e",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/AdditionOverlaysEffect44.java",
+      "family": "AdditionOverlaysEffect44",
+      "route": "UIHD-owned",
+      "reason": "UI glyphs/reticles use explicit protected UI queues; FxHD does not replace UIHD"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/AdditionOverlaysHit20.java",
+      "family": "AdditionOverlaysHit20",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/AdditionSparksEffect08.java",
+      "family": "AdditionSparksEffect08",
+      "route": "procedural-current-resolution",
+      "reason": "Lines, gradients or untextured polygons rendered at the configured internal resolution with existing SMAA and reduced-flashing settings; no source texture to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/AdditionSparksEffectInstance4c.java",
+      "family": "AdditionSparksEffectInstance4c",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/AdditionStarburstEffect10.java",
+      "family": "AdditionStarburstEffect10",
+      "route": "procedural-current-resolution",
+      "reason": "Lines, gradients or untextured polygons rendered at the configured internal resolution with existing SMAA and reduced-flashing settings; no source texture to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/AdditionStarburstEffectRay10.java",
+      "family": "AdditionStarburstEffectRay10",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/Attachment18.java",
+      "family": "Attachment18",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/AttachmentHost.java",
+      "family": "AttachmentHost",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/BillboardSpriteEffect0c.java",
+      "family": "BillboardSpriteEffect0c",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ButtonPressHudMetrics06.java",
+      "family": "ButtonPressHudMetrics06",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/DeffTmdRenderer14.java",
+      "family": "DeffTmdRenderer14",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/Effect.java",
+      "family": "Effect",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/EffectAttachment.java",
+      "family": "EffectAttachment",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/EffectManagerData6c.java",
+      "family": "EffectManagerData6c",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/EffectManagerParams.java",
+      "family": "EffectManagerParams",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ElectricityEffect38.java",
+      "family": "ElectricityEffect38",
+      "route": "procedural-current-resolution",
+      "reason": "Lines, gradients or untextured polygons rendered at the configured internal resolution with existing SMAA and reduced-flashing settings; no source texture to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/FrozenJetEffect28.java",
+      "family": "FrozenJetEffect28",
+      "route": "effect-controller",
+      "reason": "Controls deformation, scissor, DEFF loads or texture animation; the consuming sprite/model receives indexed detail"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/FullScreenOverlayEffect0e.java",
+      "family": "FullScreenOverlayEffect0e",
+      "route": "procedural-current-resolution",
+      "reason": "Lines, gradients or untextured polygons rendered at the configured internal resolution with existing SMAA and reduced-flashing settings; no source texture to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/GenericAttachment1c.java",
+      "family": "GenericAttachment1c",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/GenericSpriteEffect24.java",
+      "family": "GenericSpriteEffect24",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/GoldDragoonTransformEffect20.java",
+      "family": "GoldDragoonTransformEffect20",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/GoldDragoonTransformEffectInstance84.java",
+      "family": "GoldDragoonTransformEffectInstance84",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/GradientRaysEffect24.java",
+      "family": "GradientRaysEffect24",
+      "route": "procedural-current-resolution",
+      "reason": "Lines, gradients or untextured polygons rendered at the configured internal resolution with existing SMAA and reduced-flashing settings; no source texture to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/GradientRaysEffectInstance04.java",
+      "family": "GradientRaysEffectInstance04",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/GuardEffect06.java",
+      "family": "GuardEffect06",
+      "route": "procedural-current-resolution",
+      "reason": "Guard shield uses untextured triangles and lines rendered at the configured internal resolution; no raster asset to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/GuardEffectMetrics04.java",
+      "family": "GuardEffectMetrics04",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/LensFlareEffect50.java",
+      "family": "LensFlareEffect50",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/LensFlareEffectInstance3c.java",
+      "family": "LensFlareEffectInstance3c",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/LightningBoltEffect14.java",
+      "family": "LightningBoltEffect14",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/LightningBoltEffectSegment30.java",
+      "family": "LightningBoltEffectSegment30",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/LightningBoltEffectSegmentOrigin08.java",
+      "family": "LightningBoltEffectSegmentOrigin08",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/LmbAnimationEffect5c.java",
+      "family": "LmbAnimationEffect5c",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ModelEffect13c.java",
+      "family": "ModelEffect13c",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/MonsterDeathEffect34.java",
+      "family": "MonsterDeathEffect34",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/MonsterDeathEffectObjectDestructor30.java",
+      "family": "MonsterDeathEffectObjectDestructor30",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/MoonlightStarsEffect18.java",
+      "family": "MoonlightStarsEffect18",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/MoonlightStarsEffectInstance3c.java",
+      "family": "MoonlightStarsEffectInstance3c",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ProjectileHitEffect14.java",
+      "family": "ProjectileHitEffect14",
+      "route": "procedural-current-resolution",
+      "reason": "Lines, gradients or untextured polygons rendered at the configured internal resolution with existing SMAA and reduced-flashing settings; no source texture to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ProjectileHitEffectInstance48.java",
+      "family": "ProjectileHitEffectInstance48",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/RadialGradientEffect14.java",
+      "family": "RadialGradientEffect14",
+      "route": "procedural-current-resolution",
+      "reason": "Lines, gradients or untextured polygons rendered at the configured internal resolution with existing SMAA and reduced-flashing settings; no source texture to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/RainEffect08.java",
+      "family": "RainEffect08",
+      "route": "procedural-current-resolution",
+      "reason": "Lines, gradients or untextured polygons rendered at the configured internal resolution with existing SMAA and reduced-flashing settings; no source texture to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/RaindropEffect0c.java",
+      "family": "RaindropEffect0c",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/RedEyeDragoonTransformationFlameArmorEffect20.java",
+      "family": "RedEyeDragoonTransformationFlameArmorEffect20",
+      "route": "effect-controller",
+      "reason": "Controls deformation, scissor, DEFF loads or texture animation; the consuming sprite/model receives indexed detail"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ScreenCaptureEffect1c.java",
+      "family": "ScreenCaptureEffect1c",
+      "route": "live-framebuffer",
+      "reason": "Samples current rendered framebuffer at configured resolution; no pre-rendered texture asset"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ScreenCaptureEffectMetrics8.java",
+      "family": "ScreenCaptureEffectMetrics8",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ScreenDarkeningEffect.java",
+      "family": "ScreenDarkeningEffect",
+      "route": "procedural-current-resolution",
+      "reason": "Lines, gradients or untextured polygons rendered at the configured internal resolution with existing SMAA and reduced-flashing settings; no source texture to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ScreenDistortionEffectData08.java",
+      "family": "ScreenDistortionEffectData08",
+      "route": "live-framebuffer",
+      "reason": "Samples current rendered framebuffer at configured resolution; no pre-rendered texture asset"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ScriptDeffEffect.java",
+      "family": "ScriptDeffEffect",
+      "route": "effect-controller",
+      "reason": "Controls deformation, scissor, DEFF loads or texture animation; the consuming sprite/model receives indexed detail"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ScriptDeffManualLoadingEffect.java",
+      "family": "ScriptDeffManualLoadingEffect",
+      "route": "effect-controller",
+      "reason": "Controls deformation, scissor, DEFF loads or texture animation; the consuming sprite/model receives indexed detail"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ShadowEffect.java",
+      "family": "ShadowEffect",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ShirleyTransformWipeEffect.java",
+      "family": "ShirleyTransformWipeEffect",
+      "route": "effect-controller",
+      "reason": "Controls deformation, scissor, DEFF loads or texture animation; the consuming sprite/model receives indexed detail"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/SpTextEffect40.java",
+      "family": "SpTextEffect40",
+      "route": "UIHD-owned",
+      "reason": "UI glyphs/reticles use explicit protected UI queues; FxHD does not replace UIHD"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/SpTextEffectTrail10.java",
+      "family": "SpTextEffectTrail10",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/SpriteMetrics08.java",
+      "family": "SpriteMetrics08",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/SpriteWithTrailEffect30.java",
+      "family": "SpriteWithTrailEffect30",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/StarChildrenImpactEffect20.java",
+      "family": "StarChildrenImpactEffect20",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/StarChildrenImpactEffectInstancea8.java",
+      "family": "StarChildrenImpactEffectInstancea8",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/StarChildrenMeteorEffect10.java",
+      "family": "StarChildrenMeteorEffect10",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/StarChildrenMeteorEffectInstance10.java",
+      "family": "StarChildrenMeteorEffectInstance10",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/TextureAnimationAttachment1c.java",
+      "family": "TextureAnimationAttachment1c",
+      "route": "effect-controller",
+      "reason": "Controls deformation, scissor, DEFF loads or texture animation; the consuming sprite/model receives indexed detail"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ThunderArrowEffect1c.java",
+      "family": "ThunderArrowEffect1c",
+      "route": "procedural-current-resolution",
+      "reason": "Lines, gradients or untextured polygons rendered at the configured internal resolution with existing SMAA and reduced-flashing settings; no source texture to upscale"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/ThunderArrowEffectBolt1e.java",
+      "family": "ThunderArrowEffectBolt1e",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/TmdSpriteEffect10.java",
+      "family": "TmdSpriteEffect10",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/TransformScalerAttachment34.java",
+      "family": "TransformScalerAttachment34",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/TransformationMode.java",
+      "family": "TransformationMode",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/WeaponTrailEffect3c.java",
+      "family": "WeaponTrailEffect3c",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/WeaponTrailEffectSegment2c.java",
+      "family": "WeaponTrailEffectSegment2c",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/WsDragoonTransformationFeatherInstance70.java",
+      "family": "WsDragoonTransformationFeatherInstance70",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/WsDragoonTransformationFeathersEffect14.java",
+      "family": "WsDragoonTransformationFeathersEffect14",
+      "route": "live-indexed-detail",
+      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/effects/package-info.java",
+      "family": "package-info",
+      "route": "support-structure",
+      "reason": "Instance metrics, attachment/manager state or interface; no independent artwork renderer"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance0.java",
+      "family": "Instance0",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance1.java",
+      "family": "Instance1",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance10.java",
+      "family": "Instance10",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance11.java",
+      "family": "Instance11",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance12.java",
+      "family": "Instance12",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance13.java",
+      "family": "Instance13",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance14.java",
+      "family": "Instance14",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance15.java",
+      "family": "Instance15",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance16.java",
+      "family": "Instance16",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance17.java",
+      "family": "Instance17",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance18.java",
+      "family": "Instance18",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance19.java",
+      "family": "Instance19",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance2.java",
+      "family": "Instance2",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance20.java",
+      "family": "Instance20",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance21.java",
+      "family": "Instance21",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance22.java",
+      "family": "Instance22",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance23.java",
+      "family": "Instance23",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance24.java",
+      "family": "Instance24",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance25.java",
+      "family": "Instance25",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance26.java",
+      "family": "Instance26",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance27.java",
+      "family": "Instance27",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance28.java",
+      "family": "Instance28",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance29.java",
+      "family": "Instance29",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance3.java",
+      "family": "Instance3",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance30.java",
+      "family": "Instance30",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance31.java",
+      "family": "Instance31",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance32.java",
+      "family": "Instance32",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance33.java",
+      "family": "Instance33",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance34.java",
+      "family": "Instance34",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance35.java",
+      "family": "Instance35",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance36.java",
+      "family": "Instance36",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance37.java",
+      "family": "Instance37",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance38.java",
+      "family": "Instance38",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance39.java",
+      "family": "Instance39",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance4.java",
+      "family": "Instance4",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance40.java",
+      "family": "Instance40",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance41.java",
+      "family": "Instance41",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance42.java",
+      "family": "Instance42",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance43.java",
+      "family": "Instance43",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance44.java",
+      "family": "Instance44",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance45.java",
+      "family": "Instance45",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance46.java",
+      "family": "Instance46",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance47.java",
+      "family": "Instance47",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance48.java",
+      "family": "Instance48",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance49.java",
+      "family": "Instance49",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance5.java",
+      "family": "Instance5",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance50.java",
+      "family": "Instance50",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance51.java",
+      "family": "Instance51",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance52.java",
+      "family": "Instance52",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance53.java",
+      "family": "Instance53",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance54.java",
+      "family": "Instance54",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance55.java",
+      "family": "Instance55",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance56.java",
+      "family": "Instance56",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance57.java",
+      "family": "Instance57",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance58.java",
+      "family": "Instance58",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance59.java",
+      "family": "Instance59",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance6.java",
+      "family": "Instance6",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance60.java",
+      "family": "Instance60",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance61.java",
+      "family": "Instance61",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance62.java",
+      "family": "Instance62",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance63.java",
+      "family": "Instance63",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance64.java",
+      "family": "Instance64",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance7.java",
+      "family": "Instance7",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance8.java",
+      "family": "Instance8",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/Instance9.java",
+      "family": "Instance9",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/JkNotActuallyALineParticle.java",
+      "family": "JkNotActuallyALineParticle",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/LineParticle.java",
+      "family": "LineParticle",
+      "route": "procedural-current-resolution",
+      "reason": "Native lines/untextured quads are generated at configured internal resolution"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/ParticleEffectData98.java",
+      "family": "ParticleEffectData98",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/ParticleEffectData98Inner24.java",
+      "family": "ParticleEffectData98Inner24",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/ParticleEffectInstance94.java",
+      "family": "ParticleEffectInstance94",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/ParticleEffectInstance94Sub10.java",
+      "family": "ParticleEffectInstance94Sub10",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/ParticleInitialTransformationMetrics10.java",
+      "family": "ParticleInitialTransformationMetrics10",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/ParticleInnerStuff04.java",
+      "family": "ParticleInnerStuff04",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/ParticleManager.java",
+      "family": "ParticleManager",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/ParticleMetrics48.java",
+      "family": "ParticleMetrics48",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/PixelParticle.java",
+      "family": "PixelParticle",
+      "route": "procedural-current-resolution",
+      "reason": "Native lines/untextured quads are generated at configured internal resolution"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/QuadParticle.java",
+      "family": "QuadParticle",
+      "route": "live-indexed-detail",
+      "reason": "Common/DEFF texture-backed particles share indexed detail without per-particle decode/upload"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/TmdParticle.java",
+      "family": "TmdParticle",
+      "route": "live-indexed-detail",
+      "reason": "Common/DEFF texture-backed particles share indexed detail without per-particle decode/upload"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/WhyIsThereANoParticle.java",
+      "family": "WhyIsThereANoParticle",
+      "route": "non-rendering-controller",
+      "reason": "Existing class has an empty render method; no independent visible asset"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/particles/package-info.java",
+      "family": "package-info",
+      "route": "particle-controller-or-support",
+      "reason": "Particle behavior/metrics dispatch to Quad/TMD/Line/Pixel renderers; timing and counts retained"
+    },
+    {
+      "source": "src/main/java/legend/game/submap/SMap.java",
+      "family": "Field effects and save-point animation",
+      "route": "live-indexed-detail",
+      "reason": "All ten named field/shadow TIMs registered after image and palette upload; covers native TMD dust/skid and animated/overlapping save-point sprites as well as six prior explicit RGB replacements"
+    },
+    {
+      "source": "src/main/java/legend/game/wmap/WMap.java",
+      "family": "World clouds, snow and chimney smoke",
+      "route": "live-indexed-detail",
+      "reason": "5695 shared effect pages; protected UI queues keep UIHD; CPU inventory snapshots and row rotations preserve effect companion ownership"
+    },
+    {
+      "source": "src/main/java/legend/game/title/Ttle.java",
+      "family": "Title flames",
+      "route": "live-indexed-detail",
+      "reason": "5718/7..10 flame TIMs and signed row animation preserved; title lettering/background remains UIHD"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/Battle.java",
+      "family": "Retail DEFF loaders and cutscene extras",
+      "route": "live-indexed-detail",
+      "reason": "Common4114/3, optional extras4115..4138 and5505..5510, paired TIM/definition roots4139..5651; 4119/4126/4127 absent and guarded by native Loader.isDirectory"
+    },
+    {
+      "source": "src/main/java/legend/game/combat/SEffe.java",
+      "family": "Shared scripted sprites, TMDs and procedural functions",
+      "route": "shared-dispatch",
+      "reason": "Uses covered DEFF/common sources or current-resolution geometry/framebuffer; palette animations remain live"
+    }
+  ],
+  "routeCounts": {
+    "UIHD-owned": 3,
+    "effect-controller": 6,
+    "live-framebuffer": 2,
+    "live-indexed-detail": 21,
+    "non-rendering-controller": 1,
+    "particle-controller-or-support": 75,
+    "procedural-current-resolution": 13,
+    "shared-dispatch": 1,
+    "support-structure": 36
+  },
+  "unclassifiedConsumers": 0,
+  "nativeGameplayAccepted": false,
+  "steamDeckAccepted": false,
+  "outsideFxOwnership": {
+    "UI text and reticles": "UIHD protected queues",
+    "body/prop geometry and art": "ModelsHD/CharHD",
+    "terrain and scene plates": "EnvHD/Skurfa",
+    "FMVs": "FMVHD"
+  }
+}

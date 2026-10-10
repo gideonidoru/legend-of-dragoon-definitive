@@ -39,7 +39,7 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/definitive-visual-checks"
           "$RUNNER_TEMP/definitive-visual-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
-          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass envhd-sky-batch envhd-sky-import envhd-world envhd-ownership envhd-terrain envhd-terrain-pack envhd-battle-materials envhd-fields; do
+          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass envhd-sky-batch envhd-sky-import envhd-world envhd-ownership envhd-terrain envhd-terrain-pack envhd-battle-materials envhd-fields charhd-full-production fxhd-field fxhd-full-production; do
             "$RUNNER_TEMP/definitive-visual-checks/bin/python" "scripts/test-$fixture.py"
           done
   build:
@@ -87,6 +87,12 @@ jobs:
           ./gradlew --version
       - name: Compile and package without gameplay tests
         run: ./gradlew --no-daemon --console=plain clean build definitivePackage definitiveFileDelivery portableInstaller -PreleaseTag="$RELEASE_TAG" ${{ matrix.args }}
+      - name: Check incremental FxHD packaging and reviewed resources
+        run: |
+          cp build/libs/mods/FxHD-v1.0.0.jar build/libs/mods/FxHD-v0.1.0.jar
+          ./gradlew --no-daemon --console=plain stageDefinitivePackage ${{ matrix.args }}
+          python3 scripts/verify-fxhd-package.py build/definitive/package --stale-fxhd build/libs/mods/FxHD-v0.1.0.jar
+          python3 scripts/verify-charhd-package.py build/definitive/package
       - name: Assemble reviewed portable entry points
         if: runner.os == 'Linux'
         run: python3 scripts/assemble-installer.py --output-dir build/distributions --tag "$RELEASE_TAG"
@@ -97,7 +103,7 @@ jobs:
           sudo apt-get install -y ffmpeg libopenal1
           ffmpeg -y -v error -f lavfi -i testsrc2=size=320x192:rate=15:duration=2 -f lavfi -i sine=frequency=440:sample_rate=48000:duration=2 -c:v libx264 -pix_fmt yuv420p -c:a aac -ac 2 "$RUNNER_TEMP/fmv-fixture.mp4"
           ffmpeg -y -v error -f lavfi -i testsrc2=size=320x192:rate=15:duration=3 -f lavfi -i sine=frequency=440:sample_rate=48000:duration=1 -c:v libx264 -pix_fmt yuv420p -c:a aac -ac 2 "$RUNNER_TEMP/fmv-tail.mp4"
-          ./gradlew --no-daemon --console=plain deliveryTest -PfmvFixture="$RUNNER_TEMP/fmv-fixture.mp4" -PfmvTailFixture="$RUNNER_TEMP/fmv-tail.mp4" ${{ matrix.args }}
+          ./gradlew --no-daemon --console=plain deliveryTest cinematicHandoffProbe -PfmvFixture="$RUNNER_TEMP/fmv-fixture.mp4" -PfmvTailFixture="$RUNNER_TEMP/fmv-tail.mp4" ${{ matrix.args }}
       - name: Verify test opt-in using a headless fixture
         run: python3 scripts/verify-test-controls.py
       - name: Check bundled ModelsHD geometry and texture handoff
@@ -145,6 +151,7 @@ jobs:
             build/distributions/Definitive-Installer.zip
             build/distributions/Install-Definitive.*
             build/reports/tests/deliveryTest/**
+            build/reports/tests/charHdTests/**
             build/reports/tests/managerWindowTest/**
             build/reports/installer-*.png
             build/reports/focused-*.png

@@ -1,9 +1,9 @@
 # UIHD
 
-Independent presentation mod for Legend of Dragoon Definitive, release 0.1.0.
+Independent interface restoration for Legend of Dragoon Definitive, development release 0.3.0.
 
-Five goods icons; portraits/fonts remain original.
+The full default UI source audit selects738 custom PNGs: all nine portraits across gameplay and both save-card formats; every battle/shared/menu palette; world-map controls and markers; exploration indicators; every chapter animation/shadow state;356 ending-credit images; title/background/trademark/copyright; Game Over, The End and loading eye; spirits, goods, symbols, controls and dialogue. Palette and animation variants are resources rather than extra screens.
 
-Included by the normal Definitive build/installer. Enable or disable `uihd` in the game’s Mods menu. No installer toggle. Requires the matching Definitive engine hooks; unmodified Severed Chains is not supported for this pilot. See [HD mod integration](../../docs/definitive/HD_MODS.md) for coverage, validation and limitations.
+Source coverage and rendering-component checks are complete. Configurable fonts, procedural panels, PocketStation pixels and scene/effect textures are explicitly distinguished in the [source denominator ledger](../../docs/definitive/UIHD_COVERAGE.md). Final AA visual acceptance and whole-game/Steam Deck validation remain pending.
 
-Code: AGPL v3. See ARTWORK-NOTICES.txt for the separate status of game-derived resources. No original discs, model weights or inference runtimes are bundled.
+Included in the normal Definitive installation; activation uses the existing Mods menu. The enhanced Definitive engine preserves layout, timing, native transparency, live palettes and earlier mod ownership. Native artwork loads as needed within a 32 MiB residency bound. Shared image caching/prewarming respects graphics configuration. See [UIHD production](../../docs/definitive/UIHD_PRODUCTION.md) for the full coverage ledger, rendering integration and validation limits. Combined-gameplay, artistic acceptance and physical Steam Deck measurements remain pending.

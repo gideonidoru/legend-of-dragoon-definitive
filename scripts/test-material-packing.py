@@ -96,6 +96,22 @@ class MaterialPackingTest(unittest.TestCase):
             (folder/'manifest.json').write_text(json.dumps(report))
             with self.assertRaisesRegex(ValueError,'preserved'):packing.validate_pack(folder,model,tim)
 
+    def test_authored_provenance_does_not_bypass_source_masks(self):
+        model,tim=split_faces(),fixtures.tim()
+        with tempfile.TemporaryDirectory() as temp:
+            folder=Path(temp);report=write_control(folder,model,tim)
+            report.update(algorithm='authored')
+            (folder/'manifest.json').write_text(json.dumps(report))
+            with self.assertRaisesRegex(ValueError,'provenance'):packing.validate_pack(folder,model,tim)
+            report['authoring']={key:'a'*64 for key in ('baseAtlasSha256','generatedImageSha256','promptSha256')}
+            (folder/'manifest.json').write_text(json.dumps(report))
+            packing.validate_pack(folder,model,tim)
+            with Image.open(folder/'atlas-engine-stp.png') as image:atlas=image.convert('RGBA')
+            x,y,_,_=report['materials'][0]['atlasRect'];pixel=atlas.getpixel((x,y));atlas.putpixel((x,y),(*pixel[:3],255-pixel[3]));atlas.save(folder/'atlas-engine-stp.png')
+            report['atlasEngineSha256']=hashlib.sha256((folder/'atlas-engine-stp.png').read_bytes()).hexdigest()
+            (folder/'manifest.json').write_text(json.dumps(report))
+            with self.assertRaisesRegex(ValueError,'coverage'):packing.validate_pack(folder,model,tim)
+
     def test_neural_provenance_and_stp_tampering_are_rejected(self):
         model,tim=split_faces(),fixtures.tim()
         with tempfile.TemporaryDirectory() as temp:

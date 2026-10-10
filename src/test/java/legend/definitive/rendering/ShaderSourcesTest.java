@@ -22,7 +22,7 @@ class ShaderSourcesTest {
     Files.writeString(main," ".repeat(1_048_577)); assertThrows(IOException.class,()->ShaderSources.read(main));
   }
   @Test void shippingSmaaAndModelShadersTranspileToGles() throws Exception {
-    for(final String name : new String[] {"post.vsh","smaa_edge.fsh","smaa_weights.fsh","smaa_blend.fsh","tmd.vsh","battle_tmd.vsh","tmd.gsh","tmd.fsh","battle_tmd.fsh"}) {
+    for(final String name : new String[] {"standard.vsh","standard.fsh","post.vsh","smaa_edge.fsh","smaa_weights.fsh","smaa_blend.fsh","tmd.vsh","battle_tmd.vsh","tmd.gsh","tmd.fsh","battle_tmd.fsh"}) {
       final ShaderStage stage=name.endsWith("vsh") ? ShaderStage.VERTEX : name.endsWith("gsh") ? ShaderStage.GEOMETRY : ShaderStage.FRAGMENT;
       assertTrue(ShaderManager.transpileShader(ShaderSources.read(Path.of("gfx/shaders",name)),stage,new IntRef()).contains("#version 320 es"),name);
     }

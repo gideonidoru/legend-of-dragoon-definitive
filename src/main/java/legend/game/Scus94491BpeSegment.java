@@ -53,7 +53,7 @@ import static legend.core.GameEngine.PLATFORM;
 import static legend.core.GameEngine.REGISTRIES;
 import static legend.core.GameEngine.RENDERER;
 import static legend.core.GameEngine.SCRIPTS;
-import static legend.core.GameEngine.bootMods;
+import static legend.core.GameEngine.bootVisibleMods;
 import static legend.game.DrgnFiles.drgnBinIndex_800bc058;
 import static legend.game.DrgnFiles.loadDrgnDir;
 import static legend.game.EngineStates.FUN_80020ed8;
@@ -145,10 +145,7 @@ public final class Scus94491BpeSegment {
       gameState_800babc8.timestamp_a0 += vsyncMode_8007a3b8;
     }
 
-    final int frames = Math.max(1, vsyncMode_8007a3b8);
-    final int hz = 60 / frames * Config.getGameSpeedMultiplier();
-    RENDERER.window().setFpsLimit(hz);
-    PLATFORM.setInputTickRate(hz);
+    setGameplayTiming();
 
     loadQueuedOverlay();
 
@@ -192,6 +189,13 @@ public final class Scus94491BpeSegment {
     DISCORD.tick();
   }
 
+  private static void setGameplayTiming() {
+    final int frames = Math.max(1, vsyncMode_8007a3b8);
+    final int hz = 60 / frames * Config.getGameSpeedMultiplier();
+    RENDERER.setSimulationRate(hz);
+    PLATFORM.setInputTickRate(hz);
+  }
+
   public static void bindRendererEvents() {
     RENDERER.events().onKeyPress((window, key, scancode, mods, repeat) -> {
       if(mods.contains(InputMod.CTRL) && !repeat && key == InputKey.W && currentEngineState_8004dd04 instanceof final Battle battle) {
@@ -211,7 +215,7 @@ public final class Scus94491BpeSegment {
       }
     });
 
-    RENDERER.setRenderCallback(Scus94491BpeSegment::gameLoop);
+    RENDERER.setSimulationCallback(Scus94491BpeSegment::gameLoop);
 
     RENDERER.events().onClose(() -> {
       stopSound();
@@ -549,7 +553,17 @@ public final class Scus94491BpeSegment {
           //LAB_80024f1c
         } else if(i == 4) {
           //LAB_80024f68
-          GPU.uploadData15(rects[rectIndex + 1], tim.getClutData());
+          GPU.uploadData15(rects[indexOffsets[i] + 1], tim.getClutData());
+        }
+        if(i < 3) {
+          final Tim page = new Tim(files.get(0));
+          final Rect4i image = rects[0], clut = rects[rectIndex + 1];
+          legend.game.textures.NativeUiTextureEvent.post(new legend.game.textures.NativeUiTextureEvent("basic_" + i,
+            legend.game.textures.NativeUiTextureEvent.withPalette(page, tim), image.x, image.y, clut.x, clut.y, 4));
+        }
+        if(i == 3 || i == 4) {
+          final Rect4i image = rects[rectIndex], clut = rects[rectIndex + 1];
+          legend.game.textures.NativeUiTextureEvent.post(new legend.game.textures.NativeUiTextureEvent(i == 3 ? "dialogue" : "dialogue_arrow", tim, image.x, image.y, clut.x, clut.y));
         }
       }
     }
@@ -572,7 +586,7 @@ public final class Scus94491BpeSegment {
     submapCutBeforeBattle_80052c3c = -1;
     shouldRestoreCameraPosition_80052c40 = false;
     submapEnvState_80052c44 = SubmapEnvState.CHECK_TRANSITIONS_1_2;
-    bootMods(MODS.getAllModIds());
+    bootVisibleMods(MODS.getAllModIds());
   }
 
   private static int randSeed = 0x24040001;

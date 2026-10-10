@@ -1,0 +1,86 @@
+{
+  "scope": "Native CPU construction and source immutability; no GPU/gameplay/Deck acceptance",
+  "checks": [
+    {
+      "facePaint": false,
+      "parts": 15,
+      "originalCpuTablesUnchanged": true,
+      "finiteNativeFloats": 149312,
+      "preparedGeometryUnchanged": true,
+      "simulatedRgbaBody": false,
+      "faceTextures": 0,
+      "form": "field"
+    },
+    {
+      "facePaint": true,
+      "parts": 15,
+      "originalCpuTablesUnchanged": true,
+      "finiteNativeFloats": 149312,
+      "preparedGeometryUnchanged": true,
+      "simulatedRgbaBody": false,
+      "faceTextures": 1,
+      "form": "field"
+    },
+    {
+      "facePaint": false,
+      "parts": 15,
+      "originalCpuTablesUnchanged": true,
+      "finiteNativeFloats": 149312,
+      "preparedGeometryUnchanged": true,
+      "simulatedRgbaBody": true,
+      "faceTextures": 0,
+      "form": "field"
+    },
+    {
+      "facePaint": true,
+      "parts": 15,
+      "originalCpuTablesUnchanged": true,
+      "finiteNativeFloats": 149312,
+      "preparedGeometryUnchanged": true,
+      "simulatedRgbaBody": true,
+      "faceTextures": 1,
+      "form": "field"
+    },
+    {
+      "facePaint": false,
+      "parts": 17,
+      "originalCpuTablesUnchanged": true,
+      "finiteNativeFloats": 264064,
+      "preparedGeometryUnchanged": true,
+      "simulatedRgbaBody": false,
+      "faceTextures": 0,
+      "form": "combat"
+    },
+    {
+      "facePaint": true,
+      "parts": 17,
+      "originalCpuTablesUnchanged": true,
+      "finiteNativeFloats": 264064,
+      "preparedGeometryUnchanged": true,
+      "simulatedRgbaBody": false,
+      "faceTextures": 1,
+      "form": "combat"
+    },
+    {
+      "facePaint": false,
+      "parts": 17,
+      "originalCpuTablesUnchanged": true,
+      "finiteNativeFloats": 264064,
+      "preparedGeometryUnchanged": true,
+      "simulatedRgbaBody": true,
+      "faceTextures": 0,
+      "form": "combat"
+    },
+    {
+      "facePaint": true,
+      "parts": 17,
+      "originalCpuTablesUnchanged": true,
+      "finiteNativeFloats": 264064,
+      "preparedGeometryUnchanged": true,
+      "simulatedRgbaBody": true,
+      "faceTextures": 1,
+      "form": "combat"
+    }
+  ],
+  "status": "passed"
+}

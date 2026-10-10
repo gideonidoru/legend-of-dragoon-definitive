@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.zip.ZipInputStream;
@@ -519,12 +520,17 @@ public final class InstallStore {
       }
     }
     final boolean bundledModels = Files.isDirectory(release.resolve("bundled-mods")) && hasBundledModels(release.resolve("bundled-mods"));
+    final boolean bundledEffects = Files.isDirectory(release.resolve("bundled-mods")) && hasBundledEffects(release.resolve("bundled-mods"));
     if(Files.isDirectory(data.resolve("mods"))) try(final var files = Files.list(data.resolve("mods"))) {
       for(final Path mod : files.toList()) if(mod.toString().endsWith(".jar")) {
         // A manual copy of our older artifact must not duplicate the bundled mod ID.
         // Retain the actual file in user data; only rebuild workspace-owned links.
         if(bundledModels && isModelsHdArtifact(mod)) {
           InstallerLog.write("Using the release's ModelsHD version; manual copy retained at " + mod);
+          continue;
+        }
+        if(bundledEffects && isFxHdArtifact(mod)) {
+          InstallerLog.write("Using the release's FxHD version; manual copy retained at " + mod);
           continue;
         }
         link(mods.resolve(mod.getFileName()), mod);
@@ -635,6 +641,18 @@ public final class InstallStore {
   private static boolean hasBundledModels(final Path directory) throws IOException {
     try(final var files = Files.list(directory)) {
       for(final Path file : files.toList()) if(isModelsHdArtifact(file)) return true;
+      return false;
+    }
+  }
+
+  private static boolean isFxHdArtifact(final Path file) throws IOException {
+    if(file.getFileName().toString().matches("FxHD-v[0-9]+\\.[0-9]+\\.[0-9]+\\.jar")) return true;
+    return file.getFileName().toString().endsWith(".jar") && ModArchiveIdentity.containsClass(file, "fxhd/FxHdMod.class");
+  }
+
+  private static boolean hasBundledEffects(final Path directory) throws IOException {
+    try(final var files = Files.list(directory)) {
+      for(final Path file : files.toList()) if(isFxHdArtifact(file)) return true;
       return false;
     }
   }
@@ -796,6 +814,7 @@ public final class InstallStore {
       command.add(Path.of(System.getProperty("java.home"), "bin", "java").toString());
       if(PackageManifest.hostPlatform().startsWith("macos")) command.add("-XstartOnFirstThread");
       command.add("-Ddefinitive.legacyTextures=" + Boolean.parseBoolean(state.getProperty("legacyTextures", "false")));
+      command.addAll(this.managedModArguments(state));
       final Path log = workspace.resolve("launcher.log");
       DiagnosticLogs.checked(log);
       this.verifiedRouterRelease();
@@ -810,6 +829,16 @@ public final class InstallStore {
         try(final var running = ProcessRunner.start(builder, log)) { return running.await(); }
       } finally { GameLease.finished(this.root, token); }
     }
+  }
+
+  /** Bind runtime module choices to this installation's preserved private data. */
+  List<String> managedModArguments(final Properties state) throws IOException {
+    final Path preferences = this.data(state).resolve("definitive-hd-mods.properties");
+    if(Files.exists(preferences, LinkOption.NOFOLLOW_LINKS) && !Files.isRegularFile(preferences, LinkOption.NOFOLLOW_LINKS)) {
+      throw new IOException("Unexpected HD module preferences file. No game was started.");
+    }
+    return List.of("-Ddefinitive.artworkProfile=" + state.getProperty("artwork", "hd"),
+      "-Ddefinitive.hdModPreferences=" + preferences);
   }
 
   static void normalizeSteamOverlay(final java.util.Map<String, String> environment) {

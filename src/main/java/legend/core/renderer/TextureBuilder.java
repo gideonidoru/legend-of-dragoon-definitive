@@ -65,6 +65,9 @@ public class TextureBuilder {
   }
 
   public void data(final Buffer data, final int w, final int h) {
+    if(data != null && !data.isDirect()) {
+      throw new IllegalArgumentException("Texture pixel data requires direct native storage");
+    }
     this.buffer = data;
     this.size(w, h);
   }

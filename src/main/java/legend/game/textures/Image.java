@@ -9,6 +9,7 @@ import java.nio.file.Path;
 
 import static legend.core.IoHelper.pathToByteBuffer;
 import static org.lwjgl.stb.STBImage.stbi_failure_reason;
+import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load_from_memory;
 import static org.lwjgl.system.MemoryStack.stackPush;
 
@@ -41,10 +42,13 @@ public class Image {
         throw new RuntimeException("Failed to load image: " + stbi_failure_reason());
       }
 
-      final byte[] decompressed = new byte[data.limit()];
-      data.get(0, decompressed);
-
-      return new Image(decompressed, w.get(0), h.get(0));
+      try {
+        final byte[] decompressed = new byte[data.limit()];
+        data.get(0, decompressed);
+        return new Image(decompressed, w.get(0), h.get(0));
+      } finally {
+        stbi_image_free(data);
+      }
     }
   }
 }

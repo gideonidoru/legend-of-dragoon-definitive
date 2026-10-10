@@ -10,13 +10,24 @@ public final class SkySource {
   private SkySource() { }
 
   public static Image decode(final byte[] source) throws IOException {
+    return decode(source, false);
+  }
+
+  /** Game Over omits four unused trailing words; every accessed word is still bounded. */
+  public static Image decodeUi(final byte[] source) throws IOException {
+    return decode(source, true);
+  }
+
+  private static Image decode(final byte[] source, final boolean unusedTail) throws IOException {
     if(source.length < 40 || source.length > 262188) throw new IOException("Invalid sky source bounds");
     final ByteBuffer bytes = ByteBuffer.wrap(source).order(ByteOrder.LITTLE_ENDIAN);
     final int magic = bytes.getInt(0), offset = bytes.getInt(4);
     final int vw = unsigned(bytes, 8), vh = unsigned(bytes, 10);
     int cx = unsigned(bytes, 12), cy = unsigned(bytes, 14), u = unsigned(bytes, 16), v = unsigned(bytes, 18);
     final int width = unsigned(bytes, 20), height = unsigned(bytes, 22);
-    if((magic != 0x151434d && magic != 0x251434d) || offset < 40 || offset > source.length || vw < 1 || vw > 256 || vh < 1 || vh > 512 || (long)offset + vw * vh * 2L != source.length) throw new IOException("Invalid sky source payload");
+    final long expected = (long)offset + vw * vh * 2L;
+    if((magic != 0x151434d && magic != 0x251434d) || offset < 40 || offset > source.length || vw < 1 || vw > 256 || vh < 1 || vh > 512
+      || (unusedTail ? expected - source.length < 0 || expected - source.length > 8 : expected != source.length)) throw new IOException("Invalid sky source payload");
     if(width < 16 || height < 16 || width > 2048 || height > 2048 || width % 16 != 0 || height % 16 != 0) throw new IOException("Sky source is not a drawable tile image");
     int pageX = u & 0x3c0;
     final int pageY = v & 0x100;
@@ -71,7 +82,7 @@ public final class SkySource {
 
   private static int unsigned(final ByteBuffer bytes, final int offset) { return Short.toUnsignedInt(bytes.getShort(offset)); }
   private static int word(final ByteBuffer bytes, final int offset, final int width, final int height, final int x, final int y) throws IOException {
-    if(x < 0 || y < 0 || x >= width || y >= height) throw new IOException("Sky samples outside its uploaded VRAM rectangle");
+    if(x < 0 || y < 0 || x >= width || y >= height || (long)offset + (y * width + x) * 2L + 2 > bytes.limit()) throw new IOException("Sky samples outside its uploaded VRAM rectangle");
     return unsigned(bytes, offset + (y * width + x) * 2);
   }
 }

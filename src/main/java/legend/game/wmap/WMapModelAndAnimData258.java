@@ -120,6 +120,7 @@ public class WMapModelAndAnimData258 {
 
   public float clutYIndex_28;
   public FileData imageData_2c;
+  public legend.definitive.effects.IndexedEffectVram.Snapshot effectsSnapshot, backdropSnapshot;
   public FileData imageData_30;
   /** Used as the camera position, only translation is used */
   public final GsCOORDINATE2 coord2_34 = new GsCOORDINATE2();

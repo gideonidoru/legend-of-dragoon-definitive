@@ -60,6 +60,7 @@ uniform vec2 uvOffset;
 uniform float discardTranslucency;
 uniform int tmdTranslucency;
 uniform sampler2D tex24;
+uniform sampler2D faceDetailTex;
 uniform usampler2D tex15;
 
 layout(location = 0) out vec4 outColour;
@@ -68,6 +69,8 @@ layout(location = 2) out vec4 outInterface;
 uniform bool uiLayer;
 uniform float emission;
 uniform bool hdTexture;
+uniform bool effectArtworkEnabled;
+uniform usampler2D effectDetailTex;
 uniform bool materialLighting;
 uniform vec2 surfaceResponse;
 uniform int effectLightCount;
@@ -102,7 +105,7 @@ mat3 detailFrame(vec3 n, vec3 dpX, vec3 dpY, vec2 uvX, vec2 uvY) {
 void prepareMaterial() {
   materialNormal = lightingNormal;
   materialWorldNormal = worldNormal;
-  if((normalMapEnabled || roughnessMapEnabled) && (vertFlags & 0x1) != 0 && (vertFlags & 0x8) == 0 && !uiLayer) {
+  if((vertFlags & 0x20000) == 0 && (normalMapEnabled || roughnessMapEnabled) && (vertFlags & 0x1) != 0 && (vertFlags & 0x8) == 0 && !uiLayer) {
     // Derivatives precede transparency/scissor discards; exact alpha/STP lookup stays separate.
     detailUv = vertUv + uvOffset;
     if(defaultSurfaceMaps) detailUv *= vertBpp == 3 ? 8.0 : 1.0/32.0;
@@ -185,6 +188,25 @@ vec3 surfaceLight() {
   return clamp(result, 0.0, 0.35);
 }
 
+// Neural detail is a bounded mixture of live palette entries, never a frozen RGB palette.
+// Native index/color remain authoritative for STP, black/discard, and both render passes.
+vec3 effectDetail(vec3 nativeColour, int nativeIndex) {
+  if(!effectArtworkEnabled || uiLayer || vertBpp != 0 || all(equal(nativeColour, vec3(0.0)))) return nativeColour;
+  vec2 local = vertUv + uvOffset;
+  // Match the native shader's packed-word and nibble addressing exactly.
+  ivec2 word = ivec2(vertTpage.x + local.x * widthMultiplier, vertTpage.y + local.y);
+  int nibble = int(vertTpage.x + vertUv.x) & widthMask;
+  ivec2 coordinate = ivec2(word.x * 4 + nibble, word.y * 2 + int(fract(local.y) * 2.0));
+  if(any(lessThan(coordinate, ivec2(0))) || any(greaterThanEqual(coordinate, textureSize(effectDetailTex, 0)))) return nativeColour;
+  uint detailPair = texelFetch(effectDetailTex, coordinate, 0).r;
+  uint code = (detailPair >> (int(fract(local.x) * 2.0) * 16)) & 65535u;
+  if((code & 32768u) == 0u || int(code & 15u) != nativeIndex) return nativeColour;
+  uint colour = texelFetch(tex15, ivec2(vertClut.x + int((code >> 4) & 15u), vertClut.y), 0).r;
+  vec3 second = vec3(colour & 31u, (colour >> 5) & 31u, (colour >> 10) & 31u) / 31.0;
+  vec3 result = mix(nativeColour, second, float((code >> 8) & 127u) / 254.0);
+  return any(notEqual(result, vec3(0.0))) ? result : nativeColour;
+}
+
 void main() {
   prepareMaterial();
   vec3 materialAlbedo = lightingColour;
@@ -235,7 +257,10 @@ void main() {
   // Textured
   if(textured) {
     vec4 texColour;
-    if(vertBpp == 0 || vertBpp == 1) {
+    if((vertFlags & 0x20000) != 0) {
+      texColour = texture(faceDetailTex, vertUv);
+      texColour.a = 0.0; // Opaque authored face paint, independent of PSX STP.
+    } else if(vertBpp == 0 || vertBpp == 1) {
       // Calculate CLUT index
       ivec2 uv = ivec2(vertTpage.x + (vertUv.x + uvOffset.x) * widthMultiplier, vertTpage.y + vertUv.y + uvOffset.y);
       ivec4 indexVec = ivec4(texelFetch(tex15, uv, 0));
@@ -247,6 +272,7 @@ void main() {
       texColour.b = float(pixel >> 10 & 0x1fu) / 31.0;
       texColour.g = float(pixel >>  5 & 0x1fu) / 31.0;
       texColour.r = float(pixel       & 0x1fu) / 31.0;
+      texColour.rgb = effectDetail(texColour.rgb, p);
     } else if(vertBpp == 2) {
       ivec2 uv = ivec2(vertTpage.x + (vertUv.x + uvOffset.x), vertTpage.y + vertUv.y + uvOffset.y);
       uint pixel = texelFetch(tex15, uv, 0).r;
@@ -273,7 +299,7 @@ void main() {
     }
 
     // Discard if (0, 0, 0)
-    if(texColour.a == 0 && texColour.r == 0 && texColour.g == 0 && texColour.b == 0) {
+    if((vertFlags & 0x20000) == 0 && texColour.a == 0 && texColour.r == 0 && texColour.g == 0 && texColour.b == 0) {
       discard;
     }
 

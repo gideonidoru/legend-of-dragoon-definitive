@@ -64,6 +64,9 @@ public class SeveredSavedCharacterV1 implements SavedCharacter {
   }
 
   @Override
+  public RegistryId portraitId() { return this.templateId; }
+
+  @Override
   public CharacterData2c make(final GameState52c gameState) {
     final CharacterTemplate template = REGISTRIES.characterTemplates.getEntry(this.templateId).get();
     final CharacterData2c character = template.make(gameState);

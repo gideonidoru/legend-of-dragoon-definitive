@@ -102,8 +102,24 @@ class DefaultAssetsTest {
     try(final var cache=new PngAssets(64)) {
       cache.retention(false);
       final byte[] encoded=PngAssetsTest.png(1,2,3,255);
-      cache.prewarm(()->new java.io.ByteArrayInputStream(encoded)).get(10,TimeUnit.SECONDS);
-      assertEquals(0,cache.stats().cachedBytes()); assertEquals(0,cache.stats().liveDecodedBytes());
+      final var releaseSource = new java.util.concurrent.CountDownLatch(1);
+      final var streamClosed = new java.util.concurrent.atomic.AtomicBoolean();
+      final var completed = cache.prewarm(() -> {
+        try { if(!releaseSource.await(10, TimeUnit.SECONDS)) throw new IllegalStateException("Source gate timed out"); }
+        catch(final InterruptedException interrupted) { Thread.currentThread().interrupt(); throw new IllegalStateException(interrupted); }
+        return new java.io.ByteArrayInputStream(encoded) {
+          @Override public void close() { streamClosed.set(true); }
+        };
+      }).thenApply(warmed -> {
+        assertTrue(warmed);
+        // Runs inline at completion, before a worker can advance past complete().
+        assertEquals(0, cache.stats().cachedBytes());
+        assertEquals(0, cache.stats().liveDecodedBytes());
+        assertTrue(streamClosed.get());
+        return warmed;
+      });
+      releaseSource.countDown();
+      completed.get(10, TimeUnit.SECONDS);
       cache.retention(true);
       try(final var image=cache.acquire(ByteBuffer.wrap(PngAssetsTest.png(1,2,3,255)))) { assertEquals(4,cache.stats().cachedBytes()); }
     }
