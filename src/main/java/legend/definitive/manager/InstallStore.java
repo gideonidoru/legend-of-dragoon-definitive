@@ -501,8 +501,17 @@ public final class InstallStore {
         Files.delete(entry);
       }
     }
+    final boolean bundledModels = Files.isDirectory(release.resolve("bundled-mods")) && hasBundledModels(release.resolve("bundled-mods"));
     if(Files.isDirectory(data.resolve("mods"))) try(final var files = Files.list(data.resolve("mods"))) {
-      for(final Path mod : files.toList()) if(mod.toString().endsWith(".jar")) link(mods.resolve(mod.getFileName()), mod);
+      for(final Path mod : files.toList()) if(mod.toString().endsWith(".jar")) {
+        // A manual copy of our older artifact must not duplicate the bundled mod ID.
+        // Retain the actual file in user data; only rebuild workspace-owned links.
+        if(bundledModels && isModelsHdArtifact(mod)) {
+          InstallerLog.write("Using the release's ModelsHD version; manual copy retained at " + mod);
+          continue;
+        }
+        link(mods.resolve(mod.getFileName()), mod);
+      }
     }
     if(!"original".equals(state.getProperty("artwork", "hd"))) try(final var files = Files.list(release.resolve("bundled-mods"))) {
       for(final Path mod : files.toList()) {
@@ -535,6 +544,14 @@ public final class InstallStore {
       Files.move(temporary, target, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
       forceDirectory(target.getParent());
     } finally { Files.deleteIfExists(temporary); }
+  }
+
+  private static boolean isModelsHdArtifact(final Path file) {
+    return file.getFileName().toString().matches("ModelsHD-[0-9]+\\.[0-9]+\\.[0-9]+\\.jar");
+  }
+
+  private static boolean hasBundledModels(final Path directory) throws IOException {
+    try(final var files = Files.list(directory)) { return files.anyMatch(InstallStore::isModelsHdArtifact); }
   }
 
   static void configureFullscreen(final Path data, final boolean fullscreen) throws IOException {

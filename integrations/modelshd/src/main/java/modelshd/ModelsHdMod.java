@@ -52,8 +52,14 @@ public final class ModelsHdMod {
     }
     final String identity = ModelPack.identity(originals);
     final Path pack = packs.resolve(identity + ".json");
-    if(!Files.isRegularFile(pack)) return false;
-    final var replacements = ModelPack.read(pack, originals);
+    final TmdObjTable1c[] replacements;
+    if(Files.isRegularFile(pack)) {
+      replacements = ModelPack.read(pack, originals);
+    } else {
+      final var resource = ModelsHdMod.class.getResourceAsStream("/modelshd/models/battle/" + identity + ".json");
+      if(resource == null) return false;
+      replacements = ModelPack.read(resource, originals);
+    }
     TextureCompatibility.requireNativeAddressing(originals);
     ModelReplacement.install(model, replacements);
     return true;

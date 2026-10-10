@@ -2,7 +2,7 @@
 # Portable Definitive entry point (2026-10-09), AGPL v3; see repository LICENSE.
 set -euo pipefail
 umask 077
-TAG=definitive-alpha-2026-10-10-deck-recovery
+TAG=definitive-alpha-2026-10-10-modelshd
 # Updated by scripts/assemble-installer.py after building the small portable UI package.
 EXPECTED=a7c744120fa8976e90cbf667d952f99e10669fae0b1abb44873c5785d4b706bf
 CACHE="$HOME/.cache/legend-of-dragoon-definitive"

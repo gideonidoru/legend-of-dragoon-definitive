@@ -21,20 +21,36 @@ tasks.register('modelsHdTests', Test) {
   workingDir = layout.buildDirectory.dir('modelshd-test-home').get().asFile
   doFirst { workingDir.mkdirs() }
 }
+tasks.register('verifyModelsHdRoster') {
+  final def root = file('integrations/modelshd/src/main/resources/modelshd/models')
+  inputs.dir root
+  doLast {
+    final def roster = new groovy.json.JsonSlurper().parse(new File(root, 'roster.json'))
+    final def expected = roster.models.collect { it.sourceGeometrySha256 + '.json' }.toSet()
+    final def actual = fileTree(new File(root, 'battle')).files.collect { it.name }.toSet()
+    if(roster.models.size() != 19 || expected.size() != 19 || actual != expected) throw new GradleException('ModelsHD must contain the complete 19-model custom roster')
+    roster.models.each { model ->
+      if(!(model.sourceGeometrySha256 ==~ /[a-f0-9]{64}/)) throw new GradleException('Invalid ModelsHD source identity')
+      final File pack = new File(root, 'battle/' + model.sourceGeometrySha256 + '.json')
+      final String hash = java.security.MessageDigest.getInstance('SHA-256').digest(pack.bytes).encodeHex().toString()
+      if(hash != model.packSha256 || pack.length() != model.packBytes) throw new GradleException('ModelsHD geometry checksum mismatch: ' + model.character + '/' + model.form)
+    }
+  }
+}
 tasks.register('modelsHdJar', Jar) {
-  dependsOn sourceSets.modelshd.classesTaskName
-  archiveFileName = 'ModelsHD-0.2.0.jar'
+  dependsOn sourceSets.modelshd.classesTaskName, 'verifyModelsHdRoster'
+  archiveFileName = 'ModelsHD-0.3.0.jar'
   destinationDirectory = layout.buildDirectory.dir('modelshd')
   from sourceSets.modelshd.output
   into('META-INF/modelshd') { from 'LICENSE' }
-  manifest { attributes 'Implementation-Title': 'ModelsHD', 'Implementation-Version': '0.2.0' }
+  manifest { attributes 'Implementation-Title': 'ModelsHD', 'Implementation-Version': '0.3.0' }
   preserveFileTimestamps = false
   reproducibleFileOrder = true
 }
 tasks.register('modelsHdBundle', Zip) {
-  description = 'Optional ModelsHD code and local generation recipe. Contains no retail geometry.'
+  description = 'ModelsHD with the public custom geometry roster and optional authoring recipe.'
   dependsOn 'modelsHdJar'
-  archiveFileName = 'ModelsHD-0.2.0-tools.zip'
+  archiveFileName = 'ModelsHD-0.3.0.zip'
   destinationDirectory = layout.buildDirectory.dir('modelshd')
   into('mods') { from tasks.named('modelsHdJar') }
   from('integrations/modelshd/PACKAGE_README.md') { rename { 'ModelsHD-README.md' } }
@@ -50,3 +66,4 @@ tasks.register('modelsHdBundle', Zip) {
   preserveFileTimestamps = false
   reproducibleFileOrder = true
 }
+tasks.named('build') { dependsOn 'modelsHdJar' }

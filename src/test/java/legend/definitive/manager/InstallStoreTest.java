@@ -143,6 +143,20 @@ class InstallStoreTest {
     assertNotEquals(first, next); assertFalse(Files.exists(next.resolve("files/version"))); assertEquals("old-extraction", Files.readString(first.resolve("files/version")));
   }
 
+  @Test void bundledModelsFollowArtworkAndVersionRollbackWithoutTouchingCustomMods() throws Exception {
+    final InstallStore store=new InstallStore(this.temporary.resolve("models-installed"));
+    final Path one=this.pack("models-v1",PackageManifest.hostPlatform());Files.writeString(one.resolve("bundled-mods/ModelsHD-0.3.0.jar"),"geometry-one");Files.delete(one.resolve(PackageManifest.METADATA));Files.delete(one.resolve(PackageManifest.HASHES));ManagerMain.makeManifest(one,PackageManifest.hostPlatform(),"models-fixture");store.install(one);
+    final Path data=store.data(store.state());Files.writeString(data.resolve("mods/unrelated.jar"),"keep");Files.writeString(data.resolve("mods/ModelsHD-0.2.0.jar"),"previous-manual-mod");
+    final Path first=store.prepareLaunch();assertEquals("geometry-one",Files.readString(first.resolve("mods/ModelsHD-0.3.0.jar")));
+    assertFalse(Files.exists(first.resolve("mods/ModelsHD-0.2.0.jar")));assertEquals("previous-manual-mod",Files.readString(data.resolve("mods/ModelsHD-0.2.0.jar")));
+    store.setArtwork(false);store.prepareLaunch();assertFalse(Files.exists(first.resolve("mods/ModelsHD-0.3.0.jar")));assertEquals("keep",Files.readString(data.resolve("mods/unrelated.jar")));
+    assertFalse(Files.exists(first.resolve("mods/ModelsHD-0.2.0.jar")));
+    store.setArtwork(true);
+    final Path two=this.pack("models-v2",PackageManifest.hostPlatform());Files.writeString(two.resolve("bundled-mods/ModelsHD-0.4.0.jar"),"geometry-two");Files.delete(two.resolve(PackageManifest.METADATA));Files.delete(two.resolve(PackageManifest.HASHES));ManagerMain.makeManifest(two,PackageManifest.hostPlatform(),"models-fixture");store.install(two);
+    final Path next=store.prepareLaunch();assertEquals("geometry-two",Files.readString(next.resolve("mods/ModelsHD-0.4.0.jar")));assertFalse(Files.exists(next.resolve("mods/ModelsHD-0.3.0.jar")));
+    store.rollback();final Path restored=store.prepareLaunch();assertEquals("geometry-one",Files.readString(restored.resolve("mods/ModelsHD-0.3.0.jar")));assertFalse(Files.exists(restored.resolve("mods/ModelsHD-0.4.0.jar")));assertEquals("keep",Files.readString(store.data(store.state()).resolve("mods/unrelated.jar")));
+  }
+
   @Test void discSelectionErrorsLeaveOriginalInputsAndDestinationUntouched() throws Exception {
     final InstallStore store = new InstallStore(this.temporary.resolve("installed"));
     final var discs = new java.util.ArrayList<Path>();

@@ -58,13 +58,14 @@ tasks.register('archiveHelper') {
 }
 
 tasks.register('stageDefinitivePackage', Sync) {
-  dependsOn jar, skurfaJar, managerJar, archiveHelper
+  dependsOn jar, skurfaJar, managerJar, archiveHelper, 'modelsHdJar'
   into layout.buildDirectory.dir('definitive/package')
   from(layout.buildDirectory.dir('libs')) {
     include 'lod-game-*.jar', 'definitive-manager.jar', 'libs/**', 'gfx/**', 'patches/**', 'lang/**', 'LICENSE', 'credits.txt', 'README.md', 'log4j2.xml', 'gamecontrollerdb.txt'
     exclude '*-sources.jar'
   }
   into('bundled-mods') { from layout.buildDirectory.dir('libs/mods') }
+  into('bundled-mods') { from { tasks.named('modelsHdJar').get().archiveFile.get() } }
   into('tools') { from(layout.buildDirectory.dir('definitive/archive-helper')) { include '7zz', 'License.txt', 'readme.txt', 'History.txt' } }
   from 'CREDITS'
   from 'delivery/installer'
