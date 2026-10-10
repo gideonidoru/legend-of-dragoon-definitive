@@ -535,7 +535,7 @@ public class PostBattleScreen extends MenuScreen {
       //LAB_8010cc94
       //LAB_8010cc98
       //LAB_8010ccd4
-      character.xp_00 += cappedPendingXp;
+      character.xp_00 = (int)Math.min(Integer.MAX_VALUE, (long)character.xp_00 + cappedPendingXp);
       entry.setValue(pendingXp - cappedPendingXp);
 
       if(entry.getIntValue() <= 0) {

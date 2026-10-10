@@ -96,7 +96,7 @@ Choose **Definitive** or **Faithful** when creating a campaign. Definitive enabl
 
 Artwork, rendering, audio and controller settings remain independent of the campaign preset. Faithful is a settings profile rather than a claim of bit-perfect retail emulation. Changing a preset later cannot undo progression already earned. [Full preset comparison](docs/definitive/PRESETS.md).
 
-We've also adapted binding-aware **Equip, Sort, Unequip and Back** equipment hints from [Quality of Life+](https://github.com/FrancisDionne/Severed-Chains/releases/tag/experimental), using current engine APIs. Further inventory workflows and Addition training remain planned. **Dragoon Modifier** and **Battle Rewards** are evaluated candidates, not installed features. [Community integration notes](docs/definitive/INTEGRATION_ALPHA.md).
+The source now integrates **contextual menu hints, equipment filters and sorting, shop quantities, optional Addition timing feedback, and independent campaign XP/gold controls** into the existing settings. Reward defaults remain 1× and feedback is off; no separate QoL or reward mod is required. The ideas come from [Quality of Life+](https://github.com/FrancisDionne/Severed-Chains/releases/tag/experimental) and [Battle Rewards](https://github.com/DennytXVII/BattleRewardsMod), with a fresh implementation against current APIs. **These additions require a new installer release; they are not in the installer linked above.** Dragoon Modifier remains an evaluated optional overhaul. [Settings and validation details](docs/definitive/QOL_SETTINGS.md).
 
 ## Where development stands
 

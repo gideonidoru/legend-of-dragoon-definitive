@@ -2,7 +2,7 @@
 
 Choose **Definitive** or **Faithful** on the New Campaign screen. Definitive is the initial selection for a new installation. A remembered selection still takes precedence. Existing campaigns are never silently rewritten; using an existing campaign's preset editor is an explicit change. Artwork, device controls, audio and rendering remain independent.
 
-Both presets explicitly keep normal Additions, 1.0 timing windows, manual Dragoon Additions, normal button mashing, 32 inventory slots, status effects, locked story party, retail encounters, 50% reserve-character XP, level caps 60/5, item stacks of one, ordinary Dragoon actions and no equipment-effects extension in Dragoon. Neither installs a reward multiplier or difficulty overhaul. Reward/level history cannot be undone by switching presets.
+Both presets explicitly keep normal Additions, 1.0 timing windows, manual Dragoon Additions, normal button mashing, 32 inventory slots, status effects, locked story party, retail encounters, 50% reserve-character XP, level caps 60/5, item stacks of one, ordinary Dragoon actions and no equipment-effects extension in Dragoon. Both explicitly select 1x enemy XP and gold and disable Addition training feedback. Integrated quantity selection and Slot equipment sorting are enabled; neither installs a difficulty overhaul. Reward/level history cannot be undone by switching presets.
 
 | Setting | Definitive | Faithful |
 | --- | --- | --- |
@@ -14,9 +14,9 @@ Both presets explicitly keep normal Additions, 1.0 timing windows, manual Dragoo
 | Inventory icons / group sorting | Enhanced / Alphabetical | Retail / Retail |
 | Automatic dialogue / delay | Off / 1 second | Off / 1 second |
 
-The complete 27-setting contract is `src/main/java/legend/definitive/presets/PresetDefinition.java`. `DefinitivePresets` adapts it to registered campaign/save settings and rejects unknown entries, invalid types and global settings. Detached preset collections suppress callbacks while enumerating choices. Other upstream presets and mod-provided presets remain available.
+The complete 32-setting contract is `src/main/java/legend/definitive/presets/PresetDefinition.java`. `DefinitivePresets` adapts it to registered campaign/save settings and rejects unknown entries, invalid types and global settings. Detached preset collections suppress callbacks while enumerating choices. Other upstream presets and mod-provided presets remain available.
 
-**Faithful is an audited settings target, not bit-perfect retail emulation.** Severed Chains fixes, QoL equipment hints and engine behavior remain present. External gameplay mods can override the contract and are outside this preset's guarantees; Dragoon Modifier and Battle Rewards are not bundled. HD artwork is independently removable in the launcher.
+**Faithful is an audited settings target, not bit-perfect retail emulation.** Severed Chains fixes, QoL equipment hints and engine behavior remain present. External gameplay mods can override the contract and are outside this preset's guarantees; Dragoon Modifier and the external Battle Rewards package are not bundled. Native reward settings live under Gameplay; menu workflows live under User Interface. See [integrated QoL settings](QOL_SETTINGS.md). HD artwork is independently removable in the launcher.
 
 ## Evidence
 

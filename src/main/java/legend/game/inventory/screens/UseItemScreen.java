@@ -2,6 +2,7 @@ package legend.game.inventory.screens;
 
 import legend.core.GameEngine;
 import legend.core.MathHelper;
+import legend.core.lang.I18nText;
 import legend.core.gte.MV;
 import legend.core.memory.Method;
 import legend.core.platform.input.InputAction;
@@ -84,6 +85,8 @@ public class UseItemScreen extends MenuScreen {
 
   public UseItemScreen(final Runnable unload) {
     this.unload = unload;
+    this.addActionHint(new I18nText("lod_core.ui.actions.use"), INPUT_ACTION_MENU_CONFIRM, () -> this.loadingStage == 2 || this.loadingStage == 3);
+    this.addActionHint(new I18nText("lod_core.ui.equipment.back"), INPUT_ACTION_MENU_BACK, () -> this.loadingStage == 2 || this.loadingStage == 3);
   }
 
   @Override
