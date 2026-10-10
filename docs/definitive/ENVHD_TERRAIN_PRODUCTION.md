@@ -92,6 +92,14 @@ packing/selection regressions and ten Java source/mapping/callback/mesh regressi
 pass. The independent Java source audit agrees with Python on all eight scenes,
 366 static bindings and 293 unique decodes and validates all 364 HD atlas bindings.
 
+The complete local delivery run has 288 passes, seven skips and no failures;
+the existing ModelsHD suite has 32 passes. The default installation staging
+contains the matching EnvHD JAR with 241 byte-matching runtime files (119 PNGs,
+including the eight terrain atlases). JAR SHA-256:
+`f82ea5589330a0ba840153ad5118da9e7e9ed67df48450185ea434005d6522f6`.
+All 406 pinned Skurfa runtime files still byte-match its staged JAR. These are
+local development package checks, not proof of a published installer update.
+
 Keep this batch separate from the frozen ready panorama/world release scope until
 the delivery coordinator selects a later candidate. Installer downloads are
 published only by the consolidated delivery workflow, not per art iteration.
