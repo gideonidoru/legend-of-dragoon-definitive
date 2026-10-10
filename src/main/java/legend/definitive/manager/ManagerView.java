@@ -423,12 +423,12 @@ final class ManagerView extends JPanel {
   private void mods() {
     this.run("Loading preferences", () -> new InstallStore(this.root).state(), preferences -> {
       final boolean hd = !"original".equals(preferences.getProperty("artwork", "hd"));
-      final JCheckBox artwork = new JCheckBox("Skurfa HD backgrounds", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
+      final JCheckBox artwork = new JCheckBox("Bundled HD artwork & models", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
       final JCheckBox pilot = new JCheckBox("Enhanced model textures · experimental", false); pilot.setFont(font(18, false)); pilot.setOpaque(false); pilot.setMaximumSize(new Dimension(520, 52)); pilot.setPreferredSize(new Dimension(520, 52));
       final JCheckBox fullscreen = new JCheckBox("Fullscreen", true); fullscreen.setFont(font(18, false)); fullscreen.setOpaque(false); fullscreen.setMaximumSize(new Dimension(520, 52)); fullscreen.setPreferredSize(new Dimension(520, 52));
       fullscreen.setSelected(Boolean.parseBoolean(preferences.getProperty("fullscreen", "true")));
       pilot.setSelected(Boolean.parseBoolean(preferences.getProperty("legacyTextures", "false")));
-      final JPanel options = column(); options.add(artwork); options.add(pilot); options.add(fullscreen); options.add(Box.createVerticalStrut(12)); options.add(copy("Artwork doesn’t change gameplay. Enhanced model textures need an installed, verified texture pack.", 16, MUTED));
+      final JPanel options = column(); options.add(artwork); options.add(pilot); options.add(fullscreen); options.add(Box.createVerticalStrut(12)); options.add(copy("Includes Skurfa backgrounds and experimental ModelsHD geometry. Enhanced model textures need an installed, verified texture pack.", 16, MUTED));
       if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save changes")) {
         final boolean hdChoice = artwork.isSelected(), modelChoice = pilot.isSelected(), fullscreenChoice = fullscreen.isSelected();
         this.run("Saving preferences", () -> { new InstallStore(this.root).setPreferences(hdChoice, modelChoice, fullscreenChoice); return "Changes apply the next time you play."; }, () -> { });

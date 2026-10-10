@@ -3,6 +3,7 @@ package legend.definitive.manager;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.io.TempDir;
 import java.nio.file.*;
+import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.jar.*;
@@ -163,7 +164,14 @@ class StorageHardeningTest {
     final Process parent = start("handoff", store.root(), List.of()); assertTrue(parent.waitFor(10, TimeUnit.SECONDS)); assertEquals(94, parent.exitValue());
     final long pid = Long.parseLong(Files.readString(store.root().resolve("fixture-child.pid"))); final ProcessHandle child = ProcessHandle.of(pid).orElseThrow();
     try {
+      final long waiting = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
+      while(!Files.exists(store.root().resolve("fixture-spawn-gap.ready")) && child.isAlive() && System.nanoTime() < waiting) Thread.sleep(20);
+      assertTrue(Files.exists(store.root().resolve("fixture-spawn-gap.ready")), Files.readString(store.root().resolve("handoff-child.log")));
+      assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)), "The synthetic child must still be in the pre-lease spawn gap.");
+      if(PackageManifest.hostPlatform().equals("linux-x64")) assertTrue(child.info().arguments().isEmpty(), "Exercise Linux's truncated long-command metadata.");
       assertTrue(child.isAlive()); assertThrows(java.io.IOException.class, store::lock); // Child exists, but has not acquired its lease yet.
+      assertTrue(Files.exists(store.root().resolve(GameLease.PENDING)), "An unresolved spawn must retain its durable handoff.");
+      Files.writeString(store.root().resolve("fixture-spawn-gap.continue"), "Continue synthetic child.");
       final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
       while(!Files.exists(store.root().resolve("fixture-game.started")) && child.isAlive() && System.nanoTime() < deadline) Thread.sleep(20);
       assertTrue(Files.exists(store.root().resolve("fixture-game.started")), Files.readString(store.root().resolve("handoff-child.log")));
@@ -171,6 +179,19 @@ class StorageHardeningTest {
       child.destroyForcibly(); child.onExit().get(10, TimeUnit.SECONDS);
       try(final var operation = store.lock()) { assertTrue(operation.lock().isValid()); }
     } finally { if(child.isAlive()) { child.destroyForcibly(); child.onExit().get(10, TimeUnit.SECONDS); } }
+  }
+  @Test void interruptedLaunchUsesOsStartClockAndTruncatedCommandLineFailClosed() throws Exception {
+    final Instant launcher = Instant.parse("2026-10-10T16:00:00Z"); final String token = UUID.randomUUID().toString();
+    final var child = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(launcher.plusMillis(100)), Optional.empty(), Optional.of("java -Ddefinitive.launchToken=" + token + " -cp truncated"), Optional.of("/jdk/bin/java"));
+    assertTrue(assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, child)).getMessage().contains("surviving game"));
+    final var hiddenArguments = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(launcher.plusMillis(100)), Optional.empty(), Optional.empty(), Optional.of("/jdk/bin/java"));
+    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, hiddenArguments));
+    final var hiddenOwner = new GameLease.LaunchProcess(Optional.empty(), Optional.of(launcher), Optional.of(new String[]{"unresolved-helper"}), Optional.empty(), Optional.empty());
+    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, hiddenOwner));
+    final var beforeExec = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(launcher), Optional.of(new String[]{"25", "pipes"}), Optional.empty(), Optional.of("/jdk/lib/jspawnhelper"));
+    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, beforeExec));
+    final var older = new GameLease.LaunchProcess(Optional.empty(), Optional.of(launcher.minusMillis(1)), Optional.empty(), Optional.empty(), Optional.empty());
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, older));
   }
   @Test void successfulPreparationCommitsAcceptedDiscHashesAndNextReinstallReusesFiles() throws Exception {
     final Path pack = leasePackage();

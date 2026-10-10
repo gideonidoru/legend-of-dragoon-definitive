@@ -25,11 +25,16 @@ public final class StorageCrashMain {
           final String token = GameLease.begin(root);
           final var release = root.resolve("releases").resolve(store.state().getProperty("version"));
           final String cp = release.resolve("lod-game-test.jar") + java.io.File.pathSeparator + release.resolve("definitive-manager.jar") + java.io.File.pathSeparator + System.getProperty("java.class.path");
-          final var child = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin/java").toString(), "-Djava.awt.headless=true", "-Ddefinitive.installRoot=" + root, "-Ddefinitive.launchToken=" + token, "-cp", cp, StorageCrashMain.class.getName(), "delayed-wrapper", root.toString()).redirectErrorStream(true).redirectOutput(root.resolve("handoff-child.log").toFile()).start();
+          final var child = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin/java").toString(), "-Djava.awt.headless=true", "-Ddefinitive.installRoot=" + root, "-Ddefinitive.launchToken=" + token, "-Dfixture.longCommand=" + "x".repeat(16384), "-cp", cp, StorageCrashMain.class.getName(), "delayed-wrapper", root.toString()).redirectErrorStream(true).redirectOutput(root.resolve("handoff-child.log").toFile()).start();
           Files.writeString(root.resolve("fixture-child.pid"), Long.toString(child.pid())); Runtime.getRuntime().halt(94);
         }
       }
-      case "delayed-wrapper" -> { Thread.sleep(2000); try { ManagedGameMain.main(new String[0]); } catch(final Throwable failure) { throw new RuntimeException(failure); } }
+      case "delayed-wrapper" -> {
+        Files.writeString(root.resolve("fixture-spawn-gap.ready"), "Synthetic child is waiting before acquiring the game lease.");
+        final long deadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(20);
+        while(!Files.exists(root.resolve("fixture-spawn-gap.continue"))) { if(System.nanoTime() > deadline) throw new java.io.IOException("Synthetic spawn-gap gate timed out."); Thread.sleep(20); }
+        try { ManagedGameMain.main(new String[0]); } catch(final Throwable failure) { throw new RuntimeException(failure); }
+      }
       default -> throw new IllegalArgumentException("Unknown fixture mode.");
     }
   }
