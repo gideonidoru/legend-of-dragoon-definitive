@@ -2,9 +2,9 @@
 
 ## [⬇ Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop)
 
-**Start here in Steam Deck Desktop Mode.** The guided installer downloads the engine, Java, bundled HD mods and enhanced cinematics, then prepares your own game discs and higher-fidelity prerecorded audio. No separate model transfer or asset-generation setup is needed.
+**Start here in Steam Deck Desktop Mode.** The guided installer downloads the engine, Java, bundled HD mods and enhanced cinematics, then prepares your own game discs. No separate model transfer or asset-generation setup is needed.
 
-[Release notes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-alpha-2026-10-10-all-hd-repair) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Definitive-Installer.zip) · [Installation and recovery help](docs/definitive/INSTALLER.md)
+[Release notes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Definitive-Installer.zip) · [Installation and recovery help](docs/definitive/INSTALLER.md)
 
 <a href="https://ko-fi.com/gideonidoru"><img src="https://storage.ko-fi.com/cdn/kofi5.png" alt="Buy me a coffee on Ko-fi" height="36" /></a>
 
@@ -23,7 +23,9 @@ Definitive is a Steam Deck-first modernization of *The Legend of Dragoon*, built
 
 The default folder is `/home/deck/Games/Legend-of-Dragoon-Definitive`; custom and SD-card locations are supported. The initial download is a small shortcut. Setup then downloads the roughly 13 MB installer interface, Java and a **roughly 1.7 GB game package**, in addition to preparing your discs. Game discs are not included, and your source images stay untouched.
 
-The installer includes overall and current-file progress identifying each HD module. **Repair** checks file checksums and downloads only missing or changed files, preserving prepared game data. **Update** reuses matching verified files, downloads changed/new files and omits removed files. **Reinstall** replaces the whole application and creates fresh preparation state, retaining saves, settings, mods and ISOs. The launcher checks for updates and can restore a previous version. Only the current public release is retained; use a fresh installer if an old shortcut points to a removed download. **Uninstall** removes ISOs only if you explicitly choose that option. For an older custom installation, select its folder once so the installer can remember it. [More about installation, updates and recovery](docs/definitive/INSTALLER.md).
+The launcher checks for updates and can restore a previous local version. **Repair** verifies managed files and downloads only missing or changed files, preserving prepared game data. **Update** reuses matching verified files, retrieves changed/new files and omits removed files. **Reinstall** downloads the full application and prepares a fresh workspace while retaining saves, settings, custom mods and imported discs. **Uninstall** removes ISOs only if you explicitly choose that option.
+
+Setup shows overall progress and current-file progress. Downloads and activation are checked against the release inventory, with interruption recovery and protection against maintenance while the game is running. Only the current release is kept on GitHub, so use the download button above rather than an older shortcut. Local Restore versions and personal data are retained. [Installation and recovery help](docs/definitive/INSTALLER.md).
 
 ![Definitive launcher with Play, artwork choices, version restore and Steam library actions](docs/definitive/images/launcher-linux.png)
 
@@ -70,17 +72,17 @@ Meru's battle mesh goes from **806 to 2,687 triangles**. The untextured view mak
 
 ## Mods and artwork
 
-The current installer bundles **FxHD, EnvHD, CharHD, ModelsHD, FMVHD, UIHD and Skurfa** with the compatible engine. Expanded production work continues in parallel. Each mod has its own identity, and activation belongs in Severed Chains' existing mod manager.
+The current **all-HD installation and repair** release bundles **Skurfa, ModelsHD, FMVHD, EnvHD, CharHD, UIHD and FxHD**. Bundling a module does not mean all of its artwork is complete. The table distinguishes the published payload from newer production work. Each module has its own identity; use the game's mod manager for individual choices. The launcher's original/HD artwork preference also controls managed Skurfa and ModelsHD selection.
 
 | Mod | What it contributes | Current coverage |
 | --- | --- | --- |
 | **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Individually remastered field backgrounds and foreground layers; the foundation for our environment style. | Bundled pinned v1.1.0 integration: 38 distinct scene packs, with aliases reusing existing artwork. This is selected scene coverage, not every field in the game. |
 | **[ModelsHD](integrations/modelshd/README.md)** | Custom geometry that retains original animation parts and active texture/material bindings. | Bundled v0.3: all 19 party battle forms—nine normal, nine Dragoon and Divine Dart. Field and world-map replacements remain unfinished. |
 | **[FMVHD](integrations/fmvhd/README.md)** | Preprocessed, enhanced cinematics with streamed playback and original-video fallback. | Bundled: all 18 films at 1280×768, original 15 fps cadence and 5:3 proportions. No generated motion frames. |
-| **EnvHD** | Missing environment art: battle skies and surfaces, world-map scenery, field scenes and props. | Development branch: two battle-material pilots and seven reviewed panorama selections. Native scene acceptance and broad coverage remain open. Skurfa-owned art is protected from duplicate generation. |
-| **CharHD** | Character texture replacements, coordinated with ModelsHD's geometry and material identities. | Development adapter exists; no new character-art payload yet. It is separate from ModelsHD. |
-| **UIHD** | Interface artwork, icons and later portrait/lettering work. | Development pilot: five item icons. Whole-interface coverage remains ahead. |
-| **FxHD** | Effect textures and particles, with their original transparency and animation behavior preserved. | Development pilot: field dust. Spell and transformation artwork remains original. |
+| **EnvHD** | Missing environment art: battle skies and surfaces, world-map scenery, field scenes and props. | Published pilot: two battle stages and two panoramas. The newer branch packages 70 distinct restored panoramas through 73 source bindings; world-map artwork is next. Native scene acceptance remains pending, and Skurfa-owned art stays protected. |
+| **CharHD** | Character texture replacements, coordinated with ModelsHD's geometry and material identities. | Bundled adapter; no new character-art payload in the published release. New Dart, Haschel and Meru texture pilots are undergoing runtime integration. It is separate from ModelsHD. |
+| **UIHD** | Interface artwork, icons and later portrait/lettering work. | Published pilot: five item icons. Expanded icons, symbols and dialogue trim are in development, with palette, clipping and UI-protection checks. |
+| **FxHD** | Effect textures and particles, with their original transparency and animation behavior preserved. | Published pilot: field dust. The newer branch integrates dust, two footprints, two smoke textures and save-point glow; broader spell/transformation work remains ahead. |
 
 HD assets are prepared ahead of time; the Deck does not need to run the authoring tools or neural models. Custom meshes and artwork are public project deliverables, with only selected runtime assets entering the installed mods. Development candidates retain their review status.
 
@@ -88,7 +90,7 @@ FMVHD preserves the source timing and soundtrack content, with bounded buffering
 
 ## Engine and presentation improvements
 
-Severed Chains supplies the game port, rendering and audio foundations, input support, disc extraction and modding API. Definitive builds on those systems. The **current downloadable audio alpha** includes:
+Severed Chains supplies the game port, rendering and audio foundations, input support, disc extraction and modding API. Definitive builds on those systems. The engine on **main** now includes the following improvements. The consolidated installer is being built to bring the newer changes together with the published repair system:
 
 - **SMAA anti-aliasing:** cleaner silhouettes and diagonal edges through three spatial passes, with dialogue, menus, battle HUD and Addition prompts protected. It uses the original MIT-licensed [SMAA implementation](gfx/shaders/smaa/README.md), with the earlier edge filter available as fallback.
 - **Smoother lighting and soft contact shadows** across field maps, battles, the world map and model-based cutscenes, retaining the scene's original light directions and colors.
@@ -100,9 +102,9 @@ Severed Chains supplies the game port, rendering and audio foundations, input su
 - **Safer graphics handling:** failed shader reloads retain the working program, texture uploads and mipmap updates use the correct bindings, and deleted texture IDs no longer leave stale cached bindings.
 - **Enhanced cinematic playback:** bounded streaming, cancellation and synchronization retain the original timing and return-to-game behavior.
 
-### Newer on main: detail, lighting and first visits
+### Default assets: detail, lighting and first visits
 
-The next rendering increment is implemented on **main**, but is newer than the installer linked above:
+These additions are also merged into **main**, ready for the consolidated release:
 
 - **Default surface detail** adds a subtle shared normal/roughness finish to supported original and HD models. Original palette animation and transparency stay live, and authored maps take precedence. This is a conservative baseline, not hand-painted skin, fabric or metal masks for every asset.
 - **Automatic scene-lighting profiles** follow the game's original lights and scripted changes when an artist profile is absent. They preserve the original lighting as the dominant input; they do not infer lighting from background images.
@@ -112,9 +114,9 @@ These features use the existing **Graphics** settings, with restrained defaults 
 
 ### Faithful audio
 
-The current installer preserves decoded prerecorded XA clips as PCM WAV, avoiding the extra lossy conversion used previously. Playback queues only valid decoded samples, lets clip endings finish, and maintains more accurate timing during underflow or device recovery.
+The merged audio improvements preserve decoded prerecorded XA clips as PCM WAV, avoiding the extra lossy conversion used previously. Playback queues only valid decoded samples, lets clip endings finish, and maintains more accurate timing during underflow or device recovery.
 
-The original score, voices, effects, volume behavior and music settings remain intact. Existing installations refresh the recordings locally from their own discs; there is no replacement soundtrack download. All **41 recordings** in the tested US set decoded successfully, adding about **156 MiB** to local game data. Physical Deck listening, Bluetooth/device switching and suspend/resume checks remain open. [Audio validation](docs/definitive/AUDIO_VALIDATION.md).
+The original score, voices, effects, volume behavior and music settings remain intact. The combined installer will refresh older recordings locally from installed discs; there is no replacement soundtrack download. All **41 recordings** in the tested US set decoded successfully, adding about **156 MiB** to local game data. Physical Deck listening, Bluetooth/device switching and suspend/resume checks remain open. [Audio validation](docs/definitive/AUDIO_VALIDATION.md).
 
 ## Gameplay comfort, on your terms
 
@@ -124,7 +126,7 @@ Artwork, rendering, audio and controller settings remain independent of the camp
 
 The current installer includes binding-aware **Equip, Sort, Unequip and Back** equipment hints inspired by [Quality of Life+](https://github.com/FrancisDionne/Severed-Chains/releases/tag/experimental).
 
-The broader [native-settings implementation](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/6) is integrated into main and awaits a new installer release:
+The broader [native-settings implementation](docs/definitive/QOL_SETTINGS.md) is now merged into main for the consolidated installer:
 
 - **Inventory and shops:** contextual hints follow remapped bindings; equipment can be filtered and sorted; quantity buying/selling respects affordability, capacity and protected items.
 - **Campaign rewards:** independent enemy XP and gold multipliers range from 0× to 10×, defaulting to **1×**. A battle keeps the values it started with, and item drops retain their existing rules.
@@ -134,17 +136,18 @@ These are features in the existing settings, with no separate mod to manage. Bot
 
 ## Where development stands
 
-**October 10, 2026:** the public **all-HD Repair alpha** combines the guided installer, Skurfa backgrounds, ModelsHD 0.3's 19 party battle forms, all 18 FMVHD cinematics, SMAA and the richer rendering APIs, the audio improvements described above, all seven HD modules and selective Repair/Update with full Reinstall. Linux and macOS package builds, delivery/recovery checks, model-loader checks and windowless GPU probes provide development evidence. The earlier installer/launcher was confirmed working by the owner on Deck.
+**October 10, 2026:** the current public release delivers all seven HD modules with selective Repair/Update and hardened installation recovery. Its payload still includes ModelsHD 0.3 and the early artwork pilots. The installer workstream is preparing **one consolidated release** with the newer engine, audio, ModelsHD 0.4 and native QoL settings; separate model-release publication is held to keep those capabilities together.
 
-The next increments are progressing separately:
-
-| Workstream | Latest implemented work | Delivery status |
+| Workstream | Latest completed work | Integration and delivery |
 | --- | --- | --- |
-| **Default-asset rendering** | Shared surface detail, live native-light profiles and first-visit background preparation. | On main; newer than the public audio installer. |
-| **[ModelsHD 0.4](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/5)** | Broad smoothing across 964 of 1,343 cataloged containers, including all nine confirmed party field models and all 19 battle forms. 8,531 unique custom parts; 379 containers retain originals under the safeguards. | Merged source and package checks; being consolidated with the installer fixes, newer than the public download. This is broad refinement, not 964 bespoke character rebuilds. |
-| **[HD artwork](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/1)** | EnvHD panorama production, alongside the CharHD, UIHD and FxHD pilot modules. Batch upscaling and precise edge repair are underway; seven panoramas remain selected at this checkpoint. | All four modules bundled in the current download; expanded production and native scene review remain in progress. |
-| **[Native QoL settings](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/6)** | Equipment filters/sorting, quantity transactions, campaign reward controls and optional Addition feedback. | On main; device checks and a new installer remain pending. |
-| **[Installation and repair](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/2)** | All-HD packaging, selective Repair/Update downloads, full Reinstall, stronger interruption recovery, game-process protection and publication checks. | Published and publicly download/repair tested; newest main changes are being consolidated with the delivery fixes. |
+| **Rendering and audio** | SMAA, per-face material/roughness support, default surface detail, live lighting profiles, bounded artwork caching/preparation and faithful XA playback. | Merged into main; newer increments await the consolidated installer. |
+| **[ModelsHD 0.4](integrations/modelshd/README.md)** | 964 of 1,343 cataloged containers receive refinement, including nine confirmed party field models and all 19 battle forms. 8,531 unique custom parts; 379 containers retain originals under the safeguards. | Merged into main. The current public installer remains on 0.3 until the combined release. This is broad smoothing, not 964 bespoke character rebuilds. |
+| **[EnvHD](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/1)** | All 70 distinct battle-panorama restorations are packaged through 73 source bindings, preserving shared variants. World-map sky/backdrop and location-thumbnail production is underway. | Expanded branch payload awaits consolidated delivery and native scene acceptance. |
+| **CharHD, UIHD and FxHD** | Character texture pilots, broader interface artwork, and six field-effect replacements are being integrated with the material, cache and protected-UI paths. | Their earlier pilots/adapters are bundled; newer production remains in progress. |
+| **[Native QoL settings](docs/definitive/QOL_SETTINGS.md)** | Equipment filters/sorting, quantity transactions, campaign XP/gold controls and optional Addition feedback. | Merged into main; awaiting combined installer delivery and physical controller checks. |
+| **[Installation and repair](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/2)** | All-HD packaging, selective transfers, full Reinstall, durable interruption recovery, game-lifetime locks and CI-bound publication checks. | Public and verified; this delivery foundation is being combined with the newer main changes. |
+
+The download button uses GitHub's **latest public release**, so it follows the replacement once that combined build is verified and published. Drafts are not downloads. Builds, loader tests, controlled GPU checks and package inventories provide development evidence; physical Deck acceptance remains separate.
 
 The next proof is combined gameplay on the hardware: representative HD scenes, model transformations, foreground masking, busy effects, cinematic audio/skip/return behavior, controller reconnect, suspend/resume, and update/restore. A four-disc playthrough and measured Deck performance are still outstanding. We haven't reached the final AA visual target.
 
