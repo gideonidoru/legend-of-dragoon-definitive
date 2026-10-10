@@ -1,0 +1,57 @@
+{
+  "decodedRgbaSha256": "b889ce74f7fb4f0c114d20b68d5c81a0e0f7023adc2377c1f6d3e419aca1c4c5",
+  "sourceSize": [
+    136,
+    136
+  ],
+  "bindings": [
+    {
+      "stage": 21,
+      "page": 7,
+      "clut": 15388,
+      "parts": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        136,
+        136
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ]
+    }
+  ],
+  "targetSize": [
+    544,
+    544
+  ],
+  "outputSha256": "941dd597d4127bf9e4a90ab960b717b4800d731d4186200a6580b3d1e3480ef3",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Static battle model surface; source geometry uses stage/parts {21: [0, 1, 2, 4]}. Source family: green stone, gates, panels, pillars and decorative markings.",
+    "style": "Visually inspected original/candidate comparison. Source colors, material identity and silhouettes retained as a neural development baseline; inferred/smoothed detail is not final Skurfa-equivalent bespoke quality. Skurfa resources are untouched.",
+    "layout": "Comparison board 04, cell 14; crop and tile arrangement remain source-bound. All outputs independently revalidated against fresh original decodes: exact 4x STP, discard and visible-black class; no edge averaging or geometry changes. Native seam/blend/mip inspection remains pending.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "941dd597d4127bf9e4a90ab960b717b4800d731d4186200a6580b3d1e3480ef3",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "7862ee67731b77e646c22f298ebcb3325206a0a38ddf2eb8bea21882ce03c153",
+  "batchDependencySha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "sourceRole": "Static battle floor, wall and scenery surfaces; geometry and native animations remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources are unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

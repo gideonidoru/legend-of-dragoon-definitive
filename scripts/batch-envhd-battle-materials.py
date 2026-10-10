@@ -123,14 +123,17 @@ def scene(model, tim, stage):
             divisor = 4 if bpp == 0 else 2
             px, py = (page & 15) * 64, (page & 16) * 16
             sampled = [px + u0 // divisor, py + v0, u1 // divisor - u0 // divisor + 1, v1 - v0 + 1]
+            palette_bounds = [(clut & 63) * 16, clut >> 6, 16 if bpp == 0 else 256, 1]
             x, y, w, h = sampled
             binding['sampledVramBounds'] = sampled
             if not (rect['x'] <= x and x + w <= rect['x'] + rect['w'] and rect['y'] <= y and y + h <= rect['y'] + rect['h']):
                 binding.update(status='held-native-uv-mapping', reason='UV bounds do not fit the uploaded image rectangle')
             elif clut_animation:
                 binding.update(status='held-native-clut-animation', reason='Container has palette animation')
-            elif any(overlaps(padded_bounds(sampled, rect, divisor), a['rect']) for a in animations):
-                binding.update(status='held-native-texture-animation', reason='UV bounds or their source padding intersect an animated VRAM rectangle')
+            elif any(overlaps(dependency, touched)
+                     for dependency in (padded_bounds(sampled, rect, divisor), palette_bounds)
+                     for a in animations for touched in (a['rect'], [960, 256, a['rect'][2], a['rect'][3]])):
+                binding.update(status='held-native-texture-animation', reason='Image/padding or referenced palette intersects animated VRAM or its scratch writes')
             else:
                 try:
                     source = terrain.decode_material(vram, written, texture, page, clut)
@@ -194,6 +197,8 @@ def plan(scenes, masters, empty):
 
 def write_json(path, value):
     temporary = path.with_suffix(path.suffix + '.tmp')
+    if path.is_symlink() or temporary.is_symlink():
+        raise ValueError('Refusing a redirected private control file')
     temporary.write_text(json.dumps(value, indent=2) + '\n')
     temporary.replace(path)
 
@@ -201,6 +206,22 @@ def write_json(path, value):
 def private_destination(files, output):
     if output.resolve().is_relative_to(ROOT) or output.resolve().is_relative_to(files.resolve()):
         raise ValueError('Source plans, originals and unreviewed candidates must stay outside Git and extraction')
+
+
+def staging_path(root, relative):
+    path = root / relative
+    if not path.resolve().is_relative_to(root.resolve()):
+        raise ValueError('Private staging child redirects outside its root')
+    current = root
+    for component in Path(relative).parts:
+        current = current / component
+        if current.is_symlink():
+            raise ValueError('Refusing a symlinked private staging child')
+    return path
+
+
+def read_control(path):
+    return json.loads(terrain.bounded_read(path, 4 * 1024 * 1024))
 
 
 def execute(files, output, engine, models):
@@ -212,40 +233,46 @@ def execute(files, output, engine, models):
     scenes, masters, empty = census(files)
     source_plan = plan(scenes, masters, empty)
     output.mkdir(parents=True, exist_ok=True)
-    plan_path = output / 'source-plan.json'
-    if plan_path.exists() and json.loads(plan_path.read_text()) != source_plan:
+    plan_path = staging_path(output, 'source-plan.json')
+    if plan_path.exists() and read_control(plan_path) != source_plan:
         raise ValueError('Private battle plan changed; use fresh staging')
     write_json(plan_path, source_plan)
-    work, previews = output / 'private-work', output / 'private-previews'
+    work, previews = staging_path(output, 'private-work'), staging_path(output, 'private-previews')
     work.mkdir(exist_ok=True)
     previews.mkdir(exist_ok=True)
-    records_path = output / 'candidates.json'
-    records = json.loads(records_path.read_text()) if records_path.exists() else []
+    records_path = staging_path(output, 'candidates.json')
+    records = read_control(records_path) if records_path.exists() else []
     completed = {r['decodedRgbaSha256']: r for r in records}
     if len(completed) != len(records) or not completed.keys() <= masters.keys():
         raise ValueError('Duplicate or unknown completed battle candidate')
     for key, record in completed.items():
-        terrain.validate_completed(masters[key], record, output / (key + '.png'))
+        terrain.validate_completed(masters[key], record, staging_path(output, key + '.png'))
     for key, item in masters.items():
         if key in completed:
             continue
         original = item['image']
-        original.save(work / (key + '-source-stp.png'))
-        Image.fromarray(np.pad(np.asarray(original.convert('RGB')), ((16,16),(16,16),(0,0)), mode='edge')).save(work / (key + '-input.png'))
-        run = subprocess.run([str(engine), '-i', str(work / (key + '-input.png')), '-o', str(work / (key + '-inference.png')),
+        source_path = staging_path(output, 'private-work/' + key + '-source-stp.png')
+        input_path = staging_path(output, 'private-work/' + key + '-input.png')
+        inferred_path = staging_path(output, 'private-work/' + key + '-inference.png')
+        log_path = staging_path(output, 'private-work/' + key + '.log')
+        png_path = staging_path(output, key + '.png')
+        preview_path = staging_path(output, 'private-previews/' + key + '.png')
+        original.save(source_path)
+        Image.fromarray(np.pad(np.asarray(original.convert('RGB')), ((16,16),(16,16),(0,0)), mode='edge')).save(input_path)
+        run = subprocess.run([str(engine), '-i', str(input_path), '-o', str(inferred_path),
                               '-m', str(models), '-n', 'realesrgan-x4plus', '-s', '4', '-t', '256', '-j', '1:1:1'], capture_output=True, timeout=180)
-        (work / (key + '.log')).write_bytes(run.stdout + run.stderr)
+        log_path.write_bytes(run.stdout + run.stderr)
         if run.returncode:
             raise RuntimeError('Battle inference failed; retained private log explains why')
-        with Image.open(work / (key + '-inference.png')) as inferred:
+        with Image.open(inferred_path) as inferred:
             if inferred.size != ((original.width + 32) * 4, (original.height + 32) * 4):
                 raise ValueError('Battle inference dimensions changed')
             pixels = np.asarray(inferred.convert('RGB').crop((64,64,64 + original.width * 4,64 + original.height * 4)))
         restored, preview = terrain.preserve_stp(original, pixels)
-        restored.save(output / (key + '.png'))
-        preview.save(previews / (key + '.png'))
-        record = terrain.candidate_record(item, terrain.digest((output / (key + '.png')).read_bytes()))
-        terrain.validate_completed(item, record, output / (key + '.png'))
+        restored.save(png_path)
+        preview.save(preview_path)
+        record = terrain.candidate_record(item, terrain.digest(terrain.bounded_read(png_path, 32 * 1024 * 1024)))
+        terrain.validate_completed(item, record, png_path)
         records.append(record)
         write_json(records_path, records)
         print(json.dumps(dict(completed=len(records), total=len(masters), stages=sorted({b['stage'] for b in item['bindings']}))), flush=True)

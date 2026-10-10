@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Synthetic battle-source regressions, with no retail artwork or game window."""
 import importlib.util
+import json
 import struct
 import tempfile
 import unittest
 from pathlib import Path
 
 import numpy as np
+from PIL import Image
 
 spec = importlib.util.spec_from_file_location('battle', Path(__file__).with_name('batch-envhd-battle-materials.py'))
 battle = importlib.util.module_from_spec(spec)
@@ -90,6 +92,18 @@ class BattleMaterialTest(unittest.TestCase):
         self.assertEqual(scene['materials'][0]['status'], 'held-native-clut-animation')
         self.assertEqual(masters, {})
 
+    def test_texture_animation_touching_referenced_clut_is_not_frozen(self):
+        scene, masters = battle.scene(model(animation=(0,480,64,1)), tim(), 10)
+        self.assertEqual(scene['materials'][0]['status'], 'held-native-texture-animation')
+        self.assertEqual(masters, {})
+
+    def test_animation_scratch_is_a_palette_dependency(self):
+        data = bytearray(tim())
+        struct.pack_into('<HH', data, 12, 960, 256)
+        scene, masters = battle.scene(model(clut=(256<<6)|60,animation=(128,0,64,1)), bytes(data), 10)
+        self.assertEqual(scene['materials'][0]['status'], 'held-native-texture-animation')
+        self.assertEqual(masters, {})
+
     def test_out_of_upload_uv_and_nonindexed_bpp_are_held(self):
         for data, status in [(model(uv=((0,0),(8,0),(0,0))), 'held-native-uv-mapping'),
                              (model(bpp=2), 'held-native-bpp')]:
@@ -131,6 +145,109 @@ class BattleMaterialTest(unittest.TestCase):
     def test_originals_and_private_plan_cannot_be_written_into_checkout(self):
         with self.assertRaises(ValueError): battle.private_destination(Path('/private/tmp/extraction'), battle.ROOT/'private-output')
         with self.assertRaises(ValueError): battle.private_destination(Path('/private/tmp/extraction'), Path('/private/tmp/extraction/output'))
+
+    def test_staging_subdirectories_files_and_control_temporaries_cannot_redirect(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)/'private';root.mkdir()
+            elsewhere = Path(temp)/'public';elsewhere.mkdir()
+            (root/'private-work').symlink_to(elsewhere, target_is_directory=True)
+            with self.assertRaises(ValueError): battle.staging_path(root,'private-work/source.png')
+            (root/'candidate.png').symlink_to(elsewhere/'source.png')
+            with self.assertRaises(ValueError): battle.staging_path(root,'candidate.png')
+            (root/'plan.json.tmp').symlink_to(elsewhere/'plan.json')
+            with self.assertRaises(ValueError): battle.write_json(root/'plan.json',{})
+            self.assertEqual(list(elsewhere.iterdir()),[])
+
+    def test_resumable_controls_are_bounded(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp)/'source-plan.json'
+            path.write_bytes(b' '* (4 * 1024 * 1024 + 1))
+            with self.assertRaises(ValueError): battle.read_control(path)
+
+
+class BattleCandidateImportTest(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        root = Path(self.temp.name)
+        self.files, self.staging, self.repo = root/'files', root/'staging', root/'repo'
+        self.staging.mkdir()
+        for stage in range(128):
+            folder = self.files/'SECT/DRGN0.BIN'/str(2497+stage)
+            (folder/'0').mkdir(parents=True)
+            (folder/'0/0').write_bytes(model() if stage==10 else b'')
+            if stage==10: (folder/'2').write_bytes(tim())
+        spec = importlib.util.spec_from_file_location('battle_import', Path(__file__).with_name('import-envhd-battle-materials.py'))
+        self.importer = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.importer)
+        self.importer.ROOT = self.repo
+        (self.repo/'scripts').mkdir(parents=True)
+        (self.repo/'scripts/batch-envhd-battle-materials.py').write_bytes(Path(__file__).with_name('batch-envhd-battle-materials.py').read_bytes())
+        scenes, masters, empty = battle.census(self.files)
+        self.plan = battle.plan(scenes, masters, empty)
+        self.key, item = next(iter(masters.items()))
+        image = item['image'].resize((item['image'].width*4,item['image'].height*4),Image.Resampling.NEAREST)
+        self.png = self.staging/(self.key+'.png');image.save(self.png)
+        self.record = battle.terrain.candidate_record(item,battle.terrain.digest(self.png.read_bytes()))
+        self.note = dict(intent='Synthetic battle source',style='Development baseline',layout='Exact synthetic source UV/STP',
+                         verdict='visual-reviewed-runtime-pending',outputSha256=self.record['outputSha256'],
+                         nativeAcceptance='pending',finalQualityAcceptance='pending')
+        self.production = self.repo/'integrations/envhd/production'
+
+    def publish(self):
+        (self.staging/'source-plan.json').write_text(json.dumps(self.plan))
+        (self.staging/'candidates.json').write_text(json.dumps([self.record]))
+        reviews = self.staging/'reviews.json'
+        reviews.write_text(json.dumps(dict(reviews={self.key:self.note})))
+        return self.importer.publish(self.files,self.staging,reviews)
+
+    def test_candidate_publication_is_repeatable_and_never_selects_runtime(self):
+        self.assertEqual(self.publish(),1)
+        self.assertEqual(self.publish(),1)
+        ledger=json.loads((self.production/'battle-material-artwork.json').read_text())
+        self.assertEqual(ledger['runtimeSelected'],0)
+        self.assertEqual(ledger['nativeAccepted'],0)
+        self.assertFalse((self.repo/'integrations/envhd/runtime-assets').exists())
+        self.assertEqual(len(list(self.production.rglob('*.*'))),3)
+
+    def test_source_and_pipeline_drift_reject_before_publication(self):
+        original = self.plan['scriptSha256'];self.plan['scriptSha256']='bad'
+        with self.assertRaises(ValueError): self.publish()
+        self.assertFalse(self.production.exists())
+        self.plan['scriptSha256']=original
+        changed=bytearray(tim());struct.pack_into('<H',changed,24,31<<5)
+        (self.files/'SECT/DRGN0.BIN/2507/2').write_bytes(changed)
+        with self.assertRaises(ValueError): self.publish()
+        self.assertFalse(self.production.exists())
+
+    def test_review_identity_and_native_acceptance_cannot_be_faked(self):
+        for field in ('outputSha256','nativeAcceptance','finalQualityAcceptance'):
+            value=self.note[field];self.note[field]='wrong'
+            with self.assertRaises(ValueError): self.publish()
+            self.assertFalse(self.production.exists());self.note[field]=value
+        for field in ('bindings','engineSha256','sourceSize'):
+            value=self.record[field];self.record[field]='wrong'
+            with self.assertRaises(ValueError): self.publish()
+            self.assertFalse(self.production.exists());self.record[field]=value
+
+    def test_new_version_cannot_overwrite_an_immutable_candidate(self):
+        self.publish()
+        selected=self.production/'battle-material-candidates'/self.key/'image-v1.png'
+        selected.write_bytes(b'protected-version')
+        with self.assertRaises(FileExistsError): self.publish()
+        self.assertEqual(selected.read_bytes(),b'protected-version')
+
+    def test_changed_coverage_rejects_before_publication(self):
+        Image.new('RGBA',(32,4),(0,0,0,0)).save(self.png)
+        self.record['outputSha256']=self.note['outputSha256']=battle.terrain.digest(self.png.read_bytes())
+        with self.assertRaises(ValueError): self.publish()
+        self.assertFalse(self.production.exists())
+
+    def test_publication_redirect_cannot_write_to_another_folder(self):
+        elsewhere=Path(self.temp.name)/'outside';elsewhere.mkdir()
+        (self.repo/'integrations').symlink_to(elsewhere,target_is_directory=True)
+        with self.assertRaises(ValueError): self.publish()
+        self.assertEqual(list(elsewhere.iterdir()),[])
 
 
 if __name__ == '__main__':

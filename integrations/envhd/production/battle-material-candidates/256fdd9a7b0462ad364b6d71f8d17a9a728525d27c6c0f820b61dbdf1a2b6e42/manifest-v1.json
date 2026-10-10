@@ -1,0 +1,54 @@
+{
+  "decodedRgbaSha256": "256fdd9a7b0462ad364b6d71f8d17a9a728525d27c6c0f820b61dbdf1a2b6e42",
+  "sourceSize": [
+    64,
+    48
+  ],
+  "bindings": [
+    {
+      "stage": 81,
+      "page": 7,
+      "clut": 15900,
+      "parts": [
+        0
+      ],
+      "sourceCrop": [
+        152,
+        136,
+        216,
+        184
+      ],
+      "sourceUvOrigin": [
+        152,
+        136
+      ]
+    }
+  ],
+  "targetSize": [
+    256,
+    192
+  ],
+  "outputSha256": "5d14721e2aa63fdd52287f2c96992cc3db109e636647f7549c8da5d3556d3c95",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "intent-revision-needed",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Static battle model surface; source geometry uses stage/parts {81: [0]}. Source family: Moon: ruins, arches, weathered grey/brown stone, gold relief and carved markings. Engine random-encounter location mapping: Moon.",
+    "style": "Carved stone marking becomes ambiguous/invented strokes; preserve the original shapes before selection. Visually inspected original/candidate comparison. Source colors, material identity and silhouettes retained as a neural development baseline; inferred/smoothed detail is not final Skurfa-equivalent bespoke quality. Skurfa resources are untouched.",
+    "layout": "Comparison board 19, cell 5; crop and tile arrangement remain source-bound. All outputs independently revalidated against fresh original decodes: exact 4x STP, discard and visible-black class; no edge averaging or geometry changes. Native seam/blend/mip inspection remains pending.",
+    "verdict": "intent-revision-needed",
+    "outputSha256": "5d14721e2aa63fdd52287f2c96992cc3db109e636647f7549c8da5d3556d3c95",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "7862ee67731b77e646c22f298ebcb3325206a0a38ddf2eb8bea21882ce03c153",
+  "batchDependencySha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "sourceRole": "Static battle floor, wall and scenery surfaces; geometry and native animations remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources are unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}
