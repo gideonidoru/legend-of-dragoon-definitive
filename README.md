@@ -4,15 +4,15 @@
 
 Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with community HD artwork, neural-assisted character reconstruction, and optional gameplay conveniences. The visual target is a polished modern AA game with an intentional retro style: recognizable characters, clearer faces, richer materials and carefully smoother models. Character reconstruction is planned; the current tools are experiments. Selectable Definitive and Faithful campaign presets keep gameplay choices separate from presentation and accessibility.
 
-This is an unofficial community project in early development. **The first guided installer is an alpha; physical Steam Deck validation is pending.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively. Physical Steam Deck validation is still pending.
+This is an unofficial community project in early development. **The guided installer is an alpha. A reported Deck installation failure is under investigation; use the corrected installer linked below.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively. Full physical Steam Deck validation remains pending.
 
 ## Install on Steam Deck
 
-**[Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09/Install-Definitive.desktop)**
+**[Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09-installer-fix/Install-Definitive.desktop)**
 
 In Desktop Mode, download and open the installer in Dolphin. Allow execution if KDE asks. It takes care of our build, Java, HD artwork, disc import/preparation and an optional Steam library shortcut. Choose your four US BIN/raw ISO images or ZIP, RAR and 7z containers. Your originals stay untouched; bundled emulators and patches are left out. The default location is `/home/deck/Games/Legend-of-Dragoon-Definitive`.
 
-The entry download is tiny; the portable interface is about 9 MB. Java, the game engine and HD artwork download during setup. The launcher centers on **Play**, checks our releases automatically, and keeps artwork/mod choices and version restore secondary. Touch-sized controls and controller navigation are implemented; physical Deck input and Gaming Mode verification remain pending. **[Installer details and recovery](docs/definitive/INSTALLER.md)** · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09/Definitive-Installer.zip).
+The entry download is tiny; the portable interface is about 9 MB. Java, the game engine and HD artwork download during setup. The launcher centers on **Play**, checks our releases automatically, and keeps artwork/mod choices and version restore secondary. Touch-sized controls and controller navigation are implemented; physical Deck input and Gaming Mode verification remain pending. **[Installer details and recovery](docs/definitive/INSTALLER.md)** · [Reliability repair and verification](docs/definitive/DELIVERY_RELIABILITY.md) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09-installer-fix/Definitive-Installer.zip).
 
 ## Where this project comes from
 

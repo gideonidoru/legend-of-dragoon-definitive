@@ -28,7 +28,7 @@ public final class ReleaseUpdates {
     final var response = HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream());
     final byte[] body;
     try(final var input = response.body(); final var output = new java.io.ByteArrayOutputStream()) { DownloadBody.copy(input, output, 2 * 1024 * 1024, Duration.ofSeconds(30)); body = output.toByteArray(); }
-    if(response.statusCode() != 200 || body.length > 2 * 1024 * 1024) throw new IOException("Updates unavailable right now. You can still play offline.");
+    if(response.statusCode() != 200) throw new IOException("GitHub release lookup failed (HTTP " + response.statusCode() + "). Check your connection and retry. Installed games can still play offline.");
     return new String(body, java.nio.charset.StandardCharsets.UTF_8);
   }
   static Optional<Candidate> select(final String json, final String platform, final String installedId, final String installedTag) throws IOException {
@@ -50,17 +50,29 @@ public final class ReleaseUpdates {
     return Optional.empty();
   }
   public static String install(final InstallStore store, final Candidate candidate) throws IOException, InterruptedException {
+    return install(store, candidate, InstallProgress.NONE);
+  }
+  public static String install(final InstallStore store, final Candidate candidate, final InstallProgress progress) throws IOException, InterruptedException {
+    return install(store, candidate, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()));
+  }
+  @FunctionalInterface interface AssetDownload { HttpResponse<java.io.InputStream> send(HttpRequest request) throws IOException, InterruptedException; }
+  static String install(final InstallStore store, final Candidate candidate, final InstallProgress progress, final AssetDownload connection) throws IOException, InterruptedException {
     if(!candidate.url().toString().startsWith("https://github.com/" + REPO + "/releases/download/") || !candidate.sha256().matches("[a-f0-9]{64}")) throw new IOException("Invalid release source.");
+    progress.phase("Connecting to GitHub", "Release " + candidate.tag(), 8);
     final Path download = Files.createTempFile(store.root(), ".update-", ".zip");
     try {
       final var request = HttpRequest.newBuilder(candidate.url()).timeout(Duration.ofMinutes(15)).GET().build();
-      final var response = HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream());
+      final var response = connection.send(request);
       try(final var input = response.body(); final var output = Files.newOutputStream(download)) {
         if(response.statusCode() != 200) throw new IOException("Update download failed. Your current installation is unchanged.");
-        DownloadBody.copy(input, output, 1024L * 1024 * 1024, Duration.ofMinutes(15));
+        final long size = response.headers().firstValueAsLong("Content-Length").orElse(-1);
+        if(size > 1024L * 1024 * 1024) throw new IOException("Release download is larger than the supported package limit.");
+        progress.bytes("Downloading game and HD artwork", 10, 60, 0, size);
+        DownloadBody.copy(input, output, 1024L * 1024 * 1024, Duration.ofMinutes(15), bytes -> progress.bytes("Downloading game and HD artwork", 10, 60, bytes, size));
       }
+      progress.phase("Checking download", "Verifying the GitHub SHA256 checksum", 60);
       if(!PackageManifest.sha256(download).equals(candidate.sha256())) throw new IOException("Update checksum mismatch. Your current installation is unchanged.");
-      return store.install(download, candidate.assetId());
+      return store.install(download, candidate.assetId(), progress);
     } finally { Files.deleteIfExists(download); }
   }
 

@@ -20,9 +20,9 @@ final class TouchFilePicker {
   private Path folder;
   private final boolean directories;
   private List<Path> result = List.of();
-  private TouchFilePicker(final JFrame owner, final Path initial, final boolean directories) {
-    this.directories = directories; this.folder = Files.isDirectory(initial) ? initial : Path.of(System.getProperty("user.home"));
-    this.dialog = new JDialog(owner, directories ? "Choose installation location" : "Choose your disc files", true);
+  private TouchFilePicker(final JFrame owner, final Path initial, final boolean directories, final java.util.function.Consumer<List<Path>> completed) {
+    this.directories = directories; this.folder = initial != null && Files.isDirectory(initial) ? initial : Path.of(System.getProperty("user.home"));
+    this.dialog = new JDialog(owner, directories ? "Choose installation location" : "Choose your disc files", false);
     final JPanel content = new JPanel(new BorderLayout(0, 18)); content.setBackground(ManagerView.PAPER); content.setBorder(BorderFactory.createEmptyBorder(24, 28, 24, 28));
     final JPanel header = new JPanel(new BorderLayout(12, 12)); header.setOpaque(false);
     final JPanel navigation = new JPanel(new GridLayout(1, 2, 12, 0)); navigation.setOpaque(false);
@@ -54,13 +54,22 @@ final class TouchFilePicker {
     final JLabel help = new JLabel(directories ? "Open a folder, then use it as the installation location." : "Tap / A selects files or opens folders. Select files across folders."); help.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14)); help.setForeground(ManagerView.MUTED); footer.add(help, BorderLayout.NORTH);
     final JPanel actions = new JPanel(new GridLayout(1, 2, 12, 0)); actions.setOpaque(false);
     final JButton cancel = ManagerView.button("Cancel", false); cancel.addActionListener(e -> this.dialog.dispose());
-    this.choose = ManagerView.button(directories ? "Use this location" : "Use selected files", true); this.choose.addActionListener(e -> { this.result = directories ? List.of(this.folder) : List.copyOf(this.selected); this.dialog.dispose(); }); actions.add(cancel); actions.add(this.choose); footer.add(actions, BorderLayout.SOUTH); content.add(footer, BorderLayout.SOUTH);
+    this.choose = ManagerView.button(directories ? "Use this location" : "Use selected files", true); this.choose.addActionListener(e -> {
+      this.result = directories ? List.of(this.folder) : List.copyOf(this.selected);
+      this.dialog.setVisible(false); this.dialog.dispose();
+      if(owner != null) owner.setEnabled(true);
+      SwingUtilities.invokeLater(() -> completed.accept(this.result));
+    }); actions.add(cancel); actions.add(this.choose); footer.add(actions, BorderLayout.SOUTH); content.add(footer, BorderLayout.SOUTH);
     this.dialog.setContentPane(content); this.dialog.getRootPane().setDefaultButton(this.choose);
     this.dialog.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "cancel"); this.dialog.getRootPane().getActionMap().put("cancel", new AbstractAction() { @Override public void actionPerformed(final ActionEvent e) { TouchFilePicker.this.dialog.dispose(); } });
+    this.dialog.addWindowListener(new WindowAdapter() { @Override public void windowClosed(final WindowEvent e) { if(owner != null) owner.setEnabled(true); } });
+    this.dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     this.dialog.setSize(880, 640); this.dialog.setLocationRelativeTo(owner); this.open(this.folder);
   }
-  static List<Path> choose(final JFrame owner, final Path initial, final boolean directories) {
-    final var picker = new TouchFilePicker(owner, initial, directories); picker.dialog.setVisible(true); return picker.result;
+  static void choose(final JFrame owner, final Path initial, final boolean directories, final java.util.function.Consumer<List<Path>> completed) {
+    final var picker = new TouchFilePicker(owner, initial, directories, completed);
+    if(owner != null) owner.setEnabled(false);
+    picker.dialog.setVisible(true);
   }
   private void activate() {
     final Path path = this.list.getSelectedValue(); if(path == null) return;

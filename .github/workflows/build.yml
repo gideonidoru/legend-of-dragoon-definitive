@@ -70,11 +70,16 @@ jobs:
           java -version
           ./gradlew --version
       - name: Compile and package without gameplay tests
-        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-09 ${{ matrix.args }}
+        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-09-installer-fix ${{ matrix.args }}
       - name: Verify test opt-in using a headless fixture
         run: python3 scripts/verify-test-controls.py
+      - name: Exercise installer window lifecycle in an isolated virtual display
+        if: runner.os == 'Linux'
+        run: xvfb-run -a ./gradlew --no-daemon --console=plain managerWindowTest ${{ matrix.args }}
       - name: Verify Linux installer shortcut parsing
         run: python3 scripts/verify-desktop-entry.py
+      - name: Verify portable setup progress and failure cleanup
+        run: python3 scripts/verify-portable-bootstrap.py
       - name: Verify native archive fixtures
         run: python3 scripts/verify-disc-archives.py
       - name: Cross-check original material fixtures in Python and Java
@@ -90,5 +95,7 @@ jobs:
             build/distributions/Legend-of-Dragoon-Definitive-*.zip
             build/distributions/Definitive-Installer.zip
             build/reports/tests/deliveryTest/**
+            build/reports/tests/managerWindowTest/**
+            build/reports/installer-*.png
           if-no-files-found: error
           retention-days: 14

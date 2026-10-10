@@ -48,17 +48,29 @@ public final class DiscImporter {
   }
 
   public static String importDiscs(final InstallStore store, final Iterable<Path> selected) throws IOException {
+    return importDiscs(store, selected, InstallProgress.NONE);
+  }
+  public static String importDiscs(final InstallStore store, final Iterable<Path> selected, final InstallProgress progress) throws IOException {
     try(final var operation = store.lock()) {
       final Map<String, Path> discs = inspectSet(selected);
+      long total = 0; for(final Path image : discs.values()) total += Files.size(image);
+      final long totalBytes = total;
+      if(Files.getFileStore(store.root()).getUsableSpace() < totalBytes + 1024L * 1024 * 1024) throw new IOException("Not enough free space to copy your four discs. Free space or choose another installation drive.");
       final Path destination = store.root().resolve("isos");
       try(final var existing = Files.list(destination)) {
         if(existing.findAny().isPresent()) throw new IOException("Disc folder already contains files. Existing discs have been preserved; use them or choose a fresh installation.");
       }
       final Path staged = Files.createTempDirectory(store.root(), ".disc-import-");
       try {
+        long copied = 0; int number = 0;
         for(final var disc : discs.entrySet()) {
           final Path copy = staged.resolve(disc.getKey() + ".bin");
-          Files.copy(disc.getValue(), copy);
+          final String phase = "Copying disc " + (++number) + " of 4";
+          try(final var input = Files.newInputStream(disc.getValue()); final var output = Files.newOutputStream(copy, java.nio.file.StandardOpenOption.CREATE_NEW)) {
+            final byte[] buffer = new byte[1024 * 1024];
+            for(int n; (n = input.read(buffer)) != -1;) { output.write(buffer, 0, n); copied += n; progress.bytes(phase, 20, 45, copied, totalBytes); }
+          }
+          progress.report(new InstallProgress.Update("Verifying disc " + number + " of 4", "Comparing original and installed SHA256 checksums", 20, 45, copied, totalBytes));
           if(!PackageManifest.sha256(copy).equals(PackageManifest.sha256(disc.getValue()))) throw new IOException("Disc copy verification failed. Original inputs are unchanged.");
         }
         validateSet(staged);

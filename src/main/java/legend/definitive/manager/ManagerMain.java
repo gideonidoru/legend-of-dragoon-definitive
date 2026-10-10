@@ -24,7 +24,7 @@ public final class ManagerMain {
     if(args.length >= 3 && args[0].equals("--import")) { System.out.println(DiscSources.importSelected(new InstallStore(Path.of(args[1])), Arrays.stream(args).skip(2).map(Path::of).toList())); return; }
     final Path packageRoot = args.length == 2 && args[0].equals("--setup") ? Path.of(args[1]).toAbsolutePath() : null;
     final Path installedRoot = args.length == 2 && args[0].equals("--manage") ? Path.of(args[1]).toAbsolutePath() : Path.of(System.getProperty("user.home"), "Games", "Legend-of-Dragoon-Definitive");
-    // The immutable root bootstrap routes to the currently active manager, including after rollback.
+    // The managed root bootstrap routes to the currently active manager, including after rollback.
     if(args.length == 2 && (args[0].equals("--manage") || args[0].equals("--play"))) {
       final Path self = Path.of(ManagerMain.class.getProtectionDomain().getCodeSource().getLocation().toURI()).toAbsolutePath();
       if(self.equals(installedRoot.resolve("definitive-manager.jar"))) {
@@ -35,7 +35,14 @@ public final class ManagerMain {
       }
     }
     final var window = new java.util.concurrent.atomic.AtomicReference<JFrame>();
-    SwingUtilities.invokeLater(() -> window.set(show(packageRoot, installedRoot)));
+    InstallerLog.write("Starting installer/launcher: platform=" + PackageManifest.hostPlatform() + ", Java=" + Runtime.version() + ", target=" + installedRoot);
+    Thread.setDefaultUncaughtExceptionHandler((thread, failure) -> {
+      InstallerLog.failure(failure);
+      final JFrame frame = window.get();
+      if(frame != null && frame.isDisplayable()) SwingUtilities.invokeLater(() -> ((ManagerView)frame.getContentPane()).showFailure(failure));
+      else failure.printStackTrace(System.err);
+    });
+    SwingUtilities.invokeAndWait(() -> window.set(show(packageRoot, installedRoot)));
     DeckControls.loop(window);
   }
 

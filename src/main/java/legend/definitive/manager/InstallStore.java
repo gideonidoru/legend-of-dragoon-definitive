@@ -17,9 +17,13 @@ import java.util.zip.ZipInputStream;
 /** Immutable packages, separate private data generations, atomic activation. */
 public final class InstallStore {
   private final Path root;
+  @FunctionalInterface interface BootstrapPublisher { void publish(Path staged, Path target) throws IOException; }
+  private final BootstrapPublisher bootstrapPublisher;
   private static final long MAX_ARCHIVE_BYTES = 8L * 1024 * 1024 * 1024;
 
-  public InstallStore(final Path root) throws IOException {
+  public InstallStore(final Path root) throws IOException { this(root, InstallStore::replaceFile); }
+  InstallStore(final Path root, final BootstrapPublisher bootstrapPublisher) throws IOException {
+    this.bootstrapPublisher = bootstrapPublisher;
     this.root = root.toAbsolutePath().normalize();
     if(this.root.toString().matches("(?s).*[:\\n\\r].*")) throw new IOException("Choose a folder without colons or line breaks.");
     for(Path p = this.root; p != null; p = p.getParent()) if(Files.isSymbolicLink(p)) throw new IOException("Choose a real installation folder, not a linked folder.");
@@ -41,7 +45,7 @@ public final class InstallStore {
   }
 
   private void checkOwnedPaths() throws IOException {
-    for(final String name : new String[]{".definitive-owned", "state.properties", ".operation-lock", "releases", "data", "workspaces", "snapshots", "isos", "definitive-manager.jar", "bootstrap-java", "Play Game.sh", "Manage Installation.sh", ".java-path"}) {
+    for(final String name : new String[]{".definitive-owned", "state.properties", ".operation-lock", "releases", "data", "workspaces", "snapshots", "isos", "definitive-manager.jar", "bootstrap-java", "Play Game.sh", "Manage Installation.sh", ".java-path", "launcher.log"}) {
       if(Files.isSymbolicLink(this.root.resolve(name))) throw new IOException("Unexpected link in installation: " + name);
     }
   }
@@ -63,7 +67,11 @@ public final class InstallStore {
   public String install(final Path source) throws IOException { return this.install(source, ""); }
 
   String install(final Path source, final String releaseAssetId) throws IOException {
+    return this.install(source, releaseAssetId, InstallProgress.NONE);
+  }
+  String install(final Path source, final String releaseAssetId, final InstallProgress progress) throws IOException {
     try(final var operation = this.lock()) {
+      progress.phase("Installing game and HD artwork", "Unpacking the verified package into " + this.root, 65);
       final Path staged = Files.createTempDirectory(this.root, ".package-");
       try {
         if(Files.isDirectory(source, LinkOption.NOFOLLOW_LINKS)) {
@@ -71,7 +79,8 @@ public final class InstallStore {
           if(this.root.startsWith(source.toAbsolutePath().normalize())) throw new IOException("Choose a package outside the installation folder.");
           copyTree(source, staged);
         }
-        else extractZip(source, staged);
+        else extractZip(source, staged, progress);
+        progress.phase("Verifying installed files", "Checking the engine, libraries, artwork and license inventory", 82);
         final PackageManifest manifest = PackageManifest.read(staged);
         manifest.verify(staged, PackageManifest.hostPlatform());
         final Properties old = this.state();
@@ -79,7 +88,10 @@ public final class InstallStore {
         if(Files.exists(release)) {
           PackageManifest.read(release).verify(release, PackageManifest.hostPlatform());
           if(manifest.id().equals(old.getProperty("version"))) {
+            this.writeLaunchers(release);
+            this.verifyInstalled();
             if(!releaseAssetId.isEmpty()) { old.setProperty("releaseAssetId", releaseAssetId); atomicProperties(this.root.resolve("state.properties"), old); }
+            progress.phase("Installation verified", this.root.toString(), 100);
             return "This version is already installed.";
           }
         } else Files.move(staged, release, StandardCopyOption.ATOMIC_MOVE);
@@ -111,11 +123,45 @@ public final class InstallStore {
         next.setProperty("legacyTextures", old.getProperty("legacyTextures", "false"));
         next.setProperty("previousLegacyTextures", old.getProperty("legacyTextures", "false"));
         if(!releaseAssetId.isEmpty()) next.setProperty("releaseAssetId", releaseAssetId);
+        progress.phase("Creating the launcher", "Writing Play Game.sh and activating the verified version", 95);
         this.writeLaunchers(release);
+        this.verifyInstalled(next);
         atomicProperties(this.root.resolve("state.properties"), next);
+        progress.phase("Installation verified", this.root.toString(), 100);
         return old.containsKey("version") ? "Update installed. Previous engine and pre-update data are retained for rollback." : "Installed. Import your discs, then add Play Game.sh to Steam.";
       } finally { deleteOwnedTree(staged); }
     }
+  }
+
+  public void verifyInstalled() throws IOException {
+    this.verifyInstalled(this.state());
+  }
+  private void verifyInstalled(final Properties state) throws IOException {
+    final Path release = child(this.root.resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
+    PackageManifest.read(release).verify(release, PackageManifest.hostPlatform());
+    if(!Files.isDirectory(this.data(state))) throw new IOException("Installation data folder is missing. Retry installation.");
+    for(final String name : new String[]{"Play Game.sh", "Manage Installation.sh", "definitive-manager.jar", "bootstrap-java"}) if(!Files.isRegularFile(this.root.resolve(name), LinkOption.NOFOLLOW_LINKS)) throw new IOException("Launcher file is missing: " + name + ". Retry installation.");
+    this.verifyBootstrap();
+    if(!Files.isExecutable(this.root.resolve("Play Game.sh")) || !Files.isExecutable(this.root.resolve("bootstrap-java"))) throw new IOException("This drive does not allow executable launchers. Choose an executable filesystem, then retry installation.");
+  }
+
+  private void verifyBootstrap() throws IOException {
+    final String managerHash = PackageManifest.sha256(this.root.resolve("definitive-manager.jar"));
+    final String bootstrapHash = PackageManifest.sha256(this.root.resolve("bootstrap-java"));
+    // The router can be newer than the active engine after rollback. Require a
+    // matching pair from an installed package's platform-valid closed inventory.
+    try(final var releases = Files.list(this.root.resolve("releases"))) {
+      for(final Path candidate : releases.toList()) {
+        if(Files.isSymbolicLink(candidate) || !candidate.getFileName().toString().matches("alpha-[a-f0-9]{16}")) continue;
+        final PackageManifest reference;
+        try { reference = PackageManifest.read(candidate); } catch(final IOException ignored) { continue; }
+        if(reference.platform().equals(PackageManifest.hostPlatform()) && candidate.getFileName().toString().equals(reference.id())
+          && PackageManifest.identity(reference.metadata(), reference.hashes()).equals(reference.id())
+          && managerHash.equals(reference.hashes().getProperty("definitive-manager.jar"))
+          && bootstrapHash.equals(reference.hashes().getProperty("bootstrap-java"))) return;
+      }
+    }
+    throw new IOException("Launcher files are damaged or unrecognized. Retry installation to repair them.");
   }
 
   public String rollback() throws IOException {
@@ -206,19 +252,39 @@ public final class InstallStore {
   }
 
   public String prepareDiscs() throws IOException, InterruptedException {
+    return this.prepareDiscs(InstallProgress.NONE);
+  }
+  public String prepareDiscs(final InstallProgress progress) throws IOException, InterruptedException {
     try(final var operation = this.lock()) {
+      this.verifyInstalled();
+      progress.phase("Verifying four discs", "Checking the US disc headers", 50);
       DiscImporter.validateSet(this.root.resolve("isos"));
       final Path workspace = this.prepareLaunch();
       final Properties state = this.state();
       final Path release = this.root.resolve("releases").resolve(state.getProperty("version"));
       final String gameJar = PackageManifest.read(release).metadata().getProperty("gameJar");
       final Path log = workspace.resolve("preparation.log");
+      InstallerLog.write("Disc preparation log: " + log);
+      progress.phase("Preparing game files", "Reading all four discs and extracting game assets", 60);
       final var command = java.util.List.of(Path.of(System.getProperty("java.home"), "bin", "java").toString(), "-Xmx2G", "--enable-native-access=ALL-UNNAMED", "-Djava.awt.headless=true", "-cp", release.resolve(gameJar) + java.io.File.pathSeparator + release.resolve("libs/*"), "legend.definitive.tools.PrepareDiscs");
       final Process process = new ProcessBuilder(command).directory(workspace.toFile()).redirectErrorStream(true).redirectOutput(log.toFile()).start();
       process.getOutputStream().close();
       try {
-        if(!process.waitFor(20, java.util.concurrent.TimeUnit.MINUTES)) throw new IOException("Disc preparation took too long. Your images are retained; see " + log);
+        final long deadline = System.nanoTime() + java.util.concurrent.TimeUnit.MINUTES.toNanos(20);
+        try(final var output = new java.io.RandomAccessFile(log.toFile(), "r")) {
+          while(!process.waitFor(500, java.util.concurrent.TimeUnit.MILLISECONDS)) {
+            String line; String last = null;
+            while((line = output.readLine()) != null) if(line.startsWith("DEFINITIVE_STATUS\t") && line.length() > 18) last = line.substring(18);
+            if(last != null) {
+              final String phase = last.startsWith("Writing") ? "Writing game files" : last.startsWith("Transforming") ? "Converting game assets" : "Reading your discs";
+              progress.phase(phase, last.substring(0, Math.min(220, last.length())), last.startsWith("Writing") ? 85 : last.startsWith("Transforming") ? 65 : 60);
+            }
+            if(System.nanoTime() > deadline) throw new IOException("Disc preparation took too long. Your images are retained; see " + log);
+          }
+        }
         if(process.exitValue() != 0) throw new IOException("Disc preparation could not finish. Your images are retained; retry with Use installed discs. Details: " + log);
+        if(!this.discsPrepared()) throw new IOException("Disc preparation did not create its completion marker. Details: " + log);
+        progress.phase("Game files ready", "All four discs are prepared. Launcher: " + this.root.resolve("Play Game.sh"), 100);
         return "Your discs are prepared. Choose whether to add Definitive to Steam.";
       } finally { if(process.isAlive()) { process.destroyForcibly(); process.waitFor(); } }
     }
@@ -253,10 +319,21 @@ public final class InstallStore {
       if(PackageManifest.hostPlatform().startsWith("macos")) command.add("-XstartOnFirstThread");
       command.add("-Ddefinitive.legacyTextures=" + Boolean.parseBoolean(state.getProperty("legacyTextures", "false")));
       command.addAll(java.util.List.of("-ea", "-Xmx2G", "-Ddefinitive.managedInstall=true", "-Djoml.fastmath", "-Djoml.sinLookup", "-Djoml.useMathFma", "--enable-native-access=ALL-UNNAMED", "--add-opens=java.base/java.util=ALL-UNNAMED", "--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED", "-cp", release.resolve(gameJar) + java.io.File.pathSeparator + release.resolve("libs/*"), "legend.game.Main"));
-      final Process game = new ProcessBuilder(command).directory(workspace.toFile()).inheritIO().start();
+      final Path log = workspace.resolve("launcher.log");
+      if(Files.isSymbolicLink(log)) throw new IOException("Unexpected linked game log. No game was started.");
+      InstallerLog.write("Starting game; details: " + log);
+      final Process game = new ProcessBuilder(command).directory(workspace.toFile()).redirectErrorStream(true).redirectOutput(ProcessBuilder.Redirect.appendTo(log.toFile())).start();
+      game.getOutputStream().close();
       try { return game.waitFor(); }
       finally { if(game.isAlive()) { game.destroyForcibly(); game.waitFor(); } }
     }
+  }
+
+  public Path gameLog() throws IOException {
+    final var state = this.state();
+    final String version = state.getProperty("version", ""), data = state.getProperty("data", "");
+    child(this.root.resolve("releases"), version, "alpha-[a-f0-9]{16}"); this.data(state);
+    return this.root.resolve("workspaces").resolve(version + '-' + data).resolve("launcher.log");
   }
 
   private static void link(final Path link, final Path target) throws IOException {
@@ -268,15 +345,74 @@ public final class InstallStore {
   private void writeLaunchers(final Path release) throws IOException {
     final Path runtimePath = this.root.resolve(".java-path");
     if(!Files.exists(runtimePath)) Files.writeString(runtimePath, Path.of(System.getProperty("java.home"), "bin", "java") + "\n", StandardOpenOption.CREATE_NEW);
-    final Path manager = this.root.resolve("definitive-manager.jar");
-    if(!Files.exists(manager)) Files.copy(release.resolve(manager.getFileName()), manager);
-    final Path bootstrap = this.root.resolve("bootstrap-java");
-    if(!Files.exists(bootstrap)) Files.copy(release.resolve(bootstrap.getFileName()), bootstrap);
-    bootstrap.toFile().setExecutable(true, true);
+    // Managed routers are repaired from the verified package. Format-1 routers must
+    // continue routing every retained format-1 version, including after rollback.
+    this.repairBootstrap(release);
+    this.root.resolve("bootstrap-java").toFile().setExecutable(true, true);
+    final String previousScript = "#!/bin/bash\nset -euo pipefail\nROOT=\"$(cd -- \"$(dirname -- \"${BASH_SOURCE[0]}\")\" && pwd)\"\nJAVA=\"$(\"$ROOT/bootstrap-java\" \"$ROOT\")\"\nexec \"$JAVA\" -jar \"$ROOT/definitive-manager.jar\" --manage \"$ROOT\"\n";
+    final String scriptText = """
+      #!/bin/bash
+      set -euo pipefail
+      ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+      LOG="$ROOT/launcher.log"
+      [[ ! -L "$LOG" ]] || { printf '%s\\n' 'Unexpected linked launcher log. No game was started.' >&2; exit 1; }
+      run_manager() {
+        JAVA="$("$ROOT/bootstrap-java" "$ROOT")" || return
+        "$JAVA" --enable-native-access=ALL-UNNAMED -jar "$ROOT/definitive-manager.jar" --manage "$ROOT"
+      }
+      if run_manager >> "$LOG" 2>&1; then exit 0; else CODE=$?; fi
+      MESSAGE="Definitive could not start (code $CODE). Details: $LOG"
+      if command -v kdialog >/dev/null; then kdialog --error "$MESSAGE" || true
+      elif command -v zenity >/dev/null; then zenity --error --text="$MESSAGE" || true
+      else printf '%s\\n' "$MESSAGE" >&2; fi
+      exit "$CODE"
+      """;
     for(final String name : new String[]{"Play Game.sh", "Manage Installation.sh"}) {
       final Path script = this.root.resolve(name);
-      if(!Files.exists(script)) Files.writeString(script, "#!/bin/bash\nset -euo pipefail\nROOT=\"$(cd -- \"$(dirname -- \"${BASH_SOURCE[0]}\")\" && pwd)\"\nJAVA=\"$(\"$ROOT/bootstrap-java\" \"$ROOT\")\"\nexec \"$JAVA\" -jar \"$ROOT/definitive-manager.jar\" " + "--manage" + " \"$ROOT\"\n", StandardOpenOption.CREATE_NEW);
+      if(!Files.exists(script)) Files.writeString(script, scriptText, StandardOpenOption.CREATE_NEW);
+      else if(Files.size(script) < 16384 && Files.readString(script).equals(previousScript)) {
+        final Path next = Files.createTempFile(this.root, ".launcher-", ".tmp");
+        try { Files.writeString(next, scriptText); Files.move(next, script, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING); }
+        finally { Files.deleteIfExists(next); }
+      }
       script.toFile().setExecutable(true, true);
+    }
+  }
+
+  private static void replaceFile(final Path source, final Path target) throws IOException {
+    Files.move(source, target, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+  }
+  private void repairBootstrap(final Path release) throws IOException {
+    final var pending = new java.util.LinkedHashMap<Path, Path>();
+    final var previous = new java.util.LinkedHashMap<Path, Path>();
+    boolean retainRecovery = false;
+    try {
+      // Prepare the complete pair and its recovery copies before publishing either file.
+      for(final String name : new String[]{"definitive-manager.jar", "bootstrap-java"}) {
+        final Path target = this.root.resolve(name), source = release.resolve(name);
+        if(Files.isRegularFile(target, LinkOption.NOFOLLOW_LINKS) && PackageManifest.sha256(target).equals(PackageManifest.sha256(source))) continue;
+        final Path next = Files.createTempFile(this.root, ".bootstrap-", ".tmp"); pending.put(target, next);
+        Files.copy(source, next, StandardCopyOption.REPLACE_EXISTING);
+        if(!PackageManifest.sha256(next).equals(PackageManifest.sha256(source))) throw new IOException("Launcher copy verification failed. Retry installation.");
+        if(name.equals("bootstrap-java")) next.toFile().setExecutable(true, true);
+        if(Files.exists(target, LinkOption.NOFOLLOW_LINKS)) {
+          final Path backup = Files.createTempFile(this.root, ".bootstrap-backup-", ".tmp"); previous.put(target, backup);
+          Files.copy(target, backup, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
+          if(!PackageManifest.sha256(backup).equals(PackageManifest.sha256(target))) throw new IOException("Launcher recovery copy verification failed. No launcher was changed.");
+        } else previous.put(target, null);
+      }
+      try {
+        for(final var entry : pending.entrySet()) this.bootstrapPublisher.publish(entry.getValue(), entry.getKey());
+      } catch(final IOException failure) {
+        for(final var entry : previous.entrySet()) {
+          try { if(entry.getValue() == null) Files.deleteIfExists(entry.getKey()); else replaceFile(entry.getValue(), entry.getKey()); }
+          catch(final IOException recovery) { retainRecovery = true; failure.addSuppressed(new IOException("Launcher recovery copy retained at " + entry.getValue(), recovery)); }
+        }
+        throw failure;
+      }
+    } finally {
+      for(final Path temporary : pending.values()) Files.deleteIfExists(temporary);
+      if(!retainRecovery) for(final Path backup : previous.values()) if(backup != null) Files.deleteIfExists(backup);
     }
   }
 
@@ -310,12 +446,13 @@ public final class InstallStore {
     }
   }
 
-  private static void extractZip(final Path archive, final Path target) throws IOException {
+  private static void extractZip(final Path archive, final Path target, final InstallProgress progress) throws IOException {
     long total = 0;
     int count = 0;
     try(final var input = new ZipInputStream(Files.newInputStream(archive))) {
       for(java.util.zip.ZipEntry entry; (entry = input.getNextEntry()) != null;) {
         final String name = entry.getName();
+        progress.phase("Installing game and HD artwork", "Unpacking " + name + " · " + count + " files", 70);
         if(++count > 30_000 || !(PackageManifest.allowed(entry.isDirectory() ? name.replaceAll("/$", "") + "/placeholder" : name) || name.equals(PackageManifest.METADATA) || name.equals(PackageManifest.HASHES))) throw new IOException("Unexpected archive path: " + name);
         final Path destination = target.resolve(name).normalize();
         if(!destination.startsWith(target)) throw new IOException("Archive escapes the package folder.");
