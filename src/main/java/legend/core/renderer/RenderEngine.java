@@ -1040,7 +1040,7 @@ public class RenderEngine {
       }
 
       this.handleMovement();
-      this.window.setSimulationConsumesInput(simulation);
+      this.window.setSimulationConsumesInput(this.renderCallback instanceof SimulationCallback);
     });
   }
 

@@ -98,6 +98,16 @@ public final class SimulationPresentationProbe {
     renderer.addTask(()->{renderer.setSimulationCallback(()->game[0]++);now.addAndGet(100_000_000);});
     tick.invoke(window);require(movie[0]==1&&game[0]==8,"Inverse queued handoff uses the new simulation owner and its own elapsed debt");
     require(window.simulationConsumesInput(),"Simulation handoff consumes input per tick");
+    // Ownership can change from inside renderFrame, after the frame's entry snapshot.
+    final int[] callbackGame={0},callbackMovie={0};
+    final Runnable movieCallback=()->{callbackMovie[0]++;renderer.setSimulationCallback(()->callbackGame[0]++);};
+    renderer.setSimulationCallback(()->{callbackGame[0]++;renderer.setRenderCallback(movieCallback);});
+    tick.invoke(window);
+    require(callbackGame[0]==1&&!window.simulationConsumesInput(),"A gameplay callback entering a movie must publish the new input owner at frame end");
+    now.addAndGet(1_000_000);tick.invoke(window);
+    require(callbackMovie[0]==1&&window.simulationConsumesInput(),"A movie callback restoring gameplay must publish its new input owner at frame end");
+    tick.invoke(window);require(callbackGame[0]==2,"Restored gameplay starts a fresh callback-owned clock");
+
     // All state/speed/presentation combinations use the production draw callback, not just the clock helper.
     final int[] rate={60},ticks={0};
     renderer.setSimulationCallback(()->{renderer.setSimulationRate(rate[0]);ticks[0]++;});
