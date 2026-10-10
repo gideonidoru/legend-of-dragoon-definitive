@@ -11,6 +11,7 @@ import legend.game.tmd.TmdObjTable1c;
 import org.joml.Vector3f;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.file.Files;
@@ -69,7 +70,12 @@ public final class ModelPack {
   }
 
   public static TmdObjTable1c[] read(final Path path, final TmdObjTable1c[] originals) throws IOException {
-    try(var stream = Files.newInputStream(path)) {
+    return read(Files.newInputStream(path), originals);
+  }
+
+  /** Takes ownership of the stream; the same strict reader serves bundled and authored packs. */
+  public static TmdObjTable1c[] read(final InputStream input, final TmdObjTable1c[] originals) throws IOException {
+    try(var stream = input) {
       final byte[] bytes = stream.readNBytes(MAX_BYTES + 1);
       if(bytes.length > MAX_BYTES) throw new IOException("Model pack exceeds 16 MiB");
       final JsonReader reader = new JsonReader(new java.io.StringReader(new String(bytes, java.nio.charset.StandardCharsets.UTF_8)));

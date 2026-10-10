@@ -32,7 +32,10 @@ public final class PrivateActorProbe {
     for(int i=0;i<original.length;i++){model.modelParts_00[i]=new ModelPart10();model.modelParts_00[i].tmd_08=original[i];}
     var animation=model.anim_08;
     var combatant=new CombatantStruct1a8();combatant.flags_19e=5;combatant.charIndex_1a2=Path.of(args[0]).getParent().getFileName().toString().equals("dragoon")?1:0;combatant.tmd_08=source;
-    if(!ModelsHdMod.replaceIfSupported(combatant,model,Path.of(args[2]).getParent()))throw new AssertionError("Battle adapter declined source");
+    final boolean bundled=args[2].equals("--bundled");
+    final Path packs=bundled?Path.of(args[3]).getParent().resolve("no-external-packs"):Path.of(args[2]).getParent();
+    if(Files.exists(packs) && bundled)throw new AssertionError("Bundled proof requires no local overrides");
+    if(!ModelsHdMod.replaceIfSupported(combatant,model,packs))throw new AssertionError("Battle adapter declined source");
     var candidate=new TmdObjTable1c[model.modelParts_00.length];for(int i=0;i<candidate.length;i++)candidate[i]=model.modelParts_00[i].tmd_08;
     if(model.anim_08!=animation)throw new AssertionError("Animation changed");long floats=0;
     for(var part:model.modelParts_00)for(var mesh:((MeshObj)part.tmd_08.getObj()).meshes)for(float v:mesh.vertices()){if(!Float.isFinite(v))throw new AssertionError("Nonfinite native vertex");floats++;}
@@ -40,7 +43,9 @@ public final class PrivateActorProbe {
     var rgba=new CContainer("private RGBA route",new FileData(Files.readAllBytes(Path.of(args[0])))).tmdPtr_00.tmd.objTable;
     for(var part:rgba){for(var primitive:part.primitives_10)if((primitive.header()&0x04000000)!=0)UvAdjustmentMetrics14.PNG.apply(primitive);part.rebuildObj(256,112);}
     TextureCompatibility.requireNativeAddressing(rgba);
-    var hd=ModelPack.read(Path.of(args[2]),rgba);
+    final TmdObjTable1c[] hd;
+    if(bundled)hd=ModelPack.read(ModelsHdMod.class.getResourceAsStream("/modelshd/models/battle/"+identity+".json"),rgba);
+    else hd=ModelPack.read(Path.of(args[2]),rgba);
     for(int i=0;i<hd.length;i++)hd[i].buildObjLike(rgba[i]);
     for(var group:List.of(control,candidate,rgba,hd))for(var part:group)part.delete();Obj.deleteObjects();
     var report=new com.google.gson.JsonObject();report.addProperty("result","passed");report.addProperty("scope","Private whole-actor battle adapter/source/control/candidate native CPU vertex construction with no-op allocation. PNG conversion/dimensions are simulated; no actual CharHD, GL draw, gameplay or Deck proof.");report.addProperty("sourceGeometrySha256",identity);report.addProperty("battleAdapterApplied",true);report.addProperty("dragoon",combatant.isDragoon());report.addProperty("animationParts",original.length);report.addProperty("sourceControlMeshesExact",meshIndex);report.addProperty("candidateNativeFloatsFinite",floats);report.addProperty("rgbaPartsConstructed",hd.length);Files.writeString(Path.of(args[3]),new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(report)+"\n");System.out.println(report);

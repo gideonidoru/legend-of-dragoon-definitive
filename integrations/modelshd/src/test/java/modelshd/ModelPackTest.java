@@ -17,6 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.nio.*;
 import java.nio.file.*;
 import java.util.*;
+import java.io.ByteArrayInputStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ModelPackTest {
@@ -78,6 +79,20 @@ class ModelPackTest {
   }
   @Test void strictJsonRejectsTrailingDataAndExcessiveDepth() throws Exception {
     var src=source(0x20);var path=temp.resolve("malformed.json");Files.writeString(path,pack(src)+" {}");assertThrows(java.io.IOException.class,()->ModelPack.read(path,new TmdObjTable1c[]{src}));Files.writeString(path,"[".repeat(40)+"0"+"]".repeat(40));assertThrows(java.io.IOException.class,()->ModelPack.read(path,new TmdObjTable1c[]{src}));
+  }
+  @Test void bundledStreamUsesTheSameStrictReaderAndClosesOnFailure() throws Exception {
+    var src=source(0x20);var closed=new boolean[1];
+    var stream=new ByteArrayInputStream((pack(src)+" {}").getBytes(java.nio.charset.StandardCharsets.UTF_8)) {@Override public void close(){closed[0]=true;}};
+    assertThrows(java.io.IOException.class,()->ModelPack.read(stream,new TmdObjTable1c[]{src}));assertTrue(closed[0]);
+    assertEquals(1,ModelPack.read(new ByteArrayInputStream(pack(src).toString().getBytes(java.nio.charset.StandardCharsets.UTF_8)),new TmdObjTable1c[]{src}).length);
+  }
+  @Test void bundledRosterContainsAll19HashedCustomPacks() throws Exception {
+    final com.google.gson.JsonObject manifest;
+    try(var input=ModelsHdMod.class.getResourceAsStream("/modelshd/models/roster.json")){assertNotNull(input);manifest=com.google.gson.JsonParser.parseString(new String(input.readAllBytes(),java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();}
+    var models=manifest.getAsJsonArray("models");assertEquals(19,models.size());var identities=new HashSet<String>();
+    for(var row:models){var entry=row.getAsJsonObject();var identity=entry.get("sourceGeometrySha256").getAsString();assertTrue(identities.add(identity));
+      try(var input=ModelsHdMod.class.getResourceAsStream("/modelshd/models/battle/"+identity+".json")){assertNotNull(input);var bytes=input.readAllBytes();assertEquals(entry.get("packBytes").getAsInt(),bytes.length);assertEquals(entry.get("packSha256").getAsString(),HexFormat.of().formatHex(java.security.MessageDigest.getInstance("SHA-256").digest(bytes)));}
+    }
   }
   @Test void sourceColourAlphaByteSurvivesNativeConstruction() throws Exception {
     var bytes=ByteBuffer.allocate(16).order(ByteOrder.LITTLE_ENDIAN);bytes.put(new byte[]{(byte)216,(byte)148,107,56});for(int i=0;i<3;i++)bytes.putShort((short)i).putShort((short)i);var base=source(0x20);var src=new TmdObjTable1c("coloured",base.vert_top_00,base.normal_top_08,new TmdObjTable1c.Primitive[]{new TmdObjTable1c.Primitive(0,16,0x30000401,new byte[][]{bytes.array()})});var replacements=read(pack(src),src);var original=((MeshObj)src.getObj()).meshes[0].vertices().clone();var after=((MeshObj)replacements[0].buildObjLike(src)).meshes[0].vertices();assertArrayEquals(original,after);

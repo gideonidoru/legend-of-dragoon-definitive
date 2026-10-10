@@ -70,7 +70,7 @@ jobs:
           java -version
           ./gradlew --version
       - name: Compile and package without gameplay tests
-        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-deck-recovery ${{ matrix.args }}
+        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-modelshd ${{ matrix.args }}
       - name: Verify test opt-in using a headless fixture
         run: python3 scripts/verify-test-controls.py
       - name: Check optional ModelsHD geometry and texture handoff
@@ -110,7 +110,7 @@ jobs:
             build/reports/focused-*.png
             build/reports/native-shader/**
             build/modelshd/ModelsHD-*.jar
-            build/modelshd/ModelsHD-*-tools.zip
+            build/modelshd/ModelsHD-*.zip
             build/reports/tests/modelsHdTests/**
           if-no-files-found: error
           retention-days: 14

@@ -1,29 +1,19 @@
-# ModelsHD 0.2.0 development package
+# ModelsHD 0.3.0
 
-Optional battle geometry for Legend of Dragoon: Definitive. This package contains mod code and a local recipe for the nine normal party models, nine Dragoon forms and Divine Dart. It contains no retail models or images.
+The complete mod contains custom geometry for all 19 party battle variants: nine normal forms, nine Dragoon forms and Divine Dart. These custom models are public and tracked with source identities and checksums. They are also included in the normal Definitive install. No separate generation or transfer is required for players.
 
 This is a first surface pass. Individually remodeled faces, hair, costumes and anatomy remain in progress. Combined texture-mod gameplay, visual acceptance and physical Steam Deck performance are not yet verified.
 
-## Engine requirement
+## Installation
 
-Use a current Definitive source build containing the authored-model API introduced in commit `6efdc8b`. The earlier Deck recovery installer release lacks this API; ModelsHD will retain original models with a warning. This package does not update your engine or the guided installer.
+The normal Definitive installer downloads the compatible engine and ModelsHD together. The HD artwork setting loads the bundled mod; original artwork removes it from the managed workspace. New campaigns include installed mods by default; existing campaigns keep their mod selection and can enable ModelsHD through the game’s mod menu.
 
-## Generate your models locally
+For standalone use, copy `mods/ModelsHD-0.3.0.jar` into a current Definitive engine’s `mods` folder and select ModelsHD. Remove older standalone ModelsHD JARs from that folder to avoid duplicate mod IDs. The earlier Deck recovery engine lacks the required authored-model API and will retain originals with a warning.
 
-Use your existing extracted `files` directory. Install Python dependencies in a separate authoring environment; neither Python nor NumPy is a game runtime requirement.
+An optional authored pack at `model-packs/modelshd/battle/<sourceGeometrySha256>.json` takes priority over the embedded roster. Unsupported geometry/material owners and invalid input retain original models. ModelsHD preserves active texture settings; it does not select or supply new texture images.
 
-```sh
-python3 -m venv /PRIVATE/modelshd-tools
-/PRIVATE/modelshd-tools/bin/python -m pip install -r scripts/requirements-visual.txt
-/PRIVATE/modelshd-tools/bin/python scripts/build-modelshd-roster.py \
-  --files /PRIVATE/game/files \
-  --output /PRIVATE/modelshd-0.2.0
-```
+## Optional authoring tools
 
-Choose a new output folder outside this tools folder. The builder leaves source files untouched and publishes all 19 packs together. Copy the generated `model-packs` directory into your development game folder. Keep `verification` and `roster-manifest.json` separately; controls are not upgrade packs.
+The included scripts reproduce candidates from your extracted game files. Python, Pillow and NumPy are authoring dependencies only; they are not required to install or play. Keep raw extraction, source controls and diagnostics in a separate working folder. Publish custom candidates with provenance under the project’s public-asset policy.
 
-Copy `mods/ModelsHD-0.2.0.jar` into the game's `mods` directory. Remove older ModelsHD jars from that directory, then select ModelsHD in the existing mod manager. It retains active native textures and typed HD texture dimensions. Custom GPU atlas mappings or other model owners keep their existing model unless a compatible handoff exists.
-
-Deselect ModelsHD to restore the original route on the next model load. Missing or invalid packs retain original geometry. Source-derived geometry stays private and must not be uploaded to the public repository.
-
-See the [roster evidence and expansion plan](docs/definitive/MODELS_HD_ROADMAP.md) and the [source integration documentation](https://github.com/gideonidoru/legend-of-dragoon-definitive/tree/main/integrations/modelshd). Source and mod code remain under [AGPL v3](LICENSE); this does not grant rights to retail game assets.
+See the [roster and expansion plan](docs/definitive/MODELS_HD_ROADMAP.md) and the [source documentation](https://github.com/gideonidoru/legend-of-dragoon-definitive/tree/main/integrations/modelshd). Code remains [AGPL v3](LICENSE); preserve the embedded model attribution notices. Disc images, the original extracted data set, saves, credentials and local runtimes are excluded.
