@@ -374,6 +374,7 @@ public class RenderEngine {
 
   private boolean togglePause;
   private boolean paused;
+  private java.util.function.Consumer<Boolean> cinematicPauseCallback = ignored -> { };
   private boolean frameAdvanceSingle;
   private boolean frameAdvance;
   private boolean reloadShaders;
@@ -509,6 +510,16 @@ public class RenderEngine {
     this.simulationClock.setRate(hz);
     this.simulationVsyncStep = 60.0d * Config.getGameSpeedMultiplier() / hz;
     this.window.setFpsLimit(this.frameSkip ? Math.max(1, hz / Config.getGameSpeedMultiplier()) : hz);
+  }
+
+  public boolean isPaused() { return this.paused; }
+
+  /** Scoped media observers receive actual pause transitions, never presentation starvation. */
+  public java.util.function.Consumer<Boolean> setCinematicPauseCallback(final java.util.function.Consumer<Boolean> callback) {
+    final var previous = this.cinematicPauseCallback;
+    this.cinematicPauseCallback = java.util.Objects.requireNonNull(callback);
+    callback.accept(this.paused);
+    return previous;
   }
 
   public SimulationClock.Snapshot simulationTiming() { return this.simulationClock.snapshot(); }
@@ -726,6 +737,7 @@ public class RenderEngine {
         if(this.togglePause) {
           this.togglePause = false;
           this.paused = !this.paused;
+          this.cinematicPauseCallback.accept(this.paused);
 
           if(!this.paused) {
             this.frameAdvanceSingle = false;
@@ -737,7 +749,7 @@ public class RenderEngine {
             Texture.deleteTextures();
 
             this.scissorStack.reset();
-          } else {
+          } else if(!this.cinematicPlayback) {
             this.renderFrame();
           }
         }
@@ -1029,6 +1041,7 @@ public class RenderEngine {
     if(this.togglePause) {
       this.togglePause = false;
       this.paused = !this.paused;
+      this.cinematicPauseCallback.accept(this.paused);
       this.simulationClock.reset(!this.paused);
       if(!this.paused) { this.frameAdvanceSingle = false; this.frameAdvance = false; }
     }

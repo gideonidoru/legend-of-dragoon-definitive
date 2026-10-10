@@ -651,9 +651,9 @@ public class SdlPlatformManager extends PlatformManager {
           if(state.isHeld()) {
             LOGGER.info(ACTIONS_MARKER, "Triggering release input action %s", action);
             this.lastActiveWindow.events().onInputActionReleased(action);
-            state.release();
             EVENTS.postEvent(new InputReleasedEvent(action));
           }
+          state.cancel();
         }
 
         this.axisActionStates.clear();
