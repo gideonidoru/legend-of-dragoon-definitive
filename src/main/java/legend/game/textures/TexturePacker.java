@@ -32,6 +32,7 @@ public class TexturePacker {
   }
 
   public void add(final RegistryId id, final Image image) {
+    UiTextureEvent.validateSource(image);
     final Rect4i rect = new Rect4i();
     rect.w = image.width;
     rect.h = image.height;
@@ -43,38 +44,59 @@ public class TexturePacker {
     return this.entryToRect.get(id);
   }
 
+  private static final class AtlasFull extends RuntimeException { }
+  public static final class AtlasCapacityException extends IllegalStateException {
+    public AtlasCapacityException() { super("UI atlas exceeds bounded size"); }
+  }
+
+  public TextureAtlas packGrowing(int width, int height, final int maximum) {
+    if(width < 1 || height < 1 || maximum > 2048 || maximum < width || maximum < height) throw new IllegalArgumentException("Atlas dimensions exceed budget");
+    while(true) {
+      try { return this.pack(width, height); }
+      catch(final AtlasFull full) {
+        if(width == maximum && height == maximum) throw new AtlasCapacityException();
+        if(width <= height && width < maximum) width = Math.min(maximum, width * 2);
+        else height = Math.min(maximum, height * 2);
+      }
+    }
+  }
+
   public byte[] packToBytes(final int width, final int height) {
+    if(width < 1 || height < 1 || width > 2048 || height > 2048) throw new IllegalArgumentException("Atlas dimensions exceed budget");
     final STBRPContext ctx = STBRPContext.malloc();
     final STBRPNode.Buffer nodes = STBRPNode.malloc(width); // documentation says that nodes should be >= width
     final STBRPRect.Buffer rectBuffer = STBRPRect.malloc(this.entryToRect.size());
 
-    int i = 0;
-    for(final Rect4i icon : this.entryToRect.values()) {
-      final STBRPRect rect = rectBuffer.get(i++);
-      rect.x(icon.x);
-      rect.y(icon.y);
-      rect.w(icon.w);
-      rect.h(icon.h);
+    try {
+      int i = 0;
+      for(final Rect4i icon : this.entryToRect.values()) {
+        final STBRPRect rect = rectBuffer.get(i++);
+        rect.x(icon.x);
+        rect.y(icon.y);
+        rect.w(icon.w);
+        rect.h(icon.h);
+      }
+
+      stbrp_init_target(ctx, width, height, nodes);
+
+      if(stbrp_pack_rects(ctx, rectBuffer) == 0) {
+        throw new AtlasFull();
+      }
+
+      i = 0;
+      for(final Rect4i icon : this.entryToRect.values()) {
+        final STBRPRect rect = rectBuffer.get(i++);
+        icon.x = rect.x();
+        icon.y = rect.y();
+        icon.w = rect.w();
+        icon.h = rect.h();
+      }
+
+    } finally {
+      rectBuffer.free();
+      nodes.free();
+      ctx.free();
     }
-
-    stbrp_init_target(ctx, width, height, nodes);
-
-    if(stbrp_pack_rects(ctx, rectBuffer) == 0) {
-      throw new RuntimeException("Failed to pack texture atlas");
-    }
-
-    i = 0;
-    for(final Rect4i icon : this.entryToRect.values()) {
-      final STBRPRect rect = rectBuffer.get(i++);
-      icon.x = rect.x();
-      icon.y = rect.y();
-      icon.w = rect.w();
-      icon.h = rect.h();
-    }
-
-    rectBuffer.free();
-    nodes.free();
-    ctx.free();
 
     return this.buildTexture(width, height);
   }

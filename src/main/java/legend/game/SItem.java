@@ -753,7 +753,9 @@ public final class SItem {
       //LAB_800fc98c
       loadMenuTexture(data.slice(0x83e0)); // Character textures
       loadMenuTexture(data); // Menu textures
+      legend.game.textures.NativeUiTextureEvent.menu("menu", data);
       loadMenuTexture(data.slice(0x6200)); // Item textures
+      legend.game.textures.NativeUiTextureEvent.menu("items", data.slice(0x6200));
       loadMenuTexture(data.slice(0x1_0460));
       loadMenuTexture(data.slice(0x1_0580));
     } else if(whichFile == 1) {
