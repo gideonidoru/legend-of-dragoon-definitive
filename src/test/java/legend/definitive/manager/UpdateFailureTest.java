@@ -41,7 +41,14 @@ class UpdateFailureTest {
     assertThrows(IOException.class, () -> ReleaseUpdates.install(this.store, candidate("a".repeat(64)), InstallProgress.NONE, request -> response(request, 200, new ByteArrayInputStream(new byte[]{1,2,3}), 3))); unchanged();
     final InputStream interrupted = new InputStream() { @Override public int read() throws IOException { throw new IOException("Connection dropped"); } };
     assertThrows(IOException.class, () -> ReleaseUpdates.install(this.store, candidate("a".repeat(64)), InstallProgress.NONE, request -> response(request, 200, interrupted, -1))); unchanged();
-    assertThrows(IOException.class, () -> ReleaseUpdates.install(this.store, candidate("a".repeat(64)), InstallProgress.NONE, request -> response(request, 200, InputStream.nullInputStream(), 2L * 1024 * 1024 * 1024))); unchanged();
+    assertThrows(IOException.class, () -> ReleaseUpdates.install(this.store, candidate("a".repeat(64)), InstallProgress.NONE, request -> response(request, 200, InputStream.nullInputStream(), 9L * 1024 * 1024 * 1024))); unchanged();
+  }
+  @Test void bundledFmvPackageAboveOneGigabyteReachesTheBoundedDownload() throws Exception {
+    final InputStream body = new InputStream() { @Override public int read() throws IOException { throw new IOException("Fixture body reached"); } };
+    final IOException failure = assertThrows(IOException.class, () -> ReleaseUpdates.install(this.store, candidate("a".repeat(64)), InstallProgress.NONE,
+      request -> response(request, 200, body, 1700000000L)));
+    assertEquals("Fixture body reached", failure.getMessage());
+    unchanged();
   }
   @Test void verifiedDownloadPreservesDataAndCanRestorePriorVersion() throws Exception {
     final Path source = this.fixtures.pack("v2", PackageManifest.hostPlatform()); final Path archive = this.temporary.resolve("v2.zip");

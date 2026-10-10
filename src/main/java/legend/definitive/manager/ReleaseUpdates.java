@@ -13,6 +13,7 @@ import java.util.*;
 /** Background checks against our repository. Installation remains an explicit user action. */
 public final class ReleaseUpdates {
   private ReleaseUpdates() { }
+  private static final long MAX_PACKAGE_BYTES = 8L * 1024 * 1024 * 1024;
   private static final String REPO = "gideonidoru/legend-of-dragoon-definitive";
   private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).followRedirects(HttpClient.Redirect.NORMAL).build();
   public record Candidate(String tag, String assetId, URI url, String sha256) { }
@@ -79,9 +80,9 @@ public final class ReleaseUpdates {
       try(final var input = response.body(); final var output = Files.newOutputStream(download)) {
         if(response.statusCode() != 200) throw new IOException("Update download failed. Your current installation is unchanged.");
         final long size = response.headers().firstValueAsLong("Content-Length").orElse(-1);
-        if(size > 1024L * 1024 * 1024) throw new IOException("Release download is larger than the supported package limit.");
+        if(size > MAX_PACKAGE_BYTES) throw new IOException("Release download is larger than the supported package limit.");
         progress.bytes("Downloading game and HD artwork", 10, 60, 0, size);
-        DownloadBody.copy(input, output, 1024L * 1024 * 1024, Duration.ofMinutes(15), bytes -> progress.bytes("Downloading game and HD artwork", 10, 60, bytes, size));
+        DownloadBody.copy(input, output, MAX_PACKAGE_BYTES, Duration.ofMinutes(15), bytes -> progress.bytes("Downloading game and HD artwork", 10, 60, bytes, size));
       }
       progress.phase("Checking download", "Verifying the GitHub SHA256 checksum", 60);
       if(!PackageManifest.sha256(download).equals(candidate.sha256())) throw new IOException("Update checksum mismatch. Your current installation is unchanged.");
