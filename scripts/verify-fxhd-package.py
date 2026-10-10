@@ -20,6 +20,18 @@ def verify(package, stale=None):
         raise ValueError('Incremental fixture must remain outside the package')
     ledger = json.loads((ROOT / 'integrations/fxhd/production/field-selection.json').read_text())
     expected = {r['runtime']['file']: r['runtime']['sha256'] for r in ledger['assets'] if r['selected']}
+    full = json.loads((ROOT / 'integrations/fxhd/production/full-coverage.json').read_text())
+    consumers = json.loads((ROOT / 'integrations/fxhd/production/consumer-coverage.json').read_text())
+    if full['state'] != 'all-census-sources-generated-and-bound' or full['sourceCount'] != len(full['sources']) or full['uniqueJobs'] != len(full['outputs']) or {r['job'] for r in full['sources']} != set(full['outputs']):
+        raise ValueError('Incomplete full FX ledger')
+    if consumers['unclassifiedConsumers'] != 0:
+        raise ValueError('Unclassified FX consumers')
+    inventoried = {r['source'] for r in consumers['entries']}
+    actual = {str(p.relative_to(ROOT)) for group in ('effects', 'particles') for p in (ROOT / 'src/main/java/legend/game/combat' / group).glob('*.java')}
+    if not actual <= inventoried:
+        raise ValueError('New effects/particles missing from consumer census')
+    expected.update({'full/detail/' + job + '.png': info['outputSha256'] for job, info in full['outputs'].items()})
+    bindings = '\n'.join(sorted({'\t'.join([r['sourceSha256'],r['job'],full['outputs'][r['job']]['outputSha256'],*map(str,r['sourceSize'])]) for r in full['sources']})) + '\n'
     with zipfile.ZipFile(bundled / current) as archive:
         names = archive.namelist()
         if len(names) != len(set(names)) or archive.testzip() is not None:
@@ -27,6 +39,8 @@ def verify(package, stale=None):
         images = {n[len('fxhd/'):] for n in names if n.startswith('fxhd/') and n.endswith('.png')}
         if images != set(expected):
             raise ValueError('Runtime images differ from the reviewed selection')
+        if archive.read('fxhd/full/bindings.tsv').decode() != bindings:
+            raise ValueError('Incomplete runtime source bindings')
         for name, digest in expected.items():
             if hashlib.sha256(archive.read('fxhd/' + name)).hexdigest() != digest:
                 raise ValueError('Runtime hash differs: ' + name)
@@ -37,7 +51,7 @@ def verify(package, stale=None):
                 raise ValueError('Missing attribution: ' + notice)
         if 'fxhd/FxHdMod.class' not in names:
             raise ValueError('Missing runtime adapter')
-    print('FxHD package verified: one current adapter, six reviewed images, hashes and notices; no source controls.')
+    print(f'FxHD package verified: one current adapter, {full["sourceCount"]} covered sources, {full["uniqueJobs"]} indexed maps plus six field RGB images, complete bindings/hashes/notices; no source controls.')
 
 
 if __name__ == '__main__':
