@@ -69,21 +69,35 @@ Restoration happens before installation, so the Steam Deck loads ordinary prepar
 
 ## Before and after
 
-These comparisons document the **earlier ModelsHD 0.3 party battle pass**. Version 0.4 uses a more conservative crease threshold across the full supported catalog; these images do not preview that new recipe. Both sides use the same textures, pose, camera, scale and lighting, so the visible change comes from geometry. The lower panels remove textures to make the smoother surfaces easier to see.
+The geometry comparisons below document the **earlier ModelsHD 0.3 party battle pass**. Version 0.4 uses a more conservative crease threshold across the full supported catalog; these images do not preview that new recipe. Both sides use the same textures, pose, camera, scale and lighting, so the visible change comes from geometry. The lower panels remove textures to make the smoother surfaces easier to see.
 
-### Dart
+### Dart: model smoothing
 
 ![Dart before and after ModelsHD 0.3, with matching textured and untextured views](docs/definitive/images/comparisons/dart-before-after.png)
 
 Dart's battle mesh goes from **870 to 2,946 triangles**. The first pass rounds eligible surfaces while retaining the recognizable armor, sword and silhouette.
 
-### Meru
+### Meru: model smoothing
 
 ![Meru before and after ModelsHD 0.3, with matching textured and untextured views](docs/definitive/images/comparisons/meru-before-after.png)
 
 Meru's battle mesh goes from **806 to 2,687 triangles**. The untextured view makes the changes to limbs and clothing more apparent than the original textures do.
 
 **These are offline model previews, not gameplay screenshots.** They document the earlier 0.3 pass. Newer world-pass and Dart face/remodeling experiments need their own matched comparisons before they can be presented here. This is a modest first refinement, not the finished character remaster. Clearer faces, better hands, stronger costume shapes and natural joints still need deliberate remodeling. [Comparison notes](docs/definitive/images/comparisons/README.md).
+
+### Dart: texture restoration
+
+![Dart texture before and after: original artwork and authored armor v1 on identical geometry in two matching poses](docs/definitive/images/comparisons/dart-textures-before-after.png)
+
+The right side shows **CharHD's selected Dart armor v1 development pilot**: reworked crimson armor panels over the restored texture atlas. Both sides keep the original geometry, matching pose, camera and lighting. This shows the texture change independently of model smoothing; faces, hair and the rest of the costume still need further work.
+
+### Meru: texture restoration
+
+![Meru texture before and after: original artwork and 4x restoration candidate on identical geometry in two matching poses](docs/definitive/images/comparisons/meru-textures-before-after.png)
+
+Meru's **4× restoration candidate** makes the hammer motifs and blue-and-gold clothing patterns easier to read while retaining their original layout. Geometry and viewing conditions are identical on both sides. This candidate is public in the source repository, but is **not selected runtime artwork** or a finished character remaster.
+
+These are matched offline renders, not gameplay captures. They use the exact custom texture atlases recorded in the comparison notes; native lighting, animation and physical Steam Deck appearance still need review. [Texture comparison provenance](docs/definitive/images/comparisons/README.md#texture-comparisons).
 
 ## Mods and artwork
 
