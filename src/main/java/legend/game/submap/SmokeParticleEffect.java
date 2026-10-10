@@ -48,6 +48,8 @@ public class SmokeParticleEffect {
   private int firstEmptyIndex;
 
   private MeshObj particle;
+  private MeshObj particleHd;
+  private legend.definitive.effects.EffectArtwork smokeHd;
   private final MV transforms = new MV();
 
   public void allocateSmokePlumeEffect(final RunningScript<?> script, final float screenOffsetX, final float screenOffsetY, final int tpage, final int clut) {
@@ -111,6 +113,7 @@ public class SmokeParticleEffect {
         .uvSize(32, 32)
         .posSize(1.0f, 1.0f)
         .build();
+      this.loadArtwork("smoke_1", "smoke_1", tpage, clut, 32);
     }
   }
 
@@ -150,6 +153,7 @@ public class SmokeParticleEffect {
         .uvSize(32, 32)
         .posSize(1.0f, 1.0f)
         .build();
+      this.loadArtwork("smoke_2", "dust", tpage, clut, 64);
     }
   }
 
@@ -210,6 +214,7 @@ public class SmokeParticleEffect {
       .uvSize(32, 32)
       .posSize(1.0f, 1.0f)
       .build();
+    this.loadArtwork("smoke_2", "dust", tpage, clut, 64);
   }
 
   public void reinitializeSmokePlumeForIntermittentBursts(final RunningScript<?> script) {
@@ -319,6 +324,7 @@ public class SmokeParticleEffect {
 
   private void renderSmokePlume(final float screenOffsetX, final float screenOffsetY) {
     //LAB_800f3fb0
+    final boolean hd = this.smokeHd != null && this.smokeHd.matchesNative();
     for(int i = this.particles.length - 1; i >= 0; i--) {
       final SmokeParticleInstance3c inst = this.particles[i];
       if(inst.tick_02 < inst.countTicksParticleLifecycle_06 * (2.0f / vsyncMode_8007a3b8)) {
@@ -334,8 +340,9 @@ public class SmokeParticleEffect {
         //LAB_800f4084
         this.transforms.scaling(inst.size_28, inst.size_28, 1.0f);
         this.transforms.transfer.set(GPU.getOffsetX() + x, GPU.getOffsetY() + y, inst.z_34 * 4);
-        RENDERER.queueOrthoModel(this.particle, this.transforms, QueuedModelStandard.class)
+        final var queued = RENDERER.queueOrthoModel(hd ? this.particleHd : this.particle, this.transforms, QueuedModelStandard.class)
           .monochrome(brightness);
+        if(hd) queued.texture(this.smokeHd.texture);
 
         inst.tick_02++;
       }
@@ -413,6 +420,7 @@ public class SmokeParticleEffect {
 
   private void renderSmokeCloud(final float screenOffsetX, final float screenOffsetY) {
     //LAB_800efecc
+    final boolean hd = this.smokeHd != null && this.smokeHd.matchesNative();
     for(int i = this.particles.length - 1; i >= 0; i--) {
       final SmokeParticleInstance3c inst = this.particles[i];
       if(inst.tick_02 <= inst.countTicksParticleLifecycle_06 * (2.0f / vsyncMode_8007a3b8) && inst.countTicksParticleLifecycle_06 != 0) {
@@ -427,15 +435,38 @@ public class SmokeParticleEffect {
         //LAB_800eff7c
         this.transforms.scaling(inst.size_28, inst.size_28, 1.0f);
         this.transforms.transfer.set(GPU.getOffsetX() + x, GPU.getOffsetY() + y, 160.0f);
-        RENDERER.queueOrthoModel(this.particle, this.transforms, QueuedModelStandard.class)
+        final var queued = RENDERER.queueOrthoModel(hd ? this.particleHd : this.particle, this.transforms, QueuedModelStandard.class)
           .monochrome(inst.brightness_30);
+        if(hd) queued.texture(this.smokeHd.texture);
 
         inst.tick_02++;
       }
     }
   }
 
+  private void loadArtwork(final String source, final String palette, final int tpage, final int clut, final int v) {
+    this.releaseArtwork();
+    final String id = source.equals(palette) ? source : "smoke_2_dust_palette";
+    this.smokeHd = legend.definitive.effects.EffectArtwork.load(id, source, palette, tpage, clut, 64, v);
+    if(this.smokeHd != null) {
+      try {
+        this.particleHd = new QuadBuilder("FxHD " + id).bpp(Bpp.BITS_24)
+          .translucency(Translucency.of(tpage >>> 5 & 3)).monochrome(1)
+          .uv(0, 0).uvSize(1, 1).posSize(1, 1).build();
+      } catch(final RuntimeException failure) {
+        this.releaseArtwork();
+        org.apache.logging.log4j.LogManager.getLogger().warn("FxHD retained original smoke: {}", failure.getMessage());
+      }
+    }
+  }
+
+  private void releaseArtwork() {
+    if(this.particleHd != null) { this.particleHd.delete(); this.particleHd = null; }
+    if(this.smokeHd != null) { this.smokeHd.close(); this.smokeHd = null; }
+  }
+
   public void deallocate() {
+    this.releaseArtwork();
     this.effectShouldRender = false;
     this.smokeCloudState = SmokeCloudState.UNINITIALIZED;
     this.smokeEffectData.clear();

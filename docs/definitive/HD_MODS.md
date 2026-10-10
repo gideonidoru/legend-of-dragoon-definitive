@@ -2,18 +2,18 @@
 
 The owner requested four independent artwork mods, installed with Definitive by default. Activation/deactivation belongs to Severed Chains' existing Mods menu. No new installer switches or gameplay changes accompany them. Skurfa remains the separate background mod. The previous mandatory-core experimental texture listener has moved into CharHD; its installer checkbox and launch property are removed.
 
-| Mod / ID | 0.1.0 content | Extension boundary |
+| Mod / ID | Bundled content | Extension boundary |
 | --- | --- | --- |
 | EnvHD / `envhd` | 24 separately addressed palette regions on static battle stages 0 and 6; 4× reconstruction with source coverage preserved | Additional verified static stage packs, then field props/world-map surfaces. Existing Skurfa scene artwork is untouched. |
 | CharHD / `charhd` | Source-bound battle material adapter with a Dart armor development pilot; field adapter retained | Explicit surface/roughness settings use current material lighting. Full character reconstruction and native/Deck acceptance remain open. See [production status](CHARHD_PRODUCTION.md). |
 | UIHD / `uihd` | 21 goods icons at 4×, ten elements, battle commands, checkbox sheet, menu frame and item palette variants, dialogue frame and arrow | First whole-game UIHD batch; bespoke portraits and remaining HUD still pending. See [UIHD production](UIHD_PRODUCTION.md). |
-| FxHD / `fxhd` | The orthographic field dust texture at 4× | Separately verified effects/animation families; spells and transformation sheets remain original. |
+| FxHD / `fxhd` | Six source-bound 2× field textures: dust, both footprints, plume/cloud smoke and central save-point glow | Separately verified effects/animation families; spells and transformation sheets remain original. |
 
 The mod sources live under `integrations/<id>`, with reviewed runtime resource candidates in each `runtime-assets` folder. These are first pilot candidates, not an accepted whole-game remaster. Original extracted assets, raw meshes, local neural runtimes/weights and intermediate comparisons are not bundled. Underlying game artwork has separate notices from the AGPL source code. Explicit owner authorization in this implementation request covers publication of the derived pilot resources in this repository.
 
 ## Build and delivery
 
-`gradle/hd-mods.gradle` and the specialized `gradle/charhd.gradle` compile four independent mods against the current engine and produce `EnvHD-v0.1.0.jar`, `CharHD-v0.2.0.jar`, `UIHD-v0.1.0.jar` and `FxHD-v0.1.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
+`gradle/hd-mods.gradle` compiles EnvHD and UIHD; specialized `gradle/charhd.gradle` and `gradle/fxhd.gradle` build CharHD and FxHD against the current engine. The outputs are `EnvHD-v0.1.0.jar`, `CharHD-v0.2.0.jar`, `UIHD-v0.1.0.jar` and `FxHD-v0.2.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
 
 Managed launch links all four JARs even when the legacy Skurfa preference selects original backgrounds. It preserves the game's saved enabled-mod configuration during updates/rollback. Bundling is not forced activation: existing players' in-game choices remain theirs. A player using original geometry/art can deactivate the corresponding mod without removing the package or changing saves. Standalone installation uses these four JARs in `mods/`, with this matching engine revision: EnvHD/UIHD/FxHD use the additive event/mesh hooks described below and are not drop-in compatible with unmodified upstream 3.0.0.
 
@@ -27,7 +27,7 @@ Counterattack darkening operates on original VRAM palettes. EnvHD switches to th
 
 UIHD runs after ordinary atlas registration and through source-bound PNG/native UI loading hooks. It requires original encoded hashes and exact current pixel/dimension matches. Native UI restoration changes RGB while live indexed VRAM retains visibility, STP and palette animation; changed pixels use original RGB. Display geometry, UV coordinates, scissoring and timing stay in source units. Unpadded sheets use nearest filtering; protected lettering/portrait regions retain original visible pixels. Shared bounded decoding/prewarming and next-frame renderer preparation reuse the engine's enhancements. See [UIHD production](UIHD_PRODUCTION.md) for selection, budgets and open acceptance work.
 
-FxHD uses a source-bound event for the existing orthographic dust quad. It preserves STP/discard/visible-black classification and the original additive blend mode. Particle transforms, brightness, count, timing and size remain unchanged. The TMD dust effect, footprints and other attached effects remain on their original route. Extra quad/texture ownership is released with attached-effect teardown.
+FxHD uses immutable source-bound events for six static field bindings, the renderer's shared image cache and worker prewarming. Live indexed-pixel/palette controls restore original drawing after mutations. STP/discard/visible-black classes, blend modes, native footprint geometry, particle timing, save-point light/emission and reduced-flashing behavior are preserved. The animated save-point sheet, TMD dust and skid remain original. Owned artwork and quads are released on repeat teardown. See [production status](FXHD_PRODUCTION.md) for selected resources, validation and the broader queue.
 
 CharHD's existing conservative adapter preserves other field overrides and ignores absent/invalid packs. It no longer requires a launcher property: the in-game mod manager controls whether its listener is registered. No claim of remastered character coverage comes from including this adapter.
 

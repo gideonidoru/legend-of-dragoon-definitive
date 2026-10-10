@@ -1,4 +1,4 @@
-package legend.definitive.artwork;
+package legend.definitive.effects;
 
 import legend.core.renderer.*;
 import legend.game.submap.AttachedSobjEffect;
@@ -17,14 +17,14 @@ class EffectLifecycleTest {
     final var effects = new AttachedSobjEffect();
     for(int cycle = 0; cycle < 2; cycle++) {
       final var obj = new OwnedObj(); final var texture = new OwnedTexture();
-      set(effects, "quadDustHd", obj); set(effects, "dustHdTexture", texture);
+      set(effects, "quadDustHd", obj); set(effects, "dustHd", new EffectArtwork(texture, new legend.game.tim.Tim(new legend.game.unpacker.FileData(EffectArtworkTest.tim(465)))));
       effects.deallocateAttachedSobjEffects();
-      assertNull(get(effects, "quadDustHd")); assertNull(get(effects, "dustHdTexture"));
+      assertNull(get(effects, "quadDustHd")); assertNull(get(effects, "dustHd"));
       Obj.deleteObjects(); Texture.deleteTextures();
       assertEquals(1, obj.deletes); assertEquals(1, texture.deletes);
       // No replacement loaded in the next cycle (FxHD disabled).
       effects.deallocateAttachedSobjEffects();
-      assertNull(get(effects, "quadDustHd")); assertNull(get(effects, "dustHdTexture"));
+      assertNull(get(effects, "quadDustHd")); assertNull(get(effects, "dustHd"));
     }
   }
   private static final class OwnedObj extends Obj {

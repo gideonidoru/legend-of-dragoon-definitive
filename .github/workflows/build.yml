@@ -39,7 +39,7 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/definitive-visual-checks"
           "$RUNNER_TEMP/definitive-visual-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
-          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing charhd-full-production visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass; do
+          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing charhd-full-production visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass fxhd-field; do
             "$RUNNER_TEMP/definitive-visual-checks/bin/python" "scripts/test-$fixture.py"
           done
   build:
@@ -87,6 +87,11 @@ jobs:
           ./gradlew --version
       - name: Compile and package without gameplay tests
         run: ./gradlew --no-daemon --console=plain clean build definitivePackage definitiveFileDelivery portableInstaller -PreleaseTag="$RELEASE_TAG" ${{ matrix.args }}
+      - name: Check incremental FxHD packaging and reviewed resources
+        run: |
+          cp build/libs/mods/FxHD-v0.2.0.jar build/libs/mods/FxHD-v0.1.0.jar
+          ./gradlew --no-daemon --console=plain stageDefinitivePackage ${{ matrix.args }}
+          python3 scripts/verify-fxhd-package.py build/definitive/package --stale-fxhd build/libs/mods/FxHD-v0.1.0.jar
       - name: Assemble reviewed portable entry points
         if: runner.os == 'Linux'
         run: python3 scripts/assemble-installer.py --output-dir build/distributions --tag "$RELEASE_TAG"

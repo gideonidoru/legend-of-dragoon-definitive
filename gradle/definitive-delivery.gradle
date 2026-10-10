@@ -64,11 +64,10 @@ tasks.register('stageDefinitivePackage', Sync) {
     include 'lod-game-*.jar', 'definitive-manager.jar', 'libs/**', 'gfx/**', 'patches/**', 'lang/**', 'LICENSE', 'credits.txt', 'README.md', 'log4j2.xml', 'gamecontrollerdb.txt'
     exclude '*-sources.jar'
   }
+  // Stage declared current outputs, not stale JARs retained by an incremental build.
   into('bundled-mods') {
-    from(layout.buildDirectory.dir('libs/mods')) { exclude 'CharHD-*.jar' }
+    from { ['skurfaJar', 'modelsHdJar', 'fmvHdJar', 'envhdJar', 'charhdJar', 'uihdJar', 'fxHdJar'].collect { name -> tasks.named(name).get().archiveFile.get() } }
   }
-  into('bundled-mods') { from { tasks.named('charhdJar').get().archiveFile.get() } }
-  into('bundled-mods') { from { tasks.named('modelsHdJar').get().archiveFile.get() } }
   into('tools') { from(layout.buildDirectory.dir('definitive/archive-helper')) { include '7zz', 'License.txt', 'readme.txt', 'History.txt' } }
   from 'CREDITS'
   from 'delivery/installer'

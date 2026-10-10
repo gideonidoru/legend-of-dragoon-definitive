@@ -124,10 +124,15 @@ public final class PngAssets implements AutoCloseable {
     try {
       WORKER.execute(() -> {
         if(result.isCancelled()) return;
-        try(final InputStream stream=source.get()) {
-          if(stream == null) throw new IOException("Missing image resource");
-          final byte[] data=stream.readNBytes(MAX_ENCODED_BYTES+1);
-          try(final Image image=this.acquire(ByteBuffer.wrap(data))) { result.complete(true); }
+        try {
+          try(final InputStream stream=source.get()) {
+            if(stream == null) throw new IOException("Missing image resource");
+            final byte[] data=stream.readNBytes(MAX_ENCODED_BYTES+1);
+            try(final Image image=this.acquire(ByteBuffer.wrap(data))) { /* Warm the bounded cache, then release the worker's lease. */ }
+          }
+          // Completion callbacks may inspect memory or disable retention inline.
+          // They must observe the finished operation, including resource cleanup.
+          result.complete(true);
         } catch(final Exception failure) { result.completeExceptionally(failure); }
       });
     } catch(final java.util.concurrent.RejectedExecutionException full) { result.complete(false); }

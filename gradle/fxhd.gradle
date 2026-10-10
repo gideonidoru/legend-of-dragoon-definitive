@@ -1,0 +1,33 @@
+// FxHD (2026-10-10), AGPL v3; see LICENSE.
+sourceSets {
+  fxhd {
+    java.srcDir 'integrations/fxhd/src/main/java'
+    resources.srcDir 'integrations/fxhd/src/main/resources'
+    resources.srcDir 'integrations/fxhd/runtime-assets'
+    compileClasspath += sourceSets.main.output + configurations.compileClasspath
+  }
+}
+sourceSets.test.compileClasspath += sourceSets.fxhd.output
+sourceSets.test.runtimeClasspath += sourceSets.fxhd.output
+tasks.named('compileTestJava') { dependsOn sourceSets.fxhd.classesTaskName }
+tasks.register('fxHdSourceProbe', JavaExec) {
+  description = 'Opt-in source/hash/mask/native-address check; no game window or GPU rendering.'
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.effects.FxHdSourceProbe'
+  systemProperty 'java.awt.headless', 'true'
+  environment 'ALSOFT_DRIVERS', 'null'
+  doFirst { args providers.gradleProperty('fxHdFiles').get() }
+}
+tasks.register('fxHdJar', Jar) {
+  dependsOn sourceSets.fxhd.classesTaskName, jar
+  archiveFileName = 'FxHD-v0.2.0.jar'
+  destinationDirectory = layout.buildDirectory.dir('libs/mods')
+  from sourceSets.fxhd.output
+  into('META-INF/fxhd') { from 'LICENSE'; from 'integrations/fxhd/README.md'; from 'integrations/fxhd/ARTWORK-NOTICES.txt' }
+  manifest { attributes 'Implementation-Title': 'FxHD', 'Implementation-Version': '0.2.0' }
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
+}
+tasks.named('stageDefinitivePackage') { dependsOn tasks.named('fxHdJar') }
+tasks.named('build') { dependsOn tasks.named('fxHdJar') }
