@@ -91,7 +91,9 @@ public final class XaPlayer extends AudioSource {
     // Rewind unplayed queued audio before the old device loses it. The next device resumes
     // at the played frame, including a tail whose decoder has already reached EOF.
     if(this.decoder != null) {
-      this.resumeFrame = Math.min(this.bufferedFrames, this.resumeFrame + Math.round(this.getPlaybackPosition() * XaPcm.SAMPLE_RATE));
+      // A naturally stopped queue has zero offset; account for its played buffers first.
+      this.handleProcessedBuffers();
+      this.resumeFrame = Math.min(this.bufferedFrames, this.resumeFrame + Math.round(this.getPlaybackPositionSeconds() * XaPcm.SAMPLE_RATE));
       try { this.decoder.seek(this.resumeFrame); this.bufferedFrames = this.resumeFrame; this.eof = false; }
       catch(final RuntimeException failure) { LOGGER.error("Cannot resume XA recording", failure); this.unloadOpusFile(); }
     }

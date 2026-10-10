@@ -41,7 +41,7 @@ public abstract class AudioSource {
 
   private IntBuffer tmp;
 
-  private float playTime;
+  private double playTime;
   private int generation;
 
   public AudioSource(final int bufferCount) {
@@ -120,7 +120,7 @@ public abstract class AudioSource {
         final int frequency = alGetBufferi(unqueuedBufferId, AL_FREQUENCY);
         if(channels > 0 && frequency > 0) {
           final int bits = alGetBufferi(unqueuedBufferId, AL_BITS);
-          this.playTime += (float)sizeBytes / ((bits / 8.0f) * channels * frequency);
+          this.playTime += (double)sizeBytes / ((bits / 8.0) * channels * frequency);
         }
 
         this.buffers[++this.bufferIndex] = unqueuedBufferId;
@@ -198,6 +198,11 @@ public abstract class AudioSource {
 
   /** Total played time across processed buffers; callers must not use wall time during underflow. */
   public float getPlaybackPosition() {
+    return (float)this.getPlaybackPositionSeconds();
+  }
+
+  /** Precise accumulated clock for frame-accurate recovery of long recordings. */
+  public double getPlaybackPositionSeconds() {
     synchronized(this) {
       return this.playTime + this.getPosition();
     }

@@ -2,6 +2,7 @@ package legend.definitive.audio;
 
 import legend.core.audio.opus.XaPlayer;
 import legend.core.audio.AudioSource;
+import legend.core.audio.GenericSource;
 import legend.core.audio.xa.*;
 import legend.game.unpacker.*;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.lwjgl.openal.AL10.*;
 import static org.lwjgl.openal.ALC10.*;
+import static org.lwjgl.openal.SOFTLoopback.*;
 
 final class XaAudioTest {
   @TempDir Path temporary;
@@ -110,10 +112,11 @@ final class XaAudioTest {
     void initialize() { this.invoke("init", new Class<?>[0]); }
     void release() { this.invoke("destroy", new Class<?>[0]); this.player.unloadOpusFile(); }
     void recreate() { this.invoke("destroy", new Class<?>[0]); this.initialize(); this.invoke("setActive", new Class<?>[]{boolean.class}, true); }
-    void rewindQueuedOutput() {
-      try { final var field = AudioSource.class.getDeclaredField("sourceId"); field.setAccessible(true); alSourceRewind(field.getInt(this.player)); }
+    int sourceId() {
+      try { final var field = AudioSource.class.getDeclaredField("sourceId"); field.setAccessible(true); return field.getInt(this.player); }
       catch(final ReflectiveOperationException failure) { throw new AssertionError(failure); }
     }
+    void rewindQueuedOutput() { alSourceRewind(this.sourceId()); }
     void loadXa(final FileData data) { this.player.loadXa(data); }
     void tick() { this.player.tick(); }
     void stop() { this.player.stop(); }
@@ -163,4 +166,42 @@ final class XaAudioTest {
       assertEquals(17 / 48000.0, player.getPlaybackPosition(), 0.000001);
     });
   }
+  @Test void recoveryDoesNotReplayProcessedBuffersAfterNaturalUnderflow() {
+    withAudio(player -> {
+      player.loadXa(wave(4800, 1));
+      final long deadline = System.nanoTime() + 2_000_000_000L;
+      while(alGetSourcei(player.sourceId(), AL_SOURCE_STATE) != AL_STOPPED && System.nanoTime() < deadline) {
+        try { Thread.sleep(2); } catch(final InterruptedException e) { throw new AssertionError(e); }
+      }
+      assertEquals(AL_STOPPED, alGetSourcei(player.sourceId(), AL_SOURCE_STATE));
+      assertEquals(4, alGetSourcei(player.sourceId(), AL_BUFFERS_PROCESSED));
+      player.recreate(); drain(player);
+      assertEquals((4800 - 4 * 480) / 48000.0, player.getPlaybackPosition(), 0.000001);
+    });
+  }
+
+  private static final class ClockProbe extends GenericSource {
+    ClockProbe() { super(AL_FORMAT_MONO16, 48000); }
+    void initialize() { super.init(); }
+    void process() { super.handleProcessedBuffers(); }
+    void release() { super.destroy(); }
+  }
+
+  @Test void longPlaybackClockCountsActualLoopbackFramesWithoutFloatAccumulationDrift() {
+    final long device = alcLoopbackOpenDeviceSOFT((ByteBuffer)null); assertNotEquals(0, device);
+    final var caps = ALC.createCapabilities(device);
+    final long context = alcCreateContext(device, new int[]{ALC_FREQUENCY, 48000, ALC_FORMAT_CHANNELS_SOFT, ALC_STEREO_SOFT, ALC_FORMAT_TYPE_SOFT, ALC_FLOAT_SOFT, 0});
+    assertNotEquals(0, context); alcMakeContextCurrent(context); AL.createCapabilities(caps);
+    final var clock = new ClockProbe();
+    try {
+      clock.initialize();
+      final short[] input = new short[480]; final float[] output = new float[960];
+      for(int tick = 0; tick < 35300; tick++) {
+        clock.bufferOutput(input); clock.tick(); alcRenderSamplesSOFT(device, output, 480); clock.process();
+      }
+      assertEquals(353.0, clock.getPlaybackPositionSeconds(), 0.0000001);
+      assertEquals(353L * 48000, Math.round(clock.getPlaybackPositionSeconds() * 48000));
+    } finally { clock.release(); assertEquals(AL_NO_ERROR, alGetError()); alcMakeContextCurrent(0); alcDestroyContext(context); alcCloseDevice(device); }
+  }
+
 }
