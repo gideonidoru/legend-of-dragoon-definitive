@@ -73,4 +73,46 @@ class AttachmentBindingTest(unittest.TestCase):
             with self.assertRaises(ValueError): part.deform(np.eye(4), bad)
 
 
+class TwoBoneSurfaceTest(unittest.TestCase):
+    def test_known_endpoint_and_blended_positions_with_distinct_bind_frames(self):
+        vertices = np.tile([12., 3, 0], (3, 1))
+        surface = binding.TwoBoneSurface(vertices, [[1, 0], [0, 1], [.25, .75]],
+                                        matrix(0, [10, 0, 0]), matrix(np.pi/2, [0, 20, 0]))
+        np.testing.assert_allclose(surface.deform(matrix(0, [20, 0, 0]), matrix(np.pi/2, [0, 25, 0])),
+                                   [[22, 3, 0], [12, 8, 0], [14.5, 6.75, 0]], atol=1e-12)
+        np.testing.assert_allclose(surface.deform(matrix(np.pi/2, [20, 0, 0]), matrix(0, [0, 25, 0])),
+                                   [[17, 2, 0], [-17, 13, 0], [-8.5, 10.25, 0]], atol=1e-12)
+
+    def test_float32_bind_roundoff_does_not_move_the_rest_surface(self):
+        vertices = fixture(); first = matrix(.31, [20, 40, -10]).astype(np.float32)
+        second = matrix(-.61, [5, 10, 15]).astype(np.float32)
+        surface = binding.TwoBoneSurface(vertices, np.tile([.37, .63], (len(vertices), 1)), first, second)
+        np.testing.assert_allclose(surface.deform(first, second), vertices, atol=1e-12)
+
+    def test_external_mutation_cannot_change_surface(self):
+        vertices = fixture(); weights = np.tile([.25, .75], (len(vertices), 1)); first = matrix(.4); second = matrix(-.3)
+        surface = binding.TwoBoneSurface(vertices, weights, first, second)
+        before = surface.deform(np.eye(4), np.eye(4))
+        vertices[:] = 0; weights[:] = 0; first[:] = 0; second[:] = 0
+        surface.deform(np.eye(4), np.eye(4))[:] = 999
+        np.testing.assert_array_equal(surface.deform(np.eye(4), np.eye(4)), before)
+
+    def test_invalid_geometry_and_nonconvex_or_unnormalized_weights_fail(self):
+        for vertices, weights in [(fixture(), np.ones((6, 2))), (fixture(), np.zeros((6, 2))),
+                                  (fixture(), [[1, 0]] * 5), (fixture(), [[1.1, -.1]] * 6),
+                                  (fixture(), [[np.nan, 0]] * 6), (np.zeros((4097, 3)), [[1, 0]] * 4097),
+                                  (np.zeros((0, 3)), np.zeros((0, 2))), (np.full((6, 3), np.inf), [[1, 0]] * 6)]:
+            with self.assertRaises(ValueError): binding.TwoBoneSurface(vertices, weights, np.eye(4), np.eye(4))
+
+    def test_bad_bind_and_pose_matrices_fail_before_deformation(self):
+        vertices = fixture(); weights = np.tile([.5, .5], (6, 1))
+        surface = binding.TwoBoneSurface(vertices, weights, np.eye(4), np.eye(4))
+        for position, value in [((0, 0), 2), ((0, 0), -1), ((0, 1), .1), ((0, 3), np.nan), ((3, 0), .1)]:
+            bad = np.eye(4); bad[position] = value
+            with self.assertRaises(ValueError): binding.TwoBoneSurface(vertices, weights, bad, np.eye(4))
+            with self.assertRaises(ValueError): binding.TwoBoneSurface(vertices, weights, np.eye(4), bad)
+            with self.assertRaises(ValueError): surface.deform(bad, np.eye(4))
+            with self.assertRaises(ValueError): surface.deform(np.eye(4), bad)
+
+
 if __name__ == '__main__': unittest.main()

@@ -27,3 +27,5 @@ The stronger profile softens the shoulder cap in the reviewed front, side and ra
 5. Measure frame times, upload/transition peaks, memory and power on physical Deck hardware before selecting asset sizes or defaults. Obtain community comparison feedback before claiming community acceptance.
 
 The study used the same Mac Studio GPU, private Python environment and hidden shader harness recorded in the preceding study. No new dependencies, model inference, cloud service, engine/shader file changes or installer release were needed. The first shoulder-payload preparation stopped on a local variable collision; its partial outputs/logs were retained and corrected inputs were generated in new versioned directories before capture. Geometry and pixels, including the initial failure, remain private.
+
+The subsequent [continuous elbow study](ELBOW_SURFACE_STUDY.md) removes the rigid seam in a private loft experiment, but remains held after recorded-pose intersections. Its new offline two-bone binding utility is separate from native activation and art acceptance.

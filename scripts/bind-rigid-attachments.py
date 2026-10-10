@@ -70,3 +70,36 @@ class RigidAttachment:
 
     def root_targets(self, anchor_pose):
         return placed(self._anchor_vertices[self._roots], rigid_matrix(anchor_pose))
+
+
+class TwoBoneSurface:
+    """An offline surface in a shared bind space with two convex bone weights.
+
+    Fully weighted endpoint rings follow their original bones exactly. Interior
+    vertices blend the two actual bind-to-pose transforms, including translation.
+    This does not preserve volume at bends or establish collision freedom.
+    Normals, joint topology, native ownership and GPU upload remain caller work.
+    """
+    def __init__(self, bind_vertices, weights, first_bind, second_bind):
+        vertices = np.asarray(bind_vertices, dtype=float)
+        weights = np.asarray(weights, dtype=float)
+        if (vertices.ndim != 2 or vertices.shape[1] != 3 or not 1 <= len(vertices) <= 4096
+                or not np.isfinite(vertices).all() or np.max(np.abs(vertices)) > 1e6
+                or weights.shape != (len(vertices), 2) or not np.isfinite(weights).all()
+                or np.any(weights < 0) or np.any(weights > 1)
+                or np.max(np.abs(weights.sum(axis=1) - 1)) > 1e-12):
+            raise ValueError('Expected bounded bind vertices and normalized convex two-bone weights')
+        first_bind, second_bind = rigid_matrix(first_bind), rigid_matrix(second_bind)
+        self._first = placed(vertices, np.linalg.inv(first_bind))
+        self._second = placed(vertices, np.linalg.inv(second_bind))
+        self._weights = weights.copy() / weights.sum(axis=1)[:, None]
+        for value in (self._first, self._second, self._weights):
+            value.setflags(write=False)
+
+    def deform(self, first_pose, second_pose):
+        first = placed(self._first, rigid_matrix(first_pose))
+        second = placed(self._second, rigid_matrix(second_pose))
+        result = self._weights[:, :1] * first + self._weights[:, 1:] * second
+        if not np.isfinite(result).all():
+            raise ValueError('Two-bone deformation produced nonfinite positions')
+        return result
