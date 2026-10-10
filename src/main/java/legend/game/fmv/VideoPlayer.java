@@ -1,6 +1,5 @@
 package legend.game.fmv;
 
-import legend.core.Config;
 import legend.definitive.fmv.StreamingMovie;
 import legend.definitive.fmv.MoviePlayback;
 import legend.core.audio.GenericSource;
@@ -131,8 +130,8 @@ public final class VideoPlayer {
             return;
           }
 
-          RENDERER.window().setFpsLimit(60 * Config.getGameSpeedMultiplier());
-          PLATFORM.setInputTickRate(60 * Config.getGameSpeedMultiplier());
+          RENDERER.window().setFpsLimit(60);
+          PLATFORM.setInputTickRate(60);
 
           final long playedMicros;
           try { playedMicros = playback.tick(source, volume); }
