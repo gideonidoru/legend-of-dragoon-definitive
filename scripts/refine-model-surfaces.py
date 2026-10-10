@@ -8,6 +8,7 @@ import hashlib
 import importlib.util
 import json
 import math
+import numbers
 from pathlib import Path
 import sys
 import numpy as np
@@ -34,7 +35,7 @@ def triangles(polygons):
     return result
 
 
-def refine_part(part, strength=1.0, crease_degrees=110):
+def refine_part(part, strength=1.0, crease_degrees=110, fixed_vertices=()):
     """Preserve UV/color discontinuities per face and keep open joint borders fixed."""
     if not math.isfinite(strength) or not 0 <= strength <= 1 or not math.isfinite(crease_degrees) or not 0 <= crease_degrees <= 180:
         raise ValueError('Invalid surface study parameters')
@@ -42,6 +43,16 @@ def refine_part(part, strength=1.0, crease_degrees=110):
     vertices = np.array(original, dtype=float, copy=True)
     if vertices.ndim != 2 or vertices.shape[1] != 3 or not np.isfinite(vertices).all() or len(vertices) > 20000:
         raise ValueError('Invalid or excessive part geometry')
+    if (not isinstance(fixed_vertices, (tuple, list, np.ndarray))
+            or isinstance(fixed_vertices, np.ndarray) and fixed_vertices.ndim != 1
+            or len(fixed_vertices) > len(vertices)):
+        raise ValueError('Use a bounded sequence of distinct authored joint vertex indices')
+    if any(isinstance(index, (bool, np.bool_)) or not isinstance(index, numbers.Integral)
+           or not 0 <= index < len(vertices) for index in fixed_vertices):
+        raise ValueError('Invalid authored joint vertex index')
+    authored = set(fixed_vertices)
+    if len(authored) != len(fixed_vertices):
+        raise ValueError('Authored joint vertex indices must be distinct')
     faces = triangles(polygons)
     if len(faces) > 10000: raise ValueError('Part exceeds subdivision budget')
     edges, neighbors, normals = {}, [set() for _ in vertices], []
@@ -77,18 +88,21 @@ def refine_part(part, strength=1.0, crease_degrees=110):
         degrees = [len(adjacent) for adjacent in link.values()]
         if len(visited) != len(link) or any(degree not in (1, 2) for degree in degrees) or degrees.count(1) not in (0, 2):
             return part, {'changed': False, 'reason': 'non-manifold vertex fan', 'inputTriangles': len(faces)}
-    pinned, creases = set(), set()
+    pinned, creases = set(authored), set()
     threshold = math.cos(math.radians(crease_degrees))
     for edge, owners in edges.items():
         if len(owners) != 2 or np.dot(normals[owners[0][0]], normals[owners[1][0]]) < threshold:
             creases.add(edge); pinned.update(edge)
+        # An authored boundary on a closed part is not detectable as an open edge.
+        # Preserve its complete straight edge as well as the original endpoints.
+        if all(index in authored for index in edge): creases.add(edge)
     refined = vertices.copy()
     for index, adjacent in enumerate(neighbors):
         if index in pinned or len(adjacent) < 3: continue
         beta = 3/16 if len(adjacent) == 3 else 3/(8*len(adjacent))
         target = vertices[index]*(1-len(adjacent)*beta)+vertices[sorted(adjacent)].sum(axis=0)*beta
         refined[index] += (target-vertices[index])*strength
-    edge_indices, added = {}, []
+    edge_indices, added, authored_midpoints = {}, [], []
     for edge in sorted(edges):
         a, b = edge; middle = (vertices[a]+vertices[b])/2
         if edge not in creases:
@@ -96,6 +110,7 @@ def refine_part(part, strength=1.0, crease_degrees=110):
             target = (vertices[a]+vertices[b])*3/8+(vertices[owners[0][1]]+vertices[owners[1][1]])/8
             middle += (target-middle)*strength
         edge_indices[edge] = len(vertices)+len(added); added.append(middle)
+        if all(index in authored for index in edge): authored_midpoints.append(edge_indices[edge])
     output = []
     for refs, uv, clut, colors in faces:
         a, b, c = refs; ab, bc, ca = [edge_indices[tuple(sorted(edge))] for edge in ((a, b), (b, c), (c, a))]
@@ -106,7 +121,8 @@ def refine_part(part, strength=1.0, crease_degrees=110):
         for corners in ((0,3,5),(3,1,4),(5,4,2),(3,4,5)):
             output.append(([geometry[i] for i in corners], None if texture is None else texture[list(corners)].copy(), clut, colour[list(corners)].copy()))
     result = np.concatenate((refined, np.array(added)), axis=0)
-    return (result, output), {'changed': True, 'inputTriangles': len(faces), 'outputTriangles': len(output), 'inputVertices': len(vertices), 'outputVertices': len(result), 'pinnedOriginalVertices': len(pinned), 'maxOriginalVertexDisplacement': float(np.linalg.norm(refined-vertices, axis=1).max())}
+    return (result, output), {'changed': True, 'inputTriangles': len(faces), 'outputTriangles': len(output), 'inputVertices': len(vertices), 'outputVertices': len(result), 'pinnedOriginalVertices': len(pinned), 'maxOriginalVertexDisplacement': float(np.linalg.norm(refined-vertices, axis=1).max()),
+                            'authoredPinnedVertices': len(authored), 'preservedVertexIndices': sorted(int(index) for index in authored) + authored_midpoints}
 
 
 def refine(parts, iterations=1, strength=1.0, crease_degrees=110):

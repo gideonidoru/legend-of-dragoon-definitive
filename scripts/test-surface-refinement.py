@@ -15,6 +15,29 @@ def face(refs, palette=0):
 
 
 class SurfaceRefinementTest(unittest.TestCase):
+    def test_authored_closed_joint_edge_and_its_descendants_stay_exact(self):
+        points = np.array([[1.,1.,1.],[-1.,-1.,1.],[-1.,1.,-1.],[1.,-1.,-1.]])
+        source = (points, [face(refs) for refs in ((0,2,1),(0,1,3),(0,3,2),(1,2,3))])
+        first, report = refinement.refine_part(source, crease_degrees=180, fixed_vertices=[0,1])
+        np.testing.assert_array_equal(first[0][:2], points[:2])
+        boundary = report['preservedVertexIndices']
+        self.assertEqual(3, len(boundary)); np.testing.assert_array_equal(first[0][boundary[-1]], (points[0]+points[1])/2)
+        self.assertGreater(np.linalg.norm(first[0][2]-points[2]), 0)
+        second, next_report = refinement.refine_part(first, crease_degrees=180, fixed_vertices=boundary)
+        np.testing.assert_array_equal(second[0][boundary], first[0][boundary])
+        for index in next_report['preservedVertexIndices']:
+            self.assertEqual(1., second[0][index,2])
+            self.assertAlmostEqual(second[0][index,0], second[0][index,1])
+        np.testing.assert_array_equal(source[0], points)
+
+    def test_authored_joint_indices_are_bounded_distinct_and_valid(self):
+        points = np.array([[0.,0.,0.],[1.,0.,0.],[0.,1.,0.]])
+        source = (points, [face((0,1,2))])
+        for pins in ([True], [1.5], [-1], [3], [0,0], [0,1,2,3], '0', np.array([[0]]), np.array(0)):
+            with self.assertRaises(ValueError): refinement.refine_part(source, fixed_vertices=pins)
+        result, report = refinement.refine_part(source, fixed_vertices=np.array([0],dtype=np.int64))
+        np.testing.assert_array_equal(result[0][0], points[0]); self.assertEqual(1, report['authoredPinnedVertices'])
+
     def test_open_joint_boundary_and_face_material_are_preserved(self):
         points = np.array([[0.,0.,0.],[4.,0.,0.],[0.,4.,0.]])
         source = (points, [face((0,1,2), 7)])
