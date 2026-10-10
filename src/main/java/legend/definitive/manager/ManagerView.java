@@ -31,13 +31,28 @@ final class ManagerView extends JPanel {
   private boolean busy;
   private boolean failed;
   private long operation;
-  private int step;
-  private boolean launcher;
-  private boolean reviewingUpdate;
-  private boolean updateComplete;
+  enum Screen {
+    INSTALL, DISCS, STEAM, MAINTENANCE, UNINSTALLED, LAUNCHER, UPDATE, UPDATED, STORAGE, RECOVERY;
+    boolean launcher() { return this == LAUNCHER || this == UPDATE || this == UPDATED || this == STORAGE || this == RECOVERY; }
+    int step() { return this == DISCS ? 1 : this == STEAM ? 2 : 0; }
+  }
+  private Screen screen = Screen.INSTALL;
+  private InstallStore.RetentionInventory storageInventory;
+  private long identityRequest;
+  private boolean inspectingIdentity;
+  private boolean identityReady;
+  private boolean recoveryPending;
+  private String recoveryNotice = "";
+  private String recoveryRestoredRelease = "";
+  private String recoveryRestoredData = "";
+  private String recoveryPreservedLocations = "";
+  private boolean restoreAvailable;
+  private String installedIdentity = "Installed release";
+  private String fullIdentity = "";
+  private boolean checkingUpdates;
+  private java.time.Instant lastChecked;
+  private String updateStatus = "Updates have not been checked";
   private DiscImporter.Existing installedDiscs;
-  private boolean maintenance;
-  private boolean uninstallComplete;
   private ReleaseUpdates.Candidate candidate;
   private InstallProgress currentProgress = InstallProgress.NONE;
   private long started;
@@ -50,11 +65,13 @@ final class ManagerView extends JPanel {
   ManagerView(final JFrame frame, final Path packageRoot, final Path root, final Runnable close) {
     this.close = close;
     this.frame = frame; this.packageRoot = packageRoot; this.root = root;
-    this.launcher = packageRoot == null && Files.isRegularFile(root.resolve("state.properties"));
-    this.maintenance = packageRoot != null && Files.isRegularFile(root.resolve(".definitive-owned")) && Files.isRegularFile(root.resolve("state.properties"));
-    if(this.launcher) {
-      try { DiscImporter.validateSet(root.resolve("isos")); if(!new InstallStore(root).discsPrepared()) { this.launcher = false; this.step = 1; } }
-      catch(final Exception e) { this.launcher = false; this.step = 1; }
+    if(Files.isRegularFile(root.resolve("state.properties"))) {
+      this.inspectingIdentity = true;
+      this.screen = packageRoot == null ? Screen.LAUNCHER : Files.isRegularFile(root.resolve(".definitive-owned")) ? Screen.MAINTENANCE : Screen.INSTALL;
+      if(this.screen.launcher()) {
+        try { DiscImporter.validateSet(root.resolve("isos")); if(!new InstallStore(root).discsPrepared()) this.screen = Screen.DISCS; }
+        catch(final Exception e) { this.screen = Screen.DISCS; }
+      }
     }
     this.destination = new JTextField(root.toString()); this.destination.setFont(font(15, false)); this.destination.setAlignmentX(LEFT_ALIGNMENT);
     this.destination.setBackground(Color.WHITE); this.destination.setForeground(INK); this.destination.setBorder(BorderFactory.createCompoundBorder(roundedBorder(), BorderFactory.createEmptyBorder(12, 14, 12, 14)));
@@ -91,9 +108,10 @@ final class ManagerView extends JPanel {
     this.render();
     if(frame != null) {
       frame.addWindowListener(new WindowAdapter() { @Override public void windowClosing(final WindowEvent e) { if(ManagerView.this.busy) ManagerView.this.message("Please wait for this operation to finish, or close the game first."); else frame.dispose(); } });
-      if(this.launcher) this.checkUpdates();
+      if(this.screen.launcher()) this.checkUpdates(false);
     }
-    if(!this.launcher && this.step == 1 && Files.isRegularFile(this.root.resolve("state.properties"))) SwingUtilities.invokeLater(() -> this.run("Checking installed discs", () -> DiscImporter.existing(new InstallStore(this.root), this.currentProgress), discs -> { this.installedDiscs = discs; this.render(); }));
+    if(Files.isRegularFile(this.root.resolve("state.properties"))) this.loadInstallationInfo();
+
   }
 
   @Override protected boolean isPaintingOrigin() { return true; }
@@ -126,12 +144,20 @@ final class ManagerView extends JPanel {
   private void render() {
     this.failed = false;
     this.body.removeAll();
-    if(this.launcher && this.updateComplete) this.updateFinished();
-    else if(this.launcher && this.reviewingUpdate && this.candidate != null) this.updateScreen();
-    else if(this.launcher) this.launcher(); else this.setup();
+    switch(this.screen) {
+      case UPDATED -> this.updateFinished();
+      case UPDATE -> { if(this.candidate == null) { this.screen = Screen.LAUNCHER; this.launcher(); } else this.updateScreen(); }
+      case LAUNCHER -> this.launcher();
+      case STORAGE -> this.storageScreen();
+      case RECOVERY -> this.recoveryScreen();
+      default -> this.setup();
+    }
+    if(this.inspectingIdentity) disableActions(this.body);
     this.body.revalidate(); this.body.repaint();
-    this.focusPrimaryAction();
+    this.updateStatus(); this.focusPrimaryAction();
   }
+  private static void disableActions(final Container root) { for(final Component child : root.getComponents()) { if(child instanceof AbstractButton button) button.setEnabled(false); if(child instanceof Container children) disableActions(children); } }
+  private void inspectExistingDiscs() { this.run("Checking installed discs", () -> DiscImporter.existing(new InstallStore(this.root), this.currentProgress), discs -> { this.installedDiscs = discs; this.render(); }); }
   private void focusPrimaryAction() {
     SwingUtilities.invokeLater(() -> {
       if(this.frame != null) {
@@ -146,21 +172,21 @@ final class ManagerView extends JPanel {
   }
   private void setup() {
     this.updates.setText("Community alpha · Built on Severed Chains");
-    if(this.uninstallComplete) {
+    if(this.screen == Screen.UNINSTALLED) {
       this.heading("Definitive is uninstalled", "Your saves, settings and custom mods are retained.");
       this.body.add(infoCard("RETAINED FILES", "Ready whenever you return", this.root.resolve("data").toString()));
       this.body.add(Box.createVerticalStrut(24)); this.primary("Done", this.close);
       return;
     }
-    if(this.maintenance && this.step == 0) {
+    if(this.screen == Screen.MAINTENANCE) {
       this.heading("Your installation", "Reinstall Definitive, or remove it from this device.");
       this.body.add(infoCard("LOCATION", "Legend of Dragoon: Definitive", this.root.toString())); this.body.add(Box.createVerticalStrut(24));
-      this.primary("Reinstall", () -> { this.maintenance = false; this.install(); });
+      this.primary("Reinstall", () -> { this.screen = Screen.INSTALL; this.install(); });
       this.body.add(Box.createVerticalStrut(12)); final JButton uninstall = button("Uninstall", false); uninstall.addActionListener(e -> this.uninstall()); this.setupActions(uninstall);
       return;
     }
     this.stages();
-    switch(this.step) {
+    switch(this.screen.step()) {
       case 0 -> {
         this.heading("Install Definitive", "Set up the game, HD artwork and launcher.");
         this.body.add(label("Install location", 13, MUTED)); this.body.add(Box.createVerticalStrut(8));
@@ -201,7 +227,7 @@ final class ManagerView extends JPanel {
       final String result = PortableSetup.install(this.packageRoot, store, installing);
       store.verifyInstalled(); InstallLocation.record(store); final InstallProgress checking = update -> this.currentProgress.report(new InstallProgress.Update(update.phase(), update.detail(), 75 + update.startPercent() / 4, 75 + update.endPercent() / 4, update.completed(), update.total()));
       this.installedDiscs = DiscImporter.existing(store, checking); this.currentProgress.phase("Installation ready", "Choose whether to reuse or replace your disc images", 100); return result;
-    }, () -> { this.step = 1; this.render(); });
+    }, () -> { this.screen = this.recoveryPending ? Screen.RECOVERY : Screen.DISCS; this.loadInstallationInfo(); this.render(); });
   }
   private void uninstall() {
     final JCheckBox delete = new JCheckBox("Delete ISOs", false); delete.setFont(font(18, false)); delete.setOpaque(false); delete.setPreferredSize(new Dimension(520, 52));
@@ -211,9 +237,8 @@ final class ManagerView extends JPanel {
     final boolean deleteIsos = delete.isSelected();
     this.run("Uninstalling Definitive", () -> {
       final var store = new InstallStore(this.root);
-      try(final var operation = store.lock()) { for(final var account : SteamLibrary.accounts()) SteamIntegration.remove(account, this.root, this.currentProgress); }
-      return store.uninstall(deleteIsos, this.currentProgress);
-    }, () -> { this.uninstallComplete = true; this.render(); });
+      return store.withOperation(() -> { for(final var account : SteamLibrary.accounts()) SteamIntegration.remove(account, this.root, this.currentProgress); return store.uninstall(deleteIsos, this.currentProgress); });
+    }, () -> { this.screen = Screen.UNINSTALLED; this.render(); });
   }
   private void setupActions(final JButton secondary) {
     final JPanel actions = new JPanel(new GridLayout(1, 2, 12, 0)); actions.setOpaque(false); actions.setAlignmentX(LEFT_ALIGNMENT); actions.setMaximumSize(new Dimension(520, 48));
@@ -221,31 +246,69 @@ final class ManagerView extends JPanel {
   }
   private void launcher() {
     this.heading("Ready to play", "The Legend of Dragoon · Definitive");
-    this.body.add(infoCard("YOUR EDITION", "HD backgrounds. Refined menus.", "Choose Faithful or Definitive when you start a new campaign."));
+    final JPanel identity = infoCard("INSTALLED RELEASE", this.installedIdentity, "Faithful or Definitive for new campaigns."); identity.setToolTipText(this.fullIdentity); identity.getAccessibleContext().setAccessibleDescription(this.fullIdentity); this.body.add(identity);
     this.body.add(Box.createVerticalStrut(30));
     this.primary("Play", () -> this.run("Game running", () -> {
       final var store = new InstallStore(this.root); final int code = store.play();
-      if(code != 0) throw new java.io.IOException("The game exited with code " + code + ". Details: " + store.gameLog());
+      if(!ProcessResult.successful(code)) throw new java.io.IOException("The game exited with code " + code + ". Details: " + store.gameLog());
       return "Game closed.";
-    }, () -> { }));
+    }, () -> { })).setEnabled(this.identityReady && !this.recoveryPending);
     this.body.add(Box.createVerticalStrut(16));
     final JPanel secondary = new JPanel(new GridLayout(1, 2, 12, 0)); secondary.setOpaque(false); secondary.setAlignmentX(LEFT_ALIGNMENT); secondary.setMaximumSize(new Dimension(520, 48));
     final JButton mods = button("Mods & artwork", false); mods.addActionListener(e -> this.mods());
     final JButton restore = button("Restore version", false); restore.addActionListener(e -> {
-      if(ManagerDialogs.restore(this.frame)) this.run("Restoring version", () -> new InstallStore(this.root).rollback(), () -> { this.candidate = null; this.render(); });
+      if(ManagerDialogs.restore(this.frame)) this.run("Restoring version", () -> new InstallStore(this.root).rollback(), () -> { this.candidate = null; this.loadInstallationInfo(); this.render(); });
     });
+    restore.setEnabled(this.restoreAvailable); restore.setToolTipText(this.restoreAvailable ? "Restore the verified previous version and its data snapshot" : "No verified previous version is available");
     secondary.add(mods); secondary.add(restore); this.body.add(secondary);
     this.body.add(Box.createVerticalStrut(12));
-    final JButton steam = button("Add to Steam library", false); steam.addActionListener(e -> this.addSteam(false)); this.body.add(steam);
-    if(this.candidate != null) {
-      this.body.add(Box.createVerticalStrut(8)); final JButton update = button("Review update", false);
-      update.addActionListener(e -> { this.reviewingUpdate = true; this.render(); }); this.body.add(update);
-    }
+    final JPanel maintenanceActions = new JPanel(new GridLayout(1, 2, 12, 0)); maintenanceActions.setOpaque(false); maintenanceActions.setAlignmentX(LEFT_ALIGNMENT); maintenanceActions.setMaximumSize(new Dimension(520, 48));
+    final JButton steam = button("Add to Steam library", false); steam.addActionListener(e -> this.addSteam(false)); maintenanceActions.add(steam);
+    final JButton check = button(this.checkingUpdates ? "Checking…" : "Check for updates", false); check.setEnabled(!this.checkingUpdates); check.addActionListener(e -> this.checkUpdates(true)); maintenanceActions.add(check); this.body.add(maintenanceActions);
+    this.body.add(Box.createVerticalStrut(8)); final JPanel storageActions = new JPanel(new GridLayout(1, this.candidate == null ? 1 : 2, 12, 0)); storageActions.setOpaque(false); storageActions.setAlignmentX(LEFT_ALIGNMENT); storageActions.setMaximumSize(new Dimension(520, 48));
+    if(this.candidate != null) { final JButton update = button("Review update", false); update.addActionListener(e -> { this.screen = Screen.UPDATE; this.render(); }); storageActions.add(update); }
+    final JButton storage = button("Manage storage", false); storage.addActionListener(e -> this.loadStorage()); storageActions.add(storage); this.body.add(storageActions);
   }
+  private void loadStorage() {
+    this.run("Checking managed storage", () -> new InstallStore(this.root).retentionInventory(), inventory -> { this.storageInventory = inventory; this.screen = Screen.STORAGE; this.render(); });
+  }
+  private void storageScreen() {
+    this.heading("Manage storage", "Review retained files before choosing what to remove.");
+    if(this.storageInventory == null) { this.body.add(copy("Load the current inventory before removing files.", 16, MUTED)); }
+    else {
+      final StorageReviewPanel review = new StorageReviewPanel(this.storageInventory, selected -> {
+        final JTextArea chosen = new JTextArea("Remove only these selected inactive files?\n\n" + String.join("\n", selected) + "\n\nSaves, settings, custom mods, snapshots and recovery folders remain protected."); chosen.setEditable(false); chosen.setLineWrap(true); chosen.setWrapStyleWord(true); chosen.setFont(font(15, false)); chosen.setCaretPosition(0);
+        return ManagerDialogs.confirm(this.frame, "Remove selected files", new JScrollPane(chosen), "Remove selected");
+      }, selected -> this.run("Removing selected files", () -> {
+        final var store = new InstallStore(this.root); final String message = store.pruneRetained(selected, this.currentProgress); return new StorageResult(message, store.retentionInventory());
+      }, result -> { this.storageInventory = result.inventory(); this.screen = Screen.STORAGE; this.render(); this.message(result.message()); }));
+      this.body.add(review);
+    }
+    this.body.add(Box.createVerticalStrut(14)); final JPanel actions = new JPanel(new GridLayout(1, 2, 12, 0)); actions.setOpaque(false); actions.setAlignmentX(LEFT_ALIGNMENT); actions.setMaximumSize(new Dimension(520, 48));
+    final JButton back = button(this.recoveryPending ? "Back to recovery" : "Back to launcher", false); back.addActionListener(event -> { this.screen = this.recoveryPending ? Screen.RECOVERY : Screen.LAUNCHER; this.render(); }); actions.add(back);
+    final JButton refresh = button("Refresh inventory", false); refresh.addActionListener(event -> this.loadStorage()); actions.add(refresh); this.body.add(actions); if(this.frame != null) this.frame.getRootPane().setDefaultButton(back);
+  }
+  private void recoveryScreen() {
+    this.heading("Recovered installation", "Review the recovered state before continuing to play.");
+    final JPanel notice = infoCard("RECOVERY REQUIRES REVIEW", "Earlier verified files are active", this.recoveryNotice.isBlank() ? "The last verified installation state was recovered. Newer private data remains protected." : progressSummary(this.recoveryNotice));
+    notice.setToolTipText(this.recoveryRestoredRelease + "\n" + this.recoveryRestoredData); notice.getAccessibleContext().setAccessibleDescription("Recovery notice: " + this.recoveryNotice + " · Restored package: " + this.recoveryRestoredRelease + " · Restored private data: " + this.recoveryRestoredData); this.body.add(notice);
+    this.body.add(Box.createVerticalStrut(18));
+    this.primary("Use verified recovered state", () -> this.run("Acknowledging recovered state", () -> {
+      final var store = new InstallStore(this.root); store.acknowledgeRecovery();
+      if(Boolean.parseBoolean(store.state().getProperty("uninstalled", "false"))) return this.packageRoot == null ? Screen.UNINSTALLED : Screen.MAINTENANCE;
+      try { DiscImporter.validateSet(this.root.resolve("isos")); return store.discsPrepared() ? Screen.LAUNCHER : Screen.DISCS; } catch(final java.io.IOException missingDiscs) { return Screen.DISCS; }
+    }, next -> { this.recoveryPending = false; this.screen = next; this.loadInstallationInfo(); this.render(); }));
+    this.body.add(Box.createVerticalStrut(12)); final JButton preserved = button("Review preserved data", false); preserved.addActionListener(event -> this.loadStorage()); this.body.add(preserved);
+    this.body.add(Box.createVerticalStrut(12)); final JButton details = button("Recovery details", false); details.addActionListener(event -> {
+      final JTextArea text = new JTextArea("Recovery notice:\n" + this.recoveryNotice + "\n\nVerified recovered package:\n" + this.recoveryRestoredRelease + "\n\nVerified recovered data:\n" + this.recoveryRestoredData + "\n\nPreserved locations:\n" + this.recoveryPreservedLocations); text.setEditable(false); text.setLineWrap(true); text.setWrapStyleWord(true); text.setFont(font(14, false)); text.setCaretPosition(0); ManagerDialogs.confirm(this.frame, "Recovery details", new JScrollPane(text), "Close");
+    }); this.body.add(details);
+  }
+  private record StorageResult(String message, InstallStore.RetentionInventory inventory) { }
+
   private void stages() {
     final JPanel stages = new JPanel(new GridLayout(1, 3, 12, 0)); stages.setOpaque(false); stages.setAlignmentX(LEFT_ALIGNMENT);
     final String[] names = {"01   Install", "02   Your discs", "03   Steam"};
-    for(int i = 0; i < 3; i++) { final JLabel item = label(names[i], 14, i == this.step ? GREEN : MUTED); item.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, i == this.step ? GREEN : new Color(0xdedfd7))); stages.add(item); }
+    for(int i = 0; i < 3; i++) { final JLabel item = label(names[i], 14, i == this.screen.step() ? GREEN : MUTED); item.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, i == this.screen.step() ? GREEN : new Color(0xdedfd7))); stages.add(item); }
     stages.setMaximumSize(new Dimension(520, 32)); this.body.add(stages); this.body.add(Box.createVerticalStrut(32));
   }
   private void updateScreen() {
@@ -254,15 +317,19 @@ final class ManagerView extends JPanel {
     release.setToolTipText(this.candidate.tag()); release.getAccessibleContext().setAccessibleDescription(this.candidate.tag()); this.body.add(release);
     this.body.add(Box.createVerticalStrut(16)); this.body.add(copy("Your previous version and its pre-update saves and settings remain available in Restore version.", 15, MUTED)); this.body.add(Box.createVerticalStrut(26));
     this.primary("Install update", () -> this.run("Updating Definitive", () -> ReleaseUpdates.install(new InstallStore(this.root), this.candidate, this.currentProgress), () -> {
-      this.candidate = null; this.reviewingUpdate = false; this.updateComplete = true; this.render(); this.updates.setText("Update installed · Previous version retained");
+      this.candidate = null; this.screen = Screen.UPDATED; this.loadInstallationInfo(); this.render(); this.updates.setText("Update installed · Previous version retained");
     }));
-    this.body.add(Box.createVerticalStrut(12)); final JButton back = button("Back to launcher", false);
-    back.addActionListener(e -> { this.reviewingUpdate = false; this.render(); }); this.body.add(back);
+    this.body.add(Box.createVerticalStrut(12)); final JPanel actions = new JPanel(new GridLayout(1, 2, 12, 0)); actions.setOpaque(false); actions.setAlignmentX(LEFT_ALIGNMENT); actions.setMaximumSize(new Dimension(520, 48));
+    final JButton notes = button("Release notes", false); notes.addActionListener(e -> {
+      final JTextArea text = new JTextArea(this.candidate.releaseNotes().isBlank() ? "No release notes were provided for this release." : this.candidate.releaseNotes()); text.setEditable(false); text.setLineWrap(true); text.setWrapStyleWord(true); text.setFont(font(16, false)); text.setCaretPosition(0);
+      ManagerDialogs.confirm(this.frame, "Release notes", new JScrollPane(text), "Close");
+    }); actions.add(notes);
+    final JButton back = button("Back to launcher", false); back.addActionListener(e -> { this.screen = Screen.LAUNCHER; this.render(); }); actions.add(back); this.body.add(actions);
   }
   private void updateFinished() {
     this.heading("Update installed", "Definitive is ready for your next adventure.");
     this.body.add(infoCard("INSTALLATION VERIFIED", "Game and artwork checked", "Your previous version and its pre-update data remain available in Restore version."));
-    this.body.add(Box.createVerticalStrut(26)); this.primary("Back to launcher", () -> { this.updateComplete = false; this.render(); });
+    this.body.add(Box.createVerticalStrut(26)); this.primary("Back to launcher", () -> { this.screen = Screen.LAUNCHER; this.render(); });
   }
   static String releaseLabel(final String tag) {
     final var match = java.util.regex.Pattern.compile("definitive-alpha-(\\d{4}-\\d{2}-\\d{2})(?:-([A-Za-z0-9-]+))?").matcher(tag);
@@ -283,11 +350,15 @@ final class ManagerView extends JPanel {
 
   private void goBack() {
     if(this.busy) return;
-    if(this.maintenance) { this.maintenance = false; this.render(); return; }
     if(this.failed) { this.render(); return; }
-    if(this.launcher && (this.reviewingUpdate || this.updateComplete)) {
-      this.reviewingUpdate = false; this.updateComplete = false; this.render();
-    } else if(!this.launcher && this.step > 0) { this.step--; this.render(); }
+    this.screen = switch(this.screen) {
+      case MAINTENANCE, DISCS -> Screen.INSTALL;
+      case STEAM -> Screen.DISCS;
+      case UPDATE, UPDATED -> this.recoveryPending ? Screen.RECOVERY : Screen.LAUNCHER;
+      case STORAGE -> this.recoveryPending ? Screen.RECOVERY : Screen.LAUNCHER;
+      default -> this.screen;
+    };
+    this.render();
   }
 
   private void finish() {
@@ -304,13 +375,15 @@ final class ManagerView extends JPanel {
     if(!path.isAbsolute()) throw new java.io.IOException("Choose a full installation path, such as /home/deck/Games/Legend-of-Dragoon-Definitive.");
     return path.normalize();
   }
-  boolean isBusy() { return this.busy; }
+  boolean isBusy() { return this.busy || this.inspectingIdentity; }
   private void chooseFolder() {
     TouchFilePicker.choose(this.frame, this.root.getParent(), true, paths -> {
       if(paths.isEmpty()) return;
       final Path chosen = paths.getFirst();
-      this.destination.setText((Files.isRegularFile(chosen.resolve("state.properties")) ? chosen : chosen.resolve("Legend-of-Dragoon-Definitive")).toString());
-      this.destination.setCaretPosition(0);
+      new SwingWorker<Path, Void>() {
+        @Override protected Path doInBackground() { return Files.isRegularFile(chosen.resolve("state.properties")) ? chosen : chosen.resolve("Legend-of-Dragoon-Definitive"); }
+        @Override protected void done() { try { ManagerView.this.destination.setText(this.get().toString()); ManagerView.this.destination.setCaretPosition(0); } catch(final Exception failure) { ManagerView.this.showFailure(failure); } }
+      }.execute();
     });
   }
   private void chooseDiscs() {
@@ -323,9 +396,8 @@ final class ManagerView extends JPanel {
     if(this.installedDiscs != null && this.installedDiscs.changed() && !ManagerDialogs.confirm(this.frame, "Disc images changed", copy(this.installedDiscs.detail() + " Continue with these images?", 18, INK), "Use these discs")) return;
     this.run("Preparing installed discs", () -> {
       final var store = new InstallStore(this.root);
-      if(this.installedDiscs != null && this.installedDiscs.changed()) store.invalidatePreparedDiscs();
-      return store.discsPrepared() ? "Existing game files are ready." : store.prepareDiscs(this.currentProgress);
-    }, () -> { this.step = 2; this.render(); });
+      return store.prepareInstalledDiscs(this.installedDiscs != null && this.installedDiscs.changed(), this.currentProgress);
+    }, () -> { this.screen = Screen.STEAM; this.render(); });
   }
   private void importDiscs(final List<Path> paths, final boolean replaceDifferent) {
       this.run("Preparing your discs", () -> {
@@ -337,7 +409,7 @@ final class ManagerView extends JPanel {
       }, result -> {
         if(result instanceof DiscImporter.DifferentDiscs different) {
           if(ManagerDialogs.confirm(this.frame, "Different disc images", copy(different.getMessage(), 18, INK), "Replace disc images")) this.importDiscs(paths, true);
-        } else { this.step = 2; this.render(); }
+        } else { this.screen = Screen.STEAM; this.render(); }
       });
   }
   private void addSteam(final boolean finish) {
@@ -345,37 +417,78 @@ final class ManagerView extends JPanel {
       if(accounts.isEmpty()) { this.showFailure(new java.io.IOException("No Steam account found. Sign in to Steam once, then retry Add to Steam.")); return; }
       final SteamLibrary.Account selected = accounts.size() == 1 ? accounts.getFirst() : ManagerDialogs.account(this.frame, accounts);
       if(selected == null) return;
-      this.run("Adding to Steam", () -> { final var store = new InstallStore(this.root); store.verifyInstalled(); if(!store.discsPrepared()) throw new java.io.IOException("Prepare your game files before adding to Steam."); return SteamIntegration.add(selected, this.root, this.currentProgress); }, () -> { if(finish) this.finish(); });
+      this.run("Adding to Steam", () -> { final var store = new InstallStore(this.root); return store.withOperation(() -> { store.verifyInstalled(); if(!store.discsPrepared()) throw new java.io.IOException("Prepare your game files before adding to Steam."); return SteamIntegration.add(selected, this.root, this.currentProgress); }); }, () -> { if(finish) this.finish(); });
     });
   }
   private void mods() {
-    this.run("Loading preferences", () -> !"original".equals(new InstallStore(this.root).state().getProperty("artwork", "hd")), hd -> {
+    this.run("Loading preferences", () -> new InstallStore(this.root).state(), preferences -> {
+      final boolean hd = !"original".equals(preferences.getProperty("artwork", "hd"));
       final JCheckBox artwork = new JCheckBox("Skurfa HD backgrounds", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
       final JCheckBox pilot = new JCheckBox("Enhanced model textures · experimental", false); pilot.setFont(font(18, false)); pilot.setOpaque(false); pilot.setMaximumSize(new Dimension(520, 52)); pilot.setPreferredSize(new Dimension(520, 52));
       final JCheckBox fullscreen = new JCheckBox("Fullscreen", true); fullscreen.setFont(font(18, false)); fullscreen.setOpaque(false); fullscreen.setMaximumSize(new Dimension(520, 52)); fullscreen.setPreferredSize(new Dimension(520, 52));
-      try { fullscreen.setSelected(Boolean.parseBoolean(new InstallStore(this.root).state().getProperty("fullscreen", "true"))); } catch(final Exception ignored) { }
-      try { pilot.setSelected(Boolean.parseBoolean(new InstallStore(this.root).state().getProperty("legacyTextures", "false"))); } catch(final Exception ignored) { }
+      fullscreen.setSelected(Boolean.parseBoolean(preferences.getProperty("fullscreen", "true")));
+      pilot.setSelected(Boolean.parseBoolean(preferences.getProperty("legacyTextures", "false")));
       final JPanel options = column(); options.add(artwork); options.add(pilot); options.add(fullscreen); options.add(Box.createVerticalStrut(12)); options.add(copy("Artwork doesn’t change gameplay. Enhanced model textures need an installed, verified texture pack.", 16, MUTED));
-      if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save changes")) this.run("Saving preferences", () -> { new InstallStore(this.root).setArtwork(artwork.isSelected()); new InstallStore(this.root).setLegacyTextures(pilot.isSelected()); new InstallStore(this.root).setFullscreen(fullscreen.isSelected()); return "Changes apply the next time you play."; }, () -> { });
+      if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save changes")) {
+        final boolean hdChoice = artwork.isSelected(), modelChoice = pilot.isSelected(), fullscreenChoice = fullscreen.isSelected();
+        this.run("Saving preferences", () -> { new InstallStore(this.root).setPreferences(hdChoice, modelChoice, fullscreenChoice); return "Changes apply the next time you play."; }, () -> { });
+      }
     });
   }
-  private void checkUpdates() {
-    this.updates.setText("Checking for updates…");
-    new SwingWorker<java.util.Optional<ReleaseUpdates.Candidate>, Void>() {
-      @Override protected java.util.Optional<ReleaseUpdates.Candidate> doInBackground() throws Exception { return ReleaseUpdates.check(new InstallStore(ManagerView.this.root)); }
+  private record InstallationInfo(String label, String full, boolean restorable, boolean identifiable, boolean uninstalled, boolean pending, String notice, String restoredRelease, String restoredData, String preservedLocations) { }
+  private void loadInstallationInfo() {
+    final long request = ++this.identityRequest;
+    this.inspectingIdentity = true;
+    new SwingWorker<InstallationInfo, Void>() {
+      @Override protected InstallationInfo doInBackground() throws Exception {
+        final var store = new InstallStore(ManagerView.this.root); final var state = store.state();
+        final boolean uninstalled = Boolean.parseBoolean(state.getProperty("uninstalled", "false"));
+        String label = "Retained installation", full = "Package: " + state.getProperty("version", ""); boolean identifiable = false, restorable = false;
+        if(!uninstalled) try {
+          final var release = InstallStore.child(store.root().resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
+          final var metadata = PackageManifest.read(release).metadata();
+          final String tag = metadata.getProperty("releaseTag", state.getProperty("version", "Installed release"));
+          label = releaseLabel(tag); full = "Release: " + tag + " · Source: " + metadata.getProperty("sourceRevision", "unknown") + " · Package: " + state.getProperty("version", ""); identifiable = true; restorable = store.hasRestorableVersion();
+        } catch(final java.io.IOException unavailableRelease) { InstallerLog.write("Installed release identity unavailable: " + unavailableRelease.getMessage()); }
+        // Recovery is state metadata; it remains reviewable even after an intentional uninstall removed the release.
+        return new InstallationInfo(label, full, restorable, identifiable, uninstalled, Boolean.parseBoolean(state.getProperty("recoveryPending", "false")), state.getProperty("recoveryNotice", ""), state.getProperty("recoveryRestoredRelease", ""), state.getProperty("recoveryRestoredData", ""), state.getProperty("recoveryPreservedLocations", ""));
+      }
       @Override protected void done() {
-        try { ManagerView.this.candidate = this.get().orElse(null); ManagerView.this.updates.setText(ManagerView.this.candidate == null ? "No update available" : "Update available"); if(!ManagerView.this.busy && !ManagerView.this.failed) ManagerView.this.render(); }
-        catch(final Exception e) { ManagerView.this.updates.setText("Couldn’t check for updates"); }
+        if(request != ManagerView.this.identityRequest) return;
+        ManagerView.this.inspectingIdentity = false;
+        try { final var info = this.get(); ManagerView.this.installedIdentity = info.label(); ManagerView.this.fullIdentity = info.full(); ManagerView.this.restoreAvailable = info.restorable(); ManagerView.this.identityReady = info.identifiable(); ManagerView.this.recoveryPending = info.pending(); ManagerView.this.recoveryNotice = info.notice(); ManagerView.this.recoveryRestoredRelease = info.restoredRelease(); ManagerView.this.recoveryRestoredData = info.restoredData(); ManagerView.this.recoveryPreservedLocations = info.preservedLocations(); if(info.pending() && ManagerView.this.screen != Screen.STORAGE) ManagerView.this.screen = Screen.RECOVERY; else if(info.uninstalled() && ManagerView.this.screen != Screen.STORAGE) ManagerView.this.screen = ManagerView.this.packageRoot == null ? Screen.UNINSTALLED : Screen.MAINTENANCE; }
+        catch(final Exception failure) { ManagerView.this.identityReady = false; ManagerView.this.restoreAvailable = false; InstallerLog.write("Could not inspect installed identity: " + failure.getMessage()); }
+        if(!ManagerView.this.busy && !ManagerView.this.failed) { ManagerView.this.render(); if(!ManagerView.this.recoveryPending && ManagerView.this.screen == Screen.DISCS) ManagerView.this.inspectExistingDiscs(); }
       }
     }.execute();
   }
+  private void updateStatus() {
+    if(!this.screen.launcher() || this.busy || this.failed) return;
+    this.updates.setText(this.updateStatus + (this.lastChecked == null ? "" : " · Checked " + java.time.format.DateTimeFormatter.ofPattern("HH:mm").withZone(java.time.ZoneId.systemDefault()).format(this.lastChecked)));
+  }
+  private void checkUpdates(final boolean force) {
+    if(this.checkingUpdates) return;
+    this.checkingUpdates = true; this.updateStatus = "Checking for updates…"; this.updateStatus();
+    if(!this.busy && !this.failed) this.render();
+    new SwingWorker<java.util.Optional<ReleaseUpdates.Candidate>, Void>() {
+      @Override protected java.util.Optional<ReleaseUpdates.Candidate> doInBackground() throws Exception { return ReleaseUpdates.check(new InstallStore(ManagerView.this.root), force); }
+      @Override protected void done() {
+        ManagerView.this.checkingUpdates = false; ManagerView.this.lastChecked = java.time.Instant.now();
+        try { ManagerView.this.candidate = this.get().orElse(null); ManagerView.this.updateStatus = ManagerView.this.candidate == null ? "No update available" : "Update available"; }
+        catch(final Exception failure) { ManagerView.this.updateStatus = "Couldn’t check · Retry when connected"; InstallerLog.failure(failure.getCause() == null ? failure : failure.getCause()); }
+        if(!ManagerView.this.busy && !ManagerView.this.failed && ManagerView.this.screen == Screen.LAUNCHER) ManagerView.this.render();
+        ManagerView.this.updateStatus();
+      }
+    }.execute();
+  }
+
   private void run(final String working, final Action<String> action, final Runnable done) { this.run(working, action, result -> { this.message(result); done.run(); }); }
   private <T> void run(final String working, final Action<T> action, final java.util.function.Consumer<T> done) {
-    if(this.busy) return;
+    if(this.busy || this.inspectingIdentity) return;
     final long ticket = ++this.operation;
     this.busy = true; this.started = System.nanoTime(); this.progressDetail = "Starting…";
     this.progress.setValue(0); this.progress.setString(working); this.progressPhase.setText("Starting…"); this.progressPercent.setText("0%"); this.progress.setVisible(true); this.progressPanel.setVisible(!working.equals("Game running"));
-    this.body.removeAll(); if(!this.launcher) this.stages(); this.heading(working, working.equals("Game running") ? "Close the game to return to the launcher." : "Keep this window open while this step finishes.");
+    this.body.removeAll(); if(!this.screen.launcher()) this.stages(); this.heading(working, working.equals("Game running") ? "Close the game to return to the launcher." : "Keep this window open while this step finishes.");
     this.body.revalidate(); this.body.repaint();
     if(this.progressPanel.isVisible()) { this.progressStatus(); this.elapsed.start(); }
     else this.updates.setText("Game running · Close it to return here");
@@ -431,17 +544,22 @@ final class ManagerView extends JPanel {
     InstallerLog.failure(failure);
     this.body.removeAll();
     this.progressPanel.setVisible(false);
-    this.heading(this.launcher ? "Couldn’t finish this step" : "Setup stopped", "Review the error, then return to this step to try again.");
+    this.heading(this.screen.launcher() ? "Couldn’t finish this step" : "Setup stopped", "Review the error, then return to this step to try again.");
     final String reason = failure.getMessage() == null ? "See the log for details." : failure.getMessage();
     this.body.add(infoCard("WHAT HAPPENED", "This step didn’t complete", reason.length() > 180 ? reason.substring(0, 177) + "…" : reason)); this.body.add(Box.createVerticalStrut(22));
-    this.primary(this.launcher ? this.reviewingUpdate ? "Back to update" : "Back to launcher" : "Back to setup", () -> this.render()); this.body.add(Box.createVerticalStrut(12));
+    this.primary(this.screen.launcher() ? this.screen == Screen.UPDATE ? "Back to update" : this.screen == Screen.STORAGE ? "Back to storage" : this.screen == Screen.RECOVERY ? "Back to recovery" : "Back to launcher" : "Back to setup", () -> this.render()); this.body.add(Box.createVerticalStrut(12));
     final JButton details = button("Show error details", false);
-    details.addActionListener(e -> {
-      final var area = new JTextArea(); area.setEditable(false); area.setLineWrap(true); area.setWrapStyleWord(true); area.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
-      try { area.setText("Log: " + InstallerLog.path() + "\n\n" + InstallerLog.tail()); }
-      catch(final Exception e1) { area.setText("Could not read the log: " + e1.getMessage()); }
-      ManagerDialogs.confirm(this.frame, "Installer log", new JScrollPane(area), "Close");
-    });
+    details.addActionListener(e -> new SwingWorker<String, Void>() {
+      @Override protected String doInBackground() { return DiagnosticsReport.collect(ManagerView.this.root); }
+      @Override protected void done() {
+        try {
+          final String report = this.get(); final JTextArea area = new JTextArea(report); area.setEditable(false); area.setLineWrap(true); area.setWrapStyleWord(true); area.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14)); area.setCaretPosition(0);
+          if(ManagerDialogs.confirm(ManagerView.this.frame, "Error details", new JScrollPane(area), "Export report")) TouchFilePicker.choose(ManagerView.this.frame, Path.of(System.getProperty("user.home")), true, paths -> {
+            if(!paths.isEmpty()) ManagerView.this.run("Exporting diagnostics", () -> "Report saved: " + DiagnosticsReport.export(paths.getFirst(), report), () -> { });
+          });
+        } catch(final Exception problem) { InstallerLog.failure(problem); ManagerView.this.message("Could not load diagnostics: " + problem.getMessage()); }
+      }
+    }.execute());
     this.body.add(details); this.updates.setText("Show error details for the full log");
     this.message("Retry after addressing the error above."); this.body.revalidate(); this.body.repaint(); this.focusPrimaryAction();
   }
@@ -450,7 +568,7 @@ final class ManagerView extends JPanel {
     if((!this.busy || !this.progressPanel.isVisible()) && !this.failed) this.updates.setText("<html><div style='width:360px'>" + escape(text.length() > 120 ? text.substring(0, 117) + "…" : text, 14, 360) + "</div></html>");
   }
   @FunctionalInterface private interface Action<T> { T run() throws Exception; }
-  private void primary(final String title, final Runnable action) { final JButton button = button(title, true); button.addActionListener(e -> action.run()); this.body.add(button); if(this.frame != null) this.frame.getRootPane().setDefaultButton(button); }
+  private JButton primary(final String title, final Runnable action) { final JButton button = button(title, true); button.addActionListener(e -> action.run()); this.body.add(button); if(this.frame != null) this.frame.getRootPane().setDefaultButton(button); return button; }
   private static JPanel column() { final JPanel p = new JPanel(); p.setOpaque(false); p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS)); p.setAlignmentX(LEFT_ALIGNMENT); return p; }
   static Font font(final int size, final boolean bold) { return new Font(UI_FONT, bold ? Font.BOLD : Font.PLAIN, size); }
   private static JLabel label(final String text, final int size, final Color colour) { final JLabel l = new JLabel(text); l.setFont(font(size, false)); l.setForeground(colour); l.setAlignmentX(LEFT_ALIGNMENT); return l; }
@@ -498,7 +616,7 @@ final class ManagerView extends JPanel {
   }
   private static JPanel infoCard(final String caption, final String title, final String detail) {
     final JPanel panel = card(); panel.add(label(caption, 12, MUTED)); panel.add(Box.createVerticalStrut(10));
-    final JLabel name = label(title, 19, INK); name.setFont(font(19, true)); panel.add(name); panel.add(Box.createVerticalStrut(8));
+    final JLabel name = copy(title, 19, INK); name.setFont(font(19, true)); panel.add(name); panel.add(Box.createVerticalStrut(8));
     panel.add(label("<html><div style='width:330px'>" + escape(detail, 15, 330) + "</div></html>", 15, MUTED)); return panel;
   }
   static JButton button(final String text, final boolean primary) {

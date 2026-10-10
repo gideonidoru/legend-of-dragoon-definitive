@@ -17,6 +17,12 @@ import static org.lwjgl.sdl.SDLStdinc.SDL_free;
 final class DeckControls {
   private static final NavigationInput INPUT = new NavigationInput();
   private DeckControls() { }
+  static final class PadState {
+    int horizontal, vertical, axisKey;
+    final Set<Integer> buttons = new HashSet<>();
+    void axis(final int axis, final int value) { if(axis == SDL_GAMEPAD_AXIS_LEFTX) this.horizontal = direction(value); if(axis == SDL_GAMEPAD_AXIS_LEFTY) this.vertical = direction(value); }
+    int directionKey() { return this.vertical != 0 ? (this.vertical > 0 ? KeyEvent.VK_DOWN : KeyEvent.VK_UP) : this.horizontal != 0 ? (this.horizontal > 0 ? KeyEvent.VK_RIGHT : KeyEvent.VK_LEFT) : 0; }
+  }
   static void loop(final AtomicReference<JFrame> window) {
     if(!PackageManifest.hostPlatform().equals("linux-x64")) return;
     final Map<Integer, Long> pads = new HashMap<>();
@@ -26,33 +32,32 @@ final class DeckControls {
       if(!SDL_Init(SDL_INIT_GAMEPAD)) return; initialized = true;
       final var ids = SDL_GetGamepads();
       if(ids != null) { for(int i = 0; i < ids.limit(); i++) { final int id = ids.get(i); final long pad = SDL_OpenGamepad(id); if(pad != 0) pads.put(id, pad); } SDL_free(ids); }
-      int horizontal = 0, vertical = 0, axisKey = 0;
-      final Map<Integer, Set<Integer>> buttons = new HashMap<>();
+      final Map<Integer, PadState> states = new HashMap<>();
       try(final SDL_Event event = SDL_Event.malloc()) {
         while(window.get() == null || window.get().isDisplayable()) {
           while(SDL_PollEvent(event)) {
             switch(event.type()) {
               case SDL_EVENT_GAMEPAD_ADDED -> { final int id = event.gdevice().which(); if(!pads.containsKey(id)) { final long pad = SDL_OpenGamepad(id); if(pad != 0) pads.put(id, pad); } }
-              case SDL_EVENT_GAMEPAD_REMOVED -> { final Long pad = pads.remove(event.gdevice().which()); if(pad != null) SDL_CloseGamepad(pad); horizontal = 0; vertical = 0; axisKey = 0; buttons.clear(); INPUT.clear(); }
+              case SDL_EVENT_GAMEPAD_REMOVED -> { final Long pad = pads.remove(event.gdevice().which()); if(pad != null) SDL_CloseGamepad(pad); final int id = event.gdevice().which(); states.remove(id); SwingUtilities.invokeLater(() -> INPUT.releaseDevice(id)); }
               case SDL_EVENT_GAMEPAD_BUTTON_DOWN -> {
                 final int key = buttonKey(event.gbutton().button());
-                if(key != 0) { buttons.computeIfAbsent(event.gbutton().which(), unused -> new HashSet<>()).add(key); dispatch(window.get(), NavigationInput.Source.BUTTON, key); }
+                if(key != 0) { final int id = event.gbutton().which(); states.computeIfAbsent(id, unused -> new PadState()).buttons.add(key); dispatch(window.get(), NavigationInput.Source.BUTTON, id, key); }
               }
               case SDL_EVENT_GAMEPAD_BUTTON_UP -> {
-                final int key = buttonKey(event.gbutton().button()); final Set<Integer> held = buttons.get(event.gbutton().which()); if(held != null) held.remove(key); SwingUtilities.invokeLater(() -> INPUT.release(NavigationInput.Source.BUTTON, key));
+                final int key = buttonKey(event.gbutton().button()), id = event.gbutton().which(); final PadState state = states.get(id); if(state != null) state.buttons.remove(key); SwingUtilities.invokeLater(() -> INPUT.release(NavigationInput.Source.BUTTON, id, key));
               }
               case SDL_EVENT_GAMEPAD_AXIS_MOTION -> {
-                final int axis = event.gaxis().axis(); final int value = event.gaxis().value();
-                if(axis == SDL_GAMEPAD_AXIS_LEFTX) horizontal = direction(value);
-                if(axis == SDL_GAMEPAD_AXIS_LEFTY) vertical = direction(value);
+                states.computeIfAbsent(event.gaxis().which(), unused -> new PadState()).axis(event.gaxis().axis(), event.gaxis().value());
               }
               default -> { }
             }
           }
-          final int nextAxis = vertical != 0 ? (vertical > 0 ? KeyEvent.VK_DOWN : KeyEvent.VK_UP) : horizontal != 0 ? (horizontal > 0 ? KeyEvent.VK_RIGHT : KeyEvent.VK_LEFT) : 0;
-          if(nextAxis != axisKey) { final int previousAxis = axisKey; SwingUtilities.invokeLater(() -> INPUT.release(NavigationInput.Source.AXIS, previousAxis)); axisKey = nextAxis; }
-          if(axisKey != 0) dispatch(window.get(), NavigationInput.Source.AXIS, axisKey);
-          for(final Set<Integer> held : buttons.values()) for(final int key : held) if(NavigationInput.directional(key)) dispatch(window.get(), NavigationInput.Source.BUTTON, key);
+          for(final var input : states.entrySet()) {
+            final int id = input.getKey(); final PadState state = input.getValue(); final int nextAxis = state.directionKey();
+            if(nextAxis != state.axisKey) { final int previous = state.axisKey; SwingUtilities.invokeLater(() -> INPUT.release(NavigationInput.Source.AXIS, id, previous)); state.axisKey = nextAxis; }
+            if(state.axisKey != 0) dispatch(window.get(), NavigationInput.Source.AXIS, id, state.axisKey);
+            for(final int key : state.buttons) if(NavigationInput.directional(key)) dispatch(window.get(), NavigationInput.Source.BUTTON, id, key);
+          }
           Thread.sleep(16);
         }
       }
@@ -81,7 +86,7 @@ final class DeckControls {
       while(owner != null && owner != frame) owner = owner.getOwner();
       final int key = event.getKeyCode();
       if(event.getID() == KeyEvent.KEY_RELEASED) INPUT.release(NavigationInput.Source.KEYBOARD, key == KeyEvent.VK_SPACE ? KeyEvent.VK_ENTER : key);
-      if(owner == frame && (focus instanceof AbstractButton || focus instanceof JList<?> || key == KeyEvent.VK_ESCAPE) && (key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE && focus instanceof JList<?> || key == KeyEvent.VK_ESCAPE || NavigationInput.directional(key))) {
+      if(owner == frame && (focus instanceof AbstractButton || focus instanceof JList<?> || key == KeyEvent.VK_ESCAPE) && (key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE && (focus instanceof JList<?> || focus instanceof AbstractButton) || key == KeyEvent.VK_ESCAPE || NavigationInput.directional(key))) {
         final int routed = key == KeyEvent.VK_SPACE ? KeyEvent.VK_ENTER : key;
         if(event.getID() == KeyEvent.KEY_RELEASED) INPUT.release(NavigationInput.Source.KEYBOARD, routed);
         else if(event.getID() == KeyEvent.KEY_PRESSED && INPUT.press(NavigationInput.Source.KEYBOARD, routed, System.nanoTime())) route(frame, routed);
@@ -97,8 +102,16 @@ final class DeckControls {
       @Override public void windowClosed(final java.awt.event.WindowEvent event) { KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(dispatcher); INPUT.clear(); }
     });
   }
-  private static void dispatch(final JFrame frame, final NavigationInput.Source source, final int key) {
-    SwingUtilities.invokeLater(() -> { if(INPUT.press(source, key, System.nanoTime())) route(frame, key); });
+  private static void dispatch(final JFrame frame, final NavigationInput.Source source, final int device, final int key) {
+    SwingUtilities.invokeLater(() -> {
+      if(!acceptsInput(frame)) { INPUT.release(source, device, key); return; }
+      if(INPUT.press(source, device, key, System.nanoTime())) route(frame, key);
+    });
+  }
+  private static boolean acceptsInput(final JFrame frame) {
+    if(frame == null) return false;
+    Window owner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getActiveWindow(); while(owner != null && owner != frame) owner = owner.getOwner();
+    return owner == frame && (!(frame.getContentPane() instanceof ManagerView view) || !view.isBusy());
   }
   static void route(final JFrame frame, final int key) {
     if(frame == null) return;

@@ -12,6 +12,8 @@ import re
 import subprocess
 import sys
 import zipfile
+import tempfile
+from package_validation import verify_package, verify_installer, inventory
 
 REPO = 'gideonidoru/legend-of-dragoon-definitive'
 NAMES = {'Install-Definitive.desktop', 'Install-Definitive.sh', 'Definitive-Installer.zip',
@@ -20,6 +22,39 @@ NAMES = {'Install-Definitive.desktop', 'Install-Definitive.sh', 'Definitive-Inst
 
 def gh(*arguments):
     return subprocess.check_output(['gh', *arguments], text=True, stderr=subprocess.PIPE)
+
+
+def verify_ci_artifacts(run_id, source, expected):
+    pages = json.loads(gh('api', f'repos/{REPO}/actions/runs/{run_id}/artifacts?per_page=100', '--paginate', '--slurp'))
+    artifacts = [a for page in pages for a in page['artifacts']]
+    for artifact_name, names in {
+        'delivery-ubuntu-24.04': {'Definitive-Installer.zip', 'Install-Definitive.sh', 'Install-Definitive.desktop', 'Legend-of-Dragoon-Definitive-linux-x64.zip'},
+        'delivery-macos-15': {'Legend-of-Dragoon-Definitive-macos-arm64.zip'},
+    }.items():
+        matched = [a for a in artifacts if a['name'] == artifact_name]
+        if len(matched) != 1:
+            raise ValueError('Required CI artifact is missing or ambiguous: ' + artifact_name)
+        artifact = matched[0]
+        if artifact['expired'] or artifact['workflow_run']['id'] != int(run_id) or artifact['workflow_run']['head_sha'] != source:
+            raise ValueError('CI artifact does not belong to the approved source/run')
+        with tempfile.TemporaryFile() as output:
+            subprocess.run(['gh', 'api', f'repos/{REPO}/actions/artifacts/{artifact["id"]}/zip'],
+                           stdout=output, stderr=subprocess.PIPE, check=True, timeout=180)
+            output.seek(0)
+            if artifact.get('digest') != 'sha256:' + hashlib.file_digest(output, 'sha256').hexdigest():
+                raise ValueError('Downloaded CI artifact digest mismatch')
+            output.seek(0)
+            with zipfile.ZipFile(output) as archive:
+                entries = inventory(archive)
+                for name in names:
+                    candidates = [e for n, e in entries.items() if n.split('/')[-1] == name and not e.is_dir()]
+                    if len(candidates) != 1:
+                        raise ValueError('Approved CI upload is missing or ambiguous: ' + name)
+                    entry = candidates[0]
+                    with archive.open(entry) as stream:
+                        actual = entry.file_size, hashlib.file_digest(stream, 'sha256').hexdigest()
+                    if actual != expected[name]:
+                        raise ValueError('Upload bytes differ from the approved CI artifact: ' + name)
 
 
 def verify_release(release, tag, source, expected):
@@ -84,10 +119,8 @@ def main():
     if len(sums) != len(NAMES) or set(sums) != {expected[n][1] + '  ' + n for n in NAMES}:
         raise ValueError('SHA256SUMS does not match the complete upload set')
     for platform in ('linux-x64', 'macos-arm64'):
-        with zipfile.ZipFile(args.assets_dir / f'Legend-of-Dragoon-Definitive-{platform}.zip') as archive:
-            properties = dict(line.split('=', 1) for line in archive.read('definitive-package.properties').decode().splitlines() if '=' in line and not line.startswith('#'))
-        if any(properties.get(k) != v for k, v in {'sourceRevision': args.source_sha, 'releaseTag': args.tag, 'platform': platform, 'format': '1', 'java': '25'}.items()):
-            raise ValueError('Package source/tag/platform mismatch: ' + platform)
+        verify_package(args.assets_dir / f'Legend-of-Dragoon-Definitive-{platform}.zip', platform, args.source_sha, args.tag)
+    verify_installer(args.assets_dir / 'Definitive-Installer.zip')
     script = (args.assets_dir / 'Install-Definitive.sh').read_text()
     if f'TAG={args.tag}\n' not in script or f'EXPECTED={expected["Definitive-Installer.zip"][1]}\n' not in script:
         raise ValueError('Portable entry point has stale tag/checksum')
@@ -103,6 +136,7 @@ def main():
     checked = [j for j in jobs if j['name'] in required]
     if len(checked) != len(required) or {j['name'] for j in checked} != required or any(j['status'] != 'completed' or j['conclusion'] != 'success' for j in checked):
         raise ValueError('Required packaging/test jobs are missing or did not pass')
+    verify_ci_artifacts(args.run, args.source_sha, expected)
     def read():return json.loads(gh('release', 'view', args.tag, '-R', REPO, '--json', 'tagName,targetCommitish,isDraft,url,assets'))
     release = read()
     verify_release(release, args.tag, args.source_sha, expected)
@@ -123,6 +157,6 @@ def main():
 
 if __name__ == '__main__':
     try:main()
-    except (ValueError, OSError, KeyError, zipfile.BadZipFile, subprocess.CalledProcessError) as failure:
+    except (ValueError, OSError, KeyError, zipfile.BadZipFile, subprocess.CalledProcessError, subprocess.TimeoutExpired) as failure:
         print('Publication stopped: ' + str(failure), file=sys.stderr)
         raise SystemExit(1)

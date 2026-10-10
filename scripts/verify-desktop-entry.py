@@ -27,12 +27,14 @@ assert digest in command, 'Desktop checksum must match the shipped setup script'
 def fixture(root, bad_download=False, bad_checksum=False):
     tools = root/'tools'; tools.mkdir()
     stage = root/'stage'; stage.mkdir()
+    home=root/'home'; (home/'.cache/legend-of-dragoon-definitive').mkdir(parents=True)
     payload = '#!/bin/bash\nprintf fixture-success > "$FIXTURE_RESULT"\n'
     def tool(name, code):
         path=tools/name; path.write_text('#!/usr/bin/env python3\n'+code); path.chmod(0o755)
     tool('mktemp', 'import os\nprint(os.environ["FIXTURE_STAGE"])\n')
     tool('mkdir', '# Only the fixed cache mkdir is intercepted; the fixture already exists.\nimport sys\nassert sys.argv[1] == "-p" and sys.argv[2].endswith("/.cache/legend-of-dragoon-definitive")\n')
-    tool('tee', 'import os,sys\nfrom pathlib import Path\ndata=sys.stdin.read();Path(os.environ["FIXTURE_LOG"]).write_text(data);sys.stdout.write(data)\n')
+    tool('mv', 'import os,sys\nassert sys.argv[1] == \"-fT\"\nos.replace(sys.argv[2],sys.argv[3])\n')
+    tool('tee', 'import os,sys\nfrom pathlib import Path\ndata=sys.stdin.read();Path(sys.argv[-1]).write_text(data);Path(os.environ["FIXTURE_LOG"]).write_text(data);sys.stdout.write(data)\n')
     tool('curl', '''import json,os,sys
 from pathlib import Path
 args=sys.argv[1:];Path(os.environ['FIXTURE_ARGS']).write_text(json.dumps(args))
@@ -58,25 +60,30 @@ if os.environ['FIXTURE_BAD_CHECKSUM']=='1':
     print('0'*64+'  install.sh')
 else:print(os.environ['FIXTURE_DIGEST']+'  install.sh')
 ''')
-    return dict(os.environ, PATH=str(tools)+':'+os.environ['PATH'],
+    return dict(os.environ, HOME=str(home), PATH=str(tools)+':'+os.environ['PATH'],
                 FIXTURE_STAGE=str(stage), FIXTURE_RESULT=str(root/'result'), FIXTURE_ARGS=str(root/'curl-args.json'),
                 FIXTURE_LOG=str(root/'log'), FIXTURE_URL=url, FIXTURE_DIGEST=digest, FIXTURE_PAYLOAD=payload,
                 FIXTURE_BAD_DOWNLOAD=str(int(bad_download)), FIXTURE_BAD_CHECKSUM=str(int(bad_checksum)))
 
 
-for failure in ('none', 'download', 'checksum'):
+for failure in ('none', 'download', 'checksum', 'linked-log'):
     with tempfile.TemporaryDirectory(prefix='definitive-desktop-shell-') as temp:
         root=Path(temp)
         env=fixture(root, failure=='download', failure=='checksum')
+        if failure=='linked-log':
+            (root/'victim').write_text('external file retained')
+            (root/'home/.cache/legend-of-dragoon-definitive/desktop-bootstrap.log').symlink_to(root/'victim')
         run=subprocess.run(['/bin/bash','-c',command], env=env, input='', capture_output=True, text=True, timeout=10)
         assert (root/'curl-args.json').exists(), run.stderr+run.stdout
         arguments=json.loads((root/'curl-args.json').read_text())
         assert url in arguments, 'BUG: copied Exec loses its URL: '+run.stderr+run.stdout
-        if failure=='none':
+        if failure in ('none','linked-log'):
             assert run.returncode==0, run.stderr+run.stdout
             assert (root/'result').read_text()=='fixture-success'
+            if failure=='linked-log':assert (root/'victim').read_text()=='external file retained'
         else:
             assert run.returncode != 0 and not (root/'result').exists(), 'Failed verification launched the installer'
+            assert not (root/'stage').exists(), 'Failed bootstrap retained a temporary directory'
             assert 'Press Enter' in run.stdout and 'desktop-bootstrap.log' in run.stdout, 'Failure did not provide a visible hold and diagnostic location'
             log=(root/'log').read_text()
             assert ('fixture download failure' if failure=='download' else 'checksum mismatch') in log, 'Failure details were not persisted'

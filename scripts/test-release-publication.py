@@ -8,20 +8,52 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+from package_validation import ROOT
 
 repo = Path(__file__).resolve().parents[1]
 source = 'a' * 40
-for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url'):
+for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry'):
     with tempfile.TemporaryDirectory(prefix='definitive-release-fixture-') as directory:
         root = Path(directory); assets = root / 'assets'; assets.mkdir(); tools = root / 'tools'; tools.mkdir()
-        (assets / 'Definitive-Installer.zip').write_bytes(b'original installer fixture')
+        with zipfile.ZipFile(assets / 'Definitive-Installer.zip', 'w') as archive:
+            for name in ('Install.sh', 'bootstrap-java', 'definitive-manager.jar', 'LICENSE', 'CREDITS', 'manager-libs/library.jar'):
+                archive.writestr(name, b'original synthetic installer fixture')
         sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
         tag = 'fixture-recovery'
         (assets / 'Install-Definitive.sh').write_text(f'TAG={tag}\nEXPECTED={sha(assets / "Definitive-Installer.zip")}\n')
         (assets / 'Install-Definitive.desktop').write_text(f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/{tag}/Install-Definitive.sh {sha(assets / "Install-Definitive.sh")}')
         for platform in ('linux-x64', 'macos-arm64'):
+            metadata = {'format': '1', 'java': '25', 'sourceRevision': source, 'releaseTag': tag,
+                        'platform': platform, 'gameJar': 'lod-game-fixture.jar'}
+            payload = {n: b'original synthetic package fixture' for n in ROOT | {'lod-game-fixture.jar', 'libs/library.jar', 'bundled-mods/art.jar'}}
+            hashes = {n: hashlib.sha256(b).hexdigest() for n, b in payload.items()}
+            canonical = ''.join(k + '=' + metadata[k] + '\n' for k in sorted(metadata))
+            canonical += ''.join(k + '=' + hashes[k] + '\n' for k in sorted(hashes))
+            metadata['id'] = 'alpha-' + hashlib.sha256(canonical.encode()).hexdigest()[:16]
             with zipfile.ZipFile(assets / f'Legend-of-Dragoon-Definitive-{platform}.zip', 'w') as archive:
-                archive.writestr('definitive-package.properties', f'format=1\njava=25\nsourceRevision={source}\nreleaseTag={tag}\nplatform={platform}\n')
+                archive.writestr('definitive-package.properties', ''.join(k + '=' + v + '\n' for k, v in metadata.items()))
+                archive.writestr('definitive-files.properties', ''.join(k + '=' + v + '\n' for k, v in hashes.items()))
+                for name, data in payload.items():
+                    if scenario == 'missing-payload' and name == 'bootstrap-java':continue
+                    archive.writestr(name, b'corrupt' if scenario == 'corrupt-payload' and name == 'bootstrap-java' else data)
+                if scenario == 'duplicate-entry':archive.writestr('bootstrap-java', b'duplicate')
+                if scenario == 'traversal-entry':archive.writestr('../outside', b'unsafe')
+                if scenario == 'linked-entry':
+                    entry = zipfile.ZipInfo('tools/link'); entry.create_system = 3; entry.external_attr = 0o120777 << 16
+                    archive.writestr(entry, b'outside')
+        if scenario == 'nonzip-installer':(assets / 'Definitive-Installer.zip').write_bytes(b'not an archive')
+        artifact_records = []
+        for id, artifact_name, selected in ((1, 'delivery-ubuntu-24.04', ('Definitive-Installer.zip', 'Install-Definitive.sh', 'Install-Definitive.desktop', 'Legend-of-Dragoon-Definitive-linux-x64.zip')),
+                                             (2, 'delivery-macos-15', ('Legend-of-Dragoon-Definitive-macos-arm64.zip',))):
+            path = root / f'artifact-{id}.zip'
+            with zipfile.ZipFile(path, 'w') as artifact:
+                for name in selected:
+                    artifact.writestr('distributions/' + name, b'unapproved bytes' if scenario == 'ci-bytes-mismatch' and name == 'Definitive-Installer.zip' else (assets / name).read_bytes())
+            artifact_records.append({'id': id, 'name': artifact_name, 'expired': scenario == 'expired-ci-artifact',
+                                     'digest': 'sha256:' + ('0'*64 if scenario == 'artifact-digest-mismatch' else sha(path)),
+                                     'workflow_run': {'id': 123, 'head_sha': 'b'*40 if scenario == 'wrong-artifact-source' else source}})
+        if scenario == 'missing-ci-artifact':artifact_records.pop()
+        (root / 'artifacts.json').write_text(json.dumps([{'artifacts': artifact_records}]))
         names = sorted(p.name for p in assets.iterdir())
         (assets / 'SHA256SUMS').write_text(''.join(sha(assets / n) + '  ' + n + '\n' for n in names))
         temporary_tag = 'untagged-e8c0b3b8be797c205abe'
@@ -31,7 +63,7 @@ for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch
         if scenario == 'digest-mismatch':release['assets'][0]['digest'] = 'sha256:' + '0' * 64
         if scenario == 'size-mismatch':release['assets'][0]['size'] += 1
         if scenario == 'missing-asset':release['assets'].pop()
-        if scenario in ('draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url'):
+        if scenario in ('draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry'):
             for asset in release['assets']:asset['url'] = asset['url'].replace('/' + tag + '/', '/' + temporary_tag + '/')
         if scenario == 'wrong-draft-url':release['assets'][0]['url'] = release['assets'][0]['url'].replace(temporary_tag, 'untagged-aaaaaaaaaaaaaaaaaaaa')
         (root / 'release.json').write_text(json.dumps(release)); (root / 'notes.md').write_text('Fixture only')
@@ -41,7 +73,10 @@ from pathlib import Path
 root=Path(os.environ['FIXTURE_ROOT']);a=sys.argv[1:];scenario=os.environ['FIXTURE_SCENARIO']
 with (root/'calls.jsonl').open('a') as stream:stream.write(json.dumps(a)+'\\n')
 if a[:2]==['api','user']:print('wrong-account' if scenario=='account-mismatch' else 'gideonidoru')
+elif a[0]=='api' and '/actions/artifacts/' in a[1]:
+    id=a[1].split('/')[-2];sys.stdout.buffer.write((root/f'artifact-{id}.zip').read_bytes())
 elif a[0]=='api' and '/actions/runs/' in a[1]:
+    if '/artifacts?' in a[1]:print((root/'artifacts.json').read_text());sys.exit(0)
     if '/jobs?' in a[1]:
         names=['Original synthetic visual fixtures','Linux x64 / Steam Deck package','macOS package']
         if scenario=='missing-build-job':names.pop()
@@ -67,8 +102,8 @@ else:raise AssertionError(a)
 ''')
         gh.chmod(0o755)
         env = dict(os.environ, PATH=str(tools) + ':' + os.environ['PATH'], FIXTURE_ROOT=str(root), FIXTURE_SCENARIO=scenario)
-        result = subprocess.run([sys.executable, str(repo / 'scripts/publish-verified-release.py'), '--tag', tag, '--source-sha', source, '--run', '123', '--assets-dir', str(assets), '--notes-file', str(root / 'notes.md')], env=env, capture_output=True, text=True, timeout=5)
-        calls = [json.loads(line) for line in (root / 'calls.jsonl').read_text().splitlines()]
+        result = subprocess.run([sys.executable, str(repo / 'scripts/publish-verified-release.py'), '--tag', tag, '--source-sha', source, '--run', '123', '--assets-dir', str(assets), '--notes-file', str(root / 'notes.md')], env=env, capture_output=True, text=True, timeout=10)
+        calls = [json.loads(line) for line in (root / 'calls.jsonl').read_text().splitlines()] if (root / 'calls.jsonl').exists() else []
         publications = [a for a in calls if a[:2] == ['release', 'edit']]
         if scenario in ('success', 'annotated-tag', 'draft-temporary-urls'):assert result.returncode == 0 and len(publications) == 1 and '--draft=false' in publications[0], result.stderr
         elif scenario == 'already-public':assert result.returncode == 0 and not publications, result.stderr

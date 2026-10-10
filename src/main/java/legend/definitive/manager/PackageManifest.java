@@ -70,6 +70,26 @@ public record PackageManifest(Properties metadata, Properties hashes) {
     if(!identity(this.metadata, this.hashes).equals(this.id())) throw new IOException("Package metadata identity mismatch.");
   }
 
+  /** Verify the complete executable dependency closure before starting a manager.
+   * Game/assets still receive a full protected verification before game launch. */
+  void verifyManagerDependencies(final Path root) throws IOException {
+    final Path libraries = root.resolve("libs");
+    if(!Files.isDirectory(libraries, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Manager dependencies are missing.");
+    final Set<String> actual = new TreeSet<>();
+    try(final var paths = Files.walk(libraries)) {
+      for(final Path path : paths.toList()) {
+        if(Files.isSymbolicLink(path)) throw new IOException("Linked manager dependency: " + path);
+        if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) continue;
+        final String name = root.relativize(path).toString().replace('\\', '/');
+        if(!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS) || !sha256(path).equals(this.hashes.getProperty(name))) throw new IOException("Manager dependency checksum mismatch: " + name);
+        actual.add(name);
+      }
+    }
+    final Set<String> expected = new TreeSet<>();
+    this.hashes.stringPropertyNames().stream().filter(name -> name.startsWith("libs/")).forEach(expected::add);
+    if(!actual.equals(expected) || actual.stream().noneMatch(name -> name.endsWith(".jar"))) throw new IOException("Manager dependency inventory is incomplete.");
+  }
+
   static String identity(final Properties metadata, final Properties hashes) {
     final StringBuilder canonical = new StringBuilder();
     new TreeSet<>(metadata.stringPropertyNames()).stream().filter(k -> !k.equals("id")).forEach(k -> canonical.append(k).append('=').append(metadata.getProperty(k)).append('\n'));
