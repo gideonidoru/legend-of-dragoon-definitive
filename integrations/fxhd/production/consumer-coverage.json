@@ -166,8 +166,8 @@
     {
       "source": "src/main/java/legend/game/combat/effects/GuardEffect06.java",
       "family": "GuardEffect06",
-      "route": "live-indexed-detail",
-      "reason": "DEFF/common/field TIM ownership follows queued standard/TMD/battle-TMD sampling, including VRAM copies; native blend/masks retained"
+      "route": "procedural-current-resolution",
+      "reason": "Guard shield uses untextured triangles and lines rendered at the configured internal resolution; no raster asset to upscale"
     },
     {
       "source": "src/main/java/legend/game/combat/effects/GuardEffectMetrics04.java",
@@ -954,10 +954,10 @@
     "UIHD-owned": 3,
     "effect-controller": 6,
     "live-framebuffer": 2,
-    "live-indexed-detail": 22,
+    "live-indexed-detail": 21,
     "non-rendering-controller": 1,
     "particle-controller-or-support": 75,
-    "procedural-current-resolution": 12,
+    "procedural-current-resolution": 13,
     "shared-dispatch": 1,
     "support-structure": 36
   },

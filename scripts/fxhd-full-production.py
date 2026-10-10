@@ -52,7 +52,7 @@ def decode(data):
     identity = sha(struct.pack('<II', width, height) + indices.tobytes() + palettes.tobytes())
     return indices, palettes, [x, y, words, height], identity
 
-def census(files, inventory):
+def census(files, inventory, known_sources=()):
     records, non_textures = [], Counter()
     required = [files / p for p in FIELD]
     required += [files / f'SECT/DRGN0.BIN/{n}' for n in [4114, 5695, 5718]]
@@ -61,6 +61,7 @@ def census(files, inventory):
         raise ValueError('Incomplete source extraction: ' + ', '.join(missing))
     with inventory.open() as stream:
         prior_hashes = {r['path']: r['sha256'] for r in csv.DictReader(stream)}
+    prior_hashes.update({r['source']: r['sourceSha256'] for r in known_sources})
     candidates = {files / p for p in FIELD}
     for directory in (files / 'SECT/DRGN0.BIN').iterdir():
         if not directory.is_dir() or not directory.name.isdigit():
@@ -109,6 +110,9 @@ def census(files, inventory):
             'palettes': len(palettes), 'binding': 'TIM upload; live palette and VRAM-copy propagation'})
     if not records:
         raise ValueError('Empty effect census')
+    missing_known = {r['source'] for r in known_sources} - {r['source'] for r in records}
+    if missing_known:
+        raise ValueError('Census lost previously covered sources: ' + ', '.join(sorted(missing_known)))
     return {'pipeline': RECIPE, 'sources': records, 'sourceCount': len(records),
         'uniqueJobs': len({r['job'] for r in records}), 'categories': dict(Counter(r['category'] for r in records)),
         'nonTextureSupportFiles': dict(non_textures),
@@ -263,6 +267,9 @@ def publish(output, root=ROOT):
     runtime.parent.mkdir(parents=True, exist_ok=True)
     ledger.parent.mkdir(parents=True, exist_ok=True)
     previous = ledger.read_bytes() if ledger.exists() else None
+    if previous is not None:
+        missing = {r['source'] for r in json.loads(previous)['sources']} - {r['source'] for r in public['sources']}
+        if missing: raise ValueError('Full FX import drops previously covered sources')
     scratch = Path(tempfile.mkdtemp(prefix='.fxhd-import-', dir=module))
     staging, backup = scratch / 'selected', scratch / 'previous'
     preserve_recovery = False
@@ -304,7 +311,9 @@ if __name__ == '__main__':
         setattr(args, name, getattr(args, name).resolve())
     if args.work.is_relative_to(ROOT) or args.work.is_relative_to(args.files) or args.output.is_relative_to(args.files):
         parser.error('Original controls must remain outside checkout/extraction')
-    data = census(args.files, args.inventory)
+    baseline = ROOT / 'integrations/fxhd/production/full-coverage.json'
+    known = json.loads(baseline.read_text())['sources'] if baseline.exists() else ()
+    data = census(args.files, args.inventory, known)
     save(args.work / 'census.json', data)
     print(json.dumps({k: data[k] for k in ('sourceCount', 'uniqueJobs', 'categories')}), flush=True)
     if not args.census_only:

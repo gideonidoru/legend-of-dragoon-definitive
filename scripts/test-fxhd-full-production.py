@@ -39,6 +39,8 @@ class FullFixtures(unittest.TestCase):
             ledger = p.census(files, inventory)
             self.assertEqual(len(p.FIELD) + 4, ledger['sourceCount']); self.assertEqual(1, ledger['uniqueJobs'])
             self.assertEqual(1, ledger['nonTextureSupportFiles']['empty-or-directory-metadata'])
+            (root / '4139/1').unlink()
+            with self.assertRaisesRegex(ValueError, 'Census lost previously covered'): p.census(files, inventory, ledger['sources'])
             (files / 'shadow.tim').unlink()
             with self.assertRaisesRegex(ValueError, 'Incomplete source extraction'): p.census(files, inventory)
 
