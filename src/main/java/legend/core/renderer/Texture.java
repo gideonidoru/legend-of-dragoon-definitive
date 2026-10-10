@@ -198,7 +198,7 @@ public abstract class Texture {
         }
 
         tex.delete();
-        texList.remove(i);
+        // Keep ownership until the renderer can retire the backend allocation.
       }
     }
   }

@@ -9,6 +9,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HdTextureContractTest {
+  @Test void heapPixelBuffersCannotReachNativeTextureCreation() {
+    final var builder = new legend.core.renderer.TextureBuilder("heap rejection");
+    assertThrows(IllegalArgumentException.class, () -> builder.data(java.nio.ByteBuffer.allocate(4), 1, 1));
+    assertThrows(IllegalArgumentException.class, () -> builder.data(java.nio.IntBuffer.wrap(new int[]{1}), 1, 1));
+    assertDoesNotThrow(() -> builder.data(java.nio.ByteBuffer.allocateDirect(4), 1, 1));
+  }
+
   private Texture texture(final TextureInternalFormat format) {
     return new NoopApi().makeTexture(null, "contract", 64, 64, format, TextureDataFormat.RGBA, TextureDataType.UBYTE, false, false, false, false);
   }

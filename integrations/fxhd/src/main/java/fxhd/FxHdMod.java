@@ -17,6 +17,8 @@ import static legend.core.GameEngine.EVENTS;
 
 @Mod(id = "fxhd", version = "3.0.0")
 public final class FxHdMod {
+  private record Binding(String job, String outputHash, int width, int height) { }
+  private static java.util.Map<String, Binding> bindings;
   private static final Set<String> SUPPORTED = Set.of("dust", "smoke_1", "smoke_2_dust_palette", "left_foot", "right_foot", "savepoint_big_circle");
   public FxHdMod() {
     EVENTS.register(this);
@@ -26,6 +28,49 @@ public final class FxHdMod {
       hint = hint.handle((ready, failure) -> false).thenCompose(ignored -> legend.core.renderer.Texture.prewarmPng(FxHdMod.class, "/fxhd/" + name + ".png"));
     }
     hint.exceptionally(failure -> false);
+  }
+
+  @EventListener
+  public void replaceIndexed(final legend.definitive.effects.IndexedEffectTextureEvent event) {
+    if(event.detail != null) return;
+    try { event.detail = readIndexed(event.sourceSha256, event.width, event.height); }
+    catch(final IOException failure) { org.apache.logging.log4j.LogManager.getLogger().warn("FxHD retained original indexed {}: {}", event.sourceSha256, failure.getMessage()); }
+  }
+
+  public static Image readIndexed(final String hash, final int width, final int height) throws IOException {
+    final Binding binding = bindings().get(hash);
+    if(binding == null) return null; // Body art, backgrounds and unrelated mod assets retain their owners.
+    if(binding.width != width || binding.height != height || width < 1 || width > 1024 || height < 1 || height > 512) throw new IOException("Indexed FX source dimensions differ");
+    final byte[] png = resource("full/detail/" + binding.job + ".png", 4 * 1024 * 1024);
+    if(!TexturePilot.sha256(png).equals(binding.outputHash)) throw new IOException("Indexed FX detail identity differs");
+    final var header = java.nio.ByteBuffer.wrap(png).order(java.nio.ByteOrder.BIG_ENDIAN);
+    if(png.length < 33 || header.getLong(0) != 0x89504e470d0a1a0aL || header.getInt(8) != 13 || header.getInt(12) != 0x49484452
+      || header.getInt(16) != width * 2 || header.getInt(20) != height * 2 || png[24] != 8 || png[25] != 6) throw new IOException("Indexed FX PNG header differs");
+    final byte[] rgba = new byte[Math.multiplyExact(width * height, 16)];
+    final PngAssets cache = legend.core.renderer.Texture.imageCachingEnabled() ? PngAssets.SHARED : PngAssets.UNCACHED;
+    try(final var decoded = cache.acquire(java.nio.ByteBuffer.wrap(png))) {
+      if(decoded.width() != width * 2 || decoded.height() != height * 2) throw new IOException("Indexed FX decode dimensions differ");
+      decoded.pixels().get(rgba);
+    }
+    return new Image(rgba, width * 2, height * 2);
+  }
+
+  private static synchronized java.util.Map<String, Binding> bindings() throws IOException {
+    if(bindings != null) return bindings;
+    final var result = new java.util.HashMap<String, Binding>();
+    final String text = new String(resource("full/bindings.tsv", 2 * 1024 * 1024), java.nio.charset.StandardCharsets.UTF_8);
+    for(final String line : text.lines().toList()) {
+      final String[] fields = line.split("\\t", -1);
+      if(fields.length != 5 || !fields[0].matches("[0-9a-f]{64}") || !fields[1].matches("[0-9a-f]{64}") || !fields[2].matches("[0-9a-f]{64}")) throw new IOException("Indexed FX binding differs");
+      final Binding binding;
+      try { binding = new Binding(fields[1], fields[2], Integer.parseInt(fields[3]), Integer.parseInt(fields[4])); }
+      catch(final NumberFormatException failure) { throw new IOException("Invalid indexed FX dimensions", failure); }
+      final Binding previous = result.putIfAbsent(fields[0], binding);
+      if(previous != null && !previous.equals(binding)) throw new IOException("Conflicting indexed FX binding");
+    }
+    if(result.isEmpty()) throw new IOException("Empty indexed FX bindings");
+    bindings = java.util.Map.copyOf(result);
+    return bindings;
   }
 
   @EventListener

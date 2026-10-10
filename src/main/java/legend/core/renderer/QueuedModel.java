@@ -240,7 +240,8 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
     } else {
       GPU.useVramTexture();
     }
-    if(this.obj.faceDetailTexture() != null) this.obj.faceDetailTexture().use(6);
+    if(!this.uiLayer && this.textures[0] == null && GPU.hasEffectArtwork()) GPU.useEffectArtwork();
+    if(this.obj.faceDetailTexture() != null) this.obj.faceDetailTexture().use(7);
     if(this.normalMap != null) this.normalMap.use(4);
     if(this.roughnessMap != null) this.roughnessMap.use(5);
     if(this.defaultSurfaceMaps && !legend.definitive.rendering.DefaultMaterialMaps.bind()) {
@@ -269,6 +270,7 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
   public void useShader(final int modelIndex, final int discardMode) {
     this.shader.use();
     this.shaderOptions.renderMetadata(this.uiLayer, this.emission);
+    this.shaderOptions.effectArtwork(!this.uiLayer && this.textures[0] == null && GPU.hasEffectArtwork());
     this.shaderOptions.surface(this.surfaceMaterial);
     this.defaultSurfaceMaps = !this.materialMapsAuthored && !this.uiLayer && this.obj.hasTexture()
       && (this instanceof QueuedModelTmd || this instanceof QueuedModelBattleTmd)

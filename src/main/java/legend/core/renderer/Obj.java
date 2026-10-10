@@ -92,7 +92,7 @@ public abstract class Obj {
         }
 
         obj.delete();
-        objList.remove(i);
+        // Retained draws may still refer to this mesh until renderer retirement.
       }
     }
   }

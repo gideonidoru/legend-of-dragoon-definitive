@@ -6,6 +6,7 @@ import org.joml.Vector3f;
 public class ShaderOptionsBase implements ShaderOptions {
   public void surface(final SurfaceMaterial material) { }
   private ShaderUniformInt uiLayer;
+  private ShaderUniformInt effectArtwork;
   private ShaderUniformFloat emission;
   private ShaderUniformInt hdTexture;
   private ShaderUniformInt normalMap, roughnessMap;
@@ -14,6 +15,7 @@ public class ShaderOptionsBase implements ShaderOptions {
 
   public void metadataUniforms(final Shader<?> shader) {
     this.uiLayer = shader.uniformInt("uiLayer");
+    this.effectArtwork = shader.uniformInt("effectArtworkEnabled");
     this.emission = shader.uniformFloat("emission");
     this.hdTexture = shader.uniformInt("hdTexture");
     this.normalMap = shader.uniformInt("normalMapEnabled");
@@ -23,8 +25,11 @@ public class ShaderOptionsBase implements ShaderOptions {
     shader.use();
     shader.uniformInt("normalMapTex").set(4);
     shader.uniformInt("roughnessMapTex").set(5);
-    shader.uniformInt("faceDetailTex").set(6);
+    shader.uniformInt("faceDetailTex").set(7);
+    shader.uniformInt("effectDetailTex").set(6);
   }
+
+  public void effectArtwork(final boolean enabled) { if(this.effectArtwork != null) this.effectArtwork.set(enabled ? 1 : 0); }
 
   public void materialMaps(final boolean normal, final boolean roughness, final float strength) {
     if(this.normalMap != null) {
