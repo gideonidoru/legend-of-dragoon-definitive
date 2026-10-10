@@ -22,8 +22,7 @@ public final class DartFacePaint {
   private final int fieldWidth, fieldHeight;
   private static final String FIELD = "b84e13a11adbd3419e1e4c5b810c8bd797f9dc68af5d41fe3c4736ce5c4f584b";
   private static final String COMBAT = "0bfd5ffdc6da5b99d770e75f3cab89c86718a541f996250eb362cfb07642f6bb";
-  private static final Set<Integer> FIELD_FACES = Set.of(19, 24, 25, 65, 81, 82, 83, 84, 85, 86);
-  private static final Set<Integer> COMBAT_FACES = Set.of(0,1,2,3,4,5,6,11,12,13,21,23,24,25,29,30,31,32,35,36,52,54,57,61,75,94,96,97,98,99,104,105,106,136,137,138,147);
+  private final DartFaceMapping mapping = DartFaceMapping.load();
 
   public DartFacePaint() throws IOException {
     final byte[] bytes;
@@ -95,12 +94,17 @@ public final class DartFacePaint {
     if(event.appearance != event.geometry || event.source.requiresNativeVertexIndices() ||
       event.geometry != event.source && !event.geometry.hasSourceFaces()) return;
     final String identity = ModelPack.identity(new TmdObjTable1c[] {event.source});
-    if(FIELD.equals(identity)) event.appearance = paint(event.geometry, FIELD_FACES, this.paint, true);
-    else if(COMBAT.equals(identity)) event.appearance = paint(event.geometry, COMBAT_FACES, this.paint, false);
+    if(FIELD.equals(identity)) event.appearance = paint(event.geometry, this.mapping.fieldFaces(), this.paint, true, this.mapping);
+    else if(COMBAT.equals(identity)) event.appearance = paint(event.geometry, this.mapping.combatFaces(), this.paint, false, this.mapping);
   }
 
   /** Full-resolution supplemental albedo; original texture pages and CPU tables stay intact. */
   public static TmdObjTable1c paint(final TmdObjTable1c geometry, final Set<Integer> selected, final BufferedImage image, final boolean field) {
+    return paint(geometry,selected,image,field,DartFaceMapping.load());
+  }
+
+  private static TmdObjTable1c paint(final TmdObjTable1c geometry, final Set<Integer> selected, final BufferedImage image,
+                                    final boolean field, final DartFaceMapping mapping) {
     if(geometry.faceDetail() != null) throw new IllegalArgumentException("Existing face detail retains priority");
     final var primitives = new ArrayList<TmdObjTable1c.Primitive>();
     final var lineage = new ArrayList<Integer>();
@@ -123,9 +127,9 @@ public final class DartFacePaint {
           if(lit && ((mode & 16) != 0 || corner == 0)) cursor += 2;
           final int vertex = u16(packet,cursor); cursor += 2;
           final var point = geometry.vert_top_00[vertex];
-          final double x = field ? point.x : point.z / 15., y = field ? point.y : (70-point.y) / 15.;
-          uv[corner*2] = (float)Math.clamp(.5 + x * (464./11) / 512., 0, 1);
-          uv[corner*2+1] = (float)Math.clamp(.5 + (y-2.75) * (464./11) / 512., 0, 1);
+          final double x = field ? point.x : point.z / mapping.combatScale(), y = field ? point.y : (mapping.combatOriginY()-point.y) / mapping.combatScale();
+          uv[corner*2] = (float)Math.clamp(.5 + x * mapping.projection(), 0, 1);
+          uv[corner*2+1] = (float)Math.clamp(.5 + (y-mapping.originY()) * mapping.projection(), 0, 1);
         }
         detailUvs[rendered] = uv;
         header &= ~0x02000000; // Selected authored face paint is opaque, not a PSX STP material.

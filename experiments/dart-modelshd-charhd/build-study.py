@@ -161,8 +161,8 @@ def unpack(part, source):
     return np.array(part['vertices']), polygons
 
 
-PAINT_FACES = {'field': {19,24,25,65,81,82,83,84,85,86},
-               'combat': {0,1,2,3,4,5,6,11,12,13,21,23,24,25,29,30,31,32,35,36,52,54,57,61,75,94,96,97,98,99,104,105,106,136,137,138,147}}
+FACE_MAPPING = json.loads((ROOT / 'experiments/dart-modelshd-charhd/resources/charhd-experiment/dart-face-mapping-v1.json').read_text())
+PAINT_FACES = {form: set(FACE_MAPPING[form+'Faces']) for form in ('field','combat')}
 
 
 def paint_atlas(atlas, mapping, tim):
@@ -183,9 +183,11 @@ def paint_atlas(atlas, mapping, tim):
 
 def paint_face(part, source, form, clut):
     points, polygons = unpack(part, source)
-    q = points if form == 'field' else np.column_stack((points[:,2]/15, (70-points[:,1])/15, -points[:,0]/15))
-    u = .5 + q[:,0] * (464/11) / 512
-    v = .5 + (q[:,1]-2.75) * (464/11) / 512
+    scale = FACE_MAPPING['combatScale']
+    q = points if form == 'field' else np.column_stack((points[:,2]/scale, (FACE_MAPPING['combatOriginY']-points[:,1])/scale, -points[:,0]/scale))
+    projection = FACE_MAPPING['templateFit'] / FACE_MAPPING['templateSpan'] / FACE_MAPPING['templateSize']
+    u = .5 + q[:,0] * projection
+    v = .5 + (q[:,1]-FACE_MAPPING['originY']) * projection
     uv = np.clip(np.column_stack((u, v)), 0, 1).astype(np.float32)
     result = []
     for face, polygon in zip(part['faces'], polygons):

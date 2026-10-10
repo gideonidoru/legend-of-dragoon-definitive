@@ -2,7 +2,7 @@
   "status": "experimental-not-approved",
   "promotion": "explicit user approval required before main/release",
   "scope": "Offline source-bound shape and CharHD study; no gameplay, GPU or physical Deck evidence",
-  "builderSha256": "9b7e9493b2e94d1aa67aa1a0d6cac2b3a2f2825611d03f7416202c99fb5bd7ee",
+  "builderSha256": "e24f103844377e9a95f99daf344c6d4eb2c83e28ad7521ad06c5c3d8fb709bf3",
   "forms": [
     {
       "form": "combat",
@@ -323,5 +323,6 @@
       "bytes": 75182,
       "sha256": "367c63144a8466ede6a2eb20af3c1525031f8ba2c1c49d7de53fe23d4b3a8307"
     }
-  ]
+  ],
+  "faceMappingSha256": "ebc4034e7b5cc2e789bd55bc15e998bc827abd1aa51e60e6714a16e924ca319a"
 }

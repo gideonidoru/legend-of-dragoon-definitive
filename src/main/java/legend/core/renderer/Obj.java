@@ -27,6 +27,8 @@ public abstract class Obj {
   public void faceDetailTexture(final Texture texture) {
     if(this.faceDetailTexture != null || this.deleted) throw new IllegalStateException("Face detail already owned or object deleted");
     this.faceDetailTexture = java.util.Objects.requireNonNull(texture);
+    // Object ownership determines lifetime, including persistent objects and state transitions.
+    this.faceDetailTexture.persistent = true;
   }
 
   public static void setShouldLog(final boolean shouldLog) {

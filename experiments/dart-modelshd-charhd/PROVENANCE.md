@@ -12,7 +12,7 @@ The field atlas was flattened only after checking all used palette footprints: *
 
 ## Face paint
 
-`resources/charhd-experiment/dart-face-paint-v1.png` is a generated template-aligned paint, 1254×1254 pixels. The generation used a private orthographic original-head reference. The reference and raw original head are not committed. The paint is mapped to explicitly selected native source faces using the head's bone-local coordinates; ModelsHD descendants retain their source-face lineage. It is an authored supplemental albedo layer, not a neural renderer running during gameplay.
+`resources/charhd-experiment/dart-face-paint-v1.png` is a generated template-aligned paint, 1254×1254 pixels. The generation used a private orthographic original-head reference. The reference and raw original head are not committed. The paint is mapped to explicitly selected native source faces using the head's bone-local coordinates; ModelsHD descendants retain their source-face lineage. Selected face IDs and projection constants are shared through `dart-face-mapping-v1.json`, eliminating separate offline/runtime parameter copies. It is an authored supplemental albedo layer, not a neural renderer running during gameplay.
 
 Generation direction: preserve the template's composition and feature alignment; Dart as a youthful male with clear blue eyes, golden brown hair and red headband; polished retro AA character paint; defined eyebrows, nose and closed mouth; restrained neutral baked shading. Exclude photographic pores, makeup, facial hair, teeth, aging, recentering, a 3D mockup and new accessories. The delivered paint is a candidate interpretation and requires design review. A generated flat texture alone is not evidence of a successful model.
 

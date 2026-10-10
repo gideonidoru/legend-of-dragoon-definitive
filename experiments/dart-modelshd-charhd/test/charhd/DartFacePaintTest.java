@@ -99,6 +99,7 @@ class DartFacePaintTest {
     final var colored=DartFacePaint.paint(source(),Set.of(0),paint(),true);
     final var mesh=TmdObjLoader.fromObjTable("owned detail",colored,0);
     final var texture=mesh.faceDetailTexture();
+    assertTrue(texture.persistent);
     final var deleted=legend.core.renderer.Texture.class.getDeclaredField("deleted");deleted.setAccessible(true);
     assertFalse(deleted.getBoolean(texture));
     mesh.delete();assertTrue(deleted.getBoolean(texture));
