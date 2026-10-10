@@ -95,4 +95,6 @@ Engine code remains under the unchanged [GNU Affero General Public License v3](L
 
 Thanks to the Severed Chains maintainers, the Legend of Dragoon Modding community, and the creators of the candidate projects linked above. Definitive is not affiliated with or endorsed by Sony, the original rights holders, the upstream maintainers, or those mod creators.
 
+FMVHD is bundled by default and independently selectable in the game mod manager. Its 18 enhanced videos are a documented public asset-policy exception; see [FMVHD](integrations/fmvhd/README.md). Raw disc images and extracted originals remain private.
+
 Supply your own supported game disc images privately in `isos/`. Never commit disc images, extracted game files, saves, private configuration, credentials, or local runtimes. Skurfa's public source and runtime artwork are included through its pinned submodule, under its own notices; game discs and extracted retail files are not included. The [original upstream README](docs/upstream/README.md) is preserved for historical context; its Java 21 note predates this checkout's Java 25 build requirement.

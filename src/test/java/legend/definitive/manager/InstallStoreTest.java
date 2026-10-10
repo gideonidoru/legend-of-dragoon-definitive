@@ -143,6 +143,20 @@ class InstallStoreTest {
     assertNotEquals(first, next); assertFalse(Files.exists(next.resolve("files/version"))); assertEquals("old-extraction", Files.readString(first.resolve("files/version")));
   }
 
+  @Test void fmvHdRemainsAvailableWithOriginalBackgrounds() throws Exception {
+    final Path pack = this.pack("fmv-release", PackageManifest.hostPlatform());
+    Files.writeString(pack.resolve("bundled-mods/FMVHD-v0.1.0.jar"), "cinematics");
+    Files.delete(pack.resolve(PackageManifest.METADATA));
+    Files.delete(pack.resolve(PackageManifest.HASHES));
+    ManagerMain.makeManifest(pack, PackageManifest.hostPlatform(), "fixture");
+    final InstallStore store = new InstallStore(this.temporary.resolve("installed"));
+    store.install(pack);
+    store.setArtwork(false);
+    final Path workspace = store.prepareLaunch();
+    assertFalse(Files.exists(workspace.resolve("mods/Skurfa.jar")));
+    assertTrue(Files.isSymbolicLink(workspace.resolve("mods/FMVHD-v0.1.0.jar")));
+  }
+
   @Test void discSelectionErrorsLeaveOriginalInputsAndDestinationUntouched() throws Exception {
     final InstallStore store = new InstallStore(this.temporary.resolve("installed"));
     final var discs = new java.util.ArrayList<Path>();
