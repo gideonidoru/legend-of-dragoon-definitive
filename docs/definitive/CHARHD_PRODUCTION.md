@@ -34,4 +34,4 @@ The 19 baseline atlases total 179,019,776 bytes of base-level RGBA data if all w
 4. Review the deduplicated party field consumers from the model catalog. The 1,026 bindings reduce to 15 model/TIM byte pairs with 13 distinct textures, all source-format eligible. Two pairs still lack a named entity assignment. These are not accepted field textures; audit enemy/NPC ownership independently.
 5. Measure GPU residency, load/transition behavior, p95/p99 frametimes and power on a physical Steam Deck. Keep the default installer simple and activation in the game's existing Mods menu.
 
-When the separate four-artwork-mod build integration lands, reconcile its legacy CharHD 0.1 task with this specialized 0.2 source set so the package contains exactly one CharHD jar. Do not overwrite the active EnvHD production checkout.
+The consolidated artwork build delegates CharHD to its specialized 0.2 source set; the other three artwork task definitions remain unchanged. The package must contain exactly one CharHD jar. Do not overwrite the active EnvHD production checkout.

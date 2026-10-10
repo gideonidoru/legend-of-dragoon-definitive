@@ -9,6 +9,8 @@ import legend.game.types.Keyframe0c;
 
 public class BattleStage {
   public String name;
+  public legend.definitive.artwork.StageArtwork artwork;
+  public boolean artworkDarkened;
 
   public ModelPart10[] dobj2s_00;
 //  public final GsCOORDINATE2[] coord2s_a0 = new GsCOORDINATE2[10]; // Use coord2 on dobj2

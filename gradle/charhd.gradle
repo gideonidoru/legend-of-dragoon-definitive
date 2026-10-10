@@ -1,4 +1,4 @@
-// CharHD can build independently before the other artwork streams land.
+// Specialized CharHD source set, tests and selected production resources.
 sourceSets {
   charhd {
     java.srcDir 'integrations/charhd/src/main/java'
@@ -19,18 +19,21 @@ tasks.register('charHdTests', Test) {
   useJUnitPlatform()
   systemProperty 'java.awt.headless', 'true'
 }
-tasks.register('charHdJar', Jar) {
+tasks.register('charhdJar', Jar) {
   dependsOn 'charhdClasses'
   archiveFileName = 'CharHD-v0.2.0.jar'
   destinationDirectory = layout.buildDirectory.dir('libs/mods')
   from sourceSets.charhd.output
   from 'integrations/charhd/runtime-assets'
   into('META-INF/charhd') { from 'LICENSE'; from 'integrations/charhd/README.md'; from 'integrations/charhd/ARTWORK-NOTICES.txt' }
+  manifest { attributes 'Implementation-Title': 'CharHD', 'Implementation-Version': '0.2.0' }
   preserveFileTimestamps = false
   reproducibleFileOrder = true
 }
-tasks.named('build') { dependsOn 'charHdJar' }
-tasks.named('stageDefinitivePackage') { dependsOn 'charHdJar' }
+tasks.named('build') { dependsOn 'charhdJar' }
+tasks.named('stageDefinitivePackage') { dependsOn 'charhdJar' }
+tasks.named('check') { dependsOn 'charHdTests' }
+tasks.named('deliveryTest') { dependsOn 'charHdTests' }
 
 tasks.register('charHdSourceProbe', JavaExec) {
   dependsOn 'charhdTestClasses', 'modelshdClasses'

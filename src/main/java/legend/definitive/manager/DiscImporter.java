@@ -58,6 +58,9 @@ public final class DiscImporter {
   }
   record Existing(boolean usable, boolean changed, String detail) { }
   static Existing existing(final InstallStore store, final InstallProgress progress) throws IOException {
+    try(final var operation = store.operation()) { return existingLocked(store, progress); }
+  }
+  private static Existing existingLocked(final InstallStore store, final InstallProgress progress) throws IOException {
     final Path folder = store.root().resolve("isos");
     final java.util.List<Path> images;
     try(final var paths = Files.list(folder)) { images = paths.filter(p -> p.getFileName().toString().matches("(?i).*\\.(bin|iso)")).toList(); }
@@ -66,18 +69,42 @@ public final class DiscImporter {
     try { discs = inspectSet(images); }
     catch(final IOException failure) { return new Existing(false, false, "Installed images need attention: " + failure.getMessage()); }
     final Path receipt = folder.resolve("disc-checksums.properties");
-    final java.util.Properties known = Files.exists(receipt, LinkOption.NOFOLLOW_LINKS) ? PackageManifest.readProperties(receipt) : new java.util.Properties();
+    final Path imported = folder.resolve("disc-import-checksums.properties");
+    final java.util.Properties known = Files.exists(receipt, LinkOption.NOFOLLOW_LINKS) ? PackageManifest.readProperties(receipt) : Files.exists(imported, LinkOption.NOFOLLOW_LINKS) ? PackageManifest.readProperties(imported) : new java.util.Properties();
     final java.util.Properties hashes = new java.util.Properties(); boolean changed = false; int number = 0;
     for(final var disc : discs.entrySet()) {
       progress.phase("Checking installed disc " + (++number) + " of 4", "Verifying image identity and SHA256 checksum", number * 20);
       final String hash = PackageManifest.sha256(disc.getValue()); hashes.setProperty(disc.getKey(), hash);
       if(!known.isEmpty() && !hash.equals(known.getProperty(disc.getKey()))) changed = true;
     }
-    if(known.isEmpty()) InstallStore.atomicProperties(receipt, hashes);
     return new Existing(true, changed, changed ? "The installed images differ from their recorded checksums." : "Four US discs found and checked. You can reuse them or select another set.");
   }
+  static java.util.Properties currentHashes(final InstallStore store) throws IOException {
+    final java.util.Properties hashes = new java.util.Properties();
+    try(final var paths = Files.list(store.root().resolve("isos"))) {
+      for(final var disc : inspectSet(paths.filter(p -> p.getFileName().toString().matches("(?i).*\\.(bin|iso)")).toList()).entrySet()) hashes.setProperty(disc.getKey(), PackageManifest.sha256(disc.getValue()));
+    }
+    return hashes;
+  }
+  static boolean matchesReceipt(final Path folder, final java.util.Properties expected) throws IOException {
+    if(!Files.isDirectory(folder, LinkOption.NOFOLLOW_LINKS)) return false;
+    try {
+      final java.util.Properties known = PackageManifest.readProperties(folder.resolve("disc-import-checksums.properties"));
+      if(!known.stringPropertyNames().equals(IDS)) return false;
+      if(!expected.getProperty("token", "").matches("[a-f0-9-]{36}") || !Files.isRegularFile(folder.resolve(".definitive-disc-stage"), LinkOption.NOFOLLOW_LINKS) || !Files.readString(folder.resolve(".definitive-disc-stage")).equals(expected.getProperty("token"))) return false;
+      try(final var paths = Files.list(folder)) {
+        final var entries = paths.toList();
+        if(entries.size() < 6 || entries.size() > 7 || entries.stream().anyMatch(p -> Files.isSymbolicLink(p) || !Files.isRegularFile(p, LinkOption.NOFOLLOW_LINKS) || !(p.getFileName().toString().equals(".definitive-disc-stage") || p.getFileName().toString().equals("disc-import-checksums.properties") || p.getFileName().toString().equals("disc-checksums.properties") || IDS.stream().anyMatch(id -> p.getFileName().toString().equals(id + ".bin"))))) return false;
+        for(final var disc : inspectSet(entries.stream().filter(p -> p.getFileName().toString().matches("(?i).*\\.(bin|iso)")).toList()).entrySet()) {
+          final String hash = PackageManifest.sha256(disc.getValue());
+          if(!hash.equals(known.getProperty(disc.getKey())) || !hash.equals(expected.getProperty(disc.getKey()))) return false;
+        }
+      }
+      return true;
+    } catch(final IOException failure) { return false; }
+  }
   static String importDiscs(final InstallStore store, final Iterable<Path> selected, final InstallProgress progress, final boolean replaceDifferent) throws IOException {
-    try(final var operation = store.lock()) {
+    try(final var operation = store.operation()) {
       final Map<String, Path> discs = inspectSet(selected);
       final Path destination = store.root().resolve("isos");
       final Map<String, Path> installed = new LinkedHashMap<>(); boolean unrecognized = false;
@@ -97,13 +124,14 @@ public final class DiscImporter {
       if((unrecognized || !different.isEmpty()) && !replaceDifferent) throw new DifferentDiscs("The selected images differ from the installed set" + (different.isEmpty() ? "." : ": " + different + ".") + " Replace them? The current folder will be retained as a recovery copy.");
       if(!unrecognized && different.isEmpty() && installed.keySet().equals(IDS)) {
         final Path receipt = destination.resolve("disc-checksums.properties");
-        if(Files.exists(receipt, LinkOption.NOFOLLOW_LINKS) && !PackageManifest.readProperties(receipt).equals(hashes)) store.invalidatePreparedDiscsLocked();
-        InstallStore.atomicProperties(destination.resolve("disc-checksums.properties"), hashes);
+        final Path imported = destination.resolve("disc-import-checksums.properties");
+        final Path known = Files.exists(receipt, LinkOption.NOFOLLOW_LINKS) ? receipt : imported;
+        if(Files.exists(known, LinkOption.NOFOLLOW_LINKS) && !PackageManifest.readProperties(known).equals(hashes)) store.invalidatePreparedDiscsLocked();
         return "The selected discs match the installed images exactly. Reusing them without copying.";
       }
       long total = 0; for(final Path image : discs.values()) total += Files.size(image);
       final long totalBytes = total;
-      if(Files.getFileStore(store.root()).getUsableSpace() < totalBytes + 1024L * 1024 * 1024) throw new IOException("Not enough free space to copy your four discs. Free space or choose another installation drive.");
+      if(Files.getFileStore(store.root()).getUsableSpace() < totalBytes + InstallStore.PREPARATION_RESERVE_BYTES + 1024L * 1024 * 1024) throw new IOException("Not enough free space to copy your four discs and prepare the game files. Allow 7 GB beyond the image copies, or choose another installation drive.");
       final Path staged = Files.createTempDirectory(store.root(), ".disc-import-");
       try {
         long copied = 0; int number = 0;
@@ -118,16 +146,32 @@ public final class DiscImporter {
           if(!PackageManifest.sha256(copy).equals(hashes.getProperty(disc.getKey())) || !PackageManifest.sha256(disc.getValue()).equals(hashes.getProperty(disc.getKey()))) throw new IOException("Disc copy verification failed. Original inputs are unchanged.");
         }
         validateSet(staged);
-        InstallStore.atomicProperties(staged.resolve("disc-checksums.properties"), hashes);
+        InstallStore.atomicProperties(staged.resolve("disc-import-checksums.properties"), hashes);
+        final Path accepted = destination.resolve("disc-checksums.properties");
+        if(Files.exists(accepted, LinkOption.NOFOLLOW_LINKS)) InstallStore.atomicProperties(staged.resolve("disc-checksums.properties"), PackageManifest.readProperties(accepted));
+        final String token = java.util.UUID.randomUUID().toString(); Files.writeString(staged.resolve(".definitive-disc-stage"), token, java.nio.file.StandardOpenOption.CREATE_NEW);
+        InstallStore.forceTree(staged);
         if(!installed.isEmpty() || unrecognized) store.invalidatePreparedDiscsLocked();
         final Path backup = store.root().resolve("disc-recovery-" + java.util.UUID.randomUUID());
+        final java.util.Properties journal = new java.util.Properties(); journal.putAll(hashes);
+        journal.setProperty("format", "1"); journal.setProperty("token", token);
+        journal.setProperty("staged", staged.getFileName().toString()); journal.setProperty("backup", backup.getFileName().toString());
+        InstallStore.atomicProperties(store.root().resolve(".disc-transaction.properties"), journal);
+        InstallStore.markRecoveryBackup(destination, ".definitive-disc-backup", token);
         Files.move(destination, backup, StandardCopyOption.ATOMIC_MOVE);
-        try { Files.move(staged, destination, StandardCopyOption.ATOMIC_MOVE); }
-        catch(final IOException failure) { try { Files.move(backup, destination, StandardCopyOption.ATOMIC_MOVE); } catch(final IOException recovery) { failure.addSuppressed(recovery); } throw failure; }
-        try(final var entries = Files.list(backup)) { if(entries.findAny().isEmpty()) Files.delete(backup); }
+        InstallStore.forceDirectory(store.root());
+        progress.phase("Activating verified discs", "Publishing the complete four-disc set", 70);
+        try { Files.move(staged, destination, StandardCopyOption.ATOMIC_MOVE); InstallStore.forceDirectory(store.root()); }
+        catch(final IOException failure) {
+          try { InstallStore.verifyRecoveryBackup(backup, ".definitive-disc-backup", token); Files.move(backup, destination, StandardCopyOption.ATOMIC_MOVE); Files.delete(destination.resolve(".definitive-disc-backup")); InstallStore.forceDirectory(destination); InstallStore.forceDirectory(store.root()); Files.deleteIfExists(store.root().resolve(".disc-transaction.properties")); InstallStore.forceDirectory(store.root()); }
+          catch(final IOException recovery) { failure.addSuppressed(recovery); }
+          throw failure;
+        }
+        Files.delete(store.root().resolve(".disc-transaction.properties")); InstallStore.forceDirectory(store.root());
+        try(final var entries = Files.list(backup)) { if(entries.allMatch(path -> path.getFileName().toString().equals(".definitive-disc-backup"))) InstallStore.deleteOwnedTree(backup); }
         InstallerLog.write("Disc images published; previous folder retained if nonempty: " + backup);
         return "Four discs imported and copy checksums verified. Prepare discs extracts them privately; later launches reuse the extraction.";
-      } finally { InstallStore.deleteOwnedTree(staged); }
+      } finally { if(!Files.exists(store.root().resolve(".disc-transaction.properties"), LinkOption.NOFOLLOW_LINKS)) InstallStore.deleteOwnedTree(staged); }
     }
   }
 }

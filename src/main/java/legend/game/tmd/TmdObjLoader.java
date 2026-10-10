@@ -79,6 +79,10 @@ public final class TmdObjLoader {
   }
 
   public static MeshObj fromObjTable(final String name, final TmdObjTable1c objTable, final int specialFlags, final int textureWidth, final int textureHeight) {
+    return fromObjTable(name, objTable, specialFlags, textureWidth, textureHeight, null);
+  }
+
+  public static MeshObj fromObjTable(final String name, final TmdObjTable1c objTable, final int specialFlags, final int textureWidth, final int textureHeight, final legend.definitive.artwork.MaterialUv materials) {
     TmdObjTable1c geometry = objTable;
     if(objTable.getClass() == TmdObjTable1c.class && !objTable.isAuthoredGeometry() && !objTable.requiresNativeVertexIndices()) {
       try {
@@ -89,13 +93,13 @@ public final class TmdObjLoader {
       }
     }
     try {
-      final MeshObj result = fromObjTableRaw(name, geometry, specialFlags, textureWidth, textureHeight);
+      final MeshObj result = fromObjTableRaw(name, geometry, specialFlags, textureWidth, textureHeight, materials);
       if(geometry != objTable) objTable.refinedObj = result;
       return result;
     } catch(final RuntimeException failure) {
       if(geometry == objTable) throw failure;
       LogManager.getLogger().warn("Optional geometry allocation kept original {}: {}", name, failure.getMessage());
-      return fromObjTableRaw(name, objTable, specialFlags, textureWidth, textureHeight);
+      return fromObjTableRaw(name, objTable, specialFlags, textureWidth, textureHeight, materials);
     }
   }
 

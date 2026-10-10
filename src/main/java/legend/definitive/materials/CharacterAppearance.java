@@ -41,7 +41,7 @@ public final class CharacterAppearance implements AutoCloseable {
         builder.wrapT(false);
       });
       return new CharacterAppearance(owners, meshes, texture);
-    } catch(final RuntimeException failure) {
+    } catch(final RuntimeException | Error failure) {
       for(final Obj mesh : meshes) if(mesh != null) mesh.delete();
       if(texture != null) texture.delete();
       throw failure;

@@ -1,0 +1,31 @@
+{
+  "version": "0.1.0",
+  "activation": "Severed Chains in-game mod manager",
+  "bundledByDefault": true,
+  "mods": [
+    {
+      "id": "envhd",
+      "name": "EnvHD",
+      "jar": "EnvHD-v0.1.0.jar",
+      "source": "integrations/envhd"
+    },
+    {
+      "id": "charhd",
+      "name": "CharHD",
+      "jar": "CharHD-v0.2.0.jar",
+      "source": "integrations/charhd"
+    },
+    {
+      "id": "uihd",
+      "name": "UIHD",
+      "jar": "UIHD-v0.1.0.jar",
+      "source": "integrations/uihd"
+    },
+    {
+      "id": "fxhd",
+      "name": "FxHD",
+      "jar": "FxHD-v0.1.0.jar",
+      "source": "integrations/fxhd"
+    }
+  ]
+}
