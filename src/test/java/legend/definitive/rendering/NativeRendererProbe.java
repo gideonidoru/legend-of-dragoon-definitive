@@ -185,6 +185,8 @@ public final class NativeRendererProbe {
     final Texture retired=(Texture)artwork.get(all.getLast());
     legend.game.textures.NativeUiTextures.clear();
     for(int i=0;i<2;i++) {retired.use(1);use.invoke(model);glActiveTexture(GL_TEXTURE1);require(glGetInteger(GL_TEXTURE_BINDING_2D)==vramId&&!enabled.getBoolean(model),"every paused fallback redraw binds native VRAM");}
+    legend.game.textures.NativeUiTextures.beginFrame();
+    require(deleted.getBoolean(retired),"cleared owned pages retire on the renderer before replacement uploads, including paused frames");
     Texture.deleteTextures();vram.deleteOwnedCacheEntry();GameEngine.GPU.vramTexture15=null;
     quad.delete();Obj.deleteObjects();require(glGetError()==GL_NO_ERROR,"complete UI residency fixture has no GPU errors");
     System.out.println("PASS: lazy uploads, current-frame pins, 32 MiB residency, immediate eviction, mirrored source UVs, automatic native HUD binding, pooled vertex reset and repeated paused fallback.");
