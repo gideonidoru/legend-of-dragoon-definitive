@@ -12,6 +12,8 @@ CharHD covers the entire character texture program: party battle forms, party fi
 
 The expanded audit found 816 distinct source model/TIM pairs across 6,945 bindings. The initial restoration queue contains 691 entries: 678 have texture regions to reconstruct and 13 have no textured faces, so a color atlas does not apply. Another 103 pairs retain animated/extra-data holds and 22 retain format/mapping holds. There are also 69 unbound routes and 33 source failures requiring investigation; these counts are not a complete game population.
 
+The generation pass produced all 678 textured restoration candidates. The 13 untextured models require no color-atlas reconstruction. These are development baselines; final AA artwork and native/Deck acceptance remain at zero.
+
 The resumable queue uses the existing pinned 4× restoration model at 0.75 strength, preserving palette separation, exact STP/discard masks, visible black and UV coverage. Failed or interrupted revisions remain available for diagnosis; retries use a new folder. Already produced packs are validated against their original source hashes before reuse. No-texture entries are recorded explicitly without inventing artwork.
 
 `full-candidate-coverage.json` records publication progress for every entry of the original queue. New custom baselines use model/TIM pair identities under `production/full-candidates`; unresolved field actors retain unresolved ownership. The publisher validates outputs and permits only reconstructed atlas PNGs and a sanitized provenance manifest. Source controls, previews, neural inputs/outputs, machine paths and command logs remain private. Publication is not runtime selection or final artistic approval.
