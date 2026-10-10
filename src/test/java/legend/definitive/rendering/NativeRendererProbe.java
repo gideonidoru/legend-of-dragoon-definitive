@@ -175,6 +175,15 @@ public final class NativeRendererProbe {
     final var quad=new QuadBuilder("automatic HUD metadata").bpp(legend.core.gpu.Bpp.BITS_4).size(16,16).uv(16,16).uvSize(-16,-16).vramPos(0,0).clut(144,496).build();
     require(quad.nativeUiQuad(12,0).u()==0&&quad.nativeUiQuad(12,0).width()==16,"whole-object metadata ignores stale start and preserves mirrored UV bounds");
     final var acquire=QueuedModelStandard.class.getDeclaredMethod("acquire",Obj.class,int.class);acquire.setAccessible(true);
+    final var packedQuad=new QuadBuilder("packed page alignment").bpp(legend.core.gpu.Bpp.BITS_4).size(16,16).vramPos(710,300).clut(839,496).build();
+    final var packed=packedQuad.nativeUiQuad(0,0);
+    require(packed.pageX()==704&&packed.pageY()==256&&packed.clutX()==832&&packed.clutY()==496,"native tracking decodes actual packed vertex alignment");
+    model.tpageOverride(0,256).clutOverride(0,500).uvOffset(0,0);
+    require(packed.overridden(model).equals(packed),"zero-X override sentinels exactly match vertex shader behavior");
+    model.tpageOverride(64,256).clutOverride(880,500).uvOffset(3,4);
+    final var override=packed.overridden(model);
+    require(override.pageX()==64&&override.pageY()==256&&override.clutX()==880&&override.clutY()==500&&override.u()==3&&override.v()==4,"page/palette/UV overrides follow actual draw state");
+    packedQuad.delete();
     model.vertices(12,4);acquire.invoke(model,quad,0);
     final var start=QueuedModel.class.getDeclaredField("startVertex");start.setAccessible(true);require(start.getInt(model)==0,"pooled acquisition resets vertex start");
     model.ui();

@@ -313,8 +313,13 @@ public class QuadBuilder {
       obj.nativeUiQuads = new NativeUiQuad[this.quads.size()];
       for(int i = 0; i < this.quads.size(); i++) {
         final Quad q = this.quads.get(i);
-        if(q.bpp == Bpp.BITS_4) obj.nativeUiQuads[i] = new NativeUiQuad(q.vramPos.x, q.vramPos.y, q.clut.x, q.clut.y,
-          Math.min(q.uv.x, q.uv.x + q.uvSize.x), Math.min(q.uv.y, q.uv.y + q.uvSize.y), Math.abs(q.uvSize.x), Math.abs(q.uvSize.y));
+        if(q.bpp == Bpp.BITS_4) {
+          // Decode the packed vertex exactly as tmd.vsh does, including page/CLUT alignment.
+          final int tpage = makeTpage(q.vramPos.x, q.vramPos.y, q.bpp, this.translucency);
+          final int clut = makeClut(q.clut.x, q.clut.y);
+          obj.nativeUiQuads[i] = new NativeUiQuad((tpage & 0xf) * 64, (tpage & 0x10) != 0 ? 256 : 0, (clut & 0x3f) * 16, clut >> 6,
+            Math.min(q.uv.x, q.uv.x + q.uvSize.x), Math.min(q.uv.y, q.uv.y + q.uvSize.y), Math.abs(q.uvSize.x), Math.abs(q.uvSize.y));
+        }
       }
     }
     return obj;
