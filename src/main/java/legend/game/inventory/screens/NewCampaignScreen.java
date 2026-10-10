@@ -7,6 +7,7 @@ import legend.core.lang.I18nText;
 import legend.core.lang.RawText;
 import legend.core.platform.input.InputAction;
 import legend.core.platform.input.InputBindings;
+import legend.definitive.mods.StagedModSelection;
 import legend.game.SItem;
 import legend.game.Scus94491BpeSegment_800b;
 import legend.game.i18n.I18n;
@@ -36,6 +37,7 @@ import org.apache.logging.log4j.Logger;
 import org.legendofdragoon.modloader.registries.RegistryDelegate;
 import org.legendofdragoon.modloader.registries.RegistryId;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -49,7 +51,7 @@ import static legend.core.GameEngine.EVENTS;
 import static legend.core.GameEngine.MODS;
 import static legend.core.GameEngine.REGISTRIES;
 import static legend.core.GameEngine.SAVES;
-import static legend.core.GameEngine.bootMods;
+import static legend.core.GameEngine.bootVisibleMods;
 import static legend.game.FullScreenEffects.startFadeEffect;
 import static legend.game.Menus.deallocateRenderables;
 import static legend.game.Menus.whichMenu_800bdc38;
@@ -62,6 +64,7 @@ public class NewCampaignScreen extends VerticalLayoutScreen {
 
   private final GameState52c state = new GameState52c();
   private final Set<String> enabledMods = new HashSet<>();
+  private final StagedModSelection modSelection;
 
   private final Textbox campaignName;
   private final Dropdown<RegistryDelegate<CampaignType>> campaignType;
@@ -78,6 +81,7 @@ public class NewCampaignScreen extends VerticalLayoutScreen {
     InputBindings.initBindings();
     InputBindings.loadBindings(CONFIG);
     this.enabledMods.addAll(MODS.getAllModIds());
+    this.modSelection = new StagedModSelection(this.enabledMods, MODS.getAllModIds());
 
     deallocateRenderables(0xff);
     startFadeEffect(2, 10);
@@ -121,11 +125,11 @@ public class NewCampaignScreen extends VerticalLayoutScreen {
     final Button editPresets = new Button(new I18nText("lod_core.ui.new_campaign.edit_presets"));
     this.addRow(RawText.BLANK, editPresets);
     editPresets.onPressed(() -> {
-      bootMods(MODS.getAllModIds());
+      bootVisibleMods(MODS.getAllModIds());
       this.deferAction(() -> this.getStack().pushScreen(new OptionsPresetsScreen((selectedIndex, presets) -> {
         startFadeEffect(2, 10);
         this.getStack().popScreen();
-        bootMods(this.enabledMods);
+        bootVisibleMods(this.enabledMods, this.modSelection.choices());
         CONFIG.refreshPreset();
 
         this.optionPresets.clearOptions();
@@ -151,10 +155,10 @@ public class NewCampaignScreen extends VerticalLayoutScreen {
     final Button mods = new Button(new I18nText("lod_core.ui.new_campaign.mods"));
     this.addRow(RawText.BLANK, mods);
     mods.onPressed(() -> {
-      bootMods(MODS.getAllModIds());
+      bootVisibleMods(MODS.getAllModIds());
       this.deferAction(() ->
-        this.getStack().pushScreen(new ModsScreen(this.enabledMods, () -> {
-          bootMods(this.enabledMods);
+        this.getStack().pushScreen(new ModsScreen(this.modSelection, () -> {
+          bootVisibleMods(this.enabledMods, this.modSelection.choices());
           CONFIG.refreshPreset();
 
           startFadeEffect(2, 10);
@@ -169,6 +173,13 @@ public class NewCampaignScreen extends VerticalLayoutScreen {
       if(SAVES.campaignExists(this.campaignName.getText())) {
         this.deferAction(() -> this.getStack().pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.new_campaign.campaign_name_in_use"), MessageBoxType.ALERT, result1 -> { })));
       } else {
+        try {
+          this.modSelection.accept();
+        } catch(final IOException failure) {
+          LOGGER.warn("Failed to save HD module choices", failure);
+          ModsScreen.showSaveFailure(this.getStack());
+          return;
+        }
         this.unload = true;
       }
     });
@@ -251,7 +262,7 @@ public class NewCampaignScreen extends VerticalLayoutScreen {
     playMenuSound(3);
     whichMenu_800bdc38 = WhichMenu.UNLOAD;
 
-    bootMods(MODS.getAllModIds());
+    bootVisibleMods(MODS.getAllModIds());
   }
 
   @Override

@@ -220,12 +220,11 @@ final class StreamingAudioTest {
     try(final var zip = new java.util.zip.ZipFile(payload.toFile())) {
       final var films = zip.stream().filter(entry -> entry.getName().endsWith(".mp4")).toList();
       assertEquals(18, films.size(), "Every shipped film must participate in the pacing check");
-      int index = 0;
       for(final var film : films) {
         final var video = temporary.resolve("film.mp4");
         try {
           try(final var input = zip.getInputStream(film)) { java.nio.file.Files.copy(input, video); }
-          assertPlayedAudioSpeed(video, 1, new int[]{30, 60, 120}[index++ % 3]);
+          for(final int renderHz : new int[]{30, 60, 120}) assertPlayedAudioSpeed(video, 1, renderHz);
         } finally { java.nio.file.Files.deleteIfExists(video); }
       }
     }
@@ -241,11 +240,15 @@ final class StreamingAudioTest {
     final Probe audio = new Probe();
     try(final var movie = new StreamingMovie(video)) {
       audio.initialize();
+      // The audio thread can tick before the decoder supplies its first packet.
+      // A stopped, empty source must never retire later queued samples as played.
+      audio.tick();
       final var playback = new MoviePlayback(movie);
       final int samplesPerFrame = 48_000 / renderHz;
       final float[] output = new float[samplesPerFrame * 2];
       long renderedMicros = 0;
       long lastImage = 0;
+      double energy = 0;
       for(int tick = 0; tick < seconds * renderHz; tick++) {
         final long deadline = System.nanoTime() + 2_000_000_000L;
         while((movie.bufferedImages() == 0 || movie.bufferedAudio() < 16) && !movie.audioDrained() && System.nanoTime() < deadline) Thread.sleep(1);
@@ -258,10 +261,12 @@ final class StreamingAudioTest {
         }
         audio.tick();
         alcRenderSamplesSOFT(device, output, samplesPerFrame);
+        for(final float sample : output) energy += Math.abs(sample);
         renderedMicros = (tick + 1L) * samplesPerFrame * 1_000_000L / 48_000;
         audio.process();
       }
       assertTrue(lastImage >= seconds * 1_000_000L - 100_000, "Video frames must track played audio at " + renderHz + " Hz");
+      assertTrue(energy > 0, "Decoded movie audio must actually reach the native mixer at " + renderHz + " Hz");
       assertFalse(movie.drained(), "A longer movie cannot finish before the played duration");
     } finally { audio.release(); assertEquals(AL_NO_ERROR, alGetError()); alcMakeContextCurrent(0); alcDestroyContext(context); alcCloseDevice(device); }
   }

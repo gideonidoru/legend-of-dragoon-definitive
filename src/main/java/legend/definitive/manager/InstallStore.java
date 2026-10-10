@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.zip.ZipInputStream;
@@ -813,6 +814,7 @@ public final class InstallStore {
       command.add(Path.of(System.getProperty("java.home"), "bin", "java").toString());
       if(PackageManifest.hostPlatform().startsWith("macos")) command.add("-XstartOnFirstThread");
       command.add("-Ddefinitive.legacyTextures=" + Boolean.parseBoolean(state.getProperty("legacyTextures", "false")));
+      command.addAll(this.managedModArguments(state));
       final Path log = workspace.resolve("launcher.log");
       DiagnosticLogs.checked(log);
       this.verifiedRouterRelease();
@@ -827,6 +829,16 @@ public final class InstallStore {
         try(final var running = ProcessRunner.start(builder, log)) { return running.await(); }
       } finally { GameLease.finished(this.root, token); }
     }
+  }
+
+  /** Bind runtime module choices to this installation's preserved private data. */
+  List<String> managedModArguments(final Properties state) throws IOException {
+    final Path preferences = this.data(state).resolve("definitive-hd-mods.properties");
+    if(Files.exists(preferences, LinkOption.NOFOLLOW_LINKS) && !Files.isRegularFile(preferences, LinkOption.NOFOLLOW_LINKS)) {
+      throw new IOException("Unexpected HD module preferences file. No game was started.");
+    }
+    return List.of("-Ddefinitive.artworkProfile=" + state.getProperty("artwork", "hd"),
+      "-Ddefinitive.hdModPreferences=" + preferences);
   }
 
   static void normalizeSteamOverlay(final java.util.Map<String, String> environment) {

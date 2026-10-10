@@ -79,6 +79,45 @@ class InstallStoreTest {
     assertEquals("enabled_mods=lod,envhd,uihd", Files.readString(store.data(store.state()).resolve("config.conf")));
   }
 
+  @Test void managedModulePreferencesFollowPreservedDataThroughUpdateReinstallAndRollback() throws Exception {
+    final InstallStore store = new InstallStore(this.temporary.resolve("profiles"));
+    final Path firstPackage = this.pack("profile-v1", PackageManifest.hostPlatform());
+    store.install(firstPackage);
+    final Path firstData = store.data(store.state());
+    final Path preferences = firstData.resolve("definitive-hd-mods.properties");
+    assertEquals(List.of("-Ddefinitive.artworkProfile=hd", "-Ddefinitive.hdModPreferences=" + preferences), store.managedModArguments(store.state()));
+    assertFalse(Files.exists(preferences), "Preparing launch defaults must not rewrite saved choices");
+    final String choices = "uihd=false\nfxhd=true\n";
+    Files.writeString(preferences, choices);
+    store.setArtwork(false);
+    final Path nextPackage = this.pack("profile-v2", PackageManifest.hostPlatform());
+    store.install(nextPackage);
+    final Path nextData = store.data(store.state());
+    assertNotEquals(firstData, nextData);
+    assertEquals(choices, Files.readString(nextData.resolve("definitive-hd-mods.properties")));
+    assertEquals(List.of("-Ddefinitive.artworkProfile=original", "-Ddefinitive.hdModPreferences=" + nextData.resolve("definitive-hd-mods.properties")), store.managedModArguments(store.state()));
+    store.install(nextPackage, "", null, InstallProgress.NONE, true);
+    final Path reinstalledData = store.data(store.state());
+    assertNotEquals(nextData, reinstalledData);
+    assertEquals(choices, Files.readString(reinstalledData.resolve("definitive-hd-mods.properties")));
+    store.rollback();
+    final Path restoredData = store.data(store.state());
+    assertEquals(choices, Files.readString(restoredData.resolve("definitive-hd-mods.properties")));
+    assertEquals("-Ddefinitive.hdModPreferences=" + restoredData.resolve("definitive-hd-mods.properties"), store.managedModArguments(store.state()).get(1));
+  }
+
+  @Test void managedModulePreferencesRejectLinksAndDirectories() throws Exception {
+    final InstallStore store = new InstallStore(this.temporary.resolve("profile-path"));
+    store.install(this.pack("profile-path-package", PackageManifest.hostPlatform()));
+    final Path preferences = store.data(store.state()).resolve("definitive-hd-mods.properties");
+    final Path outside = this.temporary.resolve("outside-preferences"); Files.writeString(outside, "uihd=false\n");
+    Files.createSymbolicLink(preferences, outside);
+    assertThrows(java.io.IOException.class, () -> store.managedModArguments(store.state()));
+    assertEquals("uihd=false\n", Files.readString(outside));
+    Files.delete(preferences); Files.createDirectory(preferences);
+    assertThrows(java.io.IOException.class, () -> store.managedModArguments(store.state()));
+  }
+
   @Test void updateAndRollbackPreservePriorAndNewerData() throws Exception {
     final InstallStore store = new InstallStore(this.temporary.resolve("installed"));
     final Path one = this.pack("v1", PackageManifest.hostPlatform());

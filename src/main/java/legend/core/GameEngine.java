@@ -245,7 +245,7 @@ public final class GameEngine {
 
     // Find and load all mods so their global config can be shown in the title screen options menu
     MOD_ACCESS.findMods(Path.of("./mods"), Version.VERSION);
-    bootMods(MODS.getAllModIds());
+    bootVisibleMods(MODS.getAllModIds());
 
     ConfigStorage.loadConfig(CONFIG, ConfigStorageLocation.GLOBAL, Path.of("config.dcnf"));
 
@@ -304,6 +304,15 @@ public final class GameEngine {
 
   public static void addLangOverrides(final Map<String, String> lang) {
     LANG_ACCESS.addLangOverrides(lang);
+  }
+
+  /** Player-visible boots apply the managed installation profile; conversion boots stay raw. */
+  public static Set<String> bootVisibleMods(final Set<String> requested) {
+    return bootMods(legend.definitive.mods.ManagedModProfile.effective(requested, MODS.getAllModIds()));
+  }
+
+  public static Set<String> bootVisibleMods(final Set<String> requested, final Map<String, Boolean> staged) {
+    return bootMods(legend.definitive.mods.ManagedModProfile.effective(requested, MODS.getAllModIds(), staged));
   }
 
   /** Returns missing mod IDs, if any */

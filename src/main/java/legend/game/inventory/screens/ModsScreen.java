@@ -3,10 +3,13 @@ package legend.game.inventory.screens;
 import legend.core.lang.I18nText;
 import legend.core.lang.RawText;
 import legend.core.lang.TextComponent;
+import legend.definitive.mods.StagedModSelection;
+import legend.definitive.mods.ManagedModProfile;
 import legend.game.i18n.I18n;
 import legend.game.inventory.screens.controls.Background;
 import legend.game.inventory.screens.controls.Checkbox;
 import legend.game.inventory.screens.controls.Label;
+import legend.game.types.MessageBoxType;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -28,6 +31,10 @@ public class ModsScreen extends VerticalLayoutScreen {
   private final Map<Control, TextComponent> helpText = new HashMap<>();
 
   public ModsScreen(final Set<String> enabledMods, final Runnable unload) {
+    this(new StagedModSelection(enabledMods, MODS.getAllModIds()), unload);
+  }
+
+  public ModsScreen(final StagedModSelection selection, final Runnable unload) {
     deallocateRenderables(0xff);
     startFadeEffect(2, 10);
 
@@ -41,12 +48,16 @@ public class ModsScreen extends VerticalLayoutScreen {
     for(final String modId : modIds) {
       if(!MODS.getRequiredModIds().contains(modId)) {
         final Checkbox checkbox = new Checkbox();
-        checkbox.setChecked(enabledMods.contains(modId));
+        bindSelection(checkbox, selection, modId);
         checkbox.setHorizontalAlign(HorizontalAlign.RIGHT);
 
-        checkbox.onChecked(() -> enabledMods.add(modId));
-        checkbox.onUnchecked(() -> enabledMods.remove(modId));
-        this.addRow(new I18nText(modId + ".name"), checkbox);
+        final Label label = this.addRow(new I18nText(modId + ".name"), checkbox);
+        if(checkbox.isDisabled()) {
+          final I18nText reason = new I18nText("lod_core.ui.mods.launcher_profile");
+          this.helpLabels.put(label, label);
+          this.helpText.put(label, reason);
+          label.onHoverIn(() -> this.getStack().pushScreen(new TooltipScreen(reason, (int)this.mouseX, (int)this.mouseY)));
+        }
       } else {
         final Label label = this.addRow(new I18nText(modId + ".name"), null);
 
@@ -78,6 +89,19 @@ public class ModsScreen extends VerticalLayoutScreen {
 
     this.addHotkey(new I18nText("lod_core.ui.mods.help"), INPUT_ACTION_MENU_HELP, this::help);
     this.addHotkey(new I18nText("lod_core.ui.mods.back"), INPUT_ACTION_MENU_BACK, this::back);
+  }
+
+  static void bindSelection(final Checkbox checkbox, final StagedModSelection selection, final String modId) {
+    checkbox.setChecked(selection.isEnabled(modId));
+    checkbox.setDisabled(!ManagedModProfile.isSelectable(modId));
+    checkbox.onToggled(enabled -> {
+      selection.setEnabled(modId, enabled);
+      if(checkbox.isChecked() != selection.isEnabled(modId)) checkbox.setChecked(selection.isEnabled(modId));
+    });
+  }
+
+  static void showSaveFailure(final MenuStack stack) {
+    stack.pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.mods.save_failed"), MessageBoxType.ALERT, ignored -> {}));
   }
 
   private void help() {

@@ -2,6 +2,8 @@ package legend.game.inventory.screens;
 
 import legend.core.lang.I18nText;
 import legend.core.lang.RawText;
+import legend.definitive.mods.StagedModSelection;
+import legend.definitive.mods.ManagedModProfile;
 import legend.game.i18n.I18n;
 import legend.game.inventory.WhichMenu;
 import legend.game.inventory.screens.controls.Background;
@@ -9,6 +11,7 @@ import legend.game.inventory.screens.controls.BigList;
 import legend.game.inventory.screens.controls.Label;
 import legend.game.modding.coremod.CoreMod;
 import legend.game.saves.Campaign;
+import legend.game.saves.ConfigCollection;
 import legend.game.saves.ConfigStorage;
 import legend.game.saves.ConfigStorageLocation;
 import legend.game.saves.SavedGame;
@@ -27,7 +30,7 @@ import java.util.concurrent.CompletableFuture;
 import static legend.core.GameEngine.CONFIG;
 import static legend.core.GameEngine.MODS;
 import static legend.core.GameEngine.SAVES;
-import static legend.core.GameEngine.bootMods;
+import static legend.core.GameEngine.bootVisibleMods;
 import static legend.game.FullScreenEffects.fullScreenEffect_800bb140;
 import static legend.game.FullScreenEffects.startFadeEffect;
 import static legend.game.Menus.deallocateRenderables;
@@ -128,12 +131,9 @@ public class CampaignSelectionScreen extends MenuScreen {
   }
 
   private void bootModsAndLoadSaves(final Campaign campaign) {
-    final Set<String> missingMods;
-    if(campaign.config.hasConfig(CoreMod.ENABLED_MODS_CONFIG.get())) {
-      missingMods = bootMods(Set.of(campaign.config.getConfig(CoreMod.ENABLED_MODS_CONFIG.get())));
-    } else {
-      // Fallback for old saves from before the config key existed
-      missingMods = bootMods(MODS.getAllModIds());
+    final Set<String> missingMods = bootVisibleMods(campaignModIds(campaign.config, MODS.getAllModIds()));
+    // Retain upstream's legacy-key initialization only for unmanaged games.
+    if(!campaign.config.hasConfig(CoreMod.ENABLED_MODS_CONFIG.get()) && !ManagedModProfile.isManaged()) {
       campaign.config.setConfig(CoreMod.ENABLED_MODS_CONFIG.get(), MODS.getAllModIds().toArray(String[]::new));
     }
 
@@ -166,7 +166,7 @@ public class CampaignSelectionScreen extends MenuScreen {
     menuStack.pushScreen(new LoadGameScreen(this.savedGames, this::onSavedGameSelected, () -> {
       startFadeEffect(2, 5);
       menuStack.popScreen();
-      bootMods(MODS.getAllModIds());
+      bootVisibleMods(MODS.getAllModIds());
       this.selectLock = false;
     }, this.selectedCampaign));
   }
@@ -203,18 +203,25 @@ public class CampaignSelectionScreen extends MenuScreen {
   }
 
   private void changeMods(final Campaign campaign, final Runnable onClose) {
-    final Set<String> originalMods = Set.of(campaign.config.getConfig(CoreMod.ENABLED_MODS_CONFIG.get()));
+    final Set<String> originalMods = campaignModIds(campaign.config, MODS.getAllModIds());
     final Set<String> modIds = new HashSet<>(originalMods);
+    final StagedModSelection selection = new StagedModSelection(modIds, MODS.getAllModIds());
 
-    menuStack.pushScreen(new ModsScreen(modIds, () -> {
-      if(!originalMods.equals(modIds)) {
+    menuStack.pushScreen(new ModsScreen(selection, () -> {
+      if(selection.hasChanges()) {
         menuStack.pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.campaign_selection.change_mods_confirm"), MessageBoxType.CONFIRMATION, result -> {
-          if(result == MessageBoxResult.YES) {
-            campaign.config.setConfig(CoreMod.ENABLED_MODS_CONFIG.get(), modIds.toArray(String[]::new));
-            ConfigStorage.saveConfig(campaign.config, ConfigStorageLocation.CAMPAIGN, campaign.path.resolve("campaign_config.dcnf"));
-            startFadeEffect(2, 10);
-            this.getStack().popScreen();
-            onClose.run();
+          try {
+            confirmModSelection(selection, result, () -> {
+              campaign.config.setConfig(CoreMod.ENABLED_MODS_CONFIG.get(), modIds.toArray(String[]::new));
+              ConfigStorage.saveConfig(campaign.config, ConfigStorageLocation.CAMPAIGN, campaign.path.resolve("campaign_config.dcnf"));
+            }, () -> {
+              startFadeEffect(2, 10);
+              this.getStack().popScreen();
+              onClose.run();
+            });
+          } catch(final IOException failure) {
+            LOGGER.warn("Failed to save HD module choices", failure);
+            ModsScreen.showSaveFailure(menuStack);
           }
         }));
       } else {
@@ -223,6 +230,19 @@ public class CampaignSelectionScreen extends MenuScreen {
         onClose.run();
       }
     }));
+  }
+
+  static Set<String> campaignModIds(final ConfigCollection config, final Set<String> installed) {
+    return config.hasConfig(CoreMod.ENABLED_MODS_CONFIG.get())
+      ? Set.of(config.getConfig(CoreMod.ENABLED_MODS_CONFIG.get())) : Set.copyOf(installed);
+  }
+
+  static void confirmModSelection(final StagedModSelection selection, final MessageBoxResult result, final Runnable saveCampaign, final Runnable close) throws IOException {
+    if(result == MessageBoxResult.YES) {
+      selection.accept();
+      saveCampaign.run();
+    }
+    close.run();
   }
 
   private void menuDelete() {
@@ -252,6 +272,6 @@ public class CampaignSelectionScreen extends MenuScreen {
     whichMenu_800bdc38 = WhichMenu.UNLOAD;
 
     // Restore all mods when going back to the title screen
-    bootMods(MODS.getAllModIds());
+    bootVisibleMods(MODS.getAllModIds());
   }
 }
