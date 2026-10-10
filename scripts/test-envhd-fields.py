@@ -120,6 +120,8 @@ class FieldsTest(unittest.TestCase):
 
 batch_spec=importlib.util.spec_from_file_location('field_batch',Path(__file__).with_name('batch-envhd-fields.py'))
 batch=importlib.util.module_from_spec(batch_spec);batch_spec.loader.exec_module(batch)
+publication_spec=importlib.util.spec_from_file_location('field_publication',Path(__file__).with_name('import-envhd-fields.py'))
+publication=importlib.util.module_from_spec(publication_spec);publication_spec.loader.exec_module(publication)
 
 
 class FieldBatchTest(unittest.TestCase):
@@ -251,6 +253,72 @@ class FieldBatchTest(unittest.TestCase):
                 (output/(records[128]['decodedRgbaSha256']+'.png')).unlink()
                 resumed=batch.execute(files,output,engine,models);self.assertEqual(129,len(resumed));self.assertEqual(['inputs-0000','inputs-0001','inputs-0001'],calls)
 
+
+
+class FieldPublicationTest(unittest.TestCase):
+    def fixture(self):
+        item=FieldBatchTest().item();masters=[item]
+        metadata={k:v for k,v in item.items() if k!='image'}
+        report=dict(pipeline='envhd-field-visible-pixel-census-1',pipelineSha256=publication.DIRECTORY_DEPENDENCIES['census-envhd-fields.py'],sourceConfigurations=1)
+        legacy=dict(schema=1,pipeline='envhd-complete-field-batch-1',scriptSha256=publication.batch.LEGACY_SCRIPT_SHA256,
+                    dependencySha256=publication.batch.LEGACY_DEPENDENCIES,sourceCensus=report|dict(pipelineSha256=publication.batch.LEGACY_DEPENDENCIES['census-envhd-fields.py']),
+                    retainedUniformSources=[],masters=[metadata])
+        data=publication.publication.json_bytes(legacy)
+        png=FieldBatchTest().png(item);record=publication.batch.candidate_record(item,publication.terrain.digest(png))
+        plan=dict(schema=1,pipeline='envhd-complete-field-directory-batch-2',scriptSha256=publication.DIRECTORY_SCRIPT_SHA256,
+                  dependencySha256=publication.DIRECTORY_DEPENDENCIES,scope=publication.SCOPE,sourceCensus=report,retainedUniformSources=[],masters=[metadata],
+                  reusedOutputs=[dict(decodedRgbaSha256=record['decodedRgbaSha256'],outputSha256=record['outputSha256'],
+                                      originPlanSha256=publication.terrain.digest(data),originScriptSha256=publication.batch.LEGACY_SCRIPT_SHA256)])
+        note=dict(intent='Preserve the synthetic red surface.',style='Development baseline; final painted detail pending.',layout='Independent source pixels and mask preserved.',
+                  verdict='visual-reviewed-runtime-pending',outputSha256=record['outputSha256'],nativeAcceptance='pending',finalQualityAcceptance='pending')
+        return item,report,data,record,plan,png,note
+
+    def test_publication_requires_complete_reviews_and_exact_both_generator_histories(self):
+        item,report,data,record,plan,png,note=self.fixture();masters=[item];notes={item['decodedRgbaSha256']:note}
+        publication.verify_plans(plan,report,masters,[],data,[record])
+        publication.verify_complete_records(masters,[record],notes);publication.verify_review(note,record)
+        for records,reviews in [([],notes),([record,record],notes),([record],{}),([record],notes|{'unknown':note})]:
+            with self.assertRaises(ValueError):publication.verify_complete_records(masters,records,reviews)
+        for changed in [plan|dict(scriptSha256='0'*64),plan|dict(reusedOutputs=[]),plan|dict(sourceCensus=report|dict(sourceConfigurations=2))]:
+            with self.assertRaises(ValueError):publication.verify_plans(changed,report,masters,[],data,[record])
+        for changed in [note|dict(nativeAcceptance='accepted'),note|dict(outputSha256='0'*64),note|dict(style=''),note|dict(verdict='native-accepted')]:
+            with self.assertRaises(ValueError):publication.verify_review(changed,record)
+
+    def test_publication_preflights_reused_png_and_writes_complete_ledger_last(self):
+        import json
+        item,report,data,record,plan,png,note=self.fixture();key=item['decodedRgbaSha256']
+        with tempfile.TemporaryDirectory() as tmp:
+            base=Path(tmp);files=base/'files';files.mkdir();root=base/'repo';root.mkdir()
+            staging=base/'private';legacy=base/'legacy'
+            for folder,source_plan in [(staging,publication.publication.json_bytes(plan)),(legacy,data)]:
+                folder.mkdir();(folder/'source-plan.json').write_bytes(source_plan)
+                (folder/'candidates.json').write_text(json.dumps([record]));(folder/(key+'.png')).write_bytes(png)
+            review=base/'reviews.json';review.write_text(json.dumps(dict(reviews={key:note})))
+            with mock.patch.object(publication,'ROOT',root),mock.patch.object(publication.batch.fields,'census',return_value=report),mock.patch.object(publication.batch,'sources',return_value=([item],[])):
+                # A valid local color edit with updated hash still cannot inherit legacy provenance.
+                pixels=np.asarray(Image.open(io.BytesIO(png))).copy();pixels[0,0,:3]=[128,16,8]
+                Image.fromarray(pixels).save(staging/(key+'.png'))
+                altered=record|dict(outputSha256=publication.terrain.digest((staging/(key+'.png')).read_bytes()))
+                (staging/'candidates.json').write_text(json.dumps([altered]));review.write_text(json.dumps(dict(reviews={key:note|dict(outputSha256=altered['outputSha256'])})))
+                with self.assertRaisesRegex(ValueError,'immutable predecessor'):publication.publish(files,staging,legacy,review)
+                self.assertEqual([],list(root.iterdir()))
+                (staging/(key+'.png')).write_bytes(png);(staging/'candidates.json').write_text(json.dumps([record]));review.write_text(json.dumps(dict(reviews={key:note})))
+                ledger=root/'integrations/envhd/production/field-artwork.json'
+                actual=publication.publication.atomic_write
+                def fail_manifest(path,value):
+                    if path.name=='manifest-v1.json':raise OSError('Synthetic interrupted import')
+                    return actual(path,value)
+                with mock.patch.object(publication.publication,'atomic_write',side_effect=fail_manifest):
+                    with self.assertRaises(OSError):publication.publish(files,staging,legacy,review)
+                self.assertFalse(ledger.exists())
+                self.assertEqual(1,publication.publish(files,staging,legacy,review))
+                self.assertEqual(1,publication.publish(files,staging,legacy,review))
+                result=json.loads(ledger.read_bytes());self.assertEqual(0,result['runtimeSelected']);self.assertEqual(0,result['nativeAccepted'])
+                self.assertEqual(publication.batch.LEGACY_GENERATION_COMMIT,result['assets'][0]['generationCommit'])
+                public_png=root/'integrations/envhd/production/field-candidates'/key/'image-v1.png'
+                self.assertEqual(png,public_png.read_bytes())
+                public_png.write_bytes(b'altered immutable version')
+                with self.assertRaises(FileExistsError):publication.publish(files,staging,legacy,review)
 
 
 if __name__=='__main__':unittest.main()

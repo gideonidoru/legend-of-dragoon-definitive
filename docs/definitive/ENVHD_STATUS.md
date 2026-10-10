@@ -99,6 +99,24 @@ a checkpoint. The directory batch reuses those validated outputs with their exac
 origin-plan/source/output hashes, then restores the remaining complete worklist
 with backgrounds first. Eight real samples are pixel-identical between per-image
 and persistent-directory inference; the eight-sample directory run took 1.83
-seconds. Eighteen synthetic fixtures now cover complete alias/render guards,
-prior-output validation and fixed chunk identity across interruption. All outputs
-remain review candidates; none are new runtime selections.
+seconds. Twenty-one synthetic fixtures now cover complete alias/render guards,
+pinned predecessor identity, altered reused-output rejection, fixed chunk identity
+across interruption, full-worklist/review publication, immutable revisions and
+interrupted imports. Both independent review axes accepted these safeguards.
+All outputs remain review candidates; none are new runtime selections.
+
+The field importer requires every candidate and every individual review before
+publishing a complete ledger. It independently compares the fresh source census
+with both actual generation histories, including byte-identical reused outputs.
+It processes PNGs individually rather than retaining gigabytes in memory.
+Immutable candidate files are written first and the complete ledger last; an
+interruption can leave resumable candidate files but cannot establish coverage.
+Source intent, style, layout and exact output identity are recorded separately
+from native gameplay and final quality, which remain pending.
+
+Initial field comparison boards expose colored placeholder areas beneath native
+foregrounds. Neural output around those edges requires source-bound repair and
+foreground composition review before selection. Preserve source layers and
+script state; do not turn those placeholders into invented scenery or flatten
+all foregrounds into the backdrop. The comparison boards and original pixels
+remain private diagnostics.
