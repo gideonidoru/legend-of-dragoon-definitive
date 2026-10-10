@@ -239,6 +239,7 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
     } else {
       GPU.useVramTexture();
     }
+    if(this.obj.faceDetailTexture() != null) this.obj.faceDetailTexture().use(6);
     if(this.normalMap != null) this.normalMap.use(4);
     if(this.roughnessMap != null) this.roughnessMap.use(5);
     if(this.defaultSurfaceMaps && !legend.definitive.rendering.DefaultMaterialMaps.bind()) {

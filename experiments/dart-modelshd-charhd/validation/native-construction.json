@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "scope": "Native CPU construction and source immutability; no GPU/gameplay/Deck acceptance",
+  "checks": [
+    {
+      "originalCpuTablesUnchanged": true,
+      "form": "field",
+      "faceTextures": 0,
+      "facePaint": false,
+      "simulatedRgbaBody": false,
+      "finiteNativeFloats": 149312,
+      "parts": 15
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "form": "field",
+      "faceTextures": 1,
+      "facePaint": true,
+      "simulatedRgbaBody": false,
+      "finiteNativeFloats": 149312,
+      "parts": 15
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "form": "field",
+      "faceTextures": 0,
+      "facePaint": false,
+      "simulatedRgbaBody": true,
+      "finiteNativeFloats": 149312,
+      "parts": 15
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "form": "field",
+      "faceTextures": 1,
+      "facePaint": true,
+      "simulatedRgbaBody": true,
+      "finiteNativeFloats": 149312,
+      "parts": 15
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "form": "combat",
+      "faceTextures": 0,
+      "facePaint": false,
+      "simulatedRgbaBody": false,
+      "finiteNativeFloats": 264064,
+      "parts": 17
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "form": "combat",
+      "faceTextures": 1,
+      "facePaint": true,
+      "simulatedRgbaBody": false,
+      "finiteNativeFloats": 205344,
+      "parts": 17
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "form": "combat",
+      "faceTextures": 0,
+      "facePaint": false,
+      "simulatedRgbaBody": true,
+      "finiteNativeFloats": 264064,
+      "parts": 17
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "form": "combat",
+      "faceTextures": 1,
+      "facePaint": true,
+      "simulatedRgbaBody": true,
+      "finiteNativeFloats": 264064,
+      "parts": 17
+    }
+  ]
+}

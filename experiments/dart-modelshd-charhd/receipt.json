@@ -1,0 +1,327 @@
+{
+  "status": "experimental-not-approved",
+  "promotion": "explicit user approval required before main/release",
+  "scope": "Offline source-bound shape and CharHD study; no gameplay, GPU or physical Deck evidence",
+  "builderSha256": "9b7e9493b2e94d1aa67aa1a0d6cac2b3a2f2825611d03f7416202c99fb5bd7ee",
+  "forms": [
+    {
+      "form": "combat",
+      "sourceGeometrySha256": "876df98691e18d08344d290bdc0cd8d5e58c448198dace8dbda621443c8bae39",
+      "modelSha256": "c8b7ebc75104ccc9fe00f38f51a044b90bdf45fff33d41980f520a41754e30be",
+      "timSha256": "1deccd3e23a34ce6f3ebfec1c75db9e110411c03f1b4b90dbe791c413645a928",
+      "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+      "keyframesSampled": 10,
+      "comparisonPoseKeys": [
+        0,
+        5,
+        9
+      ],
+      "charHdManifestSha256": "88a15dce2ecfe2ee61f8b122b888a641ed399a50543af38393f2177ab2eb2324",
+      "charHdAtlasSha256": "40144b8f0e0a6fda945d78b1ac36a44b435e2f038f437b4346fe54bd69033051",
+      "parts": [
+        {
+          "role": "face",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 0,
+          "maximumDisplacement": 13.262367248535156,
+          "triangles": 2848,
+          "vertices": 1298,
+          "part": 7,
+          "sourcePartGeometrySha256": "0bfd5ffdc6da5b99d770e75f3cab89c86718a541f996250eb362cfb07642f6bb"
+        },
+        {
+          "role": "armor",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 14,
+          "maximumDisplacement": 4.933714136634739,
+          "triangles": 388,
+          "vertices": 204,
+          "part": 2,
+          "sourcePartGeometrySha256": "e53e8b11437f8e1d79c33da810922d1a345c03d5cf44d246e8c41b55a6d69cc4"
+        },
+        {
+          "role": "glove",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 14,
+          "maximumDisplacement": 6.302484984011729,
+          "triangles": 164,
+          "vertices": 92,
+          "part": 5,
+          "sourcePartGeometrySha256": "d7a7b6fac6e07ab00f3e88562cf7b88eaeb1af81c67ece97d3e2273cdfcd86dd"
+        },
+        {
+          "role": "glove",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 0,
+          "maximumDisplacement": 4.626382748647947,
+          "triangles": 168,
+          "vertices": 86,
+          "part": 6,
+          "sourcePartGeometrySha256": "6b0946922682357624082cb7c082274d17dce88a9f4e696eb873bf4f2b1a09d6"
+        },
+        {
+          "role": "cloth",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 12,
+          "maximumDisplacement": 2.020732234613008,
+          "triangles": 160,
+          "vertices": 87,
+          "part": 15,
+          "sourcePartGeometrySha256": "36f0a47aacc900caedfb1ed5cf5f7d9d62bb68f1d14e8eb4ee4096413e4027ef"
+        },
+        {
+          "role": "cloth",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 12,
+          "maximumDisplacement": 2.020732234613008,
+          "triangles": 160,
+          "vertices": 87,
+          "part": 16,
+          "sourcePartGeometrySha256": "0ecff5762e6924027b46628a1e8329496bd665c7d9af788fea8c096b1164210b"
+        }
+      ],
+      "renders": [
+        "combat-front-current-stock.png",
+        "combat-front-current-charhd.png",
+        "combat-front-current-painted.png",
+        "combat-front-experiment-stock.png",
+        "combat-front-experiment-charhd.png",
+        "combat-front-experiment-painted.png",
+        "combat-front-current-stock-close.png",
+        "combat-front-current-charhd-close.png",
+        "combat-front-current-painted-close.png",
+        "combat-front-experiment-stock-close.png",
+        "combat-front-experiment-charhd-close.png",
+        "combat-front-experiment-painted-close.png",
+        "combat-three-quarter-current-stock.png",
+        "combat-three-quarter-current-charhd.png",
+        "combat-three-quarter-current-painted.png",
+        "combat-three-quarter-experiment-stock.png",
+        "combat-three-quarter-experiment-charhd.png",
+        "combat-three-quarter-experiment-painted.png",
+        "combat-three-quarter-current-stock-close.png",
+        "combat-three-quarter-current-charhd-close.png",
+        "combat-three-quarter-current-painted-close.png",
+        "combat-three-quarter-experiment-stock-close.png",
+        "combat-three-quarter-experiment-charhd-close.png",
+        "combat-three-quarter-experiment-painted-close.png",
+        "combat-rear-side-current-stock.png",
+        "combat-rear-side-current-charhd.png",
+        "combat-rear-side-current-painted.png",
+        "combat-rear-side-experiment-stock.png",
+        "combat-rear-side-experiment-charhd.png",
+        "combat-rear-side-experiment-painted.png",
+        "combat-rear-side-current-stock-close.png",
+        "combat-rear-side-current-charhd-close.png",
+        "combat-rear-side-current-painted-close.png",
+        "combat-rear-side-experiment-stock-close.png",
+        "combat-rear-side-experiment-charhd-close.png",
+        "combat-rear-side-experiment-painted-close.png",
+        "combat-pose-0-current.png",
+        "combat-pose-0-experiment.png",
+        "combat-pose-5-current.png",
+        "combat-pose-5-experiment.png",
+        "combat-pose-9-current.png",
+        "combat-pose-9-experiment.png"
+      ],
+      "sourceTriangles": 870,
+      "currentTriangles": 2838,
+      "candidateTriangles": 5508
+    },
+    {
+      "form": "field",
+      "sourceGeometrySha256": "1485e1a04dd1940af2502f58fd3cf7e4b5ec428a35746526be1913a235d5ba7d",
+      "modelSha256": "0e4d55fa11640f416ff5d5ec339ce906bd0d67613f887d902f7dac86945d7cf8",
+      "timSha256": "477b2c39ad9809524c8e8852af59a1beff219dc536f4b3e8dffd18c21d54c7c3",
+      "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+      "keyframesSampled": 10,
+      "comparisonPoseKeys": [
+        0,
+        5,
+        9
+      ],
+      "charHdManifestSha256": "a9618ffe211bd22b9fbfc38fcb97473d4948903cf8e4aede0437cbbb21d8154c",
+      "charHdAtlasSha256": "2607820a81bb683e301e85369efc931ad41b7498d264fb5eb91c06d09b0a8d7a",
+      "parts": [
+        {
+          "role": "face",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 0,
+          "maximumDisplacement": 0.8837776184082031,
+          "triangles": 1664,
+          "vertices": 820,
+          "part": 7,
+          "sourcePartGeometrySha256": "b84e13a11adbd3419e1e4c5b810c8bd797f9dc68af5d41fe3c4736ce5c4f584b"
+        },
+        {
+          "role": "armor",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 0,
+          "maximumDisplacement": 0.2864429084750936,
+          "triangles": 224,
+          "vertices": 114,
+          "part": 2,
+          "sourcePartGeometrySha256": "a7c594169f8cbc4103dbc07bedff5220edb2f8c639338e816e7f9520bd51c621"
+        },
+        {
+          "role": "glove",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 0,
+          "maximumDisplacement": 0.42756588896564063,
+          "triangles": 80,
+          "vertices": 42,
+          "part": 5,
+          "sourcePartGeometrySha256": "9e120e02101b95bf7a0fbeef842f04cdf8a8fb40a589c5a3fb9af29fc02f254b"
+        },
+        {
+          "role": "glove",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 0,
+          "maximumDisplacement": 0.38673686235737065,
+          "triangles": 80,
+          "vertices": 42,
+          "part": 6,
+          "sourcePartGeometrySha256": "46e140915d78f14d8d247e539619c284d4e5f9186208e9ada3950541e9e40a95"
+        },
+        {
+          "role": "cloth",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 12,
+          "maximumDisplacement": 0.1677560806274414,
+          "triangles": 96,
+          "vertices": 55,
+          "part": 13,
+          "sourcePartGeometrySha256": "3157669a3a8bc01109e0c78961815b0197e53fb7d6963f8b04cfbdad2c5b2dde"
+        },
+        {
+          "role": "cloth",
+          "amplitude": 1.0,
+          "fixedBorderVertices": 12,
+          "maximumDisplacement": 0.1677560806274414,
+          "triangles": 96,
+          "vertices": 55,
+          "part": 14,
+          "sourcePartGeometrySha256": "b3e059effbc649bcc7c5400a3cc3939d038f784fe4314f1f983679b366d279bb"
+        }
+      ],
+      "renders": [
+        "field-front-current-stock.png",
+        "field-front-current-charhd.png",
+        "field-front-current-painted.png",
+        "field-front-experiment-stock.png",
+        "field-front-experiment-charhd.png",
+        "field-front-experiment-painted.png",
+        "field-front-current-stock-close.png",
+        "field-front-current-charhd-close.png",
+        "field-front-current-painted-close.png",
+        "field-front-experiment-stock-close.png",
+        "field-front-experiment-charhd-close.png",
+        "field-front-experiment-painted-close.png",
+        "field-three-quarter-current-stock.png",
+        "field-three-quarter-current-charhd.png",
+        "field-three-quarter-current-painted.png",
+        "field-three-quarter-experiment-stock.png",
+        "field-three-quarter-experiment-charhd.png",
+        "field-three-quarter-experiment-painted.png",
+        "field-three-quarter-current-stock-close.png",
+        "field-three-quarter-current-charhd-close.png",
+        "field-three-quarter-current-painted-close.png",
+        "field-three-quarter-experiment-stock-close.png",
+        "field-three-quarter-experiment-charhd-close.png",
+        "field-three-quarter-experiment-painted-close.png",
+        "field-rear-side-current-stock.png",
+        "field-rear-side-current-charhd.png",
+        "field-rear-side-current-painted.png",
+        "field-rear-side-experiment-stock.png",
+        "field-rear-side-experiment-charhd.png",
+        "field-rear-side-experiment-painted.png",
+        "field-rear-side-current-stock-close.png",
+        "field-rear-side-current-charhd-close.png",
+        "field-rear-side-current-painted-close.png",
+        "field-rear-side-experiment-stock-close.png",
+        "field-rear-side-experiment-charhd-close.png",
+        "field-rear-side-experiment-painted-close.png",
+        "field-pose-0-current.png",
+        "field-pose-0-experiment.png",
+        "field-pose-5-current.png",
+        "field-pose-5-experiment.png",
+        "field-pose-9-current.png",
+        "field-pose-9-experiment.png"
+      ],
+      "sourceTriangles": 484,
+      "currentTriangles": 1558,
+      "candidateTriangles": 3118
+    }
+  ],
+  "normalModelsHdIndexChanged": false,
+  "facePaint": {
+    "sha256": "7a7bf725702227ff1fc958dc09f2d6271f0120871f08dc21b840bcf4fad03452",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "method": "Generated template-aligned paint mapped to selected native source faces; full-resolution supplemental albedo, no per-frame neural inference"
+  },
+  "partPayloads": [
+    {
+      "path": "models/parts/0bfd5ffdc6da5b99d770e75f3cab89c86718a541f996250eb362cfb07642f6bb.json",
+      "bytes": 504601,
+      "sha256": "5b40852d8e2c3531758a438b59d4057099d47cc9d654f45964dcd556d4621d02"
+    },
+    {
+      "path": "models/parts/0ecff5762e6924027b46628a1e8329496bd665c7d9af788fea8c096b1164210b.json",
+      "bytes": 30924,
+      "sha256": "66b356775fdcfc3fb26fdfcee0de88216c2c1dcb695e928c4ee172fcecd566c1"
+    },
+    {
+      "path": "models/parts/3157669a3a8bc01109e0c78961815b0197e53fb7d6963f8b04cfbdad2c5b2dde.json",
+      "bytes": 18091,
+      "sha256": "893d9626a424032166480ccb0d047295209412b5988c462ed91d904ddd4f40c4"
+    },
+    {
+      "path": "models/parts/36f0a47aacc900caedfb1ed5cf5f7d9d62bb68f1d14e8eb4ee4096413e4027ef.json",
+      "bytes": 30931,
+      "sha256": "7220d870b2de8dabc312914785f83fae7680120be217222cbbe287ca9c893170"
+    },
+    {
+      "path": "models/parts/46e140915d78f14d8d247e539619c284d4e5f9186208e9ada3950541e9e40a95.json",
+      "bytes": 14889,
+      "sha256": "53502a2030b1c3448bce9a1913b33c6aa1a74381bfbf628ebe0bb0fb902ce408"
+    },
+    {
+      "path": "models/parts/6b0946922682357624082cb7c082274d17dce88a9f4e696eb873bf4f2b1a09d6.json",
+      "bytes": 31583,
+      "sha256": "cdbd172640650fcf9acae8dcd9183ca49220008bd6a329d9794c959c4f9e0f4f"
+    },
+    {
+      "path": "models/parts/9e120e02101b95bf7a0fbeef842f04cdf8a8fb40a589c5a3fb9af29fc02f254b.json",
+      "bytes": 14795,
+      "sha256": "cb443bd8c1c52253fd4011c7a1930d492230306ef7c07602eb10c2a10f44625d"
+    },
+    {
+      "path": "models/parts/a7c594169f8cbc4103dbc07bedff5220edb2f8c639338e816e7f9520bd51c621.json",
+      "bytes": 41848,
+      "sha256": "3cedd39ed83ead08a2ed4350cd5bba17889965ba6fa3f17c60e5b4291eb0fc65"
+    },
+    {
+      "path": "models/parts/b3e059effbc649bcc7c5400a3cc3939d038f784fe4314f1f983679b366d279bb.json",
+      "bytes": 18071,
+      "sha256": "c978c8c2885ccd6d752054dacb0776239ea058ef87f8e50c24b48d64a4a0681d"
+    },
+    {
+      "path": "models/parts/b84e13a11adbd3419e1e4c5b810c8bd797f9dc68af5d41fe3c4736ce5c4f584b.json",
+      "bytes": 290462,
+      "sha256": "3d80d989c4c443a9a789340a2ac707d68be018dc251af957547eb7c157fe3fcf"
+    },
+    {
+      "path": "models/parts/d7a7b6fac6e07ab00f3e88562cf7b88eaeb1af81c67ece97d3e2273cdfcd86dd.json",
+      "bytes": 31309,
+      "sha256": "0bf2b9417876f5c5856c69418037bd5752a5f140344883058fe9806f9378eb90"
+    },
+    {
+      "path": "models/parts/e53e8b11437f8e1d79c33da810922d1a345c03d5cf44d246e8c41b55a6d69cc4.json",
+      "bytes": 75182,
+      "sha256": "367c63144a8466ede6a2eb20af3c1525031f8ba2c1c49d7de53fe23d4b3a8307"
+    }
+  ]
+}

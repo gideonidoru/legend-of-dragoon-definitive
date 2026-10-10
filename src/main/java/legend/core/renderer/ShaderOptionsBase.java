@@ -23,6 +23,7 @@ public class ShaderOptionsBase implements ShaderOptions {
     shader.use();
     shader.uniformInt("normalMapTex").set(4);
     shader.uniformInt("roughnessMapTex").set(5);
+    shader.uniformInt("faceDetailTex").set(6);
   }
 
   public void materialMaps(final boolean normal, final boolean roughness, final float strength) {

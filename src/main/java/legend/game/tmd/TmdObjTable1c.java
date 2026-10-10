@@ -30,6 +30,42 @@ public class TmdObjTable1c {
   private boolean nativeVertexIndices;
   Obj refinedObj;
   private boolean refinedCache;
+  private int[] sourceFaces;
+  private TmdFaceDetail faceDetail;
+
+  public TmdFaceDetail faceDetail() { return this.faceDetail; }
+
+  public void faceDetail(final TmdFaceDetail detail) {
+    if(!this.authoredGeometry || detail.faces() != this.n_primitive_14) throw new IllegalArgumentException("Face detail differs from geometry");
+    int face = 0;
+    for(final var primitive : this.primitives_10) for(final var packet : primitive.data()) {
+      if(detail.applies(face) && (primitive.header() & 0x02000000) != 0)
+        throw new IllegalArgumentException("Supplemental face detail requires an opaque face");
+      if(detail.applies(face) && detail.corners(face) != ((primitive.header() & 0x08000000) == 0 ? 3 : 4))
+        throw new IllegalArgumentException("Face detail corner count differs");
+      face++;
+    }
+    this.faceDetail = detail;
+    this.delete();
+  }
+
+  /** Explicit material lineage for appearance mods composing with owned geometry. */
+  public void sourceFaces(final int[] faces, final int originalFaceCount) {
+    if(!this.authoredGeometry || faces.length != this.n_primitive_14 || originalFaceCount <= 0) {
+      throw new IllegalArgumentException("Appearance lineage differs from geometry");
+    }
+    for(final int face : faces) if(face < 0 || face >= originalFaceCount) {
+      throw new IllegalArgumentException("Unknown source face in appearance lineage");
+    }
+    this.sourceFaces = faces.clone();
+  }
+
+  public boolean hasSourceFaces() { return this.sourceFaces != null; }
+
+  public int sourceFace(final int renderedFace) {
+    if(renderedFace < 0 || renderedFace >= this.n_primitive_14) throw new IndexOutOfBoundsException(renderedFace);
+    return this.sourceFaces == null ? renderedFace : this.sourceFaces[renderedFace];
+  }
 
   public boolean requiresNativeVertexIndices() {
     return this.nativeVertexIndices;
