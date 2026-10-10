@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "e6dc30bb44bd6099fa09f8248bad2b82b8e42a7cd43462ef9664ad0d8463f4dd",
+  "outputSha256": "c85f35dfca73518da8921e4e5f608e0d3867c66588a1422c722b6579772adb31",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-fort-magrad-stage47-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Fort Magrad abandoned cold stone ruins, storm-cloud groups, snow residue, broken walls and source diagonal pale fog/light streaks retained. Nearby field465 supports the ruined fort material/setting.",
+    "style": "Subdued aged grey stone and snow follow Skurfa finish; no repaired castle, warm lights or new architecture.",
+    "layout": "Left jagged wall, hazy left-middle tower cluster, central broken masonry and low right wall retain original envelope and framing.",
+    "wrap": "Broad visible cloud brightness and wall step at join; difference18.34 versus source5.36. Hold outside runtime.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 5.361111164093018,
+    "outputEdgeMeanDifference": 18.341796875
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "061e8d60968b1fff0a3bc28b495068b6b5fe6d59c58553b838ee59d319855ccb"
+}

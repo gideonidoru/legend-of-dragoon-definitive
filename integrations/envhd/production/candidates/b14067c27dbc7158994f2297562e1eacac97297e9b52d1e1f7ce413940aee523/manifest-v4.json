@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "5d957b5807ddc295dac151a35a217efdae74932a5ce8553d5a89b6081285bd44",
+  "outputSha256": "339c107b766a25c59444fa71d98f774a5059a31c65c34e3535818622e093b8dd",
+  "scale": 4,
+  "generationVersion": 4,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "prompt": "prompts/source-edges-stage23-v4.txt",
+  "imageFile": "image-v4.png",
+  "review": {
+    "intent": "Barrens low rocky cliff skyline beneath large white clouds and clear blue sky. Source positions and scene identity compared directly with original.",
+    "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+    "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+    "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 6.3125,
+    "outputEdgeMeanDifference": 2.055772542953491
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "5d957b5807ddc295dac151a35a217efdae74932a5ce8553d5a89b6081285bd44",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "action": "upscale-original",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "masterSourceSha256": "b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523",
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "sourceSize": [
+      256,
+      384
+    ],
+    "repairBorderPixels": 0,
+    "decodedRgbaSha256": "5d957b5807ddc295dac151a35a217efdae74932a5ce8553d5a89b6081285bd44",
+    "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "outputSha256": "339c107b766a25c59444fa71d98f774a5059a31c65c34e3535818622e093b8dd"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523"
+}

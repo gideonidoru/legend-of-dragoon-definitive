@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "dee6d2daec87e35471c615d3e4f1ff47bc3add1afcf4d894309515acf6685246",
+  "outputSha256": "2052e7dfab7b0815b1ea529a619c3d8fdb55c791364d72639633fadabc7e4388",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage94-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Violet-orange sky above pink-brown flat-topped canyon walls, waterfalls and dark water. Source-backed usage: stages94; stage-bound panorama, no documented field random-encounter alias.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Cliff ledges and waterfall silhouettes double at contact. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.381944417953491,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "dee6d2daec87e35471c615d3e4f1ff47bc3add1afcf4d894309515acf6685246",
+    "action": "upscale-original",
+    "outputSha256": "2052e7dfab7b0815b1ea529a619c3d8fdb55c791364d72639633fadabc7e4388",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "dee6d2daec87e35471c615d3e4f1ff47bc3add1afcf4d894309515acf6685246",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "4c0d5a4c187968f9d70d126ee04591678d79f92b5c3683195f1712cbcac708df",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "4c0d5a4c187968f9d70d126ee04591678d79f92b5c3683195f1712cbcac708df"
+}

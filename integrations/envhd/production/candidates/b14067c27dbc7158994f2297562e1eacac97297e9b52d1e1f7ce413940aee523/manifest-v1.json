@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "5d957b5807ddc295dac151a35a217efdae74932a5ce8553d5a89b6081285bd44",
+  "outputSha256": "56eda7b351b314bc7669d09dcb1448b0fe5f1b6b27e02188197bf3e2a6afca87",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-barrens-stage23-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Barrens daytime blue sky, original cloud group and weathered brown rocky ridge preserved; no vegetation/architecture inserted.",
+    "style": "Stratified eroded stone and fine clouds fit the modern Skurfa direction without moving the setting to sunset.",
+    "layout": "Left/right pinnacles, ridge envelope and sky fraction retained in source comparison.",
+    "wrap": "Joined-edge review reveals a visible cliff/sky discontinuity; output edge difference12.32 versus original6.31. Hold outside runtime pending correction.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 6.3125,
+    "outputEdgeMeanDifference": 12.323784828186035
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523"
+}

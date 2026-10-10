@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "21c0e744184c1b160b310332b70f964611e23750100b3f41df476a881694688d",
+  "outputSha256": "7794b9b7713ab078730602527874dea278c81ea123dc21b2b0edcf870926ba55",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-mortal-mountain-stage39-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Mortal Dragon Mountain storm mist retains the near-black upper region, subdued blue-grey middle clouds and pale diffuse lower haze, with no invented terrain, dragon, structures or lightning.",
+    "style": "Soft refined cloud/mist detail complements Skurfa without introducing sharp subjects or warm lighting.",
+    "layout": "Native-size comparison preserves the original tonal gradient and broad fog bands; cloud microdetail is restoration, not recovered source information.",
+    "wrap": "Low-contrast joined haze is visually unobtrusive without a broad edge step; difference4.24 versus source2.40. Native scene acceptance pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.3958332538604736,
+    "outputEdgeMeanDifference": 4.241970539093018
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728"
+}

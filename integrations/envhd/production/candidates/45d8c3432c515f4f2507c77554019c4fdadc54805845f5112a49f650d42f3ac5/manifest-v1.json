@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae",
+  "outputSha256": "cae35064d8556a829752fde8dd91226e9c59e6f43c0e59decb0298437e9f5700",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "layout-reviewed-wrap-pending",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-divine-tree-stage56-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Divine Tree encounters across nine source-backed field cuts. Golden organic interior, tall slanting woody strands, central tangled root band, lower hanging roots and tan fog retained. No architecture, outdoor blue sky, ground or invented characters.",
+    "style": "Convincing fine bark grain and fibrous root surfaces follow Skurfa material detail. Original yellow-beige haze retained; Skurfa scene objects and warm outdoor composition not transplanted.",
+    "layout": "Exact1024x1536 fourfold frame. Pale opening at top center, flanking strands, central root band and lower suspended openings remain in their source regions. Source and output are fully opaque with no black texels.",
+    "wrap": "Source boundary difference20.31; output23.78. Private right-left contact diagnostic reveals root-band height discontinuity and cut woody strand endings. Keep public draft unselected pending narrow join repair and native scene verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 20.30555534362793,
+    "outputEdgeMeanDifference": 23.78125
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5"
+}

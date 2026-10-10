@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "ed7c69fdf09ae24ef963116a5abbd1a5b29c832163583b00d6055b095954add1",
+  "outputSha256": "3ac539c7317109caf0f6da1e311865aa163d5d7faa03ab1777ffd5967d87c0d6",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage25-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Blue-violet sky over flat-topped green canyon walls, waterfalls and deep blue water. Source-backed usage: stages25; stage-bound panorama, no documented field random-encounter alias.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Cliff and waterfall ledges double at contact. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.9375,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "ed7c69fdf09ae24ef963116a5abbd1a5b29c832163583b00d6055b095954add1",
+    "action": "upscale-original",
+    "outputSha256": "3ac539c7317109caf0f6da1e311865aa163d5d7faa03ab1777ffd5967d87c0d6",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "ed7c69fdf09ae24ef963116a5abbd1a5b29c832163583b00d6055b095954add1",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "e3c50336c42e1ff131c9d0d2804a2cf81c11bb1823ab748ce3f671e7e3b3000e",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "e3c50336c42e1ff131c9d0d2804a2cf81c11bb1823ab748ce3f671e7e3b3000e"
+}

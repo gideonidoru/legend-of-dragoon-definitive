@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "6f10d252670bdbe8e57e0b5560c55837550db871a7119878a822d7b209c65896",
+  "outputSha256": "8c8e0c3b2373cf02ece57dd90493187e08cb12cd40f58195eb82da4cac5f0a8d",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "prompt": "prompts/source-edges-stage81-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Moon lavender circular line patterns above brown suspended rocky platforms with small yellow-green tops. Source positions and scene identity compared directly with original.",
+    "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+    "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+    "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 5.951388835906982,
+    "outputEdgeMeanDifference": 2.8072917461395264
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "6f10d252670bdbe8e57e0b5560c55837550db871a7119878a822d7b209c65896",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "action": "upscale-original",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "masterSourceSha256": "10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339",
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "sourceSize": [
+      256,
+      384
+    ],
+    "repairBorderPixels": 0,
+    "decodedRgbaSha256": "6f10d252670bdbe8e57e0b5560c55837550db871a7119878a822d7b209c65896",
+    "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "outputSha256": "8c8e0c3b2373cf02ece57dd90493187e08cb12cd40f58195eb82da4cac5f0a8d"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339"
+}

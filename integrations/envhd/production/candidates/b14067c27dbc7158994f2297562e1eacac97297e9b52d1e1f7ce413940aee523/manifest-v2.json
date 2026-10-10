@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "5d957b5807ddc295dac151a35a217efdae74932a5ce8553d5a89b6081285bd44",
+  "outputSha256": "56ae9cf3d0b4638526bf42bb8cd478d086066e22dd34a563bc811068da0f6484",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-barrens-stage23-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Barrens daytime sky and rocky canyon preserved, with no new setting or subjects.",
+    "style": "Version1 modern weathered stone and cloud detail retained.",
+    "layout": "Central ridge retained, but the narrow edge repair moves the left pinnacle inward; source placement must be rechecked before selection.",
+    "wrap": "Edge repair worsened difference12.32 to16.98 versus source6.31; a cliff/cloud step remains visible. Hold outside runtime.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 6.3125,
+    "outputEdgeMeanDifference": 16.98155403137207
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523"
+}

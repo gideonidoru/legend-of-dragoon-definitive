@@ -9,7 +9,7 @@
     "field-scenes"
   ],
   "accepted": 0,
-  "integrated": 2,
+  "integrated": 70,
   "totalKnownBattleSkies": 74,
   "goalComplete": false,
   "remainingCensus": "The existing whole-environment source census is a workload baseline; visual duplicates, palette variants and empty foreground layers still require production mapping.",
@@ -18,9 +18,9 @@
   "protectedSkurfaCutPeriodMappings": 87,
   "fieldSceneGapsBeforeVisualDedup": 612,
   "generationPolicy": "Generate only unowned gaps; preserve and reuse all Skurfa artwork and source-identical aliases; use Skurfa images as style references.",
-  "generatedSources": 8,
-  "generatedCandidates": 13,
-  "visualReviewedRuntimeCandidates": 2,
+  "generatedSources": 70,
+  "generatedCandidates": 123,
+  "visualReviewedRuntimeCandidates": 70,
   "nativeAccepted": 0,
   "noGenerationRequiredBattleSkies": 1,
   "battleSkiesNeedingRestoration": 73,
@@ -28,17 +28,33 @@
   "distinctBattlePanoramasNeedingRestoration": 70,
   "sharedPixelIdenticalBattleVariants": 3,
   "verification": {
-    "headlessDeliveryTests": 123,
+    "headlessDeliveryTests": 126,
     "headlessDeliveryFailures": 0,
     "ownershipRegressionTests": 5,
     "verifiedFieldSourceFolders": 1044,
     "mcqSourcePixelAgreement": "74/74",
     "skurfaWorkingTree": "unchanged",
     "nativeSceneAcceptance": "pending",
-    "headlessDeliveryPassed": 119,
+    "headlessDeliveryPassed": 122,
     "headlessDeliverySkipped": 4,
-    "skyImportRegressionTests": 8
+    "skyImportRegressionTests": 8,
+    "skyBatchRegressionTests": 17,
+    "worldSourcePixelAgreement": "39/39",
+    "worldRegressionTests": 11
   },
-  "repeatBoundaryRevisionSources": 2,
-  "repeatBoundaryPendingSources": 5
+  "repeatBoundaryRevisionSources": 0,
+  "repeatBoundaryPendingSources": 0,
+  "sourceFaithfulNeuralSelections": 58,
+  "generativeSelections": 12,
+  "panoramaSourceBindings": 73,
+  "worldMapArtwork": {
+    "selectedImages": 39,
+    "locationThumbnails": 38,
+    "parchmentBackdrops": 1,
+    "runtimeBindings": 39,
+    "nativeAccepted": 0,
+    "status": "source-faithful-development-baselines; bespoke quality pending",
+    "ledger": "world-artwork.json"
+  },
+  "scope": "EnvHD only. CharHD, UIHD and FxHD production is owned by other threads."
 }

@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae",
+  "outputSha256": "bf88011b1117c27883900b35eddd45c1bc0c86e124d655da9c1e4ecb43edb41b",
+  "scale": 4,
+  "generationVersion": 3,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "prompt": "prompts/source-edges-stage56-v3.txt",
+  "imageFile": "image-v3.png",
+  "review": {
+    "intent": "Divine Tree golden organic interior, tall slanting woody strands, tangled middle root band and lower hanging roots. Source positions and scene identity compared directly with original.",
+    "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+    "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+    "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 20.30555534362793,
+    "outputEdgeMeanDifference": 6.25282096862793
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "action": "upscale-original",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "masterSourceSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5",
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "sourceSize": [
+      256,
+      384
+    ],
+    "repairBorderPixels": 0,
+    "decodedRgbaSha256": "2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae",
+    "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "outputSha256": "bf88011b1117c27883900b35eddd45c1bc0c86e124d655da9c1e4ecb43edb41b"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5"
+}

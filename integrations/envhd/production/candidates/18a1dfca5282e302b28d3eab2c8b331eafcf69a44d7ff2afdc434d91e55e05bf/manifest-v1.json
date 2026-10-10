@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "cb52675ca594fd22af8d0b0f75d0c7e9446486562db55e5d884c364cbab8ce40",
+  "outputSha256": "f84640a66c3bda9fbd4f351f5c4905b904e6f75aeba1e6d4833298da48eb2e16",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "intent-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-zenebatos-stage53-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Zenebatos cloud-filled elevated landscape retained without transplanting platforms or architecture from field cut529. Original rugged outcrops remain rocks; no city structures added.",
+    "style": "Refined rock and mist detail follows Skurfa finish; grey-olive and warm fog remain dominant.",
+    "layout": "Original cloud bank begins around y169/384 while generated cloud band starts near y152/384; cloud height needs a source-layout correction before selection. Main rock groups remain recognizable.",
+    "wrap": "Edge difference7.14 versus source3.21; joined contact also shows a rock/cloud step. Remains unselected pending layout and boundary repairs.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.2083332538604736,
+    "outputEdgeMeanDifference": 7.14344596862793
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "18a1dfca5282e302b28d3eab2c8b331eafcf69a44d7ff2afdc434d91e55e05bf"
+}

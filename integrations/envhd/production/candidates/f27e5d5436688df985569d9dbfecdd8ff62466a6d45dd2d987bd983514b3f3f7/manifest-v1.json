@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "ce904bbb0146f7daf47630e3dfb0fcbd6896bfb5f46f051f42f438b52f325d9e",
+  "outputSha256": "791bd176d19fef6abe99801a27f2db6b8219bac837f018d01bc654207d1cf1c0",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage64-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Dim blue rocky cavern with a central opening and rough grey-blue foreground ledge. Source-backed usage: stages64; stage-bound panorama, no documented field random-encounter alias.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 4.513888835906982,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "ce904bbb0146f7daf47630e3dfb0fcbd6896bfb5f46f051f42f438b52f325d9e",
+    "action": "upscale-original",
+    "outputSha256": "791bd176d19fef6abe99801a27f2db6b8219bac837f018d01bc654207d1cf1c0",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "ce904bbb0146f7daf47630e3dfb0fcbd6896bfb5f46f051f42f438b52f325d9e",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "f27e5d5436688df985569d9dbfecdd8ff62466a6d45dd2d987bd983514b3f3f7",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "f27e5d5436688df985569d9dbfecdd8ff62466a6d45dd2d987bd983514b3f3f7"
+}

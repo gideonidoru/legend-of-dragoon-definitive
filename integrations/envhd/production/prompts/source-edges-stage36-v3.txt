@@ -1,0 +1,22 @@
+{
+  "artifact": "EnvHD battle panorama",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "stages": [
+    36
+  ],
+  "sourceMcqSha256": "279a55aa308a752227199b9edcccaa3a79ac32a069960aba166dba2021666fa5",
+  "decodedRgbaSha256": "5f8226d59013b51515001b1c522ab6092fd5baec4575e3b7c03f95e1accf94b0",
+  "sourceSize": [
+    256,
+    384
+  ],
+  "targetSize": [
+    1024,
+    1536
+  ],
+  "originalIntent": "Evergreen forest edge in front of broad grey mountain ridges and pale blue clouded sky",
+  "recipe": "Original-source 4x neural inference with periodic64px horizontal and clamped16px vertical context, cropped to source bounds. No opposite-edge averaging or reflection. Exact original alpha/discard/visible-black classes preserved.",
+  "styleReferences": "Skurfa cut5/cut37 visual-review-only; existing Skurfa art is protected and unchanged.",
+  "quality": "Source-faithful development baseline. Existing original repeat discontinuities remain; no claim of newly seamless repeats, native acceptance or final Skurfa-equivalent bespoke detail."
+}

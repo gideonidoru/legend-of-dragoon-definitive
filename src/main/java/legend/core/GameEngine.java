@@ -109,6 +109,10 @@ public final class GameEngine {
 
   private static TextureAtlas TEXTURE_ATLAS;
   private static Texture UI_TEXTURE;
+  private static int UI_WIDTH = 32, UI_HEIGHT = 16;
+  private static volatile long uiArtworkGeneration;
+  public static int getUiWidth() { return UI_WIDTH; }
+  public static int getUiHeight() { return UI_HEIGHT; }
 
   public static final Gte GTE;
   public static final Gpu GPU;
@@ -347,6 +351,11 @@ public final class GameEngine {
       GameOverlay.addNotification(7, new I18nText("lod_core.ui.mods.wrong_version", modId));
     }
 
+    legend.game.textures.NativeUiTextures.reselect(EVENTS::postEvent);
+    final long artworkGeneration = ++uiArtworkGeneration;
+    if(UI_TEXTURE != null) RENDERER.addTask(() -> {
+      if(artworkGeneration == uiArtworkGeneration) reloadUiTexture();
+    });
     return missingMods;
   }
 
@@ -362,6 +371,7 @@ public final class GameEngine {
   }
 
   public static void bootRegistries() {
+    legend.game.textures.NativeUiTextures.reselect(EVENTS::postEvent);
     REGISTRY_ACCESS.initializeRemaining();
     ItemIcon.loadIconMap();
 
@@ -374,12 +384,19 @@ public final class GameEngine {
 
     final Map<RegistryId, Image> images = new HashMap<>();
     EVENTS.postEvent(new RegisterAtlasTexturesEvent(images));
+    final Map<RegistryId, Image> registeredImages = new HashMap<>(images);
     EVENTS.postEvent(new legend.game.textures.ReplaceAtlasTexturesEvent(images));
 
     final TexturePacker packer = new TexturePacker("Mod atlas");
     images.forEach(packer::add);
-
-    TEXTURE_ATLAS = packer.pack(512, 512);
+    try {
+      TEXTURE_ATLAS = packer.packGrowing(512, 512, 2048);
+    } catch(final TexturePacker.AtlasCapacityException full) {
+      LOGGER.warn("Optional atlas artwork exceeds capacity; retaining registered mod artwork");
+      final TexturePacker fallback = new TexturePacker("Mod atlas (registered artwork)");
+      registeredImages.forEach(fallback::add);
+      TEXTURE_ATLAS = fallback.packGrowing(512, 512, 2048);
+    }
     TEXTURE_ATLAS.setPersistent(true);
 
     LOGGER.info("Texture atlas created in %.02fs", (System.nanoTime() - t) / 1_000_000_000.0f);
@@ -440,11 +457,19 @@ public final class GameEngine {
     }
   }
 
+  private static void reloadUiTexture() {
+    final Texture previous = UI_TEXTURE;
+    final var ui = legend.game.textures.UiTextures.load("UI", Path.of("gfx", "ui", "ui.png"));
+    UI_TEXTURE = ui.texture();
+    UI_WIDTH = ui.width(); UI_HEIGHT = ui.height();
+    UI_TEXTURE.persistent = true;
+    if(previous != null) previous.delete();
+  }
+
   private static void loadGfx() {
     RENDERER.api().translucency(Translucency.HALF_B_PLUS_HALF_F);
 
-    UI_TEXTURE = Texture.png("UI", Path.of("gfx", "ui", "ui.png"));
-    UI_TEXTURE.persistent = true;
+    reloadUiTexture();
 
     eyeTexture = Texture.png("Loading eye", Path.of("gfx", "textures", "loading.png"));
 

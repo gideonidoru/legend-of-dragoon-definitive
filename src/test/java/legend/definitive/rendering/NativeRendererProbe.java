@@ -94,6 +94,80 @@ public final class NativeRendererProbe {
     require(glGetError() == GL_NO_ERROR, "SMAA GPU lifecycle has no errors");
     System.out.println("PASS: shipping SMAA shaders and lookup tables reconstruct diagonal edges, preserve UI/fringe/flat colors, repeat exactly and bypass at zero strength.");
   }
+  public static final class UiProbeListener {
+    boolean enabled;
+    @org.legendofdragoon.modloader.events.EventListener
+    public void image(final legend.game.textures.UiTextureEvent event) {
+      if(!this.enabled) return;
+      final var original=event.original();final byte[] rgba=new byte[original.data.length*4];
+      for(int y=0;y<original.height*2;y++)for(int x=0;x<original.width*2;x++) {
+        final int from=(y/2*original.width+x/2)*4,to=(y*original.width*2+x)*4;
+        System.arraycopy(original.data,from,rgba,to,4);
+        if(rgba[to+3]==0)rgba[to]=rgba[to+1]=rgba[to+2]=0;
+      }
+      event.replace(original,new legend.game.textures.Image(rgba,original.width*2,original.height*2));
+    }
+  }
+
+  private static void verifyUiLifecycle() throws Exception {
+    final var eventAccessField=GameEngine.class.getDeclaredField("EVENT_ACCESS");eventAccessField.setAccessible(true);
+    ((org.legendofdragoon.modloader.events.EventManager.Access)eventAccessField.get(null)).initialize(GameEngine.MODS);
+    final UiProbeListener owner=new UiProbeListener();GameEngine.EVENTS.register(owner);
+    final var reload=GameEngine.class.getDeclaredMethod("reloadUiTexture");reload.setAccessible(true);
+    reload.invoke(null);final Texture original=GameEngine.getUiTexture();require(original.width==32&&original.height==16,"disabled UI owner loads original checkbox pixels");
+    owner.enabled=true;reload.invoke(null);final Texture restored=GameEngine.getUiTexture();
+    require(restored.width==64&&restored.height==32&&GameEngine.getUiWidth()==32&&GameEngine.getUiHeight()==16,"enabled UI owner enlarges artwork but preserves logical coordinates");
+    original.use(0);final int oldId=glGetInteger(GL_TEXTURE_BINDING_2D);Texture.deleteTextures();require(!glIsTexture(oldId),"persistent checkbox predecessor retires after replacement");
+    owner.enabled=false;reload.invoke(null);require(GameEngine.getUiTexture().width==32,"disabling UI owner restores source sheet");
+    owner.enabled=true;reload.invoke(null);require(GameEngine.getUiTexture().width==64,"re-enabling UI owner restores enlarged sheet");
+
+    final var source=new legend.game.textures.Image(new byte[]{(byte)131,0,0,0},1,1);
+    final var enhanced=new legend.game.textures.Image(new byte[]{(byte)255,0,80,0,(byte)255,0,80,0,(byte)255,0,80,0,(byte)255,0,80,0},2,2);
+    final var binding=new legend.game.textures.NativeUiTextures.Binding(0,0,0,0,1,1);
+    require(legend.game.textures.NativeUiTextures.register(binding,source,enhanced),"native region registers once");
+    require(!legend.game.textures.NativeUiTextures.register(binding,source,enhanced),"earlier native owner wins");
+    final var regions=legend.game.textures.NativeUiTextures.class.getDeclaredField("REGIONS");regions.setAccessible(true);
+    final Object pending=((java.util.List<?>)regions.get(null)).getFirst();
+    final var prepare=legend.game.textures.NativeUiTextures.class.getDeclaredMethod("prepare",pending.getClass());prepare.setAccessible(true);
+    final var artwork=pending.getClass().getDeclaredField("artworkTexture");artwork.setAccessible(true);
+    legend.game.textures.NativeUiTextures.clear();prepare.invoke(null,pending);
+    require(artwork.get(pending)==null&&legend.game.textures.NativeUiTextures.allocatedBytes()==0,"retired preparation cannot resurrect native textures");
+    require(legend.game.textures.NativeUiTextures.register(binding,source,enhanced),"native selection can register after reboot");
+    final Object live=((java.util.List<?>)regions.get(null)).getFirst();prepare.invoke(null,live);
+    final Texture nativeTexture=(Texture)artwork.get(live);require(java.util.Arrays.equals(enhanced.data,pixels(nativeTexture)),"native artwork uploads exactly without interpreting STP as PNG opacity");
+    nativeTexture.use(0);final int nativeId=glGetInteger(GL_TEXTURE_BINDING_2D);
+    legend.game.textures.NativeUiTextures.clear();Texture.deleteTextures();require(!glIsTexture(nativeId),"native selection releases persistent GPU textures");
+    GameEngine.getUiTexture().delete();Texture.deleteTextures();
+    require(glGetError()==GL_NO_ERROR,"UIHD backend lifecycle has no GL errors");
+    System.out.println("PASS: source-bound UI disable/re-enable, logical dimensions, predecessor deletion, native first-owner precedence, stale preparation rejection and exact STP upload/deletion.");
+  }
+
+  private static void verifyUiAtlas() throws Exception {
+    final var packer=new legend.game.textures.TexturePacker("default UI layout");
+    final Path assets=Path.of("integrations/uihd/runtime-assets/uihd/assets");
+    final var catalog=new org.json.JSONObject(Files.readString(assets.getParent().resolve("catalog.json"))).getJSONArray("assets");
+    org.legendofdragoon.modloader.registries.RegistryId first=null;
+    for(int i=0;i<catalog.length();i++) {
+      final var entry=catalog.getJSONObject(i);if(!entry.getString("kind").equals("atlas"))continue;
+      final var id=new org.legendofdragoon.modloader.registries.RegistryId(entry.getString("registryId"));
+      if(first==null)first=id;
+      packer.add(id,legend.game.textures.UiTextures.decode(Files.readAllBytes(assets.resolve(entry.getString("resource")))));
+    }
+    // Layout-equivalent placeholders match the nine original 48² portraits and
+    // 24 spirit frames plus two overlays, without bundling private game pixels.
+    for(int i=0;i<9;i++)packer.add(new org.legendofdragoon.modloader.registries.RegistryId("probe:portrait"+i),new legend.game.textures.Image(new byte[48*48*4],48,48));
+    for(int i=0;i<24;i++)packer.add(new org.legendofdragoon.modloader.registries.RegistryId("probe:spirit"+i),new legend.game.textures.Image(new byte[16*16*4],16,16));
+    for(int i=0;i<2;i++)packer.add(new org.legendofdragoon.modloader.registries.RegistryId("probe:overlay"+i),new legend.game.textures.Image(new byte[8*16*4],8,16));
+    final var atlas=packer.packGrowing(512,512,2048);
+    require(atlas.texture.width==1024&&atlas.texture.height==512,"default UIHD layout fits a 2 MiB GPU atlas");
+    require(!GameEngine.RENDERER.isUiScope(),"atlas test starts outside a menu UI scope");
+    final var model=atlas.getIcon(first).render(new legend.core.gte.MV());
+    final var ui=QueuedModel.class.getDeclaredField("uiLayer");ui.setAccessible(true);require(ui.getBoolean(model),"atlas portraits/spirits remain protected UI even outside menu scope");
+    atlas.texture.use(0);final int id=glGetInteger(GL_TEXTURE_BINDING_2D);atlas.delete();Texture.deleteTextures();
+    require(!glIsTexture(id)&&glGetError()==GL_NO_ERROR,"grown UI atlas retires cleanly");
+    System.out.println("PASS: default-layout UIHD atlas grows to 1024x512 (2 MiB), protects out-of-menu atlas icons and deletes cleanly; other mod layouts remain separate.");
+  }
+
   public static void main(final String[] args) throws Exception {
     System.load(args[0]);
     final long context = open(); require(context != 0, "windowless context");
@@ -160,6 +234,8 @@ public final class NativeRendererProbe {
       buffer.delete(); colour.delete(); glow.delete(); mask.delete(); Texture.deleteTextures();
       Files.delete(vertex); Files.delete(fragment); Files.delete(directory);
       System.out.println("PASS: actual OpenGL backend MRT/R8 setup, blend/mask state, auxiliary clears, atlas mip cap, filtering toggles, texture updates and deletion.");
+      verifyUiLifecycle();
+      verifyUiAtlas();
       verifySmaa(api, args.length > 1 && args[1].equals("benchmark"));
       require(DefaultMaterialMaps.bind(),"shared default surface maps load");
       glActiveTexture(GL_TEXTURE4); final int normalId=glGetInteger(GL_TEXTURE_BINDING_2D);

@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "cd94c27a98319e7b9825e389f74ab460d16ef8be04b63e19a36f27fc1d270101",
+  "outputSha256": "54ea44cf4b17914d71c524e42a5fc1e337afbcc741ec708270cc5339856d6ab2",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-valley-stage26-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Valley source remains the unusual suspended-rock field in olive/brown storm haze, with near-black upper sky and no invented ground plane, ridge, lightning or magical glows.",
+    "style": "Weathered angular stone and restrained storm depth follow the modern Skurfa material detail; source darkness retained.",
+    "layout": "Source comparison retains the dominant upper-left, upper-center, center-right, lower-left and lower-right rocks, smaller interstitial rock pattern and original framing.",
+    "wrap": "Edge-neighborhood review retains unobtrusive low-contrast cloud continuation and source edge rock fragments; output edge difference3.53 versus source3.12. Native scene acceptance pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.118055582046509,
+    "outputEdgeMeanDifference": 3.5260417461395264
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188"
+}

@@ -1,0 +1,22 @@
+{
+  "artifact": "EnvHD battle panorama",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "stages": [
+    49
+  ],
+  "sourceMcqSha256": "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940",
+  "decodedRgbaSha256": "cad01c03913948bf39efbce136cb2a25186116b76b21940f09ae95ae1e47f8e6",
+  "sourceSize": [
+    256,
+    384
+  ],
+  "targetSize": [
+    1024,
+    1536
+  ],
+  "originalIntent": "Vellweb sun-bleached cylindrical stone ruin walls above a broad pale masonry floor",
+  "recipe": "Original-source 4x neural inference with periodic64px horizontal and clamped16px vertical context, cropped to source bounds. No opposite-edge averaging or reflection. Exact original alpha/discard/visible-black classes preserved.",
+  "styleReferences": "Skurfa cut5/cut37 visual-review-only; existing Skurfa art is protected and unchanged.",
+  "quality": "Source-faithful development baseline. Existing original repeat discontinuities remain; no claim of newly seamless repeats, native acceptance or final Skurfa-equivalent bespoke detail."
+}
