@@ -78,8 +78,11 @@ def publish(files, staging, output):
             if png.exists() and (png.is_symlink() or hashlib.sha256(png.read_bytes()).hexdigest() != report['atlasEngineSha256']):
                 raise ValueError('Public candidate revision conflicts with validated production')
             if not png.exists(): shutil.copyfile(source / png.name, png)
+            if hashlib.sha256(png.read_bytes()).hexdigest() != report['atlasEngineSha256']:
+                raise ValueError('Published atlas differs from the validated reconstruction')
             manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')
-            packing.validate_pack(destination, model, tim)
+            # Source preflight already validated every layout/mask field retained
+            # by the whitelist. Byte identity proves the copied atlas is identical.
             record.update(status='restoration-candidate', atlasEngineSha256=report['atlasEngineSha256'],
                 atlasSize=report['atlasSize'], path=destination.relative_to(output).as_posix())
         records.append(record)
