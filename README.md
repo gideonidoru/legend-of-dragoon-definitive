@@ -4,7 +4,7 @@
 
 Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with community HD artwork, neural-assisted character reconstruction, and optional gameplay conveniences. The visual target is a polished modern AA game with an intentional retro style: recognizable characters, clearer faces, richer materials and carefully smoother models. Character reconstruction is planned; the current tools are experiments. Selectable Definitive and Faithful campaign presets keep gameplay choices separate from presentation and accessibility.
 
-This is an unofficial community project in early development. **The guided installer is an alpha. A reported Deck installation failure is under investigation; use the corrected installer linked below.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively. Full physical Steam Deck validation remains pending.
+This is an unofficial community project in early development. **The guided installer is an alpha. The corrected release adds verified installation, clear progress/error screens and recovery checks; physical Deck acceptance remains pending.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively. Full physical Steam Deck validation remains pending.
 
 ## Install on Steam Deck
 
