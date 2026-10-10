@@ -100,7 +100,7 @@ class PresentationTest {
         for(final int width : new int[]{1024, 1100, 1280}) {
           final var view = new ManagerView(null, this.temporary, Path.of("/home/deck/Games/Legend-of-Dragoon-Definitive"));
           field(view, "launcher", true);
-          field(view, "candidate", new ReleaseUpdates.Candidate("definitive-alpha-2026-10-09-presentation", "fixture", URI.create("https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/fixture/package.zip"), "a".repeat(64)));
+          field(view, "candidate", new ReleaseUpdates.Candidate("definitive-alpha-2026-10-09-presentation-2", "fixture", URI.create("https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/fixture/package.zip"), "a".repeat(64)));
           invoke(view, "render"); inspect(view, width, 700, "launcher-update");
           button(view, "Review update").doClick(); inspect(view, width, 700, "update-review");
           assertNotNull(button(view, "Install update"));

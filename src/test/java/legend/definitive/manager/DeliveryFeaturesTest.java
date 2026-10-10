@@ -55,7 +55,7 @@ class DeliveryFeaturesTest {
     assertArrayEquals(broken, Files.readAllBytes(config.resolve("shortcuts.vdf")));
   }
   @Test void releaseSelectionRequiresOurPlatformAndDigest() throws Exception {
-    final String json = "[{\"draft\":false,\"tag_name\":\"alpha1\",\"assets\":[{\"id\":42,\"name\":\"Legend-of-Dragoon-Definitive-linux-x64.zip\",\"digest\":\"sha256:" + "a".repeat(64) + "\",\"browser_download_url\":\"https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/alpha1/package.zip\"}]}]";
+    final String json = "[{\"draft\":false,\"published_at\":\"2026-10-09T12:00:00Z\",\"tag_name\":\"alpha1\",\"assets\":[{\"id\":42,\"name\":\"Legend-of-Dragoon-Definitive-linux-x64.zip\",\"digest\":\"sha256:" + "a".repeat(64) + "\",\"browser_download_url\":\"https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/alpha1/package.zip\"}]}]";
     assertEquals("42", ReleaseUpdates.select(json, "linux-x64", "", "").orElseThrow().assetId());
     assertTrue(ReleaseUpdates.select(json, "macos-arm64", "", "").isEmpty());
     assertTrue(ReleaseUpdates.select(json, "linux-x64", "42", "").isEmpty());

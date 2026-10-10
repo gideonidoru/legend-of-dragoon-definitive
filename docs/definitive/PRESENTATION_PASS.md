@@ -29,3 +29,35 @@ The first hosted Linux render exposed unsmoothed text despite passing layout tes
 The smoothing correction passed all 63 local delivery cases: 62 passed, zero failures, one window case deferred. It rebuilt the portable installer without opening desktop windows. Both independent focused reviews found no remaining actionable defect in the correction.
 
 The smooth roots are Swing painting origins, so selection, focus and changing progress labels retain smoothing during dirty-child repaints. Linux's actual-window suite now checks immediate opaque-child repaint routing through both roots, as well as picker disposal and Finish. These two tests remain skipped in local headless runs and execute only in the CI virtual display.
+
+## Initial presentation build inputs
+
+Final build source: [`d48a133bcb19f38d68a7803b7beca3a42d059a1f`](https://github.com/gideonidoru/legend-of-dragoon-definitive/commit/d48a133bcb19f38d68a7803b7beca3a42d059a1f). [Hosted run 38017506402](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38017506402) passed all three required jobs using Temurin 25 and Gradle 9.1.0. Linux and Mac each passed 62 delivery checks, zero failures, with two window checks deferred. Linux separately passed both actual-window checks under Xvfb, including dirty-child repaint smoothing. All bootstrap, lock, archive, publication and cross-language material checks passed. The first render build, 38016964109, was held from publication because its Linux text edges were visibly rough.
+
+Both downloaded platform packages passed their full closed inventories, hashes, source/platform/tag and package identity checks: Linux `alpha-bce0ae3ac7a76f20`, Mac `alpha-3cc5d29317c7e49d`. Both hosted portable archives match each other and the locally stamped entry point byte-for-byte. The Mac hosted package upgraded an isolated QA installation and prepared the owner's previously imported four discs with the real upstream extractor in about 11 seconds. This retained its fixture shortcut and verified launchers/data; it did not open the game or operate the real Steam library.
+
+| Asset | Bytes | SHA256 |
+| --- | ---: | --- |
+| `Install-Definitive.desktop` | 1,382 | `48d124621a8aa7052a3dab91ecc90eed5a0c704a0867ab1885499ad9d030c4f5` |
+| `Install-Definitive.sh` | 3,438 | `342754a4816d4efce89d117d52a1fd22caa78421190e0de053b0f11c1932202a` |
+| `Definitive-Installer.zip` | 9,373,315 | `483c02991d5cf2c551f58eebcc3bf18bd5d5e6e390eac9556b9063e0ef40d900` |
+| `Legend-of-Dragoon-Definitive-linux-x64.zip` | 433,349,448 | `4d9a6eb4808c2aa0e8f4783d3dc023ef7563c8db0ca5347143fbbe143ae1ea4f` |
+| `Legend-of-Dragoon-Definitive-macos-arm64.zip` | 423,792,738 | `c1c5008e4dedc9ac258b53c72f48c5a03388779d87cd52b2561bf6c6833cfa83` |
+
+## Linux screen review
+
+These are the actual shipped Swing components rendered in the hosted Linux build, rather than a separate mockup or a physical Deck capture. Skurfa artwork and its source/license attribution remain intact. Setup and launcher examples are 1100/1280 by 700 pixels; the smallest tested client area is 1024 by 660.
+
+![Installer](images/installer-linux.png)
+
+![Launcher](images/launcher-linux.png)
+
+![Update review](images/updater-linux.png)
+
+## Public release-selection correction
+
+The first live public setup probe completed a verified installation, but its source assertion failed: the actual GitHub release index listed the earlier recovery build ahead of the newer presentation build. Repeating the fresh probe confirmed the same result. The installer and updater had trusted list order, so the initial presentation build is superseded by a correction rather than replacing its immutable assets.
+
+Selection now compares publication times of compatible, non-draft releases, validates the selected metadata and tag-bound URL, then checks the installed identity. An older installed release cannot hide a newer update, and an already-current installation cannot be offered an older listed entry. Invalid publication dates, ambiguous newest dates and wrong tag download URLs fail closed, including when the selected identity matches the installed release. Equal dates among older releases do not hide a uniquely newer release. The corrected published release must pass a fresh live source-identity assertion before delivery is considered verified.
+
+The correction's full local supported build passed with `build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-09-presentation-2`: 71 delivery cases, 69 passed, zero failures, two actual-window cases deferred to Linux. All bootstrap, interruption, archive, publication-gate and workflow checks passed again. Both independent focused reviews found no remaining actionable finding.

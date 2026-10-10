@@ -6,6 +6,8 @@ import java.net.URI;
 import java.net.http.*;
 import java.nio.file.*;
 import java.time.Duration;
+import java.time.Instant;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 /** Background checks against our repository. Installation remains an explicit user action. */
@@ -34,21 +36,32 @@ public final class ReleaseUpdates {
   static Optional<Candidate> select(final String json, final String platform, final String installedId, final String installedTag) throws IOException {
     final Object parsed = new Json(json).read();
     if(!(parsed instanceof List<?> releases)) throw new IOException("Unexpected update response.");
+    DatedAsset newest = null; boolean ambiguous = false;
     for(final Object item : releases) {
       if(!(item instanceof Map<?, ?> release) || Boolean.TRUE.equals(release.get("draft"))) continue;
       final Object tagValue = release.get("tag_name"), assetsValue = release.get("assets");
       if(!(tagValue instanceof String tag) || !(assetsValue instanceof List<?> assets)) continue;
-      if(tag.equals(installedTag)) return Optional.empty();
       for(final Object assetValue : assets) {
         if(!(assetValue instanceof Map<?, ?> asset) || !("Legend-of-Dragoon-Definitive-" + platform + ".zip").equals(asset.get("name"))) continue;
-        final String id = String.valueOf(asset.get("id"));
-        if(id.equals(installedId)) return Optional.empty();
-        if(!(asset.get("digest") instanceof String digest) || !digest.matches("sha256:[a-f0-9]{64}") || !(asset.get("browser_download_url") instanceof String url) || !url.startsWith("https://github.com/" + REPO + "/releases/download/")) throw new IOException("Release package lacks verified download metadata.");
-        return Optional.of(new Candidate(tag, id, URI.create(url), digest.substring(7)));
+        final Instant published;
+        if(!(release.get("published_at") instanceof String date)) throw new IOException("Release package lacks a valid publication date. Retry the update check.");
+        try { published = Instant.parse(date); }
+        catch(final DateTimeParseException failure) { throw new IOException("Release package lacks a valid publication date. Retry the update check.", failure); }
+        if(newest == null || published.isAfter(newest.published())) { newest = new DatedAsset(tag, asset, published); ambiguous = false; }
+        else if(published.equals(newest.published()) && !tag.equals(newest.tag())) ambiguous = true;
       }
     }
-    return Optional.empty();
+    if(newest == null) return Optional.empty();
+    if(ambiguous) throw new IOException("Compatible releases have ambiguous publication dates. Retry the update check.");
+    final String id = String.valueOf(newest.asset().get("id"));
+    if(!id.matches("[1-9][0-9]*") || !(newest.asset().get("digest") instanceof String digest) || !digest.matches("sha256:[a-f0-9]{64}") || !(newest.asset().get("browser_download_url") instanceof String url) || !url.startsWith("https://github.com/" + REPO + "/releases/download/" + newest.tag() + "/")) throw new IOException("Release package lacks verified download metadata.");
+    final URI downloadUrl;
+    try { downloadUrl = URI.create(url); }
+    catch(final IllegalArgumentException failure) { throw new IOException("Release package has an invalid download URL.", failure); }
+    if(newest.tag().equals(installedTag) || id.equals(installedId)) return Optional.empty();
+    return Optional.of(new Candidate(newest.tag(), id, downloadUrl, digest.substring(7)));
   }
+  private record DatedAsset(String tag, Map<?, ?> asset, Instant published) { }
   public static String install(final InstallStore store, final Candidate candidate) throws IOException, InterruptedException {
     return install(store, candidate, InstallProgress.NONE);
   }
