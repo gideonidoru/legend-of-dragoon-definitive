@@ -1,73 +1,60 @@
 # ModelsHD
 
-Optional character geometry for Legend of Dragoon: Definitive, derived from Severed Chains. ModelsHD owns meshes, proportions, attachments and animation compatibility. Character artwork and rendering remain separate workstreams.
+Geometry upgrades for Legend of Dragoon: Definitive, derived from Severed Chains. ModelsHD owns meshes and animation compatibility. Texture artwork, lighting and rendering remain separate workstreams.
 
-**Version 0.3.0: bundled development geometry pass for all 19 party battle variants.** Nine normal forms, nine Dragoon forms and Divine Dart now have source-bound generated candidates and native-loader checks. This improves eligible surfaces; it does not deliver the individually remodeled faces, hair, costumes or anatomy required for the final visual target. Field and world-map replacements are unfinished. The retained portrait/neck experiments are held and are not shipped by this mod.
+**Version 0.4.0 applies the first smoothing pass across the supported model catalog.** All 1,343 canonical containers were inspected: 1,004 receive some smoothing and 339 retain their originals. The package contains 8,777 unique custom part replacements, reused across 11,103 part instances. This includes the nine confirmed party field models, all 19 party battle forms, eligible NPCs, bosses, enemies, scenery and world-map resources. Unresolved actors retain their catalog labels. This is a broad foundation, not individually rebuilt faces, hair, hands or costumes.
 
-ModelsHD and its complete 19-model custom roster are public and included in the normal Definitive download. Players do not need Python, an authoring environment or a separate model transfer. [Publication policy](../../docs/definitive/ASSET_POLICY.md).
+The complete custom geometry is public and bundled with the compatible engine in the normal Definitive installation. Players need no Python, authoring setup or separate model transfer. [Coverage and verification](../../docs/definitive/MODELS_HD_WORLD_PASS.md) · [Publication policy](../../docs/definitive/ASSET_POLICY.md).
 
-Build from the project root with Java 25:
+## Build and install
+
+From the project root with Java 25:
 
 ```sh
 ./gradlew modelsHdTests modelsHdJar modelsHdBundle
 ```
 
-The complete artifact is `build/modelshd/ModelsHD-0.3.0.jar`; `ModelsHD-0.3.0.zip` contains the same complete mod plus optional authoring tools. The normal Definitive game package includes the JAR under `bundled-mods`, paired with the compatible engine. HD artwork selection loads ModelsHD and Skurfa; choosing original artwork removes the bundled visual mods from the managed workspace. Existing campaigns retain their mod choices and can enable ModelsHD through the game's mod menu. New campaigns initially include installed mods.
+Artifacts are `build/modelshd/ModelsHD-0.4.0.jar` and `ModelsHD-0.4.0.zip`. The normal game package includes the JAR under `bundled-mods`; the installer supplies the matching engine. HD artwork selection loads ModelsHD and Skurfa. Original artwork removes the managed visual mods, restoring the native route on the next game/model load. Existing campaigns retain their choices; ModelsHD can be selected in the game's mod menu.
 
-Updates and rollback select the model version in the active verified release. Earlier manually copied `ModelsHD-x.y.z.jar` files remain in user data but are not linked alongside the bundled version, preventing duplicate mod IDs. Other custom mod files are preserved.
+Installation, updates and rollback use the model version from the active verified game release. Older manually copied ModelsHD JARs remain in user data but are not linked alongside the bundled mod. Other custom mods are preserved. For standalone use, copy the complete JAR into a matching current Definitive engine's `mods` folder and remove older standalone ModelsHD JARs from that folder. Version 0.4 requires the shared geometry event added with this engine increment; older engines are not a supported pairing.
 
-For standalone use, install the complete JAR in a current Definitive engine's `mods` folder and select ModelsHD. The earlier Deck recovery release lacks the authored-model API and will retain originals with a warning; the new bundled install includes the required engine support.
+## How the pass works
 
-## Geometry packs and original mode
+One subdivision pass uses strength 0.7 and a 70-degree crease threshold. Open joint borders and sharp edges stay fixed. Degenerate, overlapping or non-manifold parts retain their originals. Flat surfaces that gain no geometric improvement also stay unchanged. Eligible source triangles become four candidate triangles; this is a topology count, not a measured Deck performance budget.
 
-ModelsHD first checks an optional author override at `model-packs/modelshd/battle/<sourceGeometrySha256>.json`, then uses the matching custom pack embedded in its JAR. Both use the same strict reader. Unknown geometry, invalid packs and unsupported owners retain their original model. Deselecting ModelsHD or choosing original artwork in the managed launcher restores the original route on the next game/model load.
+Exact single-part geometry identities bind each replacement to original positions, normals, scale, polygon flags and indexed connectivity. Runtime UV, palette and page relocation is excluded from the identity. The shared TMD loader prepares rendering geometry before allocation, leaving original CPU tables, part numbering, transforms, collision, scripts, animation and texture-animation data intact. A failed replacement retains the original and frees any staged allocations. Explicit authored tables and custom table types bypass automatic refinement.
 
-Version 1 requires every original animation part in its original order and coordinate frame. A source-bound identity covers original positions, normals, scale, polygon commands and geometry references; it deliberately excludes relocated UV/palette/page words. Each part declares floating-point XYZ `vertices`, unit `normals` and `faces`. Each triangle or quad names a `sourceFace`, its new `vertices` and `normals` indices, and `sourceWeights`: one convex weight row per new corner over that source face's original corners. The loader copies the active source's material commands, palette/page/blend words and interpolated corner colour bytes. UV interpolation is rounded to the native packet's eight-bit coordinates; this limitation needs review at new texture seams before accepting a retopology. There is no new texture sampler or image loader in ModelsHD.
+The version-1 pack maps each new corner to a source face using convex `sourceWeights`. The reader inherits active UVs, material words, blending and colors. UV interpolation rounds to native eight-bit packet coordinates; texture seams still need visual review. Texture dimensions supplied by the engine remain attached to the native construction route. ModelsHD never loads or selects a texture image.
 
-Players receive the geometry in the install. Authors can reproduce the roster from existing extracted files without changing the originals:
+An optional author override at `model-packs/modelshd/parts/<singlePartGeometrySha256>.json` takes priority over the matching embedded part. Both use the same strict, bounded reader. Invalid overrides retain the native part rather than silently selecting another candidate. The earlier `battle/` payloads and `roster.json` remain as historical authoring/provenance records; the normal 0.4 route uses the new part index and does not apply the legacy battle pass a second time. Legacy whole-model `battle/` overrides are not active in this route.
+
+## Reproduce the custom payload
+
+Keep original extracted inputs in a separate local directory:
 
 ```sh
 python3 -m venv /PRIVATE/modelshd-tools
 /PRIVATE/modelshd-tools/bin/python -m pip install -r scripts/requirements-visual.txt
-/PRIVATE/modelshd-tools/bin/python scripts/build-modelshd-roster.py \
+/PRIVATE/modelshd-tools/bin/python scripts/build-modelshd-world-pass.py \
   --files /PRIVATE/game/files \
-  --output /PRIVATE/modelshd-authoring
+  --catalog docs/definitive/model-catalog/model-catalog.json \
+  --core-roster integrations/modelshd/src/main/resources/modelshd/models/roster.json \
+  --output /PRIVATE/modelshd-world-pass
 ```
 
-The builder requires all 19 sources, validates matching keyframes and fixed open borders, and publishes a new output only after the full roster succeeds. It refuses existing output and never writes into the checkout. Only the custom candidate packs are published into the mod resources after verification. Source controls and raw extraction stay separate. The adjacent public roster manifest binds each candidate to its source identity and checksum; the build refuses an incomplete or corrupted roster.
+The builder verifies all source aliases against catalog hashes, deduplicates exact parts, checks fixed borders and noncollapsed triangles, and records every changed or retained part. It refuses an existing destination and publishes a completed output atomically. Only generated changed geometry, checksums, recipe and coverage metadata are included in Git; it never exports original control meshes. Gradle checks the complete embedded inventory and every payload digest before packaging.
 
-For a single-character source control and subdivision pilot:
+## Texture compatibility
 
-```sh
-python scripts/export-modelshd-pilot.py \
-  --source /private/game/files/characters/haschel/models/combat/32 \
-  --output /private/modelshd-pilot
-```
-
-It requires NumPy and the existing source-inspection helpers. The pilot is a pipeline exercise; it does not supply a finished face, costume sculpt or community-approved character. Authored replacements can use denser topology through the same material-face mapping. Clamped budgets are format safeguards, not measured Deck performance budgets.
-
-A pack is fully decoded and validated before GPU preparation. All new parts are prepared before any live part reference changes. Failure frees staged resources and retains the original character. Successful replacement preserves part transforms, animation state, visibility and script-facing part numbers. The game owns normal teardown through its model parts. Animated palettes, auxiliary container data, unknown source geometry and custom geometry owners are held until separately supported.
-
-## Texture mod compatibility
-
-| Route | Current behavior and evidence |
+| Route | Behavior and evidence |
 | --- | --- |
-| CharHD's current field texture event | ModelsHD 0.2 is battle-only and does not alter that field route. Source audit establishes separation; an actual combined gameplay run remains required. |
-| Standard indexed battle textures or replaced VRAM images | Active palette, page, blend and UV words are inherited. Combatant texture binding and image pixels are untouched. Native-loader fixture and private Haschel control checks pass. |
-| Standard RGBA/PNG conversion | Texture normalization dimensions now remain attached to the source table and transfer to the new geometry. Native-loader fixtures and a simulated whole-actor PNG conversion pass. This is not a test of every HD texture mod. |
-| Custom GPU UV/material mapping | A native source control is compared against the active mesh's UV, palette/page, colour and flag fields before replacement. An incompatible mapping keeps its existing owner and model, with a diagnostic. It needs an explicit handoff before ModelsHD can also replace its geometry. |
-| Another custom model/mesh owner | ModelsHD leaves custom table/object types and unknown geometry alone. Mod-order permutations and shared ownership need actual integration tests. |
+| Indexed textures and VRAM replacements | Active UV, palette, page, color and blend words are inherited. Original image pixels and palette-animation ownership are unchanged. |
+| Typed PNG/RGBA route, including CharHD field rebuilding | Explicit width/height reach the shared native constructor. Synthetic tests and simulated PNG construction across the catalog pass; actual CharHD gameplay remains to be checked. |
+| Authored geometry or custom table types | Their existing geometry owner retains priority. Unknown geometry has no guessed replacement. |
+| Arbitrary custom GPU remapping | Separate integration evidence is required. Later GPU edits retain their owner; rebuilding must use the engine's declared material/dimension route. No universal third-party compatibility claim is made. |
 
-Texture mods should retain the original part/material identities and use the engine's typed texture-dimension route. For custom atlas layouts, add a declared geometry/material handoff rather than guessing from an image's dimensions or overwriting another mod's UVs. ModelsHD never loads, edits or selects a replacement image.
+## Next
 
-## Verified development evidence
+Compare the complete actors at normal Deck gameplay size, exercise scenes and animations with representative texture mods, and measure loading, memory and frame times. Then author clearer faces, hair, hands and costumes for the party, followed by prominent NPCs, boss families and common enemies. [Detailed roadmap](../../docs/definitive/MODELS_HD_ROADMAP.md).
 
-On the Mac Studio with Java 25, the headless tests exercise the real native vertex constructor with a recording allocation backend. They cover indexed and RGBA addressing, relocated material words, unchanged colour alpha bytes, finite floating-point geometry, full-part validation, malformed packs, original ownership, active custom-UV rejection, rollback and cleanup after a failed second material layer.
-
-The bundled roster covers **452 animation parts: 428 refined, 24 retained unchanged** by the topology safeguards. Geometry changes from 16,577 to 57,449 triangles across the full roster, with individual candidates ranging from 2,687 to 3,436 triangles. The 19 private native-loader probes pass: exact source-control vertex arrays, normal/Dragoon battle-adapter application, finite candidate data and a separately simulated PNG route. Python and Java source identities agree. Stored rigid-pose sampling covers 103 original animation files and 915 keyframes. Twenty Java behavior tests and five original synthetic roster tests pass locally. [Roster evidence and expansion plan](../../docs/definitive/MODELS_HD_ROADMAP.md).
-
-These are CPU/native-loader and resource-lifecycle checks with no-op or recording allocation. They do not prove an OpenGL draw, actual event-driven gameplay activation, scene transitions, real CharHD compatibility, improved anatomy, a complete model rig, physical Steam Deck performance or community acceptance.
-
-Next: compare whole characters at normal gameplay size, then author clearer faces, controlled hair and costume topology through the established replacement route. Inspect actual battle loading, transformations, visibility, teardown and combined texture mods. Measure a three-character battle and the heaviest Dragoon effects on a physical Deck. The [plan](../../docs/definitive/MODELS_HD_ROADMAP.md) keeps all 19 in scope before expanding to field characters and other actors. Judge whole-character improvement before returning to local seam polish; preserve original mode throughout.
-
-Source and integration code use the upstream AGPL v3 license; see the project's LICENSE. Custom model packs and custom HD artwork are public under the owner’s policy. Disc images, full original extraction, source controls, saves, credentials and authoring runtimes stay outside Git. Preserve the embedded model attribution notices.
+Code remains AGPL v3 under the project LICENSE. Preserve upstream and embedded attribution notices. Custom work is public; disc images, original extracted data, controls, saves, credentials and authoring runtimes remain excluded.

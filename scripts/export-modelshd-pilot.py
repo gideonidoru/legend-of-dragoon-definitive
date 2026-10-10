@@ -31,7 +31,11 @@ def native_parts(data):
  return parts,native,digest.hexdigest()
 
 def export(data,control=False):
- parts,native,identity=native_parts(data);out=[];reports=[]
+ parts,native,identity=native_parts(data)
+ return export_geometry(parts,native,identity,control)
+
+def export_geometry(parts,native,identity,control=False,strength=.7,crease_degrees=110):
+ out=[];reports=[]
  for index,(original,polygons) in enumerate(parts):
   sourceNormals,normalRefs=native[index]
   if control:
@@ -39,7 +43,7 @@ def export(data,control=False):
    for i,(refs,uv,clut,colour) in enumerate(polygons):faces.append(dict(sourceFace=i,vertices=refs,normals=normalRefs[i],sourceWeights=np.eye(len(refs)).tolist()))
    report=dict(changed=False,reason='native source control')
   else:
-   (vertices,refined),report=surface.refine_part(parts[index],strength=.7,crease_degrees=110)
+   (vertices,refined),report=surface.refine_part(parts[index],strength=strength,crease_degrees=crease_degrees)
    faces=[]
    if not report['changed']:
     normals=sourceNormals.copy()
@@ -53,7 +57,7 @@ def export(data,control=False):
     assert len(lineage)==len(refined)
     normals=np.zeros_like(vertices)
     for (refs,uv,clut,colour),(source,weights) in zip(refined,lineage):
-     points=vertices[refs];cross=np.cross(points[1]-points[0],points[2]-points[0]);originalRefs=polygons[source][0];old=original[originalRefs];oldcross=np.cross(old[1]-old[0],old[2]-old[0]);expected=sourceNormals[normalRefs[source]].mean(0)
+     points=vertices[refs];cross=np.cross(points[1]-points[0],points[2]-points[0]);originalRefs=polygons[source][0];old=original[originalRefs];oldcross=np.cross(old[1]-old[0],old[2]-old[0]);expected=sourceNormals[normalRefs[source]].mean(0) if len(sourceNormals) else oldcross
      if np.dot(oldcross,expected)<0:cross=-cross
      for ref in refs:normals[ref]+=cross
      faces.append(dict(sourceFace=source,vertices=refs,normals=refs,sourceWeights=weights.tolist()))

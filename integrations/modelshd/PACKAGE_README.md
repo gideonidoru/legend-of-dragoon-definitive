@@ -1,19 +1,15 @@
-# ModelsHD 0.3.0
+# ModelsHD 0.4.0
 
-The complete mod contains custom geometry for all 19 party battle variants: nine normal forms, nine Dragoon forms and Divine Dart. These custom models are public and tracked with source identities and checksums. They are also included in the normal Definitive install. No separate generation or transfer is required for players.
+The first broad geometry smoothing pass for Legend of Dragoon: Definitive. All 1,343 supported canonical model containers were inspected; 1,004 receive some smoothing and 339 keep their originals. The complete mod contains 8,777 unique source-bound custom part replacements. Individual faces, hair and costumes have not been rebuilt.
 
-This is a first surface pass. Individually remodeled faces, hair, costumes and anatomy remain in progress. Combined texture-mod gameplay, visual acceptance and physical Steam Deck performance are not yet verified.
+The normal Definitive installer supplies this mod together with its compatible engine. Select HD artwork to load it, or original artwork to restore the native route on the next game/model load. Existing campaigns can enable ModelsHD through the game's mod menu.
 
-## Installation
+For standalone installation, copy `mods/ModelsHD-0.4.0.jar` to a matching current Definitive engine's `mods` folder. Remove older standalone ModelsHD JARs to avoid duplicate mod IDs. Version 0.4 requires the shared geometry event in the corresponding Definitive release.
 
-The normal Definitive installer downloads the compatible engine and ModelsHD together. The HD artwork setting loads the bundled mod; original artwork removes it from the managed workspace. New campaigns include installed mods by default; existing campaigns keep their mod selection and can enable ModelsHD through the game’s mod menu.
+The pass keeps open joint borders, sharp creases, source part numbering and animation ownership. Flat parts with no geometric benefit and invalid topology retain their originals. Current UV/material words and declared texture dimensions pass through. Authored geometry owners take priority. Corrupt replacements fall back to native geometry.
 
-For standalone use, copy `mods/ModelsHD-0.3.0.jar` into a current Definitive engine’s `mods` folder and select ModelsHD. Remove older standalone ModelsHD JARs from that folder to avoid duplicate mod IDs. The earlier Deck recovery engine lacks the required authored-model API and will retain originals with a warning.
+Optional author overrides use `model-packs/modelshd/parts/<singlePartGeometrySha256>.json`; players need no authoring tools or external pack directory. The old whole-model `battle/` override path is not active in the 0.4 global route.
 
-An optional authored pack at `model-packs/modelshd/battle/<sourceGeometrySha256>.json` takes priority over the embedded roster. Unsupported geometry/material owners and invalid input retain original models. ModelsHD preserves active texture settings; it does not select or supply new texture images.
+Headless construction and packaging checks do not establish visual acceptance, actual CharHD gameplay, all scene transitions or physical Steam Deck performance. See the included [coverage report](docs/definitive/MODELS_HD_WORLD_PASS.md) and [roadmap](docs/definitive/MODELS_HD_ROADMAP.md).
 
-## Optional authoring tools
-
-The included scripts reproduce candidates from your extracted game files. Python, Pillow and NumPy are authoring dependencies only; they are not required to install or play. Keep raw extraction, source controls and diagnostics in a separate working folder. Publish custom candidates with provenance under the project’s public-asset policy.
-
-See the [roster and expansion plan](docs/definitive/MODELS_HD_ROADMAP.md) and the [source documentation](https://github.com/gideonidoru/legend-of-dragoon-definitive/tree/main/integrations/modelshd). Code remains [AGPL v3](LICENSE); preserve the embedded model attribution notices. Disc images, the original extracted data set, saves, credentials and local runtimes are excluded.
+Source/mod code remains AGPL v3; preserve LICENSE and embedded attribution notices. Custom geometry is public and bundled. Game discs, original extracted assets, controls, saves, credentials and local runtimes are excluded.

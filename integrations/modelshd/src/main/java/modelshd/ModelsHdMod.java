@@ -2,6 +2,7 @@
 package modelshd;
 
 import legend.game.modding.events.battle.CombatantModelLoadedEvent;
+import legend.game.modding.events.tmd.TmdGeometryEvent;
 import legend.game.tmd.TmdObjTable1c;
 import legend.game.tmd.TmdMeshObj;
 import legend.game.combat.types.CombatantStruct1a8;
@@ -15,18 +16,33 @@ import java.nio.file.Path;
 @Mod(id = ModelsHdMod.MOD_ID, version = "^3.0.0")
 public final class ModelsHdMod {
   public static final String MOD_ID = "modelshd";
+  private GeometryPass geometryPass;
   public ModelsHdMod() {
     try {
       TmdObjTable1c.class.getConstructor(String.class, org.joml.Vector3f[].class, org.joml.Vector3f[].class, TmdObjTable1c.Primitive[].class);
       TmdObjTable1c.class.getMethod("buildObjLike", TmdObjTable1c.class);
+      TmdObjTable1c.class.getMethod("isAuthoredGeometry");
+      this.geometryPass = new GeometryPass();
       legend.core.GameEngine.EVENTS.register(this);
-    } catch(final NoSuchMethodException e) {
-      LogManager.getLogger().warn("ModelsHD requires the Definitive authored-model API; original models retained");
+    } catch(final NoSuchMethodException | java.io.IOException e) {
+      LogManager.getLogger().warn("ModelsHD unavailable; original models retained: {}", e.getMessage());
+    }
+  }
+
+  @EventListener
+  public void onGeometry(final TmdGeometryEvent event) {
+    if(this.geometryPass == null) return;
+    try {
+      this.geometryPass.prepare(event, Path.of("model-packs", MOD_ID, "parts"));
+    } catch(final Exception failure) {
+      LogManager.getLogger().warn("ModelsHD kept original {}: {}", event.source.name, failure.getMessage());
     }
   }
 
   @EventListener
   public void onCombatantLoaded(final CombatantModelLoadedEvent event) {
+    // The world pass is already prepared once in the shared native mesh route.
+    if(this.geometryPass != null) return;
     try {
       if(replaceIfSupported(event.combatant, event.model, Path.of("model-packs", MOD_ID, "battle"))) {
         LogManager.getLogger().info("ModelsHD replaced {} animation parts (Dragoon: {})", event.model.modelParts_00.length, event.combatant.isDragoon());
