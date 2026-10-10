@@ -25,6 +25,9 @@ public class InputActionState {
     this.state = State.RELEASED;
   }
 
+  /** Cancellation is distinct from a normal button-up: discard unconsumed taps too. */
+  public void cancel() { this.release(); this.consumeTick(); }
+
   public void axis(final float axis) {
     this.axis = axis;
   }

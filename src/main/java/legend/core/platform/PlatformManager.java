@@ -107,6 +107,8 @@ public abstract class PlatformManager {
     this.input.setExpectedFps(hz);
   }
 
+  public int getInputTickRate() { return this.input.getExpectedFps(); }
+
   public void resetActionStates() {
 
   }
