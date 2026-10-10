@@ -12,14 +12,17 @@ public final class PortableSetup {
     return install(supplied, store, InstallProgress.NONE);
   }
   public static String install(final Path supplied, final InstallStore store, final InstallProgress progress) throws IOException, InterruptedException {
+    return install(supplied, store, progress, false);
+  }
+  static String install(final Path supplied, final InstallStore store, final InstallProgress progress, final boolean fullReinstall) throws IOException, InterruptedException {
     InstallerLog.write("Install target: " + store.root() + "; platform: " + PackageManifest.hostPlatform() + "; Java: " + Runtime.version());
-    if(supplied != null && Files.isRegularFile(supplied.resolve(PackageManifest.METADATA))) return store.install(supplied, "", progress);
+    if(supplied != null && Files.isRegularFile(supplied.resolve(PackageManifest.METADATA))) return store.install(supplied, "", null, progress, fullReinstall);
     progress.phase("Checking available space", store.root().toString(), 2);
     if(Files.getFileStore(store.root()).getUsableSpace() < 1024L * 1024 * 1024) throw new IOException("Setup needs at least 1 GB free before downloading. Installation and disc preparation check their full storage needs separately.");
     progress.phase("Finding your build", "Checking GitHub for the " + PackageManifest.hostPlatform() + " package", 5);
     // A network error is actionable; never silently build after a failed release authenticity check.
     final var published = ReleaseUpdates.latest();
-    if(published.isPresent()) return ReleaseUpdates.install(store, published.get(), progress);
+    if(published.isPresent()) return fullReinstall ? ReleaseUpdates.reinstall(store, published.get(), progress) : ReleaseUpdates.install(store, published.get(), progress);
     // This pin travels inside the checksum-verified manager JAR, never in a mutable user setting.
     final String revision = fallbackRevision();
     if(Files.getFileStore(store.root()).getUsableSpace() < 12L * 1024 * 1024 * 1024) throw new IOException("A reviewed source build needs at least 12 GB free for source, build output and dependencies. Free space or use a verified platform package.");
@@ -33,7 +36,7 @@ public final class PortableSetup {
       if(PackageManifest.hostPlatform().equals("linux-x64")) command.addAll(List.of("-Pos=linux", "-Parch=x86_64", "-Psteamdeck=true"));
       progress.phase("Building Definitive", "Java and Gradle are compiling the game; build output follows below", 35);
       execute(command, checkout, log, progress, "Building Definitive", 35, 30);
-      return store.install(checkout.resolve("build/definitive/package"), "", progress);
+      return store.install(checkout.resolve("build/definitive/package"), "", null, progress, fullReinstall);
     } catch(final IOException e) { throw new IOException("Setup could not finish its source build. Check your connection and free space. Build details: " + log, e); }
     // Retain build logs/source on failure and success for diagnosis and corresponding source access.
   }

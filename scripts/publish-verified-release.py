@@ -13,7 +13,7 @@ import subprocess
 import sys
 import zipfile
 import tempfile
-from package_validation import verify_package, verify_installer, inventory
+from package_validation import verify_package, verify_installer, inventory, file_delivery_assets, properties
 
 REPO = 'gideonidoru/legend-of-dragoon-definitive'
 NAMES = {'Install-Definitive.desktop', 'Install-Definitive.sh', 'Definitive-Installer.zip',
@@ -37,15 +37,28 @@ def verify_ci_artifacts(run_id, source, expected):
         artifact = matched[0]
         if artifact['expired'] or artifact['workflow_run']['id'] != int(run_id) or artifact['workflow_run']['head_sha'] != source:
             raise ValueError('CI artifact does not belong to the approved source/run')
+        platform = 'linux-x64' if 'ubuntu' in artifact_name else 'macos-arm64'
+        contents_name = 'Definitive-Contents-' + platform + '.zip'
+        if contents_name in expected: names = names | {contents_name}
         with tempfile.TemporaryFile() as output:
             subprocess.run(['gh', 'api', f'repos/{REPO}/actions/artifacts/{artifact["id"]}/zip'],
-                           stdout=output, stderr=subprocess.PIPE, check=True, timeout=180)
+                           stdout=output, stderr=subprocess.PIPE, check=True, timeout=1800)
             output.seek(0)
             if artifact.get('digest') != 'sha256:' + hashlib.file_digest(output, 'sha256').hexdigest():
                 raise ValueError('Downloaded CI artifact digest mismatch')
             output.seek(0)
             with zipfile.ZipFile(output) as archive:
                 entries = inventory(archive)
+                if contents_name not in expected and any(n.split('/')[-1] == contents_name for n in entries): raise ValueError('CI file delivery inventory cannot be omitted from publication')
+                if contents_name in expected:
+                    candidates = [e for n, e in entries.items() if n.split('/')[-1] == contents_name and not e.is_dir()]
+                    if len(candidates) != 1 or candidates[0].file_size > 8 * 1024**2: raise ValueError('Missing bounded CI contents inventory')
+                    data = archive.read(candidates[0])
+                    if (len(data), hashlib.sha256(data).hexdigest()) != expected[contents_name]: raise ValueError('Contents inventory differs from approved CI bytes')
+                    import io
+                    with zipfile.ZipFile(io.BytesIO(data)) as contents:
+                        hashes = properties(contents.read('definitive-files.properties'))
+                    names |= {'file-' + digest for digest in hashes.values()}
                 for name in names:
                     candidates = [e for n, e in entries.items() if n.split('/')[-1] == name and not e.is_dir()]
                     if len(candidates) != 1:
@@ -107,17 +120,29 @@ def main():
     if not re.fullmatch(r'[A-Za-z0-9._-]+', args.tag) or not re.fullmatch(r'[a-f0-9]{40}', args.source_sha) or not args.run.isdecimal():
         raise ValueError('Invalid release tag, source SHA or build ID')
     if not args.notes_file.is_file():raise ValueError('Release notes are missing')
-    if {p.name for p in args.assets_dir.iterdir()} != NAMES | {'SHA256SUMS'}:
-        raise ValueError('Release staging must contain only the six approved upload files')
+    names = set(NAMES)
+    has_contents = any(p.name.startswith('Definitive-Contents-') for p in args.assets_dir.iterdir())
+    if has_contents:
+        blobs = {}
+        for platform in ('linux-x64', 'macos-arm64'):
+            name = f'Definitive-Contents-{platform}.zip'
+            names.add(name)
+            for blob, identity in file_delivery_assets(args.assets_dir / f'Legend-of-Dragoon-Definitive-{platform}.zip', args.assets_dir / name).items():
+                if blob in blobs and blobs[blob] != identity: raise ValueError('Conflicting platform blob identity')
+                blobs[blob] = identity
+        names.update(blobs)
+    if len(names) + 1 > 1000 or {p.name for p in args.assets_dir.iterdir()} != names | {'SHA256SUMS'}:
+        raise ValueError('Release staging must contain exactly the complete approved upload inventory')
     expected = {}
-    for name in NAMES | {'SHA256SUMS'}:
+    for name in names | {'SHA256SUMS'}:
         path = args.assets_dir / name
         if path.is_symlink() or not path.is_file():raise ValueError('Invalid upload file: ' + name)
         with path.open('rb') as stream:digest = hashlib.file_digest(stream, 'sha256').hexdigest()
         expected[name] = (path.stat().st_size, digest)
     sums = (args.assets_dir / 'SHA256SUMS').read_text().splitlines()
-    if len(sums) != len(NAMES) or set(sums) != {expected[n][1] + '  ' + n for n in NAMES}:
+    if len(sums) != len(names) or set(sums) != {expected[n][1] + '  ' + n for n in names}:
         raise ValueError('SHA256SUMS does not match the complete upload set')
+    if has_contents and any(expected[name] != identity for name, identity in blobs.items()): raise ValueError('Per-file blob checksum or size mismatch')
     for platform in ('linux-x64', 'macos-arm64'):
         verify_package(args.assets_dir / f'Legend-of-Dragoon-Definitive-{platform}.zip', platform, args.source_sha, args.tag)
     verify_installer(args.assets_dir / 'Definitive-Installer.zip')

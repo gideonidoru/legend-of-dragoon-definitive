@@ -115,3 +115,28 @@ def verify_installer(path):
         for entry in entries.values():
             if not entry.is_dir():
                 digest_entry(archive, entry)  # Read every byte, validating CRC and decompression.
+
+
+def file_delivery_assets(package, contents):
+    """Bind per-file inventory byte-for-byte to the already verified complete ZIP."""
+    with zipfile.ZipFile(package) as full, zipfile.ZipFile(contents) as manifest:
+        entries = inventory(manifest, 8 * 1024**2, 3)
+        if set(entries) != META | {'definitive-sizes.properties'}:
+            raise ValueError('Invalid per-file manifest inventory')
+        for name in META:
+            if manifest.read(name) != full.read(name):
+                raise ValueError('Per-file inventory differs from complete package')
+        hashes = properties(manifest.read('definitive-files.properties'))
+        sizes = properties(manifest.read('definitive-sizes.properties'))
+        if set(sizes) != set(hashes):
+            raise ValueError('Incomplete per-file sizes inventory')
+        result = {}
+        for name, digest in hashes.items():
+            if not re.fullmatch(r'0|[1-9][0-9]{0,10}', sizes[name]) or int(sizes[name]) != full.getinfo(name).file_size:
+                raise ValueError('Per-file length mismatch')
+            asset = 'file-' + digest
+            value = int(sizes[name]), digest
+            if asset in result and result[asset] != value:
+                raise ValueError('Conflicting per-file blob identity')
+            result[asset] = value
+        return result

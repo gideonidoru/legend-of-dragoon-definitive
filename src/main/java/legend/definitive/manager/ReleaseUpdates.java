@@ -15,7 +15,9 @@ public final class ReleaseUpdates {
   private ReleaseUpdates() { }
   private static final String REPO = "gideonidoru/legend-of-dragoon-definitive";
   private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).followRedirects(HttpClient.Redirect.NORMAL).build();
-  public record Candidate(String tag, String assetId, URI url, String sha256, Instant publishedAt, String releaseNotes) {
+  public record ContentsAsset(String id, URI url, String sha256) { }
+  public record Candidate(String tag, String assetId, URI url, String sha256, Instant publishedAt, String releaseNotes, ContentsAsset contents) {
+    public Candidate(final String tag, final String assetId, final URI url, final String sha256, final Instant publishedAt, final String releaseNotes) { this(tag, assetId, url, sha256, publishedAt, releaseNotes, null); }
     public Candidate(final String tag, final String assetId, final URI url, final String sha256) { this(tag, assetId, url, sha256, null, ""); }
   }
   private static final MetadataCache CACHE = new MetadataCache();
@@ -77,7 +79,14 @@ public final class ReleaseUpdates {
     final String selectedTag = newest.tag();
     final Object notes = releases.stream().filter(item -> item instanceof Map<?, ?> release && newestTag(release, selectedTag)).findFirst().orElse(null);
     final String releaseNotes = notes instanceof Map<?, ?> release && release.get("body") instanceof String body ? body.substring(0, Math.min(12000, body.length())) : "";
-    return Optional.of(new Candidate(newest.tag(), id, downloadUrl, digest.substring(7), newest.published(), releaseNotes));
+    ContentsAsset contents = null;
+    if(notes instanceof Map<?, ?> release && release.get("assets") instanceof List<?> assets) for(final Object item : assets) {
+      if(item instanceof Map<?, ?> asset && ("Definitive-Contents-" + platform + ".zip").equals(asset.get("name"))) {
+        if(contents != null || !(asset.get("digest") instanceof String checksum) || !checksum.matches("sha256:[a-f0-9]{64}") || !String.valueOf(asset.get("id")).matches("[1-9][0-9]*") || !(asset.get("browser_download_url") instanceof String address) || !address.equals(downloadUrl.resolve("Definitive-Contents-" + platform + ".zip").toString())) throw new IOException("Release file inventory lacks verified metadata.");
+        contents = new ContentsAsset(String.valueOf(asset.get("id")), URI.create(address), checksum.substring(7));
+      }
+    }
+    return Optional.of(new Candidate(newest.tag(), id, downloadUrl, digest.substring(7), newest.published(), releaseNotes, contents));
   }
   private static boolean newestTag(final Map<?, ?> release, final String tag) { return tag.equals(release.get("tag_name")); }
   private record DatedAsset(String tag, Map<?, ?> asset, Instant published) { }
@@ -117,14 +126,14 @@ public final class ReleaseUpdates {
             final var output = new java.io.ByteArrayOutputStream();
             final long bodyRemaining = deadline - System.nanoTime();
             if(bodyRemaining <= 0) throw new IOException("Release check took too long.");
-            DownloadBody.copy(input, output, 2 * 1024 * 1024, Duration.ofNanos(Math.min(bodyRemaining, Duration.ofSeconds(30).toNanos())));
+            DownloadBody.copy(input, output, 16 * 1024 * 1024, Duration.ofNanos(Math.min(bodyRemaining, Duration.ofSeconds(30).toNanos())));
             next = new CachedPage(output.toString(java.nio.charset.StandardCharsets.UTF_8).trim(), response.headers().firstValue("ETag").orElse(""), response.headers().allValues("Link").stream().anyMatch(link -> link.contains("rel=\"next\"")));
           }
         }
         final Object parsed = new Json(next.body()).read();
         if(!(parsed instanceof List<?> list) || list.size() > 100) throw new IOException("Unexpected release page.");
         bytes += next.body().length();
-        if(bytes > 8 * 1024 * 1024) throw new IOException("Release metadata exceeds the supported limit.");
+        if(bytes > 64 * 1024 * 1024) throw new IOException("Release metadata exceeds the supported limit.");
         next = new CachedPage(next.body(), next.etag(), next.hasNext() || list.size() == 100);
         validated.put(page, next);
         if(!list.isEmpty()) bodies.add(next.body().substring(1, next.body().length() - 1));
@@ -164,19 +173,55 @@ public final class ReleaseUpdates {
   private static final class Cooldown extends IOException { Cooldown(final String message) { super(message); } }
   static String install(final InstallStore store, final Candidate candidate, final InstallProgress progress, final AssetDownload connection) throws IOException, InterruptedException {
     if(!candidate.url().toString().startsWith("https://github.com/" + REPO + "/releases/download/") || !candidate.sha256().matches("[a-f0-9]{64}")) throw new IOException("Invalid release source.");
+    if(candidate.contents() != null && store.state().containsKey("version")) {
+      validateContents(candidate);
+      return FileDelivery.install(store, candidate, progress, connection, false);
+    }
+    return installArchive(store, candidate, progress, connection, false);
+  }
+  private static void validateContents(final Candidate candidate) throws IOException {
+    if(!candidate.tag().matches("[A-Za-z0-9._-]+") || !candidate.contents().sha256().matches("[a-f0-9]{64}") || !candidate.contents().url().equals(candidate.url().resolve("Definitive-Contents-" + PackageManifest.hostPlatform() + ".zip"))) throw new IOException("Invalid release inventory source.");
+  }
+  public static String repair(final InstallStore store, final InstallProgress progress) throws IOException, InterruptedException {
+    return store.withOperation(() -> {
+      final var state = store.state();
+      final Path current = InstallStore.child(store.root().resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
+      final String tag = state.getProperty("installedReleaseTag", "").isEmpty() ? PackageManifest.read(current).metadata().getProperty("releaseTag", "") : state.getProperty("installedReleaseTag");
+      if(!tag.matches("[A-Za-z0-9._-]+")) throw new IOException("Installed release has no published repair identity. Choose Reinstall.");
+      final var response = sendWithRetry(HttpRequest.newBuilder(URI.create("https://api.github.com/repos/" + REPO + "/releases/tags/" + tag)).timeout(Duration.ofSeconds(20)).GET().build(), request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()));
+      final String json;
+      try(final var input = response.body(); final var output = new java.io.ByteArrayOutputStream()) {
+        if(response.statusCode() != 200) throw new IOException("Installed release is unavailable for repair. Retry or choose Reinstall.");
+        DownloadBody.copy(input, output, 16 * 1024 * 1024, Duration.ofSeconds(30));
+        json = "[" + output.toString(java.nio.charset.StandardCharsets.UTF_8) + "]";
+      }
+      final Candidate candidate = select(json, PackageManifest.hostPlatform(), "", "").orElseThrow(() -> new IOException("No compatible repair files are published."));
+      if(!tag.equals(candidate.tag()) || candidate.contents() == null) throw new IOException("This older release has no selective repair inventory. Choose a complete Reinstall.");
+      validateContents(candidate);
+      return FileDelivery.install(store, candidate, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()), true);
+    });
+  }
+  public static String reinstall(final InstallStore store, final Candidate candidate, final InstallProgress progress) throws IOException, InterruptedException {
+    return installArchive(store, candidate, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()), true);
+  }
+  static String installArchive(final InstallStore store, final Candidate candidate, final InstallProgress progress, final AssetDownload connection, final boolean fullReinstall) throws IOException, InterruptedException {
+    if(!candidate.url().toString().startsWith("https://github.com/" + REPO + "/releases/download/") || !candidate.sha256().matches("[a-f0-9]{64}")) throw new IOException("Invalid release source.");
     progress.phase("Connecting to GitHub", "Release " + candidate.tag(), 8);
     final Path download = Files.createTempFile(store.root(), ".update-", ".zip");
     try {
       download(candidate, download, progress, connection);
       progress.phase("Checking download", "Verifying the GitHub SHA256 checksum", 60);
       if(!PackageManifest.sha256(download).equals(candidate.sha256())) throw new IOException("Update checksum mismatch. Your current installation is unchanged.");
-      return store.install(download, candidate.assetId(), candidate.publishedAt(), progress);
+      return store.install(download, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall);
     } finally { Files.deleteIfExists(download); }
   }
   private static final long MAX_PACKAGE_BYTES = 8L * 1024 * 1024 * 1024;
   /** Resume only the unique owned staging file, with a strong entity validator and whole-file digest. */
   static void download(final Candidate candidate, final Path file, final InstallProgress progress, final AssetDownload connection) throws IOException, InterruptedException {
-    final long deadline = System.nanoTime() + Duration.ofMinutes(15).toNanos();
+    download(candidate, file, progress, connection, MAX_PACKAGE_BYTES);
+  }
+  static void download(final Candidate candidate, final Path file, final InstallProgress progress, final AssetDownload connection, final long maxBytes) throws IOException, InterruptedException {
+    final long deadline = System.nanoTime() + Duration.ofMinutes(30).toNanos();
     String etag = ""; IOException failure = null;
     for(int attempt = 0; attempt < 3; attempt++) {
       final long remaining = deadline - System.nanoTime();
@@ -207,16 +252,16 @@ public final class ReleaseUpdates {
             final String validator = response.headers().firstValue("ETag").orElse("");
             etag = validator.matches("\"[^\"\\r\\n]+\"") ? validator : "";
           }
-          if(total > MAX_PACKAGE_BYTES || start > MAX_PACKAGE_BYTES || length < -1) throw new InvalidDownload("Release download is larger than the supported package limit.");
+          if(total > maxBytes || start > maxBytes || length < -1) throw new InvalidDownload("Release download is larger than the supported package limit.");
           final long usable = Files.getFileStore(file).getUsableSpace();
           final long downloadReserve = 1024L * 1024 * 1024;
           if(usable < downloadReserve || total >= 0 && total - start > usable - downloadReserve) throw new InvalidDownload("Not enough free installation storage to download this release safely. Free space and retry; the current game is unchanged.");
           final long completed = start, size = total;
-          progress.bytes("Downloading game and HD artwork", 10, 60, completed, size);
+          progress.bytes("Downloading Definitive + HD mods", 10, 60, completed, size);
           final long bodyRemaining = deadline - System.nanoTime();
           if(bodyRemaining <= 0) throw new IOException("Release download took too long.");
           try(final var output = Files.newOutputStream(file, StandardOpenOption.WRITE, start == 0 ? StandardOpenOption.TRUNCATE_EXISTING : StandardOpenOption.APPEND, LinkOption.NOFOLLOW_LINKS)) {
-            DownloadBody.copy(input, output, MAX_PACKAGE_BYTES - completed, Duration.ofNanos(bodyRemaining), bytes -> progress.bytes("Downloading game and HD artwork", 10, 60, completed + bytes, size));
+            DownloadBody.copy(input, output, maxBytes - completed, Duration.ofNanos(bodyRemaining), bytes -> progress.bytes("Downloading Definitive + HD mods", 10, 60, completed + bytes, size));
           }
           if(total >= 0 && Files.size(file) != total) throw new IOException("Release transfer stopped before its expected size.");
           return;
@@ -238,7 +283,7 @@ public final class ReleaseUpdates {
     private char take() throws IOException { if(this.position >= this.source.length()) throw bad(); return this.source.charAt(this.position++); }
     private IOException bad() { return new IOException("Invalid update metadata."); }
     private Object value(final int depth) throws IOException {
-      if(depth > 32 || ++this.count > 100000) throw bad(); white(); final char c = take();
+      if(depth > 32 || ++this.count > 1000000) throw bad(); white(); final char c = take();
       if(c == '"') return string();
       if(c == '{') {
         final Map<String, Object> map = new LinkedHashMap<>(); white(); if(peek('}')) return map;

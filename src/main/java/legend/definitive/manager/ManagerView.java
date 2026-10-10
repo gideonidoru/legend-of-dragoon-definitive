@@ -24,6 +24,9 @@ final class ManagerView extends JPanel {
   private final JLabel updates = label("", 14, MUTED);
   private final JProgressBar progress = new JProgressBar();
   private final JPanel progressPanel = card();
+  private final JPanel fileProgressPanel = column();
+  private final JProgressBar fileProgress = new JProgressBar();
+  private final JLabel fileStatus = label("", 12, MUTED);
   private final JLabel progressPhase = label("Starting…", 18, INK);
   private final JLabel progressPercent = label("0%", 14, MUTED);
   private final JLabel progressElapsed = label("", 12, MUTED);
@@ -95,6 +98,10 @@ final class ManagerView extends JPanel {
     final JPanel phase = new JPanel(new BorderLayout(12, 0)); phase.setOpaque(false); phase.setAlignmentX(LEFT_ALIGNMENT); phase.setMaximumSize(new Dimension(520, 28));
     this.progressPhase.setFont(font(18, true)); phase.add(this.progressPhase, BorderLayout.CENTER); phase.add(this.progressPercent, BorderLayout.EAST);
     this.progressPanel.add(phase); this.progressPanel.add(Box.createVerticalStrut(18)); this.progressPanel.add(this.progress); this.progressPanel.add(Box.createVerticalStrut(14));
+    this.fileProgress.setAlignmentX(LEFT_ALIGNMENT); this.fileProgress.setMaximumSize(new Dimension(520, 6)); this.fileProgress.setPreferredSize(new Dimension(520, 6)); this.fileProgress.setForeground(GREEN); this.fileProgress.setBorderPainted(false);
+    this.fileProgress.getAccessibleContext().setAccessibleName("Current file progress");
+    this.progress.getAccessibleContext().setAccessibleName("Overall installation progress");
+    this.fileStatus.setMaximumSize(new Dimension(520, 20)); this.fileProgressPanel.add(this.fileStatus); this.fileProgressPanel.add(Box.createVerticalStrut(6)); this.fileProgressPanel.add(this.fileProgress); this.fileProgressPanel.add(Box.createVerticalStrut(10)); this.fileProgressPanel.setVisible(false); this.progressPanel.add(this.fileProgressPanel);
     this.status.setMaximumSize(new Dimension(480, 90)); this.progressPanel.add(this.status);
     this.progressPanel.add(Box.createVerticalStrut(10)); this.progressPanel.add(this.progressElapsed); this.progressPanel.setVisible(false);
     content.add(this.progressPanel); content.add(Box.createVerticalStrut(12)); content.add(Box.createVerticalGlue());
@@ -179,9 +186,10 @@ final class ManagerView extends JPanel {
       return;
     }
     if(this.screen == Screen.MAINTENANCE) {
-      this.heading("Your installation", "Reinstall Definitive, or remove it from this device.");
+      this.heading("Your installation", "Repair changed files, reinstall everything, or remove Definitive.");
       this.body.add(infoCard("LOCATION", "Legend of Dragoon: Definitive", this.root.toString())); this.body.add(Box.createVerticalStrut(24));
-      this.primary("Reinstall", () -> { this.screen = Screen.INSTALL; this.install(); });
+      this.primary("Repair", () -> this.run("Repairing Definitive", () -> ReleaseUpdates.repair(new InstallStore(this.root), this.currentProgress), () -> { this.loadInstallationInfo(); this.render(); }));
+      this.body.add(Box.createVerticalStrut(12)); final JButton reinstall = button("Reinstall", false); reinstall.addActionListener(event -> this.install(true)); this.body.add(reinstall);
       this.body.add(Box.createVerticalStrut(12)); final JButton uninstall = button("Uninstall", false); uninstall.addActionListener(e -> this.uninstall()); this.setupActions(uninstall);
       return;
     }
@@ -192,7 +200,7 @@ final class ManagerView extends JPanel {
         this.body.add(label("Install location", 13, MUTED)); this.body.add(Box.createVerticalStrut(8));
         this.destination.setMaximumSize(new Dimension(520, 48)); this.destination.setCaretPosition(0); this.body.add(this.destination); this.body.add(Box.createVerticalStrut(8));
         final JButton browse = button("Choose folder", false); browse.addActionListener(e -> this.chooseFolder()); this.body.add(browse); this.body.add(Box.createVerticalStrut(20));
-        this.body.add(copy("Next, you’ll select your disc images. Your originals stay where they are.", 15, MUTED)); this.body.add(Box.createVerticalStrut(24));
+        this.body.add(copy("Includes Skurfa, EnvHD, CharHD, FxHD, UIHD, ModelsHD and FMVHD. Some artwork is still under development. Next, select your discs.", 15, MUTED)); this.body.add(Box.createVerticalStrut(24));
         this.primary("Install Definitive", this::install);
       }
       case 1 -> {
@@ -219,13 +227,14 @@ final class ManagerView extends JPanel {
       }
     }
   }
-  private void install() {
+  private void install() { this.install(false); }
+  private void install(final boolean fullReinstall) {
     try { this.root = installationPath(this.destination.getText()); this.destination.setText(this.root.toString()); }
     catch(final Exception error) { this.showFailure(error); return; }
     this.run("Installing Definitive", () -> {
-      final var store = new InstallStore(this.root); final InstallProgress installing = update -> this.currentProgress.report(new InstallProgress.Update(update.phase(), update.detail(), update.startPercent() * 75 / 100, update.endPercent() * 75 / 100, update.completed(), update.total()));
-      final String result = PortableSetup.install(this.packageRoot, store, installing);
-      store.verifyInstalled(); InstallLocation.record(store); final InstallProgress checking = update -> this.currentProgress.report(new InstallProgress.Update(update.phase(), update.detail(), 75 + update.startPercent() / 4, 75 + update.endPercent() / 4, update.completed(), update.total()));
+      final var store = new InstallStore(this.root); final InstallProgress installing = update -> this.currentProgress.report(update.scaled(update.startPercent() * 75 / 100, update.endPercent() * 75 / 100));
+      final String result = PortableSetup.install(this.packageRoot, store, installing, fullReinstall);
+      store.verifyInstalled(); InstallLocation.record(store); final InstallProgress checking = update -> this.currentProgress.report(update.scaled(75 + update.startPercent() / 4, 75 + update.endPercent() / 4));
       this.installedDiscs = DiscImporter.existing(store, checking); this.currentProgress.phase("Installation ready", "Choose whether to reuse or replace your disc images", 100); return result;
     }, () -> { this.screen = this.recoveryPending ? Screen.RECOVERY : Screen.DISCS; this.loadInstallationInfo(); this.render(); });
   }
@@ -265,8 +274,9 @@ final class ManagerView extends JPanel {
     final JPanel maintenanceActions = new JPanel(new GridLayout(1, 2, 12, 0)); maintenanceActions.setOpaque(false); maintenanceActions.setAlignmentX(LEFT_ALIGNMENT); maintenanceActions.setMaximumSize(new Dimension(520, 48));
     final JButton steam = button("Add to Steam library", false); steam.addActionListener(e -> this.addSteam(false)); maintenanceActions.add(steam);
     final JButton check = button(this.checkingUpdates ? "Checking…" : "Check for updates", false); check.setEnabled(!this.checkingUpdates); check.addActionListener(e -> this.checkUpdates(true)); maintenanceActions.add(check); this.body.add(maintenanceActions);
-    this.body.add(Box.createVerticalStrut(8)); final JPanel storageActions = new JPanel(new GridLayout(1, this.candidate == null ? 1 : 2, 12, 0)); storageActions.setOpaque(false); storageActions.setAlignmentX(LEFT_ALIGNMENT); storageActions.setMaximumSize(new Dimension(520, 48));
+    this.body.add(Box.createVerticalStrut(8)); final JPanel storageActions = new JPanel(new GridLayout(1, this.candidate == null ? 2 : 3, 12, 0)); storageActions.setOpaque(false); storageActions.setAlignmentX(LEFT_ALIGNMENT); storageActions.setMaximumSize(new Dimension(520, 48));
     if(this.candidate != null) { final JButton update = button("Review update", false); update.addActionListener(e -> { this.screen = Screen.UPDATE; this.render(); }); storageActions.add(update); }
+    final JButton manage = button("Repair / reinstall", false); manage.addActionListener(e -> { this.screen = Screen.MAINTENANCE; this.render(); }); storageActions.add(manage);
     final JButton storage = button("Manage storage", false); storage.addActionListener(e -> this.loadStorage()); storageActions.add(storage); this.body.add(storageActions);
   }
   private void loadStorage() {
@@ -352,7 +362,8 @@ final class ManagerView extends JPanel {
     if(this.busy) return;
     if(this.failed) { this.render(); return; }
     this.screen = switch(this.screen) {
-      case MAINTENANCE, DISCS -> Screen.INSTALL;
+      case MAINTENANCE -> this.packageRoot == null ? Screen.LAUNCHER : Screen.INSTALL;
+      case DISCS -> Screen.INSTALL;
       case STEAM -> Screen.DISCS;
       case UPDATE, UPDATED -> this.recoveryPending ? Screen.RECOVERY : Screen.LAUNCHER;
       case STORAGE -> this.recoveryPending ? Screen.RECOVERY : Screen.LAUNCHER;
@@ -423,12 +434,12 @@ final class ManagerView extends JPanel {
   private void mods() {
     this.run("Loading preferences", () -> new InstallStore(this.root).state(), preferences -> {
       final boolean hd = !"original".equals(preferences.getProperty("artwork", "hd"));
-      final JCheckBox artwork = new JCheckBox("Bundled HD artwork & models", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
+      final JCheckBox artwork = new JCheckBox("Skurfa backgrounds & ModelsHD", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
       final JCheckBox pilot = new JCheckBox("Enhanced model textures · experimental", false); pilot.setFont(font(18, false)); pilot.setOpaque(false); pilot.setMaximumSize(new Dimension(520, 52)); pilot.setPreferredSize(new Dimension(520, 52));
       final JCheckBox fullscreen = new JCheckBox("Fullscreen", true); fullscreen.setFont(font(18, false)); fullscreen.setOpaque(false); fullscreen.setMaximumSize(new Dimension(520, 52)); fullscreen.setPreferredSize(new Dimension(520, 52));
       fullscreen.setSelected(Boolean.parseBoolean(preferences.getProperty("fullscreen", "true")));
       pilot.setSelected(Boolean.parseBoolean(preferences.getProperty("legacyTextures", "false")));
-      final JPanel options = column(); options.add(artwork); options.add(pilot); options.add(fullscreen); options.add(Box.createVerticalStrut(12)); options.add(copy("Includes Skurfa backgrounds and experimental ModelsHD geometry. Enhanced model textures need an installed, verified texture pack.", 16, MUTED));
+      final JPanel options = column(); options.add(artwork); options.add(pilot); options.add(fullscreen); options.add(Box.createVerticalStrut(12)); options.add(copy("EnvHD, CharHD, FxHD, UIHD and FMVHD are included; enable them in the game’s Mods menu. CharHD assets and ModelsHD visual acceptance remain in development.", 16, MUTED));
       if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save changes")) {
         final boolean hdChoice = artwork.isSelected(), modelChoice = pilot.isSelected(), fullscreenChoice = fullscreen.isSelected();
         this.run("Saving preferences", () -> { new InstallStore(this.root).setPreferences(hdChoice, modelChoice, fullscreenChoice); return "Changes apply the next time you play."; }, () -> { });
@@ -487,6 +498,7 @@ final class ManagerView extends JPanel {
     if(this.busy || this.inspectingIdentity) return;
     final long ticket = ++this.operation;
     this.busy = true; this.started = System.nanoTime(); this.progressDetail = "Starting…";
+    this.fileProgressPanel.setVisible(false); this.fileProgress.setValue(0);
     this.progress.setValue(0); this.progress.setString(working); this.progressPhase.setText("Starting…"); this.progressPercent.setText("0%"); this.progress.setVisible(true); this.progressPanel.setVisible(!working.equals("Game running"));
     this.body.removeAll(); if(!this.screen.launcher()) this.stages(); this.heading(working, working.equals("Game running") ? "Close the game to return to the launcher." : "Keep this window open while this step finishes.");
     this.body.revalidate(); this.body.repaint();
@@ -512,6 +524,10 @@ final class ManagerView extends JPanel {
         ManagerView.this.progress.setValue(Math.max(ManagerView.this.progress.getValue(), update.percent()));
         ManagerView.this.progress.setString(update.phase());
         ManagerView.this.progressPhase.setText(update.phase()); ManagerView.this.progressPercent.setText(ManagerView.this.progress.getValue() + "%");
+        ManagerView.this.fileProgressPanel.setVisible(!update.file().isEmpty());
+        ManagerView.this.fileProgress.setIndeterminate(!update.file().isEmpty() && update.fileTotal() <= 0); ManagerView.this.fileProgress.setValue(update.filePercent());
+        ManagerView.this.fileStatus.setText((update.fileTotal() > 0 ? update.filePercent() + "% · " : "") + locationLabel(update.file())); ManagerView.this.fileStatus.setToolTipText(update.file()); ManagerView.this.fileStatus.getAccessibleContext().setAccessibleDescription(update.file());
+        ManagerView.this.progressPanel.revalidate();
         ManagerView.this.progressDetail = update.detail(); ManagerView.this.progressStatus();
       }
       @Override protected void done() {

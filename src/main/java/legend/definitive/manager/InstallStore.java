@@ -125,6 +125,9 @@ public final class InstallStore {
     return this.install(source, releaseAssetId, null, progress);
   }
   String install(final Path source, final String releaseAssetId, final java.time.Instant publishedAt, final InstallProgress progress) throws IOException {
+    return this.install(source, releaseAssetId, publishedAt, progress, false);
+  }
+  String install(final Path source, final String releaseAssetId, final java.time.Instant publishedAt, final InstallProgress progress, final boolean fullReinstall) throws IOException {
     try(final var operation = this.operation()) {
       final Properties active = this.state();
       if(publishedAt != null && !active.getProperty("releasePublishedAt", "").isEmpty()) {
@@ -151,7 +154,7 @@ public final class InstallStore {
         final Path release = this.root.resolve("releases").resolve(manifest.id());
         if(Files.exists(release)) {
           if(Files.isSymbolicLink(release)) throw new IOException("Unexpected linked release. No external files were changed.");
-          try { PackageManifest.read(release).verify(release, PackageManifest.hostPlatform()); }
+          try { if(fullReinstall) throw new IOException("Complete reinstall requested."); PackageManifest.read(release).verify(release, PackageManifest.hostPlatform()); }
           catch(final IOException damaged) {
             // Exact verified package identity under our owned releases directory: repair it as a unit.
             final Path recovery = this.root.resolve("release-recovery-" + UUID.randomUUID());
@@ -166,10 +169,11 @@ public final class InstallStore {
             catch(final IOException failure) { try { verifyRecoveryBackup(recovery, ".definitive-release-backup", repairToken); Files.move(recovery, release, StandardCopyOption.ATOMIC_MOVE); Files.delete(release.resolve(".definitive-release-backup")); forceDirectory(release); forceDirectory(release.getParent()); Files.deleteIfExists(this.root.resolve(".release-repair-transaction.properties")); forceDirectory(this.root); } catch(final IOException restore) { failure.addSuppressed(restore); } throw failure; }
             InstallerLog.write("Repaired damaged managed release; previous files retained at " + recovery);
           }
-          if(manifest.id().equals(old.getProperty("version")) && !Boolean.parseBoolean(old.getProperty("uninstalled", "false"))) {
+          if(!fullReinstall && manifest.id().equals(old.getProperty("version")) && !Boolean.parseBoolean(old.getProperty("uninstalled", "false"))) {
             this.writeLaunchers(release);
+            old.setProperty("installedReleaseTag", manifest.metadata().getProperty("releaseTag", ""));
             this.verifyInstalled();
-            if(!releaseAssetId.isEmpty()) { old.setProperty("releaseAssetId", releaseAssetId); if(publishedAt != null) old.setProperty("releasePublishedAt", publishedAt.toString()); atomicProperties(this.root.resolve("state.properties"), old); }
+            if(!releaseAssetId.isEmpty()) old.setProperty("releaseAssetId", releaseAssetId); if(publishedAt != null) old.setProperty("releasePublishedAt", publishedAt.toString()); atomicProperties(this.root.resolve("state.properties"), old);
             progress.phase("Installation verified", this.root.toString(), 100);
             return "This version is already installed.";
           }
@@ -195,6 +199,8 @@ public final class InstallStore {
         final Properties next = new Properties();
         for(final String property : old.stringPropertyNames()) if(property.startsWith("recovery")) next.setProperty(property, old.getProperty(property));
         next.setProperty("version", manifest.id());
+        next.setProperty("installedReleaseTag", manifest.metadata().getProperty("releaseTag", ""));
+        next.setProperty("previousReleaseTag", old.getProperty("installedReleaseTag", ""));
         next.setProperty("data", dataId);
         next.setProperty("previousVersion", Boolean.parseBoolean(old.getProperty("uninstalled", "false")) ? "" : old.getProperty("version", ""));
         next.setProperty("previousSnapshot", snapshotId);
@@ -214,6 +220,7 @@ public final class InstallStore {
         this.verifyInstalled(next);
         atomicProperties(this.root.resolve("state.properties"), next);
         progress.phase("Installation verified", this.root.toString(), 100);
+        if(fullReinstall) return "Complete reinstall finished. All application files were replaced; your saves, settings, custom mods and disc images are retained. Prepare your discs again.";
         return old.containsKey("version") ? "Update installed. Previous engine and pre-update data are retained for rollback." : "Installed. Import your discs, then add Play Game.sh to Steam.";
       } finally { if(!Files.exists(this.root.resolve(".release-repair-transaction.properties"), LinkOption.NOFOLLOW_LINKS)) deleteOwnedTree(staged); }
     }
@@ -271,6 +278,8 @@ public final class InstallStore {
       current.setProperty("version", version);
       current.setProperty("data", dataId);
       current.setProperty("artwork", current.getProperty("previousArtwork", "hd"));
+      current.setProperty("installedReleaseTag", PackageManifest.read(release).metadata().getProperty("releaseTag", ""));
+      current.remove("previousReleaseTag");
       current.setProperty("releaseAssetId", current.getProperty("previousReleaseAssetId", ""));
       current.remove("previousReleaseAssetId");
       current.remove("previousArtwork");
@@ -346,6 +355,13 @@ public final class InstallStore {
   public void requireInstallSpace(final Path source) throws IOException {
     final long required = this.requiredInstallBytes(source);
     if(Files.getFileStore(this.root).getUsableSpace() < required) throw new IOException("Installation needs " + String.format(java.util.Locale.ROOT, "%.1f GB", required / 1073741824.0) + " free, including retained saves, custom artwork and recovery copies.");
+  }
+  void requireFileDeliverySpace(final long payload, final String candidateId) throws IOException {
+    final Properties state = this.state();
+    final long privateBytes = state.containsKey("data") ? treeBytes(this.data(state)) : 0;
+    final long preparation = candidateId.equals(state.getProperty("version", "")) && this.discsPrepared() ? 0 : PREPARATION_RESERVE_BYTES;
+    final long required = addBytes(addBytes(addBytes(payload, payload), addBytes(privateBytes, privateBytes)), addBytes(preparation, 1024L * 1024 * 1024));
+    if(Files.getFileStore(this.root).getUsableSpace() < required) throw new IOException("Not enough space to stage and activate the complete verified file set. Free space and retry.");
   }
   private static long addBytes(final long one, final long two) throws IOException {
     try { return Math.addExact(one, two); } catch(final ArithmeticException failure) { throw new IOException("Installation size exceeds supported limits.", failure); }
@@ -1134,16 +1150,18 @@ public final class InstallStore {
     try(final var input = new ZipInputStream(Files.newInputStream(archive))) {
       for(java.util.zip.ZipEntry entry; (entry = input.getNextEntry()) != null;) {
         final String name = entry.getName();
-        progress.phase("Installing game and HD artwork", "Unpacking " + name + " · " + count + " files", 70);
+        progress.phase("Installing " + FileDelivery.module(name), "Unpacking " + name + " · " + count + " files", 70);
         if(++count > 30_000 || !(PackageManifest.allowed(entry.isDirectory() ? name.replaceAll("/$", "") + "/placeholder" : name) || name.equals(PackageManifest.METADATA) || name.equals(PackageManifest.HASHES))) throw new IOException("Unexpected archive path: " + name);
         final Path destination = target.resolve(name).normalize();
         if(!destination.startsWith(target)) throw new IOException("Archive escapes the package folder.");
         if(entry.isDirectory()) { Files.createDirectories(destination); continue; }
         Files.createDirectories(destination.getParent());
+        long fileBytes = 0;
         try(final var output = Files.newOutputStream(destination, StandardOpenOption.CREATE_NEW)) {
           final byte[] buffer = new byte[1024 * 1024];
           for(int n; (n = input.read(buffer)) != -1;) {
-            total += n;
+            total += n; fileBytes += n;
+            progress.report(new InstallProgress.Update("Installing " + FileDelivery.module(name), "Unpacking " + name, 70, 70, 0, 0, name, fileBytes, entry.getSize()));
             if(total > MAX_ARCHIVE_BYTES) throw new IOException("Archive exceeds the package size limit.");
             output.write(buffer, 0, n);
           }

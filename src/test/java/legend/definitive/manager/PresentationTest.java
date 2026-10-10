@@ -204,6 +204,10 @@ class PresentationTest {
         ((JLabel)percentField.get(view)).setText("70%");
         final var barField = ManagerView.class.getDeclaredField("progress"); barField.setAccessible(true);
         ((JProgressBar)barField.get(view)).setValue(70);
+        final var filePanel = ManagerView.class.getDeclaredField("fileProgressPanel"); filePanel.setAccessible(true); ((JPanel)filePanel.get(view)).setVisible(true);
+        final var fileStatus = ManagerView.class.getDeclaredField("fileStatus"); fileStatus.setAccessible(true); ((JLabel)fileStatus.get(view)).setText("25% · bundled-mods/FMVHD-v0.1.0.jar");
+        final var fileBar = ManagerView.class.getDeclaredField("fileProgress"); fileBar.setAccessible(true); ((JProgressBar)fileBar.get(view)).setValue(25);
+        assertEquals("Current file progress", ((JProgressBar)fileBar.get(view)).getAccessibleContext().getAccessibleName());
         final String detail = "Unpacking the verified package into /home/deck/Games/" + "a-long-installation-folder/".repeat(16);
         field(view, "progressDetail", detail); invoke(view, "progressStatus");
         for(final int width : new int[]{1024, 1100, 1280}) inspect(view, width, 660, "long-progress");

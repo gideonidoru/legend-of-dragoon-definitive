@@ -12,7 +12,7 @@ from package_validation import ROOT
 
 repo = Path(__file__).resolve().parents[1]
 source = 'a' * 40
-for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry'):
+for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob'):
     with tempfile.TemporaryDirectory(prefix='definitive-release-fixture-') as directory:
         root = Path(directory); assets = root / 'assets'; assets.mkdir(); tools = root / 'tools'; tools.mkdir()
         with zipfile.ZipFile(assets / 'Definitive-Installer.zip', 'w') as archive:
@@ -42,13 +42,24 @@ for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch
                     entry = zipfile.ZipInfo('tools/link'); entry.create_system = 3; entry.external_attr = 0o120777 << 16
                     archive.writestr(entry, b'outside')
         if scenario == 'nonzip-installer':(assets / 'Definitive-Installer.zip').write_bytes(b'not an archive')
+        if scenario.startswith('file-delivery'):
+            import importlib.util
+            spec=importlib.util.spec_from_file_location('file_assembler',repo/'scripts/assemble-file-delivery.py'); assembler=importlib.util.module_from_spec(spec);spec.loader.exec_module(assembler)
+            for platform in ('linux-x64','macos-arm64'):
+                assembler.assemble(assets/f'Legend-of-Dragoon-Definitive-{platform}.zip',assets)
+            for blob in (assets/'files').iterdir():blob.rename(assets/blob.name)
+            (assets/'files').rmdir()
+            if scenario=='file-delivery-missing-blob':next(assets.glob('file-*')).unlink()
         artifact_records = []
         for id, artifact_name, selected in ((1, 'delivery-ubuntu-24.04', ('Definitive-Installer.zip', 'Install-Definitive.sh', 'Install-Definitive.desktop', 'Legend-of-Dragoon-Definitive-linux-x64.zip')),
                                              (2, 'delivery-macos-15', ('Legend-of-Dragoon-Definitive-macos-arm64.zip',))):
+            if scenario.startswith('file-delivery'):
+                platform='linux-x64' if id==1 else 'macos-arm64'
+                selected=tuple(selected)+(f'Definitive-Contents-{platform}.zip',)+tuple(p.name for p in assets.glob('file-*'))
             path = root / f'artifact-{id}.zip'
             with zipfile.ZipFile(path, 'w') as artifact:
                 for name in selected:
-                    artifact.writestr('distributions/' + name, b'unapproved bytes' if scenario == 'ci-bytes-mismatch' and name == 'Definitive-Installer.zip' else (assets / name).read_bytes())
+                    artifact.writestr('distributions/' + name, b'unapproved bytes' if (scenario == 'ci-bytes-mismatch' and name == 'Definitive-Installer.zip') or (scenario=='file-delivery-ci-mismatch' and name.startswith('file-')) else (assets / name).read_bytes())
             artifact_records.append({'id': id, 'name': artifact_name, 'expired': scenario == 'expired-ci-artifact',
                                      'digest': 'sha256:' + ('0'*64 if scenario == 'artifact-digest-mismatch' else sha(path)),
                                      'workflow_run': {'id': 123, 'head_sha': 'b'*40 if scenario == 'wrong-artifact-source' else source}})
@@ -105,7 +116,7 @@ else:raise AssertionError(a)
         result = subprocess.run([sys.executable, str(repo / 'scripts/publish-verified-release.py'), '--tag', tag, '--source-sha', source, '--run', '123', '--assets-dir', str(assets), '--notes-file', str(root / 'notes.md')], env=env, capture_output=True, text=True, timeout=10)
         calls = [json.loads(line) for line in (root / 'calls.jsonl').read_text().splitlines()] if (root / 'calls.jsonl').exists() else []
         publications = [a for a in calls if a[:2] == ['release', 'edit']]
-        if scenario in ('success', 'annotated-tag', 'draft-temporary-urls'):assert result.returncode == 0 and len(publications) == 1 and '--draft=false' in publications[0], result.stderr
+        if scenario in ('success', 'annotated-tag', 'draft-temporary-urls', 'file-delivery-success'):assert result.returncode == 0 and len(publications) == 1 and '--draft=false' in publications[0], result.stderr
         elif scenario == 'already-public':assert result.returncode == 0 and not publications, result.stderr
         else:assert result.returncode != 0 and not publications, 'Failed gate published: ' + scenario
         print('PASS', scenario)

@@ -202,3 +202,9 @@ dependencies {
   managerRuntime "org.lwjgl:lwjgl-sdl:${lwjglVersion}:natives-linux"
 }
 tasks.named('portableInstaller') { into('manager-libs') { from configurations.managerRuntime } }
+
+// Per-file downloads are emitted from the same verified archive, without recompression.
+tasks.register('definitiveFileDelivery', Exec) {
+  dependsOn definitivePackage
+  doFirst { commandLine 'python3', 'scripts/assemble-file-delivery.py', '--package', tasks.definitivePackage.archiveFile.get().asFile.absolutePath, '--output', layout.buildDirectory.dir('distributions').get().asFile.absolutePath }
+}
