@@ -4,6 +4,8 @@ Full program scope and provisional 24-week gates: [PROJECT_PLAN.md](PROJECT_PLAN
 
 Deliver visible improvements through mods, configuration and packaging. Keep faithful mode available, with no engine rewrite. This is a prioritized plan, not a promise of already working features.
 
+Visual direction: a polished **2026 AA game with an intentional retro style**. Use neural-assisted asset reconstruction where it creates a visible, faithful improvement, then prove the results through native rendering and Deck measurements. The next art gate is one clearly improved character in an HD scene, not another subtle scale-factor comparison. [Neural strategy and supported technology boundaries](NEURAL_VISUAL_STRATEGY.md).
+
 | Priority | Deliverable | Acceptance evidence / dependency |
 | --- | --- | --- |
 | P0 / milestone 1 | Public source repository, preserved upstream/license, baseline builds and documents | Validation report; no engine behavior changes |

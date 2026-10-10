@@ -30,7 +30,7 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/definitive-visual-checks"
           "$RUNNER_TEMP/definitive-visual-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
-          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement; do
+          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement model-reference; do
             "$RUNNER_TEMP/definitive-visual-checks/bin/python" "scripts/test-$fixture.py"
           done
   build:

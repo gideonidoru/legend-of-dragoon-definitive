@@ -2,6 +2,8 @@
 
 The owner reviewed the Haschel and Meru comparisons and judged the existing texture passes too subtle. The selected direction is to **modernize the original designs with much clearer faces, richer materials and smoother models**. The previous successful pixel/layout checks are still useful compatibility evidence; they are not artistic acceptance. Neither higher texture resolution nor a larger triangle count satisfies this requirement by itself.
 
+The owner further defined the target as a **2026 AA game with a slick, intentional retro style**. The [neural visual strategy](NEURAL_VISUAL_STRATEGY.md) now prioritizes neural-assisted reconstruction baked into coherent assets, paired with measured native rendering. Real-time generative rendering remains research rather than a promised Deck feature. [Editable original-model references](MODEL_REFERENCE_EXPORT.md) are now available privately for both inspected characters; their source geometry and sampled transforms are checked, but reconstructed faces and native replacement loading are not yet delivered.
+
 ## What changed in the investigation
 
 `scripts/refine-model-surfaces.py` now makes a separate, private geometry feasibility study. It triangulates using the original quad order and subdivides eligible rigid parts with Loop weights. Open borders and sharp creases remain fixed; face-local UV/color attributes and palette identities remain separate. The original part order and sampled keyframe transforms are retained. Degenerate or non-manifold parts remain unchanged and are reported explicitly. Two study iterations, finite parameters, per-part bounds and a whole-model triangle budget are enforced.
@@ -34,7 +36,7 @@ The geometry result is more visible, but automatic subdivision narrows limbs/clo
 
 ## Next visible increment
 
-1. Prioritize a deliberately reconstructed head and face, matching the original proportions, hair, expression, colors and recognizable design. Retain source-part pivots and original animation inputs. Produce an artist-facing reference export with clearly labeled source parts/materials before defining an import format.
+1. Prioritize a deliberately reconstructed head and face, matching the original proportions, hair, expression, colors and recognizable design. Retain source-part pivots and original animation inputs. Use the delivered private source references to develop a coherent multi-view candidate before defining a native import format.
 2. Remodel selected torso/limb/cloth surfaces with controlled silhouettes, seams and joint boundaries; do not apply subdivision indiscriminately. Texture painting must make skin, fabric and metal read distinctly at normal 1280×800 playing distance, alongside the existing HD backgrounds.
 3. Establish the [native material seam](NATIVE_MATERIAL_INTEGRATION.md), compare an original nearest control first, then the reconstructed candidate. Verify actual game lighting, STP/blending, normals, occlusion, seams, sampled animation and resource teardown. Offline pose images alone do not establish these behaviors.
 4. Measure decoded/uploaded/resident memory, p95/p99 frametime and power on a real Deck. Prefer precomputed assets to per-frame neural inference. Set asset budgets from those measurements, not the theoretical APU capability or these offline triangle counts.

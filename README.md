@@ -2,7 +2,7 @@
 
 **A Steam Deck-first modernization of The Legend of Dragoon, built on Severed Chains.**
 
-Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with community HD artwork, experimental model-texture enhancement tools, and optional gameplay conveniences. Selectable Definitive and Faithful campaign presets keep gameplay choices separate from presentation and accessibility.
+Definitive aims to make the game easier to install, comfortable to play with a controller, and clearer on a handheld screen, with community HD artwork, neural-assisted character reconstruction, and optional gameplay conveniences. The visual target is a polished modern AA game with an intentional retro style: recognizable characters, clearer faces, richer materials and carefully smoother models. Character reconstruction is planned; the current tools are experiments. Selectable Definitive and Faithful campaign presets keep gameplay choices separate from presentation and accessibility.
 
 This is an unofficial community project in early development. **The first guided installer is an alpha; physical Steam Deck validation is pending.** Skurfa is source-linked and builds into the package; QoL+ interface ideas are being adapted selectively. Physical Steam Deck validation is still pending.
 
@@ -25,7 +25,7 @@ Project changes should stay modular: separate mods, settings, installation tools
 ## Goals
 
 - **Existing HD artwork:** evaluate community packs, retain original-art fallback, and check foreground layers, transitions, memory use, and handheld readability.
-- **Legacy model and texture upscaling:** develop an optional, reproducible enhancement pipeline for character, enemy, and environment textures, preserving the original art direction, silhouettes, and animation. Evaluate whole-frame upscaling separately using Deck evidence. [Scope and acceptance](docs/definitive/TEXTURE_UPSCALING.md).
+- **Modern retro character art:** use neural-assisted reconstruction and deliberate remodeling to improve faces, material detail and selected surfaces while preserving recognizable original designs and animation. Prove one visibly improved character before expanding coverage. Evaluate real-time neural rendering and whole-frame upscaling separately using Deck evidence. [Visual strategy](docs/definitive/NEURAL_VISUAL_STRATEGY.md) · [Scope and acceptance](docs/definitive/TEXTURE_UPSCALING.md).
 - **Straightforward installation:** a guided Steam Deck setup with clear disc-import errors, safe upgrades, and recoverable saves/settings.
 - **Controller comfort:** complete controller-only navigation, accurate button hints, remapping, reconnect support, and reliable Steam Input behavior.
 - **Readable menus:** useful font, contrast, and spacing options at 1280×800 without clipped text or hidden actions.
