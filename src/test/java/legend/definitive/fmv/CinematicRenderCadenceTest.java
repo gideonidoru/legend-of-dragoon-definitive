@@ -22,6 +22,7 @@ final class CinematicRenderCadenceTest {
       for(final int speed : new int[]{1, 3, 8, 16}) {
         Config.setGameSpeedMultiplier(speed);
         final RenderEngine renderer = new RenderEngine();
+        renderer.setSimulationCallback(() -> { });
         // Enter a movie during a skipped gameplay frame, as real state transitions do.
         if(speed > 1) advance.invoke(renderer);
         final var batch = renderer.addBatch();

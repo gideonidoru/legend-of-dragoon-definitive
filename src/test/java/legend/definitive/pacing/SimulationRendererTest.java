@@ -124,6 +124,35 @@ final class SimulationRendererTest {
     }
   }
 
+  @Test void hardwareOwnsANeutralRateAndRestoresTheSavedGameplayRate() throws Exception {
+    final int oldSpeed=legend.core.Config.getGameSpeedMultiplier();
+    final int oldInput=GameEngine.PLATFORM.getInputTickRate();
+    try(final var f=new Fixture()) {
+      legend.core.Config.setGameSpeedMultiplier(16);
+      final int[] hardware={0};f.renderer.setSimulationCallback(()->{}); f.renderer.setSimulationRate(960);
+      assertEquals(60,f.renderer.window().getFpsLimit());
+      final Runnable saved=f.renderer.setHardwareCallback(()->hardware[0]++,30);
+      assertEquals(30,f.renderer.window().getFpsLimit()); assertEquals(30,f.renderer.simulationTiming().rate());
+      assertEquals(1,f.present()); f.now.addAndGet(100_000_000); assertEquals(3,f.present());
+      assertEquals(4,hardware[0]);assertEquals(8,f.renderer.getVsyncCount());
+      f.renderer.setSimulationRate(20);assertEquals(20,f.renderer.window().getFpsLimit());
+      f.renderer.setRenderCallback(saved);assertEquals(960,f.renderer.simulationTiming().rate());assertEquals(60,f.renderer.window().getFpsLimit());
+      final var neutral=RenderEngine.class.getDeclaredMethod("getRenderSpeedMultiplier");neutral.setAccessible(true);
+      f.renderer.setRenderCallback(()->{});assertEquals(1,neutral.invoke(f.renderer),"Loading and plain callbacks are neutral");
+      GameEngine.PLATFORM.setInputTickRate(960);assertEquals(960,GameEngine.PLATFORM.getInputTickRate());
+    } finally { legend.core.Config.setGameSpeedMultiplier(oldSpeed);GameEngine.PLATFORM.setInputTickRate(oldInput); }
+  }
+
+  @Test void callbackOwnershipChangesClearEdgesAndPreserveHeldState() throws Exception {
+    final var platform=(SdlPlatformManager)GameEngine.PLATFORM;
+    final var states=(Map<InputAction,InputActionState>)get(platform,"actionStates");
+    final var state=new InputActionState();state.press(); final var action=InputAction.fixed();states.put(action,state);
+    try(final var f=new Fixture()) {
+      f.renderer.setSimulationCallback(()->{});
+      assertFalse(state.isPressed());assertFalse(state.isRepeat());assertTrue(state.isHeld());
+    } finally { states.remove(action); }
+  }
+
   @Test void cancellationDiscardsStaleEdgesButNormalQuickTapsRemainLatched() {
     final var state=new InputActionState();
     state.press(); state.repeat(); state.repeat(); state.cancel();
@@ -148,8 +177,8 @@ final class SimulationRendererTest {
     final var platform=(SdlPlatformManager)GameEngine.PLATFORM;
     final var pressed=(Set<InputAction>)get(platform,"pressed");
     final var states=(Map<InputAction,InputActionState>)get(platform,"actionStates");
-    final var action=InputAction.fixed(); final var state=new InputActionState();state.press();state.axis(.75f);
-    states.put(action,state);pressed.add(action);
+    final var action=InputAction.fixed(); final var state=new InputActionState();state.axis(.75f);
+    states.put(action,state);
     try(final var f=new Fixture()) {
       final int[] edges={0},repeats={0},held={0};
       f.renderer.setSimulationCallback(()->{
@@ -158,6 +187,7 @@ final class SimulationRendererTest {
         if(platform.isActionHeld(action))held[0]++;
         assertEquals(.75f,platform.getAxis(action));
       });
+      state.press();state.axis(.75f);pressed.add(action);
       assertEquals(1,f.present()); f.now.addAndGet(100_000_000); assertEquals(6,f.present());
       assertEquals(1,edges[0]);assertEquals(1,repeats[0]);assertEquals(7,held[0]);
       state.release(); assertFalse(platform.isActionHeld(action));assertFalse(platform.isActionRepeat(action));

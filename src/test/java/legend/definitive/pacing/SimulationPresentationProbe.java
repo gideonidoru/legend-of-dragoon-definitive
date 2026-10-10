@@ -107,6 +107,59 @@ public final class SimulationPresentationProbe {
       for(int frame=1;frame<=presentation;frame++){now.set(frame*1_000_000_000L/presentation);tick.invoke(window);}
       require(ticks[0]==rate[0],"Production onDraw tick budget "+rate[0]+" at "+presentation+" Hz");
     }
-    System.out.println("PASS: complete headless production onDraw preserves simulation budgets, retained draw/scissor/notification/UI ownership and queued movie/gameplay handoffs.");
+    verifyOtherClockOwners(renderer,clock,now,window,tick);
+    System.out.println("PASS: complete headless production onDraw preserves simulation budgets, retained draw/scissor/notification/UI ownership and queued movie/gameplay handoffs, neutral Dabas ownership and elapsed loading presentation.");
   }
+  private static void staticField(final String name, final Object value) throws Exception {
+    final var f=GameEngine.class.getDeclaredField(name);f.setAccessible(true);f.set(null,value);
+  }
+
+  private static void verifyOtherClockOwners(final RenderEngine renderer, final SimulationClock clock, final AtomicLong now,
+      final NoopWindow window, final java.lang.reflect.Method draw) throws Exception {
+    final int oldInput=GameEngine.PLATFORM.getInputTickRate();
+    final var constructor=legend.game.dabas.Dabas.class.getDeclaredConstructor(legend.core.audio.GenericSource.class);constructor.setAccessible(true);
+    for(int speed=1;speed<=16;speed++) for(int base:new int[]{20,30,60}) {
+      Config.setGameSpeedMultiplier(speed);renderer.setSimulationCallback(()->{});renderer.setSimulationRate(base*speed);
+      GameEngine.PLATFORM.setInputTickRate(base*speed);
+      final int oldFps=window.getFpsLimit(),oldWidth=renderer.getNativeWidth(),oldHeight=renderer.getNativeHeight();
+      final var oldMode=renderer.getRenderMode();final int[] steps={0};
+      final var pauseStates=new java.util.ArrayList<Boolean>();
+      final var audioSource=new legend.core.audio.GenericSource(0,44100) {
+        @Override public void setPlaybackPaused(boolean paused) { pauseStates.add(paused); }
+      };
+      final var previousPause=renderer.setCinematicPauseCallback(paused -> {});
+      final var dabas=constructor.newInstance(audioSource);
+      dabas.setFps(30);require(window.getFpsLimit()==oldFps,"Early hardware setup must not overwrite gameplay FPS");
+      dabas.setTicker(()->steps[0]++);clock.reset(false);now.set(0);clock.reset(false);
+      for(int frame=1;frame<=15;frame++){now.set(frame*1_000_000_000L/15);draw.invoke(window);}
+      require(steps[0]==30&&window.getFpsLimit()==30&&GameEngine.PLATFORM.getInputTickRate()==30,"Dabas advances its neutral hardware rate under a 15 Hz presentation cap, speed "+speed);
+      dabas.setFps(20);now.addAndGet(100_000_000);draw.invoke(window);require(steps[0]==32,"Dynamic hardware rate owns its next deadline");
+      field(renderer,"togglePause",true);draw.invoke(window);draw.invoke(window);
+      require(renderer.isPaused()&&pauseStates.equals(java.util.List.of(false,true)),"Hardware audio pauses exactly once with the callback owner");
+      field(renderer,"togglePause",true);draw.invoke(window);
+      require(pauseStates.equals(java.util.List.of(false,true,false)),"Hardware audio resumes without losing the queued sample clock");
+      dabas.shutdown();dabas.shutdown();renderer.setCinematicPauseCallback(previousPause);require(clock.rate()==base*speed&&window.getFpsLimit()==oldFps&&GameEngine.PLATFORM.getInputTickRate()==base*speed,"Hardware scope restores independent gameplay/input/presentation rates");
+      require(renderer.getNativeWidth()==oldWidth&&renderer.getNativeHeight()==oldHeight&&renderer.getRenderMode()==oldMode,"Hardware scope restores projection and mode");
+    }
+    // Execute the actual loading callback with a deterministic monotonic clock and Noop graphics.
+    final var f=GameEngine.class.getDeclaredField("introPresentation");f.setAccessible(true);
+    final var intro=(legend.core.IntroPresentation)f.get(null);field(intro,"clock",(LongSupplier)now::get);
+    staticField("unpackerLoading",true);staticField("cinematicFinished",true);
+    final var eye=Texture.empty("Headless loading eye",16,16);final var quad=new QuadBuilder("Headless loading quad").bpp(legend.core.gpu.Bpp.BITS_24).size(1,1).build();
+    staticField("eyeTexture",eye);staticField("texturedObj",quad);
+    final var renderIntro=GameEngine.class.getDeclaredMethod("renderIntro");renderIntro.setAccessible(true);
+    for(int speed:new int[]{1,8,16})for(int fps:new int[]{15,40,60,120}) {
+      Config.setGameSpeedMultiplier(speed);now.set(0);intro.reset(0);
+      renderer.setRenderCallback(()->{try{renderIntro.invoke(null);}catch(Exception e){throw new RuntimeException(e);}});window.setFpsLimit(fps);draw.invoke(window);
+      final int queued=((RenderBatch)field(renderer,"mainBatch")).orthoPool.size();
+      for(int frame=1;frame<=fps*4;frame++){now.set(frame*1_000_000_000L/fps);draw.invoke(window);}
+      require(intro.eyeFade()==1&&intro.loadingFade()==1,"Actual loading callback fades complete at elapsed time, cap "+fps+" speed "+speed);
+      final var expected=new legend.core.IntroPresentation();expected.reset(0);expected.advance(0,true,true);expected.advance(4_000_000_000L,true,true);
+      require(Math.abs(intro.hue()-expected.hue())<0.000001,"Actual loading colour clock is independent of game speed/presentation cap");
+      require(!window.simulationConsumesInput()&&((RenderBatch)field(renderer,"mainBatch")).orthoPool.size()==queued,"Loading presentation keeps its own input/queue ownership");
+    }
+    renderer.setRenderCallback(()->{});eye.delete();quad.delete();staticField("eyeTexture",null);staticField("texturedObj",null);
+    Config.setGameSpeedMultiplier(1);GameEngine.PLATFORM.setInputTickRate(oldInput);
+  }
+
 }
