@@ -35,8 +35,12 @@ runtime manifests. Its candidates remain pending source-intent, Skurfa-style,
 layout and repeat review. A source-preserving neural upscale is a baseline;
 matching Skurfa's material quality still requires inspection and selective bespoke
 reconstruction. No automatic score selects artwork or proves native acceptance.
-Imports must record the actual production method rather than labeling a neural
-upscale or Python repair as a new image-generation result.
+`scripts/import-envhd-sky.py --production-record <candidates.json>` verifies and
+records the actual batch method, source/input/output identities, predecessor
+review and pinned tool hashes. A neural upscale or Python repair is never labeled
+as a new image-generation result. Skurfa references are explicitly review-only
+for these methods. Original source colors are restored wherever rounding or
+inference would otherwise introduce a new opaque-black texel.
 
 Skurfa retains its resources, notices and independent activation. This command
 addresses the battle-panorama task ledger only; it does not generate field scenes

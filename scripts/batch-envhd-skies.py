@@ -21,9 +21,9 @@ spec = importlib.util.spec_from_file_location('sky_import', Path(__file__).with_
 sky = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(sky)
 
-WEIGHTS = '713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf'
-PARAMETERS = '35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86'
-ENGINE = 'c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc'
+WEIGHTS = sky.BATCH_TOOL_HASHES['weightsSha256']
+PARAMETERS = sky.BATCH_TOOL_HASHES['parametersSha256']
+ENGINE = sky.BATCH_TOOL_HASHES['engineSha256']
 REPAIRABLE = {'repeat-boundary-revision-needed', 'layout-reviewed-wrap-pending'}
 
 
@@ -54,12 +54,33 @@ def candidate(root, entry):
     version = path.stem.removeprefix('image-v')
     metadata = sky.read_json(path.with_name(f'manifest-v{version}.json'))
     data = sky.read_bytes(path)
-    if metadata['sourceMcqSha256'] != entry['sourceMcqSha256'] or metadata['decodedRgbaSha256'] != entry['decodedRgbaSha256'] or sky.digest(data) != metadata['outputSha256']:
+    if metadata['sourceMcqSha256'] != entry['sourceMcqSha256'] or metadata.get('decodedRgbaSha256', entry['decodedRgbaSha256']) != entry['decodedRgbaSha256'] or sky.digest(data) != metadata['outputSha256']:
         raise ValueError('Candidate differs from its recorded version')
+    if metadata['reviewStatus'] not in REPAIRABLE or metadata['reviewStatus'] != entry['status']:
+        raise ValueError('Repair requires a matching reviewed-layout verdict')
     with Image.open(io.BytesIO(data)) as image:
         if image.mode not in ('RGB', 'RGBA') or list(image.size) != entry['targetSize']:
             raise ValueError('Candidate layout differs from its source')
         return image.convert('RGB'), metadata['outputSha256']
+
+
+def retains_selection(root, group):
+    runtime = root / 'integrations/envhd/runtime-assets'
+    paths = [runtime / 'envhd/skies' / e['sourceMcqSha256'] / 'manifest.json' for e in group]
+    if not any(p.exists() or e.get('runtimeReviewStatus') in sky.SELECTED for p, e in zip(paths, group)):
+        return False
+    outputs = set()
+    for path, entry in zip(paths, group):
+        metadata = sky.read_json(path)
+        if metadata['reviewStatus'] not in sky.SELECTED or metadata['reviewStatus'] != entry.get('runtimeReviewStatus') or metadata.get('decodedRgbaSha256') != entry['decodedRgbaSha256']:
+            raise ValueError('Selected runtime binding differs from production ownership')
+        image = sky.resource_path(runtime, entry['sourceMcqSha256'], metadata)
+        if str(image.relative_to(root)) != entry.get('runtimeOutput') or sky.digest(sky.read_bytes(image)) != metadata['outputSha256']:
+            raise ValueError('Selected runtime artwork changed')
+        outputs.add((str(image), metadata['outputSha256']))
+    if len(outputs) != 1:
+        raise ValueError('Shared source variants have different selected artwork')
+    return True
 
 
 def plan(root, files):
@@ -89,16 +110,18 @@ def plan(root, files):
         w, h = master['sourceSize']
         if master['targetSize'] != [w * 4, h * 4] or max(w * 4, h * 4) > 4096:
             raise ValueError('Batch only supports the source-bound 4x layout')
-        state = master.get('runtimeReviewStatus')
-        action = 'retain-selected' if state in sky.SELECTED else 'upscale-original'
+        action = 'retain-selected' if retains_selection(root, group) else 'upscale-original'
         input_hash = master['decodedRgbaSha256']
         if action != 'retain-selected' and master['status'] in REPAIRABLE:
             _, input_hash = candidate(root, master)
             action = 'repair-reviewed-layout'
-        jobs.append({'masterSourceSha256': master['sourceMcqSha256'],
+        job = {'masterSourceSha256': master['sourceMcqSha256'],
                      'decodedRgbaSha256': master['decodedRgbaSha256'], 'action': action,
                      'inputSha256': input_hash, 'stages': sorted(s for e in group for s in e['stages']),
-                     'sourceSize': master['sourceSize'], 'targetSize': master['targetSize']})
+                     'sourceSize': master['sourceSize'], 'targetSize': master['targetSize']}
+        if action == 'repair-reviewed-layout':
+            job['inputImageFile'] = Path(master['output']).name
+        jobs.append(job)
     if len({j['masterSourceSha256'] for j in jobs}) != len(jobs):
         raise ValueError('Duplicate restoration tasks')
     return jobs, by_hash
@@ -113,6 +136,8 @@ def preserve_visibility(source, pixels):
     protected = (classification[:, :, 3] == 0) | np.all(classification[:, :, :3] == 0, axis=2)
     result = np.dstack((pixels, classification[:, :, 3])).astype(np.uint8)
     result[protected, :3] = 0
+    new_black = ~protected & np.all(result[:, :, :3] == 0, axis=2)
+    result[new_black, :3] = classification[new_black, :3]
     return result, protected
 
 
@@ -162,7 +187,7 @@ def execute(root, files, output, jobs, by_hash, engine, models):
             if digest != job['inputSha256']:
                 raise ValueError('Candidate changed after batch preflight')
             pixels = np.asarray(image)
-            method = 'built-in-imagegen-python-border-repair'
+            method = 'python-border-repair'
         else:
             # Periodic horizontal context avoids artificial neural input edges.
             padded = np.pad(np.asarray(source.convert('RGB')), ((0, 0), (64, 64), (0, 0)), mode='wrap')
@@ -183,7 +208,8 @@ def execute(root, files, output, jobs, by_hash, engine, models):
             method = 'real-esrgan-x4plus-periodic-python-border-repair'
         rgba, protected = preserve_visibility(source, pixels)
         border = min(32, rgba.shape[1] // 8)
-        Image.fromarray(join_edges(rgba, protected, border)).save(output / f'{key}.png')
+        repaired, _ = preserve_visibility(source, join_edges(rgba, protected, border)[:, :, :3])
+        Image.fromarray(repaired).save(output / f'{key}.png')
         result = dict(job, method=method, outputSha256=file_digest(output / f'{key}.png'),
                       reviewStatus='pending-source-intent-style-layout-wrap-review',
                       repairBorderPixels=border, sourceVisibility='exact-nearest-4x-discard-and-visible-black',

@@ -79,6 +79,34 @@ class BatchTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Candidate differs'):
             batch.plan(self.root, self.files)
 
+    def test_legacy_source_bound_candidate_can_derive_pixel_identity_from_verified_mcq(self):
+        self.fixture.record(verdict='repeat-boundary-revision-needed')
+        path = self.fixture.production / 'candidates' / self.fixture.master / 'manifest-v1.json'
+        metadata = json.loads(path.read_text())
+        metadata.pop('decodedRgbaSha256')
+        path.write_text(json.dumps(metadata))
+        self.assertEqual('repair-reviewed-layout', batch.plan(self.root, self.files)[0][0]['action'])
+
+    def test_stale_layout_review_and_corrupt_selected_resources_stop_planning(self):
+        self.fixture.record(verdict='repeat-boundary-revision-needed')
+        path = self.fixture.production / 'candidates' / self.fixture.master / 'manifest-v1.json'
+        metadata = json.loads(path.read_text())
+        metadata['reviewStatus'] = 'intent-revision-needed'
+        path.write_text(json.dumps(metadata))
+        with self.assertRaisesRegex(ValueError, 'reviewed-layout verdict'):
+            batch.plan(self.root, self.files)
+        self.fixture.record()
+        image = self.fixture.image(1)
+        image.write_bytes(image.read_bytes() + b'changed')
+        with self.assertRaisesRegex(ValueError, 'runtime artwork changed'):
+            batch.plan(self.root, self.files)
+
+    def test_missing_shared_selection_manifest_stops_planning(self):
+        self.fixture.record()
+        self.fixture.manifest(self.fixture.alias).unlink()
+        with self.assertRaises(FileNotFoundError):
+            batch.plan(self.root, self.files)
+
     def test_layout_failed_art_uses_original_instead_of_repairing_wrong_shapes(self):
         self.fixture.record(verdict='intent-revision-needed')
         jobs, _ = batch.plan(self.root, self.files)
@@ -100,6 +128,17 @@ class BatchTest(unittest.TestCase):
         self.assertEqual((0, 0, 0, 0), tuple(repaired[8, -1]))
         mutable = ~protected[:, 0] & ~protected[:, -1]
         self.assertTrue(np.array_equal(repaired[mutable, 0], repaired[mutable, -1]))
+
+    def test_ordinary_source_colors_cannot_become_new_opaque_black(self):
+        source = Image.new('RGBA', (16, 8), (8, 16, 24, 255))
+        zeros = np.zeros((32, 64, 3), dtype=np.uint8)
+        restored, protected = batch.preserve_visibility(source, zeros)
+        self.assertFalse(np.any(np.all(restored[:, :, :3] == 0, axis=2)))
+        restored[:, 0, :3] = (1, 0, 0)
+        restored[:, -1, :3] = (0, 1, 0)
+        joined = batch.join_edges(restored, protected, 8)
+        final, _ = batch.preserve_visibility(source, joined[:, :, :3])
+        self.assertFalse(np.any(np.all(final[:, :, :3] == 0, axis=2)))
 
     def test_tool_drift_stops_before_output_work_or_inference(self):
         jobs, entries = batch.plan(self.root, self.files)
@@ -141,6 +180,52 @@ class BatchTest(unittest.TestCase):
             self.assertFalse(json.loads((output / 'candidates.json').read_text())['installed'])
         self.assertEqual(before, self.fixture.snapshot())
         self.assertEqual(private_before, {p.name: p.read_bytes() for p in self.files.iterdir()})
+
+    def test_neural_import_retains_actual_method_and_rejects_tool_drift(self):
+        ledger = json.loads((self.fixture.production / 'battle-skies.json').read_text())
+        entry = ledger['assets'][0]
+        record = dict(masterSourceSha256=self.fixture.master, decodedRgbaSha256=self.fixture.group,
+                      outputSha256=batch.sky.digest(self.fixture.candidate.read_bytes()),
+                      sourceSize=[16, 32], targetSize=[64, 128], repairBorderPixels=8,
+                      sourceVisibility='exact-nearest-4x-discard-and-visible-black',
+                      reviewStatus='pending-source-intent-style-layout-wrap-review',
+                      method='real-esrgan-x4plus-periodic-python-border-repair', action='upscale-original',
+                      inputSha256=self.fixture.group, **batch.sky.BATCH_TOOL_HASHES)
+        before = self.fixture.snapshot()
+        record['engineSha256'] = 'wrong'
+        with self.assertRaisesRegex(ValueError, 'pinned tool identity'):
+            batch.sky.record(self.root, self.files, self.fixture.candidate, self.fixture.master, 1,
+                             self.fixture.prompt, 'visual-reviewed-native-pending', self.fixture.notes, record)
+        self.assertEqual(before, self.fixture.snapshot())
+        record.update(batch.sky.BATCH_TOOL_HASHES)
+        batch.sky.record(self.root, self.files, self.fixture.candidate, self.fixture.master, 1,
+                         self.fixture.prompt, 'visual-reviewed-native-pending', self.fixture.notes, record)
+        metadata = json.loads(self.fixture.manifest(self.fixture.master).read_text())
+        self.assertEqual(record['method'], metadata['method'])
+        self.assertEqual(batch.ENGINE, metadata['productionRecord']['engineSha256'])
+        self.assertEqual('visual-review-only', metadata['styleReferenceUse'])
+
+    def test_repair_import_requires_recorded_reviewed_predecessor(self):
+        self.fixture.record(verdict='repeat-boundary-revision-needed')
+        predecessor = self.fixture.production / 'candidates' / self.fixture.master / 'image-v1.png'
+        record = dict(masterSourceSha256=self.fixture.master, decodedRgbaSha256=self.fixture.group,
+                      outputSha256=batch.sky.digest(self.fixture.candidate.read_bytes()),
+                      sourceSize=[16, 32], targetSize=[64, 128], repairBorderPixels=8,
+                      sourceVisibility='exact-nearest-4x-discard-and-visible-black',
+                      reviewStatus='pending-source-intent-style-layout-wrap-review',
+                      method='python-border-repair', action='repair-reviewed-layout',
+                      inputSha256=batch.sky.digest(predecessor.read_bytes()), inputImageFile='image-v1.png',
+                      engineSha256=None, weightsSha256=None, parametersSha256=None)
+        record['inputSha256'] = 'wrong'
+        before = self.fixture.snapshot()
+        with self.assertRaisesRegex(ValueError, 'predecessor differs'):
+            batch.sky.record(self.root, self.files, self.fixture.candidate, self.fixture.master, 2,
+                             self.fixture.prompt, 'visual-reviewed-native-pending', self.fixture.notes, record)
+        self.assertEqual(before, self.fixture.snapshot())
+        record['inputSha256'] = batch.sky.digest(predecessor.read_bytes())
+        batch.sky.record(self.root, self.files, self.fixture.candidate, self.fixture.master, 2,
+                         self.fixture.prompt, 'visual-reviewed-native-pending', self.fixture.notes, record)
+        self.assertEqual(record['method'], json.loads(self.fixture.manifest(self.fixture.master).read_text())['method'])
 
 
 if __name__ == '__main__':
