@@ -648,12 +648,13 @@ public class SdlPlatformManager extends PlatformManager {
           final InputAction action = entry.getKey();
           final InputActionState state = entry.getValue();
 
-          if(state.isHeld()) {
+          final boolean wasHeld = state.isHeld();
+          if(wasHeld) {
             LOGGER.info(ACTIONS_MARKER, "Triggering release input action %s", action);
             this.lastActiveWindow.events().onInputActionReleased(action);
-            EVENTS.postEvent(new InputReleasedEvent(action));
           }
           state.cancel();
+          if(wasHeld) EVENTS.postEvent(new InputReleasedEvent(action));
         }
 
         this.axisActionStates.clear();
