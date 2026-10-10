@@ -905,7 +905,9 @@ public final class Audio {
       LOGGER.info("Playing XA archive %d file %d", xaArchiveIndex, xaFileIndex);
 
       //LAB_8002c448
-      AUDIO_THREAD.loadXa(Loader.loadFileSync("XA/LODXA0%d.XA/%d.opus".formatted(xaArchiveIndex, xaFileIndex)));
+      final String base = "XA/LODXA0%d.XA/%d".formatted(xaArchiveIndex, xaFileIndex);
+      final String extension = legend.core.audio.xa.XaPcm.isComplete(Loader.resolve(base + ".wav")) ? ".wav" : ".opus";
+      AUDIO_THREAD.loadXa(Loader.loadFileSync(base + extension));
       _800bf0cf = 4;
     }
 

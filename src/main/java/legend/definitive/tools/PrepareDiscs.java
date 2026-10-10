@@ -16,6 +16,11 @@ public final class PrepareDiscs {
     Unpacker.setStatusListener(status -> System.out.println("DEFINITIVE_STATUS\t" + status));
     Unpacker.unpack();
     if(!Files.isRegularFile(Path.of("files/version"))) throw new java.io.IOException("Disc preparation did not finish. Retry preparation; original disc images are unchanged.");
+    for(int archive = 0; archive < 4; archive++) {
+      if(legend.core.audio.xa.XaTranscoder.needsConversion(Path.of("files/XA/LODXA0" + archive + ".XA"))) {
+        throw new java.io.IOException("Lossless audio preparation is incomplete. Retry preparation; original disc images are unchanged.");
+      }
+    }
     System.out.println("Private disc preparation complete.");
   }
 }

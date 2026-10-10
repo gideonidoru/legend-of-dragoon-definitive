@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import static org.lwjgl.openal.AL10.AL_BUFFERS_PROCESSED;
 import static org.lwjgl.openal.AL10.AL_BUFFERS_QUEUED;
+import static org.lwjgl.openal.AL10.AL_BUFFER;
 import static org.lwjgl.openal.AL10.AL_SIZE;
 import static org.lwjgl.openal.AL10.AL_BITS;
 import static org.lwjgl.openal.AL10.AL_CHANNELS;
@@ -25,12 +26,14 @@ import static org.lwjgl.openal.AL10.alGetSourcei;
 import static org.lwjgl.openal.AL10.alSourcePlay;
 import static org.lwjgl.openal.AL10.alSourceQueueBuffers;
 import static org.lwjgl.openal.AL10.alSourceStop;
+import static org.lwjgl.openal.AL10.alSourcei;
 import static org.lwjgl.openal.AL10.alSourceUnqueueBuffers;
 import static org.lwjgl.openal.AL11.AL_SEC_OFFSET;
 import static org.lwjgl.system.MemoryUtil.memFree;
 
 public abstract class AudioSource {
   private final int[] buffers;
+  private final int[] allocatedBuffers;
   private int bufferIndex;
   private int sourceId;
 
@@ -43,6 +46,7 @@ public abstract class AudioSource {
 
   public AudioSource(final int bufferCount) {
     this.buffers = new int[bufferCount];
+    this.allocatedBuffers = new int[bufferCount];
   }
 
   protected boolean isInitialized() {
@@ -54,7 +58,8 @@ public abstract class AudioSource {
     this.sourceId = alGenSources();
     this.tmp = MemoryUtil.memAllocInt(1);
 
-    alGenBuffers(this.buffers);
+    alGenBuffers(this.allocatedBuffers);
+    System.arraycopy(this.allocatedBuffers, 0, this.buffers, 0, this.buffers.length);
     this.bufferIndex = this.buffers.length - 1;
 
     this.playTime = 0.0f;
@@ -64,20 +69,15 @@ public abstract class AudioSource {
     this.active = false;
     alSourceStop(this.sourceId);
 
-    alGetSourcei(this.sourceId, AL_BUFFERS_PROCESSED, this.tmp);
-    final int processedBufferCount = this.tmp.get(0);
-
-    for(int buffer = 0; buffer < processedBufferCount; buffer++) {
-      final int processedBufferName = alSourceUnqueueBuffers(this.sourceId);
-      alDeleteBuffers(processedBufferName);
-    }
-
-    alDeleteBuffers(this.buffers);
+    // Detach even an INITIAL queue: stopping an unstarted source need not mark it processed.
+    alSourcei(this.sourceId, AL_BUFFER, 0);
+    alDeleteBuffers(this.allocatedBuffers);
     alDeleteSources(this.sourceId);
 
     memFree(this.tmp);
 
     Arrays.fill(this.buffers, 0);
+    Arrays.fill(this.allocatedBuffers, 0);
     this.sourceId = 0;
     this.tmp = null;
 
@@ -171,6 +171,20 @@ public abstract class AudioSource {
 
     if(this.isInitialized()) {
       alSourceStop(this.sourceId);
+    }
+  }
+
+  /** Discard queued audio when replacing a recording, including a never-started queue. */
+  protected void flushOutput() {
+    synchronized(this) {
+      this.active = false;
+      if(this.isInitialized()) {
+        alSourceStop(this.sourceId);
+        alSourcei(this.sourceId, AL_BUFFER, 0);
+        System.arraycopy(this.allocatedBuffers, 0, this.buffers, 0, this.buffers.length);
+        this.bufferIndex = this.buffers.length - 1;
+      }
+      this.playTime = 0.0f;
     }
   }
 

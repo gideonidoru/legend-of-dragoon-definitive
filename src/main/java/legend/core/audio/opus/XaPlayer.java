@@ -1,152 +1,100 @@
 package legend.core.audio.opus;
 
 import legend.core.audio.AudioSource;
+import legend.core.audio.xa.XaDecoder;
+import legend.core.audio.xa.XaPcm;
 import legend.game.modding.coremod.CoreMod;
 import legend.game.unpacker.FileData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.BufferUtils;
-import org.lwjgl.system.MemoryStack;
-import org.lwjgl.util.opus.OpusFile;
-
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
-import java.nio.ShortBuffer;
+import java.util.Arrays;
 
 import static legend.core.GameEngine.CONFIG;
 import static org.lwjgl.openal.AL10.AL_FORMAT_MONO16;
 import static org.lwjgl.openal.AL10.AL_FORMAT_STEREO16;
-import static org.lwjgl.system.MemoryStack.stackPush;
-import static org.lwjgl.system.MemoryUtil.NULL;
 
+/** Exact-count PCM/legacy Opus playback with final-buffer drain and clean track replacement. */
 public final class XaPlayer extends AudioSource {
   private static final Logger LOGGER = LogManager.getFormatterLogger(XaPlayer.class);
-
-  private final Object playbackLock = new Object();
-
-  private ByteBuffer opusFileData;
-  private long opusFile;
-  private int channelCount;
+  private XaDecoder decoder;
   private int format;
-  private final int samplesPerTick;
   private short[] pcm;
-  private ShortBuffer pcmBuffer;
-
-  private long sampleCount;
-  private long samplesRead;
-
   private float playerVolume;
+  private boolean eof;
+  private long resumeFrame;
+  private long bufferedFrames;
 
   public XaPlayer() {
-    super(8);
-
-    this.samplesPerTick = 48000 / 100;
-
-    this.channelCount = 1;
-    this.format = AL_FORMAT_MONO16;
-    this.pcm = new short[this.samplesPerTick];
-    this.pcmBuffer = BufferUtils.createShortBuffer(this.samplesPerTick);
-    this.playerVolume = CONFIG.getConfig(CoreMod.SFX_VOLUME_CONFIG.get()) * CONFIG.getConfig(CoreMod.MASTER_VOLUME_CONFIG.get());
+    this(CONFIG.getConfig(CoreMod.SFX_VOLUME_CONFIG.get()) * CONFIG.getConfig(CoreMod.MASTER_VOLUME_CONFIG.get()));
   }
 
-  public void setPlayerVolume(final float volume) {
-    this.playerVolume = volume;
+  public XaPlayer(final float volume) { super(8); this.playerVolume = volume; }
+
+  public synchronized void setPlayerVolume(final float volume) { this.playerVolume = volume; }
+
+  public synchronized void loadXa(final FileData fileData) {
+    this.stop();
+    try { this.decoder = XaDecoder.open(fileData); }
+    catch(final RuntimeException failure) { LOGGER.error("Cannot open XA recording", failure); return; }
+    this.format = this.decoder.channels() == 2 ? AL_FORMAT_STEREO16 : AL_FORMAT_MONO16;
+    this.pcm = new short[480 * this.decoder.channels()];
+    this.setActive(true);
+    for(int i = 0; i < 4 && !this.eof && this.decoder != null && this.canBuffer(); i++) this.bufferNext();
+    this.finishIfDrained();
+    super.tick();
   }
 
-  public void loadXa(final FileData fileData) {
-    synchronized(this.playbackLock) {
-      this.opusFileData = BufferUtils.createByteBuffer(fileData.size());
-      this.opusFileData.put(fileData.getBytes());
-      this.opusFileData.rewind();
-      this.samplesRead = 0;
-
-      try(final MemoryStack stack = stackPush()) {
-        final IntBuffer error = stack.mallocInt(1);
-        this.opusFile = OpusFile.op_open_memory(this.opusFileData, error);
-
-        if(error.get(0) != 0) {
-          LOGGER.error("Error opening Opus XA file: 0x%x", error.get(0));
-        }
-      }
-
-      final int newChannelCount = OpusFile.op_channel_count(this.opusFile, -1);
-
-      if(this.channelCount != newChannelCount) {
-        this.channelCount = newChannelCount;
-        this.format = this.channelCount == 2 ? AL_FORMAT_STEREO16 : AL_FORMAT_MONO16;
-        this.pcm = new short[this.samplesPerTick * this.channelCount];
-        this.pcmBuffer = BufferUtils.createShortBuffer(this.pcm.length);
-      }
-
-      this.sampleCount = OpusFile.op_pcm_total(this.opusFile, -1) * newChannelCount;
-
-      if(this.sampleCount < this.samplesPerTick * 4) {
-        throw new RuntimeException("XA file is less than 4 buffers in length (40ms)");
-      }
-
-      this.setActive(true);
-
-      if(this.canBuffer()) {
-        for(int i = 0; i < 4; i++) {
-          this.readFile();
-          this.bufferOutput(this.format, this.pcm, 48_000);
-        }
-      }
-
-      if(this.isActive()) {
-        this.play();
-      }
-    }
+  @Override public synchronized void tick() {
+    // Remove exhausted buffers before restarting an underflowed source.
+    this.handleProcessedBuffers();
+    if(this.decoder != null && !this.eof && this.canBuffer()) this.bufferNext();
+    this.finishIfDrained();
+    super.tick();
   }
 
-  @Override
-  public void tick() {
-    synchronized(this.playbackLock) {
-      if(this.opusFile == NULL) {
-        this.setActive(false);
-        return;
-      }
-
-      this.readFile();
-      this.bufferOutput(this.format, this.pcm, 48_000);
-      super.tick();
-    }
-  }
-
-  private void readFile() {
-    this.pcmBuffer.clear();
-    OpusFile.op_read(this.opusFile, this.pcmBuffer, null);
-
-    this.pcmBuffer.rewind();
-    this.pcmBuffer.get(this.pcm);
-
-    for(int i = 0; i < this.pcm.length; i++) {
-      this.pcm[i] *= this.playerVolume;
-    }
-
-    this.samplesRead += this.pcm.length;
-
-    this.setActive(this.samplesRead <= this.sampleCount);
-
-    if(!this.isActive()) {
+  private void bufferNext() {
+    final int count;
+    try { count = this.decoder.read(this.pcm); }
+    catch(final RuntimeException failure) {
+      LOGGER.error("Stopping invalid XA recording", failure);
       this.unloadOpusFile();
+      this.eof = true;
+      return;
+    }
+    if(count == 0) { this.eof = true; return; }
+    this.bufferedFrames += count / this.decoder.channels();
+    for(int i = 0; i < count; i++) this.pcm[i] = (short)Math.clamp(Math.round(this.pcm[i] * this.playerVolume), Short.MIN_VALUE, Short.MAX_VALUE);
+    // OpenAL copies the samples immediately; a short final read never queues stale data.
+    this.bufferOutput(this.format, count == this.pcm.length ? this.pcm : Arrays.copyOf(this.pcm, count), XaPcm.SAMPLE_RATE);
+  }
+
+  private void finishIfDrained() {
+    if((this.eof || this.decoder == null) && !this.hasQueuedOutput()) {
+      this.unloadOpusFile();
+      this.setActive(false);
     }
   }
 
-  public void unloadOpusFile() {
-    synchronized(this.playbackLock) {
-      if(this.opusFile != NULL) {
-        OpusFile.op_free(this.opusFile);
-        this.opusFile = NULL;
-        this.opusFileData = null;
-      }
-    }
+  @Override public synchronized void stop() {
+    this.flushOutput();
+    this.unloadOpusFile();
+    this.eof = false;
+    this.resumeFrame = this.bufferedFrames = 0;
   }
 
-  @Override
-  protected void destroy() {
-    synchronized(this.playbackLock) {
-      super.destroy();
+  /** Retained API name for older callers; releases either supported decoder. */
+  public synchronized void unloadOpusFile() {
+    if(this.decoder != null) { this.decoder.close(); this.decoder = null; }
+  }
+
+  @Override protected synchronized void destroy() {
+    // Rewind unplayed queued audio before the old device loses it. The next device resumes
+    // at the played frame, including a tail whose decoder has already reached EOF.
+    if(this.decoder != null) {
+      this.resumeFrame = Math.min(this.bufferedFrames, this.resumeFrame + Math.round(this.getPlaybackPosition() * XaPcm.SAMPLE_RATE));
+      try { this.decoder.seek(this.resumeFrame); this.bufferedFrames = this.resumeFrame; this.eof = false; }
+      catch(final RuntimeException failure) { LOGGER.error("Cannot resume XA recording", failure); this.unloadOpusFile(); }
     }
+    super.destroy();
   }
 }
