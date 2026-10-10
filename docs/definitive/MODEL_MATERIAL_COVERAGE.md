@@ -36,6 +36,8 @@ The [native integration source audit](NATIVE_MATERIAL_INTEGRATION.md) now traces
 
 ## Art direction and community review
 
+The owner subsequently reviewed the embedded Haschel/Meru studies and rejected the existing enhancements as too subtle. The chosen direction is modernization of the original designs with much clearer faces, richer materials and smoother models. [Stronger textures and surface feasibility study](CHARACTER_REMASTER.md) makes that gap explicit; no current candidate has artistic approval or is promoted to the default preset.
+
 Use original faces, costumes, weapon silhouettes and Skurfa's painted world as references. Keep source-size eye, mouth, buckle and emblem crops alongside enlarged views; smoother pixels can erase markings. Preserve originals in sensitive regions when reconstruction changes their meaning; use hand-authored restoration where warranted. Texture enhancement does not add geometry or fix joints.
 
 Present equal-scene controls with neutral labels, disclose resolution/performance tradeoffs, and collect reasons for preference: identity, paint, material readability, seams, motion stability and handheld readability. Community preference has not been collected. Do not call a candidate community-approved or AAA-ready from a texture sheet, build or developer preference alone.
