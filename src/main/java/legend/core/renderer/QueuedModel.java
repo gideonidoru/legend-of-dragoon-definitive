@@ -213,6 +213,7 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
     this.tpageOverride.zero();
     this.uvOffset.zero();
     this.modelScissor.set(0, 0, 0, 0);
+    this.startVertex = 0;
     this.vertexCount = 0;
     Arrays.fill(this.textures, null);
     this.texturesUsed = false;

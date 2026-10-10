@@ -13,7 +13,11 @@ The mod sources live under `integrations/<id>`, with reviewed runtime resource c
 
 ## Build and delivery
 
+<<<<<<< HEAD
 `gradle/hd-mods.gradle` compiles EnvHD and UIHD; specialized `gradle/charhd.gradle` and `gradle/fxhd.gradle` build CharHD and FxHD against the current engine. The outputs are `EnvHD-v0.1.0.jar`, `CharHD-v0.2.0.jar`, `UIHD-v0.1.0.jar` and `FxHD-v0.2.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
+=======
+`gradle/hd-mods.gradle` and the specialized `gradle/charhd.gradle` compile four independent mods against the current engine and produce `EnvHD-v0.1.0.jar`, `CharHD-v0.2.0.jar`, `UIHD-v0.2.0.jar` and `FxHD-v0.1.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
+>>>>>>> origin/codex/uihd-complete-coverage
 
 Managed launch links all four JARs even when the legacy Skurfa preference selects original backgrounds. It preserves the game's saved enabled-mod configuration during updates/rollback. Bundling is not forced activation: existing players' in-game choices remain theirs. A player using original geometry/art can deactivate the corresponding mod without removing the package or changing saves. Standalone installation uses these four JARs in `mods/`, with this matching engine revision: EnvHD/UIHD/FxHD use the additive event/mesh hooks described below and are not drop-in compatible with unmodified upstream 3.0.0.
 
@@ -25,7 +29,7 @@ Stage loading joins the matching model and TIM futures before posting replacemen
 
 Counterattack darkening operates on original VRAM palettes. EnvHD switches to the original stage while that operation is active and returns to its replacement when the original multiplier is restored. Runtime-enabled texture animation likewise selects the original route. This preserves the legacy effect rather than freezing an undarkened HD scene. Shader color conversion still differs by up to eight-bit quantization from original five-bit color; visual/lighting equality is not claimed.
 
-UIHD runs after ordinary atlas registration and through source-bound PNG/native UI loading hooks. It requires original encoded hashes and exact current pixel/dimension matches. Native UI restoration changes RGB while live indexed VRAM retains visibility, STP and palette animation; changed pixels use original RGB. Display geometry, UV coordinates, scissoring and timing stay in source units. Unpadded sheets use nearest filtering; protected lettering/portrait regions retain original visible pixels. Shared bounded decoding/prewarming and next-frame renderer preparation reuse the engine's enhancements. See [UIHD production](UIHD_PRODUCTION.md) for selection, budgets and open acceptance work.
+UIHD runs after ordinary atlas registration and through source-bound PNG/native UI loading hooks. It requires original encoded hashes and exact current pixel/dimension matches. Native UI restoration changes RGB while live indexed VRAM retains visibility, STP and palette animation; changed pixels use original RGB. Display geometry, UV coordinates, scissoring and timing stay in source units. Unpadded sheets use nearest filtering; protected lettering/portrait regions retain original visible pixels. Shared bounded decoding/prewarming and lazy bounded native GPU residency reuse the engine's enhancements. See [UIHD production](UIHD_PRODUCTION.md) for selection, budgets and open acceptance work.
 
 FxHD uses immutable source-bound events for six static field bindings, the renderer's shared image cache and worker prewarming. Live indexed-pixel/palette controls restore original drawing after mutations. STP/discard/visible-black classes, blend modes, native footprint geometry, particle timing, save-point light/emission and reduced-flashing behavior are preserved. The animated save-point sheet, TMD dust and skid remain original. Owned artwork and quads are released on repeat teardown. See [production status](FXHD_PRODUCTION.md) for selected resources, validation and the broader queue.
 
@@ -92,7 +96,7 @@ Headless checks cover separated palette UV placement, source-page rejection, ani
 
 Regression checks also cover both source-load completion orders, deferred scene execution, obsolete/failed loads, and repeated attached-effect teardown with and without an HD replacement. Teardown cannot post replacement events or recreate HD dust resources.
 
-Source inspection and sampled texture visual review do not prove native scene rendering, combined-mod gameplay, physical Deck costs or player approval. Those remain explicit acceptance steps. No game or visible desktop application is launched by this implementation's headless build/tests. The original pilot covered 24 material regions, five goods icons and one effect. CharHD now adds one authored Dart armor development pilot; current UIHD coverage and remaining work are tracked in [UIHD production](UIHD_PRODUCTION.md). Full environment/character/UI/effect coverage is not achieved.
+Source inspection and sampled texture visual review do not prove native scene rendering, combined-mod gameplay, physical Deck costs or player approval. Those remain explicit acceptance steps. No game or visible desktop application is launched by this implementation's headless build/tests. The original pilot covered 24 material regions, five goods icons and one effect. CharHD now adds one authored Dart armor development pilot; current UIHD coverage and remaining work are tracked in [UIHD production](UIHD_PRODUCTION.md). UIHD default HUD and portrait asset coverage is complete; other workstreams track their own remaining coverage.
 
 Environment production follows the owner's current order: battle sky/background
 panoramas; world-map sky and landscape thumbnails; world-map terrain and scenery;

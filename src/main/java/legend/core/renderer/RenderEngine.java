@@ -651,6 +651,7 @@ public class RenderEngine {
     this.renderBufferQuad.persistent = true;
 
     this.window.events().onDraw(() -> {
+      legend.game.textures.NativeUiTextures.beginFrame();
       synchronized(this.tasks) {
         Runnable task;
         while((task = this.tasks.poll()) != null) {

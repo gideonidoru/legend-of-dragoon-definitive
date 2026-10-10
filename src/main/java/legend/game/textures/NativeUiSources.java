@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 /** Private in-memory native sources permit mod changes without rereading game archives. */
 public final class NativeUiSources {
   public static final NativeUiSources CURRENT = new NativeUiSources();
-  private static final int MAX_FAMILIES = 8;
+  private static final int MAX_FAMILIES = 16;
   private static final long MAX_BYTES = 2L * 1024 * 1024;
   private final Map<String, NativeUiTextureEvent> sources = new LinkedHashMap<>();
   private long bytes;

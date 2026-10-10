@@ -16,17 +16,28 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
   private float alpha;
   private boolean useTextureAlpha;
   private boolean uiArtwork;
+  private boolean nativeUiTracked;
   private final Vector4f uiArtworkBounds = new Vector4f();
 
   /** Enhance RGB only; indexed VRAM continues to decide visibility and blend mode. */
   public QueuedModelStandard uiArtwork(final Texture artwork, final Texture source, final float x, final float y, final float width, final float height) {
     if(this.textures[0] != null || this.textures[1] != null || this.textures[2] != null || this.textures[3] != null) return this;
     this.uiArtwork = true;
+    this.nativeUiTracked = false;
     this.uiArtworkBounds.set(x, y, width, height);
     this.texture(artwork, 2).texture(source, 3).ui();
     return this;
   }
 
+
+  /** Engine-owned selections can be retired without invalidating independently authored UI textures. */
+  public QueuedModelStandard nativeUiArtwork(final Texture artwork, final Texture source, final float x, final float y, final float width, final float height) {
+    if(!this.uiArtwork) {
+      this.uiArtwork(artwork,source,x,y,width,height);
+      if(this.uiArtwork) this.nativeUiTracked = true;
+    }
+    return this;
+  }
 
   final Matrix4f lightTransforms = new Matrix4f();
   final FloatBuffer lightingBuffer;
@@ -61,7 +72,18 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
 
   @Override
   void useTexture() {
-    if(this.uiArtwork) legend.core.GameEngine.GPU.useVramTexture();
+    final boolean retired = this.nativeUiTracked && this.uiArtwork && !legend.game.textures.NativeUiTextures.touch(this.textures[2]);
+    if(retired) {
+      this.uiArtwork = false; this.textures[2] = this.textures[3] = null;
+    }
+    if(this.uiLayer && !this.uiArtwork && this.textures[0] == null && this.textures[1] == null && this.textures[2] == null && this.textures[3] == null) {
+      final NativeUiQuad source = this.obj.nativeUiQuad(this.startVertex, this.vertexCount);
+      if(source != null) {
+        final NativeUiQuad draw = source.overridden(this);
+        legend.game.textures.NativeUiTextures.apply(this, draw.pageX(), draw.pageY(), draw.clutX(), draw.clutY(), draw.u(), draw.v(), draw.width(), draw.height());
+      }
+    }
+    if(this.uiArtwork || this.nativeUiTracked) legend.core.GameEngine.GPU.useVramTexture();
     super.useTexture();
   }
 
@@ -72,6 +94,7 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
     this.alpha = -1.0f;
     this.useTextureAlpha = false;
     this.uiArtwork = false;
+    this.nativeUiTracked = false;
   }
 
   @Override
