@@ -19,6 +19,11 @@ public final class StorageCrashMain {
       }, args[0].equals("replace-discs"));
       case "play" -> System.exit(new InstallStore(root).play());
       case "pending" -> { try(final var operation = new InstallStore(root).lock()) { GameLease.begin(root); Runtime.getRuntime().halt(93); } }
+      case "lease-failure" -> {
+        System.setProperty("definitive.installRoot", root.toString()); System.setProperty("definitive.launchToken", GameLease.begin(root));
+        try { ManagedGameMain.main(new String[0]); } catch(final java.io.IOException expected) { System.exit(96); } catch(final Throwable failure) { throw new RuntimeException(failure); }
+        throw new AssertionError("Fixture expected the already-held game lease to reject startup.");
+      }
       case "handoff" -> {
         final var store = new InstallStore(root);
         try(final var operation = store.lock()) {
@@ -34,6 +39,7 @@ public final class StorageCrashMain {
         final long deadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(20);
         while(!Files.exists(root.resolve("fixture-spawn-gap.continue"))) { if(System.nanoTime() > deadline) throw new java.io.IOException("Synthetic spawn-gap gate timed out."); Thread.sleep(20); }
         try { ManagedGameMain.main(new String[0]); } catch(final Throwable failure) { throw new RuntimeException(failure); }
+        Files.writeString(root.resolve("fixture-entry.returned"), "The entry point returned; a non-daemon worker may still be running."); System.gc();
       }
       default -> throw new IllegalArgumentException("Unknown fixture mode.");
     }

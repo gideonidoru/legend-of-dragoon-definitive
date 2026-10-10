@@ -121,9 +121,13 @@ class StorageHardeningTest {
     assertEquals(2L * custom.length, store.requiredInstallBytes(candidate) - before);
   }
   private Path leasePackage() throws Exception {
+    return this.leasePackage(false);
+  }
+  private Path leasePackage(final boolean returningWorker) throws Exception {
     final Path pack = this.fixtures.pack("lease-package", PackageManifest.hostPlatform());
     final Path source = this.temporary.resolve("fake-source/legend/game/Main.java"); Files.createDirectories(source.getParent());
-    Files.writeString(source, "package legend.game; public class Main { public static void main(String[] args) throws Exception { java.nio.file.Files.writeString(java.nio.file.Path.of(System.getProperty(\"definitive.installRoot\"),\"fixture-game.started\"),\"synthetic headless helper\"); Thread.sleep(60000); } }");
+    final String lifetime = returningWorker ? "new Thread(() -> { try { while(true) { java.nio.file.Files.writeString(java.nio.file.Path.of(System.getProperty(\"definitive.installRoot\"), \"fixture-worker.progress\"), Long.toString(System.nanoTime())); Thread.sleep(30); } } catch(Exception failure) { throw new RuntimeException(failure); } }, \"synthetic-unpack-worker\").start();" : "Thread.sleep(60000);";
+    Files.writeString(source, "package legend.game; public class Main { public static void main(String[] args) throws Exception { java.nio.file.Files.writeString(java.nio.file.Path.of(System.getProperty(\"definitive.installRoot\"),\"fixture-game.started\"),\"synthetic headless helper\"); " + lifetime + " } }");
     final Path classes = this.temporary.resolve("fake-classes"); Files.createDirectories(classes);
     assertEquals(0, javax.tools.ToolProvider.getSystemJavaCompiler().run(null, null, null, "-d", classes.toString(), source.toString()));
     try(final var jar = new JarOutputStream(Files.newOutputStream(pack.resolve("lod-game-test.jar")))) { jar.putNextEntry(new JarEntry("legend/game/Main.class")); jar.write(Files.readAllBytes(classes.resolve("legend/game/Main.class"))); jar.closeEntry(); }
@@ -179,6 +183,35 @@ class StorageHardeningTest {
       child.destroyForcibly(); child.onExit().get(10, TimeUnit.SECONDS);
       try(final var operation = store.lock()) { assertTrue(operation.lock().isValid()); }
     } finally { if(child.isAlive()) { child.destroyForcibly(); child.onExit().get(10, TimeUnit.SECONDS); } }
+  }
+  @Test void returnedEntryPointKeepsGameLeaseWhileNonDaemonWorkerWritesAfterLauncherDeath() throws Exception {
+    final var store = new InstallStore(this.temporary.resolve("returning-game")); store.install(leasePackage(true));
+    final Process parent = start("handoff", store.root(), List.of()); assertTrue(parent.waitFor(10, TimeUnit.SECONDS)); assertEquals(94, parent.exitValue());
+    final ProcessHandle child = ProcessHandle.of(Long.parseLong(Files.readString(store.root().resolve("fixture-child.pid")))).orElseThrow();
+    try {
+      Files.writeString(store.root().resolve("fixture-spawn-gap.continue"), "Continue synthetic child.");
+      final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
+      while((!Files.exists(store.root().resolve("fixture-entry.returned")) || !Files.exists(store.root().resolve("fixture-worker.progress"))) && child.isAlive() && System.nanoTime() < deadline) Thread.sleep(20);
+      assertTrue(Files.exists(store.root().resolve("fixture-entry.returned")), Files.readString(store.root().resolve("handoff-child.log"))); assertTrue(child.isAlive());
+      assertTrue(Files.exists(store.root().resolve(GameLease.PENDING))); assertTrue(Files.exists(store.root().resolve(GameLease.RUNNING)));
+      assertEquals(Long.toString(child.pid()), PackageManifest.readProperties(store.root().resolve(GameLease.RUNNING)).getProperty("pid"));
+      try(final var channel = java.nio.channels.FileChannel.open(store.root().resolve(".game-lock"), StandardOpenOption.WRITE); final var lease = channel.tryLock()) { assertNull(lease, "The actual child must retain its OS lease after Main.main returns and GC runs."); }
+      assertThrows(java.io.IOException.class, store::lock); assertThrows(java.io.IOException.class, () -> store.uninstall(true, InstallProgress.NONE));
+      final Path progress = store.root().resolve("fixture-worker.progress"); final String first = Files.readString(progress); final long writing = System.nanoTime() + TimeUnit.SECONDS.toNanos(5);
+      while(Files.readString(progress).equals(first) && System.nanoTime() < writing) Thread.sleep(20);
+      assertNotEquals(first, Files.readString(progress), "A non-daemon worker must still be writing after entry return.");
+      child.destroyForcibly(); child.onExit().get(10, TimeUnit.SECONDS);
+      try(final var operation = store.lock()) { assertTrue(operation.lock().isValid()); }
+      assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+    } finally { if(child.isAlive()) { child.destroyForcibly(); child.onExit().get(10, TimeUnit.SECONDS); } }
+  }
+  @Test void failedLeaseAcquisitionCleansUnpublishedHandoffWithoutReleasingAnotherGameLease() throws Exception {
+    final var store = install("lease-failure");
+    try(final var channel = java.nio.channels.FileChannel.open(store.root().resolve(".game-lock"), StandardOpenOption.CREATE, StandardOpenOption.WRITE); final var lease = channel.lock()) {
+      final Process child = start("lease-failure", store.root(), List.of()); assertTrue(child.waitFor(10, TimeUnit.SECONDS)); assertEquals(96, child.exitValue());
+      assertTrue(lease.isValid()); assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+    }
+    try(final var operation = store.lock()) { assertTrue(operation.lock().isValid()); }
   }
   @Test void interruptedLaunchUsesOsStartClockAndTruncatedCommandLineFailClosed() throws Exception {
     final Instant launcher = Instant.parse("2026-10-10T16:00:00Z"); final String token = UUID.randomUUID().toString();
