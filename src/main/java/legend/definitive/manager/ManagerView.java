@@ -54,6 +54,10 @@ final class ManagerView extends JPanel {
     }
     this.destination = new JTextField(root.toString()); this.destination.setFont(font(15, false)); this.destination.setAlignmentX(LEFT_ALIGNMENT);
     this.destination.setBackground(Color.WHITE); this.destination.setForeground(INK); this.destination.setBorder(BorderFactory.createCompoundBorder(roundedBorder(), BorderFactory.createEmptyBorder(12, 14, 12, 14)));
+    this.destination.addFocusListener(new FocusAdapter() {
+      @Override public void focusGained(final FocusEvent event) { ManagerView.this.destination.repaint(); }
+      @Override public void focusLost(final FocusEvent event) { ManagerView.this.destination.repaint(); }
+    });
     this.setLayout(new BorderLayout()); this.setBackground(PAPER);
     this.add(new Hero(), BorderLayout.WEST);
     final JPanel content = this.content; content.setBorder(BorderFactory.createEmptyBorder(36, 44, 26, 44));
@@ -392,7 +396,10 @@ final class ManagerView extends JPanel {
     return new javax.swing.border.AbstractBorder() {
       @Override public Insets getBorderInsets(final Component component) { return new Insets(1, 1, 1, 1); }
       @Override public void paintBorder(final Component component, final Graphics graphics, final int x, final int y, final int width, final int height) {
-        final Graphics2D g = (Graphics2D)graphics.create(); g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); g.setColor(LINE); g.drawRoundRect(x, y, width - 1, height - 1, 16, 16); g.dispose();
+        final Graphics2D g = (Graphics2D)graphics.create(); g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        if(component.isFocusOwner() && component.isEnabled()) { g.setColor(GREEN); g.setStroke(new BasicStroke(2)); g.drawRoundRect(x + 1, y + 1, width - 3, height - 3, 16, 16); }
+        else { g.setColor(LINE); g.drawRoundRect(x, y, width - 1, height - 1, 16, 16); }
+        g.dispose();
       }
     };
   }
@@ -418,7 +425,7 @@ final class ManagerView extends JPanel {
         g.setColor(primary ? (this.getModel().isPressed() ? new Color(0x183d30) : this.getModel().isRollover() ? new Color(0x326450) : GREEN) : (this.getModel().isPressed() ? new Color(0xdde4d9) : this.getModel().isRollover() ? new Color(0xe6e8df) : new Color(0xeceee7)));
         if(!this.isEnabled()) g.setColor(new Color(0xd9ddd4));
         g.fillRoundRect(0, 0, this.getWidth(), this.getHeight(), 18, 18);
-        if(this.isFocusOwner()) { g.setColor(new Color(0x8eac9c)); g.setStroke(new BasicStroke(2)); g.drawRoundRect(2, 2, this.getWidth() - 5, this.getHeight() - 5, 16, 16); }
+        if(this.isFocusOwner() && this.isEnabled()) { g.setColor(primary ? new Color(0xcbe3d4) : GREEN); g.setStroke(new BasicStroke(2)); g.drawRoundRect(2, 2, this.getWidth() - 5, this.getHeight() - 5, 16, 16); }
         g.dispose(); super.paintComponent(graphics);
       }
     };

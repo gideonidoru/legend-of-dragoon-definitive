@@ -12,6 +12,64 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Render the shipped components; no desktop window, game or network is opened. */
 class PresentationTest {
   @TempDir Path temporary;
+  @Test void focusedActionsStayDistinctAcrossPointerStates() throws Exception {
+    SwingUtilities.invokeAndWait(() -> {
+      final KeyboardFocusManager previous = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+      try {
+        for(final boolean primary : new boolean[]{false, true}) {
+          final JButton action = ManagerView.button("Continue", primary);
+          KeyboardFocusManager.setCurrentKeyboardFocusManager(new DefaultKeyboardFocusManager() {
+            @Override public Component getFocusOwner() { return action; }
+          });
+          action.setSize(320, 60);
+          for(int state = 0; state < 3; state++) {
+            action.getModel().setRollover(state == 1);
+            action.getModel().setArmed(state == 2);
+            action.getModel().setPressed(state == 2);
+            final var image = new java.awt.image.BufferedImage(320, 60, java.awt.image.BufferedImage.TYPE_INT_RGB);
+            final var graphics = image.createGraphics(); action.paint(graphics); graphics.dispose();
+            final double ring = luminance(image.getRGB(160, 2));
+            final double fill = luminance(image.getRGB(160, 10));
+            final double contrast = (Math.max(ring, fill) + .05) / (Math.min(ring, fill) + .05);
+            assertTrue(contrast >= 3, "Focused " + (primary ? "primary" : "secondary") + " action state " + state + " has only " + contrast + ":1 contrast");
+            final Path output = Path.of("build/reports/focused-action-" + primary + "-" + state + ".png");
+            Files.createDirectories(output.getParent()); javax.imageio.ImageIO.write(image, "png", output.toFile());
+          }
+        }
+      } catch(final java.io.IOException error) { throw new RuntimeException(error); }
+      finally { KeyboardFocusManager.setCurrentKeyboardFocusManager(previous); }
+    });
+  }
+  private static double luminance(final int rgb) {
+    double value = 0;
+    final double[] weights = {.2126, .7152, .0722};
+    for(int channel = 0; channel < 3; channel++) {
+      final double c = ((rgb >> (16 - 8 * channel)) & 255) / 255.0;
+      value += weights[channel] * (c <= .04045 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4));
+    }
+    return value;
+  }
+  @Test void installationFieldShowsFocusWithoutChangingItsLayout() throws Exception {
+    SwingUtilities.invokeAndWait(() -> {
+      final KeyboardFocusManager previous = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+      try {
+        final var view = new ManagerView(null, this.temporary, Path.of("/home/deck/Games/Legend-of-Dragoon-Definitive"));
+        final var components = new ArrayList<Component>(); InstallStoreTest.collect(view, components);
+        final JTextField field = components.stream().filter(c -> c instanceof JTextField).map(c -> (JTextField)c).findFirst().orElseThrow();
+        final Insets before = field.getInsets(); field.setSize(520, 48);
+        KeyboardFocusManager.setCurrentKeyboardFocusManager(new DefaultKeyboardFocusManager() {
+          @Override public Component getFocusOwner() { return field; }
+        });
+        final var image = new java.awt.image.BufferedImage(520, 48, java.awt.image.BufferedImage.TYPE_INT_RGB);
+        final var graphics = image.createGraphics(); field.paint(graphics); graphics.dispose();
+        final double contrast = (luminance(image.getRGB(260, 5)) + .05) / (luminance(image.getRGB(260, 1)) + .05);
+        assertTrue(contrast >= 3, "The installation field focus has only " + contrast + ":1 contrast");
+        assertEquals(before, field.getInsets(), "Focus must not shift the path or aligned actions");
+        final Path output = Path.of("build/reports/focused-installation-field.png"); Files.createDirectories(output.getParent()); javax.imageio.ImageIO.write(image, "png", output.toFile());
+      } catch(final java.io.IOException error) { throw new RuntimeException(error); }
+      finally { KeyboardFocusManager.setCurrentKeyboardFocusManager(previous); }
+    });
+  }
   private static void field(final ManagerView view, final String name, final Object value) throws Exception {
     final var field = ManagerView.class.getDeclaredField(name); field.setAccessible(true); field.set(view, value);
   }

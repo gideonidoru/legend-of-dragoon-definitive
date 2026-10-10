@@ -1,5 +1,11 @@
 # Installer, launcher and updater refinement
 
+## Controller focus refinement
+
+The shared actions now use a pale pine outline on primary buttons and a dark pine outline on secondary buttons. Focus remains clear through normal, hover and pressed states. The installation path uses the same dark outline when focused, with unchanged text insets and alignment. Disabled controls do not display an active focus ring.
+
+Headless regressions paint the actual shipped controls with an isolated focus manager. Before the correction, secondary-button focus measured 2.104:1 against its fill and failed the 3:1 check. The installation field also lacked a distinct focus state. Both regressions pass after the correction; installer, launcher, updater, error and restore layout renders were inspected again. These checks measure rendered focus contrast and layout, not physical Deck controller behavior or commercial release readiness. Steam still performs its graceful shutdown, backed-up shortcut edit, verification and restart automatically.
+
 ## October 10 progress refinement
 
 A follow-up review reproduced clipped progress detail when an installation path exceeded the progress card's fixed text height. The regression rendered the actual Swing components at the minimum 1024 × 660 client area and failed on clipped wrapped copy. Work detail now has a bounded, Unicode-safe summary; the full detail is retained in the tooltip and accessible description. The elapsed timer has its own line, so its updates do not reflow the work description. Existing phase names, completed-work percentages and operation logs remain in use.
