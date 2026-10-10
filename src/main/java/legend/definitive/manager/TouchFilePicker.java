@@ -11,6 +11,7 @@ import java.util.List;
 
 /** Large rows, explicit selection, no Ctrl-click requirement. Keyboard/gamepad actions share the same path. */
 final class TouchFilePicker {
+  private static final Map<JFrame, TouchFilePicker> OPEN = new HashMap<>(); // EDT only
   private final JDialog dialog;
   private final JList<Path> list = new JList<>();
   private final DefaultListModel<Path> model = new DefaultListModel<>();
@@ -34,8 +35,14 @@ final class TouchFilePicker {
     this.location.setFont(ManagerView.font(15, false)); this.location.setForeground(ManagerView.MUTED); header.add(this.location, BorderLayout.SOUTH); content.add(header, BorderLayout.NORTH);
     this.list.setModel(this.model); this.list.setFixedCellHeight(54); this.list.setFont(ManagerView.font(18, false)); this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); this.list.setBackground(Color.WHITE);
     this.list.setCellRenderer((list, path, index, focused, cellFocus) -> {
-      final JLabel label = new JLabel((Files.isDirectory(path) ? "›   " : this.selected.contains(path) ? "✓   " : "○   ") + path.getFileName());
-      label.setFont(list.getFont()); label.setOpaque(true); label.setForeground(ManagerView.INK); label.setBackground(focused ? new Color(0xdfe9df) : index % 2 == 0 ? Color.WHITE : new Color(0xf8f9f5)); label.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16)); return label;
+      final boolean directory = Files.isDirectory(path);
+      final JPanel row = new JPanel(new BorderLayout(14, 0)); row.setOpaque(true);
+      row.setBackground(focused ? new Color(0xdfe9df) : index % 2 == 0 ? Color.WHITE : new Color(0xf8f9f5));
+      row.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(cellFocus ? ManagerView.GREEN : row.getBackground(), 2), BorderFactory.createEmptyBorder(6, 14, 6, 14)));
+      if(!directory) { final JCheckBox check = new JCheckBox(); check.setSelected(this.selected.contains(path)); check.setOpaque(false); check.setFocusable(false); check.setPreferredSize(new Dimension(28, 28)); check.getAccessibleContext().setAccessibleName(path.getFileName().toString()); row.add(check, BorderLayout.WEST); }
+      final JLabel label = new JLabel(path.getFileName().toString()); label.setFont(list.getFont()); label.setForeground(ManagerView.INK); row.add(label, BorderLayout.CENTER);
+      if(directory) { final JLabel folder = new JLabel("Folder"); folder.setForeground(ManagerView.MUTED); folder.setFont(ManagerView.font(14, false)); row.add(folder, BorderLayout.EAST); }
+      return row;
     });
     final Point[] dragStart = {null}; final int[] startY = {0}; final boolean[] dragged = {false};
     this.list.addMouseMotionListener(new MouseMotionAdapter() { @Override public void mouseDragged(final MouseEvent e) {
@@ -64,12 +71,16 @@ final class TouchFilePicker {
     }); actions.add(cancel); actions.add(this.choose); footer.add(actions, BorderLayout.SOUTH); content.add(footer, BorderLayout.SOUTH);
     this.dialog.setContentPane(content); this.dialog.getRootPane().setDefaultButton(this.choose);
     this.dialog.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "cancel"); this.dialog.getRootPane().getActionMap().put("cancel", new AbstractAction() { @Override public void actionPerformed(final ActionEvent e) { TouchFilePicker.this.dialog.dispose(); } });
-    this.dialog.addWindowListener(new WindowAdapter() { @Override public void windowClosed(final WindowEvent e) { if(owner != null) owner.setEnabled(true); } });
+    this.dialog.addWindowListener(new WindowAdapter() { @Override public void windowClosed(final WindowEvent e) { OPEN.remove(owner, TouchFilePicker.this); if(owner != null) owner.setEnabled(true); } });
     this.dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     this.dialog.setSize(880, 640); this.dialog.setLocationRelativeTo(owner); this.open(this.folder);
   }
   static void choose(final JFrame owner, final Path initial, final boolean directories, final java.util.function.Consumer<List<Path>> completed) {
+    if(!SwingUtilities.isEventDispatchThread()) throw new IllegalStateException("Open pickers on the UI thread");
+    final var existing = OPEN.get(owner);
+    if(existing != null && existing.dialog.isDisplayable()) { existing.list.requestFocusInWindow(); return; }
     final var picker = new TouchFilePicker(owner, initial, directories, completed);
+    OPEN.put(owner, picker);
     if(owner != null) owner.setEnabled(false);
     picker.dialog.setVisible(true);
   }

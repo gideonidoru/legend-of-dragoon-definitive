@@ -158,7 +158,7 @@ class InstallStoreTest {
     try(final var entries = Files.list(store.root().resolve("isos"))) { assertEquals(0, entries.count()); }
     DiscImporter.importDiscs(store, discs); DiscImporter.validateSet(store.root().resolve("isos"));
     for(final Path disc : discs) assertEquals(PackageManifest.sha256(disc), PackageManifest.sha256(store.root().resolve("isos").resolve(disc.getFileName())));
-    assertThrows(java.io.IOException.class, () -> DiscImporter.importDiscs(store, discs));
+    assertDoesNotThrow(() -> DiscImporter.importDiscs(store, discs));
   }
   @Test void setupPanelRendersWithoutCreatingAnInstallation() throws Exception {
     final Path target = this.temporary.resolve("not-installed");

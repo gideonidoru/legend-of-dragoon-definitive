@@ -18,9 +18,17 @@ final class SteamIntegration {
     void start() throws IOException;
   }
   static String add(final SteamLibrary.Account account, final Path install, final InstallProgress progress) throws IOException, InterruptedException {
+    SteamArtwork.prepare(install, progress);
     return add(account, install, progress, new DesktopClient(install), Duration.ofSeconds(60), Duration.ofSeconds(30));
   }
   static String add(final SteamLibrary.Account account, final Path install, final InstallProgress progress, final Client client, final Duration stopTimeout, final Duration startTimeout) throws IOException, InterruptedException {
+    return change(account, install, progress, client, stopTimeout, startTimeout, false);
+  }
+  static String remove(final SteamLibrary.Account account, final Path install, final InstallProgress progress) throws IOException, InterruptedException {
+    if(!SteamLibrary.hasShortcut(account, install)) return "No Definitive shortcut to remove.";
+    return change(account, install, progress, new DesktopClient(install), Duration.ofSeconds(60), Duration.ofSeconds(30), true);
+  }
+  static String change(final SteamLibrary.Account account, final Path install, final InstallProgress progress, final Client client, final Duration stopTimeout, final Duration startTimeout, final boolean remove) throws IOException, InterruptedException {
     // All accounts share a userdata directory: serialize the whole restart, not
     // just the individual account's file edit. Never delete a kernel lock inode.
     final Path lockPath = account.config().toRealPath().getParent().getParent().resolve(".definitive-steam-integration-lock");
@@ -38,16 +46,16 @@ final class SteamIntegration {
             client.shutdown();
             await(() -> !client.running(), stopTimeout, "Steam hasn’t closed yet. Finish any game or Steam prompt, then try Add to Steam again. Your library has not been changed.");
           }
-          progress.phase("Adding to your library", "Backing up existing shortcuts and adding Definitive", 50);
-          SteamLibrary.add(account, install, client::running);
-          SteamLibrary.verifyShortcut(account, install);
+          progress.phase(remove ? "Removing Steam shortcut" : "Adding to your library", "Backing up your library and changing only Definitive’s entry", 50);
+          if(remove) { SteamLibrary.remove(account, install, client::running); if(SteamLibrary.hasShortcut(account, install)) throw new IOException("Definitive shortcut removal could not be verified."); }
+          else { SteamLibrary.add(account, install, client::running); SteamLibrary.verifyShortcut(account, install); }
           progress.phase("Starting Steam", "Refreshing your library with the verified shortcut", 85);
           restarting = true;
           try { client.start(); }
           catch(final IOException failure) { throw new IOException("The shortcut was added, but Steam couldn’t restart. Retry Add to Steam. Details: " + failure.getMessage(), failure); }
           await(client::started, startTimeout, "The shortcut was added, but Steam did not restart. Try Add to Steam again. Details: " + install.resolve("steam-integration.log"));
-          progress.phase("Steam shortcut ready", "Definitive is added. Return to Gaming Mode to play.", 100);
-          return "Added to Steam. Return to Gaming Mode to play.";
+          progress.phase(remove ? "Steam shortcut removed" : "Steam shortcut ready", remove ? "Steam is open; Definitive’s entry is removed." : "Definitive is added. Return to Gaming Mode to play.", 100);
+          return remove ? "Removed Definitive from Steam." : "Added to Steam. Return to Gaming Mode to play.";
         } catch(final IOException | InterruptedException failure) {
           // A failed file edit must not leave a previously running client closed.
           if(wasRunning && !restarting && !client.running()) {

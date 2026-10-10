@@ -16,6 +16,9 @@ public final class DiscSources {
     return importSelected(store, selected, InstallProgress.NONE);
   }
   public static String importSelected(final InstallStore store, final List<Path> selected, final InstallProgress progress) throws IOException, InterruptedException {
+    return importSelected(store, selected, progress, false);
+  }
+  static String importSelected(final InstallStore store, final List<Path> selected, final InstallProgress progress, final boolean replaceDifferent) throws IOException, InterruptedException {
     final Path stage = Files.createTempDirectory(store.root(), ".disc-sources-");
     try {
       final List<Path> images = new ArrayList<>();
@@ -29,7 +32,7 @@ public final class DiscSources {
         else throw new IOException("Choose BIN / raw ISO images or ZIP, RAR and 7z archives. CUE files aren't needed.");
         if(images.size() > 4) throw new IOException("More than four disc images found. Choose one copy of each disc.");
       }
-      return DiscImporter.importDiscs(store, images, progress);
+      return DiscImporter.importDiscs(store, images, progress, replaceDifferent);
     } finally { InstallStore.deleteOwnedTree(stage); }
   }
 

@@ -25,6 +25,23 @@ class InstallerWindowTest {
     }
     fail("Focus did not reach " + action.getText());
   }
+  @Test void repeatedPickerActivationOpensOneWindowWithRealCheckboxSelection() throws Exception {
+    Files.writeString(this.temporary.resolve("disc.bin"), "fixture");
+    SwingUtilities.invokeAndWait(() -> {
+      this.frame = new JFrame("Picker repeat fixture"); this.frame.setSize(1100, 740); this.frame.setVisible(true);
+      for(int i = 0; i < 4; i++) TouchFilePicker.choose(this.frame, this.temporary, false, paths -> { });
+      final var visible = java.util.Arrays.stream(Window.getWindows()).filter(w -> w instanceof JDialog && w.isVisible()).toList();
+      assertEquals(1, visible.size(), "Repeated A / keyboard activation must never duplicate the picker");
+      final var picker = (JDialog)visible.getFirst(); final var all = new ArrayList<Component>(); InstallStoreTest.collect(picker.getContentPane(), all);
+      @SuppressWarnings("unchecked") final var list = (JList<Path>)all.stream().filter(c -> c instanceof JList<?>).findFirst().orElseThrow();
+      list.setSelectedIndex(0); list.getActionMap().get("activate").actionPerformed(new java.awt.event.ActionEvent(list, 0, "activate"));
+      final var row = (Container)list.getCellRenderer().getListCellRendererComponent(list, list.getModel().getElementAt(0), 0, true, true);
+      final var cells = new ArrayList<Component>(); InstallStoreTest.collect(row, cells);
+      assertTrue(cells.stream().anyMatch(c -> c instanceof JCheckBox box && box.isSelected()), "Selection must have a visible checkbox, independent of font glyphs");
+      final var image = new java.awt.image.BufferedImage(picker.getWidth(), picker.getHeight(), java.awt.image.BufferedImage.TYPE_INT_RGB); final var g = image.createGraphics(); picker.paint(g); g.dispose();
+      try { javax.imageio.ImageIO.write(image, "png", Path.of("build/reports/installer-picker-recovery-linux.png").toFile()); } catch(final java.io.IOException failure) { throw new RuntimeException(failure); }
+    });
+  }
   @Test void errorRecoveryReturnsControllerFocusToVisibleActions() throws Exception {
     final var recovery = new AtomicReference<JButton>(); final var details = new AtomicReference<JButton>();
     SwingUtilities.invokeAndWait(() -> {

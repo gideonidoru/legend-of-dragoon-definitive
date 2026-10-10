@@ -20,10 +20,9 @@ public final class ManagerMain {
     if(args.length == 3 && args[0].equals("--install")) { System.out.println(new InstallStore(Path.of(args[2])).install(Path.of(args[1]))); return; }
     if(args.length == 2 && args[0].equals("--prepare")) { System.out.println(new InstallStore(Path.of(args[1])).prepareDiscs()); return; }
     if(args.length == 2 && args[0].equals("--rollback")) { System.out.println(new InstallStore(Path.of(args[1])).rollback()); return; }
-    if(args.length == 2 && args[0].equals("--play")) { System.exit(new InstallStore(Path.of(args[1])).play()); }
     if(args.length >= 3 && args[0].equals("--import")) { System.out.println(DiscSources.importSelected(new InstallStore(Path.of(args[1])), Arrays.stream(args).skip(2).map(Path::of).toList())); return; }
     final Path packageRoot = args.length == 2 && args[0].equals("--setup") ? Path.of(args[1]).toAbsolutePath() : null;
-    final Path installedRoot = args.length == 2 && args[0].equals("--manage") ? Path.of(args[1]).toAbsolutePath() : Path.of(System.getProperty("user.home"), "Games", "Legend-of-Dragoon-Definitive");
+    final Path installedRoot = args.length == 2 && (args[0].equals("--manage") || args[0].equals("--play")) ? Path.of(args[1]).toAbsolutePath() : InstallLocation.discover().orElse(Path.of(System.getProperty("user.home"), "Games", "Legend-of-Dragoon-Definitive"));
     // The managed root bootstrap routes to the currently active manager, including after rollback.
     if(args.length == 2 && (args[0].equals("--manage") || args[0].equals("--play"))) {
       final Path self = Path.of(ManagerMain.class.getProtectionDomain().getCodeSource().getLocation().toURI()).toAbsolutePath();
@@ -31,8 +30,17 @@ public final class ManagerMain {
         final var state = new InstallStore(installedRoot).state();
         final Path active = InstallStore.child(installedRoot.resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
         PackageManifest.read(active).verify(active, PackageManifest.hostPlatform());
-        System.exit(new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(), "--enable-native-access=ALL-UNNAMED", "-cp", active.resolve("definitive-manager.jar") + java.io.File.pathSeparator + active.resolve("libs/*"), "legend.definitive.manager.ManagerMain", "--manage", installedRoot.toString()).inheritIO().start().waitFor());
+        System.exit(new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(), "--enable-native-access=ALL-UNNAMED", "-cp", active.resolve("definitive-manager.jar") + java.io.File.pathSeparator + active.resolve("libs/*"), "legend.definitive.manager.ManagerMain", args[0], installedRoot.toString()).inheritIO().start().waitFor());
       }
+    }
+    if(args.length == 2 && args[0].equals("--play")) {
+      final var store = new InstallStore(installedRoot);
+      final int code = store.play();
+      if(code != 0 && code != 130 && code != 143) {
+        System.err.println("Game exited with code " + code + ". Details: " + store.gameLog());
+        try(final var lines = Files.lines(store.gameLog())) { final var tail = lines.toList(); tail.subList(Math.max(0, tail.size() - 24), tail.size()).forEach(System.err::println); }
+      }
+      System.exit(code); return;
     }
     final var window = new java.util.concurrent.atomic.AtomicReference<JFrame>();
     InstallerLog.write("Starting installer/launcher: platform=" + PackageManifest.hostPlatform() + ", Java=" + Runtime.version() + ", target=" + installedRoot);
@@ -50,7 +58,9 @@ public final class ManagerMain {
     final JFrame frame = new JFrame("The Legend of Dragoon · Definitive");
     frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
     frame.setContentPane(buildPanel(frame, packageRoot, initialRoot));
-    frame.setSize(1100, 740); frame.setMinimumSize(new Dimension(1024, 700));
+    final Rectangle screen = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+    frame.setSize(Math.min(1100, screen.width), Math.min(740, screen.height)); frame.setMinimumSize(new Dimension(Math.min(1024, screen.width), Math.min(700, screen.height)));
+    if(PackageManifest.hostPlatform().equals("linux-x64")) frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     DeckControls.installKeyboardNavigation(frame);
     frame.setLocationRelativeTo(null); frame.setVisible(true);
     return frame;

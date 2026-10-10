@@ -85,6 +85,7 @@ tasks.register('deliveryTest', Test) {
   testLogging { events 'failed'; exceptionFormat 'full' }
   systemProperty 'java.awt.headless', 'true'
   systemProperty 'definitive.installerLog', layout.buildDirectory.file('reports/installer-test.log').get().asFile.absolutePath
+  systemProperty 'definitive.locationRegistry', layout.buildDirectory.file('reports/test-installation-location.properties').get().asFile.absolutePath
 }
 tasks.named('check') { dependsOn deliveryTest }
 
@@ -125,6 +126,7 @@ tasks.register('managerWindowTest', Test) {
   testLogging { events 'failed'; exceptionFormat 'full' }
   systemProperty 'java.awt.headless', 'false'
   systemProperty 'definitive.installerLog', layout.buildDirectory.file('reports/installer-window-test.log').get().asFile.absolutePath
+  systemProperty 'definitive.locationRegistry', layout.buildDirectory.file('reports/window-test-installation-location.properties').get().asFile.absolutePath
   onlyIf { System.getenv('DISPLAY') != null && System.getProperty('os.name').toLowerCase().contains('linux') }
 }
 

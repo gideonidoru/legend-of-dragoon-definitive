@@ -50,7 +50,7 @@ with tempfile.TemporaryDirectory(prefix='definitive-archive-fixture-') as folder
         install = root / archive.suffix[1:]
         subprocess.run([str(java), '-jar', str(manager), '--install', str(package), str(install)], check=True, stdout=subprocess.DEVNULL)
         subprocess.run([str(java), '-jar', str(manager), '--import', str(install), str(archive)], check=True)
-        assert sorted(p.name for p in (install / 'isos').iterdir()) == sorted(i + '.bin' for i in ids)
+        assert sorted(p.name for p in (install / 'isos').iterdir()) == sorted([i + '.bin' for i in ids] + ['disc-checksums.properties'])
         for identifier in ids:
             assert (install / 'isos' / (identifier + '.bin')).read_bytes() == disc(identifier)
         assert archive.exists()

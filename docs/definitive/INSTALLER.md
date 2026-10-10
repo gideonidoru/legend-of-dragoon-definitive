@@ -1,5 +1,7 @@
 # Guided installer and launcher
 
+Latest delivery recovery: [Deck installation discovery, maintenance, discs, shared input and direct Steam launch](DECK_RECOVERY.md).
+
 The [delivery reliability repair](DELIVERY_RELIABILITY.md) records the reported Deck failure, confirmed fixes, diagnostics and remaining device checks.
 
 ## Steam Deck Desktop Mode

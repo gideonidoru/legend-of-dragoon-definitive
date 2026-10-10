@@ -54,6 +54,55 @@ public final class SteamLibrary {
     if(found != 1) throw new IOException("Steam needs exactly one verified Definitive shortcut. Your existing entries are retained; inspect duplicate shortcuts before retrying.");
   }
   public static String add(final Account account, final Path install) throws IOException { return add(account, install, SteamLibrary::steamRunning); }
+  static boolean hasShortcut(final Account account, final Path install) throws IOException {
+    final Path file = account.config().resolve("shortcuts.vdf"); if(!Files.exists(file, LinkOption.NOFOLLOW_LINKS)) return false;
+    if(Files.isSymbolicLink(file) || Files.size(file) > 8 * 1024 * 1024) throw new IOException("Unsupported Steam shortcut file. Your library is retained.");
+    final var root = decode(Files.readAllBytes(file));
+    if(root.size() != 1 || root.getFirst().type != 0 || !root.getFirst().key.equals("shortcuts")) throw new IOException("Unexpected Steam shortcut format.");
+    @SuppressWarnings("unchecked") final var entries = (List<Value>)root.getFirst().data;
+    return entries.stream().anyMatch(entry -> matches(entry, install));
+  }
+  private static boolean matches(final Value entry, final Path install) {
+    if(entry.type != 0) return false;
+    @SuppressWarnings("unchecked") final var fields = (List<Value>)entry.data;
+    final String exe = '"' + install.toAbsolutePath().normalize().resolve("Play Game.sh").toString() + '"';
+    return fields.stream().anyMatch(v -> v.type == 1 && v.key.equalsIgnoreCase("exe") && exe.equals(v.data));
+  }
+  static void remove(final Account account, final Path install, final BooleanSupplier running) throws IOException {
+    final Path lockPath = account.config().resolve(".definitive-shortcut-lock");
+    if(Files.isSymbolicLink(lockPath)) throw new IOException("Unexpected linked Steam shortcut lock.");
+    try(final var channel = java.nio.channels.FileChannel.open(lockPath, StandardOpenOption.CREATE, StandardOpenOption.WRITE)) {
+      final java.nio.channels.FileLock lock;
+      try { lock = channel.tryLock(); } catch(final java.nio.channels.OverlappingFileLockException failure) { throw new IOException("Another Steam operation is running."); }
+      if(lock == null) throw new IOException("Another Steam operation is running.");
+      try(lock) {
+        if(running.getAsBoolean()) throw new IOException("Steam reopened. No shortcut was removed.");
+        if(!hasShortcut(account, install)) return;
+        final Path file = account.config().resolve("shortcuts.vdf"); final byte[] original = Files.readAllBytes(file); final var root = decode(original);
+        @SuppressWarnings("unchecked") final var entries = (List<Value>)root.getFirst().data;
+        final var removed = entries.stream().filter(entry -> matches(entry, install)).toList(); entries.removeAll(removed);
+        final Path pending = Files.createTempFile(account.config(), ".definitive-shortcuts-", ".tmp");
+        try {
+          Files.write(pending, encode(root));
+          if(running.getAsBoolean() || Files.isSymbolicLink(file) || !java.util.Arrays.equals(original, Files.readAllBytes(file))) throw new IOException("Steam library changed. No shortcut was removed.");
+          Files.write(account.config().resolve("shortcuts.vdf.definitive-backup-" + UUID.randomUUID()), original, StandardOpenOption.CREATE_NEW);
+          Files.move(pending, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+        } finally { Files.deleteIfExists(pending); }
+        // Only remove exact copies of our generated artwork; retain player replacements.
+        final Path grid = account.config().resolve("grid"); if(Files.isSymbolicLink(grid)) return;
+        for(final Value entry : removed) {
+          @SuppressWarnings("unchecked") final var fields = (List<Value>)entry.data;
+          for(final Value field : fields) if(field.type == 2 && field.key.equalsIgnoreCase("appid")) {
+            final String id = Integer.toUnsignedString(leInt((byte[])field.data));
+            for(final var art : Map.of("p.png", "portrait.png", ".png", "landscape.png", "_hero.png", "hero.png", "_logo.png", "logo.png", "_icon.png", "icon.png").entrySet()) {
+              final Path target = grid.resolve(id + art.getKey()), reference = install.resolve("steam-artwork").resolve(art.getValue());
+              if(Files.isRegularFile(target, LinkOption.NOFOLLOW_LINKS) && Files.isRegularFile(reference, LinkOption.NOFOLLOW_LINKS) && PackageManifest.sha256(target).equals(PackageManifest.sha256(reference))) Files.delete(target);
+            }
+          }
+        }
+      }
+    }
+  }
   static String add(final Account account, final Path install, final BooleanSupplier running) throws IOException {
     if(Files.isSymbolicLink(account.config().resolve(".definitive-shortcut-lock"))) throw new IOException("Unexpected linked Steam operation lock.");
     try(final var channel = java.nio.channels.FileChannel.open(account.config().resolve(".definitive-shortcut-lock"), StandardOpenOption.CREATE, StandardOpenOption.WRITE)) {
@@ -79,27 +128,40 @@ public final class SteamLibrary {
     if(!Files.isRegularFile(launcher, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Finish installing before adding to Steam.");
     if(launcher.toString().contains("\"") || launcher.toString().contains("\n")) throw new IOException("Choose an installation path without quotes or line breaks.");
     final String exe = '"' + launcher.toString() + '"';
-    final Set<Integer> appids = new HashSet<>(); int index = 0;
+    final Set<Integer> appids = new HashSet<>(); int index = 0; List<Value> matching = null;
     for(final Value shortcut : shortcuts) {
       if(shortcut.type != 0 || !shortcut.key.matches("[0-9]+")) throw new IOException("Unexpected Steam shortcut entry.");
       try { index = Math.max(index, Math.addExact(Integer.parseInt(shortcut.key), 1)); }
       catch(final ArithmeticException | NumberFormatException e) { throw new IOException("Invalid Steam shortcut index."); }
       @SuppressWarnings("unchecked") final List<Value> fields = (List<Value>)shortcut.data;
-      if(fields.stream().anyMatch(v -> v.type == 1 && v.key.equalsIgnoreCase("exe") && exe.equals(v.data))) return "Already in your Steam library. Open Steam to play.";
+      if(fields.stream().anyMatch(v -> v.type == 1 && v.key.equalsIgnoreCase("exe") && exe.equals(v.data))) { if(matching != null) throw new IOException("Duplicate Definitive shortcuts found. Your library is retained."); matching = fields; }
       fields.stream().filter(v -> v.type == 2 && v.key.equalsIgnoreCase("appid")).forEach(v -> appids.add(leInt((byte[])v.data)));
     }
     final String name = "The Legend of Dragoon: Definitive";
     int appid; int salt = 0;
     do { final CRC32 crc = new CRC32(); crc.update((exe + name + (salt == 0 ? "" : "-" + salt)).getBytes(StandardCharsets.UTF_8)); appid = (int)crc.getValue() | 0x80000000; salt++; } while(appids.contains(appid));
-    final List<Value> fields = new ArrayList<>();
+    final List<Value> fields = matching == null ? new ArrayList<>() : matching;
+    final Path icon = SteamArtwork.icon(install);
+    if(matching != null) {
+      final Value stored = fields.stream().filter(v -> v.type == 2 && v.key.equalsIgnoreCase("appid")).findFirst().orElseThrow(() -> new IOException("Existing Steam shortcut has no app ID."));
+      appid = leInt((byte[])stored.data);
+      final int iconIndex = java.util.stream.IntStream.range(0, fields.size()).filter(i -> fields.get(i).key.equalsIgnoreCase("icon")).findFirst().orElse(-1);
+      if(iconIndex < 0) fields.add(string("icon", icon.toString())); else fields.set(iconIndex, string("icon", icon.toString()));
+    } else {
     fields.add(integer("appid", appid)); fields.add(string("AppName", name)); fields.add(string("exe", exe));
     fields.add(string("StartDir", '"' + install.toAbsolutePath().normalize().toString() + '"'));
-    fields.add(string("icon", "")); fields.add(string("ShortcutPath", "")); fields.add(string("LaunchOptions", ""));
+    fields.add(string("icon", icon.toString())); fields.add(string("ShortcutPath", "")); fields.add(string("LaunchOptions", ""));
     for(final String key : List.of("IsHidden", "OpenVR", "Devkit", "LastPlayTime")) fields.add(integer(key, 0));
     fields.add(integer("AllowDesktopConfig", 0)); fields.add(integer("AllowOverlay", 1)); fields.add(string("DevkitGameID", ""));
     fields.add(new Value(0, "tags", new ArrayList<>(List.of(string("0", "Definitive")))));
     shortcuts.add(new Value(0, Integer.toString(index), fields));
+    }
+    SteamArtwork.installGrid(account, appid, install);
     final byte[] output = encode(root);
+    if(Arrays.equals(original, output)) {
+      if(running.getAsBoolean() || Files.isSymbolicLink(file) || !Arrays.equals(original, Files.readAllBytes(file))) throw new IOException("Steam library changed during verification. Retry Add to Steam.");
+      return "Definitive’s Steam shortcut and artwork are ready.";
+    }
     final Path temp = Files.createTempFile(folder, ".definitive-shortcuts-", ".tmp");
     try {
       Files.write(temp, output);

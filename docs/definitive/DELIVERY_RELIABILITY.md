@@ -1,5 +1,7 @@
 # Installer, updater and launcher reliability
 
+Latest delivery recovery: [Deck installation discovery, maintenance, discs, shared input and direct Steam launch](DECK_RECOVERY.md).
+
 ## Report and confirmed defects
 
 On 2026-10-09 the owner reported that the guided installer on Steam Deck did not create the expected folder, install files or add a Steam shortcut. Preparation used a bouncing bar with generic text, the disc picker obscured progress, and Finish remained open. The bootstrap log contained Java Unsafe warnings, while the preparation log was empty. Those warnings do not identify the installation failure.

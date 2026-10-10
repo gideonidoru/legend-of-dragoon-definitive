@@ -19,7 +19,7 @@ class DeliveryFeaturesTest {
     }
     final var store = new InstallStore(this.temporary.resolve("install"));
     DiscSources.importSelected(store, List.of(archive)); DiscImporter.validateSet(store.root().resolve("isos"));
-    try(final var files = Files.list(store.root().resolve("isos"))) { assertEquals(4, files.count()); }
+    try(final var files = Files.list(store.root().resolve("isos"))) { assertEquals(4, files.filter(p -> p.toString().endsWith(".bin")).count()); }
     assertTrue(Files.exists(archive));
   }
   @Test void unsafeArchiveAndDuplicateDiscsLeaveDestinationEmpty() throws Exception {

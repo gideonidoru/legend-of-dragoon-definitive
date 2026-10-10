@@ -35,6 +35,9 @@ final class ManagerView extends JPanel {
   private boolean launcher;
   private boolean reviewingUpdate;
   private boolean updateComplete;
+  private DiscImporter.Existing installedDiscs;
+  private boolean maintenance;
+  private boolean uninstallComplete;
   private ReleaseUpdates.Candidate candidate;
   private InstallProgress currentProgress = InstallProgress.NONE;
   private long started;
@@ -48,6 +51,7 @@ final class ManagerView extends JPanel {
     this.close = close;
     this.frame = frame; this.packageRoot = packageRoot; this.root = root;
     this.launcher = packageRoot == null && Files.isRegularFile(root.resolve("state.properties"));
+    this.maintenance = packageRoot != null && Files.isRegularFile(root.resolve(".definitive-owned")) && Files.isRegularFile(root.resolve("state.properties"));
     if(this.launcher) {
       try { DiscImporter.validateSet(root.resolve("isos")); if(!new InstallStore(root).discsPrepared()) { this.launcher = false; this.step = 1; } }
       catch(final Exception e) { this.launcher = false; this.step = 1; }
@@ -89,6 +93,7 @@ final class ManagerView extends JPanel {
       frame.addWindowListener(new WindowAdapter() { @Override public void windowClosing(final WindowEvent e) { if(ManagerView.this.busy) ManagerView.this.message("Please wait for this operation to finish, or close the game first."); else frame.dispose(); } });
       if(this.launcher) this.checkUpdates();
     }
+    if(!this.launcher && this.step == 1 && Files.isRegularFile(this.root.resolve("state.properties"))) SwingUtilities.invokeLater(() -> this.run("Checking installed discs", () -> DiscImporter.existing(new InstallStore(this.root), this.currentProgress), discs -> { this.installedDiscs = discs; this.render(); }));
   }
 
   @Override protected boolean isPaintingOrigin() { return true; }
@@ -141,6 +146,19 @@ final class ManagerView extends JPanel {
   }
   private void setup() {
     this.updates.setText("Community alpha · Built on Severed Chains");
+    if(this.uninstallComplete) {
+      this.heading("Definitive is uninstalled", "Your saves, settings and custom mods are retained.");
+      this.body.add(infoCard("RETAINED FILES", "Ready whenever you return", this.root.resolve("data").toString()));
+      this.body.add(Box.createVerticalStrut(24)); this.primary("Done", this.close);
+      return;
+    }
+    if(this.maintenance && this.step == 0) {
+      this.heading("Your installation", "Reinstall Definitive, or remove it from this device.");
+      this.body.add(infoCard("LOCATION", "Legend of Dragoon: Definitive", this.root.toString())); this.body.add(Box.createVerticalStrut(24));
+      this.primary("Reinstall", () -> { this.maintenance = false; this.install(); });
+      this.body.add(Box.createVerticalStrut(12)); final JButton uninstall = button("Uninstall", false); uninstall.addActionListener(e -> this.uninstall()); this.setupActions(uninstall);
+      return;
+    }
     this.stages();
     switch(this.step) {
       case 0 -> {
@@ -149,25 +167,18 @@ final class ManagerView extends JPanel {
         this.destination.setMaximumSize(new Dimension(520, 48)); this.destination.setCaretPosition(0); this.body.add(this.destination); this.body.add(Box.createVerticalStrut(8));
         final JButton browse = button("Choose folder", false); browse.addActionListener(e -> this.chooseFolder()); this.body.add(browse); this.body.add(Box.createVerticalStrut(20));
         this.body.add(copy("Next, you’ll select your disc images. Your originals stay where they are.", 15, MUTED)); this.body.add(Box.createVerticalStrut(24));
-        this.primary("Install Definitive", () -> {
-          try { this.root = installationPath(this.destination.getText()); this.destination.setText(this.root.toString()); }
-          catch(final Exception e) { this.showFailure(e); return; }
-          this.run("Installing Definitive", () -> {
-            final var store = new InstallStore(this.root);
-            final String result = PortableSetup.install(this.packageRoot, store, this.currentProgress);
-            store.verifyInstalled();
-            return result;
-          }, () -> { this.step = 1; this.render(); });
-        });
+        this.primary("Install Definitive", this::install);
       }
       case 1 -> {
-        this.heading("Select your discs", "Choose the four US disc images, or archives containing them.");
-        this.body.add(infoCard("SUPPORTED FILES", "BIN / raw ISO · ZIP · RAR · 7z", "Your files are checked and copied before the game is prepared."));
+        final boolean found = this.installedDiscs != null && this.installedDiscs.usable();
+        this.heading(found ? "Your discs are here" : "Select your discs", found ? this.installedDiscs.detail() : "Choose the four US disc images, or archives containing them.");
+        this.body.add(infoCard(found ? "EXISTING IMAGES" : "SUPPORTED FILES", found ? "No need to copy them again" : "BIN / raw ISO · ZIP · RAR · 7z", found ? "Reuse your checked discs, or choose files to compare and replace them." : "Your files are checked and copied before the game is prepared."));
         this.body.add(Box.createVerticalStrut(28));
-        this.primary("Choose disc files", () -> this.chooseDiscs());
-        this.body.add(Box.createVerticalStrut(12));
-        final JButton existing = button("Use installed discs", false); existing.addActionListener(e -> this.run("Preparing game files", () -> new InstallStore(this.root).prepareDiscs(this.currentProgress), () -> { this.step = 2; this.render(); }));
-        this.setupActions(existing);
+        if(found) {
+          this.primary("Use installed discs", this::useInstalledDiscs);
+          this.body.add(Box.createVerticalStrut(12));
+          final JButton select = button("Choose disc files", false); select.addActionListener(e -> this.chooseDiscs()); this.setupActions(select);
+        } else this.primary("Choose disc files", this::chooseDiscs);
       }
       default -> {
         this.heading("You’re ready to play", "Add Definitive to Steam for Gaming Mode, or finish setup.");
@@ -181,6 +192,28 @@ final class ManagerView extends JPanel {
         final JButton skip = button("Finish without Steam", false); skip.addActionListener(e -> this.finish()); this.setupActions(skip);
       }
     }
+  }
+  private void install() {
+    try { this.root = installationPath(this.destination.getText()); this.destination.setText(this.root.toString()); }
+    catch(final Exception error) { this.showFailure(error); return; }
+    this.run("Installing Definitive", () -> {
+      final var store = new InstallStore(this.root); final InstallProgress installing = update -> this.currentProgress.report(new InstallProgress.Update(update.phase(), update.detail(), update.startPercent() * 75 / 100, update.endPercent() * 75 / 100, update.completed(), update.total()));
+      final String result = PortableSetup.install(this.packageRoot, store, installing);
+      store.verifyInstalled(); InstallLocation.record(store); final InstallProgress checking = update -> this.currentProgress.report(new InstallProgress.Update(update.phase(), update.detail(), 75 + update.startPercent() / 4, 75 + update.endPercent() / 4, update.completed(), update.total()));
+      this.installedDiscs = DiscImporter.existing(store, checking); this.currentProgress.phase("Installation ready", "Choose whether to reuse or replace your disc images", 100); return result;
+    }, () -> { this.step = 1; this.render(); });
+  }
+  private void uninstall() {
+    final JCheckBox delete = new JCheckBox("Delete ISOs", false); delete.setFont(font(18, false)); delete.setOpaque(false); delete.setPreferredSize(new Dimension(520, 52));
+    final JPanel options = column(); options.add(copy("Remove Definitive and its Steam shortcut. Your saves, settings and custom mods stay here.", 18, INK)); options.add(Box.createVerticalStrut(18)); options.add(delete);
+    options.add(copy("Steam will reopen after the library is refreshed.", 15, MUTED));
+    if(!ManagerDialogs.confirm(this.frame, "Uninstall Definitive", options, "Uninstall")) return;
+    final boolean deleteIsos = delete.isSelected();
+    this.run("Uninstalling Definitive", () -> {
+      final var store = new InstallStore(this.root);
+      try(final var operation = store.lock()) { for(final var account : SteamLibrary.accounts()) SteamIntegration.remove(account, this.root, this.currentProgress); }
+      return store.uninstall(deleteIsos, this.currentProgress);
+    }, () -> { this.uninstallComplete = true; this.render(); });
   }
   private void setupActions(final JButton secondary) {
     final JPanel actions = new JPanel(new GridLayout(1, 2, 12, 0)); actions.setOpaque(false); actions.setAlignmentX(LEFT_ALIGNMENT); actions.setMaximumSize(new Dimension(520, 48));
@@ -250,6 +283,7 @@ final class ManagerView extends JPanel {
 
   private void goBack() {
     if(this.busy) return;
+    if(this.maintenance) { this.maintenance = false; this.render(); return; }
     if(this.failed) { this.render(); return; }
     if(this.launcher && (this.reviewingUpdate || this.updateComplete)) {
       this.reviewingUpdate = false; this.updateComplete = false; this.render();
@@ -282,13 +316,29 @@ final class ManagerView extends JPanel {
   private void chooseDiscs() {
     TouchFilePicker.choose(this.frame, Path.of(System.getProperty("user.home")), false, paths -> {
       if(paths.isEmpty()) return;
+      this.importDiscs(paths, false);
+    });
+  }
+  private void useInstalledDiscs() {
+    if(this.installedDiscs != null && this.installedDiscs.changed() && !ManagerDialogs.confirm(this.frame, "Disc images changed", copy(this.installedDiscs.detail() + " Continue with these images?", 18, INK), "Use these discs")) return;
+    this.run("Preparing installed discs", () -> {
+      final var store = new InstallStore(this.root);
+      if(this.installedDiscs != null && this.installedDiscs.changed()) store.invalidatePreparedDiscs();
+      return store.discsPrepared() ? "Existing game files are ready." : store.prepareDiscs(this.currentProgress);
+    }, () -> { this.step = 2; this.render(); });
+  }
+  private void importDiscs(final List<Path> paths, final boolean replaceDifferent) {
       this.run("Preparing your discs", () -> {
         final var store = new InstallStore(this.root);
         store.verifyInstalled();
-        DiscSources.importSelected(store, paths, this.currentProgress);
-        return store.prepareDiscs(this.currentProgress);
-      }, () -> { this.step = 2; this.render(); });
-    });
+        try { DiscSources.importSelected(store, paths, this.currentProgress, replaceDifferent); }
+        catch(final DiscImporter.DifferentDiscs different) { return different; }
+        return store.discsPrepared() ? "Existing game files are ready." : store.prepareDiscs(this.currentProgress);
+      }, result -> {
+        if(result instanceof DiscImporter.DifferentDiscs different) {
+          if(ManagerDialogs.confirm(this.frame, "Different disc images", copy(different.getMessage(), 18, INK), "Replace disc images")) this.importDiscs(paths, true);
+        } else { this.step = 2; this.render(); }
+      });
   }
   private void addSteam(final boolean finish) {
     this.run("Checking Steam", () -> SteamLibrary.accounts(), accounts -> {
@@ -302,9 +352,11 @@ final class ManagerView extends JPanel {
     this.run("Loading preferences", () -> !"original".equals(new InstallStore(this.root).state().getProperty("artwork", "hd")), hd -> {
       final JCheckBox artwork = new JCheckBox("Skurfa HD backgrounds", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
       final JCheckBox pilot = new JCheckBox("Enhanced model textures · experimental", false); pilot.setFont(font(18, false)); pilot.setOpaque(false); pilot.setMaximumSize(new Dimension(520, 52)); pilot.setPreferredSize(new Dimension(520, 52));
+      final JCheckBox fullscreen = new JCheckBox("Fullscreen", true); fullscreen.setFont(font(18, false)); fullscreen.setOpaque(false); fullscreen.setMaximumSize(new Dimension(520, 52)); fullscreen.setPreferredSize(new Dimension(520, 52));
+      try { fullscreen.setSelected(Boolean.parseBoolean(new InstallStore(this.root).state().getProperty("fullscreen", "true"))); } catch(final Exception ignored) { }
       try { pilot.setSelected(Boolean.parseBoolean(new InstallStore(this.root).state().getProperty("legacyTextures", "false"))); } catch(final Exception ignored) { }
-      final JPanel options = column(); options.add(artwork); options.add(pilot); options.add(Box.createVerticalStrut(12)); options.add(copy("Artwork doesn’t change gameplay. Enhanced model textures need an installed, verified texture pack.", 16, MUTED));
-      if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save changes")) this.run("Saving preferences", () -> { new InstallStore(this.root).setArtwork(artwork.isSelected()); new InstallStore(this.root).setLegacyTextures(pilot.isSelected()); return "Changes apply the next time you play."; }, () -> { });
+      final JPanel options = column(); options.add(artwork); options.add(pilot); options.add(fullscreen); options.add(Box.createVerticalStrut(12)); options.add(copy("Artwork doesn’t change gameplay. Enhanced model textures need an installed, verified texture pack.", 16, MUTED));
+      if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save changes")) this.run("Saving preferences", () -> { new InstallStore(this.root).setArtwork(artwork.isSelected()); new InstallStore(this.root).setLegacyTextures(pilot.isSelected()); new InstallStore(this.root).setFullscreen(fullscreen.isSelected()); return "Changes apply the next time you play."; }, () -> { });
     });
   }
   private void checkUpdates() {

@@ -35,6 +35,7 @@ public final class InstallStore {
     Files.createDirectories(this.root);
     final Path marker = this.root.resolve(".definitive-owned");
     if(!Files.exists(marker)) Files.writeString(marker, "Legend of Dragoon Definitive install format 1\n", StandardOpenOption.CREATE_NEW);
+    if(Files.isSymbolicLink(marker) || !Files.isRegularFile(marker, LinkOption.NOFOLLOW_LINKS) || Files.size(marker) > 1024 || !Files.readString(marker).equals("Legend of Dragoon Definitive install format 1\n")) throw new IOException("This folder does not have a recognized Definitive ownership record. No installation files were replaced.");
     for(final String dir : new String[]{"releases", "data", "workspaces", "snapshots", "isos"}) Files.createDirectories(this.root.resolve(dir));
     this.checkOwnedPaths();
   }
@@ -86,8 +87,17 @@ public final class InstallStore {
         final Properties old = this.state();
         final Path release = this.root.resolve("releases").resolve(manifest.id());
         if(Files.exists(release)) {
-          PackageManifest.read(release).verify(release, PackageManifest.hostPlatform());
-          if(manifest.id().equals(old.getProperty("version"))) {
+          if(Files.isSymbolicLink(release)) throw new IOException("Unexpected linked release. No external files were changed.");
+          try { PackageManifest.read(release).verify(release, PackageManifest.hostPlatform()); }
+          catch(final IOException damaged) {
+            // Exact verified package identity under our owned releases directory: repair it as a unit.
+            final Path recovery = this.root.resolve("release-recovery-" + UUID.randomUUID());
+            Files.move(release, recovery, StandardCopyOption.ATOMIC_MOVE);
+            try { Files.move(staged, release, StandardCopyOption.ATOMIC_MOVE); }
+            catch(final IOException failure) { try { Files.move(recovery, release, StandardCopyOption.ATOMIC_MOVE); } catch(final IOException restore) { failure.addSuppressed(restore); } throw failure; }
+            InstallerLog.write("Repaired damaged managed release; previous files retained at " + recovery);
+          }
+          if(manifest.id().equals(old.getProperty("version")) && !Boolean.parseBoolean(old.getProperty("uninstalled", "false"))) {
             this.writeLaunchers(release);
             this.verifyInstalled();
             if(!releaseAssetId.isEmpty()) { old.setProperty("releaseAssetId", releaseAssetId); atomicProperties(this.root.resolve("state.properties"), old); }
@@ -115,12 +125,13 @@ public final class InstallStore {
         final Properties next = new Properties();
         next.setProperty("version", manifest.id());
         next.setProperty("data", dataId);
-        next.setProperty("previousVersion", old.getProperty("version", ""));
+        next.setProperty("previousVersion", Boolean.parseBoolean(old.getProperty("uninstalled", "false")) ? "" : old.getProperty("version", ""));
         next.setProperty("previousSnapshot", snapshotId);
         next.setProperty("previousArtwork", old.getProperty("artwork", "hd"));
         next.setProperty("previousReleaseAssetId", old.getProperty("releaseAssetId", ""));
         next.setProperty("artwork", old.getProperty("artwork", "hd"));
         next.setProperty("legacyTextures", old.getProperty("legacyTextures", "false"));
+        next.setProperty("fullscreen", old.getProperty("fullscreen", "true"));
         next.setProperty("previousLegacyTextures", old.getProperty("legacyTextures", "false"));
         if(!releaseAssetId.isEmpty()) next.setProperty("releaseAssetId", releaseAssetId);
         progress.phase("Creating the launcher", "Writing Play Game.sh and activating the verified version", 95);
@@ -137,6 +148,7 @@ public final class InstallStore {
     this.verifyInstalled(this.state());
   }
   private void verifyInstalled(final Properties state) throws IOException {
+    if(Boolean.parseBoolean(state.getProperty("uninstalled", "false"))) throw new IOException("Definitive is uninstalled. Choose Reinstall to restore the game.");
     final Path release = child(this.root.resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
     PackageManifest.read(release).verify(release, PackageManifest.hostPlatform());
     if(!Files.isDirectory(this.data(state))) throw new IOException("Installation data folder is missing. Retry installation.");
@@ -218,6 +230,7 @@ public final class InstallStore {
     final PackageManifest manifest = PackageManifest.read(release);
     manifest.verify(release, PackageManifest.hostPlatform());
     final Path data = this.data(state);
+    if(PackageManifest.hostPlatform().equals("linux-x64")) configureFullscreen(data, Boolean.parseBoolean(state.getProperty("fullscreen", "true")));
     try(final var entries = Files.walk(data)) {
       if(entries.anyMatch(Files::isSymbolicLink)) throw new IOException("Linked private data is not supported in a managed installation.");
     }
@@ -249,6 +262,77 @@ public final class InstallStore {
       }
     }
     return workspace;
+  }
+
+  static void configureFullscreen(final Path data, final boolean fullscreen) throws IOException {
+    final Path config = data.resolve("config.dcnf");
+    if(Files.isSymbolicLink(config)) throw new IOException("Unexpected linked game configuration.");
+    final byte[] id = "lod_core:fullscreen".getBytes(java.nio.charset.StandardCharsets.US_ASCII);
+    final byte[] original = Files.exists(config) ? Files.readAllBytes(config) : new byte[4];
+    if(original.length < 4 || original.length > 100 * 1024) throw new IOException("Game settings need attention. Fullscreen settings were not changed.");
+    final var input = java.nio.ByteBuffer.wrap(original).order(java.nio.ByteOrder.LITTLE_ENDIAN); final int count = input.getInt();
+    if(count < 0 || count > 1000) throw new IOException("Invalid game settings. No settings were changed.");
+    int valueOffset = -1;
+    try {
+      for(int i = 0; i < count; i++) {
+        final int length = Byte.toUnsignedInt(input.get()) | Byte.toUnsignedInt(input.get()) << 8 | Byte.toUnsignedInt(input.get()) << 16;
+        if(length > input.remaining()) throw new IOException("Truncated game settings."); final byte[] name = new byte[length]; input.get(name);
+        final int size = input.getInt(); if(size < 0 || size > input.remaining()) throw new IOException("Invalid game setting length.");
+        if(java.util.Arrays.equals(name, id)) { if(size != 1) throw new IOException("Invalid fullscreen setting."); valueOffset = input.position(); }
+        input.position(input.position() + size);
+      }
+    } catch(final java.nio.BufferUnderflowException | IllegalArgumentException failure) { throw new IOException("Truncated game settings. No settings were changed.", failure); }
+    if(input.hasRemaining()) throw new IOException("Unexpected game settings data. No settings were changed.");
+    final byte value = (byte)(fullscreen ? 1 : 0); final byte[] updated;
+    if(valueOffset >= 0) { if(original[valueOffset] == value) return; updated = original.clone(); updated[valueOffset] = value; }
+    else {
+      final var output = java.nio.ByteBuffer.allocate(original.length + 3 + id.length + 5).order(java.nio.ByteOrder.LITTLE_ENDIAN);
+      output.put(original); output.putInt(0, count + 1); output.put((byte)id.length).put((byte)0).put((byte)0).put(id).putInt(1).put(value); updated = output.array();
+    }
+    final Path backup = data.resolve("config.dcnf.before-fullscreen");
+    if(Files.isSymbolicLink(backup)) throw new IOException("Unexpected linked settings backup.");
+    if(Files.exists(config) && !Files.exists(backup)) Files.write(backup, original, StandardOpenOption.CREATE_NEW);
+    final Path pending = Files.createTempFile(data, ".fullscreen-", ".tmp");
+    try { Files.write(pending, updated); replaceFile(pending, config); } finally { Files.deleteIfExists(pending); }
+  }
+
+  public void setFullscreen(final boolean enabled) throws IOException {
+    try(final var operation = this.lock()) { final var state = this.state(); state.setProperty("fullscreen", Boolean.toString(enabled)); atomicProperties(this.root.resolve("state.properties"), state); }
+  }
+
+  public String uninstall(final boolean deleteIsos, final InstallProgress progress) throws IOException {
+    try(final var operation = this.lock()) {
+      final Properties state = this.state(); this.data(state); // Requires a recognized data generation, even for a damaged install.
+      final var targets = new ArrayList<Path>();
+      try(final var releases = Files.list(this.root.resolve("releases"))) {
+        for(final Path release : releases.toList()) {
+          if(!release.getFileName().toString().matches("alpha-[a-f0-9]{16}") || Files.isSymbolicLink(release)) throw new IOException("Unexpected release folder. Uninstall stopped before changing files.");
+          targets.add(release);
+        }
+      }
+      try(final var workspaces = Files.list(this.root.resolve("workspaces"))) {
+        for(final Path workspace : workspaces.toList()) {
+          if(!workspace.getFileName().toString().matches("alpha-[a-f0-9]{16}-data-[a-f0-9-]{36}") || Files.isSymbolicLink(workspace)) throw new IOException("Unexpected workspace folder. Uninstall stopped before changing files.");
+          targets.add(workspace);
+        }
+      }
+      for(final String name : new String[]{"Play Game.sh", "Manage Installation.sh", "definitive-manager.jar", "bootstrap-java", "steam-artwork"}) {
+        final Path target = this.root.resolve(name); if(Files.isSymbolicLink(target)) throw new IOException("Unexpected linked installation file. No files were removed."); if(Files.exists(target)) targets.add(target);
+      }
+      if(deleteIsos) targets.add(this.root.resolve("isos"));
+      try(final var paths = Files.list(this.root)) {
+        for(final Path path : paths.toList()) if(path.getFileName().toString().matches("(?:release-recovery|disc-extraction-recovery" + (deleteIsos ? "|disc-recovery" : "") + ")-[a-f0-9-]{36}")) {
+          if(Files.isSymbolicLink(path)) throw new IOException("Unexpected linked recovery folder. No files were removed."); targets.add(path);
+        }
+      }
+      // Recoverable state is published before removal so an interrupted uninstall offers Reinstall.
+      state.setProperty("uninstalled", "true"); atomicProperties(this.root.resolve("state.properties"), state);
+      int number = 0;
+      for(final Path target : targets) { progress.phase("Removing Definitive", target.getFileName().toString(), 10 + ++number * 85 / Math.max(1, targets.size())); deleteOwnedTree(target); }
+      Files.createDirectories(this.root.resolve("isos"));
+      progress.phase("Uninstalled", "Saves, settings and custom mods are retained" + (deleteIsos ? ". Selected ISO removal completed." : ". Disc images are retained."), 100);
+      return "Definitive was uninstalled. Your saves, settings and custom mods are retained at " + this.root.resolve("data");
+    }
   }
 
   public String prepareDiscs() throws IOException, InterruptedException {
@@ -298,6 +382,21 @@ public final class InstallStore {
     return Files.isRegularFile(this.root.resolve("workspaces").resolve(version + "-" + data).resolve("files/version"));
   }
 
+  void invalidatePreparedDiscs() throws IOException {
+    try(final var operation = this.lock()) {
+      this.invalidatePreparedDiscsLocked();
+    }
+  }
+  void invalidatePreparedDiscsLocked() throws IOException {
+      if(!this.state().containsKey("version")) return;
+      final Path workspace = this.prepareLaunch();
+      final Path extracted = workspace.resolve("files");
+      if(Files.isSymbolicLink(extracted)) throw new IOException("Unexpected linked game files.");
+      // Retain the entire previous extraction; a new unpack must not reuse mixed disc contents.
+      Files.move(extracted, this.root.resolve("disc-extraction-recovery-" + UUID.randomUUID()), StandardCopyOption.ATOMIC_MOVE);
+      Files.createDirectory(extracted);
+  }
+
   public void setLegacyTextures(final boolean enabled) throws IOException {
     try(final var operation = this.lock()) {
       final Properties state = this.state();
@@ -322,11 +421,27 @@ public final class InstallStore {
       final Path log = workspace.resolve("launcher.log");
       if(Files.isSymbolicLink(log)) throw new IOException("Unexpected linked game log. No game was started.");
       InstallerLog.write("Starting game; details: " + log);
-      final Process game = new ProcessBuilder(command).directory(workspace.toFile()).redirectErrorStream(true).redirectOutput(ProcessBuilder.Redirect.appendTo(log.toFile())).start();
+      final var builder = new ProcessBuilder(command).directory(workspace.toFile()).redirectErrorStream(true).redirectOutput(ProcessBuilder.Redirect.appendTo(log.toFile()));
+      normalizeSteamOverlay(builder.environment());
+      Files.writeString(log, "\nDefinitive game launch: " + java.time.Instant.now() + "\nJava: " + Runtime.version() + "\nWorkspace: " + workspace + "\nPlatform: " + PackageManifest.hostPlatform() + "\n", StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+      final Process game = builder.start();
       game.getOutputStream().close();
       try { return game.waitFor(); }
       finally { if(game.isAlive()) { game.destroyForcibly(); game.waitFor(); } }
     }
+  }
+
+  static void normalizeSteamOverlay(final java.util.Map<String, String> environment) {
+    final String preload = environment.get("LD_PRELOAD"); if(preload == null) return;
+    final var retained = new ArrayList<String>();
+    for(final String entry : preload.split("[ :]+")) {
+      if(entry.isEmpty()) continue;
+      if(entry.endsWith("/ubuntu12_32/gameoverlayrenderer.so")) {
+        final String compatible = entry.replace("/ubuntu12_32/", "/ubuntu12_64/");
+        if(Files.isRegularFile(Path.of(compatible))) retained.add(compatible);
+      } else retained.add(entry);
+    }
+    if(retained.isEmpty()) environment.remove("LD_PRELOAD"); else environment.put("LD_PRELOAD", String.join(":", retained));
   }
 
   public Path gameLog() throws IOException {
@@ -350,7 +465,7 @@ public final class InstallStore {
     this.repairBootstrap(release);
     this.root.resolve("bootstrap-java").toFile().setExecutable(true, true);
     final String previousScript = "#!/bin/bash\nset -euo pipefail\nROOT=\"$(cd -- \"$(dirname -- \"${BASH_SOURCE[0]}\")\" && pwd)\"\nJAVA=\"$(\"$ROOT/bootstrap-java\" \"$ROOT\")\"\nexec \"$JAVA\" -jar \"$ROOT/definitive-manager.jar\" --manage \"$ROOT\"\n";
-    final String scriptText = """
+    final String oldManagedScript = """
       #!/bin/bash
       set -euo pipefail
       ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
@@ -367,10 +482,15 @@ public final class InstallStore {
       else printf '%s\\n' "$MESSAGE" >&2; fi
       exit "$CODE"
       """;
+    final String scriptTemplate = oldManagedScript
+      .replace("run_manager() {", "run_manager() {\n  # Java is 64-bit; Steam also exports a 32-bit overlay. Preserve other preload entries.\n  if [[ ${LD_PRELOAD:-} == *ubuntu12_32/gameoverlayrenderer.so* ]]; then\n    LD_PRELOAD=${LD_PRELOAD//ubuntu12_32\\/gameoverlayrenderer.so/ubuntu12_64\\/gameoverlayrenderer.so}\n    export LD_PRELOAD\n  fi")
+      .replace("--manage \"$ROOT\"", "@MODE@ \"$ROOT\"")
+      .replace("MESSAGE=", "if [[ @MODE@ == --play && ( $CODE == 130 || $CODE == 143 ) ]]; then printf '%s\\n' 'Stopped from Steam.' >> \"$LOG\"; exit 0; fi\nMESSAGE=");
     for(final String name : new String[]{"Play Game.sh", "Manage Installation.sh"}) {
+      final String scriptText = scriptTemplate.replace("@MODE@", name.equals("Play Game.sh") ? "--play" : "--manage");
       final Path script = this.root.resolve(name);
       if(!Files.exists(script)) Files.writeString(script, scriptText, StandardOpenOption.CREATE_NEW);
-      else if(Files.size(script) < 16384 && Files.readString(script).equals(previousScript)) {
+      else if(Files.size(script) < 16384 && (Files.readString(script).equals(previousScript) || Files.readString(script).equals(oldManagedScript))) {
         final Path next = Files.createTempFile(this.root, ".launcher-", ".tmp");
         try { Files.writeString(next, scriptText); Files.move(next, script, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING); }
         finally { Files.deleteIfExists(next); }
