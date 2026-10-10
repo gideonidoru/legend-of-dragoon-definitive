@@ -85,6 +85,27 @@ final class ManagerView extends JPanel {
     }
   }
 
+  @Override protected boolean isPaintingOrigin() { return true; }
+  @Override public void paint(final Graphics graphics) {
+    final Graphics2D smooth = smooth(graphics);
+    try { super.paint(smooth); } finally { smooth.dispose(); }
+  }
+  private static Graphics2D smooth(final Graphics graphics) {
+    final Graphics2D smooth = (Graphics2D)graphics.create();
+    smooth.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    smooth.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+    return smooth;
+  }
+  static JPanel surface(final LayoutManager layout) {
+    return new JPanel(layout) {
+      @Override protected boolean isPaintingOrigin() { return true; }
+      @Override public void paint(final Graphics graphics) {
+        final Graphics2D smooth = smooth(graphics);
+        try { super.paint(smooth); } finally { smooth.dispose(); }
+      }
+    };
+  }
+
   @Override public void doLayout() {
     final int inset = Math.max(36, (this.getWidth() - Math.max(340, Math.min(440, (int)(this.getWidth() * .36))) - 520) / 2);
     if(inset != this.horizontalInset) { this.horizontalInset = inset; this.content.setBorder(BorderFactory.createEmptyBorder(36, inset, 26, inset)); }

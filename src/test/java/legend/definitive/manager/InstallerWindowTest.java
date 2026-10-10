@@ -16,6 +16,27 @@ class InstallerWindowTest {
   @TempDir Path temporary;
   private JFrame frame;
   @AfterEach void closeWindows() throws Exception { SwingUtilities.invokeAndWait(() -> { for(final Window window : Window.getWindows()) window.dispose(); }); }
+  @Test void dirtyChildRepaintKeepsSharedSurfaceTextSmoothing() throws Exception {
+    for(final boolean manager : new boolean[]{true, false}) {
+      final var painted = new AtomicInteger(); final var smoothed = new AtomicBoolean();
+      final var probe = new JComponent() {
+        @Override protected void paintComponent(final Graphics graphics) {
+          painted.incrementAndGet(); smoothed.set(((Graphics2D)graphics).getFontRenderContext().isAntiAliased());
+          graphics.setColor(Color.BLACK); graphics.drawString("Fixture text", 12, 28);
+        }
+      };
+      probe.setOpaque(true); probe.setPreferredSize(new Dimension(200, 50));
+      SwingUtilities.invokeAndWait(() -> {
+        this.frame = new JFrame("Repaint fixture");
+        final JPanel root = manager ? new ManagerView(null, this.temporary, this.temporary.resolve("installation")) : ManagerView.surface(new BorderLayout());
+        root.add(probe, BorderLayout.SOUTH); this.frame.setContentPane(root); this.frame.setSize(1100, 740); this.frame.setVisible(true);
+      });
+      SwingUtilities.invokeAndWait(() -> {
+        final int before = painted.get(); probe.paintImmediately(0, 0, probe.getWidth(), probe.getHeight());
+        assertTrue(painted.get() > before, "Dirty child must actually repaint"); assertTrue(smoothed.get(), "Dirty child repaint must pass through its smooth painting origin"); this.frame.dispose();
+      });
+    }
+  }
   @Test void selectedFilesClosePickerBeforeCallbackAndFinishDisposesWindow() throws Exception {
     this.temporary = this.temporary.toRealPath();
     final var fixture = new InstallStoreTest(); fixture.temporary = this.temporary;

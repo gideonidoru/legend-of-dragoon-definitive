@@ -19,7 +19,7 @@ final class ManagerDialogs {
     dialog.setSize(700, 460); dialog.setLocationRelativeTo(owner); dialog.addWindowListener(new WindowAdapter() { @Override public void windowOpened(final WindowEvent e) { accept.requestFocusInWindow(); } }); dialog.setVisible(true); return accepted[0];
   }
   static JPanel panel(final String title, final JComponent content, final String action, final Runnable cancel, final Runnable accepted) {
-    final JPanel panel = new JPanel(new BorderLayout(0, 24)); panel.setBackground(ManagerView.PAPER); panel.setBorder(BorderFactory.createEmptyBorder(28, 28, 28, 28));
+    final JPanel panel = ManagerView.surface(new BorderLayout(0, 24)); panel.setBackground(ManagerView.PAPER); panel.setBorder(BorderFactory.createEmptyBorder(28, 28, 28, 28));
     final JLabel heading = new JLabel(title); heading.setFont(ManagerView.font(26, true)); heading.setForeground(ManagerView.INK); panel.add(heading, BorderLayout.NORTH); panel.add(content, BorderLayout.CENTER);
     final JPanel buttons = new JPanel(new GridLayout(1, action.equals("Close") ? 1 : 2, 12, 0)); buttons.setOpaque(false);
     if(!action.equals("Close")) { final JButton back = ManagerView.button("Cancel", false); back.addActionListener(e -> cancel.run()); buttons.add(back); }

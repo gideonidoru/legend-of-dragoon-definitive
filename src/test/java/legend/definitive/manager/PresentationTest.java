@@ -54,6 +54,18 @@ class PresentationTest {
     final var graphics = image.createGraphics(); view.paint(graphics); graphics.dispose();
     final Path file = Path.of("build/reports/installer-" + name + "-" + width + ".png"); Files.createDirectories(file.getParent()); javax.imageio.ImageIO.write(image, "png", file.toFile());
   }
+  @Test void sharedSurfaceRendersSmoothTextWithoutDesktopFontSettings() throws Exception {
+    SwingUtilities.invokeAndWait(() -> {
+      final var panel = ManagerView.surface(new BorderLayout()); panel.setBackground(Color.WHITE);
+      final var text = new JLabel("Definitive"); text.setFont(ManagerView.font(26, false)); text.setForeground(Color.BLACK); panel.add(text);
+      panel.setSize(240, 60); InstallStoreTest.layout(panel);
+      final var image = new java.awt.image.BufferedImage(240, 60, java.awt.image.BufferedImage.TYPE_INT_RGB);
+      final var graphics = image.createGraphics(); panel.paint(graphics); graphics.dispose();
+      final var colours = new java.util.HashSet<Integer>();
+      for(int y = 0; y < image.getHeight(); y++) for(int x = 0; x < image.getWidth(); x++) colours.add(image.getRGB(x, y));
+      assertTrue(colours.size() > 2, "Text must have smooth intermediate coverage, not just black and white pixels");
+    });
+  }
   @Test void setupStepsFitMinimumClientArea() throws Exception {
     SwingUtilities.invokeAndWait(() -> {
       try {

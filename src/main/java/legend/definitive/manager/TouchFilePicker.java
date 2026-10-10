@@ -23,7 +23,7 @@ final class TouchFilePicker {
   private TouchFilePicker(final JFrame owner, final Path initial, final boolean directories, final java.util.function.Consumer<List<Path>> completed) {
     this.directories = directories; this.folder = initial != null && Files.isDirectory(initial) ? initial : Path.of(System.getProperty("user.home"));
     this.dialog = new JDialog(owner, directories ? "Choose installation location" : "Choose your disc files", false);
-    final JPanel content = new JPanel(new BorderLayout(0, 18)); content.setBackground(ManagerView.PAPER); content.setBorder(BorderFactory.createEmptyBorder(24, 28, 24, 28));
+    final JPanel content = ManagerView.surface(new BorderLayout(0, 18)); content.setBackground(ManagerView.PAPER); content.setBorder(BorderFactory.createEmptyBorder(24, 28, 24, 28));
     final JPanel header = new JPanel(new BorderLayout(12, 12)); header.setOpaque(false);
     final JPanel navigation = new JPanel(new GridLayout(1, 2, 12, 0)); navigation.setOpaque(false);
     final JButton up = ManagerView.button("↑  Parent folder", false), home = ManagerView.button("Home", false);
