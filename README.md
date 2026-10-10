@@ -8,13 +8,13 @@ This is an unofficial community project in early development. **The guided insta
 
 ## Install on Steam Deck
 
-**[Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09-presentation-2/Install-Definitive.desktop)**
+**[Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-refinement/Install-Definitive.desktop)**
 
 Download a fresh copy if you tried an earlier installer. Older entry files pin older builds, and their updater may miss this release. Choose your existing installation folder to repair or upgrade it.
 
 In Desktop Mode, download and open the installer in Dolphin. Allow execution if KDE asks. It takes care of our build, Java, HD artwork, disc import/preparation and an optional Steam library shortcut. Choose your four US BIN/raw ISO images or ZIP, RAR and 7z containers. Your originals stay untouched; bundled emulators and patches are left out. The default location is `/home/deck/Games/Legend-of-Dragoon-Definitive`.
 
-The entry download is tiny; the portable interface is about 9 MB. Java, the game engine and HD artwork download during setup. The launcher centers on **Play**, checks our releases automatically, and keeps artwork/mod choices and version restore secondary. Touch-sized controls and controller navigation are implemented; physical Deck input and Gaming Mode verification remain pending. **[Installer details and recovery](docs/definitive/INSTALLER.md)** · [Reliability repair and verification](docs/definitive/DELIVERY_RELIABILITY.md) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09-presentation-2/Definitive-Installer.zip).
+The entry download is tiny; the portable interface is about 9 MB. Java, the game engine and HD artwork download during setup. The launcher centers on **Play**, checks our releases automatically, and keeps artwork/mod choices and version restore secondary. Touch-sized controls and controller navigation are implemented; physical Deck input and Gaming Mode verification remain pending. **[Installer details and recovery](docs/definitive/INSTALLER.md)** · [Reliability repair and verification](docs/definitive/DELIVERY_RELIABILITY.md) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-refinement/Definitive-Installer.zip).
 
 ## Where this project comes from
 

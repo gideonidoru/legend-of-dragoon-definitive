@@ -8,6 +8,20 @@ The presentation checks now measure plain-label text against its actual availabl
 
 The local Corretto 25 / Gradle 9.1.0 build and focused presentation, installer-flow and Steam lifecycle suites passed on the Mac Studio without operating real Steam or opening desktop windows. The hosted package and physical Deck acceptance are separate checks; this correction does not establish commercial release readiness or a reliability guarantee.
 
+Source [`45f71cb70ab28f6f9badde6350b4d70c7daecaab`](https://github.com/gideonidoru/legend-of-dragoon-definitive/commit/45f71cb70ab28f6f9badde6350b4d70c7daecaab) passed all three jobs in [hosted run 38032117393](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38032117393). Linux and Mac each reported 78 delivery cases: 76 passed, zero failures, two deferred. Linux separately passed both actual-window tests under Xvfb. Bootstrap failure/recovery, native archive, publication and material interoperability checks passed. Both downloaded platform packages independently passed their complete closed inventory, source, platform, release-tag and hash checks: Linux `alpha-abd4cf4fb613982f`, Mac `alpha-b87c5990b18c72b8`. Both hosted portable interfaces match the locally reviewed build byte-for-byte. The local test-control script's first attempt lacked a Java environment; with Corretto 25 explicitly selected, all seven scenarios passed.
+
+The Linux setup, Steam, launcher, update-review and long-progress renders were visually inspected. The progress example below is a synthetic long-path stress case rendered by the actual shipped components, rather than a physical Deck capture.
+
+![Progress detail and separate elapsed timer](images/progress-linux.png)
+
+The [October 10 installer correction](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-alpha-2026-10-10-refinement) passed the publication gate and is public. The gate verified the account, exact source/build correlation, release tag, complete asset set, uploaded sizes and SHA256 digests. Independently downloaded public desktop and shell entry points match the checked upload bytes. A fresh isolated installation using the exact-source hosted manager selected this release, downloaded and verified the full Mac package, created the installation/data folders, installed the HD mod and wrote verified executable launchers. Disc preparation, gameplay and real Steam were not run in that fresh probe. Public [SHA256SUMS](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-refinement/SHA256SUMS) records all five download digests.
+
+| Entry | Bytes | SHA256 |
+| --- | ---: | --- |
+| `Install-Definitive.desktop` | 1,380 | `c4540e07a7574280e5af65aa0a4a81eaf1ef24d98d2601804ff0e5b586d9f129` |
+| `Install-Definitive.sh` | 3,436 | `995de4f705b4d9dd7dcbec88058aec95cfd468402aaab90da4af0d69dadfeb57` |
+| `Definitive-Installer.zip` | 9,375,275 | `819c6b7b4468adae6a7691f4758bc6f39711f1c3446d7068b4949f0c7af950e9` |
+
 The presentation milestone follows the owner's October 9 request for restrained, polished, readable screens and automatic Steam integration. It changes the delivery UI and Steam lifecycle only; engine rendering and gameplay are unchanged.
 
 ## Presentation
