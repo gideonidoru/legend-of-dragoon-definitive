@@ -7,24 +7,33 @@ from datetime import datetime
 REPO='gideonidoru/legend-of-dragoon-definitive'
 def gh(*args):return subprocess.check_output(['gh',*args],text=True,stderr=subprocess.PIPE)
 def pages(endpoint):return json.loads(gh('api',endpoint,'--paginate','--slurp'))
+def timestamp(value):return datetime.fromisoformat(value.replace('Z','+00:00'))
+def release_time(release):return max(timestamp(release['created_at']),timestamp(release.get('published_at') or release['created_at']))
+def verify_draft_sources(releases, verify_tag):
+    for release in releases:
+        if not release['draft']:continue
+        source=release.get('target_commitish','')
+        if not re.fullmatch(r'[a-f0-9]{40}',source):raise ValueError('Cannot identify active draft source')
+        verify_tag(release['tag_name'],source,required=False)
 def plan(releases, keep):
     matched=[r for r in releases if r['tag_name']==keep]
     if len(matched)!=1 or matched[0]['draft']:raise ValueError('Keep exactly one existing public release')
     current=matched[0]
-    created=datetime.fromisoformat(current['created_at'].replace('Z','+00:00'))
-    if any(datetime.fromisoformat(r['created_at'].replace('Z','+00:00'))>created for r in releases if r['id']!=current['id'] and not r['draft']):raise ValueError('A newer public release exists; refresh the keep decision before deletion')
+    created=release_time(current)
+    if any(release_time(r)>created for r in releases if r['id']!=current['id'] and not r['draft']):raise ValueError('A newer public release exists; refresh the keep decision before deletion')
     return current,[r for r in releases if r['id']!=current['id'] and not r['draft']]
-def eligible_artifact(run, keep_run, releases):
+def eligible_artifact(run, keep_run, releases, artifact=None):
     # Protect future candidates even after CI completes, and all draft source builds.
     # Draft tags may still be moving; incomplete source discovery stops deletion.
     drafts=[r for r in releases if r['draft']]
     if any(not re.fullmatch(r'[a-f0-9]{40}', r.get('target_commitish','')) for r in drafts):
         raise ValueError('Cannot identify an active draft build; artifact cleanup requires exact draft sources')
     protected={r['target_commitish'] for r in drafts}|{keep_run['head_sha']}
-    return (run['status']=='completed' and run['id']!=keep_run['id']
-            and run['head_sha'] not in protected
-            and datetime.fromisoformat(run['created_at'].replace('Z','+00:00'))
-                < datetime.fromisoformat(keep_run['created_at'].replace('Z','+00:00')))
+    if run['status']!='completed' or run['id']==keep_run['id'] or run['head_sha'] in protected:return False
+    times=[run['created_at']]
+    times.extend(run[key] for key in ('run_started_at','updated_at') if run.get(key))
+    if artifact is not None:times.append(artifact['created_at'])
+    return max(map(timestamp,times)) < timestamp(keep_run['created_at'])
 def verify_latest(release,latest):
     if latest['id']!=release['databaseId'] or latest['tag_name']!=release['tagName'] or latest['draft'] or latest['prerelease']:raise ValueError('Current build-input URL does not resolve to the retained public release')
 def main():
@@ -50,18 +59,20 @@ def main():
     if (run['status'],run['conclusion'],run['head_sha'])!=('completed','success',a.source_sha):raise ValueError('Replacement build did not pass')
     releases=[r for page in pages(f'repos/{REPO}/releases?per_page=100') for r in page]
     current,old=plan(releases,a.keep_tag)
+    verify_draft_sources(releases,publisher.verify_tag)
     artifacts=[x for page in pages(f'repos/{REPO}/actions/artifacts?per_page=100') for x in page['artifacts']]
     removable=[];statuses={}
     for artifact in artifacts:
         run_id=artifact['workflow_run']['id']
         if run_id==int(a.run):continue
         if run_id not in statuses:statuses[run_id]=json.loads(gh('api',f'repos/{REPO}/actions/runs/{run_id}'))
-        if eligible_artifact(statuses[run_id],run,releases):removable.append(artifact)
+        if eligible_artifact(statuses[run_id],run,releases,artifact):removable.append(artifact)
     result={'keptTag':a.keep_tag,'keptTemporaryArtifactRun':a.run,'protectedDraftTags':[r['tag_name'] for r in releases if r['draft']], 'protectedArtifactIds':[x['id'] for x in artifacts if x not in removable], 'deletedReleases':[], 'deletedArtifacts':[], 'releaseBytes':sum(x['size'] for r in old for x in r['assets']),'artifactBytes':sum(x['size_in_bytes'] for x in removable)}
     if a.execute:
         for release in old:
             verify_current()
             # Recheck identity/draft/chronology so a changing release is never deleted.
+            plan([r for page in pages(f'repos/{REPO}/releases?per_page=100') for r in page],a.keep_tag)
             fresh=json.loads(gh('api',f'repos/{REPO}/releases/{release["id"]}'))
             if any(fresh[k]!=release[k] for k in ('id','tag_name','draft','created_at','updated_at')):raise ValueError('Historical release changed during cleanup')
             gh('api','--method','DELETE',f'repos/{REPO}/releases/{release["id"]}');result['deletedReleases'].append(release['tag_name'])
@@ -69,8 +80,9 @@ def main():
             verify_current()
             fresh_releases=[r for page in pages(f'repos/{REPO}/releases?per_page=100') for r in page]
             plan(fresh_releases,a.keep_tag)
+            verify_draft_sources(fresh_releases,publisher.verify_tag)
             fresh_run=json.loads(gh('api',f'repos/{REPO}/actions/runs/{artifact["workflow_run"]["id"]}'))
-            if not eligible_artifact(fresh_run,run,fresh_releases):continue
+            if not eligible_artifact(fresh_run,run,fresh_releases,artifact):continue
             gh('api','--method','DELETE',f'repos/{REPO}/actions/artifacts/{artifact["id"]}');result['deletedArtifacts'].append(artifact['id'])
         verify_current()
         remaining=[r for page in pages(f'repos/{REPO}/releases?per_page=100') for r in page]

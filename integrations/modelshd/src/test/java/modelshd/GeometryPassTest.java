@@ -104,7 +104,7 @@ class GeometryPassTest {
     var source=parsed(true);
     var layoutClass=Class.forName("legend.definitive.materials.SourceMaterials$Layout");
     var layoutConstructor=layoutClass.getDeclaredConstructors()[0];layoutConstructor.setAccessible(true);
-    var region=new legend.definitive.materials.MaterialAtlas.Region(0,0,0,64,32,64,16,128,64);
+    var region=new legend.definitive.materials.MaterialAtlas.Region(63,0,0,64,32,64,16,128,64);
     var layout=layoutConstructor.newInstance(64,32,256,128,java.util.List.of(region));
     var atlasConstructor=legend.definitive.materials.MaterialAtlas.class.getDeclaredConstructors()[0];atlasConstructor.setAccessible(true);
     var atlas=(legend.definitive.materials.MaterialAtlas)atlasConstructor.newInstance(layout,2,new java.awt.image.BufferedImage(256,128,java.awt.image.BufferedImage.TYPE_INT_ARGB),"fixture","fixture","fixture");
@@ -114,7 +114,7 @@ class GeometryPassTest {
     assertEquals(10.5f,refined.meshes[0].vertices()[16]);
     assertEquals((64f+20f*2)/256f,refined.meshes[0].vertices()[7]);
     assertEquals((16f+10f*2)/128f,refined.meshes[0].vertices()[8]);refined.delete();
-    api.failAt=api.created.size()+2;
+    api.failAt=api.calls+2;
     var fallback=TmdObjLoader.fromObjTable("EnvHD fallback",source,0,256,128,materials);
     assertEquals(10f,fallback.meshes[0].vertices()[16]);
     assertEquals((64f+20f*2)/256f,fallback.meshes[0].vertices()[7]);

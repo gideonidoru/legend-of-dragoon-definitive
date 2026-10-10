@@ -29,6 +29,24 @@ class Retention(unittest.TestCase):
         draft=dict(release(3,'working','2026-10-11',True),target_commitish='b'*40)
         self.assertFalse(m.eligible_artifact(historical,kept,[draft]))
         with self.assertRaises(ValueError):m.eligible_artifact(historical,kept,[dict(draft,target_commitish='main')])
+    def test_new_publication_from_old_commit_stops_cleanup(self):
+        kept=dict(release(2,'current','2026-10-10'),published_at='2026-10-10T12:00:00Z')
+        newer=dict(release(3,'new-prerelease','2026-10-09'),published_at='2026-10-10T13:00:00Z',prerelease=True)
+        with self.assertRaises(ValueError):m.plan([kept,newer],'current')
+    def test_fresh_attempt_and_artifact_creation_are_protected(self):
+        kept={'id':2,'head_sha':'a'*40,'created_at':'2026-10-10T10:00:00Z'}
+        old={'id':1,'head_sha':'b'*40,'status':'completed','created_at':'2026-10-09T10:00:00Z'}
+        for key in ('run_started_at','updated_at'):
+            self.assertFalse(m.eligible_artifact(dict(old,**{key:'2026-10-10T11:00:00Z'}),kept,[]))
+        self.assertFalse(m.eligible_artifact(old,kept,[],{'created_at':'2026-10-10T11:00:00Z'}))
+    def test_draft_source_must_match_actual_tag(self):
+        draft=dict(release(3,'working','2026-10-11',True),target_commitish='b'*40)
+        calls=[]
+        def mismatch(tag,source,required):
+            calls.append((tag,source,required));raise ValueError('Actual Git tag points to another source commit')
+        with self.assertRaises(ValueError):m.verify_draft_sources([draft],mismatch)
+        self.assertEqual([('working','b'*40,False)],calls)
+        m.verify_draft_sources([dict(draft,draft=False)],mismatch)
     def test_latest_must_be_exact_public_release(self):
         kept={'databaseId':2,'tagName':'new'};latest={'id':2,'tag_name':'new','draft':False,'prerelease':False};m.verify_latest(kept,latest)
         for changed in ({'id':1},{'tag_name':'old'},{'draft':True},{'prerelease':True}):
