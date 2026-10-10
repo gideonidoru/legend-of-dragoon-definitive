@@ -126,7 +126,9 @@ public final class GlesTexture extends Texture {
     };
 
     if(buffer != null) {
+      final long uploadStart = System.nanoTime();
       glTexImage2D(GL_TEXTURE_2D, 0, internalFormatVal, w, h, 0, this.getDataFormat(dataFormat), this.getDataType(dataType), memAddress(buffer));
+      legend.definitive.rendering.AssetLoadMetrics.upload(System.nanoTime() - uploadStart, legend.definitive.rendering.AssetLoadMetrics.payloadBytes(w, h, dataFormat, dataType));
     } else {
       glTexImage2D(GL_TEXTURE_2D, 0, internalFormatVal, w, h, 0, this.getDataFormat(dataFormat), this.getDataType(dataType), (ByteBuffer)null);
     }
@@ -154,7 +156,9 @@ public final class GlesTexture extends Texture {
   public void data(final int x, final int y, final int w, final int h, final TextureDataType dataType, final ByteBuffer data) {
     this.use();
     glActiveTexture(GL_TEXTURE0);
+    final long uploadStart = System.nanoTime();
     glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, w, h, this.getDataFormat(this.dataFormat), this.getDataType(dataType), data);
+    legend.definitive.rendering.AssetLoadMetrics.upload(System.nanoTime() - uploadStart, legend.definitive.rendering.AssetLoadMetrics.payloadBytes(w, h, this.dataFormat, dataType));
     this.mipDirty = true;
   }
 
@@ -162,7 +166,9 @@ public final class GlesTexture extends Texture {
   public void data(final int x, final int y, final int w, final int h, final TextureDataType dataType, final int[] data) {
     this.use();
     glActiveTexture(GL_TEXTURE0);
+    final long uploadStart = System.nanoTime();
     glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, w, h, this.getDataFormat(this.dataFormat), this.getDataType(dataType), data);
+    legend.definitive.rendering.AssetLoadMetrics.upload(System.nanoTime() - uploadStart, legend.definitive.rendering.AssetLoadMetrics.payloadBytes(w, h, this.dataFormat, dataType));
     this.mipDirty = true;
   }
 
@@ -184,6 +190,14 @@ public final class GlesTexture extends Texture {
   @Override
   public void use() {
     this.use(0);
+  }
+
+  @Override
+  public void linearSampling(final boolean enabled) {
+    this.use(0);
+    glActiveTexture(GL_TEXTURE0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, enabled || this.minFilter ? GL_LINEAR : GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, enabled || this.magFilter ? GL_LINEAR : GL_NEAREST);
   }
 
   @Override
@@ -224,6 +238,7 @@ public final class GlesTexture extends Texture {
   @Override
   protected void performDelete() {
     this.actuallyDeleted = true;
+    for(int i = 0; i < currentTextures.length; i++) if(currentTextures[i] == this.id) currentTextures[i] = 0;
     glDeleteTextures(this.id);
   }
 }

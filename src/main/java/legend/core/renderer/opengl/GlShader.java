@@ -20,7 +20,6 @@ import org.lwjgl.BufferUtils;
 
 import java.io.IOException;
 import java.nio.FloatBuffer;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -152,7 +151,7 @@ public class GlShader<Options extends ShaderOptions> implements Shader<Options> 
   }
 
   private int compileShader(final Path file, final int type) throws IOException {
-    final String source = Files.readString(file);
+    final String source = legend.core.renderer.ShaderSources.read(file);
     final int shader = glCreateShader(type);
     glShaderSource(shader, source);
     glCompileShader(shader);

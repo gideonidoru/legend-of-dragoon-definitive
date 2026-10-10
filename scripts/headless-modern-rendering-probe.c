@@ -67,11 +67,29 @@ int main(int argc,char **argv) {
     glUniform2f(glGetUniformLocation(p,"surfaceResponse"),6,.008f);clearTargets();draw(p,1,v);readTarget(0,c);require(differences(b,c)>0,"cloth and metal differ");
     integer(p,"materialLighting",0);integer(p,"effectLightCount",1);glUniform4f(glGetUniformLocation(p,"effectPositions"),0,0,0,3);glUniform4f(glGetUniformLocation(p,"effectColours"),.22f,.02f,0,1);clearTargets();draw(p,1,v);readTarget(0,b);assertCoverage(a,b);require(b[center]>a[center]&&b[center]-a[center]>b[center+1]-a[center+1],"warm nearby light preserves hue");
     glUniform4f(glGetUniformLocation(p,"effectPositions"),100,100,100,1);clearTargets();draw(p,1,v);readTarget(0,b);require(memcmp(a,b,sizeof a)==0,"distant local light has no contribution");
+    integer(p,"effectLightCount",0);integer(p,"materialLighting",1);
+    quad(v,5|32|(1<<6)|(255<<9),1);clearTargets();draw(p,1,v);readTarget(0,b);
+    quad(v,5|32|(3<<6)|(64<<9),1);clearTargets();draw(p,1,v);readTarget(0,c);assertCoverage(b,c);require(differences(b,c)>0,"per-face cloth and metal responses differ without vertex layout changes");
+    quad(v,5|32|(3<<6)|(255<<9),1);clearTargets();draw(p,1,v);readTarget(0,b);require(differences(b,c)>0,"per-face roughness changes highlight shape");
+    quad(v,5,1);integer(p,"materialLighting",0);glUniform4f(glGetUniformLocation(p,"environmentDirection"),0,0,-1,.5f);glUniform3f(glGetUniformLocation(p,"environmentColour"),.9f,.3f,.1f);glUniform3f(glGetUniformLocation(p,"environmentAmbient"),.08f,.08f,.12f);
+    clearTargets();draw(p,1,v);readTarget(0,b);assertCoverage(a,b);require(b[center]>b[center+1]&&b[center+1]>b[center+2],"environment lighting retains authored warm hue");
+    glUniform4f(glGetUniformLocation(p,"environmentDirection"),0,0,-1,1);glUniform3f(glGetUniformLocation(p,"environmentColour"),0,0,0);glUniform3f(glGetUniformLocation(p,"environmentAmbient"),0,0,0);integer(p,"materialLighting",1);
+    clearTargets();draw(p,1,v);readTarget(0,b);require(b[center]==0&&b[center+1]==0&&b[center+2]==0,"black environment has no stray material highlights");
+    glUniform4f(glGetUniformLocation(p,"environmentDirection"),0,0,-1,0);
+
+    unsigned char white[]={200,200,200,0},normal[]={255,128,128,255},rough[]={255,0,0,255};
+    GLuint albedo=texture(0,1,1,GL_RGBA8,GL_RGBA,white),detail=texture(6,1,1,GL_RGBA8,GL_RGBA,normal),roughness=texture(7,1,1,GL_RGBA8,GL_RGBA,rough);
+    integer(p,"normalMapTex",6);integer(p,"roughnessMapTex",7);integer(p,"normalMapEnabled",1);uniform(p,"normalMapStrength",0);quad(v,3,1);
+    integer(p,"materialLighting",0);clearTargets();draw(p,1,v);readTarget(0,b);uniform(p,"normalMapStrength",.7f);clearTargets();draw(p,1,v);readTarget(0,c);assertCoverage(b,c);require(differences(b,c)>0,"normal map affects HD model lighting without changing coverage");
+    integer(p,"normalMapEnabled",0);clearTargets();draw(p,1,v);readTarget(0,c);require(memcmp(b,c,sizeof b)==0,"normal-map reset exactly restores source lighting");
+    integer(p,"materialLighting",1);integer(p,"roughnessMapEnabled",0);glUniform2f(glGetUniformLocation(p,"surfaceResponse"),64,.16f);clearTargets();draw(p,1,v);readTarget(0,b);
+    integer(p,"roughnessMapEnabled",1);clearTargets();draw(p,1,v);readTarget(0,c);assertCoverage(b,c);require(differences(b,c)>0,"roughness map changes HD highlights without changing coverage");
+    integer(p,"roughnessMapEnabled",0);glDeleteTextures(1,&albedo);glDeleteTextures(1,&detail);glDeleteTextures(1,&roughness);
     for(int flags=4;flags<=13;flags+=(flags==4?8:1)){quad(v,flags,1);integer(p,"modernLighting",0);integer(p,"effectLightCount",0);clearTargets();draw(p,1,v);readTarget(0,a);integer(p,"modernLighting",1);integer(p,"materialLighting",1);integer(p,"effectLightCount",1);glUniform4f(glGetUniformLocation(p,"effectPositions"),0,0,0,3);clearTargets();draw(p,1,v);readTarget(0,b);require(memcmp(a,b,sizeof a)==0,"unlit/translucent surfaces bypass modern lighting");}
     integer(p,"modernLighting",0);integer(p,"materialLighting",0);integer(p,"effectLightCount",0);quad(v,5,1);clearTargets();draw(p,1,v);readTarget(0,b);uniforms(old,lights);clearTargets();draw(old,1,v);readTarget(0,a);require(memcmp(a,b,sizeof a)==0,"lighting reset restores committed output");
     glDeleteProgram(p);glDeleteProgram(old);
   }
-  printf("PASS: field and battle original bypass, distinct materials, colored point lighting, radius falloff, unlit/translucent bypass and exact reset.\n");
+  printf("PASS: field and battle original bypass, per-face materials/roughness, HD normal/roughness maps, authored environment hue/black/reset, colored point lighting, radius falloff, unlit/translucent bypass and exact reset.\n");
 
   // HD RGB filtering must never average alpha/STP or fill an empty source texel.
   uniforms(standard,lights);integer(standard,"uiLayer",0);uniform(standard,"emission",0);uniform(standard,"alpha",-1);quad(v,6,0);for(int i=0;i<6;i++)v[i*16+11]=v[i*16+12]=v[i*16+13]=1;

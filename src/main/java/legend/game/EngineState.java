@@ -32,6 +32,13 @@ public abstract class EngineState<T extends EngineState<T>> {
 
   private float analogueAngle;
   private float analogueMagnitude;
+  private legend.definitive.rendering.EnvironmentLight environmentLighting = legend.definitive.rendering.EnvironmentLight.NONE;
+
+  public void environmentLighting(final legend.definitive.rendering.EnvironmentLight lighting) {
+    this.environmentLighting = java.util.Objects.requireNonNull(lighting);
+  }
+
+  public legend.definitive.rendering.EnvironmentLight environmentLighting() { return this.environmentLighting; }
 
   protected EngineState(final EngineStateType<T> type) {
     this.type = type;

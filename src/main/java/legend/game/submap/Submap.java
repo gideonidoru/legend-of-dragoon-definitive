@@ -14,6 +14,7 @@ import java.util.concurrent.CompletableFuture;
 
 public abstract class Submap {
   public final SMap smap;
+  public legend.definitive.rendering.EnvironmentLight environmentLighting = legend.definitive.rendering.EnvironmentLight.NONE;
 
   public ScriptFile script;
   public final List<SubmapObject> objects = new ArrayList<>();

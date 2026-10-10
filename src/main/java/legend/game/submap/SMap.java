@@ -235,6 +235,17 @@ public class SMap extends EngineState<SMap> {
 
   public Submap submap;
 
+  @Override
+  public legend.definitive.rendering.EnvironmentLight environmentLighting() {
+    return this.submap == null ? legend.definitive.rendering.EnvironmentLight.NONE : this.submap.environmentLighting;
+  }
+
+  @Override
+  public void environmentLighting(final legend.definitive.rendering.EnvironmentLight lighting) {
+    super.environmentLighting(lighting);
+    if(this.submap != null) this.submap.environmentLighting = lighting;
+  }
+
   private SubmapMediaState mediaLoadingStage_800c68e4;
   private final SubmapCaches80 caches_800c68e8 = new SubmapCaches80();
 

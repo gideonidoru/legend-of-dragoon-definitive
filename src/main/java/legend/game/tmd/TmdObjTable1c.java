@@ -137,6 +137,22 @@ public class TmdObjTable1c {
 
   private SurfaceMaterial surfaceMaterial = SurfaceMaterial.MATTE;
   private boolean surfaceAuthored;
+  private legend.core.renderer.SurfaceResponse[] faceSurfaces;
+
+  /** Flattened primitive/packet order. Null entries retain the part's surface fallback. */
+  public void faceSurfaces(final legend.core.renderer.SurfaceResponse[] surfaces) {
+    if(surfaces.length != this.n_primitive_14) throw new IllegalArgumentException("Face surface count differs from polygon count");
+    this.faceSurfaces = surfaces.clone();
+    this.delete(); // Existing geometry must be rebuilt with the new per-face flags.
+  }
+
+  public legend.core.renderer.SurfaceResponse faceSurface(final int face) {
+    return this.faceSurfaces == null ? null : this.faceSurfaces[face];
+  }
+
+  public legend.core.renderer.SurfaceResponse[] faceSurfaces() {
+    return this.faceSurfaces == null ? new legend.core.renderer.SurfaceResponse[this.n_primitive_14] : this.faceSurfaces.clone();
+  }
 
   public void surfaceMaterial(final SurfaceMaterial material) {
     this.surfaceMaterial = java.util.Objects.requireNonNull(material);

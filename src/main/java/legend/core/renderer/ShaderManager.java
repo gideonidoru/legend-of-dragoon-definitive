@@ -76,20 +76,19 @@ public final class ShaderManager {
     };
 
     final long result = shaderc_compile_into_spv(compiler, source, stage, "shader.glsl", "main", options);
-    if(shaderc_result_get_compilation_status(result) != shaderc_compilation_status_success) {
-      throw new RuntimeException("Shaderc compilation failed: " + shaderc_result_get_error_message(result));
+    try {
+      if(shaderc_result_get_compilation_status(result) != shaderc_compilation_status_success) {
+        throw new RuntimeException("Shaderc compilation failed: " + shaderc_result_get_error_message(result));
+      }
+      final ByteBuffer nativeBuf = shaderc_result_get_bytes(result);
+      final ByteBuffer copy = ByteBuffer.allocateDirect(nativeBuf.remaining());
+      copy.put(nativeBuf).flip();
+      return copy;
+    } finally {
+      shaderc_result_release(result);
+      shaderc_compile_options_release(options);
+      shaderc_compiler_release(compiler);
     }
-
-    final ByteBuffer nativeBuf = shaderc_result_get_bytes(result);
-    final ByteBuffer copy = ByteBuffer.allocateDirect(nativeBuf.remaining());
-    copy.put(nativeBuf);
-    copy.flip();
-
-    shaderc_result_release(result);
-    shaderc_compile_options_release(options);
-    shaderc_compiler_release(compiler);
-
-    return copy;
   }
 
   private static String decompileSpirvToGles(final ByteBuffer spirvBuffer, final IntRef uniformIndex) {

@@ -444,6 +444,11 @@ public class GlApi implements RenderApi {
   private static final float[] ZERO_COLOUR = {0, 0, 0, 0};
 
   @Override
+  public void clearColourAttachment(final int attachment) {
+    org.lwjgl.opengl.GL30C.glClearBufferfv(org.lwjgl.opengl.GL30C.GL_COLOR, attachment, ZERO_COLOUR);
+  }
+
+  @Override
   public void clearPostProcessTargets() {
     org.lwjgl.opengl.GL30C.glClearBufferfv(org.lwjgl.opengl.GL30C.GL_COLOR, 1, ZERO_COLOUR);
     org.lwjgl.opengl.GL30C.glClearBufferfv(org.lwjgl.opengl.GL30C.GL_COLOR, 2, ZERO_COLOUR);

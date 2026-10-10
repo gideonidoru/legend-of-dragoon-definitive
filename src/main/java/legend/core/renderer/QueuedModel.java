@@ -26,6 +26,18 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
   boolean uiLayer;
   float emission;
   SurfaceMaterial surfaceMaterial;
+  private Texture normalMap, roughnessMap;
+  private float normalMapStrength;
+
+  /** Optional linear-data maps sharing normalized HD albedo UVs; caller retains texture ownership. */
+  public T materialMaps(final Texture normal, final Texture roughness, final float strength) {
+    for(final Texture texture : new Texture[] {normal, roughness}) {
+      if(texture != null && texture.internalFormat() != TextureInternalFormat.RGB_8 && texture.internalFormat() != TextureInternalFormat.RGBA_8) throw new IllegalArgumentException("Material maps require RGB/RGBA data");
+    }
+    if(!Float.isFinite(strength) || strength < 0 || strength > 1) throw new IllegalArgumentException("Normal strength must be in [0, 1]");
+    this.normalMap = normal; this.roughnessMap = roughness; this.normalMapStrength = strength;
+    return (T)this;
+  }
 
   public T surface(final SurfaceMaterial material) {
     this.surfaceMaterial = java.util.Objects.requireNonNull(material);
@@ -189,6 +201,8 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
     this.sequence = sequence;
     this.uiLayer = this.batch.engine.isUiScope();
     this.emission = 0.0f;
+    this.normalMap = this.roughnessMap = null;
+    this.normalMapStrength = 0;
     this.surfaceMaterial = obj.surfaceMaterial == null ? SurfaceMaterial.MATTE : obj.surfaceMaterial;
     this.screenspaceOffset.zero();
     this.colour.set(1.0f, 1.0f, 1.0f);
@@ -222,6 +236,8 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
     } else {
       GPU.useVramTexture();
     }
+    if(this.normalMap != null) this.normalMap.use(4);
+    if(this.roughnessMap != null) this.roughnessMap.use(5);
   }
 
   public Rect4i worldScissor() {
@@ -244,6 +260,7 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
     this.shader.use();
     this.shaderOptions.renderMetadata(this.uiLayer, this.emission);
     this.shaderOptions.surface(this.surfaceMaterial);
+    this.shaderOptions.materialMaps(this.normalMap != null, this.roughnessMap != null, this.normalMapStrength);
     this.shaderOptions.hdTexture(this.textures[0] != null && this.textures[0].isHdFiltered() && CONFIG.getConfig(HD_TEXTURE_FILTERING_CONFIG.get()));
     this.shaderOptions.discardMode(discardMode);
     this.shaderOptions.modelIndex(modelIndex);

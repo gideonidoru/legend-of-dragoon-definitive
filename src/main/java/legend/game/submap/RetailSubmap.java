@@ -204,6 +204,8 @@ public class RetailSubmap extends Submap {
 
     drgnBinIndex_800bc058 = drgnIndex.get();
 
+    EVENTS.postEvent(new legend.game.modding.events.submap.SubmapEnvironmentPreloadEvent(this.smap, gameState_800babc8, this, drgnIndex.get(), this.cut));
+
     return
       loadDrgnDir(2, fileIndex.get())
       .thenAccept(files -> this.loadBackground("DRGN2" + drgnIndex.get() + '/' + fileIndex.get(), files));
@@ -834,6 +836,7 @@ public class RetailSubmap extends Submap {
     }
 
     final SubmapEnvironmentTextureEvent event = EVENTS.postEvent(new SubmapEnvironmentTextureEvent(this.smap, gameState_800babc8, this, drgnBinIndex_800bc058, this.cut, this.envForegroundTextureCount_800cb580));
+    this.environmentLighting = event.lighting == null ? legend.definitive.rendering.EnvironmentLight.NONE : event.lighting;
 
     this.backgroundRect = Rect4i.bound(rects);
     final IntBuffer empty = BufferUtils.createIntBuffer(this.backgroundRect.w * this.backgroundRect.h);

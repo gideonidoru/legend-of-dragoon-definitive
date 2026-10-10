@@ -152,6 +152,15 @@ public class CoreMod {
     };
   }
 
+  public static final RegistryDelegate<BoolConfigEntry> SMAA_CONFIG = CONFIG_REGISTRAR.register("smaa", CoreMod::graphicsToggle);
+  public static final RegistryDelegate<BoolConfigEntry> ENVIRONMENT_LIGHTING_CONFIG = CONFIG_REGISTRAR.register("environment_lighting", CoreMod::graphicsToggle);
+  public static final RegistryDelegate<BoolConfigEntry> IMAGE_CACHE_CONFIG = CONFIG_REGISTRAR.register("image_cache", () -> new BoolConfigEntry(true, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
+    @Override public boolean hasHelp() { return true; }
+    @Override public void onChange(final legend.game.saves.ConfigCollection collection, final Boolean oldValue, final Boolean newValue) {
+      if(!newValue) legend.definitive.rendering.PngAssets.SHARED.clear();
+    }
+  });
+
   private static FloatConfigEntry graphicsStrength(final float value) {
     return new FloatConfigEntry(value, 0.05f, 0.1f, 0.0f, 1.0f, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
       @Override public boolean hasHelp() { return true; }

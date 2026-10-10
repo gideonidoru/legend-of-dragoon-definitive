@@ -10,6 +10,7 @@ public final class TextureCompatibility {
   public static void requireNativeAddressing(final TmdObjTable1c[] sources) {
     for(final var source : sources) {
       final var control = new TmdObjTable1c("ModelsHD material handoff control", source.vert_top_00, source.normal_top_08, source.primitives_10);
+      control.faceSurfaces(source.faceSurfaces());
       try {
         final var active = (MeshObj)source.getObj();
         final var expected = (MeshObj)control.buildObjLike(source);

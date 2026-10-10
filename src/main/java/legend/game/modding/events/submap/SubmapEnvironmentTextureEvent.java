@@ -11,6 +11,7 @@ public class SubmapEnvironmentTextureEvent extends InGameEvent<SMap> implements 
   public final int disk;
   public final int submapCut;
   public Texture background;
+  public legend.definitive.rendering.EnvironmentLight lighting;
   public final Texture[] foregrounds;
 
   public SubmapEnvironmentTextureEvent(final SMap engineState, final GameState52c gameState, final Submap submap, final int disk, final int submapCut, final int foregroundCount) {
@@ -19,6 +20,7 @@ public class SubmapEnvironmentTextureEvent extends InGameEvent<SMap> implements 
     this.disk = disk;
     this.submapCut = submapCut;
     this.foregrounds = new Texture[foregroundCount];
+    this.lighting = legend.definitive.rendering.EnvironmentLight.loadOptional(disk, submapCut);
   }
 
   @Override
