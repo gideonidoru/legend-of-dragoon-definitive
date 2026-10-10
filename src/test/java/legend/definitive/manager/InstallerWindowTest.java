@@ -40,7 +40,11 @@ class InstallerWindowTest {
       final var components = new ArrayList<Component>(); InstallStoreTest.collect(picker.getContentPane(), components);
       final var list = (JList<?>)components.stream().filter(c -> c instanceof JList<?>).findFirst().orElseThrow(); list.setSelectedIndex(0);
       list.getActionMap().get("activate").actionPerformed(new java.awt.event.ActionEvent(list, 0, "activate"));
-      components.stream().filter(c -> c instanceof JButton b && b.getText().startsWith("Use 1 selected")).map(c -> (JButton)c).findFirst().orElseThrow().doClick();
+      final var image = new java.awt.image.BufferedImage(picker.getWidth(), picker.getHeight(), java.awt.image.BufferedImage.TYPE_INT_RGB);
+      final var graphics = image.createGraphics(); picker.paint(graphics); graphics.dispose();
+      try { javax.imageio.ImageIO.write(image, "png", Path.of("build/reports/installer-disc-picker-linux.png").toFile()); }
+      catch(final java.io.IOException error) { throw new RuntimeException(error); }
+      components.stream().filter(c -> c instanceof JButton b && b.getText().equals("Use 1 file")).map(c -> (JButton)c).findFirst().orElseThrow().doClick();
     });
     SwingUtilities.invokeAndWait(() -> { }); assertTrue(completed.get()); if(callbackProblem.get() != null) throw new AssertionError(callbackProblem.get());
     SwingUtilities.invokeAndWait(() -> {
@@ -49,7 +53,7 @@ class InstallerWindowTest {
         final var step = ManagerView.class.getDeclaredField("step"); step.setAccessible(true); step.setInt(view, 2);
         final var render = ManagerView.class.getDeclaredMethod("render"); render.setAccessible(true); render.invoke(view);
         final var components = new ArrayList<Component>(); InstallStoreTest.collect(view, components);
-        components.stream().filter(c -> c instanceof JButton b && b.getText().equals("Finish without adding to Steam")).map(c -> (JButton)c).findFirst().orElseThrow().doClick();
+        components.stream().filter(c -> c instanceof JButton b && b.getText().equals("Finish without Steam")).map(c -> (JButton)c).findFirst().orElseThrow().doClick();
       } catch(final ReflectiveOperationException failure) { throw new RuntimeException(failure); }
     });
     final long end = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(10);

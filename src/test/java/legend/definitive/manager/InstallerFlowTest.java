@@ -77,7 +77,7 @@ class InstallerFlowTest {
         final var panel = new ManagerView(null, this.temporary, target, () -> closed.set(true)); ref.set(panel);
         final var step = ManagerView.class.getDeclaredField("step"); step.setAccessible(true); step.setInt(panel, 2);
         final var render = ManagerView.class.getDeclaredMethod("render"); render.setAccessible(true); render.invoke(panel);
-        button(panel, "Finish without adding to Steam").doClick();
+        button(panel, "Finish without Steam").doClick();
       } catch(final ReflectiveOperationException e) { throw new RuntimeException(e); }
     });
     awaitIdle(ref.get()); assertTrue(closed.get(), "Finish must close setup after verification");
@@ -91,11 +91,11 @@ class InstallerFlowTest {
     assertFalse(Files.exists(target.resolve("state.properties")));
     assertTrue(Files.readString(InstallerLog.path()).contains("Package checksum mismatch"));
     SwingUtilities.invokeAndWait(() -> {
-      assertNotNull(button(ref.get(), "Return and retry"));
+      assertNotNull(button(ref.get(), "Back to setup"));
       final var all = new ArrayList<Component>(); collect(ref.get(), all);
       assertFalse(all.stream().anyMatch(c -> c instanceof JButton b && b.getText().startsWith("Choose disc files")));
       ref.get().setSize(1024, 700); InstallStoreTest.layout(ref.get());
-      final var retry = button(ref.get(), "Return and retry");
+      final var retry = button(ref.get(), "Back to setup");
       final Point position = SwingUtilities.convertPoint(retry.getParent(), retry.getLocation(), ref.get());
       assertTrue(position.y + retry.getHeight() <= 700, "Retry and failure must be visible on the Deck screen");
       snapshot(ref.get(), "failure");

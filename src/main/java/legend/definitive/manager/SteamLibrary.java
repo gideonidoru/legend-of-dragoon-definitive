@@ -32,10 +32,26 @@ public final class SteamLibrary {
     }
     accounts.sort(Comparator.comparing(a -> a.config().toString())); return accounts;
   }
-  public static boolean steamRunning() {
+  public static boolean steamRunning() { return running(true); }
+  static boolean steamClientRunning() { return running(false); }
+  private static boolean running(final boolean includeHelpers) {
     try(final var processes = ProcessHandle.allProcesses()) {
-      return processes.anyMatch(p -> p.info().command().map(c -> Path.of(c).getFileName().toString().toLowerCase(Locale.ROOT)).map(c -> c.equals("steam") || c.equals("steam_osx") || c.equals("steam.sh") || c.equals("steamwebhelper")).orElse(false));
+      return processes.filter(p -> p.info().user().map(user -> user.equals(System.getProperty("user.name"))).orElse(includeHelpers)).anyMatch(p -> p.info().command().map(c -> Path.of(c).getFileName().toString().toLowerCase(Locale.ROOT)).map(c -> c.equals("steam") || c.equals("steam_osx") || includeHelpers && (c.equals("steam.sh") || c.equals("steamwebhelper"))).orElse(false));
     }
+  }
+  static void verifyShortcut(final Account account, final Path install) throws IOException {
+    final Path file = account.config().resolve("shortcuts.vdf");
+    if(Files.isSymbolicLink(file) || !Files.isRegularFile(file) || Files.size(file) > 8 * 1024 * 1024) throw new IOException("Steam shortcut verification failed. Retry Add to Steam.");
+    final List<Value> root = decode(Files.readAllBytes(file));
+    if(root.size() != 1 || root.getFirst().type != 0 || !root.getFirst().key.equals("shortcuts")) throw new IOException("Steam shortcut verification failed. Retry Add to Steam.");
+    @SuppressWarnings("unchecked") final List<Value> entries = (List<Value>)root.getFirst().data;
+    final String expected = '\"' + install.toAbsolutePath().normalize().resolve("Play Game.sh").toString() + '\"';
+    int found = 0;
+    for(final Value entry : entries) if(entry.type == 0) {
+      @SuppressWarnings("unchecked") final List<Value> fields = (List<Value>)entry.data;
+      if(fields.stream().anyMatch(v -> v.type == 1 && v.key.equalsIgnoreCase("exe") && expected.equals(v.data))) found++;
+    }
+    if(found != 1) throw new IOException("Steam needs exactly one verified Definitive shortcut. Your existing entries are retained; inspect duplicate shortcuts before retrying.");
   }
   public static String add(final Account account, final Path install) throws IOException { return add(account, install, SteamLibrary::steamRunning); }
   static String add(final Account account, final Path install, final BooleanSupplier running) throws IOException {

@@ -31,7 +31,7 @@ The UI copy describes actions directly. Paths wrap on handheld screens. Relative
 - The same workspace's `launcher.log`: managed game-process output.
 - A source fallback retains its `.source-build-*/setup-build.log` and checkout for diagnosis/corresponding source access.
 
-Use **Return and retry** after resolving the displayed cause. If import succeeded and extraction failed, return to the disc step and choose **Use installed discs**; existing images are retained. Close Steam before adding its shortcut. A failed shortcut operation does not declare Steam integration successful or overwrite an unexpectedly changed library. Existing shortcuts are backed up.
+Use **Back to setup** after resolving the displayed cause. If import succeeded and extraction failed, return to the disc step and choose **Use installed discs**; existing images are retained. Add to Steam now requests a graceful client exit, verifies the backed-up shortcut edit, and restarts Steam before reporting success. A failed shortcut operation does not declare Steam integration successful or overwrite an unexpectedly changed library. Existing shortcuts are backed up.
 
 Download a new `.desktop` from the corrected release. Previously downloaded entries are pinned to their original script/checksum and cannot silently become a different installer.
 
