@@ -1,0 +1,4549 @@
+{
+  "scope": "Party field consumer discovery; byte-level deduplication only, no visual acceptance or native field replacement proof",
+  "bindings": 1026,
+  "uniqueModelTimPairs": 15,
+  "uniqueTextureHashes": 13,
+  "statusCounts": {
+    "source-eligible-art-and-runtime-pending": 15
+  },
+  "failureCounts": {},
+  "groups": [
+    {
+      "modelSha256": "0e4d55fa11640f416ff5d5ec339ce906bd0d67613f887d902f7dac86945d7cf8",
+      "timSha256": "477b2c39ad9809524c8e8852af59a1beff219dc536f4b3e8dffd18c21d54c7c3",
+      "entities": [
+        "Dart"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/101/0",
+          "texture": "SECT/DRGN21.BIN/101/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/104/0",
+          "texture": "SECT/DRGN21.BIN/104/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/107/0",
+          "texture": "SECT/DRGN21.BIN/107/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/131/0",
+          "texture": "SECT/DRGN21.BIN/131/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/140/33",
+          "texture": "SECT/DRGN21.BIN/140/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/149/0",
+          "texture": "SECT/DRGN21.BIN/149/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/173/0",
+          "texture": "SECT/DRGN21.BIN/173/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/179/0",
+          "texture": "SECT/DRGN21.BIN/179/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/206/0",
+          "texture": "SECT/DRGN21.BIN/206/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/209/0",
+          "texture": "SECT/DRGN21.BIN/209/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/215/0",
+          "texture": "SECT/DRGN21.BIN/215/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/218/0",
+          "texture": "SECT/DRGN21.BIN/218/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/221/0",
+          "texture": "SECT/DRGN21.BIN/221/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/224/0",
+          "texture": "SECT/DRGN21.BIN/224/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/227/0",
+          "texture": "SECT/DRGN21.BIN/227/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/230/0",
+          "texture": "SECT/DRGN21.BIN/230/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/233/0",
+          "texture": "SECT/DRGN21.BIN/233/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/236/0",
+          "texture": "SECT/DRGN21.BIN/236/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/239/0",
+          "texture": "SECT/DRGN21.BIN/239/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/242/0",
+          "texture": "SECT/DRGN21.BIN/242/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/245/0",
+          "texture": "SECT/DRGN21.BIN/245/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/248/0",
+          "texture": "SECT/DRGN21.BIN/248/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/251/0",
+          "texture": "SECT/DRGN21.BIN/251/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/254/0",
+          "texture": "SECT/DRGN21.BIN/254/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/257/0",
+          "texture": "SECT/DRGN21.BIN/257/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/260/0",
+          "texture": "SECT/DRGN21.BIN/260/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/263/0",
+          "texture": "SECT/DRGN21.BIN/263/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/266/0",
+          "texture": "SECT/DRGN21.BIN/266/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/269/0",
+          "texture": "SECT/DRGN21.BIN/269/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/272/0",
+          "texture": "SECT/DRGN21.BIN/272/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/275/0",
+          "texture": "SECT/DRGN21.BIN/275/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/278/0",
+          "texture": "SECT/DRGN21.BIN/278/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/281/0",
+          "texture": "SECT/DRGN21.BIN/281/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/287/0",
+          "texture": "SECT/DRGN21.BIN/287/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/299/0",
+          "texture": "SECT/DRGN21.BIN/299/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/302/0",
+          "texture": "SECT/DRGN21.BIN/302/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/305/0",
+          "texture": "SECT/DRGN21.BIN/305/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/308/0",
+          "texture": "SECT/DRGN21.BIN/308/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/311/0",
+          "texture": "SECT/DRGN21.BIN/311/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/314/0",
+          "texture": "SECT/DRGN21.BIN/314/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/320/0",
+          "texture": "SECT/DRGN21.BIN/320/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/323/0",
+          "texture": "SECT/DRGN21.BIN/323/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/335/0",
+          "texture": "SECT/DRGN21.BIN/335/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/338/0",
+          "texture": "SECT/DRGN21.BIN/338/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/347/0",
+          "texture": "SECT/DRGN21.BIN/347/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/353/0",
+          "texture": "SECT/DRGN21.BIN/353/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/356/0",
+          "texture": "SECT/DRGN21.BIN/356/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/359/165",
+          "texture": "SECT/DRGN21.BIN/359/textures/5"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/362/0",
+          "texture": "SECT/DRGN21.BIN/362/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/365/0",
+          "texture": "SECT/DRGN21.BIN/365/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/371/0",
+          "texture": "SECT/DRGN21.BIN/371/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/374/0",
+          "texture": "SECT/DRGN21.BIN/374/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/398/33",
+          "texture": "SECT/DRGN21.BIN/398/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/407/0",
+          "texture": "SECT/DRGN21.BIN/407/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/410/0",
+          "texture": "SECT/DRGN21.BIN/410/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/413/0",
+          "texture": "SECT/DRGN21.BIN/413/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/428/0",
+          "texture": "SECT/DRGN21.BIN/428/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/434/0",
+          "texture": "SECT/DRGN21.BIN/434/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/446/0",
+          "texture": "SECT/DRGN21.BIN/446/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/449/0",
+          "texture": "SECT/DRGN21.BIN/449/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/461/0",
+          "texture": "SECT/DRGN21.BIN/461/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/47/132",
+          "texture": "SECT/DRGN21.BIN/47/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/5/0",
+          "texture": "SECT/DRGN21.BIN/5/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/518/0",
+          "texture": "SECT/DRGN21.BIN/518/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/521/0",
+          "texture": "SECT/DRGN21.BIN/521/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/524/0",
+          "texture": "SECT/DRGN21.BIN/524/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/527/0",
+          "texture": "SECT/DRGN21.BIN/527/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/53/0",
+          "texture": "SECT/DRGN21.BIN/53/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/530/0",
+          "texture": "SECT/DRGN21.BIN/530/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/551/0",
+          "texture": "SECT/DRGN21.BIN/551/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/554/0",
+          "texture": "SECT/DRGN21.BIN/554/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/569/0",
+          "texture": "SECT/DRGN21.BIN/569/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/572/0",
+          "texture": "SECT/DRGN21.BIN/572/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/575/0",
+          "texture": "SECT/DRGN21.BIN/575/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/578/0",
+          "texture": "SECT/DRGN21.BIN/578/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/581/0",
+          "texture": "SECT/DRGN21.BIN/581/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/584/0",
+          "texture": "SECT/DRGN21.BIN/584/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/587/0",
+          "texture": "SECT/DRGN21.BIN/587/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/59/0",
+          "texture": "SECT/DRGN21.BIN/59/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/590/0",
+          "texture": "SECT/DRGN21.BIN/590/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/593/0",
+          "texture": "SECT/DRGN21.BIN/593/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/596/0",
+          "texture": "SECT/DRGN21.BIN/596/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/599/0",
+          "texture": "SECT/DRGN21.BIN/599/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/608/0",
+          "texture": "SECT/DRGN21.BIN/608/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/611/0",
+          "texture": "SECT/DRGN21.BIN/611/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/617/0",
+          "texture": "SECT/DRGN21.BIN/617/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/62/0",
+          "texture": "SECT/DRGN21.BIN/62/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/623/0",
+          "texture": "SECT/DRGN21.BIN/623/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/626/0",
+          "texture": "SECT/DRGN21.BIN/626/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/629/0",
+          "texture": "SECT/DRGN21.BIN/629/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/632/0",
+          "texture": "SECT/DRGN21.BIN/632/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/635/0",
+          "texture": "SECT/DRGN21.BIN/635/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/641/0",
+          "texture": "SECT/DRGN21.BIN/641/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/65/0",
+          "texture": "SECT/DRGN21.BIN/65/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/656/0",
+          "texture": "SECT/DRGN21.BIN/656/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/665/0",
+          "texture": "SECT/DRGN21.BIN/665/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/668/0",
+          "texture": "SECT/DRGN21.BIN/668/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/671/0",
+          "texture": "SECT/DRGN21.BIN/671/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/674/0",
+          "texture": "SECT/DRGN21.BIN/674/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/680/231",
+          "texture": "SECT/DRGN21.BIN/680/textures/7"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/683/0",
+          "texture": "SECT/DRGN21.BIN/683/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/695/0",
+          "texture": "SECT/DRGN21.BIN/695/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/701/0",
+          "texture": "SECT/DRGN21.BIN/701/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/713/0",
+          "texture": "SECT/DRGN21.BIN/713/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/722/0",
+          "texture": "SECT/DRGN21.BIN/722/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/725/0",
+          "texture": "SECT/DRGN21.BIN/725/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/74/0",
+          "texture": "SECT/DRGN21.BIN/74/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/77/0",
+          "texture": "SECT/DRGN21.BIN/77/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/80/0",
+          "texture": "SECT/DRGN21.BIN/80/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/83/0",
+          "texture": "SECT/DRGN21.BIN/83/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/86/0",
+          "texture": "SECT/DRGN21.BIN/86/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/89/0",
+          "texture": "SECT/DRGN21.BIN/89/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/92/0",
+          "texture": "SECT/DRGN21.BIN/92/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/95/0",
+          "texture": "SECT/DRGN21.BIN/95/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1004/0",
+          "texture": "SECT/DRGN22.BIN/1004/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/101/0",
+          "texture": "SECT/DRGN22.BIN/101/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1010/0",
+          "texture": "SECT/DRGN22.BIN/1010/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1016/0",
+          "texture": "SECT/DRGN22.BIN/1016/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1019/0",
+          "texture": "SECT/DRGN22.BIN/1019/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1022/0",
+          "texture": "SECT/DRGN22.BIN/1022/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1025/0",
+          "texture": "SECT/DRGN22.BIN/1025/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1031/0",
+          "texture": "SECT/DRGN22.BIN/1031/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/104/0",
+          "texture": "SECT/DRGN22.BIN/104/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1046/0",
+          "texture": "SECT/DRGN22.BIN/1046/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1055/0",
+          "texture": "SECT/DRGN22.BIN/1055/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1058/0",
+          "texture": "SECT/DRGN22.BIN/1058/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1061/0",
+          "texture": "SECT/DRGN22.BIN/1061/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1064/0",
+          "texture": "SECT/DRGN22.BIN/1064/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/107/0",
+          "texture": "SECT/DRGN22.BIN/107/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1070/231",
+          "texture": "SECT/DRGN22.BIN/1070/textures/7"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1073/0",
+          "texture": "SECT/DRGN22.BIN/1073/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1085/0",
+          "texture": "SECT/DRGN22.BIN/1085/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1100/0",
+          "texture": "SECT/DRGN22.BIN/1100/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1109/0",
+          "texture": "SECT/DRGN22.BIN/1109/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1115/0",
+          "texture": "SECT/DRGN22.BIN/1115/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1130/0",
+          "texture": "SECT/DRGN22.BIN/1130/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1148/0",
+          "texture": "SECT/DRGN22.BIN/1148/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1154/0",
+          "texture": "SECT/DRGN22.BIN/1154/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/131/0",
+          "texture": "SECT/DRGN22.BIN/131/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/140/33",
+          "texture": "SECT/DRGN22.BIN/140/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/149/0",
+          "texture": "SECT/DRGN22.BIN/149/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/173/0",
+          "texture": "SECT/DRGN22.BIN/173/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/179/0",
+          "texture": "SECT/DRGN22.BIN/179/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/206/0",
+          "texture": "SECT/DRGN22.BIN/206/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/209/0",
+          "texture": "SECT/DRGN22.BIN/209/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/215/0",
+          "texture": "SECT/DRGN22.BIN/215/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/218/0",
+          "texture": "SECT/DRGN22.BIN/218/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/221/0",
+          "texture": "SECT/DRGN22.BIN/221/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/224/0",
+          "texture": "SECT/DRGN22.BIN/224/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/227/0",
+          "texture": "SECT/DRGN22.BIN/227/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/230/0",
+          "texture": "SECT/DRGN22.BIN/230/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/233/0",
+          "texture": "SECT/DRGN22.BIN/233/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/236/0",
+          "texture": "SECT/DRGN22.BIN/236/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/239/0",
+          "texture": "SECT/DRGN22.BIN/239/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/242/0",
+          "texture": "SECT/DRGN22.BIN/242/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/245/0",
+          "texture": "SECT/DRGN22.BIN/245/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/248/0",
+          "texture": "SECT/DRGN22.BIN/248/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/251/0",
+          "texture": "SECT/DRGN22.BIN/251/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/254/0",
+          "texture": "SECT/DRGN22.BIN/254/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/257/0",
+          "texture": "SECT/DRGN22.BIN/257/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/260/0",
+          "texture": "SECT/DRGN22.BIN/260/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/263/0",
+          "texture": "SECT/DRGN22.BIN/263/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/266/0",
+          "texture": "SECT/DRGN22.BIN/266/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/269/0",
+          "texture": "SECT/DRGN22.BIN/269/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/272/0",
+          "texture": "SECT/DRGN22.BIN/272/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/275/0",
+          "texture": "SECT/DRGN22.BIN/275/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/278/0",
+          "texture": "SECT/DRGN22.BIN/278/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/281/0",
+          "texture": "SECT/DRGN22.BIN/281/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/287/0",
+          "texture": "SECT/DRGN22.BIN/287/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/299/0",
+          "texture": "SECT/DRGN22.BIN/299/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/302/0",
+          "texture": "SECT/DRGN22.BIN/302/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/305/0",
+          "texture": "SECT/DRGN22.BIN/305/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/308/0",
+          "texture": "SECT/DRGN22.BIN/308/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/311/0",
+          "texture": "SECT/DRGN22.BIN/311/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/314/0",
+          "texture": "SECT/DRGN22.BIN/314/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/320/0",
+          "texture": "SECT/DRGN22.BIN/320/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/323/0",
+          "texture": "SECT/DRGN22.BIN/323/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/335/0",
+          "texture": "SECT/DRGN22.BIN/335/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/338/0",
+          "texture": "SECT/DRGN22.BIN/338/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/347/0",
+          "texture": "SECT/DRGN22.BIN/347/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/353/0",
+          "texture": "SECT/DRGN22.BIN/353/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/356/0",
+          "texture": "SECT/DRGN22.BIN/356/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/359/165",
+          "texture": "SECT/DRGN22.BIN/359/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/362/0",
+          "texture": "SECT/DRGN22.BIN/362/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/365/0",
+          "texture": "SECT/DRGN22.BIN/365/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/371/0",
+          "texture": "SECT/DRGN22.BIN/371/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/374/0",
+          "texture": "SECT/DRGN22.BIN/374/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/398/33",
+          "texture": "SECT/DRGN22.BIN/398/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/407/0",
+          "texture": "SECT/DRGN22.BIN/407/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/410/0",
+          "texture": "SECT/DRGN22.BIN/410/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/413/0",
+          "texture": "SECT/DRGN22.BIN/413/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/428/0",
+          "texture": "SECT/DRGN22.BIN/428/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/434/0",
+          "texture": "SECT/DRGN22.BIN/434/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/446/0",
+          "texture": "SECT/DRGN22.BIN/446/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/449/0",
+          "texture": "SECT/DRGN22.BIN/449/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/461/0",
+          "texture": "SECT/DRGN22.BIN/461/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/47/132",
+          "texture": "SECT/DRGN22.BIN/47/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/5/0",
+          "texture": "SECT/DRGN22.BIN/5/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/518/0",
+          "texture": "SECT/DRGN22.BIN/518/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/521/0",
+          "texture": "SECT/DRGN22.BIN/521/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/524/0",
+          "texture": "SECT/DRGN22.BIN/524/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/527/0",
+          "texture": "SECT/DRGN22.BIN/527/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/53/0",
+          "texture": "SECT/DRGN22.BIN/53/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/530/0",
+          "texture": "SECT/DRGN22.BIN/530/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/551/0",
+          "texture": "SECT/DRGN22.BIN/551/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/554/0",
+          "texture": "SECT/DRGN22.BIN/554/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/569/0",
+          "texture": "SECT/DRGN22.BIN/569/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/572/0",
+          "texture": "SECT/DRGN22.BIN/572/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/575/0",
+          "texture": "SECT/DRGN22.BIN/575/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/578/0",
+          "texture": "SECT/DRGN22.BIN/578/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/581/0",
+          "texture": "SECT/DRGN22.BIN/581/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/584/0",
+          "texture": "SECT/DRGN22.BIN/584/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/587/0",
+          "texture": "SECT/DRGN22.BIN/587/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/59/0",
+          "texture": "SECT/DRGN22.BIN/59/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/590/0",
+          "texture": "SECT/DRGN22.BIN/590/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/593/0",
+          "texture": "SECT/DRGN22.BIN/593/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/596/0",
+          "texture": "SECT/DRGN22.BIN/596/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/599/0",
+          "texture": "SECT/DRGN22.BIN/599/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/62/0",
+          "texture": "SECT/DRGN22.BIN/62/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/623/0",
+          "texture": "SECT/DRGN22.BIN/623/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/647/0",
+          "texture": "SECT/DRGN22.BIN/647/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/65/0",
+          "texture": "SECT/DRGN22.BIN/65/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/680/0",
+          "texture": "SECT/DRGN22.BIN/680/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/710/0",
+          "texture": "SECT/DRGN22.BIN/710/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/731/0",
+          "texture": "SECT/DRGN22.BIN/731/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/737/0",
+          "texture": "SECT/DRGN22.BIN/737/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/74/0",
+          "texture": "SECT/DRGN22.BIN/74/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/746/0",
+          "texture": "SECT/DRGN22.BIN/746/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/749/0",
+          "texture": "SECT/DRGN22.BIN/749/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/752/0",
+          "texture": "SECT/DRGN22.BIN/752/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/758/0",
+          "texture": "SECT/DRGN22.BIN/758/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/761/0",
+          "texture": "SECT/DRGN22.BIN/761/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/764/0",
+          "texture": "SECT/DRGN22.BIN/764/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/767/0",
+          "texture": "SECT/DRGN22.BIN/767/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/77/0",
+          "texture": "SECT/DRGN22.BIN/77/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/776/0",
+          "texture": "SECT/DRGN22.BIN/776/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/779/0",
+          "texture": "SECT/DRGN22.BIN/779/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/794/0",
+          "texture": "SECT/DRGN22.BIN/794/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/80/0",
+          "texture": "SECT/DRGN22.BIN/80/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/800/0",
+          "texture": "SECT/DRGN22.BIN/800/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/83/0",
+          "texture": "SECT/DRGN22.BIN/83/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/86/0",
+          "texture": "SECT/DRGN22.BIN/86/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/872/0",
+          "texture": "SECT/DRGN22.BIN/872/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/89/0",
+          "texture": "SECT/DRGN22.BIN/89/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/905/0",
+          "texture": "SECT/DRGN22.BIN/905/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/917/0",
+          "texture": "SECT/DRGN22.BIN/917/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/92/0",
+          "texture": "SECT/DRGN22.BIN/92/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/929/0",
+          "texture": "SECT/DRGN22.BIN/929/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/938/0",
+          "texture": "SECT/DRGN22.BIN/938/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/95/0",
+          "texture": "SECT/DRGN22.BIN/95/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/974/33",
+          "texture": "SECT/DRGN22.BIN/974/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/980/0",
+          "texture": "SECT/DRGN22.BIN/980/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/986/0",
+          "texture": "SECT/DRGN22.BIN/986/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/992/0",
+          "texture": "SECT/DRGN22.BIN/992/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/995/0",
+          "texture": "SECT/DRGN22.BIN/995/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/998/0",
+          "texture": "SECT/DRGN22.BIN/998/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/101/0",
+          "texture": "SECT/DRGN23.BIN/101/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/104/0",
+          "texture": "SECT/DRGN23.BIN/104/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/107/0",
+          "texture": "SECT/DRGN23.BIN/107/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/110/0",
+          "texture": "SECT/DRGN23.BIN/110/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/116/0",
+          "texture": "SECT/DRGN23.BIN/116/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/119/0",
+          "texture": "SECT/DRGN23.BIN/119/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/122/0",
+          "texture": "SECT/DRGN23.BIN/122/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/134/0",
+          "texture": "SECT/DRGN23.BIN/134/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/137/0",
+          "texture": "SECT/DRGN23.BIN/137/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/149/0",
+          "texture": "SECT/DRGN23.BIN/149/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/158/0",
+          "texture": "SECT/DRGN23.BIN/158/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/161/0",
+          "texture": "SECT/DRGN23.BIN/161/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/170/0",
+          "texture": "SECT/DRGN23.BIN/170/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/179/0",
+          "texture": "SECT/DRGN23.BIN/179/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/182/0",
+          "texture": "SECT/DRGN23.BIN/182/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/194/33",
+          "texture": "SECT/DRGN23.BIN/194/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/203/0",
+          "texture": "SECT/DRGN23.BIN/203/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/206/297",
+          "texture": "SECT/DRGN23.BIN/206/textures/9"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/221/0",
+          "texture": "SECT/DRGN23.BIN/221/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/224/0",
+          "texture": "SECT/DRGN23.BIN/224/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/23/0",
+          "texture": "SECT/DRGN23.BIN/23/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/32/0",
+          "texture": "SECT/DRGN23.BIN/32/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/341/0",
+          "texture": "SECT/DRGN23.BIN/341/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/344/0",
+          "texture": "SECT/DRGN23.BIN/344/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/347/0",
+          "texture": "SECT/DRGN23.BIN/347/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/350/0",
+          "texture": "SECT/DRGN23.BIN/350/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/356/0",
+          "texture": "SECT/DRGN23.BIN/356/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/359/0",
+          "texture": "SECT/DRGN23.BIN/359/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/362/0",
+          "texture": "SECT/DRGN23.BIN/362/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/365/0",
+          "texture": "SECT/DRGN23.BIN/365/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/368/0",
+          "texture": "SECT/DRGN23.BIN/368/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/371/0",
+          "texture": "SECT/DRGN23.BIN/371/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/38/0",
+          "texture": "SECT/DRGN23.BIN/38/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/386/0",
+          "texture": "SECT/DRGN23.BIN/386/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/392/0",
+          "texture": "SECT/DRGN23.BIN/392/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/398/0",
+          "texture": "SECT/DRGN23.BIN/398/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/401/0",
+          "texture": "SECT/DRGN23.BIN/401/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/410/0",
+          "texture": "SECT/DRGN23.BIN/410/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/413/0",
+          "texture": "SECT/DRGN23.BIN/413/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/416/0",
+          "texture": "SECT/DRGN23.BIN/416/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/434/0",
+          "texture": "SECT/DRGN23.BIN/434/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/437/0",
+          "texture": "SECT/DRGN23.BIN/437/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/440/0",
+          "texture": "SECT/DRGN23.BIN/440/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/443/0",
+          "texture": "SECT/DRGN23.BIN/443/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/449/0",
+          "texture": "SECT/DRGN23.BIN/449/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/455/0",
+          "texture": "SECT/DRGN23.BIN/455/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/458/0",
+          "texture": "SECT/DRGN23.BIN/458/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/461/0",
+          "texture": "SECT/DRGN23.BIN/461/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/467/0",
+          "texture": "SECT/DRGN23.BIN/467/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/470/0",
+          "texture": "SECT/DRGN23.BIN/470/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/473/0",
+          "texture": "SECT/DRGN23.BIN/473/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/479/0",
+          "texture": "SECT/DRGN23.BIN/479/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/503/0",
+          "texture": "SECT/DRGN23.BIN/503/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/509/0",
+          "texture": "SECT/DRGN23.BIN/509/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/521/0",
+          "texture": "SECT/DRGN23.BIN/521/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/65/0",
+          "texture": "SECT/DRGN23.BIN/65/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/74/0",
+          "texture": "SECT/DRGN23.BIN/74/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/77/0",
+          "texture": "SECT/DRGN23.BIN/77/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/8/198",
+          "texture": "SECT/DRGN23.BIN/8/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/92/0",
+          "texture": "SECT/DRGN23.BIN/92/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/95/0",
+          "texture": "SECT/DRGN23.BIN/95/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/98/0",
+          "texture": "SECT/DRGN23.BIN/98/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1001/0",
+          "texture": "SECT/DRGN24.BIN/1001/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1004/0",
+          "texture": "SECT/DRGN24.BIN/1004/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1007/0",
+          "texture": "SECT/DRGN24.BIN/1007/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1010/0",
+          "texture": "SECT/DRGN24.BIN/1010/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1013/0",
+          "texture": "SECT/DRGN24.BIN/1013/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1016/0",
+          "texture": "SECT/DRGN24.BIN/1016/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1019/0",
+          "texture": "SECT/DRGN24.BIN/1019/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1022/0",
+          "texture": "SECT/DRGN24.BIN/1022/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1025/0",
+          "texture": "SECT/DRGN24.BIN/1025/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1028/0",
+          "texture": "SECT/DRGN24.BIN/1028/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1031/0",
+          "texture": "SECT/DRGN24.BIN/1031/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1034/0",
+          "texture": "SECT/DRGN24.BIN/1034/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1037/0",
+          "texture": "SECT/DRGN24.BIN/1037/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1043/0",
+          "texture": "SECT/DRGN24.BIN/1043/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1046/0",
+          "texture": "SECT/DRGN24.BIN/1046/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1049/0",
+          "texture": "SECT/DRGN24.BIN/1049/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1052/0",
+          "texture": "SECT/DRGN24.BIN/1052/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1055/0",
+          "texture": "SECT/DRGN24.BIN/1055/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1058/0",
+          "texture": "SECT/DRGN24.BIN/1058/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1061/0",
+          "texture": "SECT/DRGN24.BIN/1061/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1064/0",
+          "texture": "SECT/DRGN24.BIN/1064/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1067/0",
+          "texture": "SECT/DRGN24.BIN/1067/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/107/0",
+          "texture": "SECT/DRGN24.BIN/107/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1070/0",
+          "texture": "SECT/DRGN24.BIN/1070/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1073/0",
+          "texture": "SECT/DRGN24.BIN/1073/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1076/0",
+          "texture": "SECT/DRGN24.BIN/1076/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1079/0",
+          "texture": "SECT/DRGN24.BIN/1079/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1082/0",
+          "texture": "SECT/DRGN24.BIN/1082/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1088/0",
+          "texture": "SECT/DRGN24.BIN/1088/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1091/0",
+          "texture": "SECT/DRGN24.BIN/1091/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1094/0",
+          "texture": "SECT/DRGN24.BIN/1094/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1097/0",
+          "texture": "SECT/DRGN24.BIN/1097/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1100/0",
+          "texture": "SECT/DRGN24.BIN/1100/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1103/0",
+          "texture": "SECT/DRGN24.BIN/1103/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1106/0",
+          "texture": "SECT/DRGN24.BIN/1106/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1109/0",
+          "texture": "SECT/DRGN24.BIN/1109/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1112/0",
+          "texture": "SECT/DRGN24.BIN/1112/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1115/0",
+          "texture": "SECT/DRGN24.BIN/1115/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1118/0",
+          "texture": "SECT/DRGN24.BIN/1118/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/128/0",
+          "texture": "SECT/DRGN24.BIN/128/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/134/0",
+          "texture": "SECT/DRGN24.BIN/134/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/143/0",
+          "texture": "SECT/DRGN24.BIN/143/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/146/0",
+          "texture": "SECT/DRGN24.BIN/146/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/149/0",
+          "texture": "SECT/DRGN24.BIN/149/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/155/0",
+          "texture": "SECT/DRGN24.BIN/155/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/158/0",
+          "texture": "SECT/DRGN24.BIN/158/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/161/0",
+          "texture": "SECT/DRGN24.BIN/161/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/164/0",
+          "texture": "SECT/DRGN24.BIN/164/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/173/0",
+          "texture": "SECT/DRGN24.BIN/173/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/176/0",
+          "texture": "SECT/DRGN24.BIN/176/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/191/0",
+          "texture": "SECT/DRGN24.BIN/191/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/197/0",
+          "texture": "SECT/DRGN24.BIN/197/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/20/0",
+          "texture": "SECT/DRGN24.BIN/20/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/269/0",
+          "texture": "SECT/DRGN24.BIN/269/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/302/0",
+          "texture": "SECT/DRGN24.BIN/302/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/314/0",
+          "texture": "SECT/DRGN24.BIN/314/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/326/0",
+          "texture": "SECT/DRGN24.BIN/326/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/335/0",
+          "texture": "SECT/DRGN24.BIN/335/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/371/33",
+          "texture": "SECT/DRGN24.BIN/371/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/377/0",
+          "texture": "SECT/DRGN24.BIN/377/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/383/0",
+          "texture": "SECT/DRGN24.BIN/383/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/389/0",
+          "texture": "SECT/DRGN24.BIN/389/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/44/0",
+          "texture": "SECT/DRGN24.BIN/44/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/440/0",
+          "texture": "SECT/DRGN24.BIN/440/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/446/0",
+          "texture": "SECT/DRGN24.BIN/446/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/449/0",
+          "texture": "SECT/DRGN24.BIN/449/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/452/0",
+          "texture": "SECT/DRGN24.BIN/452/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/458/0",
+          "texture": "SECT/DRGN24.BIN/458/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/464/0",
+          "texture": "SECT/DRGN24.BIN/464/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/467/0",
+          "texture": "SECT/DRGN24.BIN/467/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/470/0",
+          "texture": "SECT/DRGN24.BIN/470/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/473/0",
+          "texture": "SECT/DRGN24.BIN/473/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/485/0",
+          "texture": "SECT/DRGN24.BIN/485/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/506/0",
+          "texture": "SECT/DRGN24.BIN/506/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/512/0",
+          "texture": "SECT/DRGN24.BIN/512/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/518/0",
+          "texture": "SECT/DRGN24.BIN/518/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/521/0",
+          "texture": "SECT/DRGN24.BIN/521/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/524/0",
+          "texture": "SECT/DRGN24.BIN/524/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/530/0",
+          "texture": "SECT/DRGN24.BIN/530/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/533/0",
+          "texture": "SECT/DRGN24.BIN/533/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/536/0",
+          "texture": "SECT/DRGN24.BIN/536/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/539/0",
+          "texture": "SECT/DRGN24.BIN/539/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/542/0",
+          "texture": "SECT/DRGN24.BIN/542/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/545/0",
+          "texture": "SECT/DRGN24.BIN/545/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/548/0",
+          "texture": "SECT/DRGN24.BIN/548/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/551/0",
+          "texture": "SECT/DRGN24.BIN/551/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/554/0",
+          "texture": "SECT/DRGN24.BIN/554/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/557/0",
+          "texture": "SECT/DRGN24.BIN/557/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/560/0",
+          "texture": "SECT/DRGN24.BIN/560/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/596/0",
+          "texture": "SECT/DRGN24.BIN/596/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/599/0",
+          "texture": "SECT/DRGN24.BIN/599/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/605/297",
+          "texture": "SECT/DRGN24.BIN/605/textures/9"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/662/0",
+          "texture": "SECT/DRGN24.BIN/662/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/665/0",
+          "texture": "SECT/DRGN24.BIN/665/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/677/0",
+          "texture": "SECT/DRGN24.BIN/677/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/689/0",
+          "texture": "SECT/DRGN24.BIN/689/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/692/0",
+          "texture": "SECT/DRGN24.BIN/692/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/707/0",
+          "texture": "SECT/DRGN24.BIN/707/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/710/0",
+          "texture": "SECT/DRGN24.BIN/710/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/713/0",
+          "texture": "SECT/DRGN24.BIN/713/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/731/0",
+          "texture": "SECT/DRGN24.BIN/731/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/737/0",
+          "texture": "SECT/DRGN24.BIN/737/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/752/0",
+          "texture": "SECT/DRGN24.BIN/752/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/755/0",
+          "texture": "SECT/DRGN24.BIN/755/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/764/0",
+          "texture": "SECT/DRGN24.BIN/764/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/77/0",
+          "texture": "SECT/DRGN24.BIN/77/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/773/0",
+          "texture": "SECT/DRGN24.BIN/773/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/779/0",
+          "texture": "SECT/DRGN24.BIN/779/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/782/0",
+          "texture": "SECT/DRGN24.BIN/782/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/791/33",
+          "texture": "SECT/DRGN24.BIN/791/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/803/0",
+          "texture": "SECT/DRGN24.BIN/803/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/809/0",
+          "texture": "SECT/DRGN24.BIN/809/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/824/0",
+          "texture": "SECT/DRGN24.BIN/824/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/881/0",
+          "texture": "SECT/DRGN24.BIN/881/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/884/0",
+          "texture": "SECT/DRGN24.BIN/884/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/896/0",
+          "texture": "SECT/DRGN24.BIN/896/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/908/0",
+          "texture": "SECT/DRGN24.BIN/908/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/920/132",
+          "texture": "SECT/DRGN24.BIN/920/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/935/0",
+          "texture": "SECT/DRGN24.BIN/935/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/953/0",
+          "texture": "SECT/DRGN24.BIN/953/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/971/0",
+          "texture": "SECT/DRGN24.BIN/971/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/974/0",
+          "texture": "SECT/DRGN24.BIN/974/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/977/0",
+          "texture": "SECT/DRGN24.BIN/977/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/989/0",
+          "texture": "SECT/DRGN24.BIN/989/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/992/297",
+          "texture": "SECT/DRGN24.BIN/992/textures/9"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/995/0",
+          "texture": "SECT/DRGN24.BIN/995/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/998/0",
+          "texture": "SECT/DRGN24.BIN/998/textures/0"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "2": 47,
+        "0": 12,
+        "3": 26,
+        "8": 4,
+        "1": 2,
+        "4": 9,
+        "5": 4,
+        "10": 14,
+        "9": 2,
+        "11": 7,
+        "7": 10,
+        "6": 12
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "0e4d55fa11640f416ff5d5ec339ce906bd0d67613f887d902f7dac86945d7cf8",
+      "timSha256": "0d41609b083a467c6b8a8e2a9b6ac52896935c62f4e143a8bfd9b5737b155891",
+      "entities": [
+        "Dart"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/557/0",
+          "texture": "SECT/DRGN21.BIN/557/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/560/0",
+          "texture": "SECT/DRGN21.BIN/560/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/563/0",
+          "texture": "SECT/DRGN21.BIN/563/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/557/0",
+          "texture": "SECT/DRGN22.BIN/557/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/560/0",
+          "texture": "SECT/DRGN22.BIN/560/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/563/0",
+          "texture": "SECT/DRGN22.BIN/563/textures/0"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "2": 47,
+        "0": 12,
+        "3": 26,
+        "8": 4,
+        "1": 2,
+        "4": 9,
+        "5": 4,
+        "10": 14,
+        "9": 2,
+        "11": 7,
+        "7": 10,
+        "6": 12
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "70a79c1ec042f7f735f05e375bc10c89251596ebd364ebcaabb8fd4ec4880818",
+      "timSha256": "b41c99fa8e363752c071d4204a537701d9c7c4b4317675cc738e3a9f293a60b3",
+      "entities": [
+        "Rose"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/14/0",
+          "texture": "SECT/DRGN21.BIN/14/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/14/0",
+          "texture": "SECT/DRGN22.BIN/14/textures/0"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "0": 76,
+        "11": 6,
+        "3": 8,
+        "2": 22,
+        "7": 12,
+        "4": 8,
+        "1": 6,
+        "8": 2,
+        "9": 5,
+        "5": 34,
+        "10": 6
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "70a79c1ec042f7f735f05e375bc10c89251596ebd364ebcaabb8fd4ec4880818",
+      "timSha256": "36747d577601b1f21da02f4639f8432776ccbef5f2a3347fc3887d55e6eddf22",
+      "entities": [
+        "Rose"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/335/132",
+          "texture": "SECT/DRGN21.BIN/335/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/338/132",
+          "texture": "SECT/DRGN21.BIN/338/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/347/99",
+          "texture": "SECT/DRGN21.BIN/347/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/350/99",
+          "texture": "SECT/DRGN21.BIN/350/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/356/99",
+          "texture": "SECT/DRGN21.BIN/356/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/365/99",
+          "texture": "SECT/DRGN21.BIN/365/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/407/99",
+          "texture": "SECT/DRGN21.BIN/407/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/413/99",
+          "texture": "SECT/DRGN21.BIN/413/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/428/99",
+          "texture": "SECT/DRGN21.BIN/428/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/449/99",
+          "texture": "SECT/DRGN21.BIN/449/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/467/66",
+          "texture": "SECT/DRGN21.BIN/467/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/491/66",
+          "texture": "SECT/DRGN21.BIN/491/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/554/99",
+          "texture": "SECT/DRGN21.BIN/554/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/605/99",
+          "texture": "SECT/DRGN21.BIN/605/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/674/99",
+          "texture": "SECT/DRGN21.BIN/674/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/680/165",
+          "texture": "SECT/DRGN21.BIN/680/textures/5"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/695/33",
+          "texture": "SECT/DRGN21.BIN/695/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/719/33",
+          "texture": "SECT/DRGN21.BIN/719/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/722/99",
+          "texture": "SECT/DRGN21.BIN/722/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/728/33",
+          "texture": "SECT/DRGN21.BIN/728/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/95/99",
+          "texture": "SECT/DRGN21.BIN/95/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1064/99",
+          "texture": "SECT/DRGN22.BIN/1064/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1070/165",
+          "texture": "SECT/DRGN22.BIN/1070/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1109/33",
+          "texture": "SECT/DRGN22.BIN/1109/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1118/33",
+          "texture": "SECT/DRGN22.BIN/1118/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1133/66",
+          "texture": "SECT/DRGN22.BIN/1133/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1142/33",
+          "texture": "SECT/DRGN22.BIN/1142/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1148/99",
+          "texture": "SECT/DRGN22.BIN/1148/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1157/33",
+          "texture": "SECT/DRGN22.BIN/1157/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/335/132",
+          "texture": "SECT/DRGN22.BIN/335/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/338/132",
+          "texture": "SECT/DRGN22.BIN/338/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/347/99",
+          "texture": "SECT/DRGN22.BIN/347/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/350/99",
+          "texture": "SECT/DRGN22.BIN/350/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/356/99",
+          "texture": "SECT/DRGN22.BIN/356/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/365/99",
+          "texture": "SECT/DRGN22.BIN/365/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/407/99",
+          "texture": "SECT/DRGN22.BIN/407/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/413/99",
+          "texture": "SECT/DRGN22.BIN/413/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/428/99",
+          "texture": "SECT/DRGN22.BIN/428/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/449/99",
+          "texture": "SECT/DRGN22.BIN/449/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/467/66",
+          "texture": "SECT/DRGN22.BIN/467/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/491/66",
+          "texture": "SECT/DRGN22.BIN/491/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/554/99",
+          "texture": "SECT/DRGN22.BIN/554/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/605/99",
+          "texture": "SECT/DRGN22.BIN/605/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/614/132",
+          "texture": "SECT/DRGN22.BIN/614/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/683/33",
+          "texture": "SECT/DRGN22.BIN/683/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/749/132",
+          "texture": "SECT/DRGN22.BIN/749/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/776/363",
+          "texture": "SECT/DRGN22.BIN/776/textures/11"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/791/99",
+          "texture": "SECT/DRGN22.BIN/791/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/905/33",
+          "texture": "SECT/DRGN22.BIN/905/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/911/99",
+          "texture": "SECT/DRGN22.BIN/911/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/929/132",
+          "texture": "SECT/DRGN22.BIN/929/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/935/33",
+          "texture": "SECT/DRGN22.BIN/935/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/95/99",
+          "texture": "SECT/DRGN22.BIN/95/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/986/33",
+          "texture": "SECT/DRGN22.BIN/986/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/992/33",
+          "texture": "SECT/DRGN22.BIN/992/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/152/33",
+          "texture": "SECT/DRGN23.BIN/152/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/155/33",
+          "texture": "SECT/DRGN23.BIN/155/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/182/99",
+          "texture": "SECT/DRGN23.BIN/182/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/212/198",
+          "texture": "SECT/DRGN23.BIN/212/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/215/330",
+          "texture": "SECT/DRGN23.BIN/215/textures/10"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/221/198",
+          "texture": "SECT/DRGN23.BIN/221/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/272/33",
+          "texture": "SECT/DRGN23.BIN/272/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/350/198",
+          "texture": "SECT/DRGN23.BIN/350/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/368/297",
+          "texture": "SECT/DRGN23.BIN/368/textures/9"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/371/99",
+          "texture": "SECT/DRGN23.BIN/371/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/386/99",
+          "texture": "SECT/DRGN23.BIN/386/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/392/99",
+          "texture": "SECT/DRGN23.BIN/392/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/398/99",
+          "texture": "SECT/DRGN23.BIN/398/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/410/99",
+          "texture": "SECT/DRGN23.BIN/410/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/413/99",
+          "texture": "SECT/DRGN23.BIN/413/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/416/99",
+          "texture": "SECT/DRGN23.BIN/416/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/428/33",
+          "texture": "SECT/DRGN23.BIN/428/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/431/33",
+          "texture": "SECT/DRGN23.BIN/431/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/446/33",
+          "texture": "SECT/DRGN23.BIN/446/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/452/33",
+          "texture": "SECT/DRGN23.BIN/452/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/455/33",
+          "texture": "SECT/DRGN23.BIN/455/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/461/33",
+          "texture": "SECT/DRGN23.BIN/461/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/476/66",
+          "texture": "SECT/DRGN23.BIN/476/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/485/33",
+          "texture": "SECT/DRGN23.BIN/485/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/488/33",
+          "texture": "SECT/DRGN23.BIN/488/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/491/33",
+          "texture": "SECT/DRGN23.BIN/491/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/494/33",
+          "texture": "SECT/DRGN23.BIN/494/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/497/66",
+          "texture": "SECT/DRGN23.BIN/497/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/11/132",
+          "texture": "SECT/DRGN24.BIN/11/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/146/132",
+          "texture": "SECT/DRGN24.BIN/146/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/173/363",
+          "texture": "SECT/DRGN24.BIN/173/textures/11"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/188/99",
+          "texture": "SECT/DRGN24.BIN/188/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/302/33",
+          "texture": "SECT/DRGN24.BIN/302/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/308/99",
+          "texture": "SECT/DRGN24.BIN/308/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/326/132",
+          "texture": "SECT/DRGN24.BIN/326/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/332/33",
+          "texture": "SECT/DRGN24.BIN/332/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/383/33",
+          "texture": "SECT/DRGN24.BIN/383/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/389/33",
+          "texture": "SECT/DRGN24.BIN/389/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/440/33",
+          "texture": "SECT/DRGN24.BIN/440/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/452/33",
+          "texture": "SECT/DRGN24.BIN/452/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/464/66",
+          "texture": "SECT/DRGN24.BIN/464/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/470/33",
+          "texture": "SECT/DRGN24.BIN/470/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/482/66",
+          "texture": "SECT/DRGN24.BIN/482/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/485/66",
+          "texture": "SECT/DRGN24.BIN/485/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/530/99",
+          "texture": "SECT/DRGN24.BIN/530/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/557/99",
+          "texture": "SECT/DRGN24.BIN/557/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/560/99",
+          "texture": "SECT/DRGN24.BIN/560/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/629/99",
+          "texture": "SECT/DRGN24.BIN/629/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/632/99",
+          "texture": "SECT/DRGN24.BIN/632/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/647/363",
+          "texture": "SECT/DRGN24.BIN/647/textures/11"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/656/99",
+          "texture": "SECT/DRGN24.BIN/656/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/659/99",
+          "texture": "SECT/DRGN24.BIN/659/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/662/99",
+          "texture": "SECT/DRGN24.BIN/662/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/665/99",
+          "texture": "SECT/DRGN24.BIN/665/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/674/99",
+          "texture": "SECT/DRGN24.BIN/674/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/677/99",
+          "texture": "SECT/DRGN24.BIN/677/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/680/99",
+          "texture": "SECT/DRGN24.BIN/680/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/701/33",
+          "texture": "SECT/DRGN24.BIN/701/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/755/99",
+          "texture": "SECT/DRGN24.BIN/755/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/80/33",
+          "texture": "SECT/DRGN24.BIN/80/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/836/33",
+          "texture": "SECT/DRGN24.BIN/836/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/878/66",
+          "texture": "SECT/DRGN24.BIN/878/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/896/99",
+          "texture": "SECT/DRGN24.BIN/896/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/914/99",
+          "texture": "SECT/DRGN24.BIN/914/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/935/99",
+          "texture": "SECT/DRGN24.BIN/935/textures/3"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "0": 76,
+        "11": 6,
+        "3": 8,
+        "2": 22,
+        "7": 12,
+        "4": 8,
+        "1": 6,
+        "8": 2,
+        "9": 5,
+        "5": 34,
+        "10": 6
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "d92eecc24777812bba9ebe6d0a8a490e84a443bf532cabb8e19dc45371354ae3",
+      "timSha256": "d59d2c8ae784556fcf743e18388c4c786a8d63b92aade5797ed8610473e7f6d3",
+      "entities": [
+        "Lavitz"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/119/99",
+          "texture": "SECT/DRGN21.BIN/119/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/122/99",
+          "texture": "SECT/DRGN21.BIN/122/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/125/99",
+          "texture": "SECT/DRGN21.BIN/125/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/128/99",
+          "texture": "SECT/DRGN21.BIN/128/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/131/99",
+          "texture": "SECT/DRGN21.BIN/131/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/137/66",
+          "texture": "SECT/DRGN21.BIN/137/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/146/66",
+          "texture": "SECT/DRGN21.BIN/146/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/149/66",
+          "texture": "SECT/DRGN21.BIN/149/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/164/165",
+          "texture": "SECT/DRGN21.BIN/164/textures/5"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/179/66",
+          "texture": "SECT/DRGN21.BIN/179/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/200/33",
+          "texture": "SECT/DRGN21.BIN/200/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/203/66",
+          "texture": "SECT/DRGN21.BIN/203/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/209/66",
+          "texture": "SECT/DRGN21.BIN/209/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/212/66",
+          "texture": "SECT/DRGN21.BIN/212/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/215/33",
+          "texture": "SECT/DRGN21.BIN/215/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/221/66",
+          "texture": "SECT/DRGN21.BIN/221/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/224/132",
+          "texture": "SECT/DRGN21.BIN/224/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/248/66",
+          "texture": "SECT/DRGN21.BIN/248/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/251/66",
+          "texture": "SECT/DRGN21.BIN/251/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/26/99",
+          "texture": "SECT/DRGN21.BIN/26/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/284/66",
+          "texture": "SECT/DRGN21.BIN/284/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/287/66",
+          "texture": "SECT/DRGN21.BIN/287/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/290/33",
+          "texture": "SECT/DRGN21.BIN/290/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/293/33",
+          "texture": "SECT/DRGN21.BIN/293/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/311/33",
+          "texture": "SECT/DRGN21.BIN/311/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/335/99",
+          "texture": "SECT/DRGN21.BIN/335/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/338/99",
+          "texture": "SECT/DRGN21.BIN/338/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/347/66",
+          "texture": "SECT/DRGN21.BIN/347/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/350/66",
+          "texture": "SECT/DRGN21.BIN/350/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/356/66",
+          "texture": "SECT/DRGN21.BIN/356/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/359/66",
+          "texture": "SECT/DRGN21.BIN/359/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/362/66",
+          "texture": "SECT/DRGN21.BIN/362/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/365/66",
+          "texture": "SECT/DRGN21.BIN/365/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/368/66",
+          "texture": "SECT/DRGN21.BIN/368/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/395/99",
+          "texture": "SECT/DRGN21.BIN/395/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/398/132",
+          "texture": "SECT/DRGN21.BIN/398/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/401/132",
+          "texture": "SECT/DRGN21.BIN/401/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/407/132",
+          "texture": "SECT/DRGN21.BIN/407/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/413/33",
+          "texture": "SECT/DRGN21.BIN/413/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/425/66",
+          "texture": "SECT/DRGN21.BIN/425/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/428/33",
+          "texture": "SECT/DRGN21.BIN/428/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/431/33",
+          "texture": "SECT/DRGN21.BIN/431/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/449/66",
+          "texture": "SECT/DRGN21.BIN/449/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/452/66",
+          "texture": "SECT/DRGN21.BIN/452/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/458/66",
+          "texture": "SECT/DRGN21.BIN/458/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/467/33",
+          "texture": "SECT/DRGN21.BIN/467/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/47/198",
+          "texture": "SECT/DRGN21.BIN/47/textures/6"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/476/99",
+          "texture": "SECT/DRGN21.BIN/476/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/488/33",
+          "texture": "SECT/DRGN21.BIN/488/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/491/33",
+          "texture": "SECT/DRGN21.BIN/491/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/644/66",
+          "texture": "SECT/DRGN21.BIN/644/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/671/66",
+          "texture": "SECT/DRGN21.BIN/671/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/674/66",
+          "texture": "SECT/DRGN21.BIN/674/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/692/33",
+          "texture": "SECT/DRGN21.BIN/692/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/722/33",
+          "texture": "SECT/DRGN21.BIN/722/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/728/99",
+          "texture": "SECT/DRGN21.BIN/728/textures/3"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/77/198",
+          "texture": "SECT/DRGN21.BIN/77/textures/6"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/86/33",
+          "texture": "SECT/DRGN21.BIN/86/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/95/66",
+          "texture": "SECT/DRGN21.BIN/95/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1034/66",
+          "texture": "SECT/DRGN22.BIN/1034/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1061/66",
+          "texture": "SECT/DRGN22.BIN/1061/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1064/66",
+          "texture": "SECT/DRGN22.BIN/1064/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1106/33",
+          "texture": "SECT/DRGN22.BIN/1106/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1148/33",
+          "texture": "SECT/DRGN22.BIN/1148/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1157/99",
+          "texture": "SECT/DRGN22.BIN/1157/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/119/99",
+          "texture": "SECT/DRGN22.BIN/119/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/122/99",
+          "texture": "SECT/DRGN22.BIN/122/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/125/99",
+          "texture": "SECT/DRGN22.BIN/125/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/128/99",
+          "texture": "SECT/DRGN22.BIN/128/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/131/99",
+          "texture": "SECT/DRGN22.BIN/131/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/137/66",
+          "texture": "SECT/DRGN22.BIN/137/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/146/66",
+          "texture": "SECT/DRGN22.BIN/146/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/149/66",
+          "texture": "SECT/DRGN22.BIN/149/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/164/165",
+          "texture": "SECT/DRGN22.BIN/164/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/179/66",
+          "texture": "SECT/DRGN22.BIN/179/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/200/33",
+          "texture": "SECT/DRGN22.BIN/200/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/203/66",
+          "texture": "SECT/DRGN22.BIN/203/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/209/66",
+          "texture": "SECT/DRGN22.BIN/209/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/212/66",
+          "texture": "SECT/DRGN22.BIN/212/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/215/33",
+          "texture": "SECT/DRGN22.BIN/215/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/221/66",
+          "texture": "SECT/DRGN22.BIN/221/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/224/132",
+          "texture": "SECT/DRGN22.BIN/224/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/248/66",
+          "texture": "SECT/DRGN22.BIN/248/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/251/66",
+          "texture": "SECT/DRGN22.BIN/251/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/26/99",
+          "texture": "SECT/DRGN22.BIN/26/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/284/66",
+          "texture": "SECT/DRGN22.BIN/284/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/287/66",
+          "texture": "SECT/DRGN22.BIN/287/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/290/33",
+          "texture": "SECT/DRGN22.BIN/290/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/293/33",
+          "texture": "SECT/DRGN22.BIN/293/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/311/33",
+          "texture": "SECT/DRGN22.BIN/311/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/335/99",
+          "texture": "SECT/DRGN22.BIN/335/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/338/99",
+          "texture": "SECT/DRGN22.BIN/338/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/347/66",
+          "texture": "SECT/DRGN22.BIN/347/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/350/66",
+          "texture": "SECT/DRGN22.BIN/350/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/356/66",
+          "texture": "SECT/DRGN22.BIN/356/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/359/66",
+          "texture": "SECT/DRGN22.BIN/359/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/362/66",
+          "texture": "SECT/DRGN22.BIN/362/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/365/66",
+          "texture": "SECT/DRGN22.BIN/365/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/368/66",
+          "texture": "SECT/DRGN22.BIN/368/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/395/99",
+          "texture": "SECT/DRGN22.BIN/395/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/398/132",
+          "texture": "SECT/DRGN22.BIN/398/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/401/132",
+          "texture": "SECT/DRGN22.BIN/401/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/407/132",
+          "texture": "SECT/DRGN22.BIN/407/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/413/33",
+          "texture": "SECT/DRGN22.BIN/413/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/425/66",
+          "texture": "SECT/DRGN22.BIN/425/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/428/33",
+          "texture": "SECT/DRGN22.BIN/428/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/431/33",
+          "texture": "SECT/DRGN22.BIN/431/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/449/66",
+          "texture": "SECT/DRGN22.BIN/449/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/452/66",
+          "texture": "SECT/DRGN22.BIN/452/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/458/66",
+          "texture": "SECT/DRGN22.BIN/458/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/467/33",
+          "texture": "SECT/DRGN22.BIN/467/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/47/198",
+          "texture": "SECT/DRGN22.BIN/47/textures/6"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/476/99",
+          "texture": "SECT/DRGN22.BIN/476/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/488/33",
+          "texture": "SECT/DRGN22.BIN/488/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/491/33",
+          "texture": "SECT/DRGN22.BIN/491/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/77/198",
+          "texture": "SECT/DRGN22.BIN/77/textures/6"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/86/33",
+          "texture": "SECT/DRGN22.BIN/86/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/95/66",
+          "texture": "SECT/DRGN22.BIN/95/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/560/132",
+          "texture": "SECT/DRGN24.BIN/560/textures/4"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "4": 44,
+        "2": 23,
+        "1": 18,
+        "3": 6,
+        "0": 7,
+        "5": 10
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "5b13118217f5285bdadabfdb0135837ae6cd55e65f2a7bcc2bcdd590347548d5",
+      "timSha256": "34b7d69506e4b25a9aa7d58af04b7afb1717dec549264143631fe0cf2fc46345",
+      "entities": [
+        "Shana"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/119/66",
+          "texture": "SECT/DRGN21.BIN/119/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/122/66",
+          "texture": "SECT/DRGN21.BIN/122/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/125/66",
+          "texture": "SECT/DRGN21.BIN/125/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/128/66",
+          "texture": "SECT/DRGN21.BIN/128/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/131/66",
+          "texture": "SECT/DRGN21.BIN/131/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/137/33",
+          "texture": "SECT/DRGN21.BIN/137/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/146/33",
+          "texture": "SECT/DRGN21.BIN/146/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/149/33",
+          "texture": "SECT/DRGN21.BIN/149/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/164/66",
+          "texture": "SECT/DRGN21.BIN/164/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/176/33",
+          "texture": "SECT/DRGN21.BIN/176/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/179/33",
+          "texture": "SECT/DRGN21.BIN/179/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/209/33",
+          "texture": "SECT/DRGN21.BIN/209/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/212/33",
+          "texture": "SECT/DRGN21.BIN/212/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/221/33",
+          "texture": "SECT/DRGN21.BIN/221/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/233/66",
+          "texture": "SECT/DRGN21.BIN/233/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/248/33",
+          "texture": "SECT/DRGN21.BIN/248/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/251/33",
+          "texture": "SECT/DRGN21.BIN/251/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/287/33",
+          "texture": "SECT/DRGN21.BIN/287/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/311/66",
+          "texture": "SECT/DRGN21.BIN/311/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/320/33",
+          "texture": "SECT/DRGN21.BIN/320/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/335/66",
+          "texture": "SECT/DRGN21.BIN/335/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/338/66",
+          "texture": "SECT/DRGN21.BIN/338/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/347/33",
+          "texture": "SECT/DRGN21.BIN/347/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/350/33",
+          "texture": "SECT/DRGN21.BIN/350/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/356/33",
+          "texture": "SECT/DRGN21.BIN/356/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/362/33",
+          "texture": "SECT/DRGN21.BIN/362/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/365/33",
+          "texture": "SECT/DRGN21.BIN/365/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/407/66",
+          "texture": "SECT/DRGN21.BIN/407/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/413/132",
+          "texture": "SECT/DRGN21.BIN/413/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/455/33",
+          "texture": "SECT/DRGN21.BIN/455/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/530/33",
+          "texture": "SECT/DRGN21.BIN/530/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/554/33",
+          "texture": "SECT/DRGN21.BIN/554/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/587/429",
+          "texture": "SECT/DRGN21.BIN/587/textures/13"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/605/33",
+          "texture": "SECT/DRGN21.BIN/605/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/662/33",
+          "texture": "SECT/DRGN21.BIN/662/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/674/33",
+          "texture": "SECT/DRGN21.BIN/674/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/680/198",
+          "texture": "SECT/DRGN21.BIN/680/textures/6"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/683/33",
+          "texture": "SECT/DRGN21.BIN/683/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/686/33",
+          "texture": "SECT/DRGN21.BIN/686/textures/1"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/704/0",
+          "texture": "SECT/DRGN21.BIN/704/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/722/132",
+          "texture": "SECT/DRGN21.BIN/722/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/728/66",
+          "texture": "SECT/DRGN21.BIN/728/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/86/165",
+          "texture": "SECT/DRGN21.BIN/86/textures/5"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/95/33",
+          "texture": "SECT/DRGN21.BIN/95/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1052/33",
+          "texture": "SECT/DRGN22.BIN/1052/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1064/33",
+          "texture": "SECT/DRGN22.BIN/1064/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1070/198",
+          "texture": "SECT/DRGN22.BIN/1070/textures/6"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1073/33",
+          "texture": "SECT/DRGN22.BIN/1073/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1076/33",
+          "texture": "SECT/DRGN22.BIN/1076/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1082/33",
+          "texture": "SECT/DRGN22.BIN/1082/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1121/0",
+          "texture": "SECT/DRGN22.BIN/1121/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1148/132",
+          "texture": "SECT/DRGN22.BIN/1148/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1157/66",
+          "texture": "SECT/DRGN22.BIN/1157/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/119/66",
+          "texture": "SECT/DRGN22.BIN/119/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/122/66",
+          "texture": "SECT/DRGN22.BIN/122/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/125/66",
+          "texture": "SECT/DRGN22.BIN/125/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/128/66",
+          "texture": "SECT/DRGN22.BIN/128/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/131/66",
+          "texture": "SECT/DRGN22.BIN/131/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/137/33",
+          "texture": "SECT/DRGN22.BIN/137/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/146/33",
+          "texture": "SECT/DRGN22.BIN/146/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/149/33",
+          "texture": "SECT/DRGN22.BIN/149/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/164/66",
+          "texture": "SECT/DRGN22.BIN/164/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/176/33",
+          "texture": "SECT/DRGN22.BIN/176/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/179/33",
+          "texture": "SECT/DRGN22.BIN/179/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/209/33",
+          "texture": "SECT/DRGN22.BIN/209/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/212/33",
+          "texture": "SECT/DRGN22.BIN/212/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/221/33",
+          "texture": "SECT/DRGN22.BIN/221/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/233/66",
+          "texture": "SECT/DRGN22.BIN/233/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/248/33",
+          "texture": "SECT/DRGN22.BIN/248/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/251/33",
+          "texture": "SECT/DRGN22.BIN/251/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/287/33",
+          "texture": "SECT/DRGN22.BIN/287/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/311/66",
+          "texture": "SECT/DRGN22.BIN/311/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/320/33",
+          "texture": "SECT/DRGN22.BIN/320/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/335/66",
+          "texture": "SECT/DRGN22.BIN/335/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/338/66",
+          "texture": "SECT/DRGN22.BIN/338/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/347/33",
+          "texture": "SECT/DRGN22.BIN/347/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/350/33",
+          "texture": "SECT/DRGN22.BIN/350/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/356/33",
+          "texture": "SECT/DRGN22.BIN/356/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/362/33",
+          "texture": "SECT/DRGN22.BIN/362/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/365/33",
+          "texture": "SECT/DRGN22.BIN/365/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/407/66",
+          "texture": "SECT/DRGN22.BIN/407/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/413/132",
+          "texture": "SECT/DRGN22.BIN/413/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/455/33",
+          "texture": "SECT/DRGN22.BIN/455/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/530/33",
+          "texture": "SECT/DRGN22.BIN/530/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/554/33",
+          "texture": "SECT/DRGN22.BIN/554/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/587/429",
+          "texture": "SECT/DRGN22.BIN/587/textures/13"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/605/33",
+          "texture": "SECT/DRGN22.BIN/605/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/614/66",
+          "texture": "SECT/DRGN22.BIN/614/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/749/99",
+          "texture": "SECT/DRGN22.BIN/749/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/776/297",
+          "texture": "SECT/DRGN22.BIN/776/textures/9"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/791/33",
+          "texture": "SECT/DRGN22.BIN/791/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/86/165",
+          "texture": "SECT/DRGN22.BIN/86/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/911/33",
+          "texture": "SECT/DRGN22.BIN/911/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/929/99",
+          "texture": "SECT/DRGN22.BIN/929/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/947/33",
+          "texture": "SECT/DRGN22.BIN/947/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/95/33",
+          "texture": "SECT/DRGN22.BIN/95/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/125/231",
+          "texture": "SECT/DRGN23.BIN/125/textures/7"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/182/33",
+          "texture": "SECT/DRGN23.BIN/182/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/281/33",
+          "texture": "SECT/DRGN23.BIN/281/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/32/132",
+          "texture": "SECT/DRGN23.BIN/32/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/44/363",
+          "texture": "SECT/DRGN23.BIN/44/textures/11"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/476/99",
+          "texture": "SECT/DRGN23.BIN/476/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/479/33",
+          "texture": "SECT/DRGN23.BIN/479/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/503/33",
+          "texture": "SECT/DRGN23.BIN/503/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/89/33",
+          "texture": "SECT/DRGN23.BIN/89/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/11/66",
+          "texture": "SECT/DRGN24.BIN/11/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/146/99",
+          "texture": "SECT/DRGN24.BIN/146/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/173/297",
+          "texture": "SECT/DRGN24.BIN/173/textures/9"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/188/33",
+          "texture": "SECT/DRGN24.BIN/188/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/308/33",
+          "texture": "SECT/DRGN24.BIN/308/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/326/99",
+          "texture": "SECT/DRGN24.BIN/326/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/344/33",
+          "texture": "SECT/DRGN24.BIN/344/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/686/99",
+          "texture": "SECT/DRGN24.BIN/686/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/806/33",
+          "texture": "SECT/DRGN24.BIN/806/textures/1"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "1": 10,
+        "0": 9,
+        "5": 7,
+        "7": 3,
+        "6": 2,
+        "8": 10,
+        "10": 6,
+        "3": 10,
+        "9": 5,
+        "2": 22,
+        "4": 12
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "329e7b5dc45c842d036a26d906bdea5958c602d17aa2fe32fbc8b081f3e299e4",
+      "timSha256": "6b3428f520a37ec438ffe0d761aebae3db9bfb8b8c849228d87c870adf2362c2",
+      "entities": [
+        "Haschel"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/548/132",
+          "texture": "SECT/DRGN21.BIN/548/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/554/132",
+          "texture": "SECT/DRGN21.BIN/554/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/602/132",
+          "texture": "SECT/DRGN21.BIN/602/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/674/132",
+          "texture": "SECT/DRGN21.BIN/674/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/686/132",
+          "texture": "SECT/DRGN21.BIN/686/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/689/132",
+          "texture": "SECT/DRGN21.BIN/689/textures/4"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/95/132",
+          "texture": "SECT/DRGN21.BIN/95/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1064/132",
+          "texture": "SECT/DRGN22.BIN/1064/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1076/132",
+          "texture": "SECT/DRGN22.BIN/1076/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1079/132",
+          "texture": "SECT/DRGN22.BIN/1079/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/548/132",
+          "texture": "SECT/DRGN22.BIN/548/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/554/132",
+          "texture": "SECT/DRGN22.BIN/554/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/602/132",
+          "texture": "SECT/DRGN22.BIN/602/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/614/165",
+          "texture": "SECT/DRGN22.BIN/614/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/791/165",
+          "texture": "SECT/DRGN22.BIN/791/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/794/33",
+          "texture": "SECT/DRGN22.BIN/794/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/800/33",
+          "texture": "SECT/DRGN22.BIN/800/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/863/99",
+          "texture": "SECT/DRGN22.BIN/863/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/911/198",
+          "texture": "SECT/DRGN22.BIN/911/textures/6"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/95/132",
+          "texture": "SECT/DRGN22.BIN/95/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/182/132",
+          "texture": "SECT/DRGN23.BIN/182/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/254/132",
+          "texture": "SECT/DRGN23.BIN/254/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/281/132",
+          "texture": "SECT/DRGN23.BIN/281/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/326/66",
+          "texture": "SECT/DRGN23.BIN/326/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/344/165",
+          "texture": "SECT/DRGN23.BIN/344/textures/5"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/386/165",
+          "texture": "SECT/DRGN23.BIN/386/textures/5"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/392/165",
+          "texture": "SECT/DRGN23.BIN/392/textures/5"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/398/165",
+          "texture": "SECT/DRGN23.BIN/398/textures/5"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/506/0",
+          "texture": "SECT/DRGN23.BIN/506/textures/0"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/515/132",
+          "texture": "SECT/DRGN23.BIN/515/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/11/165",
+          "texture": "SECT/DRGN24.BIN/11/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/188/165",
+          "texture": "SECT/DRGN24.BIN/188/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/191/33",
+          "texture": "SECT/DRGN24.BIN/191/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/197/33",
+          "texture": "SECT/DRGN24.BIN/197/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/260/99",
+          "texture": "SECT/DRGN24.BIN/260/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/308/198",
+          "texture": "SECT/DRGN24.BIN/308/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/599/33",
+          "texture": "SECT/DRGN24.BIN/599/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/656/165",
+          "texture": "SECT/DRGN24.BIN/656/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/659/165",
+          "texture": "SECT/DRGN24.BIN/659/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/662/165",
+          "texture": "SECT/DRGN24.BIN/662/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/665/165",
+          "texture": "SECT/DRGN24.BIN/665/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/674/165",
+          "texture": "SECT/DRGN24.BIN/674/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/677/165",
+          "texture": "SECT/DRGN24.BIN/677/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/680/165",
+          "texture": "SECT/DRGN24.BIN/680/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/686/165",
+          "texture": "SECT/DRGN24.BIN/686/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/686/198",
+          "texture": "SECT/DRGN24.BIN/686/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/803/33",
+          "texture": "SECT/DRGN24.BIN/803/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/971/132",
+          "texture": "SECT/DRGN24.BIN/971/textures/4"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "15": 12,
+        "3": 6,
+        "2": 8,
+        "0": 13,
+        "5": 34,
+        "11": 14,
+        "10": 4,
+        "4": 19,
+        "13": 6,
+        "9": 20,
+        "8": 2,
+        "6": 2,
+        "7": 6,
+        "1": 28,
+        "12": 6
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "e3f8c3eb0fe485b94bff2e7c06f628a1202fbcd51aa34610a631d4bd8014a3c5",
+      "timSha256": "40eaf6f9eba3c94330611619edd7648ddf1b98fef38c341d255eb60c059a5b7a",
+      "entities": [
+        "Albert"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/329/165",
+          "texture": "SECT/DRGN21.BIN/329/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/329/165",
+          "texture": "SECT/DRGN22.BIN/329/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/791/132",
+          "texture": "SECT/DRGN22.BIN/791/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/386/132",
+          "texture": "SECT/DRGN23.BIN/386/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/392/132",
+          "texture": "SECT/DRGN23.BIN/392/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/398/132",
+          "texture": "SECT/DRGN23.BIN/398/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/188/132",
+          "texture": "SECT/DRGN24.BIN/188/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/656/132",
+          "texture": "SECT/DRGN24.BIN/656/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/659/132",
+          "texture": "SECT/DRGN24.BIN/659/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/662/132",
+          "texture": "SECT/DRGN24.BIN/662/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/665/132",
+          "texture": "SECT/DRGN24.BIN/665/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/674/132",
+          "texture": "SECT/DRGN24.BIN/674/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/677/132",
+          "texture": "SECT/DRGN24.BIN/677/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/680/132",
+          "texture": "SECT/DRGN24.BIN/680/textures/4"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "1": 12,
+        "6": 27,
+        "3": 9,
+        "4": 8,
+        "5": 2,
+        "8": 3,
+        "7": 11,
+        "2": 6,
+        "0": 8
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "e3f8c3eb0fe485b94bff2e7c06f628a1202fbcd51aa34610a631d4bd8014a3c5",
+      "timSha256": "1ef11eb162e4dade4aec5ea8db64dc9a6d310dfbe81f4c957a4b93284e8f02d5",
+      "entities": [
+        "Albert"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/554/66",
+          "texture": "SECT/DRGN21.BIN/554/textures/2"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/590/33",
+          "texture": "SECT/DRGN21.BIN/590/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1100/33",
+          "texture": "SECT/DRGN22.BIN/1100/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/554/66",
+          "texture": "SECT/DRGN22.BIN/554/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/590/33",
+          "texture": "SECT/DRGN22.BIN/590/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/614/99",
+          "texture": "SECT/DRGN22.BIN/614/textures/3"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/719/165",
+          "texture": "SECT/DRGN22.BIN/719/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/896/429",
+          "texture": "SECT/DRGN22.BIN/896/textures/13"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/911/66",
+          "texture": "SECT/DRGN22.BIN/911/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/929/66",
+          "texture": "SECT/DRGN22.BIN/929/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/182/66",
+          "texture": "SECT/DRGN23.BIN/182/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/194/66",
+          "texture": "SECT/DRGN23.BIN/194/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/344/132",
+          "texture": "SECT/DRGN23.BIN/344/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/44/396",
+          "texture": "SECT/DRGN23.BIN/44/textures/12"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/503/99",
+          "texture": "SECT/DRGN23.BIN/503/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/11/99",
+          "texture": "SECT/DRGN24.BIN/11/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/1112/33",
+          "texture": "SECT/DRGN24.BIN/1112/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/116/165",
+          "texture": "SECT/DRGN24.BIN/116/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/293/429",
+          "texture": "SECT/DRGN24.BIN/293/textures/13"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/308/66",
+          "texture": "SECT/DRGN24.BIN/308/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/326/66",
+          "texture": "SECT/DRGN24.BIN/326/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/494/66",
+          "texture": "SECT/DRGN24.BIN/494/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/530/66",
+          "texture": "SECT/DRGN24.BIN/530/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/560/66",
+          "texture": "SECT/DRGN24.BIN/560/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/647/264",
+          "texture": "SECT/DRGN24.BIN/647/textures/8"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/692/66",
+          "texture": "SECT/DRGN24.BIN/692/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/731/66",
+          "texture": "SECT/DRGN24.BIN/731/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/824/33",
+          "texture": "SECT/DRGN24.BIN/824/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/974/66",
+          "texture": "SECT/DRGN24.BIN/974/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/977/66",
+          "texture": "SECT/DRGN24.BIN/977/textures/2"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "1": 12,
+        "6": 27,
+        "3": 9,
+        "4": 8,
+        "5": 2,
+        "8": 3,
+        "7": 11,
+        "2": 6,
+        "0": 8
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "12f102a7a57999768603a98dbcb69997de1636f0ecbcfa701ce4d3e24d559623",
+      "timSha256": "f55eb8f5b8b79992f2d7e8f7b7b6bb5533cb4098e670bacd819e76606e4746e0",
+      "entities": [
+        "Kongol"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/686/231",
+          "texture": "SECT/DRGN21.BIN/686/textures/7"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/1076/231",
+          "texture": "SECT/DRGN22.BIN/1076/textures/7"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/731/132",
+          "texture": "SECT/DRGN22.BIN/731/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/791/198",
+          "texture": "SECT/DRGN22.BIN/791/textures/6"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/800/66",
+          "texture": "SECT/DRGN22.BIN/800/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/911/165",
+          "texture": "SECT/DRGN22.BIN/911/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/941/198",
+          "texture": "SECT/DRGN22.BIN/941/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/182/165",
+          "texture": "SECT/DRGN23.BIN/182/textures/5"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/212/165",
+          "texture": "SECT/DRGN23.BIN/212/textures/5"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/254/198",
+          "texture": "SECT/DRGN23.BIN/254/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/275/198",
+          "texture": "SECT/DRGN23.BIN/275/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/281/198",
+          "texture": "SECT/DRGN23.BIN/281/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/287/198",
+          "texture": "SECT/DRGN23.BIN/287/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/314/198",
+          "texture": "SECT/DRGN23.BIN/314/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/323/33",
+          "texture": "SECT/DRGN23.BIN/323/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/326/33",
+          "texture": "SECT/DRGN23.BIN/326/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/38/198",
+          "texture": "SECT/DRGN23.BIN/38/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/386/198",
+          "texture": "SECT/DRGN23.BIN/386/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/392/198",
+          "texture": "SECT/DRGN23.BIN/392/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/398/198",
+          "texture": "SECT/DRGN23.BIN/398/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/497/132",
+          "texture": "SECT/DRGN23.BIN/497/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/77/99",
+          "texture": "SECT/DRGN23.BIN/77/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/128/132",
+          "texture": "SECT/DRGN24.BIN/128/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/188/198",
+          "texture": "SECT/DRGN24.BIN/188/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/197/66",
+          "texture": "SECT/DRGN24.BIN/197/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/308/165",
+          "texture": "SECT/DRGN24.BIN/308/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/338/198",
+          "texture": "SECT/DRGN24.BIN/338/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/479/99",
+          "texture": "SECT/DRGN24.BIN/479/textures/3"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/497/297",
+          "texture": "SECT/DRGN24.BIN/497/textures/9"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/656/198",
+          "texture": "SECT/DRGN24.BIN/656/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/659/198",
+          "texture": "SECT/DRGN24.BIN/659/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/662/198",
+          "texture": "SECT/DRGN24.BIN/662/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/665/198",
+          "texture": "SECT/DRGN24.BIN/665/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/674/198",
+          "texture": "SECT/DRGN24.BIN/674/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/677/198",
+          "texture": "SECT/DRGN24.BIN/677/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/680/198",
+          "texture": "SECT/DRGN24.BIN/680/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/746/231",
+          "texture": "SECT/DRGN24.BIN/746/textures/7"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "2": 22,
+        "3": 22,
+        "4": 8,
+        "11": 18,
+        "8": 4,
+        "1": 13,
+        "10": 4,
+        "5": 5,
+        "12": 4,
+        "0": 6,
+        "7": 8,
+        "6": 8,
+        "9": 24
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "ba8defab01f253e35f2b9ad25d1f0d8ef075a31fc4cedbe96b0a30a3c9562d7f",
+      "timSha256": "f55eb8f5b8b79992f2d7e8f7b7b6bb5533cb4098e670bacd819e76606e4746e0",
+      "entities": [
+        "Kongol"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN22.BIN/809/198",
+          "texture": "SECT/DRGN22.BIN/809/textures/6"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/923/198",
+          "texture": "SECT/DRGN22.BIN/923/textures/6"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/926/198",
+          "texture": "SECT/DRGN22.BIN/926/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/206/198",
+          "texture": "SECT/DRGN24.BIN/206/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/320/198",
+          "texture": "SECT/DRGN24.BIN/320/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/323/198",
+          "texture": "SECT/DRGN24.BIN/323/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/866/33",
+          "texture": "SECT/DRGN24.BIN/866/textures/1"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "2": 22,
+        "3": 22,
+        "4": 8,
+        "11": 18,
+        "8": 4,
+        "1": 13,
+        "10": 4,
+        "5": 5,
+        "12": 4,
+        "0": 6,
+        "7": 8,
+        "6": 8,
+        "9": 24
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "491286a9afe49f0de73467a567e3b14c480ace34d9dfa4d8eca55facf9eb280a",
+      "timSha256": "dcb6a20cb7bc6b8e82f9950a8e8002ca6c0f0654f8c100d9a98fb4c05f8dbe1d",
+      "entities": [
+        "Meru"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN22.BIN/755/33",
+          "texture": "SECT/DRGN22.BIN/755/textures/1"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/776/330",
+          "texture": "SECT/DRGN22.BIN/776/textures/10"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/791/66",
+          "texture": "SECT/DRGN22.BIN/791/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/908/165",
+          "texture": "SECT/DRGN22.BIN/908/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/911/132",
+          "texture": "SECT/DRGN22.BIN/911/textures/4"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/929/165",
+          "texture": "SECT/DRGN22.BIN/929/textures/5"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/935/66",
+          "texture": "SECT/DRGN22.BIN/935/textures/2"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/953/297",
+          "texture": "SECT/DRGN22.BIN/953/textures/9"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/158/66",
+          "texture": "SECT/DRGN23.BIN/158/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/170/132",
+          "texture": "SECT/DRGN23.BIN/170/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/182/198",
+          "texture": "SECT/DRGN23.BIN/182/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/254/165",
+          "texture": "SECT/DRGN23.BIN/254/textures/5"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/272/99",
+          "texture": "SECT/DRGN23.BIN/272/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/281/165",
+          "texture": "SECT/DRGN23.BIN/281/textures/5"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/344/198",
+          "texture": "SECT/DRGN23.BIN/344/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/38/99",
+          "texture": "SECT/DRGN23.BIN/38/textures/3"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/386/66",
+          "texture": "SECT/DRGN23.BIN/386/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/392/66",
+          "texture": "SECT/DRGN23.BIN/392/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/398/66",
+          "texture": "SECT/DRGN23.BIN/398/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/410/66",
+          "texture": "SECT/DRGN23.BIN/410/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/419/132",
+          "texture": "SECT/DRGN23.BIN/419/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/503/66",
+          "texture": "SECT/DRGN23.BIN/503/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/515/165",
+          "texture": "SECT/DRGN23.BIN/515/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/152/33",
+          "texture": "SECT/DRGN24.BIN/152/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/173/330",
+          "texture": "SECT/DRGN24.BIN/173/textures/10"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/188/66",
+          "texture": "SECT/DRGN24.BIN/188/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/305/165",
+          "texture": "SECT/DRGN24.BIN/305/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/308/132",
+          "texture": "SECT/DRGN24.BIN/308/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/326/165",
+          "texture": "SECT/DRGN24.BIN/326/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/332/66",
+          "texture": "SECT/DRGN24.BIN/332/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/350/297",
+          "texture": "SECT/DRGN24.BIN/350/textures/9"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/404/0",
+          "texture": "SECT/DRGN24.BIN/404/textures/0"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/485/132",
+          "texture": "SECT/DRGN24.BIN/485/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/536/165",
+          "texture": "SECT/DRGN24.BIN/536/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/629/165",
+          "texture": "SECT/DRGN24.BIN/629/textures/5"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/656/66",
+          "texture": "SECT/DRGN24.BIN/656/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/659/66",
+          "texture": "SECT/DRGN24.BIN/659/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/662/66",
+          "texture": "SECT/DRGN24.BIN/662/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/665/66",
+          "texture": "SECT/DRGN24.BIN/665/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/674/66",
+          "texture": "SECT/DRGN24.BIN/674/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/677/66",
+          "texture": "SECT/DRGN24.BIN/677/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/680/66",
+          "texture": "SECT/DRGN24.BIN/680/textures/2"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/686/33",
+          "texture": "SECT/DRGN24.BIN/686/textures/1"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "2": 8,
+        "10": 5,
+        "3": 3,
+        "0": 13,
+        "1": 3,
+        "5": 16,
+        "11": 8,
+        "8": 12,
+        "12": 18,
+        "9": 2,
+        "4": 26,
+        "6": 9,
+        "7": 6
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "337ef5a0f6bbd9ab011504f844241c160123b1cf562b8b8001fb2b1ee7691db5",
+      "timSha256": "01fabd8bbde8691d17c7c494fca38be87cee807e694d5617def66995952bf970",
+      "entities": [
+        "Miranda"
+      ],
+      "consumers": [
+        {
+          "model": "SECT/DRGN23.BIN/116/33",
+          "texture": "SECT/DRGN23.BIN/116/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/158/198",
+          "texture": "SECT/DRGN23.BIN/158/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/170/198",
+          "texture": "SECT/DRGN23.BIN/170/textures/6"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/182/231",
+          "texture": "SECT/DRGN23.BIN/182/textures/7"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/194/132",
+          "texture": "SECT/DRGN23.BIN/194/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/215/231",
+          "texture": "SECT/DRGN23.BIN/215/textures/7"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/254/33",
+          "texture": "SECT/DRGN23.BIN/254/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/317/33",
+          "texture": "SECT/DRGN23.BIN/317/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/326/132",
+          "texture": "SECT/DRGN23.BIN/326/textures/4"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/386/33",
+          "texture": "SECT/DRGN23.BIN/386/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/392/33",
+          "texture": "SECT/DRGN23.BIN/392/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/398/33",
+          "texture": "SECT/DRGN23.BIN/398/textures/1"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/50/66",
+          "texture": "SECT/DRGN23.BIN/50/textures/2"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/53/363",
+          "texture": "SECT/DRGN23.BIN/53/textures/11"
+        },
+        {
+          "model": "SECT/DRGN23.BIN/56/198",
+          "texture": "SECT/DRGN23.BIN/56/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/443/198",
+          "texture": "SECT/DRGN24.BIN/443/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/458/33",
+          "texture": "SECT/DRGN24.BIN/458/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/476/132",
+          "texture": "SECT/DRGN24.BIN/476/textures/4"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/542/33",
+          "texture": "SECT/DRGN24.BIN/542/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/647/198",
+          "texture": "SECT/DRGN24.BIN/647/textures/6"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/656/33",
+          "texture": "SECT/DRGN24.BIN/656/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/659/33",
+          "texture": "SECT/DRGN24.BIN/659/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/662/33",
+          "texture": "SECT/DRGN24.BIN/662/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/665/33",
+          "texture": "SECT/DRGN24.BIN/665/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/674/33",
+          "texture": "SECT/DRGN24.BIN/674/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/677/33",
+          "texture": "SECT/DRGN24.BIN/677/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/680/33",
+          "texture": "SECT/DRGN24.BIN/680/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/722/33",
+          "texture": "SECT/DRGN24.BIN/722/textures/1"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/725/33",
+          "texture": "SECT/DRGN24.BIN/725/textures/1"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "11": 5,
+        "0": 20,
+        "12": 10,
+        "2": 18,
+        "3": 14,
+        "6": 6,
+        "14": 20,
+        "7": 14,
+        "10": 4,
+        "8": 2,
+        "9": 8,
+        "4": 17,
+        "1": 44,
+        "5": 30
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "aca78a024387963d21859154f42d621984e502bcd7d94939ce119bde4e3a57bf",
+      "timSha256": "a3e49b3ac33edaa2e4046f7668a17ed21730dfba3e914af78f98d2b31151c399",
+      "entities": [],
+      "consumers": [
+        {
+          "model": "SECT/DRGN21.BIN/416/0",
+          "texture": "SECT/DRGN21.BIN/416/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/419/0",
+          "texture": "SECT/DRGN21.BIN/419/textures/0"
+        },
+        {
+          "model": "SECT/DRGN21.BIN/422/0",
+          "texture": "SECT/DRGN21.BIN/422/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/416/0",
+          "texture": "SECT/DRGN22.BIN/416/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/419/0",
+          "texture": "SECT/DRGN22.BIN/419/textures/0"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/422/0",
+          "texture": "SECT/DRGN22.BIN/422/textures/0"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "2": 16,
+        "1": 41,
+        "6": 2,
+        "3": 2,
+        "4": 7,
+        "5": 6,
+        "0": 10,
+        "7": 7,
+        "8": 2
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    },
+    {
+      "modelSha256": "aca78a024387963d21859154f42d621984e502bcd7d94939ce119bde4e3a57bf",
+      "timSha256": "0d41609b083a467c6b8a8e2a9b6ac52896935c62f4e143a8bfd9b5737b155891",
+      "entities": [],
+      "consumers": [
+        {
+          "model": "SECT/DRGN22.BIN/809/231",
+          "texture": "SECT/DRGN22.BIN/809/textures/7"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/923/231",
+          "texture": "SECT/DRGN22.BIN/923/textures/7"
+        },
+        {
+          "model": "SECT/DRGN22.BIN/926/231",
+          "texture": "SECT/DRGN22.BIN/926/textures/7"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/206/231",
+          "texture": "SECT/DRGN24.BIN/206/textures/7"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/320/231",
+          "texture": "SECT/DRGN24.BIN/320/textures/7"
+        },
+        {
+          "model": "SECT/DRGN24.BIN/323/231",
+          "texture": "SECT/DRGN24.BIN/323/textures/7"
+        }
+      ],
+      "status": "source-eligible-art-and-runtime-pending",
+      "usedPalettes": {
+        "2": 16,
+        "1": 41,
+        "6": 2,
+        "3": 2,
+        "4": 7,
+        "5": 6,
+        "0": 10,
+        "7": 7,
+        "8": 2
+      },
+      "hasClutAnimations": false,
+      "hasExtraSubfile": false,
+      "dimensions": [
+        64,
+        112
+      ]
+    }
+  ]
+}

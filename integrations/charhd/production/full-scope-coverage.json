@@ -1,0 +1,1508 @@
+{
+  "scope": "Full CharHD character texture program; 19 named party battle forms are one subset, not the mod denominator",
+  "fullGameDenominator": null,
+  "denominatorStatus": "Open until NPC, scripted-variant and unresolved actor ownership are classified",
+  "categories": {
+    "partyBattle": {
+      "namedForms": 19,
+      "generatedBaselineCandidates": 19,
+      "selectedDevelopmentPilots": 1,
+      "finalAccepted": 0
+    },
+    "partyFieldAndWorld": {
+      "consumerBindings": 1026,
+      "deduplicatedModelTimPairs": 15,
+      "distinctTextureHashes": 13,
+      "finalAccepted": 0
+    },
+    "enemyAndBossBattle": {
+      "nonemptyTextureFiles": 244,
+      "distinctRawTextureHashes": 226,
+      "generatedCandidates": 0,
+      "finalAccepted": 0
+    },
+    "storyAndGenericNpcs": {
+      "status": "Full field consumer census and named ownership required; catalog priority counts are geometry containers, not NPC population"
+    },
+    "scriptedCharacterVariants": {
+      "status": "Alternate costumes, forms and encounter-specific appearances require explicit consumer mapping"
+    },
+    "unresolvedActors": {
+      "catalogGeometryContainers": 536,
+      "status": "Classify character versus prop/effect before assigning CharHD ownership"
+    }
+  },
+  "boundaries": {
+    "ModelsHD": "Geometry, coordinated materials and texture identities",
+    "CharHD": "Textures and surface artwork for character, enemy, boss, NPC and scripted actor consumers",
+    "UIHD": "Portraits and interface artwork",
+    "FxHD": "Spell and effect imagery",
+    "EnvHD": "Environment and prop surface artwork"
+  },
+  "monsterTextureSources": [
+    {
+      "source": "monsters/0/textures/combat",
+      "sourceSha256": "7d152180f750f433775224eeb9ebb0f2a1c4a105d5527a6231d109305f2c3632",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/1/textures/combat",
+      "sourceSha256": "67bdf68c96fe1b856960e91a3c99e57746c700a6e50bf2b1636c41c8097c7579",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/10/textures/combat",
+      "sourceSha256": "35e334262b2f5d1a19961c475779ce6c7ab8dbb07af352d2ce614b33fc80a3ec",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/100/textures/combat",
+      "sourceSha256": "5a1a41bfc45f4e023f1427989e616144d09fe4628bc341c32ce12c55c6632b16",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/101/textures/combat",
+      "sourceSha256": "9a4511290cc947685041f7d37ecce559c467dae4d595724cd59ea6b4dfb125b9",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/102/textures/combat",
+      "sourceSha256": "847f272f7be46b3e658263e8f367be5e5d0348090d22abb2829a82f389043914",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/103/textures/combat",
+      "sourceSha256": "577698b2bf34bd40017fdf410a52ceeb097da6cc4cff055339ba11cd39fbcab4",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/104/textures/combat",
+      "sourceSha256": "16d7c0f2436c10ee2bb5952b2b1eac45195c301dd975f38b4c0babaa074ac0da",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/105/textures/combat",
+      "sourceSha256": "5e0b4afe79b212a35b6112df9ff48d5b7843584856f2a65416976c0cc94aa6a3",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/106/textures/combat",
+      "sourceSha256": "60772928b92894e55de493dbce6756e4b49c15c695cf4ec5618a987a065998d2",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/107/textures/combat",
+      "sourceSha256": "126f74b3b4c557fd4e988b4859d6a3458a0c5353585888028ad3ca26991d1a05",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/108/textures/combat",
+      "sourceSha256": "0beb1c0c98db93ff961fb84200f0bc9f10dbff57d1916fe1562ef5185374cdcb",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/109/textures/combat",
+      "sourceSha256": "cf204e79f60ae7c16e46190418737a7b3f83aa2ac7cf056d09c1cb402946d371",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/11/textures/combat",
+      "sourceSha256": "b7b6f890106ef6574ced4ff798b5798ea52df4c33f4d38399cc4dff6b7f500d1",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/110/textures/combat",
+      "sourceSha256": "f5ca72e00a8ddd301cdf66eec4bde86199ed7a0afdfd9ef5a33fd91c4a320dd1",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/112/textures/combat",
+      "sourceSha256": "620c3a3d1724db51607cf45cff2e0c784019a97a85516f1e2de45433f98f2f38",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/113/textures/combat",
+      "sourceSha256": "0735e857c3267c4162d67f743ef448d8dabad1f717ba3c00ce353116b03eec32",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/114/textures/combat",
+      "sourceSha256": "a0fbee055ab9ae0bc1b81dc8f11157344be8dc40300bc497ad5e452eb92d0245",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/115/textures/combat",
+      "sourceSha256": "e0fd273d43858811454972d63d1451b38a80430b102f9373067605c295a14fd4",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/116/textures/combat",
+      "sourceSha256": "5ae5b4462355577c174a977f70d937546ca49dabf77f778e76d803f62fa1f804",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/117/textures/combat",
+      "sourceSha256": "dff84e1bcbc270af4255463e1fc8f38a26c063ae15ee1240ca9b00063c76f37f",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/118/textures/combat",
+      "sourceSha256": "10c89fe94218e15fd2473361f2235339cf87541e05b0b484fd51c90cb995f1b6",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/119/textures/combat",
+      "sourceSha256": "503d1b1dd665f99029072b555b93b84babda1d0b1344dad7f86159405e4c97c1",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/12/textures/combat",
+      "sourceSha256": "67e8e492d2004b3ea117015b675a5d13985704c039ebae38867c29899b8b44ac",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/120/textures/combat",
+      "sourceSha256": "f6125d456ad07a7a17f996fd70eef0a0899ffadbdf013f30e47e14e5f088ea92",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/121/textures/combat",
+      "sourceSha256": "f57c4309d4a00aa7b93d21b5ab33b2715b34eac02b68e0d99e67388f5d61371b",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/122/textures/combat",
+      "sourceSha256": "3bd168773876ae4de7f4cf10899b7a5056bc2be1454c5bce8ceb930b070e67ca",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/123/textures/combat",
+      "sourceSha256": "038eb4e218b464cd490aee63da4c45064cf3f45d221d61907362404a24396501",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/124/textures/combat",
+      "sourceSha256": "73263f282990e0399566f59e164f5b85be9da4ea3b4f7d1808f787348ff8e3a3",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/125/textures/combat",
+      "sourceSha256": "b3b6114405378d8ce22bb72c59de1d17c9265de661f4b0a716238c55c9860f37",
+      "bytes": 32896,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/126/textures/combat",
+      "sourceSha256": "e13a84d59171059b109e6b0cd9ff63254d30b9933fa4214dc2b48b4c9cf4bcd0",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/127/textures/combat",
+      "sourceSha256": "fbefda329a992d1e65eb970b23dcb231ed536c0b6445d67d8a4105edbe3634f3",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/128/textures/combat",
+      "sourceSha256": "d9abf25eeb00cd979b3d9a71271e8a299cafca81976f8be64690a5963e050175",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/129/textures/combat",
+      "sourceSha256": "c4a3e05013397ef8abbf7e785ddb23741c0e4a0f2b3ef40c2e2bdd85f670e242",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/13/textures/combat",
+      "sourceSha256": "1e508ea62d4065fa5658abeac44ae373f837ec78e7f4b43b67d2796e9a36e7a4",
+      "bytes": 32896,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/130/textures/combat",
+      "sourceSha256": "14af83e123af8555597cdab21f10c43a779e080a1ae5e57c69a7ceadbc05910e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/131/textures/combat",
+      "sourceSha256": "86833de91c771e82d5301eba90dc63331ee5d29b57ff6cf5254f47fd22ae8cb2",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/132/textures/combat",
+      "sourceSha256": "86833de91c771e82d5301eba90dc63331ee5d29b57ff6cf5254f47fd22ae8cb2",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/133/textures/combat",
+      "sourceSha256": "59e910728d4fffc2cbcbcf0db6f95910fb82a592796e13fb986d998545150fb7",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/134/textures/combat",
+      "sourceSha256": "c4a3e05013397ef8abbf7e785ddb23741c0e4a0f2b3ef40c2e2bdd85f670e242",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/135/textures/combat",
+      "sourceSha256": "fef5f3161f6b4f854eb4e5382ab64524cf93b4ddd76493e45d831f143ed35cfb",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/136/textures/combat",
+      "sourceSha256": "3d73d335cc5cbada1e8a3f643b29b689ccd22c75a92a9697d51138857fa8110d",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/137/textures/combat",
+      "sourceSha256": "7b70ff047b1e54e00d2a3ce666990a66f06f2a94a4782a55bf9eb74d4655c5de",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/138/textures/combat",
+      "sourceSha256": "27d7d3f14e4c9566dc8d8c6ad45ce260a0f3bc52c8d4bbe8f0e075b3a934c8a7",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/139/textures/combat",
+      "sourceSha256": "65eb826fafb8047e2f01305f5dc7af215f8136f1f12828c424dca7bad1abd16c",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/14/textures/combat",
+      "sourceSha256": "39dccaa86705c7d7df02eeb3048ea40fba08d169882fda54ff2baa671f94ffb3",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/144/textures/combat",
+      "sourceSha256": "9d8638c21322addf11cea5627a264cb0c5d24b0c73810b5faa3ebb0b9669f693",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/146/textures/combat",
+      "sourceSha256": "5a1a41bfc45f4e023f1427989e616144d09fe4628bc341c32ce12c55c6632b16",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/148/textures/combat",
+      "sourceSha256": "16d7c0f2436c10ee2bb5952b2b1eac45195c301dd975f38b4c0babaa074ac0da",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/15/textures/combat",
+      "sourceSha256": "27b918216ab0089e4f1eecdaa85cc98695696580168e6fd7292e92b58e0bfd37",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/150/textures/combat",
+      "sourceSha256": "0bcaa95cda7d8ab9bebd4518b310cc05df5ce709a430f83ca9328647d587a67a",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/152/textures/combat",
+      "sourceSha256": "9a4511290cc947685041f7d37ecce559c467dae4d595724cd59ea6b4dfb125b9",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/154/textures/combat",
+      "sourceSha256": "5a38562e4806664b43bbbd3e681a2c5906c3be36d5a78280ac790f9b27efa387",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/157/textures/combat",
+      "sourceSha256": "c1fb88efd59d3cdc0909b17ff3b59fc2ce4e8d6b67380c47cd59d221a664cc49",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/16/textures/combat",
+      "sourceSha256": "232db5320bb5bc98261fc304a11389fd85ef6b8c93ae42ba2124dd1a6af08fbd",
+      "bytes": 32992,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/17/textures/combat",
+      "sourceSha256": "b45fda3ec205047077fe553dadfd9527f59219bf4bfda3a3dd3a18762648c043",
+      "bytes": 33024,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/18/textures/combat",
+      "sourceSha256": "7c5393e2af8916209d1b8b77f28b831af8b0a64716cdfa259c179eac68acc4c1",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/19/textures/combat",
+      "sourceSha256": "7716052dfe3c02805c3e8657832d3d5871c5bfa4481fe205755f5548b13f77a9",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/2/textures/combat",
+      "sourceSha256": "26d46ead6aeb979e825bb5dc4e16fe99afc6561a2faa6ea46aa6b6dfb8f9d02f",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/20/textures/combat",
+      "sourceSha256": "1e3db8ae9a5aec246da0aa88037b1a8c940f7e76d328827de6ad050170d206d3",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/21/textures/combat",
+      "sourceSha256": "5d125949edd59513a899b4bc18189996e460b58de00d2aeef62154e8cdbc0c62",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/22/textures/combat",
+      "sourceSha256": "168bb43017059b50db6aa4409ddf3368bd42c6475c4b265496cee2a5bc3857a1",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/23/textures/combat",
+      "sourceSha256": "b6358601f070508c00c4878c1d8eae3671acd9802fa703994b54328035775726",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/24/textures/combat",
+      "sourceSha256": "e55cfa33e2341b35c5ae49e971d51a90a51cca9d5ca5ccbc657ca66b03975a9e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/25/textures/combat",
+      "sourceSha256": "78af91e10a732f6001a33ef0be33fcdac1cc4f4edbc4d68bfdb64da9b85f427e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/253/textures/combat",
+      "sourceSha256": "71cecae8d917e7aef448e85888fc7f3e1e3efc3563cc71a823da1c5ccb443234",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/254/textures/combat",
+      "sourceSha256": "e2e63ded98fa31390b295adfd9fba5ad8e17cd02ebbde188d2ef8208ef0bf367",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/255/textures/combat",
+      "sourceSha256": "031d38721a15ed04fb29b794be91006319f6b85496de2ea3a3a8dc3d59f56e6b",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/256/textures/combat",
+      "sourceSha256": "6ca5e14f40ebebe3444589d857b481db7d946bb4e44fc1dac9401c571831c5ef",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/257/textures/combat",
+      "sourceSha256": "1893731e6c2a308d83af438ebc8ee57938e47d3d0a125cd79771c0b50b73b521",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/258/textures/combat",
+      "sourceSha256": "58743b7caf53f2852e36009793cc3ad4fa1e4b3862e79c2df51f7bb01b7d3935",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/259/textures/combat",
+      "sourceSha256": "c4a3e05013397ef8abbf7e785ddb23741c0e4a0f2b3ef40c2e2bdd85f670e242",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/26/textures/combat",
+      "sourceSha256": "dd7164bf603937fed167e70e371245bd06f9279a380d198b51eebb1b0e04a423",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/260/textures/combat",
+      "sourceSha256": "59e910728d4fffc2cbcbcf0db6f95910fb82a592796e13fb986d998545150fb7",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/261/textures/combat",
+      "sourceSha256": "a2ee94d0f9b6f2e183748d9f4f9ff94ebf31f01643cdce42b16a858fab45ab71",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/262/textures/combat",
+      "sourceSha256": "2b609ec3554a52347b41eadf7825092951c321199e9861c43332279e34ebcd01",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/263/textures/combat",
+      "sourceSha256": "aab6428d41ca987d59ac16edea37b806c030c52445c56250527ce8fbcdd4de8b",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/264/textures/combat",
+      "sourceSha256": "396ba0b5d4073e9dc4df59241f549c8a9a743248880fc9f42984052e8362c732",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/265/textures/combat",
+      "sourceSha256": "83a3f8c7defed825308a1e90224acb18578a00642830200154dc6e7f655b47c2",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/266/textures/combat",
+      "sourceSha256": "30d42fe1e513781e4596c51be716e16a91b903f1e47b5aa900b68d5b0ef3cb11",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/267/textures/combat",
+      "sourceSha256": "79249d51da6f0420924391c0c8924d9c15cb64c4bcbdcb642003764357618bc9",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/268/textures/combat",
+      "sourceSha256": "b01134904724b218e29e2e2a8ba507d127bcfa31bf141cd863cb965d9ecaa32f",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/269/textures/combat",
+      "sourceSha256": "d896c1b2cee74e2148a13601750e4fa5a6d9f6a782f80fa9e0b54f92e18eec22",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/27/textures/combat",
+      "sourceSha256": "1d0d977c48a4e315421c1cc275fdb62f3ee2153995c95e3374907564e2f0a155",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/270/textures/combat",
+      "sourceSha256": "d47b8cf2b165c7a81644239d94a6ec37782b5a5e4ae8e32261d4cdecf15631fe",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/273/textures/combat",
+      "sourceSha256": "58743b7caf53f2852e36009793cc3ad4fa1e4b3862e79c2df51f7bb01b7d3935",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/274/textures/combat",
+      "sourceSha256": "c391579519afa2336c47456d71d950c1976f0a9f118764a8e6c37bd8c16c7e6f",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/275/textures/combat",
+      "sourceSha256": "c5c2d5f4f4f99480a818fd92871f4b1594fcb4206c73c0d089401f61f1311bfc",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/277/textures/combat",
+      "sourceSha256": "5756f94b073470f62b99292628c1984f4122a046eaf49337ab41d1a2042a1c2c",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/279/textures/combat",
+      "sourceSha256": "0c5e67a8e5fcd8447ea1839278dd011b07ec401aefaede1d26a8a9da49802932",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/283/textures/combat",
+      "sourceSha256": "780e872e54ce2a56f042f785c7e03f7ed6389a0dd8c806fb7d840e1632fbf6b1",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/287/textures/combat",
+      "sourceSha256": "087f317798063b94e77d817c05b0bcc0c9e663ed8fc649d7b157c202e89357d1",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/288/textures/combat",
+      "sourceSha256": "2cc7acd8590d258cb4b64d838c94b2eabd3231b2bcf358ce270d64efe8c9ae4a",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/289/textures/combat",
+      "sourceSha256": "88659fe53894a573e94fb1c55fd26198213a4db80c9e4f577b4e6677fac66003",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/29/textures/combat",
+      "sourceSha256": "6a0426ea5431ddec1adbe982df072d29330610ff14616af98f7365085b217403",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/290/textures/combat",
+      "sourceSha256": "3935f6580b26fcc665d20750c1fef395d3b1c87f3c8835c6c155dfc72f1ca92e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/293/textures/combat",
+      "sourceSha256": "67addb88fefe5038a36f789632dc670ff9c402a5cef6ab824a26837acc288280",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/294/textures/combat",
+      "sourceSha256": "f15e284ef8b0e33d25c8b991149e23e4a5be6a45275683282b46e97de2282c9f",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/295/textures/combat",
+      "sourceSha256": "587d13cc8f64adb45fd68a97df83a7c82b0cdf9c68bc637aaf34e6b637ada945",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/296/textures/combat",
+      "sourceSha256": "7d3c487665f4aaa86a1303273f754050364b3f22c76017a03926a806d3041aea",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/297/textures/combat",
+      "sourceSha256": "4dfd22c44f078ce4ad8735d9bc21eca54817f833e096ef527fd4387fc49ea5f0",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/298/textures/combat",
+      "sourceSha256": "fb1e2c34c11e62cac2e3a9a7bf447678bd20fda2e831a91cfaf491e984683847",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/299/textures/combat",
+      "sourceSha256": "0a9e0d6515ee082154cc2d0955ed4a8446dd5234f1d13d9de140ffc99a9c0e81",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/3/textures/combat",
+      "sourceSha256": "7331a462fe139239a22c50fa95e68b47d0559e98b9e9629cbe6bc39bb76e83b4",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/30/textures/combat",
+      "sourceSha256": "7b5e6fd9339d233104f0349ffc58cee52b7f99ae0fba7c1b2ec65c6ea910e9d3",
+      "bytes": 33024,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/300/textures/combat",
+      "sourceSha256": "c8891dd7af782983f09b3c209d336e2cf08ee47b7819fc8df6b06a29c8cc171e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/301/textures/combat",
+      "sourceSha256": "904a5acf136880c052d27ddc7bb0da8c3943806822cc6276acf2baf56306639c",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/302/textures/combat",
+      "sourceSha256": "65ec3d45d6c05e0e7673e08a624194b3dab331e86f65440022061c8b540cd8f7",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/303/textures/combat",
+      "sourceSha256": "085c66452ab966f3bb6cf3e4b16dfa64fd05805870473cf12967394a60c6978c",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/304/textures/combat",
+      "sourceSha256": "6b1224c4c0dd2402695fc02ff0a441744d00f91700c586b1ea05336c2861bf27",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/305/textures/combat",
+      "sourceSha256": "12d8ed81ecade568caf3e3677020b4a42ac85d6df223721a2dd9c501580627d6",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/308/textures/combat",
+      "sourceSha256": "46b05c9077bf91f6b8f404ea604213c0484e7e96ff3767c94f297b4bfb1eb80d",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/31/textures/combat",
+      "sourceSha256": "01caca3ea6972f30266ded2b030eaf1b41fe9cc8732f67149b990696cc10dd4b",
+      "bytes": 33056,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/311/textures/combat",
+      "sourceSha256": "8841208b249793bd0104e98d9774b437a0f4a24c01149f85e5282f0340746b79",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/316/textures/combat",
+      "sourceSha256": "12c67241703b44fc085c78dff78cfa712e3fe683e745133cb4b319a04b14fbae",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/320/textures/combat",
+      "sourceSha256": "417a5cf2604e778efa09a0a37418d80d5b5b18f5e80f4925df82f5ca1bcce3f4",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/325/textures/combat",
+      "sourceSha256": "24298d4e193c02b5120bac042eccea72c5570c97472d58c7c82d780923ec5381",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/326/textures/combat",
+      "sourceSha256": "774d11d75ca0694d0a305959119facb8f03b04362e7ba0d1ac92c8d0ab3f40e6",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/327/textures/combat",
+      "sourceSha256": "df86f0be2249805ca131b376299c3a3b3eef7793959e912c4e5a7c370e58b058",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/329/textures/combat",
+      "sourceSha256": "2b8ae860f165b54a6e967eddba441971051d947dd98670737d112657e4499944",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/33/textures/combat",
+      "sourceSha256": "0bcaa95cda7d8ab9bebd4518b310cc05df5ce709a430f83ca9328647d587a67a",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/332/textures/combat",
+      "sourceSha256": "7109cbb0caa4bf3998e2871d339efc2fe2e21e54689bf7ce0bacf186f0559746",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/333/textures/combat",
+      "sourceSha256": "d3919984266d7e057fb9bd95b9256082cead2123a637f4e6ded1f251238c3907",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/334/textures/combat",
+      "sourceSha256": "281814d7b333dedc3721014260653a0c21ac2ca2c3a7d1fbf5b4312fce3164ca",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/335/textures/combat",
+      "sourceSha256": "6c17dc8f90a225f8d921ca29338e6a1209b82547c422d7f71d591d123856ffe9",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/336/textures/combat",
+      "sourceSha256": "8841208b249793bd0104e98d9774b437a0f4a24c01149f85e5282f0340746b79",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/338/textures/combat",
+      "sourceSha256": "0e65cc12403e1484da648e5832dc1134637fa98f1dfd0d7b03d8d4220e3ce04e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/339/textures/combat",
+      "sourceSha256": "a4bb527b6880b42bd6b365aa835f00c8a4e7984e00b652fe27d7ba963aa7c5aa",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/34/textures/combat",
+      "sourceSha256": "51c37144f69aff7e57a019b2bdf7992c4d614e9148fcab27a5dadf2ec3afdd36",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/340/textures/combat",
+      "sourceSha256": "5e28e6364e76b8945142bb6e39e6c926960c72d5ecaa1e4dbac8a802915f3258",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/341/textures/combat",
+      "sourceSha256": "5e28e6364e76b8945142bb6e39e6c926960c72d5ecaa1e4dbac8a802915f3258",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/342/textures/combat",
+      "sourceSha256": "f583976dbeb750ad04628d762f39becfb9637ca81d4f73231192c878a9c0362d",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/343/textures/combat",
+      "sourceSha256": "2a6b122e1c9ca58642487cb7cc198ddb6486ef669e8e8eeece7739bf25479be4",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/344/textures/combat",
+      "sourceSha256": "59939a4046100e70412d0b96fcc64b6ebb0bea0dcdaf68ce2e246c3765360f1f",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/345/textures/combat",
+      "sourceSha256": "59939a4046100e70412d0b96fcc64b6ebb0bea0dcdaf68ce2e246c3765360f1f",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/346/textures/combat",
+      "sourceSha256": "ed619774df6ff49ab071f5a60c269d56d0e0cd9c5f5e7673ff4d25d1c4881516",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/347/textures/combat",
+      "sourceSha256": "2e8f037c2daa3c237e9fc14085fade39ae6f6375ced9afdbd337390ac08925ba",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/349/textures/combat",
+      "sourceSha256": "51e2c00ba921b68a077a305e6c3a30feffeee010b1d0f8650cf878db1e85dee1",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/35/textures/combat",
+      "sourceSha256": "51d345e7e4a2e56d9feb8609ecfd34d11e67487bdede235f6d8fbe463fe9d6d4",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/352/textures/combat",
+      "sourceSha256": "e1c134588aac48b7155d48d53c26c414c2f49f756c1884d4453f32fb10ba8db9",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/353/textures/combat",
+      "sourceSha256": "316e9c931695af833a22a4df631fe730ad85b6d31334baea8bfbc9c099fac62a",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/354/textures/combat",
+      "sourceSha256": "d279dd6640f1e0ed916ac63524b08585e45dff755c56d50a4a017642b5e5861a",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/355/textures/combat",
+      "sourceSha256": "ea6e35485113b40ebd65fbbc8e8ae53b1eb80b0f91985263f49d044e3fd54532",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/356/textures/combat",
+      "sourceSha256": "f279fc41d49bd6e91cdfa93922c7a730e27b4f2eabb068a12d1b99a2a2e5c391",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/357/textures/combat",
+      "sourceSha256": "d47b8cf2b165c7a81644239d94a6ec37782b5a5e4ae8e32261d4cdecf15631fe",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/36/textures/combat",
+      "sourceSha256": "92591fe1f3c1af496ca42086397eb86be1c11e78bcb60675c89f232de44e6837",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/360/textures/combat",
+      "sourceSha256": "880db02ad6b67eca152d731149eaa9ae9fe5df9f177bc1ba1641c781cff909c2",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/361/textures/combat",
+      "sourceSha256": "2e407cab3b5be9c243ba05b36faea6e703691bb6ecc4460c475b714fd09624f6",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/362/textures/combat",
+      "sourceSha256": "dba2cdb6c5f43a775dc111223c39cb7802b2d796dab90738f6e822da98fb3e80",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/363/textures/combat",
+      "sourceSha256": "4d2253a83039051fcb302574469daa4d168e03d0122ba7122c29e40ea80f01fa",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/364/textures/combat",
+      "sourceSha256": "76dffa00f304486762cb51651c80978a9ceb549fc703217f90efafa6f73d53b8",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/365/textures/combat",
+      "sourceSha256": "bf5d910c667fee70714466be7d6aee85f171320543ced5373ee3316d38b8ce16",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/366/textures/combat",
+      "sourceSha256": "a43cc5a940411a1a4cd5e3b5ea0cda49005098361a4fcd9f7de7d37c29674996",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/368/textures/combat",
+      "sourceSha256": "7129ff592ddce6846c58c2901acf7e14a737d77c69edf4555d79c1c5233f3c10",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/369/textures/combat",
+      "sourceSha256": "fa80f5fe82d62437db1ae89406942a4c2bbeb1daa5de68c276cb5fc36dead856",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/37/textures/combat",
+      "sourceSha256": "005eb91c73a51efe016c3dc9a69730e8bfb4e115b006445ab08da31ec3364174",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/370/textures/combat",
+      "sourceSha256": "f8b8342510ffa74cab39668e23609180677fbc8cc494e5e5ca12a0315bedc5b7",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/371/textures/combat",
+      "sourceSha256": "c494c05de9354e2908ce7421e9e4018541a69250520c9f61d1d772eb0412ce67",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/373/textures/combat",
+      "sourceSha256": "ec77e9e05377ef1e82d8cf0149f6bc8f14c53bba9ffae302c76704129c24ce1f",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/374/textures/combat",
+      "sourceSha256": "abd316e489840988d6aa070650b0421790908a22c5aff4bd85a45014814b8fba",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/375/textures/combat",
+      "sourceSha256": "14aa44a379ffd906b9636ae1ed5d65976295edd2d465f1c5ca2659c842b70d95",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/378/textures/combat",
+      "sourceSha256": "75197c6b8a4c6e69f42591c1114b0accacb6019df1a62b294d43bcee9ee87fe9",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/38/textures/combat",
+      "sourceSha256": "fcf4a966f058bc4f885d8147429e605a9c58c887c3e599b15a187c572222e0e0",
+      "bytes": 32928,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/381/textures/combat",
+      "sourceSha256": "49a1b971c391b3183d0dcbe785faa19b82dd1a089ccca9a6b755cc138c4a7302",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/382/textures/combat",
+      "sourceSha256": "d1b637ac65066c6f6f3661648a29aeea4ca8bc7a8977b5310ac125d3ba0dc23c",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/383/textures/combat",
+      "sourceSha256": "3b49e33b205bc8487abaaad95b59ea4b0ea17252d175990f97fa7532924b721c",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/384/textures/combat",
+      "sourceSha256": "d9ab0866e930c2a5ea8a32d7b6e4e0503db9b812a3843bf6b0f36e54d733fae0",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/385/textures/combat",
+      "sourceSha256": "737847540ab0e2606b0a74637c16dd5db7daf1fcfe3d2e7d010eaf4c0dbb8bf6",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/386/textures/combat",
+      "sourceSha256": "d483d6cb829f5248b8fd7a61082bf1b935e9c01ecef1ba749037dd4cde118198",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/387/textures/combat",
+      "sourceSha256": "9569904b91a359befe7b780f2752a97ca0c0620dd793ac0ca8cc82e5cb1189e9",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/388/textures/combat",
+      "sourceSha256": "d06474f3c7940d81d34c4991bf8fbe1e8b8558b9621ee4dee01bfcb93e37b5f8",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/389/textures/combat",
+      "sourceSha256": "f279fc41d49bd6e91cdfa93922c7a730e27b4f2eabb068a12d1b99a2a2e5c391",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/39/textures/combat",
+      "sourceSha256": "8ffff0f46d27fbc3f967dbd164ea7fb8cf80444cbfe9d0fd214f2fd5d56496e0",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/390/textures/combat",
+      "sourceSha256": "b09783ca9c0c3b960e17f30d1bb4f8bed03fd6853be49e8551f06c2b71e8362e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/391/textures/combat",
+      "sourceSha256": "e9ddf8940af7884ed30c3215e1269348fdc05e75108a5c74ea1b0897aee730a8",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/392/textures/combat",
+      "sourceSha256": "8db237a922db950677de14b795d035b87fbf6ef58f80568f2830d5d1e750f756",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/393/textures/combat",
+      "sourceSha256": "a833c9ed3ea936083e3720011d33661acea65147bbe8cfa14c60e9c44ba4064c",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/394/textures/combat",
+      "sourceSha256": "d766df4a1e884c33d2920ab0f0927453f30dab00267fdc5d1bb699d6ce02ddef",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/4/textures/combat",
+      "sourceSha256": "db3437d3b730670275620bde088f10188103389ee3f06c17fede2787c20fd8c8",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/40/textures/combat",
+      "sourceSha256": "6aee04485105554e5f8979a3605c9a2fa94503922140533b4559dfe75e9d5cb8",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/41/textures/combat",
+      "sourceSha256": "b3b6114405378d8ce22bb72c59de1d17c9265de661f4b0a716238c55c9860f37",
+      "bytes": 32896,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/42/textures/combat",
+      "sourceSha256": "2a78deae75e37c9a2d629a30d814032eeb5cc8600bff1af1790d26a171608b6f",
+      "bytes": 32992,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/43/textures/combat",
+      "sourceSha256": "45c8d361cbdd4c4f00c69eef49e08e1a16b759bce77005464fa722ca0fcde64a",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/44/textures/combat",
+      "sourceSha256": "32f38045018897feaf0844a19697a2bf8fc60430dcb238aba31b67158e07fe65",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/45/textures/combat",
+      "sourceSha256": "8653b64a4b68bd8f2a2ff5d13cedcb5ac2b2da4a12bae038e419e028c60e33cf",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/46/textures/combat",
+      "sourceSha256": "43a60d3a71b3b7a6f16b0c2e3696945bbfe95840c48a563bcb203225032183e0",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/47/textures/combat",
+      "sourceSha256": "ab5ce98d39595479f5ef9d6d60f0262b6cfa29b0affead4c17df9a1a3c045d6b",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/48/textures/combat",
+      "sourceSha256": "194a5eae4ab9f8667d069944cfcc7abb4f89ad7c22a68bcd1cc09740d82a25b2",
+      "bytes": 33024,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/49/textures/combat",
+      "sourceSha256": "e1745587c4768aa7e02e56e64ab497ee56e04f00b262a3992db285d1704ee450",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/5/textures/combat",
+      "sourceSha256": "111b854d057442a6d8ad0f08b5da6bde0f6913929e1cafcfd2ba9c9b4140b7b0",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/50/textures/combat",
+      "sourceSha256": "4ab3106763c85f2ff9aba25ea87dbfcc1528d1d0505b8e530e024c0ee373502e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/51/textures/combat",
+      "sourceSha256": "a1f242f8f71c1e8874ab30b2be590eee8aa7b03e5204e36a2c77f179effff388",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/52/textures/combat",
+      "sourceSha256": "20196f53ae73c58a2e1e80b84c1cd6f43f16dec93cb044050ee6cf5657a30211",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/53/textures/combat",
+      "sourceSha256": "ee293829d15ce87fd2b879f2591267c60472a99dd17354f778baa91a647e37b7",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/54/textures/combat",
+      "sourceSha256": "3549d69f1bf66c534cd66b4f3acfb5656fdd499b21d65d66c21d9e0a4d346dac",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/55/textures/combat",
+      "sourceSha256": "72f91b6e7f2b87483159d9fa95b0936b8b89b10f27dfa7485cf36c5a19fa6c9b",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/56/textures/combat",
+      "sourceSha256": "0cecc6798bffbc33dfaa88092c01d29a8151e1c69f7bf2cd1c0887a3f4e80409",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/57/textures/combat",
+      "sourceSha256": "d670d8c686babcc7c4caf371e7c7f5505cede604d442e36f62de343471879f2e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/58/textures/combat",
+      "sourceSha256": "93f094cae93760c91700103b7cdeb9eca7138a74491b45cb5bfb3a027e4cd20c",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/59/textures/combat",
+      "sourceSha256": "529996a9f9287bfd9a92cfad396edd43fc3d08dfed90ee422d4d0cc2aa5f837d",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/6/textures/combat",
+      "sourceSha256": "927827693f379afc0a7066fe0b3d8362742c3de67646e7987d5e38cbcd3a5879",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/60/textures/combat",
+      "sourceSha256": "e93aacd1c2f1521e61818c049f4d81be786152cc7b24414bca383816a6090510",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/61/textures/combat",
+      "sourceSha256": "98fcd40641a4ff01829dc8a98ec04808f4099db971e3ba9bfb5fc1ecfc369d09",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/62/textures/combat",
+      "sourceSha256": "ebd0e0878f60036dfdedc9159d4291ad4767c61274e78f6ffaca36a1122f1034",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/63/textures/combat",
+      "sourceSha256": "9628023710d055cfa7c0ced89bb3b095906cf5759367b087c56c7a6134520f24",
+      "bytes": 33024,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/64/textures/combat",
+      "sourceSha256": "bf5962d6813e50ad2bd9c07fcff3623ecb70fb3c4c1a8b134ffad5d3fd988823",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/65/textures/combat",
+      "sourceSha256": "452bb5db6007d9bbb88967d0fbeb2205b50706bcabf385dceb4bdd23ca44f1b1",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/66/textures/combat",
+      "sourceSha256": "6f03ea1ce741e77bb95b075a5f2269f37d774b8f3b2f4837f1c126e3b8c2f55e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/67/textures/combat",
+      "sourceSha256": "1b38fc9abfdb182e282c308d5ad8bf47e8babc39ee55a605a79748e3e5a90212",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/68/textures/combat",
+      "sourceSha256": "354a51501af91deea83f064dec2572b6929399a55acfcd779690d18d3acb353b",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/69/textures/combat",
+      "sourceSha256": "92efa05490b03eaca4ac7bb9f0c0822ae253a211b50e36e2d30054abf3a4885e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/7/textures/combat",
+      "sourceSha256": "cf34a5946209aa7e970a38e13357842282e982847ab95034c50b22082e0c96f0",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/70/textures/combat",
+      "sourceSha256": "51800a51082296ae2a0bd4ab11a6e620ef48f73c60c5dc7bb0362f40abc38597",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/71/textures/combat",
+      "sourceSha256": "905d53529a2122a38fa3e7f3d3c60e6adbd9ba60aa63f194a6fef477770380ea",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/72/textures/combat",
+      "sourceSha256": "d9e9db2b21e9723b0388b5f4ccdb8de56b014c88b3216a55401fa955935eab6b",
+      "bytes": 32864,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/73/textures/combat",
+      "sourceSha256": "0aaccbc26aa1ab80aafc7910c37853ac530774d3c0bfeef3d79dd025d4a5e2ae",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/74/textures/combat",
+      "sourceSha256": "c1fb88efd59d3cdc0909b17ff3b59fc2ce4e8d6b67380c47cd59d221a664cc49",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/75/textures/combat",
+      "sourceSha256": "2e963832bb369e22e2e1a842fa3cfcdb72bec3bd1811b6ebcd33ddd97b406304",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/76/textures/combat",
+      "sourceSha256": "802c297b7776ab4bd28c437553d2d010416c0cee815c468600ae8668911a7b77",
+      "bytes": 32896,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/77/textures/combat",
+      "sourceSha256": "277857eaba779ed2e097d72962b9261113e0bfefefeeb07013876bebd3b0087e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/78/textures/combat",
+      "sourceSha256": "ae13d478282f886beb7aefce559a64eb7f14a6de0f0e252fe88f1eb46b098088",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/79/textures/combat",
+      "sourceSha256": "99b165e5dc27ea6a220e97e587ab6cd7e5bba9957de1a647ad63d950fa3b2592",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/8/textures/combat",
+      "sourceSha256": "482cacdec20f869b14c4034b783a2d89e389634f3ac824bdac149ac59038ee74",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/80/textures/combat",
+      "sourceSha256": "6200a3625b73d0744a3f208f8ae04546e6bbe1ac28eaa1a6fa4fa52667ad431c",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/81/textures/combat",
+      "sourceSha256": "eae693bd2bacc469a73296dde29aa68f6039f6da1dcdb1e8056f75e857bcf725",
+      "bytes": 32928,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/82/textures/combat",
+      "sourceSha256": "c30570d4254543a85845ace44446aa4a93073530d434bb7ce69bb86448a7ad16",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/83/textures/combat",
+      "sourceSha256": "c391579519afa2336c47456d71d950c1976f0a9f118764a8e6c37bd8c16c7e6f",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/84/textures/combat",
+      "sourceSha256": "498b144d5dbb97372472ccf12f0592aef0cb904758271141af06bcb6fd59083e",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/85/textures/combat",
+      "sourceSha256": "e819f0b1135666e3bfee88f1f7a7258ade9e40bed93aae0cba96b346d1ff9fae",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/86/textures/combat",
+      "sourceSha256": "5a38562e4806664b43bbbd3e681a2c5906c3be36d5a78280ac790f9b27efa387",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/87/textures/combat",
+      "sourceSha256": "3fbb307c12c92e54b3b72db1ba7fca620436ca90bccb4768719a1faa28d1ae17",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/88/textures/combat",
+      "sourceSha256": "978c9a93dce34940f37830bbb1f6de840d2eefc5f9b3cb62782f5d298ac1108b",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/89/textures/combat",
+      "sourceSha256": "0ddbf86efd0517130492b7ec079798e9f423e4e35f67acc4b02e5150d9f2dab1",
+      "bytes": 32960,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/9/textures/combat",
+      "sourceSha256": "5dd3343de320eff7ae964c07a58ab4c5289d9879145a16706b14356cb0933fda",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/90/textures/combat",
+      "sourceSha256": "07ef990057760bdd6c2d885c2169a32ef3c276882b0525ec6b30d872deb2b440",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/91/textures/combat",
+      "sourceSha256": "e38622689066faba280759ab33a768b83d6280f9b13b013faad08165b4f9bc88",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/92/textures/combat",
+      "sourceSha256": "0ed68164cee7889a28c74ef16476b27f45826ab35169786e0989d4389d8503a1",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/93/textures/combat",
+      "sourceSha256": "d3cc9e732704e7c933e73d92bf41ca696e0fe64e4c259f5ae69e15d848c93983",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/94/textures/combat",
+      "sourceSha256": "e525b884916c39e82c4e245318ed58c470c687c44e2e8e48c3b3911b34e75ef3",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/95/textures/combat",
+      "sourceSha256": "825e585a815841f9b82321f3a16c074cc5a19c5dc5eab2cbab405278eecb325b",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/96/textures/combat",
+      "sourceSha256": "06cc5c71bf31ec422851150ac81dde9f3e4e9411e64361ab016921c897e071f8",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/97/textures/combat",
+      "sourceSha256": "f1ffba1c611e7443df3c8479010f610ac09037dc4b194f440ddccdd39a564c46",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/98/textures/combat",
+      "sourceSha256": "37899f9f5bb1b914e66da951613ced0207c9b62ad1f4ac12c484a6768ca3f1c2",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    },
+    {
+      "source": "monsters/99/textures/combat",
+      "sourceSha256": "434de0bcdbfafc3cbdb4023f549a4bc5d6f7ca3517208400fd562a695917d32a",
+      "bytes": 34848,
+      "status": "source-discovered; model binding, reconstruction and acceptance pending"
+    }
+  ]
+}

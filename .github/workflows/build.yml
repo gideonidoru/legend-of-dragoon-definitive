@@ -39,7 +39,7 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/definitive-visual-checks"
           "$RUNNER_TEMP/definitive-visual-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
-          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass; do
+          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing charhd-full-production visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass; do
             "$RUNNER_TEMP/definitive-visual-checks/bin/python" "scripts/test-$fixture.py"
           done
   build:
@@ -145,6 +145,7 @@ jobs:
             build/distributions/Definitive-Installer.zip
             build/distributions/Install-Definitive.*
             build/reports/tests/deliveryTest/**
+            build/reports/tests/charHdTests/**
             build/reports/tests/managerWindowTest/**
             build/reports/installer-*.png
             build/reports/focused-*.png

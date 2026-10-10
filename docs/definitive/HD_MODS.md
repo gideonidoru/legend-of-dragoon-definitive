@@ -5,7 +5,7 @@ The owner requested four independent artwork mods, installed with Definitive by 
 | Mod / ID | 0.1.0 content | Extension boundary |
 | --- | --- | --- |
 | EnvHD / `envhd` | 24 separately addressed palette regions on static battle stages 0 and 6; 4× reconstruction with source coverage preserved | Additional verified static stage packs, then field props/world-map surfaces. Existing Skurfa scene artwork is untouched. |
-| CharHD / `charhd` | The source-bound field texture adapter; no new character assets or geometry | Approved compatible packs from the model workstream. Existing adapter requires its single-palette 2× contract; multi-palette/remodeled-character runtime integration remains future work. |
+| CharHD / `charhd` | Source-bound battle material adapter with a Dart armor development pilot; field adapter retained | Explicit surface/roughness settings use current material lighting. Full character reconstruction and native/Deck acceptance remain open. See [production status](CHARHD_PRODUCTION.md). |
 | UIHD / `uihd` | Complete default HUD and all nine portraits: 259 assets, including every HUD/basic palette, full menu pages and Dragoon spirit frames | Complete asset coverage; native artistic and physical Deck acceptance pending. See [UIHD production](UIHD_PRODUCTION.md). |
 | FxHD / `fxhd` | The orthographic field dust texture at 4× | Separately verified effects/animation families; spells and transformation sheets remain original. |
 
@@ -13,7 +13,7 @@ The mod sources live under `integrations/<id>`, with reviewed runtime resource c
 
 ## Build and delivery
 
-`gradle/hd-mods.gradle` compiles four independent mods against the current engine and produces `EnvHD-v0.1.0.jar`, `CharHD-v0.1.0.jar`, `UIHD-v0.2.0.jar` and `FxHD-v0.1.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
+`gradle/hd-mods.gradle` and the specialized `gradle/charhd.gradle` compile four independent mods against the current engine and produce `EnvHD-v0.1.0.jar`, `CharHD-v0.2.0.jar`, `UIHD-v0.2.0.jar` and `FxHD-v0.1.0.jar`. Standard `build` and `definitivePackage` include them alongside Skurfa under `bundled-mods`. Each retains code/artwork notices and release metadata.
 
 Managed launch links all four JARs even when the legacy Skurfa preference selects original backgrounds. It preserves the game's saved enabled-mod configuration during updates/rollback. Bundling is not forced activation: existing players' in-game choices remain theirs. A player using original geometry/art can deactivate the corresponding mod without removing the package or changing saves. Standalone installation uses these four JARs in `mods/`, with this matching engine revision: EnvHD/UIHD/FxHD use the additive event/mesh hooks described below and are not drop-in compatible with unmodified upstream 3.0.0.
 
@@ -25,7 +25,7 @@ Stage loading joins the matching model and TIM futures before posting replacemen
 
 Counterattack darkening operates on original VRAM palettes. EnvHD switches to the original stage while that operation is active and returns to its replacement when the original multiplier is restored. Runtime-enabled texture animation likewise selects the original route. This preserves the legacy effect rather than freezing an undarkened HD scene. Shader color conversion still differs by up to eight-bit quantization from original five-bit color; visual/lighting equality is not claimed.
 
-UIHD runs after ordinary atlas registration and through source-bound PNG/native UI loading hooks. It requires original encoded hashes and exact current pixel/dimension matches. Native UI restoration changes RGB while live indexed VRAM retains visibility, STP and palette animation; changed pixels use original RGB. Display geometry, UV coordinates, scissoring and timing stay in source units. Unpadded sheets use nearest filtering; protected lettering/portrait regions retain original visible pixels. Shared bounded decoding/prewarming and lazy bounded GPU residency reuse the engine's enhancements. See [UIHD production](UIHD_PRODUCTION.md) for selection, budgets and open acceptance work.
+UIHD runs after ordinary atlas registration and through source-bound PNG/native UI loading hooks. It requires original encoded hashes and exact current pixel/dimension matches. Native UI restoration changes RGB while live indexed VRAM retains visibility, STP and palette animation; changed pixels use original RGB. Display geometry, UV coordinates, scissoring and timing stay in source units. Unpadded sheets use nearest filtering; protected lettering/portrait regions retain original visible pixels. Shared bounded decoding/prewarming and lazy bounded native GPU residency reuse the engine's enhancements. See [UIHD production](UIHD_PRODUCTION.md) for selection, budgets and open acceptance work.
 
 FxHD uses a source-bound event for the existing orthographic dust quad. It preserves STP/discard/visible-black classification and the original additive blend mode. Particle transforms, brightness, count, timing and size remain unchanged. The TMD dust effect, footprints and other attached effects remain on their original route. Extra quad/texture ownership is released with attached-effect teardown.
 
@@ -92,7 +92,7 @@ Headless checks cover separated palette UV placement, source-page rejection, ani
 
 Regression checks also cover both source-load completion orders, deferred scene execution, obsolete/failed loads, and repeated attached-effect teardown with and without an HD replacement. Teardown cannot post replacement events or recreate HD dust resources.
 
-Source inspection and sampled texture visual review do not prove native scene rendering, combined-mod gameplay, physical Deck costs or player approval. Those remain explicit acceptance steps. No game or visible desktop application is launched by this implementation's headless build/tests. The original pilot covered 24 material regions, five goods icons and one effect. Current UIHD coverage and remaining work are tracked in [UIHD production](UIHD_PRODUCTION.md); Other mods track their own production coverage; UIHD default HUD/portrait asset coverage is complete, with gameplay and visual acceptance pending.
+Source inspection and sampled texture visual review do not prove native scene rendering, combined-mod gameplay, physical Deck costs or player approval. Those remain explicit acceptance steps. No game or visible desktop application is launched by this implementation's headless build/tests. The original pilot covered 24 material regions, five goods icons and one effect. CharHD now adds one authored Dart armor development pilot; current UIHD coverage and remaining work are tracked in [UIHD production](UIHD_PRODUCTION.md). UIHD default HUD and portrait asset coverage is complete; other workstreams track their own remaining coverage.
 
 Environment production follows the owner's current order: battle sky/background
 panoramas; world-map sky and landscape thumbnails; world-map terrain and scenery;

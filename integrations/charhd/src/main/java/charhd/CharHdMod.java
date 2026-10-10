@@ -10,6 +10,35 @@ import org.apache.logging.log4j.LogManager;
 
 @org.legendofdragoon.modloader.Mod(id = "charhd", version = "3.0.0")
 public final class CharHdMod {
+  @org.legendofdragoon.modloader.events.EventListener
+  public void applyCombat(final legend.game.modding.events.battle.CombatantMaterialEvent event) {
+    if(event.replacement != null) return;
+    try {
+      final String identity = legend.definitive.textures.TexturePilot.sha256(event.modelSource);
+      final String base = "/charhd/packs/" + identity + "/";
+      final byte[] manifest = resource(base + "manifest.json", 65536);
+      if(manifest == null) return;
+      final byte[] png = resource(base + "atlas-engine-stp.png", 32 * 1024 * 1024);
+      if(png == null) throw new java.io.IOException("Missing CharHD atlas");
+      final var atlas = legend.definitive.materials.MaterialAtlas.read(manifest, png, event.modelSource, event.timSource);
+      final byte[] definitions = resource(base + "surfaces.json", 65536);
+      final var surfaces = definitions == null ? java.util.Map.<Integer, legend.core.renderer.SurfaceResponse>of() : CharacterSurfaces.read(definitions, atlas);
+      event.surfaces = surfaces;
+      event.replacement = atlas;
+    } catch(final Exception failure) {
+      LogManager.getLogger().warn("CharHD retained original character: {}", failure.getMessage());
+    }
+  }
+
+  private static byte[] resource(final String path, final int limit) throws java.io.IOException {
+    try(final var input = CharHdMod.class.getResourceAsStream(path)) {
+      if(input == null) return null;
+      final byte[] bytes = input.readNBytes(limit + 1);
+      if(bytes.length > limit) throw new java.io.IOException("Oversized CharHD resource");
+      return bytes;
+    }
+  }
+
   public CharHdMod() { legend.core.GameEngine.EVENTS.register(this); }
   @org.legendofdragoon.modloader.events.EventListener
   public void apply(final SubmapObjectTextureEvent event) {
