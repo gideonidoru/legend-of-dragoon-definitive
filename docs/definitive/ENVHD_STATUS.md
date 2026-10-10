@@ -85,3 +85,11 @@ unowned configurations before visual deduplication/empty-layer filtering; shared
 sources and Skurfa aliases must stay deduplicated. Full EnvHD completion is not
 claimed by these baseline batches. Improve bespoke materials and inspect
 native scene behavior before claiming final visual acceptance.
+
+The field census is now decoded and independently checked by native Java CPU
+decoders: 650 configurations, 5,528 unique visible images, 124 empty slots and
+seven native missing-texture slots. The public `field-source-worklist.json` tracks
+every image/scene identity. Of 5,165 unowned visible images, three uniform sources
+remain native and 5,162 require restoration. Runtime selections are still zero.
+The complete private batch preserves each foreground independently; it does not
+flatten movable, hideable or alternate layers into the background.

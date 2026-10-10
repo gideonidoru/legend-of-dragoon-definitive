@@ -39,7 +39,7 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/definitive-visual-checks"
           "$RUNNER_TEMP/definitive-visual-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
-          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass envhd-sky-batch envhd-sky-import envhd-world envhd-ownership envhd-terrain envhd-terrain-pack envhd-battle-materials; do
+          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass envhd-sky-batch envhd-sky-import envhd-world envhd-ownership envhd-terrain envhd-terrain-pack envhd-battle-materials envhd-fields; do
             "$RUNNER_TEMP/definitive-visual-checks/bin/python" "scripts/test-$fixture.py"
           done
   build:

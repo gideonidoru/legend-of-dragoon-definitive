@@ -252,3 +252,14 @@ tasks.register('definitiveFileDelivery', Exec) {
   dependsOn definitivePackage
   doFirst { commandLine 'python3', 'scripts/assemble-file-delivery.py', '--package', tasks.definitivePackage.archiveFile.get().asFile.absolutePath, '--output', layout.buildDirectory.dir('distributions').get().asFile.absolutePath }
 }
+
+// Explicit private field census check using actual native CPU decoders; no renderer.
+tasks.register('fieldSourceAudit', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.FieldSourceAudit'
+  jvmArgs '-Xmx2g', '-Djava.awt.headless=true'
+  doFirst {
+    args providers.gradleProperty('fieldSourceRoot').get(), providers.gradleProperty('fieldCensus').get()
+  }
+}

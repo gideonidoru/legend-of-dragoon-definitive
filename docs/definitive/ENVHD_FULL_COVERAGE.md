@@ -14,13 +14,14 @@ owned. Custom deliverables are public; originals and private diagnostics are not
 | World parchment backdrop | 1 source image | 1 | Gameplay and final quality pending |
 | Static continent terrain | 366 material bindings | 364 / 292 masters on terrain draft | 1 uniform native, 1 wrapped material held; gameplay and final quality pending |
 | Battle floors, walls and scenery | 900 bindings across 89 nonempty stages | 24 existing pilot bindings | 876 uncovered; 518 new candidates cover 525 static bindings but **zero new selections**; 12 masters need repair; 350 animation/context bindings and 1 incomplete palette held |
-| Field backgrounds/foregrounds | 650 source configurations; 5,691 declared assembled images before visible-pixel/empty-slot dedup | 38 existing Skurfa packs; EnvHD gaps 0 | 612 unowned configurations, protected aliases, script-state foreground handling, adapter and validation |
+| Field backgrounds/foregrounds | 650 source configurations; 5,528 unique visible images | 38 existing Skurfa packs; EnvHD gaps 0 | 5,162 nonuniform unowned images to restore, three uniform sources native; 612 configurations, protected aliases, foreground-state handling, adapter and validation |
 | Field props and scene overlays | Mixed pool: 481 field-object page hashes and 400 overlay page hashes | EnvHD 0 | Complete consumer/ownership/material census first; these are **not** 881 EnvHD jobs |
 | Animated environment surfaces | Exact frame/palette denominator unresolved; eight continent animated parts and 350 held battle bindings known | 0 HD animation families | Water, scrolling surfaces, scenery frames/palettes, mapping and validation |
 
 Do not sum these rows: an image, source configuration, texture page and runtime
-material binding are different units. No reliable total-image completion
-percentage exists until the unresolved rows are classified and decoded. Each
+material binding are different units. The field image denominator is independently decoded; the overall image
+denominator still requires prop/overlay ownership and animation-family census.
+No total-image completion percentage is claimed. Each
 row's exact remaining work and intentional exclusions are in the JSON ledger.
 All custom native/final-quality acceptance counts remain zero.
 
@@ -49,3 +50,12 @@ Complete delivery requires accounting for every source, finishing all adapters,
 reviewing each selected output, passing package/source checks, and validating
 native gameplay and Steam Deck rendering. Headless builds, GPU probes and review
 boards alone do not satisfy that final gate.
+
+The complete field pixel worklist is `field-source-worklist.json`: 650 configurations,
+5,560 visible bindings, 5,528 distinct visible images, 124 empty slots (123
+foregrounds and one background), and seven native missing-texture slots. Actual
+Java TIM/palette/environment decoders independently agree with every image hash
+and canvas. Skurfa protects 363 unique source images; 5,165 are unowned, of which
+three are uniform and 5,162 require pictorial restoration. No foreground can be
+derived from a backdrop by exact visible-pixel equality. These figures describe
+source work, not completed or installed artwork.
