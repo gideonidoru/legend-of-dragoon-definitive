@@ -50,6 +50,8 @@ Front, side, rear and the three-pose contact sheet were inspected. The face is c
 
 **Hold all fits from native activation.** Use the width/top study as a consistent working comparison, without selecting it as the final proportion or default. Refine the complete head/hair attachment assembly before expanding the style to other characters.
 
+The [follow-up rear-strip refinement](REAR_ATTACHMENT_REFINEMENT.md) improves the resting fit, rejects a crossed/partially hidden projection approach, and expands inspection to seven available motions with 62 sampled keys. It exposes a remaining root seam during movement, so a deliberate head-relative binding is still required.
+
 ## Private reproduction and identities
 
 The runs used the existing private authoring environment: Mac Studio `Mac17,14`, Apple M5 Max, macOS 27.0.1, Python 3.12.0, NumPy 1.26.4, Pillow 10.1.0 and Trimesh 4.0.5. Dependency checking passes. Source reader/render functions were called directly in this recorded environment; the separate CLI's Pillow 12.3.0 / NumPy 2.5.1 version gate was not invoked. No new neural inference, paid service, cloud upload or runtime dependency was required.
