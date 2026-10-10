@@ -36,7 +36,7 @@ tasks.register('fmvHdAssets') {
 }
 
 tasks.register('fmvHdJar', Jar) {
-  dependsOn sourceSets.fmvhd.classesTaskName, fmvHdAssets, jar
+  dependsOn sourceSets.fmvhd.classesTaskName, tasks.named('fmvHdAssets'), tasks.named('jar')
   archiveFileName = 'FMVHD-v0.1.0.jar'
   destinationDirectory = layout.buildDirectory.dir('libs/mods')
   from sourceSets.fmvhd.output
@@ -47,8 +47,8 @@ tasks.register('fmvHdJar', Jar) {
   reproducibleFileOrder = true
 }
 tasks.named('compileTestJava') { dependsOn sourceSets.fmvhd.classesTaskName }
-tasks.named('stageDefinitivePackage') { dependsOn fmvHdJar }
-tasks.named('build') { dependsOn fmvHdJar }
+tasks.named('stageDefinitivePackage') { dependsOn tasks.named('fmvHdJar') }
+tasks.named('build') { dependsOn tasks.named('fmvHdJar') }
 tasks.named('deliveryTest') {
   environment 'ALSOFT_DRIVERS', 'null'
   if(providers.gradleProperty('fmvTailFixture').isPresent()) systemProperty 'fmvhd.tailFixture', providers.gradleProperty('fmvTailFixture').get()
