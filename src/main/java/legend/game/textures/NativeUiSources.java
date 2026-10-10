@@ -30,7 +30,8 @@ public final class NativeUiSources {
     synchronized(this) { snapshot = List.copyOf(this.sources.values()); }
     // Listeners may acquire other locks or remember newer sources; never hold
     // the source-cache monitor while invoking the active mod event bus.
-    snapshot.forEach(listener);
+    // Event.stopPropagation belongs to a single dispatch, never to cached artwork.
+    snapshot.forEach(event -> listener.accept(event.fresh()));
   }
 
   public synchronized long retainedBytes() { return this.bytes; }

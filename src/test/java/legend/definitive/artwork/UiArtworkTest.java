@@ -119,17 +119,17 @@ class UiArtworkTest {
     assertTrue(enhancedBytes<=8L*1024*1024);assertTrue(nativeBytes<=NativeUiTextures.BUDGET);
   }
 
-  @Test void privateNativeSourcesSurviveOwnershipChangesAndRemainBounded() {
+  @Test void privateNativeSourcesSurviveOwnershipChangesAndRemainBounded() throws Exception {
     final var sources=new legend.game.textures.NativeUiSources();
     final byte[] bytes=new byte[32];bytes[0]=16;
     final var first=new legend.game.textures.NativeUiTextureEvent("menu",new legend.game.tim.Tim(new legend.game.unpacker.FileData(bytes)),64,256,144,496);
-    sources.remember(first);bytes[0]=0;
+    sources.remember(first);bytes[0]=0;first.stopPropagation();
     final var restored=new java.util.ArrayList<legend.game.textures.NativeUiTextureEvent>();
     sources.replay(restored::add);assertEquals(1,restored.size());assertEquals(16,restored.getFirst().source()[0]);
-    // Current listener ownership, rather than the old mod instance, decides each replay.
-    final var disabled=new java.util.ArrayList<legend.game.textures.NativeUiTextureEvent>();
-    sources.replay(event -> { });assertTrue(disabled.isEmpty());
-    restored.clear();sources.replay(restored::add);assertEquals(1,restored.size());
+    final var propagation=org.legendofdragoon.modloader.events.Event.class.getDeclaredMethod("shouldPropagate");propagation.setAccessible(true);
+    assertEquals(false,propagation.invoke(first));assertEquals(true,propagation.invoke(restored.getFirst()));
+    restored.getFirst().stopPropagation();restored.clear();sources.replay(restored::add);
+    assertEquals(1,restored.size());assertEquals(true,propagation.invoke(restored.getFirst()));
     restored.getFirst().source()[0]=0;assertEquals(16,first.source()[0]);
     for(int i=0;i<10;i++)sources.remember(new legend.game.textures.NativeUiTextureEvent("family"+i,new legend.game.tim.Tim(new legend.game.unpacker.FileData(new byte[300_000])),0,0,0,0));
     restored.clear();sources.replay(restored::add);assertTrue(restored.size()<=8);assertTrue(sources.retainedBytes()<=2L*1024*1024);

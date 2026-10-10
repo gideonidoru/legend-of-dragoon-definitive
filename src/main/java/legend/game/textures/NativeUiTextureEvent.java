@@ -26,6 +26,7 @@ public final class NativeUiTextureEvent extends Event {
     NativeUiSources.CURRENT.remember(event);
     legend.core.GameEngine.EVENTS.postEvent(event);
   }
+  NativeUiTextureEvent fresh() { return new NativeUiTextureEvent(this.id, new Tim(new FileData(this.source)), this.imageX, this.imageY, this.clutX, this.clutY); }
   int encodedBytes() { return this.source.length; }
   public byte[] source() { return this.source.clone(); }
   public Tim tim() { return new Tim(new FileData(this.source.clone())); }
