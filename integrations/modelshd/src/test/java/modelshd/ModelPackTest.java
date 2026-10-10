@@ -8,6 +8,9 @@ import legend.core.renderer.*;
 import legend.core.renderer.noop.NoopApi;
 import legend.game.tmd.TmdObjTable1c;
 import legend.game.types.Model124;
+import legend.game.types.CContainer;
+import legend.game.unpacker.FileData;
+import legend.game.combat.types.CombatantStruct1a8;
 import org.joml.Vector3f;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.io.TempDir;
@@ -39,6 +42,22 @@ class ModelPackTest {
   }
   TmdObjTable1c[] read(JsonObject p,TmdObjTable1c... src) throws Exception {var path=temp.resolve("pack.json");Files.writeString(path,p.toString());return ModelPack.read(path,src);}
   static Model124 model(TmdObjTable1c... sources){var m=new Model124("test");m.modelParts_00=new ModelPart10[sources.length];for(int i=0;i<sources.length;i++){m.modelParts_00[i]=new ModelPart10();m.modelParts_00[i].tmd_08=sources[i];}return m;}
+  static CombatantStruct1a8 player(boolean dragoon) {
+    var c=new CombatantStruct1a8();c.flags_19e=5;c.charIndex_1a2=dragoon?1:0;
+    c.tmd_08=new CContainer("policy fixture",new FileData(ByteBuffer.allocate(24).order(ByteOrder.LITTLE_ENDIAN).putInt(12).putInt(0).putInt(0).putInt(0x41).putInt(0).putInt(0).array()));return c;
+  }
+  @Test void normalAndDragoonFormsUseBattleAdapterAndKeepPartState() throws Exception {
+    for(boolean dragoon:new boolean[]{false,true}) {
+      var src=source(0x20);var m=model(src);var part=m.modelParts_00[0];part.attribute_00=123;m.currentKeyframe_94=7;m.animationState_9c=2;
+      Files.writeString(temp.resolve(ModelPack.identity(new TmdObjTable1c[]{src})+".json"),pack(src).toString());
+      assertTrue(ModelsHdMod.replaceIfSupported(player(dragoon),m,temp));assertSame(part,m.modelParts_00[0]);assertNotSame(src,part.tmd_08);assertEquals(123,part.attribute_00);assertEquals(7,m.currentKeyframe_94);assertEquals(2,m.animationState_9c);
+    }
+  }
+  @Test void missingPackEnemiesAndIncompleteLoadsRetainOriginals() throws Exception {
+    var src=source(0x20);var m=model(src);var c=player(false);assertFalse(ModelsHdMod.replaceIfSupported(c,m,temp));assertSame(src,m.modelParts_00[0].tmd_08);
+    c.flags_19e=1;Files.writeString(temp.resolve(ModelPack.identity(new TmdObjTable1c[]{src})+".json"),"invalid");assertFalse(ModelsHdMod.replaceIfSupported(c,m,temp));
+    c.flags_19e=5;c.tmd_08=null;assertFalse(ModelsHdMod.replaceIfSupported(c,m,temp));c=player(true);m.modelParts_00[0]=null;assertFalse(ModelsHdMod.replaceIfSupported(c,m,temp));
+  }
   @Test void activeIndexedMaterialsAndFloatGeometryReachNativeLoader() throws Exception {
     var src=source(0x20);var p=pack(src);p.getAsJsonArray("parts").get(0).getAsJsonObject().getAsJsonArray("vertices").get(1).getAsJsonArray().set(0,new com.google.gson.JsonPrimitive(10.375));var replacements=read(p,src);src.getObj();var old=api.created.get(0);var m=model(src);var animation=m.anim_08;ModelReplacement.install(m,replacements);assertSame(animation,m.anim_08);var mesh=api.created.get(1);assertEquals(10.375f,mesh.data[16]);assertEquals(20f,mesh.data[7]);assertEquals(10f,mesh.data[8]);assertEquals(0x20,mesh.data[9]);assertEquals(17347,mesh.data[10]);assertEquals(3,mesh.data[15]);assertTrue(mesh.textured);Obj.deleteObjects();assertTrue(old.deleted);assertFalse(mesh.deleted);m.deleteModelParts();Obj.deleteObjects();assertTrue(mesh.deleted);
   }
