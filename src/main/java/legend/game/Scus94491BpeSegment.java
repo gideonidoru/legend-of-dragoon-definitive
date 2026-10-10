@@ -551,9 +551,15 @@ public final class Scus94491BpeSegment {
           //LAB_80024f68
           GPU.uploadData15(rects[indexOffsets[i] + 1], tim.getClutData());
         }
+        if(i < 3) {
+          final Tim page = new Tim(files.get(0));
+          final Rect4i image = rects[0], clut = rects[rectIndex + 1];
+          legend.game.textures.NativeUiTextureEvent.post(new legend.game.textures.NativeUiTextureEvent("basic_" + i,
+            legend.game.textures.NativeUiTextureEvent.withPalette(page, tim), image.x, image.y, clut.x, clut.y, 4));
+        }
         if(i == 3 || i == 4) {
           final Rect4i image = rects[rectIndex], clut = rects[rectIndex + 1];
-          EVENTS.postEvent(new legend.game.textures.NativeUiTextureEvent(i == 3 ? "dialogue" : "dialogue_arrow", tim, image.x, image.y, clut.x, clut.y));
+          legend.game.textures.NativeUiTextureEvent.post(new legend.game.textures.NativeUiTextureEvent(i == 3 ? "dialogue" : "dialogue_arrow", tim, image.x, image.y, clut.x, clut.y));
         }
       }
     }

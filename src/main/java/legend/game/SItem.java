@@ -758,6 +758,13 @@ public final class SItem {
       legend.game.textures.NativeUiTextureEvent.menu("items", data.slice(0x6200));
       loadMenuTexture(data.slice(0x1_0460));
       loadMenuTexture(data.slice(0x1_0580));
+      legend.game.textures.NativeUiTextureEvent.menu("menu_characters", data.slice(0x83e0));
+      final var characterTim = new legend.game.tim.Tim(data.slice(0x83e0));
+      final byte[] extra = new byte[13 * 32];
+      System.arraycopy(new legend.game.tim.Tim(data.slice(0x1_0460)).getClutData().getBytes(), 0, extra, 0, 4 * 32);
+      System.arraycopy(new legend.game.tim.Tim(data.slice(0x1_0580)).getClutData().getBytes(), 0, extra, 4 * 32, 9 * 32);
+      legend.game.textures.NativeUiTextureEvent.post(new legend.game.textures.NativeUiTextureEvent("menu_character_extras",
+        legend.game.textures.NativeUiTextureEvent.withPaletteData(characterTim, extra), 128, 256, 176, 496));
     } else if(whichFile == 1) {
       //LAB_800fc9e4
       uiFile_800bdc3c = UiFile.fromFile(data);

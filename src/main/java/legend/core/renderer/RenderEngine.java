@@ -152,6 +152,7 @@ public class RenderEngine {
   private final FloatBuffer clutAnimationBuffer = BufferUtils.createFloatBuffer(2 * 2 * 1024); // 2 sets of 2 vectors
   private int clutAnimationBufferIndex;
   private boolean frameSkip = true;
+  private boolean cinematicPlayback;
   private TurnOrderMod turnOrderMod;
   private boolean turnOrderModSearched;
 
@@ -650,6 +651,7 @@ public class RenderEngine {
     this.renderBufferQuad.persistent = true;
 
     this.window.events().onDraw(() -> {
+      legend.game.textures.NativeUiTextures.beginFrame();
       synchronized(this.tasks) {
         Runnable task;
         while((task = this.tasks.poll()) != null) {
@@ -899,22 +901,13 @@ public class RenderEngine {
           this.scissorStack.reset();
         }
 
-        if(this.frameSkip) {
-          if(this.frameSkipIndex == Config.getGameSpeedMultiplier() - 1) {
-            this.renderBufferIndex = (this.renderBufferIndex + 1) % RENDER_BUFFER_COUNT;
-          }
-
-          this.frameSkipIndex = (this.frameSkipIndex + 1) % Config.getGameSpeedMultiplier();
-        } else {
-          this.renderBufferIndex = (this.renderBufferIndex + 1) % RENDER_BUFFER_COUNT;
-          this.frameSkipIndex = 0;
-        }
+        this.advanceRenderBuffer();
 
         final long frameTime = System.nanoTime() - this.lastFrame;
         this.lastFrame = System.nanoTime();
-        this.vsyncCount += 60.0d * Config.getGameSpeedMultiplier() / this.window.getFpsLimit();
+        this.vsyncCount += 60.0d * this.getRenderSpeedMultiplier() / this.window.getFpsLimit();
 
-        final int fpsLimit = Math.max(1, RENDERER.window().getFpsLimit() / Config.getGameSpeedMultiplier());
+        final int fpsLimit = Math.max(1, RENDERER.window().getFpsLimit() / this.getRenderSpeedMultiplier());
         this.frameTimes[this.fpsIndex] = frameTime;
         this.fpsIndex = (this.fpsIndex + 1) % fpsLimit;
 
@@ -1621,6 +1614,41 @@ public class RenderEngine {
   public static FlowControl scriptGetRenderAspectMultiplier(final RunningScript<?> script) {
     script.params_20[0].set((int)(RENDERER.getRenderAspectRatio() / RENDERER.getNativeAspectRatio() * 0x1000));
     return FlowControl.CONTINUE;
+  }
+
+  /** Render-thread cinematic scope; returns the previous state for cleanup restoration. */
+  public boolean setCinematicPlayback(final boolean active) {
+    final boolean previous = this.cinematicPlayback;
+    this.cinematicPlayback = active;
+    if(previous != active) {
+      // Playback may begin inside a skipped gameplay callback. Its first quad must be queued.
+      this.frameSkipIndex = 0;
+      this.fpsIndex = 0;
+      this.mainBatch.modelPool.ignoreQueues = false;
+      this.mainBatch.orthoPool.ignoreQueues = false;
+      for(final RenderBatch batch : this.batches) {
+        batch.modelPool.ignoreQueues = false;
+        batch.orthoPool.ignoreQueues = false;
+      }
+    }
+    return previous;
+  }
+
+  private int getRenderSpeedMultiplier() {
+    return this.cinematicPlayback ? 1 : Config.getGameSpeedMultiplier();
+  }
+
+  private void advanceRenderBuffer() {
+    final int speed = this.getRenderSpeedMultiplier();
+    if(this.frameSkip) {
+      if(this.frameSkipIndex == speed - 1) {
+        this.renderBufferIndex = (this.renderBufferIndex + 1) % RENDER_BUFFER_COUNT;
+      }
+      this.frameSkipIndex = (this.frameSkipIndex + 1) % speed;
+    } else {
+      this.renderBufferIndex = (this.renderBufferIndex + 1) % RENDER_BUFFER_COUNT;
+      this.frameSkipIndex = 0;
+    }
   }
 
   public void setFrameSkipOption(final boolean frameSkip) {

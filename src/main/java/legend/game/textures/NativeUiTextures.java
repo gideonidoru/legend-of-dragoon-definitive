@@ -9,9 +9,24 @@ import java.util.List;
 
 /** Small optional UI regions; live indexed VRAM continues to classify every fragment. */
 public final class NativeUiTextures {
-  public static final long BUDGET = 16L * 1024 * 1024;
+  public static final long BUDGET = 32L * 1024 * 1024;
   private static final List<Region> REGIONS = new ArrayList<>();
+  private static final java.util.Map<Integer,List<Region>> PALETTES = new java.util.HashMap<>();
+  private static int paletteKey(final Binding binding) { return binding.clutX | binding.clutY << 16; }
+  public static synchronized int selectionCount() { return REGIONS.size(); }
+  public static synchronized int residentCount() { return (int)REGIONS.stream().filter(r -> r.artworkTexture != null).count(); }
+  private static final List<Texture> RETIRED = new ArrayList<>();
+  private static final java.util.Map<Texture,Region> RESIDENT = new java.util.IdentityHashMap<>();
   private static long allocated;
+  private static long frame;
+  public record Images(Image original, Image enhanced) { }
+  public static synchronized void beginFrame() { retireCleared(); frame++; }
+  private static void retireCleared() {
+    // Only called with a renderer context, before new uploads. Mod changes can
+    // enqueue retirement from another thread without touching GPU state there.
+    for(final Texture texture : RETIRED) texture.deleteOwnedCacheEntry();
+    RETIRED.clear();
+  }
   private NativeUiTextures() { }
 
   public record Binding(int x, int y, int clutX, int clutY, int width, int height) {
@@ -24,9 +39,36 @@ public final class NativeUiTextures {
   private static final class Region {
     final Binding binding;
     final Image original, enhanced;
+    final java.util.function.Supplier<Images> provider;
+    final long bytes;
     Texture sourceTexture, artworkTexture;
     boolean uploadFailed;
-    Region(final Binding binding, final Image original, final Image enhanced) { this.binding = binding; this.original = original; this.enhanced = enhanced; }
+    long lastUsed = -1;
+    Region(final Binding binding, final Image original, final Image enhanced) {
+      this.binding = binding; this.original = original; this.enhanced = enhanced; this.provider = null;
+      this.bytes = (long)original.data.length + enhanced.data.length;
+    }
+    Region(final Binding binding, final long bytes, final java.util.function.Supplier<Images> provider) {
+      this.binding = binding; this.original = this.enhanced = null; this.bytes = bytes; this.provider = provider;
+    }
+  }
+
+  /** All default palettes can be selected without retaining every decoded page or GPU texture. */
+  public static synchronized boolean registerDeferred(final Binding binding, final long bytes, final java.util.function.Supplier<Images> provider) {
+    if(binding.width < 1 || binding.height < 1 || binding.width > 512 || binding.height > 512 || bytes < 1 || bytes > BUDGET || REGIONS.size() >= 384) return false;
+    for(final Region region : REGIONS) if(region.binding.equals(binding)) return false;
+    final Region region = new Region(binding, bytes, java.util.Objects.requireNonNull(provider));
+    REGIONS.add(region);
+    PALETTES.computeIfAbsent(paletteKey(binding), key -> new ArrayList<>()).add(region);
+    return true;
+  }
+
+  /** Pooled/paused draws must not retain a selection that was cleared or evicted. */
+  public static synchronized boolean touch(final Texture artwork) {
+    final Region region = RESIDENT.get(artwork);
+    if(region == null) return false;
+    region.lastUsed = frame;
+    return true;
   }
 
   public static Image decode(final Tim tim, final int palette, final int x, final int y, final int width, final int height) {
@@ -76,6 +118,7 @@ public final class NativeUiTextures {
       if(bytes > BUDGET - allocated) return false;
       region = new Region(binding, new Image(original.data.clone(), original.width, original.height), new Image(enhanced.data.clone(), enhanced.width, enhanced.height));
       REGIONS.add(region);
+      PALETTES.computeIfAbsent(paletteKey(binding), key -> new ArrayList<>()).add(region);
       allocated += bytes;
     }
     // Never acquire the renderer task monitor while holding the region lock:
@@ -87,26 +130,46 @@ public final class NativeUiTextures {
 
   /** Called only while queuing on the renderer thread. Upcoming regions prepare at the start of the frame; first use also handles late arrivals. */
   public static synchronized void apply(final QueuedModelStandard model, final int pageX, final int pageY, final int clutX, final int clutY, final float u, final float v, final float width, final float height) {
-    for(final Region region : REGIONS) {
+    final List<Region> candidates = PALETTES.get(clutX | clutY << 16);
+    if(candidates == null) return;
+    for(final Region region : candidates) {
       if(!region.binding.contains(pageX, pageY, clutX, clutY, u, v, width, height)) continue;
       prepare(region);
+      region.lastUsed = frame;
       if(region.artworkTexture == null) return;
-      model.uiArtwork(region.artworkTexture, region.sourceTexture, region.binding.x - pageX * 4, region.binding.y - pageY, region.binding.width, region.binding.height);
+      model.nativeUiArtwork(region.artworkTexture, region.sourceTexture, region.binding.x - pageX * 4, region.binding.y - pageY, region.binding.width, region.binding.height);
       return;
     }
   }
 
   private static synchronized void prepare(final Region region) {
+    retireCleared();
     if(!REGIONS.contains(region) || region.artworkTexture != null || region.uploadFailed) return;
+    if(region.provider != null) {
+      while(allocated + region.bytes > BUDGET) {
+        final Region oldest = REGIONS.stream().filter(r -> r.provider != null && r.artworkTexture != null && r.lastUsed != frame)
+          .min(java.util.Comparator.comparingLong(r -> r.lastUsed)).orElse(null);
+        if(oldest == null) return; // Keep every selection already used by this frame alive.
+        RESIDENT.remove(oldest.artworkTexture);
+        oldest.sourceTexture.deleteOwnedCacheEntry(); oldest.artworkTexture.deleteOwnedCacheEntry();
+        oldest.sourceTexture = oldest.artworkTexture = null; allocated -= oldest.bytes;
+      }
+    }
     Texture original = null;
     try {
-      original = UiTextures.upload("UI source reference", region.original);
-      final Texture enhanced = UiTextures.upload("UI restored region", region.enhanced);
+      final Images images = region.provider == null ? new Images(region.original, region.enhanced) : region.provider.get();
+      validate(images.original, images.enhanced);
+      if(images.original.width != region.binding.width || images.original.height != region.binding.height
+        || (long)images.original.data.length + images.enhanced.data.length != region.bytes) throw new IllegalArgumentException("Deferred UI payload differs");
+      original = UiTextures.upload("UI source reference", images.original);
+      final Texture enhanced = UiTextures.upload("UI restored region", images.enhanced);
       original.persistent = enhanced.persistent = true;
       region.sourceTexture = original;
       region.artworkTexture = enhanced;
+      RESIDENT.put(enhanced, region);
+      if(region.provider != null) allocated += region.bytes;
     } catch(final RuntimeException failure) {
-      if(original != null) original.delete();
+      if(original != null) original.deleteOwnedCacheEntry();
       region.uploadFailed = true;
       org.apache.logging.log4j.LogManager.getLogger(NativeUiTextures.class).warn("UI region upload failed; retaining original interface", failure);
     }
@@ -122,10 +185,12 @@ public final class NativeUiTextures {
   /** Mod reboots happen outside queued rendering; native fallback remains available throughout. */
   public static synchronized void clear() {
     for(final Region region : REGIONS) {
-      if(region.sourceTexture != null) region.sourceTexture.delete();
-      if(region.artworkTexture != null) region.artworkTexture.delete();
+      if(region.sourceTexture != null) { region.sourceTexture.delete(); RETIRED.add(region.sourceTexture); }
+      if(region.artworkTexture != null) { region.artworkTexture.delete(); RETIRED.add(region.artworkTexture); }
     }
     REGIONS.clear();
+    PALETTES.clear();
+    RESIDENT.clear();
     allocated = 0;
   }
 }

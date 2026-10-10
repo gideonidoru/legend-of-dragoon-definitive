@@ -76,8 +76,8 @@ class UiArtworkTest {
   @Test void shippedCatalogMatchesHashesDimensionsAndExactCoverage() throws Exception {
     final Path base=Path.of("integrations/uihd/runtime-assets/uihd");
     final var catalog=new org.json.JSONObject(java.nio.file.Files.readString(base.resolve("catalog.json")));
-    final var assets=catalog.getJSONArray("assets");assertEquals(64,assets.length());
-    final var ids=new java.util.HashSet<String>();long enhancedBytes=0,nativeBytes=0;
+    final var assets=catalog.getJSONArray("assets");assertEquals(259,assets.length());
+    final var ids=new java.util.HashSet<String>();long enhancedBytes=0;final var counts=new java.util.HashMap<String,Integer>();
     for(int n=0;n<assets.length();n++) {
       final var entry=assets.getJSONObject(n);assertTrue(ids.add(entry.getString("id")));
       assertTrue(entry.getString("resource").matches("[a-z0-9_-]+\\.png"));
@@ -87,7 +87,8 @@ class UiArtworkTest {
       final var size=entry.getJSONArray("sourceSize");final int w=size.getInt(0),h=size.getInt(1);
       assertEquals(w*scale,image.width);assertEquals(h*scale,image.height);assertTrue(scale>=2&&scale<=4);
       assertEquals(entry.getLong("enhancedRgbaBytes"),image.data.length);enhancedBytes+=image.data.length;
-      final boolean nativeImage=entry.getString("kind").equals("native");
+      final String kind=entry.getString("kind");counts.merge(kind,1,Integer::sum);
+      final boolean nativeImage=kind.equals("native");
       final byte[] classes=new byte[w*h*(nativeImage?2:1)];
       for(int y=0;y<h;y++)for(int x=0;x<w;x++) {
         final int i=(y*scale*image.width+x*scale)*4,out=(y*w+x)*(nativeImage?2:1);
@@ -101,8 +102,8 @@ class UiArtworkTest {
         }
       }
       ArtworkResources.hash(classes,entry.getString("sourceCoverageSha256"));
-      if(nativeImage)nativeBytes+=image.data.length+(long)w*h*4;
-      else {
+      if(nativeImage)assertTrue(image.data.length+(long)w*h*4<=NativeUiTextures.BUDGET);
+      else if(entry.getString("sourcePath").startsWith("gfx/")) {
         final byte[] source=java.nio.file.Files.readAllBytes(Path.of(entry.getString("sourcePath")));
         ArtworkResources.hash(source,entry.getString("sourceSha256"));
         final var original=legend.game.textures.UiTextures.decode(source);UiTextureEvent.validate(original,image);
@@ -117,7 +118,11 @@ class UiArtworkTest {
       }
     }
     assertEquals(catalog.getLong("enhancedRgbaBytes"),enhancedBytes);
-    assertTrue(enhancedBytes<=8L*1024*1024);assertTrue(nativeBytes<=NativeUiTextures.BUDGET);
+    assertEquals(169_535_488L,enhancedBytes);
+    assertEquals(java.util.Map.of("atlas",30,"png",12,"atlas-native",26,"native",191),counts);
+    assertEquals(9,ids.stream().filter(id->id.startsWith("portrait-")).count());
+    assertEquals(96,ids.stream().filter(id->id.startsWith("battle_hud_")).count());
+    assertEquals(48,ids.stream().filter(id->id.startsWith("basic_")).count());
   }
 
   @Test void privateNativeSourcesSurviveOwnershipChangesAndRemainBounded() throws Exception {
@@ -138,4 +143,23 @@ class UiArtworkTest {
     final long before=sources.retainedBytes();sources.replay(event -> sources.remember(event));assertEquals(before,sources.retainedBytes());
   }
 
+  @Test void deferredSelectionsStayLazyAndFirstOwnerWins() {
+    NativeUiTextures.clear();
+    final var calls=new java.util.concurrent.atomic.AtomicInteger();
+    final var binding=new NativeUiTextures.Binding(0,0,16,32,2,1);
+    assertTrue(NativeUiTextures.registerDeferred(binding,40,()->{calls.incrementAndGet();return new NativeUiTextures.Images(original(),enlarged());}));
+    assertFalse(NativeUiTextures.registerDeferred(binding,40,()->{throw new AssertionError("duplicate");}));
+    assertEquals(1,NativeUiTextures.selectionCount());assertEquals(0,NativeUiTextures.residentCount());
+    assertEquals(0,NativeUiTextures.allocatedBytes());assertEquals(0,calls.get());
+    assertFalse(NativeUiTextures.registerDeferred(binding,NativeUiTextures.BUDGET+1,()->null));
+    NativeUiTextures.clear();
+  }
+  @Test void allDefaultFamiliesReplayWithTheirPhysicalPaletteRows() {
+    final var sources=new legend.game.textures.NativeUiSources();
+    final byte[] bytes=new byte[32];bytes[0]=16;
+    for(int i=0;i<17;i++)sources.remember(new legend.game.textures.NativeUiTextureEvent("small"+i,new legend.game.tim.Tim(new legend.game.unpacker.FileData(bytes)),0,0,0,0,4));
+    final var replay=new java.util.ArrayList<legend.game.textures.NativeUiTextureEvent>();sources.replay(replay::add);
+    assertEquals(16,replay.size());assertEquals("small1",replay.getFirst().id);
+    assertTrue(replay.stream().allMatch(e->e.clutRows==4));assertEquals(16*32,sources.retainedBytes());
+  }
 }
