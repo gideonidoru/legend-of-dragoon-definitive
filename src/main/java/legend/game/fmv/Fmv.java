@@ -263,7 +263,9 @@ public final class Fmv {
   private static boolean stopping;
 
   private static InputClass currentInputSource;
-  private static int skipTextFramesRemained;
+  private static int skipTextFrame;
+  private static long skipTextExpiresAtFrame;
+  private static boolean skipTextNeedsFrame;
   private static String skipText;
   private static InputButton skipButton;
   private static InputKey skipKey;
@@ -297,7 +299,8 @@ public final class Fmv {
   private static void setSkipText(final String text, final InputClass inputSource) {
     skipText = text;
     currentInputSource = inputSource;
-    skipTextFramesRemained = 60;
+    skipTextExpiresAtFrame = skipTextFrame + 60L;
+    skipTextNeedsFrame = true;
   }
 
   private static void handleSkipText() {
@@ -313,13 +316,18 @@ public final class Fmv {
       setSkipText(I18n.translate("lod_core.config.fmv.skip_controller", skipButton.codepoint), InputClass.GAMEPAD);
       isControllerInput = false;
     }
+  }
 
-    if(skipTextFramesRemained > 0) {
-      skipTextFramesRemained--;
-      if(skipTextFramesRemained == 0) {
-        skipText = null;
-        currentInputSource = null;
-      }
+  private static void handleSkipText(final int nativeFrame) {
+    skipTextFrame = Math.max(skipTextFrame, nativeFrame);
+    handleSkipText();
+    // Input can arrive after a stalled presentation; stamp its first displayed media frame.
+    if(skipText != null && skipTextNeedsFrame) {
+      skipTextExpiresAtFrame = skipTextFrame + 60L;
+      skipTextNeedsFrame = false;
+    } else if(skipText != null && skipTextFrame >= skipTextExpiresAtFrame) {
+      skipText = null;
+      currentInputSource = null;
     }
   }
 
@@ -360,6 +368,10 @@ public final class Fmv {
     LOGGER.info("FMV %s playback: %s, cinematic timing independent of gameplay speed", file, hdMovie == null ? "original at 15 fps" : "FMVHD using played-audio clock");
     frame = 0;
     skipText = null;
+    currentInputSource = null;
+    skipTextFrame = 0;
+    skipTextExpiresAtFrame = 0;
+    skipTextNeedsFrame = false;
 
     oldFps = RENDERER.window().getFpsLimit();
     oldInputTickRate = PLATFORM.getInputTickRate();
@@ -648,7 +660,7 @@ public final class Fmv {
         adjustRumbleOverTime(0, rumble.ending(), rumble.remainingFrames(), 1);
       }
       if(rumble.stop()) stopRumble(0);
-      handleSkipText();
+      handleSkipText(targetFrame);
       frame = targetFrame + 1;
     }
     displaySkipText();
@@ -689,7 +701,7 @@ public final class Fmv {
         adjustRumbleOverTime(0, rumble.ending(), rumble.remainingFrames(), 1);
       }
       if(rumble.stop()) stopRumble(0);
-      handleSkipText();
+      handleSkipText(targetFrame);
       frame = targetFrame + 1;
     }
     displaySkipText();

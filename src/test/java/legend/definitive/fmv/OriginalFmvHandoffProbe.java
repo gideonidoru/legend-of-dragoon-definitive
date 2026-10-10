@@ -116,7 +116,9 @@ public final class OriginalFmvHandoffProbe {
           set(Fmv.class, null, "skipText", "Private lifecycle skip"); set(Fmv.class, null, "currentInputSource", InputClass.KEYBOARD);
           action.invoke(window.events(), CoreMod.INPUT_ACTION_FMV_SKIP.get(), false);
         } else {
-          set(Fmv.class, null, "skipText", "Private lifecycle skip"); set(Fmv.class, null, "currentInputSource", InputClass.MOUSE);
+          set(Fmv.class, null, "skipText", null);
+          mouse.invoke(window.events(), 0, Set.of());
+          require(get(Fmv.class, null, "skipText") != null && get(Fmv.class, null, "originalMovie") == movie && !((boolean)get(Fmv.class, null, "stopping")), "First mouse input shows the prompt without stopping");
           mouse.invoke(window.events(), 0, Set.of());
         }
         draw.invoke(window); // Production task cleanup runs before the paused callback gate.
