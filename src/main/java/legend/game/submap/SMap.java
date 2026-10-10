@@ -277,7 +277,7 @@ public class SMap extends EngineState<SMap> {
   private final MapTransitionData4c mapTransitionData_800cab24 = new MapTransitionData4c();
   private int mapTransitionTicks_800cab28;
 
-  public SubmapState smapLoadingStage_800cb430 = SubmapState.INIT_0;
+  public volatile SubmapState smapLoadingStage_800cb430 = SubmapState.INIT_0;
   public Runnable menuTransition;
 
   private boolean returnedToSameSubmapAfterBattle_800cb448;
@@ -4103,7 +4103,10 @@ public class SMap extends EngineState<SMap> {
         this.submap = new RetailSubmap(this, submapCut_80052c30, this.newrootPtr_800cab04, this.screenOffset_800cb568, this.collisionGeometry_800cbe08);
 
         this.smapLoadingStage_800cb430 = SubmapState.WAIT_FOR_ENVIRONMENT;
-        this.submap.loadEnv().thenAccept(v -> this.smapLoadingStage_800cb430 = SubmapState.START_LOADING_MEDIA_10);
+        final Submap loadingSubmap=this.submap;
+        loadingSubmap.loadEnv().thenAccept(v -> RENDERER.addTask(() -> {
+          if(legend.game.EngineStates.currentEngineState_8004dd04 == this && this.submap == loadingSubmap && this.smapLoadingStage_800cb430 == SubmapState.WAIT_FOR_ENVIRONMENT) this.smapLoadingStage_800cb430 = SubmapState.START_LOADING_MEDIA_10;
+        }));
       }
 
       case CHANGE_SUBMAP_4 -> {

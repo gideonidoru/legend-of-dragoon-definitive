@@ -30,7 +30,7 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/definitive-visual-checks"
           "$RUNNER_TEMP/definitive-visual-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
-          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement model-reference attachment-binding modelshd-roster; do
+          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass; do
             "$RUNNER_TEMP/definitive-visual-checks/bin/python" "scripts/test-$fixture.py"
           done
   build:
@@ -70,7 +70,7 @@ jobs:
           java -version
           ./gradlew --version
       - name: Compile and package without gameplay tests
-        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-audio ${{ matrix.args }}
+        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-modelshd-world ${{ matrix.args }}
       - name: Check streamed FMV playback and delivery without a window
         if: runner.os == 'Linux'
         run: |

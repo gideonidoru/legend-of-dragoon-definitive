@@ -78,12 +78,14 @@ uniform vec4 environmentDirection;
 uniform vec3 environmentColour;
 uniform vec3 environmentAmbient;
 uniform bool normalMapEnabled;
+uniform bool defaultSurfaceMaps;
 uniform bool roughnessMapEnabled;
 uniform sampler2D normalMapTex;
 uniform sampler2D roughnessMapTex;
 uniform float normalMapStrength;
 vec3 materialNormal;
 vec3 materialWorldNormal;
+vec2 detailUv;
 vec2 detailGradientX;
 vec2 detailGradientY;
 
@@ -100,12 +102,14 @@ mat3 detailFrame(vec3 n, vec3 dpX, vec3 dpY, vec2 uvX, vec2 uvY) {
 void prepareMaterial() {
   materialNormal = lightingNormal;
   materialWorldNormal = worldNormal;
-  if(normalMapEnabled || roughnessMapEnabled) {
+  if((normalMapEnabled || roughnessMapEnabled) && (vertFlags & 0x1) != 0 && (vertFlags & 0x8) == 0 && !uiLayer) {
     // Derivatives precede transparency/scissor discards; exact alpha/STP lookup stays separate.
-    detailGradientX = dFdx(vertUv);
-    detailGradientY = dFdy(vertUv);
-    if(normalMapEnabled && vertBpp == 3 && normalMapStrength > 0.0 && dot(worldNormal,worldNormal) > 1e-8 && dot(lightingNormal,lightingNormal) > 1e-8) {
-      vec3 detail = textureGrad(normalMapTex, vertUv + uvOffset, detailGradientX, detailGradientY).xyz * 2.0 - 1.0;
+    detailUv = vertUv + uvOffset;
+    if(defaultSurfaceMaps) detailUv *= vertBpp == 3 ? 8.0 : 1.0/32.0;
+    detailGradientX = dFdx(detailUv);
+    detailGradientY = dFdy(detailUv);
+    if(normalMapEnabled && (vertBpp == 3 || defaultSurfaceMaps) && normalMapStrength > 0.0 && dot(worldNormal,worldNormal) > 1e-8 && dot(lightingNormal,lightingNormal) > 1e-8) {
+      vec3 detail = textureGrad(normalMapTex, detailUv, detailGradientX, detailGradientY).xyz * 2.0 - 1.0;
       detail.xy *= normalMapStrength;
       detail.z = max(detail.z, 0.01);
       materialNormal = detailFrame(normalize(lightingNormal), dFdx(localPosition), dFdy(localPosition), detailGradientX, detailGradientY) * detail;
@@ -122,8 +126,9 @@ vec2 faceResponse() {
     response.x = mix(128.0, 4.0, roughness * roughness);
     response.y = kind == 1 ? 0.008 : kind == 2 || kind == 4 ? 0.035 : kind == 3 ? 0.16 : 0.018;
   }
-  if(roughnessMapEnabled && vertBpp == 3) {
-    float roughness = clamp(textureGrad(roughnessMapTex, vertUv + uvOffset, detailGradientX, detailGradientY).r, 0.05, 1.0);
+  if(roughnessMapEnabled && (vertBpp == 3 || defaultSurfaceMaps)) {
+    float roughness = clamp(textureGrad(roughnessMapTex, detailUv, detailGradientX, detailGradientY).r, 0.05, 1.0);
+    if(defaultSurfaceMaps) roughness = clamp(sqrt(clamp((128.0-response.x)/124.0,0.0,1.0)) * (0.96 + roughness*0.08), 0.05, 1.0);
     response.x = mix(128.0, 4.0, roughness * roughness);
   }
   return response;

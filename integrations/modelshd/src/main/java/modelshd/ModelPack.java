@@ -126,7 +126,7 @@ public final class ModelPack {
     }
   }
 
-  private static int integer(final com.google.gson.JsonElement value) throws IOException {
+  static int integer(final com.google.gson.JsonElement value) throws IOException {
     if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isNumber()) throw new IOException("Expected numeric integer");
     final double number = value.getAsDouble();
     if(!Double.isFinite(number) || number != Math.rint(number) || number < Integer.MIN_VALUE || number > Integer.MAX_VALUE) throw new IOException("Invalid integer");
@@ -140,7 +140,7 @@ public final class ModelPack {
       final JsonArray row = rows.get(i).getAsJsonArray();
       if(row.size() != 3) throw new IOException("Expected XYZ vector");
       final Vector3f vector = new Vector3f(row.get(0).getAsFloat(), row.get(1).getAsFloat(), row.get(2).getAsFloat());
-      if(!vector.isFinite() || vector.lengthSquared() > 1e9f || normals && Math.abs(vector.length() - 1) > .01f) throw new IOException("Nonfinite, excessive or invalid normal vector");
+      if(!vector.isFinite() || vector.lengthSquared() > TmdObjTable1c.MAX_GEOMETRY_VECTOR_LENGTH_SQUARED || normals && Math.abs(vector.length() - 1) > .01f) throw new IOException("Nonfinite, excessive or invalid normal vector");
       result[i] = vector;
     }
     return result;

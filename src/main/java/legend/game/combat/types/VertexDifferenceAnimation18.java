@@ -28,6 +28,8 @@ public class VertexDifferenceAnimation18 implements ScriptedObject {
       return;
     }
 
+    animation.tmd.retainNativeVertexIndices();
+
     //LAB_80109b7c
     //LAB_80109b90
     for(int i = 0; i < animation.vertexCount_08; i++) {

@@ -15,7 +15,8 @@ Controls use Severed Chains' GLOBAL Graphics category, serialization and help te
 | Soft Contact Shadows | On | Feathered contact shadows for field actors, battle actors, scripted shadow effects and the world-map traveler. |
 | Edge Smoothing | 0.5 | Strength of spatial SMAA when enabled, otherwise the bounded final-pass edge filter. Zero restores original sampling. Inactive with CRT effects. |
 | Detailed Anti-Aliasing (SMAA) | On | SMAA 1x High edge detection, area/search lookup and neighborhood reconstruction; crisp interface protection, no temporal history. |
-| Artwork-Matched Lighting | On | Artist-authored environment metadata in shared field/world and battle shaders. Missing metadata retains the game lights. |
+| Artwork-Matched Lighting | On | Explicit artist profiles take precedence; default scenes derive a restrained live profile from original world-space lights. |
+| Default Surface Detail | On | Shared neutral normal/roughness finish on opaque lit original and HD models; authored maps take precedence. |
 | Artwork Loading Cache | On | Up to 64 MiB of decoded RGBA retained for repeated PNG loads; optional bounded worker prewarming. |
 | Protect Interface | On | Dialogue, menus, title/credits text, battle HUD, Addition/Dragoon prompts and map indicators retain crisp pixels. |
 | HD Texture Filtering | On | Mipmapped color filtering and at most 4x supported anisotropy on HD environment replacements; explicit gutter contract for atlases. |
@@ -56,7 +57,7 @@ These are conventional APU-friendly rendering choices, with no neural work, fram
 
 ## Current verification
 
-- Combined headless Java checks: 145 delivery cases, 141 passed, zero failures/errors and four window-only cases skipped; 24 ModelsHD cases passed. Pinned Skurfa and FMVHD source compilation pass. FMV queue/cancellation and silent-audio-tail checks use synthetic videos and the OpenAL null output driver.
+- Combined headless Java checks: 162 delivery cases, 158 passed, zero failures/errors and four window-only cases skipped; 24 ModelsHD cases passed. Pinned Skurfa and FMVHD source compilation pass. FMV queue/cancellation and silent-audio-tail checks use synthetic videos and the OpenAL null output driver.
 - Core engine JAR builds with the new renderer and FMV classes; distributed shader copies match the source. ModelsHD 0.3.0 JAR builds with all 19 checksum-verified custom model packs and the material-compatible reader. A new complete installer or hosted release has not been published by this rendering change.
 - Windowless Apple M5 Max / OpenGL 4.1 compilation and linking of both actual model pipelines and the actual screen shader.
 - Both model pipelines exercised with an original-mesh pose and an indexed-palette combat pose: original disabled output byte-exact, opaque coverage unchanged, unlit/translucent lighting bypass byte-exact.
@@ -152,15 +153,14 @@ Environment metadata is optional at `lighting-packs/submaps/diskN/cutM.json`:
 
 Direction is a nonzero world-space direction toward the key light and is normalized on load.
 Colors and influence must be finite in [0,1]. JSON is strict, bounded to 16 KiB/eight nested
-levels, with unsupported versions rejected. Missing/invalid profiles retain authored game
-lighting. No guessed scene profiles are shipped. Artwork packs can assign
+levels, with unsupported versions rejected. Missing/invalid explicit profiles use the native-light fallback described below. No image-guessed scene profiles are shipped. Artwork packs can assign
 `SubmapEnvironmentTextureEvent.lighting`, including metadata read from their resources with
 `EnvironmentLight.read`; custom submaps can override `environmentLighting()`. Mods can assign
 `EngineState.environmentLighting(...)` for battle/world/custom states. Every frame writes the
 complete direction, RGB, ambient and influence to both model pipelines so a scene does not
 inherit the previous scene's light. Unlit/translucent/UI routes retain their lighting rules.
 Native and environment highlights blend by influence; an all-black profile at full influence
-remains black. Authored environment matching requires profiles from the art producers.
+remains black. Hand-authored environment matching remains available to art producers; default native-light matching is described below.
 
 All existing PNG texture creation benefits from content-keyed decoded caching on revisits.
 The retained cache budget is 64 MiB; leased images evicted during an upload remain alive until
@@ -176,8 +176,7 @@ GPU completion or whole-frame stalls. There is no per-frame disk logging.
 Artwork mods can call its `prewarm(ownerClass, resource)` or `Texture.prewarmPng(path/resource)`
 to read/decode off-thread. One low-priority daemon worker and two pending jobs bound submission;
 full queues return false and decode failures complete exceptionally. Workers never create GL
-objects. Mod adoption of this early event is required for first-visit prewarming; unchanged
-Skurfa consumers benefit from cached repeated decoding. The pinned Skurfa source is unchanged.
+objects. Custom artwork can adopt this event for first-visit prewarming. Native field images and the pinned bundled Skurfa paths now participate automatically as described below. The pinned Skurfa source is unchanged.
 
 ## Additional controlled verification and measurements
 
@@ -212,3 +211,68 @@ Optional reproducible probes, without launching the game:
 The SMAA source, lookup PNGs, MIT notice and wrappers are included by the existing graphics
 packaging task. The conversion script reproduces both PNGs byte-for-byte from upstream headers.
 No original game assets or private validation captures are added to the repository.
+
+
+## Default assets: automatic maps, native-light profiles and first visits
+
+Default Surface Detail is a new GLOBAL Graphics toggle, enabled for missing settings. Shared
+64×64 linear-data normal and roughness maps provide a restrained periodic micro-surface finish
+for opaque lit textured TMDs in field/world and battle routes. They use about 43 KiB of total
+RGBA/mipmap GPU storage, allocate once lazily, reuse textures across actors/scenes, and delete
+with the renderer. Invalid creation falls back to normal shading with one warning. The base
+finish is neutral; it does not identify leather/metal/skin from color, reconstruct height from
+baked shadows, or turn paintings into relief. Existing material kinds and per-face roughness
+remain in control; default roughness modulates those values within four percent. This is a
+universal conservative finish, not hand-painted semantic material masks for every game asset.
+
+Original indexed models keep their live CLUT/page lookup and STP/discard classification. The
+shared maps use a separate repeating UV scale; no indexed albedo is flattened, relocated or
+cached. Palette animation remains immediately visible. Explicit `materialMaps(...)`, including
+`materialMaps(null,null,0)` to opt out, wins over the default finish. Draws reserving texture
+units 4/5 also retain their own bindings. UI, unlit, translucent, uniform-lit CTMD and singular
+transform paths bypass the finish. Disabling Default Surface Detail restores existing shading;
+Material Lighting off also disables the built-in maps. Authored HD map behavior is retained.
+
+When no explicit positive-influence environment profile is present, the shared shaders receive
+a live native-light profile. `NativeSceneLighting.profile` blends the original three world-space
+light directions and colors with continuous luminance-squared weights, including native direction
+magnitude and original ambient. Influence is at most 12 percent: the original lighting remains
+predominant. Opposing directions reduce influence continuously to zero so a key-selection tie
+cannot suddenly flip direction. Black/invalid inputs return a neutral fallback. No hardcoded
+sunset or scene allowlist is used. Native script light changes update the profile every frame;
+explicit scene/mod profiles still take precedence. Custom engine states can opt out through
+`nativeEnvironmentLighting(false)`. Artwork-Matched Lighting off bypasses both profile sources.
+These source-derived profiles are not an artist's review of every painted backdrop.
+
+Every retail field cut automatically prepares original background/foreground palette expansion
+on one low-priority CPU worker before leaving the environment loading stage. TIMs are decoded
+once per preparation, shared segments reuse that decode, alpha-zero/visible-black behavior is
+identical, and the existing oversized Neet foreground correction is retained. Source plus
+segment pixels are bounded to 32 MiB with one active/one pending job. The renderer retains GPU
+ownership and uploads through its original placement paths. Prepared arrays are released after
+upload/unload. Missing/oversized/failed preparation retains the original synchronous path.
+Battle/world indexed assets already load ahead through their existing asynchronous loaders and
+VRAM routes; they need no PNG expansion or albedo conversion for the shared material maps.
+
+The core also supplies hints for all 43 disk/cut mappings in pinned Skurfa source
+`3c9e4b3ecefc31cb32fd1281a7857f3a08f56081`, including its resource aliases. It uses the active
+mod's own class loader, prepares the background first and as many earliest foregrounds as fit
+together within the existing 64 MiB decoded cache. Huge full-canvas foreground sets are not all
+retained simultaneously. Native preparation runs in parallel with those PNG hints. Loading
+awaits accepted preparation without blocking frame rendering; failed/rejected hints fall back,
+and an unfinished optional mod hint times out after five seconds. Disabling Artwork Loading
+Cache retains original loading, frees retained pixels and prevents late decodes from repopulating
+the disabled cache. Skurfa source and custom art/model assets are not modified.
+
+Submap unload cancels pending preparation, invalidates its generation and clears prepared arrays.
+Obsolete completions cannot install arrays or advance a newer submap's loading state. Scene
+completion advances through the renderer's next-frame queue after checking active engine state, submap identity and loading stage; preparation cleanup uses explicit visibility/ownership guards.
+
+Eight additional Java checks cover deterministic/bounded surface data, native hue/direction,
+scripted changes and opposing-key continuity, exact native palette expansion/foreground clipping,
+Skurfa aliases/cache budget, successful/failed/canceled/stalled hint barriers and disabled-cache
+retention. The actual Java GL backend uploads the generated maps byte-exactly, verifies mip
+filters, texture reuse and clean deletion. Shipping field/battle shader fixtures verify original
+indexed maps, live palette updates, exact coverage/transparency, authored HD maps, material
+responses and complete bypass/reset. GLES shaderc transpilation passes. These remain headless
+checks, not a campaign visual review, gameplay soak or physical Steam Deck performance proof.
