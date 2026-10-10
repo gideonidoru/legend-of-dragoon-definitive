@@ -1,5 +1,7 @@
 package legend.game.combat.effects;
 
+import legend.definitive.rendering.ActorShadow;
+
 import legend.core.MathHelper;
 import legend.core.gte.MV;
 import legend.core.memory.Method;
@@ -45,7 +47,7 @@ public class ShadowEffect implements Effect<EffectManagerParams.VoidType> {
       tmdGp0Tpage_1f8003ec = manager.params_10.flags_00 >>> 23 & 0x60;
       zOffset_1f8003e8 = manager.params_10.z_22;
       FUN_800e60e0((manager.params_10.colour_1c.x << 5) / (float)0x1000, (manager.params_10.colour_1c.y << 5) / (float)0x1000, (manager.params_10.colour_1c.z << 5) / (float)0x1000);
-      renderTmdSpriteEffect(shadowModel_800bda10.modelParts_00[0].tmd_08, shadowModel_800bda10.modelParts_00[0].tmd_08.getObj(), manager.params_10, transforms);
+      renderTmdSpriteEffect(shadowModel_800bda10.modelParts_00[0].tmd_08, ActorShadow.get(shadowModel_800bda10.modelParts_00[0].tmd_08), manager.params_10, transforms);
       FUN_800e6170();
     }
 
