@@ -1,5 +1,6 @@
 // Four independent mods, bundled by default; activation belongs to Severed Chains.
 ['EnvHD': 'envhd', 'CharHD': 'charhd', 'UIHD': 'uihd', 'FxHD': 'fxhd'].each { title, id ->
+  final String releaseVersion = title == "UIHD" ? "0.2.0" : "0.1.0"
   final def root = file("integrations/${id}")
   final def output = layout.buildDirectory.dir("${id}/classes")
   final def compileMod = tasks.register("compile${title}", JavaCompile) {
@@ -12,13 +13,13 @@
   }
   tasks.register("${id}Jar", Jar) {
     dependsOn compileMod, jar
-    archiveFileName = "${title}-v0.1.0.jar"
+    archiveFileName = "${title}-v${releaseVersion}.jar"
     destinationDirectory = layout.buildDirectory.dir('libs/mods')
     from output
     from new File(root, 'src/main/resources')
     from new File(root, 'runtime-assets')
     into("META-INF/${id}") { from 'LICENSE'; from new File(root, 'README.md'); from new File(root, 'ARTWORK-NOTICES.txt') }
-    manifest { attributes 'Implementation-Title': title, 'Implementation-Version': '0.1.0' }
+    manifest { attributes 'Implementation-Title': title, 'Implementation-Version': releaseVersion }
     preserveFileTimestamps = false
     reproducibleFileOrder = true
   }

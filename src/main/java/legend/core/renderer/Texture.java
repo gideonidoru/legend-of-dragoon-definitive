@@ -161,6 +161,17 @@ public abstract class Texture {
     this.deleted = true;
   }
 
+  /** Renderer-thread retirement for exclusively owned cache entries no longer used by this frame.
+   * Unlike ordinary deletion, this also bounds caches while paused. The caller must
+   * invalidate all retained draw references before invoking this method.
+   */
+  public final void deleteOwnedCacheEntry() {
+    if(texList.remove(this)) {
+      this.deleted = true;
+      this.performDelete();
+    }
+  }
+
   public static void deleteTextures() {
     for(int i = texList.size() - 1; i >= 0; i--) {
       final Texture tex = texList.get(i);

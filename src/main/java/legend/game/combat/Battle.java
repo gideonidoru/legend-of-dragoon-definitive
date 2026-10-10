@@ -8382,6 +8382,8 @@ public class Battle extends EngineState<Battle> {
         rect.w = 16;
         rect.h = 16;
         GPU.uploadData15(rect, tim.getClutData());
+        legend.game.textures.NativeUiTextureEvent.post(new legend.game.textures.NativeUiTextureEvent("battle_hud_" + fileIndex,
+          legend.game.textures.NativeUiTextureEvent.withPalette(new Tim(files.get(0)), tim), 704, 256, rect.x, rect.y));
         this.countCombatUiFilesLoaded_800c6cf4++;
       }
     }

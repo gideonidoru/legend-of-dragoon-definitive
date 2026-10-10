@@ -34,7 +34,7 @@ public final class UiHdMod {
     try {
       final var catalog = new JSONObject(new String(ArtworkResources.read(UiHdMod.class, "/uihd/catalog.json", 1024 * 1024), StandardCharsets.UTF_8));
       final JSONArray entries = catalog.getJSONArray("assets");
-      if(entries.length() > 256) throw new IOException("UI catalog exceeds bounds");
+      if(entries.length() > 384) throw new IOException("UI catalog exceeds bounds");
       for(int i = 0; i < entries.length(); i++) {
         final JSONObject entry = entries.getJSONObject(i);
         if(!entry.getString("reviewStatus").equals("selected-source-layout-review-native-pending")) continue;
@@ -66,8 +66,15 @@ public final class UiHdMod {
     if(size.length() != 2 || size.getInt(0) < 1 || size.getInt(1) < 1 || size.getInt(0) > 4096 || size.getInt(1) > 4096) throw new IOException("UI output exceeds bounds");
     switch(kind) {
       case "atlas" -> {
-        if(!source.startsWith(Path.of("gfx/goods"))) throw new IOException("UI atlas source differs");
+        if(!source.startsWith(Path.of("gfx/goods")) && !source.toString().matches("characters/[a-z]+/portrait\\.png")) throw new IOException("UI atlas source differs");
         new RegistryId(entry.getString("registryId"));
+      }
+      case "atlas-native" -> {
+        if(!source.equals(Path.of("SECT/DRGN0.BIN/4113/0")) || !entry.getString("paletteSourceSha256").matches("[a-f0-9]{64}")) throw new IOException("UI spirit source differs");
+        new RegistryId(entry.getString("registryId"));
+        final JSONArray crop = entry.getJSONArray("crop");
+        if(crop.length() != 4 || crop.getInt(0) < 0 || crop.getInt(1) < 0 || crop.getInt(2) < 1 || crop.getInt(3) < 1
+          || crop.getInt(0) + crop.getInt(2) > 256 || crop.getInt(1) + crop.getInt(3) > 256 || entry.getInt("palette") < 0 || entry.getInt("palette") >= 16) throw new IOException("UI spirit crop differs");
       }
       case "png" -> { if(!source.startsWith(Path.of("gfx/ui"))) throw new IOException("UI PNG source differs"); }
       case "native" -> {
@@ -77,6 +84,14 @@ public final class UiHdMod {
           || crop.getInt(2) > 512 || crop.getInt(3) > 512 || entry.getInt("palette") < 0 || entry.getInt("palette") >= 16) throw new IOException("Native UI crop differs");
       }
       default -> throw new IOException("Unknown UI artwork kind");
+    }
+  }
+
+  private static byte[] boundedSource(final Path path) throws IOException {
+    try(final var stream = Files.newInputStream(path)) {
+      final byte[] bytes = stream.readNBytes(1024 * 1024 + 1);
+      if(bytes.length > 1024 * 1024) throw new IOException("UI source exceeds bounds");
+      return bytes;
     }
   }
 
@@ -92,13 +107,29 @@ public final class UiHdMod {
   @EventListener
   public void replace(final ReplaceAtlasTexturesEvent event) {
     for(final JSONObject entry : this.assets) {
-      if(!entry.getString("kind").equals("atlas")) continue;
+      if(!entry.getString("kind").equals("atlas") && !entry.getString("kind").equals("atlas-native")) continue;
       try {
-        final Path source = Path.of(entry.getString("sourcePath")).normalize();
-        if(!source.startsWith(Path.of("gfx/goods")) || Files.size(source) > 1024 * 1024) continue;
-        final byte[] originalBytes = Files.readAllBytes(source);
-        ArtworkResources.hash(originalBytes, entry.getString("sourceSha256"));
-        final Image original = UiTextures.decode(originalBytes), replacement = candidate(entry);
+        final Path relative = Path.of(entry.getString("sourcePath")).normalize();
+        final boolean game = relative.startsWith("characters") || entry.getString("kind").equals("atlas-native");
+        final Path source = game ? legend.game.unpacker.Loader.resolve(relative.toString()) : relative;
+        final byte[] originalBytes = boundedSource(source);
+        final Image original;
+        if(entry.getString("kind").equals("atlas-native")) {
+          ArtworkResources.hash(originalBytes, entry.getString("sourceSha256"));
+          final byte[] paletteBytes = boundedSource(legend.game.unpacker.Loader.resolve("SECT/DRGN0.BIN/4113/5"));
+          ArtworkResources.hash(paletteBytes, entry.getString("paletteSourceSha256"));
+          final var texture = legend.core.gpu.VramTextureLoader.textureFromTim(new legend.game.tim.Tim(new legend.game.unpacker.FileData(originalBytes)));
+          final var palette = legend.core.gpu.VramTextureLoader.palettesFromTim(new legend.game.tim.Tim(new legend.game.unpacker.FileData(paletteBytes)))[entry.getInt("palette")];
+          final JSONArray crop = entry.getJSONArray("crop");
+          final int[] rgba = texture.applyPalette(palette, new legend.core.gpu.Rect4i(crop.getInt(0),crop.getInt(1),crop.getInt(2),crop.getInt(3)));
+          final byte[] bytes = new byte[rgba.length * 4];
+          java.nio.ByteBuffer.wrap(bytes).order(java.nio.ByteOrder.LITTLE_ENDIAN).asIntBuffer().put(rgba);
+          original = new Image(bytes,crop.getInt(2),crop.getInt(3));
+        } else {
+          ArtworkResources.hash(originalBytes, entry.getString("sourceSha256"));
+          original = UiTextures.decode(originalBytes);
+        }
+        final Image replacement = candidate(entry);
         UiTextureEvent.validate(original, replacement);
         event.replace(new RegistryId(entry.getString("registryId")), original, replacement);
       } catch(final Exception failure) {
@@ -122,16 +153,22 @@ public final class UiHdMod {
 
   @EventListener
   public void nativeTexture(final NativeUiTextureEvent event) {
+    final byte[] source = event.source();
+    final var tim = event.tim();
     for(final JSONObject entry : this.assets) {
       if(!entry.getString("kind").equals("native") || !entry.getString("family").equals(event.id)) continue;
       try {
-        ArtworkResources.hash(event.source(), entry.getString("sourceSha256"));
+        ArtworkResources.hash(source, entry.getString("sourceSha256"));
         final JSONArray crop = entry.getJSONArray("crop");
         final int x = crop.getInt(0), y = crop.getInt(1), w = crop.getInt(2), h = crop.getInt(3), palette = entry.getInt("palette");
-        final Image original = NativeUiTextures.decode(event.tim(), palette, x, y, w, h);
+        final int scale = entry.getInt("scale");
         final var binding = new NativeUiTextures.Binding(event.imageX * 4 + x, event.imageY + y,
-          event.clutX, event.clutY + palette, w, h);
-        NativeUiTextures.register(binding, original, candidate(entry));
+          event.clutX + palette / event.clutRows * 16, event.clutY + palette % event.clutRows, w, h);
+        final long bytes = (long)w * h * 4 * (1 + scale * scale);
+        NativeUiTextures.registerDeferred(binding, bytes, () -> {
+          try { return new NativeUiTextures.Images(NativeUiTextures.decode(tim,palette,x,y,w,h),candidate(entry)); }
+          catch(final IOException failure) { throw new java.io.UncheckedIOException(failure); }
+        });
       } catch(final Exception failure) {
         LOGGER.warn("UIHD retained original {}: {}", entry.getString("id"), failure.getMessage());
       }

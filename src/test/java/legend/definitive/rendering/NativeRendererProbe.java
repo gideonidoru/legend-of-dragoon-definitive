@@ -142,30 +142,73 @@ public final class NativeRendererProbe {
     System.out.println("PASS: source-bound UI disable/re-enable, logical dimensions, predecessor deletion, native first-owner precedence, stale preparation rejection and exact STP upload/deletion.");
   }
 
+  private static void verifyCompleteUiResidency() throws Exception {
+    final var nativeType=legend.game.textures.NativeUiTextures.class;
+    nativeType.getMethod("clear").invoke(null);nativeType.getMethod("beginFrame").invoke(null);
+    final var source=new byte[256*256*4];final var art=new byte[1024*1024*4];
+    for(int i=0;i<source.length;i+=4)source[i]=100;
+    for(int i=0;i<art.length;i+=4)art[i]=120;
+    final long bytes=(long)source.length+art.length;
+    final var calls=new java.util.concurrent.atomic.AtomicInteger();
+    for(int i=0;i<8;i++) {
+      final var binding=new legend.game.textures.NativeUiTextures.Binding(0,0,32+i*16,496,256,256);
+      require(legend.game.textures.NativeUiTextures.registerDeferred(binding,bytes,()->{
+        calls.incrementAndGet();return new legend.game.textures.NativeUiTextures.Images(
+          new legend.game.textures.Image(source,256,256),new legend.game.textures.Image(art,1024,1024));
+      }),"lazy palette selected");
+    }
+    require(calls.get()==0&&legend.game.textures.NativeUiTextures.allocatedBytes()==0,"selection does not decode or upload");
+    final var batch=new RenderBatch(GameEngine.RENDERER,java.nio.FloatBuffer.allocate(32));
+    final var model=new QueuedModelStandard(batch,null,null,java.nio.FloatBuffer.allocate(32));
+    for(int i=0;i<7;i++)legend.game.textures.NativeUiTextures.apply(new QueuedModelStandard(batch,null,null,java.nio.FloatBuffer.allocate(32)),0,0,32+i*16,496,0,0,16,16);
+    require(calls.get()==7&&legend.game.textures.NativeUiTextures.residentCount()==7,"working pages upload once");
+    final var regions=nativeType.getDeclaredField("REGIONS");regions.setAccessible(true);
+    final var all=(java.util.List<?>)regions.get(null);final var artwork=all.getFirst().getClass().getDeclaredField("artworkTexture");artwork.setAccessible(true);
+    final Texture first=(Texture)artwork.get(all.getFirst());first.use(0);final int oldId=glGetInteger(GL_TEXTURE_BINDING_2D);
+    legend.game.textures.NativeUiTextures.apply(model,0,0,144,496,0,0,16,16);
+    require(calls.get()==7,"budget saturation retains all current-frame pages");
+    legend.game.textures.NativeUiTextures.beginFrame();
+    legend.game.textures.NativeUiTextures.apply(model,0,0,144,496,0,0,16,16);
+    final var deleted=first.getClass().getDeclaredField("actuallyDeleted");deleted.setAccessible(true);
+    require(calls.get()==8&&deleted.getBoolean(first)&&!legend.game.textures.NativeUiTextures.touch(first),"next-frame eviction physically retires only an unpinned page");
+    require(legend.game.textures.NativeUiTextures.allocatedBytes()<=legend.game.textures.NativeUiTextures.BUDGET,"resident source plus artwork remains bounded");
+    final var quad=new QuadBuilder("automatic HUD metadata").bpp(legend.core.gpu.Bpp.BITS_4).size(16,16).uv(16,16).uvSize(-16,-16).vramPos(0,0).clut(144,496).build();
+    require(quad.nativeUiQuad(12,0).u()==0&&quad.nativeUiQuad(12,0).width()==16,"whole-object metadata ignores stale start and preserves mirrored UV bounds");
+    final var acquire=QueuedModelStandard.class.getDeclaredMethod("acquire",Obj.class,int.class);acquire.setAccessible(true);
+    model.vertices(12,4);acquire.invoke(model,quad,0);
+    final var start=QueuedModel.class.getDeclaredField("startVertex");start.setAccessible(true);require(start.getInt(model)==0,"pooled acquisition resets vertex start");
+    model.ui();
+    final Texture vram=legend.game.textures.UiTextures.upload("probe native VRAM",new legend.game.textures.Image(new byte[]{20,0,0,0},1,1));GameEngine.GPU.vramTexture15=vram;
+    vram.use(1);glActiveTexture(GL_TEXTURE1);final int vramId=glGetInteger(GL_TEXTURE_BINDING_2D);
+    final var use=QueuedModelStandard.class.getDeclaredMethod("useTexture");use.setAccessible(true);use.invoke(model);
+    final var enabled=QueuedModelStandard.class.getDeclaredField("uiArtwork");enabled.setAccessible(true);require(enabled.getBoolean(model),"ordinary UI quad automatically selects restored page");
+    final Texture retired=(Texture)artwork.get(all.getLast());
+    legend.game.textures.NativeUiTextures.clear();
+    for(int i=0;i<2;i++) {retired.use(1);use.invoke(model);glActiveTexture(GL_TEXTURE1);require(glGetInteger(GL_TEXTURE_BINDING_2D)==vramId&&!enabled.getBoolean(model),"every paused fallback redraw binds native VRAM");}
+    Texture.deleteTextures();vram.deleteOwnedCacheEntry();GameEngine.GPU.vramTexture15=null;
+    quad.delete();Obj.deleteObjects();require(glGetError()==GL_NO_ERROR,"complete UI residency fixture has no GPU errors");
+    System.out.println("PASS: lazy uploads, current-frame pins, 32 MiB residency, immediate eviction, mirrored source UVs, automatic native HUD binding, pooled vertex reset and repeated paused fallback.");
+  }
+
   private static void verifyUiAtlas() throws Exception {
     final var packer=new legend.game.textures.TexturePacker("default UI layout");
     final Path assets=Path.of("integrations/uihd/runtime-assets/uihd/assets");
     final var catalog=new org.json.JSONObject(Files.readString(assets.getParent().resolve("catalog.json"))).getJSONArray("assets");
     org.legendofdragoon.modloader.registries.RegistryId first=null;
     for(int i=0;i<catalog.length();i++) {
-      final var entry=catalog.getJSONObject(i);if(!entry.getString("kind").equals("atlas"))continue;
+      final var entry=catalog.getJSONObject(i);if(!entry.getString("kind").equals("atlas")&&!entry.getString("kind").equals("atlas-native"))continue;
       final var id=new org.legendofdragoon.modloader.registries.RegistryId(entry.getString("registryId"));
       if(first==null)first=id;
       packer.add(id,legend.game.textures.UiTextures.decode(Files.readAllBytes(assets.resolve(entry.getString("resource")))));
     }
-    // Layout-equivalent placeholders match the nine original 48² portraits and
-    // 24 spirit frames plus two overlays, without bundling private game pixels.
-    for(int i=0;i<9;i++)packer.add(new org.legendofdragoon.modloader.registries.RegistryId("probe:portrait"+i),new legend.game.textures.Image(new byte[48*48*4],48,48));
-    for(int i=0;i<24;i++)packer.add(new org.legendofdragoon.modloader.registries.RegistryId("probe:spirit"+i),new legend.game.textures.Image(new byte[16*16*4],16,16));
-    for(int i=0;i<2;i++)packer.add(new org.legendofdragoon.modloader.registries.RegistryId("probe:overlay"+i),new legend.game.textures.Image(new byte[8*16*4],8,16));
     final var atlas=packer.packGrowing(512,512,2048);
-    require(atlas.texture.width==1024&&atlas.texture.height==512,"default UIHD layout fits a 2 MiB GPU atlas");
+    require(atlas.texture.width==1024&&atlas.texture.height==1024,"complete UIHD layout fits a 4 MiB GPU atlas");
     require(!GameEngine.RENDERER.isUiScope(),"atlas test starts outside a menu UI scope");
     final var model=atlas.getIcon(first).render(new legend.core.gte.MV());
     final var ui=QueuedModel.class.getDeclaredField("uiLayer");ui.setAccessible(true);require(ui.getBoolean(model),"atlas portraits/spirits remain protected UI even outside menu scope");
     atlas.texture.use(0);final int id=glGetInteger(GL_TEXTURE_BINDING_2D);atlas.delete();Texture.deleteTextures();
     require(!glIsTexture(id)&&glGetError()==GL_NO_ERROR,"grown UI atlas retires cleanly");
-    System.out.println("PASS: default-layout UIHD atlas grows to 1024x512 (2 MiB), protects out-of-menu atlas icons and deletes cleanly; other mod layouts remain separate.");
+    System.out.println("PASS: default-layout UIHD atlas grows to 1024x1024 (4 MiB), protects out-of-menu atlas icons and deletes cleanly; other mod layouts remain separate.");
   }
 
   public static void main(final String[] args) throws Exception {
@@ -236,6 +279,7 @@ public final class NativeRendererProbe {
       System.out.println("PASS: actual OpenGL backend MRT/R8 setup, blend/mask state, auxiliary clears, atlas mip cap, filtering toggles, texture updates and deletion.");
       verifyUiLifecycle();
       verifyUiAtlas();
+      verifyCompleteUiResidency();
       verifySmaa(api, args.length > 1 && args[1].equals("benchmark"));
       require(DefaultMaterialMaps.bind(),"shared default surface maps load");
       glActiveTexture(GL_TEXTURE4); final int normalId=glGetInteger(GL_TEXTURE_BINDING_2D);
