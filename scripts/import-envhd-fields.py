@@ -31,6 +31,11 @@ DIRECTORY_DEPENDENCIES=batch.LEGACY_DEPENDENCIES|{
 }
 REPAIR_GENERATION_COMMIT='d75bc638537df42ca1b2e18bfac2303f16d4c231'
 REPAIR_SCRIPT_SHA256='28f10af0f12bc2ac589e2f0a91efaa662cbb7a0fbaae3dc6606d8f94af6d8b37'
+REPAIR_GENERATIONS={
+    REPAIR_SCRIPT_SHA256:dict(commit=REPAIR_GENERATION_COMMIT,pipeline='envhd-field-source-color-perimeter-repair-1'),
+    '93ba237d75d8846e670d64f56901831feeb516dce1b7b7c775eea8d5af7b6949':dict(
+        commit='cf492c377d5a06cfab48e05aa83103a309d2e52b',pipeline='envhd-field-source-color-perimeter-repair-2'),
+}
 SCOPE='All unowned nonuniform visible field images; candidate-only, no runtime/native/final acceptance.'
 REVIEW_KEYS={'intent','style','layout','verdict','outputSha256','nativeAcceptance','finalQualityAcceptance'}
 
@@ -104,7 +109,10 @@ def publish(files,staging,legacy_staging,review_file,repaired_staging=None):
     original_by_key={r['decodedRgbaSha256']:r for r in original_records}
     if repaired_staging is not None:
         repair_plan=batch.read_control(battle.staging_path(repaired_staging,'repair-plan.json'))
-        expected_repair_plan=dict(schema=1,pipeline='envhd-field-source-color-perimeter-repair-1',algorithmSha256=REPAIR_SCRIPT_SHA256,
+        repair_generation=REPAIR_GENERATIONS.get(repair_plan.get('algorithmSha256'))
+        if repair_generation is None:
+            raise ValueError('Field repair source or algorithm history differs')
+        expected_repair_plan=dict(schema=1,pipeline=repair_generation['pipeline'],algorithmSha256=repair_plan['algorithmSha256'],
                                  inputGenerationPlanSha256=terrain.digest(plan_data),inputCandidatesSha256=terrain.digest(input_records_data),
                                  sourceCensus=report,masters=[{k:v for k,v in m.items() if k!='image'} for m in masters],
                                  nativeAcceptance='pending',finalQualityAcceptance='pending')
@@ -147,9 +155,9 @@ def publish(files,staging,legacy_staging,review_file,repaired_staging=None):
                       ownerApproval='Batch pipeline and Python repair explicitly authorized 2026-10-10')
         if repaired_staging is not None:
             metadata['repairPipelineSha256']=repair_plan['algorithmSha256']
-            metadata['generationCommit']=REPAIR_GENERATION_COMMIT
-            metadata['generationScriptSha256']=REPAIR_SCRIPT_SHA256
-            metadata['batchPipelineSha256']=REPAIR_SCRIPT_SHA256
+            metadata['generationCommit']=repair_generation['commit']
+            metadata['generationScriptSha256']=repair_plan['algorithmSha256']
+            metadata['batchPipelineSha256']=repair_plan['algorithmSha256']
             metadata.pop('batchDependencySha256')
             metadata['inputGeneration']=neural_generation
         elif origin is not None:

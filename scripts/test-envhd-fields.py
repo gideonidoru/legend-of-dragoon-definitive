@@ -323,6 +323,12 @@ class FieldPublicationTest(unittest.TestCase):
                 with self.assertRaises(FileExistsError):publication.publish(files,staging,legacy,review)
 
     def test_repaired_publication_verifies_algorithm_input_history_and_final_review_hash(self):
+        self.check_repaired_publication(publication.REPAIR_SCRIPT_SHA256)
+
+    def test_current_repair_publication_uses_its_own_generation_history(self):
+        self.check_repaired_publication(publication.repair.ALGORITHM_SHA256)
+
+    def check_repaired_publication(self,algorithm_sha256):
         import json
         item,report,data,input_record,plan,png,note=self.fixture();key=item['decodedRgbaSha256']
         with tempfile.TemporaryDirectory() as tmp:
@@ -331,19 +337,21 @@ class FieldPublicationTest(unittest.TestCase):
             plan_bytes=publication.publication.json_bytes(plan);records_bytes=publication.publication.json_bytes([input_record])
             for folder,control in [(staging,plan_bytes),(legacy,data)]:
                 folder.mkdir();(folder/'source-plan.json').write_bytes(control);(folder/'candidates.json').write_bytes(records_bytes);(folder/(key+'.png')).write_bytes(png)
-            repaired_record=publication.repair.record(item,input_record,publication.terrain.digest(png),publication.REPAIR_SCRIPT_SHA256)
-            repair_plan=dict(schema=1,pipeline='envhd-field-source-color-perimeter-repair-1',algorithmSha256=repaired_record['algorithmSha256'],
+            repaired_record=publication.repair.record(item,input_record,publication.terrain.digest(png),algorithm_sha256)
+            generation=publication.REPAIR_GENERATIONS[algorithm_sha256]
+            repair_plan=dict(schema=1,pipeline=generation['pipeline'],algorithmSha256=repaired_record['algorithmSha256'],
                              inputGenerationPlanSha256=publication.terrain.digest(plan_bytes),inputCandidatesSha256=publication.terrain.digest(records_bytes),
                              sourceCensus=report,masters=[{k:v for k,v in item.items() if k!='image'}],nativeAcceptance='pending',finalQualityAcceptance='pending')
             (repaired/'repair-plan.json').write_text(json.dumps(repair_plan));(repaired/'candidates.json').write_text(json.dumps([repaired_record]));(repaired/(key+'.png')).write_bytes(png)
             reviews=base/'reviews.json';reviews.write_text(json.dumps(dict(reviews={key:note})))
             with mock.patch.object(publication,'ROOT',root),mock.patch.object(publication.batch.fields,'census',return_value=report),mock.patch.object(publication.batch,'sources',return_value=([item],[])):
-                for changed in (repair_plan|dict(algorithmSha256='0'*64),repair_plan|dict(inputCandidatesSha256='0'*64)):
+                for changed in (repair_plan|dict(algorithmSha256='0'*64),repair_plan|dict(inputCandidatesSha256='0'*64),repair_plan|dict(pipeline='wrong-version')):
                     (repaired/'repair-plan.json').write_text(json.dumps(changed))
                     with self.assertRaisesRegex(ValueError,'algorithm history'):publication.publish(files,staging,legacy,reviews,repaired)
                     self.assertEqual([],list(root.iterdir()))
                 (repaired/'repair-plan.json').write_text(json.dumps(repair_plan))
-                current_record=publication.repair.record(item,input_record,publication.terrain.digest(png))
+                opposite_sha=publication.repair.ALGORITHM_SHA256 if algorithm_sha256==publication.REPAIR_SCRIPT_SHA256 else publication.REPAIR_SCRIPT_SHA256
+                current_record=publication.repair.record(item,input_record,publication.terrain.digest(png),opposite_sha)
                 (repaired/'candidates.json').write_text(json.dumps([current_record]))
                 with self.assertRaisesRegex(ValueError,'algorithm differs from its batch plan'):publication.publish(files,staging,legacy,reviews,repaired)
                 self.assertEqual([],list(root.iterdir()));(repaired/'candidates.json').write_text(json.dumps([repaired_record]))
@@ -354,8 +362,8 @@ class FieldPublicationTest(unittest.TestCase):
                 ledger=json.loads((root/'integrations/envhd/production/field-artwork.json').read_bytes());asset=ledger['assets'][0]
                 self.assertEqual(repaired_record['method'],asset['method']);self.assertEqual(input_record,asset['inputCandidate'])
                 self.assertEqual(item['bindings'],asset['bindings']);self.assertNotIn('engineSha256',asset)
-                self.assertEqual(publication.REPAIR_GENERATION_COMMIT,asset['generationCommit'])
-                self.assertEqual(publication.REPAIR_SCRIPT_SHA256,asset['batchPipelineSha256']);self.assertNotIn('batchDependencySha256',asset)
+                self.assertEqual(generation['commit'],asset['generationCommit'])
+                self.assertEqual(algorithm_sha256,asset['batchPipelineSha256']);self.assertNotIn('batchDependencySha256',asset)
                 self.assertEqual(publication.batch.LEGACY_GENERATION_COMMIT,asset['inputGeneration']['commit'])
                 self.assertEqual(publication.batch.LEGACY_DEPENDENCIES,asset['inputGeneration']['dependencySha256'])
                 self.assertEqual(publication.terrain.digest(data),asset['inputGeneration']['reuseOriginPlanSha256'])
