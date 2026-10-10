@@ -42,6 +42,8 @@ Each round renders source, previous head fit, shifted roots and the surface tria
 
 Next, define a head-relative attachment boundary while preserving the separately animated strips' swing. Compare a small root region following the head with rebaked translation compensation or an authored deformation boundary; prove the selected approach against source controls, available motions and native interpolation before activation. Keep the original motion/reference intact for comparison. This is a proposed authoring/import seam, not an existing engine feature.
 
+The subsequent [moving-root binding study](NATIVE_ATTACHMENT_BINDING.md) now records 496 poses through the actual source animation methods, checks both bound roots and independent tail rotation, and delivers a private animated interchange verified by independent joint decoding. It remains authoring evidence; native replacement rendering and artistic acceptance are still open.
+
 Then refine the hair ends, neck/collar boundary and UV coverage, and bring the body materials toward the same intentional style. Verify native normals, lighting, STP/blending, occlusion, resource lifetime and fallback. Physical Deck memory/frame-time/power, suspend/input behaviour and community preference remain separate gates under the [Deck protocol](DECK_TEST_PLAN.md).
 
 The revised strips add 24 triangles to the previous full-character study, yielding 12,908 total candidate triangles. Their decoded position/color/UV/index arrays increase by 1,056 bytes compared with the two original strips, with no new texture. This is an array-storage calculation, not measured GPU residency or Deck performance. The head's texture/geometry cost remains as recorded in the previous study.

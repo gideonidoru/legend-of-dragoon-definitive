@@ -87,6 +87,19 @@ tasks.register('deliveryTest', Test) {
 }
 tasks.named('check') { dependsOn deliveryTest }
 
+// Explicit private animation inspection using the actual source methods, without rendering.
+tasks.register('nativePoseProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.models.NativePoseProbe'
+  systemProperty 'java.awt.headless', 'true'
+  systemProperty 'definitive.sourceRoot', projectDir.absolutePath
+  doFirst {
+    if(!providers.gradleProperty('poseAnimation').isPresent() || !providers.gradleProperty('poseOutput').isPresent()) throw new GradleException('Supply private -PposeAnimation and new private -PposeOutput paths.')
+    args providers.gradleProperty('poseAnimation').get(), providers.gradleProperty('poseOutput').get()
+  }
+}
+
 // Opt-in only, under xvfb-run in Linux CI. No windows on the local desktop.
 tasks.register('managerWindowTest', Test) {
   dependsOn testClasses
