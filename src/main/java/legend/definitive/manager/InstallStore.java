@@ -513,8 +513,9 @@ public final class InstallStore {
         link(mods.resolve(mod.getFileName()), mod);
       }
     }
-    if(!"original".equals(state.getProperty("artwork", "hd"))) try(final var files = Files.list(release.resolve("bundled-mods"))) {
+    try(final var files = Files.list(release.resolve("bundled-mods"))) {
       for(final Path mod : files.toList()) {
+        if("original".equals(state.getProperty("artwork", "hd")) && !mod.getFileName().toString().matches("FMVHD-v[0-9.]+\\.jar")) continue;
         if(Files.exists(mods.resolve(mod.getFileName()), LinkOption.NOFOLLOW_LINKS)) throw new IOException("Duplicate bundled artwork mod. Remove its custom copy before playing.");
         link(mods.resolve(mod.getFileName()), mod);
       }

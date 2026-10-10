@@ -1,0 +1,9 @@
+# FMVHD implementation specification
+
+User approved October 10, 2026. Publicly distribute enhanced copies of all 18 original cinematics through GitHub releases, bundle FMVHD by default, and support independent activation in the existing internal mod manager. This is an explicit project asset-policy exception for derived FMVHD video assets, not for raw discs, original IKI/AVI files or unrelated retail assets. Source code and manifests stay in Git; large video assets stay in GitHub releases.
+
+Preserve original 15 fps motion, logical 320:192 proportions even for 640:192 stored images, stereo audio, FMV volume controls, binding-aware two-step skipping, rumble cues, return to the previous renderer, and game-state transitions. Check source identity before replacing a video. Missing, disabled, incompatible or invalid replacement falls back to the original. Decoder/rendering failures must clean up and restore state.
+
+Use bounded background decoding and streamed audio; no whole-video startup scan or whole-video audio allocation. Frame scheduling follows cumulative played audio rather than render callback count. Maintain explicit frame dimensions and sample formats. Validate format, frame counts, hashes and full file decoding for every generated video. Report progress after each video. Inspect visual comparisons, including motion, before publishing; physical Deck behavior remains unverified until device acceptance.
+
+The first pack uses high-quality chroma reconstruction, gentle temporal denoising, a conservative neural/conventional blend at 1280x768, original motion and 48 kHz stereo AAC. Neural restoration is framewise, not a temporal neural model; texture flicker must be assessed in motion. Do not advertise recovered source detail, native HD masters or physical Deck performance from offline checks.

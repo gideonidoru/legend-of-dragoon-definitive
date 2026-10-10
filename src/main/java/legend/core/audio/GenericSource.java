@@ -18,6 +18,14 @@ public class GenericSource extends AudioSource {
     super.init();
   }
 
+  @Override
+  public void tick() {
+    // Unqueue exhausted buffers before restarting an underflowed source. Otherwise a fully
+    // processed final queue can replay from the beginning instead of reaching audio EOF.
+    this.handleProcessedBuffers();
+    super.tick();
+  }
+
   public void bufferOutput(final ByteBuffer buffer) {
     this.setActive(true);
     super.bufferOutput(this.format, buffer, this.sampleRate);

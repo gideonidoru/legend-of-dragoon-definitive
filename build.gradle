@@ -316,3 +316,6 @@ apply from: 'gradle/definitive-delivery.gradle'
 
 // Optional geometry mod and headless native-loader checks; no assets or default activation.
 apply from: 'gradle/modelshd.gradle'
+
+// Default cinematic pack with a checksum-pinned enhanced video payload.
+apply from: 'gradle/fmvhd.gradle'
