@@ -85,3 +85,69 @@ unowned configurations before visual deduplication/empty-layer filtering; shared
 sources and Skurfa aliases must stay deduplicated. Full EnvHD completion is not
 claimed by these baseline batches. Improve bespoke materials and inspect
 native scene behavior before claiming final visual acceptance.
+
+The field census is now decoded and independently checked by native Java CPU
+decoders: 650 configurations, 5,528 unique visible images, 124 empty slots and
+seven native missing-texture slots. The public `field-source-worklist.json` tracks
+every image/scene identity. Of 5,165 unowned visible images, three uniform sources
+remain native and 5,162 require restoration. Runtime selections are still zero.
+The complete private batch preserves each foreground independently; it does not
+flatten movable, hideable or alternate layers into the background.
+
+Field production source `75f924ac4` produced 724 complete private candidates before
+a checkpoint. The directory batch reuses those validated outputs with their exact
+origin-plan/source/output hashes, then restores the remaining complete worklist
+with backgrounds first. Eight real samples are pixel-identical between per-image
+and persistent-directory inference; the eight-sample directory run took 1.83
+seconds. Twenty-five synthetic fixtures now cover complete alias/render guards,
+pinned predecessor identity, altered reused-output rejection, fixed chunk identity
+across interruption, full-worklist/review publication, immutable revisions and
+interrupted imports. Both independent review axes accepted these safeguards.
+All outputs remain review candidates; none are new runtime selections.
+
+The field importer requires every candidate and every individual review before
+publishing a complete ledger. It independently compares the fresh source census
+with both actual generation histories, including byte-identical reused outputs.
+It processes PNGs individually rather than retaining gigabytes in memory.
+Immutable candidate files are written first and the complete ledger last; an
+interruption can leave resumable candidate files but cannot establish coverage.
+Source intent, style, layout and exact output identity are recorded separately
+from native gameplay and final quality, which remain pending.
+
+Initial field comparison boards expose colored placeholder areas beneath native
+foregrounds. Neural output around those edges requires source-bound repair and
+foreground composition review before selection. Preserve source layers and
+script state; do not turn those placeholders into invented scenery or flatten
+all foregrounds into the backdrop. The comparison boards and original pixels
+remain private diagnostics.
+
+The complete directory generation pass finished all 5,162 images. Every candidate
+record and PNG output hash is verified in `field-generation-receipt.json`; this
+public metadata receipt contains no original or generated pixels and claims zero
+runtime selections or acceptance. Generated PNGs total approximately 2.5 GB.
+
+Source `d75bc6385` implements a separate Python source-color perimeter repair.
+Frequent exact native green/cyan/yellow/magenta regions in background-bound images
+and their one-pixel source perimeter are retained exactly at 4x; neural pixels
+elsewhere remain unchanged. The operation adds no hidden scenery, averaging or
+foreground flattening. Its complete input history is checked before output,
+drifting controls and overlapping input/output paths reject, and each repaired
+candidate retains the original neural record as its input provenance. Independent
+review accepted the repair and all regression fixtures. Repairs and their final
+output hashes must receive individual visual review before publication.
+
+Source `cf492c377` extends the repair to frequent exact red/blue regions while
+retaining explicit validation of the historical four-color operation. All 5,162
+images completed the second pass; 342 backgrounds received source-bound guards.
+Three red-placeholder variants changed from the first pass and were re-reviewed.
+Repair records must match their batch's pinned algorithm, including on resume and
+publication. Both revision identities are preserved in the publication registry.
+
+The public `field-repair-receipt.json` records every validated repaired output hash
+and its neural input hash. `field-review-receipt.json` records individual intent,
+style and layout notes for all 608 backgrounds and the first 2,232 foregrounds.
+Of these 2,840 comparisons, 2,723 are reviewed development baselines and one hundred seventeen images
+need bespoke work on source identity, shape, signage or fine detail. The remaining 2,322 foreground comparisons,
+runtime integration and native/final acceptance are pending. These receipts
+contain metadata only; no complete candidate publication or installed field
+coverage is claimed. All 71 field/battle/terrain/ownership Python tests pass.
