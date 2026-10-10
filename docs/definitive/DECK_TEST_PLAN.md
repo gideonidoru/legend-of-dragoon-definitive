@@ -8,7 +8,12 @@ Record date, tester, Deck model, SteamOS/driver, engine/project SHA, JDK, artifa
 
 | Test | Protocol | Acceptance / record |
 | --- | --- | --- |
-| Clean install | New user directory, supported private game images, guided flow | No end-user terminal; missing/unsupported files explained; no private content in package |
+| Clean install | New user directory, supported private game images, guided flow | No manual commands required; missing/unsupported files explained; no private content in package |
+| Setup progress and completion | Import four images or a supported archive; observe task/count progress; exercise both Finish paths in separate isolated installs | Picker closes before preparation; expected folder, verified files and launchers exist; both Finish paths close setup; errors cannot show success |
+| Steam integration | Close Steam, add shortcut, reopen Steam and switch to Gaming Mode; repeat addition | Exactly one working shortcut; Play opens the installed launcher; failed addition remains retryable with diagnostics |
+| Forced setup termination | Terminate setup during portable/runtime download, then retry; separately leave a downloader running | Retry succeeds after all owners stop; a still-running owner prevents overlap; no manual removal of current regular lock files |
+| Storage and permission failures | Use an isolated unwritable destination and a controlled insufficient-space volume | Clear stopped screen or startup diagnostic; no activation of a partial package; no modification of an existing valid install |
+| Download faults | Disconnect during engine/runtime transfer; separately reject a corrupt package | Timeout/error gives a usable log and retry; checksum failure cannot activate; prior installation and private data remain usable |
 | Cold launch | Ten complete exit/start cycles, record cold vs warm cache | 10/10 reach playable/menu state; time/diagnostics captured |
 | Offline | After completed provisioning, disable network and start | Launch/load work offline; updates fail gracefully |
 | Controller | Title/options/menu/inventory/equipment/dialogue/save/battle | All paths navigable; glyphs and confirm/cancel consistent; no touchscreen/keyboard needed |

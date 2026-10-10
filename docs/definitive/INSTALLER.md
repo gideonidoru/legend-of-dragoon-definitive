@@ -33,7 +33,7 @@ Keep enough free space for the engine, a private copy of the four images, extrac
 
 An exclusive operation lock prevents overlapping installation, import, extraction, restore and managed gameplay. Package inventory, platform and SHA256 checks complete before atomic activation. The ZIP download digest comes from GitHub release metadata; manifests establish integrity, not an independent publisher signature. Only trust packages from this project's release/source distribution.
 
-Restore reactivates the previous engine with a fresh copy of its verified pre-update saves/settings/mods, and its artwork preference. Newer data is retained separately. Extracted data stays paired with its engine version. A failed operation can leave owned inactive staging/source/log directories for diagnosis; it never activates an unchecked payload. A stopped extraction can be retried with **Use installed discs**. Existing unowned installation directories and unexpected links are rejected.
+Restore reactivates the previous engine with a fresh copy of its verified pre-update saves/settings/mods, and its artwork preference. Newer data is retained separately. Extracted data stays paired with its engine version. A failed operation can leave owned inactive staging/source/log directories for diagnosis; it never activates an unchecked payload. A stopped extraction can be retried with **Use installed discs**. Startup locks are released by the operating system after all owning processes end; the regular lock files need no deletion. A directory lock left by an older installer is rejected with a recovery message: close older installers before removing only that empty legacy directory. Existing unowned installation directories and unexpected links are rejected.
 
 ## Building and assembling delivery
 
@@ -59,3 +59,8 @@ These results establish installer/backend behavior and compilation on Mac. They 
 ## Final alpha checks
 
 2026-10-09: 24 headless tests passed across installer/recovery, disc and Steam fixtures, controller mapping/layout, preset contracts and texture validation. A clean Mac package build passed; five authorized native Mac gameplay checks passed. The hosted Linux/macOS installer checkpoint retained release archives successfully. The final release is assembled from the subsequent checked source revision, with hashes stamped into the tiny entry point. Linux Desktop Entry parsing has a native harmless invocation fixture; it does not establish physical KDE/Deck behavior. Actual touch, native controller hotplug, Gaming Mode, performance and real-device recovery remain pending.
+
+
+## Recovery alpha checks
+
+The recovery build at `d1598b705a6fe37716a4ad603d0ddfacb4b09e92` passed Linux and Mac packaging, 45 delivery checks on each platform, a separate actual-window lifecycle check on Linux, eight interruption/concurrency cases and thirteen release-publication cases on both platforms. The downloaded Mac package repeated real four-disc preparation in a private QA installation. Exact packages, source, checksums and publication evidence are recorded in [Delivery reliability](DELIVERY_RELIABILITY.md). These results do not replace the physical [Deck acceptance protocol](DECK_TEST_PLAN.md).
