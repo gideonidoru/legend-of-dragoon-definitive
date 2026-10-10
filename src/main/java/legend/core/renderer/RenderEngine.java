@@ -351,7 +351,16 @@ public class RenderEngine {
   private boolean preparedSimulationFrame;
   private double simulationVsyncStep = 1;
 
-  private record SimulationCallback(Runnable callback) implements Runnable {
+  private static final class SimulationCallback implements Runnable {
+    private final Runnable callback;
+    private final boolean gameplay;
+    private int rate;
+    private SimulationCallback(final Runnable callback, final boolean gameplay, final int rate) {
+      if(rate < 1 || rate > 960) throw new IllegalArgumentException("Simulation rate must be between 1 and 960 Hz");
+      this.callback = java.util.Objects.requireNonNull(callback);
+      this.gameplay = gameplay;
+      this.rate = rate;
+    }
     @Override public void run() { this.callback.run(); }
   }
 
@@ -496,20 +505,36 @@ public class RenderEngine {
   public Runnable setRenderCallback(final Runnable renderCallback) {
     final Runnable oldCallback = this.renderCallback;
     this.renderCallback = java.util.Objects.requireNonNull(renderCallback);
-    if(oldCallback != renderCallback) this.simulationClock.reset(renderCallback instanceof SimulationCallback);
+    if(oldCallback != renderCallback) {
+      if(renderCallback instanceof SimulationCallback simulation) this.configureSimulationRate(simulation.rate, simulation.gameplay);
+      this.simulationClock.reset(renderCallback instanceof SimulationCallback);
+      PLATFORM.clearPressed(); // Edges belong to the previous callback; held state remains platform-owned.
+    }
     if(this.window != null) this.window.setSimulationConsumesInput(renderCallback instanceof SimulationCallback);
     return oldCallback;
   }
 
   /** Register gameplay explicitly; saved/restored callbacks retain their clock ownership. */
   public Runnable setSimulationCallback(final Runnable callback) {
-    return this.setRenderCallback(new SimulationCallback(java.util.Objects.requireNonNull(callback)));
+    return this.setRenderCallback(new SimulationCallback(callback, true, this.simulationClock.rate()));
+  }
+
+  /** Hardware callbacks have a neutral clock: game fast-forward never changes their speed. */
+  public Runnable setHardwareCallback(final Runnable callback, final int hz) {
+    return this.setRenderCallback(new SimulationCallback(callback, false, hz));
   }
 
   public void setSimulationRate(final int hz) {
+    final boolean gameplay = !(this.renderCallback instanceof SimulationCallback simulation) || simulation.gameplay;
+    this.configureSimulationRate(hz, gameplay);
+    if(this.renderCallback instanceof SimulationCallback simulation) simulation.rate = hz;
+  }
+
+  private void configureSimulationRate(final int hz, final boolean gameplay) {
     this.simulationClock.setRate(hz);
-    this.simulationVsyncStep = 60.0d * Config.getGameSpeedMultiplier() / hz;
-    this.window.setFpsLimit(this.frameSkip ? Math.max(1, hz / Config.getGameSpeedMultiplier()) : hz);
+    final int speed = gameplay ? Config.getGameSpeedMultiplier() : 1;
+    this.simulationVsyncStep = 60.0d * speed / hz;
+    if(this.window != null) this.window.setFpsLimit(this.frameSkip ? Math.max(1, hz / speed) : hz);
   }
 
   public boolean isPaused() { return this.paused; }
@@ -1764,7 +1789,7 @@ public class RenderEngine {
   }
 
   private int getRenderSpeedMultiplier() {
-    return this.cinematicPlayback ? 1 : Config.getGameSpeedMultiplier();
+    return !this.cinematicPlayback && this.renderCallback instanceof SimulationCallback simulation && simulation.gameplay ? Config.getGameSpeedMultiplier() : 1;
   }
 
   private void advanceRenderBuffer() {

@@ -36,7 +36,6 @@ import static legend.lodmod.LodMod.INPUT_ACTION_GENERAL_MOVE_LEFT;
 import static legend.lodmod.LodMod.INPUT_ACTION_GENERAL_MOVE_RIGHT;
 import static legend.lodmod.LodMod.INPUT_ACTION_GENERAL_MOVE_UP;
 import static legend.lodmod.LodMod.INPUT_ACTION_SMAP_INTERACT;
-import static org.legendofdragoon.dabas.core.sound.Spu.SAMPLES_PER_TICK;
 import static org.legendofdragoon.dabas.core.sound.Spu.SAMPLE_RATE;
 import static org.lwjgl.openal.AL10.AL_FORMAT_MONO8;
 
@@ -45,10 +44,14 @@ public class Dabas implements DabasInterface {
   private final ByteBuffer pixelBuffer = BufferUtils.createByteBuffer(32 * 32 * 4);
   private final Hardware dabas = new Hardware(this, this.pixels);
 
-  private final ByteBuffer audioBuffer = BufferUtils.createByteBuffer(SAMPLES_PER_TICK);
   private final GenericSource source;
+  private final DabasAudio audio;
+  private int hardwareRate = 60;
+  private int oldInputRate;
+  private boolean closed;
 
   private Runnable oldRenderer;
+  private java.util.function.Consumer<Boolean> oldPauseCallback;
   private int oldFps;
   private final Vector2i oldProjectionSize = new Vector2i();
   private EngineState.RenderMode oldRenderMode;
@@ -65,16 +68,27 @@ public class Dabas implements DabasInterface {
   private Runnable onClosed;
 
   public Dabas() {
-    this.source = AUDIO_THREAD.addSource(new GenericSource(AL_FORMAT_MONO8, SAMPLE_RATE));
-
+    this(AUDIO_THREAD.addSource(new GenericSource(AL_FORMAT_MONO8, SAMPLE_RATE)));
     this.dabas.start(Loader.resolve("OHTA/MCX/DABAS.BIN"));
+  }
+
+  // No ROM or timer thread is started by the headless ownership fixture.
+  Dabas(final GenericSource source) {
+    this.source = source;
+    this.audio = new DabasAudio(source);
   }
 
   @Override
   public void setTicker(final Runnable ticker) {
     if(this.oldRenderer == null) {
-      this.oldRenderer = RENDERER.setRenderCallback(this::tick);
       this.oldFps = RENDERER.window().getFpsLimit();
+      this.oldInputRate = PLATFORM.getInputTickRate();
+      this.oldRenderer = RENDERER.setHardwareCallback(this::tick, this.hardwareRate);
+      this.oldPauseCallback = RENDERER.setCinematicPauseCallback(paused -> {
+        this.audio.setPaused(paused);
+        this.source.setPlaybackPaused(paused);
+      });
+      PLATFORM.setInputTickRate(this.hardwareRate);
       this.oldProjectionSize.set(RENDERER.getNativeWidth(), RENDERER.getNativeHeight());
       this.oldRenderMode = RENDERER.getRenderMode();
       this.oldClearColour.set(clearRed_8007a3a8, clearGreen_800bb104, clearBlue_800babc0);
@@ -129,10 +143,18 @@ public class Dabas implements DabasInterface {
 
   @Override
   public void setFps(final int fps) {
-    RENDERER.window().setFpsLimit(fps);
+    if(fps < 1 || fps > 960) throw new IllegalArgumentException("Dabas rate must be between 1 and 960 Hz");
+    this.hardwareRate = fps;
+    // Timer setup can report its rate before setTicker acquires the renderer.
+    if(this.oldRenderer != null && !this.closed) {
+      RENDERER.setSimulationRate(fps);
+      PLATFORM.setInputTickRate(fps);
+    }
   }
 
   private void tick() {
+    if(this.closed) return;
+    this.audio.drain();
     if(this.displayTexture == null) {
       this.displayTexture = Texture.empty("Dabas display buffer", 32, 32);
     }
@@ -145,6 +167,7 @@ public class Dabas implements DabasInterface {
     }
 
     this.ticker.run();
+    if(this.closed) return; // Hardware can shut down inside its callback.
 
     int pixelIndex = 0;
     for(int i = 0; i < 32 * 32; i++) {
@@ -167,10 +190,7 @@ public class Dabas implements DabasInterface {
 
   @Override
   public void bufferAudio(final byte[] samples) {
-    if(this.source.canBuffer()) {
-      this.audioBuffer.put(0, samples);
-      this.source.bufferOutput(this.audioBuffer);
-    }
+    this.audio.submit(samples);
   }
 
   @Override
@@ -208,15 +228,23 @@ public class Dabas implements DabasInterface {
 
   @Override
   public void shutdown() {
+    if(this.closed) return;
+    this.closed = true;
+    this.audio.close(); // Wake a backpressured timer before stopping/removing its source.
     this.dabas.stop();
+    if(this.oldRenderer == null) {
+      AUDIO_THREAD.removeSource(this.source);
+      return;
+    }
 
     RENDERER.window().events().removeInputActionPressed(this.onPressed);
     RENDERER.window().events().removeInputActionReleased(this.onReleased);
     RENDERER.window().events().removeClose(this.onClosed);
 
+    RENDERER.setCinematicPauseCallback(this.oldPauseCallback);
     RENDERER.setRenderCallback(this.oldRenderer);
     RENDERER.window().setFpsLimit(this.oldFps);
-    PLATFORM.setInputTickRate(this.oldFps);
+    PLATFORM.setInputTickRate(this.oldInputRate);
     RENDERER.setRenderMode(this.oldRenderMode);
     RENDERER.setProjectionSize(this.oldProjectionSize.x, this.oldProjectionSize.y);
     clearRed_8007a3a8 = this.oldClearColour.x;
@@ -225,7 +253,7 @@ public class Dabas implements DabasInterface {
 
     AUDIO_THREAD.removeSource(this.source);
 
-    this.displayTexture.delete();
-    this.texturedObj.delete();
+    if(this.displayTexture != null) this.displayTexture.delete();
+    if(this.texturedObj != null) this.texturedObj.delete();
   }
 }
