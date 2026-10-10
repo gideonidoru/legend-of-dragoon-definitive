@@ -75,8 +75,14 @@ def retains_selection(root, group):
         if metadata['reviewStatus'] not in sky.SELECTED or metadata['reviewStatus'] != entry.get('runtimeReviewStatus') or metadata.get('decodedRgbaSha256') != entry['decodedRgbaSha256']:
             raise ValueError('Selected runtime binding differs from production ownership')
         image = sky.resource_path(runtime, entry['sourceMcqSha256'], metadata)
-        if str(image.relative_to(root)) != entry.get('runtimeOutput') or sky.digest(sky.read_bytes(image)) != metadata['outputSha256']:
+        data = sky.read_bytes(image)
+        if str(image.relative_to(root)) != entry.get('runtimeOutput') or sky.digest(data) != metadata['outputSha256']:
             raise ValueError('Selected runtime artwork changed')
+        if metadata.get('scale') != 4 or len(data) < 33 or data[:8] != b'\x89PNG\r\n\x1a\n' or data[24] != 8 or data[25] not in (2, 6):
+            raise ValueError('Selected runtime layout differs from source-bound 4x')
+        with Image.open(io.BytesIO(data)) as decoded:
+            if list(decoded.size) != entry['targetSize'] or decoded.mode not in ('RGB', 'RGBA'):
+                raise ValueError('Selected PNG dimensions differ from source-bound target')
         outputs.add((str(image), metadata['outputSha256']))
     if len(outputs) != 1:
         raise ValueError('Shared source variants have different selected artwork')

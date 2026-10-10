@@ -107,6 +107,15 @@ class BatchTest(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             batch.plan(self.root, self.files)
 
+    def test_selected_scale_drift_stops_planning(self):
+        self.fixture.record()
+        path = self.fixture.manifest(self.fixture.master)
+        metadata = json.loads(path.read_text())
+        metadata['scale'] = 2
+        path.write_text(json.dumps(metadata))
+        with self.assertRaisesRegex(ValueError, 'source-bound 4x'):
+            batch.plan(self.root, self.files)
+
     def test_layout_failed_art_uses_original_instead_of_repairing_wrong_shapes(self):
         self.fixture.record(verdict='intent-revision-needed')
         jobs, _ = batch.plan(self.root, self.files)
