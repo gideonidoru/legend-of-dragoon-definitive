@@ -14,4 +14,8 @@ class Retention(unittest.TestCase):
         current=release(2,'new','2026-10-10')
         with self.assertRaises(ValueError):m.plan([current,release(3,'next','2026-10-11')],'new')
         with self.assertRaises(ValueError):m.plan([current,current],'new')
+    def test_latest_must_be_exact_public_release(self):
+        kept={'databaseId':2,'tagName':'new'};latest={'id':2,'tag_name':'new','draft':False,'prerelease':False};m.verify_latest(kept,latest)
+        for changed in ({'id':1},{'tag_name':'old'},{'draft':True},{'prerelease':True}):
+            with self.assertRaises(ValueError):m.verify_latest(kept,dict(latest,**changed))
 if __name__=='__main__':unittest.main()

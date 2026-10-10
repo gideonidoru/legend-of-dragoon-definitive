@@ -190,7 +190,7 @@ def main():
     if not release['isDraft']:
         print('PASS: identical verified release is already public; no changes made')
         return
-    gh('release', 'edit', args.tag, '-R', REPO, '--notes-file', str(args.notes_file), '--draft=false')
+    gh('release', 'edit', args.tag, '-R', REPO, '--notes-file', str(args.notes_file), '--draft=false', '--prerelease=false', '--latest')
     published = read()
     verify_release(published, args.tag, args.source_sha, expected)
     verify_tag(args.tag, args.source_sha, required=True)
