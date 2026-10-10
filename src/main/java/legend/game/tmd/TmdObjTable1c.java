@@ -2,6 +2,7 @@ package legend.game.tmd;
 
 import legend.core.MathHelper;
 import legend.core.renderer.Obj;
+import legend.core.renderer.SurfaceMaterial;
 import legend.game.unpacker.CtmdTransformer;
 import legend.game.unpacker.FileData;
 import org.joml.Vector3f;
@@ -128,9 +129,19 @@ public class TmdObjTable1c {
   public Obj getObj() {
     if(this.obj == null) {
       this.obj = TmdObjLoader.fromObjTable(this.meshName == null ? this.name : this.meshName, this, 0, this.textureWidth, this.textureHeight);
+      this.obj.surfaceMaterial = this.surfaceMaterial;
     }
 
     return this.obj;
+  }
+
+  private SurfaceMaterial surfaceMaterial = SurfaceMaterial.MATTE;
+  private boolean surfaceAuthored;
+
+  public void surfaceMaterial(final SurfaceMaterial material) {
+    this.surfaceMaterial = java.util.Objects.requireNonNull(material);
+    this.surfaceAuthored = true;
+    if(this.obj != null) this.obj.surfaceMaterial = material;
   }
 
   public void rebuildObj(final int textureWidth, final int textureHeight) {
@@ -150,9 +161,12 @@ public class TmdObjTable1c {
 
   /** Retain the source's indexed or RGBA texture normalization when replacing geometry. */
   public Obj buildObjLike(final TmdObjTable1c source) {
+    if(!this.surfaceAuthored) this.surfaceMaterial = source.surfaceMaterial;
     this.textureWidth = source.textureWidth;
     this.textureHeight = source.textureHeight;
-    return this.getObj();
+    final Obj result = this.getObj();
+    result.surfaceMaterial = this.surfaceMaterial;
+    return result;
   }
 
   public void delete() {

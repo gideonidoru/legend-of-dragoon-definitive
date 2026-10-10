@@ -1,0 +1,100 @@
+package legend.definitive.rendering;
+
+import legend.core.GameEngine;
+import legend.core.renderer.*;
+import legend.core.renderer.opengl.GlApi;
+import legend.game.modding.coremod.CoreMod;
+import legend.game.saves.ConfigRegistryEvent;
+import org.lwjgl.opengl.GL;
+import java.nio.ByteBuffer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import static org.lwjgl.opengl.GL11C.*;
+import static org.lwjgl.opengl.GL20C.*;
+import static org.lwjgl.opengl.GL30C.*;
+
+/** Optional actual-backend GPU acceptance executable, never launched by ordinary tests. */
+public final class NativeRendererProbe {
+  private static native long open();
+  private static native void close(long context);
+  private static void require(final boolean value, final String message) {
+    if(!value) throw new AssertionError(message);
+  }
+  private static int program(final Shader<?> shader) throws Exception {
+    final var field = shader.getClass().getDeclaredField("shader"); field.setAccessible(true); return field.getInt(shader);
+  }
+  private static void filtering(final boolean enabled) throws Exception {
+    // Exercise live sampler settings without booting mods or posting gameplay events.
+    final var setter = legend.game.saves.ConfigCollection.class.getDeclaredMethod("setConfigQuietly", legend.game.saves.ConfigEntry.class, Object.class);
+    setter.setAccessible(true);
+    setter.invoke(GameEngine.CONFIG, CoreMod.HD_TEXTURE_FILTERING_CONFIG.get(), enabled);
+  }
+  public static void main(final String[] args) throws Exception {
+    System.load(args[0]);
+    final long context = open(); require(context != 0, "windowless context");
+    try {
+      GL.createCapabilities();
+      final GlApi api = new GlApi();
+      final var apiField = GameEngine.RENDERER.getClass().getDeclaredField("api"); apiField.setAccessible(true); apiField.set(GameEngine.RENDERER, api);
+      CoreMod.registerConfig(new ConfigRegistryEvent((legend.game.saves.ConfigRegistry)GameEngine.REGISTRIES.config));
+      final Path directory = Files.createTempDirectory("renderer-probe-");
+      final Path vertex = directory.resolve("probe.vsh"), fragment = directory.resolve("probe.fsh");
+      final String vs = "#version 330 core\nout vec2 linkValue; void main(){ linkValue=vec2(1); gl_Position=vec4(0,0,0,1); }";
+      final String fs = "#version 330 core\nin vec2 linkValue; uniform float shade; out vec4 colour; void main(){ colour=vec4(shade*linkValue,0,1); }";
+      Files.writeString(vertex, vs); Files.writeString(fragment, fs);
+      final Shader<ShaderOptions> shader = api.makeShader("reload probe", vertex, fragment, current -> () -> () -> {});
+      final ShaderUniformFloat handle = shader.uniformFloat("shade");
+      require(handle == shader.uniformFloat("shade"), "uniform handles are cached");
+      final int original = program(shader);
+      Files.writeString(fragment, "#version 330 core\ninvalid shader"); shader.reload();
+      require(program(shader) == original && glIsProgram(original), "compile failure retains original program");
+      Files.delete(fragment);
+      try {
+        shader.reload();
+        throw new AssertionError("missing shader should report an IO failure");
+      } catch(final java.io.IOException expected) {
+        require(program(shader) == original && glIsProgram(original), "missing source retains original program");
+      }
+      Files.writeString(vertex, vs.replace("out vec2", "out vec3").replace("linkValue=vec2", "linkValue=vec3")); Files.writeString(fragment, fs); shader.reload();
+      require(program(shader) == original && glIsProgram(original), "link failure retains original program");
+      Files.writeString(vertex, vs);
+      Files.writeString(fragment, fs.replace("uniform float shade;", "uniform vec3 earlier; uniform float shade;").replace("vec4(shade*linkValue,0,1)", "vec4(shade*linkValue,earlier.x,1)"));
+      shader.reload(); shader.use(); handle.set(.75f);
+      final int replacement = program(shader);
+      require(replacement != original && !glIsProgram(original), "successful reload replaces and deletes old program");
+      require(handle == shader.uniformFloat("shade"), "existing options retain the same refreshed handle");
+      require(glGetUniformf(replacement, glGetUniformLocation(replacement, "shade")) == .75f, "old handle writes the new program's correct uniform");
+      shader.delete();
+      System.out.println("PASS: actual OpenGL backend uniform caching, compile/link rollback, successful replacement and existing-handle refresh.");
+
+      final Texture colour = api.makeTexture(ByteBuffer.allocateDirect(64 * 64 * 4), "color", 64, 64, TextureInternalFormat.RGBA_8, TextureDataFormat.RGBA, TextureDataType.UBYTE, false, false, false, false);
+      final Texture glow = api.makeTexture(null, "glow", 64, 64, TextureInternalFormat.RGBA_8, TextureDataFormat.RGBA, TextureDataType.UBYTE, false, false, false, false);
+      final Texture mask = api.makeTexture(null, "mask", 64, 64, TextureInternalFormat.R_8, TextureDataFormat.RED, TextureDataType.UBYTE, false, false, false, false);
+      final FrameBuffer buffer = api.makeFrameBuffer("MRT", new FrameBufferAttachment[] {new FrameBufferAttachment(FrameBufferAttachmentType.COLOUR, colour), new FrameBufferAttachment(FrameBufferAttachmentType.COLOUR, glow), new FrameBufferAttachment(FrameBufferAttachmentType.COLOUR, mask)});
+      buffer.bind(); require(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "backend MRT/R8 completeness");
+      api.translucency(Translucency.B_PLUS_F); require(!glIsEnabledi(GL_BLEND, 2), "mask blending disabled when scene blending enabled");
+      api.postProcessMask(false); final ByteBuffer flags = ByteBuffer.allocateDirect(4); glGetBooleani_v(GL_COLOR_WRITEMASK, 2, flags); require(flags.get(0) == 0, "mask writes disabled");
+      api.postProcessMask(true); glGetBooleani_v(GL_COLOR_WRITEMASK, 2, flags); require(flags.get(0) == 1, "mask writes restored");
+      api.clearPostProcessTargets(); glReadBuffer(GL_COLOR_ATTACHMENT2); final ByteBuffer pixel = ByteBuffer.allocateDirect(4); glReadPixels(0,0,1,1,GL_RGBA,GL_UNSIGNED_BYTE,pixel); require(pixel.get(0) == 0, "mask cleared to zero");
+      api.translucency(null); glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      colour.hdAtlasFiltering(8); colour.use(0);
+      require(glGetTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER) == GL_LINEAR_MIPMAP_LINEAR, "backend trilinear filtering");
+      require(glGetTexParameteri(GL_TEXTURE_2D, org.lwjgl.opengl.GL12C.GL_TEXTURE_MAX_LEVEL) == 1, "gutter bounds anisotropic mip footprint");
+      filtering(false); colour.use(0);
+      require(glGetTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER) == GL_NEAREST, "off restores original filtering");
+      filtering(true); colour.use(0);
+      mask.use(1); // Leave another unit active while colour is already cached on unit zero.
+      colour.data(0,0,1,1,TextureDataType.UBYTE,new int[] {0xff00ff00}); colour.use(0);
+      glActiveTexture(GL_TEXTURE0);
+      final ByteBuffer uploaded = ByteBuffer.allocateDirect(64 * 64 * 4);
+      glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, uploaded);
+      require(uploaded.get(0) == 0 && (uploaded.get(1) & 0xff) == 255 && uploaded.get(2) == 0 && (uploaded.get(3) & 0xff) == 255, "updates reach the correct cached texture after a unit switch");
+      glGetTexImage(GL_TEXTURE_2D, 1, GL_RGBA, GL_UNSIGNED_BYTE, uploaded);
+      require((uploaded.get(1) & 0xff) > 0, "updated HD pixels regenerate mipmaps");
+      require(glGetError() == GL_NO_ERROR, "backend lifecycle has no GL errors");
+      buffer.delete(); colour.delete(); glow.delete(); mask.delete(); Texture.deleteTextures();
+      Files.delete(vertex); Files.delete(fragment); Files.delete(directory);
+      System.out.println("PASS: actual OpenGL backend MRT/R8 setup, blend/mask state, auxiliary clears, atlas mip cap, filtering toggles, texture updates and deletion.");
+    } finally { close(context); }
+  }
+}

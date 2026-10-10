@@ -66,7 +66,7 @@ public class MapIndicator {
       this.createPlayerIndicator(cX, cY);
     }
 
-    RENDERER.queueOrthoModel(this.indicators[IndicatorType.PLAYER.indicator], this.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(this.indicators[IndicatorType.PLAYER.indicator], this.transforms, QueuedModelStandard.class)
       .colour(r, g, b)
       .clutOverride(cX, cY)
       .uvOffset(uX, uY);
@@ -79,7 +79,7 @@ public class MapIndicator {
       this.createDoorIndicator(cX, cY);
     }
 
-    RENDERER.queueOrthoModel(this.indicators[IndicatorType.DOOR.indicator], this.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(this.indicators[IndicatorType.DOOR.indicator], this.transforms, QueuedModelStandard.class)
       .colour(r, g, b)
       .clutOverride(cX, cY)
       .uvOffset(uX, uY);
@@ -92,7 +92,7 @@ public class MapIndicator {
       this.createAlertIndicator();
     }
 
-    RENDERER.queueOrthoModel(this.indicators[IndicatorType.ALERT.indicator], this.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(this.indicators[IndicatorType.ALERT.indicator], this.transforms, QueuedModelStandard.class)
       .uvOffset(uX, uY);
   }
 

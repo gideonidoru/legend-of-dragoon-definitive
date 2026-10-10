@@ -687,7 +687,7 @@ public class Credits extends EngineState<Credits> {
   private void renderQuad(final CreditData1c credit, final float x, final float y) {
     this.transforms.identity();
     this.transforms.transfer.set(GPU.getOffsetX() + x, GPU.getOffsetY() +  y, (orderingTableSize_1f8003c8 - 3) * 4.0f);
-    RENDERER.queueOrthoModel(this.credits, this.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(this.credits, this.transforms, QueuedModelStandard.class)
       .vertices(credit.index * 4, 4)
       .colour(credit.colour_00);
   }

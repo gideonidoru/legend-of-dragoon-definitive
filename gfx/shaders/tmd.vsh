@@ -15,6 +15,9 @@ out VS_OUT {
   flat int vertBpp;
   smooth vec4 vertColour;
   smooth vec3 lightingNormal;
+  smooth vec3 worldPosition;
+  smooth vec3 worldNormal;
+  smooth vec3 localViewDirection;
   smooth vec3 lightingColour;
   flat int lightingIndex;
   flat int vertFlags;
@@ -36,6 +39,7 @@ uniform vec2 clutOverride;
 uniform vec2 tpageOverride;
 uniform float modelIndex;
 uniform bool sceneLighting;
+uniform bool modernLighting;
 uniform vec3 sceneKeyTint;
 uniform vec3 sceneAmbientTint;
 
@@ -160,6 +164,18 @@ void main() {
     }
   }
 
+  vs_out.worldPosition = (t.model * pos).xyz;
+  vs_out.worldNormal = vec3(0.0);
+  vs_out.localViewDirection = vec3(0.0);
+  if(modernLighting && lit && !translucent) {
+    mat3 worldBasis = mat3(t.model);
+    mat3 viewBasis = mat3(camera * t.model);
+    // Flattened shadow geometry and singular scripted transforms retain legacy shading.
+    if(abs(determinant(worldBasis)) > 1e-8 && abs(determinant(viewBasis)) > 1e-8) {
+      vs_out.worldNormal = transpose(inverse(worldBasis)) * inNorm;
+      vs_out.localViewDirection = inverse(viewBasis) * -(camera * t.model * pos).xyz;
+    }
+  }
   gl_Position = camera * t.model * pos;
   vs_out.viewspaceZ = gl_Position.z;
 

@@ -368,7 +368,7 @@ public class ChapterTitleCard {
           //LAB_800e3b14
           this.transforms.scaling(right - left, bottom - top, 1.0f);
           this.transforms.transfer.set(GPU.getOffsetX() + left, GPU.getOffsetY() + top, 112.1f);
-          RENDERER.queueOrthoModel(shadow, this.transforms, QueuedModelStandard.class)
+          RENDERER.queueUiOrthoModel(shadow, this.transforms, QueuedModelStandard.class)
             .vertices(0, 4)
             .monochrome(this.chapterTitleBrightness_800c6728);
 
@@ -379,7 +379,7 @@ public class ChapterTitleCard {
 
           this.transforms.scaling(right - left, bottom - top, 1.0f);
           this.transforms.transfer.set(GPU.getOffsetX() + left, GPU.getOffsetY() + top, 112.1f);
-          RENDERER.queueOrthoModel(shadow, this.transforms, QueuedModelStandard.class)
+          RENDERER.queueUiOrthoModel(shadow, this.transforms, QueuedModelStandard.class)
             .vertices(4, 4)
             .monochrome(this.chapterTitleBrightness_800c6728);
         }
@@ -394,7 +394,7 @@ public class ChapterTitleCard {
 
         this.transforms.scaling(right - left, bottom - top, 1.0f);
         this.transforms.transfer.set(GPU.getOffsetX() + left, GPU.getOffsetY() + top, 112.0f);
-        RENDERER.queueOrthoModel(text, this.transforms, QueuedModelStandard.class)
+        RENDERER.queueUiOrthoModel(text, this.transforms, QueuedModelStandard.class)
           .vertices(0, 4)
           .monochrome(this.chapterTitleBrightness_800c6728);
 
@@ -405,7 +405,7 @@ public class ChapterTitleCard {
 
         this.transforms.scaling(right - left, bottom - top, 1.0f);
         this.transforms.transfer.set(GPU.getOffsetX() + left, GPU.getOffsetY() + top, 112.0f);
-        RENDERER.queueOrthoModel(text, this.transforms, QueuedModelStandard.class)
+        RENDERER.queueUiOrthoModel(text, this.transforms, QueuedModelStandard.class)
           .vertices(4, 4)
           .monochrome(this.chapterTitleBrightness_800c6728);
 

@@ -11,6 +11,8 @@ import java.nio.FloatBuffer;
 import java.util.Arrays;
 
 import static legend.core.GameEngine.GPU;
+import static legend.core.GameEngine.CONFIG;
+import static legend.game.modding.coremod.CoreMod.HD_TEXTURE_FILTERING_CONFIG;
 
 public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends QueuedModel<Options, T>> {
   protected final RenderBatch batch;
@@ -21,6 +23,26 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
 
   Obj obj;
   int sequence;
+  boolean uiLayer;
+  float emission;
+  SurfaceMaterial surfaceMaterial;
+
+  public T surface(final SurfaceMaterial material) {
+    this.surfaceMaterial = java.util.Objects.requireNonNull(material);
+    return (T)this;
+  }
+
+  /** Protect this draw from scene-only presentation effects. */
+  public T ui() {
+    this.uiLayer = true;
+    return (T)this;
+  }
+
+  /** Explicit emission, independent of pixel brightness or palette index. */
+  public T emissive(final float amount) {
+    this.emission = Float.isFinite(amount) ? Math.max(0.0f, Math.min(2.0f, amount)) : 0.0f;
+    return (T)this;
+  }
   final Matrix4f transforms = new Matrix4f();
   final Vector3f screenspaceOffset = new Vector3f();
   final Vector3f colour = new Vector3f();
@@ -165,6 +187,9 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
   void acquire(final Obj obj, final int sequence) {
     this.obj = obj;
     this.sequence = sequence;
+    this.uiLayer = this.batch.engine.isUiScope();
+    this.emission = 0.0f;
+    this.surfaceMaterial = obj.surfaceMaterial == null ? SurfaceMaterial.MATTE : obj.surfaceMaterial;
     this.screenspaceOffset.zero();
     this.colour.set(1.0f, 1.0f, 1.0f);
     this.clutOverride.zero();
@@ -217,6 +242,9 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
 
   public void useShader(final int modelIndex, final int discardMode) {
     this.shader.use();
+    this.shaderOptions.renderMetadata(this.uiLayer, this.emission);
+    this.shaderOptions.surface(this.surfaceMaterial);
+    this.shaderOptions.hdTexture(this.textures[0] != null && this.textures[0].isHdFiltered() && CONFIG.getConfig(HD_TEXTURE_FILTERING_CONFIG.get()));
     this.shaderOptions.discardMode(discardMode);
     this.shaderOptions.modelIndex(modelIndex);
     this.shaderOptions.clut(this.clutOverride);

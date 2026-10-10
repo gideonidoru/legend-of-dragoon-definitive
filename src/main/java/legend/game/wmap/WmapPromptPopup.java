@@ -252,7 +252,7 @@ public class WmapPromptPopup {
       //LAB_800ce5c8
       highlight.transforms.identity();
       highlight.transforms.transfer.set(x, y, highlight.z_3e);
-      RENDERER.queueOrthoModel(highlight.highlight, highlight.transforms, QueuedModelStandard.class)
+      RENDERER.queueUiOrthoModel(highlight.highlight, highlight.transforms, QueuedModelStandard.class)
         .vertices(i * 4, 4)
         .monochrome(highlight.currentBrightness_34);
     }
@@ -269,7 +269,7 @@ public class WmapPromptPopup {
 
     if(this.thumbnail != null) {
       this.transforms.transfer.set(this.thumbnailTranslation);
-      RENDERER.queueOrthoModel(this.thumbnail, this.transforms, QueuedModelStandard.class);
+      RENDERER.queueUiOrthoModel(this.thumbnail, this.transforms, QueuedModelStandard.class);
     }
 
     if(this.prompt != null) {

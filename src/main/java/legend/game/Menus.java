@@ -383,6 +383,7 @@ public final class Menus {
 
             final QueuedModelStandard model = RENDERER
               .queueOrthoModel(renderable.uiType_20.obj, transforms, QueuedModelStandard.class)
+              .ui()
               .vertices(metrics.vertexStart, 4)
               .tpageOverride(tpageX, (tpage & 0b10000) != 0 ? 256 : 0)
               .clutOverride(clutX, clut >>> 6)

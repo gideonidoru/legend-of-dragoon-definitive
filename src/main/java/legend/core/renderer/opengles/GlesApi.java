@@ -380,6 +380,7 @@ public class GlesApi implements RenderApi {
         // Do not update the depth mask so that we don't prevent things further away than this from rendering
         glDepthMask(false);
         glEnable(GL_BLEND);
+        org.lwjgl.opengles.GLES32.glDisablei(GL_BLEND, 2);
       } else if(translucency == null) {
         // Update the depth mask so nothing further away than this will render
         glDepthMask(true);
@@ -416,6 +417,24 @@ public class GlesApi implements RenderApi {
     if(enable) {
       GameOverlay.addNotification(3, new RawText("Wireframe not supported in OpenGLES"));
     }
+  }
+
+  private boolean interfaceWrite = true;
+
+  @Override
+  public void postProcessMask(final boolean write) {
+    if(this.interfaceWrite != write) {
+      org.lwjgl.opengles.GLES32.glColorMaski(2, write, write, write, write);
+      this.interfaceWrite = write;
+    }
+  }
+
+  private static final float[] ZERO_COLOUR = {0, 0, 0, 0};
+
+  @Override
+  public void clearPostProcessTargets() {
+    org.lwjgl.opengles.GLES30.glClearBufferfv(org.lwjgl.opengles.GLES30.GL_COLOR, 1, ZERO_COLOUR);
+    org.lwjgl.opengles.GLES30.glClearBufferfv(org.lwjgl.opengles.GLES30.GL_COLOR, 2, ZERO_COLOUR);
   }
 
   @Override

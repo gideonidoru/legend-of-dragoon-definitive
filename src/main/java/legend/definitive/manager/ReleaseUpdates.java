@@ -13,6 +13,7 @@ import java.util.*;
 /** Background checks against our repository. Installation remains an explicit user action. */
 public final class ReleaseUpdates {
   private ReleaseUpdates() { }
+  private static final long MAX_PACKAGE_BYTES = 8L * 1024 * 1024 * 1024;
   private static final String REPO = "gideonidoru/legend-of-dragoon-definitive";
   private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).followRedirects(HttpClient.Redirect.NORMAL).build();
   public record ContentsAsset(String id, URI url, String sha256) { }
@@ -215,7 +216,6 @@ public final class ReleaseUpdates {
       return store.install(download, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall);
     } finally { Files.deleteIfExists(download); }
   }
-  private static final long MAX_PACKAGE_BYTES = 8L * 1024 * 1024 * 1024;
   /** Resume only the unique owned staging file, with a strong entity validator and whole-file digest. */
   static void download(final Candidate candidate, final Path file, final InstallProgress progress, final AssetDownload connection) throws IOException, InterruptedException {
     download(candidate, file, progress, connection, MAX_PACKAGE_BYTES);

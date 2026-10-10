@@ -1,6 +1,28 @@
 package legend.core.renderer;
 
 public class ShaderOptionsScreen implements ShaderOptions {
+  private ShaderUniformFloat sceneBloom;
+  private ShaderUniformFloat sharpening;
+  private ShaderUniformInt protectInterface;
+
+  public void sceneUniforms(final Shader<?> shader) {
+    shader.use();
+    shader.uniformInt("sceneEmission").set(2);
+    shader.uniformInt("interfaceCoverage").set(3);
+    this.sceneBloom = shader.uniformFloat("sceneBloom");
+    this.sharpening = shader.uniformFloat("sharpening");
+    this.protectInterface = shader.uniformInt("protectInterface");
+  }
+
+  public void sceneEffects(final float bloom, final float sharpening, final boolean protectInterface) {
+    this.sceneBloom.set(strength(bloom));
+    this.sharpening.set(strength(sharpening));
+    this.protectInterface.set(protectInterface ? 1 : 0);
+  }
+
+  private static float strength(final float value) {
+    return Float.isFinite(value) ? Math.max(0.0f, Math.min(1.0f, value)) : 0.0f;
+  }
   private final ShaderUniformInt enableCrt;
   private final ShaderUniformFloat time;
   private final ShaderUniformFloat scanlinesOpacity;

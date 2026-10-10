@@ -450,7 +450,7 @@ public final class Text {
           textbox.updateBorder = true;
         }
 
-        RENDERER.queueOrthoModel(textboxBackgroundObj, textbox.backgroundTransforms, QueuedModelStandard.class)
+        RENDERER.queueUiOrthoModel(textboxBackgroundObj, textbox.backgroundTransforms, QueuedModelStandard.class)
           .colour(textbox.colour)
           .worldScissor().set(0, 0, RENDERER.getRenderWidth(), RENDERER.getRenderHeight());
 
@@ -506,7 +506,7 @@ public final class Text {
           .scaling((right - left) / 16.0f, (bottom - top) / 16.0f, 1.0f);
       }
 
-      RENDERER.queueOrthoModel(textboxBorderObjs[borderIndex], textbox.borderTransforms[borderIndex], QueuedModelStandard.class)
+      RENDERER.queueUiOrthoModel(textboxBorderObjs[borderIndex], textbox.borderTransforms[borderIndex], QueuedModelStandard.class)
         .worldScissor().set(0, 0, RENDERER.getRenderWidth(), RENDERER.getRenderHeight());
     }
 
@@ -1803,7 +1803,7 @@ public final class Text {
 
     textboxSelectionTransforms.scaling(width, 1.0f, 1.0f);
     textboxSelectionTransforms.transfer.set(x - width / 2.0f, y, textbox.z_0c * 4.0f);
-    RENDERER.queueOrthoModel(textboxSelectionObj, textboxSelectionTransforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(textboxSelectionObj, textboxSelectionTransforms, QueuedModelStandard.class)
       .colour(colour)
     ;
   }
@@ -1929,7 +1929,7 @@ public final class Text {
       if((textboxText.flags_08 & TextboxText84.SHOW_ARROW) != 0) {
         textboxArrowTransforms.scaling(1.0f, 0.875f, 1.0f);
         textboxArrowTransforms.transfer.set(arrow.x_04, arrow.y_06,  textboxText.z_0c * 4.0f);
-        RENDERER.queueOrthoModel(textboxArrowObjs[arrow.spriteIndex_08], textboxArrowTransforms, QueuedModelStandard.class)
+        RENDERER.queueUiOrthoModel(textboxArrowObjs[arrow.spriteIndex_08], textboxArrowTransforms, QueuedModelStandard.class)
           .worldScissor().set(0, 0, RENDERER.getRenderWidth(), RENDERER.getRenderHeight());
       }
     }

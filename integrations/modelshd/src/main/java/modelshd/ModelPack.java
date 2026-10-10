@@ -108,6 +108,9 @@ public final class ModelPack {
           primitives[f] = packet(source.get(sourceIndex), face, points.length, normals.length);
         }
         result[i] = new TmdObjTable1c("ModelsHD part " + i, points, normals, primitives);
+        if(part.has("surface")) {
+          result[i].surfaceMaterial(legend.core.renderer.SurfaceMaterial.valueOf(part.get("surface").getAsString().toUpperCase(java.util.Locale.ROOT)));
+        }
       }
       return result;
     } catch(final RuntimeException e) {

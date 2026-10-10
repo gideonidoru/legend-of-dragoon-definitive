@@ -105,7 +105,12 @@ public class MenuStack {
     final Iterator<MenuScreen> it = this.screens.iterator();
 
     if(it.hasNext()) {
-      this.propagate(it, MenuScreen::renderScreen, MenuScreen::propagateRender, true);
+      RENDERER.pushUiScope();
+      try {
+        this.propagate(it, MenuScreen::renderScreen, MenuScreen::propagateRender, true);
+      } finally {
+        RENDERER.popUiScope();
+      }
     }
   }
 

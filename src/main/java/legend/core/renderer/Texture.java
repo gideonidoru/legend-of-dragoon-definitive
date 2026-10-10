@@ -85,6 +85,30 @@ public abstract class Texture {
   public final String name;
   public final int width;
   public final int height;
+  protected int hdMipLevels = -1;
+
+  /** Full-image HD color texture. Never call for indexed palettes or unpadded atlases. */
+  public Texture hdFiltering() {
+    return this.hdFiltering(31);
+  }
+
+  /** Explicit LOD cap; atlas producers should use hdAtlasFiltering instead. */
+  public Texture hdFiltering(final int maxMipLevel) {
+    if(this.internalFormat() != TextureInternalFormat.RGBA_8 && this.internalFormat() != TextureInternalFormat.RGB_8) {
+      throw new IllegalArgumentException("HD filtering requires a color texture");
+    }
+    if(maxMipLevel < 0) throw new IllegalArgumentException("Negative mip level");
+    this.hdMipLevels = Math.min(maxMipLevel, 31 - Integer.numberOfLeadingZeros(Math.max(this.width, this.height)));
+    return this;
+  }
+
+  public boolean isHdFiltered() { return this.hdMipLevels >= 0; }
+
+  /** Conservative gutter budget including the maximum 4x anisotropic footprint. */
+  public Texture hdAtlasFiltering(final int duplicatedGutterPixels) {
+    if(duplicatedGutterPixels < 4) throw new IllegalArgumentException("HD atlas filtering requires at least four duplicated edge pixels");
+    return this.hdFiltering(Math.max(0, 31 - Integer.numberOfLeadingZeros(duplicatedGutterPixels) - 2));
+  }
 
   protected Texture(final String name, final int width, final int height) {
     this.name = name;

@@ -39,6 +39,11 @@ uniform sampler2D tex24;
 uniform usampler2D tex15;
 
 layout(location = 0) out vec4 outColour;
+layout(location = 1) out vec4 outEmission;
+layout(location = 2) out vec4 outInterface;
+uniform bool uiLayer;
+uniform float emission;
+uniform bool hdTexture;
 
 void main() {
   // Older Intel iGPUs are buggy and don't implement scissoring properly, causing the Shirley fight to lock up when
@@ -83,7 +88,18 @@ void main() {
       texColour.g = float(pixel >>  5 & 0x1fu) / 31.0;
       texColour.r = float(pixel       & 0x1fu) / 31.0;
     } else {
-      texColour = texture(tex24, vertUv + uvOffset);
+      vec2 uv = vertUv + uvOffset;
+      if(hdTexture) {
+        vec2 uvDx = dFdx(uv), uvDy = dFdy(uv);
+        ivec2 size = textureSize(tex24, 0);
+        vec4 source = texelFetch(tex24, clamp(ivec2(uv * vec2(size)), ivec2(0), size - 1), 0);
+        // Full-canvas HD foregrounds contain large empty regions: reject them before filtered reads.
+        if(all(equal(source, vec4(0.0)))) discard;
+        texColour = textureGrad(tex24, uv, uvDx, uvDy);
+        texColour.a = source.a;
+      } else {
+        texColour = texture(tex24, uv);
+      }
     }
 
     // Discard if (0, 0, 0, 0), or if alpha is 0 and we're using texture alpha mode
@@ -123,4 +139,6 @@ void main() {
       outColour.a = 1.0;
     }
   }
+  outEmission = vec4(uiLayer ? vec3(0.0) : outColour.rgb * emission, outColour.a);
+  outInterface = vec4(uiLayer ? 1.0 : 0.0);
 }

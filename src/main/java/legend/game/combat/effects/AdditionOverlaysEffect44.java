@@ -307,7 +307,7 @@ public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.Void
 
         effect.transforms.scaling(squareSize, squareSize, 1.0f);
         effect.transforms.transfer.set(GPU.getOffsetX(), GPU.getOffsetY() + 30.0f, 120.0f);
-        final QueuedModelStandard model = RENDERER.queueOrthoModel(RENDERER.centredQuadBPlusF, effect.transforms, QueuedModelStandard.class);
+        final QueuedModelStandard model = RENDERER.queueUiOrthoModel(RENDERER.centredQuadBPlusF, effect.transforms, QueuedModelStandard.class);
 
         if(completionState == 1) {  // Success
           model.monochrome(1.0f);
@@ -344,7 +344,7 @@ public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.Void
       .scaling(10.0f, borderSize, 1.0f)
       .rotateLocalZ(angle);
 
-    RENDERER.queueOrthoModel(this.reticleBorderShadow, this.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(this.reticleBorderShadow, this.transforms, QueuedModelStandard.class)
       .monochrome(colour / 255.0f);
   }
 
@@ -370,9 +370,9 @@ public class AdditionOverlaysEffect44 implements Effect<EffectManagerParams.Void
 
         // Set translucent if button press is failure and border sideEffects_0d not innermost rotating border or target (15)
         if((borderOverlay.sideEffects_0d == 0 || borderOverlay.sideEffects_0d == -1) && currentHitCompletionState >= 0) {
-          model = RENDERER.queueOrthoModel(RENDERER.lineBox, this.transforms, QueuedModelStandard.class);
+          model = RENDERER.queueUiOrthoModel(RENDERER.lineBox, this.transforms, QueuedModelStandard.class);
         } else {
-          model = RENDERER.queueOrthoModel(RENDERER.lineBoxBPlusF, this.transforms, QueuedModelStandard.class);
+          model = RENDERER.queueUiOrthoModel(RENDERER.lineBoxBPlusF, this.transforms, QueuedModelStandard.class);
         }
 
         if(hitArray[hitNum].isCounter_1c && borderNum != 16) {

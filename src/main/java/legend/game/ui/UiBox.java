@@ -93,7 +93,7 @@ public class UiBox {
     this.textbox.colour.set(r, g, b);
     renderTextboxBackground(this.textbox);
 
-    RENDERER.queueOrthoModel(RENDERER.plainQuads.get(Translucency.HALF_B_PLUS_HALF_F), this.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(RENDERER.plainQuads.get(Translucency.HALF_B_PLUS_HALF_F), this.transforms, QueuedModelStandard.class)
       .colour(0.0f, 0.0f, 0.0f);
   }
 }

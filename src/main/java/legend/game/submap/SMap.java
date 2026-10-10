@@ -5281,6 +5281,9 @@ public class SMap extends EngineState<SMap> {
     applyModelRotationAndScale(model);
     animateModel(model, 4 / vsyncMode_8007a3b8);
     this.renderSmapModel(model, null);
+    if(!CONFIG.getConfig(REDUCE_MOTION_FLASHING_CONFIG.get())) {
+      RENDERER.effectLight(this.savePointPos_800d5622, 0.4f, 0.55f, 1.0f, 180.0f);
+    }
 
     GPU.queueCommand(1, new GpuCommandCopyVramToVram(984, 288 + this._800f9ea0, 992, 288, 8, 64 - this._800f9ea0));
     GPU.queueCommand(1, new GpuCommandCopyVramToVram(984, 288, 992, 352 - this._800f9ea0, 8, this._800f9ea0));
@@ -5335,7 +5338,8 @@ public class SMap extends EngineState<SMap> {
       s0.transforms.transfer.set(GPU.getOffsetX() + x0, GPU.getOffsetY() + y0, s0.z_40 * 4.0f);
       RENDERER.queueOrthoModel(this.savepointObj, s0.transforms, QueuedModelStandard.class)
         .vertices(i * 4, 4)
-        .monochrome(s0.colour_34);
+        .monochrome(s0.colour_34)
+        .emissive(CONFIG.getConfig(REDUCE_MOTION_FLASHING_CONFIG.get()) ? 0.0f : 0.5f);
     }
 
     final float sp80 = (minX - maxX) / 2.0f;

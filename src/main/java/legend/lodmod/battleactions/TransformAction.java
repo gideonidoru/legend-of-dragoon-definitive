@@ -70,7 +70,7 @@ public class TransformAction extends RetailBattleAction {
         menu.transforms.scaling(16.0f, 16.0f, 1.0f);
         menu.transforms.transfer.set(menuElementBaseX, menuElementBaseY, 10.0f);
 
-        RENDERER.queueOrthoModel(battle.hud.battleIconQuad, menu.transforms, QueuedModelStandard.class)
+        RENDERER.queueUiOrthoModel(battle.hud.battleIconQuad, menu.transforms, QueuedModelStandard.class)
           .uvOffset(iconU, iconV)
           .texture(battle.hud.battleIconsTexture)
           .useTextureAlpha();

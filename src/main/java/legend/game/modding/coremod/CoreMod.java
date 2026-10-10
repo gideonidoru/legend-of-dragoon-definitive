@@ -134,6 +134,24 @@ public class CoreMod {
   public static final RegistryDelegate<LanguageConfigEntry> LANGUAGE_CONFIG = CONFIG_REGISTRAR.register("language", LanguageConfigEntry::new);
 
   // Shader config
+  public static final RegistryDelegate<BoolConfigEntry> PROTECT_INTERFACE_CONFIG = CONFIG_REGISTRAR.register("protect_interface", () -> graphicsToggle());
+  public static final RegistryDelegate<BoolConfigEntry> HD_TEXTURE_FILTERING_CONFIG = CONFIG_REGISTRAR.register("hd_texture_filtering", () -> graphicsToggle());
+  public static final RegistryDelegate<BoolConfigEntry> MATERIAL_LIGHTING_CONFIG = CONFIG_REGISTRAR.register("material_lighting", () -> graphicsToggle());
+  public static final RegistryDelegate<BoolConfigEntry> EFFECT_LIGHTS_CONFIG = CONFIG_REGISTRAR.register("effect_lights", () -> graphicsToggle());
+  public static final RegistryDelegate<FloatConfigEntry> SCENE_BLOOM_CONFIG = CONFIG_REGISTRAR.register("scene_bloom", () -> graphicsStrength(0.25f));
+  public static final RegistryDelegate<FloatConfigEntry> SCENE_SHARPENING_CONFIG = CONFIG_REGISTRAR.register("scene_sharpening", () -> graphicsStrength(0.2f));
+
+  private static BoolConfigEntry graphicsToggle() {
+    return new BoolConfigEntry(true, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
+      @Override public boolean hasHelp() { return true; }
+    };
+  }
+
+  private static FloatConfigEntry graphicsStrength(final float value) {
+    return new FloatConfigEntry(value, 0.05f, 0.1f, 0.0f, 1.0f, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
+      @Override public boolean hasHelp() { return true; }
+    };
+  }
   public static final RegistryDelegate<BoolConfigEntry> SOFT_CONTACT_SHADOWS_CONFIG = CONFIG_REGISTRAR.register("soft_contact_shadows", () -> new BoolConfigEntry(true, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
     @Override
     public boolean hasHelp() {

@@ -15,6 +15,7 @@ public abstract class Obj {
 
   private static final List<Obj> objList = new ArrayList<>();
   public final String name;
+  public SurfaceMaterial surfaceMaterial = SurfaceMaterial.MATTE;
   protected boolean deleted;
   /** This Obj won't be deleted on state transition */
   public boolean persistent;

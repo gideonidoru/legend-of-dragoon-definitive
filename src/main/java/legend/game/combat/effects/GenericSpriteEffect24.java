@@ -113,6 +113,11 @@ public class GenericSpriteEffect24 {
 
         if((this.flags_00 & 0x4000_0000) != 0) {
           model.translucency(Translucency.of(this.flags_00 >>> 28 & 0x3));
+          final int blend = this.flags_00 >>> 28 & 3;
+          if((blend == 1 || blend == 3) && !legend.core.GameEngine.CONFIG.getConfig(legend.game.modding.coremod.CoreMod.REDUCE_MOTION_FLASHING_CONFIG.get())) {
+            model.emissive(0.65f);
+            RENDERER.effectLight(translation, this.r_14 / 255.0f, this.g_15 / 255.0f, this.b_16 / 255.0f, 256.0f);
+          }
         }
       }
     }

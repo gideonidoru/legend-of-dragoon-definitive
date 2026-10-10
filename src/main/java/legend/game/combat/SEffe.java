@@ -108,6 +108,7 @@ import java.util.Arrays;
 import java.util.function.BiFunction;
 
 import static legend.core.GameEngine.CONFIG;
+import static legend.game.modding.coremod.CoreMod.REDUCE_MOTION_FLASHING_CONFIG;
 import static legend.core.GameEngine.GPU;
 import static legend.core.GameEngine.GTE;
 import static legend.core.GameEngine.PLATFORM;
@@ -368,6 +369,11 @@ public final class SEffe {
       .ctmdFlags(0x20 | ((dobj2.attribute_00 & 0x4000_0000) != 0 ? 0x12 : 0x0))
       .tmdTranslucency(tmdGp0Tpage_1f8003ec >>> 5 & 0b11)
       .battleColour(((Battle)currentEngineState_8004dd04)._800c6930.colour_00);
+    final int effectBlend = tmdGp0Tpage_1f8003ec >>> 5 & 3;
+    if((dobj2.attribute_00 & 0x4000_0000) != 0 && (effectBlend == 1 || effectBlend == 3) && !ActorShadow.isSoft(obj) && !CONFIG.getConfig(REDUCE_MOTION_FLASHING_CONFIG.get())) {
+      queued.emissive(0.65f);
+      RENDERER.effectLight(seffeTransforms.transfer, effectParams.colour_1c.x / 255.0f, effectParams.colour_1c.y / 255.0f, effectParams.colour_1c.z / 255.0f, 256.0f);
+    }
     if(ActorShadow.isSoft(obj)) {
       final Vector3f tint = ((Battle)currentEngineState_8004dd04)._800c6930.colour_00;
       queued.colour(ContactShadow.effectTint(tint.x), ContactShadow.effectTint(tint.y), ContactShadow.effectTint(tint.z));

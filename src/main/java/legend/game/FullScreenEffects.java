@@ -66,7 +66,7 @@ public final class FullScreenEffects {
       ;
 
       //LAB_800139c4
-      RENDERER.queueOrthoModel(RENDERER.plainQuads.get(Translucency.B_PLUS_F), fullScreenEffect_800bb140.transforms, QueuedModelStandard.class)
+      RENDERER.queueUiOrthoModel(RENDERER.plainQuads.get(Translucency.B_PLUS_F), fullScreenEffect_800bb140.transforms, QueuedModelStandard.class)
         .colour(fullScreenEffect_800bb140.red0_20 / 255.0f, fullScreenEffect_800bb140.green0_1c / 255.0f, fullScreenEffect_800bb140.blue0_14 / 255.0f);
     }
 
@@ -82,7 +82,7 @@ public final class FullScreenEffects {
       ;
 
       //LAB_80013b10
-      RENDERER.queueOrthoModel(RENDERER.plainQuads.get(Translucency.B_MINUS_F), fullScreenEffect_800bb140.transforms, QueuedModelStandard.class)
+      RENDERER.queueUiOrthoModel(RENDERER.plainQuads.get(Translucency.B_MINUS_F), fullScreenEffect_800bb140.transforms, QueuedModelStandard.class)
         .colour(fullScreenEffect_800bb140.red1_18 / 255.0f, fullScreenEffect_800bb140.green1_10 / 255.0f, fullScreenEffect_800bb140.blue1_0c / 255.0f);
     }
 
@@ -158,7 +158,7 @@ public final class FullScreenEffects {
       .translate(0.0f, 0.0f, 120.0f)
     ;
 
-    RENDERER.queueOrthoModel(RENDERER.plainQuads.get(transMode), fullScreenEffect_800bb140.transforms, QueuedModelStandard.class)
+    RENDERER.queueUiOrthoModel(RENDERER.plainQuads.get(transMode), fullScreenEffect_800bb140.transforms, QueuedModelStandard.class)
       .monochrome(colour / 255.0f)
       .worldScissor().set(0, 0, RENDERER.getRenderWidth(), RENDERER.getRenderHeight());
   }

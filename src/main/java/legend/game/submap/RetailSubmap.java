@@ -839,7 +839,7 @@ public class RetailSubmap extends Submap {
     final IntBuffer empty = BufferUtils.createIntBuffer(this.backgroundRect.w * this.backgroundRect.h);
 
     if(event.background != null) {
-      this.backgroundTexture = event.background;
+      this.backgroundTexture = event.background.hdFiltering();
     } else {
       this.backgroundTexture = Texture.create("Submap background", builder -> {
         builder.data(empty, this.backgroundRect.w, this.backgroundRect.h);
@@ -871,6 +871,11 @@ public class RetailSubmap extends Submap {
     }
 
     this.foregroundTextures = event.foregrounds;
+    if(this.foregroundTextures != null) {
+      for(final Texture texture : this.foregroundTextures) {
+        if(texture != null) texture.hdFiltering();
+      }
+    }
 
     // Create one texture per foreground and position the foreground in the correct spot
     for(int i = 0; i < this.envForegroundTextureCount_800cb580; i++) {
