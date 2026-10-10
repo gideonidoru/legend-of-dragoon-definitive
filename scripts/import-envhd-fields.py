@@ -123,6 +123,8 @@ def publish(files,staging,legacy_staging,review_file,repaired_staging=None):
         source=battle.staging_path(repaired_staging or staging,key+'.png')
         png=terrain.bounded_read(source,32*1024*1024)
         if repaired_staging is not None:
+            if record.get('algorithmSha256')!=repair_plan['algorithmSha256']:
+                raise ValueError('Field repair candidate algorithm differs from its batch plan')
             repair.validate(item,original_record,original_data,record,png)
         else:
             batch.validate(item,record,png)

@@ -331,7 +331,7 @@ class FieldPublicationTest(unittest.TestCase):
             plan_bytes=publication.publication.json_bytes(plan);records_bytes=publication.publication.json_bytes([input_record])
             for folder,control in [(staging,plan_bytes),(legacy,data)]:
                 folder.mkdir();(folder/'source-plan.json').write_bytes(control);(folder/'candidates.json').write_bytes(records_bytes);(folder/(key+'.png')).write_bytes(png)
-            repaired_record=publication.repair.record(item,input_record,publication.terrain.digest(png))
+            repaired_record=publication.repair.record(item,input_record,publication.terrain.digest(png),publication.REPAIR_SCRIPT_SHA256)
             repair_plan=dict(schema=1,pipeline='envhd-field-source-color-perimeter-repair-1',algorithmSha256=repaired_record['algorithmSha256'],
                              inputGenerationPlanSha256=publication.terrain.digest(plan_bytes),inputCandidatesSha256=publication.terrain.digest(records_bytes),
                              sourceCensus=report,masters=[{k:v for k,v in item.items() if k!='image'}],nativeAcceptance='pending',finalQualityAcceptance='pending')
@@ -343,6 +343,10 @@ class FieldPublicationTest(unittest.TestCase):
                     with self.assertRaisesRegex(ValueError,'algorithm history'):publication.publish(files,staging,legacy,reviews,repaired)
                     self.assertEqual([],list(root.iterdir()))
                 (repaired/'repair-plan.json').write_text(json.dumps(repair_plan))
+                current_record=publication.repair.record(item,input_record,publication.terrain.digest(png))
+                (repaired/'candidates.json').write_text(json.dumps([current_record]))
+                with self.assertRaisesRegex(ValueError,'algorithm differs from its batch plan'):publication.publish(files,staging,legacy,reviews,repaired)
+                self.assertEqual([],list(root.iterdir()));(repaired/'candidates.json').write_text(json.dumps([repaired_record]))
                 reviews.write_text(json.dumps(dict(reviews={key:note|dict(outputSha256='0'*64)})))
                 with self.assertRaisesRegex(ValueError,'differs from candidate output'):publication.publish(files,staging,legacy,reviews,repaired)
                 reviews.write_text(json.dumps(dict(reviews={key:note})))
@@ -359,6 +363,24 @@ class FieldPublicationTest(unittest.TestCase):
 
 
 class FieldRepairTest(unittest.TestCase):
+    def test_red_blue_variants_are_guarded_without_relabelling_legacy_outputs(self):
+        source=np.full((10,12,4),[40,32,24,255],dtype=np.uint8)
+        source[2:6,1:5]=[248,0,0,255];source[2:6,7:11]=[0,0,248,255]
+        image=Image.fromarray(source)
+        item=dict(image=image,decodedRgbaSha256=repair.terrain.fingerprint(image),sourceSize=[12,10],owners=['envhd'],bindings=[dict(kind='background')])
+        self.assertTrue(repair.guard(item).any());self.assertFalse(repair.guard(item,repair.LEGACY_COLORS).any())
+        rgb=np.full((40,48,3),[56,40,32],dtype=np.uint8);inferred,_=repair.terrain.preserve_stp(image,rgb)
+        stream=io.BytesIO();inferred.save(stream,format='PNG');data=stream.getvalue()
+        input_record=repair.batch.candidate_record(item,repair.terrain.digest(data))
+        legacy_record=repair.record(item,input_record,repair.terrain.digest(data),repair.LEGACY_ALGORITHM_SHA256)
+        repair.validate(item,input_record,data,legacy_record,data)
+        self.assertEqual(0,legacy_record['guardedNativePixels']);self.assertEqual(4,len(legacy_record['guardColors']))
+        pixels=repair.repaired_pixels(item,data);stream=io.BytesIO();Image.fromarray(pixels).save(stream,format='PNG');updated=stream.getvalue()
+        r=repair.record(item,input_record,repair.terrain.digest(updated));repair.validate(item,input_record,data,r,updated)
+        self.assertGreater(r['guardedNativePixels'],0);self.assertEqual(6,len(r['guardColors']))
+        with self.assertRaises(ValueError):repair.validate(item,input_record,data,legacy_record,updated)
+        with self.assertRaisesRegex(ValueError,'Unknown field repair'):repair.record(item,input_record,repair.terrain.digest(updated),'0'*64)
+
     def test_source_color_region_and_one_pixel_perimeter_are_exact_without_averaging(self):
         source=np.full((10,12,4),[40,32,24,255],dtype=np.uint8);source[2:6,3:7]=[0,248,0,255]
         source[0,0]=[0,0,0,0];source[9,11]=[0,0,0,255]
@@ -401,6 +423,11 @@ class FieldRepairTest(unittest.TestCase):
                 self.assertEqual(records,repair.execute(files,staging,legacy,output));self.assertEqual(png,(staging/(key+'.png')).read_bytes())
                 self.assertEqual(png,(output/(key+'.png')).read_bytes())
                 self.assertEqual(0,records[0]['guardedNativePixels'])
+                records_data=(output/'candidates.json').read_bytes()
+                old_record=repair.record(item,input_record,repair.terrain.digest(png),repair.LEGACY_ALGORITHM_SHA256)
+                (output/'candidates.json').write_text(json.dumps([old_record]))
+                with self.assertRaisesRegex(ValueError,'algorithm differs from its batch plan'):repair.execute(files,staging,legacy,output)
+                (output/'candidates.json').write_bytes(records_data)
                 for overlap in (staging,legacy,staging/'nested-repair',base):
                     with self.assertRaisesRegex(ValueError,'separate from both input'):repair.execute(files,staging,legacy,overlap)
                 self.assertFalse((staging/'repair-plan.json').exists());self.assertFalse((legacy/'repair-plan.json').exists())
