@@ -93,3 +93,12 @@ every image/scene identity. Of 5,165 unowned visible images, three uniform sourc
 remain native and 5,162 require restoration. Runtime selections are still zero.
 The complete private batch preserves each foreground independently; it does not
 flatten movable, hideable or alternate layers into the background.
+
+Field production source `75f924ac4` produced 724 complete private candidates before
+a checkpoint. The directory batch reuses those validated outputs with their exact
+origin-plan/source/output hashes, then restores the remaining complete worklist
+with backgrounds first. Eight real samples are pixel-identical between per-image
+and persistent-directory inference; the eight-sample directory run took 1.83
+seconds. Eighteen synthetic fixtures now cover complete alias/render guards,
+prior-output validation and fixed chunk identity across interruption. All outputs
+remain review candidates; none are new runtime selections.

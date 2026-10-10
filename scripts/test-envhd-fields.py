@@ -87,6 +87,28 @@ class FieldsTest(unittest.TestCase):
                 (p/'mrg').write_text(text)
                 with self.assertRaises(ValueError):fields.entries(p)
 
+    def test_complete_alias_worklist_cannot_shrink_while_pixel_counts_stay_equal(self):
+        ownership=dict(scenes=[dict(sourceSignature='same',mappings=[dict(cut=0,period='early',bank=21,file=4),dict(cut=1,period='early',bank=21,file=7)])])
+        configs={'same':dict(sourceSignature='same',mappings=[dict(cut=0,period='early',bank=21,directory=4),dict(cut=1,period='early',bank=21,directory=7)])}
+        fields.verify_complete_worklist(ownership,configs)
+        configs['same']['mappings'].pop()
+        with self.assertRaises(ValueError):fields.verify_complete_worklist(ownership,configs)
+        configs['same']['mappings'].append(dict(cut=1,period='early',bank=22,directory=7))
+        with self.assertRaises(ValueError):fields.verify_complete_worklist(ownership,configs)
+
+    def test_present_configuration_cannot_hide_a_missing_render_or_failed_route(self):
+        route=dict(cut=111,period='early',bank=21,directory=4)
+        group=dict(sourceSignature='same',mappings=[route],renders=['same:111'])
+        configs={'same':group};renders={'same:111':{}}
+        fields.verify_complete_renders(configs,renders,[])
+        group['renders']=[]
+        with self.assertRaises(ValueError):fields.verify_complete_renders(configs,renders,[])
+        group['renders']=['same:111']
+        with self.assertRaises(ValueError):fields.verify_complete_renders(configs,{},[])
+        with self.assertRaises(ValueError):fields.verify_complete_renders(configs,renders,[route|dict(status='unresolved-source-or-decode')])
+        # Unused/sentinel routes remain inventoried without becoming image jobs.
+        fields.verify_complete_renders(configs,renders,[dict(cut=900,period='late',status='non-retail-disc-selector')])
+
     def test_bounds_trailing_blocks_and_descriptor_budgets(self):
         for data in [tim()+b'x',tim()[:12],struct.pack('<II',16,2)+b'x'*64]:
             with self.assertRaises(ValueError):fields.tim(data)
@@ -146,15 +168,58 @@ class FieldBatchTest(unittest.TestCase):
             item=self.item();output=base/'private';report=dict(protectedSharedPixelImages=1)
             calls=[]
             def inference(command,**kwargs):
-                calls.append(command);im=Image.open(command[command.index('-i')+1]);im.resize((im.width*4,im.height*4),Image.Resampling.NEAREST).save(command[command.index('-o')+1]);return mock.Mock(returncode=0,stdout=b'',stderr=b'')
+                calls.append(command)
+                input_dir=Path(command[command.index('-i')+1]);output_dir=Path(command[command.index('-o')+1])
+                for path in input_dir.iterdir():
+                    im=Image.open(path);im.resize((im.width*4,im.height*4),Image.Resampling.NEAREST).save(output_dir/path.name)
+                return mock.Mock(returncode=0,stdout=b'',stderr=b'')
             with mock.patch.dict(batch.terrain.PINS,pins),mock.patch.object(batch.fields,'census',return_value=report),mock.patch.object(batch,'sources',return_value=([item],[])),mock.patch.object(batch.subprocess,'run',side_effect=inference):
                 records=batch.execute(files,output,engine,models);self.assertEqual(1,len(records));batch.execute(files,output,engine,models);self.assertEqual(1,len(calls))
                 report['changed']=True
                 with self.assertRaises(ValueError):batch.execute(files,output,engine,models)
+            # Reuse validates every source/output and records prior plan provenance.
+            reused_output=base/'reused'
+            report.pop('changed')
+            with mock.patch.dict(batch.terrain.PINS,pins),mock.patch.object(batch.fields,'census',return_value=report),mock.patch.object(batch,'sources',return_value=([item],[])),mock.patch.object(batch.subprocess,'run',side_effect=inference):
+                before=len(calls);batch.execute(files,reused_output,engine,models,output);self.assertEqual(before,len(calls))
+                plan=batch.read_control(reused_output/'source-plan.json');self.assertEqual(records[0]['outputSha256'],plan['reusedOutputs'][0]['outputSha256'])
+                altered=dict(item,sourceSize=[3,3])
+                with mock.patch.object(batch,'sources',return_value=([altered],[])):
+                    with self.assertRaises(ValueError):batch.execute(files,base/'bad-reuse',engine,models,output)
+            # A partially recorded directory chunk resumes with fixed input membership.
+            import json
+            (output/'candidates.json').write_text('[]')
+            (output/(item['decodedRgbaSha256']+'.png')).unlink()
+            with mock.patch.dict(batch.terrain.PINS,pins),mock.patch.object(batch.fields,'census',return_value=report),mock.patch.object(batch,'sources',return_value=([item],[])),mock.patch.object(batch.subprocess,'run',side_effect=inference):
+                resumed=batch.execute(files,output,engine,models);self.assertEqual(1,len(resumed))
             redirected=base/'redirected';redirected.mkdir();(redirected/'private-work').symlink_to(base/'outside')
             with mock.patch.dict(batch.terrain.PINS,pins),mock.patch.object(batch.fields,'census',return_value=report),mock.patch.object(batch,'sources',return_value=([item],[])):
                 with self.assertRaises(ValueError):batch.execute(files,redirected,engine,models)
                 self.assertFalse((base/'outside').exists())
+
+    def test_resume_after_completed_chunk_keeps_later_chunk_identity(self):
+        import contextlib,json
+        with tempfile.TemporaryDirectory() as tmp:
+            base=Path(tmp);files=base/'files';files.mkdir();engine=base/'engine';engine.write_bytes(b'engine');models=base/'models';models.mkdir()
+            (models/'realesrgan-x4plus.bin').write_bytes(b'weights');(models/'realesrgan-x4plus.param').write_bytes(b'params')
+            pins={k:batch.terrain.digest(v) for k,v in [('engineSha256',b'engine'),('weightsSha256',b'weights'),('parametersSha256',b'params')]}
+            items=[]
+            for i in range(129):
+                item=self.item();pixels=np.asarray(item['image']).copy();pixels[0,0,0]=i+1;item['image']=Image.fromarray(pixels);item['decodedRgbaSha256']=batch.terrain.fingerprint(item['image']);items.append(item)
+            calls=[]
+            def inference(command,**kwargs):
+                input_dir=Path(command[command.index('-i')+1]);output_dir=Path(command[command.index('-o')+1]);calls.append(input_dir.name)
+                for path in input_dir.iterdir():
+                    im=Image.open(path);im.resize((im.width*4,im.height*4),Image.Resampling.NEAREST).save(output_dir/path.name)
+                return mock.Mock(returncode=0,stdout=b'',stderr=b'')
+            output=base/'private'
+            with mock.patch.dict(batch.terrain.PINS,pins),mock.patch.object(batch.fields,'census',return_value=dict(protectedSharedPixelImages=0)),mock.patch.object(batch,'sources',return_value=(items,[])),mock.patch.object(batch.subprocess,'run',side_effect=inference),contextlib.redirect_stdout(io.StringIO()):
+                records=batch.execute(files,output,engine,models);self.assertEqual(['inputs-0000','inputs-0001'],calls)
+                # Simulate an interruption after the first 128 candidates were recorded.
+                (output/'candidates.json').write_text(json.dumps(records[:128]))
+                (output/(records[128]['decodedRgbaSha256']+'.png')).unlink()
+                resumed=batch.execute(files,output,engine,models);self.assertEqual(129,len(resumed));self.assertEqual(['inputs-0000','inputs-0001','inputs-0001'],calls)
+
 
 
 if __name__=='__main__':unittest.main()

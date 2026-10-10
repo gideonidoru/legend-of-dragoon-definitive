@@ -84,7 +84,7 @@ def read_control(path):
     return json.loads(terrain.bounded_read(path,32*1024*1024))
 
 
-def execute(files,output,engine,models):
+def execute(files,output,engine,models,reuse_batch=None):
     battle.private_destination(files,output)
     if output.is_symlink():
         raise ValueError('Refusing a redirected field staging root')
@@ -93,11 +93,35 @@ def execute(files,output,engine,models):
             raise ValueError('Pinned field inference identity differs')
     report=fields.census(files)
     masters,uniform=sources(files,report)
-    plan=dict(schema=1,pipeline='envhd-complete-field-batch-1',scriptSha256=terrain.digest(Path(__file__).read_bytes()),
+    masters.sort(key=lambda m:(not any(b['kind']=='background' for b in m['bindings']),m['decodedRgbaSha256']))
+    plan=dict(schema=1,pipeline='envhd-complete-field-directory-batch-2',scriptSha256=terrain.digest(Path(__file__).read_bytes()),
               dependencySha256={n:terrain.digest(Path(__file__).with_name(n).read_bytes()) for n in ('census-envhd-fields.py','batch-envhd-battle-materials.py','batch-envhd-terrain.py','modelshd-field-map.py')},
               scope='All unowned nonuniform visible field images; candidate-only, no runtime/native/final acceptance.',
               sourceCensus=report,retainedUniformSources=uniform,
               masters=[{k:v for k,v in m.items() if k!='image'} for m in masters])
+    reusable=[]
+    if reuse_batch is not None:
+        battle.private_destination(files,reuse_batch)
+        if reuse_batch.is_symlink():
+            raise ValueError('Refusing redirected prior field staging')
+        previous_plan_data=terrain.bounded_read(battle.staging_path(reuse_batch,'source-plan.json'),32*1024*1024)
+        previous_plan=json.loads(previous_plan_data)
+        prior_census=dict(previous_plan['sourceCensus']);current_census=dict(report)
+        prior_census.pop('pipelineSha256',None);current_census.pop('pipelineSha256',None)
+        prior_masters={m['decodedRgbaSha256']:m for m in previous_plan['masters']}
+        current_masters={m['decodedRgbaSha256']:{k:v for k,v in m.items() if k!='image'} for m in masters}
+        if prior_census!=current_census or prior_masters!=current_masters or previous_plan['retainedUniformSources']!=uniform:
+            raise ValueError('Prior field batch has different source/worklist identity')
+        reusable=read_control(battle.staging_path(reuse_batch,'candidates.json'))
+        by_key={m['decodedRgbaSha256']:m for m in masters}
+        if len({r['decodedRgbaSha256'] for r in reusable})!=len(reusable):
+            raise ValueError('Duplicate prior field candidates')
+        for record in reusable:
+            key=record['decodedRgbaSha256']
+            if key not in by_key:
+                raise ValueError('Unknown prior field candidate')
+            validate(by_key[key],record,terrain.bounded_read(battle.staging_path(reuse_batch,key+'.png'),32*1024*1024))
+        plan['reusedOutputs']=[dict(decodedRgbaSha256=r['decodedRgbaSha256'],outputSha256=r['outputSha256'],originPlanSha256=terrain.digest(previous_plan_data),originScriptSha256=previous_plan['scriptSha256']) for r in reusable]
     output.mkdir(parents=True,exist_ok=True)
     plan_path=battle.staging_path(output,'source-plan.json')
     if plan_path.exists() and read_control(plan_path)!=plan:
@@ -110,34 +134,60 @@ def execute(files,output,engine,models):
     completed={r['decodedRgbaSha256']:r for r in records}
     if len(completed)!=len(records) or not completed.keys()<=by_key.keys():
         raise ValueError('Duplicate or unknown field candidate')
+    for record in reusable:
+        key=record['decodedRgbaSha256']
+        if key not in completed:
+            destination=battle.staging_path(output,key+'.png')
+            data=terrain.bounded_read(battle.staging_path(reuse_batch,key+'.png'),32*1024*1024)
+            validate(by_key[key],record,data)
+            destination.write_bytes(data)
+            records.append(record);completed[key]=record
+    if reusable:
+        battle.write_json(records_path,records)
     for key,record in completed.items():
         validate(by_key[key],record,terrain.bounded_read(battle.staging_path(output,key+'.png'),32*1024*1024))
     print(json.dumps(dict(wholeWorklist=len(masters),uniformNative=len(uniform),protectedUpstream=report['protectedSharedPixelImages'],completed=len(records))),flush=True)
-    for key,item in by_key.items():
-        if key in completed:
+    reused_keys={r['decodedRgbaSha256'] for r in reusable}
+    worklist=[(key,item) for key,item in by_key.items() if key not in reused_keys]
+    for chunk_index in range(0,len(worklist),128):
+        chunk=worklist[chunk_index:chunk_index+128]
+        if all(key in completed for key,item in chunk):
             continue
-        original=item['image']
-        source_path=battle.staging_path(output,'private-work/'+key+'-source.png')
-        input_path=battle.staging_path(output,'private-work/'+key+'-input.png')
-        inferred_path=battle.staging_path(output,'private-work/'+key+'-inference.png')
-        log_path=battle.staging_path(output,'private-work/'+key+'.log')
-        png_path=battle.staging_path(output,key+'.png')
-        original.save(source_path)
-        Image.fromarray(np.pad(np.asarray(original.convert('RGB')),((16,16),(16,16),(0,0)),mode='edge')).save(input_path)
-        run=subprocess.run([str(engine),'-i',str(input_path),'-o',str(inferred_path),'-m',str(models),'-n','realesrgan-x4plus','-s','4','-t','256','-j','1:1:1'],capture_output=True,timeout=240)
+        label=f'{chunk_index//128:04d}'
+        input_dir=battle.staging_path(output,'private-work/inputs-'+label)
+        inferred_dir=battle.staging_path(output,'private-work/inference-'+label)
+        input_dir.mkdir(exist_ok=True);inferred_dir.mkdir(exist_ok=True)
+        expected_names={key+'.png' for key,item in chunk}
+        if any(p.is_symlink() or p.name not in expected_names for p in input_dir.iterdir()):
+            raise ValueError('Unexpected or redirected field inference input')
+        if any(p.is_symlink() or p.name not in expected_names for p in inferred_dir.iterdir()):
+            raise ValueError('Unexpected or redirected field inference output')
+        for key,item in chunk:
+            original=item['image']
+            original.save(battle.staging_path(output,'private-work/'+key+'-source.png'))
+            Image.fromarray(np.pad(np.asarray(original.convert('RGB')),((16,16),(16,16),(0,0)),mode='edge')).save(battle.staging_path(output,'private-work/inputs-'+label+'/'+key+'.png'))
+        log_path=battle.staging_path(output,'private-work/inference-'+label+'.log')
+        print(json.dumps(dict(phase='persistent-directory-inference',completed=len(records),total=len(masters),chunk=len(chunk))),flush=True)
+        run=subprocess.run([str(engine),'-i',str(input_dir),'-o',str(inferred_dir),'-m',str(models),'-n','realesrgan-x4plus','-s','4','-t','256','-j','1:1:1'],capture_output=True,timeout=240*len(chunk))
         log_path.write_bytes(run.stdout+run.stderr)
         if run.returncode:
-            raise RuntimeError('Field inference failed; private log retained')
-        with Image.open(inferred_path) as inferred:
-            if inferred.size!=((original.width+32)*4,(original.height+32)*4):
-                raise ValueError('Field inference dimensions changed')
-            pixels=np.asarray(inferred.convert('RGB').crop((64,64,64+original.width*4,64+original.height*4)))
-        restored,_=terrain.preserve_stp(original,pixels)
-        restored.save(png_path)
-        data=terrain.bounded_read(png_path,32*1024*1024)
-        record=candidate_record(item,terrain.digest(data));validate(item,record,data)
-        records.append(record);battle.write_json(records_path,records)
-        print(json.dumps(dict(completed=len(records),total=len(masters),kinds=sorted({b['kind'] for b in item['bindings']}))),flush=True)
+            raise RuntimeError('Field directory inference failed; private inputs/log/outputs retained')
+        if {p.name for p in inferred_dir.iterdir()}!=expected_names:
+            raise ValueError('Incomplete field directory inference output')
+        for key,item in chunk:
+            if key in completed:
+                continue
+            original=item['image'];inferred_path=battle.staging_path(output,'private-work/inference-'+label+'/'+key+'.png')
+            png_path=battle.staging_path(output,key+'.png')
+            with Image.open(inferred_path) as inferred:
+                if inferred.size!=((original.width+32)*4,(original.height+32)*4):
+                    raise ValueError('Field inference dimensions changed')
+                pixels=np.asarray(inferred.convert('RGB').crop((64,64,64+original.width*4,64+original.height*4)))
+            restored,_=terrain.preserve_stp(original,pixels);restored.save(png_path)
+            data=terrain.bounded_read(png_path,32*1024*1024)
+            record=candidate_record(item,terrain.digest(data));validate(item,record,data)
+            records.append(record);completed[key]=record;battle.write_json(records_path,records)
+        print(json.dumps(dict(completed=len(records),total=len(masters),chunkCompleted=len(chunk))),flush=True)
     return records
 
 
@@ -147,5 +197,6 @@ if __name__=='__main__':
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--engine',type=Path,required=True)
     parser.add_argument('--models',type=Path,required=True)
+    parser.add_argument('--reuse-batch',type=Path)
     args=parser.parse_args()
-    execute(args.files,args.output,args.engine,args.models)
+    execute(args.files,args.output,args.engine,args.models,args.reuse_batch)

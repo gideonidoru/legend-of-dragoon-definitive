@@ -167,6 +167,34 @@ def render(sources, cut):
                                              foregrounds=metadata, missingNativeTextureSlots=[s['index'] for s in records if s['pixels'] is None])
 
 
+def verify_complete_worklist(ownership, configurations):
+    expected={(s['sourceSignature'],m['cut'],m['period'],m['bank'],m['file'])
+              for s in ownership['scenes'] for m in s['mappings']}
+    actual={(s['sourceSignature'],m['cut'],m['period'],m['bank'],m['directory'])
+            for s in configurations.values() for m in s['mappings']}
+    if actual!=expected or configurations.keys()!={s['sourceSignature'] for s in ownership['scenes']}:
+        raise ValueError('Field source/alias worklist changed; refresh the Skurfa ownership audit before generating')
+
+
+def verify_complete_renders(configurations, renders, failures):
+    expected_keys=set()
+    known_routes=set()
+    for group in configurations.values():
+        group_keys=set()
+        for route in group['mappings']:
+            corrected=route['cut'] if route['cut'] in (111,288,595,642) else -1
+            key=group['sourceSignature']+':'+str(corrected)
+            group_keys.add(key)
+            known_routes.add((route['cut'],route['period'],route['bank'],route['directory']))
+        expected_keys.update(group_keys)
+        if set(group['renders'])!=group_keys:
+            raise ValueError('Known field configuration has missing or partial rendered source data')
+    if renders.keys()!=expected_keys:
+        raise ValueError('Field render worklist is incomplete')
+    if any((f['cut'],f['period'],f.get('bank'),f.get('directory')) in known_routes for f in failures):
+        raise ValueError('Known field route failed decoding; resolve it before generating')
+
+
 def census(files, root=ROOT):
     source = terrain.bounded_read(files / 'SUBMAP/NEWROOT.RDT')
     if len(source) < 8192:
@@ -221,9 +249,8 @@ def census(files, root=ROOT):
                     group['renders'].append(render_key)
             except (ValueError, OSError, KeyError) as failure:
                 failures.append(route | dict(status='unresolved-source-or-decode', reason=str(failure).split(str(files))[-1]))
-    expected_signatures={s['sourceSignature'] for s in ownership['scenes']}
-    if configurations.keys()!=expected_signatures:
-        raise ValueError('Field ownership census changed; refresh the Skurfa audit before generating')
+    verify_complete_worklist(ownership,configurations)
+    verify_complete_renders(configurations,renders,failures)
     images = [i for r in renders.values() for i in r['images']]
     successful_routes = sum(len(g['mappings']) for g in configurations.values())
     independent_jobs = [a for a in assets.values() if a['owners']==['envhd'] and any(not b['canDeriveFromBackground'] for b in a['bindings'])]
