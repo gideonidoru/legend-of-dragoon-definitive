@@ -162,7 +162,13 @@ def main():
     if len(checked) != len(required) or {j['name'] for j in checked} != required or any(j['status'] != 'completed' or j['conclusion'] != 'success' for j in checked):
         raise ValueError('Required packaging/test jobs are missing or did not pass')
     verify_ci_artifacts(args.run, args.source_sha, expected)
-    def read():return json.loads(gh('release', 'view', args.tag, '-R', REPO, '--json', 'tagName,targetCommitish,isDraft,url,assets'))
+    def read():
+        release = json.loads(gh('release', 'view', args.tag, '-R', REPO, '--json', 'databaseId,tagName,targetCommitish,isDraft,url,assets'))
+        if len(expected) > 100:
+            if not isinstance(release.get('databaseId'), int): raise ValueError('Invalid release API identity')
+            pages = json.loads(gh('api', f'repos/{REPO}/releases/{release["databaseId"]}/assets?per_page=100', '--paginate', '--slurp'))
+            release['assets'] = [dict(asset, url=asset['browser_download_url']) for page in pages for asset in page]
+        return release
     release = read()
     verify_release(release, args.tag, args.source_sha, expected)
     verify_tag(args.tag, args.source_sha, required=not release['isDraft'])

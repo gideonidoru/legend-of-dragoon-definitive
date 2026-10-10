@@ -69,6 +69,16 @@ class FileDeliveryTest {
     assertEquals(3, requested.size()); assertEquals(before.getProperty("data"), store.state().getProperty("data")); assertEquals("personal", Files.readString(data.resolve("saves/owner.txt"))); assertEquals("retained", Files.readString(workspace.resolve("files/owner-extraction"))); store.verifyInstalled();
     requested.clear(); FileDelivery.install(store, candidate, InstallProgress.NONE, connection(served, requested), true); assertEquals(1, requested.size(), "Healthy repair retrieves only the small verified inventory");
   }
+  @Test void repairOfAnEntireMissingReleaseKeepsThePreparedWorkspaceAndPrivateGeneration() throws Exception {
+    final Path pack = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack); final Properties before = store.state();
+    final Path workspace = store.prepareLaunch(); Files.writeString(workspace.resolve("files/version"), "5");
+    Files.writeString(store.data(before).resolve("saves/owner.txt"), "save");
+    InstallStore.deleteOwnedTree(store.root().resolve("releases").resolve(before.getProperty("version")));
+    final Map<String, byte[]> served = new HashMap<>(); final var candidate = contents(pack, served);
+    FileDelivery.install(store, candidate, InstallProgress.NONE, connection(served, new ArrayList<>()), true);
+    assertEquals(before.getProperty("data"), store.state().getProperty("data")); assertEquals(workspace, store.prepareLaunch()); assertTrue(store.discsPrepared());
+    assertEquals("save", Files.readString(store.data(store.state()).resolve("saves/owner.txt"))); store.verifyInstalled();
+  }
   @Test void corruptNetworkFileCannotActivateOrModifyExistingRelease() throws Exception {
     final Path pack = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack); final byte[] state = Files.readAllBytes(store.root().resolve("state.properties"));
     final Path next = this.temporary.resolve("next"); InstallStore.copyTree(pack, next); Files.writeString(next.resolve("lod-game-test.jar"), "new"); refresh(next);

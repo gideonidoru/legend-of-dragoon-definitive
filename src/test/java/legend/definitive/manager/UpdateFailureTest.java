@@ -47,7 +47,7 @@ class UpdateFailureTest {
     final InputStream body = new InputStream() { @Override public int read() throws IOException { throw new IOException("Fixture body reached"); } };
     final IOException failure = assertThrows(IOException.class, () -> ReleaseUpdates.install(this.store, candidate("a".repeat(64)), InstallProgress.NONE,
       request -> response(request, 200, body, 1700000000L)));
-    assertEquals("Fixture body reached", failure.getMessage());
+    Throwable cause = failure; while(cause.getCause() != null) cause = cause.getCause(); assertEquals("Fixture body reached", cause.getMessage());
     unchanged();
   }
   @Test void verifiedDownloadPreservesDataAndCanRestorePriorVersion() throws Exception {
@@ -59,7 +59,7 @@ class UpdateFailureTest {
     ReleaseUpdates.install(this.store, candidate(PackageManifest.sha256(archive)), update -> phases.add(update.phase()), request -> response(request, 200, Files.newInputStream(archive), Files.size(archive)));
     this.store.verifyInstalled(); assertEquals("asset", this.store.state().getProperty("releaseAssetId"));
     assertEquals("owner data", Files.readString(this.store.data(this.store.state()).resolve("saves/campaign.dsav")));
-    assertTrue(phases.contains("Downloading game and HD artwork")); assertTrue(phases.contains("Installation verified"));
+    assertTrue(phases.contains("Downloading Definitive + HD mods")); assertTrue(phases.contains("Installation verified"));
     this.store.rollback(); this.store.verifyInstalled();
     assertEquals("owner data", Files.readString(this.store.data(this.store.state()).resolve("saves/campaign.dsav")));
   }

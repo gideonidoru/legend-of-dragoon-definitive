@@ -121,7 +121,7 @@ def file_delivery_assets(package, contents):
     """Bind per-file inventory byte-for-byte to the already verified complete ZIP."""
     with zipfile.ZipFile(package) as full, zipfile.ZipFile(contents) as manifest:
         entries = inventory(manifest, 8 * 1024**2, 3)
-        if set(entries) != META | {'definitive-sizes.properties'}:
+        if any(e.file_size > 4 * 1024**2 for e in entries.values()) or set(entries) != META | {'definitive-sizes.properties'}:
             raise ValueError('Invalid per-file manifest inventory')
         for name in META:
             if manifest.read(name) != full.read(name):
@@ -132,6 +132,7 @@ def file_delivery_assets(package, contents):
             raise ValueError('Incomplete per-file sizes inventory')
         result = {}
         for name, digest in hashes.items():
+            if len(name) > 1024 or '\0' in name or not re.fullmatch('[a-f0-9]{64}', digest): raise ValueError('Unsupported per-file path or checksum')
             if not re.fullmatch(r'0|[1-9][0-9]{0,10}', sizes[name]) or int(sizes[name]) != full.getinfo(name).file_size:
                 raise ValueError('Per-file length mismatch')
             asset = 'file-' + digest

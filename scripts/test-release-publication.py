@@ -12,7 +12,7 @@ from package_validation import ROOT
 
 repo = Path(__file__).resolve().parents[1]
 source = 'a' * 40
-for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob'):
+for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob', 'file-delivery-many-assets-draft', 'file-delivery-many-assets-omitted-page'):
     with tempfile.TemporaryDirectory(prefix='definitive-release-fixture-') as directory:
         root = Path(directory); assets = root / 'assets'; assets.mkdir(); tools = root / 'tools'; tools.mkdir()
         with zipfile.ZipFile(assets / 'Definitive-Installer.zip', 'w') as archive:
@@ -26,6 +26,7 @@ for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch
             metadata = {'format': '1', 'java': '25', 'sourceRevision': source, 'releaseTag': tag,
                         'platform': platform, 'gameJar': 'lod-game-fixture.jar'}
             payload = {n: b'original synthetic package fixture' for n in ROOT | {'lod-game-fixture.jar', 'libs/library.jar', 'bundled-mods/art.jar'}}
+            if scenario.startswith('file-delivery-many-assets'): payload.update({f'gfx/item-{i}.txt': ('unique-'+str(i)).encode() for i in range(120)})
             hashes = {n: hashlib.sha256(b).hexdigest() for n, b in payload.items()}
             canonical = ''.join(k + '=' + metadata[k] + '\n' for k in sorted(metadata))
             canonical += ''.join(k + '=' + hashes[k] + '\n' for k in sorted(hashes))
@@ -68,13 +69,13 @@ for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch
         names = sorted(p.name for p in assets.iterdir())
         (assets / 'SHA256SUMS').write_text(''.join(sha(assets / n) + '  ' + n + '\n' for n in names))
         temporary_tag = 'untagged-e8c0b3b8be797c205abe'
-        release = {'tagName': tag, 'targetCommitish': source, 'isDraft': scenario not in ('already-public', 'temporary-public-url'), 'url': f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/{temporary_tag if scenario in ("draft-temporary-urls", "wrong-draft-url", "temporary-public-url") else tag}', 'assets': []}
+        release = {'databaseId':456, 'tagName': tag, 'targetCommitish': source, 'isDraft': scenario not in ('already-public', 'temporary-public-url'), 'url': f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/{temporary_tag if scenario in ("draft-temporary-urls", "wrong-draft-url", "temporary-public-url", "file-delivery-many-assets-draft", "file-delivery-many-assets-omitted-page") else tag}', 'assets': []}
         for path in assets.iterdir():
             release['assets'].append({'name': path.name, 'state': 'uploaded', 'size': path.stat().st_size, 'digest': 'sha256:' + sha(path), 'url': f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/{tag}/{path.name}'})
         if scenario == 'digest-mismatch':release['assets'][0]['digest'] = 'sha256:' + '0' * 64
         if scenario == 'size-mismatch':release['assets'][0]['size'] += 1
         if scenario == 'missing-asset':release['assets'].pop()
-        if scenario in ('draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry'):
+        if scenario in ('draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-many-assets-draft', 'file-delivery-many-assets-omitted-page'):
             for asset in release['assets']:asset['url'] = asset['url'].replace('/' + tag + '/', '/' + temporary_tag + '/')
         if scenario == 'wrong-draft-url':release['assets'][0]['url'] = release['assets'][0]['url'].replace(temporary_tag, 'untagged-aaaaaaaaaaaaaaaaaaaa')
         (root / 'release.json').write_text(json.dumps(release)); (root / 'notes.md').write_text('Fixture only')
@@ -84,6 +85,9 @@ from pathlib import Path
 root=Path(os.environ['FIXTURE_ROOT']);a=sys.argv[1:];scenario=os.environ['FIXTURE_SCENARIO']
 with (root/'calls.jsonl').open('a') as stream:stream.write(json.dumps(a)+'\\n')
 if a[:2]==['api','user']:print('wrong-account' if scenario=='account-mismatch' else 'gideonidoru')
+elif a[0]=='api' and '/releases/456/assets?' in a[1]:
+    data=json.loads((root/'release.json').read_text());assets=[dict(asset,browser_download_url=asset['url']) for asset in data['assets']]
+    print(json.dumps([assets[:100]] if scenario=='file-delivery-many-assets-omitted-page' else [assets[:100],assets[100:]]))
 elif a[0]=='api' and '/actions/artifacts/' in a[1]:
     id=a[1].split('/')[-2];sys.stdout.buffer.write((root/f'artifact-{id}.zip').read_bytes())
 elif a[0]=='api' and '/actions/runs/' in a[1]:
@@ -105,7 +109,7 @@ elif a[:2]==['release','view']:
     print((root/'release.json').read_text())
 elif a[:2]==['release','edit']:
     data=json.loads((root/'release.json').read_text());data['isDraft']=False
-    if scenario=='draft-temporary-urls':
+    if scenario in ('draft-temporary-urls','file-delivery-many-assets-draft'):
         data['url']=data['url'].replace('untagged-e8c0b3b8be797c205abe','fixture-recovery')
         for asset in data['assets']:asset['url']=asset['url'].replace('untagged-e8c0b3b8be797c205abe','fixture-recovery')
     (root/'release.json').write_text(json.dumps(data));print('published fixture')
@@ -116,7 +120,7 @@ else:raise AssertionError(a)
         result = subprocess.run([sys.executable, str(repo / 'scripts/publish-verified-release.py'), '--tag', tag, '--source-sha', source, '--run', '123', '--assets-dir', str(assets), '--notes-file', str(root / 'notes.md')], env=env, capture_output=True, text=True, timeout=10)
         calls = [json.loads(line) for line in (root / 'calls.jsonl').read_text().splitlines()] if (root / 'calls.jsonl').exists() else []
         publications = [a for a in calls if a[:2] == ['release', 'edit']]
-        if scenario in ('success', 'annotated-tag', 'draft-temporary-urls', 'file-delivery-success'):assert result.returncode == 0 and len(publications) == 1 and '--draft=false' in publications[0], result.stderr
+        if scenario in ('success', 'annotated-tag', 'draft-temporary-urls', 'file-delivery-success', 'file-delivery-many-assets-draft'):assert result.returncode == 0 and len(publications) == 1 and '--draft=false' in publications[0], result.stderr
         elif scenario == 'already-public':assert result.returncode == 0 and not publications, result.stderr
         else:assert result.returncode != 0 and not publications, 'Failed gate published: ' + scenario
         print('PASS', scenario)

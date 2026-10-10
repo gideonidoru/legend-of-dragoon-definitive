@@ -58,5 +58,13 @@ class UpdateOrderingHardeningTest {
     assertEquals(3, attempts.get()); attempts.set(0);
     assertThrows(IOException.class, () -> ReleaseUpdates.sendWithRetry(request, req -> { attempts.incrementAndGet(); return response(req, 429, "", Map.of("Retry-After", List.of("60"))); }));
     assertEquals(1, attempts.get());
+  }  @Test void discoveryCompactsLargeBlobInventoriesAndUsesSmallPages() throws Exception {
+    final var assets = new StringBuilder();
+    for(int i = 0; i < 600; i++) { if(i > 0) assets.append(','); assets.append("{\"id\":").append(i + 100).append(",\"name\":\"file-").append("a".repeat(64)).append("\",\"digest\":\"sha256:").append("a".repeat(64)).append("\",\"unused\":\"").append("x".repeat(400)).append("\"}"); }
+    final String noisy = NEW.replace("\"assets\":[", "\"assets\":[" + assets + ",");
+    final var cache = new ReleaseUpdates.MetadataCache();
+    final String summaries = cache.fetch(false, request -> { assertTrue(request.uri().getQuery().startsWith("per_page=10&")); final int page = Integer.parseInt(request.uri().getQuery().replaceFirst(".*page=", "")); return response(request, 200, page <= 4 ? "[" + String.join(",", java.util.Collections.nCopies(10, noisy)) + "]" : "[]", Map.of()); });
+    assertTrue(summaries.length() < 40000); assertFalse(summaries.contains("file-")); assertEquals("new", ReleaseUpdates.select(summaries, "linux-x64", "1", "old", Instant.parse("2026-10-09T00:00:00Z")).orElseThrow().tag());
   }
+
 }

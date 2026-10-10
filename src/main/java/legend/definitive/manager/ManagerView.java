@@ -200,7 +200,7 @@ final class ManagerView extends JPanel {
         this.body.add(label("Install location", 13, MUTED)); this.body.add(Box.createVerticalStrut(8));
         this.destination.setMaximumSize(new Dimension(520, 48)); this.destination.setCaretPosition(0); this.body.add(this.destination); this.body.add(Box.createVerticalStrut(8));
         final JButton browse = button("Choose folder", false); browse.addActionListener(e -> this.chooseFolder()); this.body.add(browse); this.body.add(Box.createVerticalStrut(20));
-        this.body.add(copy("Includes Skurfa, EnvHD, CharHD, FxHD, UIHD, ModelsHD and FMVHD. Some artwork is still under development. Next, select your discs.", 15, MUTED)); this.body.add(Box.createVerticalStrut(24));
+        this.body.add(copy("Includes Skurfa, EnvHD, CharHD, FxHD, UIHD, ModelsHD and FMVHD. Next, select your discs.", 15, MUTED)); this.body.add(Box.createVerticalStrut(24));
         this.primary("Install Definitive", this::install);
       }
       case 1 -> {
@@ -435,13 +435,11 @@ final class ManagerView extends JPanel {
     this.run("Loading preferences", () -> new InstallStore(this.root).state(), preferences -> {
       final boolean hd = !"original".equals(preferences.getProperty("artwork", "hd"));
       final JCheckBox artwork = new JCheckBox("Skurfa backgrounds & ModelsHD", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
-      final JCheckBox pilot = new JCheckBox("Enhanced model textures · experimental", false); pilot.setFont(font(18, false)); pilot.setOpaque(false); pilot.setMaximumSize(new Dimension(520, 52)); pilot.setPreferredSize(new Dimension(520, 52));
       final JCheckBox fullscreen = new JCheckBox("Fullscreen", true); fullscreen.setFont(font(18, false)); fullscreen.setOpaque(false); fullscreen.setMaximumSize(new Dimension(520, 52)); fullscreen.setPreferredSize(new Dimension(520, 52));
       fullscreen.setSelected(Boolean.parseBoolean(preferences.getProperty("fullscreen", "true")));
-      pilot.setSelected(Boolean.parseBoolean(preferences.getProperty("legacyTextures", "false")));
-      final JPanel options = column(); options.add(artwork); options.add(pilot); options.add(fullscreen); options.add(Box.createVerticalStrut(12)); options.add(copy("EnvHD, CharHD, FxHD, UIHD and FMVHD are included; enable them in the game’s Mods menu. CharHD assets and ModelsHD visual acceptance remain in development.", 16, MUTED));
+      final JPanel options = column(); options.add(artwork); options.add(fullscreen); options.add(Box.createVerticalStrut(12)); options.add(copy("EnvHD, CharHD, FxHD, UIHD and FMVHD are included. Enable or disable them in the game’s Mods menu.", 16, MUTED));
       if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save changes")) {
-        final boolean hdChoice = artwork.isSelected(), modelChoice = pilot.isSelected(), fullscreenChoice = fullscreen.isSelected();
+        final boolean hdChoice = artwork.isSelected(), modelChoice = Boolean.parseBoolean(preferences.getProperty("legacyTextures", "false")), fullscreenChoice = fullscreen.isSelected();
         this.run("Saving preferences", () -> { new InstallStore(this.root).setPreferences(hdChoice, modelChoice, fullscreenChoice); return "Changes apply the next time you play."; }, () -> { });
       }
     });

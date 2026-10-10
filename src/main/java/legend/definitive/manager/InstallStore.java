@@ -169,15 +169,16 @@ public final class InstallStore {
             catch(final IOException failure) { try { verifyRecoveryBackup(recovery, ".definitive-release-backup", repairToken); Files.move(recovery, release, StandardCopyOption.ATOMIC_MOVE); Files.delete(release.resolve(".definitive-release-backup")); forceDirectory(release); forceDirectory(release.getParent()); Files.deleteIfExists(this.root.resolve(".release-repair-transaction.properties")); forceDirectory(this.root); } catch(final IOException restore) { failure.addSuppressed(restore); } throw failure; }
             InstallerLog.write("Repaired damaged managed release; previous files retained at " + recovery);
           }
-          if(!fullReinstall && manifest.id().equals(old.getProperty("version")) && !Boolean.parseBoolean(old.getProperty("uninstalled", "false"))) {
-            this.writeLaunchers(release);
-            old.setProperty("installedReleaseTag", manifest.metadata().getProperty("releaseTag", ""));
-            this.verifyInstalled();
-            if(!releaseAssetId.isEmpty()) old.setProperty("releaseAssetId", releaseAssetId); if(publishedAt != null) old.setProperty("releasePublishedAt", publishedAt.toString()); atomicProperties(this.root.resolve("state.properties"), old);
-            progress.phase("Installation verified", this.root.toString(), 100);
-            return "This version is already installed.";
-          }
+
         } else { Files.move(staged, release, StandardCopyOption.ATOMIC_MOVE); forceDirectory(release.getParent()); }
+        if(!fullReinstall && manifest.id().equals(old.getProperty("version")) && !Boolean.parseBoolean(old.getProperty("uninstalled", "false"))) {
+          this.writeLaunchers(release);
+          old.setProperty("installedReleaseTag", manifest.metadata().getProperty("releaseTag", ""));
+          this.verifyInstalled();
+          if(!releaseAssetId.isEmpty()) old.setProperty("releaseAssetId", releaseAssetId); if(publishedAt != null) old.setProperty("releasePublishedAt", publishedAt.toString()); atomicProperties(this.root.resolve("state.properties"), old);
+          progress.phase("Installation verified", this.root.toString(), 100);
+          return "This version is already installed.";
+        }
 
         final String dataId = "data-" + UUID.randomUUID();
         final Path nextData = this.root.resolve("data").resolve(dataId);

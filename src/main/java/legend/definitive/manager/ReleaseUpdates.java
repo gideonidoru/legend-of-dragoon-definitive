@@ -110,11 +110,11 @@ public final class ReleaseUpdates {
       final Map<Integer, CachedPage> validated = new HashMap<>();
       final List<String> bodies = new ArrayList<>();
       long bytes = 0;
-      for(int page = 1; page <= 10; page++) {
+      for(int page = 1; page <= 100; page++) {
         final long remaining = deadline - System.nanoTime();
         if(remaining <= 0) throw new IOException("Release check took too long. Installed games can still play offline.");
         final CachedPage prior = this.pages.get(page);
-        final var builder = HttpRequest.newBuilder(URI.create("https://api.github.com/repos/" + REPO + "/releases?per_page=100&page=" + page)).timeout(Duration.ofNanos(Math.min(remaining, Duration.ofSeconds(20).toNanos()))).header("Accept", "application/vnd.github+json").header("User-Agent", "Legend-of-Dragoon-Definitive");
+        final var builder = HttpRequest.newBuilder(URI.create("https://api.github.com/repos/" + REPO + "/releases?per_page=10&page=" + page)).timeout(Duration.ofNanos(Math.min(remaining, Duration.ofSeconds(20).toNanos()))).header("Accept", "application/vnd.github+json").header("User-Agent", "Legend-of-Dragoon-Definitive");
         if(prior != null && !prior.etag().isEmpty()) builder.header("If-None-Match", prior.etag());
         final var response = sendWithRetry(builder.GET().build(), connection);
         CachedPage next;
@@ -128,14 +128,14 @@ public final class ReleaseUpdates {
             final long bodyRemaining = deadline - System.nanoTime();
             if(bodyRemaining <= 0) throw new IOException("Release check took too long.");
             DownloadBody.copy(input, output, 16 * 1024 * 1024, Duration.ofNanos(Math.min(bodyRemaining, Duration.ofSeconds(30).toNanos())));
-            next = new CachedPage(output.toString(java.nio.charset.StandardCharsets.UTF_8).trim(), response.headers().firstValue("ETag").orElse(""), response.headers().allValues("Link").stream().anyMatch(link -> link.contains("rel=\"next\"")));
+            next = new CachedPage(compactPage(output.toString(java.nio.charset.StandardCharsets.UTF_8).trim()), response.headers().firstValue("ETag").orElse(""), response.headers().allValues("Link").stream().anyMatch(link -> link.contains("rel=\"next\"")));
           }
         }
         final Object parsed = new Json(next.body()).read();
-        if(!(parsed instanceof List<?> list) || list.size() > 100) throw new IOException("Unexpected release page.");
+        if(!(parsed instanceof List<?> list) || list.size() > 10) throw new IOException("Unexpected release page.");
         bytes += next.body().length();
-        if(bytes > 64 * 1024 * 1024) throw new IOException("Release metadata exceeds the supported limit.");
-        next = new CachedPage(next.body(), next.etag(), next.hasNext() || list.size() == 100);
+        if(bytes > 8 * 1024 * 1024) throw new IOException("Release metadata exceeds the supported limit.");
+        next = new CachedPage(next.body(), next.etag(), next.hasNext() || list.size() == 10);
         validated.put(page, next);
         if(!list.isEmpty()) bodies.add(next.body().substring(1, next.body().length() - 1));
         final boolean hasNext = next.hasNext();
@@ -148,6 +148,47 @@ public final class ReleaseUpdates {
       }
       throw new IOException("Release history is too large to check safely. Update discovery has stopped without selecting an older package.");
     }
+  }
+  /** Blob asset metadata is irrelevant to discovery: authenticated contents inventory binds it. */
+  private static String compactPage(final String body) throws IOException {
+    final Object parsed = new Json(body).read();
+    if(!(parsed instanceof List<?> releases) || releases.size() > 10) throw new IOException("Unexpected release page.");
+    final var compact = new ArrayList<Map<String, Object>>();
+    for(final Object item : releases) {
+      if(!(item instanceof Map<?, ?> release)) throw new IOException("Invalid release summary.");
+      final var summary = new LinkedHashMap<String, Object>();
+      for(final String field : List.of("draft", "tag_name", "published_at", "body")) {
+        final Object value = release.get(field);
+        summary.put(field, value instanceof String text && field.equals("body") ? text.substring(0, Math.min(12000, text.length())) : value);
+      }
+      final var packages = new ArrayList<Object>();
+      if(release.get("assets") instanceof List<?> assets) for(final Object assetValue : assets) {
+        if(assetValue instanceof Map<?, ?> asset && asset.get("name") instanceof String name && (name.matches("Legend-of-Dragoon-Definitive-(?:linux|macos)-(?:x64|arm64)\\.zip") || name.matches("Definitive-Contents-(?:linux|macos)-(?:x64|arm64)\\.zip"))) {
+          final var selected = new LinkedHashMap<String, Object>();
+          for(final String field : List.of("name", "id", "digest", "browser_download_url")) selected.put(field, asset.get(field));
+          packages.add(selected);
+        }
+      }
+      summary.put("assets", packages); compact.add(summary);
+    }
+    return json(compact);
+  }
+  private static String json(final Object value) throws IOException {
+    if(value == null) return "null";
+    if(value instanceof Boolean bool) return bool.toString();
+    if(value instanceof String text) {
+      final var out = new StringBuilder("\"");
+      for(int i = 0; i < text.length(); i++) {
+        final char c = text.charAt(i);
+        if(c == '"' || c == '\\') out.append('\\').append(c);
+        else if(c < 32) out.append(String.format(java.util.Locale.ROOT, "\\u%04x", (int)c));
+        else out.append(c);
+      }
+      return out.append('"').toString();
+    }
+    if(value instanceof List<?> list) { final var entries = new ArrayList<String>(); for(final Object item : list) entries.add(json(item)); return "[" + String.join(",", entries) + "]"; }
+    if(value instanceof Map<?, ?> map) { final var entries = new ArrayList<String>(); for(final var item : map.entrySet()) entries.add(json(item.getKey()) + ":" + json(item.getValue())); return "{" + String.join(",", entries) + "}"; }
+    throw new IOException("Invalid release summary value.");
   }
   private record CachedPage(String body, String etag, boolean hasNext) { }
   private static boolean retryable(final int status) { return status == 429 || status == 500 || status == 502 || status == 503 || status == 504; }

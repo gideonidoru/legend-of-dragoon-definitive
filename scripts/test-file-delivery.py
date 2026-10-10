@@ -42,6 +42,13 @@ class FileDeliveryTests(unittest.TestCase):
         assembler.assemble(self.package,self.output)
         blob = next((self.output/'files').iterdir()); blob.write_bytes(b'wrong')
         with self.assertRaises(ValueError): assembler.assemble(self.package,self.output)
+    def test_documents_above_client_limit_cannot_be_published(self):
+        contents = assembler.assemble(self.package,self.output)
+        with zipfile.ZipFile(contents) as source: documents={n:source.read(n) for n in source.namelist()}
+        documents['definitive-sizes.properties'] += b'#'+b'x'*(4*1024**2)
+        with zipfile.ZipFile(contents,'w',compression=zipfile.ZIP_DEFLATED) as target:
+            for name,data in documents.items(): target.writestr(name,data)
+        with self.assertRaises(ValueError): file_delivery_assets(self.package,contents)
     def test_manifest_cannot_be_substituted_from_another_package(self):
         contents = assembler.assemble(self.package,self.output)
         with zipfile.ZipFile(contents) as source:

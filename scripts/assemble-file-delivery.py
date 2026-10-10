@@ -6,7 +6,7 @@ from pathlib import Path
 import re
 import shutil
 import zipfile
-from package_validation import verify_package, inventory, properties
+from package_validation import verify_package, inventory, properties, file_delivery_assets
 
 
 def property_key(value):
@@ -43,6 +43,7 @@ def assemble(package, output):
             for name in ('definitive-package.properties', 'definitive-files.properties'):
                 contents.writestr(name, archive.read(name))
             contents.writestr('definitive-sizes.properties', ''.join(sizes).encode('ascii'))
+    file_delivery_assets(package, manifest)
     if len(list(blobs.iterdir())) + 8 > 1000:
         raise ValueError('Release file count exceeds the supported publication limit')
     print('File delivery:', metadata['platform'], len(hashes), 'files;', len(list(blobs.iterdir())), 'unique blobs')
