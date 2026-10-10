@@ -7,6 +7,8 @@ import legend.game.unpacker.FileData;
 /** Native indexed UI remains authoritative for palette, visibility and blend classification. */
 public final class NativeUiTextureEvent extends Event {
   public final String id;
+  /** Stable upload slot; animated sources replace only their own previous selection. */
+  public final String slot;
   public final int imageX, imageY, clutX, clutY;
   public final int clutRows;
   private final byte[] source;
@@ -14,8 +16,12 @@ public final class NativeUiTextureEvent extends Event {
     this(id, tim, imageX, imageY, clutX, clutY, tim.hasClut() ? Math.max(1, tim.getClutRect().h) : 1);
   }
   public NativeUiTextureEvent(final String id, final Tim tim, final int imageX, final int imageY, final int clutX, final int clutY, final int clutRows) {
+    this(id, id, tim, imageX, imageY, clutX, clutY, clutRows);
+  }
+  public NativeUiTextureEvent(final String id, final String slot, final Tim tim, final int imageX, final int imageY, final int clutX, final int clutY, final int clutRows) {
     if(clutRows < 1 || clutRows > 16) throw new IllegalArgumentException("UI palette bank rows exceed bounds");
     this.id = id;
+    this.slot = slot;
     this.source = tim.getData().getBytes().clone();
     this.imageX = imageX; this.imageY = imageY;
     this.clutX = clutX; this.clutY = clutY;
@@ -45,7 +51,13 @@ public final class NativeUiTextureEvent extends Event {
     NativeUiSources.CURRENT.remember(event);
     legend.core.GameEngine.EVENTS.postEvent(event);
   }
-  NativeUiTextureEvent fresh() { return new NativeUiTextureEvent(this.id, new Tim(new FileData(this.source)), this.imageX, this.imageY, this.clutX, this.clutY, this.clutRows); }
+  public static void uploaded(final String id, final Tim tim) { uploaded(id, id, tim); }
+  public static void uploaded(final String id, final String slot, final Tim tim) {
+    final var image = tim.getImageRect();
+    final var clut = tim.hasClut() ? tim.getClutRect() : new legend.core.gpu.Rect4i(0, 0, 16, 1);
+    post(new NativeUiTextureEvent(id, slot, tim, image.x, image.y, clut.x, clut.y, Math.min(16, Math.max(1, clut.h))));
+  }
+  NativeUiTextureEvent fresh() { return new NativeUiTextureEvent(this.id, this.slot, new Tim(new FileData(this.source)), this.imageX, this.imageY, this.clutX, this.clutY, this.clutRows); }
   int encodedBytes() { return this.source.length; }
   public byte[] source() { return this.source.clone(); }
   public Tim tim() { return new Tim(new FileData(this.source.clone())); }

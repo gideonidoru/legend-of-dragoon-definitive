@@ -170,6 +170,7 @@ public class Ttle extends EngineState<Ttle> {
   private Obj copyrightObj;
   private final Matrix4f flashTransforms = new Matrix4f();
 
+  private byte[] backgroundSource, trademarkSource, copyrightSource;
   private VramTexture backgroundTexture;
   private VramTexture[] backgroundPalettes;
   private VramTexture tmTexture;
@@ -317,7 +318,7 @@ public class Ttle extends EngineState<Ttle> {
       return;
     }
 
-    this.backgroundTex = ((VramTextureSingle)this.backgroundTexture).createOpenglTexture("Background", (VramTextureSingle)this.backgroundPalettes[0]);
+    this.backgroundTex = legend.game.textures.UiRasters.upload("title_background", this.backgroundSource, (VramTextureSingle)this.backgroundTexture, (VramTextureSingle)this.backgroundPalettes[0]);
     this.backgroundObj = new QuadBuilder("Title Screen Background")
       .pos(0.0f, 0.0f, 60000.0f)
       .posSize(368.0f, 424.0f)
@@ -332,7 +333,7 @@ public class Ttle extends EngineState<Ttle> {
       .bpp(Bpp.BITS_24)
       .build();
 
-    this.trademarkTex = ((VramTextureSingle)this.tmTexture).createOpenglTexture("Trademark", (VramTextureSingle)this.tmPalettes[0]);
+    this.trademarkTex = legend.game.textures.UiRasters.upload("title_trademark", this.trademarkSource, (VramTextureSingle)this.tmTexture, (VramTextureSingle)this.tmPalettes[0]);
     this.trademarkObj = new QuadBuilder("Title Screen Trademark")
       .pos(326.0f, 86.0f, 0.0f)
       .posSize(16.0f, 8.0f)
@@ -420,7 +421,7 @@ public class Ttle extends EngineState<Ttle> {
 
     this.menuTextObj = menuTextBuilder.build();
 
-    this.copyrightTex = ((VramTextureSingle)this.copyrightTexture).createOpenglTexture("Copyright", (VramTextureSingle)this.copyrightPalettes[0]);
+    this.copyrightTex = legend.game.textures.UiRasters.upload("title_copyright", this.copyrightSource, (VramTextureSingle)this.copyrightTexture, (VramTextureSingle)this.copyrightPalettes[0]);
     this.copyrightObj = new QuadBuilder("Title Screen Copyright")
       .pos(92.0f, 220.0f, 0.0f)
       .size(184.0f, 16.0f)
@@ -448,8 +449,18 @@ public class Ttle extends EngineState<Ttle> {
    *   <li>Logo fire 1</li>
    * </ol>
    */
+  private static byte[] combineSources(final FileData first, final FileData second) {
+    final byte[] bytes = new byte[first.size() + second.size()];
+    System.arraycopy(first.getBytes(), 0, bytes, 0, first.size());
+    System.arraycopy(second.getBytes(), 0, bytes, first.size(), second.size());
+    return bytes;
+  }
+
   @Method(0x800c7af0L)
   private void menuTexturesMrgLoaded(final List<FileData> files) {
+    this.backgroundSource = combineSources(files.get(0), files.get(1));
+    this.trademarkSource = files.get(4).getBytes().clone();
+    this.copyrightSource = combineSources(files.get(5), files.get(6));
     this.backgroundTexture = stitchVertical(
       textureFromTim(new Tim(files.get(0))),
       textureFromTim(new Tim(files.get(1)))
@@ -1090,7 +1101,7 @@ public class Ttle extends EngineState<Ttle> {
 
       //LAB_800c8a8c
       RENDERER
-        .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .queueUiOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
         .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(0xf8 / 255.0f, 0x80 / 255.0f, 0x10 / 255.0f)
@@ -1105,7 +1116,7 @@ public class Ttle extends EngineState<Ttle> {
       ;
 
       RENDERER
-        .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .queueUiOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
         .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(this.normalColour.lerp(this.highlightColour, (alpha - 0x40) / (float)0x60, this.tempColour))
@@ -1124,7 +1135,7 @@ public class Ttle extends EngineState<Ttle> {
       ;
 
       RENDERER
-        .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .queueUiOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
         .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(0xf8 / 255.0f, 0x80 / 255.0f, 0x10 / 255.0f)
@@ -1139,7 +1150,7 @@ public class Ttle extends EngineState<Ttle> {
       ;
 
       RENDERER
-        .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .queueUiOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
         .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(this.normalColour)
@@ -1154,7 +1165,7 @@ public class Ttle extends EngineState<Ttle> {
       ;
 
       RENDERER
-        .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .queueUiOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
         .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(this.normalColour)
@@ -1175,7 +1186,7 @@ public class Ttle extends EngineState<Ttle> {
       ;
 
       RENDERER
-        .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .queueUiOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
         .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(0xf8 / 255.0f, 0x80 / 255.0f, 0x10 / 255.0f)
@@ -1190,7 +1201,7 @@ public class Ttle extends EngineState<Ttle> {
       ;
 
       RENDERER
-        .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .queueUiOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
         .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(this.normalColour)
@@ -1205,7 +1216,7 @@ public class Ttle extends EngineState<Ttle> {
       ;
 
       RENDERER
-        .queueOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
+        .queueUiOrthoModel(this.menuTextObj, this.optionTransforms, QueuedModelStandard.class)
         .ui()
         .translucency(Translucency.B_PLUS_F)
         .colour(this.normalColour)
@@ -1248,7 +1259,7 @@ public class Ttle extends EngineState<Ttle> {
     //LAB_800cabcc
     //LAB_800cabe8
     RENDERER
-      .queueOrthoModel(this.copyrightObj, transforms, QueuedModelStandard.class)
+      .queueUiOrthoModel(this.copyrightObj, transforms, QueuedModelStandard.class)
       .ui()
       .monochrome(this.copyrightFadeInAmount)
       .texture(this.copyrightTex);
@@ -1270,7 +1281,7 @@ public class Ttle extends EngineState<Ttle> {
     ;
 
     RENDERER
-      .queueOrthoModel(this.logoObj, transforms, QueuedModelStandard.class)
+      .queueUiOrthoModel(this.logoObj, transforms, QueuedModelStandard.class)
       .ui()
       .translucency(Translucency.B_PLUS_F)
       .alpha(this.logoFadeInAmount)
@@ -1280,7 +1291,7 @@ public class Ttle extends EngineState<Ttle> {
     transforms.translation(RENDERER.getWidescreenOrthoOffsetX(), 0.0f, 200.0f);
 
     RENDERER
-      .queueOrthoModel(this.trademarkObj, transforms, QueuedModelStandard.class)
+      .queueUiOrthoModel(this.trademarkObj, transforms, QueuedModelStandard.class)
       .ui()
       .monochrome(this.logoFadeInAmount)
       .texture(this.trademarkTex);

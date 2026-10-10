@@ -44,6 +44,58 @@ public class TexturePacker {
     return this.entryToRect.get(id);
   }
 
+  /** Shares the live atlas selection with CPU-only save-card production. */
+  public boolean applyReplacements() {
+    return this.applyReplacements(legend.core.GameEngine.EVENTS::postEvent);
+  }
+  public boolean applyReplacements(final java.util.function.Consumer<ReplaceAtlasTexturesEvent> selection) {
+    final Map<RegistryId, Image> images = new HashMap<>();
+    this.entryToImage.forEach((id, image) -> images.put(id, new Image(image.data.clone(), image.width, image.height)));
+    selection.accept(new ReplaceAtlasTexturesEvent(images));
+    // Validate the complete selection before changing authoritative originals.
+    if(!images.keySet().equals(this.entryToImage.keySet())) throw new IllegalArgumentException("Portrait selection changed identities");
+    images.values().forEach(UiTextureEvent::validateSource);
+    boolean changed = false;
+    for(final var entry : images.entrySet()) {
+      final Image before = this.entryToImage.get(entry.getKey());
+      final Image after = entry.getValue();
+      if(before.width != after.width || before.height != after.height || !java.util.Arrays.equals(before.data, after.data)) {
+        this.add(entry.getKey(), after);
+        changed = true;
+      }
+    }
+    return changed;
+  }
+
+  public record Packed(byte[] data, int width, int height) { }
+  /** Saving is independent of optional artwork selection failures and atlas capacity. */
+  public Packed packWithReplacements(final int width, final int height, final int maximum) {
+    return this.packWithReplacements(width, height, maximum, legend.core.GameEngine.EVENTS::postEvent);
+  }
+  public Packed packWithReplacements(final int width, final int height, final int maximum, final java.util.function.Consumer<ReplaceAtlasTexturesEvent> selection) {
+    final var originals = new HashMap<>(this.entryToImage);
+    try {
+      this.applyReplacements(selection);
+      return this.packGrowingToBytes(width, height, maximum);
+    } catch(final RuntimeException optionalFailure) {
+      org.apache.logging.log4j.LogManager.getLogger(TexturePacker.class).warn("Retaining original portraits for {}", this.name, optionalFailure);
+      this.entryToImage.clear(); this.entryToRect.clear();
+      originals.forEach(this::add);
+      return this.packGrowingToBytes(width, height, maximum);
+    }
+  }
+  public Packed packGrowingToBytes(int width, int height, final int maximum) {
+    if(width < 1 || height < 1 || maximum > 2048 || maximum < width || maximum < height) throw new IllegalArgumentException("Atlas dimensions exceed budget");
+    while(true) {
+      try { return new Packed(this.packToBytes(width, height), width, height); }
+      catch(final AtlasFull full) {
+        if(width == maximum && height == maximum) throw new AtlasCapacityException();
+        if(width <= height && width < maximum) width = Math.min(maximum, width * 2);
+        else height = Math.min(maximum, height * 2);
+      }
+    }
+  }
+
   private static final class AtlasFull extends RuntimeException { }
   public static final class AtlasCapacityException extends IllegalStateException {
     public AtlasCapacityException() { super("UI atlas exceeds bounded size"); }
