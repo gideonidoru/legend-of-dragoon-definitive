@@ -229,6 +229,21 @@ class PresentationTest {
       } catch(final Exception error) { throw new RuntimeException(error); }
     });
   }
+  @Test void launcherFooterKeepsSpaceFromActionsAtMinimumSize() throws Exception {
+    SwingUtilities.invokeAndWait(() -> {
+      try {
+        final var view = new ManagerView(null, this.temporary, Path.of("/home/deck/Games/Legend-of-Dragoon-Definitive"));
+        field(view, "launcher", true);
+        field(view, "candidate", new ReleaseUpdates.Candidate("definitive-alpha-2026-10-10-refinement-3", "fixture", URI.create("https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/fixture/package.zip"), "a".repeat(64)));
+        invoke(view, "render"); inspect(view, 1024, 660, "launcher-footer");
+        final JButton action = button(view, "Review update");
+        final var status = ManagerView.class.getDeclaredField("updates"); status.setAccessible(true); final JLabel footer = (JLabel)status.get(view);
+        final Point actionPoint = SwingUtilities.convertPoint(action.getParent(), action.getLocation(), view);
+        final Point footerPoint = SwingUtilities.convertPoint(footer.getParent(), footer.getLocation(), view);
+        assertTrue(footerPoint.y - actionPoint.y - action.getHeight() >= 12, "Footer copy must not crowd the last action");
+      } catch(final Exception error) { throw new RuntimeException(error); }
+    });
+  }
   @Test void longFailureKeepsRetryAndFullLogAvailable() throws Exception {
     SwingUtilities.invokeAndWait(() -> {
       try {

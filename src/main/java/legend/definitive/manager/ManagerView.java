@@ -76,7 +76,7 @@ final class ManagerView extends JPanel {
     this.progressPanel.add(phase); this.progressPanel.add(Box.createVerticalStrut(18)); this.progressPanel.add(this.progress); this.progressPanel.add(Box.createVerticalStrut(14));
     this.status.setMaximumSize(new Dimension(480, 90)); this.progressPanel.add(this.status);
     this.progressPanel.add(Box.createVerticalStrut(10)); this.progressPanel.add(this.progressElapsed); this.progressPanel.setVisible(false);
-    content.add(this.progressPanel); content.add(Box.createVerticalGlue());
+    content.add(this.progressPanel); content.add(Box.createVerticalStrut(12)); content.add(Box.createVerticalGlue());
     this.updates.setMaximumSize(new Dimension(520, 50)); content.add(this.updates);
     content.add(Box.createVerticalStrut(10)); content.add(label("D-pad  Move     A  Select     B  Back", 12, MUTED));
     this.add(content, BorderLayout.CENTER);
@@ -202,10 +202,10 @@ final class ManagerView extends JPanel {
       if(ManagerDialogs.restore(this.frame)) this.run("Restoring version", () -> new InstallStore(this.root).rollback(), () -> { this.candidate = null; this.render(); });
     });
     secondary.add(mods); secondary.add(restore); this.body.add(secondary);
-    this.body.add(Box.createVerticalStrut(20));
+    this.body.add(Box.createVerticalStrut(12));
     final JButton steam = button("Add to Steam library", false); steam.addActionListener(e -> this.addSteam(false)); this.body.add(steam);
     if(this.candidate != null) {
-      this.body.add(Box.createVerticalStrut(12)); final JButton update = button("Review update", false);
+      this.body.add(Box.createVerticalStrut(8)); final JButton update = button("Review update", false);
       update.addActionListener(e -> { this.reviewingUpdate = true; this.render(); }); this.body.add(update);
     }
   }
