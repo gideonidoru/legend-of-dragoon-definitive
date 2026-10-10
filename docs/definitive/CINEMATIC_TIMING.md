@@ -21,6 +21,7 @@ Cinematics use their own cadence: 15 fps for original video and 60 render callba
 - EOF occurring inside a position query preserves the complete played tail.
 - Incremental refills preserve the same waveform as a prequeued reference across byte, signed-16 and float packet formats. Each capture has a fresh native mixer context.
 - The shipped launch logo and the first eight seconds of the pinned OPENH payload follow rendered audio samples and retain future video frames.
+- Every one of the 18 shipped enhanced films runs with a primed empty native audio source at each of 30, 60 and 120 callback Hz. All 54 cases verify played-sample timing, due video frames and nonzero decoded mixer output.
 - The synthetic three-second audio-tail fixture takes at least 95 percent of its media duration to complete and cannot run its clock more than 100 ms ahead of elapsed time.
 
 `CinematicCadenceTest` runs the production cinematic scheduler through a virtual window at gameplay speed 8 and verifies approximately 15 original frames per elapsed second. Enhanced cadence is checked at gameplay speeds 1, 3, 8 and 16. `CinematicRenderCadenceTest` exercises the actual buffer scheduler at speeds 1, 3, 8 and 16: every cinematic callback presents, even when playback begins on a skipped gameplay frame, and gameplay skipping resumes after cleanup. It checks nested scope restoration, queue acceptance and preserved disabled frame skipping. The original scheduler failed this test before the fix. No SDL window, GPU, Steam client or game session is launched by these tests.
@@ -28,3 +29,11 @@ Cinematics use their own cadence: 15 fps for original video and 60 render callba
 The native queue-state behavior follows the [OpenAL 1.1 specification](https://www.openal.org/documentation/openal-1.1-specification.pdf). These regressions establish engine behavior; physical Steam Deck playback remains a separate acceptance check.
 
 The broader [engine pacing contract](ENGINE_PACING.md) covers gameplay, script/animation cadence, audio ownership and rate transitions. The shared scheduler now re-arms changed rates rather than retaining the previous state's deadline. All 18 shipped films participate in native decoder/played-clock checks across 30, 60 and 120 callback Hz, in addition to the longer opening and logo checks.
+
+## Whole-pack differential and full-length checks
+
+An isolated native loopback probe reproduced the same empty-source startup against the actually published `5c0783297` engine and the candidate `617b221f8` movie/audio classes, using the identical pinned 18-film archive. The published engine failed all 54 film/rate cases: its movie clock advanced with queued audio and callback frequency while native output remained silent. The candidate passed all 54 cases. A separate encoded-asset audit verified all 18 hashes, actual video packet timestamps at frame-index/15 (within timestamp rounding), 15 fps video and 48 kHz stereo audio; it found no accelerated encoding timeline.
+
+Full-length candidate playback then exercised all 18 films through `StreamingMovie`, `MoviePlayback`, `GenericSource` and actual OpenAL loopback mixing at 60 Hz. All 31,184 enhanced frames became due and were polled, each film produced nonzero decoded mixer output, and every decoder/video/audio queue completed, including both endings. The movie clock never led mixed samples; the maximum absolute difference, at silent tails, was 16.001 ms of lag. Container durations totaled 2,079.256665 seconds, including normal audio tail offsets.
+
+These full-length checks advance an injected monotonic clock from the actual native mixer's sample count so that silent tails can be checked without waiting the total film duration in wall time. They establish full-pack timing and completion, not human visual inspection or physical Steam Deck playback. The diagnostic fixtures and logs remain local and contain no exported original movie content.
