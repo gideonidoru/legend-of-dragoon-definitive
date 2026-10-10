@@ -10,6 +10,17 @@ import org.apache.logging.log4j.LogManager;
 
 @org.legendofdragoon.modloader.Mod(id = "charhd", version = "3.0.0")
 public final class CharHdMod {
+  private ReconstructedCharacters characters;
+
+  @org.legendofdragoon.modloader.events.EventListener
+  public void applyCharacter(final legend.game.modding.events.tmd.TmdAppearanceEvent event) {
+    if(this.characters == null) return;
+    try {
+      this.characters.apply(event);
+    } catch(final Exception failure) {
+      LogManager.getLogger().warn("CharHD retained existing character geometry/material: {}", failure.getMessage());
+    }
+  }
   @org.legendofdragoon.modloader.events.EventListener
   public void applyCombat(final legend.game.modding.events.battle.CombatantMaterialEvent event) {
     if(event.replacement != null) return;
@@ -39,7 +50,11 @@ public final class CharHdMod {
     }
   }
 
-  public CharHdMod() { legend.core.GameEngine.EVENTS.register(this); }
+  public CharHdMod() {
+    try { this.characters = new ReconstructedCharacters(); }
+    catch(final java.io.IOException failure) { LogManager.getLogger().warn("CharHD reconstructions unavailable; existing models retained: {}", failure.getMessage()); }
+    legend.core.GameEngine.EVENTS.register(this);
+  }
   @org.legendofdragoon.modloader.events.EventListener
   public void apply(final SubmapObjectTextureEvent event) {
     if(!(event.getSubmap() instanceof RetailSubmap retail)) return;

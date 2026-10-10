@@ -105,7 +105,7 @@ public final class TmdObjLoader {
     }
     if(appearance != geometry) {
       try {
-        final MeshObj result = fromObjTableRaw(name, appearance, specialFlags, textureWidth, textureHeight);
+        final MeshObj result = fromObjTableRaw(name, appearance, specialFlags, textureWidth, textureHeight, materials);
         objTable.refinedObj = result;
         return result;
       } catch(final RuntimeException failure) {
@@ -140,7 +140,7 @@ public final class TmdObjLoader {
     if(appearance != geometry) {
       try {
         final MeshObj result = fromObjTableRaw(name, appearance, 0, 0, 0, mapping);
-        result.surfaceMaterial = geometry.surfaceMaterial();
+        result.surfaceMaterial = appearance.surfaceMaterial();
         return result;
       } catch(final RuntimeException failure) {
         LogManager.getLogger().warn("Optional mapped appearance allocation retained geometry {}: {}", name, failure.getMessage());

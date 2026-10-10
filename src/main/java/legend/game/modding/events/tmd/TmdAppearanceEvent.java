@@ -3,7 +3,7 @@ package legend.game.modding.events.tmd;
 import legend.game.tmd.TmdObjTable1c;
 import org.legendofdragoon.modloader.events.Event;
 
-/** Experimental appearance composition after geometry; never transfers CPU table ownership. */
+/** Optional appearance composition after geometry; never transfers CPU table ownership. */
 public final class TmdAppearanceEvent extends Event {
   public final TmdObjTable1c source;
   public final TmdObjTable1c geometry;

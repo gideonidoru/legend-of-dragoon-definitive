@@ -1,6 +1,6 @@
 # Dart reference · reconstructed head and materials
 
-**Experimental. Owner approval is required before main, release or normal installation.**
+**Accepted reference, October 10, 2026.** The owner approved this exact candidate for CharHD delivery. This directory preserves its original experimental authoring checkpoint; the selected runtime assets now live in `integrations/charhd/runtime-assets/charhd/characters`. See [promotion evidence](../../../integrations/charhd/production/party-reconstruction/DART_PROMOTION.md). Historical opt-in instructions below describe the original experiment, not normal installation.
 
 A working Dart field/battle model set: a reconstructed head, connected volumetric blond hair, ears and jaw, a painted 2048 × 2048 face/hair/bandana texture, and the previously improved ModelsHD body. The current production CharHD body atlas composes with the new head in the battle renderer. The full body has not yet received a bespoke AA reconstruction.
 
