@@ -197,8 +197,8 @@ vec3 effectDetail(vec3 nativeColour, int nativeIndex) {
   int nibble = int(vertTpage.x + vertUv.x) & widthMask;
   ivec2 coordinate = ivec2(word.x * 4 + nibble, word.y * 2 + int(fract(local.y) * 2.0));
   if(any(lessThan(coordinate, ivec2(0))) || any(greaterThanEqual(coordinate, textureSize(effectDetailTex, 0)))) return nativeColour;
-  uint packed = texelFetch(effectDetailTex, coordinate, 0).r;
-  uint code = (packed >> (int(fract(local.x) * 2.0) * 16)) & 65535u;
+  uint detailPair = texelFetch(effectDetailTex, coordinate, 0).r;
+  uint code = (detailPair >> (int(fract(local.x) * 2.0) * 16)) & 65535u;
   if((code & 32768u) == 0u || int(code & 15u) != nativeIndex) return nativeColour;
   uint colour = texelFetch(tex15, ivec2(vertClut.x + int((code >> 4) & 15u), vertClut.y), 0).r;
   vec3 second = vec3(colour & 31u, (colour >> 5) & 31u, (colour >> 10) & 31u) / 31.0;
