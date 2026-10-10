@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "1f2f6b275f677cb3cadd1e38a625f89f012b42a2cbdce1179f45c77c26458c0d",
+  "outputSha256": "ff066a5f3fff625720b202c27ac32a1e73e8749d7d412911a93c892afa56468a",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage8-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Dim grey-green deep cave, jagged ceiling, large dark opening and still pool. Source-backed usage: stages8; stage-bound panorama, no documented field random-encounter alias.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Cave ledges create a reflected central formation. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 4.486111164093018,
+    "outputEdgeMeanDifference": 0.0223524309694767
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v1.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "1f2f6b275f677cb3cadd1e38a625f89f012b42a2cbdce1179f45c77c26458c0d",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "ff066a5f3fff625720b202c27ac32a1e73e8749d7d412911a93c892afa56468a",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "9b6f7392c361d4489c7ca46e7f032df4d64e76f743624ee1b9e33aa68f202b35",
+    "weightsSha256": null,
+    "masterSourceSha256": "152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3"
+}

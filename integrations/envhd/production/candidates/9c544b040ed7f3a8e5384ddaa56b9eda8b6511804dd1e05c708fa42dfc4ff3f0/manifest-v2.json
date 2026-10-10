@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "2ba67142b83cbe817d74ba7032546e599d2894dea9e0c9bfc70373503c4ac573",
+  "outputSha256": "11869d8e09036315ef8a74069a692a96a341db11f9765ef9fa03af49518e85f2",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "intent-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-villude-stage11-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Dark volcanic rock and dim ochre smoke retained, but distant peak remains too high and lower-right rock enlarged and lifted relative to source.",
+    "style": "Natural restrained volcanic texture and atmospheric detail follows Skurfa reference finish.",
+    "layout": "Compared with original source at native size, peak is near y193/384 rather than y204 and the lower-right rock near y329 rather than y363. Do not select this geometry drift. Shared stages11/12/91 remain one restoration master.",
+    "wrap": "Repeating contact needs separate review after source-layout repair; no selected runtime replacement.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.0138888359069824,
+    "outputEdgeMeanDifference": 5.611111164093018
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0"
+}

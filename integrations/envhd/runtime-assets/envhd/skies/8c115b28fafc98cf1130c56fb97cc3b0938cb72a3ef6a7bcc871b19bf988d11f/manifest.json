@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "b5a93a58e8a3245c87ae34cfbd624db04b45d446f51767d665400c5ed9165d5b",
+  "outputSha256": "97cfaaef9770443ca1121c27b2960f5c93b1b139249c217b55b869ed4293c55c",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-python-border-repair",
+  "prompt": "prompts/batch-sky-stage78-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Violet luminous branching columns or organic crystal forms immersed in lower purple-white mist. Source-backed usage: stages78; stage-bound panorama, no documented field random-encounter alias.",
+    "style": "Source-faithful4x neural development baseline: original palette, light and broad material cues retained; pixel grain is smoothed. This is not a claim of finished Skurfa-equivalent bespoke detail.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Reviewed original/output and right-left contact. Broad haze, water or mottled material regions connect without the conspicuous reflected hard-structure ghosts found in held drafts. Selection is a development baseline with native scene verification still pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 5.05555534362793,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "b5a93a58e8a3245c87ae34cfbd624db04b45d446f51767d665400c5ed9165d5b",
+    "action": "upscale-original",
+    "outputSha256": "97cfaaef9770443ca1121c27b2960f5c93b1b139249c217b55b869ed4293c55c",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "b5a93a58e8a3245c87ae34cfbd624db04b45d446f51767d665400c5ed9165d5b",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "masterSourceSha256": "8c115b28fafc98cf1130c56fb97cc3b0938cb72a3ef6a7bcc871b19bf988d11f",
+    "repairBorderPixels": 32,
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "method": "real-esrgan-x4plus-periodic-python-border-repair",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "8c115b28fafc98cf1130c56fb97cc3b0938cb72a3ef6a7bcc871b19bf988d11f"
+}

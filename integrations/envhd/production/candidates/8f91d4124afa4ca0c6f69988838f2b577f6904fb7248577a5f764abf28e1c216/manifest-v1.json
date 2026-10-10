@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "15c0d626de4ad8f6f33219f1009e930fea3797a7926d297e657f807568fae5ba",
+  "outputSha256": "96593202715537d772013ffe76e138ba81be5cffa2ff1a51a4cb2675a8eb583d",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-kashua-glacier-stage42-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Kashua Glacier/Flanvel Tower setting retains blue glacial cliff terraces and snow; field433 confirms ice material, not ordinary stone or waterfalls.",
+    "style": "Natural ice fractures, powder and cool bright-to-navy shading follow Skurfa finish and source material.",
+    "layout": "Main upper cliff envelope and descending lower terrace bands retained in comparison; no added tower/sky subjects.",
+    "wrap": "Visible terrace and ice-wall join; difference21.26 versus source9.54. Hold outside runtime.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 9.541666984558105,
+    "outputEdgeMeanDifference": 21.259765625
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "8f91d4124afa4ca0c6f69988838f2b577f6904fb7248577a5f764abf28e1c216"
+}

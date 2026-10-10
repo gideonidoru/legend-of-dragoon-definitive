@@ -12,6 +12,24 @@ import static legend.core.GameEngine.EVENTS;
 @Mod(id = "envhd", version = "3.0.0")
 public final class EnvHdMod {
   public EnvHdMod() { EVENTS.register(this); }
+  @EventListener public void replaceBackdrop(final legend.game.modding.events.wmap.WorldBackdropTextureEvent event) {
+    if(event.replacement != null) return;
+    try {
+      final byte[] source = event.source();
+      final String base = "/envhd/world/backdrops/" + legend.definitive.textures.TexturePilot.sha256(source);
+      try(final var exists = EnvHdMod.class.getResourceAsStream(base + "/manifest.json")) { if(exists == null) return; }
+      event.replacement = legend.definitive.artwork.SkyImage.load(EnvHdMod.class, base, source);
+    } catch(final IOException | RuntimeException failure) { org.apache.logging.log4j.LogManager.getLogger().warn("EnvHD retained original world backdrop: {}", failure.getMessage()); }
+  }
+  @EventListener public void replaceLocation(final legend.game.modding.events.wmap.LocationThumbnailTextureEvent event) {
+    if(event.replacement != null) return;
+    try {
+      final byte[] source = event.source();
+      final String base = "/envhd/world/locations/" + legend.definitive.textures.TexturePilot.sha256(source);
+      try(final var exists = EnvHdMod.class.getResourceAsStream(base + "/manifest.properties")) { if(exists == null) return; }
+      event.replacement = legend.definitive.artwork.LocationArtwork.load(EnvHdMod.class, base, source);
+    } catch(final IOException | RuntimeException failure) { org.apache.logging.log4j.LogManager.getLogger().warn("EnvHD retained original location image: {}", failure.getMessage()); }
+  }
   @EventListener public void replaceSky(final BattleSkyTextureEvent event) {
     if(event.replacement != null) return;
     try {

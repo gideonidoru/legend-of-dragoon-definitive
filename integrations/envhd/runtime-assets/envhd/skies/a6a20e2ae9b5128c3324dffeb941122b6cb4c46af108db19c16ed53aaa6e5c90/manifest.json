@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "28cfa9758e3619edac05c89ce5bb724aa7388b2402b4190d7dab9596bf0e57c7",
+  "outputSha256": "7d3c83e2ff5971b126010d2c0a4cac8f911f4cef3c2d063f4ab7b0f5945c5e23",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "prompt": "prompts/source-edges-stage21-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Dark architectural facade with multiple small green glowing windows and crossing stairs. Source positions and scene identity compared directly with original.",
+    "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+    "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+    "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.9791667461395264,
+    "outputEdgeMeanDifference": 0.7009548544883728
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "28cfa9758e3619edac05c89ce5bb724aa7388b2402b4190d7dab9596bf0e57c7",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "action": "upscale-original",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "masterSourceSha256": "a6a20e2ae9b5128c3324dffeb941122b6cb4c46af108db19c16ed53aaa6e5c90",
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "sourceSize": [
+      256,
+      384
+    ],
+    "repairBorderPixels": 0,
+    "decodedRgbaSha256": "28cfa9758e3619edac05c89ce5bb724aa7388b2402b4190d7dab9596bf0e57c7",
+    "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "outputSha256": "7d3c83e2ff5971b126010d2c0a4cac8f911f4cef3c2d063f4ab7b0f5945c5e23"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "a6a20e2ae9b5128c3324dffeb941122b6cb4c46af108db19c16ed53aaa6e5c90"
+}

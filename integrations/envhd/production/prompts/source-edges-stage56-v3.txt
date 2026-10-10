@@ -1,0 +1,22 @@
+{
+  "artifact": "EnvHD battle panorama",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "stages": [
+    56
+  ],
+  "sourceMcqSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5",
+  "decodedRgbaSha256": "2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae",
+  "sourceSize": [
+    256,
+    384
+  ],
+  "targetSize": [
+    1024,
+    1536
+  ],
+  "originalIntent": "Divine Tree golden organic interior, tall slanting woody strands, tangled middle root band and lower hanging roots",
+  "recipe": "Original-source 4x neural inference with periodic64px horizontal and clamped16px vertical context, cropped to source bounds. No opposite-edge averaging or reflection. Exact original alpha/discard/visible-black classes preserved.",
+  "styleReferences": "Skurfa cut5/cut37 visual-review-only; existing Skurfa art is protected and unchanged.",
+  "quality": "Source-faithful development baseline. Existing original repeat discontinuities remain; no claim of newly seamless repeats, native acceptance or final Skurfa-equivalent bespoke detail."
+}

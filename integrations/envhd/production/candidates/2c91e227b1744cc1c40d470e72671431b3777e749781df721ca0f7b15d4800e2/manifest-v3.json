@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "580d5d2fc67a1bd345597a5823f1575960012a24fdd14234f7a42b8594eee083",
+  "outputSha256": "77d1f0df889a0a7aec38c61a856e10b97143ab7e86dedd28e9501818d445c30a",
+  "scale": 4,
+  "generationVersion": 3,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage83-v3.txt",
+  "imageFile": "image-v3.png",
+  "review": {
+    "intent": "Moon pale yellow-green upper haze, large curved interwoven tendrils and darker mottled olive lower field. Source-backed usage: stages83,84; Moon.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Upper tendrils form a doubled oval contact motif. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.5208332538604736,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v2.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "580d5d2fc67a1bd345597a5823f1575960012a24fdd14234f7a42b8594eee083",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "77d1f0df889a0a7aec38c61a856e10b97143ab7e86dedd28e9501818d445c30a",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "28f18e6c5192ee59d995fb112448ed1738393c2da58c62b80003c679b2a16887",
+    "weightsSha256": null,
+    "masterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2"
+}

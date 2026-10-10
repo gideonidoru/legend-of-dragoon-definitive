@@ -1,0 +1,37 @@
+{
+  "kind": "location-thumbnail",
+  "sourceSha256": "88c93eb9f3ce60638053661c234604701d5e4b666915cc1b313a2f4047c93ee9",
+  "decodedRgbaSha256": "7e574a5f85597a77430033edada0b849cc26a4e750ef064ff18026539c4be556",
+  "sourceSize": [
+    120,
+    90
+  ],
+  "sourceFiles": [
+    "SECT/DRGN0.BIN/5686"
+  ],
+  "locations": [
+    "Capital  Vellweb"
+  ],
+  "targetSize": [
+    480,
+    360
+  ],
+  "outputSha256": "3a874436d2a95a110165eeee5a73b5ece9f62826238156fdf377f38ef8e208fc",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+  "edgeAveraging": false,
+  "review": {
+    "intent": "Vellweb pale ruined cylindrical towers and cracked stone foreground. Source-backed engine usage: Capital  Vellweb.",
+    "style": "Original palette, lighting and materials retained; neural cleanup reduces pixel grain but smooths fine texture. Compared with protected Skurfa finish as a development baseline; bespoke Skurfa-equivalent detail remains pending.",
+    "layout": "Original and output compared directly. Source silhouettes, arrangement and image identity preserved; exact4x dimensions and original alpha/discard/visible-black classes independently verified. No edge averaging or invented replacement lettering.",
+    "verdict": "visual-reviewed-native-pending"
+  },
+  "styleReferenceUse": "Skurfa visual review only; protected assets unchanged",
+  "quality": "Source-faithful development baseline; native gameplay/Steam Deck and Skurfa-equivalent bespoke detail pending",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

@@ -6,7 +6,7 @@ The owner requested four independent artwork mods, installed with Definitive by 
 | --- | --- | --- |
 | EnvHD / `envhd` | 24 separately addressed palette regions on static battle stages 0 and 6; 4× reconstruction with source coverage preserved | Additional verified static stage packs, then field props/world-map surfaces. Existing Skurfa scene artwork is untouched. |
 | CharHD / `charhd` | Source-bound battle material adapter with a Dart armor development pilot; field adapter retained | Explicit surface/roughness settings use current material lighting. Full character reconstruction and native/Deck acceptance remain open. See [production status](CHARHD_PRODUCTION.md). |
-| UIHD / `uihd` | Five goods icons at 2×: red stone, blue stone, moon gem, vanishing stone and magic oil | Static interface artwork before bespoke portraits, lettering and font metrics. |
+| UIHD / `uihd` | 21 goods icons at 4×, ten elements, battle commands, checkbox sheet, menu frame and item palette variants, dialogue frame and arrow | First whole-game UIHD batch; bespoke portraits and remaining HUD still pending. See [UIHD production](UIHD_PRODUCTION.md). |
 | FxHD / `fxhd` | The orthographic field dust texture at 4× | Separately verified effects/animation families; spells and transformation sheets remain original. |
 
 The mod sources live under `integrations/<id>`, with reviewed runtime resource candidates in each `runtime-assets` folder. These are first pilot candidates, not an accepted whole-game remaster. Original extracted assets, raw meshes, local neural runtimes/weights and intermediate comparisons are not bundled. Underlying game artwork has separate notices from the AGPL source code. Explicit owner authorization in this implementation request covers publication of the derived pilot resources in this repository.
@@ -25,7 +25,7 @@ Stage loading joins the matching model and TIM futures before posting replacemen
 
 Counterattack darkening operates on original VRAM palettes. EnvHD switches to the original stage while that operation is active and returns to its replacement when the original multiplier is restored. Runtime-enabled texture animation likewise selects the original route. This preserves the legacy effect rather than freezing an undarkened HD scene. Shader color conversion still differs by up to eight-bit quantization from original five-bit color; visual/lighting equality is not claimed.
 
-UIHD runs after ordinary atlas registration. It requires the current original PNG hash and exact current pixel/dimension match, so an earlier mod's replacement is retained. Higher-resolution image UV dimensions are packed separately from GoodsIcon's fixed 16×16 display geometry. Alpha coverage is restored from the source. Candidates blend 55% reconstruction with 45% nearest control to protect icon structure. A corrupted/missing source or resource retains the original icon.
+UIHD runs after ordinary atlas registration and through source-bound PNG/native UI loading hooks. It requires original encoded hashes and exact current pixel/dimension matches. Native UI restoration changes RGB while live indexed VRAM retains visibility, STP and palette animation; changed pixels use original RGB. Display geometry, UV coordinates, scissoring and timing stay in source units. Unpadded sheets use nearest filtering; protected lettering/portrait regions retain original visible pixels. Shared bounded decoding/prewarming and next-frame renderer preparation reuse the engine's enhancements. See [UIHD production](UIHD_PRODUCTION.md) for selection, budgets and open acceptance work.
 
 FxHD uses a source-bound event for the existing orthographic dust quad. It preserves STP/discard/visible-black classification and the original additive blend mode. Particle transforms, brightness, count, timing and size remain unchanged. The TMD dust effect, footprints and other attached effects remain on their original route. Extra quad/texture ownership is released with attached-effect teardown.
 
@@ -67,10 +67,15 @@ remain distinct states in `integrations/envhd/production`. Candidate/rejected ar
 stays outside runtime resources. These counts do not certify complete environment
 coverage or native gameplay acceptance.
 
-The current panorama batch has 13 custom revisions across eight restoration
-masters. Forest sunset and Star night passed visual review and are selected;
-native scene acceptance is pending. Five masters need repeat-boundary corrections
-and the volcanic master needs an intent/layout revision. All custom candidates
+The current panorama batch has 36 custom revisions across 26 restoration
+masters. Forest sunset, Star night, Shirley's Shrine forest, Valley suspended
+rocks, Giganto carved figures, Mortal Dragon Mountain storm mist, and world-map
+battle stage87 hills passed visual review and are selected; native scene
+acceptance is pending. Sixteen masters need repeat-boundary corrections and
+three need an intent/layout revision. Forty-four masters still await generation.
+Nearby original field context clarified snow-covered wood, carved figures,
+glacier ice, ruins, and Mayfil masonry. Skurfa's existing Vellweb artwork was also
+used as a material/palette reference for its separate battle viewpoint. All custom candidates
 and saved prompts are public production assets; original sources and comparison
 boards remain outside Git. Selected pixel-identical variants resolve to one PNG
 through separate source-bound manifests, preserving each original MCQ header.
@@ -78,7 +83,7 @@ through separate source-bound manifests, preserving each original MCQ header.
 Headless verification found 119 passing delivery tests and four desktop-only
 tests skipped. Five ownership and eight import regression tests passed. Independent
 decoders agree on all pixels of all 74 battle sources. The packaged Skurfa resources
-match the pinned integration byte-for-byte; the EnvHD package contains two reviewed
+match the pinned integration byte-for-byte; the EnvHD package contains seven reviewed
 panoramas and no production candidates. Import preflight and rollback tests cover
 source drift, corrupt prior resources, malformed controls, rejected revisions,
 version conflicts, oversized inputs and publication failure.
@@ -87,7 +92,7 @@ Headless checks cover separated palette UV placement, source-page rejection, ani
 
 Regression checks also cover both source-load completion orders, deferred scene execution, obsolete/failed loads, and repeated attached-effect teardown with and without an HD replacement. Teardown cannot post replacement events or recreate HD dust resources.
 
-Source inspection and sampled texture visual review do not prove native scene rendering, combined-mod gameplay, physical Deck costs or player approval. Those remain explicit acceptance steps. No game or visible desktop application is launched by this implementation's headless build/tests. The earlier pilot covered 24 material regions, five icons and one effect; CharHD now adds one authored Dart armor development pilot. Full environment/character/UI/effect coverage is not achieved.
+Source inspection and sampled texture visual review do not prove native scene rendering, combined-mod gameplay, physical Deck costs or player approval. Those remain explicit acceptance steps. No game or visible desktop application is launched by this implementation's headless build/tests. The original pilot covered 24 material regions, five goods icons and one effect. CharHD now adds one authored Dart armor development pilot; current UIHD coverage and remaining work are tracked in [UIHD production](UIHD_PRODUCTION.md). Full environment/character/UI/effect coverage is not achieved.
 
 Environment production follows the owner's current order: battle sky/background
 panoramas; world-map sky and landscape thumbnails; world-map terrain and scenery;

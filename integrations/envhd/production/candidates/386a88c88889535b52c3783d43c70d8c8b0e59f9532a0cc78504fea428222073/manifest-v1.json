@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "99b42dc1126262727759a48a0ac40fccaf14801da8f96d72b139964789ad9072",
+  "outputSha256": "30bc2c30874ed4163547464c0708c5ff0b1a5e597a354904ce5c425bc6e5ef22",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-world-hills-stage87-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "World-map battle stage87 has22 configured directional-route references. Original broad mountain ridge, low green hills, daytime sky and bare grassy plain retained; no new trees or buildings.",
+    "style": "Fine natural grass/stone and soft cloud detail follows Skurfa finish. Source atmospheric layers remain recognizable; native scene tone acceptance remains pending.",
+    "layout": "Native-size comparison retains broad central ridge, rounded nearer green hill and lower grassland proportions; exact1536x1024 dimensions verified.",
+    "wrap": "Three-repeat source/candidate preview retains continuous ridge and grassland, with no conspicuous new vertical seam at native viewing size. Edge difference6.39 versus source3.34. This is visual review only; native scene acceptance remains pending.",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sourceEdgeMeanDifference": 3.34375,
+    "outputEdgeMeanDifference": 6.3857421875
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073"
+}

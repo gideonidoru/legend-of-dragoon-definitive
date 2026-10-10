@@ -33,7 +33,7 @@ public abstract class Texture {
     return legend.definitive.rendering.PngAssets.SHARED.prewarm(() -> owner.getResourceAsStream(resource));
   }
 
-  static boolean imageCachingEnabled() {
+  public static boolean imageCachingEnabled() {
     final var setting = legend.game.modding.coremod.CoreMod.IMAGE_CACHE_CONFIG;
     return !setting.isValid() || legend.core.GameEngine.CONFIG.getConfig(setting.get());
   }

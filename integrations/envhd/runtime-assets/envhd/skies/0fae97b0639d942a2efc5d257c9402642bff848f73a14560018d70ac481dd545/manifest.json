@@ -1,0 +1,50 @@
+{
+  "decodedRgbaSha256": "231a501d6e2c8737e79c61596bede472a7a638b464a2ef7d45d5db8eb2f95830",
+  "outputSha256": "185aa56fb7fd9c5eb7d7e40b760991b2b61fc1dc375f71409b71cbcb5e6fb3bc",
+  "scale": 4,
+  "generationVersion": 5,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+  "prompt": "prompts/source-edges-stage7-v5.txt",
+  "imageFile": "image-v5.png",
+  "review": {
+    "intent": "Cool grey cavern shelves and small rock points surrounding dark blue-green water. Source positions and scene identity compared directly with original.",
+    "style": "Original palette, lighting and broad material cues retained. Neural smoothing simplifies some fine bark, masonry and haze. Skurfa-equivalent bespoke detail remains pending; existing Skurfa assets are unchanged.",
+    "layout": "Exact4x dimensions and original visibility classes verified. Original architectural, root, cliff and platform positions preserved; no opposite-edge mirrored structures added.",
+    "wrap": "All21 source-edge alternatives compared with original/output and original/output repeat strips. No new source-intent or structural hold at review-sheet scale. Prior reflected/doubled geometry removed; inherited original repeat discontinuities remain. Native verification pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 2.756944417953491,
+    "outputEdgeMeanDifference": 0.5750868320465088
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "231a501d6e2c8737e79c61596bede472a7a638b464a2ef7d45d5db8eb2f95830",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "action": "upscale-original",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "masterSourceSha256": "0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545",
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "sourceSize": [
+      256,
+      384
+    ],
+    "repairBorderPixels": 0,
+    "decodedRgbaSha256": "231a501d6e2c8737e79c61596bede472a7a638b464a2ef7d45d5db8eb2f95830",
+    "method": "real-esrgan-x4plus-periodic-preserved-source-edges",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "outputSha256": "185aa56fb7fd9c5eb7d7e40b760991b2b61fc1dc375f71409b71cbcb5e6fb3bc"
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545"
+}

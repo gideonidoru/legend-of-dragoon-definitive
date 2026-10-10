@@ -1,0 +1,51 @@
+{
+  "decodedRgbaSha256": "2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae",
+  "outputSha256": "7058dd8fdb558ae8944b68c01f23929c3fdc8c3d6d774e8fa788b6ce2096cff2",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "python-border-repair",
+  "prompt": "prompts/batch-sky-stage56-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Divine Tree golden organic interior, tall slanting woody strands, tangled middle root band and lower hanging roots. Source-backed usage: stages56; Divine Tree.",
+    "style": "Existing modern generative material detail retained, compared with Skurfa reference finish. Narrow border work adds no central scene objects.",
+    "layout": "Exact4x dimensions and source alpha/discard/visible-black classes verified. Main scene regions and silhouette arrangement reviewed against original; original header-specific native placement remains separately bound.",
+    "wrap": "Root strands form crossed diamond ghosts and root-band heights do not reconnect. Exact matching extreme-edge colors do not prove coherent structures; keep this draft unselected pending structural repair/native verification.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 20.30555534362793,
+    "outputEdgeMeanDifference": 0.0
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "productionRecord": {
+    "sourceSize": [
+      256,
+      384
+    ],
+    "inputImageFile": "image-v1.png",
+    "targetSize": [
+      1024,
+      1536
+    ],
+    "sourceVisibility": "exact-nearest-4x-discard-and-visible-black",
+    "decodedRgbaSha256": "2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae",
+    "action": "repair-reviewed-layout",
+    "outputSha256": "7058dd8fdb558ae8944b68c01f23929c3fdc8c3d6d774e8fa788b6ce2096cff2",
+    "reviewStatus": "pending-source-intent-style-layout-wrap-review",
+    "inputSha256": "cae35064d8556a829752fde8dd91226e9c59e6f43c0e59decb0298437e9f5700",
+    "weightsSha256": null,
+    "masterSourceSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5",
+    "repairBorderPixels": 32,
+    "parametersSha256": null,
+    "method": "python-border-repair",
+    "engineSha256": null
+  },
+  "styleReferenceUse": "visual-review-only",
+  "sourceMcqSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5"
+}

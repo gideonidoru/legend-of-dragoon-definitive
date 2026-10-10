@@ -1,0 +1,1924 @@
+{
+  "assets": [
+    {
+      "id": "blue_stone",
+      "kind": "atlas",
+      "registryId": "lod:blue_stone",
+      "sourcePath": "gfx/goods/blue_stone.png",
+      "sourceSha256": "633eb277fa6a25dabdaac9737d2cdf409a01143dfd641e01b54e166aaae6dbcd",
+      "resource": "blue_stone.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "998b29e2be3a65010d48cc19f2d7b9e213143ae28bb63bf39f3f64726481a46b",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "b66cc13637530b335de27b9f6e451665a67b3439998c222bd0812a6047f3dde6"
+    },
+    {
+      "id": "boat_license",
+      "kind": "atlas",
+      "registryId": "lod:boat_license",
+      "sourcePath": "gfx/goods/boat_license.png",
+      "sourceSha256": "0573a9e25a370500caf2af13146713108a12e657bd0dd1a213d393dab47f1886",
+      "resource": "boat_license.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "dc04b8366eada2d25829762d0f249415883f2acbc2ea44b930952d00ae541f9f",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "5fab523760c07ca685e88463e01114faed10fda16b37f0fcc1f9bf10718b42e8"
+    },
+    {
+      "id": "dragon_block_staff",
+      "kind": "atlas",
+      "registryId": "lod:dragon_block_staff",
+      "sourcePath": "gfx/goods/dragon_block_staff.png",
+      "sourceSha256": "adc49bf0a3cf2853f83c81b092183b5813fd23794b57f7e44b6581db312fc6e5",
+      "resource": "dragon_block_staff.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "86f89f39b53f9b9fe71aa9db17ac6b1fca17f75c17f25c40e101dac8d696b5fc",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "4704ef17d08c80c670a5202a921dc78feebd32850ad864e65bcbeffed4e67bc8"
+    },
+    {
+      "id": "fathers_stone",
+      "kind": "atlas",
+      "registryId": "lod:fathers_stone",
+      "sourcePath": "gfx/goods/fathers_stone.png",
+      "sourceSha256": "de0223d328c4e4173cf994e95e58606a69379239b0892127e68f4e1c0dc52e6b",
+      "resource": "fathers_stone.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "f746b8046e895584206ef65518b0fd226352516b63ccf4af2b93ce07cff3506a",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "d827f9c1e86a5ff8c4d46f56c9d3cb99aa289dfa1b083d9aa7821535839d63cf"
+    },
+    {
+      "id": "good_spirits",
+      "kind": "atlas",
+      "registryId": "lod:good_spirits",
+      "sourcePath": "gfx/goods/good_spirits.png",
+      "sourceSha256": "88113acee8e812ba62fdb5fbe952e1b85c17711adf0582ef9e525db2cf715745",
+      "resource": "good_spirits.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "2af863635978dd23daf147da34f47593717a03e6db499a01f8592b2edc88047f",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "22f6b5ad4145c1283d320826897a87784dac3b2f5f431698aec30cffbaad523e"
+    },
+    {
+      "id": "kates_bouquet",
+      "kind": "atlas",
+      "registryId": "lod:kates_bouquet",
+      "sourcePath": "gfx/goods/kates_bouquet.png",
+      "sourceSha256": "740d9f0c28b2b8f5996ca9dcce54a3b0ed4fdff62d09e911ac8288ee7c4c790f",
+      "resource": "kates_bouquet.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "1ea2431b723c7bbfd31ee55f6aa40394ca58f9d2d4a865a29bc7fa66ce9e7c06",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "1e6363bd99bb4b3de4a8bcf973f7e11fbb6ff186f7a25ec4316fc472431b1d5e"
+    },
+    {
+      "id": "key_to_ship",
+      "kind": "atlas",
+      "registryId": "lod:key_to_ship",
+      "sourcePath": "gfx/goods/key_to_ship.png",
+      "sourceSha256": "19a4f28bb446de34827000aca7b7c2242833a0493c26166c9791fff4d5a0c5d4",
+      "resource": "key_to_ship.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "6b5b464530cc4ef886558c2f41202fa4ef985c2082201f83c8523cad4a0316bf",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "a312e1744309be99c012506d2d08f7bd35d25de4c7d55ff8799f02c127674789"
+    },
+    {
+      "id": "lavitzs_picture",
+      "kind": "atlas",
+      "registryId": "lod:lavitzs_picture",
+      "sourcePath": "gfx/goods/lavitzs_picture.png",
+      "sourceSha256": "05640416cd3f766e8ed682c7950d5886f13ce83dfc1c9ea09da5b09684d5a843",
+      "resource": "lavitzs_picture.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "8bd242a3226a6c62de7c5f75b462e7518c30281556fc76f86acb3141fe03af22",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "protectedSourceRegions": [
+        [
+          7,
+          6,
+          25,
+          26
+        ]
+      ],
+      "sourceCoverageSha256": "b4192cc3cdff5bc9b0a3ab10fb179429afeaf52bc16a4623a0a9caf2217fcf0d"
+    },
+    {
+      "id": "law_maker",
+      "kind": "atlas",
+      "registryId": "lod:law_maker",
+      "sourcePath": "gfx/goods/law_maker.png",
+      "sourceSha256": "0253b745b3c1a066079cecbc30d38848c722aaf7bc58b2363cc141553e5370db",
+      "resource": "law_maker.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "64b7a65d9b63570ac299575ff1c57407797c64d5034be3783930a770c32380f7",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "ac9d92b8d5febb6fd3d3d6205d604ddd4dcd4d54f1de9db320cd0ab973b392ed"
+    },
+    {
+      "id": "law_output",
+      "kind": "atlas",
+      "registryId": "lod:law_output",
+      "sourcePath": "gfx/goods/law_output.png",
+      "sourceSha256": "ba05849ac1d42d07d4add9c3e7d276127ff55ba5f73733e1b0ba58128bf3ae92",
+      "resource": "law_output.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "29f4a0850e8a033cf38e3308fee4334ae08a28b8365a9ff3529fe97009aad166",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "8b41e78a311cb8fec511df513369604dd263a7a1899af1fc04cd9f442298c89c"
+    },
+    {
+      "id": "letter_from_lynn",
+      "kind": "atlas",
+      "registryId": "lod:letter_from_lynn",
+      "sourcePath": "gfx/goods/letter_from_lynn.png",
+      "sourceSha256": "9256c10f08dba9593a8368bf3e9317e90d4edbec69d2834d8ae34a96b49c4ff5",
+      "resource": "letter_from_lynn.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "429adb704becc97f4b51f0092482bdc990f83aed3eb6ad411a68d4142f79724c",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "4f86e5be5fe343e815cd959c04ac5b4161e76ca997b1244248bffd79fed0f415"
+    },
+    {
+      "id": "magic_oil",
+      "kind": "atlas",
+      "registryId": "lod:magic_oil",
+      "sourcePath": "gfx/goods/magic_oil.png",
+      "sourceSha256": "24f2ae469dcc3f5f4e338c55623106e0684dadff0879bf2b0c02ce2915857980",
+      "resource": "magic_oil.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "ecd6994b13d175b2807c068e3b086f09bacd8a842cb6f9ca4dd611f290602520",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "b73959d6d4f461d15311a6df78447d8728560bb422d5bfa248c6a7e72976ddb3"
+    },
+    {
+      "id": "moon_dagger",
+      "kind": "atlas",
+      "registryId": "lod:moon_dagger",
+      "sourcePath": "gfx/goods/moon_dagger.png",
+      "sourceSha256": "cb0cc25ba0179379a30f446cddb3b6ff34327ddebd516194cc05cf4989c900cf",
+      "resource": "moon_dagger.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "f2b9d8b823507023f37ea7b65b862c3e168aa4f4b7fff8e7c9c520659998bfc7",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "2be54e709bcf6ef791e362cf5c7ed44091d9ee50599faf28d54783e42a2741dd"
+    },
+    {
+      "id": "moon_gem",
+      "kind": "atlas",
+      "registryId": "lod:moon_gem",
+      "sourcePath": "gfx/goods/moon_gem.png",
+      "sourceSha256": "269731983bcc5ddaee7ddbc1103330be11b09db445255e46389d086cfde2a923",
+      "resource": "moon_gem.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "4aaa30269f6ff57e4ff50a028cf9fd31f6549c4d1d215ded766bb83f704e25e4",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "d87865b8ca59abf24a26327287d1b4c00a3e879c4645a55a8809d1c391eee71d"
+    },
+    {
+      "id": "moon_mirror",
+      "kind": "atlas",
+      "registryId": "lod:moon_mirror",
+      "sourcePath": "gfx/goods/moon_mirror.png",
+      "sourceSha256": "ea03ab4e8eb20b6e8eadf9d9bc4bb344156515340bea99576c682fe900a7f6d6",
+      "resource": "moon_mirror.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "49483c7b26e3c1eea7862942d145a3de338a133c6f1d4e672fe7cbe66417fe1d",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "9c8ac506da94c17c976dab6d267c485ac3fa954ade7f181523f13952853189c4"
+    },
+    {
+      "id": "pass_for_valley",
+      "kind": "atlas",
+      "registryId": "lod:pass_for_valley",
+      "sourcePath": "gfx/goods/pass_for_valley.png",
+      "sourceSha256": "28a575c3b31ff4080e6749a438874b46f2b868fc7a586181ccd4fb37c9540a5e",
+      "resource": "pass_for_valley.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "d63fbc7bec5d1a7acd65b1b7423c7ea805c0627b0ecee486187db0504edfefd2",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "2bdd7ccc9faf700416c2d1670358f696f68142a1829029b421137c64312a3dd7"
+    },
+    {
+      "id": "prison_key",
+      "kind": "atlas",
+      "registryId": "lod:prison_key",
+      "sourcePath": "gfx/goods/prison_key.png",
+      "sourceSha256": "f94561ee2bed91a8539937e8b5990dd9b15d90283f90334bec97e0c1ec41663a",
+      "resource": "prison_key.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "759e066a79fcfbf64f600af739b6d9d5be08190e4229205fada9a433ccd52238",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "d59577e78c409c84eacda677f54c3e175ca67ee83764f594be63b19ab2ef9493"
+    },
+    {
+      "id": "red_stone",
+      "kind": "atlas",
+      "registryId": "lod:red_stone",
+      "sourcePath": "gfx/goods/red_stone.png",
+      "sourceSha256": "903b098621e3a238d3a26c9d22637b8978d0c27c5f216c54948e3c8ae2a4bd41",
+      "resource": "red_stone.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "09ec24178a3c09a2fe16b88f421ee32667fceaa485731a286c45d98dad5de6d5",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "8cdc860216acf4ee9ccf95c7ca8ca5064584ab76dd3df932be46186747dc086d"
+    },
+    {
+      "id": "vanishing_stone",
+      "kind": "atlas",
+      "registryId": "lod:vanishing_stone",
+      "sourcePath": "gfx/goods/vanishing_stone.png",
+      "sourceSha256": "6cf5fd1c87bb0435d0ef5b2662580aa4557bc850a136271dda63bfc4820cb0ae",
+      "resource": "vanishing_stone.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "90f46e6ccb9fd9539347dd7be55d0a8381d01a772596a79f20d1b2bb2bd70151",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "18a082849b3b3b2a483ba3f778eb9d7a59c40bc765ad924f04403e7b9c8ab829"
+    },
+    {
+      "id": "war_bulletin",
+      "kind": "atlas",
+      "registryId": "lod:war_bulletin",
+      "sourcePath": "gfx/goods/war_bulletin.png",
+      "sourceSha256": "1dd40146e0c13f8a29d3e3d277caa78dd8dac591fc58fdfeed0413d69367ab65",
+      "resource": "war_bulletin.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "d028e19771628e93916fcc9a60dde6d0177598f6df75d531ba36d2c7baf25267",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "protectedSourceRegions": [
+        [
+          0,
+          0,
+          32,
+          9
+        ]
+      ],
+      "sourceCoverageSha256": "7d06f3245b1f05c228791f54c51fef5f1cd522b6bf49880f82a900a6e13f56f4"
+    },
+    {
+      "id": "yellow_stone",
+      "kind": "atlas",
+      "registryId": "lod:yellow_stone",
+      "sourcePath": "gfx/goods/yellow_stone.png",
+      "sourceSha256": "75f3bf74301f183f5bdfffc2b89ccfc0fd2b9c48c2beb88c303e4b2d8658d7ab",
+      "resource": "yellow_stone.png",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "outputSize": [
+        128,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "1c9fc754bd0aeb03c825e1f9275046900aa25827800cdc4c88d46b9ceaf1a87a",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 65536,
+      "sourceCoverageSha256": "8cdc860216acf4ee9ccf95c7ca8ca5064584ab76dd3df932be46186747dc086d"
+    },
+    {
+      "id": "dark",
+      "kind": "png",
+      "sourcePath": "gfx/ui/dark.png",
+      "sourceSha256": "00e5f8886f507898a852313e3d3428a96abcff053d730ccde58325a66a51f6e5",
+      "resource": "dark.png",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "outputSize": [
+        192,
+        192
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "3dd3fd0e253407f5c63a0de06873c6aee8635fe286eb5553365fd1cd683662fa",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 147456,
+      "sourceCoverageSha256": "6ed7f9a5a7aaeb78ed431f8e6561848ddc6fa5c61d6f9dbc2ca1bf57773ea917"
+    },
+    {
+      "id": "divine",
+      "kind": "png",
+      "sourcePath": "gfx/ui/divine.png",
+      "sourceSha256": "44e1875019b6eb6fbe09206eef15951cf56b9dca4c92a51c2d443001a4b29c3e",
+      "resource": "divine.png",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "outputSize": [
+        192,
+        192
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "4802f4dd04411343ffeaeee2b53f448a6bfa82a6ab7291990870b3db674affda",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 147456,
+      "sourceCoverageSha256": "6ed7f9a5a7aaeb78ed431f8e6561848ddc6fa5c61d6f9dbc2ca1bf57773ea917"
+    },
+    {
+      "id": "earth",
+      "kind": "png",
+      "sourcePath": "gfx/ui/earth.png",
+      "sourceSha256": "ffeb599c3945bb359c6025c8b33aeabcc1d2a4281cee3fb00e411072f2ad71e0",
+      "resource": "earth.png",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "outputSize": [
+        192,
+        192
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "c50ad71bdba1dd361cc82f518d1f6ec0743c75f719b6d18186b42d3e12073115",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 147456,
+      "sourceCoverageSha256": "9639b3957afc6a0e23083bd435b449a35c39aaa70452704df2b79c3bc75e31be"
+    },
+    {
+      "id": "fire",
+      "kind": "png",
+      "sourcePath": "gfx/ui/fire.png",
+      "sourceSha256": "6aa02bcdc4c36da6ee21fa1bf72a8505ab6084fad55339cf29e23e0418eace82",
+      "resource": "fire.png",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "outputSize": [
+        192,
+        192
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "2c9ec54a0589cedca7293700feaaa769b8977da1f5ea1b0cf0646af25aea8217",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 147456,
+      "sourceCoverageSha256": "64872306028dfdb2bc44121814f9945272c6d2c909edadbdd09fef638f86a986"
+    },
+    {
+      "id": "light",
+      "kind": "png",
+      "sourcePath": "gfx/ui/light.png",
+      "sourceSha256": "3d658c1633edc57016591f4848aa9c2dad965fa40fcd0ae7a03910ca52281629",
+      "resource": "light.png",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "outputSize": [
+        192,
+        192
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "2a5b9ca8cabcfa96f91acc436a8456cc8c6c9de21deef10886650c039dcfc3b4",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 147456,
+      "sourceCoverageSha256": "6ed7f9a5a7aaeb78ed431f8e6561848ddc6fa5c61d6f9dbc2ca1bf57773ea917"
+    },
+    {
+      "id": "magic",
+      "kind": "png",
+      "sourcePath": "gfx/ui/magic.png",
+      "sourceSha256": "b89233d00d716eef297771cda0b1da47c6f20e5a7d4fcf1e059defbffa3e9f94",
+      "resource": "magic.png",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "outputSize": [
+        192,
+        192
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "a503a22985bf7a48cc68a11dc9c736571ed84e37505c37ff76eb64a623d534de",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 147456,
+      "sourceCoverageSha256": "f67f9b90ee26524ba8e7ad3377cc05ab8a15643a8ff050c076a246e07d14de52"
+    },
+    {
+      "id": "physical",
+      "kind": "png",
+      "sourcePath": "gfx/ui/physical.png",
+      "sourceSha256": "d9d3420aa2dc39d3cd08ef765754cb1550c3285f4e4aca1c91ee8d6325b57bb7",
+      "resource": "physical.png",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "outputSize": [
+        192,
+        192
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "b390885cfc82e9670159700c1260e27f72b9cafb0c377e5e74047c14953d79a8",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 147456,
+      "sourceCoverageSha256": "6ed7f9a5a7aaeb78ed431f8e6561848ddc6fa5c61d6f9dbc2ca1bf57773ea917"
+    },
+    {
+      "id": "thunder",
+      "kind": "png",
+      "sourcePath": "gfx/ui/thunder.png",
+      "sourceSha256": "0a3778b974ae05f1f8a0ecb29d56d2c2b4ba12bc72bb0847697a99c057e92199",
+      "resource": "thunder.png",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "outputSize": [
+        192,
+        192
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "5f951549bb5738d731f364ea7dad1f2cbe5d780dc44133243a9f9fd850cc8648",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 147456,
+      "sourceCoverageSha256": "6ed7f9a5a7aaeb78ed431f8e6561848ddc6fa5c61d6f9dbc2ca1bf57773ea917"
+    },
+    {
+      "id": "water",
+      "kind": "png",
+      "sourcePath": "gfx/ui/water.png",
+      "sourceSha256": "c4a35dc274ed57d4d9070b13d927b90781f4fd4daff7a1dcdb082d50ce132afd",
+      "resource": "water.png",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "outputSize": [
+        192,
+        192
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "2e92be06d4ebfc2e9d6b1737c19aa1acdca1c91d4300dd1b8135200a913bd0a5",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 147456,
+      "sourceCoverageSha256": "9bd13efffb12d0ac60f1356b5ae3f960f3a70907c8a80adaf1e351a0f9ac2ee3"
+    },
+    {
+      "id": "wind",
+      "kind": "png",
+      "sourcePath": "gfx/ui/wind.png",
+      "sourceSha256": "96d1ef3baec910f04ff17967bfdfb789b589cbee7bf51a660c6e18781ccdc5f8",
+      "resource": "wind.png",
+      "sourceSize": [
+        48,
+        48
+      ],
+      "outputSize": [
+        192,
+        192
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "547d86d1e93cfe74a6ec56f40ded27c035ad6746354ec61ce6e60271fcadc58c",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 147456,
+      "sourceCoverageSha256": "6ed7f9a5a7aaeb78ed431f8e6561848ddc6fa5c61d6f9dbc2ca1bf57773ea917"
+    },
+    {
+      "id": "battle_icons",
+      "kind": "png",
+      "sourcePath": "gfx/ui/battle_icons.png",
+      "sourceSha256": "00e2931273531f644bc1fddf79d1ab42400c4cbf4c4b066bf96f37f6e213a4fa",
+      "resource": "battle_icons.png",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "outputSize": [
+        256,
+        256
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "028d47d3b24dc3bc419c81c7d048c6cf4633b70bf91d43b0efaed74ec3b9222b",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": 16,
+      "enhancedRgbaBytes": 262144,
+      "sourceCoverageSha256": "04659cff1a00dd285c57e3a9bc9e123d5ed1a45795524f057f9d526495abecdc"
+    },
+    {
+      "id": "ui",
+      "kind": "png",
+      "sourcePath": "gfx/ui/ui.png",
+      "sourceSha256": "a43376f1b987b8717334df419707a4430892cd401c073f6d08153396fa668b27",
+      "resource": "ui.png",
+      "sourceSize": [
+        32,
+        16
+      ],
+      "outputSize": [
+        128,
+        64
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "ee9da56ebbdd804b9268045b03868285f7aa265140c7bd201b8f9a9a5996f642",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": 16,
+      "enhancedRgbaBytes": 32768,
+      "sourceCoverageSha256": "54979667892325fbbb61c4a8890edaf9a2d94d293cbe14304fd2852eb39a0f21"
+    },
+    {
+      "id": "menu-0",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 0,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-0.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "65d4af71eb45fabff79d721cf78a9d56a9fcd541e384905df85dd8e2ddf2655d",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "1c9b65d1b8975b98343280e7078f826d2d06219fa5c3aaa9c3645680ae49fb7e"
+    },
+    {
+      "id": "menu-1",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 1,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-1.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "afddbab57e43d8c360d5ce6af4d3516da6b47fd1bd3883ed5e86307aa62b52c9",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "5f5415e9038114f34e80eede7cf01802df190c3d0b5022810f4596f9f0a0a90f"
+    },
+    {
+      "id": "menu-2",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 2,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-2.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "ba8421e8af8c216a81075c85907c092c431a7bbceec79ac577908dae841a28dd",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "1c9b65d1b8975b98343280e7078f826d2d06219fa5c3aaa9c3645680ae49fb7e"
+    },
+    {
+      "id": "menu-3",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 3,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-3.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "22c3a7a5593134babbe256d25f1baa4e7cb2ebad6c5b1bab172f32603f24c335",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "f3a14c0f7cf89d86dd28fe3228826de11356b4fdff0facd385a11bec6ad5ccae"
+    },
+    {
+      "id": "menu-4",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 4,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-4.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "240fad18e498ac37631a56e3deef6ea7fe267827bebf47e19aa46923e2653cd3",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "1c9b65d1b8975b98343280e7078f826d2d06219fa5c3aaa9c3645680ae49fb7e"
+    },
+    {
+      "id": "menu-5",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 5,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-5.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "99003cf50cff324977e0712eeb0912ffa006cb1c917d2b0acce6ecacd472fcbd",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "1c9b65d1b8975b98343280e7078f826d2d06219fa5c3aaa9c3645680ae49fb7e"
+    },
+    {
+      "id": "menu-6",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 6,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-6.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "4b7a4513bae8960e9ecea686a1484ff2026ef3c876aedac771d7290909e6947e",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "1c9b65d1b8975b98343280e7078f826d2d06219fa5c3aaa9c3645680ae49fb7e"
+    },
+    {
+      "id": "menu-7",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 7,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-7.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "8b7b1707d14334e087fbd026e02d2fb5122b6b919ad38a060c31f56e59fd7f38",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "1c9b65d1b8975b98343280e7078f826d2d06219fa5c3aaa9c3645680ae49fb7e"
+    },
+    {
+      "id": "menu-8",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 8,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-8.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "571c4c33f185fc249a7d540cb2d5732804c04b400e3163be4d572b034ca5902e",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "1c9b65d1b8975b98343280e7078f826d2d06219fa5c3aaa9c3645680ae49fb7e"
+    },
+    {
+      "id": "menu-9",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 9,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-9.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "ac885df85f25b2615317970347066845fc1fdb4793ae697650e68733dcb7b40b",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "1c9b65d1b8975b98343280e7078f826d2d06219fa5c3aaa9c3645680ae49fb7e"
+    },
+    {
+      "id": "menu-10",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 10,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-10.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "5013c94d964e1bea0ea3f3171b60064884f36184ead9a530b6627fe727570208",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "1c9b65d1b8975b98343280e7078f826d2d06219fa5c3aaa9c3645680ae49fb7e"
+    },
+    {
+      "id": "menu-11",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 11,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-11.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "6ce6b34e9d37c74016b77342547b3739b51bf2b899a463c77777e85ee072464a",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "1c9b65d1b8975b98343280e7078f826d2d06219fa5c3aaa9c3645680ae49fb7e"
+    },
+    {
+      "id": "menu-12",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 12,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-12.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "273ea67cea72ef440701531e4f63a4af0764096be1f2d280a3f805c405482119",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "f3a14c0f7cf89d86dd28fe3228826de11356b4fdff0facd385a11bec6ad5ccae"
+    },
+    {
+      "id": "menu-13",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 13,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-13.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "a8f5d68442bddc54676dce45b89c531577445dbf64341b41774d471cd5f129e5",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "f3a14c0f7cf89d86dd28fe3228826de11356b4fdff0facd385a11bec6ad5ccae"
+    },
+    {
+      "id": "menu-14",
+      "kind": "native",
+      "family": "menu",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 0,
+      "sourceSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+      "palette": 14,
+      "crop": [
+        128,
+        48,
+        48,
+        32
+      ],
+      "resource": "menu-14.png",
+      "sourceSize": [
+        48,
+        32
+      ],
+      "outputSize": [
+        192,
+        128
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "09ae86940361fd520ce2eacd509b10ab8c05d55eb9e806769aa5840725bb68f1",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 98304,
+      "sourceCoverageSha256": "f3a14c0f7cf89d86dd28fe3228826de11356b4fdff0facd385a11bec6ad5ccae"
+    },
+    {
+      "id": "items-0",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 0,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-0.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "f762dcaea11d7c962bb9176a228d9df37fd59eef33e9adfd27e0d458da50183b",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-1",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 1,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-1.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "9ab5c5736e4a74512dd6b0ce5cbee3ddcaa019f0907122ee4ab0677644c80db6",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-2",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 2,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-2.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "d59ace8065f286778d65e89e810b9f6639d225d4ca382af0051151f9ff9583fa",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-3",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 3,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-3.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "236c3c0182d1dac1b5c3820d1851c51edd395a0ae5ae9b5488ae43a07c659497",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-4",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 4,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-4.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "f2cb62b74aad1bf5a5b3d459e06eab7a50d0e1c17deeb26c91ce615e6bdca38d",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-5",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 5,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-5.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "d9df4dfc27574d9188327f3dc1582e48e81fd16a043011aaad533d61d0b20a9e",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-6",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 6,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-6.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "bc178a326fe7ed2d5b25800111d2e03b85bfcd26ec30b00074c428afab9d4df4",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-7",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 7,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-7.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "48367189f10647c6ca024c57d741aa1eea3bef266ee5823fd8d0ceee688d1bb9",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-8",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 8,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-8.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "7229b67dd6442233093fe9775a39bae211914712759b8d1424fc071b86e50cd3",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-9",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 9,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-9.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "081459efc1d06a45b5fa34f0a489296f6358cf251a0325ea925ac2d2f204a546",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-10",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 10,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-10.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "a6d9b878a18c6c2e51ab3d6268a7019f8e026bb56349edbd3fb53f323aa9db35",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-11",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 11,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-11.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "5bef66286282c8dc5074dc1a88ac5b4780b1453e5a54e387e78753c0719f5757",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-12",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 12,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-12.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "09e221d70169f83aebe5f5ea0643ee012ed597459e3eded844957dae3f91fd76",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "items-13",
+      "kind": "native",
+      "family": "items",
+      "sourcePath": "SECT/DRGN0.BIN/6665",
+      "sourceOffset": 25088,
+      "sourceSha256": "f71717d0172ea73b0d9b33071808819e993f6ad1f0b6b43491a10133491a4d48",
+      "palette": 13,
+      "crop": [
+        0,
+        0,
+        128,
+        64
+      ],
+      "resource": "items-13.png",
+      "sourceSize": [
+        128,
+        64
+      ],
+      "outputSize": [
+        256,
+        128
+      ],
+      "scale": 2,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "2d67e21abc6796c1ed5587716d067e88860146668990d01a0e9fd4764fd4207a",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 131072,
+      "sourceCoverageSha256": "ee4a099538f21423ac3b4a94cb5afbd7be78d929c9b205f86f55ccdf101c9a00"
+    },
+    {
+      "id": "dialogue-0",
+      "kind": "native",
+      "family": "dialogue",
+      "sourcePath": "SECT/DRGN0.BIN/6669/3",
+      "sourceOffset": 0,
+      "sourceSha256": "6b289ef83cf7f79cfa3c423e624cf2b823365ea20877048bc56905d686f9abc5",
+      "palette": 0,
+      "crop": [
+        0,
+        0,
+        64,
+        46
+      ],
+      "resource": "dialogue-0.png",
+      "sourceSize": [
+        64,
+        46
+      ],
+      "outputSize": [
+        256,
+        184
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "02621b28689d6dc10c8032b56d736c23cf464b45c786cdcd3d43b433d174be78",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 188416,
+      "sourceCoverageSha256": "0dc7fdc57cd4a56114c827274de76132ca0b271a12990db07631708d66c585c4"
+    },
+    {
+      "id": "dialogue_arrow-0",
+      "kind": "native",
+      "family": "dialogue_arrow",
+      "sourcePath": "SECT/DRGN0.BIN/6669/4",
+      "sourceOffset": 0,
+      "sourceSha256": "88d95c393f6db49fac1104e539d80eed700513837cc7b7fda73af9ca9d4c8439",
+      "palette": 0,
+      "crop": [
+        0,
+        0,
+        112,
+        14
+      ],
+      "resource": "dialogue_arrow-0.png",
+      "sourceSize": [
+        112,
+        14
+      ],
+      "outputSize": [
+        448,
+        56
+      ],
+      "scale": 4,
+      "method": "Real-ESRGAN-x4plus-source-context-blend70-exact-source-coverage",
+      "outputSha256": "fee1555b279026f110c0867e78e1f178eeaa4616dd90abafe39d36e1cc40f660",
+      "reviewStatus": "selected-source-layout-review-native-pending",
+      "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+      "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+      "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+      "tileSize": null,
+      "enhancedRgbaBytes": 100352,
+      "sourceCoverageSha256": "992cbd6ffa43f8d6b914e7aabef5daa6ab2b51fced759dee2d8952d89a1bf097"
+    }
+  ],
+  "installed": true,
+  "schemaVersion": 1,
+  "quality": "development-source-layout-reviewed-native-and-steam-deck-pending",
+  "enhancedRgbaBytes": 6744064
+}
