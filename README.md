@@ -8,13 +8,13 @@ This is an unofficial community project in early development. **The guided insta
 
 ## Install on Steam Deck
 
-**[Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-modelshd/Install-Definitive.desktop)**
+**[Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-fmvhd/Install-Definitive.desktop)**
 
 Download a fresh copy if you tried an earlier installer. Older entry files pin older builds, and their updater may miss this release. The installer remembers verified installations, including custom and SD-card locations, and offers Reinstall or Uninstall. For an older custom installation, choose its folder once. Reinstall retains saves, settings, mods and ISOs; Uninstall only deletes ISOs if you select that option.
 
 In Desktop Mode, download and open the installer in Dolphin. Allow execution if KDE asks. It takes care of our build, Java, HD artwork, disc import/preparation and an optional Steam library shortcut. Reuse your installed discs, or choose your four US BIN/raw ISO images or ZIP, RAR and 7z containers. Identical images are reused; different images require confirmation. Your originals stay untouched; bundled emulators and patches are left out. The default location is `/home/deck/Games/Legend-of-Dragoon-Definitive`.
 
-The entry download is tiny; the portable interface is about 13 MB. Java, the compatible game engine, Skurfa HD backgrounds and the complete ModelsHD mod download during setup. No separate model transfer or generation is required. The launcher centers on **Play**, checks our releases automatically, and keeps artwork/mod choices and version restore secondary. Touch-sized controls and controller navigation are implemented; the owner confirms the installer and launcher work on Deck. Detailed input, display, update recovery and performance acceptance remain open. **[Installer details and recovery](docs/definitive/INSTALLER.md)** · [Presentation and verification](docs/definitive/PRESENTATION_PASS.md) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-modelshd/Definitive-Installer.zip).
+The entry download is tiny; the portable interface is about 13 MB. Java and the roughly 1.7 GB game package download during setup, including Skurfa HD backgrounds, ModelsHD and all 18 FMVHD cinematics. No separate model transfer or generation is required. The launcher centers on **Play**, checks our releases automatically, and keeps artwork/mod choices and version restore secondary. Touch-sized controls and controller navigation are implemented; the owner confirms the installer and launcher work on Deck. Detailed input, display, update recovery and performance acceptance remain open. **[Installer details and recovery](docs/definitive/INSTALLER.md)** · [Presentation and verification](docs/definitive/PRESENTATION_PASS.md) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-fmvhd/Definitive-Installer.zip).
 
 ## Where this project comes from
 
@@ -53,6 +53,8 @@ Skurfa is linked at a fixed commit under `integrations/skurfa`, preserving its o
 ## Current status
 
 As of October 10, 2026:
+
+- FMVHD is merged into main and bundled by default: all 18 enhanced cinematics, independent mod selection, bounded streamed playback and original fallback. [Pack and provenance](integrations/fmvhd/README.md) · [Validation and device checks](docs/definitive/FMVHD_VALIDATION.md). Physical Deck FMV acceptance remains open.
 
 - Public repository, upstream history/remotes, documentation, and prioritized backlog are established.
 - The [Deck recovery release](docs/definitive/DECK_RECOVERY.md) passed complete Linux/macOS builds, 105 headless delivery cases on each platform, and four real Linux window cases in a virtual display. It repairs the Steam entry route, checks existing discs, records custom installation locations, and bundles the original key art. The owner subsequently confirmed installation and launcher operation on Deck; detailed display, controller, update recovery and performance acceptance remain open.
