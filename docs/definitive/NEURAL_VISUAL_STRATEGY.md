@@ -6,6 +6,8 @@ The owner's target is a **2026 AA game with a polished, intentional retro style*
 
 ## Recommended direction
 
+**Execution update:** [local head reconstruction](LOCAL_MODEL_RECONSTRUCTION.md) has produced the first actual Haschel 3D candidates from the approved concept, using offline CPU inference and texture baking on the owner's Mac Studio. Static multi-view/format checks pass; hair, neck, fragmented UVs, original pivot correspondence and art acceptance remain unfinished. The experiment changes no native game rendering or installer package.
+
 **Proposal:** use neural methods aggressively in the offline authoring pipeline, review and correct their results, then ship coherent conventional assets. Pair those assets with small, measured native rendering improvements. Keep real-time neural image synthesis as a separate research option rather than a dependency for the Deck edition. This preserves the user's visual ambition while avoiding a renderer rewrite as the first step.
 
 These are different jobs:
