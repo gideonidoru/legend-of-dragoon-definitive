@@ -1,6 +1,5 @@
 package legend.game.fmv;
 
-import legend.core.Config;
 import legend.definitive.fmv.StreamingMovie;
 import legend.definitive.fmv.MoviePlayback;
 import legend.definitive.fmv.RumbleTimeline;
@@ -267,6 +266,8 @@ public final class Fmv {
   private static boolean isKeyboardInput;
   private static boolean isControllerInput;
 
+  private static boolean oldCinematicPlayback;
+
   public static boolean isPlaying;
 
   public static void playCurrentFmv(final int fmvIndex, final EngineStateType<?> afterFmvState) {
@@ -361,6 +362,7 @@ public final class Fmv {
       }
     }
     if(hdMovie != null) hdPlayback = new MoviePlayback(hdMovie);
+    LOGGER.info("FMV %s playback: %s, cinematic timing independent of gameplay speed", file, hdMovie == null ? "original at 15 fps" : "FMVHD using played-audio clock");
     sector = 0;
     frame = 0;
     skipText = null;
@@ -372,7 +374,9 @@ public final class Fmv {
     oldClearColour.set(clearRed_8007a3a8, clearGreen_800bb104, clearBlue_800babc0);
 
     oldRenderer = RENDERER.setRenderCallback(() -> { });
+    oldCinematicPlayback = RENDERER.setCinematicPlayback(true);
     try {
+      setPlaybackTiming(hdMovie != null);
       CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), true);
       RENDERER.setRenderMode(EngineState.RenderMode.PERSPECTIVE);
       RENDERER.setProjectionSize(320, 240);
@@ -443,8 +447,7 @@ public final class Fmv {
           return;
         }
 
-        RENDERER.window().setFpsLimit(15 * Config.getGameSpeedMultiplier());
-        PLATFORM.setInputTickRate(15 * Config.getGameSpeedMultiplier());
+        setPlaybackTiming(false);
 
         int demuxedSize = 0;
 
@@ -696,8 +699,7 @@ public final class Fmv {
   }
 
   private static void renderHd() throws IOException {
-    RENDERER.window().setFpsLimit(60 * Config.getGameSpeedMultiplier());
-    PLATFORM.setInputTickRate(60 * Config.getGameSpeedMultiplier());
+    setPlaybackTiming(true);
     final long playedMicros = hdPlayback.tick(source, volume);
     final StreamingMovie.VideoFrame image = hdMovie.pollVideo(playedMicros);
     if(image != null) {
@@ -737,6 +739,13 @@ public final class Fmv {
     if(hdMovie.drained() && !source.hasQueuedOutput() && playedMicros >= hdMovie.durationMicros) stop();
   }
 
+  private static void setPlaybackTiming(final boolean enhanced) {
+    // Original video consumes one frame per callback; gameplay fast-forward must never accelerate it.
+    final int fps = enhanced ? 60 : 15;
+    RENDERER.window().setFpsLimit(fps);
+    PLATFORM.setInputTickRate(fps);
+  }
+
   public static void stop() {
     if(stopping) return;
     stopping = true;
@@ -752,6 +761,7 @@ public final class Fmv {
       if(buttonPressed != null) { safely(() -> RENDERER.events().removeButtonPress(buttonPressed)); buttonPressed = null; }
       safely(() -> CONFIG.setConfig(ALLOW_WIDESCREEN_CONFIG.get(), oldAllowWidescreen));
       safely(() -> RENDERER.setRenderCallback(oldRenderer));
+      safely(() -> RENDERER.setCinematicPlayback(oldCinematicPlayback));
       safely(() -> RENDERER.window().setFpsLimit(oldFps));
       safely(() -> PLATFORM.setInputTickRate(oldFps));
       safely(() -> RENDERER.setRenderMode(oldRenderMode));

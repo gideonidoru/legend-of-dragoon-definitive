@@ -1,0 +1,19 @@
+// Explicit opt-in private-source audit. No game, GPU context or window is opened.
+allprojects {
+  afterEvaluate {
+    if(project == rootProject) {
+      tasks.register('uihdSourceProbe', JavaExec) {
+        dependsOn 'testClasses', 'uihdJar'
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'legend.definitive.artwork.UiHdSourceProbe'
+        jvmArgs '-Djava.awt.headless=true'
+        doFirst {
+          def fixture = providers.gradleProperty('uihdSourceFixture').orNull
+          if(!fixture) throw new GradleException('Supply -PuihdSourceFixture with a private working fixture containing files and gfx.')
+          workingDir fixture
+          args tasks.uihdJar.archiveFile.get().asFile.absolutePath
+        }
+      }
+    }
+  }
+}

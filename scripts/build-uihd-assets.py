@@ -33,7 +33,7 @@ def read(path, limit=4 * 1024 * 1024):
     return data
 
 
-def native(data, palette, crop):
+def native(data, palette, crop, atlas=False):
     if len(data) < 20 or struct.unpack_from('<2I', data) != (16, 8):
         raise ValueError('Native UI requires indexed TIM')
     block = struct.unpack_from('<I', data, 8)[0]
@@ -50,8 +50,9 @@ def native(data, palette, crop):
     packed = np.frombuffer(data[offset + 12:offset + size], dtype=np.uint8).reshape(height, words * 2)
     indices = np.stack((packed & 15, packed >> 4), axis=-1).reshape(height, words * 4)[y:y+h, x:x+w]
     colours = np.frombuffer(data[20 + palette * 32:52 + palette * 32], dtype='<u2')[indices]
-    pixels = np.stack(((colours & 31)*255//31, (colours >> 5 & 31)*255//31,
-                       (colours >> 10 & 31)*255//31, np.where(colours & 0x8000, 255, 0)), axis=-1).astype(np.uint8)
+    scale_colour = (lambda c: c * 8) if atlas else (lambda c: c * 255 // 31)
+    pixels = np.stack((scale_colour(colours & 31), scale_colour(colours >> 5 & 31),
+                       scale_colour(colours >> 10 & 31), np.where(colours & 0x8000, 255, 0)), axis=-1).astype(np.uint8)
     return Image.fromarray(pixels)
 
 
@@ -116,6 +117,16 @@ def restore(source, args, name, scale, indexed=False, tile=None, strength=0.7):
     return preserve(source, result, scale, indexed)
 
 
+def palette_data(data):
+    return data[20:8 + struct.unpack_from('<I', data, 8)[0]]
+
+
+def with_palette(data, colours):
+    offset = 8 + struct.unpack_from('<I', data, 8)[0]
+    size = struct.unpack_from('<I', data, offset)[0]
+    return struct.pack('<3I4H', 16, 8, 12 + len(colours), 0, 0, 16, len(colours) // 32) + colours + data[offset:offset+size]
+
+
 def jobs(args):
     result = []
     for source in sorted((args.source / 'gfx/goods').glob('*.png')):
@@ -129,18 +140,59 @@ def jobs(args):
         with Image.open(source) as image:
             result.append(({'id': name, 'kind': 'png', 'sourcePath': 'gfx/ui/' + source.name,
                             'sourceSha256': digest(data)}, image.convert('RGBA'), 4, 16 if name in ('battle_icons', 'ui') else None))
+    for name in 'dart lavitz shana rose haschel albert meru kongol miranda'.split():
+        path = 'characters/' + name + '/portrait.png'
+        data = read(args.files / path)
+        with Image.open(args.files / path) as image:
+            result.append(({'id': 'portrait-' + name, 'kind': 'atlas', 'registryId': 'lod:' + name,
+                            'sourcePath': path, 'sourceSha256': digest(data)}, image.convert('RGBA'), 4, None))
+    image_path, palette_path = 'SECT/DRGN0.BIN/4113/0', 'SECT/DRGN0.BIN/4113/5'
+    page, colours = read(args.files / image_path), read(args.files / palette_path)
+    spirit_page = with_palette(page, palette_data(colours))
+    for index, element in enumerate('fire wind light dark thunder water earth divine'.split()):
+        for frame in range(3):
+            crop = (80, 64 + frame * 16, 16, 16)
+            image = native(spirit_page, 8 + index, crop, atlas=True)
+            result.append(({'id': 'spirit-' + element + '-' + str(frame), 'kind': 'atlas-native',
+                            'registryId': 'lod:' + element + '_' + str(frame), 'sourcePath': image_path,
+                            'paletteSourcePath': palette_path, 'sourceSha256': digest(page),
+                            'paletteSourceSha256': digest(colours), 'crop': list(crop), 'palette': 8 + index}, image, 4, None))
+    for i in range(2):
+        crop = (80 + i * 8, 112, 8, 16)
+        image = native(spirit_page, 8, crop, atlas=True)
+        result.append(({'id': 'spirit-divine-overlay-' + str(i), 'kind': 'atlas-native',
+                        'registryId': 'lod:divine_overlay_' + str(i), 'sourcePath': image_path,
+                        'paletteSourcePath': palette_path, 'sourceSha256': digest(page),
+                        'paletteSourceSha256': digest(colours), 'crop': list(crop), 'palette': 8}, image, 4, None))
+    menu = read(args.files / 'SECT/DRGN0.BIN/6665')
+    families = []
     for family, path, offset, crop, scale in [
-        ('menu', 'SECT/DRGN0.BIN/6665', 0, (128, 48, 48, 32), 4),
-        ('items', 'SECT/DRGN0.BIN/6665', 0x6200, (0, 0, 128, 64), 2),
+        ('menu', 'SECT/DRGN0.BIN/6665', 0, (0, 0, 256, 192), 2),
+        ('items', 'SECT/DRGN0.BIN/6665', 0x6200, (0, 0, 256, 64), 2),
+        ('menu_characters', 'SECT/DRGN0.BIN/6665', 0x83e0, (0, 0, 256, 256), 2),
         ('dialogue', 'SECT/DRGN0.BIN/6669/3', 0, (0, 0, 64, 46), 4),
         ('dialogue_arrow', 'SECT/DRGN0.BIN/6669/4', 0, (0, 0, 112, 14), 4)]:
-        data = read(args.files / path)[offset:]
+        families.append((family, path, offset, read(args.files / path)[offset:], crop, scale, None))
+    extras = palette_data(menu[0x10460:])[:4*32] + palette_data(menu[0x10580:])
+    families.append(('menu_character_extras', 'SECT/DRGN0.BIN/6665', 0x83e0,
+                     with_palette(menu[0x83e0:], extras), (0, 0, 256, 256), 2, 'final-menu-palette-overlay'))
+    for index in range(6):
+        path = 'SECT/DRGN0.BIN/4113/' + str(index)
+        families.append(('battle_hud_' + str(index), image_path, 0,
+                         with_palette(page, palette_data(read(args.files / path))), (0, 0, 256, 256), 2, path))
+    basic_path = 'SECT/DRGN0.BIN/6669/0'
+    basic_page = read(args.files / basic_path)
+    for index in range(3):
+        path = 'SECT/DRGN0.BIN/6669/' + str(index)
+        families.append(('basic_' + str(index), basic_path, 0,
+                         with_palette(basic_page, palette_data(read(args.files / path))), (0, 0, 256, 160), 2, path))
+    for family, path, offset, data, crop, scale, palette_path in families:
         count = struct.unpack_from('<H', data, 18)[0]
         for palette in range(count):
             image = native(data, palette, crop)
             result.append(({'id': family + '-' + str(palette), 'kind': 'native', 'family': family,
                             'sourcePath': path, 'sourceOffset': offset, 'sourceSha256': digest(data),
-                            'palette': palette, 'crop': list(crop)}, image, scale, None))
+                            'paletteSourcePath': palette_path, 'palette': palette, 'crop': list(crop)}, image, scale, None))
     return result
 
 
@@ -154,7 +206,17 @@ def execute(args):
     args.output.mkdir(parents=True); args.work.mkdir(parents=True)
     records = []
     for entry, original, scale, tile in jobs(args):
-        candidate = restore(original, args, entry['id'], scale, entry['kind'] == 'native', tile)
+        reuse = None
+        if args.reuse:
+            prior = json.loads((args.reuse / 'catalog.json').read_text())
+            reuse = next((e for e in prior['assets'] if e['id'] == entry['id'] and e['sourceSha256'] == entry['sourceSha256']
+                          and e['sourceSize'] == list(original.size) and e['scale'] == scale), None)
+        if reuse:
+            raw = read(args.reuse / 'assets' / reuse['resource'])
+            if digest(raw) != reuse['outputSha256']: raise ValueError('Reused artwork identity differs')
+            with Image.open(args.reuse / 'assets' / reuse['resource']) as selected: candidate = selected.convert('RGBA')
+        else:
+            candidate = restore(original, args, entry['id'], scale, entry['kind'] == 'native', tile)
         for box in PROTECTED.get(entry['id'], []):
             candidate.paste(original.crop(box).resize(((box[2]-box[0])*scale, (box[3]-box[1])*scale), Image.Resampling.NEAREST), (box[0]*scale, box[1]*scale))
         candidate = preserve(original, candidate, scale, entry['kind'] == 'native')
@@ -177,4 +239,5 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ('source', 'files', 'output', 'work', 'engine', 'models'):
         parser.add_argument('--' + name, type=Path, required=True)
+    parser.add_argument('--reuse', type=Path)
     execute(parser.parse_args())
