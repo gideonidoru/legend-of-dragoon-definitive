@@ -24,6 +24,25 @@ final class SimulationClockTest {
     }
   }
 
+  @Test void slowHardwareRatesAccumulateACompleteIntervalWithoutFreezing() {
+    for(final int hz : new int[]{1,2,3,4,10}) for(final int presentation : new int[]{15,30,40,60,120,1000}) {
+      final var now=new AtomicLong(); final var clock=new SimulationClock(now::get);
+      clock.setRate(hz); clock.reset(false); final int[] ticks={0};
+      for(int frame=1;frame<=presentation;frame++) {
+        now.set(frame*1_000_000_000L/presentation); clock.advance(()->ticks[0]++);
+      }
+      assertEquals(hz,ticks[0],"Hardware "+hz+" Hz at presentation "+presentation+" Hz");
+      assertEquals(0,clock.snapshot().droppedNanos());
+    }
+    for(final int hz : new int[]{1,2,3}) {
+      final var now=new AtomicLong(); final var clock=new SimulationClock(now::get);
+      clock.setRate(hz); clock.reset(false); now.set(30_000_000_000L);
+      assertEquals(1,clock.advance(()->{}),"Slow hardware suspend recovery remains bounded to one interval");
+      assertEquals(30_000_000_000L-1_000_000_000L/hz-SimulationClock.MAX_DEBT_NANOS,clock.snapshot().droppedNanos());
+      assertEquals(SimulationClock.MAX_DEBT_NANOS,clock.snapshot().pendingNanos());
+    }
+  }
+
   @Test void phaseSurvivesRepeatedAssignmentsAndVariableUncappedPresentation() {
     final var now=new AtomicLong(); final var clock=new SimulationClock(now::get);
     clock.setRate(60); clock.reset(false); final int[] ticks={0};

@@ -119,9 +119,9 @@ public final class VideoPlayer {
       RENDERER.setProjectionSize(320, 240);
       RENDERER.api().clearColour(0.0f, 0.0f, 0.0f);
 
-      keyPress = RENDERER.events().onKeyPress((window, key, scancode, mods, repeat) -> shouldStop = true);
-      buttonPressed = RENDERER.events().onButtonPress((window, action, repeat) -> shouldStop = true);
-      click = RENDERER.events().onMouseRelease((window, x, y, button, mods) -> shouldStop = true);
+      keyPress = RENDERER.events().onKeyPress((window, key, scancode, mods, repeat) -> requestStop());
+      buttonPressed = RENDERER.events().onButtonPress((window, action, repeat) -> requestStop());
+      click = RENDERER.events().onMouseRelease((window, x, y, button, mods) -> requestStop());
 
       source = AUDIO_THREAD.addSource(new GenericSource(AL_FORMAT_STEREO16, 48_000));
       oldPauseCallback = RENDERER.setCinematicPauseCallback(VideoPlayer::setPaused);
@@ -206,7 +206,8 @@ public final class VideoPlayer {
   public static void stop() {
     if(stopping || movie == null) return;
     stopping = true;
-    RENDERER.setRenderCallback(() -> {
+    RENDERER.setRenderCallback(() -> { });
+    RENDERER.addTask(() -> {
       cleanup();
       restoreRenderer();
       final Runnable render = onRender, finish = onFinish;
@@ -215,6 +216,11 @@ public final class VideoPlayer {
       try { if(render != null) render.run(); }
       finally { if(finish != null) finish.run(); }
     });
+  }
+
+  private static void requestStop() {
+    shouldStop = true;
+    stop();
   }
 
   private static void setPaused(final boolean paused) {
@@ -243,6 +249,7 @@ public final class VideoPlayer {
   }
 
   private static void cleanup() {
+    if(stateCaptured) safely(RENDERER::discardCinematicFrame);
     if(oldPauseCallback != null) {
       safely(() -> RENDERER.setCinematicPauseCallback(oldPauseCallback));
       oldPauseCallback = null;
@@ -250,6 +257,8 @@ public final class VideoPlayer {
     if(movie != null) { safely(movie::close); movie = null; playback = null; }
     if(texturedObj != null) { safely(texturedObj::delete); texturedObj = null; }
     if(displayTexture != null) { safely(displayTexture::delete); displayTexture = null; }
+    safely(Obj::deleteObjects);
+    safely(Texture::deleteTextures);
     if(keyPress != null) { safely(() -> RENDERER.events().removeKeyPress(keyPress)); keyPress = null; }
     if(click != null) { safely(() -> RENDERER.events().removeMouseRelease(click)); click = null; }
     if(buttonPressed != null) { safely(() -> RENDERER.events().removeButtonPress(buttonPressed)); buttonPressed = null; }

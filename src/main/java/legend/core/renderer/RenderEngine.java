@@ -1084,10 +1084,17 @@ public class RenderEngine {
     return steps;
   }
 
+  /** Render-thread movie teardown: discard retained draws before retiring their resources. */
+  public void discardCinematicFrame() {
+    this.frameAdvanceSingle = false;
+    this.frameAdvance = false;
+    this.preparedSimulationFrame = false;
+    this.retainedSimulationFrame = false;
+    this.releaseSimulationFrame();
+  }
+
   private void releaseSimulationFrame() {
     this.resetBatches();
-    Obj.deleteObjects();
-    Texture.deleteTextures();
     this.scissorStack.reset();
     this.mainBatch.modelPool.ignoreQueues = false;
     this.mainBatch.orthoPool.ignoreQueues = false;
@@ -1095,6 +1102,8 @@ public class RenderEngine {
       batch.modelPool.ignoreQueues = false;
       batch.orthoPool.ignoreQueues = false;
     }
+    Obj.deleteObjects();
+    Texture.deleteTextures();
   }
 
   private void simulateFrame() {

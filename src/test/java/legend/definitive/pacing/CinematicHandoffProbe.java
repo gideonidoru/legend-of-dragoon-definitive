@@ -73,6 +73,43 @@ public final class CinematicHandoffProbe {
       }
     }
 
+    final var batchField = RenderEngine.class.getDeclaredField("mainBatch");
+    batchField.setAccessible(true);
+    final var movieBatch = (legend.core.renderer.RenderBatch)batchField.get(renderer);
+    final var advance = RenderEngine.class.getDeclaredField("frameAdvanceSingle");
+    advance.setAccessible(true);
+    final var mouseRelease = legend.core.platform.WindowEvents.class.getDeclaredMethod("onMouseRelease", int.class, java.util.Set.class);
+    mouseRelease.setAccessible(true);
+    final var buttonPress = legend.core.platform.WindowEvents.class.getDeclaredMethod("onButtonPress", legend.core.platform.input.InputButton.class, boolean.class);
+    buttonPress.setAccessible(true);
+    for(final int base : new int[]{20,30,60}) for(int speed=1;speed<=16;speed++) for(int exit=0;exit<3;exit++) {
+      Config.setGameSpeedMultiplier(speed);
+      final int[] gameplayTicks={0};
+      renderer.setSimulationCallback(()->gameplayTicks[0]++);
+      renderer.setSimulationRate(base*speed);
+      GameEngine.PLATFORM.setInputTickRate(base*speed);
+      final int fps=window.getFpsLimit(), input=GameEngine.PLATFORM.getInputTickRate();
+      VideoPlayer.play(fixture,null,null);
+      pauseRequest.setBoolean(renderer,true); draw.invoke(window);
+      advance.setBoolean(renderer,true); draw.invoke(window);
+      require(movieBatch.orthoPool.size()>0,"Paused movie fixture must retain its actual quad");
+      // Pending debug advance must not leak into the restored game domain.
+      advance.setBoolean(renderer,true);
+      if(exit==0) VideoPlayer.stop();
+      else if(exit==1) buttonPress.invoke(window.events(),legend.core.platform.input.InputButton.A,false);
+      else mouseRelease.invoke(window.events(),0,java.util.Set.of());
+      draw.invoke(window);
+      require(renderer.isPaused() && gameplayTicks[0]==0,"Paused teardown preserves pause without advancing gameplay");
+      require(movieBatch.orthoPool.size()==0 && movieBatch.modelPool.size()==0,"Disposed movie draw references cannot survive teardown");
+      require(window.simulationConsumesInput() && window.getFpsLimit()==fps && GameEngine.PLATFORM.getInputTickRate()==input,"Paused stop/skip restores callback and both rates");
+      for(final String name:new String[]{"movie","playback","texturedObj","displayTexture","imageBuffer","source","oldPauseCallback","keyPress","buttonPressed","click"}) {
+        final var field=VideoPlayer.class.getDeclaredField(name);field.setAccessible(true);
+        require(field.get(null)==null,"Paused teardown must release "+name);
+      }
+      pauseRequest.setBoolean(renderer,true); draw.invoke(window);
+      require(!renderer.isPaused(),"Restored gameplay resumes normally after teardown");
+    }
+
     renderer.setRenderCallback(() -> { });
     renderer.setCinematicPlayback(true);
     window.setFpsLimit(30);
@@ -89,6 +126,6 @@ public final class CinematicHandoffProbe {
       require(window.getFpsLimit() == 30 && GameEngine.PLATFORM.getInputTickRate() == 120, "Failed initialization cannot change the previous timing owner");
       require(!window.simulationConsumesInput(), "Failed initialization preserves the previous presentation callback");
     }
-    System.out.println("PASS: actual streamed-player entry/cleanup restores independent input/presentation rates for all 48 gameplay combinations, nested cinematic scope and failed media initialization.");
+    System.out.println("PASS: actual streamed-player entry/cleanup restores independent input/presentation rates for all 48 gameplay combinations, 144 paused stop/button-skip/mouse-skip paths, nested cinematic scope and failed media initialization.");
   }
 }

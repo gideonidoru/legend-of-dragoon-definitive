@@ -51,11 +51,13 @@ public final class SimulationClock {
     final long elapsed = start - this.last;
     this.last = start;
     if(elapsed < 0) { this.reset(false); return 0; }
-    final long accepted = Math.min(elapsed, MAX_DEBT_NANOS);
+    // Slow hardware timers still need one complete interval to become due.
+    final long maximumDebt = this.period >= MAX_DEBT_NANOS ? this.period + MAX_DEBT_NANOS : MAX_DEBT_NANOS;
+    final long accepted = Math.min(elapsed, maximumDebt);
     final long combined = this.debt + accepted;
-    final long dropped = elapsed - accepted + Math.max(0, combined - MAX_DEBT_NANOS);
+    final long dropped = elapsed - accepted + Math.max(0, combined - maximumDebt);
     this.droppedNanos = dropped > Long.MAX_VALUE - this.droppedNanos ? Long.MAX_VALUE : this.droppedNanos + dropped;
-    this.debt = Math.min(MAX_DEBT_NANOS, combined);
+    this.debt = Math.min(maximumDebt, combined);
     this.budgetLimited = false;
     final int generation = this.generation;
     int steps = 0;
