@@ -55,6 +55,9 @@ public final class DartExperimentProbe {
             throw new AssertionError("Appearance changed prepared geometry: " + form + " rgba=" + rgba + " part=" + java.util.Arrays.asList(tables).indexOf(table));
           expected.delete();
           if(result.faceDetailTexture()!=null)paintTextures++;
+          if(painted && table==tables[7] && Files.isRegularFile(study.resolve("field-head-uv.json")) &&
+            (result.faceDetailTexture()==null || result.faceDetailTexture().width!=2048))
+            throw new AssertionError("Reconstructed head did not receive its exact UV binding");
           for(final var mesh:result.meshes)for(final float value:mesh.vertices()){if(!Float.isFinite(value))throw new AssertionError("Nonfinite native data");floats++;}
           if(!Arrays.equals(positions,table.vert_top_00))throw new AssertionError("Source CPU geometry changed");
           final var after=Arrays.stream(table.primitives_10).flatMap(p->Arrays.stream(p.data())).toArray(byte[][]::new);

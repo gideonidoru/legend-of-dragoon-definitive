@@ -78,6 +78,12 @@ class DartFacePaintTest {
     assertEquals(2,mesh.faceDetailTexture().width);
     for(final var part:mesh.meshes)for(final float value:part.vertices())assertTrue(Float.isFinite(value));
   }
+  @Test void reconstructedUvBindingRejectsUnrelatedOrChangedGeometry() throws Exception {
+    final var replacement=new DartHeadReconstruction();
+    assertNull(replacement.paint("b84e13a11adbd3419e1e4c5b810c8bd797f9dc68af5d41fe3c4736ce5c4f584b",source()));
+    assertNull(replacement.paint("0bfd5ffdc6da5b99d770e75f3cab89c86718a541f996250eb362cfb07642f6bb",source()));
+    assertNull(replacement.paint("0".repeat(64),source()));
+  }
   @Test void completeHeadLayerPreservesBandanaAndSeparatesHairRegion() {
     for(final int face:new int[]{20,21,23,110,121,122}) {
       final var original=source();original.sourceFaces(new int[]{face},148);

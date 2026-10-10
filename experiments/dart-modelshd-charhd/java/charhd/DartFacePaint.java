@@ -18,6 +18,7 @@ import java.util.Set;
 @org.legendofdragoon.modloader.Mod(id = "charhd_dart_experiment", version = "3.0.0")
 public final class DartFacePaint {
   private final BufferedImage paint;
+  private final DartHeadReconstruction reconstruction;
   private final ByteBuffer fieldRgba;
   private final int fieldWidth, fieldHeight;
   private static final String FIELD = "b84e13a11adbd3419e1e4c5b810c8bd797f9dc68af5d41fe3c4736ce5c4f584b";
@@ -36,6 +37,7 @@ public final class DartFacePaint {
       expected = new String(input.readNBytes(65), java.nio.charset.StandardCharsets.UTF_8).strip();
     }
     this.paint = read(bytes, expected);
+    this.reconstruction = new DartHeadReconstruction();
     final byte[] fieldBytes;
     final String fieldDigest;
     try(final var input = getClass().getResourceAsStream("/charhd-experiment/dart-field-charhd-v1.png");
@@ -94,8 +96,10 @@ public final class DartFacePaint {
     if(event.appearance != event.geometry || event.source.requiresNativeVertexIndices() ||
       event.geometry != event.source && !event.geometry.hasSourceFaces()) return;
     final String identity = TmdGeometryIdentity.identity(new TmdObjTable1c[] {event.source});
-    if(FIELD.equals(identity)) event.appearance = paint(event.geometry, this.mapping.fieldFaces(), this.mapping.fieldHairFaces(), this.paint, true, this.mapping);
-    else if(COMBAT.equals(identity)) event.appearance = paint(event.geometry, this.mapping.combatFaces(), this.mapping.combatHairFaces(), this.paint, false, this.mapping);
+    final var reconstructed=this.reconstruction.paint(identity,event.geometry);
+    if(reconstructed!=null)event.appearance=reconstructed;
+    else if(FIELD.equals(identity)) event.appearance = paint(event.geometry, this.mapping.fieldFaces(), Set.of(), this.paint, true, this.mapping);
+    else if(COMBAT.equals(identity)) event.appearance = paint(event.geometry, this.mapping.combatFaces(), Set.of(), this.paint, false, this.mapping);
   }
 
   /** Full-resolution supplemental albedo; original texture pages and CPU tables stay intact. */

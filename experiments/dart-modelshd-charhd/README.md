@@ -1,3 +1,5 @@
+> Current branch: **Dart AA reconstruction experiment**, gated from main/releases. See [reconstruction/README.md](reconstruction/README.md). Earlier face and rejected hair trials below are retained as history.
+
 # Dart: ModelsHD + CharHD experiment
 
 Status: **experimental; not approved for main or release**. The user requires explicit approval of matched before/after comparisons before promotion. Keep this work on `experiment/dart-modelshd-charhd`; do not merge, release, change the normal ModelsHD payload index or add this directory to installer tasks. Public custom work remains permitted; publication is distinct from visual acceptance.
