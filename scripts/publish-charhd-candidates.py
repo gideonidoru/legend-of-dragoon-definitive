@@ -63,6 +63,10 @@ def publish(files, staging, output):
         else:
             model = packing.materials.bounded_read(files / row['model'])
             tim = packing.materials.bounded_read(files / row['texture'])
+            model_hash, tim_hash = hashlib.sha256(model).hexdigest(), hashlib.sha256(tim).hexdigest()
+            identity = hashlib.sha256(bytes.fromhex(model_hash) + bytes.fromhex(tim_hash)).hexdigest()
+            if (model_hash, tim_hash, identity) != (row['modelSha256'], row['timSha256'], row['packId']):
+                raise ValueError('Publication source identity differs from the census')
             source = safe_folder(staging, job['folder'])
             _, _, report = packing.validate_pack(source, model, tim)
             manifest = public_manifest(report)
@@ -80,6 +84,9 @@ def publish(files, staging, output):
                 atlasSize=report['atlasSize'], path=destination.relative_to(output).as_posix())
         records.append(record)
     result = {'pipeline': 'charhd-full-candidate-coverage-1', 'originalQueueCount': len(eligible),
+        'texturedCandidateTargetCount': sum(bool(row.get('usedPalettes')) for row in eligible),
+        'fullGameDenominator': None,
+        'sourceCensusSha256': hashlib.sha256((staging/'census.json').read_bytes()).hexdigest(),
         'statusCounts': dict(Counter(row['status'] for row in records)),
         'artAccepted': 0, 'nativeAccepted': 0, 'deckAccepted': 0,
         'scope': 'Baseline reconstruction queue only; publication does not select runtime assets or establish final art quality',

@@ -51,6 +51,11 @@ class FullProductionTest(unittest.TestCase):
             public = output/'full-candidates'/row['packId']
             self.assertEqual({p.name for p in public.iterdir()}, {'manifest.json', 'atlas-engine-stp.png'})
             self.assertNotIn('/private', (public/'manifest.json').read_text())
+            row['timSha256'] = '0'*64
+            (staging/'census.json').write_text(json.dumps(census))
+            with self.assertRaisesRegex(ValueError, 'source identity'): publisher.publish(files, staging, output)
+            row['timSha256'] = manifest['timSha256']
+            (staging/'census.json').write_text(json.dumps(census))
             (public/'atlas-engine-stp.png').write_bytes(b'conflicting revision')
             with self.assertRaisesRegex(ValueError, 'conflicts'): publisher.publish(files, staging, output)
 
