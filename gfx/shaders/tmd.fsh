@@ -264,6 +264,9 @@ void main() {
         if(all(equal(source, vec4(0.0)))) discard;
         texColour = textureGrad(tex24, uv, uvDx, uvDy);
         texColour.a = source.a;
+        // Mips can round dark visible RGB to zero; original black must also stay black.
+        // Keep the nearest source's discard/visible-black class through color filtering.
+        if(all(equal(source.rgb, vec3(0.0))) || all(equal(texColour.rgb, vec3(0.0)))) texColour.rgb = source.rgb;
       } else {
         texColour = texture(tex24, uv);
       }

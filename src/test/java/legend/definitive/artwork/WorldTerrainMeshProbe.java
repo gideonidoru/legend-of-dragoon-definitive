@@ -57,7 +57,7 @@ public final class WorldTerrainMeshProbe {
           if(refinedCache.get(scene.dobj2s_00[i].tmd_08)!=null) throw new IllegalStateException("Artwork contaminated native geometry cache");
           parts++;
           for(final Mesh mesh:((MeshObj)artwork.meshes[i]).meshes) for(int v=0;v<mesh.vertices().length;v+=16) {
-            final float[] vertices=mesh.vertices();if(((int)vertices[v+15]&4)==0) continue;
+            final float[] vertices=mesh.vertices();if(((int)vertices[v+15]&2)==0) continue;
             final int bpp=(int)vertices[v+9]>>>7&3;
             if(bpp==3) {if(vertices[v+7]<0 || vertices[v+7]>1 || vertices[v+8]<0 || vertices[v+8]>1) throw new IllegalStateException("Invalid packed UV");hdVertices++;}
             else if(bpp==0 || bpp==1) nativeVertices++;

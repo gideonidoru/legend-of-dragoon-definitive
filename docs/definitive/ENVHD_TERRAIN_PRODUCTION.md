@@ -100,6 +100,21 @@ including the eight terrain atlases). JAR SHA-256:
 All 406 pinned Skurfa runtime files still byte-match its staged JAR. These are
 local development package checks, not proof of a published installer update.
 
+Independent spec review found no actionable integration gap. Standards review
+identified an existing shader interaction exposed by filtered terrain: RGBA8 mips
+can round a dark nonblack/STP-zero pixel to all-zero and create a new hole, while
+filtered neighboring colors can brighten an originally visible-black texel. The HD
+branch now restores nearest-source RGB for either original black or filtered-zero
+RGB, after the nearest-source hole check and STP restoration. Indexed sampling is
+unchanged. Both reviewers accepted the focused repair.
+
+`windowlessTerrainShaderProbe` compiles and draws the shipping `tmd.fsh` on an
+existing windowless macOS GL context. Seven GPU readbacks passed: actual RGBA8 mip
+underflow, visible black next to bright colors, nearest holes and both STP passes.
+Compiling the same shader with only the repair removed reproduces both defects.
+This opt-in probe creates no window, loads no game scene and is not a default test
+dependency. It verifies this sampling contract, not gameplay or Steam Deck behavior.
+
 Keep this batch separate from the frozen ready panorama/world release scope until
 the delivery coordinator selects a later candidate. Installer downloads are
 published only by the consolidated delivery workflow, not per art iteration.

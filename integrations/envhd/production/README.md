@@ -63,8 +63,11 @@ diagnostic images remain outside this repository.
 292 visually reviewed development baselines and one uniform-color native exemption.
 There are 366 material bindings across eight regions, with one wrapped Tiberoa
 binding held. Animated ocean part zero retains its native texture/CLUT animation.
-Terrain runtime selections and native acceptances are currently zero. The candidate
-history lives under `terrain-candidates`; it does not change the installed mod yet.
+`terrain-runtime-artwork.json` selects 292 masters through eight region atlases,
+covering 364 HD material bindings in the default development installation. The
+uniform-color exemption and wrapped binding remain native. Native scene inspection
+and final visual acceptance are still pending. Candidate history lives under
+`terrain-candidates`; this development increment is separate from the frozen release.
 See `docs/definitive/ENVHD_TERRAIN_PRODUCTION.md` for the source and integration gates.
 
 Reviewed bitmaps live once under `envhd/sky-images/<decoded-pixel-hash>`. Each

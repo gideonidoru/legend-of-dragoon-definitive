@@ -154,6 +154,17 @@ tasks.register('worldTerrainMeshProbe', JavaExec) {
   }
 }
 
+// Optional actual shipping terrain shader readback with no app or window creation.
+tasks.register('windowlessTerrainShaderProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.WindowlessTerrainShaderProbe'
+  jvmArgs '-Djava.awt.headless=true', '--enable-native-access=ALL-UNNAMED'
+  doFirst {
+    args providers.gradleProperty('rendererContextPath').get(), projectDir.absolutePath
+  }
+}
+
 // Explicit private animation inspection using the actual source methods, without rendering.
 tasks.register('nativePoseProbe', JavaExec) {
   dependsOn testClasses
