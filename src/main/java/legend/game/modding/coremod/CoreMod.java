@@ -100,6 +100,11 @@ public class CoreMod {
     DefinitiveTexturePilot.apply(event);
   }
 
+  @EventListener
+  public static void definitiveBackgroundPreparation(final legend.game.modding.events.submap.SubmapEnvironmentPreloadEvent event) {
+    legend.definitive.rendering.DefaultBackgroundPrewarming.preload(event);
+  }
+
   private static final Registrar<Item, ItemRegistryEvent> ITEM_REGISTRAR = new Registrar<>(GameEngine.REGISTRIES.items, MOD_ID);
 
   public static final RegistryDelegate<Item> NOTHING = ITEM_REGISTRAR.register("nothing", NothingItem::new);
@@ -153,11 +158,12 @@ public class CoreMod {
   }
 
   public static final RegistryDelegate<BoolConfigEntry> SMAA_CONFIG = CONFIG_REGISTRAR.register("smaa", CoreMod::graphicsToggle);
+  public static final RegistryDelegate<BoolConfigEntry> DEFAULT_SURFACE_DETAIL_CONFIG = CONFIG_REGISTRAR.register("default_surface_detail", CoreMod::graphicsToggle);
   public static final RegistryDelegate<BoolConfigEntry> ENVIRONMENT_LIGHTING_CONFIG = CONFIG_REGISTRAR.register("environment_lighting", CoreMod::graphicsToggle);
   public static final RegistryDelegate<BoolConfigEntry> IMAGE_CACHE_CONFIG = CONFIG_REGISTRAR.register("image_cache", () -> new BoolConfigEntry(true, ConfigStorageLocation.GLOBAL, ConfigCategory.GRAPHICS) {
     @Override public boolean hasHelp() { return true; }
     @Override public void onChange(final legend.game.saves.ConfigCollection collection, final Boolean oldValue, final Boolean newValue) {
-      if(!newValue) legend.definitive.rendering.PngAssets.SHARED.clear();
+      legend.definitive.rendering.PngAssets.SHARED.retention(newValue);
     }
   });
 

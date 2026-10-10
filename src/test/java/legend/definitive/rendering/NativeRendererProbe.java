@@ -161,6 +161,20 @@ public final class NativeRendererProbe {
       Files.delete(vertex); Files.delete(fragment); Files.delete(directory);
       System.out.println("PASS: actual OpenGL backend MRT/R8 setup, blend/mask state, auxiliary clears, atlas mip cap, filtering toggles, texture updates and deletion.");
       verifySmaa(api, args.length > 1 && args[1].equals("benchmark"));
+      require(DefaultMaterialMaps.bind(),"shared default surface maps load");
+      glActiveTexture(GL_TEXTURE4); final int normalId=glGetInteger(GL_TEXTURE_BINDING_2D);
+      final ByteBuffer normals=ByteBuffer.allocateDirect(DefaultMaterialMaps.SIZE*DefaultMaterialMaps.SIZE*4);
+      glGetTexImage(GL_TEXTURE_2D,0,GL_RGBA,GL_UNSIGNED_BYTE,normals);
+      require(normals.equals(DefaultMaterialMaps.pixels(true)),"uploaded default normals match generated linear data exactly");
+      require(glGetTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER)==GL_LINEAR_MIPMAP_LINEAR,"default surface maps use bounded mip filtering");
+      glActiveTexture(GL_TEXTURE5); final int roughnessId=glGetInteger(GL_TEXTURE_BINDING_2D);
+      glGetTexImage(GL_TEXTURE_2D,0,GL_RGBA,GL_UNSIGNED_BYTE,normals);
+      require(normals.equals(DefaultMaterialMaps.pixels(false)),"uploaded default roughness matches generated data exactly");
+      require(DefaultMaterialMaps.bind(),"default maps reuse existing textures");
+      glActiveTexture(GL_TEXTURE4); require(glGetInteger(GL_TEXTURE_BINDING_2D)==normalId,"default map reuse does not allocate again");
+      DefaultMaterialMaps.delete(); Texture.deleteTextures();
+      require(!glIsTexture(normalId)&&!glIsTexture(roughnessId)&&glGetError()==GL_NO_ERROR,"default map ownership and deletion have no GL errors");
+      System.out.println("PASS: generated default maps upload exactly, use mip filtering, reuse shared textures and delete cleanly.");
     } finally { close(context); }
   }
 }

@@ -33,6 +33,11 @@ public abstract class EngineState<T extends EngineState<T>> {
   private float analogueAngle;
   private float analogueMagnitude;
   private legend.definitive.rendering.EnvironmentLight environmentLighting = legend.definitive.rendering.EnvironmentLight.NONE;
+  private boolean nativeEnvironmentLighting = true;
+
+  /** Allow a custom state to opt out of the built-in native-light profile. */
+  public void nativeEnvironmentLighting(final boolean enabled) { this.nativeEnvironmentLighting = enabled; }
+  public boolean nativeEnvironmentLighting() { return this.nativeEnvironmentLighting; }
 
   public void environmentLighting(final legend.definitive.rendering.EnvironmentLight lighting) {
     this.environmentLighting = java.util.Objects.requireNonNull(lighting);

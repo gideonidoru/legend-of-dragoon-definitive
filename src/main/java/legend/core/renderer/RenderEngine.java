@@ -485,6 +485,7 @@ public class RenderEngine {
 
   public void delete() {
     this.smaa.delete();
+    legend.definitive.rendering.DefaultMaterialMaps.delete();
     Texture.deleteTextures();
     legend.definitive.rendering.PngAssets.SHARED.clear();
     ShaderManager.delete();
@@ -728,7 +729,13 @@ public class RenderEngine {
       if(legacyMode == 0) {
         final int smoothLighting = CONFIG.getConfig(SMOOTH_MODEL_LIGHTING_CONFIG.get()) ? 1 : 0;
         final SceneLighting sceneLighting = CONFIG.getConfig(SCENE_MATCHED_LIGHTING_CONFIG.get()) ? SceneLighting.ENHANCED : SceneLighting.ORIGINAL;
-        final legend.definitive.rendering.EnvironmentLight environment = CONFIG.getConfig(legend.game.modding.coremod.CoreMod.ENVIRONMENT_LIGHTING_CONFIG.get()) && currentEngineState_8004dd04 != null ? currentEngineState_8004dd04.environmentLighting() : legend.definitive.rendering.EnvironmentLight.NONE;
+        legend.definitive.rendering.EnvironmentLight environment = legend.definitive.rendering.EnvironmentLight.NONE;
+        if(CONFIG.getConfig(legend.game.modding.coremod.CoreMod.ENVIRONMENT_LIGHTING_CONFIG.get()) && currentEngineState_8004dd04 != null) {
+          environment = currentEngineState_8004dd04.environmentLighting();
+          if(environment.influence() == 0 && currentEngineState_8004dd04.nativeEnvironmentLighting()) {
+            environment = legend.definitive.rendering.NativeSceneLighting.profile(legend.game.Graphics.lightDirectionMatrix_800c34e8, legend.game.Graphics.lightColourMatrix_800c3508, legend.core.GameEngine.GTE.backgroundColour);
+          }
+        }
         this.tmdShader.use();
         this.smoothTmdLighting.set(smoothLighting);
         this.tmdSceneLighting.set(sceneLighting);

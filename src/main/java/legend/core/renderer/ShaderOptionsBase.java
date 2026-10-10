@@ -10,6 +10,7 @@ public class ShaderOptionsBase implements ShaderOptions {
   private ShaderUniformInt hdTexture;
   private ShaderUniformInt normalMap, roughnessMap;
   private ShaderUniformFloat normalStrength;
+  private ShaderUniformInt defaultMaps;
 
   public void metadataUniforms(final Shader<?> shader) {
     this.uiLayer = shader.uniformInt("uiLayer");
@@ -18,6 +19,7 @@ public class ShaderOptionsBase implements ShaderOptions {
     this.normalMap = shader.uniformInt("normalMapEnabled");
     this.roughnessMap = shader.uniformInt("roughnessMapEnabled");
     this.normalStrength = shader.uniformFloat("normalMapStrength");
+    this.defaultMaps = shader.uniformInt("defaultSurfaceMaps");
     shader.use();
     shader.uniformInt("normalMapTex").set(4);
     shader.uniformInt("roughnessMapTex").set(5);
@@ -29,6 +31,10 @@ public class ShaderOptionsBase implements ShaderOptions {
       this.roughnessMap.set(roughness ? 1 : 0);
       this.normalStrength.set(strength);
     }
+  }
+
+  public void defaultSurfaceMaps(final boolean enabled) {
+    if(this.defaultMaps != null) this.defaultMaps.set(enabled ? 1 : 0);
   }
 
   public void hdTexture(final boolean enabled) {

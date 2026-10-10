@@ -28,6 +28,7 @@ public final class PngAssets implements AutoCloseable {
   private final LinkedHashMap<String,Entry> cache = new LinkedHashMap<>(16,.75f,true);
   private long cachedBytes, liveBytes, hits, misses, evictions, decodeNanos, decodedBytes;
   private boolean closed;
+  private boolean retentionEnabled = true;
   private static final class Entry {
     final ByteBuffer pixels;
     final int width, height;
@@ -79,7 +80,7 @@ public final class PngAssets implements AutoCloseable {
       final Entry raced=this.cache.get(identity);
       if(raced != null) { release(loaded); raced.users++; return new Image(raced); }
       loaded.users=1;
-      if(loaded.pixels.remaining() > this.budget) loaded.retired=true;
+      if(!this.retentionEnabled || loaded.pixels.remaining() > this.budget) loaded.retired=true;
       else {
         while(this.cachedBytes + loaded.pixels.remaining() > this.budget) {
           final var first=this.cache.entrySet().iterator(); final Entry oldest=first.next().getValue(); first.remove();
@@ -113,6 +114,8 @@ public final class PngAssets implements AutoCloseable {
     for(final Entry entry : this.cache.values()) { entry.retired=true; if(entry.users == 0) release(entry); }
     this.cache.clear(); this.cachedBytes=0;
   }
+  /** Disabling retention also covers decodes that finish after the configuration change. */
+  public synchronized void retention(final boolean enabled) { this.retentionEnabled=enabled; if(!enabled) this.clear(); }
   @Override public synchronized void close() { this.closed=true; this.clear(); }
 
   /** Bounded queue; reads compressed bytes on the worker and takes ownership of its stream. */

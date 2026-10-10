@@ -455,7 +455,7 @@ lod_core.config.edge_smoothing.help=Control spatial anti-aliasing strength. SMAA
 lod_core.config.smaa.label=Detailed Anti-Aliasing (SMAA)
 lod_core.config.smaa.help=Reconstruct diagonal edges with SMAA 1x High. No frame history or jitter. Uses Edge Smoothing strength and protects interface pixels. Adds three bounded rendering passes.
 lod_core.config.environment_lighting.label=Artwork-Matched Lighting
-lod_core.config.environment_lighting.help=Use authored environment light metadata to match opaque models to their surroundings. Scenes without metadata retain their existing lighting.
+lod_core.config.environment_lighting.help=Match opaque models with authored scene profiles. Default scenes derive a restrained profile from their original light directions, colors and ambient, including scripted changes. Mod profiles take precedence.
 lod_core.config.image_cache.label=Artwork Loading Cache
 lod_core.config.image_cache.help=Reuse decoded images with a 64 MiB CPU cache and allow background prewarming. Helps revisits and prepared artwork packs; GPU texture lifetime is unchanged. Disabling releases cached images.
 
@@ -477,3 +477,6 @@ lod_core.config.scene_bloom.label=Scene Bloom
 lod_core.config.scene_bloom.help=Soft glow from explicitly luminous effects, independent of CRT styling. Zero disables it; interface pixels are protected.
 lod_core.config.scene_sharpening.label=Scene Sharpening
 lod_core.config.scene_sharpening.help=Gently enhance scene detail with contrast-adaptive sharpening and bounded edges. Zero disables it; interface pixels are protected.
+
+lod_core.config.default_surface_detail.label=Default Surface Detail
+lod_core.config.default_surface_detail.help=Apply subtle shared normal and roughness detail to opaque lit models, including original indexed assets. Preserves palette animation and painted colors. Authored maps take precedence.
