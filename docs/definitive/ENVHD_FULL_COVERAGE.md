@@ -14,7 +14,7 @@ owned. Custom deliverables are public; originals and private diagnostics are not
 | World parchment backdrop | 1 source image | 1 | Gameplay and final quality pending |
 | Static continent terrain | 366 material bindings | 364 / 292 masters on terrain draft | 1 uniform native, 1 wrapped material held; gameplay and final quality pending |
 | Battle floors, walls and scenery | 900 bindings across 89 nonempty stages | 24 existing pilot bindings | 876 uncovered; 518 new candidates cover 525 static bindings but **zero new selections**; 12 masters need repair; 350 animation/context bindings and 1 incomplete palette held |
-| Field backgrounds/foregrounds | 650 source configurations; 5,528 unique visible images | 38 existing Skurfa packs; EnvHD gaps 0 | All 5,162 nonuniform unowned images generated and repaired privately; 608 backgrounds and 1,944 foregrounds compared, ninety-eight bespoke holds; remaining review and integration pending; three uniform sources native; 612 configurations, protected aliases, foreground states and validation |
+| Field backgrounds/foregrounds | 650 source configurations; 5,528 unique visible images | 38 existing Skurfa packs; EnvHD gaps 0 | All 5,162 nonuniform unowned images generated and repaired privately; 608 backgrounds and 2,232 foregrounds compared, one hundred seventeen bespoke holds; remaining review and integration pending; three uniform sources native; 612 configurations, protected aliases, foreground states and validation |
 | Field props and scene overlays | Mixed pool: 481 field-object page hashes and 400 overlay page hashes | EnvHD 0 | Complete consumer/ownership/material census first; these are **not** 881 EnvHD jobs |
 | Animated environment surfaces | Exact frame/palette denominator unresolved; eight continent animated parts and 350 held battle bindings known | 0 HD animation families | Water, scrolling surfaces, scenery frames/palettes, mapping and validation |
 
@@ -67,7 +67,7 @@ verified. It contains metadata only. The 2.5 GB of generated artwork remains in
 private staging until the complete individual review and publication gate passes.
 The complete Python repair pass now guards source-colored boundaries on 342
 backgrounds. Its public repair receipt verifies all 5,162 repaired candidates.
-Individual source/candidate comparison notes cover 608 backgrounds and 1,944
-foregrounds: 2,454 development baselines and ninety-eight source-identity, shape, signage or fine-detail holds. The other
-2,610 foreground reviews, foreground state handling and runtime delivery remain
+Individual source/candidate comparison notes cover 608 backgrounds and 2,232
+foregrounds: 2,723 development baselines and one hundred seventeen source-identity, shape, signage or fine-detail holds. The other
+2,322 foreground reviews, foreground state handling and runtime delivery remain
 open. Generation and repair completion are not field restoration completion.

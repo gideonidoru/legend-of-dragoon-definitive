@@ -145,9 +145,9 @@ publication. Both revision identities are preserved in the publication registry.
 
 The public `field-repair-receipt.json` records every validated repaired output hash
 and its neural input hash. `field-review-receipt.json` records individual intent,
-style and layout notes for all 608 backgrounds and the first 1,944 foregrounds.
-Of these 2,552 comparisons, 2,454 are reviewed development baselines and ninety-eight images
-need bespoke work on source identity, shape, signage or fine detail. The remaining 2,610 foreground comparisons,
+style and layout notes for all 608 backgrounds and the first 2,232 foregrounds.
+Of these 2,840 comparisons, 2,723 are reviewed development baselines and one hundred seventeen images
+need bespoke work on source identity, shape, signage or fine detail. The remaining 2,322 foreground comparisons,
 runtime integration and native/final acceptance are pending. These receipts
 contain metadata only; no complete candidate publication or installed field
 coverage is claimed. All 71 field/battle/terrain/ownership Python tests pass.
