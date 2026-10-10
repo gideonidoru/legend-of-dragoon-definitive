@@ -76,7 +76,7 @@ Meru's battle mesh goes from **806 to 2,687 triangles**. The untextured view mak
 
 The normal installation supplies **Skurfa, ModelsHD, FMVHD, EnvHD, CharHD, UIHD and FxHD** as separate modules. Use the game's mod manager for individual choices; the launcher's original/HD artwork preference also controls managed Skurfa and ModelsHD selection.
 
-**The table describes merged source, not everything in the current download.** The public all-HD repair release still carries ModelsHD 0.3 and earlier artwork pilots. Newer models, SMAA, audio, gameplay conveniences, UIHD and cinematic fixes are merged, but replacement publication is held while full-campaign coverage and remaining gaps across the HD mods are reconciled. The download button always points to the current published installer. Bundling all seven modules does not mean their artwork is finished.
+**The table describes merged source, not everything in the current download.** The public all-HD repair release still carries ModelsHD 0.3 and earlier artwork pilots. Newer models, SMAA, audio, gameplay conveniences, UIHD and cinematic fixes are merged. A development alpha is being prepared for testing the playback fixes, with broader engine pacing checks required before publication. That test release will still have partial HD artwork coverage; the full-campaign restoration goal remains unchanged. The download button always points to the current published installer. Bundling all seven modules does not mean their artwork is finished.
 
 | Mod | Full scope | Merged coverage and remaining work |
 | --- | --- | --- |
