@@ -1516,34 +1516,8 @@ public class Ttle extends EngineState<Ttle> {
       return;
     }
 
-    //LAB_800cdce0
-    //LAB_800cdd28
-    final Rect4i sp10;
-    final Rect4i sp18;
-    final Rect4i sp20;
-    final Rect4i sp28;
-
-    //LAB_800ce098
-    final int h = fireAnimation.rect_00.h();
-    fireAnimation._18 %= h;
-    if(fireAnimation._18 > 0) {
-      sp10 = new Rect4i(fireAnimation.rect_00.x(), fireAnimation.rect_00.y() + h - fireAnimation._18, fireAnimation.rect_00.w(), fireAnimation._18);
-      sp18 = new Rect4i(fireAnimation.rect_00.x(), fireAnimation.rect_00.y(), fireAnimation.rect_00.w(), h - fireAnimation._18);
-      sp20 = new Rect4i(fireAnimation.rect_00.x(), fireAnimation.rect_00.y(), fireAnimation.rect_00.w(), fireAnimation._18);
-      sp28 = new Rect4i(fireAnimation.rect_00.x(), fireAnimation.rect_00.y() + fireAnimation._18, fireAnimation.rect_00.w(), h - fireAnimation._18);
-    } else {
-      //LAB_800ce25c
-      sp10 = new Rect4i(fireAnimation.rect_00.x(), fireAnimation.rect_00.y(), fireAnimation.rect_00.w(), -fireAnimation._18);
-      sp18 = new Rect4i(fireAnimation.rect_00.x(), fireAnimation.rect_00.y() - fireAnimation._18, fireAnimation.rect_00.w(), fireAnimation.rect_00.h() + fireAnimation._18);
-      sp20 = new Rect4i(fireAnimation.rect_00.x(), fireAnimation.rect_00.y() + fireAnimation.rect_00.h() + fireAnimation._18, fireAnimation.rect_00.w(), -fireAnimation._18);
-      sp28 = new Rect4i(fireAnimation.rect_00.x(), fireAnimation.rect_00.y(), fireAnimation.rect_00.w(), fireAnimation.rect_00.h() + fireAnimation._18);
-    }
-
-    //LAB_800ce3d8
-    GPU.downloadData15(sp10, fireAnimation.pixels_0c);
-    GPU.downloadData15(sp18, fireAnimation.pixels_08);
-    GPU.uploadData15(sp20, fireAnimation.pixels_0c);
-    GPU.uploadData15(sp28, fireAnimation.pixels_08);
+    fireAnimation._18 %= fireAnimation.rect_00.h();
+    GPU.rotateVramRows(new Rect4i(fireAnimation.rect_00), fireAnimation._18);
   }
 
   @Override

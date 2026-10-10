@@ -672,6 +672,10 @@ public class WMap extends EngineState<WMap> {
       this.modelAndAnimData_800c66a8.imageData_2c = new FileData(new byte[0x1_0000]);
       this.modelAndAnimData_800c66a8.imageData_30 = new FileData(new byte[0x1_0000]);
 
+      GPU.releaseEffectArtwork(this.modelAndAnimData_800c66a8.effectsSnapshot);
+      GPU.releaseEffectArtwork(this.modelAndAnimData_800c66a8.backdropSnapshot);
+      this.modelAndAnimData_800c66a8.effectsSnapshot = GPU.captureEffectArtwork(this.storedEffectsRect_800c8700);
+      this.modelAndAnimData_800c66a8.backdropSnapshot = GPU.captureEffectArtwork(new Rect4i(320, 0, 64, 512));
       GPU.downloadData15(this.storedEffectsRect_800c8700, this.modelAndAnimData_800c66a8.imageData_2c);
       GPU.downloadData15(new Rect4i(320, 0, 64, 512), this.modelAndAnimData_800c66a8.imageData_30);
     }
@@ -685,6 +689,9 @@ public class WMap extends EngineState<WMap> {
     startFadeEffect(2, 15);
     GPU.uploadData15(this.storedEffectsRect_800c8700, modelAndAnimData.imageData_2c);
     GPU.uploadData15(new Rect4i(320, 0, 64, 512), modelAndAnimData.imageData_30);
+    GPU.restoreEffectArtwork(modelAndAnimData.effectsSnapshot);
+    GPU.restoreEffectArtwork(modelAndAnimData.backdropSnapshot);
+    modelAndAnimData.effectsSnapshot = modelAndAnimData.backdropSnapshot = null;
     modelAndAnimData.imageData_2c = null;
     modelAndAnimData.imageData_30 = null;
     this.initLighting();
@@ -1932,49 +1939,8 @@ public class WMap extends EngineState<WMap> {
     anim.currTick_1c += 1.0f / (3.0f / vsyncMode_8007a3b8);
 
     if(anim.currTick_1c >= 2.0f) {
-      final Rect4i src0 = new Rect4i();
-      final Rect4i src1 = new Rect4i();
-      final Rect4i dest0 = new Rect4i();
-      final Rect4i dest1 = new Rect4i();
-
-      //LAB_800d60f8
       anim.currTick_1c = 0.0f;
-
-      //LAB_800d6460
-      //LAB_800d6468
-      src0.set(
-        anim.x_00,
-        anim.y_02 + anim.h_06 - 1,
-        anim.w_04,
-        1
-      );
-
-      src1.set(
-        anim.x_00,
-        anim.y_02,
-        anim.w_04,
-        anim.h_06 - 1
-      );
-
-      dest0.set(
-        anim.x_00,
-        anim.y_02,
-        anim.w_04,
-        1
-      );
-
-      dest1.set(
-        anim.x_00,
-        anim.y_02 + 1,
-        anim.w_04,
-        anim.h_06 - 1
-      );
-
-      //LAB_800d67a8
-      GPU.downloadData15(src0, anim.imageData_0c);
-      GPU.downloadData15(src1, anim.imageData_08);
-      GPU.uploadData15(dest0, anim.imageData_0c);
-      GPU.uploadData15(dest1, anim.imageData_08);
+      GPU.rotateVramRows(new Rect4i(anim.x_00, anim.y_02, anim.w_04, anim.h_06), 1);
 
       //LAB_800d6804
     }
@@ -3203,6 +3169,10 @@ public class WMap extends EngineState<WMap> {
 
   @Method(0x800e05c4L)
   private void unloadWmapPlayerModels() {
+    GPU.releaseEffectArtwork(this.modelAndAnimData_800c66a8.effectsSnapshot);
+    GPU.releaseEffectArtwork(this.modelAndAnimData_800c66a8.backdropSnapshot);
+    this.modelAndAnimData_800c66a8.effectsSnapshot = this.modelAndAnimData_800c66a8.backdropSnapshot = null;
+
     //LAB_800e05d8
     for(int i = 0; i < 4; i++) {
       //LAB_800e05f4

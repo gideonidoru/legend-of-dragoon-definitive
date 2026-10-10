@@ -5774,12 +5774,12 @@ public class SMap extends EngineState<SMap> {
     //LAB_800f47f0
     for(int textureIndex = 0; textureIndex < textureCount; textureIndex++) {
       final Tim tim = new Tim(Loader.loadFileSync("SUBMAP/" + this.miscTextures_800f9eb0[textureIndex]));
-      GPU.uploadData15(tim.getImageRect(), tim.getImageData());
+      GPU.uploadEffectTim(tim);
 
       this.texPages_800d6050[textureIndex] = GetTPage(Bpp.values()[tim.getFlags() & 0b11], this.miscTextureTransModes_800d6cf0[textureIndex], tim.getImageRect().x, tim.getImageRect().y);
       this.cluts_800d6068[textureIndex] = tim.getClutRect().y << 6 | (tim.getClutRect().x & 0x3f0) >>> 4;
 
-      GPU.uploadData15(tim.getClutRect(), tim.getClutData());
+
     }
 
     //LAB_800f48a8

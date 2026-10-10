@@ -19,13 +19,21 @@ tasks.register('fxHdSourceProbe', JavaExec) {
   environment 'ALSOFT_DRIVERS', 'null'
   doFirst { args providers.gradleProperty('fxHdFiles').get() }
 }
+tasks.register('fxHdFullSourceProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.effects.FxHdFullSourceProbe'
+  systemProperty 'java.awt.headless', 'true'
+  environment 'ALSOFT_DRIVERS', 'null'
+  doFirst { args providers.gradleProperty('fxHdFiles').get() }
+}
 tasks.register('fxHdJar', Jar) {
   dependsOn sourceSets.fxhd.classesTaskName, jar
-  archiveFileName = 'FxHD-v0.2.0.jar'
+  archiveFileName = 'FxHD-v1.0.0.jar'
   destinationDirectory = layout.buildDirectory.dir('libs/mods')
   from sourceSets.fxhd.output
   into('META-INF/fxhd') { from 'LICENSE'; from 'integrations/fxhd/README.md'; from 'integrations/fxhd/ARTWORK-NOTICES.txt' }
-  manifest { attributes 'Implementation-Title': 'FxHD', 'Implementation-Version': '0.2.0' }
+  manifest { attributes 'Implementation-Title': 'FxHD', 'Implementation-Version': '1.0.0' }
   preserveFileTimestamps = false
   reproducibleFileOrder = true
 }
