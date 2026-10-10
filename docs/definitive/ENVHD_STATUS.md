@@ -5,6 +5,10 @@ Custom artwork and code are public and included by the existing default bundle
 build. Keep installer releases consolidated through the delivery thread; do not
 publish a new download for each asset/code iteration.
 
+EnvHD is not complete. See `ENVHD_FULL_COVERAGE.md` and the source-bound
+`integrations/envhd/production/full-coverage.json` for all categories, selected
+versus candidate counts, unresolved denominators and exact remaining work.
+
 ## Selected development artwork
 
 - 70 distinct battle panoramas cover 73 source/header variants. One uniform-black
@@ -68,8 +72,15 @@ real continent mesh probe builds all 67 optional parts with the existing geometr
 hook and source-owned native exceptions. See `ENVHD_TERRAIN_PRODUCTION.md` for limits:
 native visual acceptance and final Skurfa-equivalent quality remain pending.
 
-Next production categories remain remaining battle material
-regions, unowned field scenes and environmental props. The field census has 612
+The next battle-material batch now versions 518 candidates for 525 static bindings:
+506 reviewed development baselines and twelve bespoke revision flags. No new battle
+runtime selection changes. The fresh 900-binding census protects 24 existing pilot
+bindings and holds 350 animated/animation-adjacent bindings plus one incomplete
+8-bit palette. See `ENVHD_BATTLE_MATERIAL_PRODUCTION.md` for source/review evidence
+and the pending atlas integration.
+
+Next production categories remain battle-material runtime integration and animated
+surfaces, unowned field scenes and environmental props. The field census has 612
 unowned configurations before visual deduplication/empty-layer filtering; shared
 sources and Skurfa aliases must stay deduplicated. Full EnvHD completion is not
 claimed by these baseline batches. Improve bespoke materials and inspect

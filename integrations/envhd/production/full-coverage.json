@@ -1,0 +1,190 @@
+{
+  "schema": 1,
+  "scope": "EnvHD only; all environment artwork, including field backgrounds/foregrounds/props, battle panoramas/materials, world-map terrain/scenery and environmental animation. CharHD, UIHD and FxHD are separately owned.",
+  "goalComplete": false,
+  "wholeCampaignImageDenominator": null,
+  "wholeCampaignDenominatorStatus": "Incomplete until field pixel deduplication, props/overlay ownership and animation frame/palette census are resolved. Never sum source files, images and runtime bindings into one percentage.",
+  "nativeAcceptedCustomImages": 0,
+  "finalQualityAcceptedCustomImages": 0,
+  "sourceCheckpoint": "bb9914434",
+  "fieldSourceFoldersFreshlyVerified": 1044,
+  "sourceLedgerSha256": {
+    "field-ownership.json": "267e3bb0525db591cd9549f7c64317295d5abfc1a345ba6b4dbc91ad77146767",
+    "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
+    "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
+    "world-artwork.json": "958abf47591e6d4d3e9d1c48a1db843e4662bc0c7f521868b3a684ab30f9e5b7"
+  },
+  "categories": [
+    {
+      "id": "battle-panoramas",
+      "sourceUnits": "source/header variants",
+      "sourceTotal": 74,
+      "uniqueDecodedImages": 71,
+      "nonUniformMasters": 70,
+      "selectedMasters": 70,
+      "selectedBindings": 73,
+      "intentionalNativeBindings": 1,
+      "uncoveredBindings": 0,
+      "adapter": "Source-bound panorama adapter implemented; native gameplay and final bespoke quality pending.",
+      "ledger": "battle-skies.json",
+      "remaining": [
+        "Native seam, camera, blend and gameplay validation on all source variants.",
+        "Improve source-faithful neural baselines where bespoke Skurfa-equivalent detail remains unresolved."
+      ]
+    },
+    {
+      "id": "world-location-landscapes",
+      "sourceUnits": "source images",
+      "sourceTotal": 38,
+      "selectedMasters": 38,
+      "uncoveredSourceImages": 0,
+      "adapter": "Source-bound thumbnail adapter implemented; native gameplay and final quality pending.",
+      "ledger": "world-artwork.json",
+      "remaining": [
+        "Native popup/fade/location validation, including inherited dummy and shared source aliases.",
+        "Bespoke quality refinement where required by source intent."
+      ]
+    },
+    {
+      "id": "world-parchment-backdrop",
+      "sourceUnits": "source images",
+      "sourceTotal": 1,
+      "selectedMasters": 1,
+      "uncoveredSourceImages": 0,
+      "adapter": "All three native backdrop render paths mapped; native gameplay and final quality pending.",
+      "ledger": "world-artwork.json",
+      "remaining": [
+        "Native camera/brightness/additive-blend validation."
+      ]
+    },
+    {
+      "id": "static-world-terrain",
+      "sourceUnits": "page/CLUT material bindings in eight continent models excluding animated part zero",
+      "sourceTotal": 366,
+      "generatedMasters": 293,
+      "reviewedDevelopmentMasters": 292,
+      "selectedMasters": 292,
+      "selectedBindings": 364,
+      "intentionalNativeUniformBindings": 1,
+      "heldWrappedBindings": 1,
+      "uncoveredBindings": 1,
+      "adapter": "Eight source-bound atlases implemented on terrain draft PR 10; not proof of delivery in current consolidated release.",
+      "ledger": "terrain-runtime-artwork.json",
+      "remaining": [
+        "Repair wrapped Tiberoa material with source-faithful tiled UV handling.",
+        "Native continent and ModelsHD interaction validation.",
+        "Final bespoke quality refinement."
+      ]
+    },
+    {
+      "id": "battle-floors-walls-and-scenery",
+      "sourceUnits": "page/CLUT material bindings in all 89 nonempty stage models",
+      "sourceTotal": 900,
+      "emptyModelSlots": 39,
+      "existingPilotSelectedBindings": 24,
+      "newCandidateBindings": 525,
+      "generatedNewMasters": 518,
+      "reviewedNewDevelopmentMasters": 506,
+      "bespokeRevisionMasters": 12,
+      "newSelectedBindings": 0,
+      "uncoveredBindings": 876,
+      "heldAnimationAndContextBindings": 350,
+      "heldIncompletePaletteBindings": 1,
+      "censusStatuses": {
+        "candidate-pending": 525,
+        "held-native-incomplete-source": 1,
+        "held-native-texture-animation": 350,
+        "protected-existing-pilot": 24
+      },
+      "adapter": "Existing stages 0/6 pilot only. New mixed HD/native atlas integration pending.",
+      "ledger": "battle-material-artwork.json",
+      "remaining": [
+        "Select and map eligible material candidates without changing original animation or geometry.",
+        "Repair twelve output-bound carved/emblem/motif candidates.",
+        "Restore animated textures, palettes and adjacent sampling context.",
+        "Resolve stage 67 incomplete 8-bit palette from actual gameplay upload state.",
+        "Native battle/camera/counterattack/lifetime validation and final quality."
+      ]
+    },
+    {
+      "id": "field-backgrounds-and-foregrounds",
+      "sourceUnits": "source descriptor plus ordered texture-page hash configurations; not final pixel images",
+      "sourceTotal": 650,
+      "knownBackgrounds": 650,
+      "declaredForegroundSlots": 5041,
+      "declaredAssembledImagesBeforeEmptyAndPixelDedup": 5691,
+      "sourceCutPeriodMappings": 1277,
+      "skurfaOwnedConfigurations": 38,
+      "skurfaProtectedCutPeriodMappings": 87,
+      "skurfaExistingDiskCutAdapterBindings": 43,
+      "envhdUnownedConfigurations": 612,
+      "envhdGeneratedMasters": 0,
+      "envhdSelectedConfigurations": 0,
+      "uncoveredEnvhdConfigurations": 612,
+      "emptyForegroundSlots": null,
+      "uniqueVisibleUnownedPixelImages": null,
+      "adapter": "Existing Skurfa 43 disk/cut bindings. EnvHD gap/alias source-bound listener not implemented. Protected source aliases are a reuse worklist, not 87 proven runtime replacements.",
+      "ledger": "field-ownership.json",
+      "remaining": [
+        "Freshly decode every source configuration using engine canvas, page selection, palette and cut-specific corrections.",
+        "Deduplicate visible pixels and filter empty slots while preserving foreground slot/script/depth identity.",
+        "Reuse all 38 Skurfa packs and audit every protected alias; never regenerate them.",
+        "Restore all 612 unowned configurations, preserving movable/hidden/translucent/alternate foregrounds separately.",
+        "Implement source-bound load/cache/teardown and foreground mapping.",
+        "Validate every cut/period/renderable source route, script states, occlusion and native gameplay."
+      ]
+    },
+    {
+      "id": "field-environment-props-and-scene-overlays",
+      "sourceUnits": "mixed source texture pages awaiting consumer/role classification",
+      "fieldObjectPageFiles": 6767,
+      "fieldObjectUniquePageHashes": 481,
+      "overlayPageFiles": 467,
+      "overlayUniquePageHashes": 400,
+      "envhdSourceTotal": null,
+      "envhdSelectedMasters": 0,
+      "adapter": "No complete source-bound EnvHD field prop/overlay adapter. Character/NPC and FxHD-owned pages are not EnvHD jobs.",
+      "remaining": [
+        "Bind every page/palette/material to its actual model/overlay consumer and environment/character/effect owner.",
+        "Separate scene-owned chests, doors, furnishings, vegetation and architecture from actors and effects.",
+        "Decode/crop/deduplicate environment-owned materials only, then batch restore/review.",
+        "Implement source-bound mixed native/HD mapping with ModelsHD hooks and animation preserved.",
+        "Native interaction/state/geometry validation."
+      ]
+    },
+    {
+      "id": "world-and-battle-environment-animation",
+      "sourceUnits": "animated model/material/frame/palette families; exact image denominator pending",
+      "worldNativeAnimatedContinentParts": 8,
+      "battleHeldAnimationAndContextBindings": 350,
+      "worldBankRawTextureFilesSnapshot": 375,
+      "worldBankUniquePageHashesSnapshot": 350,
+      "selectedHdAnimationFamilies": 0,
+      "sourceTotal": null,
+      "adapter": "Native animation retained. Static terrain coverage does not cover water, scrolling surfaces or animated scenery.",
+      "remaining": [
+        "Enumerate every native texture copy, scratch source, palette sequence and scrolling consumer.",
+        "Classify general world bank and animated scenery ownership; distinguish environment from FxHD/CharHD.",
+        "Generate source-faithful complete frame families and palette variants; preserve timing/wrapping/blending.",
+        "Implement and validate frame/palette-aware source-bound HD adapters."
+      ]
+    }
+  ],
+  "sourceCensusLimits": {
+    "privateWholeSourceCensusSha256": "6769cca813cfd9ddd4cec66704e32c6ef33c56cfa6f571d970b7c755923e7074",
+    "unresolvedOrSentinelCutPeriodRecords": 771,
+    "notes": [
+      "The 650 source configurations include available sources beyond the ordinary field-type table; retain all in the worklist until reachability is resolved.",
+      "The 771 unsuccessful records include unused/sentinel routes; classify each instead of treating all as missing artwork.",
+      "Raw page hashes are not decoded palette/material identities or independent restoration jobs.",
+      "No percentage of complete campaign artwork is reported while any denominator remains unresolved."
+    ]
+  },
+  "completionGate": [
+    "Complete source-role/visual/animation denominator and account for every source with selected custom HD, protected upstream reuse, or a justified intentional exclusion.",
+    "Every selected output has source-bound intent/style/layout review and validated source/visibility/mapping.",
+    "All source-bound runtime adapters and default-install package checks pass.",
+    "Native gameplay and Steam Deck visual acceptance plus final Skurfa-equivalent quality review."
+  ],
+  "publication": "Custom candidates are public Git history. No standalone or partial EnvHD download; installable changes remain subject to the consolidated release gate."
+}

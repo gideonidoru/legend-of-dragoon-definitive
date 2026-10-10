@@ -70,6 +70,13 @@ and final visual acceptance are still pending. Candidate history lives under
 `terrain-candidates`; this development increment is separate from the frozen release.
 See `docs/definitive/ENVHD_TERRAIN_PRODUCTION.md` for the source and integration gates.
 
+`battle-material-artwork.json` records 518 new static battle-material candidates
+for 525 bindings, with 506 reviewed development baselines and twelve bespoke
+revision flags. Their immutable custom images/manifests live in
+`battle-material-candidates`; no new battle runtime selection is made. The fresh
+900-binding census protects 24 existing pilot bindings and holds 351 animation or
+incomplete-palette dependencies. See `docs/definitive/ENVHD_BATTLE_MATERIAL_PRODUCTION.md`.
+
 Reviewed bitmaps live once under `envhd/sky-images/<decoded-pixel-hash>`. Each
 source MCQ variant has its own source-bound manifest in `envhd/skies/<source-hash>`.
 The loader checks the original source hash, decoded pixel fingerprint and output

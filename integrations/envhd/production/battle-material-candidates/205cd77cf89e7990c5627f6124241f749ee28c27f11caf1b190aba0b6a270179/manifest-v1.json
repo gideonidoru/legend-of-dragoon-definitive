@@ -1,0 +1,56 @@
+{
+  "decodedRgbaSha256": "205cd77cf89e7990c5627f6124241f749ee28c27f11caf1b190aba0b6a270179",
+  "sourceSize": [
+    80,
+    72
+  ],
+  "bindings": [
+    {
+      "stage": 88,
+      "page": 7,
+      "clut": 15452,
+      "parts": [
+        0,
+        2,
+        3
+      ],
+      "sourceCrop": [
+        24,
+        0,
+        104,
+        72
+      ],
+      "sourceUvOrigin": [
+        24,
+        0
+      ]
+    }
+  ],
+  "targetSize": [
+    320,
+    288
+  ],
+  "outputSha256": "ea116676b8eab796716f618c5c987a3d52da5d3d92f824d187845b9f41854de2",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Static battle model surface; source geometry uses stage/parts {88: [0, 2, 3]}. Source family: wooden platform/walls and metal medallion.",
+    "style": "Visually inspected original/candidate comparison. Source colors, material identity and silhouettes retained as a neural development baseline; inferred/smoothed detail is not final Skurfa-equivalent bespoke quality. Skurfa resources are untouched.",
+    "layout": "Comparison board 21, cell 18; crop and tile arrangement remain source-bound. All outputs independently revalidated against fresh original decodes: exact 4x STP, discard and visible-black class; no edge averaging or geometry changes. Native seam/blend/mip inspection remains pending.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "ea116676b8eab796716f618c5c987a3d52da5d3d92f824d187845b9f41854de2",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "7862ee67731b77e646c22f298ebcb3325206a0a38ddf2eb8bea21882ce03c153",
+  "batchDependencySha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "sourceRole": "Static battle floor, wall and scenery surfaces; geometry and native animations remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources are unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}
