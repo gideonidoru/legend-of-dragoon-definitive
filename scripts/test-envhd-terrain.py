@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Behavior checks for ordered palette uploads, native coverage and material mapping."""
 import importlib.util
+import json
 import struct
 import tempfile
 import unittest
@@ -136,6 +137,97 @@ class TerrainTest(unittest.TestCase):
     def test_private_output_guard(self):
         with self.assertRaises(ValueError):
             terrain.execute(Path('/private/tmp/sources'), terrain.ROOT / 'output', Path('missing'), Path('missing'))
+
+
+class TerrainImportTest(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        base = Path(self.temp.name)
+        self.files, self.staging, self.repo = base / 'files', base / 'staging', base / 'repo'
+        self.staging.mkdir()
+        drgn = self.files / 'SECT/DRGN0.BIN'
+        drgn.mkdir(parents=True)
+        for bank in range(8):
+            directory = drgn / str(5697 + bank)
+            directory.mkdir()
+            (directory / '0').write_bytes(tim())
+            (drgn / str(5705 + bank)).write_bytes(model())
+        self.importer = terrain_module = importlib.util.spec_from_file_location('terrain_import', Path(__file__).with_name('import-envhd-terrain.py'))
+        self.importer = importlib.util.module_from_spec(terrain_module)
+        terrain_module.loader.exec_module(self.importer)
+        self.importer.ROOT = self.repo
+        script = self.repo / 'scripts/batch-envhd-terrain.py'
+        script.parent.mkdir(parents=True)
+        script.write_bytes(Path(__file__).with_name('batch-envhd-terrain.py').read_bytes())
+        scenes, masters = terrain.census(self.files)
+        self.key, item = next(iter(masters.items()))
+        candidate = item['image'].resize((item['image'].width * 4, item['image'].height * 4), Image.Resampling.NEAREST)
+        self.png = self.staging / (self.key + '.png')
+        candidate.save(self.png)
+        self.record = terrain.candidate_record(item, terrain.digest(self.png.read_bytes()))
+        self.plan = dict(schema=1, scriptSha256=terrain.digest(script.read_bytes()), scenes=scenes,
+                         masters=[{k:v for k,v in m.items() if k != 'image'} for m in masters.values()])
+        self.note = dict(intent='Synthetic source layout', style='Development baseline', layout='Exact coverage',
+                         verdict='visual-reviewed-runtime-pending', outputSha256=self.record['outputSha256'],
+                         nativeAcceptance='pending', finalQualityAcceptance='pending')
+        self.production = self.repo / 'integrations/envhd/production'
+
+    def publish(self):
+        (self.staging / 'source-plan.json').write_text(json.dumps(self.plan))
+        (self.staging / 'candidates.json').write_text(json.dumps([self.record]))
+        reviews = self.staging / 'reviews.json'
+        reviews.write_text(json.dumps(dict(reviews={self.key:self.note})))
+        return self.importer.publish(self.files, self.staging, reviews)
+
+    def test_valid_publication_is_repeatable_and_never_selects_runtime(self):
+        self.assertEqual(self.publish(), 1)
+        self.assertEqual(self.publish(), 1)
+        ledger = json.loads((self.production / 'terrain-artwork.json').read_text())
+        self.assertEqual(ledger['runtimeSelected'], 0)
+        self.assertEqual(ledger['nativeAccepted'], 0)
+        self.assertFalse((self.repo / 'integrations/envhd/runtime-assets').exists())
+        self.assertEqual(len(list(self.production.rglob('*.*'))), 3)
+
+    def test_changed_source_or_pipeline_rejects_before_writes(self):
+        self.plan['scriptSha256'] = 'wrong'
+        with self.assertRaises(ValueError): self.publish()
+        self.assertFalse(self.production.exists())
+        self.plan['scriptSha256'] = terrain.digest((self.repo / 'scripts/batch-envhd-terrain.py').read_bytes())
+        (self.files / 'SECT/DRGN0.BIN/5697/0').write_bytes(tim(colour=31 << 5))
+        with self.assertRaises(ValueError): self.publish()
+        self.assertFalse(self.production.exists())
+
+    def test_bad_record_review_and_native_claim_reject_before_writes(self):
+        for field in ('engineSha256', 'bindings', 'targetSize'):
+            value = self.record[field]; self.record[field] = 'wrong'
+            with self.assertRaises(ValueError): self.publish()
+            self.assertFalse(self.production.exists()); self.record[field] = value
+        for field,value in [('outputSha256','wrong'),('nativeAcceptance','accepted'),('verdict','retain-native-uniform')]:
+            previous = self.note[field]; self.note[field] = value
+            with self.assertRaises(ValueError): self.publish()
+            self.assertFalse(self.production.exists()); self.note[field] = previous
+
+    def test_changed_coverage_rejects_even_with_updated_output_hashes(self):
+        candidate = Image.open(self.png).copy()
+        candidate.putpixel((12,0),(0,0,0,255))
+        candidate.save(self.png)
+        self.record['outputSha256'] = self.note['outputSha256'] = terrain.digest(self.png.read_bytes())
+        with self.assertRaises(ValueError): self.publish()
+        self.assertFalse(self.production.exists())
+
+    def test_conflict_preserves_existing_version_and_ledger(self):
+        self.publish()
+        public = self.production / 'terrain-candidates' / self.key / 'image-v1.png'
+        ledger = self.production / 'terrain-artwork.json'
+        original, original_ledger = public.read_bytes(), ledger.read_bytes()
+        candidate = Image.open(self.png).copy()
+        candidate.putpixel((8,0),(230,0,0,0))
+        candidate.save(self.png)
+        self.record['outputSha256'] = self.note['outputSha256'] = terrain.digest(self.png.read_bytes())
+        with self.assertRaises(FileExistsError): self.publish()
+        self.assertEqual(public.read_bytes(), original)
+        self.assertEqual(ledger.read_bytes(), original_ledger)
 
 
 if __name__ == '__main__':

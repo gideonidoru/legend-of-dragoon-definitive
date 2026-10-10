@@ -42,12 +42,14 @@ Visual review, source/layout validation, runtime integration, and native scene
 acceptance are separate states. The overall goal is still incomplete; no inventory
 or build result is a claim of 100% visual coverage.
 
-Current development coverage is 36 custom revisions across 26 of the 70 battle
-restoration masters. Seven are selected after source-intent, style, layout and
-repeat review; sixteen need repeat corrections and three need layout corrections.
-Forty-four masters remain ungenerated and native scene acceptance is pending for
-all selections. `coverage.json` and the per-source review ledgers are the detailed
-controls. World-map encounter-table evidence is recorded separately from field
+Current battle development coverage is 123 custom revisions with reviewed selections
+for all 70 restoration masters. The 73 source/header bindings share those masters;
+the verified uniform-black image remains native. World artwork adds 38 source-bound
+location landscapes and one parchment backdrop. Native scene acceptance and final
+Skurfa-equivalent bespoke detail remain pending. `battle-skies.json`, the world
+ledger and per-source manifests control current selections; older census summaries
+are historical evidence rather than current completion counts.
+World-map encounter-table evidence is recorded separately from field
 usage; stage86's 8x8 MCQ is below the renderer's drawable threshold and requires no
 panorama generation. Its other battle materials remain in the backlog.
 
@@ -56,6 +58,14 @@ under the owner's October 10 authorization. Rejected/development revisions retai
 their review status and stay outside `runtime-assets`; only selected reviewed
 images enter the installed mod. Private original extraction and source-comparison
 diagnostic images remain outside this repository.
+
+`terrain-artwork.json` records 293 custom static world-material candidates, including
+292 visually reviewed development baselines and one uniform-color native exemption.
+There are 366 material bindings across eight regions, with one wrapped Tiberoa
+binding held. Animated ocean part zero retains its native texture/CLUT animation.
+Terrain runtime selections and native acceptances are currently zero. The candidate
+history lives under `terrain-candidates`; it does not change the installed mod yet.
+See `docs/definitive/ENVHD_TERRAIN_PRODUCTION.md` for the source and integration gates.
 
 Reviewed bitmaps live once under `envhd/sky-images/<decoded-pixel-hash>`. Each
 source MCQ variant has its own source-bound manifest in `envhd/skies/<source-hash>`.

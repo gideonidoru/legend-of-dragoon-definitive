@@ -1,0 +1,55 @@
+{
+  "decodedRgbaSha256": "22c099467566be0a44f22a7db0011f689647caa63b78ba53ac92ccfbb851438e",
+  "sourceSize": [
+    48,
+    48
+  ],
+  "bindings": [
+    {
+      "bank": 3,
+      "region": "Illisa Bay",
+      "page": 21,
+      "clut": 31348,
+      "imageFile": 14,
+      "parts": [
+        2
+      ]
+    },
+    {
+      "bank": 4,
+      "region": "Mille Seseau",
+      "page": 21,
+      "clut": 31348,
+      "imageFile": 10,
+      "parts": [
+        2
+      ]
+    }
+  ],
+  "targetSize": [
+    192,
+    192
+  ],
+  "outputSha256": "1f08dfd91e59277a5103153d92259304dd035c880e9aab043e212d9dd3fa0688",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Stairs in Illisa Bay, Mille Seseau. Retains source silhouette, surface organization and principal colors; location names identify source usage rather than invented scene details.",
+    "style": "Neural detail and smoothing provide a development baseline; bespoke Skurfa-equivalent finishing remains pending.",
+    "layout": "Compared source and 4x candidate on private boards 01\u201313, including a separate corrected-black review for six cloud materials. Source-owned opaque/discard/visible-black/STP classes are validated from the final ordered VRAM upload.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "1f08dfd91e59277a5103153d92259304dd035c880e9aab043e212d9dd3fa0688",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "23ce08235491afd853f1cc15cc63b965928054f7f70ccd88c9c2085b9d51d948",
+  "sourceRole": "Static world-map model parts; original geometry and coordinates remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources remain unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

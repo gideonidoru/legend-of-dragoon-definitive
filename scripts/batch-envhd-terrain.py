@@ -210,6 +210,12 @@ def candidate_record(item, output_hash):
 
 def validate_completed(item, record, path):
     data = bounded_read(path, 32 * 1024 * 1024)
+    validate_completed_bytes(item, record, data)
+
+
+def validate_completed_bytes(item, record, data):
+    if len(data) > 32 * 1024 * 1024:
+        raise ValueError('Oversized candidate')
     if record != candidate_record(item, digest(data)):
         raise ValueError('Previously completed candidate metadata changed')
     if len(data) < 33 or data[:8] != b'\x89PNG\r\n\x1a\n' or data[24:26] != bytes((8,6)):
