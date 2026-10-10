@@ -418,6 +418,7 @@ public final class Fmv {
         if(action == INPUT_ACTION_FMV_SKIP.get()) {
           if(isValidSkipInput(window.getInputClass()) && !repeat) {
             shouldStop = true;
+            stop();
           } else {
             handleSkipText();
           }
@@ -427,6 +428,7 @@ public final class Fmv {
       click = RENDERER.events().onMouseRelease((window, x, y, button, mods) -> {
         if(isValidSkipInput(InputClass.MOUSE)) {
           shouldStop = true;
+          stop();
         } else {
           setSkipText(I18n.translate("lod_core.config.fmv.skip_mouse"), InputClass.MOUSE);
         }
@@ -706,13 +708,18 @@ public final class Fmv {
     if(stopping) return;
     stopping = true;
     isPlaying = restartOriginal != null;
-    RENDERER.setRenderCallback(() -> {
+    // Frame tasks run even while paused; a deferred render callback would never clean up.
+    RENDERER.setRenderCallback(() -> { });
+    RENDERER.addTask(() -> {
+      safely(RENDERER::discardCinematicFrame);
       if(pauseObserverInstalled) { safely(() -> RENDERER.setCinematicPauseCallback(oldPauseObserver)); pauseObserverInstalled = false; oldPauseObserver = null; }
       if(originalMovie != null) { safely(originalMovie::close); originalMovie = null; originalPlayback = null; }
       if(hdMovie != null) { safely(hdMovie::close); hdMovie = null; hdPlayback = null; }
       if(hdUpload != null) { safely(() -> MemoryUtil.memFree(hdUpload)); hdUpload = null; }
       if(texturedObj != null) { safely(texturedObj::delete); texturedObj = null; }
       if(displayTexture != null) { safely(displayTexture::delete); displayTexture = null; }
+      safely(Obj::deleteObjects);
+      safely(Texture::deleteTextures);
       if(inputActionPressed != null) { safely(() -> RENDERER.events().removeInputActionPressed(inputActionPressed)); inputActionPressed = null; }
       if(keyPress != null) { safely(() -> RENDERER.events().removeKeyPress(keyPress)); keyPress = null; }
       if(click != null) { safely(() -> RENDERER.events().removeMouseRelease(click)); click = null; }

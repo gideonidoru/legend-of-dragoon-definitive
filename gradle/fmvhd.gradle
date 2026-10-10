@@ -84,3 +84,13 @@ tasks.register('originalMovieSourceProbe', JavaExec) {
   environment 'ALSOFT_DRIVERS', 'null'
   doFirst { args providers.gradleProperty('fmvOriginalFiles').get() }
 }
+
+tasks.register('originalFmvHandoffProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.fmv.OriginalFmvHandoffProbe'
+  systemProperty 'java.awt.headless', 'true'
+  jvmArgs '--add-opens', 'java.base/java.util=ALL-UNNAMED'
+  environment 'ALSOFT_DRIVERS', 'null'
+  doFirst { args providers.gradleProperty('fmvOriginalFile').get() }
+}
