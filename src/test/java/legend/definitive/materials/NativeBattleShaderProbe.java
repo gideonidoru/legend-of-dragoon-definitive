@@ -143,6 +143,10 @@ public final class NativeBattleShaderProbe {
         this.context = SDL_GL_CreateContext(this.window);
         if(this.context == 0 || !SDL_GL_MakeCurrent(this.window, this.context)) throw new IllegalStateException("Hidden context creation failed: " + SDL_GetError());
         if(!GL.createCapabilities().OpenGL33) throw new IllegalStateException("OpenGL 3.3 is required by the checked shaders");
+        // Validate every shipping FX helper with the actual GLSL compiler.
+        for(final String name : List.of("standard.fsh", "tmd.fsh")) {
+          glDeleteShader(compile(GL_FRAGMENT_SHADER, shaders.get(name)));
+        }
         this.program = glCreateProgram();
         final List<Integer> compiled = new ArrayList<>();
         try {
@@ -271,7 +275,7 @@ public final class NativeBattleShaderProbe {
     if(args.length != 2) throw new IllegalArgumentException("Supply the checkout root and a new synthetic report folder");
     final Path root = Path.of(args[0]).toRealPath(), output = Path.of(args[1]).toAbsolutePath().normalize();
     final Map<String, String> sources = new LinkedHashMap<>(), hashes = new LinkedHashMap<>();
-    for(final String name : List.of("battle_tmd.vsh","tmd.gsh","battle_tmd.fsh")) {
+    for(final String name : List.of("battle_tmd.vsh","tmd.gsh","battle_tmd.fsh","standard.fsh","tmd.fsh")) {
       final String source = shader(root.resolve("gfx/shaders").resolve(name)); sources.put(name, source);
       hashes.put(name, HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(source.getBytes(java.nio.charset.StandardCharsets.UTF_8))));
     }
