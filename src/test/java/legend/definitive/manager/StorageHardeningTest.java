@@ -226,6 +226,15 @@ class StorageHardeningTest {
     final var older = new GameLease.LaunchProcess(Optional.empty(), Optional.of(launcher.minusMillis(1)), Optional.empty(), Optional.empty(), Optional.empty());
     assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, older));
   }
+  @Test void recordedProcessExitDuringIdentityReadIsIdleButLivingMissingIdentityBlocks() throws Exception {
+    final Instant started = Instant.now(); final var reads = new java.util.concurrent.atomic.AtomicInteger();
+    assertFalse(GameLease.recordedAlive(started, () -> false, () -> { fail("Dead process must not be inspected"); return Optional.empty(); }));
+    assertFalse(GameLease.recordedAlive(started, () -> reads.incrementAndGet() == 1, Optional::empty));
+    reads.set(0); assertFalse(GameLease.recordedAlive(started, () -> reads.incrementAndGet() < 3, Optional::empty));
+    assertThrows(java.io.IOException.class, () -> GameLease.recordedAlive(started, () -> true, Optional::empty));
+    assertTrue(GameLease.recordedAlive(started, () -> true, () -> Optional.of(started)));
+    assertFalse(GameLease.recordedAlive(started, () -> true, () -> Optional.of(started.plusSeconds(1))), "A reused PID must not match the recorded identity");
+  }
   @Test void exitingProcessesDoNotBlockInterruptedLaunchRecoveryButLivingUnknownProcessesDo() throws Exception {
     final Instant started = Instant.now(); final String token = UUID.randomUUID().toString();
     final var unknown = new GameLease.LaunchProcess(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());

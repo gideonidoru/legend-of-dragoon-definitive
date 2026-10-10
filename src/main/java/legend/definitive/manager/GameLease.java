@@ -31,9 +31,16 @@ final class GameLease {
     try {
       final long pid = Long.parseLong(receipt.getProperty("pid", "")); final Instant start = Instant.parse(receipt.getProperty("start", ""));
       final Optional<ProcessHandle> process = ProcessHandle.of(pid); if(process.isEmpty() || !process.get().isAlive()) return false;
-      final Instant actual = process.get().info().startInstant().orElseThrow(() -> new IOException("Cannot verify a recorded running game. Close it before maintenance."));
-      return actual.equals(start);
+      return recordedAlive(start, process.get()::isAlive, () -> process.get().info().startInstant());
     } catch(final IllegalArgumentException | java.time.DateTimeException failure) { throw new IOException("Invalid game lifecycle record. Maintenance stopped.", failure); }
+  }
+  static boolean recordedAlive(final Instant expected, final java.util.function.BooleanSupplier alive,
+                               final java.util.function.Supplier<Optional<Instant>> inspect) throws IOException {
+    if(!alive.getAsBoolean()) return false;
+    final Optional<Instant> actual = inspect.get();
+    if(!alive.getAsBoolean()) return false;
+    try { return actual.orElseThrow(() -> new IOException("Cannot verify a recorded running game. Close it before maintenance.")).equals(expected); }
+    catch(final IOException uncertain) { if(!alive.getAsBoolean()) return false; throw uncertain; }
   }
   static void checkIdle(final Path root) throws IOException {
     final Path file = root.resolve(".game-lock");
