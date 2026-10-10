@@ -24,6 +24,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MaterialAtlasTest {
   @TempDir Path temporary;
+  @Test void atlasPixelsCanBeUploadedThroughNativeGraphicsWithoutHeapAddresses() throws Exception {
+    final var atlas=read(fixture(2));
+    assertTrue(atlas.rgba().isDirect(), "The native texture uploader requires a direct pixel buffer");
+    assertTrue(atlas.rgba().isReadOnly());
+    assertEquals(atlas.width()*atlas.height()*4,atlas.rgba().remaining());
+  }
+
   private record Fixture(Path folder, byte[] model, byte[] tim, JsonObject manifest) { }
   private static byte[] model() {
     final ByteBuffer out = ByteBuffer.allocate(52 + 24 + 8 + 48).order(ByteOrder.LITTLE_ENDIAN);

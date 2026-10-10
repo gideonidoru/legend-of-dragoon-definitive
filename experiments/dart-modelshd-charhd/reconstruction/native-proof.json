@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "originalCpuTablesUnchanged": true,
+      "parts": 15,
+      "facePaint": false,
+      "form": "field",
+      "faceTextures": 0,
+      "simulatedRgbaBody": false,
+      "preparedGeometryUnchanged": true,
+      "finiteNativeFloats": 345344
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "parts": 15,
+      "facePaint": true,
+      "form": "field",
+      "faceTextures": 1,
+      "simulatedRgbaBody": false,
+      "preparedGeometryUnchanged": true,
+      "finiteNativeFloats": 345344
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "parts": 15,
+      "facePaint": false,
+      "form": "field",
+      "faceTextures": 0,
+      "simulatedRgbaBody": true,
+      "preparedGeometryUnchanged": true,
+      "finiteNativeFloats": 345344
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "parts": 15,
+      "facePaint": true,
+      "form": "field",
+      "faceTextures": 1,
+      "simulatedRgbaBody": true,
+      "preparedGeometryUnchanged": true,
+      "finiteNativeFloats": 345344
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "parts": 17,
+      "facePaint": false,
+      "form": "combat",
+      "faceTextures": 0,
+      "simulatedRgbaBody": false,
+      "preparedGeometryUnchanged": true,
+      "finiteNativeFloats": 403264
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "parts": 17,
+      "facePaint": true,
+      "form": "combat",
+      "faceTextures": 1,
+      "simulatedRgbaBody": false,
+      "preparedGeometryUnchanged": true,
+      "finiteNativeFloats": 403264
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "parts": 17,
+      "facePaint": false,
+      "form": "combat",
+      "faceTextures": 0,
+      "simulatedRgbaBody": true,
+      "preparedGeometryUnchanged": true,
+      "finiteNativeFloats": 403264
+    },
+    {
+      "originalCpuTablesUnchanged": true,
+      "parts": 17,
+      "facePaint": true,
+      "form": "combat",
+      "faceTextures": 1,
+      "simulatedRgbaBody": true,
+      "preparedGeometryUnchanged": true,
+      "finiteNativeFloats": 403264
+    }
+  ],
+  "scope": "Native CPU construction and source immutability; no GPU/gameplay/Deck acceptance"
+}

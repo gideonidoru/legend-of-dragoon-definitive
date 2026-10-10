@@ -23,6 +23,11 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DartFacePaintTest {
+  public static final class PaintedAppearance {
+    @EventListener public void appearance(final TmdAppearanceEvent event) {
+      event.appearance=DartFacePaint.paint(event.geometry,Set.of(0),paint(),true);
+    }
+  }
   public static final class FailingAppearance {
     final TmdObjTable1c replacement;
     FailingAppearance(final TmdObjTable1c replacement) {this.replacement=replacement;}
@@ -83,6 +88,25 @@ class DartFacePaintTest {
     assertNull(replacement.paint("b84e13a11adbd3419e1e4c5b810c8bd797f9dc68af5d41fe3c4736ce5c4f584b",source()));
     assertNull(replacement.paint("0bfd5ffdc6da5b99d770e75f3cab89c86718a541f996250eb362cfb07642f6bb",source()));
     assertNull(replacement.paint("0".repeat(64),source()));
+  }
+  @Test void mappedBodyAtlasRetainsSupplementalFaceAppearanceAndSourcePackets() {
+    final var source=parsed(); final var packet=source.primitives_10[0].data()[0].clone();
+    final var listener=new PaintedAppearance();GameEngine.EVENTS.register(listener);
+    final var mesh=TmdObjLoader.fromObjTableMapped("mapped head and body",source,(clut,u,v,header)->new float[]{.125f,.25f});
+    assertNotNull(mesh.faceDetailTexture(),"Body atlas route must dispatch the face appearance extension");
+    assertEquals(2,mesh.faceDetailTexture().width);
+    assertArrayEquals(packet,source.primitives_10[0].data()[0]);
+    mesh.delete();java.lang.ref.Reference.reachabilityFence(listener);
+  }
+  @Test void invalidMappedAppearanceRetainsPreparedGeometryAndBodyAddressing() {
+    final var nativeSource=parsed();final var prepared=source();
+    final var listener=new FailingAppearance(prepared);GameEngine.EVENTS.register(listener);
+    final legend.definitive.materials.MaterialUvMap mapping=(clut,u,v,header)->new float[]{.125f,.25f};
+    final var result=TmdObjLoader.fromObjTableMapped("failed optional head",nativeSource,mapping);
+    final var expected=TmdObjLoader.fromObjTableMapped("prepared body control",prepared,mapping);
+    assertNull(result.faceDetailTexture());assertEquals(expected.meshes.length,result.meshes.length);
+    for(int i=0;i<result.meshes.length;i++)assertArrayEquals(expected.meshes[i].vertices(),result.meshes[i].vertices());
+    result.delete();expected.delete();java.lang.ref.Reference.reachabilityFence(listener);
   }
   @Test void completeHeadLayerPreservesBandanaAndSeparatesHairRegion() {
     for(final int face:new int[]{20,21,23,110,121,122}) {

@@ -20,6 +20,8 @@ args.output.mkdir(parents=True);(args.output/'parts').mkdir()
 spec=importlib.util.spec_from_file_location('study',root/'experiments/dart-modelshd-charhd/build-study.py')
 study=importlib.util.module_from_spec(spec);spec.loader.exec_module(study)
 mesh=next(iter(trimesh.load(args.mesh,force='scene',process=False).geometry.values()))
+texture_path=args.mesh.with_name(args.mesh.stem.replace('-textured','-basecolour')+'.png')
+texture_hash=hashlib.sha256(texture_path.read_bytes()).hexdigest()
 angle=np.deg2rad(args.yaw);rotate=np.array([[np.cos(angle),-np.sin(angle),0],[np.sin(angle),np.cos(angle),0],[0,0,1]])
 basis=np.array([[0,1,0],[0,0,-1],[-1,0,0]])@rotate
 q=np.asarray(mesh.vertices)@basis.T*args.scale+np.array([0,args.y,args.z])
@@ -85,7 +87,7 @@ for form,model in [('field','SECT/DRGN21.BIN/101/0'),('combat','characters/dart/
  for face in generated:
   put(new_header&0xff040000)
   for index in face['vertices']:put(index);put(index)
- metadata={'version':1,'sourceGeometrySha256':part_ids[7],'geometrySha256':digest.hexdigest(),'uvs':uv_out.tolist(),'texture':'dart-head-aa-v1.png','textureSha256':hashlib.sha256(args.mesh.with_name('head-6000-basecolour.png').read_bytes()).hexdigest()}
+ metadata={'version':1,'sourceGeometrySha256':part_ids[7],'geometrySha256':digest.hexdigest(),'uvs':uv_out.tolist(),'texture':'dart-head-aa-v1.png','textureSha256':texture_hash}
  (args.output/(form+'-head-uv.json')).write_text(json.dumps(metadata,separators=(',',':'),allow_nan=False))
  current[7]=part
  (args.output/(form+'-native-candidate.json')).write_text(json.dumps({'version':1,'sourceGeometrySha256':identity,'parts':current},separators=(',',':')))
@@ -94,5 +96,5 @@ for form,model in [('field','SECT/DRGN21.BIN/101/0'),('combat','characters/dart/
 for p in (root/'experiments/dart-modelshd-charhd/models/parts').glob('*.json'):
  target=args.output/'parts'/p.name
  if not target.exists():target.write_bytes(p.read_bytes())
-report={'status':'experimental-not-approved','scope':'Dart head reconstruction on previous custom body; not a complete bespoke AA body','meshSha256':hashlib.sha256(args.mesh.read_bytes()).hexdigest(),'fit':{'scale':args.scale,'yawDegrees':args.yaw,'translation':[0,args.y,args.z],'neckCutY':7.5},'forms':records}
+report={'status':'experimental-not-approved','scope':'Dart head reconstruction on previous custom body; not a complete bespoke AA body','meshSha256':hashlib.sha256(args.mesh.read_bytes()).hexdigest(),'textureSha256':texture_hash,'fit':{'scale':args.scale,'yawDegrees':args.yaw,'translation':[0,args.y,args.z],'neckCutY':7.5},'forms':records}
 (args.output/'receipt.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

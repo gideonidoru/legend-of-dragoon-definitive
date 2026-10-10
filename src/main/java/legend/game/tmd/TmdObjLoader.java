@@ -128,6 +128,24 @@ public final class TmdObjLoader {
                                           final legend.definitive.materials.MaterialUvMap mapping) {
     final TmdObjTable1c geometry = EVENTS.postEvent(new TmdGeometryEvent(source, 0, 0, 0)).geometry;
     if(geometry == null) throw new IllegalArgumentException("Missing optional geometry");
+    TmdObjTable1c appearance = geometry;
+    if(source.getClass() == TmdObjTable1c.class && !source.isAuthoredGeometry() && !source.requiresNativeVertexIndices()) {
+      try {
+        final var candidate = EVENTS.postEvent(new legend.game.modding.events.tmd.TmdAppearanceEvent(source, geometry, 0)).appearance;
+        if(candidate != null) appearance = candidate;
+      } catch(final RuntimeException failure) {
+        LogManager.getLogger().warn("Optional mapped appearance retained geometry {}: {}", name, failure.getMessage());
+      }
+    }
+    if(appearance != geometry) {
+      try {
+        final MeshObj result = fromObjTableRaw(name, appearance, 0, 0, 0, mapping);
+        result.surfaceMaterial = geometry.surfaceMaterial();
+        return result;
+      } catch(final RuntimeException failure) {
+        LogManager.getLogger().warn("Optional mapped appearance allocation retained geometry {}: {}", name, failure.getMessage());
+      }
+    }
     final MeshObj result = fromObjTableRaw(name, geometry, 0, 0, 0, mapping);
     result.surfaceMaterial = geometry.surfaceMaterial();
     return result;

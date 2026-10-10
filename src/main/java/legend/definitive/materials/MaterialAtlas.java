@@ -46,7 +46,8 @@ public final class MaterialAtlas {
     this.width = layout.width(); this.height = layout.height(); this.scale = scale; this.regions = List.copyOf(layout.regions());
     this.modelHash = modelHash; this.timHash = timHash; this.atlasHash = atlasHash;
     this.checkedTexels = this.regions.stream().mapToLong(region -> (long)region.width * region.height).sum();
-    final ByteBuffer bytes = ByteBuffer.allocate(this.width * this.height * 4);
+    // LWJGL passes a native address to glTexImage2D; heap buffers are unsafe here.
+    final ByteBuffer bytes = ByteBuffer.allocateDirect(this.width * this.height * 4);
     final int[] row = new int[this.width];
     for(int y = 0; y < this.height; y++) {
       image.getRGB(0, y, this.width, 1, row, 0, this.width);
