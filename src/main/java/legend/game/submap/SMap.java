@@ -3321,7 +3321,9 @@ public class SMap extends EngineState<SMap> {
 
         this.cameraPos_800c6aa0.set(rview2_800bd7e8.viewpoint_00).sub(rview2_800bd7e8.refpoint_0c);
 
-        new Tim(Loader.loadFileSync("SUBMAP/alert.tim")).uploadToGpu();
+        final Tim alert = new Tim(Loader.loadFileSync("SUBMAP/alert.tim"));
+        alert.uploadToGpu();
+        legend.game.textures.NativeUiTextureEvent.uploaded("indicator_alert", alert);
         this.resetTriangleIndicators();
 
         //LAB_800e1ecc
@@ -5780,6 +5782,7 @@ public class SMap extends EngineState<SMap> {
       this.cluts_800d6068[textureIndex] = tim.getClutRect().y << 6 | (tim.getClutRect().x & 0x3f0) >>> 4;
 
       GPU.uploadData15(tim.getClutRect(), tim.getClutData());
+      if(textureIndex < 2) legend.game.textures.NativeUiTextureEvent.uploaded(textureIndex == 0 ? "indicator_big_arrow" : "indicator_small_arrow", tim);
     }
 
     //LAB_800f48a8

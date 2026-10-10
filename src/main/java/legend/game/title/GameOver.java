@@ -39,6 +39,8 @@ public class GameOver extends EngineState<GameOver> {
   private int loadingStage;
 
   private Obj background;
+  private legend.game.textures.Image enhanced;
+  private legend.core.renderer.Texture artwork;
   private final MV transforms = new MV();
 
   public GameOver() {
@@ -72,19 +74,37 @@ public class GameOver extends EngineState<GameOver> {
     final Rect4i rect = new Rect4i(640, 0, mcq.vramWidth_08, mcq.vramHeight_0a);
     this.gameOverMcq_800bdc3c = mcq;
     GPU.uploadData15(rect, mcq.imageData);
+    try {
+      final var selected = legend.game.textures.UiRasters.select("game_over", mcq.source(), legend.definitive.artwork.SkySource.decodeUi(mcq.source()));
+      this.enhanced = selected.replaced() ? selected.image() : null;
+    } catch(final Exception failure) {
+      org.apache.logging.log4j.LogManager.getLogger(GameOver.class).warn("Retaining native Game Over artwork", failure);
+    }
     this.loadingStage = 3;
   }
 
   @Method(0x800c75b4L)
   private void renderGameOver() {
     if(this.background == null) {
-      this.background = new McqBuilder("Game over", this.gameOverMcq_800bdc3c)
-        .vramOffset(640, 0)
-        .build();
+      if(this.enhanced != null) {
+        try {
+          this.artwork = legend.game.textures.UiTextures.upload("Game Over", this.enhanced);
+          final var mcq = this.gameOverMcq_800bdc3c;
+          this.background = new legend.core.renderer.QuadBuilder("Game Over")
+            .bpp(legend.core.gpu.Bpp.BITS_24)
+            .pos(mcq.magic_00 == McqHeader.MAGIC_2 ? mcq.screenOffsetX_28 : 0, mcq.magic_00 == McqHeader.MAGIC_2 ? mcq.screenOffsetY_2a : 0, 0)
+            .posSize(mcq.screenWidth_14, mcq.screenHeight_16).uvSize(1, 1).build();
+        } catch(final RuntimeException failure) {
+          if(this.artwork != null) { this.artwork.delete(); this.artwork = null; }
+          org.apache.logging.log4j.LogManager.getLogger(GameOver.class).warn("Retaining native Game Over after artwork upload failure", failure);
+        } finally { this.enhanced = null; }
+      }
+      if(this.background == null) this.background = new McqBuilder("Game over", this.gameOverMcq_800bdc3c).vramOffset(640, 0).build();
     }
 
     this.transforms.transfer.set(GPU.getOffsetX() - 320.0f, GPU.getOffsetY() - 120.0f, 144.0f);
-    RENDERER.queueOrthoModel(this.background, this.transforms, QueuedModelStandard.class);
+    final var model = RENDERER.queueUiOrthoModel(this.background, this.transforms, QueuedModelStandard.class);
+    if(this.artwork != null) model.texture(this.artwork);
   }
 
   @Override
@@ -141,6 +161,8 @@ public class GameOver extends EngineState<GameOver> {
         }
 
         this.gameOverMcq_800bdc3c = null;
+        if(this.artwork != null) { this.artwork.delete(); this.artwork = null; }
+        this.enhanced = null;
         engineStateOnceLoaded_8004dd24 = CoreEngineStateTypes.TITLE.get();
         vsyncMode_8007a3b8 = 2;
       }

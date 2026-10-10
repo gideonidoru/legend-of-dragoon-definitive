@@ -40,7 +40,7 @@ public final class UiHdSourceProbe {
       for(var e:originals.entrySet())require(images.get(e.getKey()).width==e.getValue().width*4,"actual mod replaces "+e.getKey());
       final var changed=images.get(new RegistryId("lod:dart"));type.getMethod("replace",ReplaceAtlasTexturesEvent.class).invoke(mod,new ReplaceAtlasTexturesEvent(images));
       require(images.get(new RegistryId("lod:dart"))==changed,"earlier atlas owner remains authoritative");
-      int pngs=0;
+      int pngs=0, rasters=0, nativeVariants=0;
       final Set<String> families=new HashSet<>();
       for(int i=0;i<catalog.length();i++) {
         final var e=catalog.getJSONObject(i);final String kind=e.getString("kind");
@@ -50,9 +50,36 @@ public final class UiHdSourceProbe {
           type.getMethod("texture",UiTextureEvent.class).invoke(mod,event);
           require(event.image().width==e.getJSONArray("outputSize").getInt(0),"actual PNG replacement");pngs++;
         }
+        if(kind.equals("raster")) {
+          final String family=e.getString("family");
+          final byte[] raw;
+          final Image original;
+          if(family.equals("game_over")) {
+            raw=Files.readAllBytes(Loader.resolve(e.getString("sourcePath")));
+            original=SkySource.decodeUi(raw);
+          } else {
+            final var paths=e.getJSONArray("sourcePaths");
+            final java.io.ByteArrayOutputStream bytes=new java.io.ByteArrayOutputStream();
+            final legend.core.gpu.VramTexture[] textures=new legend.core.gpu.VramTexture[paths.length()];
+            for(int j=0;j<paths.length();j++) {
+              final String path=paths.getString(j);bytes.write(Files.readAllBytes(Loader.resolve(path)));
+              textures[j]=legend.core.gpu.VramTextureLoader.textureFromTim(tim(path,0));
+            }
+            raw=bytes.toByteArray();
+            final var texture=family.equals("title_background")?legend.core.gpu.VramTextureLoader.stitchVertical(textures)
+              :family.equals("title_copyright")?legend.core.gpu.VramTextureLoader.stitchHorizontal(textures):textures[0];
+            final var palette=legend.core.gpu.VramTextureLoader.palettesFromTim(tim(paths.getString(0),0))[0];
+            original=UiRasters.decode((legend.core.gpu.VramTextureSingle)texture,(legend.core.gpu.VramTextureSingle)palette);
+          }
+          final var event=new UiRasterEvent(family,raw,original);
+          type.getMethod("raster",UiRasterEvent.class).invoke(mod,event);
+          require(event.replaced()&&event.image().width==e.getJSONArray("outputSize").getInt(0),"actual raster "+family);
+          NativeUiTextures.validate(original,event.image());rasters++;
+          continue;
+        }
         if(!kind.equals("native")||!families.add(e.getString("family")))continue;
         final String family=e.getString("family");Tim source=tim(e.getString("sourcePath"),e.getInt("sourceOffset"));
-        int x,y,cx,cy,rows;
+        int x,y,cx,cy,rows;String slot=family;
         if(family.startsWith("battle_hud_")) {
           final int bank=Integer.parseInt(family.substring(11));source=NativeUiTextureEvent.withPalette(source,tim(e.getString("paletteSourcePath"),0));
           x=704;y=256;cx=bank<4?704+bank*16:896+(bank-4)*16;cy=bank<4?496:304;rows=16;
@@ -65,23 +92,64 @@ public final class UiHdSourceProbe {
           source=NativeUiTextureEvent.withPaletteData(source,palettes);x=128;y=256;cx=176;cy=496;rows=13;
         } else if(family.startsWith("dialogue")) {
           final var image=source.getImageRect();final var clut=source.getClutRect();x=image.x;y=image.y;cx=clut.x;cy=clut.y;rows=clut.h;
-        } else {
+        } else if(family.equals("menu")||family.equals("items")||family.equals("menu_characters")) {
           final var image=source.getImageRect();final var clut=source.getClutRect();x=image.x-512;y=image.y;cx=clut.x-512;cy=clut.y;rows=clut.h;
+        } else {
+          final var image=source.getImageRect();final var clut=source.getClutRect();x=image.x;y=image.y;cx=clut.x;cy=clut.y;rows=clut.h;
+          if(family.startsWith("chapter_")) slot=Integer.parseInt(family.substring(family.lastIndexOf('_')+1))<8?"chapter_name":"chapter_number";
+          if(family.startsWith("credit_")) {
+            final int index=Integer.parseInt(family.substring(7)),creditSlot=index%16;
+            slot="credit_slot_"+creditSlot;x=512+creditSlot/8*128;y=creditSlot%8*64;cx=896;cy=creditSlot;rows=1;
+          }
         }
-        NativeUiTextureEvent.post(new NativeUiTextureEvent(family,source,x,y,cx,cy,rows));
+        NativeUiTextureEvent.post(new NativeUiTextureEvent(family,slot,source,x,y,cx,cy,rows));
+        final var field=NativeUiTextures.class.getDeclaredField("REGIONS");field.setAccessible(true);
+        int decodedCount=0;
+        for(Object region:(List<?>)field.get(null)) {
+          final var owned=region.getClass().getDeclaredField("slot");owned.setAccessible(true);
+          if(!slot.equals(owned.get(region)))continue;
+          final var provider=region.getClass().getDeclaredField("provider");provider.setAccessible(true);
+          final var decoded=(NativeUiTextures.Images)((java.util.function.Supplier<?>)provider.get(region)).get();
+          NativeUiTextures.validate(decoded.original(),decoded.enhanced());decodedCount++;
+        }
+        final int expected=(int)java.util.stream.IntStream.range(0,catalog.length()).mapToObj(catalog::getJSONObject)
+          .filter(a->a.getString("kind").equals("native")&&a.getString("family").equals(family)).count();
+        require(decodedCount==expected,"all native source variants "+family);nativeVariants+=decodedCount;
       }
-      require(pngs==12&&families.size()==15,"every default source family exercised");
-      require(NativeUiTextures.selectionCount()==191&&NativeUiTextures.allocatedBytes()==0,"all native variants select lazily");
-      final var field=NativeUiTextures.class.getDeclaredField("REGIONS");field.setAccessible(true);
-      for(Object region:(List<?>)field.get(null)) {
-        final var provider=region.getClass().getDeclaredField("provider");provider.setAccessible(true);
-        final var decoded=(NativeUiTextures.Images)((java.util.function.Supplier<?>)provider.get(region)).get();
-        NativeUiTextures.validate(decoded.original(),decoded.enhanced());
-      }
+      require(pngs==13&&rasters==4&&families.size()==424&&nativeVariants==665,"complete full-source denominator exercised");
+      require(NativeUiTextures.selectionCount()<=384&&NativeUiTextures.allocatedBytes()==0,"all current slots stay metadata-only");
+      final int active=NativeUiTextures.selectionCount();
       NativeUiTextures.reselect(GameEngine.EVENTS::postEvent);
-      require(NativeUiTextures.selectionCount()==191&&NativeUiTextures.allocatedBytes()==0,"all fifteen private families replay on mod reboot");
+      require(NativeUiTextures.selectionCount()==active&&NativeUiTextures.allocatedBytes()==0,"all current source slots replay after mod reboot");
+      verifySavedPortraits(type,mod,originals);
+      final byte[] noClut=new byte[22];final var raw=java.nio.ByteBuffer.wrap(noClut).order(java.nio.ByteOrder.LITTLE_ENDIAN);
+      raw.putInt(0,16).putInt(4,2).putInt(8,14).putShort(16,(short)1).putShort(18,(short)1);
+      NativeUiTextureEvent.uploaded("the_end",new Tim(new FileData(noClut)));
+      require(NativeUiTextures.allocatedBytes()==0,"unsupported no-CLUT TIM retains native rendering");
       NativeUiTextures.clear();
-      System.out.println("PASS: actual UIHD JAR replaces all56 atlas entries and12 PNGs, selects/validates all191 native variants from15 real private source families, preserves earlier atlas ownership, replays lazily with zero GPU allocation.");
+      System.out.println("PASS: actual UIHD JAR replaces56 atlas entries,13 PNGs,4 stitched/MCQ rasters and validates665 native variants across424 actual source families; reused chapter/credit slots replay lazily with zero GPU allocation; new/old save-card portraits share the source-bound selection.");
     }
   }
+  private static void verifySavedPortraits(Class<?> type,Object mod,Map<RegistryId,Image> originals) throws Exception {
+    final var packer=new TexturePacker("Private source saved portraits");
+    final var ids=new ArrayList<RegistryId>();
+    for(final String name:"dart lavitz shana rose haschel albert meru kongol miranda".split(" ")) {
+      final var id=new RegistryId("lod:"+name);ids.add(id);packer.add(id,originals.get(id));
+    }
+    final byte[] bytes=packer.packToBytes(512,512);
+    final var saved=new legend.game.saves.SeveredSavedGame(null,"test","private","private",new RegistryId("lod:campaign"),new legend.game.saves.ConfigCollection(),
+      new FileData(PngWriter.compress(org.lwjgl.BufferUtils.createByteBuffer(bytes.length).put(0,bytes),512,512)),512,512);
+    for(final var id:ids) {
+      saved.characters.add(new legend.game.saves.SeveredSavedCharacterV2(id));
+      final var rect=packer.getRect(id);saved.charPortraits.add(new legend.core.gpu.Rect4i(rect.x,rect.y,rect.w,rect.h));
+    }
+    final byte[] before=saved.atlas.getBytes().clone();
+    final var selected=SavedPortraits.select(saved);
+    require(selected.rectangles().stream().allMatch(r->r.w==192&&r.h==192),"every matching saved portrait restored");
+    require(Arrays.equals(before,saved.atlas.getBytes())&&saved.charPortraits.stream().allMatch(r->r.w==48),"save data remains unchanged");
+    require(packer.applyReplacements(),"new save packer uses same replacements");
+    final var packed=packer.packGrowingToBytes(512,512,2048);
+    require(packed.width()*packed.height()<=1024*1024&&ids.stream().allMatch(id->packer.getRect(id).w==192),"all nine new save portraits pack in bounded HD atlas");
+  }
+
 }
