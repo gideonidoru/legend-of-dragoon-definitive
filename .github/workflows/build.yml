@@ -70,7 +70,7 @@ jobs:
           java -version
           ./gradlew --version
       - name: Compile and package without gameplay tests
-        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-fmvhd ${{ matrix.args }}
+        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-10-audio ${{ matrix.args }}
       - name: Check streamed FMV playback and delivery without a window
         if: runner.os == 'Linux'
         run: |

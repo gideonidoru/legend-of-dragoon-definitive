@@ -492,7 +492,7 @@ public final class Unpacker {
     final String filename = path + root.name();
 
     if(!root.isDirectory()) {
-      if(!Files.exists(ROOT.resolve(filename))) {
+      if(!Files.exists(ROOT.resolve(filename)) || filename.endsWith(".XA") && XaTranscoder.needsConversion(ROOT.resolve(filename))) {
         final PathNode file = new PathNode(filename, root.name(), readFile(filename, root), parent);
 //        LOGGER.info("Adding file %s", file.fullPath);
         parent.addChild(file);
