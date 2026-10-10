@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "29e1dd34ca283d1a66a5420931fdbcd149a21bfbac5bfc3c78330d21d1804c7f",
+  "outputSha256": "250d11669f81ee31b30308be5fe2b2736be701390d2c8eda06fcd0981e8b5ce5",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-vellweb-interior-stage50-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Vellweb interior remains a continuous very dark rough grey-brown stone wall; field493 confirms rock interior, not tree trunks/foliage. Green extraction placeholders are not transplanted.",
+    "style": "Weathered stone facets and fissures follow Skurfa material quality while retaining dark bottom fade and gloomy palette.",
+    "layout": "Original broad mottling/crack flow and close flat wall viewpoint retained; no cave opening, staircase, door or extra object.",
+    "wrap": "Joined fissures/stone patches show a vertical discontinuity; difference10.54 versus source5.35. Hold outside runtime.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 5.354166507720947,
+    "outputEdgeMeanDifference": 10.53689193725586
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc"
+}

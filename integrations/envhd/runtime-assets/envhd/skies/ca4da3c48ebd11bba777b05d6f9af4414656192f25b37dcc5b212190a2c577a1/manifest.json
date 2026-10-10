@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "374399087fdf349761b9e7b75a5a18a922228b3fb292378a79094ade33f08000",
+  "outputSha256": "717146aa262c3ae7808e8b2e3b63621d60ad66dbfd9ff0f2eb607f19aacd8486",
+  "scale": 4,
+  "generationVersion": 1,
+  "reviewStatus": "visual-reviewed-native-pending",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-shrine-stage15-v1.txt",
+  "imageFile": "image-v1.png",
+  "review": {
+    "intent": "Dim grey-green forest, tightly spaced vertical trunks, high grey fog and near-black bottom fade retained. Field cut153 confirms surrounding forest/shrine context; no shrine architecture inserted into this battle texture.",
+    "style": "Natural bark, restrained fine foliage and soft mist match the Skurfa detail direction while retaining the source green darkness.",
+    "layout": "Native-size side-by-side review retains the main trunk bands, source framing and absence of a visible floor/clearing.",
+    "wrap": "Joined-edge review shows continuous dim forest and haze without a broad vertical seam; edge difference4.77 versus source3.54. Native scene acceptance pending.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 3.5416667461395264,
+    "outputEdgeMeanDifference": 4.76953125
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1"
+}

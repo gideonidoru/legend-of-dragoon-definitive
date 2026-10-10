@@ -1,0 +1,27 @@
+{
+  "decodedRgbaSha256": "2afe4a54ab85bfd997cabe2a3547d44da7e4ce44fea0586826b8c4fd24f907a8",
+  "outputSha256": "66729053f366626a640b823cb52e7ae8b83fbc70011e25b22759c500f5ee2fce",
+  "scale": 4,
+  "generationVersion": 2,
+  "reviewStatus": "repeat-boundary-revision-needed",
+  "method": "built-in-imagegen",
+  "prompt": "prompts/battle-sky-giganto-mountains-stage28-v2.txt",
+  "imageFile": "image-v2.png",
+  "review": {
+    "intent": "Lavender-blue sky and opposing pale mountain slopes retained.",
+    "style": "Version1 fine erosion and rock detail retained.",
+    "layout": "Central saddle and interior cloud bands remain in their prior positions.",
+    "wrap": "Edge-only repair worsened difference9.72 to11.53 versus source4.79; cloud/rock join still visible. Hold outside runtime.",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "sourceEdgeMeanDifference": 4.791666507720947,
+    "outputEdgeMeanDifference": 11.533203125
+  },
+  "styleReferences": [
+    "scbackgroundhd/cut5/background.png",
+    "scbackgroundhd/cut37/background.png"
+  ],
+  "sourceMcqSha256": "1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9"
+}

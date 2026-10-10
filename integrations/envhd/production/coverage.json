@@ -9,7 +9,7 @@
     "field-scenes"
   ],
   "accepted": 0,
-  "integrated": 2,
+  "integrated": 7,
   "totalKnownBattleSkies": 74,
   "goalComplete": false,
   "remainingCensus": "The existing whole-environment source census is a workload baseline; visual duplicates, palette variants and empty foreground layers still require production mapping.",
@@ -18,9 +18,9 @@
   "protectedSkurfaCutPeriodMappings": 87,
   "fieldSceneGapsBeforeVisualDedup": 612,
   "generationPolicy": "Generate only unowned gaps; preserve and reuse all Skurfa artwork and source-identical aliases; use Skurfa images as style references.",
-  "generatedSources": 8,
-  "generatedCandidates": 13,
-  "visualReviewedRuntimeCandidates": 2,
+  "generatedSources": 26,
+  "generatedCandidates": 36,
+  "visualReviewedRuntimeCandidates": 7,
   "nativeAccepted": 0,
   "noGenerationRequiredBattleSkies": 1,
   "battleSkiesNeedingRestoration": 73,
@@ -39,6 +39,6 @@
     "headlessDeliverySkipped": 4,
     "skyImportRegressionTests": 8
   },
-  "repeatBoundaryRevisionSources": 2,
-  "repeatBoundaryPendingSources": 5
+  "repeatBoundaryRevisionSources": 13,
+  "repeatBoundaryPendingSources": 16
 }
