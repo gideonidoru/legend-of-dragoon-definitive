@@ -1,0 +1,56 @@
+// FMVHD source is compiled here; its large video payload comes from a checksum-pinned release.
+sourceSets {
+  fmvhd {
+    java.srcDir 'integrations/fmvhd/src/main/java'
+    resources.srcDir 'integrations/fmvhd/src/main/resources'
+    compileClasspath += sourceSets.main.output + configurations.compileClasspath
+  }
+}
+sourceSets.test.compileClasspath += sourceSets.fmvhd.output
+sourceSets.test.runtimeClasspath += sourceSets.fmvhd.output
+
+tasks.register('fmvHdAssets') {
+  final File lock = file('integrations/fmvhd/release.properties')
+  final def localAssets = providers.gradleProperty('fmvHdAssets')
+  inputs.file(lock)
+  inputs.property('localAssets', localAssets.getOrElse(''))
+  if(localAssets.isPresent()) inputs.file(file(localAssets.get()))
+  outputs.file(layout.buildDirectory.file('fmvhd/videos.zip'))
+  doLast {
+    final Properties metadata = new Properties()
+    lock.withInputStream { metadata.load(it) }
+    final File target = layout.buildDirectory.file('fmvhd/videos.zip').get().asFile
+    target.parentFile.mkdirs()
+    final String local = providers.gradleProperty('fmvHdAssets').getOrNull()
+    if(local != null) java.nio.file.Files.copy(file(local).toPath(), target.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+    else providers.exec { commandLine 'curl', '--fail', '--location', '--proto', '=https', '--proto-redir', '=https', '--connect-timeout', '20', '--max-time', '1800', '--retry', '2', '--output', target.absolutePath, metadata.getProperty('url') }.result.get().assertNormalExitValue()
+    final def digest = java.security.MessageDigest.getInstance('SHA-256')
+    target.withInputStream { input ->
+      final byte[] buffer = new byte[65536]
+      int count
+      while((count = input.read(buffer)) != -1) digest.update(buffer, 0, count)
+    }
+    final String actual = digest.digest().encodeHex().toString()
+    if(actual != metadata.getProperty('sha256')) { target.delete(); throw new GradleException('FMVHD release checksum mismatch') }
+  }
+}
+
+tasks.register('fmvHdJar', Jar) {
+  dependsOn sourceSets.fmvhd.classesTaskName, fmvHdAssets, jar
+  archiveFileName = 'FMVHD-v0.1.0.jar'
+  destinationDirectory = layout.buildDirectory.dir('libs/mods')
+  from sourceSets.fmvhd.output
+  from({ zipTree(tasks.fmvHdAssets.outputs.files.singleFile) }) { include 'fmvhd/**' }
+  into('META-INF/fmvhd') { from 'LICENSE'; from 'integrations/fmvhd/README.md' }
+  manifest { attributes 'Implementation-Title': 'FMVHD', 'Implementation-Version': '0.1.0' }
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
+}
+tasks.named('compileTestJava') { dependsOn sourceSets.fmvhd.classesTaskName }
+tasks.named('stageDefinitivePackage') { dependsOn fmvHdJar }
+tasks.named('build') { dependsOn fmvHdJar }
+tasks.named('deliveryTest') {
+  environment 'ALSOFT_DRIVERS', 'null'
+  if(providers.gradleProperty('fmvTailFixture').isPresent()) systemProperty 'fmvhd.tailFixture', providers.gradleProperty('fmvTailFixture').get()
+  if(providers.gradleProperty('fmvFixture').isPresent()) systemProperty 'fmvhd.fixture', providers.gradleProperty('fmvFixture').get()
+}
