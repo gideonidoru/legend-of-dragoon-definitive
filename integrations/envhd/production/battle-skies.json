@@ -241,7 +241,7 @@
         1024,
         1536
       ],
-      "status": "revision-needed",
+      "status": "repeat-boundary-revision-needed",
       "review": {
         "intent": "Original Prairie intent retained; repeat edge worsened, so do not select this revision.",
         "style": "Matches Skurfa material-detail direction; references used only for style",
@@ -250,14 +250,15 @@
           1536
         ],
         "sourceEdgeMeanDifference": 4.3055553,
-        "outputEdgeMeanDifference": 13.020617,
+        "outputEdgeMeanDifference": 9.306423,
         "remaining": [
-          "Improve repeat seam",
+          "Repair visible repeat-boundary discontinuity",
           "Native scene verification"
-        ]
+        ],
+        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-v3.png"
       },
       "priority": 1,
-      "output": "integrations/envhd/production/candidates/2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c/image-v2.png",
+      "output": "integrations/envhd/production/candidates/2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c/image-v3.png",
       "decodedRgbaSha256": "040967f180bd059a8a514445c3c6a73ff926aace72d99a2e256c0fb2f5ab1657",
       "generationMasterSourceSha256": "2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c"
     },
@@ -325,7 +326,7 @@
         1024,
         1536
       ],
-      "status": "layout-reviewed-wrap-pending",
+      "status": "repeat-boundary-revision-needed",
       "review": {
         "intent": "Upper wall and original ledge heights restored; cool natural cave.",
         "style": "Matches Skurfa material-detail direction; references used only for style",
@@ -334,14 +335,15 @@
           1536
         ],
         "sourceEdgeMeanDifference": 2.7569444,
-        "outputEdgeMeanDifference": 9.892361,
+        "outputEdgeMeanDifference": 9.931207,
         "remaining": [
-          "Improve repeat seam",
+          "Repair visible repeat-boundary discontinuity",
           "Native scene verification"
-        ]
+        ],
+        "wrapQa": "Private EnvHD-production/battle-skies/wrap-review-v3.png"
       },
       "priority": 1,
-      "output": "integrations/envhd/production/candidates/0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545/image-v2.png",
+      "output": "integrations/envhd/production/candidates/0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545/image-v3.png",
       "decodedRgbaSha256": "231a501d6e2c8737e79c61596bede472a7a638b464a2ef7d45d5db8eb2f95830",
       "generationMasterSourceSha256": "0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545"
     },

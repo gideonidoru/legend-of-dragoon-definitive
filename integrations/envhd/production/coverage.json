@@ -19,7 +19,7 @@
   "fieldSceneGapsBeforeVisualDedup": 612,
   "generationPolicy": "Generate only unowned gaps; preserve and reuse all Skurfa artwork and source-identical aliases; use Skurfa images as style references.",
   "generatedSources": 3,
-  "generatedCandidates": 6,
+  "generatedCandidates": 8,
   "visualReviewedRuntimeCandidates": 1,
   "nativeAccepted": 0,
   "noGenerationRequiredBattleSkies": 1,
@@ -35,5 +35,6 @@
     "mcqSourcePixelAgreement": "74/74",
     "skurfaWorkingTree": "unchanged",
     "nativeSceneAcceptance": "pending"
-  }
+  },
+  "repeatBoundaryRevisionSources": 2
 }
