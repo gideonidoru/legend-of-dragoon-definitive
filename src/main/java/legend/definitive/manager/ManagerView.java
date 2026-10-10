@@ -221,7 +221,7 @@ final class ManagerView extends JPanel {
   }
   private void launcher() {
     this.heading("Ready to play", "The Legend of Dragoon · Definitive");
-    this.body.add(infoCard("YOUR EDITION", "HD backgrounds. Refined menus.", "Choose Faithful or Definitive when you start a new campaign."));
+    this.body.add(infoCard("YOUR EDITION", "HD backgrounds. ModelsHD. Refined menus.", "Choose Faithful or Definitive when you start a new campaign."));
     this.body.add(Box.createVerticalStrut(30));
     this.primary("Play", () -> this.run("Game running", () -> {
       final var store = new InstallStore(this.root); final int code = store.play();
@@ -350,7 +350,7 @@ final class ManagerView extends JPanel {
   }
   private void mods() {
     this.run("Loading preferences", () -> !"original".equals(new InstallStore(this.root).state().getProperty("artwork", "hd")), hd -> {
-      final JCheckBox artwork = new JCheckBox("Skurfa HD backgrounds", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
+      final JCheckBox artwork = new JCheckBox("HD backgrounds & ModelsHD", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
       final JCheckBox pilot = new JCheckBox("Enhanced model textures · experimental", false); pilot.setFont(font(18, false)); pilot.setOpaque(false); pilot.setMaximumSize(new Dimension(520, 52)); pilot.setPreferredSize(new Dimension(520, 52));
       final JCheckBox fullscreen = new JCheckBox("Fullscreen", true); fullscreen.setFont(font(18, false)); fullscreen.setOpaque(false); fullscreen.setMaximumSize(new Dimension(520, 52)); fullscreen.setPreferredSize(new Dimension(520, 52));
       try { fullscreen.setSelected(Boolean.parseBoolean(new InstallStore(this.root).state().getProperty("fullscreen", "true"))); } catch(final Exception ignored) { }
