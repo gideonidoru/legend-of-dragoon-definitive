@@ -352,6 +352,7 @@ public final class GameEngine {
     }
 
     legend.game.textures.NativeUiTextures.reselect(EVENTS::postEvent);
+    GPU.reselectEffectArtwork(EVENTS::postEvent);
     final long artworkGeneration = ++uiArtworkGeneration;
     if(UI_TEXTURE != null) RENDERER.addTask(() -> {
       if(artworkGeneration == uiArtworkGeneration) {
@@ -379,6 +380,7 @@ public final class GameEngine {
 
   public static void bootRegistries() {
     legend.game.textures.NativeUiTextures.reselect(EVENTS::postEvent);
+    GPU.reselectEffectArtwork(EVENTS::postEvent);
     REGISTRY_ACCESS.initializeRemaining();
     ItemIcon.loadIconMap();
 

@@ -49,6 +49,117 @@ public class Gpu {
   public Texture vramTexture15;
   private Texture vramTexture24;
   private boolean vramDirty;
+  private final legend.definitive.effects.IndexedEffectVram effectVram = new legend.definitive.effects.IndexedEffectVram();
+  private Texture effectDetailTexture;
+  private boolean effectUploadFailed;
+  private long effectSelectionGeneration;
+
+  /** Native upload and source ownership are atomic; slow selection never reclaims overwritten words. */
+  public void uploadEffectTim(final legend.game.tim.Tim tim) {
+    this.uploadEffectTim(tim, legend.core.GameEngine.EVENTS::postEvent);
+  }
+
+  public void uploadEffectTim(final legend.game.tim.Tim tim, final java.util.function.Consumer<legend.definitive.effects.IndexedEffectTextureEvent> listener) {
+    final Rect4i rect = tim.getImageRect();
+    legend.definitive.effects.IndexedEffectVram.Source selected = null;
+    String hash = null;
+    final long selectionGeneration;
+    try {
+      if(tim.getBpp() == Bpp.BITS_4 && tim.hasClut() && rect.w > 0 && rect.w <= 256 && rect.h > 0 && rect.h <= 512 && tim.getData().size() <= 1024 * 1024) {
+        hash = legend.definitive.textures.TexturePilot.sha256(tim.getData().getBytes());
+      }
+    } catch(final Exception failure) { LOGGER.warn("FX source retained original: {}", failure.getMessage()); }
+    synchronized(this.vramLock) {
+      this.uploadData15(rect, tim.getImageData());
+      if(hash != null) selected = this.effectVram.register(rect, hash, null);
+      // Some retail CLUTs overlap their image: those palette writes must invalidate ownership.
+      if(tim.hasClut()) this.uploadData15(tim.getClutRect(), tim.getClutData());
+      selectionGeneration = this.effectSelectionGeneration;
+    }
+    if(selected == null) return;
+    try {
+      final var event = selected.event();
+      listener.accept(event);
+      if(event.detail != null) legend.definitive.effects.IndexedEffectVram.validate(tim, event.detail);
+      // Reselect touches only surviving ownership, including native copies of this upload.
+      synchronized(this.vramLock) { if(selectionGeneration == this.effectSelectionGeneration) this.effectVram.reselect(selected.id, event.detail); }
+    } catch(final Exception failure) { LOGGER.warn("FX detail retained original: {}", failure.getMessage()); }
+  }
+
+  public void reselectEffectArtwork(final java.util.function.Consumer<legend.definitive.effects.IndexedEffectTextureEvent> listener) {
+    final java.util.List<legend.definitive.effects.IndexedEffectVram.Source> sources;
+    final long selectionGeneration;
+    synchronized(this.vramLock) { selectionGeneration = ++this.effectSelectionGeneration; sources = this.effectVram.sources(); }
+    for(final var source : sources) {
+      final var event = source.event();
+      try {
+        listener.accept(event);
+        synchronized(this.vramLock) {
+          if(selectionGeneration != this.effectSelectionGeneration) return;
+          this.effectVram.reselect(source.id, event.detail);
+        }
+      } catch(final Exception failure) {
+        synchronized(this.vramLock) { if(selectionGeneration == this.effectSelectionGeneration) this.effectVram.reselect(source.id, null); }
+        LOGGER.warn("FX reselection retained original: {}", failure.getMessage());
+      }
+    }
+  }
+
+  /** Preserve the native CPU download/upload row rotation and its indexed detail together. */
+  public void rotateVramRows(final Rect4i rect, final int rows) {
+    synchronized(this.vramLock) {
+      if(rect.x < 0 || rect.y < 0 || rect.w < 1 || rect.h < 1 || rect.x > 1024 - rect.w || rect.y > 512 - rect.h || (long)rect.w * rect.h > 32768) throw new IllegalArgumentException("FX row rotation exceeds native VRAM budget");
+      final int[] nativePixels = new int[Math.multiplyExact(rect.w, rect.h)];
+      for(int y = 0; y < rect.h; y++) for(int x = 0; x < rect.w; x++) nativePixels[y * rect.w + x] = this.getPixel15(rect.x + x, rect.y + y);
+      this.effectVram.rotateRows(rect, rows);
+      for(int y = 0; y < rect.h; y++) for(int x = 0; x < rect.w; x++) {
+        final int pixel = nativePixels[Math.floorMod(y - rows, rect.h) * rect.w + x];
+        this.setVramPixel(rect.x + x, rect.y + y, colour15To24(pixel), pixel, true);
+      }
+      this.vramDirty = true;
+    }
+  }
+
+  public legend.definitive.effects.IndexedEffectVram.Snapshot captureEffectArtwork(final Rect4i rect) {
+    synchronized(this.vramLock) { return this.effectVram.capture(rect); }
+  }
+  public void restoreEffectArtwork(final legend.definitive.effects.IndexedEffectVram.Snapshot snapshot) {
+    synchronized(this.vramLock) { this.effectVram.restore(snapshot); }
+  }
+  public void releaseEffectArtwork(final legend.definitive.effects.IndexedEffectVram.Snapshot snapshot) {
+    synchronized(this.vramLock) { this.effectVram.release(snapshot); }
+  }
+
+  public boolean hasEffectArtwork() { synchronized(this.vramLock) { return this.effectDetailTexture != null && !this.effectUploadFailed; } }
+  public void useEffectArtwork() { synchronized(this.vramLock) { if(this.effectDetailTexture != null) this.effectDetailTexture.use(6); } }
+
+  private void updateEffectTexture() {
+    if(!this.effectVram.allocated() || this.effectUploadFailed) return;
+    try {
+      if(this.effectDetailTexture == null) {
+        this.effectDetailTexture = Texture.create("FxHD live indexed detail", builder -> {
+          builder.size(legend.definitive.effects.IndexedEffectVram.WIDTH, legend.definitive.effects.IndexedEffectVram.HEIGHT);
+          builder.internalFormat(TextureInternalFormat.R_32_UINT);
+          builder.dataFormat(TextureDataFormat.RED_INT);
+          builder.dataType(TextureDataType.UINT);
+          builder.wrapS(false); builder.wrapT(false);
+        });
+        this.effectDetailTexture.persistent = true;
+        this.effectVram.markAllDirty();
+      }
+      final var rows = this.effectVram.takeDirtyRows();
+      for(int first = rows.nextSetBit(0); first >= 0; first = rows.nextSetBit(rows.nextClearBit(first))) {
+        final int end = rows.nextClearBit(first), width = legend.definitive.effects.IndexedEffectVram.WIDTH;
+        final int[] pixels = Arrays.copyOfRange(this.effectVram.pixels(), first * width, end * width);
+        this.effectDetailTexture.data(0, first, width, end - first, TextureDataType.UINT, pixels);
+      }
+    } catch(final RuntimeException failure) {
+      if(this.effectDetailTexture != null) this.effectDetailTexture.delete();
+      this.effectDetailTexture = null;
+      this.effectUploadFailed = true;
+      LOGGER.warn("FX indexed detail upload failed; retaining original effects", failure);
+    }
+  }
 
   private Shader<SimpleShaderOptions> vramShader;
   private SimpleShaderOptions vramShaderOptions;
@@ -104,6 +215,10 @@ public class Gpu {
   }
 
   public void initVram() {
+    if(this.effectDetailTexture != null) this.effectDetailTexture.delete();
+    this.effectDetailTexture = null;
+    this.effectUploadFailed = false;
+    this.effectVram.markAllDirty();
     this.vramTexture15 = Texture.create("VRAM 15", builder -> {
       builder.size(1024, 512);
       builder.internalFormat(TextureInternalFormat.R_32_UINT);
@@ -119,6 +234,7 @@ public class Gpu {
         this.vramTexture15.data(0, 0, 1024, 512, TextureDataType.UINT, this.vram15);
         this.vramDirty = false;
       }
+      this.updateEffectTexture();
     }
   }
 
@@ -335,7 +451,8 @@ public class Gpu {
           colour15 |= (this.status.setMaskBit ? 1 : 0) << 15;
           colour24 |= (this.status.setMaskBit ? 1 : 0) << 24;
 
-          this.setVramPixel(destX + x, destY + y, colour24, colour15);
+          this.effectVram.copyWord((sourceY + y) * 1024 + sourceX + x, (destY + y) * 1024 + destX + x);
+          this.setVramPixel(destX + x, destY + y, colour24, colour15, true);
         }
       }
 
@@ -608,7 +725,12 @@ public class Gpu {
   }
 
   private void setVramPixel(final int x, final int y, final int pixel24, final int pixel15) {
+    this.setVramPixel(x, y, pixel24, pixel15, false);
+  }
+
+  private void setVramPixel(final int x, final int y, final int pixel24, final int pixel15, final boolean copiedEffects) {
     final int index = y * this.vramWidth + x;
+    if(!copiedEffects) this.effectVram.invalidateWord(index);
     this.vram24[index] = pixel24;
     this.vram15[index] = pixel15;
   }
