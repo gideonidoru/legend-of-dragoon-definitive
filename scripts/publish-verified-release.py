@@ -28,11 +28,17 @@ def verify_release(release, tag, source, expected):
     assets = release['assets']
     if len(assets) != len(expected) or {a['name'] for a in assets} != set(expected):
         raise ValueError('Release assets are missing, duplicated or unexpected')
+    download_tags = {tag}
+    # GitHub gives an unpublished draft a temporary HTML/download tag. Bind it
+    # to this exact draft's URL; published assets must use the approved tag.
+    if release['isDraft']:
+        temporary = re.fullmatch(r'https://github\.com/' + re.escape(REPO) + r'/releases/tag/(untagged-[a-f0-9]+)', release['url'])
+        if temporary:download_tags.add(temporary[1])
     for asset in assets:
         size, digest = expected[asset['name']]
         if asset['state'] != 'uploaded' or (asset['size'], asset['digest']) != (size, 'sha256:' + digest):
             raise ValueError('Release checksum/size/state mismatch: ' + asset['name'])
-        if asset['url'] != f'https://github.com/{REPO}/releases/download/{tag}/{asset["name"]}':
+        if asset['url'] not in {f'https://github.com/{REPO}/releases/download/{t}/{asset["name"]}' for t in download_tags}:
             raise ValueError('Unexpected release download URL')
 
 
@@ -97,7 +103,7 @@ def main():
     checked = [j for j in jobs if j['name'] in required]
     if len(checked) != len(required) or {j['name'] for j in checked} != required or any(j['status'] != 'completed' or j['conclusion'] != 'success' for j in checked):
         raise ValueError('Required packaging/test jobs are missing or did not pass')
-    def read():return json.loads(gh('release', 'view', args.tag, '-R', REPO, '--json', 'tagName,targetCommitish,isDraft,assets'))
+    def read():return json.loads(gh('release', 'view', args.tag, '-R', REPO, '--json', 'tagName,targetCommitish,isDraft,url,assets'))
     release = read()
     verify_release(release, args.tag, args.source_sha, expected)
     verify_tag(args.tag, args.source_sha, required=not release['isDraft'])

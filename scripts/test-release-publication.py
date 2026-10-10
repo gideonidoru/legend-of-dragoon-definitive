@@ -11,7 +11,7 @@ import zipfile
 
 repo = Path(__file__).resolve().parents[1]
 source = 'a' * 40
-for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag'):
+for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url'):
     with tempfile.TemporaryDirectory(prefix='definitive-release-fixture-') as directory:
         root = Path(directory); assets = root / 'assets'; assets.mkdir(); tools = root / 'tools'; tools.mkdir()
         (assets / 'Definitive-Installer.zip').write_bytes(b'original installer fixture')
@@ -24,12 +24,16 @@ for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch
                 archive.writestr('definitive-package.properties', f'format=1\njava=25\nsourceRevision={source}\nreleaseTag={tag}\nplatform={platform}\n')
         names = sorted(p.name for p in assets.iterdir())
         (assets / 'SHA256SUMS').write_text(''.join(sha(assets / n) + '  ' + n + '\n' for n in names))
-        release = {'tagName': tag, 'targetCommitish': source, 'isDraft': scenario != 'already-public', 'assets': []}
+        temporary_tag = 'untagged-e8c0b3b8be797c205abe'
+        release = {'tagName': tag, 'targetCommitish': source, 'isDraft': scenario not in ('already-public', 'temporary-public-url'), 'url': f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/{temporary_tag if scenario in ("draft-temporary-urls", "wrong-draft-url", "temporary-public-url") else tag}', 'assets': []}
         for path in assets.iterdir():
             release['assets'].append({'name': path.name, 'state': 'uploaded', 'size': path.stat().st_size, 'digest': 'sha256:' + sha(path), 'url': f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/{tag}/{path.name}'})
         if scenario == 'digest-mismatch':release['assets'][0]['digest'] = 'sha256:' + '0' * 64
         if scenario == 'size-mismatch':release['assets'][0]['size'] += 1
         if scenario == 'missing-asset':release['assets'].pop()
+        if scenario in ('draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url'):
+            for asset in release['assets']:asset['url'] = asset['url'].replace('/' + tag + '/', '/' + temporary_tag + '/')
+        if scenario == 'wrong-draft-url':release['assets'][0]['url'] = release['assets'][0]['url'].replace(temporary_tag, 'untagged-aaaaaaaaaaaaaaaaaaaa')
         (root / 'release.json').write_text(json.dumps(release)); (root / 'notes.md').write_text('Fixture only')
         gh = tools / 'gh'
         gh.write_text('#!' + sys.executable + '\n' + '''import json,os,sys
@@ -54,7 +58,11 @@ elif a[:2]==['release','view']:
     if scenario=='lookup-failure':sys.exit(1)
     print((root/'release.json').read_text())
 elif a[:2]==['release','edit']:
-    data=json.loads((root/'release.json').read_text());data['isDraft']=False;(root/'release.json').write_text(json.dumps(data));print('published fixture')
+    data=json.loads((root/'release.json').read_text());data['isDraft']=False
+    if scenario=='draft-temporary-urls':
+        data['url']=data['url'].replace('untagged-e8c0b3b8be797c205abe','fixture-recovery')
+        for asset in data['assets']:asset['url']=asset['url'].replace('untagged-e8c0b3b8be797c205abe','fixture-recovery')
+    (root/'release.json').write_text(json.dumps(data));print('published fixture')
 else:raise AssertionError(a)
 ''')
         gh.chmod(0o755)
@@ -62,7 +70,7 @@ else:raise AssertionError(a)
         result = subprocess.run([sys.executable, str(repo / 'scripts/publish-verified-release.py'), '--tag', tag, '--source-sha', source, '--run', '123', '--assets-dir', str(assets), '--notes-file', str(root / 'notes.md')], env=env, capture_output=True, text=True, timeout=5)
         calls = [json.loads(line) for line in (root / 'calls.jsonl').read_text().splitlines()]
         publications = [a for a in calls if a[:2] == ['release', 'edit']]
-        if scenario in ('success', 'annotated-tag'):assert result.returncode == 0 and len(publications) == 1 and '--draft=false' in publications[0], result.stderr
+        if scenario in ('success', 'annotated-tag', 'draft-temporary-urls'):assert result.returncode == 0 and len(publications) == 1 and '--draft=false' in publications[0], result.stderr
         elif scenario == 'already-public':assert result.returncode == 0 and not publications, result.stderr
         else:assert result.returncode != 0 and not publications, 'Failed gate published: ' + scenario
         print('PASS', scenario)
