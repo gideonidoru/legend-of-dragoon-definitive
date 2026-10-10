@@ -4,6 +4,8 @@ Optional character geometry for Legend of Dragoon: Definitive, derived from Seve
 
 **Version 0.2.0: optional development geometry pass for all 19 party battle variants.** Nine normal forms, nine Dragoon forms and Divine Dart now have source-bound generated candidates and native-loader checks. This improves eligible surfaces; it does not deliver the individually remodeled faces, hair, costumes or anatomy required for the final visual target. Field and world-map replacements are unfinished. The retained portrait/neck experiments are held and are not shipped by this mod.
 
+[Download the optional code and generation tools](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/modelshd-0.2.0-dev). Source-derived geometry is generated locally from your own extracted files and is not included in the public download.
+
 Build from the project root with Java 25:
 
 ```sh
