@@ -146,7 +146,7 @@ Private reproduction files retain runners, logs, locks, validator reports, outpu
 
 ## Remaining art and integration work
 
-The face is conspicuously clearer than the original source portrait, but the candidate is held from acceptance. Hair clumps and frayed ends, facial proportions, the inferred unseen back and the neck transition need deliberate art correction. Retopology must reduce fragmented UV charts and remove faces without texture coverage. Original part-pivot/scale alignment and attached-part correspondence remain open.
+The face is conspicuously clearer than the original source portrait, but the candidate is held from acceptance. Hair clumps and frayed ends, facial proportions, the inferred unseen back and the neck transition need deliberate art correction. Retopology must reduce fragmented UV charts and remove faces without texture coverage. The [subsequent full-character attachment study](HEAD_ATTACHMENT_STUDY.md) checks three private affine fits against the original head pivot at all 12 sampled keys. It exposes detached rear strips in side views; artistic attachment correspondence, anatomical alignment, the broader motion catalog and native behavior remain open.
 
 Review the corrected head at handheld size and against the original design before expanding to costume/body materials or other characters. Then define and verify the native import/material contract, sampled animation, lighting, STP/blending, occlusion and teardown. Follow with physical Deck memory/frame-time/power and suspend/input checks, then community comparison. The owner's approved concept direction does not establish community acceptance.
 
