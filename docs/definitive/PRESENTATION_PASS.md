@@ -46,13 +46,15 @@ Both downloaded platform packages passed their full closed inventories, hashes, 
 
 ## Linux screen review
 
-These are the actual shipped Swing components rendered in the hosted Linux build, rather than a separate mockup or a physical Deck capture. Skurfa artwork and its source/license attribution remain intact. Setup and launcher examples are 1100/1280 by 700 pixels; the smallest tested client area is 1024 by 660.
+These are the actual shipped Swing components rendered in corrected hosted run 38019004372, rather than a separate mockup or a physical Deck capture. Skurfa artwork and its source/license attribution remain intact. Setup and launcher examples are 1100/1280 by 700 pixels; the smallest tested client area is 1024 by 660.
 
 ![Installer](images/installer-linux.png)
 
 ![Launcher](images/launcher-linux.png)
 
 ![Update review](images/updater-linux.png)
+
+![Verified installation and Steam integration](images/steam-linux.png)
 
 ## Public release-selection correction
 
@@ -61,3 +63,27 @@ The first live public setup probe completed a verified installation, but its sou
 Selection now compares publication times of compatible, non-draft releases, validates the selected metadata and tag-bound URL, then checks the installed identity. An older installed release cannot hide a newer update, and an already-current installation cannot be offered an older listed entry. Invalid publication dates, ambiguous newest dates and wrong tag download URLs fail closed, including when the selected identity matches the installed release. Equal dates among older releases do not hide a uniquely newer release. The corrected published release must pass a fresh live source-identity assertion before delivery is considered verified.
 
 The correction's full local supported build passed with `build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-09-presentation-2`: 71 delivery cases, 69 passed, zero failures, two actual-window cases deferred to Linux. All bootstrap, interruption, archive, publication-gate and workflow checks passed again. Both independent focused reviews found no remaining actionable finding.
+
+## Corrected package verification
+
+Source: [`53d4106453f391c52e0953d488df424170f4d89b`](https://github.com/gideonidoru/legend-of-dragoon-definitive/commit/53d4106453f391c52e0953d488df424170f4d89b). [Hosted run 38019004372](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38019004372) passed all three required jobs. Linux and Mac each reported 71 delivery cases: 69 passed, zero failures, two deferred; Linux separately passed both actual-window checks under Xvfb. All workflow bootstrap, interruption, archive, publication and material checks passed.
+
+Both independently downloaded packages passed full closed inventory, identity, source, tag and platform checks: Linux `alpha-f00dc5f81588f473`, Mac `alpha-63a4e65b5f20df7c`. Both portable installers are byte-identical to each other and the locally stamped entry point. The exact-source Mac package updated the isolated QA installation, prepared all four images through the real upstream extractor in about 11 seconds, and retained its verified fixture shortcut. It did not operate real Steam or launch gameplay.
+
+| Asset | Bytes | SHA256 |
+| --- | ---: | --- |
+| `Install-Definitive.desktop` | 1,384 | `d74ecf35d5b8ae47aa6cb3226d32b30a215649a93516ac6cc2ebb1e4b5a4961b` |
+| `Install-Definitive.sh` | 3,440 | `9014420767d97636d050d8f5c74100b6ff89f6b0aab5974aae15e6efcfe693c9` |
+| `Definitive-Installer.zip` | 9,374,950 | `280ca1b049b372365c72924942604f39e746fdbf6da372269710dd1fe9e5e42b` |
+| `Legend-of-Dragoon-Definitive-linux-x64.zip` | 433,352,635 | `7e989ff91c8ae9ddc6bec0f5c4d53fa048ff2dea1bc91a70286d7eb8abed80f0` |
+| `Legend-of-Dragoon-Definitive-macos-arm64.zip` | 423,795,925 | `6ebb6e6893a42e545a3a32a1dc78f701c85e27cac86df65ec25ef8adb9cfa268` |
+
+## Published delivery check
+
+The [corrected alpha](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-alpha-2026-10-09-presentation-2) was published only after the account/build/tag/complete-asset gate passed. Independently downloaded public desktop and shell entry points match the upload inputs byte-for-byte with normal TLS verification.
+
+Using the manager from the exact-source hosted package, a fresh public installation at the isolated `network-presentation-2-oct09` QA root downloaded and verified the expected source, tag, asset identity, full inventory, HD mod and executable launchers. It exited successfully. A separate earlier recovery installation completed a live public update to the same corrected source, preserved synthetic save data, suppressed an update when current, then restored and verified the previous engine/data. Its restored installation rediscovered the newer correction. That probe also exited successfully. These checks did not launch the game or real Steam.
+
+The release index still places the older recovery entry first; the corrected selector handles this real response correctly. Earlier clients can retain the old selection bug. Redownload the corrected `.desktop` entry and select the existing installation folder for repair/upgrade. Previous immutable assets are preserved; superseded release notes direct users to the corrected installer.
+
+Remaining acceptance is on physical Steam Deck hardware using [DECK_TEST_PLAN.md](DECK_TEST_PLAN.md): real Steam lifecycle/Gaming Mode, touch/controller interaction, installation/upgrade/restore under interruption and offline launch. These delivery checks do not establish gameplay performance or the planned character-rendering improvements.
