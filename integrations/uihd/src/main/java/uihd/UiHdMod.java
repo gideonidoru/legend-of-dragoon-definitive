@@ -32,9 +32,9 @@ public final class UiHdMod {
 
   public UiHdMod() {
     try {
-      final var catalog = new JSONObject(new String(ArtworkResources.read(UiHdMod.class, "/uihd/catalog.json", 1024 * 1024), StandardCharsets.UTF_8));
+      final var catalog = new JSONObject(new String(ArtworkResources.read(UiHdMod.class, "/uihd/catalog.json", 2 * 1024 * 1024), StandardCharsets.UTF_8));
       final JSONArray entries = catalog.getJSONArray("assets");
-      if(entries.length() > 384) throw new IOException("UI catalog exceeds bounds");
+      if(entries.length() > 1024) throw new IOException("UI catalog exceeds bounds");
       for(int i = 0; i < entries.length(); i++) {
         final JSONObject entry = entries.getJSONObject(i);
         if(!entry.getString("reviewStatus").equals("selected-source-layout-review-native-pending")) continue;
@@ -76,7 +76,8 @@ public final class UiHdMod {
         if(crop.length() != 4 || crop.getInt(0) < 0 || crop.getInt(1) < 0 || crop.getInt(2) < 1 || crop.getInt(3) < 1
           || crop.getInt(0) + crop.getInt(2) > 256 || crop.getInt(1) + crop.getInt(3) > 256 || entry.getInt("palette") < 0 || entry.getInt("palette") >= 16) throw new IOException("UI spirit crop differs");
       }
-      case "png" -> { if(!source.startsWith(Path.of("gfx/ui"))) throw new IOException("UI PNG source differs"); }
+      case "png" -> { if(!source.startsWith(Path.of("gfx/ui")) && !source.equals(Path.of("gfx/textures/loading.png"))) throw new IOException("UI PNG source differs"); }
+      case "raster" -> { entry.getString("family"); }
       case "native" -> {
         entry.getString("family");
         final JSONArray crop = entry.getJSONArray("crop");
@@ -96,7 +97,7 @@ public final class UiHdMod {
   }
 
   private static Image candidate(final JSONObject entry) throws IOException {
-    final byte[] bytes = ArtworkResources.read(UiHdMod.class, "/uihd/assets/" + entry.getString("resource"), 1024 * 1024);
+    final byte[] bytes = ArtworkResources.read(UiHdMod.class, "/uihd/assets/" + entry.getString("resource"), 4 * 1024 * 1024);
     ArtworkResources.hash(bytes, entry.getString("outputSha256"));
     final JSONArray size = entry.getJSONArray("outputSize");
     final Image image = UiTextures.decode(bytes);
@@ -108,6 +109,7 @@ public final class UiHdMod {
   public void replace(final ReplaceAtlasTexturesEvent event) {
     for(final JSONObject entry : this.assets) {
       if(!entry.getString("kind").equals("atlas") && !entry.getString("kind").equals("atlas-native")) continue;
+      if(event.get(new RegistryId(entry.getString("registryId"))) == null) continue;
       try {
         final Path relative = Path.of(entry.getString("sourcePath")).normalize();
         final boolean game = relative.startsWith("characters") || entry.getString("kind").equals("atlas-native");
@@ -152,7 +154,21 @@ public final class UiHdMod {
   }
 
   @EventListener
+  public void raster(final legend.game.textures.UiRasterEvent event) {
+    for(final JSONObject entry : this.assets) {
+      if(!entry.getString("kind").equals("raster") || !entry.getString("family").equals(event.id)) continue;
+      try {
+        ArtworkResources.hash(event.source(), entry.getString("sourceSha256"));
+        event.replace(event.original(), candidate(entry));
+      } catch(final Exception failure) {
+        LOGGER.warn("UIHD retained original {}: {}", entry.getString("id"), failure.getMessage());
+      }
+    }
+  }
+
+  @EventListener
   public void nativeTexture(final NativeUiTextureEvent event) {
+    NativeUiTextures.beginSelection(this, event.slot);
     final byte[] source = event.source();
     final var tim = event.tim();
     for(final JSONObject entry : this.assets) {
@@ -165,7 +181,7 @@ public final class UiHdMod {
         final var binding = new NativeUiTextures.Binding(event.imageX * 4 + x, event.imageY + y,
           event.clutX + palette / event.clutRows * 16, event.clutY + palette % event.clutRows, w, h);
         final long bytes = (long)w * h * 4 * (1 + scale * scale);
-        NativeUiTextures.registerDeferred(binding, bytes, () -> {
+        NativeUiTextures.registerDeferred(this, event.slot, binding, bytes, () -> {
           try { return new NativeUiTextures.Images(NativeUiTextures.decode(tim,palette,x,y,w,h),candidate(entry)); }
           catch(final IOException failure) { throw new java.io.UncheckedIOException(failure); }
         });

@@ -196,6 +196,25 @@ public final class NativeRendererProbe {
     for(int i=0;i<2;i++) {retired.use(1);use.invoke(model);glActiveTexture(GL_TEXTURE1);require(glGetInteger(GL_TEXTURE_BINDING_2D)==vramId&&!enabled.getBoolean(model),"every paused fallback redraw binds native VRAM");}
     legend.game.textures.NativeUiTextures.beginFrame();
     require(deleted.getBoolean(retired),"cleared owned pages retire on the renderer before replacement uploads, including paused frames");
+    final Object slotOwner=new Object();
+    final var slotBinding=new legend.game.textures.NativeUiTextures.Binding(0,0,144,496,256,256);
+    Texture previousSlot=null;
+    for(int i=0;i<5;i++) {
+      legend.game.textures.NativeUiTextures.beginSelection(slotOwner,"credit_slot_0");
+      require(previousSlot==null||!legend.game.textures.NativeUiTextures.touch(previousSlot),"reused slot invalidates stale retained draws before upload");
+      final byte[] changed=art.clone();for(int j=0;j<changed.length;j+=4)changed[j]=(byte)(120+i);
+      legend.game.textures.NativeUiTextures.registerDeferred(slotOwner,"credit_slot_0",slotBinding,bytes,()->new legend.game.textures.NativeUiTextures.Images(
+        new legend.game.textures.Image(source,256,256),new legend.game.textures.Image(changed,1024,1024)));
+      final var current=new QueuedModelStandard(batch,null,null,java.nio.FloatBuffer.allocate(32));
+      legend.game.textures.NativeUiTextures.apply(current,0,0,144,496,0,0,16,16);
+      require(previousSlot==null||deleted.getBoolean(previousSlot),"credit/chapter replacement physically retires the previous slot before allocating");
+      require(legend.game.textures.NativeUiTextures.residentCount()==1&&legend.game.textures.NativeUiTextures.allocatedBytes()==bytes,"repeated slot replacement has constant resident cost");
+      previousSlot=(Texture)artwork.get(((java.util.List<?>)regions.get(null)).getFirst());
+    }
+    legend.game.textures.NativeUiTextures.beginSelection(slotOwner,"credit_slot_0");
+    legend.game.textures.NativeUiTextures.beginFrame();
+    require(deleted.getBoolean(previousSlot)&&legend.game.textures.NativeUiTextures.allocatedBytes()==0,"unsupported replacement returns the retired slot to native rendering");
+    legend.game.textures.NativeUiTextures.clear();
     Texture.deleteTextures();vram.deleteOwnedCacheEntry();GameEngine.GPU.vramTexture15=null;
     quad.delete();Obj.deleteObjects();require(glGetError()==GL_NO_ERROR,"complete UI residency fixture has no GPU errors");
     System.out.println("PASS: lazy uploads, current-frame pins, 32 MiB residency, immediate eviction, mirrored source UVs, automatic native HUD binding, pooled vertex reset and repeated paused fallback.");

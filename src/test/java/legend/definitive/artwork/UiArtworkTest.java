@@ -76,7 +76,7 @@ class UiArtworkTest {
   @Test void shippedCatalogMatchesHashesDimensionsAndExactCoverage() throws Exception {
     final Path base=Path.of("integrations/uihd/runtime-assets/uihd");
     final var catalog=new org.json.JSONObject(java.nio.file.Files.readString(base.resolve("catalog.json")));
-    final var assets=catalog.getJSONArray("assets");assertEquals(259,assets.length());
+    final var assets=catalog.getJSONArray("assets");assertEquals(738,assets.length());
     final var ids=new java.util.HashSet<String>();long enhancedBytes=0;final var counts=new java.util.HashMap<String,Integer>();
     for(int n=0;n<assets.length();n++) {
       final var entry=assets.getJSONObject(n);assertTrue(ids.add(entry.getString("id")));
@@ -88,7 +88,7 @@ class UiArtworkTest {
       assertEquals(w*scale,image.width);assertEquals(h*scale,image.height);assertTrue(scale>=2&&scale<=4);
       assertEquals(entry.getLong("enhancedRgbaBytes"),image.data.length);enhancedBytes+=image.data.length;
       final String kind=entry.getString("kind");counts.merge(kind,1,Integer::sum);
-      final boolean nativeImage=kind.equals("native");
+      final boolean nativeImage=kind.equals("native")||kind.equals("raster");
       final byte[] classes=new byte[w*h*(nativeImage?2:1)];
       for(int y=0;y<h;y++)for(int x=0;x<w;x++) {
         final int i=(y*scale*image.width+x*scale)*4,out=(y*w+x)*(nativeImage?2:1);
@@ -118,11 +118,23 @@ class UiArtworkTest {
       }
     }
     assertEquals(catalog.getLong("enhancedRgbaBytes"),enhancedBytes);
-    assertEquals(169_535_488L,enhancedBytes);
-    assertEquals(java.util.Map.of("atlas",30,"png",12,"atlas-native",26,"native",191),counts);
+    assertEquals(319_027_968L,enhancedBytes);
+    assertEquals(java.util.Map.of("atlas",30,"png",13,"atlas-native",26,"native",665,"raster",4),counts);
     assertEquals(9,ids.stream().filter(id->id.startsWith("portrait-")).count());
     assertEquals(96,ids.stream().filter(id->id.startsWith("battle_hud_")).count());
     assertEquals(48,ids.stream().filter(id->id.startsWith("basic_")).count());
+    final var expectedFamilies=new java.util.HashSet<String>(java.util.Set.of("menu","items","menu_characters","menu_character_extras","dialogue","dialogue_arrow","world_map","indicator_big_arrow","indicator_small_arrow","indicator_alert","the_end"));
+    for(int i=0;i<6;i++)expectedFamilies.add("battle_hud_"+i);
+    for(int i=0;i<3;i++)expectedFamilies.add("basic_"+i);
+    for(int chapter=0;chapter<4;chapter++)for(int frame=0;frame<14;frame++)if(frame<6||frame>=8)expectedFamilies.add("chapter_"+chapter+"_"+frame);
+    for(int credit=0;credit<=356;credit++)if(credit!=50)expectedFamilies.add("credit_"+credit);
+    final var actualFamilies=new java.util.HashSet<String>();
+    for(int i=0;i<assets.length();i++)if(assets.getJSONObject(i).getString("kind").equals("native"))actualFamilies.add(assets.getJSONObject(i).getString("family"));
+    assertEquals(expectedFamilies,actualFamilies);
+    assertTrue(ids.containsAll(java.util.Set.of("game_over","title_background","title_trademark","title_copyright","loading_eye")));
+    assertEquals(96,ids.stream().filter(id->id.startsWith("chapter_")).count());
+    assertEquals(356,ids.stream().filter(id->id.startsWith("credit_")).count());
+    assertEquals(16,ids.stream().filter(id->id.startsWith("world_map-")).count());
   }
 
   @Test void privateNativeSourcesSurviveOwnershipChangesAndRemainBounded() throws Exception {
@@ -157,9 +169,44 @@ class UiArtworkTest {
   @Test void allDefaultFamiliesReplayWithTheirPhysicalPaletteRows() {
     final var sources=new legend.game.textures.NativeUiSources();
     final byte[] bytes=new byte[32];bytes[0]=16;
-    for(int i=0;i<17;i++)sources.remember(new legend.game.textures.NativeUiTextureEvent("small"+i,new legend.game.tim.Tim(new legend.game.unpacker.FileData(bytes)),0,0,0,0,4));
+    for(int i=0;i<65;i++)sources.remember(new legend.game.textures.NativeUiTextureEvent("small"+i,new legend.game.tim.Tim(new legend.game.unpacker.FileData(bytes)),0,0,0,0,4));
     final var replay=new java.util.ArrayList<legend.game.textures.NativeUiTextureEvent>();sources.replay(replay::add);
-    assertEquals(16,replay.size());assertEquals("small1",replay.getFirst().id);
-    assertTrue(replay.stream().allMatch(e->e.clutRows==4));assertEquals(16*32,sources.retainedBytes());
+    assertEquals(64,replay.size());assertEquals("small1",replay.getFirst().id);
+    assertTrue(replay.stream().allMatch(e->e.clutRows==4));assertEquals(64*32,sources.retainedBytes());
   }
+  @Test void savedPortraitPackingFallsBackAtomicallyOnOptionalFailures() {
+    final var id=new RegistryId("test:portrait");
+    final java.util.List<java.util.function.Consumer<legend.game.textures.ReplaceAtlasTexturesEvent>> failures=java.util.List.of(
+      event->{event.get(id).data[0]=99;throw new IllegalStateException("optional artwork listener failed");},
+      event->event.replace(id,original(),new Image(new byte[0],0,1)),
+      event->event.replace(id,original(),new Image(new byte[2049*4],2049,1)));
+    for(final var selection:failures) {
+      final var packer=new TexturePacker("Save reliability");packer.add(id,original());
+      final var packed=packer.packWithReplacements(8,8,8,selection);
+      final var rect=packer.getRect(id);
+      assertEquals(2,rect.w);assertEquals(1,rect.h);
+      assertEquals(40,packed.data()[(rect.y*packed.width()+rect.x)*4]);
+    }
+    final var packer=new TexturePacker("Selected save portrait");packer.add(id,original());
+    final var selected=packer.packWithReplacements(2,2,8,event->event.replace(id,original(),enlarged()));
+    assertEquals(4,packer.getRect(id).w);assertEquals(50,selected.data()[(packer.getRect(id).y*selected.width()+packer.getRect(id).x)*4]);
+  }
+
+  @Test void directRastersKeepStpAndFirstOwnerAndSourcesReplayCurrentSlots() {
+    final var source=new Image(new byte[]{40,60,80,0,0,0,0,(byte)255},2,1);
+    final var target=enlarged();for(int i=3;i<target.data.length;i+=4)target.data[i]=(byte)(i%16<8?0:255);
+    final var event=new legend.game.textures.UiRasterEvent("title",new byte[]{1},source);
+    assertTrue(event.replace(source,target));assertFalse(event.replace(source,target));
+    source.data[0]=0;target.data[0]=0;assertEquals(40,event.original().data[0]);assertEquals(50,event.image().data[0]);
+    final var sources=new legend.game.textures.NativeUiSources();final byte[] tim=new byte[32];tim[0]=16;
+    sources.remember(new legend.game.textures.NativeUiTextureEvent("chapter_0_0","chapter_name",new legend.game.tim.Tim(new legend.game.unpacker.FileData(tim)),0,0,0,0,2));
+    sources.remember(new legend.game.textures.NativeUiTextureEvent("chapter_0_1","chapter_name",new legend.game.tim.Tim(new legend.game.unpacker.FileData(tim)),0,0,0,0,2));
+    final var replay=new java.util.ArrayList<legend.game.textures.NativeUiTextureEvent>();sources.replay(replay::add);
+    assertEquals(1,replay.size());assertEquals("chapter_0_1",replay.getFirst().id);assertEquals("chapter_name",replay.getFirst().slot);
+    final var owner=new Object();final var binding=new NativeUiTextures.Binding(0,0,16,32,2,1);
+    NativeUiTextures.clear();NativeUiTextures.registerDeferred(owner,"chapter_name",binding,40,()->new NativeUiTextures.Images(original(),enlarged()));
+    NativeUiTextures.beginSelection(new Object(),"chapter_name");assertEquals(1,NativeUiTextures.selectionCount());
+    NativeUiTextures.beginSelection(owner,"chapter_name");assertEquals(0,NativeUiTextures.selectionCount());assertEquals(0,NativeUiTextures.allocatedBytes());
+  }
+
 }
