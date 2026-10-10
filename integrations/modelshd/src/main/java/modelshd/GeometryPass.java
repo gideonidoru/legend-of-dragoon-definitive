@@ -61,7 +61,7 @@ public final class GeometryPass {
   }
 
   public boolean prepare(final TmdGeometryEvent event, final Path overrides) throws IOException {
-    if(event.geometry != event.source || event.source.getClass() != TmdObjTable1c.class || event.source.isAuthoredGeometry()) return false;
+    if(event.geometry != event.source || event.source.getClass() != TmdObjTable1c.class || event.source.isAuthoredGeometry() || event.source.requiresNativeVertexIndices()) return false;
     final TmdObjTable1c[] source = {event.source};
     final String identity = ModelPack.identity(source);
     final Path override = overrides.resolve(identity + ".json");

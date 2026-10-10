@@ -114,6 +114,27 @@ class GeometryPassTest {
     assertFalse(source.isAuthoredGeometry());assertTrue(ModelPackTest.source(0x20).isAuthoredGeometry());
   }
 
+  @Test void vertexDifferenceAnimationRetiresCachedRefinementAndKeepsOriginalIndices() throws Exception {
+    var source=parsed();var pack=ModelPackTest.pack(source);
+    var part=pack.getAsJsonArray("parts").get(0).getAsJsonObject();
+    part.getAsJsonArray("vertices").add(ModelPackTest.rows(new float[][]{{5,0,0}}).get(0));
+    part.getAsJsonArray("faces").get(0).getAsJsonObject().getAsJsonArray("vertices").set(0,new com.google.gson.JsonPrimitive(3));
+    var listener=new Listener(pass(source,pack.toString().getBytes(),false),overrides);GameEngine.EVENTS.register(listener);
+    var cached=(MeshObj)source.getObj();assertEquals(3f,cached.meshes[0].vertices()[3]);
+    var direct=TmdObjLoader.fromObjTable("separate direct consumer",source);direct.delete();
+    var animation=new legend.game.combat.types.VertexDifferenceAnimation18();
+    animation.tmd=source;animation.ticksRemaining_00=2;animation.vertexCount_08=3;animation.sourceVertices_0c=source.vert_top_00;
+    animation.current_14=java.util.Arrays.stream(source.vert_top_00).map(org.joml.Vector3f::new).toArray(org.joml.Vector3f[]::new);
+    animation.step_10=new org.joml.Vector3f[]{new org.joml.Vector3f(1,0,0),new org.joml.Vector3f(1,0,0),new org.joml.Vector3f(1,0,0)};
+    legend.game.combat.types.VertexDifferenceAnimation18.applyVertexDifferenceAnimation(null,animation);
+    var nativeObj=(MeshObj)source.getObj();assertNotSame(cached,nativeObj);assertTrue(source.requiresNativeVertexIndices());
+    assertEquals(11f,nativeObj.meshes[0].vertices()[16]);assertEquals(2,listener.calls);
+    for(int offset=0;offset<nativeObj.meshes[0].vertices().length;offset+=16) assertTrue(nativeObj.meshes[0].vertices()[offset+3]<source.n_vert_04);
+    Obj.deleteObjects();assertTrue(api.created.get(0).deleted);assertTrue(api.created.get(1).deleted);assertFalse(api.created.get(2).deleted);
+    legend.game.combat.types.VertexDifferenceAnimation18.applyVertexDifferenceAnimation(null,animation);
+    assertSame(nativeObj,source.getObj());assertEquals(12f,nativeObj.meshes[0].vertices()[16]);assertEquals(2,listener.calls);
+  }
+
   public static class Listener {
     final GeometryPass pass; final Path folder; int calls;
     Listener(GeometryPass pass,Path folder){this.pass=pass;this.folder=folder;}

@@ -1,6 +1,6 @@
 # ModelsHD 0.4.0
 
-The first broad geometry smoothing pass for Legend of Dragoon: Definitive. All 1,343 supported canonical model containers were inspected; 1,004 receive some smoothing and 339 keep their originals. The complete mod contains 8,777 unique source-bound custom part replacements. Individual faces, hair and costumes have not been rebuilt.
+The first broad geometry smoothing pass for Legend of Dragoon: Definitive. All 1,343 supported canonical model containers were inspected; 964 receive some smoothing and 379 keep their originals. The complete mod contains 8,531 unique source-bound custom part replacements. Individual faces, hair and costumes have not been rebuilt.
 
 The normal Definitive installer supplies this mod together with its compatible engine. Select HD artwork to load it, or original artwork to restore the native route on the next game/model load. Existing campaigns can enable ModelsHD through the game's mod menu.
 

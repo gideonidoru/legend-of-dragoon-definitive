@@ -22,6 +22,7 @@ public final class ModelsHdMod {
       TmdObjTable1c.class.getConstructor(String.class, org.joml.Vector3f[].class, org.joml.Vector3f[].class, TmdObjTable1c.Primitive[].class);
       TmdObjTable1c.class.getMethod("buildObjLike", TmdObjTable1c.class);
       TmdObjTable1c.class.getMethod("isAuthoredGeometry");
+      TmdObjTable1c.class.getMethod("requiresNativeVertexIndices");
       this.geometryPass = new GeometryPass();
       legend.core.GameEngine.EVENTS.register(this);
     } catch(final NoSuchMethodException | java.io.IOException e) {

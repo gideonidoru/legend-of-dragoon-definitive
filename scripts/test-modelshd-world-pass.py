@@ -64,5 +64,17 @@ class WorldPassTest(unittest.TestCase):
         other_parts,other_native,_=world.exporter.native_parts(data)
         self.assertEqual(world.part_identities(data,other_parts,other_native)[0],identity)
 
+    def test_folded_subdivision_retains_the_original_part(self):
+        points=np.array([[0,0,.01],[3.9051859056204807,.5775533215584018,.0021971315619600616],
+          [1.0704608968092506,.5255790345039573,.0021313703978174912],
+          [1.3269944347169742,2.6336168454741653,-.005368402824655831],
+          [-.406168078697465,.4136277789555988,.003951535636881163],
+          [-7.7828048093042845,2.337710023508289,.0011430573907408245],
+          [-1.551751919323187,-1.9203559764934748,.005232813604027935]])
+        polygons=[([0,i+1,(i+1)%6+1],None,None,np.ones((3,3))*128) for i in range(6)]
+        payload,report=world.refine_candidate('0'*64,(points,polygons),(np.array([[0,0,1.]]),[[0,0,0]]*6))
+        self.assertIsNone(payload)
+        self.assertEqual(report['reason'],'refinement inverted a triangle')
+
 
 if __name__=='__main__': unittest.main()

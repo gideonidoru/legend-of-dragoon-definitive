@@ -80,7 +80,7 @@ public final class TmdObjLoader {
 
   public static MeshObj fromObjTable(final String name, final TmdObjTable1c objTable, final int specialFlags, final int textureWidth, final int textureHeight) {
     TmdObjTable1c geometry = objTable;
-    if(objTable.getClass() == TmdObjTable1c.class && !objTable.isAuthoredGeometry()) {
+    if(objTable.getClass() == TmdObjTable1c.class && !objTable.isAuthoredGeometry() && !objTable.requiresNativeVertexIndices()) {
       try {
         geometry = EVENTS.postEvent(new TmdGeometryEvent(objTable, specialFlags, textureWidth, textureHeight)).geometry;
         if(geometry == null) geometry = objTable;
@@ -89,7 +89,9 @@ public final class TmdObjLoader {
       }
     }
     try {
-      return fromObjTableRaw(name, geometry, specialFlags, textureWidth, textureHeight);
+      final MeshObj result = fromObjTableRaw(name, geometry, specialFlags, textureWidth, textureHeight);
+      if(geometry != objTable) objTable.refinedObj = result;
+      return result;
     } catch(final RuntimeException failure) {
       if(geometry == objTable) throw failure;
       LogManager.getLogger().warn("Optional geometry allocation kept original {}: {}", name, failure.getMessage());

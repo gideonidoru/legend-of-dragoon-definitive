@@ -27,6 +27,21 @@ public class TmdObjTable1c {
   public final int n_primitive_14;
   public final int scale_18;
   private final boolean authoredGeometry;
+  private boolean nativeVertexIndices;
+  Obj refinedObj;
+  private boolean refinedCache;
+
+  public boolean requiresNativeVertexIndices() {
+    return this.nativeVertexIndices;
+  }
+
+  /** Deforming effects address the original CPU vertices, so retire only our refined cache. */
+  public void retainNativeVertexIndices() {
+    this.nativeVertexIndices = true;
+    if(this.refinedCache) {
+      this.delete();
+    }
+  }
 
   /** Explicit geometry owners retain priority over optional automatic refinement. */
   public boolean isAuthoredGeometry() {
@@ -139,6 +154,7 @@ public class TmdObjTable1c {
   public Obj getObj() {
     if(this.obj == null) {
       this.obj = TmdObjLoader.fromObjTable(this.meshName == null ? this.name : this.meshName, this, 0, this.textureWidth, this.textureHeight);
+      this.refinedCache = this.obj == this.refinedObj;
       this.obj.surfaceMaterial = this.surfaceMaterial;
     }
 
@@ -201,6 +217,8 @@ public class TmdObjTable1c {
     }
 
     this.obj = null;
+    this.refinedObj = null;
+    this.refinedCache = false;
   }
 
   @Override

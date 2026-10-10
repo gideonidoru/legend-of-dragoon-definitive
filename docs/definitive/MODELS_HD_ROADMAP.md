@@ -4,7 +4,7 @@ ModelsHD owns geometry, proportions, attachments and animation compatibility. Th
 
 ## Current 0.4.0 broad pass
 
-The user's next milestone applies inexpensive smoothing across the whole supported catalog before bespoke rebuilding. All 1,343 canonical containers, including the existing 19 battle forms, are inspected. A shared pre-allocation TMD geometry event now extends ModelsHD to field actors, NPCs, bosses, enemies, scenery and world-map resources while keeping original animation/script tables intact. **1,004 containers receive some smoothing; 339 retain originals.** The complete package contains 8,777 deduplicated custom part replacements. The nine confirmed party field models are included. [Exact coverage, recipe and verification](MODELS_HD_WORLD_PASS.md).
+The user's next milestone applies inexpensive smoothing across the whole supported catalog before bespoke rebuilding. All 1,343 canonical containers, including the existing 19 battle forms, are inspected. A shared pre-allocation TMD geometry event now extends ModelsHD to field actors, NPCs, bosses, enemies, scenery and world-map resources while keeping original animation/script tables intact. **964 containers receive some smoothing; 379 retain originals.** The complete package contains 8,531 deduplicated custom part replacements. The nine confirmed party field models are included. [Exact coverage, recipe and verification](MODELS_HD_WORLD_PASS.md).
 
 The ordering below now applies to individually authored reconstruction and gameplay acceptance, rather than blocking the broad first pass. Rendering, texture artwork and lighting remain separate workstreams. More polygons are not proof of better anatomy or measured Deck performance.
 

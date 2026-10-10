@@ -73,8 +73,14 @@ def refine_candidate(identity, part, native):
         raise ValueError('Smoothing moved an original open joint border')
     for face in new['faces']:
         a,b,c = np.array(new['vertices'])[face['vertices']]
-        if np.linalg.norm(np.cross(b-a,c-a)) <= 1e-10:
+        cross = np.cross(b-a,c-a)
+        if np.linalg.norm(cross) <= 1e-10:
             return None, {**report,'changed':False,'reason':'refinement collapsed a triangle'}
+        original = points[polygons[face['sourceFace']][0]]
+        corners = (1,3,2) if len(original)==4 and np.all(np.array(face['sourceWeights'])[:,0]==0) else (0,1,2)
+        old = original[list(corners)]
+        if np.dot(cross,np.cross(old[1]-old[0],old[2]-old[0])) <= 0:
+            return None, {**report,'changed':False,'reason':'refinement inverted a triangle'}
     payload = json.dumps(candidate,separators=(',',':'),allow_nan=False).encode()
     if len(payload)>16*1024*1024 or len(new['vertices'])>65535 or len(new['faces'])>50000:
         return None, {**report,'changed':False,'reason':'native part budget exceeded'}
