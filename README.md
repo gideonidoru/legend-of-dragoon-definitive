@@ -118,13 +118,13 @@ The original score, voices, effects, volume behavior and music settings remain i
 
 ## Gameplay comfort, on your terms
 
-Choose **Definitive** or **Faithful** when creating a campaign. Definitive enables conveniences such as saving anywhere, battle autosaves, running by default, faster text, shorter transitions, enemy HP bars and turn-order information. Faithful selects retail-oriented settings. Both keep normal Additions and their ordinary timing windows; neither bundles a reward multiplier or difficulty overhaul.
+Choose **Definitive** or **Faithful** when creating a campaign. Definitive enables conveniences such as saving anywhere, battle autosaves, running by default, faster text, shorter transitions, enemy HP bars and turn-order information. Faithful selects retail-oriented settings. Both keep normal Additions and their ordinary timing windows, default to 1× rewards, and omit difficulty overhauls.
 
 Artwork, rendering, audio and controller settings remain independent of the campaign preset. Faithful is a settings profile rather than a claim of bit-perfect retail emulation. Changing a preset later cannot undo progression already earned. [Full preset comparison](docs/definitive/PRESETS.md).
 
 The current installer includes binding-aware **Equip, Sort, Unequip and Back** equipment hints inspired by [Quality of Life+](https://github.com/FrancisDionne/Severed-Chains/releases/tag/experimental).
 
-A broader native-settings implementation is complete on the [QoL settings branch](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/6), awaiting integration and installer delivery:
+The broader [native-settings implementation](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/6) is integrated into main and awaits a new installer release:
 
 - **Inventory and shops:** contextual hints follow remapped bindings; equipment can be filtered and sorted; quantity buying/selling respects affordability, capacity and protected items.
 - **Campaign rewards:** independent enemy XP and gold multipliers range from 0× to 10×, defaulting to **1×**. A battle keeps the values it started with, and item drops retain their existing rules.
@@ -143,7 +143,7 @@ The next increments are progressing separately:
 | **Default-asset rendering** | Shared surface detail, live native-light profiles and first-visit background preparation. | On main; newer than the public audio installer. |
 | **[ModelsHD 0.4](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/5)** | Broad smoothing across 964 of 1,343 cataloged containers, including all nine confirmed party field models and all 19 battle forms. 8,531 unique custom parts; 379 containers retain originals under the safeguards. | Integration branch and package checks; not yet in the installer linked above. This is broad refinement, not 964 bespoke character rebuilds. |
 | **[HD artwork](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/1)** | EnvHD panorama production, alongside the CharHD, UIHD and FxHD pilot modules. Batch upscaling and precise edge repair are underway; seven panoramas remain selected at this checkpoint. | Development branch; expanded coverage and native scene review remain in progress. |
-| **[Native QoL settings](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/6)** | Equipment filters/sorting, quantity transactions, campaign reward controls and optional Addition feedback. | Draft integration PR; device checks and a new installer remain pending. |
+| **[Native QoL settings](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/6)** | Equipment filters/sorting, quantity transactions, campaign reward controls and optional Addition feedback. | On main; device checks and a new installer remain pending. |
 | **[Installation and repair](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/2)** | All-HD packaging, selective Repair/Update downloads, full Reinstall, stronger interruption recovery, game-process protection and publication checks. | Development branch with release publication underway; the draft release is not the public download. |
 
 The next proof is combined gameplay on the hardware: representative HD scenes, model transformations, foreground masking, busy effects, cinematic audio/skip/return behavior, controller reconnect, suspend/resume, and update/restore. A four-disc playthrough and measured Deck performance are still outstanding. We haven't reached the final AA visual target.

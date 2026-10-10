@@ -1,6 +1,7 @@
 package legend.game.inventory.screens;
 
 import legend.core.MathHelper;
+import legend.core.lang.I18nText;
 import legend.core.platform.input.InputAction;
 import legend.core.platform.input.InputMod;
 import legend.game.additions.Addition;
@@ -68,6 +69,8 @@ public class AdditionsScreen extends MenuScreen {
 
   public AdditionsScreen(final Runnable unload) {
     this.unload = unload;
+    this.addActionHint(new I18nText("lod_core.ui.actions.select"), INPUT_ACTION_MENU_CONFIRM, () -> this.loadingStage == 2);
+    this.addActionHint(new I18nText("lod_core.ui.equipment.back"), INPUT_ACTION_MENU_BACK, () -> this.loadingStage == 2);
 
     this.characterCard = this.addControl(new CharacterCard());
     this.characterCard.setPos(8, 20);
