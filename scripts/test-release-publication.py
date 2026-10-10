@@ -12,7 +12,7 @@ from package_validation import ROOT
 
 repo = Path(__file__).resolve().parents[1]
 source = 'a' * 40
-for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob', 'file-delivery-many-assets-draft', 'file-delivery-many-assets-omitted-page'):
+for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob', 'file-delivery-many-assets-draft', 'file-delivery-many-assets-omitted-page', 'ci-source-input-omitted'):
     with tempfile.TemporaryDirectory(prefix='definitive-release-fixture-') as directory:
         root = Path(directory); assets = root / 'assets'; assets.mkdir(); tools = root / 'tools'; tools.mkdir()
         with zipfile.ZipFile(assets / 'Definitive-Installer.zip', 'w') as archive:
@@ -59,6 +59,7 @@ for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch
                 selected=tuple(selected)+(f'Definitive-Contents-{platform}.zip',)+tuple(p.name for p in assets.glob('file-*'))
             path = root / f'artifact-{id}.zip'
             with zipfile.ZipFile(path, 'w') as artifact:
+                if scenario == 'ci-source-input-omitted': artifact.writestr('distributions/FMVHD-v0.1.0-videos.zip', b'approved synthetic source input')
                 for name in selected:
                     artifact.writestr('distributions/' + name, b'unapproved bytes' if (scenario == 'ci-bytes-mismatch' and name == 'Definitive-Installer.zip') or (scenario=='file-delivery-ci-mismatch' and name.startswith('file-')) else (assets / name).read_bytes())
             artifact_records.append({'id': id, 'name': artifact_name, 'expired': scenario == 'expired-ci-artifact',

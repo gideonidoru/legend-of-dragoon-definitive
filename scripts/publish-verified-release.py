@@ -40,6 +40,7 @@ def verify_ci_artifacts(run_id, source, expected):
         platform = 'linux-x64' if 'ubuntu' in artifact_name else 'macos-arm64'
         contents_name = 'Definitive-Contents-' + platform + '.zip'
         if contents_name in expected: names = names | {contents_name}
+        if 'FMVHD-v0.1.0-videos.zip' in expected: names = names | {'FMVHD-v0.1.0-videos.zip'}
         with tempfile.TemporaryFile() as output:
             subprocess.run(['gh', 'api', f'repos/{REPO}/actions/artifacts/{artifact["id"]}/zip'],
                            stdout=output, stderr=subprocess.PIPE, check=True, timeout=1800)
@@ -49,6 +50,7 @@ def verify_ci_artifacts(run_id, source, expected):
             output.seek(0)
             with zipfile.ZipFile(output) as archive:
                 entries = inventory(archive)
+                if 'FMVHD-v0.1.0-videos.zip' not in expected and any(n.split('/')[-1] == 'FMVHD-v0.1.0-videos.zip' for n in entries): raise ValueError('CI source payload cannot be omitted from publication')
                 if contents_name not in expected and any(n.split('/')[-1] == contents_name for n in entries): raise ValueError('CI file delivery inventory cannot be omitted from publication')
                 if contents_name in expected:
                     candidates = [e for n, e in entries.items() if n.split('/')[-1] == contents_name and not e.is_dir()]
@@ -113,7 +115,7 @@ def main():
     parser.add_argument('--tag', required=True)
     parser.add_argument('--source-sha', required=True)
     parser.add_argument('--run', required=True, help='Successful hosted build ID for this source')
-    parser.add_argument('--assets-dir', type=Path, required=True, help='Five upload inputs and SHA256SUMS')
+    parser.add_argument('--assets-dir', type=Path, required=True, help='Complete upload inputs and SHA256SUMS')
     parser.add_argument('--notes-file', type=Path, required=True)
     parser.add_argument('--check-only', action='store_true')
     args = parser.parse_args()
@@ -131,6 +133,16 @@ def main():
                 if blob in blobs and blobs[blob] != identity: raise ValueError('Conflicting platform blob identity')
                 blobs[blob] = identity
         names.update(blobs)
+        needs_source = False
+        for platform in ('linux-x64', 'macos-arm64'):
+            with zipfile.ZipFile(args.assets_dir / f'Definitive-Contents-{platform}.zip') as archive:
+                needs_source |= 'bundled-mods/FMVHD-v0.1.0.jar' in properties(archive.read('definitive-files.properties'))
+        if needs_source:
+            name = 'FMVHD-v0.1.0-videos.zip'
+            names.add(name)
+            lock = properties(subprocess.check_output(['git', 'show', args.source_sha + ':integrations/fmvhd/release.properties'], cwd=Path(__file__).resolve().parents[1]))
+            with (args.assets_dir / name).open('rb') as stream:
+                if hashlib.file_digest(stream, 'sha256').hexdigest() != lock.get('sha256'): raise ValueError('FMVHD source payload differs from the checked source pin')
     if len(names) + 1 > 1000 or {p.name for p in args.assets_dir.iterdir()} != names | {'SHA256SUMS'}:
         raise ValueError('Release staging must contain exactly the complete approved upload inventory')
     expected = {}

@@ -124,6 +124,7 @@ jobs:
         run: |
           python3 scripts/test-release-publication.py
           python3 scripts/test-file-delivery.py
+          python3 scripts/test-release-retention.py
       - name: Verify native archive fixtures
         run: python3 scripts/verify-disc-archives.py
       - name: Cross-check original material fixtures in Python and Java
@@ -132,7 +133,7 @@ jobs:
           "$RUNNER_TEMP/definitive-material-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
           ./gradlew --no-daemon --console=plain materialAtlasInterop -PvisualPython="$RUNNER_TEMP/definitive-material-checks/bin/python" ${{ matrix.args }}
       - name: Retain build packages and verification reports
-        if: always()
+        if: always() && github.event_name == 'workflow_dispatch' && inputs.releaseTag != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: delivery-${{ matrix.runner }}
@@ -140,6 +141,7 @@ jobs:
             build/distributions/Legend-of-Dragoon-Definitive-*.zip
             build/distributions/Definitive-Contents-*.zip
             build/distributions/files/file-*
+            build/distributions/FMVHD-v0.1.0-videos.zip
             build/distributions/Definitive-Installer.zip
             build/distributions/Install-Definitive.*
             build/reports/tests/deliveryTest/**
@@ -151,5 +153,5 @@ jobs:
             build/modelshd/ModelsHD-*.zip
             build/reports/tests/modelsHdTests/**
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 1
           compression-level: 0

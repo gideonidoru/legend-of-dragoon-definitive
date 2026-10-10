@@ -30,3 +30,11 @@ CI generates blobs from its verified package. The publication gate binds invento
 ## Acceptance
 
 Behavior tests cover additions/changes/removals, unchanged reuse, selective corrupt/missing-file repair including damaged metadata, preservation of extraction/private data during Repair, no-download healthy Repair, failed-transfer activation protection, and complete healthy Reinstall. Headless UI checks include both progress bars at handheld widths. Publication fixtures cover blob corruption/omission and substitution of hosted bytes. Linux/macOS CI and the final public download are recorded in the delivery results report. Physical Steam Deck gameplay, suspend/resume, performance and visual acceptance remain separate gates.
+
+## Hosted retention
+
+Only the current public release is retained. A replacement is published and verified before older releases and their assets are removed. Git source history, attribution and local installed rollback/private generations remain intact. Older entry-point downloads should be replaced with the current installer. Repair of a removed historical release requires a complete Reinstall; normal Update selects the current compatible release.
+
+The current release also retains the checksum-pinned `FMVHD-v0.1.0-videos.zip` build input. Its stable latest-release URL is checked against the exact source lock, so clean builds and current source fallback do not depend on deleted mod releases. The old video URL is only a migration fallback for the first consolidated release. Publication binds this input to the successful CI artifact as well.
+
+Routine CI does not retain multi-gigabyte delivery packages. Explicit release-build artifacts expire after one day. After public verification, `scripts/prune-release-history.py --keep-tag <tag> --source-sha <sha> --run <run> --inventory <verified-uploads.json> --execute` removes older releases and completed-run artifacts, preserving the current verification run and any active work. It rechecks the replacement and refuses a concurrent newer release.
