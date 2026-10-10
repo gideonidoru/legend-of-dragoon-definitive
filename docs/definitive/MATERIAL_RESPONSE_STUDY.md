@@ -62,3 +62,5 @@ The relief adds a position varying and four conditional atlas fetches. Neither G
 5. Measure actual Deck frame time, memory and power, then obtain community comparison feedback before selecting defaults or claiming community acceptance.
 
 This art study does not change the installer, launcher, updater or published alpha release. Commercial quality remains an acceptance requirement, not a label earned by successful compilation or attractive still images.
+
+The subsequent [vest authoring and filtered-color study](VEST_AUTHORING_STUDY.md) develops actual garment forms and neural-assisted costume artwork, bakes it onto the model with original source coverage, and tests filtered color at a fixed base atlas allocation. The new art is clearer in detail; the sculpted vest remains held for recorded arm, glove and sash contacts.
