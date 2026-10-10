@@ -192,7 +192,7 @@ public final class Scus94491BpeSegment {
   private static void setGameplayTiming() {
     final int frames = Math.max(1, vsyncMode_8007a3b8);
     final int hz = 60 / frames * Config.getGameSpeedMultiplier();
-    RENDERER.window().setFpsLimit(hz);
+    RENDERER.setSimulationRate(hz);
     PLATFORM.setInputTickRate(hz);
   }
 
@@ -215,7 +215,7 @@ public final class Scus94491BpeSegment {
       }
     });
 
-    RENDERER.setRenderCallback(Scus94491BpeSegment::gameLoop);
+    RENDERER.setSimulationCallback(Scus94491BpeSegment::gameLoop);
 
     RENDERER.events().onClose(() -> {
       stopSound();

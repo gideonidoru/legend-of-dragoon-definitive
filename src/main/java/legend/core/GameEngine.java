@@ -265,6 +265,7 @@ public final class GameEngine {
     openalThread.start();
 
     time = System.nanoTime();
+    introPresentation.reset(time);
 
     try {
       RENDERER.run();
@@ -522,32 +523,17 @@ public final class GameEngine {
     }
 
     time = 0;
-    loadingFade = 1.0f;
-    eyeFade = 1.0f;
+    introPresentation.skip();
   }
 
   private static long time;
-  private static float loadingFade;
-  private static float eyeFade;
-  private static float eyeColour;
+  private static final IntroPresentation introPresentation = new IntroPresentation();
 
   private static void renderIntro() {
-    final long deltaMs = (System.nanoTime() - time) / 1_000_000;
-
-    if(deltaMs < 5000) {
-      eyeFade += 0.005f;
-      if(eyeFade > 1.0f) {
-        eyeFade = 1.0f;
-      }
-    }
+    introPresentation.advance(unpackerLoading, cinematicFinished);
 
     if(cinematicFinished) {
-      if(unpackerLoading) {
-        loadingFade += 0.02f;
-        if(loadingFade > 1.0f) {
-          loadingFade = 1.0f;
-        }
-      } else {
+      if(!unpackerLoading) {
         synchronized(UPDATER_LOCK) {
           if(UPDATE_CHECK_FINISHED) {
             transitionToGame();
@@ -562,10 +548,8 @@ public final class GameEngine {
 
     if(unpackerLoading) {
       // Offset sine wave delta to quickly shift between colours and then wait for a moment before repeating
-      eyeColour += Math.max(0.0f, MathHelper.sin(deltaMs / 300.0f % MathHelper.TWO_PI) * 0.75f + 0.25f) / 500.0f;
-
       final Vector3f colour = new Vector3f();
-      MathHelper.hsvToRgb(eyeColour, 1.0f, 1.0f, colour);
+      MathHelper.hsvToRgb(introPresentation.hue(), 1.0f, 1.0f, colour);
 
       final MV transforms = new MV();
       transforms.scaling(16.0f, 16.0f, 1.0f);
@@ -574,15 +558,15 @@ public final class GameEngine {
         .translucency(Translucency.HALF_B_PLUS_HALF_F)
         .texture(eyeTexture)
         .useTextureAlpha()
-        .alpha(eyeFade)
+        .alpha(introPresentation.eyeFade())
         .colour(colour)
       ;
 
-      renderText(I18n.translate("unpacker.loading"), 24.0f, 223.0f, UI_WHITE, (model, shadow) -> model.alpha(loadingFade).translucency(Translucency.HALF_B_PLUS_HALF_F));
+      renderText(I18n.translate("unpacker.loading"), 24.0f, 223.0f, UI_WHITE, (model, shadow) -> model.alpha(introPresentation.loadingFade()).translucency(Translucency.HALF_B_PLUS_HALF_F));
     }
 
-    if(!statusText.isBlank() && loadingFade != 0.0f) {
-      renderMenuCentredText(DEFAULT_FONT, statusText, 160, 30, 300, fontOptions, (model, shadow) -> model.alpha(loadingFade).translucency(Translucency.HALF_B_PLUS_HALF_F));
+    if(!statusText.isBlank() && introPresentation.loadingFade() != 0.0f) {
+      renderMenuCentredText(DEFAULT_FONT, statusText, 160, 30, 300, fontOptions, (model, shadow) -> model.alpha(introPresentation.loadingFade()).translucency(Translucency.HALF_B_PLUS_HALF_F));
     }
 
     textZ_800bdf00 = oldTextZ;

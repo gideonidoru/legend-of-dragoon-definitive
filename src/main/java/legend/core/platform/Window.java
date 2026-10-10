@@ -6,6 +6,10 @@ import legend.core.renderer.RenderApi;
 import java.nio.file.Path;
 
 public abstract class Window {
+  private boolean simulationConsumesInput;
+
+  public final void setSimulationConsumesInput(final boolean active) { this.simulationConsumesInput = active; }
+  public final boolean simulationConsumesInput() { return this.simulationConsumesInput; }
   private final WindowEvents events = new WindowEvents(this);
 
   public abstract RenderApi getRenderApi();

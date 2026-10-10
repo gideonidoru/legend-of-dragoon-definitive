@@ -75,3 +75,22 @@ tasks.register('fmvHdSourceBundle', Copy) {
   rename { 'FMVHD-v0.1.0-videos.zip' }
 }
 tasks.named('definitiveFileDelivery') { dependsOn tasks.named('fmvHdSourceBundle') }
+
+tasks.register('originalMovieSourceProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.fmv.OriginalMovieSourceProbe'
+  systemProperty 'java.awt.headless', 'true'
+  environment 'ALSOFT_DRIVERS', 'null'
+  doFirst { args providers.gradleProperty('fmvOriginalFiles').get() }
+}
+
+tasks.register('originalFmvHandoffProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.fmv.OriginalFmvHandoffProbe'
+  systemProperty 'java.awt.headless', 'true'
+  jvmArgs '--add-opens', 'java.base/java.util=ALL-UNNAMED'
+  environment 'ALSOFT_DRIVERS', 'null'
+  doFirst { args providers.gradleProperty('fmvOriginalFile').get() }
+}

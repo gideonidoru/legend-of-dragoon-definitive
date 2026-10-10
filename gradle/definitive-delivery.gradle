@@ -112,6 +112,22 @@ tasks.register('deliveryTest', Test) {
 }
 tasks.named('check') { dependsOn deliveryTest }
 
+tasks.register('fixedStepPresentationProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.pacing.SimulationPresentationProbe'
+  jvmArgs '-Djava.awt.headless=true', '--add-opens=java.base/java.util=ALL-UNNAMED', '--enable-native-access=ALL-UNNAMED'
+}
+tasks.named('check') { dependsOn fixedStepPresentationProbe }
+
+tasks.register('cinematicHandoffProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.pacing.CinematicHandoffProbe'
+  jvmArgs '-Djava.awt.headless=true', '--add-opens=java.base/java.util=ALL-UNNAMED', '--enable-native-access=ALL-UNNAMED'
+  doFirst { args providers.gradleProperty('fmvFixture').get() }
+}
+
 // Explicit private sky decoding/layout check, with no game or renderer startup.
 tasks.register('skySourceAudit', JavaExec) {
   dependsOn testClasses
