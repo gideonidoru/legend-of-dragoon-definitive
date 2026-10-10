@@ -81,4 +81,3 @@ class RendererResourceLifetimeTest {
     assertEquals(1,liveTexture.releases); assertEquals(1,liveMesh.releases);
   }
 }
-
