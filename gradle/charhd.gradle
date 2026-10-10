@@ -1,0 +1,44 @@
+// Specialized CharHD source set, tests and selected production resources.
+sourceSets {
+  charhd {
+    java.srcDir 'integrations/charhd/src/main/java'
+    resources.srcDir 'integrations/charhd/src/main/resources'
+    compileClasspath += sourceSets.main.output + configurations.compileClasspath
+    runtimeClasspath += sourceSets.main.output + configurations.runtimeClasspath
+  }
+  charhdTest {
+    java.srcDir 'integrations/charhd/src/test/java'
+    compileClasspath += sourceSets.charhd.output + sourceSets.main.output + configurations.testCompileClasspath
+    runtimeClasspath += sourceSets.charhd.output + sourceSets.main.output + configurations.testRuntimeClasspath
+  }
+}
+tasks.register('charHdTests', Test) {
+  dependsOn 'charhdTestClasses'
+  testClassesDirs = sourceSets.charhdTest.output.classesDirs
+  classpath = sourceSets.charhdTest.runtimeClasspath
+  useJUnitPlatform()
+  systemProperty 'java.awt.headless', 'true'
+}
+tasks.register('charhdJar', Jar) {
+  dependsOn 'charhdClasses'
+  archiveFileName = 'CharHD-v0.2.0.jar'
+  destinationDirectory = layout.buildDirectory.dir('libs/mods')
+  from sourceSets.charhd.output
+  from 'integrations/charhd/runtime-assets'
+  into('META-INF/charhd') { from 'LICENSE'; from 'integrations/charhd/README.md'; from 'integrations/charhd/ARTWORK-NOTICES.txt' }
+  manifest { attributes 'Implementation-Title': 'CharHD', 'Implementation-Version': '0.2.0' }
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
+}
+tasks.named('build') { dependsOn 'charhdJar' }
+tasks.named('stageDefinitivePackage') { dependsOn 'charhdJar' }
+tasks.named('check') { dependsOn 'charHdTests' }
+tasks.named('deliveryTest') { dependsOn 'charHdTests' }
+
+tasks.register('charHdSourceProbe', JavaExec) {
+  dependsOn 'charhdTestClasses', 'modelshdClasses'
+  classpath = sourceSets.charhdTest.runtimeClasspath + sourceSets.modelshd.output
+  mainClass = 'charhd.CharacterSourceProbe'
+  jvmArgs '-Djava.awt.headless=true', '-Xmx2g'
+  doFirst { args providers.gradleProperty('charFiles').get(), providers.gradleProperty('charCandidates').get(), providers.gradleProperty('charReport').get() }
+}

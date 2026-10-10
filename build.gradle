@@ -322,3 +322,4 @@ apply from: 'gradle/fmvhd.gradle'
 // Independent presentation mods bundled through the normal installer.
 apply from: 'gradle/hd-mods.gradle'
 apply from: 'gradle/fxhd.gradle'
+apply from: 'gradle/charhd.gradle'

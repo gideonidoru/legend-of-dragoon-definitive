@@ -1,5 +1,5 @@
-// Three presentation mods; FxHD has its own source set in fxhd.gradle.
-['EnvHD': 'envhd', 'CharHD': 'charhd', 'UIHD': 'uihd'].each { title, id ->
+// EnvHD and UIHD share this build; CharHD and FxHD have specialized source sets.
+['EnvHD': 'envhd', 'UIHD': 'uihd'].each { title, id ->
   final def root = file("integrations/${id}")
   final def output = layout.buildDirectory.dir("${id}/classes")
   final def compileMod = tasks.register("compile${title}", JavaCompile) {

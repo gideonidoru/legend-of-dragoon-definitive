@@ -180,6 +180,8 @@ public class TmdObjTable1c {
     return this.faceSurfaces == null ? new legend.core.renderer.SurfaceResponse[this.n_primitive_14] : this.faceSurfaces.clone();
   }
 
+  public SurfaceMaterial surfaceMaterial() { return this.surfaceMaterial; }
+
   public void surfaceMaterial(final SurfaceMaterial material) {
     this.surfaceMaterial = java.util.Objects.requireNonNull(material);
     this.surfaceAuthored = true;

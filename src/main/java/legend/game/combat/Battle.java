@@ -2261,9 +2261,11 @@ public class Battle extends EngineState<Battle> {
       }
 
       final int enemyIndex = a0.charIndex_1a2;
+      final int materialGeneration = a0.materials.generation();
 
       if(Loader.exists("monsters/%d/textures/combat".formatted(enemyIndex))) {
-        loadFile("monsters/%d/textures/combat".formatted(enemyIndex)).thenAccept(files -> this.loadCombatantTim(a0, files));
+        loadFile("monsters/%d/textures/combat".formatted(enemyIndex)).thenAccept(files ->
+          a0.materials.runIfCurrent(materialGeneration, () -> this.loadCombatantTim(a0, files)));
       }
     }
   }
@@ -2273,11 +2275,13 @@ public class Battle extends EngineState<Battle> {
   public void loadPartyTims() {
     for(int charSlot = 0; charSlot < gameState_800babc8.charIds_88.size(); charSlot++) {
       final CharacterData2c character = gameState_800babc8.getCharacterBySlot(charSlot);
-      final int finalCharSlot = charSlot;
+      final var bent = battleState_8006e398.playerBents_e40.get(charSlot).innerStruct_00;
+      final var combatant = bent.combatant_144;
+      final int materialGeneration = combatant.materials.generation();
 
       Loader
-        .loadFile(character.getBattleTexturePath(battleState_8006e398.playerBents_e40.get(charSlot).innerStruct_00))
-        .thenAccept(files -> this.loadCharacterTim(files, finalCharSlot))
+        .loadFile(character.getBattleTexturePath(bent))
+        .thenAccept(files -> combatant.materials.runIfCurrent(materialGeneration, () -> this.loadCombatantTim(combatant, files)))
       ;
     }
   }
@@ -2294,11 +2298,13 @@ public class Battle extends EngineState<Battle> {
   public void loadPartyTmdAndAnims() {
     for(int charSlot = 0; charSlot < gameState_800babc8.charIds_88.size(); charSlot++) {
       final CharacterData2c character = gameState_800babc8.getCharacterBySlot(charSlot);
-      final int finalCharSlot = charSlot;
+      final var bent = battleState_8006e398.playerBents_e40.get(charSlot).innerStruct_00;
+      final var combatant = bent.combatant_144;
+      final int materialGeneration = combatant.materials.generation();
 
       Loader
-        .loadDirectory(character.getBattleModelPath(battleState_8006e398.playerBents_e40.get(charSlot).innerStruct_00))
-        .thenAccept(files -> this.loadCharTmdAndAnims(files, finalCharSlot))
+        .loadDirectory(character.getBattleModelPath(bent))
+        .thenAccept(files -> combatant.materials.runIfCurrent(materialGeneration, () -> this.combatantTmdAndAnimLoadedCallback(files, combatant, false)))
       ;
     }
   }
@@ -2898,6 +2904,9 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800c9170L)
   public void deallocateCombatant(final CombatantStruct1a8 combatant) {
+    combatant.materials.invalidate();
+    if(combatant.materialModel != null) combatant.materialModel.clearMaterialAppearance();
+    combatant.materialModel = null;
     //LAB_800c91bc
     if(combatant.mrg_00 != null) {
       combatant.mrg_00 = null;
@@ -2932,6 +2941,7 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800c9290L)
   public void loadCombatantTmdAndAnims(final CombatantStruct1a8 combatant) {
+    final int materialGeneration = combatant.materials.generation();
     if(combatant.charIndex_1a2 >= 0) {
       if((combatant.flags_19e & 0x8) == 0) {
         if(combatant.mrg_00 == null) {
@@ -2940,7 +2950,9 @@ public class Battle extends EngineState<Battle> {
           if((combatant.flags_19e & 0x4) == 0) {
             // Enemy TMDs
             final int fileIndex = 3137 + combatant.charIndex_1a2;
-            loadDrgnDir(0, fileIndex).thenAccept(files -> this.combatantTmdAndAnimLoadedCallback(files, combatant, true));
+            loadDrgnDir(0, fileIndex).thenAccept(files -> {
+              combatant.materials.runIfCurrent(materialGeneration, () -> this.combatantTmdAndAnimLoadedCallback(files, combatant, true));
+            });
           } else {
             // Player TMDs
             //LAB_800c9334
@@ -2950,7 +2962,9 @@ public class Battle extends EngineState<Battle> {
 
             Loader
               .loadDirectory(character.getBattleModelPath(combatant.playerBent))
-              .thenAccept(files -> this.combatantTmdAndAnimLoadedCallback(files, combatant, false))
+              .thenAccept(files -> {
+                combatant.materials.runIfCurrent(materialGeneration, () -> this.combatantTmdAndAnimLoadedCallback(files, combatant, false));
+              })
             ;
           }
         }
@@ -2991,15 +3005,22 @@ public class Battle extends EngineState<Battle> {
     }
   }
 
+  private static byte[] boundedMaterialSource(final FileData source) {
+    return source.size() <= 16 * 1024 * 1024 ? source.getBytes().clone() : null;
+  }
+
   @Method(0x800c952cL)
   public static void loadCombatantModelAndAnimation(final Battle battle, final BattleEntity27c bent, final CombatantStruct1a8 combatant) {
     bent.model_148.deleteModelParts();
 
     final CContainer tmd;
+    final byte[] materialModelSource;
     if(combatant._1a4 >= 0) {
+      materialModelSource = boundedMaterialSource(battleState_8006e398.getGlobalAsset(combatant._1a4).data_00);
       tmd = new CContainer(bent.model_148.name, battleState_8006e398.getGlobalAsset(combatant._1a4).data_00);
       //LAB_800c9590
     } else if(combatant.mrg_00 != null && combatant.mrg_00.get(32).hasVirtualSize()) {
+      materialModelSource = boundedMaterialSource(combatant.mrg_00.get(32));
       tmd = new CContainer(bent.model_148.name, combatant.mrg_00.get(32));
     } else {
       throw new RuntimeException("Invalid state");
@@ -3023,10 +3044,26 @@ public class Battle extends EngineState<Battle> {
 
     TmdObjLoader.fromModel("CombatantModel (%s)".formatted(bent), bent.model_148);
 
+    combatant.materialModel = bent.model_148;
     EVENTS.postEvent(new CombatantModelLoadedEvent(battle, combatant, bent.model_148));
+    combatant.materials.modelReady(bent.model_148, materialModelSource);
 
     //LAB_800c9680
     combatant.assets_14[0]._09++;
+  }
+
+  /** Resolve each changed source pair on the rendering thread, in either arrival order. */
+  public static void applyCombatantMaterials(final Battle battle, final Model124 model, final CombatantStruct1a8 combatant) {
+    final var update = combatant.materials.takeUpdate(model);
+    if(update == null) return;
+    model.clearMaterialAppearance();
+    if(update.ready() && model.clutAnimations_a4 == null && model.ptr_a8 == null) {
+      try {
+        final var event = EVENTS.postEvent(new legend.game.modding.events.battle.CombatantMaterialEvent(battle, model, update.modelSource(), update.timSource()));
+        if(event.replacement != null) model.materialAppearance = legend.definitive.materials.CharacterAppearance.create(model, event.replacement,
+          new Tim(new FileData(update.timSource())).getClutRect().w / 16, event.surfaces, update.modelSource());
+      } catch(final Exception failure) { LOGGER.warn("Character material kept original: {}", failure.getMessage()); }
+    }
   }
 
   @Method(0x800c9708L)
@@ -3318,12 +3355,15 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800ca55cL)
   public void loadCombatantTextures(final CombatantStruct1a8 combatant) {
+    final int materialGeneration = combatant.materials.generation();
     if(combatant.charIndex_1a2 >= 0) {
       final CharacterData2c character = gameState_800babc8.getCharacterBySlot(combatant.charSlot_19c);
 
       Loader
         .loadFile(character.getBattleTexturePath(combatant.playerBent))
-        .thenAccept(files -> this.loadCombatantTim(combatant, files))
+        .thenAccept(files -> {
+          combatant.materials.runIfCurrent(materialGeneration, () -> this.loadCombatantTim(combatant, files));
+        })
       ;
     }
 
@@ -3345,6 +3385,9 @@ public class Battle extends EngineState<Battle> {
 
     //LAB_800ca7d0
     final Tim tim = new Tim(timFile);
+    if(combatant != null) {
+      combatant.materials.textureReady(boundedMaterialSource(timFile));
+    }
 
     if(vramSlot == -1) {
       combatant.tim = tim;

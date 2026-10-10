@@ -44,13 +44,13 @@ There are several parts to making that work together:
 - **An easy return to the game.** Put installation, updates, recovery and controller-friendly navigation in one place. Keep convenience settings and visual choices independent.
 - **Quality that holds up on Deck.** Choose defaults through comparisons in motion and measurements of frame times, memory, loading and power. A successful build is only one part of that evidence.
 
-Our approach is incremental: reuse good community work, add separate mods, and extend the engine where those mods need a small shared feature. Skurfa's existing art stays intact. The next model priorities are party field/story models, prominent NPCs, bosses and dragons, then common enemy families and remaining visible props. [Visual direction](docs/definitive/CHARACTER_REMASTER.md) · [Model roadmap](docs/definitive/MODELS_HD_ROADMAP.md) · [Project plan](docs/definitive/PROJECT_PLAN.md).
+Our approach is incremental: reuse good community work, add separate mods, and extend the engine where those mods need a small shared feature. Skurfa's existing art stays intact. The broad geometry pass now reaches eligible models throughout the game. Further remodeling prioritizes party faces and costumes, prominent NPCs, bosses and dragons, then common enemy families and visible props. [Visual direction](docs/definitive/CHARACTER_REMASTER.md) · [Model roadmap](docs/definitive/MODELS_HD_ROADMAP.md) · [Project plan](docs/definitive/PROJECT_PLAN.md).
 
 ## ModelsHD: the broad first pass
 
 ModelsHD 0.4 inspects all **1,343 supported canonical model containers**. **964 receive some smoothing; 379 keep their originals** because their topology is unsafe or refinement adds no useful detail. The complete mod bundles **8,531 unique custom part replacements**, including the nine confirmed party field models and all 19 party battle forms, with eligible NPCs, bosses, enemies, scenery and world-map resources. Original animation/script data and active texture addressing remain intact.
 
-This is a modest first geometry pass. Individual faces, hair, hands and costumes still need deliberate reconstruction. [Build and use ModelsHD](integrations/modelshd/README.md) · [Exact coverage and verification](docs/definitive/MODELS_HD_WORLD_PASS.md) · [Model catalog](docs/definitive/MODEL_CATALOG.md).
+Version 0.4 is merged into main and included in the consolidated build under validation; the current public installer still carries version 0.3. This is a modest first geometry pass. Individual faces, hair, hands and costumes still need deliberate reconstruction. [Build and use ModelsHD](integrations/modelshd/README.md) · [Exact coverage and verification](docs/definitive/MODELS_HD_WORLD_PASS.md) · [Model catalog](docs/definitive/MODEL_CATALOG.md).
 
 ## Before and after
 
@@ -68,21 +68,29 @@ Dart's battle mesh goes from **870 to 2,946 triangles**. The first pass rounds e
 
 Meru's battle mesh goes from **806 to 2,687 triangles**. The untextured view makes the changes to limbs and clothing more apparent than the original textures do.
 
-**These are offline model previews, not gameplay screenshots.** They document the published 0.3 pass, rather than the newer 0.4 world pass or experimental Dart remodeling. This is a modest first refinement, not the finished character remaster. Clearer faces, better hands, stronger costume shapes and natural joints still need deliberate remodeling. [Comparison notes](docs/definitive/images/comparisons/README.md).
+**These are offline model previews, not gameplay screenshots.** They document the earlier 0.3 pass. Newer world-pass and Dart face/remodeling experiments need their own matched comparisons before they can be presented here. This is a modest first refinement, not the finished character remaster. Clearer faces, better hands, stronger costume shapes and natural joints still need deliberate remodeling. [Comparison notes](docs/definitive/images/comparisons/README.md).
 
 ## Mods and artwork
 
-The current **all-HD installation and repair** release bundles **Skurfa, ModelsHD, FMVHD, EnvHD, CharHD, UIHD and FxHD**. Bundling a module does not mean all of its artwork is complete. The table distinguishes the published payload from newer production work. Each module has its own identity; use the game's mod manager for individual choices. The launcher's original/HD artwork preference also controls managed Skurfa and ModelsHD selection.
+The normal installation supplies **Skurfa, ModelsHD, FMVHD, EnvHD, CharHD, UIHD and FxHD** as separate modules. Use the game's mod manager for individual choices; the launcher's original/HD artwork preference also controls managed Skurfa and ModelsHD selection.
 
-| Mod | What it contributes | Current coverage |
+**The table covers the latest merged source and clearly marked pending work.** The current public all-HD repair release still carries the earlier model/artwork pilots. The orchestrator is validating one replacement installer with the newer models, rendering, audio, QoL and merged artwork together; the download button will follow it when published.
+
+| Mod | What it contributes | Latest coverage |
 | --- | --- | --- |
-| **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Individually remastered field backgrounds and foreground layers; the foundation for our environment style. | Bundled pinned v1.1.0 integration: 38 distinct scene packs, with aliases reusing existing artwork. This is selected scene coverage, not every field in the game. |
-| **[ModelsHD](integrations/modelshd/README.md)** | Custom geometry that retains original animation parts and active texture/material bindings. | Bundled v0.3: all 19 party battle forms—nine normal, nine Dragoon and Divine Dart. Field and world-map replacements remain unfinished. |
-| **[FMVHD](integrations/fmvhd/README.md)** | Preprocessed, enhanced cinematics with streamed playback and original-video fallback. | Bundled: all 18 films at 1280×768, original 15 fps cadence and 5:3 proportions. No generated motion frames. |
-| **EnvHD** | Missing environment art: battle skies and surfaces, world-map scenery, field scenes and props. | Published pilot: two battle stages and two panoramas. The newer branch packages 70 distinct restored panoramas through 73 source bindings, and selects 38 location landscapes and one parchment world-map backdrop. Native scene acceptance remains pending, and Skurfa-owned art stays protected. |
-| **CharHD** | Character texture replacements, coordinated with ModelsHD's geometry and material identities. | Bundled adapter; no new character-art payload in the published release. The production branch now has 4× candidates for all 19 playable forms, with ModelsHD on/off compatibility probes. Character art review and runtime integration remain in progress. It is separate from ModelsHD. |
-| **UIHD** | Interface artwork, icons and later portrait/lettering work. | Published pilot: five item icons. The production batch expands to 64 selected PNGs, including all 21 goods icons, element symbols, command frames, checkboxes and menu/dialogue artwork. Palette variants are not extra screens; full HUD and portrait work remain open. |
-| **FxHD** | Effect textures and particles, with their original transparency and animation behavior preserved. | Published pilot: field dust. The newer branch integrates dust, two footprints, two smoke textures and save-point glow, using about 80 KiB of texture data before driver overhead. Live palette/source changes retain the original drawing route; broader spell/transformation work remains ahead. |
+| **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Individually remastered field backgrounds and foreground layers; the foundation for our environment style. | Pinned v1.1.0: 38 distinct scene packs and their aliases. Existing artwork and attribution are preserved. |
+| **[ModelsHD](integrations/modelshd/README.md)** | Custom geometry with original animations, scripts and active texture bindings retained. | Merged v0.4: 964 supported containers receive refinement, including the nine party field models and all 19 party battle forms; 379 retain originals. |
+| **[FMVHD](integrations/fmvhd/README.md)** | Enhanced cinematics with streamed playback and original-video fallback. | All 18 films at 1280×768, original 15 fps cadence and 5:3 proportions. No generated motion frames. |
+| **[EnvHD](integrations/envhd/production/README.md)** | Missing battle and world-map environment art, extending Skurfa's style. | Merged: 70 distinct battle panoramas through 73 source bindings, 38 location landscapes and one parchment world-map backdrop, alongside two battle-material pilots. Terrain/scenery expansion is under review; broader field coverage remains open. |
+| **[CharHD](docs/definitive/CHARHD_PRODUCTION.md)** | Character artwork, with texture ownership separate from ModelsHD geometry. | Merged: source-bound battle adapter and selected Dart red-armor development pilot with explicit materials. All 19 playable battle forms have 4× candidates under review. Field characters, NPCs and enemies remain in scope; they are not yet restored. |
+| **[UIHD](docs/definitive/UIHD_PRODUCTION.md)** | Sharper icons, symbols and shared menu/dialogue artwork. | Merged: 64 selected PNGs, including all 21 goods icons, ten element symbols, battle command frames, checkboxes and selected menu/dialogue palettes. Full HUD, portraits and typography remain in progress. Palette variants are not extra screens. |
+| **FxHD** | Source-bound effect textures with original timing, blending and transparency. | Under review: six selected 2× field textures—dust, both footprints, white smoke, brown smoke cloud and save-point glow—using about 80 KiB before driver overhead. Broader spells and transformations remain ahead. |
+
+EnvHD's selected restoration is a source-faithful baseline, with native scene acceptance still pending. Static world-map terrain work has produced 293 candidates, 292 reviewed as development baselines; packing and special-case materials remain in progress. Animated water keeps its original path. These counts describe artwork and source bindings, not a whole-game completion percentage.
+
+CharHD's source-bound battle adapter preserves palette coverage and native effects, supports explicit surface/roughness assignments and works with ModelsHD's separate geometry route. All 38 headless combinations of the 19 party forms with ModelsHD on/off have passed their mesh checks. Batch restoration alone remains too subtle for the final target; Dart's armor is the first focused reconstruction. Face, hair and remaining costume work still need deliberate treatment and native review.
+
+UIHD keeps original logical sizes, animation offsets and clipping while loading larger images. Palette or VRAM changes fall back to original pixels, and disabling the mod reloads persistent artwork correctly. FxHD likewise keeps original drawing when source pixels or palettes change, and integrates with effect lighting, save-point emission and reduced-flashing settings. These compatibility checks do not establish physical Deck appearance or performance.
 
 HD assets are prepared ahead of time; the Deck does not need to run the authoring tools or neural models. Custom meshes and artwork are public project deliverables, with only selected runtime assets entering the installed mods. Development candidates retain their review status.
 
@@ -90,7 +98,7 @@ FMVHD preserves the source timing and soundtrack content, with bounded buffering
 
 ## Engine and presentation improvements
 
-Severed Chains supplies the game port, rendering and audio foundations, input support, disc extraction and modding API. Definitive builds on those systems. The engine on **main** now includes the following improvements. The consolidated installer is being built to bring the newer changes together with the published repair system:
+Severed Chains supplies the game port, rendering and audio foundations, input support, disc extraction and modding API. Definitive builds on those systems. The engine on **main** now includes the following improvements. The consolidated installer is being validated to bring these changes together with the published repair system and newly merged artwork:
 
 - **SMAA anti-aliasing:** cleaner silhouettes and diagonal edges through three spatial passes, with dialogue, menus, battle HUD and Addition prompts protected. It uses the original MIT-licensed [SMAA implementation](gfx/shaders/smaa/README.md), with the earlier edge filter available as fallback.
 - **Smoother lighting and soft contact shadows** across field maps, battles, the world map and model-based cutscenes, retaining the scene's original light directions and colors.
@@ -99,6 +107,7 @@ Severed Chains supplies the game port, rendering and audio foundations, input su
 - **Colored effect lights:** up to four nearby emitters from luminous effects and save points illuminate supported opaque geometry. Selective bloom gives luminous effects a soft glow independently of CRT styling.
 - **HD texture filtering and gentle sharpening:** mipmaps and capability-checked anisotropic filtering improve eligible HD images. Atlas padding, original palettes and transparency remain part of the compatibility contract.
 - **Bounded artwork caching:** repeated PNG loads reuse decoded pixels within a 64 MiB retained cache. Prewarming hooks let artwork mods prepare images before display, and loading measurements help identify remaining stalls.
+- **Protected HD interface artwork:** UI atlas draws explicitly retain crisp coverage; source-bound replacements preserve live palette changes, native transparency, clipping and animation coordinates. Atlas-capacity fallback retains registered artwork, and mod reloads cannot resurrect an obsolete selection.
 - **Safer graphics handling:** failed shader reloads retain the working program, texture uploads and mipmap updates use the correct bindings, and deleted texture IDs no longer leave stale cached bindings.
 - **Enhanced cinematic playback:** bounded streaming, cancellation and synchronization retain the original timing and return-to-game behavior.
 
