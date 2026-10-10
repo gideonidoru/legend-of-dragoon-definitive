@@ -313,3 +313,5 @@ apply from: 'gradle/modelshd.gradle'
 
 // Default cinematic pack with a checksum-pinned enhanced video payload.
 apply from: 'gradle/fmvhd.gradle'
+
+apply from: 'gradle/charhd.gradle'

@@ -767,6 +767,8 @@ public abstract class BattleEntity27c extends BattleObject {
     tmdGp0Tpage_1f8003ec = model.tpage_108;
     zOffset_1f8003e8 = model.zOffset_a0;
 
+    final var appearance = model.materialAppearance;
+    final boolean useAppearance = appearance != null && appearance.applies(model);
     //LAB_800ec9d0
     for(int i = 0; i < model.modelParts_00.length; i++) {
       if((model.partInvisible_f4 & 1L << i) == 0) {
@@ -777,7 +779,7 @@ public abstract class BattleEntity27c extends BattleObject {
         GTE.setTransforms(this.ls);
         Renderer.renderDobj2(part, true, 0);
 
-        final QueuedModelBattleTmd queue = RENDERER.queueModel(model.modelParts_00[i].tmd_08.getObj(), this.lw, QueuedModelBattleTmd.class)
+        final QueuedModelBattleTmd queue = RENDERER.queueModel(useAppearance ? appearance.mesh(i) : model.modelParts_00[i].tmd_08.getObj(), this.lw, QueuedModelBattleTmd.class)
           .depthOffset(model.zOffset_a0 * 4)
           .usePs1Depth(model.usePs1Depth)
           .lightDirection(lightDirectionMatrix_800c34e8)
@@ -794,6 +796,7 @@ public abstract class BattleEntity27c extends BattleObject {
         if(combatant.texture != null) {
           queue.texture(combatant.texture.vramTexture15, 1);
         }
+        if(useAppearance) appearance.bind(queue);
       }
     }
 

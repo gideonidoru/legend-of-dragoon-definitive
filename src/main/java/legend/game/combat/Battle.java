@@ -2869,6 +2869,12 @@ public class Battle extends EngineState<Battle> {
 
   @Method(0x800c9170L)
   public void deallocateCombatant(final CombatantStruct1a8 combatant) {
+    combatant.materialTimSource = null;
+    if(combatant.materialModel != null && combatant.materialModel.materialAppearance != null) {
+      combatant.materialModel.materialAppearance.close();
+      combatant.materialModel.materialAppearance = null;
+    }
+    combatant.materialModel = null;
     //LAB_800c91bc
     if(combatant.mrg_00 != null) {
       combatant.mrg_00 = null;
@@ -2962,15 +2968,22 @@ public class Battle extends EngineState<Battle> {
     }
   }
 
+  private static byte[] boundedMaterialSource(final FileData source) {
+    return source.size() <= 16 * 1024 * 1024 ? source.getBytes().clone() : null;
+  }
+
   @Method(0x800c952cL)
   public static void loadCombatantModelAndAnimation(final Battle battle, final BattleEntity27c bent, final CombatantStruct1a8 combatant) {
     bent.model_148.deleteModelParts();
 
     final CContainer tmd;
+    final byte[] materialModelSource;
     if(combatant._1a4 >= 0) {
+      materialModelSource = boundedMaterialSource(battleState_8006e398.getGlobalAsset(combatant._1a4).data_00);
       tmd = new CContainer(bent.model_148.name, battleState_8006e398.getGlobalAsset(combatant._1a4).data_00);
       //LAB_800c9590
     } else if(combatant.mrg_00 != null && combatant.mrg_00.get(32).hasVirtualSize()) {
+      materialModelSource = boundedMaterialSource(combatant.mrg_00.get(32));
       tmd = new CContainer(bent.model_148.name, combatant.mrg_00.get(32));
     } else {
       throw new RuntimeException("Invalid state");
@@ -2994,7 +3007,15 @@ public class Battle extends EngineState<Battle> {
 
     TmdObjLoader.fromModel("CombatantModel (%s)".formatted(bent), bent.model_148);
 
+    combatant.materialModel = bent.model_148;
     EVENTS.postEvent(new CombatantModelLoadedEvent(battle, combatant, bent.model_148));
+    if(materialModelSource != null && combatant.materialTimSource != null && tmd.clutAnimations_04 == null && tmd.ptr_08 == null) {
+      try {
+        final var event = EVENTS.postEvent(new legend.game.modding.events.battle.CombatantMaterialEvent(battle, bent.model_148, materialModelSource, combatant.materialTimSource));
+        if(event.replacement != null) bent.model_148.materialAppearance = legend.definitive.materials.CharacterAppearance.create(bent.model_148, event.replacement,
+          new Tim(new FileData(combatant.materialTimSource)).getClutRect().w / 16, event.surfaces, materialModelSource);
+      } catch(final Exception failure) { LOGGER.warn("Character material kept original: {}", failure.getMessage()); }
+    }
 
     //LAB_800c9680
     combatant.assets_14[0]._09++;
@@ -3316,6 +3337,13 @@ public class Battle extends EngineState<Battle> {
 
     //LAB_800ca7d0
     final Tim tim = new Tim(timFile);
+    if(combatant != null) {
+      combatant.materialTimSource = boundedMaterialSource(timFile);
+      if(combatant.materialModel != null && combatant.materialModel.materialAppearance != null) {
+        combatant.materialModel.materialAppearance.close();
+        combatant.materialModel.materialAppearance = null;
+      }
+    }
 
     if(vramSlot == -1) {
       combatant.tim = tim;

@@ -167,7 +167,13 @@ public class Model124 {
     this.shadowOffset_118.set(other.shadowOffset_118);
   }
 
+  public legend.definitive.materials.CharacterAppearance materialAppearance;
+
   public void deleteModelParts() {
+    if(this.materialAppearance != null) {
+      this.materialAppearance.close();
+      this.materialAppearance = null;
+    }
     if(this.modelParts_00 != null) {
       for(final ModelPart10 part : this.modelParts_00) {
         part.delete();
