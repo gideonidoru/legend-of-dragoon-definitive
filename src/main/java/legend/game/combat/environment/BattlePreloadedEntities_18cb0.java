@@ -28,7 +28,18 @@ public class BattlePreloadedEntities_18cb0 {
   public final BattleStage stage_963c = new BattleStage();
   public McqHeader stageMcq_9cb0;
   public Obj skyboxObj;
+  public legend.definitive.artwork.SkyArtwork skyArtwork;
   public final MV skyboxTransforms = new MV();
+
+  public void deleteSkybox() {
+    if(this.skyArtwork != null) {
+      this.skyArtwork.delete();
+      this.skyArtwork = null;
+    } else if(this.skyboxObj != null) {
+      this.skyboxObj.delete();
+    }
+    this.skyboxObj = null;
+  }
 
   public AdditionHitProperties10 getHit(final int charSlot, final int hitNum) {
     if(battleState_8006e398.playerBents_e40.get(charSlot).hasFlag(FLAG_DRAGOON)) { // Is dragoon

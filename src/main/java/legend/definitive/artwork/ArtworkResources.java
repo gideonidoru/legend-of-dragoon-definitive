@@ -19,7 +19,7 @@ public final class ArtworkResources {
   public static Image image(final byte[] png, final int width, final int height) throws IOException {
     if(png.length > 32 * 1024 * 1024 || width < 1 || height < 1 || width > 4096 || height > 4096) throw new IOException("Artwork size exceeds bounds");
     final var header = java.nio.ByteBuffer.wrap(png).order(java.nio.ByteOrder.BIG_ENDIAN);
-    if(png.length < 33 || header.getLong(0) != 0x89504e470d0a1a0aL || header.getInt(16) != width || header.getInt(20) != height || png[24] != 8 || png[25] != 6) throw new IOException("Artwork PNG header differs");
+    if(png.length < 33 || header.getLong(0) != 0x89504e470d0a1a0aL || header.getInt(8) != 13 || header.getInt(12) != 0x49484452 || header.getInt(16) != width || header.getInt(20) != height || png[24] != 8 || (png[25] != 2 && png[25] != 6)) throw new IOException("Artwork PNG header differs");
     final var image = ImageIO.read(new ByteArrayInputStream(png));
     if(image == null || image.getWidth() != width || image.getHeight() != height) throw new IOException("Invalid artwork PNG");
     final byte[] rgba = new byte[width * height * 4];

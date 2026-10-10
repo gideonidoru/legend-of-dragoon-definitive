@@ -41,10 +41,41 @@ Stage 0's base-level RGBA atlas estimate is 7,569,408 bytes; stage 6's is 7,208,
 
 ## Acceptance and remaining work
 
+### Environment production extension
+
+EnvHD is extending the pilot with battle panoramas using the built-in image
+generation tool. `BattleSkyTextureEvent` supplies a copy of the original MCQ and
+preserves another mod's chosen replacement. Reviewed PNGs are bound to both source
+and output hashes, exact integer-scaled dimensions, and an explicit visual-review
+state. The renderer uses original native dimensions, MAGIC_2 offsets, camera
+scrolling, repeated segments, brightness, clear colors, depth, and source visibility.
+Owned mesh/texture resources are released on stage changes and battle teardown.
+Rejected or missing artwork retains the original panorama.
+
+Skurfa remains protected: the production ownership audit verifies its images and
+all 1,044 census source folders before deciding which field scenes are gaps. Its
+38 existing packs, 43 runtime bindings, and 87 source-identical cut/period mappings
+are excluded from generation. The current field baseline is 612 configurations
+before rendered-pixel deduplication and prop/overlay classification. EnvHD does
+not register a field-background replacement listener in this extension.
+
+The 74 drawable battle MCQ variants decode to 71 unique bitmaps; one uniform black
+bitmap needs no restoration. The production task ledger therefore has 70 distinct
+panoramas to restore, with source-identical variants reusing the same artwork.
+Visual review, repeat-boundary checks, headless integration, and native acceptance
+remain distinct states in `integrations/envhd/production`. Candidate/rejected art
+stays outside runtime resources. These counts do not certify complete environment
+coverage or native gameplay acceptance.
+
 Headless checks cover separated palette UV placement, source-page rejection, animation rejection, malformed PNGs, transparent colored pixels, existing-mod precedence, installer inclusion independent of Skurfa, and saved game-mod configuration through update/rollback. Existing delivery/material fixtures remain required. Build/package verification must confirm all four IDs, resources and notices, and source-correlated archives.
 
 Regression checks also cover both source-load completion orders, deferred scene execution, obsolete/failed loads, and repeated attached-effect teardown with and without an HD replacement. Teardown cannot post replacement events or recreate HD dust resources.
 
 Source inspection and sampled texture visual review do not prove native scene rendering, combined-mod gameplay, physical Deck costs or player approval. Those remain explicit acceptance steps. No game or visible desktop application is launched by this implementation's headless build/tests. Pilot coverage is 24 material regions, five icons and one effect; CharHD has no new asset payload. Full environment/character/UI/effect coverage is not achieved.
 
-The next batch follows the agreed order: static environment material families, simple static UI, static world-map art, creature/body materials, bespoke identities, then complex animated/translucent sequences. Track accepted unique artwork, scene coverage and exception reasons separately from file counts.
+Environment production follows the owner's current order: battle sky/background
+panoramas; world-map sky and landscape thumbnails; world-map terrain and scenery;
+battle floors/walls/surfaces; then field forests, towns, buildings, and interiors.
+Track accepted unique artwork, scene coverage and exception reasons separately
+from source-file and delivered-layer counts. CharHD, UIHD and FxHD remain separately
+controlled mods for their corresponding artwork.

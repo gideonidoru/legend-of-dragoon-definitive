@@ -1,3 +1,4 @@
 Original code is AGPL v3; see the included engine LICENSE.
 The Legend of Dragoon artwork and derivative texture resources retain the underlying game copyright. The code license does not relicense that artwork.
 Neural processing uses Real-ESRGAN by Xintao Wang and contributors. Weights and inference binaries are not bundled.
+New battle panoramas use the built-in image generation tool, guided by the original scene and Skurfa style references. Skurfa images are not duplicated into EnvHD and remain supplied by the Skurfa integration.

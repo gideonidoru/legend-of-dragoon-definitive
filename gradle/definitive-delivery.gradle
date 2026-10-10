@@ -89,6 +89,17 @@ tasks.register('deliveryTest', Test) {
 }
 tasks.named('check') { dependsOn deliveryTest }
 
+// Explicit private sky decoding/layout check, with no game or renderer startup.
+tasks.register('skySourceAudit', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.SkySourceAudit'
+  systemProperty 'java.awt.headless', 'true'
+  doFirst {
+    args providers.gradleProperty('skySourceRoot').get(), providers.gradleProperty('skyDecodedSources').get(), file('integrations/envhd/runtime-assets/envhd/skies').absolutePath
+  }
+}
+
 // Explicit private animation inspection using the actual source methods, without rendering.
 tasks.register('nativePoseProbe', JavaExec) {
   dependsOn testClasses

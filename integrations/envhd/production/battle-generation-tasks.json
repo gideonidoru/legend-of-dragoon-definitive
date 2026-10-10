@@ -1,0 +1,1434 @@
+{
+  "schema": 1,
+  "decodedArtworkGroups": 71,
+  "restorationTasks": 70,
+  "tasks": [
+    {
+      "decodedRgbaSha256": "0745d5ef6c98736aad7ddf9c06e4cdf0d38e3ff6866689d870413e4078723e8d",
+      "masterSourceSha256": "e9ca2cf61159e27b8b952a3ee19a9b86fb3a2d32abf1e595359fd82bbe199926",
+      "sourceHashes": [
+        "e9ca2cf61159e27b8b952a3ee19a9b86fb3a2d32abf1e595359fd82bbe199926"
+      ],
+      "stages": [
+        0
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "17e12093491e8d7bbc39d445c831fbc1a7c472115ef8ab5a978da62c7f5b8895",
+      "masterSourceSha256": "a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6",
+      "sourceHashes": [
+        "a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6"
+      ],
+      "stages": [
+        1
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "visual-reviewed-native-pending"
+    },
+    {
+      "decodedRgbaSha256": "dfe127af7183428858539db8599630c3ed4c91ca2ea54a6b75a606f768414c07",
+      "masterSourceSha256": "9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc",
+      "sourceHashes": [
+        "9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc"
+      ],
+      "stages": [
+        2
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "e054eb92eb8cb2f71419616a6f1b0c067b326e1c84a7b1c3344c94c2bc6e96b5",
+      "masterSourceSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
+      "sourceHashes": [
+        "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704"
+      ],
+      "stages": [
+        3
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "44413504e4779c99e9ea7874214b1efb028441b1bb58eb3e0ed5e29d8b2de351",
+      "masterSourceSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30",
+      "sourceHashes": [
+        "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30"
+      ],
+      "stages": [
+        4
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "d21e50a5e970dac4eddc971bb2fc28d87b9c9673a801f2f7961034e819be72a6",
+      "masterSourceSha256": "2fb4e54f28a0b5f850f8f74ff6c27fc733549be683d38100ae189afcfeb1eab5",
+      "sourceHashes": [
+        "2fb4e54f28a0b5f850f8f74ff6c27fc733549be683d38100ae189afcfeb1eab5"
+      ],
+      "stages": [
+        5
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "040967f180bd059a8a514445c3c6a73ff926aace72d99a2e256c0fb2f5ab1657",
+      "masterSourceSha256": "2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c",
+      "sourceHashes": [
+        "2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c"
+      ],
+      "stages": [
+        6
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "revision-needed"
+    },
+    {
+      "decodedRgbaSha256": "231a501d6e2c8737e79c61596bede472a7a638b464a2ef7d45d5db8eb2f95830",
+      "masterSourceSha256": "0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545",
+      "sourceHashes": [
+        "0fae97b0639d942a2efc5d257c9402642bff848f73a14560018d70ac481dd545"
+      ],
+      "stages": [
+        7
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "layout-reviewed-wrap-pending"
+    },
+    {
+      "decodedRgbaSha256": "1f2f6b275f677cb3cadd1e38a625f89f012b42a2cbdce1179f45c77c26458c0d",
+      "masterSourceSha256": "152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3",
+      "sourceHashes": [
+        "152acc9ff9060faa11496afadab806b0cdd8b1ec982145f5ce961dedc21036d3"
+      ],
+      "stages": [
+        8
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "c9a1899f210fe593308bb905eab012b5d68d399b0872a749f5a90d0e861d8e56",
+      "masterSourceSha256": "6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a",
+      "sourceHashes": [
+        "6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a"
+      ],
+      "stages": [
+        9
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "2ddf7df713f26ae3b2460f3076bd8ab4d9a2b99cdab1e3d26e137a15ea704f95",
+      "masterSourceSha256": "9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e",
+      "sourceHashes": [
+        "9a1b983805fbe7fb927477ea1f1e132bd36f183fcc22c44290f22e133504b42e"
+      ],
+      "stages": [
+        10
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "2ba67142b83cbe817d74ba7032546e599d2894dea9e0c9bfc70373503c4ac573",
+      "masterSourceSha256": "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0",
+      "sourceHashes": [
+        "9c544b040ed7f3a8e5384ddaa56b9eda8b6511804dd1e05c708fa42dfc4ff3f0",
+        "a1e5d38c163afa0bc0e87c1a6c783931948d14b1817b9a3be0da834195886f16",
+        "5e07cf27cb26997deb97aad4232e86e77dff637795dcf005a48fc6192ee25b6c"
+      ],
+      "stages": [
+        11,
+        12,
+        91
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "374399087fdf349761b9e7b75a5a18a922228b3fb292378a79094ade33f08000",
+      "masterSourceSha256": "ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1",
+      "sourceHashes": [
+        "ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1"
+      ],
+      "stages": [
+        15
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "3ff42b3eb54916fac6ba06d5da3d9da536894b54e03ccf22fa7f58b5c3a813de",
+      "masterSourceSha256": "80ea20f10d35c0945eae2e77fdf324d5d9563dc1aa325348853db059c3356334",
+      "sourceHashes": [
+        "80ea20f10d35c0945eae2e77fdf324d5d9563dc1aa325348853db059c3356334"
+      ],
+      "stages": [
+        16
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "28cfa9758e3619edac05c89ce5bb724aa7388b2402b4190d7dab9596bf0e57c7",
+      "masterSourceSha256": "a6a20e2ae9b5128c3324dffeb941122b6cb4c46af108db19c16ed53aaa6e5c90",
+      "sourceHashes": [
+        "a6a20e2ae9b5128c3324dffeb941122b6cb4c46af108db19c16ed53aaa6e5c90"
+      ],
+      "stages": [
+        21
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "5d957b5807ddc295dac151a35a217efdae74932a5ce8553d5a89b6081285bd44",
+      "masterSourceSha256": "b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523",
+      "sourceHashes": [
+        "b14067c27dbc7158994f2297562e1eacac97297e9b52d1e1f7ce413940aee523"
+      ],
+      "stages": [
+        23
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "ed7c69fdf09ae24ef963116a5abbd1a5b29c832163583b00d6055b095954add1",
+      "masterSourceSha256": "e3c50336c42e1ff131c9d0d2804a2cf81c11bb1823ab748ce3f671e7e3b3000e",
+      "sourceHashes": [
+        "e3c50336c42e1ff131c9d0d2804a2cf81c11bb1823ab748ce3f671e7e3b3000e"
+      ],
+      "stages": [
+        25
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "cd94c27a98319e7b9825e389f74ab460d16ef8be04b63e19a36f27fc1d270101",
+      "masterSourceSha256": "1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188",
+      "sourceHashes": [
+        "1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188"
+      ],
+      "stages": [
+        26
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "6ed8d2fc0c53c1f7324874dc9793dd43167c7f9ca1cc57f83e3247e22cf3b2c5",
+      "masterSourceSha256": "12b2fbff5e822c4c857915268209668c71ba3adfee4ad0fa3016ba2fd897a45b",
+      "sourceHashes": [
+        "12b2fbff5e822c4c857915268209668c71ba3adfee4ad0fa3016ba2fd897a45b"
+      ],
+      "stages": [
+        27
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "2afe4a54ab85bfd997cabe2a3547d44da7e4ce44fea0586826b8c4fd24f907a8",
+      "masterSourceSha256": "1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9",
+      "sourceHashes": [
+        "1fcb9afc8e2d75cef5550e275f1beaa07d0927b9f8149bb61b4d2444ad4b42c9"
+      ],
+      "stages": [
+        28
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "ebc07eeca6c52be43c266dfec7722573487ddb7a404cdb0b6719de49e05f8170",
+      "masterSourceSha256": "d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19",
+      "sourceHashes": [
+        "d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19"
+      ],
+      "stages": [
+        29
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "02ba20a1908a42371affce7fa01651ab08191cf6faf871a24e49f63f6fb1057a",
+      "masterSourceSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f",
+      "sourceHashes": [
+        "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f"
+      ],
+      "stages": [
+        30
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "a5569ba53722139d747881e72780940b893a01eb1ba7ba8c7e8e12c2c2483cf6",
+      "masterSourceSha256": "3d833fdcfe169ae82a5dcc07f0470b81aa72631dd59f723c18246bad522558cf",
+      "sourceHashes": [
+        "3d833fdcfe169ae82a5dcc07f0470b81aa72631dd59f723c18246bad522558cf"
+      ],
+      "stages": [
+        31
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "3db8ac4264af8cb455f3204231fbb3216adb0abf184f6603d8a38e1646b89ddc",
+      "masterSourceSha256": "ac2efcff1f93f7fdfee945ad2772208bf59bbfa089039fcee80c811cc794e97c",
+      "sourceHashes": [
+        "ac2efcff1f93f7fdfee945ad2772208bf59bbfa089039fcee80c811cc794e97c"
+      ],
+      "stages": [
+        35
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "5f8226d59013b51515001b1c522ab6092fd5baec4575e3b7c03f95e1accf94b0",
+      "masterSourceSha256": "279a55aa308a752227199b9edcccaa3a79ac32a069960aba166dba2021666fa5",
+      "sourceHashes": [
+        "279a55aa308a752227199b9edcccaa3a79ac32a069960aba166dba2021666fa5"
+      ],
+      "stages": [
+        36
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "292a3df499f14b031ca899ac9f298a332716c846b849745a2b4644effbb32712",
+      "masterSourceSha256": "8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d",
+      "sourceHashes": [
+        "8d7825c28781900d66aafbc0a094062b3f5916c6d8ed10aa05bc40f6e116e25d"
+      ],
+      "stages": [
+        37
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "a78538f409c9b93f27bfcf4195b28d11334960d7e0d62c94dda1a7fb09418f48",
+      "masterSourceSha256": "d5bed0182ea87a8b3de41e990ca1b01cffd74568381a230ce2eb0b61c8dacfd4",
+      "sourceHashes": [
+        "d5bed0182ea87a8b3de41e990ca1b01cffd74568381a230ce2eb0b61c8dacfd4"
+      ],
+      "stages": [
+        38
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "21c0e744184c1b160b310332b70f964611e23750100b3f41df476a881694688d",
+      "masterSourceSha256": "0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728",
+      "sourceHashes": [
+        "0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728"
+      ],
+      "stages": [
+        39
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "46218a4323a3595c0ea5be6757c8ebd938ca438c04a70cdeb0de36e135008535",
+      "masterSourceSha256": "d1a6962e8a9bbd5dbf367c276922b566d13954c823a9f36c50eceda5e2d24030",
+      "sourceHashes": [
+        "d1a6962e8a9bbd5dbf367c276922b566d13954c823a9f36c50eceda5e2d24030"
+      ],
+      "stages": [
+        40
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "a9c8043d9214e2f20195aa74fda947c6fe98aa915e9aa9861b49c0930cb8be51",
+      "masterSourceSha256": "b2395a437daff20d87cfda72a507b4e34ffbe8bb26916ef3d379fe68f8d26b67",
+      "sourceHashes": [
+        "b2395a437daff20d87cfda72a507b4e34ffbe8bb26916ef3d379fe68f8d26b67"
+      ],
+      "stages": [
+        41
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "15c0d626de4ad8f6f33219f1009e930fea3797a7926d297e657f807568fae5ba",
+      "masterSourceSha256": "8f91d4124afa4ca0c6f69988838f2b577f6904fb7248577a5f764abf28e1c216",
+      "sourceHashes": [
+        "8f91d4124afa4ca0c6f69988838f2b577f6904fb7248577a5f764abf28e1c216"
+      ],
+      "stages": [
+        42
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "7f05ed65b21bd0f436358c0f3c7238c70170701a1a0204ed073a029844051693",
+      "masterSourceSha256": "bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c",
+      "sourceHashes": [
+        "bc3bf872d67debddcbcab4f282bf9126bd6c74ba2c045d7bd6b4cea0a81cde5c"
+      ],
+      "stages": [
+        46
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "e6dc30bb44bd6099fa09f8248bad2b82b8e42a7cd43462ef9664ad0d8463f4dd",
+      "masterSourceSha256": "061e8d60968b1fff0a3bc28b495068b6b5fe6d59c58553b838ee59d319855ccb",
+      "sourceHashes": [
+        "061e8d60968b1fff0a3bc28b495068b6b5fe6d59c58553b838ee59d319855ccb"
+      ],
+      "stages": [
+        47
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "cad01c03913948bf39efbce136cb2a25186116b76b21940f09ae95ae1e47f8e6",
+      "masterSourceSha256": "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940",
+      "sourceHashes": [
+        "be4371f09e080747e2c41252e3b702e8936141b4547158ce2a559c123eb43940"
+      ],
+      "stages": [
+        49
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "29e1dd34ca283d1a66a5420931fdbcd149a21bfbac5bfc3c78330d21d1804c7f",
+      "masterSourceSha256": "788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc",
+      "sourceHashes": [
+        "788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc"
+      ],
+      "stages": [
+        50
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "a0d14681d7241c48c58a0afa7968c9521f5589b31c58ea7a88030d5bcd1a49b1",
+      "masterSourceSha256": "c0370a6c9c84e3866cdbb0d8a4b122782404f6559c32ecaec871034ff375f663",
+      "sourceHashes": [
+        "c0370a6c9c84e3866cdbb0d8a4b122782404f6559c32ecaec871034ff375f663"
+      ],
+      "stages": [
+        51
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "f37ea2793e65af42c190fb786e5b66b2ea8759d638fd417899c06a56b24fff8b",
+      "masterSourceSha256": "901c29c6aea0abbec9f7d90eb745979d03468e695e117b69054dc1c2733e708e",
+      "sourceHashes": [
+        "901c29c6aea0abbec9f7d90eb745979d03468e695e117b69054dc1c2733e708e"
+      ],
+      "stages": [
+        52
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "cb52675ca594fd22af8d0b0f75d0c7e9446486562db55e5d884c364cbab8ce40",
+      "masterSourceSha256": "18a1dfca5282e302b28d3eab2c8b331eafcf69a44d7ff2afdc434d91e55e05bf",
+      "sourceHashes": [
+        "18a1dfca5282e302b28d3eab2c8b331eafcf69a44d7ff2afdc434d91e55e05bf"
+      ],
+      "stages": [
+        53
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "42ee5b93c2a61366fe82c1a5f9ec86128fc4a767b5c4ed555ec85883e9ea59e9",
+      "masterSourceSha256": "3831bfa97ce9e5522d04f0e915cf59718e5836ffa2d78c607e881013e8180307",
+      "sourceHashes": [
+        "3831bfa97ce9e5522d04f0e915cf59718e5836ffa2d78c607e881013e8180307"
+      ],
+      "stages": [
+        54
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "aec6c5c926bf0a8bdd2c2e4dc20ab504e3ac272af490ad97345cc55e11d59d91",
+      "masterSourceSha256": "4da05efec31bafd8362191cc832450f8ce9964456a4039e522315e3f47f1b82c",
+      "sourceHashes": [
+        "4da05efec31bafd8362191cc832450f8ce9964456a4039e522315e3f47f1b82c"
+      ],
+      "stages": [
+        55
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "2ad2c53aacbbcde3930250076a8b1a1f988ea2865c68125ad374913628e218ae",
+      "masterSourceSha256": "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5",
+      "sourceHashes": [
+        "45d8c3432c515f4f2507c77554019c4fdadc54805845f5112a49f650d42f3ac5"
+      ],
+      "stages": [
+        56
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "31bd6c68f21ac63901f1f36fb4101bfeb07e6bbb45c7d8831648ec7a2605ea16",
+      "masterSourceSha256": "25c0a2ecee4a279c8dd353f0d363d82182e4de79be50d762d3a52f7a430a2b85",
+      "sourceHashes": [
+        "25c0a2ecee4a279c8dd353f0d363d82182e4de79be50d762d3a52f7a430a2b85"
+      ],
+      "stages": [
+        58
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "d45ddb3429e5b3d14c2953f1fc724b912522fbf57b809a7572fa8ee23656242d",
+      "masterSourceSha256": "23d211fe7b4d942812db259ecfbc1bae613cde11ae048832d61032ae01e55808",
+      "sourceHashes": [
+        "23d211fe7b4d942812db259ecfbc1bae613cde11ae048832d61032ae01e55808"
+      ],
+      "stages": [
+        59
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        384,
+        256
+      ],
+      "targetSize": [
+        1536,
+        1024
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "8ea18992ddbfeb21605ac80a971ceaa838b00def5d2a6445ed99af825a881837",
+      "masterSourceSha256": "1411bbb899c05a53e942035fd85afa6f0f2614b0c4b98248c91e3c5e8c619f9f",
+      "sourceHashes": [
+        "1411bbb899c05a53e942035fd85afa6f0f2614b0c4b98248c91e3c5e8c619f9f"
+      ],
+      "stages": [
+        60,
+        85
+      ],
+      "action": "preserve-original-uniform",
+      "sourceSize": [
+        16,
+        16
+      ],
+      "targetSize": [
+        64,
+        64
+      ],
+      "status": "no-generation-required"
+    },
+    {
+      "decodedRgbaSha256": "9f12eaef3504da612fa2814577afc1259e94bea5fe73aa5c13b25bbb606f92eb",
+      "masterSourceSha256": "2def3b8e3a867f78252c811f319f257aff8420d0e8b57633c40be534ab9334f8",
+      "sourceHashes": [
+        "2def3b8e3a867f78252c811f319f257aff8420d0e8b57633c40be534ab9334f8"
+      ],
+      "stages": [
+        61
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "bce52dd1c81a70ebe2ab876aac037e946bfd6aaa8923fa63fa6582c8ab44c2d7",
+      "masterSourceSha256": "4f5565d04a63f7d3ca017b9e1fbfa798b8d087295388d13651e9863d8d09946b",
+      "sourceHashes": [
+        "4f5565d04a63f7d3ca017b9e1fbfa798b8d087295388d13651e9863d8d09946b"
+      ],
+      "stages": [
+        62
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "b3345f6136f02a1f4d432086a19d5477f8c28f6e27ddf8626d945e32fbc77645",
+      "masterSourceSha256": "de6319c4be0db41d15defd278ea57db26907105cd7155890846c8a2aa281e469",
+      "sourceHashes": [
+        "de6319c4be0db41d15defd278ea57db26907105cd7155890846c8a2aa281e469"
+      ],
+      "stages": [
+        63
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "ce904bbb0146f7daf47630e3dfb0fcbd6896bfb5f46f051f42f438b52f325d9e",
+      "masterSourceSha256": "f27e5d5436688df985569d9dbfecdd8ff62466a6d45dd2d987bd983514b3f3f7",
+      "sourceHashes": [
+        "f27e5d5436688df985569d9dbfecdd8ff62466a6d45dd2d987bd983514b3f3f7"
+      ],
+      "stages": [
+        64
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "fd5ce05435e2ab36940979ea6af5e2e4e8632cc3ffbb2eafdfb1fa23ae87b0f8",
+      "masterSourceSha256": "dc216878fcd61e3279beae0e428ae97bd82852f1fe7ff4af2414524cba8f83ea",
+      "sourceHashes": [
+        "dc216878fcd61e3279beae0e428ae97bd82852f1fe7ff4af2414524cba8f83ea"
+      ],
+      "stages": [
+        65
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "e5360f4acc5dd17423a7e6ca9ce9ceffb210fb746e22fb612ace97c1cc550f5e",
+      "masterSourceSha256": "4b68da524dfe74962adae0a7264e591ab5486b8411f82a5aea755cd1c28ad4e6",
+      "sourceHashes": [
+        "4b68da524dfe74962adae0a7264e591ab5486b8411f82a5aea755cd1c28ad4e6"
+      ],
+      "stages": [
+        66
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        384,
+        256
+      ],
+      "targetSize": [
+        1536,
+        1024
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "119e0e12024455352397d6fd2746bc6fa41767f63b9f0025e9ec98f71f2a250d",
+      "masterSourceSha256": "fb3b850e919cae27a83bb26fcc35aea3d880cb8fc6cddbe9528bb716d702cf09",
+      "sourceHashes": [
+        "fb3b850e919cae27a83bb26fcc35aea3d880cb8fc6cddbe9528bb716d702cf09"
+      ],
+      "stages": [
+        67
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "d9cf8f68211f16d8b5d262c63e589534e06be922b36edc825a4d7bd8dc413264",
+      "masterSourceSha256": "8a72e359d72895378ae0dfcd976496215ad9a065966de409ddd99ab5005040c5",
+      "sourceHashes": [
+        "8a72e359d72895378ae0dfcd976496215ad9a065966de409ddd99ab5005040c5"
+      ],
+      "stages": [
+        69
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "f4f32276c635a508793496bf7678c301d0b3042046423cd046be8da8460c5d12",
+      "masterSourceSha256": "75fc97be4540e635d71a7b5d3ce48760baff2edb7e19fc6445e964d772c21b5d",
+      "sourceHashes": [
+        "75fc97be4540e635d71a7b5d3ce48760baff2edb7e19fc6445e964d772c21b5d"
+      ],
+      "stages": [
+        71
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "392627c3abc83c226c9d49afd60ee1f6682ff7cc5c2bbaf0b02b1717d3600c21",
+      "masterSourceSha256": "fd0dfa22f310024b66019d862d3fbde9b13590f93d905924d0b7f91bd4c2eebb",
+      "sourceHashes": [
+        "fd0dfa22f310024b66019d862d3fbde9b13590f93d905924d0b7f91bd4c2eebb"
+      ],
+      "stages": [
+        72
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "c3791525b478ade61f2a0e232bdb98b7a0fe07cb24e95da9671bd5fa183f04c1",
+      "masterSourceSha256": "ebcf22b2fcc622358f483d2e48cfbaa54fa63f84a06a6da2c2b695b37bd0a1ff",
+      "sourceHashes": [
+        "ebcf22b2fcc622358f483d2e48cfbaa54fa63f84a06a6da2c2b695b37bd0a1ff"
+      ],
+      "stages": [
+        73
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "d9fd375bc178e1dd3f3a3ff48da0cc4008979314fb9c24c54c71f04ef5abd745",
+      "masterSourceSha256": "8d42455bbda369c236598605031b673f7bd00938c771917b8c0a1e0889db7c9d",
+      "sourceHashes": [
+        "8d42455bbda369c236598605031b673f7bd00938c771917b8c0a1e0889db7c9d"
+      ],
+      "stages": [
+        74
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "27d48c053ecc27ce43627f73a0728f158a492f3aca2d79345b087c0921c52fde",
+      "masterSourceSha256": "c9dc762d480d819d3ede85b1f1a19d91eaf152c7d2906d25251b418c288118a4",
+      "sourceHashes": [
+        "c9dc762d480d819d3ede85b1f1a19d91eaf152c7d2906d25251b418c288118a4"
+      ],
+      "stages": [
+        75
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "a299b26f5236def6f374c87e2be9d3190d880938478f6efcc765878516ec973d",
+      "masterSourceSha256": "8b2a9ac4d3b825a1e8eca169827968ec4d39a64bd6c376a76b5fc9c1bb861078",
+      "sourceHashes": [
+        "8b2a9ac4d3b825a1e8eca169827968ec4d39a64bd6c376a76b5fc9c1bb861078"
+      ],
+      "stages": [
+        76
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "10137cc708fe1bceb9a470b7a0adac0ec085c417251cba8eb8d0d8411fc3e9aa",
+      "masterSourceSha256": "6459e11db6027880bf2f826cb3602ce2dc5aa9b0e22bcdf8674671090454d575",
+      "sourceHashes": [
+        "6459e11db6027880bf2f826cb3602ce2dc5aa9b0e22bcdf8674671090454d575"
+      ],
+      "stages": [
+        77
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "b5a93a58e8a3245c87ae34cfbd624db04b45d446f51767d665400c5ed9165d5b",
+      "masterSourceSha256": "8c115b28fafc98cf1130c56fb97cc3b0938cb72a3ef6a7bcc871b19bf988d11f",
+      "sourceHashes": [
+        "8c115b28fafc98cf1130c56fb97cc3b0938cb72a3ef6a7bcc871b19bf988d11f"
+      ],
+      "stages": [
+        78
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "13b31fc44019c9228b00da4e3ae5558708a25199da22e07894601a0bfc2cafd3",
+      "masterSourceSha256": "eac2f0151b23bbe120f2dce0228813cd79a4a5da75898e06fa001d9651e754a4",
+      "sourceHashes": [
+        "eac2f0151b23bbe120f2dce0228813cd79a4a5da75898e06fa001d9651e754a4"
+      ],
+      "stages": [
+        79
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        384,
+        256
+      ],
+      "targetSize": [
+        1536,
+        1024
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "dc600a78e1c68aac4be3930f87275b93224322c5ee7272d3167c1a7a1027b45d",
+      "masterSourceSha256": "16f2e62661b9639dbc7e10b3bf525ab3ee338cb857adaadf7d131ea663da902a",
+      "sourceHashes": [
+        "16f2e62661b9639dbc7e10b3bf525ab3ee338cb857adaadf7d131ea663da902a"
+      ],
+      "stages": [
+        80
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        384,
+        256
+      ],
+      "targetSize": [
+        1536,
+        1024
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "6f10d252670bdbe8e57e0b5560c55837550db871a7119878a822d7b209c65896",
+      "masterSourceSha256": "10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339",
+      "sourceHashes": [
+        "10c92d05e105a2a8c649ef4f2abfe65402dc99ccae06d420ac46d13431465339"
+      ],
+      "stages": [
+        81
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "6350c3314c135b0ff8fb041a3ee0fb8123cff21b10f22782dcfe412b7199877b",
+      "masterSourceSha256": "99a9028709e85e9ccc5f91016f9c4e6e07dd2707af431e30a4e31d26c605c094",
+      "sourceHashes": [
+        "99a9028709e85e9ccc5f91016f9c4e6e07dd2707af431e30a4e31d26c605c094"
+      ],
+      "stages": [
+        82
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "580d5d2fc67a1bd345597a5823f1575960012a24fdd14234f7a42b8594eee083",
+      "masterSourceSha256": "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2",
+      "sourceHashes": [
+        "2c91e227b1744cc1c40d470e72671431b3777e749781df721ca0f7b15d4800e2",
+        "685844c0ea122cbf02acceee25aa5c1df7fa8b670ecc869d9c739b7daaa323ac"
+      ],
+      "stages": [
+        83,
+        84
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "99b42dc1126262727759a48a0ac40fccaf14801da8f96d72b139964789ad9072",
+      "masterSourceSha256": "386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073",
+      "sourceHashes": [
+        "386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073"
+      ],
+      "stages": [
+        87
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        384,
+        256
+      ],
+      "targetSize": [
+        1536,
+        1024
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "37561e937cd3622a8274e8be7b4ae39ec4498e823366896a0d227ca55b89da0e",
+      "masterSourceSha256": "cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1",
+      "sourceHashes": [
+        "cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1"
+      ],
+      "stages": [
+        88
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "26675e0696cbce91b395b9f881f79e2d3c8a98683a276db5e4334adb106d4fcf",
+      "masterSourceSha256": "119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c",
+      "sourceHashes": [
+        "119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c"
+      ],
+      "stages": [
+        89
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        384,
+        256
+      ],
+      "targetSize": [
+        1536,
+        1024
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "be33689c56a8a4685dd512ba508634bf993528c0c35cb83b00b1cfbd8d23d527",
+      "masterSourceSha256": "ffc76af45238eb245442d6033168d0003aec12df6f03aee7cf9b7c8c93ddb409",
+      "sourceHashes": [
+        "ffc76af45238eb245442d6033168d0003aec12df6f03aee7cf9b7c8c93ddb409"
+      ],
+      "stages": [
+        90
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "dee6d2daec87e35471c615d3e4f1ff47bc3add1afcf4d894309515acf6685246",
+      "masterSourceSha256": "4c0d5a4c187968f9d70d126ee04591678d79f92b5c3683195f1712cbcac708df",
+      "sourceHashes": [
+        "4c0d5a4c187968f9d70d126ee04591678d79f92b5c3683195f1712cbcac708df"
+      ],
+      "stages": [
+        94
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    },
+    {
+      "decodedRgbaSha256": "e0ad8a64d1197f07e69f00c537c802ff8008c192d13ad63fb79c93858b1b2c21",
+      "masterSourceSha256": "1624519994035d90954514952dcbb0dfa5457c9b64c5852e513f6938db20d8ba",
+      "sourceHashes": [
+        "1624519994035d90954514952dcbb0dfa5457c9b64c5852e513f6938db20d8ba"
+      ],
+      "stages": [
+        95
+      ],
+      "action": "restore-once-reuse",
+      "sourceSize": [
+        256,
+        384
+      ],
+      "targetSize": [
+        1024,
+        1536
+      ],
+      "status": "pending-generation"
+    }
+  ]
+}

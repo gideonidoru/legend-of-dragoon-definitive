@@ -2460,10 +2460,7 @@ public class Battle extends EngineState<Battle> {
       this.setStageHasNoModel();
       this.deleteBattleStageModel();
 
-      if(battlePreloadedEntities_1f8003f4.skyboxObj != null) {
-        battlePreloadedEntities_1f8003f4.skyboxObj.delete();
-        battlePreloadedEntities_1f8003f4.skyboxObj = null;
-      }
+      battlePreloadedEntities_1f8003f4.deleteSkybox();
 
       this.playerBattleScript_800c66fc = null;
 
@@ -2636,9 +2633,18 @@ public class Battle extends EngineState<Battle> {
       }
 
       if(battlePreloadedEntities_1f8003f4.skyboxObj == null) {
-        battlePreloadedEntities_1f8003f4.skyboxObj = new McqBuilder("Battle Skybox", mcq)
-          .vramOffset(320, 0)
-          .build();
+        try {
+          final var event = EVENTS.postEvent(new legend.game.modding.events.battle.BattleSkyTextureEvent(mcq.source()));
+          if(event.replacement != null) {
+            battlePreloadedEntities_1f8003f4.skyArtwork = legend.definitive.artwork.SkyArtwork.create(mcq, event.replacement);
+            battlePreloadedEntities_1f8003f4.skyboxObj = battlePreloadedEntities_1f8003f4.skyArtwork.mesh;
+          }
+        } catch(final java.io.IOException | RuntimeException failure) {
+          LOGGER.warn("Retained original battle panorama: {}", failure.getMessage());
+        }
+        if(battlePreloadedEntities_1f8003f4.skyboxObj == null) {
+          battlePreloadedEntities_1f8003f4.skyboxObj = new McqBuilder("Battle Skybox", mcq).vramOffset(320, 0).build();
+        }
       }
 
       this.mcqOffsetX_800c6774 += this.mcqStepX_800c676c;
@@ -2651,8 +2657,9 @@ public class Battle extends EngineState<Battle> {
 
       for(int i = -1; i < segments + 1; i++) {
         battlePreloadedEntities_1f8003f4.skyboxTransforms.transfer.set(-totalWidth / 2.0f + i * mcq.screenWidth_14 + x0, y, 60000.0f);
-        RENDERER.queueOrthoModel(battlePreloadedEntities_1f8003f4.skyboxObj, battlePreloadedEntities_1f8003f4.skyboxTransforms, QueuedModelStandard.class)
+        final var queued = RENDERER.queueOrthoModel(battlePreloadedEntities_1f8003f4.skyboxObj, battlePreloadedEntities_1f8003f4.skyboxTransforms, QueuedModelStandard.class)
           .monochrome(this.mcqColour_800fa6dc / 128.0f);
+        if(battlePreloadedEntities_1f8003f4.skyArtwork != null) queued.texture(battlePreloadedEntities_1f8003f4.skyArtwork.texture).useTextureAlpha();
       }
 
       //LAB_800c89d4
@@ -2682,10 +2689,7 @@ public class Battle extends EngineState<Battle> {
   public void loadStage(final int stage) {
     LOGGER.info("Loading battle stage %d", stage);
 
-    if(battlePreloadedEntities_1f8003f4.skyboxObj != null) {
-      battlePreloadedEntities_1f8003f4.skyboxObj.delete();
-      battlePreloadedEntities_1f8003f4.skyboxObj = null;
-    }
+    battlePreloadedEntities_1f8003f4.deleteSkybox();
 
     // GH#1931
     final long generation = ++this.stageLoadGeneration;
