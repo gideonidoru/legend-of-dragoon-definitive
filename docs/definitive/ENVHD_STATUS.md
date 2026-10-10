@@ -124,7 +124,7 @@ remain private diagnostics.
 The complete directory generation pass finished all 5,162 images. Every candidate
 record and PNG output hash is verified in `field-generation-receipt.json`; this
 public metadata receipt contains no original or generated pixels and claims zero
-runtime selections or acceptance. Generated PNGs total approximately 2.4 GB.
+runtime selections or acceptance. Generated PNGs total approximately 2.5 GB.
 
 Source `d75bc6385` implements a separate Python source-color perimeter repair.
 Frequent exact native green/cyan/yellow/magenta regions in background-bound images
@@ -135,3 +135,19 @@ drifting controls and overlapping input/output paths reject, and each repaired
 candidate retains the original neural record as its input provenance. Independent
 review accepted the repair and all regression fixtures. Repairs and their final
 output hashes must receive individual visual review before publication.
+
+Source `cf492c377` extends the repair to frequent exact red/blue regions while
+retaining explicit validation of the historical four-color operation. All 5,162
+images completed the second pass; 342 backgrounds received source-bound guards.
+Three red-placeholder variants changed from the first pass and were re-reviewed.
+Repair records must match their batch's pinned algorithm, including on resume and
+publication. Both revision identities are preserved in the publication registry.
+
+The public `field-repair-receipt.json` records every validated repaired output hash
+and its neural input hash. `field-review-receipt.json` records individual intent,
+style and layout notes for all 608 backgrounds and the first 72 foregrounds.
+Of these 680 comparisons, 674 are reviewed development baselines and six text,
+signage or fine-pattern images need bespoke review. The remaining 4,482 foreground comparisons,
+runtime integration and native/final acceptance are pending. These receipts
+contain metadata only; no complete candidate publication or installed field
+coverage is claimed. All 71 field/battle/terrain/ownership Python tests pass.

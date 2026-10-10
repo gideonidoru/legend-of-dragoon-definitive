@@ -13,7 +13,9 @@
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "world-artwork.json": "958abf47591e6d4d3e9d1c48a1db843e4662bc0c7f521868b3a684ab30f9e5b7",
-    "field-source-worklist.json": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206"
+    "field-source-worklist.json": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+    "field-repair-receipt.json": "6acbbcbafd10e4a808629a8164f2e57323cbb6dfef7264ca7d40c62767eb62d3",
+    "field-review-receipt.json": "1eef2720995f7612be670d15039c7563af82c2173cf653a033e5a812b387d88d"
   },
   "categories": [
     {
@@ -127,7 +129,7 @@
       "adapter": "Existing Skurfa 43 disk/cut bindings. EnvHD gap/alias source-bound listener not implemented. Protected source aliases are a reuse worklist, not 87 proven runtime replacements.",
       "ledger": "field-ownership.json",
       "remaining": [
-        "Repair and individually review all 5162 generated private field candidates, retaining three uniform native sources and native script-indexed empty/missing slots.",
+        "Review the remaining 4482 independent foreground candidates and resolve six text/signage/pattern holds before complete candidate publication; retain three uniform native sources and script-indexed empty/missing slots.",
         "Validate script reachability and all movable/hidden/translucent/alternate foreground-state families; exact pixel deduplication is complete for the decoded available source configurations.",
         "Reuse all 38 Skurfa packs and audit every protected alias; never regenerate them.",
         "Restore all 612 unowned configurations, preserving movable/hidden/translucent/alternate foregrounds separately.",
@@ -145,7 +147,17 @@
       "independentNativePixelAgreement": "650/650 configurations and 5528/5528 unique decodes",
       "envhdPublishedCandidateMasters": 0,
       "generationReceipt": "field-generation-receipt.json",
-      "generationStage": "Complete private candidate batch; source-color perimeter repair, individual review and runtime integration pending."
+      "generationStage": "Complete private generation and Python repair batch; individual review partially complete, publication and runtime integration pending.",
+      "envhdRepairedMasters": 5162,
+      "sourceGuardedBackgroundMasters": 342,
+      "individuallyComparedMasters": 680,
+      "reviewedDevelopmentMasters": 674,
+      "bespokeRevisionMasters": 6,
+      "unreviewedMasters": 4482,
+      "backgroundMastersCompared": 608,
+      "foregroundMastersCompared": 72,
+      "repairReceipt": "field-repair-receipt.json",
+      "reviewReceipt": "field-review-receipt.json"
     },
     {
       "id": "field-environment-props-and-scene-overlays",
