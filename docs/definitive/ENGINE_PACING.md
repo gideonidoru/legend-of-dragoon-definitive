@@ -1,0 +1,22 @@
+# Engine pacing contract
+
+Timing belongs to the domain that advances it. A display refresh, queued audio packet or retained deadline must not silently change that domain's speed.
+
+| Domain | Clock and intended behavior | Verification |
+| --- | --- | --- |
+| Gameplay, battle, submaps, world map, menus and transitions | The main game callback sets `60 / vsyncMode × gameSpeedMultiplier` for both rendering callbacks and input. Supported legacy divisors are 1, 2 and 3, giving 60, 30 and 20 Hz. Explicit fast-forward accelerates gameplay; the default multiplier is 1. | Actual gameplay timing setter and shared scheduler, all three divisors and every speed 1–16. |
+| Script VM and scripted effects | VM frames retain the configured `framesPerTick`; object tickers and presentation retain their engine callback cadence. Pause stops VM/object updates while allowing presentation; stop also stops presentation. | Actual script manager, VM frame counts, ticker/render callbacks, pause, resume and stop. |
+| Native model animations | Interpolation spreads each original keyframe across the configured callback count. HD geometry keeps the original animation owner. | Actual model loader/animator, complete synthetic keyframe cycles at interpolation strides 2, 4 and 6; existing source pose probes. |
+| Enhanced game films and launch logo | Decoded media follows actually played 48 kHz stereo audio. Queued buffers never count as played. Render callback frequency only chooses when to present a due image. | Real decoder/OpenAL loopback: all 18 shipped films, distributing checks across 30, 60 and 120 callback Hz; eight seconds of OPENH and the launch logo; future-frame, underrun, EOF and waveform checks. |
+| Original game films | One original frame per 15 Hz callback, independent of gameplay speed. | Actual original cinematic timing setter/scheduler. |
+| Cinematic presentation and cleanup | Cinematic scope uses speed 1 for renderer skipping, vsync accounting and FPS reporting. Entry accepts the first movie quad even from a skipped gameplay callback. Completion, skip, fallback and initialization failure restore the previous state. | Actual renderer buffer scheduler, nested restoration, speeds 1, 3, 8 and 16; source review of both playback owners. |
+| Music, XA and PCM playback | Audio is sample driven; the audio worker's 120 Hz refill budget and sequencer sample advancement do not use gameplay speed or monitor refresh. Game-tick sound triggers can intentionally arrive faster under fast-forward; sample playback keeps normal pitch. | Source ownership audit plus real OpenAL byte/signed-16/float continuity, refill and played-clock regressions. |
+| Shared platform scheduling | Monotonic time; a changed rate re-arms one interval from the change. Repeated assignments of the same rate preserve phase. Long stalls drop stale scheduling backlog instead of replaying an unbounded burst. | Deterministic virtual clock, 15–960 Hz handoffs, 1–960 Hz stall checks, repeated assignments, rejected rates and monotonic clock wrap. |
+
+## Rate handoff defect
+
+`Action.setExpectedFps` previously changed the interval but retained the old deadline. The movie-to-fast-gameplay regression retained approximately 66 ms from 15 Hz playback when the new 960 Hz callback should be due after approximately 1 ms. Changing a rate now re-arms its deadline immediately. An unchanged assignment is a no-op, since gameplay assigns its cadence every callback; re-arming that assignment would itself introduce drift. The production monotonic clock can be substituted by a virtual clock in tests without launching the game.
+
+## What this establishes
+
+These tests verify clock ownership, supported rate calculations, handoffs, script/animation tick budgets and native media clocks. Film checks sample each shipped decoder rather than claiming full-duration visual acceptance. Headless tests do not establish physical Steam Deck performance or perceptual A/V acceptance. Gameplay remains callback driven: sustained stalls or a forced external cap below the state's required rate can slow simulation, while bounded catch-up prevents uncontrolled replay after a long stall. SDL requests swap interval zero and the platform scheduler supplies the callback budget. Whole-game fixed-step simulation independent of rendering would be a separate engine change, requiring gameplay and transition validation rather than a claim inferred from these timing tests.
