@@ -1,6 +1,6 @@
 # Continuous elbow surface study
 
-October 10 private follow-up to the [body/material comparison](BODY_MATERIAL_STUDY.md). The visible rigid elbow seam needs an authored joint surface driven by the original animation. The first continuous candidates are **held**, rather than installed or selected as defaults.
+October 10 private follow-up to the [body/material comparison](BODY_MATERIAL_STUDY.md). The visible rigid elbow seam needs an authored joint surface driven by the original animation. Early candidates remain **held**. A later continuous corrective passes the sampled geometry and material controls, but remains private and has not passed final art, native integration or Steam Deck acceptance.
 
 ## Binding and construction
 
@@ -24,6 +24,29 @@ GPU diagnostic captures use shared cameras within each control/candidate case, c
 
 A clean-looking view cannot override the held pose audit. Retail-derived meshes, images, pose matrices, private authoring/capture helpers and failure reports stay outside Git; no candidate changes the shipped engine or installer. The binding source at [`044ec4a2f338954352ea3bdb02ecd9f332e51160`](https://github.com/gideonidoru/legend-of-dragoon-definitive/commit/044ec4a2f338954352ea3bdb02ecd9f332e51160) passed all three jobs in [hosted run 38037766008](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38037766008), including the original synthetic visual fixtures and both platform builds. A new installer release is not needed for this offline helper.
 
-## Next correction
+## Curvature-driven corrective
 
-Inspect the specific failing transition with the same controls, then compare improved rotation blending or an authored pose correction. Keep the full recorded-pose audit and preserved bracer/endpoint checks. Reject repairs that hide the failing motion, detach surfaces, distort character proportions or rely on per-frame fallback to conceal a bad model. After deformation and art review pass, follow the [native ownership/material contract](NATIVE_MATERIAL_INTEGRATION.md), world integration, physical Deck performance and community comparison gates.
+Follow-up comparisons kept the failing transition in the test set. Dual-quaternion blending of the long joint still failed the same four checks. Reconstructing cross-sections along a curve, including rotation-interpolated frames, also retained crossings. Expanding the deformable region to upper-arm Y −20 and forearm Y 120 reduced those failures to one recorded check. Moving the forearm cut farther crossed a costume color boundary and was rejected; changing weights alone did not clear the remaining intersection.
+
+The latest private candidate uses that expanded region and seven 32-vertex interior rings per arm. Proper endpoint frames interpolate by the shortest rotation, then align with the tangent of a cubic Hermite centerline. An analytic curvature correction compresses positive inward radial offsets continuously: the inward distance approaches, but does not exceed, 0.8 times the local curvature radius. Outward offsets remain unchanged relative to the same uncompressed loft. This is an authored shape treatment, not a volume-preserving or global collision solver. It uses no pose-specific exceptions, hidden failing motions or per-frame replacement.
+
+Only the 224 new interior vertices per arm receive that correction. Retained vertices and endpoint rings follow the original bone transforms; bracers and cuff attributes are preserved against the preceding refined source meshes. This does not mean the entire character retains original retail geometry.
+
+| Check | Verified result | Limit |
+| --- | --- | --- |
+| Geometry | 496 recorded samples per arm, 992 total; 298/288 unique matrix pairs; zero tested nonadjacent intersections, closed consistently wound bind surfaces and nondegenerate triangles | Seven recorded motions and three timing routes; not all animations, adjacent folds, tangencies or body/world contacts |
+| Source design | All 256 textured bracer faces and 320 non-skin cuff faces retain source positions, UV/CLUT and corner colors; 217,744 direct source-local vertex placement comparisons, maximum error below 4.6 × 10⁻¹³; endpoint error zero | Compared with the preceding refined arm meshes, not every original character surface |
+| Rotation choices | No tested shortest-rotation branch crossings or antiparallel frame events within the recorded routes | Not cross-clip transitions or a perceptual smoothness threshold |
+| Independent properties | Seven batches check bounded compression, unchanged outside/perpendicular components, monotonicity and rotation covariance; 36 whole-surface common rigid-transform checks, maximum error below 6.9 × 10⁻¹³ | Deterministic private checks, not native actor integration |
+| GPU controls | 64 hidden-context captures; 16 original indexed-to-nearest views pass exact coverage and at most one channel step across 1,398,274 covered samples; strong-material coverage matches; all input, PNG and decoded-pixel identities verified | CPU-prepared poses, controlled lights and the private atlas-lookup fragment prototype |
+| Comparison registration | All 15 views shared with the earlier held study have identical projection, lighting and original-model PNG identities | The extra combat-4 transition has no earlier matched candidate capture |
+
+The latest character totals **17,506 triangles**, a 19,922,944-byte RGBA atlas and 6,722,304 bytes of expanded vertex attributes in this diagnostic. These are payload sizes, not measured runtime residency, frame times, memory peaks or Deck performance. The checks use the existing private Python 3.12/NumPy 1.26.4/Pillow 10.1 environment, Java 25 and the Apple M5 Max OpenGL 4.1 context. The source vertex/geometry shaders remain unchanged; the fragment atlas-lookup prototype hash is `c120f3181f2ba4c09ff367461f44e7d2aa1f2d06869ac11596062b280c33ae17`. No new dependency, inference service, shipped shader/engine change or installer release was needed.
+
+The private evidence directory is `Definitive-private-texture-pilot/haschel-elbow-inner-corrective-round65`, beside the checkout. It retains the build manifest, full source/topology checks, temporal checks, comparison registration, GPU manifests and `elbow-evidence.json`. Authoring and verification helpers remain in the private tooling directory `elbow-inner-corrective-round65`; the full audit, temporal check, capture control check and final hash/property verification all exited successfully. The captured triangle count supersedes an earlier preparatory estimate of 17,504.
+
+## Art review and next gate
+
+The reviewed front, attack and side captures show a continuous arm shape without the prior visible elbow construction seam. The bracers remain recognizable. Clothing still has conspicuous facets, hands and boots remain coarse, and the arm treatment needs skin detail and proportion review beside the reconstructed face. This is promising local art progress, not a finished AA/AAA character or community-approved direction.
+
+Next, review movement sequences and garment/arm contacts, refine clothing, hands and boots without erasing costume markings, and compare the actor at actual handheld sizes against original and enhanced backgrounds. After deformation and art review pass, follow the [native ownership/material contract](NATIVE_MATERIAL_INTEGRATION.md), including blending, sorting, teardown and whole-actor Faithful fallback. Physical Deck performance and community comparison remain required before activation or selection as a default.
