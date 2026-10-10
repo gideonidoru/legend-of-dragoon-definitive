@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import java.util.function.BooleanSupplier;
 
 import static legend.core.GameEngine.CONFIG;
 import static legend.core.GameEngine.PLATFORM;
@@ -45,7 +46,8 @@ public abstract class MenuScreen extends ControlHost {
     button.setScale(0.66f);
     button.setSize((int)(button.getFont().textWidth(button.getText().get()) * button.getFontOptions().getSize() + 10), 10);
     button.setPos(this.hotkeyX, 227);
-    button.onPressed(handler::run);
+    if(handler != null) button.onPressed(handler::run);
+    else button.ignoreInput();
     button.onHoverIn(() -> playMenuSound(1));
     this.hotkeyX += button.getWidth();
 
@@ -72,24 +74,41 @@ public abstract class MenuScreen extends ControlHost {
     }, checkbox, checkboxLabel));
   }
 
+  /** Display-only hints leave state-specific input routing to the owning screen. */
+  public void addActionHint(final TextComponent label, final RegistryDelegate<InputAction> action) {
+    this.addActionHint(label, action, () -> true);
+  }
+
+  public void addActionHint(final TextComponent label, final RegistryDelegate<InputAction> action, final BooleanSupplier visible) {
+    this.addHotkey(label, action, null);
+    this.hotkeys.getLast().visible = visible;
+  }
+
   private void updateHotkeys() {
     this.hotkeyX = 8;
-    for(int hotkeyIndex = 0; hotkeyIndex < this.hotkeys.size(); hotkeyIndex++) {
-      final Hotkey hotkey = this.hotkeys.get(hotkeyIndex);
-      for(int controlIndex = 0; controlIndex < hotkey.controls.length; controlIndex++) {
-        final Control control = hotkey.controls[controlIndex];
-        control.setX(this.hotkeyX);
-        this.hotkeyX += control.getWidth();
-
+    int hotkeyY = 227;
+    final boolean show = CONFIG.getConfig(CoreMod.ACTION_HINTS_CONFIG.get());
+    for(final Hotkey hotkey : this.hotkeys) {
+      final boolean visible = show && hotkey.visible.getAsBoolean();
+      for(final Control control : hotkey.controls) {
+        control.setVisibility(visible);
+        if(!visible) continue;
         if(control instanceof final Button button) {
-          button.setText(new I18nText("lod_core.ui.hotkey", hotkey.label, InputCodepoints.getActionName(hotkey.action.get())));
+          final TextComponent text = new I18nText("lod_core.ui.hotkey", hotkey.label, InputCodepoints.getActionName(hotkey.action.get()));
+          if(!button.getText().get().equals(text.get())) button.setText(text);
           button.setSize((int)(button.getFont().textWidth(button.getText().get()) * button.getFontOptions().getSize() + 10), 10);
-        } else if(control instanceof Checkbox) {
-          this.hotkeyX += 3;
         } else if(control instanceof final Label label) {
           label.setText(new I18nText("lod_core.ui.hotkey", hotkey.label, InputCodepoints.getActionName(hotkey.action.get())));
-          this.hotkeyX -= 5;
+          label.setSize((int)(label.getFont().textWidth(label.getText().get()) * label.getFontOptions().getSize() + 10), 10);
         }
+        if(this.hotkeyX + control.getWidth() > this.getWidth() - 8) {
+          this.hotkeyX = 8;
+          hotkeyY -= 12;
+        }
+        control.setPos(this.hotkeyX, hotkeyY);
+        this.hotkeyX += control.getWidth();
+        if(control instanceof Checkbox) this.hotkeyX += 3;
+        else if(control instanceof Label) this.hotkeyX -= 5;
       }
     }
   }
@@ -157,6 +176,7 @@ public abstract class MenuScreen extends ControlHost {
 
     this.runDeferredActions();
     this.render();
+    this.updateHotkeys();
     this.renderControls(0, 0);
   }
 
@@ -386,7 +406,7 @@ public abstract class MenuScreen extends ControlHost {
       for(int i = 0; i < this.hotkeys.size(); i++) {
         final Hotkey hotkey = this.hotkeys.get(i);
 
-        if(action == hotkey.action.get()) {
+        if(hotkey.handler != null && action == hotkey.action.get()) {
           hotkey.handler.run();
           return InputPropagation.HANDLED;
         }
@@ -506,6 +526,7 @@ public abstract class MenuScreen extends ControlHost {
     private final TextComponent label;
     private final RegistryDelegate<InputAction> action;
     private final Runnable handler;
+    private BooleanSupplier visible = () -> true;
     private final Control[] controls;
 
     private Hotkey(final TextComponent label, final RegistryDelegate<InputAction> action, final Runnable handler, final Control... controls) {

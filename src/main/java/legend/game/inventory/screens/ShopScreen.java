@@ -3,6 +3,9 @@ package legend.game.inventory.screens;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import legend.core.MathHelper;
+import legend.definitive.qol.ShopQuantity;
+import legend.game.modding.coremod.CoreMod;
+import static legend.core.GameEngine.CONFIG;
 import legend.core.lang.I18nText;
 import legend.core.memory.Method;
 import legend.core.platform.input.InputAction;
@@ -111,6 +114,12 @@ public class ShopScreen extends MenuScreen {
 
   public ShopScreen(final Shop shop) {
     this.shop = shop;
+    this.addActionHint(new I18nText("lod_core.ui.actions.select"), INPUT_ACTION_MENU_CONFIRM, () -> this.menuState == MenuState.RENDER_3 || this.menuState == MenuState.BUY_4 || this.menuState == MenuState.SELL_10 || this.menuState == MenuState.EXTENSION_5);
+    this.addActionHint(new I18nText("lod_core.ui.equipment.back"), INPUT_ACTION_MENU_BACK, () -> this.menuState == MenuState.RENDER_3 || this.menuState == MenuState.BUY_4 || this.menuState == MenuState.SELL_10 || this.menuState == MenuState.EXTENSION_5);
+  }
+
+  public void setMenuState(final MenuState state) {
+    this.menuState = state;
   }
 
   @Override
@@ -731,6 +740,10 @@ public class ShopScreen extends MenuScreen {
 
   private void menuSell10Select() {
     final int slot = this.invScroll_8011e0e4 + this.invIndex_8011e0e0;
+    if(CONFIG.getConfig(CoreMod.SHOP_QUANTITIES_CONFIG.get())) {
+      this.sellQuantity(slot);
+      return;
+    }
     if(this.sellType != 0 && slot >= gameState_800babc8.items_2e9.getSize() || this.sellType == 0 && (slot >= gameState_800babc8.equipment_1e8.size() || !gameState_800babc8.equipment_1e8.get(slot).canBeDiscarded())) {
       playMenuSound(40);
     } else {
@@ -779,6 +792,71 @@ public class ShopScreen extends MenuScreen {
         }
       }));
     }
+  }
+
+  private void sellQuantity(final int selectedSlot) {
+    final InventoryEntry<?> selected;
+    final int maximum;
+    if(this.sellType != 0) {
+      if(selectedSlot < 0 || selectedSlot >= gameState_800babc8.items_2e9.getSize()) return;
+      final ItemStack stack = gameState_800babc8.items_2e9.get(selectedSlot);
+      if(stack.isProtected()) { playMenuSound(40); return; }
+      selected = stack.getExtraData() == null ? stack.copy() : stack;
+      maximum = ShopQuantity.saleCount(gameState_800babc8.items_2e9, stack);
+    } else {
+      if(selectedSlot < 0 || selectedSlot >= gameState_800babc8.equipment_1e8.size()) return;
+      final Equipment equipment = gameState_800babc8.equipment_1e8.get(selectedSlot);
+      if(!equipment.canBeDiscarded()) { playMenuSound(40); return; }
+      selected = equipment;
+      maximum = Math.min(ShopQuantity.MAX_QUANTITY, (int)gameState_800babc8.equipment_1e8.stream().filter(e -> e == equipment).count());
+    }
+    final InventoryEntry<?> unit = selected instanceof ItemStack stack ? stack.copy().setSize(1) : selected;
+    final int price = EVENTS.postEvent(new ShopSellPriceEvent(this.shop, unit, unit.getSellPrice())).price;
+    if(maximum == 0 || price < 0) { playMenuSound(40); return; }
+    menuStack.pushScreen(new QuantityScreen(new I18nText("lod_core.ui.quantity.sell", new I18nText(selected.getNameTranslationKey())), maximum, price, quantity -> {
+      int completed = 0;
+      while(completed < quantity) {
+        final int slot = this.findSaleSlot(selected);
+        if(slot < 0) break;
+        final InventoryEntry<?> sold = this.sellType != 0 ? gameState_800babc8.items_2e9.get(slot).copy().setSize(1) : selected;
+        final int currentPrice = EVENTS.postEvent(new ShopSellPriceEvent(this.shop, sold, sold.getSellPrice())).price;
+        // The confirmation total must remain accurate; changed prices require a fresh prompt.
+        if(currentPrice != price) break;
+        final boolean taken = this.sellType != 0 ? gameState_800babc8.items_2e9.takeFromSlot(slot, 1).isEmpty() : takeEquipment(slot);
+        if(!taken) break;
+        EVENTS.postEvent(new ShopSellEvent(this.shop, sold));
+        gameState_800babc8.gold_94 = ShopQuantity.addGold(gameState_800babc8.gold_94, price);
+        completed++;
+      }
+      if(quantity == 0) return;
+      if(completed < quantity) {
+        final int soldCount = completed;
+        this.deferAction(() -> menuStack.pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.quantity.partial", soldCount, quantity), MessageBoxType.ALERT, result -> { })));
+      }
+      final int count = this.sellType != 0 ? gameState_800babc8.items_2e9.getSize() : gameState_800babc8.equipment_1e8.size();
+      if(count == 0) {
+        unloadRenderable(this.selectedInventoryRowRenderable_800bdbe4);
+        this.menuState = MenuState.INIT_2;
+      } else {
+        this.invScroll_8011e0e4 = Math.clamp(this.invScroll_8011e0e4, 0, Math.max(0, count - 6));
+        this.invIndex_8011e0e0 = Math.clamp(this.invIndex_8011e0e0, 0, Math.min(5, count - this.invScroll_8011e0e4 - 1));
+        this.selectedInventoryRowRenderable_800bdbe4.y_44 = this.menuEntryY(this.invIndex_8011e0e0);
+      }
+    }));
+  }
+
+  private int findSaleSlot(final InventoryEntry<?> selected) {
+    if(selected instanceof final ItemStack stack) {
+      for(int i = 0; i < gameState_800babc8.items_2e9.getSize(); i++) {
+        final ItemStack candidate = gameState_800babc8.items_2e9.get(i);
+        if(!candidate.isProtected() && ShopQuantity.sameForSale(stack, candidate)) return i;
+      }
+    } else {
+      for(int i = 0; i < gameState_800babc8.equipment_1e8.size(); i++) {
+        if(gameState_800babc8.equipment_1e8.get(i) == selected && ((Equipment)selected).canBeDiscarded()) return i;
+      }
+    }
+    return -1;
   }
 
   private void menuSell10NavigateUp() {

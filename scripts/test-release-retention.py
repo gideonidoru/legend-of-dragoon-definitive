@@ -14,6 +14,21 @@ class Retention(unittest.TestCase):
         current=release(2,'new','2026-10-10')
         with self.assertRaises(ValueError):m.plan([current,release(3,'next','2026-10-11')],'new')
         with self.assertRaises(ValueError):m.plan([current,current],'new')
+    def test_drafts_remain_protected_regardless_of_age(self):
+        current=release(2,'new','2026-10-10')
+        for date in ('2026-10-09','2026-10-11'):
+            draft=release(3,'working',date,True)
+            keep,removed=m.plan([current,draft],'new')
+            self.assertEqual(current,keep);self.assertEqual([],removed)
+    def test_artifacts_protect_active_future_and_draft_sources(self):
+        kept={'id':2,'head_sha':'a'*40,'status':'completed','created_at':'2026-10-10T10:00:00Z'}
+        historical={'id':1,'head_sha':'b'*40,'status':'completed','created_at':'2026-10-09T10:00:00Z'}
+        self.assertTrue(m.eligible_artifact(historical,kept,[]))
+        for change in ({'status':'in_progress'},{'id':2},{'head_sha':'a'*40},{'created_at':'2026-10-10T10:00:00Z'},{'created_at':'2026-10-11T10:00:00Z'}):
+            self.assertFalse(m.eligible_artifact(dict(historical,**change),kept,[]))
+        draft=dict(release(3,'working','2026-10-11',True),target_commitish='b'*40)
+        self.assertFalse(m.eligible_artifact(historical,kept,[draft]))
+        with self.assertRaises(ValueError):m.eligible_artifact(historical,kept,[dict(draft,target_commitish='main')])
     def test_latest_must_be_exact_public_release(self):
         kept={'databaseId':2,'tagName':'new'};latest={'id':2,'tag_name':'new','draft':False,'prerelease':False};m.verify_latest(kept,latest)
         for changed in ({'id':1},{'tag_name':'old'},{'draft':True},{'prerelease':True}):

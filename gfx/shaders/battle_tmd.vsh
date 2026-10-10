@@ -16,8 +16,10 @@ out VS_OUT {
   smooth vec4 vertColour;
   smooth vec3 lightingNormal;
   smooth vec3 worldPosition;
+  smooth vec3 localPosition;
   smooth vec3 worldNormal;
   smooth vec3 localViewDirection;
+  smooth vec3 worldViewDirection;
   smooth vec3 lightingColour;
   flat int lightingIndex;
   flat int vertFlags;
@@ -181,8 +183,10 @@ void main() {
   }
 
   vs_out.worldPosition = (t.model * pos).xyz;
+  vs_out.localPosition = pos.xyz;
   vs_out.worldNormal = vec3(0.0);
   vs_out.localViewDirection = vec3(0.0);
+  vs_out.worldViewDirection = vec3(0.0);
   if(modernLighting && lit && !translucent) {
     mat3 worldBasis = mat3(t.model);
     mat3 viewBasis = mat3(camera * t.model);
@@ -190,6 +194,7 @@ void main() {
     if(abs(determinant(worldBasis)) > 1e-8 && abs(determinant(viewBasis)) > 1e-8) {
       vs_out.worldNormal = transpose(inverse(worldBasis)) * inNorm;
       vs_out.localViewDirection = inverse(viewBasis) * -(camera * t.model * pos).xyz;
+      vs_out.worldViewDirection = worldBasis * vs_out.localViewDirection;
     }
   }
   gl_Position = camera * t.model * pos;

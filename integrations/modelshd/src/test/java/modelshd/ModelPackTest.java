@@ -113,6 +113,28 @@ class ModelPackTest {
     replacement.rebuildObj(512, 256);
     assertEquals(SurfaceMaterial.METAL, replacement.getObj().surfaceMaterial);
   }
+  @Test void mixedFaceMaterialsPreserveVertexLayoutPaletteAddressingAndRebuilds() throws Exception {
+    final var src=source(0x20); final var p=pack(src);
+    final var faces=p.getAsJsonArray("parts").get(0).getAsJsonObject().getAsJsonArray("faces");
+    final var cloth=new JsonObject(); cloth.addProperty("surface","cloth"); cloth.addProperty("roughness",1);
+    faces.get(0).getAsJsonObject().add("material",cloth);
+    final var metalFace=faces.get(0).deepCopy(); final var metal=new JsonObject(); metal.addProperty("surface","metal"); metal.addProperty("roughness",.25);
+    metalFace.getAsJsonObject().add("material",metal); faces.add(metalFace);
+    final var replacement=read(p,src)[0];
+    assertEquals(SurfaceMaterial.CLOTH,replacement.faceSurface(0).material());
+    assertEquals(SurfaceMaterial.METAL,replacement.faceSurface(1).material());
+    replacement.buildObjLike(src); replacement.rebuildObj(512,256);
+    final float[] vertices=((MeshObj)replacement.getObj()).meshes[0].vertices();
+    assertEquals(16,legend.game.tmd.TmdObjLoader.VERTEX_SIZE);
+    assertEquals(1,(int)vertices[15]&1); assertEquals(replacement.faceSurface(0).flags(),(int)vertices[15]&~31);
+    assertEquals(replacement.faceSurface(1).flags(),(int)vertices[3*16+15]&~31);
+    TextureCompatibility.requireNativeAddressing(new TmdObjTable1c[] {replacement});
+  }
+  @Test void malformedRoughnessRejectsPackBeforeReplacingOriginal() {
+    final var src=source(0x20); final var p=pack(src); final var material=new JsonObject(); material.addProperty("surface","metal"); material.addProperty("roughness",2);
+    p.getAsJsonArray("parts").get(0).getAsJsonObject().add("material",material);
+    assertThrows(java.io.IOException.class,()->read(p,src)); assertEquals(SurfaceMaterial.MATTE,src.getObj().surfaceMaterial);
+  }
   @Test void omittedSurfaceInheritsActiveSourceAndMalformedSurfaceFailsClosed() throws Exception {
     var src = source(0x20);
     src.surfaceMaterial(SurfaceMaterial.SKIN);

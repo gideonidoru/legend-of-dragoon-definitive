@@ -131,6 +131,7 @@ public class RenderEngine {
   private final FloatBuffer transformsBuffer = BufferUtils.createFloatBuffer(4 * 4 * 2);
   private final FloatBuffer transforms2Buffer = BufferUtils.createFloatBuffer((4 * 4 + 4) * 128);
   private final EffectLights effectLights = new EffectLights();
+  private final legend.definitive.rendering.SmaaPipeline smaa = new legend.definitive.rendering.SmaaPipeline();
   private ModernLightingUniforms tmdModernLighting;
   private ModernLightingUniforms battleModernLighting;
 
@@ -483,6 +484,10 @@ public class RenderEngine {
   }
 
   public void delete() {
+    this.smaa.delete();
+    legend.definitive.rendering.DefaultMaterialMaps.delete();
+    Texture.deleteTextures();
+    legend.definitive.rendering.PngAssets.SHARED.clear();
     ShaderManager.delete();
     Obj.setShouldLog(false);
     Obj.clearObjList(true);
@@ -724,14 +729,21 @@ public class RenderEngine {
       if(legacyMode == 0) {
         final int smoothLighting = CONFIG.getConfig(SMOOTH_MODEL_LIGHTING_CONFIG.get()) ? 1 : 0;
         final SceneLighting sceneLighting = CONFIG.getConfig(SCENE_MATCHED_LIGHTING_CONFIG.get()) ? SceneLighting.ENHANCED : SceneLighting.ORIGINAL;
+        legend.definitive.rendering.EnvironmentLight environment = legend.definitive.rendering.EnvironmentLight.NONE;
+        if(CONFIG.getConfig(legend.game.modding.coremod.CoreMod.ENVIRONMENT_LIGHTING_CONFIG.get()) && currentEngineState_8004dd04 != null) {
+          environment = currentEngineState_8004dd04.environmentLighting();
+          if(environment.influence() == 0 && currentEngineState_8004dd04.nativeEnvironmentLighting()) {
+            environment = legend.definitive.rendering.NativeSceneLighting.profile(legend.game.Graphics.lightDirectionMatrix_800c34e8, legend.game.Graphics.lightColourMatrix_800c3508, legend.core.GameEngine.GTE.backgroundColour);
+          }
+        }
         this.tmdShader.use();
         this.smoothTmdLighting.set(smoothLighting);
         this.tmdSceneLighting.set(sceneLighting);
-        this.tmdModernLighting.set(CONFIG.getConfig(MATERIAL_LIGHTING_CONFIG.get()), CONFIG.getConfig(EFFECT_LIGHTS_CONFIG.get()), this.effectLights);
+        this.tmdModernLighting.set(CONFIG.getConfig(MATERIAL_LIGHTING_CONFIG.get()), CONFIG.getConfig(EFFECT_LIGHTS_CONFIG.get()), this.effectLights, environment);
         this.battleTmdShader.use();
         this.smoothBattleLighting.set(smoothLighting);
         this.battleSceneLighting.set(sceneLighting);
-        this.battleModernLighting.set(CONFIG.getConfig(MATERIAL_LIGHTING_CONFIG.get()), CONFIG.getConfig(EFFECT_LIGHTS_CONFIG.get()), this.effectLights);
+        this.battleModernLighting.set(CONFIG.getConfig(MATERIAL_LIGHTING_CONFIG.get()), CONFIG.getConfig(EFFECT_LIGHTS_CONFIG.get()), this.effectLights, environment);
         // Gross hack bro
         if(currentEngineState_8004dd04 instanceof final Battle battle && battle._800c6930 != null) {
           this.battleTmdShader.use();
@@ -760,6 +772,17 @@ public class RenderEngine {
         this.api.disableDepthTest();
         this.api.translucency(null);
 
+        final boolean enableCrt = CONFIG.getConfig(SHADER_ENABLE_CRT_CONFIG.get());
+        final float edgeAmount = CONFIG.getConfig(EDGE_SMOOTHING_CONFIG.get());
+        final boolean enableSmaa = !enableCrt && CONFIG.getConfig(legend.game.modding.coremod.CoreMod.SMAA_CONFIG.get()) && edgeAmount > 0;
+        final Texture scenePresentation;
+        if(enableSmaa) {
+          scenePresentation = this.smaa.apply(this.api, this.renderTextures[this.renderBufferIndex], this.interfaceTextures[this.renderBufferIndex], postQuad, edgeAmount, CONFIG.getConfig(PROTECT_INTERFACE_CONFIG.get()));
+        } else {
+          this.smaa.releaseTargets();
+          scenePresentation = this.renderTextures[this.renderBufferIndex];
+        }
+
         // bind backbuffer
         this.api.unbindFramebuffer();
         this.api.clear(false, true, false);
@@ -767,11 +790,10 @@ public class RenderEngine {
         // use screen shader
         screenShader.use();
 
-        final boolean enableCrt = CONFIG.getConfig(SHADER_ENABLE_CRT_CONFIG.get());
         screenShaderOptions.enableCrt(enableCrt);
         screenShaderOptions.sceneEffects(CONFIG.getConfig(SCENE_BLOOM_CONFIG.get()), CONFIG.getConfig(SCENE_SHARPENING_CONFIG.get()), CONFIG.getConfig(PROTECT_INTERFACE_CONFIG.get()));
         // Intentional CRT pixels keep their original sampling. No temporal history.
-        this.edgeSmoothing.set(enableCrt ? 0.0f : CONFIG.getConfig(EDGE_SMOOTHING_CONFIG.get()));
+        this.edgeSmoothing.set(enableCrt || scenePresentation != this.renderTextures[this.renderBufferIndex] ? 0.0f : edgeAmount);
 
         if(enableCrt) {
           screenShaderOptions.enableCrt(true);
@@ -855,7 +877,7 @@ public class RenderEngine {
 
         // draw final screen quad
         this.api.viewport(0, 0, this.window.getWidth(), this.window.getHeight());
-        this.renderTextures[this.renderBufferIndex].use();
+        scenePresentation.use();
         this.emissionTextures[this.renderBufferIndex].use(2);
         this.interfaceTextures[this.renderBufferIndex].use(3);
         postQuad.draw();

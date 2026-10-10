@@ -12,8 +12,19 @@ def plan(releases, keep):
     if len(matched)!=1 or matched[0]['draft']:raise ValueError('Keep exactly one existing public release')
     current=matched[0]
     created=datetime.fromisoformat(current['created_at'].replace('Z','+00:00'))
-    if any(datetime.fromisoformat(r['created_at'].replace('Z','+00:00'))>created for r in releases if r['id']!=current['id']):raise ValueError('A newer release exists; refresh the keep decision before deletion')
-    return current,[r for r in releases if r['id']!=current['id']]
+    if any(datetime.fromisoformat(r['created_at'].replace('Z','+00:00'))>created for r in releases if r['id']!=current['id'] and not r['draft']):raise ValueError('A newer public release exists; refresh the keep decision before deletion')
+    return current,[r for r in releases if r['id']!=current['id'] and not r['draft']]
+def eligible_artifact(run, keep_run, releases):
+    # Protect future candidates even after CI completes, and all draft source builds.
+    # Draft tags may still be moving; incomplete source discovery stops deletion.
+    drafts=[r for r in releases if r['draft']]
+    if any(not re.fullmatch(r'[a-f0-9]{40}', r.get('target_commitish','')) for r in drafts):
+        raise ValueError('Cannot identify an active draft build; artifact cleanup requires exact draft sources')
+    protected={r['target_commitish'] for r in drafts}|{keep_run['head_sha']}
+    return (run['status']=='completed' and run['id']!=keep_run['id']
+            and run['head_sha'] not in protected
+            and datetime.fromisoformat(run['created_at'].replace('Z','+00:00'))
+                < datetime.fromisoformat(keep_run['created_at'].replace('Z','+00:00')))
 def verify_latest(release,latest):
     if latest['id']!=release['databaseId'] or latest['tag_name']!=release['tagName'] or latest['draft'] or latest['prerelease']:raise ValueError('Current build-input URL does not resolve to the retained public release')
 def main():
@@ -44,9 +55,9 @@ def main():
     for artifact in artifacts:
         run_id=artifact['workflow_run']['id']
         if run_id==int(a.run):continue
-        if run_id not in statuses:statuses[run_id]=json.loads(gh('api',f'repos/{REPO}/actions/runs/{run_id}'))['status']
-        if statuses[run_id]=='completed':removable.append(artifact)
-    result={'keptTag':a.keep_tag,'keptTemporaryArtifactRun':a.run,'deletedReleases':[], 'deletedArtifacts':[], 'releaseBytes':sum(x['size'] for r in old for x in r['assets']),'artifactBytes':sum(x['size_in_bytes'] for x in removable)}
+        if run_id not in statuses:statuses[run_id]=json.loads(gh('api',f'repos/{REPO}/actions/runs/{run_id}'))
+        if eligible_artifact(statuses[run_id],run,releases):removable.append(artifact)
+    result={'keptTag':a.keep_tag,'keptTemporaryArtifactRun':a.run,'protectedDraftTags':[r['tag_name'] for r in releases if r['draft']], 'protectedArtifactIds':[x['id'] for x in artifacts if x not in removable], 'deletedReleases':[], 'deletedArtifacts':[], 'releaseBytes':sum(x['size'] for r in old for x in r['assets']),'artifactBytes':sum(x['size_in_bytes'] for x in removable)}
     if a.execute:
         for release in old:
             verify_current()
@@ -56,11 +67,16 @@ def main():
             gh('api','--method','DELETE',f'repos/{REPO}/releases/{release["id"]}');result['deletedReleases'].append(release['tag_name'])
         for artifact in removable:
             verify_current()
-            if json.loads(gh('api',f'repos/{REPO}/actions/runs/{artifact["workflow_run"]["id"]}'))['status']!='completed':continue
+            fresh_releases=[r for page in pages(f'repos/{REPO}/releases?per_page=100') for r in page]
+            plan(fresh_releases,a.keep_tag)
+            fresh_run=json.loads(gh('api',f'repos/{REPO}/actions/runs/{artifact["workflow_run"]["id"]}'))
+            if not eligible_artifact(fresh_run,run,fresh_releases):continue
             gh('api','--method','DELETE',f'repos/{REPO}/actions/artifacts/{artifact["id"]}');result['deletedArtifacts'].append(artifact['id'])
         verify_current()
         remaining=[r for page in pages(f'repos/{REPO}/releases?per_page=100') for r in page]
-        if len(remaining)!=1 or remaining[0]['tag_name']!=a.keep_tag:raise ValueError('Unexpected release remains after cleanup')
+        public=[r for r in remaining if not r['draft']]
+        if len(public)!=1 or public[0]['tag_name']!=a.keep_tag:raise ValueError('Unexpected public release remains after cleanup')
+        result['protectedDraftTags']=[r['tag_name'] for r in remaining if r['draft']]
     else:result['plannedTags']=[r['tag_name'] for r in old];result['plannedArtifacts']=[x['id'] for x in removable]
     print(json.dumps(result,indent=2))
 if __name__=='__main__':

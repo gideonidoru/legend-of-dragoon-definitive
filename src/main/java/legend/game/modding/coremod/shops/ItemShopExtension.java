@@ -1,6 +1,10 @@
 package legend.game.modding.coremod.shops;
 
 import legend.game.i18n.I18n;
+import legend.core.lang.I18nText;
+import legend.definitive.qol.ShopQuantity;
+import legend.game.inventory.screens.QuantityScreen;
+import legend.game.modding.coremod.CoreMod;
 import legend.game.inventory.ItemStack;
 import legend.game.inventory.screens.MessageBoxScreen;
 import legend.game.inventory.screens.ShopExtension;
@@ -51,7 +55,25 @@ public class ItemShopExtension extends ShopExtension<ItemStack> {
 
   @Override
   public boolean selectEntry(final ShopScreen screen, final Shop shop, final GameState52c gameState, final ShopScreen.ShopEntry<ItemStack> entry, final int index) {
-    if(gameState_800babc8.gold_94 < entry.price) {
+    if(CONFIG.getConfig(CoreMod.SHOP_QUANTITIES_CONFIG.get())) {
+      final int maximum = ShopQuantity.affordable(gameState.gold_94, entry.price, ShopQuantity.itemCapacity(gameState.items_2e9, entry.item));
+      if(maximum == 0) {
+        final String reason = entry.price < 0 || gameState.gold_94 < entry.price ? "not_enough_gold" : "inventory_full";
+        screen.deferAction(() -> menuStack.pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.shop." + reason), MessageBoxType.ALERT, result -> { })));
+      } else {
+        menuStack.pushScreen(new QuantityScreen(new I18nText("lod_core.ui.quantity.buy", new I18nText(entry.item.getNameTranslationKey())), maximum, entry.price, quantity -> {
+          if(quantity == 0) return;
+          final int completed = ShopQuantity.purchase(quantity, entry.price, () -> gameState.gold_94,
+            () -> { },
+            () -> ShopQuantity.purchaseItem(gameState.items_2e9, entry.item, entry.price,
+              () -> gameState.gold_94, unit -> EVENTS.postEvent(new ShopBuyEvent(shop, unit))),
+            cost -> gameState.gold_94 -= cost);
+          if(completed < quantity) screen.deferAction(() -> menuStack.pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.quantity.partial", completed, quantity), MessageBoxType.ALERT, result -> { })));
+        }));
+      }
+      return false;
+    }
+    if(entry.price < 0 || gameState_800babc8.gold_94 < entry.price) {
       screen.deferAction(() -> menuStack.pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.shop.not_enough_gold"), MessageBoxType.ALERT, result -> { })));
     } else {
       menuStack.pushScreen(new MessageBoxScreen(I18n.translate("lod_core.ui.shop.buy", I18n.translate(entry.item.getNameTranslationKey())), MessageBoxType.CONFIRMATION, result -> {

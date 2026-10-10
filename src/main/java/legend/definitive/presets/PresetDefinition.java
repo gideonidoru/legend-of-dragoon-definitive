@@ -3,11 +3,16 @@ package legend.definitive.presets;
 
 import java.util.*;
 
-/** Auditable data, independent of engine initialization. No global/device settings or reward modifiers. */
+/** Auditable data, independent of engine initialization. No global/device settings; reward controls explicitly remain at 1x. */
 public record PresetDefinition(String name, Map<String, Object> values) {
   public PresetDefinition { values = Collections.unmodifiableMap(new LinkedHashMap<>(values)); }
   public static PresetDefinition faithful() {
     final Map<String, Object> values = new LinkedHashMap<>();
+    values.put("lod_core:enemy_xp_multiplier", 1.0f);
+    values.put("lod_core:enemy_gold_multiplier", 1.0f);
+    values.put("lod_core:addition_feedback", false);
+    values.put("lod_core:shop_quantities", true);
+    values.put("lod_core:equipment_sort", "SLOT");
     values.put("lod_core:addition_mode", "NORMAL");
     values.put("lod_core:addition_timing_window", 1.0f);
     values.put("lod_core:auto_dragoon_addition", false);

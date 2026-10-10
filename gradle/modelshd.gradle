@@ -21,6 +21,18 @@ tasks.register('modelsHdTests', Test) {
   workingDir = layout.buildDirectory.dir('modelshd-test-home').get().asFile
   doFirst { workingDir.mkdirs() }
 }
+tasks.register('modelsHdWorldProbe', JavaExec) {
+  description = 'Opt-in headless mesh check against local disc extraction; never part of normal builds.'
+  dependsOn 'modelshdTestClasses'
+  classpath = sourceSets.modelshdTest.runtimeClasspath
+  mainClass = 'modelshd.WorldPassProbe'
+  jvmArgs '-Xmx2g', '-Djava.awt.headless=true'
+  doFirst {
+    args providers.gradleProperty('modelProbeFiles').get(),
+      file('docs/definitive/model-catalog/model-catalog.json').absolutePath,
+      providers.gradleProperty('modelProbeReport').get()
+  }
+}
 tasks.register('verifyModelsHdRoster') {
   final def root = file('integrations/modelshd/src/main/resources/modelshd/models')
   inputs.dir root
@@ -35,30 +47,42 @@ tasks.register('verifyModelsHdRoster') {
       final String hash = java.security.MessageDigest.getInstance('SHA-256').digest(pack.bytes).encodeHex().toString()
       if(hash != model.packSha256 || pack.length() != model.packBytes) throw new GradleException('ModelsHD geometry checksum mismatch: ' + model.character + '/' + model.form)
     }
+    final def world = new groovy.json.JsonSlurper().parse(new File(root, 'world-pass.json'))
+    final def expectedParts = world.partPacks.collect { it.sourceGeometrySha256 + '.json' }.toSet()
+    final def actualParts = fileTree(new File(root, 'parts')).files.collect { it.name }.toSet()
+    if(world.format != 1 || world.version != '0.4.0' || world.coverage.size() != 1343 || world.summary.inspectedContainers != 1343 ||
+      world.coverage.collect { it.sourceGeometrySha256 }.toSet().size() != 1343 ||
+      expectedParts.size() != world.partPacks.size() || actualParts != expectedParts) throw new GradleException('ModelsHD world pass is incomplete or ambiguous')
+    world.partPacks.each { part ->
+      if(!(part.sourceGeometrySha256 ==~ /[a-f0-9]{64}/)) throw new GradleException('Invalid ModelsHD part identity')
+      final File pack = new File(root, 'parts/' + part.sourceGeometrySha256 + '.json')
+      final String hash = java.security.MessageDigest.getInstance('SHA-256').digest(pack.bytes).encodeHex().toString()
+      if(hash != part.packSha256 || pack.length() != part.packBytes) throw new GradleException('ModelsHD part checksum mismatch')
+    }
   }
 }
 tasks.register('modelsHdJar', Jar) {
   dependsOn sourceSets.modelshd.classesTaskName, 'verifyModelsHdRoster'
-  archiveFileName = 'ModelsHD-0.3.0.jar'
+  archiveFileName = 'ModelsHD-0.4.0.jar'
   destinationDirectory = layout.buildDirectory.dir('modelshd')
   from sourceSets.modelshd.output
-  into('META-INF/modelshd') { from 'LICENSE' }
-  manifest { attributes 'Implementation-Title': 'ModelsHD', 'Implementation-Version': '0.3.0' }
+  into('META-INF/modelshd') { from 'LICENSE', 'CREDITS', 'credits.txt' }
+  manifest { attributes 'Implementation-Title': 'ModelsHD', 'Implementation-Version': '0.4.0' }
   preserveFileTimestamps = false
   reproducibleFileOrder = true
 }
 tasks.register('modelsHdBundle', Zip) {
   description = 'ModelsHD with the public custom geometry roster and optional authoring recipe.'
   dependsOn 'modelsHdJar'
-  archiveFileName = 'ModelsHD-0.3.0.zip'
+  archiveFileName = 'ModelsHD-0.4.0.zip'
   destinationDirectory = layout.buildDirectory.dir('modelshd')
   into('mods') { from tasks.named('modelsHdJar') }
   from('integrations/modelshd/PACKAGE_README.md') { rename { 'ModelsHD-README.md' } }
-  into('docs/definitive') { from 'docs/definitive/MODELS_HD_ROADMAP.md' }
+  into('docs/definitive') { from 'docs/definitive/MODELS_HD_ROADMAP.md', 'docs/definitive/MODELS_HD_WORLD_PASS.md' }
   from 'LICENSE'
   into('scripts') {
     from 'scripts'
-    include 'build-modelshd-roster.py', 'inventory-modelshd-sources.py', 'export-modelshd-pilot.py',
+    include 'build-modelshd-roster.py', 'build-modelshd-world-pass.py', 'inventory-modelshd-sources.py', 'export-modelshd-pilot.py',
       'refine-model-surfaces.py', 'inspect-model-poses.py', 'audit-model-materials.py',
       'preserve-texture-transparency.py', 'pack-model-materials.py', 'compare-material-islands.py',
       'compare-neural-textures.py', 'audit-uv-footprints.py', 'requirements-visual.txt'

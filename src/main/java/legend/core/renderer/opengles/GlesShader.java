@@ -21,7 +21,6 @@ import org.lwjgl.BufferUtils;
 
 import java.io.IOException;
 import java.nio.FloatBuffer;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -118,6 +117,9 @@ public class GlesShader<Options extends ShaderOptions> implements Shader<Options
     } catch(final IOException e) {
       this.deleteShaders(stages);
       throw e;
+    } catch(final RuntimeException e) {
+      this.deleteShaders(stages);
+      throw new IOException("Shader transpilation failed: " + this.name, e);
     }
 
     // Clear out errors
@@ -154,7 +156,7 @@ public class GlesShader<Options extends ShaderOptions> implements Shader<Options
   }
 
   private int compileShader(final Path file, final ShaderStage stage, final IntRef uniformIndex) throws IOException {
-    final String transpiled = ShaderManager.transpileShader(Files.readString(file), stage, uniformIndex);
+    final String transpiled = ShaderManager.transpileShader(legend.core.renderer.ShaderSources.read(file), stage, uniformIndex);
 
     final int type = switch(stage) {
       case VERTEX -> GL_VERTEX_SHADER;

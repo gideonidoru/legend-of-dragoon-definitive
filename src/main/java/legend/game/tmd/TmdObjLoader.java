@@ -11,6 +11,8 @@ import legend.core.renderer.Obj;
 import legend.core.renderer.Translucency;
 import legend.core.renderer.VertexOrder;
 import legend.game.types.Model124;
+import legend.game.modding.events.tmd.TmdGeometryEvent;
+import org.apache.logging.log4j.LogManager;
 import org.joml.Vector3f;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static legend.core.GameEngine.RENDERER;
+import static legend.core.GameEngine.EVENTS;
 import static legend.game.Graphics.tmdGp0CommandId_1f8003ee;
 
 public final class TmdObjLoader {
@@ -80,11 +83,33 @@ public final class TmdObjLoader {
   }
 
   public static MeshObj fromObjTable(final String name, final TmdObjTable1c objTable, final int specialFlags, final int textureWidth, final int textureHeight, final legend.definitive.artwork.MaterialUv materials) {
+    TmdObjTable1c geometry = objTable;
+    if(objTable.getClass() == TmdObjTable1c.class && !objTable.isAuthoredGeometry() && !objTable.requiresNativeVertexIndices()) {
+      try {
+        geometry = EVENTS.postEvent(new TmdGeometryEvent(objTable, specialFlags, textureWidth, textureHeight)).geometry;
+        if(geometry == null) geometry = objTable;
+      } catch(final RuntimeException failure) {
+        LogManager.getLogger().warn("Optional geometry kept original {}: {}", name, failure.getMessage());
+      }
+    }
+    try {
+      final MeshObj result = fromObjTableRaw(name, geometry, specialFlags, textureWidth, textureHeight, materials);
+      if(geometry != objTable) objTable.refinedObj = result;
+      return result;
+    } catch(final RuntimeException failure) {
+      if(geometry == objTable) throw failure;
+      LogManager.getLogger().warn("Optional geometry allocation kept original {}: {}", name, failure.getMessage());
+      return fromObjTableRaw(name, objTable, specialFlags, textureWidth, textureHeight, materials);
+    }
+  }
+
+  private static MeshObj fromObjTableRaw(final String name, final TmdObjTable1c objTable, final int specialFlags, final int textureWidth, final int textureHeight, final legend.definitive.artwork.MaterialUv materials) {
     final TmdObjLoaderMeshes tmdMeshes = getTranslucencySizes(objTable, specialFlags);
 
     // Backface culling is on by default for opaque primitives. LOD sets some untextured primitives to translucent
     // even though the translucency settings can only come from textures in order to disable backface culling
     boolean backfaceCulling = true;
+    int surfaceFace = 0;
 
     for(int primitiveIndex = 0; primitiveIndex < objTable.primitives_10.length; primitiveIndex++) {
       final TmdObjTable1c.Primitive primitive = objTable.primitives_10[primitiveIndex];
@@ -125,6 +150,7 @@ public final class TmdObjLoader {
       final Polygon poly = new Polygon(vertexCount);
 
       for(final byte[] data : primitive.data()) {
+        final legend.core.renderer.SurfaceResponse surface = objTable.faceSurface(surfaceFace++);
         TmdObjLoaderMesh mesh = tmdMeshes.opaque;
 
         // Read data from TMD ---
@@ -278,7 +304,7 @@ public final class TmdObjLoader {
             mesh.vertices[mesh.vertexOffset++] = 1.0f;
           }
 
-          int flags = 0;
+          int flags = surface == null ? 0 : surface.flags();
 
           if(lit) {
             flags |= LIT_FLAG;

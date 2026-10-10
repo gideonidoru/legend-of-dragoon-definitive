@@ -29,6 +29,71 @@ public final class NativeRendererProbe {
     setter.setAccessible(true);
     setter.invoke(GameEngine.CONFIG, CoreMod.HD_TEXTURE_FILTERING_CONFIG.get(), enabled);
   }
+
+  private static byte[] pixels(final Texture texture) {
+    texture.use(0); glActiveTexture(GL_TEXTURE0);
+    final ByteBuffer data = ByteBuffer.allocateDirect(texture.width * texture.height * 4);
+    glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    final byte[] result = new byte[data.capacity()]; data.get(result); return result;
+  }
+
+  private static void verifySmaa(final GlApi api, final boolean benchmark) {
+    final int size = 64;
+    final ByteBuffer data = ByteBuffer.allocateDirect(size * size * 4), mask = ByteBuffer.allocateDirect(size * size);
+    for(int y = 0; y < size; y++) for(int x = 0; x < size; x++) {
+      final int value = x > y * 0.6f + 10 ? 220 : 20;
+      final boolean ui = x >= 40 && x < 48 && y >= 8 && y < 16;
+      data.put((byte)(ui ? 240 : value)).put((byte)(ui ? 30 : value)).put((byte)(ui ? 180 : value)).put((byte)255);
+      mask.put((byte)(ui ? 255 : 0));
+    }
+    data.flip(); mask.flip();
+    final Texture source = api.makeTexture(data, "SMAA acceptance scene", size, size, TextureInternalFormat.RGBA_8, TextureDataFormat.RGBA, TextureDataType.UBYTE, true, false, false, false);
+    final Texture coverage = api.makeTexture(mask, "SMAA acceptance UI", size, size, TextureInternalFormat.R_8, TextureDataFormat.RED, TextureDataType.UBYTE, false, false, false, false);
+    final Mesh quad = api.makeMesh("SMAA probe quad", VertexOrder.TRIANGLES, new float[] {-1,-1,0,0, 1,-1,1,0, 1,1,1,1, -1,-1,0,0, 1,1,1,1, -1,1,0,1}, 6);
+    quad.attribute(0, 0, 2, 4); quad.attribute(1, 2, 2, 4);
+    final SmaaPipeline smaa = new SmaaPipeline();
+    final byte[] original = pixels(source), result = pixels(smaa.apply(api, source, coverage, quad, .5f, true));
+    require(smaa.available(), "SMAA shipping shaders compile and pipeline remains available");
+    int changed = 0;
+    for(int y = 0; y < size; y++) for(int x = 0; x < size; x++) {
+      final int p = (y * size + x) * 4;
+      if(result[p] != original[p]) changed++;
+      if(x >= 39 && x <= 48 && y >= 7 && y <= 16 || x < 5 || x > 58) {
+        for(int c = 0; c < 4; c++) require(result[p+c] == original[p+c], "SMAA preserves UI/fringe and flat regions at " + x + "," + y + " channel " + c + ": " + (result[p+c]&255) + " vs " + (original[p+c]&255));
+      }
+    }
+    require(changed > 0 && changed < size * size / 4, "SMAA reconstructs diagonal edges without changing the whole image");
+    require(java.util.Arrays.equals(result, pixels(smaa.apply(api, source, coverage, quad, .5f, true))), "SMAA is spatial and deterministic");
+    require(smaa.apply(api, source, coverage, quad, 0, true) == source, "zero-strength SMAA bypasses all passes");
+    source.delete(); coverage.delete();
+    if(benchmark) {
+      final int w = 1536, h = 960;
+      final ByteBuffer large = ByteBuffer.allocateDirect(w*h*4);
+      for(int y = 0; y < h; y++) for(int x = 0; x < w; x++) {
+        final int value = (x+y/2)/32%2 == 0 ? 30 : 220;
+        large.put((byte)value).put((byte)value).put((byte)value).put((byte)255);
+      }
+      large.flip();
+      final Texture scene = api.makeTexture(large,"SMAA timing scene",w,h,TextureInternalFormat.RGBA_8,TextureDataFormat.RGBA,TextureDataType.UBYTE,true,false,false,false);
+      final Texture ui = api.makeTexture(ByteBuffer.allocateDirect(w*h),"SMAA timing mask",w,h,TextureInternalFormat.R_8,TextureDataFormat.RED,TextureDataType.UBYTE,false,false,false,false);
+      for(int i=0;i<10;i++) smaa.apply(api,scene,ui,quad,.5f,true);
+      glFinish();
+      final int query = glGenQueries();
+      final long[] samples = new long[30];
+      for(int i=0;i<samples.length;i++) {
+        glBeginQuery(org.lwjgl.opengl.GL33C.GL_TIME_ELAPSED,query);
+        smaa.apply(api,scene,ui,quad,.5f,true);
+        glEndQuery(org.lwjgl.opengl.GL33C.GL_TIME_ELAPSED);
+        samples[i] = org.lwjgl.opengl.GL33C.glGetQueryObjectui64(query,GL_QUERY_RESULT);
+      }
+      glDeleteQueries(query); java.util.Arrays.sort(samples);
+      System.out.printf(java.util.Locale.ROOT,"SMAA 1536x960, 30 GPU samples after 10 warmups: median %.3f ms, p95 %.3f ms; driver %s / %s. Not Steam Deck or whole-frame timings.%n",samples[15]/1e6,samples[28]/1e6,glGetString(GL_RENDERER),glGetString(GL_VERSION));
+      scene.delete(); ui.delete();
+    }
+    smaa.delete(); quad.delete(); Texture.deleteTextures();
+    require(glGetError() == GL_NO_ERROR, "SMAA GPU lifecycle has no errors");
+    System.out.println("PASS: shipping SMAA shaders and lookup tables reconstruct diagonal edges, preserve UI/fringe/flat colors, repeat exactly and bypass at zero strength.");
+  }
   public static void main(final String[] args) throws Exception {
     System.load(args[0]);
     final long context = open(); require(context != 0, "windowless context");
@@ -95,6 +160,21 @@ public final class NativeRendererProbe {
       buffer.delete(); colour.delete(); glow.delete(); mask.delete(); Texture.deleteTextures();
       Files.delete(vertex); Files.delete(fragment); Files.delete(directory);
       System.out.println("PASS: actual OpenGL backend MRT/R8 setup, blend/mask state, auxiliary clears, atlas mip cap, filtering toggles, texture updates and deletion.");
+      verifySmaa(api, args.length > 1 && args[1].equals("benchmark"));
+      require(DefaultMaterialMaps.bind(),"shared default surface maps load");
+      glActiveTexture(GL_TEXTURE4); final int normalId=glGetInteger(GL_TEXTURE_BINDING_2D);
+      final ByteBuffer normals=ByteBuffer.allocateDirect(DefaultMaterialMaps.SIZE*DefaultMaterialMaps.SIZE*4);
+      glGetTexImage(GL_TEXTURE_2D,0,GL_RGBA,GL_UNSIGNED_BYTE,normals);
+      require(normals.equals(DefaultMaterialMaps.pixels(true)),"uploaded default normals match generated linear data exactly");
+      require(glGetTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER)==GL_LINEAR_MIPMAP_LINEAR,"default surface maps use bounded mip filtering");
+      glActiveTexture(GL_TEXTURE5); final int roughnessId=glGetInteger(GL_TEXTURE_BINDING_2D);
+      glGetTexImage(GL_TEXTURE_2D,0,GL_RGBA,GL_UNSIGNED_BYTE,normals);
+      require(normals.equals(DefaultMaterialMaps.pixels(false)),"uploaded default roughness matches generated data exactly");
+      require(DefaultMaterialMaps.bind(),"default maps reuse existing textures");
+      glActiveTexture(GL_TEXTURE4); require(glGetInteger(GL_TEXTURE_BINDING_2D)==normalId,"default map reuse does not allocate again");
+      DefaultMaterialMaps.delete(); Texture.deleteTextures();
+      require(!glIsTexture(normalId)&&!glIsTexture(roughnessId)&&glGetError()==GL_NO_ERROR,"default map ownership and deletion have no GL errors");
+      System.out.println("PASS: generated default maps upload exactly, use mip filtering, reuse shared textures and delete cleanly.");
     } finally { close(context); }
   }
 }

@@ -101,13 +101,21 @@ public final class ModelPack {
         if(vertices > 200000 || polygons > 50000 || definitions.size() == 0) throw new IOException("Model geometry budget exceeded");
         final List<Face> source = faces(originals[i]);
         final TmdObjTable1c.Primitive[] primitives = new TmdObjTable1c.Primitive[definitions.size()];
+        final legend.core.renderer.SurfaceResponse[] surfaces = new legend.core.renderer.SurfaceResponse[definitions.size()];
         for(int f = 0; f < primitives.length; f++) {
           final JsonObject face = definitions.get(f).getAsJsonObject();
           final int sourceIndex = integer(face.get("sourceFace"));
           if(sourceIndex < 0 || sourceIndex >= source.size()) throw new IOException("Unknown source material face");
           primitives[f] = packet(source.get(sourceIndex), face, points.length, normals.length);
+          final JsonObject material = face.has("material") ? face.getAsJsonObject("material") : part.has("material") ? part.getAsJsonObject("material") : null;
+          if(material != null) {
+            final var type = legend.core.renderer.SurfaceMaterial.valueOf(material.get("surface").getAsString().toUpperCase(java.util.Locale.ROOT));
+            if(material.has("roughness") && (!material.get("roughness").isJsonPrimitive() || !material.get("roughness").getAsJsonPrimitive().isNumber())) throw new IOException("Roughness must be numeric");
+            surfaces[f] = material.has("roughness") ? new legend.core.renderer.SurfaceResponse(type, material.get("roughness").getAsFloat()) : new legend.core.renderer.SurfaceResponse(type);
+          } else surfaces[f] = originals[i].faceSurface(sourceIndex);
         }
         result[i] = new TmdObjTable1c("ModelsHD part " + i, points, normals, primitives);
+        result[i].faceSurfaces(surfaces);
         if(part.has("surface")) {
           result[i].surfaceMaterial(legend.core.renderer.SurfaceMaterial.valueOf(part.get("surface").getAsString().toUpperCase(java.util.Locale.ROOT)));
         }
@@ -118,7 +126,7 @@ public final class ModelPack {
     }
   }
 
-  private static int integer(final com.google.gson.JsonElement value) throws IOException {
+  static int integer(final com.google.gson.JsonElement value) throws IOException {
     if(!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isNumber()) throw new IOException("Expected numeric integer");
     final double number = value.getAsDouble();
     if(!Double.isFinite(number) || number != Math.rint(number) || number < Integer.MIN_VALUE || number > Integer.MAX_VALUE) throw new IOException("Invalid integer");
@@ -132,7 +140,7 @@ public final class ModelPack {
       final JsonArray row = rows.get(i).getAsJsonArray();
       if(row.size() != 3) throw new IOException("Expected XYZ vector");
       final Vector3f vector = new Vector3f(row.get(0).getAsFloat(), row.get(1).getAsFloat(), row.get(2).getAsFloat());
-      if(!vector.isFinite() || vector.lengthSquared() > 1e9f || normals && Math.abs(vector.length() - 1) > .01f) throw new IOException("Nonfinite, excessive or invalid normal vector");
+      if(!vector.isFinite() || vector.lengthSquared() > TmdObjTable1c.MAX_GEOMETRY_VECTOR_LENGTH_SQUARED || normals && Math.abs(vector.length() - 1) > .01f) throw new IOException("Nonfinite, excessive or invalid normal vector");
       result[i] = vector;
     }
     return result;

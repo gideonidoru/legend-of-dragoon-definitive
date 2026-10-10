@@ -8,8 +8,10 @@ in GS_OUT {
   smooth vec4 vertColour;
   smooth vec3 lightingNormal;
   smooth vec3 worldPosition;
+  smooth vec3 localPosition;
   smooth vec3 worldNormal;
   smooth vec3 localViewDirection;
+  smooth vec3 worldViewDirection;
   smooth vec3 lightingColour;
   flat int lightingIndex;
   flat int vertFlags;
@@ -73,12 +75,81 @@ uniform int effectLightCount;
 uniform vec4 effectPositions[4];
 uniform vec4 effectColours[4];
 
+uniform vec4 environmentDirection;
+uniform vec3 environmentColour;
+uniform vec3 environmentAmbient;
+uniform bool normalMapEnabled;
+uniform bool defaultSurfaceMaps;
+uniform bool roughnessMapEnabled;
+uniform sampler2D normalMapTex;
+uniform sampler2D roughnessMapTex;
+uniform float normalMapStrength;
+vec3 materialNormal;
+vec3 materialWorldNormal;
+vec2 detailUv;
+vec2 detailGradientX;
+vec2 detailGradientY;
+
+mat3 detailFrame(vec3 n, vec3 dpX, vec3 dpY, vec2 uvX, vec2 uvY) {
+  vec3 px = cross(dpY, n);
+  vec3 py = cross(n, dpX);
+  vec3 t = px * uvX.x + py * uvY.x;
+  vec3 b = px * uvX.y + py * uvY.y;
+  float size = max(dot(t,t), dot(b,b));
+  if(size < 1e-12) return mat3(vec3(0), vec3(0), n);
+  return mat3(t * inversesqrt(size), b * inversesqrt(size), n);
+}
+
+void prepareMaterial() {
+  materialNormal = lightingNormal;
+  materialWorldNormal = worldNormal;
+  if((normalMapEnabled || roughnessMapEnabled) && (vertFlags & 0x1) != 0 && (vertFlags & 0x8) == 0 && !uiLayer && (ctmdFlags & 0x10) == 0) {
+    // Derivatives precede transparency/scissor discards; exact alpha/STP lookup stays separate.
+    detailUv = vertUv + uvOffset;
+    if(defaultSurfaceMaps) detailUv *= vertBpp == 3 ? 8.0 : 1.0/32.0;
+    detailGradientX = dFdx(detailUv);
+    detailGradientY = dFdy(detailUv);
+    if(normalMapEnabled && (vertBpp == 3 || defaultSurfaceMaps) && normalMapStrength > 0.0 && dot(worldNormal,worldNormal) > 1e-8 && dot(lightingNormal,lightingNormal) > 1e-8) {
+      vec3 detail = textureGrad(normalMapTex, detailUv, detailGradientX, detailGradientY).xyz * 2.0 - 1.0;
+      detail.xy *= normalMapStrength;
+      detail.z = max(detail.z, 0.01);
+      materialNormal = detailFrame(normalize(lightingNormal), dFdx(localPosition), dFdy(localPosition), detailGradientX, detailGradientY) * detail;
+      materialWorldNormal = detailFrame(normalize(worldNormal), dFdx(worldPosition), dFdy(worldPosition), detailGradientX, detailGradientY) * detail;
+    }
+  }
+}
+
+vec2 faceResponse() {
+  vec2 response = surfaceResponse;
+  if((vertFlags & 0x20) != 0) {
+    int kind = (vertFlags >> 6) & 7;
+    float roughness = max(0.05, float((vertFlags >> 9) & 255) / 255.0);
+    response.x = mix(128.0, 4.0, roughness * roughness);
+    response.y = kind == 1 ? 0.008 : kind == 2 || kind == 4 ? 0.035 : kind == 3 ? 0.16 : 0.018;
+  }
+  if(roughnessMapEnabled && (vertBpp == 3 || defaultSurfaceMaps)) {
+    float roughness = clamp(textureGrad(roughnessMapTex, detailUv, detailGradientX, detailGradientY).r, 0.05, 1.0);
+    if(defaultSurfaceMaps) roughness = clamp(sqrt(clamp((128.0-response.x)/124.0,0.0,1.0)) * (0.96 + roughness*0.08), 0.05, 1.0);
+    response.x = mix(128.0, 4.0, roughness * roughness);
+  }
+  return response;
+}
+
+vec3 environmentDiffuse(vec3 albedo, vec3 legacy) {
+  float size = dot(materialWorldNormal, materialWorldNormal);
+  if(environmentDirection.w <= 0.0 || size <= 1e-8) return legacy;
+  float facing = max(dot(materialWorldNormal * inversesqrt(size), environmentDirection.xyz), 0.0);
+  vec3 lit = albedo * (environmentAmbient + environmentColour * facing);
+  return mix(legacy, lit, environmentDirection.w);
+}
+
 vec3 surfaceLight() {
+  vec2 response = faceResponse();
   vec3 result = vec3(0.0);
-  float n2 = dot(lightingNormal, lightingNormal);
+  float n2 = dot(materialNormal, materialNormal);
   float v2 = dot(localViewDirection, localViewDirection);
   if(n2 > 1e-8 && v2 > 1e-8 && materialLighting) {
-    vec3 n = lightingNormal * inversesqrt(n2);
+    vec3 n = materialNormal * inversesqrt(n2);
     vec3 v = localViewDirection * inversesqrt(v2);
     Light l = lights[lightingIndex];
     for(int i = 0; i < 3; i++) {
@@ -89,14 +160,20 @@ vec3 surfaceLight() {
       vec3 h = d + v;
       float h2 = dot(h, h);
       if(h2 > 1e-8) {
-        float highlight = pow(max(dot(n, h * inversesqrt(h2)), 0.0), surfaceResponse.x);
-        result += l.lightColour[i] * (highlight * surfaceResponse.y * max(dot(n, d), 0.0));
+        float highlight = pow(max(dot(n, h * inversesqrt(h2)), 0.0), response.x);
+        result += l.lightColour[i] * (highlight * response.y * max(dot(n, d), 0.0) * (1.0 - environmentDirection.w));
       }
     }
   }
-  float wn2 = dot(worldNormal, worldNormal);
+  float wn2 = dot(materialWorldNormal, materialWorldNormal);
   if(wn2 > 1e-8) {
-    vec3 n = worldNormal * inversesqrt(wn2);
+    vec3 n = materialWorldNormal * inversesqrt(wn2);
+    float viewSize = dot(worldViewDirection, worldViewDirection);
+    if(materialLighting && environmentDirection.w > 0.0 && viewSize > 1e-8) {
+      vec3 halfDirection = environmentDirection.xyz + worldViewDirection * inversesqrt(viewSize);
+      float halfSize = dot(halfDirection, halfDirection);
+      if(halfSize > 1e-8) result += environmentColour * (pow(max(dot(n,halfDirection * inversesqrt(halfSize)),0.0),response.x) * response.y * max(dot(n,environmentDirection.xyz),0.0) * environmentDirection.w);
+    }
     for(int i = 0; i < min(effectLightCount, 4); i++) {
       vec3 delta = effectPositions[i].xyz - worldPosition;
       float distanceSquared = dot(delta, delta);
@@ -110,6 +187,8 @@ vec3 surfaceLight() {
 }
 
 void main() {
+  prepareMaterial();
+  vec3 materialAlbedo = lightingColour;
   // Older Intel iGPUs are buggy and don't implement scissoring properly, causing the Shirley fight to lock up when
   // she transforms into another character. This is a workaround and reimplements scissoring at the shader level.
   if(gl_FragCoord.x < scissorX || gl_FragCoord.x >= scissorX + scissorW || gl_FragCoord.y < scissorY || gl_FragCoord.y >= scissorY + scissorH) {
@@ -129,10 +208,10 @@ void main() {
   bool textured = (vertFlags & 0x2) != 0;
   outColour = vertColour;
   if(smoothLighting && (vertFlags & 0x1) != 0 && !translucent) {
-    float normalLengthSquared = dot(lightingNormal, lightingNormal);
+    float normalLengthSquared = dot(materialNormal, materialNormal);
     // Degenerate normals retain the legacy result instead of producing NaNs.
     if(normalLengthSquared > 1e-8) {
-      vec3 normal = lightingNormal * inversesqrt(normalLengthSquared);
+      vec3 normal = materialNormal * inversesqrt(normalLengthSquared);
       Light l = lights[lightingIndex];
       float range = textured ? 2.0 : 1.0;
       vec3 diffuse = (l.lightDirection * vec4(normal, 1.0)).rgb;
@@ -203,6 +282,7 @@ void main() {
       discard;
     }
 
+    materialAlbedo *= texColour.rgb;
     outColour = clamp(outColour * texColour, 0.0, 1.0);
   } else {
     // Untextured translucent primitives don't have a translucency bit so we always discard during the appropriate discard modes
@@ -212,7 +292,8 @@ void main() {
   }
 
   if((vertFlags & 0x1) != 0 && !translucent && !uiLayer && !uniformLit) {
-    outColour.rgb += surfaceLight() * lightingColour;
+    outColour.rgb = environmentDiffuse(materialAlbedo, outColour.rgb);
+    outColour.rgb += surfaceLight() * materialAlbedo;
   }
 
   outColour.rgb *= recolour;

@@ -45,5 +45,7 @@ public interface RenderApi {
   /** Auxiliary attachments always start at zero, regardless of scene clear color. */
   default void clearPostProcessTargets() { }
 
+  default void clearColourAttachment(final int attachment) { }
+
   boolean debugEnabled();
 }

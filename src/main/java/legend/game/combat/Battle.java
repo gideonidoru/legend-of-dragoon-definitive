@@ -1,10 +1,20 @@
 package legend.game.combat;
 
 import de.jcm.discordgamesdk.activity.Activity;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.IntStream;
+import javax.annotation.Nullable;
 import legend.core.Config;
 import legend.core.MathHelper;
-import legend.core.renderer.QueuedModelBattleTmd;
-import legend.core.renderer.QueuedModelStandard;
 import legend.core.Random;
 import legend.core.audio.sequencer.assets.BackgroundMusic;
 import legend.core.gpu.Bpp;
@@ -16,9 +26,14 @@ import legend.core.gte.ModelPart10;
 import legend.core.gte.Transforms;
 import legend.core.memory.Method;
 import legend.core.memory.types.FloatRef;
-import legend.core.renderer.McqBuilder;
 import legend.core.platform.input.InputAction;
+import legend.core.renderer.McqBuilder;
+import legend.core.renderer.QueuedModelBattleTmd;
+import legend.core.renderer.QueuedModelStandard;
+import legend.core.renderer.Translucency;
 import legend.core.tags.Tag;
+import legend.definitive.qol.AdditionFeedback;
+import legend.definitive.qol.RewardScaling;
 import legend.game.EngineState;
 import legend.game.Scus94491BpeSegment;
 import legend.game.additions.Addition;
@@ -98,11 +113,15 @@ import legend.game.combat.ui.BattleAction;
 import legend.game.combat.ui.BattleActionTickFlowControl;
 import legend.game.combat.ui.BattleHud;
 import legend.game.combat.ui.BattleMenuStruct58;
+import legend.game.i18n.I18n;
 import legend.game.inventory.Equipment;
 import legend.game.inventory.EquipmentAttackType;
 import legend.game.inventory.ItemStack;
 import legend.game.inventory.SpellStats0c;
 import legend.game.inventory.WhichMenu;
+import legend.game.inventory.screens.FontOptions;
+import legend.game.inventory.screens.HorizontalAlign;
+import legend.game.inventory.screens.TextColour;
 import legend.game.modding.coremod.CoreMod;
 import legend.game.modding.coremod.CorePostBattleActions;
 import legend.game.modding.events.battle.BattleEndedEvent;
@@ -143,7 +162,6 @@ import legend.game.types.Keyframe0c;
 import legend.game.types.McqHeader;
 import legend.game.types.Model124;
 import legend.game.types.TmdAnimationFile;
-import legend.core.renderer.Translucency;
 import legend.game.ui.UiBox;
 import legend.game.unpacker.FileData;
 import legend.game.unpacker.Loader;
@@ -159,19 +177,6 @@ import org.joml.Matrix3f;
 import org.joml.Vector2i;
 import org.joml.Vector3f;
 import org.legendofdragoon.modloader.registries.RegistryId;
-
-import javax.annotation.Nullable;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.stream.IntStream;
 
 import static legend.core.GameEngine.AUDIO_THREAD;
 import static legend.core.GameEngine.CONFIG;
@@ -325,6 +330,7 @@ import static legend.lodmod.LodMod.SPEED_STAT;
 import static legend.lodmod.LodMod.SP_STAT;
 import static legend.lodmod.LodMod.disableRetailBattleActions;
 
+
 public class Battle extends EngineState<Battle> {
   private static final Logger LOGGER = LogManager.getFormatterLogger(Battle.class);
   private static final Marker CAMERA = MarkerManager.getMarker("CAMERA");
@@ -334,6 +340,9 @@ public class Battle extends EngineState<Battle> {
   public static final Vector3f ZERO = new Vector3f();
 
   public final BattleHud hud = new BattleHud(this);
+  public final AdditionFeedback additionFeedback = new AdditionFeedback();
+  private RewardScaling rewardScaling = new RewardScaling(1.0f, 1.0f);
+  private static final FontOptions ADDITION_FEEDBACK_FONT = new FontOptions().colour(TextColour.WHITE).shadowColour(TextColour.BLACK).horizontalAlign(HorizontalAlign.CENTRE).size(0.8f);
   public final BattleCamera camera_800c67f0 = new BattleCamera();
   public final ParticleManager particles = new ParticleManager(this.camera_800c67f0);
 
@@ -695,6 +704,7 @@ public class Battle extends EngineState<Battle> {
   @Override
   public void postScriptTick(final boolean scriptsTicked) {
     super.postScriptTick(scriptsTicked);
+    if(scriptsTicked) this.additionFeedback.tick();
     this.inputPressed = 0;
     this.inputRepeat = 0;
   }
@@ -1960,6 +1970,8 @@ public class Battle extends EngineState<Battle> {
   @Method(0x800c7524L)
   public void initBattle() {
     LOGGER.info(BATTLE, "Battle starting");
+    this.rewardScaling = new RewardScaling(CONFIG.getConfig(legend.game.modding.coremod.CoreMod.ENEMY_XP_MULTIPLIER_CONFIG.get()), CONFIG.getConfig(legend.game.modding.coremod.CoreMod.ENEMY_GOLD_MULTIPLIER_CONFIG.get()));
+    this.additionFeedback.clear();
 
     new Tim(Loader.loadFileSync("shadow.tim")).uploadToGpu();
 
@@ -2335,6 +2347,10 @@ public class Battle extends EngineState<Battle> {
   @Method(0x800c7bb8L)
   public void battleTick() {
     this.hud.draw();
+    final AdditionFeedback.Result feedback = this.additionFeedback.visibleResult();
+    if(feedback != null && CONFIG.getConfig(legend.game.modding.coremod.CoreMod.ADDITION_FEEDBACK_CONFIG.get())) {
+      legend.game.Text.renderText(I18n.translate("lod_core.ui.addition_feedback." + feedback.name()), GPU.getOffsetX(), GPU.getOffsetY() + 64, ADDITION_FEEDBACK_FONT);
+    }
 
     if(postBattleAction_800bc974 != null) {
       this.loadingStage++;
@@ -4336,8 +4352,8 @@ public class Battle extends EngineState<Battle> {
 
         if(state.hasFlag(FLAG_MONSTER)) { // Monster
           final CombatantStruct1a8 enemyCombatant = data.combatant_144;
-          goldGainedFromCombat_800bc920 += enemyCombatant.gold_196;
-          totalXpFromCombat_800bc95c += enemyCombatant.xp_194;
+          goldGainedFromCombat_800bc920 = RewardScaling.accumulate(goldGainedFromCombat_800bc920, enemyCombatant.gold_196);
+          totalXpFromCombat_800bc95c = RewardScaling.accumulate(totalXpFromCombat_800bc95c, enemyCombatant.xp_194);
 
           if(!state.hasFlag(FLAG_NO_LOOT)) { // Hasn't already dropped loot
             for(final CombatantStruct1a8.ItemDrop drop : enemyCombatant.drops) {
@@ -9344,8 +9360,9 @@ public class Battle extends EngineState<Battle> {
 
     final EnemyRewardsEvent rewardsEvent = EVENTS.postEvent(new EnemyRewardsEvent(enemyId, rewards.xp_00, rewards.gold_02, combatant.drops));
 
-    combatant.xp_194 = rewardsEvent.xp;
-    combatant.gold_196 = rewardsEvent.gold;
+    // Run after every event listener, including overhaul mods that replace base rewards.
+    combatant.xp_194 = this.rewardScaling.xp(rewardsEvent.xp);
+    combatant.gold_196 = this.rewardScaling.gold(rewardsEvent.gold);
     combatant._19a = rewards._06;
 
     final LoadEnemyEvent enemyEvent = new LoadEnemyEvent(this, enemyId, combatant, Loader.resolve("SECT/DRGN1.BIN/" + (enemyId + 1)));

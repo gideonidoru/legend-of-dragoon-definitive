@@ -16,10 +16,26 @@ public abstract class Texture {
 
   public static Texture create(final String name, final Consumer<TextureBuilder> callback) {
     final TextureBuilder builder = new TextureBuilder(name);
-    callback.accept(builder);
-    final Texture texture = builder.build();
-    builder.free();
-    return texture;
+    try {
+      callback.accept(builder);
+      return builder.build();
+    } finally { builder.free(); }
+  }
+
+  /** Decode upcoming artwork off the renderer thread; GPU upload stays with normal texture creation. */
+  public static java.util.concurrent.CompletableFuture<Boolean> prewarmPng(final Path path) {
+    if(!imageCachingEnabled()) return java.util.concurrent.CompletableFuture.completedFuture(false);
+    return legend.definitive.rendering.PngAssets.SHARED.prewarm(path);
+  }
+
+  public static java.util.concurrent.CompletableFuture<Boolean> prewarmPng(final Class<?> owner, final String resource) {
+    if(!imageCachingEnabled()) return java.util.concurrent.CompletableFuture.completedFuture(false);
+    return legend.definitive.rendering.PngAssets.SHARED.prewarm(() -> owner.getResourceAsStream(resource));
+  }
+
+  static boolean imageCachingEnabled() {
+    final var setting = legend.game.modding.coremod.CoreMod.IMAGE_CACHE_CONFIG;
+    return !setting.isValid() || legend.core.GameEngine.CONFIG.getConfig(setting.get());
   }
 
   public static Texture empty(final String name, final int w, final int h) {
@@ -121,6 +137,9 @@ public abstract class Texture {
   public abstract void data(int x, int y, int w, int h, TextureDataType dataType, int[] data);
   public abstract void use(int activeTexture);
   public abstract void use();
+
+  /** Scoped linear sampling for renderer-owned post-process inputs; restores constructor filters. */
+  public void linearSampling(final boolean enabled) { }
 
   public abstract TextureInternalFormat internalFormat();
   public abstract TextureDataFormat dataFormat();

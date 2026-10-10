@@ -432,6 +432,11 @@ public class GlesApi implements RenderApi {
   private static final float[] ZERO_COLOUR = {0, 0, 0, 0};
 
   @Override
+  public void clearColourAttachment(final int attachment) {
+    org.lwjgl.opengles.GLES30.glClearBufferfv(org.lwjgl.opengles.GLES30.GL_COLOR, attachment, ZERO_COLOUR);
+  }
+
+  @Override
   public void clearPostProcessTargets() {
     org.lwjgl.opengles.GLES30.glClearBufferfv(org.lwjgl.opengles.GLES30.GL_COLOR, 1, ZERO_COLOUR);
     org.lwjgl.opengles.GLES30.glClearBufferfv(org.lwjgl.opengles.GLES30.GL_COLOR, 2, ZERO_COLOUR);

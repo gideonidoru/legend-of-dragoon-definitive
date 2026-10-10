@@ -2,7 +2,13 @@
 
 ModelsHD owns geometry, proportions, attachments and animation compatibility. The initial scope is **19 party battle models**, including all normal and Dragoon forms and Divine Dart. Texture artwork and rendering/lighting remain separate workstreams. The installer includes the complete mod and its public custom roster. It uses a small authored-geometry engine API; no engine rewrite is planned.
 
-## Bundled 0.3.0 geometry pass
+## Current 0.4.0 broad pass
+
+The user's next milestone applies inexpensive smoothing across the whole supported catalog before bespoke rebuilding. All 1,343 canonical containers, including the existing 19 battle forms, are inspected. A shared pre-allocation TMD geometry event now extends ModelsHD to field actors, NPCs, bosses, enemies, scenery and world-map resources while keeping original animation/script tables intact. **964 containers receive some smoothing; 379 retain originals.** The complete package contains 8,531 deduplicated custom part replacements. The nine confirmed party field models are included. [Exact coverage, recipe and verification](MODELS_HD_WORLD_PASS.md).
+
+The ordering below now applies to individually authored reconstruction and gameplay acceptance, rather than blocking the broad first pass. Rendering, texture artwork and lighting remain separate workstreams. More polygons are not proof of better anatomy or measured Deck performance.
+
+## Historical 0.3.0 party-only geometry pass
 
 One conservative subdivision pass refines eligible rigid parts, retains open joint borders and uses the active model's texture/material addressing. Non-manifold or degenerate source parts remain unchanged. The generated geometry is a foundation for individual character remodeling, not completion of the modern AA visual target. No new faces, sculpted costumes or accepted head/neck reconstruction are implied.
 
@@ -21,7 +27,7 @@ One conservative subdivision pass refines eligible rigid parts, retains open joi
 
 The complete roster has 452 original animation parts. Of these, 428 are refined and 24 retain their source geometry. Total triangles increase from 16,577 to 57,449. These are topology counts, **not measured frame-time or memory budgets**. All 19 canonical source identities are distinct; shared design work is possible, but animation-part mapping must be proved for each variant.
 
-## Finish these 19 before expanding
+## Bespoke reconstruction: these 19 first
 
 1. **Whole-character art direction.** Evaluate the complete body at Deck gameplay size and in close views. Keep the original design, silhouette, costume and personality. Work on faces, hair, hands, armor shapes and clothing folds as coordinated upgrades; do not spend repeated rounds polishing an isolated seam while the rest of the actor is unfinished. No new texture images or shader edits belong to this workstream.
 2. **Normal party roster.** Establish a complete authored Dart reference with face, hair, hands and costume topology; use Meru and Kongol as contrasting proportions and clothing controls. Apply that standard to all nine normal forms, giving each character individual recognition checks. The existing Haschel experiments remain references until whole-actor anatomy and motion are accepted.
@@ -36,6 +42,8 @@ On October 10, the private extracted data scan examined 114,307 files. It recogn
 
 These numbers are **not a count of individual characters or required new sculpts**. A container can be a person, prop, multipart boss, effect or alternate scene representation. Different containers can be near-duplicates or share most components. Repeated source references are often the same geometry in different scenes. Standalone and other unsupported formats are not established as exhaustively covered. The detailed private inventory records aliases and held reasons; the custom party replacements are now public; the full original extraction and source controls are excluded.
 
+The [public model catalog](MODEL_CATALOG.md) now covers all **1,324** remaining containers and **7,544** appearances, with verified loading context or identity for **1,294**. Browse the [offline atlas](model-catalog/index.html) or [authoring CSV](model-catalog/model-catalog.csv). It separates 517 field objects, 466 field scene overlays and 305 battle-context containers, retains unresolved actor identities, and records 160 substantial component-reuse leads. Context counts overlap; the catalog explains the distinct scheduling buckets and format gaps.
+
 Reproduce the exact-duplicate inventory:
 
 ```sh
@@ -44,7 +52,7 @@ python scripts/inventory-modelshd-sources.py \
   --output /PRIVATE/modelshd-remaining-inventory.json
 ```
 
-## Expansion order after the party battle gate
+## Bespoke expansion order after the party battle gate
 
 | Phase | Scope | Work and exit criteria |
 | --- | --- | --- |
@@ -54,11 +62,11 @@ python scripts/inventory-modelshd-sources.py \
 | D | Common enemy families | Group geometry relatives and palette variants. Author a family master, map variants individually and retain their active textures. Validate a representative attack/damage/death cycle plus each topology exception. Measure crowded encounters on Deck. |
 | E | Remaining NPCs and visible 3D props | Prioritize assets that occupy meaningful screen area or distract from the improved party. Batch small background actors and shared props through proven templates; avoid polishing invisible geometry. Preserve collision and interaction behavior. |
 
-Before each phase, turn the private aliases into a semantic roster: actor/family name, contexts, source identities, shared components, special animation/visibility behavior, current texture owner and priority. Record unmapped containers as unresolved. Set a defensible unique authoring count only after this classification, rather than treating every file as a separate redesign.
+Before each phase, use the catalog's route/evidence records to confirm actor/family names, material owners and special animation/visibility contracts. Keep unresolved identities and measured reuse candidates distinct from proved names. Set a defensible unique authoring count after this review, rather than treating every file as a separate redesign.
 
 The mod is included in the normal install and remains selectable throughout. Texture packs keep their own images and selection; the rendering thread owns lighting and Deck APU features. For animated palettes, mixed bit depths, custom atlas layouts or new geometry owners, define and test an explicit material/geometry handoff before adding support.
 
-## Verification and limits
+## Historical 0.3 verification and limits
 
 Environment: Mac Studio `Mac17,14`, Apple M5 Max, 64 GB, macOS 27.0.1 (`26A434`), Corretto Java 25 (`25+36-LTS`), NumPy 2.5.1. Engine source before this increment: `774a58604720e36e788d190e0315f3fbbe2673d9`; local upstream reference: `fba1543543865e29ee572f479003d9b47158eeb3`.
 

@@ -5,7 +5,8 @@ public enum SurfaceMaterial {
   MATTE(12.0f, 0.018f),
   CLOTH(6.0f, 0.008f),
   SKIN(24.0f, 0.035f),
-  METAL(64.0f, 0.16f);
+  METAL(64.0f, 0.16f),
+  LEATHER(18.0f, 0.035f);
 
   public final float exponent;
   public final float strength;
