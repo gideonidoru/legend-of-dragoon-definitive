@@ -63,7 +63,7 @@ else:raise AssertionError(sys.argv)
                    FIXTURE_RESULT=str(root / 'result'), FIXTURE_JAVA=str(java), FIXTURE_ASSET=str(asset),
                    FIXTURE_PROGRESS=str(root / 'progress'), FIXTURE_ERROR=str(root / 'error'))
         result = subprocess.run(['/bin/bash', str(entry)], env=env, capture_output=True, text=True, timeout=10)
-        assert not (root / 'cache/.portable-lock').exists(), 'Failure left the installer locked'
+        assert not (root / 'cache/.portable-lock').is_dir(), 'Failure left a directory lock'
         if failure == 'none':
             assert result.returncode == 0 and (root / 'result').read_text() == 'success', result.stderr
             progress = (root / 'progress').read_text()
@@ -87,5 +87,5 @@ with tempfile.TemporaryDirectory(prefix='definitive-java-lock-check-') as direct
     for attempt in range(2):
         result = subprocess.run(['/bin/bash', str(runtime_source), str(root / 'runtime')], env=env, capture_output=True, text=True, timeout=10)
         assert result.returncode != 0 and 'fixture temporary storage failure' in result.stderr
-        assert not (root / 'runtime/.java-bootstrap-lock').exists(), 'Early Java setup failure blocked retry'
+        assert not (root / 'runtime/.java-bootstrap-lock').is_dir(), 'Early Java setup failure blocked retry'
 print('PASS: portable bootstrap success, phase progress, download/checksum/runtime/startup/temporary-storage failures and both bootstrap lock cleanup')

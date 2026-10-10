@@ -1,19 +1,30 @@
 #!/bin/bash
 # Portable Definitive entry point (2026-10-09), AGPL v3; see repository LICENSE.
 set -euo pipefail
-TAG=definitive-alpha-2026-10-09-installer-fix
+umask 077
+TAG=definitive-alpha-2026-10-09-recovery
 # Updated by scripts/assemble-installer.py after building the small portable UI package.
-EXPECTED=02bc7c24b6a10c54d6a4da8fa0a6430e4180c24ea6f7e366129a070d6edb4338
+EXPECTED=1dbce9d562a04db1713e679f7d7eb7506f0a01dc55034398ed545beba4d39a0b
 CACHE="$HOME/.cache/legend-of-dragoon-definitive"
 mkdir -p -- "$CACHE"
 [[ ! -L "$CACHE" ]] || { echo 'Choose a real installer cache directory.' >&2; exit 1; }
 LOG="$CACHE/installer-bootstrap.log"
 LOCK="$CACHE/.portable-lock"
-mkdir "$LOCK" 2>/dev/null || { echo 'Another Definitive installer is preparing. Wait for it to finish.' >&2; exit 1; }
+# Keep the lock inode; its existence is not ownership. The kernel releases the
+# lock after the last inheriting process ends, including untrappable termination.
+[[ ! -L "$LOCK" ]] || { echo "Unexpected linked setup lock: $LOCK" >&2; exit 1; }
+[[ ! -d "$LOCK" ]] || { echo "An older setup left a directory lock. Close older installers, then remove that empty directory and retry: $LOCK" >&2; exit 1; }
+exec 9>> "$LOCK"
+if command -v flock >/dev/null; then
+  flock -n 9 || { echo 'Another setup is still running. Wait for it to finish and retry.' >&2; exit 1; }
+elif command -v lockf >/dev/null; then
+  lockf -s -t 0 9 || { echo 'Another setup is still running. Wait for it to finish and retry.' >&2; exit 1; }
+else
+  echo 'The operating-system file-lock tool is unavailable. Setup has stopped without downloading.' >&2; exit 1
+fi
 STAGE=''
 cleanup() {
   [[ -z "$STAGE" ]] || rm -rf -- "$STAGE"
-  rmdir -- "$LOCK" 2>/dev/null || true
 }
 trap cleanup EXIT
 STAGE=$(mktemp -d "$CACHE/.portable.XXXXXX")

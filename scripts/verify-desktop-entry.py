@@ -16,7 +16,7 @@ repo = Path(__file__).resolve().parents[1]
 desktop = repo/'delivery/Install-Definitive.desktop'
 text = desktop.read_text()
 command = next(line[5:] for line in text.splitlines() if line.startswith('Exec='))
-url = 'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09-installer-fix/Install-Definitive.sh'
+url = 'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-09-recovery/Install-Definitive.sh'
 digest = hashlib.sha256((repo/'delivery/Install-Definitive.sh').read_bytes()).hexdigest()
 assert digest in command, 'Desktop checksum must match the shipped setup script'
 

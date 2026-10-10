@@ -70,7 +70,7 @@ jobs:
           java -version
           ./gradlew --version
       - name: Compile and package without gameplay tests
-        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-09-installer-fix ${{ matrix.args }}
+        run: ./gradlew --no-daemon --console=plain clean build definitivePackage portableInstaller -PreleaseTag=definitive-alpha-2026-10-09-recovery ${{ matrix.args }}
       - name: Verify test opt-in using a headless fixture
         run: python3 scripts/verify-test-controls.py
       - name: Exercise installer window lifecycle in an isolated virtual display
@@ -80,6 +80,10 @@ jobs:
         run: python3 scripts/verify-desktop-entry.py
       - name: Verify portable setup progress and failure cleanup
         run: python3 scripts/verify-portable-bootstrap.py
+      - name: Verify crash recovery and concurrent startup
+        run: python3 scripts/verify-bootstrap-locks.py
+      - name: Verify publication stops on failed checks
+        run: python3 scripts/test-release-publication.py
       - name: Verify native archive fixtures
         run: python3 scripts/verify-disc-archives.py
       - name: Cross-check original material fixtures in Python and Java
