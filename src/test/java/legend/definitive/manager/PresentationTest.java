@@ -173,6 +173,8 @@ class PresentationTest {
         for(final String name : new String[]{"W".repeat(90), "a" + "🗡".repeat(60)}) {
           final var view = new ManagerView(null, this.temporary, Path.of("/home/deck/Games/" + name));
           field(view, "step", 2); invoke(view, "render"); inspect(view, 1024, 660, "wide-path-" + (name.startsWith("W") ? "latin" : "unicode"));
+          final var components = new ArrayList<Component>(); InstallStoreTest.collect(view, components);
+          assertTrue(components.stream().anyMatch(c -> c instanceof JPanel p && ("/home/deck/Games/" + name).equals(p.getToolTipText()) && ("/home/deck/Games/" + name).equals(p.getAccessibleContext().getAccessibleDescription())), "The complete installation location must remain available");
         }
       } catch(final Exception error) { throw new RuntimeException(error); }
     });

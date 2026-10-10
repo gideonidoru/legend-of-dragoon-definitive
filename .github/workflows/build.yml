@@ -94,7 +94,8 @@ jobs:
           python3 -m venv "$RUNNER_TEMP/definitive-material-checks"
           "$RUNNER_TEMP/definitive-material-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
           ./gradlew --no-daemon --console=plain materialAtlasInterop -PvisualPython="$RUNNER_TEMP/definitive-material-checks/bin/python" ${{ matrix.args }}
-      - name: Retain verified installer and package for release assembly
+      - name: Retain build packages and verification reports
+        if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: delivery-${{ matrix.runner }}

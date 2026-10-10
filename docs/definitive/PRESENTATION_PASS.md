@@ -8,7 +8,7 @@ The remaining Steam race-guard messages direct the user to retry **Add to Steam*
 
 The updater shows a readable release date and edition, with the full identifier retained in its tooltip and accessible description. Its opening copy now states directly that saves and settings stay in place. Long tokens wrap using font measurements and complete Unicode characters, with useful path boundaries and no isolated trailing letter. Installer, launcher and update screens are checked at the minimum 1024 × 660 client area. Wide Latin and Unicode folder names have additional presentation regressions.
 
-The supported local Java 25 build and headless delivery suite passed: 88 cases, 85 passed, zero failures, three isolated-window cases deferred. The installer, Steam, launcher, update and error renders were inspected. Hosted package verification and the isolated-window checks are separate release gates. Physical Steam Deck touch, controller and real Steam acceptance remain open; these checks do not establish commercial release readiness.
+The first supported local Java 25 build and headless delivery suite passed: 88 cases, 85 passed, zero failures, three isolated-window cases deferred. The first hosted Linux build then caught clipping in the wide-folder regression. Publication was held. The verified-location card now uses a bounded middle summary, with the complete path retained in its tooltip and accessible description. Failure output includes full assertions, and CI retains reports even when a build fails. The corrected package and isolated-window checks must pass before publication. Physical Steam Deck touch, controller and real Steam acceptance remain open; these checks do not establish commercial release readiness.
 
 ## Controller focus refinement
 

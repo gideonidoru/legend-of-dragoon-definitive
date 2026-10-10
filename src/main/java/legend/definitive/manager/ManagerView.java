@@ -171,7 +171,9 @@ final class ManagerView extends JPanel {
       }
       default -> {
         this.heading("You’re ready to play", "Add Definitive to Steam for Gaming Mode, or finish setup.");
-        this.body.add(infoCard("INSTALLATION VERIFIED", "Game and HD artwork ready", this.root.toString()));
+        final String location = this.root.toString();
+        final JPanel installed = infoCard("INSTALLATION VERIFIED", "Game and HD artwork ready", locationLabel(location));
+        installed.setToolTipText(location); installed.getAccessibleContext().setAccessibleDescription(location); this.body.add(installed);
         this.body.add(Box.createVerticalStrut(12)); this.body.add(copy("Steam restarts to refresh your library. Your shortcuts are backed up.", 15, MUTED));
         this.body.add(Box.createVerticalStrut(28));
         this.primary("Add to Steam", () -> this.addSteam(true));
@@ -240,6 +242,10 @@ final class ManagerView extends JPanel {
     }
     final int count = tag.codePointCount(0, tag.length());
     return count <= 120 ? tag : tag.substring(0, tag.offsetByCodePoints(0, 117)) + "…";
+  }
+  static String locationLabel(final String location) {
+    final int count = location.codePointCount(0, location.length());
+    return count <= 48 ? location : location.substring(0, location.offsetByCodePoints(0, 22)) + "…" + location.substring(location.offsetByCodePoints(location.length(), -25));
   }
 
   private void goBack() {
