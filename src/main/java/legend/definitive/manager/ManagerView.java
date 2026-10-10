@@ -351,12 +351,10 @@ final class ManagerView extends JPanel {
   private void mods() {
     this.run("Loading preferences", () -> !"original".equals(new InstallStore(this.root).state().getProperty("artwork", "hd")), hd -> {
       final JCheckBox artwork = new JCheckBox("Skurfa HD backgrounds", hd); artwork.setFont(font(18, false)); artwork.setOpaque(false); artwork.setMaximumSize(new Dimension(520, 52)); artwork.setPreferredSize(new Dimension(520, 52));
-      final JCheckBox pilot = new JCheckBox("Enhanced model textures · experimental", false); pilot.setFont(font(18, false)); pilot.setOpaque(false); pilot.setMaximumSize(new Dimension(520, 52)); pilot.setPreferredSize(new Dimension(520, 52));
       final JCheckBox fullscreen = new JCheckBox("Fullscreen", true); fullscreen.setFont(font(18, false)); fullscreen.setOpaque(false); fullscreen.setMaximumSize(new Dimension(520, 52)); fullscreen.setPreferredSize(new Dimension(520, 52));
       try { fullscreen.setSelected(Boolean.parseBoolean(new InstallStore(this.root).state().getProperty("fullscreen", "true"))); } catch(final Exception ignored) { }
-      try { pilot.setSelected(Boolean.parseBoolean(new InstallStore(this.root).state().getProperty("legacyTextures", "false"))); } catch(final Exception ignored) { }
-      final JPanel options = column(); options.add(artwork); options.add(pilot); options.add(fullscreen); options.add(Box.createVerticalStrut(12)); options.add(copy("Artwork doesn’t change gameplay. Enhanced model textures need an installed, verified texture pack.", 16, MUTED));
-      if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save changes")) this.run("Saving preferences", () -> { new InstallStore(this.root).setArtwork(artwork.isSelected()); new InstallStore(this.root).setLegacyTextures(pilot.isSelected()); new InstallStore(this.root).setFullscreen(fullscreen.isSelected()); return "Changes apply the next time you play."; }, () -> { });
+      final JPanel options = column(); options.add(artwork); options.add(fullscreen); options.add(Box.createVerticalStrut(12)); options.add(copy("EnvHD, CharHD, UIHD and FxHD are included. Activate or deactivate them in the game’s Mods menu.", 16, MUTED));
+      if(ManagerDialogs.confirm(this.frame, "Mods & artwork", options, "Save changes")) this.run("Saving preferences", () -> { new InstallStore(this.root).setArtwork(artwork.isSelected()); new InstallStore(this.root).setFullscreen(fullscreen.isSelected()); return "Changes apply the next time you play."; }, () -> { });
     });
   }
   private void checkUpdates() {

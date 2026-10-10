@@ -756,6 +756,7 @@ public final class SEffe {
 
   @Method(0x800ebb58L)
   public static void applyScreenDarkening(final int multiplier) {
+    battlePreloadedEntities_1f8003f4.stage_963c.artworkDarkened = multiplier != 16;
     final BattleStageDarkening1800 darkening = stageDarkening_800c6958;
 
     //LAB_800ebb7c

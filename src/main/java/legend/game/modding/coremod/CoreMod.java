@@ -95,11 +95,6 @@ import static legend.core.GameEngine.REGISTRIES;
 public class CoreMod {
   public static final String MOD_ID = "lod_core";
 
-  @EventListener
-  public static void definitiveFieldTextures(final legend.game.modding.events.submap.SubmapObjectTextureEvent event) {
-    DefinitiveTexturePilot.apply(event);
-  }
-
   private static final Registrar<Item, ItemRegistryEvent> ITEM_REGISTRAR = new Registrar<>(GameEngine.REGISTRIES.items, MOD_ID);
 
   public static final RegistryDelegate<Item> NOTHING = ITEM_REGISTRAR.register("nothing", NothingItem::new);

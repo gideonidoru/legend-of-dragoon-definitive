@@ -255,8 +255,9 @@ public final class InstallStore {
     if(Files.isDirectory(data.resolve("mods"))) try(final var files = Files.list(data.resolve("mods"))) {
       for(final Path mod : files.toList()) if(mod.toString().endsWith(".jar")) link(mods.resolve(mod.getFileName()), mod);
     }
-    if(!"original".equals(state.getProperty("artwork", "hd"))) try(final var files = Files.list(release.resolve("bundled-mods"))) {
+    try(final var files = Files.list(release.resolve("bundled-mods"))) {
       for(final Path mod : files.toList()) {
+        if("original".equals(state.getProperty("artwork", "hd")) && !mod.getFileName().toString().matches("(?:EnvHD|CharHD|UIHD|FxHD)-v[0-9.]+\\.jar")) continue;
         if(Files.exists(mods.resolve(mod.getFileName()), LinkOption.NOFOLLOW_LINKS)) throw new IOException("Duplicate bundled artwork mod. Remove its custom copy before playing.");
         link(mods.resolve(mod.getFileName()), mod);
       }
@@ -416,7 +417,6 @@ public final class InstallStore {
       final var command = new ArrayList<String>();
       command.add(Path.of(System.getProperty("java.home"), "bin", "java").toString());
       if(PackageManifest.hostPlatform().startsWith("macos")) command.add("-XstartOnFirstThread");
-      command.add("-Ddefinitive.legacyTextures=" + Boolean.parseBoolean(state.getProperty("legacyTextures", "false")));
       command.addAll(java.util.List.of("-ea", "-Xmx2G", "-Ddefinitive.managedInstall=true", "-Djoml.fastmath", "-Djoml.sinLookup", "-Djoml.useMathFma", "--enable-native-access=ALL-UNNAMED", "--add-opens=java.base/java.util=ALL-UNNAMED", "--add-exports=java.base/jdk.internal.misc=ALL-UNNAMED", "-cp", release.resolve(gameJar) + java.io.File.pathSeparator + release.resolve("libs/*"), "legend.game.Main"));
       final Path log = workspace.resolve("launcher.log");
       if(Files.isSymbolicLink(log)) throw new IOException("Unexpected linked game log. No game was started.");

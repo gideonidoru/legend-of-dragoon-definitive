@@ -2531,7 +2531,11 @@ public class Battle extends EngineState<Battle> {
     //LAB_800c8604
   }
 
+  private byte[] stageArtworkTim;
+
   private void deleteBattleStageModel() {
+    final BattleStage stage = battlePreloadedEntities_1f8003f4.stage_963c;
+    if(stage.artwork != null) { stage.artwork.delete(); stage.artwork = null; }
     if(battlePreloadedEntities_1f8003f4.stage_963c.dobj2s_00 != null) {
       for(int i = 0; i < battlePreloadedEntities_1f8003f4.stage_963c.dobj2s_00.length; i++) {
         battlePreloadedEntities_1f8003f4.stage_963c.dobj2s_00[i].tmd_08.delete();
@@ -2593,7 +2597,14 @@ public class Battle extends EngineState<Battle> {
     if(files.get(0).size() > 0 && files.get(1).size() > 0 && files.get(2).size() > 0) {
       final BattleStage stage = battlePreloadedEntities_1f8003f4.stage_963c;
       stage.name = modelName;
+      final byte[] originalModel = files.get(0).getBytes().clone();
       this.loadStageTmd(stage, new CContainer(modelName, files.get(0), 10), new TmdAnimationFile(files.get(1)));
+      if(this.stageArtworkTim != null) {
+        try {
+          final var event = EVENTS.postEvent(new legend.game.modding.events.battle.BattleStageTextureEvent(originalModel, this.stageArtworkTim));
+          if(event.replacement != null) stage.artwork = legend.definitive.artwork.StageArtwork.create(stage, event.replacement, originalModel, this.stageArtworkTim);
+        } catch(final Exception failure) { LOGGER.warn("EnvHD stage retained original artwork: {}", failure.getMessage()); }
+      }
       stage.coord2_558.coord.transfer.set(0, 0, 0);
       stage.param_5a8.rotate.set(0.0f, MathHelper.TWO_PI / 4.0f, 0.0f);
 
@@ -2672,6 +2683,8 @@ public class Battle extends EngineState<Battle> {
     }
 
     // GH#1931
+    this.stageArtworkTim = null;
+
     // Disable texture animations so we don't corrupt the texture of the loading stage due to the old stage model still being loaded...
     if(stage_800bda0c != null) {
       for(int i = 0; i < 10; i++) {
@@ -2700,6 +2713,7 @@ public class Battle extends EngineState<Battle> {
   @Method(0x800c8c84L)
   public void loadStageTim(final FileData data) {
     LOGGER.info("Battle stage texture loaded");
+    this.stageArtworkTim = data.getBytes().clone();
 
     final Tim tim = new Tim(data);
 
@@ -8024,8 +8038,10 @@ public class Battle extends EngineState<Battle> {
         GTE.setTransforms(ls);
         Renderer.renderDobj2(part, true, 0);
 
-        RENDERER.queueModel(part.tmd_08.getObj(), lw, QueuedModelBattleTmd.class)
-          .depthOffset(stage.z_5e8 * 4)
+        final boolean useArtwork = stage.artwork != null && !stage.artworkDarkened && java.util.Arrays.stream(stage._618).allMatch(value -> value == 0);
+        final var queued = RENDERER.queueModel(useArtwork ? stage.artwork.meshes[i] : part.tmd_08.getObj(), lw, QueuedModelBattleTmd.class);
+        if(useArtwork) queued.texture(stage.artwork.texture);
+        queued.depthOffset(stage.z_5e8 * 4)
           .lightDirection(lightDirectionMatrix_800c34e8)
           .lightColour(lightColourMatrix_800c3508)
           .backgroundColour(GTE.backgroundColour)
@@ -8103,6 +8119,7 @@ public class Battle extends EngineState<Battle> {
   /** Stage darkening for counterattacks change the clut, this saves a backup copy */
   @Method(0x800ec8d0L)
   public void backupStageClut(final FileData timFile) {
+    battlePreloadedEntities_1f8003f4.stage_963c.artworkDarkened = false;
     final BattleStageDarkening1800 darkening = stageDarkening_800c6958;
 
     //LAB_800ec8ec
