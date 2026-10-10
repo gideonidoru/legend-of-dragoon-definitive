@@ -188,6 +188,27 @@ final class StreamingAudioTest {
   }
 
   private static void assertPlayedAudioSpeed(final java.nio.file.Path video) throws Exception {
+    assertPlayedAudioSpeed(video, 8, 100);
+  }
+
+  @Test void everyShippedFilmKeepsItsClockAcrossRenderRates(@org.junit.jupiter.api.io.TempDir final java.nio.file.Path temporary) throws Exception {
+    final var payload = java.nio.file.Path.of("build/fmvhd/videos.zip");
+    org.junit.jupiter.api.Assumptions.assumeTrue(java.nio.file.Files.isRegularFile(payload), "Build the pinned FMV payload before checking all films");
+    try(final var zip = new java.util.zip.ZipFile(payload.toFile())) {
+      final var films = zip.stream().filter(entry -> entry.getName().endsWith(".mp4")).toList();
+      assertEquals(18, films.size(), "Every shipped film must participate in the pacing check");
+      int index = 0;
+      for(final var film : films) {
+        final var video = temporary.resolve("film.mp4");
+        try {
+          try(final var input = zip.getInputStream(film)) { java.nio.file.Files.copy(input, video); }
+          assertPlayedAudioSpeed(video, 1, new int[]{30, 60, 120}[index++ % 3]);
+        } finally { java.nio.file.Files.deleteIfExists(video); }
+      }
+    }
+  }
+
+  private static void assertPlayedAudioSpeed(final java.nio.file.Path video, final int seconds, final int renderHz) throws Exception {
     final long device = alcLoopbackOpenDeviceSOFT((java.nio.ByteBuffer)null);
     assertNotEquals(0, device);
     final var caps = ALC.createCapabilities(device);
@@ -198,10 +219,11 @@ final class StreamingAudioTest {
     try(final var movie = new StreamingMovie(video)) {
       audio.initialize();
       final var playback = new MoviePlayback(movie);
-      final float[] output = new float[960];
+      final int samplesPerFrame = 48_000 / renderHz;
+      final float[] output = new float[samplesPerFrame * 2];
       long renderedMicros = 0;
       long lastImage = 0;
-      for(int tick = 0; tick < 800; tick++) {
+      for(int tick = 0; tick < seconds * renderHz; tick++) {
         final long deadline = System.nanoTime() + 2_000_000_000L;
         while((movie.bufferedImages() == 0 || movie.bufferedAudio() < 16) && !movie.audioDrained() && System.nanoTime() < deadline) Thread.sleep(1);
         final long clock = playback.tick(audio, 1.0f);
@@ -212,12 +234,12 @@ final class StreamingAudioTest {
           assertTrue(lastImage <= renderedMicros + 15_000, "Movie must not display a future frame");
         }
         audio.tick();
-        alcRenderSamplesSOFT(device, output, 480);
-        renderedMicros += 10_000;
+        alcRenderSamplesSOFT(device, output, samplesPerFrame);
+        renderedMicros = (tick + 1L) * samplesPerFrame * 1_000_000L / 48_000;
         audio.process();
       }
-      assertTrue(lastImage >= 7_900_000, "Movie must still advance with eight seconds of audio");
-      assertFalse(movie.drained(), "Movie with more than eight seconds of media must not finish in eight seconds of audio");
+      assertTrue(lastImage >= seconds * 1_000_000L - 100_000, "Video frames must track played audio at " + renderHz + " Hz");
+      assertFalse(movie.drained(), "A longer movie cannot finish before the played duration");
     } finally { audio.release(); assertEquals(AL_NO_ERROR, alGetError()); alcMakeContextCurrent(0); alcDestroyContext(context); alcCloseDevice(device); }
   }
 
