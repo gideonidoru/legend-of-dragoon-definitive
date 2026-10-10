@@ -134,27 +134,6 @@ The broader [native-settings implementation](docs/definitive/QOL_SETTINGS.md) is
 
 These are features in the existing settings, with no separate mod to manage. Both campaign presets retain 1× rewards and feedback off. The reward-control implementation is independently authored around current APIs, inspired by Battle Rewards; its older mod is not bundled. **Dragoon Modifier** remains an unbundled overhaul candidate. [Community integration notes](docs/definitive/INTEGRATION_ALPHA.md).
 
-## Where development stands
-
-**October 10, 2026:** the current public release delivers all seven HD modules with selective Repair/Update and hardened installation recovery. Its payload still includes ModelsHD 0.3 and the early artwork pilots. The installer workstream has combined the newer engine, audio, ModelsHD 0.4 and native QoL settings and is validating the Linux and macOS packages. Reviewed artwork increments are being coordinated against that same baseline. Separate model-release publication is held so there is **one consolidated download**.
-
-| Workstream | Latest completed work | Integration and delivery |
-| --- | --- | --- |
-| **Rendering and audio** | SMAA, per-face material/roughness support, default surface detail, live lighting profiles, bounded artwork caching/preparation and faithful XA playback. | Merged into main; newer increments await the consolidated installer. |
-| **[ModelsHD 0.4](integrations/modelshd/README.md)** | 964 of 1,343 cataloged containers receive refinement, including nine confirmed party field models and all 19 battle forms. 8,531 unique custom parts; 379 containers retain originals under the safeguards. | Merged into main. The current public installer remains on 0.3 until the combined release. This is broad smoothing, not 964 bespoke character rebuilds. |
-| **[EnvHD](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/1)** | 70 battle-panorama restorations through 73 source bindings, plus 38 location landscapes and one parchment world-map backdrop. Static terrain/scenery production is next; animated ocean surfaces stay separate. | Selected development baselines are packaged on the artwork branch. Native scene acceptance and broader environment coverage remain open. |
-| **CharHD** | 4× texture candidates for all 19 playable forms; 38 headless mesh combinations checked with ModelsHD enabled and disabled. Native animation/deformation fallback is retained. | Runtime integration and visual selection continue. Batch restoration alone remains too subtle for the final target; focused armor/material reconstruction is underway. |
-| **UIHD** | 64 selected PNGs: goods icons, element symbols, command frames, checkboxes and selected menu/dialogue artwork. Shared caching and protected-UI paths preserve lettering, clipping, transparency and live palettes. | Combined-engine compatibility and mod-reload checks are underway. Full HUD/portrait coverage and physical Deck readability remain open. |
-| **FxHD** | Six selected 2× field textures: dust, two footprints, white smoke, brown smoke cloud and save-point glow. Shared caching/prewarming retains emission, effect lighting and reduced-flashing behavior. | Source/mask checks and reviews pass; build locks and single-version packaging are being finalized for the combined installer. |
-| **[Native QoL settings](docs/definitive/QOL_SETTINGS.md)** | Equipment filters/sorting, quantity transactions, campaign XP/gold controls and optional Addition feedback. | Merged into main; awaiting combined installer delivery and physical controller checks. |
-| **[Installation and repair](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/2)** | All-HD packaging, selective transfers, full Reinstall, durable interruption recovery, game-lifetime locks and CI-bound publication checks. | Public and verified; this delivery foundation is being combined with the newer main changes. |
-
-The download button uses GitHub's **latest public release**, so it follows the replacement once that combined build is verified and published. Drafts are not downloads. A separate Dart geometry/CharHD experiment is held outside main and releases until explicitly accepted. Builds, loader tests, controlled GPU checks and package inventories provide development evidence; physical Deck acceptance remains separate.
-
-The next proof is combined gameplay on the hardware: representative HD scenes, model transformations, foreground masking, busy effects, cinematic audio/skip/return behavior, controller reconnect, suspend/resume, and update/restore. A four-disc playthrough and measured Deck performance are still outstanding. We haven't reached the final AA visual target.
-
-The [model catalog](docs/definitive/MODEL_CATALOG.md) provides loading contexts, identity evidence and component-reuse leads for expansion beyond the first battle roster. Its container counts include variants, scenery and other resources; they are not distinct-character counts. [Deck test plan](docs/definitive/DECK_TEST_PLAN.md) · [Validation records](docs/definitive/VALIDATION.md).
-
 ## Build from source
 
 Players should use the **[Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop)**. For development, install **JDK 25** and use the checked-in **Gradle 9.1.0 wrapper**. Compilation requires no game discs.
