@@ -1,5 +1,15 @@
 # Installer, launcher and updater refinement
 
+## Recovery and copy refinement
+
+Error screens now explicitly focus the visible recovery action after replacing the working screen. A new isolated-window regression checks recovery focus, controller movement to error details, and the Back action. The local headless run defers this window case to Linux CI; it does not operate the owner's desktop.
+
+The remaining Steam race-guard messages direct the user to retry **Add to Steam**, which performs the graceful exit, verified shortcut edit and restart automatically. The existing guards still refuse to write while Steam is running or when its library changes during setup.
+
+The updater shows a readable release date and edition, with the full identifier retained in its tooltip and accessible description. Its opening copy now states directly that saves and settings stay in place. Long tokens wrap using font measurements and complete Unicode characters, with useful path boundaries and no isolated trailing letter. Installer, launcher and update screens are checked at the minimum 1024 × 660 client area. Wide Latin and Unicode folder names have additional presentation regressions.
+
+The supported local Java 25 build and headless delivery suite passed: 88 cases, 85 passed, zero failures, three isolated-window cases deferred. The installer, Steam, launcher, update and error renders were inspected. Hosted package verification and the isolated-window checks are separate release gates. Physical Steam Deck touch, controller and real Steam acceptance remain open; these checks do not establish commercial release readiness.
+
 ## Controller focus refinement
 
 The shared actions now use a pale pine outline on primary buttons and a dark pine outline on secondary buttons. Focus remains clear through normal, hover and pressed states. The installation path uses the same dark outline when focused, with unchanged text insets and alignment. Disabled controls do not display an active focus ring.

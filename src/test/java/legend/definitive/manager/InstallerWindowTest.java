@@ -16,6 +16,35 @@ class InstallerWindowTest {
   @TempDir Path temporary;
   private JFrame frame;
   @AfterEach void closeWindows() throws Exception { SwingUtilities.invokeAndWait(() -> { for(final Window window : Window.getWindows()) window.dispose(); }); }
+  private static void awaitFocus(final JButton action) throws Exception {
+    final long end = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(10);
+    while(System.nanoTime() < end) {
+      final var focused = new AtomicBoolean(); SwingUtilities.invokeAndWait(() -> focused.set(action.isFocusOwner()));
+      if(focused.get()) return;
+      Thread.sleep(20);
+    }
+    fail("Focus did not reach " + action.getText());
+  }
+  @Test void errorRecoveryReturnsControllerFocusToVisibleActions() throws Exception {
+    final var recovery = new AtomicReference<JButton>(); final var details = new AtomicReference<JButton>();
+    SwingUtilities.invokeAndWait(() -> {
+      this.frame = new JFrame("Recovery focus fixture");
+      final var view = new ManagerView(this.frame, this.temporary, this.temporary.resolve("installation"));
+      this.frame.setContentPane(view); this.frame.setSize(1100, 740); this.frame.setVisible(true);
+    });
+    awaitFocus(this.frame.getRootPane().getDefaultButton());
+    SwingUtilities.invokeAndWait(() -> {
+      final var view = (ManagerView)this.frame.getContentPane(); view.showFailure(new java.io.IOException("Fixture storage failure"));
+      recovery.set(this.frame.getRootPane().getDefaultButton());
+      final var components = new ArrayList<Component>(); InstallStoreTest.collect(view, components);
+      details.set(components.stream().filter(c -> c instanceof JButton b && b.getText().equals("Show error details")).map(c -> (JButton)c).findFirst().orElseThrow());
+    });
+    assertEquals("Back to setup", recovery.get().getText()); awaitFocus(recovery.get());
+    SwingUtilities.invokeAndWait(() -> DeckControls.route(this.frame, java.awt.event.KeyEvent.VK_DOWN)); awaitFocus(details.get());
+    SwingUtilities.invokeAndWait(() -> DeckControls.route(this.frame, java.awt.event.KeyEvent.VK_ESCAPE));
+    awaitFocus(this.frame.getRootPane().getDefaultButton());
+    assertEquals("Install Definitive", this.frame.getRootPane().getDefaultButton().getText());
+  }
   @Test void dirtyChildRepaintKeepsSharedSurfaceTextSmoothing() throws Exception {
     for(final boolean manager : new boolean[]{true, false}) {
       final var painted = new AtomicInteger(); final var smoothed = new AtomicBoolean();

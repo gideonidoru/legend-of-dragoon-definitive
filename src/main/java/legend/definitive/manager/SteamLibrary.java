@@ -65,7 +65,7 @@ public final class SteamLibrary {
     }
   }
   private static String addLocked(final Account account, final Path install, final BooleanSupplier running) throws IOException {
-    if(running.getAsBoolean()) throw new IOException("Close Steam, then choose Add to Steam again. Your library has not been changed.");
+    if(running.getAsBoolean()) throw new IOException("Steam reopened during setup. Retry Add to Steam to refresh your library automatically. Your library has not been changed.");
     final Path folder = account.config().toRealPath();
     final Path file = folder.resolve("shortcuts.vdf");
     if(Files.isSymbolicLink(file)) throw new IOException("Linked Steam shortcut files are unsupported.");
@@ -103,7 +103,7 @@ public final class SteamLibrary {
     final Path temp = Files.createTempFile(folder, ".definitive-shortcuts-", ".tmp");
     try {
       Files.write(temp, output);
-      if(running.getAsBoolean() || Files.isSymbolicLink(file) || exists != Files.exists(file) || exists && !Arrays.equals(original, Files.readAllBytes(file))) throw new IOException("Steam or its library changed during setup. Close Steam and try again; no shortcut was written.");
+      if(running.getAsBoolean() || Files.isSymbolicLink(file) || exists != Files.exists(file) || exists && !Arrays.equals(original, Files.readAllBytes(file))) throw new IOException("Steam or its library changed during setup. Retry Add to Steam to refresh it automatically. No shortcut was written.");
       if(exists) Files.write(folder.resolve("shortcuts.vdf.definitive-backup-" + UUID.randomUUID()), original, StandardOpenOption.CREATE_NEW);
       Files.move(temp, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
       return "Added to Steam. Open Steam or return to Gaming Mode to find Definitive in your library.";

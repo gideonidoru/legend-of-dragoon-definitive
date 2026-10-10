@@ -156,6 +156,35 @@ class PresentationTest {
       } catch(final Exception error) { throw new RuntimeException(error); }
     });
   }
+  @Test void longUnicodePathsKeepEveryCharacterWhenWrapped() throws Exception {
+    SwingUtilities.invokeAndWait(() -> {
+      final String path = "/home/deck/Games/a" + "🗡".repeat(60);
+      final String html = ManagerView.copy(path, 15, ManagerView.MUTED).getText();
+      assertEquals("<html><div style='width:360px'>" + path + "</div></html>", html.replace("<br>", ""));
+      for(int i = 0; i < html.length(); i++) {
+        if(Character.isHighSurrogate(html.charAt(i))) assertTrue(i + 1 < html.length() && Character.isLowSurrogate(html.charAt(++i)), "Wrapping split a Unicode character");
+        else assertFalse(Character.isLowSurrogate(html.charAt(i)), "Wrapping left an unmatched Unicode character");
+      }
+    });
+  }
+  @Test void wideFolderNamesFitTheVerifiedInstallationCard() throws Exception {
+    SwingUtilities.invokeAndWait(() -> {
+      try {
+        for(final String name : new String[]{"W".repeat(90), "a" + "🗡".repeat(60)}) {
+          final var view = new ManagerView(null, this.temporary, Path.of("/home/deck/Games/" + name));
+          field(view, "step", 2); invoke(view, "render"); inspect(view, 1024, 660, "wide-path-" + (name.startsWith("W") ? "latin" : "unicode"));
+        }
+      } catch(final Exception error) { throw new RuntimeException(error); }
+    });
+  }
+  @Test void updateLabelsUseReadableDatesAndRetainUnfamiliarIdentifiers() {
+    assertEquals("October 10, 2026 · Refinement 3", ManagerView.releaseLabel("definitive-alpha-2026-10-10-refinement-3"));
+    assertEquals("October 10, 2026", ManagerView.releaseLabel("definitive-alpha-2026-10-10"));
+    assertEquals("definitive-alpha-2026-02-30-refinement-3", ManagerView.releaseLabel("definitive-alpha-2026-02-30-refinement-3"));
+    assertEquals("community-preview", ManagerView.releaseLabel("community-preview"));
+    final String identifier = "🗡".repeat(121);
+    assertEquals("🗡".repeat(117) + "…", ManagerView.releaseLabel(identifier));
+  }
   @Test void longProgressDetailsRemainReadableAtMinimumSize() throws Exception {
     SwingUtilities.invokeAndWait(() -> {
       try {
@@ -187,12 +216,12 @@ class PresentationTest {
         for(final int width : new int[]{1024, 1100, 1280}) {
           final var view = new ManagerView(null, this.temporary, Path.of("/home/deck/Games/Legend-of-Dragoon-Definitive"));
           field(view, "launcher", true);
-          field(view, "candidate", new ReleaseUpdates.Candidate("definitive-alpha-2026-10-09-presentation-2", "fixture", URI.create("https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/fixture/package.zip"), "a".repeat(64)));
-          invoke(view, "render"); inspect(view, width, 700, "launcher-update");
-          button(view, "Review update").doClick(); inspect(view, width, 700, "update-review");
+          field(view, "candidate", new ReleaseUpdates.Candidate("definitive-alpha-2026-10-10-refinement-3", "fixture", URI.create("https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/fixture/package.zip"), "a".repeat(64)));
+          invoke(view, "render"); inspect(view, width, 660, "launcher-update");
+          button(view, "Review update").doClick(); inspect(view, width, 660, "update-review");
           assertNotNull(button(view, "Install update"));
           invoke(view, "goBack"); assertNotNull(button(view, "Play"));
-          field(view, "updateComplete", true); invoke(view, "render"); inspect(view, width, 700, "update-complete");
+          field(view, "updateComplete", true); invoke(view, "render"); inspect(view, width, 660, "update-complete");
           button(view, "Back to launcher").doClick(); assertNotNull(button(view, "Play"));
         }
       } catch(final Exception error) { throw new RuntimeException(error); }

@@ -125,7 +125,15 @@ final class ManagerView extends JPanel {
     else if(this.launcher && this.reviewingUpdate && this.candidate != null) this.updateScreen();
     else if(this.launcher) this.launcher(); else this.setup();
     this.body.revalidate(); this.body.repaint();
-    SwingUtilities.invokeLater(() -> { if(this.frame != null && this.frame.getRootPane().getDefaultButton() != null) this.frame.getRootPane().getDefaultButton().requestFocusInWindow(); });
+    this.focusPrimaryAction();
+  }
+  private void focusPrimaryAction() {
+    SwingUtilities.invokeLater(() -> {
+      if(this.frame != null) {
+        final JButton action = this.frame.getRootPane().getDefaultButton();
+        if(action != null && action.isShowing() && action.isEnabled()) action.requestFocusInWindow();
+      }
+    });
   }
   private void heading(final String title, final String description) {
     final JLabel heading = copy(title, 34, INK); heading.setFont(font(34, true)); this.body.add(heading); this.body.add(Box.createVerticalStrut(12));
@@ -206,8 +214,9 @@ final class ManagerView extends JPanel {
     stages.setMaximumSize(new Dimension(520, 32)); this.body.add(stages); this.body.add(Box.createVerticalStrut(32));
   }
   private void updateScreen() {
-    this.heading("Update Definitive", "Install the latest release, with your saves and settings kept.");
-    this.body.add(infoCard("AVAILABLE RELEASE", "Definitive alpha", this.candidate.tag().length() > 120 ? this.candidate.tag().substring(0, 117) + "…" : this.candidate.tag()));
+    this.heading("Update Definitive", "Your saves and settings stay in place.");
+    final JPanel release = infoCard("AVAILABLE RELEASE", "Definitive alpha", releaseLabel(this.candidate.tag()));
+    release.setToolTipText(this.candidate.tag()); release.getAccessibleContext().setAccessibleDescription(this.candidate.tag()); this.body.add(release);
     this.body.add(Box.createVerticalStrut(16)); this.body.add(copy("Your previous version and its pre-update saves and settings remain available in Restore version.", 15, MUTED)); this.body.add(Box.createVerticalStrut(26));
     this.primary("Install update", () -> this.run("Updating Definitive", () -> ReleaseUpdates.install(new InstallStore(this.root), this.candidate, this.currentProgress), () -> {
       this.candidate = null; this.reviewingUpdate = false; this.updateComplete = true; this.render(); this.updates.setText("Update installed · Previous version retained");
@@ -219,6 +228,18 @@ final class ManagerView extends JPanel {
     this.heading("Update installed", "Definitive is ready for your next adventure.");
     this.body.add(infoCard("INSTALLATION VERIFIED", "Game and artwork checked", "Your previous version and its pre-update data remain available in Restore version."));
     this.body.add(Box.createVerticalStrut(26)); this.primary("Back to launcher", () -> { this.updateComplete = false; this.render(); });
+  }
+  static String releaseLabel(final String tag) {
+    final var match = java.util.regex.Pattern.compile("definitive-alpha-(\\d{4}-\\d{2}-\\d{2})(?:-([A-Za-z0-9-]+))?").matcher(tag);
+    if(match.matches()) {
+      try {
+        final String date = java.time.LocalDate.parse(match.group(1)).format(java.time.format.DateTimeFormatter.ofPattern("MMMM d, uuuu", java.util.Locale.US));
+        final String edition = match.group(2);
+        return date + (edition == null ? "" : " · " + Character.toUpperCase(edition.charAt(0)) + edition.substring(1).replace('-', ' '));
+      } catch(final java.time.DateTimeException ignored) { /* Keep an unfamiliar release identifier visible. */ }
+    }
+    final int count = tag.codePointCount(0, tag.length());
+    return count <= 120 ? tag : tag.substring(0, tag.offsetByCodePoints(0, 117)) + "…";
   }
 
   private void goBack() {
@@ -364,28 +385,32 @@ final class ManagerView extends JPanel {
       ManagerDialogs.confirm(this.frame, "Installer log", new JScrollPane(area), "Close");
     });
     this.body.add(details); this.updates.setText("Show error details for the full log");
-    this.message("Retry after addressing the error above."); this.body.revalidate(); this.body.repaint();
+    this.message("Retry after addressing the error above."); this.body.revalidate(); this.body.repaint(); this.focusPrimaryAction();
   }
   private void message(final String text) {
-    this.status.setText("<html><div style='width:330px'>" + escape(text) + "</div></html>");
-    if((!this.busy || !this.progressPanel.isVisible()) && !this.failed) this.updates.setText("<html><div style='width:360px'>" + escape(text.length() > 120 ? text.substring(0, 117) + "…" : text) + "</div></html>");
+    this.status.setText("<html><div style='width:330px'>" + escape(text, 15, 330) + "</div></html>");
+    if((!this.busy || !this.progressPanel.isVisible()) && !this.failed) this.updates.setText("<html><div style='width:360px'>" + escape(text.length() > 120 ? text.substring(0, 117) + "…" : text, 14, 360) + "</div></html>");
   }
   @FunctionalInterface private interface Action<T> { T run() throws Exception; }
   private void primary(final String title, final Runnable action) { final JButton button = button(title, true); button.addActionListener(e -> action.run()); this.body.add(button); if(this.frame != null) this.frame.getRootPane().setDefaultButton(button); }
   private static JPanel column() { final JPanel p = new JPanel(); p.setOpaque(false); p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS)); p.setAlignmentX(LEFT_ALIGNMENT); return p; }
   static Font font(final int size, final boolean bold) { return new Font(UI_FONT, bold ? Font.BOLD : Font.PLAIN, size); }
   private static JLabel label(final String text, final int size, final Color colour) { final JLabel l = new JLabel(text); l.setFont(font(size, false)); l.setForeground(colour); l.setAlignmentX(LEFT_ALIGNMENT); return l; }
-  static JLabel copy(final String text, final int size, final Color colour) { return label("<html><div style='width:360px'>" + escape(text) + "</div></html>", size, colour); }
-  private static String escape(final String text) {
+  static JLabel copy(final String text, final int size, final Color colour) { return label("<html><div style='width:360px'>" + escape(text, size, 360) + "</div></html>", size, colour); }
+  private static String escape(final String text, final int size, final int width) {
     // Swing's HTML renderer does not wrap a long filesystem token. Insert explicit
     // line breaks before escaping each segment so paths cannot hide UI content.
-    final String wrapped = java.util.regex.Pattern.compile("\\S{45,}").matcher(text).replaceAll(match -> {
+    final FontMetrics metrics = new JLabel().getFontMetrics(font(size, true));
+    final String wrapped = java.util.regex.Pattern.compile("\\S+").matcher(text).replaceAll(match -> {
       String token = match.group(); final var lines = new StringBuilder();
-      while(token.length() > 44) {
-        int split = token.lastIndexOf('/', 43) + 1;
-        if(split < 12) split = Math.max(token.lastIndexOf('-', 43), token.lastIndexOf('_', 43)) + 1;
-        if(split < 12) split = 44;
-        if(token.length() - split < 8) split = token.length() - 8;
+      while(token.codePointCount(0, token.length()) > 44 || metrics.stringWidth(token) > width) {
+        int count = Math.min(44, token.codePointCount(0, token.length()));
+        while(count > 1 && metrics.stringWidth(token.substring(0, token.offsetByCodePoints(0, count))) > width) count--;
+        final int limit = token.offsetByCodePoints(0, count), minimum = token.offsetByCodePoints(0, Math.min(12, count));
+        int split = token.lastIndexOf('/', limit - 1) + 1;
+        if(split < minimum) split = Math.max(token.lastIndexOf('-', limit - 1), token.lastIndexOf('_', limit - 1)) + 1;
+        if(split < minimum) split = limit;
+        if(token.codePointCount(split, token.length()) < 8 && token.codePointCount(0, token.length()) > 8) split = token.offsetByCodePoints(token.length(), -8);
         lines.append(token, 0, split).append('\n'); token = token.substring(split);
       }
       return java.util.regex.Matcher.quoteReplacement(lines.append(token).toString());
@@ -416,7 +441,7 @@ final class ManagerView extends JPanel {
   private static JPanel infoCard(final String caption, final String title, final String detail) {
     final JPanel panel = card(); panel.add(label(caption, 12, MUTED)); panel.add(Box.createVerticalStrut(10));
     final JLabel name = label(title, 19, INK); name.setFont(font(19, true)); panel.add(name); panel.add(Box.createVerticalStrut(8));
-    panel.add(label("<html><div style='width:330px'>" + escape(detail) + "</div></html>", 15, MUTED)); return panel;
+    panel.add(label("<html><div style='width:330px'>" + escape(detail, 15, 330) + "</div></html>", 15, MUTED)); return panel;
   }
   static JButton button(final String text, final boolean primary) {
     final JButton b = new JButton(text) {
