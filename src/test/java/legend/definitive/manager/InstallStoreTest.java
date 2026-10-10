@@ -17,7 +17,7 @@ class InstallStoreTest {
 
   @Test void bundledFxHdSupersedesManualPilotWithoutDeletingItOrChangingModSettings() throws Exception {
     final Path pack = this.pack("effects", PackageManifest.hostPlatform());
-    Files.writeString(pack.resolve("bundled-mods/FxHD-v0.2.0.jar"), "selected-effects");
+    Files.writeString(pack.resolve("bundled-mods/FxHD-v1.0.0.jar"), "selected-effects");
     Files.delete(pack.resolve(PackageManifest.METADATA)); Files.delete(pack.resolve(PackageManifest.HASHES));
     ManagerMain.makeManifest(pack, PackageManifest.hostPlatform(), "fxhd-fixture");
     final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack);
@@ -39,7 +39,7 @@ class InstallStoreTest {
     // Exercise Linux's launch-time settings parsing on every host.
     InstallStore.configureFullscreen(data, true);
     final Path workspace = store.prepareLaunch();
-    assertEquals("selected-effects", Files.readString(workspace.resolve("mods/FxHD-v0.2.0.jar")));
+    assertEquals("selected-effects", Files.readString(workspace.resolve("mods/FxHD-v1.0.0.jar")));
     assertFalse(Files.exists(workspace.resolve("mods/FxHD-v0.1.0.jar")));
     assertFalse(Files.exists(workspace.resolve("mods/Renamed-FxHD.jar")));
     assertTrue(Files.isRegularFile(data.resolve("mods/Renamed-FxHD.jar")));
@@ -47,7 +47,7 @@ class InstallStoreTest {
     assertEquals("unrelated-mod", Files.readString(workspace.resolve("mods/custom.jar")));
     assertArrayEquals(nativeSettings, Files.readAllBytes(data.resolve("config.dcnf")));
     store.prepareLaunch();
-    assertEquals("selected-effects", Files.readString(workspace.resolve("mods/FxHD-v0.2.0.jar")));
+    assertEquals("selected-effects", Files.readString(workspace.resolve("mods/FxHD-v1.0.0.jar")));
   }
 
   Path pack(final String name, final String platform) throws Exception {
