@@ -5,6 +5,7 @@ This emits offline pose images, not a game model, replacement rig or native rend
 """
 import argparse
 import hashlib
+import heapq
 import importlib.util
 import json
 import math
@@ -33,6 +34,73 @@ def triangles(polygons):
         for corners in ([(0, 1, 2), (1, 3, 2)] if len(refs) == 4 else [(0, 1, 2)]):
             result.append(([refs[i] for i in corners], None if uv is None else uv[list(corners)].copy(), clut, colors[list(corners)].copy()))
     return result
+
+
+def surface_distance_falloff(vertices, faces, fixed_vertices, distance):
+    """Return a smooth mask and shortest edge-path distances from fixed vertices.
+
+    Distances use source geometry, so folds stay separate along the mesh. Every
+    connected component must have a fixed vertex. This is an offline authoring
+    mask; it does not validate topology, prevent intersections or simulate cloth.
+    Inputs are retained unchanged; both returned arrays belong to the caller.
+    """
+    points = np.asarray(vertices)
+    refs = np.asarray(faces)
+    if (points.ndim != 2 or points.shape[1] != 3 or not 0 < len(points) <= 20000
+            or points.dtype.kind not in 'biuf' or not np.isfinite(points).all()):
+        raise ValueError('Invalid or excessive source geometry')
+    if (refs.ndim != 2 or refs.shape[1] != 3 or not 0 < len(refs) <= 10000
+            or not np.issubdtype(refs.dtype, np.integer)
+            or np.any(refs < 0) or np.any(refs >= len(points))):
+        raise ValueError('Use bounded triangles with integer vertex references')
+    if (not isinstance(fixed_vertices, (tuple, list, np.ndarray))
+            or isinstance(fixed_vertices, np.ndarray) and fixed_vertices.ndim != 1
+            or not 0 < len(fixed_vertices) <= len(points)
+            or any(isinstance(i, (bool, np.bool_)) or not isinstance(i, numbers.Integral)
+                   or not 0 <= i < len(points) for i in fixed_vertices)
+            or len(set(fixed_vertices)) != len(fixed_vertices)):
+        raise ValueError('Use distinct bounded fixed vertex indices')
+    if isinstance(distance, (bool, np.bool_)) or not isinstance(distance, numbers.Real):
+        raise ValueError('Falloff distance must be finite and positive')
+    try:
+        distance = float(distance)
+    except (OverflowError, ValueError) as error:
+        raise ValueError('Falloff distance must be finite and positive') from error
+    if not math.isfinite(distance) or distance <= 0:
+        raise ValueError('Falloff distance must be finite and positive')
+    with np.errstate(over='ignore', invalid='ignore'):
+        points = points.astype(float, copy=True)
+    if not np.isfinite(points).all():
+        raise ValueError('Source geometry must fit finite floating-point coordinates')
+    edges = [{} for _ in points]
+    for face in refs:
+        if len(set(face)) != 3:
+            raise ValueError('Repeated triangle vertex')
+        for i, j in zip(face, np.roll(face, -1)):
+            with np.errstate(over='ignore', invalid='ignore'):
+                length = float(np.linalg.norm(points[i] - points[j]))
+            if not math.isfinite(length) or length <= 0:
+                raise ValueError('Source edge must have a finite positive length')
+            edges[int(i)][int(j)] = length
+            edges[int(j)][int(i)] = length
+    distances = np.full(len(points), np.inf)
+    queue = []
+    for i in fixed_vertices:
+        distances[i] = 0
+        heapq.heappush(queue, (0., int(i)))
+    while queue:
+        current, i = heapq.heappop(queue)
+        if current > distances[i]:
+            continue
+        for j, length in edges[i].items():
+            candidate = current + length
+            if candidate < distances[j]:
+                distances[j] = candidate
+                heapq.heappush(queue, (candidate, j))
+    if not np.isfinite(distances).all():
+        raise ValueError('Every source component needs a fixed vertex')
+    t = np.minimum(distances, distance) / distance
+    return t * t * (3 - 2 * t), distances
 
 
 def refine_part(part, strength=1.0, crease_degrees=110, fixed_vertices=()):

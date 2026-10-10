@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Original geometry fixtures, AGPL v3; no retail assets or model weights."""
 import importlib.util
+from fractions import Fraction
 from pathlib import Path
 import unittest
 import numpy as np
@@ -15,6 +16,71 @@ def face(refs, palette=0):
 
 
 class SurfaceRefinementTest(unittest.TestCase):
+    def test_source_edge_falloff_has_known_distances_and_preserves_inputs(self):
+        points = np.array([[0.,0.,0.],[10.,0.,0.],[20.,0.,0.],
+                           [0.,10.,0.],[10.,10.,0.],[20.,10.,0.]])
+        faces = np.array([[0,1,3],[1,4,3],[1,2,4],[2,5,4]])
+        original_points, original_faces = points.copy(), faces.copy()
+        pins = np.array([0,3], dtype=np.int64)
+        mask, distances = refinement.surface_distance_falloff(points, faces, pins, 20.)
+        np.testing.assert_allclose(distances, [0,10,20,0,10,20], atol=1e-12, rtol=0)
+        np.testing.assert_allclose(mask, [0,.5,1,0,.5,1], atol=1e-12, rtol=0)
+        np.testing.assert_array_equal(points, original_points)
+        np.testing.assert_array_equal(faces, original_faces)
+        np.testing.assert_array_equal(pins, [0,3])
+        mask[0] = 1; distances[0] = 1
+        fresh, _ = refinement.surface_distance_falloff(points, faces, pins, 20.)
+        self.assertEqual(0., fresh[0])
+        rational, _ = refinement.surface_distance_falloff(points, faces, pins, Fraction(20,1))
+        self.assertEqual(np.dtype(float), rational.dtype)
+        np.testing.assert_array_equal(rational, [0,.5,1,0,.5,1])
+
+    def test_source_edge_falloff_retains_rigid_and_scale_covariance(self):
+        points = np.array([[0.,0.,0.],[10.,0.,0.],[20.,0.,0.],
+                           [0.,10.,0.],[10.,10.,0.],[20.,10.,0.]])
+        faces = np.array([[0,1,3],[1,4,3],[1,2,4],[2,5,4]])
+        expected = np.array([0.,.5,1.,0.,.5,1.])
+        rng = np.random.default_rng(7200)
+        for _ in range(30):
+            rotation, _ = np.linalg.qr(rng.normal(size=(3,3)))
+            scale = rng.uniform(.1,10)
+            translation = rng.uniform(-1000,1000,3)
+            actual, distances = refinement.surface_distance_falloff(
+                scale * (points @ rotation.T) + translation, faces, [0,3], 20 * scale)
+            np.testing.assert_allclose(actual, expected, atol=1e-11, rtol=0)
+            np.testing.assert_allclose(distances / scale, [0,10,20,0,10,20], atol=1e-10, rtol=0)
+
+    def test_source_edge_falloff_requires_anchors_in_separate_components(self):
+        points = np.array([[0.,0.,0.],[1.,0.,0.],[0.,1.,0.],
+                           [0.,0.,.01],[1.,0.,.01],[0.,1.,.01]])
+        faces = np.array([[0,1,2],[3,4,5]])
+        with self.assertRaisesRegex(ValueError, 'Every source component'):
+            refinement.surface_distance_falloff(points, faces, [0], 2.)
+        mask, distances = refinement.surface_distance_falloff(points, faces, [0,3], 2.)
+        np.testing.assert_array_equal(distances, [0,1,1,0,1,1])
+        np.testing.assert_array_equal(mask, [0,.5,.5,0,.5,.5])
+
+    def test_source_edge_falloff_rejects_malformed_and_excessive_inputs(self):
+        points = np.array([[0.,0.,0.],[1.,0.,0.],[0.,1.,0.]])
+        faces = np.array([[0,1,2]])
+        for distance in (True, 0, -1, float('nan'), float('inf'), '1',
+                         Fraction(10**1000,1), Fraction(1,10**1000)):
+            with self.assertRaises(ValueError):
+                refinement.surface_distance_falloff(points, faces, [0], distance)
+        for pins in ([], [True], [1.5], [-1], [3], [0,0], '0', np.array([[0]])):
+            with self.assertRaises(ValueError):
+                refinement.surface_distance_falloff(points, faces, pins, 1)
+        for invalid in ([], [[0,1]], [[0,1,3]], [[0,1,-1]], [[0,1,1]],
+                        [[0.,1.,2.]], [[False,True,True]], np.tile(faces, (10001,1))):
+            with self.assertRaises(ValueError):
+                refinement.surface_distance_falloff(points, invalid, [0], 1)
+        for invalid in ([], points[:,0], np.zeros((20001,3)),
+                        np.full((3,3), np.nan), points.astype(complex), points * 0):
+            with self.assertRaises(ValueError):
+                refinement.surface_distance_falloff(invalid, faces, [0], 1)
+        mask, _ = refinement.surface_distance_falloff(points, faces, [0], np.nextafter(0.,1.))
+        np.testing.assert_array_equal(mask, [0,1,1])
+
     def test_authored_closed_joint_edge_and_its_descendants_stay_exact(self):
         points = np.array([[1.,1.,1.],[-1.,-1.,1.],[-1.,1.,-1.],[1.,-1.,-1.]])
         source = (points, [face(refs) for refs in ((0,2,1),(0,1,3),(0,3,2),(1,2,3))])

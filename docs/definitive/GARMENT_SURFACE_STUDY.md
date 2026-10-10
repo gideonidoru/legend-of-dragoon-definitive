@@ -77,11 +77,35 @@ The first additional-motion analysis incorrectly assumed that thigh face IDs ref
 
 The offline comparison pages pass pose selection, keyboard navigation, 44-pixel minimum controls and layouts at 1440/1280/375 pixels. Standing and additional motion layouts were inspected. The fuller trouser and fist silhouettes are retained; the material response is still too flat, and cuff/finger forms, boot detail and scene lighting need more authored work. This candidate remains private and held. Apple-style presentation and commercial quality remain acceptance goals, not claims established by these checks.
 
+## Gradual interface falloff
+
+The next construction preserves complete descendant trouser triangles touching source-local Y ≤70 or Y ≥220 and extends complete glove-interface protection to Y ≤45. Its first version creates a local fold in the rounded right trouser panel; that saved version is rejected. The revised construction tapers displacement by shortest source-edge path distance from protected vertices, in addition to the existing longitudinal mask: 50 source units on trousers and 15 on gloves. The boot treatment remains unchanged. This distributes the transition around fixed interfaces while retaining the fuller body, rather than switching geometry for a failing pose.
+
+All twelve revised local surfaces pass the tested topology/self-intersection checks. Original face attributes and signed glove/trouser volumes remain preserved. The revised source pins pass 77,376 direct comparisons, and independent original barycentric coordinates verify **4,925,280 whole protected-corner placements** with maximum error zero. The full contact audit again covers 5,952 variant/pose/pair checks across all 496 recorded poses.
+
+| Neighboring parts | Recorded checks with added pairs, restrained / rounded | Sum of added source-face pair instances, restrained / rounded |
+| --- | --- | --- |
+| Left trouser/thigh | 2 / 2 | 15 / 15 |
+| Right trouser/thigh | 3 / 4 | 3 / 4 |
+| Both trouser/boot joins | 0 / 0 | 0 / 0 |
+| Left glove/arm | 0 / 0 | 0 / 0 |
+| Right glove/arm | 1 / 1 | 1 / 1 |
+
+The left glove and boot joins add no tested pairs across the recorded coverage. Knee holds remain, alongside one right-glove state at motion 5/combat-4/tick 5. These counts retain repeated timing-route samples and baseline overlaps; they are not penetration or all-view visibility measures.
+
+Two further 48-capture batches repeat the standing/attack views and the four previously selected challenging states. Their material controls and full color/depth/payload identities pass. The first reproduces all 32 preceding original-control/character PNGs; the second reproduces all 32 original-control/preceding-character PNGs from the earlier additional-motion batch. Candidate streams preserve 103,860 unaffected rows each. Actual depth still identifies potentially frontmost left-knee contacts in the reviewed states, so this construction remains held.
+
+Standing comparisons retain fuller trouser and fist silhouettes. Compared with the previous cuff treatment, the rounded gloves retain maximum source displacements of about 17.8/19.7 units, and trousers retain about 28.1/25.9 units. More vertices deliberately retain original interface geometry; these measurements describe shape preservation, not beauty or a visual score. A final materials/lighting pass, improved finger and boot detail, motion repair and native scene comparisons remain necessary.
+
+The bounded reusable [`surface_distance_falloff`](../../scripts/refine-model-surfaces.py) accepts source triangle geometry, distinct fixed indices and a finite positive falloff distance. It returns independent mask/distance arrays, retains its inputs, rejects malformed/excessive geometry and rejects components without an anchor. It does not itself verify manifold topology or prevent intersections. Four new original synthetic cases cover known distances/masks, rigid-and-scale covariance, separated components and invalid/budgeted inputs; the surface suite now has 14 cases. Rebuilding all twelve private surfaces through this helper produces identical saved mesh hashes and topology results. No engine or installer behavior changes. The supported Python 3.12/Pillow 12.3.0/NumPy 2.5.1 environment passes all ten original synthetic visual fixture scripts. The private geometry environment also passes the 14-case surface suite; its earlier broad-suite attempt fails because Pillow 10.1 lacks an API required by the public texture tools. That log is retained, and it does not establish supported-tool failure.
+
+A direct original-to-remaster page places unedited original indexed, preceding remaster and revised-interface captures side by side. All columns share pose, projection and diagnostic lighting; the original retains indexed artwork, while the two remaster columns share the reconstructed head, continuous arms and packed atlas. Its hidden offline interaction/layout checks pass. The direct comparison makes the head and silhouette progress clearer while keeping the remaining flat material response and native-scene gap visible.
+
 ## Private records and next work
 
 The sibling directories `Definitive-private-texture-pilot/haschel-garment-surface-round66` and `haschel-garment-contact-round67` retain source/build hashes, saved-data checks, joint-region checks, contact triage, GPU manifests and evidence summaries. The private tooling directories with the corresponding round names retain the authoring and verification commands/logs. Derived geometry, source matrices, artwork comparisons and private helpers remain excluded from Git.
 
-The additional `haschel-contact-visibility-round68`, `haschel-garment-boundary-round69` and `haschel-garment-motion-review-round70` directories retain depth fixtures, full recorded contact results, source-linear controls, color/depth captures, comparison receipts and the rejected/corrected diagnostic outputs. No derived assets enter Git.
+The additional `haschel-contact-visibility-round68`, `haschel-garment-boundary-round69` and `haschel-garment-motion-review-round70` directories retain depth fixtures, full recorded contact results, source-linear controls, color/depth captures, comparison receipts and the rejected/corrected diagnostic outputs. The subsequent `haschel-garment-interface-round71`, `haschel-garment-falloff-round72`, `haschel-garment-motion-regression-round73` and `haschel-garment-helper-replay-round74` records preserve the rejected fold, revised construction, contact/capture checks and identical reusable-helper replay. No derived assets enter Git.
 
 The first initial-treatment preparation stopped on a nested loader lookup; the next GPU gate rejected the first candidate's saved float byte order. Both terminal failures and partial outputs were retained. New inputs were generated in a fresh versioned directory, with finite/bounded big-endian data checked before successful capture. The first background comparison also failed image-load QA because a template substitution altered an embedded image string; a new version uses an exact script placeholder and passes the browser checks. These are private study preparation failures, not installer or shipped-engine failures.
 
