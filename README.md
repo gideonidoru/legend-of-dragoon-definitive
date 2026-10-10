@@ -2,7 +2,7 @@
 
 ## [⬇ Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-audio/Install-Definitive.desktop)
 
-**Start here in Steam Deck Desktop Mode.** The guided installer downloads the engine, Java, bundled HD mods and enhanced cinematics, then prepares your own game discs. No separate model transfer or asset-generation setup is needed.
+**Start here in Steam Deck Desktop Mode.** The guided installer downloads the engine, Java, bundled HD mods and enhanced cinematics, then prepares your own game discs and higher-fidelity prerecorded audio. No separate model transfer or asset-generation setup is needed.
 
 [Release notes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-alpha-2026-10-10-audio) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-audio/Definitive-Installer.zip) · [Installation and recovery help](docs/definitive/INSTALLER.md)
 
@@ -78,19 +78,33 @@ FMVHD preserves the source timing and soundtrack content, with bounded buffering
 
 ## Engine and presentation improvements
 
-Severed Chains supplies the native game port, rendering and audio foundations, input support, disc extraction and modding API. Definitive builds on those systems. Our current engine additions include:
+Severed Chains supplies the game port, rendering and audio foundations, input support, disc extraction and modding API. Definitive builds on those systems. The **current downloadable audio alpha** includes:
 
-- **Smoother model lighting and soft contact shadows** across field maps, battles, the world map and model-based cutscenes. Models retain the scene's existing light directions and colors.
-- **Material-aware shading** for authored cloth, skin and metal tags, with a restrained matte response when tags are absent. Richer per-face material authoring remains future work.
-- **Bounded colored effect lights:** up to four nearby emitters from luminous effects and save points can illuminate supported opaque geometry.
-- **HD texture filtering** with mipmaps and capability-checked anisotropic filtering. Texture atlases need safe padding before this is applied, preserving palette and transparency behavior.
-- **Edge smoothing, selective bloom and gentle adaptive sharpening**, with protected dialogue, menus, battle HUD and Addition prompts. Bloom works independently of CRT styling.
-- **Safer graphics resource handling:** failed shader reloads retain the working program, and texture uploads/mipmap updates use the correct bindings.
-- **Enhanced cinematic playback** with bounded streaming, cancellation, synchronization and preserved game transitions.
+- **SMAA anti-aliasing:** cleaner silhouettes and diagonal edges through three spatial passes, with dialogue, menus, battle HUD and Addition prompts protected. It uses the original MIT-licensed [SMAA implementation](gfx/shaders/smaa/README.md), with the earlier edge filter available as fallback.
+- **Smoother lighting and soft contact shadows** across field maps, battles, the world map and model-based cutscenes, retaining the scene's original light directions and colors.
+- **Richer material support:** individual faces can carry surface types and roughness, while compatible HD assets can supply normal and roughness maps. Cloth, skin, leather and metal can respond differently; artists still need to author meaningful material assignments.
+- **Artwork-matched lighting support:** environment packs can describe their light direction, color and ambient tone so models fit the painted scene. Profiles reset with scene changes rather than leaking into the next location.
+- **Colored effect lights:** up to four nearby emitters from luminous effects and save points illuminate supported opaque geometry. Selective bloom gives luminous effects a soft glow independently of CRT styling.
+- **HD texture filtering and gentle sharpening:** mipmaps and capability-checked anisotropic filtering improve eligible HD images. Atlas padding, original palettes and transparency remain part of the compatibility contract.
+- **Bounded artwork caching:** repeated PNG loads reuse decoded pixels within a 64 MiB retained cache. Prewarming hooks let artwork mods prepare images before display, and loading measurements help identify remaining stalls.
+- **Safer graphics handling:** failed shader reloads retain the working program, texture uploads and mipmap updates use the correct bindings, and deleted texture IDs no longer leave stale cached bindings.
+- **Enhanced cinematic playback:** bounded streaming, cancellation and synchronization retain the original timing and return-to-game behavior.
 
-These controls live in **Graphics**, with restrained defaults and individual settings. The effects use spatial processing without temporal accumulation or extra input buffering. Physical Deck frame times, memory use and battery impact remain to be measured. [Rendering details and verification](docs/definitive/RENDERING_LIGHTING.md).
+### Newer on main: detail, lighting and first visits
 
-**Faithful audio:** prerecorded XA clips now avoid an extra lossy encode, with accurate short endings and improved playback recovery. Disc preparation refreshes audio locally from your installed discs, adding about 156 MiB for the tested US set. The original score and music settings remain intact. [Audio checks and remaining device tests](docs/definitive/AUDIO_VALIDATION.md).
+The next rendering increment is implemented on **main**, but is newer than the installer linked above:
+
+- **Default surface detail** adds a subtle shared normal/roughness finish to supported original and HD models. Original palette animation and transparency stay live, and authored maps take precedence. This is a conservative baseline, not hand-painted skin, fabric or metal masks for every asset.
+- **Automatic scene-lighting profiles** follow the game's original lights and scripted changes when an artist profile is absent. They preserve the original lighting as the dominant input; they do not infer lighting from background images.
+- **First-visit preparation** moves native field-background decoding onto a bounded CPU worker during loading. The 43 bundled Skurfa scene mappings also receive preload hints, prioritizing images that fit the cache. Failed or oversized preparation retains the original loading route.
+
+These features use the existing **Graphics** settings, with restrained defaults and individual controls. SMAA and the other screen effects use no temporal accumulation, generated frames or extra input buffering. Local GPU and loading probes pass, but physical Deck frame times, memory use and battery impact remain to be measured. [Rendering details and verification](docs/definitive/RENDERING_LIGHTING.md).
+
+### Faithful audio
+
+The current installer preserves decoded prerecorded XA clips as PCM WAV, avoiding the extra lossy conversion used previously. Playback queues only valid decoded samples, lets clip endings finish, and maintains more accurate timing during underflow or device recovery.
+
+The original score, voices, effects, volume behavior and music settings remain intact. Existing installations refresh the recordings locally from their own discs; there is no replacement soundtrack download. All **41 recordings** in the tested US set decoded successfully, adding about **156 MiB** to local game data. Physical Deck listening, Bluetooth/device switching and suspend/resume checks remain open. [Audio validation](docs/definitive/AUDIO_VALIDATION.md).
 
 ## Gameplay comfort, on your terms
 
@@ -98,15 +112,33 @@ Choose **Definitive** or **Faithful** when creating a campaign. Definitive enabl
 
 Artwork, rendering, audio and controller settings remain independent of the campaign preset. Faithful is a settings profile rather than a claim of bit-perfect retail emulation. Changing a preset later cannot undo progression already earned. [Full preset comparison](docs/definitive/PRESETS.md).
 
-We've also adapted binding-aware **Equip, Sort, Unequip and Back** equipment hints from [Quality of Life+](https://github.com/FrancisDionne/Severed-Chains/releases/tag/experimental), using current engine APIs. Further inventory workflows and Addition training remain planned. **Dragoon Modifier** and **Battle Rewards** are evaluated candidates, not installed features. [Community integration notes](docs/definitive/INTEGRATION_ALPHA.md).
+The current installer includes binding-aware **Equip, Sort, Unequip and Back** equipment hints inspired by [Quality of Life+](https://github.com/FrancisDionne/Severed-Chains/releases/tag/experimental).
+
+A broader native-settings implementation is complete on the [QoL settings branch](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/6), awaiting integration and installer delivery:
+
+- **Inventory and shops:** contextual hints follow remapped bindings; equipment can be filtered and sorted; quantity buying/selling respects affordability, capacity and protected items.
+- **Campaign rewards:** independent enemy XP and gold multipliers range from 0× to 10×, defaulting to **1×**. A battle keeps the values it started with, and item drops retain their existing rules.
+- **Addition timing feedback:** optional Early, Late, Wrong Button, Good and Perfect hints, **off by default**. Feedback observes the existing hit result without changing timing windows, damage or mastery.
+
+These are features in the existing settings, with no separate mod to manage. Both campaign presets retain 1× rewards and feedback off. The reward-control implementation is independently authored around current APIs, inspired by Battle Rewards; its older mod is not bundled. **Dragoon Modifier** remains an unbundled overhaul candidate. [Community integration notes](docs/definitive/INTEGRATION_ALPHA.md).
 
 ## Where development stands
 
-**October 10, 2026:** the published alpha combines the guided installer, Skurfa backgrounds, the 19-form ModelsHD pass, all 18 FMVHD cinematics, faithful audio playback and the current rendering foundation. Linux and macOS package builds, headless delivery/recovery checks, model-loader checks and windowless GPU probes provide development evidence. The earlier installer/launcher was confirmed working by the owner on Deck.
+**October 10, 2026:** the public **faithful audio alpha** combines the guided installer, Skurfa backgrounds, ModelsHD 0.3's 19 party battle forms, all 18 FMVHD cinematics, SMAA and the richer rendering APIs, plus the audio improvements described above. Linux and macOS package builds, delivery/recovery checks, model-loader checks and windowless GPU probes provide development evidence. The earlier installer/launcher was confirmed working by the owner on Deck.
+
+The next increments are progressing separately:
+
+| Workstream | Latest implemented work | Delivery status |
+| --- | --- | --- |
+| **Default-asset rendering** | Shared surface detail, live native-light profiles and first-visit background preparation. | On main; newer than the public audio installer. |
+| **[ModelsHD 0.4](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/5)** | Broad smoothing across 964 of 1,343 cataloged containers, including all nine confirmed party field models and all 19 battle forms. 8,531 unique custom parts; 379 containers retain originals under the safeguards. | Integration branch and package checks; not yet in the installer linked above. This is broad refinement, not 964 bespoke character rebuilds. |
+| **[HD artwork](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/1)** | EnvHD panorama production, alongside the CharHD, UIHD and FxHD pilot modules. Batch upscaling and precise edge repair are underway; seven panoramas remain selected at this checkpoint. | Development branch; expanded coverage and native scene review remain in progress. |
+| **[Native QoL settings](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/6)** | Equipment filters/sorting, quantity transactions, campaign reward controls and optional Addition feedback. | Draft integration PR; device checks and a new installer remain pending. |
+| **[Installation and repair](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/2)** | All-HD packaging, selective Repair/Update downloads, full Reinstall, stronger interruption recovery, game-process protection and publication checks. | Development branch with release publication underway; the draft release is not the public download. |
 
 The next proof is combined gameplay on the hardware: representative HD scenes, model transformations, foreground masking, busy effects, cinematic audio/skip/return behavior, controller reconnect, suspend/resume, and update/restore. A four-disc playthrough and measured Deck performance are still outstanding. We haven't reached the final AA visual target.
 
-The model catalog covers **1,324 additional geometry containers**, with loading contexts, identity evidence and reuse leads. That is a planning inventory, not 1,324 finished models or distinct characters. Broader artwork production, further character remodeling, installation hardening and physical audio validation are active development tracks. [Model catalog](docs/definitive/MODEL_CATALOG.md) · [Deck test plan](docs/definitive/DECK_TEST_PLAN.md) · [Validation records](docs/definitive/VALIDATION.md).
+The [model catalog](docs/definitive/MODEL_CATALOG.md) provides loading contexts, identity evidence and component-reuse leads for expansion beyond the first battle roster. Its container counts include variants, scenery and other resources; they are not distinct-character counts. [Deck test plan](docs/definitive/DECK_TEST_PLAN.md) · [Validation records](docs/definitive/VALIDATION.md).
 
 ## Build from source
 
