@@ -68,3 +68,5 @@ These results establish installer/backend behavior and compilation on Mac. They 
 ## Recovery alpha checks
 
 The recovery build at `d1598b705a6fe37716a4ad603d0ddfacb4b09e92` passed Linux and Mac packaging, 45 delivery checks on each platform, a separate actual-window lifecycle check on Linux, eight interruption/concurrency cases and thirteen release-publication cases on both platforms. The downloaded Mac package repeated real four-disc preparation in a private QA installation. Exact packages, source, checksums and publication evidence are recorded in [Delivery reliability](DELIVERY_RELIABILITY.md). These results do not replace the physical [Deck acceptance protocol](DECK_TEST_PLAN.md).
+
+The faithful audio update prepares lossless PCM recordings locally from your installed discs, avoiding a second lossy encode. Existing installations selectively refresh the four XA archives and retain legacy Opus recordings; the tested four-disc US set adds about 156 MiB. Playback fixes cover short endings and source recovery. The score and music synthesis defaults remain intact. [Audio validation](AUDIO_VALIDATION.md).

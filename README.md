@@ -1,10 +1,10 @@
 # Legend of Dragoon: Definitive
 
-## [⬇ Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-fmvhd/Install-Definitive.desktop)
+## [⬇ Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-audio/Install-Definitive.desktop)
 
 **Start here in Steam Deck Desktop Mode.** The guided installer downloads the engine, Java, bundled HD mods and enhanced cinematics, then prepares your own game discs. No separate model transfer or asset-generation setup is needed.
 
-[Release notes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-alpha-2026-10-10-fmvhd) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-fmvhd/Definitive-Installer.zip) · [Installation and recovery help](docs/definitive/INSTALLER.md)
+[Release notes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-alpha-2026-10-10-audio) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-audio/Definitive-Installer.zip) · [Installation and recovery help](docs/definitive/INSTALLER.md)
 
 Definitive is a Steam Deck-first modernization of *The Legend of Dragoon*, built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains). We want the game to feel as good to return to today as it did the first time: familiar characters and painted environments, clearer visuals, comfortable controls, and an installation you can get through without assembling a collection of tools and mods yourself.
 
@@ -90,6 +90,8 @@ Severed Chains supplies the native game port, rendering and audio foundations, i
 
 These controls live in **Graphics**, with restrained defaults and individual settings. The effects use spatial processing without temporal accumulation or extra input buffering. Physical Deck frame times, memory use and battery impact remain to be measured. [Rendering details and verification](docs/definitive/RENDERING_LIGHTING.md).
 
+**Faithful audio:** prerecorded XA clips now avoid an extra lossy encode, with accurate short endings and improved playback recovery. Disc preparation refreshes audio locally from your installed discs, adding about 156 MiB for the tested US set. The original score and music settings remain intact. [Audio checks and remaining device tests](docs/definitive/AUDIO_VALIDATION.md).
+
 ## Gameplay comfort, on your terms
 
 Choose **Definitive** or **Faithful** when creating a campaign. Definitive enables conveniences such as saving anywhere, battle autosaves, running by default, faster text, shorter transitions, enemy HP bars and turn-order information. Faithful selects retail-oriented settings. Both keep normal Additions and their ordinary timing windows; neither bundles a reward multiplier or difficulty overhaul.
@@ -100,15 +102,15 @@ We've also adapted binding-aware **Equip, Sort, Unequip and Back** equipment hin
 
 ## Where development stands
 
-**October 10, 2026:** the published alpha combines the guided installer, Skurfa backgrounds, the 19-form ModelsHD pass, all 18 FMVHD cinematics and the current rendering foundation. Linux and macOS package builds, headless delivery/recovery checks, model-loader checks and windowless GPU probes provide development evidence. The earlier installer/launcher was confirmed working by the owner on Deck.
+**October 10, 2026:** the published alpha combines the guided installer, Skurfa backgrounds, the 19-form ModelsHD pass, all 18 FMVHD cinematics, faithful audio playback and the current rendering foundation. Linux and macOS package builds, headless delivery/recovery checks, model-loader checks and windowless GPU probes provide development evidence. The earlier installer/launcher was confirmed working by the owner on Deck.
 
 The next proof is combined gameplay on the hardware: representative HD scenes, model transformations, foreground masking, busy effects, cinematic audio/skip/return behavior, controller reconnect, suspend/resume, and update/restore. A four-disc playthrough and measured Deck performance are still outstanding. We haven't reached the final AA visual target.
 
-The model catalog covers **1,324 additional geometry containers**, with loading contexts, identity evidence and reuse leads. That is a planning inventory, not 1,324 finished models or distinct characters. Broader artwork production, further character remodeling, installation hardening and audio-fidelity work are active development tracks. [Model catalog](docs/definitive/MODEL_CATALOG.md) · [Deck test plan](docs/definitive/DECK_TEST_PLAN.md) · [Validation records](docs/definitive/VALIDATION.md).
+The model catalog covers **1,324 additional geometry containers**, with loading contexts, identity evidence and reuse leads. That is a planning inventory, not 1,324 finished models or distinct characters. Broader artwork production, further character remodeling, installation hardening and physical audio validation are active development tracks. [Model catalog](docs/definitive/MODEL_CATALOG.md) · [Deck test plan](docs/definitive/DECK_TEST_PLAN.md) · [Validation records](docs/definitive/VALIDATION.md).
 
 ## Build from source
 
-Players should use the **[Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-fmvhd/Install-Definitive.desktop)**. For development, install **JDK 25** and use the checked-in **Gradle 9.1.0 wrapper**. Compilation requires no game discs.
+Players should use the **[Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-alpha-2026-10-10-audio/Install-Definitive.desktop)**. For development, install **JDK 25** and use the checked-in **Gradle 9.1.0 wrapper**. Compilation requires no game discs.
 
 ```sh
 git clone --recurse-submodules https://github.com/gideonidoru/legend-of-dragoon-definitive.git
