@@ -5,6 +5,10 @@ Custom artwork and code are public and included by the existing default bundle
 build. Keep installer releases consolidated through the delivery thread; do not
 publish a new download for each asset/code iteration.
 
+EnvHD is not complete. See `ENVHD_FULL_COVERAGE.md` and the source-bound
+`integrations/envhd/production/full-coverage.json` for all categories, selected
+versus candidate counts, unresolved denominators and exact remaining work.
+
 ## Selected development artwork
 
 - 70 distinct battle panoramas cover 73 source/header variants. One uniform-black
