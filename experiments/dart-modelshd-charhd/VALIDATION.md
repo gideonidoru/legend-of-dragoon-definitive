@@ -1,6 +1,6 @@
 # Validation record · 2026-10-10
 
-Base: `2b2e95cb5995f7d1ca76b08f12c9a932be134c97`, current ModelsHD 0.4. Work remains on `experiment/dart-modelshd-charhd`; no main, installer defaults or release was updated. Normal package tasks exclude the experimental CharHD JAR and art/mesh payloads. Normal engine builds on this experimental branch do contain the dormant engine hook, so that engine build itself is also gated.
+Base: `2b2e95cb5995f7d1ca76b08f12c9a932be134c97`, current ModelsHD 0.4. The preferred face/bandana record below concerns `experiment/dart-modelshd-charhd`; no main, installer defaults or release was updated. Normal package tasks exclude the experimental CharHD JAR and art/mesh payloads. Normal engine builds on this experimental branch do contain the dormant engine hook, so that engine build itself is also gated.
 
 Environment: Mac Studio, Mac17,14; macOS 27.0.1 (26A434); Amazon Corretto Java 25, Gradle wrapper 9.1.0; offline authoring Python 3.12, NumPy 2.5.1, Pillow 12.3.0. Windowless CGL renderer reported Apple M5 Max / OpenGL 4.1 Metal - 91.7. This is Mac evidence, not Steam Deck evidence.
 
@@ -69,3 +69,43 @@ The shared mapping now preserves all identified bandana faces (20, 21, 23, 110, 
 Verification: 11 experimental Java tests, five Python generator tests and all eight actual-source native construction combinations passed; ModelsHD's existing 31 tests remain passing/up to date. All 84 comparisons regenerated. All 42 field images and all 12 custom mesh payloads remain byte-identical to the previous version. Three battle camera views and stored keys 0, 5, 9 were visually inspected after correction. The runtime probe used the previous private study's identical geometry packs, with the newly compiled face mapping. No game was launched; gameplay and physical Deck validation remain pending. The earlier full build and synthetic GPU results above were not rerun for this mapping-only correction.
 
 Revised private review: `Legend-of-Dragoon-Dart-Experiment-v2/index.html` and matching ZIP. Historical independent review above covered the earlier revision, not this owner-requested correction. Main/release approval remains required.
+
+
+## Rejected hair prototype and actual-game integration
+
+Branch: `experiment/dart-hair-rebuild`, based on preferred face/bandana commit `c49ef65e6`. The hair art is rejected for inclusion; see `HAIR-REVIEW.md`. Main and release were not changed.
+
+- Eight Python invariants passed, including non-hair/source preservation, nonzero generated triangles, bounded hair UVs and rectangular atlas sampling.
+- Thirteen experimental Java tests passed. The new class-loader isolation regression failed before the shared engine identity fix and passed afterward. The existing 31 ModelsHD checks passed (up to date on the final native run).
+- All eight native construction combinations passed with the volumetric trial packs: field 245,696 floats, battle 385,216; finite values and unchanged original CPU tables/prepared appearance geometry. The numeric-only report is `validation/native-hair-trial.json`.
+- The final supported build passed; delivery tests: 182 discovered, 175 passed, seven skipped, zero failures/errors. Ordinary gameplay tests were skipped as designed.
+- A separate authorized isolated Mac trial passed six gameplay/integration checks, including actual Battle state, Dart's identity and a non-null detail texture on the actual native head. Twenty-four frames were captured privately. For inspection the harness rotated Dart by pi and scaled him by 1.5; that is a test pose, not the shipped battle camera. This proves a short integration sample, not animation breadth or art acceptance.
+
+The runtime used a private APFS clone of completed extraction, links to the user's four discs, a fresh test save, this branch's engine, ModelsHD and the opt-in experimental JAR. It did not alter the user's normal installation. The production CharHD battle body-atlas route was not included; original body/environment textures remain visible in the private captures. Logs contain existing shader-uniform/native-access warnings; a clean log is not claimed.
+
+An initial isolated launch lacked disc links and timed out before tests started. The next attempt exposed `NoClassDefFoundError: modelshd/ModelPack` in the actual isolated mod loader. Moving the unchanged canonical identity algorithm into an engine class resolved that failure. The preferred face-only trial then passed six checks; the later hair trial also passed six. Both failures are retained in private logs and excluded from successful totals.
+
+The final study regenerated all 84 offline images and checked ten stored animation keys per form. Every custom pack is byte-identical to the packs used by the native and actual-game trials. Counts: current ModelsHD 1,558 → trial 5,126 field triangles; 2,838 → trial 8,032 battle triangles. The separate receipt records the final builder, mapping, texture and custom head hashes. The mapping resource budget is now 65,536 bytes to accommodate per-source hair frames. All selected red bandana faces remain excluded from both face and hair paint.
+
+Commands on Java 25 / Gradle 9.1.0, with the recorded private tooling homes:
+
+```sh
+python3 experiments/dart-modelshd-charhd/test-study.py
+./gradlew --no-daemon --console=plain \
+  -I experiments/dart-modelshd-charhd/experiment.init.gradle \
+  dartExperimentTests modelsHdTests dartExperimentJar dartExperimentProbe \
+  -PdartFiles=/PRIVATE/files -PdartStudy=/PRIVATE/study-v10-locks \
+  -PdartReport=/PRIVATE/native-v10-locks.json
+./gradlew --no-daemon --console=plain build
+./gradlew --no-daemon --console=plain \
+  -I experiments/dart-modelshd-charhd/experiment.init.gradle \
+  -I /PRIVATE/dart-live-01/live.init.gradle dartLiveTrial
+```
+
+The live harness and captured game frames remain private diagnostic material; they are not a default CI task. Its sixth test performs OpenGL front-buffer capture on the existing render thread and restores read-framebuffer, read-buffer and pack-alignment state. Physical Deck memory/frametime, broad animation coverage, production CharHD integration and visual approval remain outstanding. Passing these checks does not justify releasing this rejected art.
+
+Private trial harness hashes:
+
+- `java/legend/game/DartLiveTest.java`: `dbb8ea9cbd40e0ef0665399beb89d20e49c340bf7c1720ec51ab9475e9dfbf2a`
+- `java/legend/game/DartLiveRunner.java`: `9171860851a0b2e1362c41fb56a9c197de74e770ed5db693651342c800ae389b`
+- `live.init.gradle`: `96f09675d87fb56d60b1d03a325cfd83e2dc8a05aa77a85d5a6854efc1b66af1`

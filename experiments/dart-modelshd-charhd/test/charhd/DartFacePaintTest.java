@@ -78,6 +78,19 @@ class DartFacePaintTest {
     assertEquals(2,mesh.faceDetailTexture().width);
     for(final var part:mesh.meshes)for(final float value:part.vertices())assertTrue(Float.isFinite(value));
   }
+  @Test void completeHeadLayerPreservesBandanaAndSeparatesHairRegion() {
+    for(final int face:new int[]{20,21,23,110,121,122}) {
+      final var original=source();original.sourceFaces(new int[]{face},148);
+      assertSame(original,DartFacePaint.paintHead(original,paint(),false));
+    }
+    final var original=source();original.sourceFaces(new int[]{75},151);
+    final var painted=DartFacePaint.paintHead(original,paint(),false);
+    assertNotSame(original,painted);
+    for(int i=0;i<3;i++) {
+      assertTrue(painted.faceDetail().v(0,i)>=DartFaceMapping.load().faceRegionHeight());
+      assertTrue(painted.faceDetail().u(0,i)<=DartFaceMapping.load().hairRegionWidth());
+    }
+  }
   @Test void battleBandanaAndHairRetainTheirMaterials() {
     final var mapping=DartFaceMapping.load();
     for(final int face:new int[]{20,21,23,75,110,121,122}) {
@@ -91,7 +104,7 @@ class DartFacePaintTest {
     original.vert_top_00[1].set(-70,38.5f,35);
     original.vert_top_00[2].set(-70,-11,0);
     final var colored=DartFacePaint.paint(original,DartFaceMapping.load().combatFaces(),paint(),false);
-    final float eye=colored.faceDetail().v(0,0), mouth=colored.faceDetail().v(0,2);
+    final float eye=(float)(colored.faceDetail().v(0,0)/DartFaceMapping.load().faceRegionHeight()), mouth=(float)(colored.faceDetail().v(0,2)/DartFaceMapping.load().faceRegionHeight());
     assertTrue(eye>=.29f && eye<=.36f,"Eye landmark "+eye);
     assertTrue(mouth>=.60f && mouth<=.68f,"Mouth landmark "+mouth);
   }
@@ -151,6 +164,30 @@ class DartFacePaintTest {
     final var mesh=TmdObjLoader.fromObjTable("fallback",source,0);
     assertTrue(java.util.Arrays.stream(mesh.meshes).anyMatch(part->part.vertices()[0]==9));
     assertEquals(0,source.vert_top_00[0].x);
+  }
+  @Test void appearanceLoadsWhenOtherModClassesAreIsolated() throws Exception {
+    final var code=DartFacePaint.class.getProtectionDomain().getCodeSource().getLocation();
+    final String resource=DartFacePaint.class.getResource("/charhd-experiment/dart-face-mapping-v1.json").toString();
+    final var resources=new java.net.URI(resource.substring(0,resource.indexOf("charhd-experiment/"))).toURL();
+    try(final var loader=new java.net.URLClassLoader(new java.net.URL[]{code,resources},getClass().getClassLoader()) {
+      @Override protected Class<?> loadClass(final String name,final boolean resolve) throws ClassNotFoundException {
+        if(name.startsWith("modelshd."))throw new ClassNotFoundException("Other mod isolated: "+name);
+        if(name.startsWith("charhd.")) {
+          synchronized(getClassLoadingLock(name)) {
+            Class<?> type=findLoadedClass(name);if(type==null)type=findClass(name);
+            if(resolve)resolveClass(type);return type;
+          }
+        }
+        return super.loadClass(name,resolve);
+      }
+    }) {
+      final var type=loader.loadClass("charhd.DartFacePaint");
+      final var listener=type.getConstructor().newInstance();final var original=source();
+      final var event=new TmdAppearanceEvent(original,original,0);
+      type.getMethod("apply",TmdAppearanceEvent.class).invoke(listener,event);
+      assertSame(original,event.appearance);
+      java.lang.ref.Reference.reachabilityFence(listener);
+    }
   }
   @Test void shippedOptInResourceLoadsAndUnknownSourceRetainsGeometry() throws Exception {
     final var listener=new DartFacePaint(); final var source=source();

@@ -29,6 +29,9 @@ world = module('dart_world', 'build-modelshd-world-pass.py')
 exporter = world.exporter
 poses = exporter.surface.poses
 packing = exporter.surface.packing
+_hair_spec=importlib.util.spec_from_file_location('dart_hair',Path(__file__).with_name('rebuild-hair-locks.py'))
+hair_builder=importlib.util.module_from_spec(_hair_spec)
+_hair_spec.loader.exec_module(hair_builder)
 
 
 def triangulate(part):
@@ -163,12 +166,25 @@ def unpack(part, source):
 
 FACE_MAPPING = json.loads((ROOT / 'experiments/dart-modelshd-charhd/resources/charhd-experiment/dart-face-mapping-v1.json').read_text())
 PAINT_FACES = {form: set(FACE_MAPPING[form+'Faces']) for form in ('field','combat')}
+HAIR_FACES = {form: set(FACE_MAPPING[form+'HairFaces']) for form in ('field','combat')}
+
+
+_BODY_COORDINATES=poses.packed_coordinates
+
+def detail_coordinates(uv, mapping):
+    if not mapping.get('normalizedDetail',False):return _BODY_COORDINATES(uv,mapping)
+    x,y,width,height=mapping['atlasRect']
+    # Unlike packed body crops, the normalized head atlas can be rectangular.
+    pixel=np.floor(uv*np.array([width,height])).astype(int)
+    return np.clip(pixel[...,0]+x,x,x+width-1),np.clip(pixel[...,1]+y,y,y+height-1)
+
+poses.packed_coordinates=detail_coordinates
 
 
 def paint_atlas(atlas, mapping, tim):
-    paint = Image.open(ROOT / 'experiments/dart-modelshd-charhd/resources/charhd-experiment/dart-face-paint-v1.png').convert('RGBA')
-    if paint.width != paint.height:
-        raise ValueError('Offline detail sampler requires a square paint tile')
+    paint = Image.open(ROOT / 'experiments/dart-modelshd-charhd/resources/charhd-experiment/dart-head-detail-v2.png').convert('RGBA')
+    if paint.size != (1254,2022):
+        raise ValueError('Unexpected authored head atlas dimensions')
     columns = poses.materials.texture(tim)[2] // 16
     palette = 16 * columns - 1
     if palette in mapping:
@@ -176,7 +192,7 @@ def paint_atlas(atlas, mapping, tim):
     combined = Image.new('RGBA', (max(atlas.width, paint.width), atlas.height + paint.height))
     combined.paste(atlas, (0, 0))
     combined.paste(paint, (0, atlas.height))
-    materials = {**mapping, palette: {'sourceCrop': [0, 0, 1, 1], 'atlasRect': [0, atlas.height, paint.width, paint.height]}}
+    materials = {**mapping, palette: {'sourceCrop': [0, 0, 1, 1], 'atlasRect': [0, atlas.height, paint.width, paint.height], 'normalizedDetail': True}}
     clut = (palette // columns) << 6 | (palette % columns)
     return combined, materials, clut
 
@@ -191,10 +207,18 @@ def paint_face(part, source, form, clut):
     vertical_scale = 1.0 if form == 'field' else FACE_MAPPING['combatFaceVerticalScale']
     v = .5 + (q[:,1]-origin_y) * projection * vertical_scale
     uv = np.clip(np.column_stack((u, v)), 0, 1).astype(np.float32)
+    uv[:,1] *= FACE_MAPPING['faceRegionHeight']
     result = []
     for face, polygon in zip(part['faces'], polygons):
         if face['sourceFace'] in PAINT_FACES[form]:
             result.append((polygon[0], uv[polygon[0]], clut, np.full((len(polygon[0]), 3), 127.5)))
+        elif face['sourceFace'] in HAIR_FACES[form]:
+            projection=np.array(FACE_MAPPING[form+'HairProjection'][str(face['sourceFace'])]).reshape(2,4)
+            local=q[polygon[0]]
+            mapped=np.clip(local@projection[:,:3].T+projection[:,3],0,1)*.996+.002
+            mapped[:,0]*=FACE_MAPPING['hairRegionWidth']
+            mapped[:,1]=FACE_MAPPING['faceRegionHeight']+(1-FACE_MAPPING['faceRegionHeight'])*mapped[:,1]
+            result.append((polygon[0],mapped.astype(np.float32),clut,np.full((len(polygon[0]),3),127.5)))
         else: result.append(polygon)
     return points, result
 
@@ -227,6 +251,12 @@ def make_form(files, record, form, destination, charhd):
             (destination / 'parts' / (ids[index] + '.json')).write_text(json.dumps(payload, separators=(',', ':'), allow_nan=False))
         else:
             target[index] = copy.deepcopy(current[index])
+    target[7], hair_projection, lock_count=hair_builder.rebuild(target[7],parts[7],form,HAIR_FACES[form])
+    for source_face, projection in hair_projection.items():
+        if not np.allclose(projection,FACE_MAPPING[form+'HairProjection'][source_face],atol=1e-10,rtol=0):
+            raise ValueError('Authored hair frames differ from the shared runtime mapping')
+    reports[0].update(hairLocks=lock_count,triangles=len(target[7]['faces']),vertices=len(target[7]['vertices']))
+    (destination/'parts'/(ids[7]+'.json')).write_text(json.dumps({'version':1,'sourceGeometrySha256':ids[7],'parts':[target[7]]},separators=(',',':'),allow_nan=False))
     keys = poses.read_keyframes(animation, len(parts))
     candidates = [[unpack(p, source) for p, source in zip(pack, parts)] for pack in (current, target)]
     for key in keys:

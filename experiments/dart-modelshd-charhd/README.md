@@ -6,7 +6,13 @@ Scope: Dart normal field and battle models. Compare the current ModelsHD 0.4 bas
 
 Acceptance requires whole-character visual review, stock/CharHD texture consistency, animation and material integration evidence and measured Steam Deck performance. Offline pose renders are clearly labeled; they do not prove gameplay, native lighting or performance. Experimental results may be rejected or revised. Approval must come directly from the user and explicitly cover the proposed main/release change.
 
-## What this increment adds
+## Hair trial status
+
+The newer `experiment/dart-hair-rebuild` branch contains a **visually rejected prototype**, not a release candidate. See [HAIR-REVIEW.md](HAIR-REVIEW.md). The preferred face/bandana experiment remains at `c49ef65e6`; `models/parts` and the original `receipt.json` retain that work. The separate `hair-trial/parts` directory and its receipt record the rejected head rebuild. On this branch the explicitly built experimental JAR uses its combined face/hair atlas. To reproduce the hair trial, overlay the two trial head packs after the previous twelve custom packs. Ordinary installer/release tasks include neither experiment.
+
+The rejected trial has 5,126 field and 8,032 battle triangles, versus 3,118 and 5,508 in the preferred face-only candidate. Its 1254×2022 head atlas uses about 9.67 MiB before mipmaps. It passed native construction and a short isolated Mac battle trial, but visible root joins and the wig-like crown fail the visual standard. Steam Deck costs remain unmeasured. Do not interpret technical checks as art approval.
+
+## What the preferred face increment adds
 
 - Dart field and normal battle custom part candidates, with fixed attachments and the existing animation structure.
 - CharHD 4x texture restoration in matched comparisons, plus an opt-in runtime field texture override.

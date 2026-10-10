@@ -23,3 +23,9 @@ The first vertex-color baking attempt was rejected because it blurred eyes and m
 `models/parts` contains only the 12 changed source-bound custom part packs, approximately 1.1 MB total. The unchanged original controls remain private. The generator reads the current ModelsHD 0.4 baseline, uses bounded facial landmarks and mild armor/glove/cloth fullness, fixes open attachment boundaries, validates winding and nonzero triangle area after float32 conversion, and retains rigid part order and original keyframes. It is not a new skeleton, a fully remodeled character or a finished retopology.
 
 The current hair spikes, hand construction and much of the side silhouette remain visibly coarse. Improving those deliberately is the next art step, rather than increasing every part's subdivision level. The face layer also needs better side/ear transitions and actual scene-light review. No community acceptance or real Deck performance is asserted.
+
+## Rejected hair trial
+
+`dart-hair-paint-v3.png` is a generated opaque golden-blond strand albedo, produced with the built-in image generator. It is custom paint; it is not a runtime neural renderer or proof of model quality. Its fiber-heavy appearance was rejected. `build-hair-detail.py` deterministically assembles it beneath the unchanged face paint in `dart-head-detail-v2.png`. The checksum and trial receipt record these assets.
+
+`rebuild-hair-locks.py` builds source-bound tapered locks and a rounded crown in the original head's coordinates. Only two changed custom head packs are versioned in `hair-trial/parts`; original whole-actor diagnostic controls and game captures remain private. The original pivots, non-hair surfaces, face/bandana selection and CPU tables are preserved. This procedural reconstruction is a rejected prototype, not finished retopology or an accepted hair upgrade. Its limits and the next review standard are in `HAIR-REVIEW.md`.

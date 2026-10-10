@@ -55,7 +55,7 @@ class StudyTest(unittest.TestCase):
 
     def test_battle_face_paint_preserves_bandana_and_hair_materials(self):
         # Native Dart battle head at the pinned model hash: these are red cloth / hair.
-        for face_id in (20,21,23,75,110,121,122):
+        for face_id in (20,21,23,110,121,122):
             source=self.triangle();source['faces'][0]['sourceFace']=face_id
             polygons=[([],None,0,np.array([[109,15,12]]*3))]*(face_id+1)
             _,painted=study.paint_face(source,(np.asarray(source['vertices']),polygons),'combat',967)
@@ -67,8 +67,41 @@ class StudyTest(unittest.TestCase):
         source['vertices']=[[-70,38.5,-35],[-70,38.5,35],[-70,-11,0]]
         polygons=[([],None,0,np.ones((3,3))*128)]
         _,painted=study.paint_face(source,(np.asarray(source['vertices']),polygons),'combat',967)
-        eye_v=painted[0][1][0,1];mouth_v=painted[0][1][2,1]
+        eye_v=painted[0][1][0,1]/study.FACE_MAPPING['faceRegionHeight'];mouth_v=painted[0][1][2,1]/study.FACE_MAPPING['faceRegionHeight']
         self.assertGreaterEqual(eye_v,.29);self.assertLessEqual(eye_v,.36)
         self.assertGreaterEqual(mouth_v,.60);self.assertLessEqual(mouth_v,.68)
+
+    def test_rebuilt_locks_preserve_source_and_nonhair_faces(self):
+        source=self.triangle();source['vertices']=[[-8,-8,0],[8,-8,0],[0,-1,2]]
+        source['faces'][0]['sourceFace']=4
+        source['faces'].append({**source['faces'][0],'sourceFace':0})
+        saved=copy.deepcopy(source)
+        native=(np.asarray(source['vertices']),[([0,1,2],None,0,np.ones((3,3))*128)]*5)
+        mesh,projection,count=study.hair_builder.rebuild(source,native,'field',{4})
+        self.assertEqual(source,saved)
+        self.assertEqual(count,2)
+        self.assertTrue(np.isfinite(mesh['vertices']).all())
+        self.assertTrue(np.isfinite(mesh['normals']).all())
+        self.assertIn(saved['faces'][1],mesh['faces'])
+        for face in mesh['faces']:
+            self.assertIn(face['sourceFace'],(0,4))
+            np.testing.assert_allclose(np.sum(face['sourceWeights'],axis=1),1)
+            a,b,c=np.asarray(mesh['vertices'])[face['vertices']]
+            self.assertGreater(np.linalg.norm(np.cross(b-a,c-a)),1e-8)
+        self.assertIn('4',projection)
+
+    def test_hair_uvs_stay_in_own_atlas_region(self):
+        source=self.triangle();source['faces'][0]['sourceFace']=75
+        polygons=[([],None,0,np.ones((3,3))*128)]*76
+        _,painted=study.paint_face(source,(np.asarray(source['vertices']),polygons),'combat',967)
+        self.assertEqual(painted[0][2],967)
+        self.assertTrue((painted[0][1][:,1]>=study.FACE_MAPPING['faceRegionHeight']).all())
+        self.assertTrue((painted[0][1][:,0]<=study.FACE_MAPPING['hairRegionWidth']).all())
+
+    def test_rectangular_detail_sampler_matches_native_normalized_axes(self):
+        uv=np.array([[.5,.5],[0,1],[1,0]])
+        x,y=study.detail_coordinates(uv,{'normalizedDetail':True,'atlasRect':[0,1792,1254,2022]})
+        np.testing.assert_array_equal(x,[627,0,1253])
+        np.testing.assert_array_equal(y,[2803,3813,1792])
 
 if __name__ == '__main__': unittest.main()

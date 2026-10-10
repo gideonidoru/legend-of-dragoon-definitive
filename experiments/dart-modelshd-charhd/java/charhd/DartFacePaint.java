@@ -2,7 +2,7 @@ package charhd;
 
 import legend.game.modding.events.tmd.TmdAppearanceEvent;
 import legend.game.tmd.TmdObjTable1c;
-import modelshd.ModelPack;
+import legend.game.tmd.TmdGeometryIdentity;
 import org.legendofdragoon.modloader.events.EventListener;
 
 import java.awt.image.BufferedImage;
@@ -26,12 +26,12 @@ public final class DartFacePaint {
 
   public DartFacePaint() throws IOException {
     final byte[] bytes;
-    try(final var input = getClass().getResourceAsStream("/charhd-experiment/dart-face-paint-v1.png")) {
+    try(final var input = getClass().getResourceAsStream("/charhd-experiment/dart-head-detail-v2.png")) {
       if(input == null) throw new IOException("Missing experimental face paint");
       bytes = input.readNBytes(8 * 1024 * 1024 + 1);
     }
     final String expected;
-    try(final var input = getClass().getResourceAsStream("/charhd-experiment/dart-face-paint-v1.sha256")) {
+    try(final var input = getClass().getResourceAsStream("/charhd-experiment/dart-head-detail-v2.sha256")) {
       if(input == null) throw new IOException("Missing experimental face paint checksum");
       expected = new String(input.readNBytes(65), java.nio.charset.StandardCharsets.UTF_8).strip();
     }
@@ -93,17 +93,22 @@ public final class DartFacePaint {
   @EventListener public void apply(final TmdAppearanceEvent event) {
     if(event.appearance != event.geometry || event.source.requiresNativeVertexIndices() ||
       event.geometry != event.source && !event.geometry.hasSourceFaces()) return;
-    final String identity = ModelPack.identity(new TmdObjTable1c[] {event.source});
-    if(FIELD.equals(identity)) event.appearance = paint(event.geometry, this.mapping.fieldFaces(), this.paint, true, this.mapping);
-    else if(COMBAT.equals(identity)) event.appearance = paint(event.geometry, this.mapping.combatFaces(), this.paint, false, this.mapping);
+    final String identity = TmdGeometryIdentity.identity(new TmdObjTable1c[] {event.source});
+    if(FIELD.equals(identity)) event.appearance = paint(event.geometry, this.mapping.fieldFaces(), this.mapping.fieldHairFaces(), this.paint, true, this.mapping);
+    else if(COMBAT.equals(identity)) event.appearance = paint(event.geometry, this.mapping.combatFaces(), this.mapping.combatHairFaces(), this.paint, false, this.mapping);
   }
 
   /** Full-resolution supplemental albedo; original texture pages and CPU tables stay intact. */
   public static TmdObjTable1c paint(final TmdObjTable1c geometry, final Set<Integer> selected, final BufferedImage image, final boolean field) {
-    return paint(geometry,selected,image,field,DartFaceMapping.load());
+    return paint(geometry,selected,Set.of(),image,field,DartFaceMapping.load());
   }
 
-  private static TmdObjTable1c paint(final TmdObjTable1c geometry, final Set<Integer> selected, final BufferedImage image,
+  public static TmdObjTable1c paintHead(final TmdObjTable1c geometry,final BufferedImage image,final boolean field) {
+    final var mapping=DartFaceMapping.load();
+    return paint(geometry,field?mapping.fieldFaces():mapping.combatFaces(),field?mapping.fieldHairFaces():mapping.combatHairFaces(),image,field,mapping);
+  }
+
+  private static TmdObjTable1c paint(final TmdObjTable1c geometry, final Set<Integer> selected, final Set<Integer> hair, final BufferedImage image,
                                     final boolean field, final DartFaceMapping mapping) {
     if(geometry.faceDetail() != null) throw new IllegalArgumentException("Existing face detail retains priority");
     final var primitives = new ArrayList<TmdObjTable1c.Primitive>();
@@ -115,7 +120,7 @@ public final class DartFacePaint {
     for(final var primitive : geometry.primitives_10) for(final byte[] packet : primitive.data()) {
       final int source = geometry.sourceFace(rendered);
       int header = primitive.header();
-      if(selected.contains(source)) {
+      if(selected.contains(source) || hair.contains(source)) {
         anyPaint = true;
         final int mode = header >>> 24, count = (mode & 8) == 0 ? 3 : 4;
         final boolean lit = (mode & 1) == 0;
@@ -131,7 +136,13 @@ public final class DartFacePaint {
           uv[corner*2] = (float)Math.clamp(.5 + x * mapping.projection(), 0, 1);
           final double originY=field ? mapping.originY() : mapping.combatFaceOriginY();
           final double verticalScale=field ? 1.0 : mapping.combatFaceVerticalScale();
-          uv[corner*2+1] = (float)Math.clamp(.5 + (y-originY) * mapping.projection() * verticalScale, 0, 1);
+          uv[corner*2+1] = (float)(Math.clamp(.5 + (y-originY) * mapping.projection() * verticalScale, 0, 1)*mapping.faceRegionHeight());
+          if(hair.contains(source)) {
+            final double z=field ? point.z : -point.x/mapping.combatScale();
+            final var hairProjection=(field?mapping.fieldHairProjection():mapping.combatHairProjection()).get(source);
+            uv[corner*2]=(float)(hairProjection.u(x,y,z)*mapping.hairRegionWidth());
+            uv[corner*2+1]=(float)(mapping.faceRegionHeight()+(1-mapping.faceRegionHeight())*hairProjection.v(x,y,z));
+          }
         }
         detailUvs[rendered] = uv;
         header &= ~0x02000000; // Selected authored face paint is opaque, not a PSX STP material.
