@@ -1,0 +1,147 @@
+#!/usr/bin/env python3
+"""Behavior fixtures for the batch workflow; synthetic art only, no game assets."""
+import importlib.util
+import json
+import struct
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+import numpy as np
+from PIL import Image
+
+
+def load(name, filename):
+    spec = importlib.util.spec_from_file_location(name, Path(__file__).with_name(filename))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+batch = load('sky_batch', 'batch-envhd-skies.py')
+fixtures = load('sky_import_fixtures', 'test-envhd-sky-import.py')
+
+
+class BatchTest(unittest.TestCase):
+    def setUp(self):
+        self.fixture = fixtures.SkyImportTest('runTest')
+        self.fixture.setUp()
+        self.addCleanup(self.fixture.doCleanups)
+        self.root, self.files = self.fixture.root, self.fixture.files
+        ledger = json.loads((self.fixture.production / 'battle-skies.json').read_text())
+        for entry in ledger['assets']:
+            entry['targetSize'] = [64, 128]
+        self.fixture.control('battle-skies.json', ledger)
+        Image.new('RGB', (64, 128), (40, 100, 70)).save(self.fixture.candidate)
+
+    def test_plan_groups_alias_headers_and_retains_selected_without_touching_project(self):
+        self.fixture.record()
+        before = self.fixture.snapshot()
+        jobs, _ = batch.plan(self.root, self.files)
+        self.assertEqual([(jobs[0]['action'], jobs[0]['stages'])], [('retain-selected', [0, 1])])
+        self.assertEqual(before, self.fixture.snapshot())
+
+    def test_header_variant_drift_stops_entire_preflight(self):
+        path = self.files / 'stage-1.mcq'
+        path.write_bytes(path.read_bytes() + b'changed')
+        with self.assertRaisesRegex(ValueError, 'Source changed'):
+            batch.plan(self.root, self.files)
+
+    def test_uniform_black_exemption_is_verified_and_excluded(self):
+        data = bytearray(fixtures.source(0))
+        struct.pack_into('<H', data, 40 + (41 * 16 + 2) * 2, 0x8000)
+        path = self.files / 'uniform.mcq'
+        path.write_bytes(data)
+        key = batch.sky.digest(data)
+        decoded = batch.sky.decoder.decode(data)
+        entry = dict(sourceMcqSha256=key, decodedRgbaSha256=batch.fingerprint(decoded),
+                     generationMasterSourceSha256=key, sourceFiles=['uniform.mcq'],
+                     sourceSize=[16, 32], targetSize=[64, 128], stages=[3], status='no-generation-required')
+        self.fixture.control('battle-skies.json', {'assets': [entry]})
+        self.fixture.control('battle-generation-tasks.json', {'tasks': [{'masterSourceSha256': key}]})
+        self.assertEqual([], batch.plan(self.root, self.files)[0])
+        entry['decodedRgbaSha256'] = self.fixture.group
+        path.write_bytes(fixtures.source(0))
+        entry['sourceMcqSha256'] = self.fixture.master
+        entry['generationMasterSourceSha256'] = self.fixture.master
+        self.fixture.control('battle-skies.json', {'assets': [entry]})
+        self.fixture.control('battle-generation-tasks.json', {'tasks': [{'masterSourceSha256': self.fixture.master}]})
+        with self.assertRaisesRegex(ValueError, 'uniform opaque black'):
+            batch.plan(self.root, self.files)
+
+    def test_repair_requires_recorded_hash_and_dimensions(self):
+        self.fixture.record(verdict='repeat-boundary-revision-needed')
+        jobs, _ = batch.plan(self.root, self.files)
+        self.assertEqual('repair-reviewed-layout', jobs[0]['action'])
+        image = self.fixture.production / 'candidates' / self.fixture.master / 'image-v1.png'
+        image.write_bytes(image.read_bytes() + b'changed')
+        with self.assertRaisesRegex(ValueError, 'Candidate differs'):
+            batch.plan(self.root, self.files)
+
+    def test_layout_failed_art_uses_original_instead_of_repairing_wrong_shapes(self):
+        self.fixture.record(verdict='intent-revision-needed')
+        jobs, _ = batch.plan(self.root, self.files)
+        self.assertEqual('upscale-original', jobs[0]['action'])
+
+    def test_visibility_and_visible_black_are_exact_and_central_art_is_unchanged(self):
+        source = np.full((8, 16, 4), (40, 60, 80, 255), dtype=np.uint8)
+        source[1, 0] = (0, 0, 0, 255)  # Visible opaque black.
+        source[2, 15] = (100, 80, 70, 0)  # Hidden source color.
+        pixels = np.full((32, 64, 3), (90, 100, 110), dtype=np.uint8)
+        pixels[:, :8] = (20, 30, 40)
+        pixels[:, -8:] = (150, 160, 170)
+        rgba, protected = batch.preserve_visibility(Image.fromarray(source), pixels)
+        repaired = batch.join_edges(rgba, protected, 8)
+        self.assertTrue(np.array_equal(repaired[:, 8:-8], rgba[:, 8:-8]))
+        self.assertTrue(np.array_equal(repaired[:, :, 3], np.repeat(np.repeat(source[:, :, 3], 4, axis=0), 4, axis=1)))
+        self.assertTrue(np.array_equal(repaired[protected], rgba[protected]))
+        self.assertEqual((0, 0, 0, 255), tuple(repaired[4, 0]))
+        self.assertEqual((0, 0, 0, 0), tuple(repaired[8, -1]))
+        mutable = ~protected[:, 0] & ~protected[:, -1]
+        self.assertTrue(np.array_equal(repaired[mutable, 0], repaired[mutable, -1]))
+
+    def test_tool_drift_stops_before_output_work_or_inference(self):
+        jobs, entries = batch.plan(self.root, self.files)
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            with patch.object(batch, 'file_digest', return_value='wrong'), patch.object(batch.subprocess, 'run') as run:
+                with self.assertRaisesRegex(ValueError, 'pinned versions'):
+                    batch.execute(self.root, self.files, output, jobs, entries, output / 'engine', output / 'models')
+                run.assert_not_called()
+            self.assertEqual([], list(output.iterdir()))
+
+    def test_private_work_is_refused_inside_project_or_originals(self):
+        for path in (self.root / 'output', self.files / 'output'):
+            with self.assertRaisesRegex(ValueError, 'outside the project'):
+                batch.private_output(self.root, self.files, path)
+            self.assertFalse(path.exists())
+
+    def test_execution_creates_review_candidate_without_changing_selection_or_sources(self):
+        jobs, entries = batch.plan(self.root, self.files)
+        before = self.fixture.snapshot()
+        private_before = {p.name: p.read_bytes() for p in self.files.iterdir()}
+
+        def synthetic_inference(command, **kwargs):
+            # Synthetic fixture backend only; no neural runtime or retail artwork.
+            input_path = command[command.index('-i') + 1]
+            output_path = command[command.index('-o') + 1]
+            with Image.open(input_path) as im:
+                im.resize((im.width * 4, im.height * 4), Image.Resampling.NEAREST).save(output_path)
+            return type('Run', (), {'returncode': 0, 'stdout': b'', 'stderr': b''})()
+
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            with patch.object(batch, 'file_digest', side_effect=[batch.ENGINE, batch.WEIGHTS, batch.PARAMETERS, 'output-hash']), patch.object(batch.subprocess, 'run', side_effect=synthetic_inference):
+                results = batch.execute(self.root, self.files, output, jobs, entries, output / 'engine', output / 'models')
+            self.assertEqual(1, len(results))
+            self.assertTrue(results[0]['reviewStatus'].startswith('pending-'))
+            with Image.open(output / (self.fixture.master + '.png')) as im:
+                self.assertEqual((64, 128), im.size)
+            self.assertFalse(json.loads((output / 'candidates.json').read_text())['installed'])
+        self.assertEqual(before, self.fixture.snapshot())
+        self.assertEqual(private_before, {p.name: p.read_bytes() for p in self.files.iterdir()})
+
+
+if __name__ == '__main__':
+    unittest.main()
