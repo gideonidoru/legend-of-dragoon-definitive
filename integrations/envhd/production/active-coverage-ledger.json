@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "bcb612f5ad0c3df5cfbe5b08593596ecae20d062 plus two independently cleared Donau paintings",
+  "sourceSelectionCheckpoint": "0729ff3f4b8f5a4d78c938638a54ac13d8ed8529 plus unanimously cleared Twin Castle cut228 foreground4",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "629c9a315d760a26050c5926a9be5b79325b5228dcd52e159f743db15eb550b6",
-    "field-runtime-artwork.json": "5e81786b0b9816dbe756b20cc5bf4c86ae3e84a95d84055f873f393b2136994f",
+    "full-coverage.json": "e560d80a802102044ab0ef7e9e182e5b53401de96c21d799e9c4c702e9f83566",
+    "field-runtime-artwork.json": "e31ef6ec015d82f70d190faac1d0895065c1d1752f31b54d2be30b0961c87ee4",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
@@ -35,28 +35,31 @@
     "publication-source-5d3db5c8-generation4-snapshot.json": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f",
     "field-bespoke-donau-two-independent-reviewed-selection.json": "f7f5ab51e5afbe13c566300a863bfb25019575810368fe72d7d3f00264c295b5",
     "field-independent-donau-two-review.json": "0018f0828106bada7ac8caa41dae15f1387e3a5b29fa89f03f9ddba32f48a6b9",
-    "field-donau-two-selection-readiness.json": "7248e4730cce7f566469380513041dc96b4d4bcdb455864b8332f8996615654a"
+    "field-donau-two-selection-readiness.json": "7248e4730cce7f566469380513041dc96b4d4bcdb455864b8332f8996615654a",
+    "field-bespoke-twin-fragment-independent-reviewed-selection.json": "b5f037cbdeb5cd4cd1334bcf1f5c26be2d91802eb5c977bb23410c502532c2ef",
+    "field-independent-twin-fragment-review.json": "3dd70d954d61e40b83e73eba92caa570a613a7d6732c007f5d967e19cbf47c40",
+    "field-twin-fragment-selection-readiness.json": "6d404a8511b1d3dc2ecbb7be5652f94993fc6db2d8bf1fa12d8a8bfc8e0db6c5"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 235,
+  "knownRemainingStaticImages": 234,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4928,
+      "selectedDevelopment": 4929,
       "selectedNeural": 4886,
-      "selectedPainted": 42,
-      "held": 234,
+      "selectedPainted": 43,
+      "held": 233,
       "unreviewed": 0,
       "customHeldDraftSourceImages": 15,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Continue234 field holds and source/state/native/final validation. Other authoring candidates and held histories remain on the ongoing EnvHD branch; this clean increment does not import that queue.",
+      "nextTask": "Continue233 field holds and source/state/native/final validation. Other authoring and held histories remain on ongoing EnvHD branch; only unanimously cleared Twin fragment imported.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 2,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
@@ -75,7 +78,7 @@
         "f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding4928current runtime selections.15unselected draft source keys are a subset of234field holds; all previous candidate/rejected versions retained.",
+      "draftCountMethod": "Unique64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding4929current runtime selections.15unselected draft source keys are a subset of233field holds; all previous candidate/rejected versions retained.",
       "independentlyReviewedCandidatesRequiringRevision": 2,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json"
     },
@@ -279,6 +282,12 @@
       "selectedNewSourceImages": 2,
       "independentReview": "field-independent-donau-two-review.json",
       "reason": "Donau column/arch and larger exterior wall clear for development; tablet excluded. Prior40 selected recipes and4926 runtime records exact. Unfinished authoring remains on ongoing branch."
+    },
+    {
+      "manifest": "field-bespoke-twin-fragment-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 1,
+      "independentReview": "field-independent-twin-fragment-review.json",
+      "reason": "Twin Castle clipped hanging unanimously clear for development; two-panel motif disagreement and three-panel star/fitting revisions excluded. Prior42 selected recipes and4928 runtime records exact. Unfinished authoring remains ongoing."
     }
   ],
   "publication": {
@@ -305,7 +314,7 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 3,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 4,
     "paintedBattleMastersAwaitingCoordinatedPublication": 13,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",

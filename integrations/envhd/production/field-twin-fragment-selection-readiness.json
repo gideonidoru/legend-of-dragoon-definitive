@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "scope": "Clean main-forward increment selecting only unanimously cleared Twin Castle cut228 foreground4; prior42 recipes and4928 runtime records exact.",
+  "integrationBaseCommit": "0729ff3f4b8f5a4d78c938638a54ac13d8ed8529",
+  "authoringSourceCommit": "fa0cf0a3954bdbc13cb69c9c8090935cb92ff8b8",
+  "selectionManifest": "field-bespoke-twin-fragment-independent-reviewed-selection.json",
+  "selectionManifestSha256": "b5f037cbdeb5cd4cd1334bcf1f5c26be2d91802eb5c977bb23410c502532c2ef",
+  "independentReview": "field-independent-twin-fragment-review.json",
+  "independentReviewSha256": "3dd70d954d61e40b83e73eba92caa570a613a7d6732c007f5d967e19cbf47c40",
+  "fieldRuntimeSha256": "e31ef6ec015d82f70d190faac1d0895065c1d1752f31b54d2be30b0961c87ee4",
+  "currentSourcePreflightCandidates": 43,
+  "priorSelectedCandidateRecordsExact": 42,
+  "priorRuntimeAssetRecordsExact": 4928,
+  "onlyAddedSourceKeys": [
+    "d05996398e40653d0f7e78b2f4f1a849575938fdc30da830cd735c5b40d6b1f2"
+  ],
+  "protectedCutsExact": true,
+  "selectedFields": 4929,
+  "selectedPaintings": 43,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 233,
+  "knownRemainingStaticImages": 234,
+  "tests": [
+    {
+      "script": "scripts/test-envhd-painted-fields.py",
+      "passed": 32
+    },
+    {
+      "script": "scripts/test-envhd-install-selection.py",
+      "passed": 3
+    },
+    {
+      "script": "scripts/test-archive-assembly.py",
+      "passed": 39
+    },
+    {
+      "script": "scripts/test-envhd-battle-presentation-pack.py",
+      "passed": 12
+    }
+  ],
+  "freshPackageVerified": false,
+  "disputedTwoPanelAndRevisionThreePanelExcluded": true,
+  "unfinishedAuthoringPreservedOnOngoingBranch": true,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true
+}
