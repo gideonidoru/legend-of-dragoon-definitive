@@ -1,0 +1,292 @@
+{
+  "schema": 1,
+  "scope": "Five held versions across four sources: Twin Castle chair/table versions1/2 finish join; Black Castle throne version1 material/relief drift; Mayfil cut542/544 versions1 coarse fracture networks. No gates waived. Original sources/layout/context/comparisons remain private.",
+  "sourceSelectionBaseCommit": "373b34a94a1fe52beb4547b215d451df14557633",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 4,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "ae3d002cd7ad47d37fe78e51a52145ef1afc615596ef2b67e511d4b74abe860a",
+      "generatedSha256": "033e9834463ed8d08dca1d2e7580a1c88d3561d99cab3f7160f68cf1f1834f66",
+      "generatedSize": [
+        1774,
+        887
+      ],
+      "sourceSize": [
+        84,
+        42
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "defd38c0c12e4ec8cf109d445d5482d0764c0dc5dae6adcdffbd5281d4a3ff90:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 227,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST original foreground crop into source-faithful detailed hand-painted HD game art for Legend of Dragoon EnvHD, restrained material finish comparable to Skurfa HD. FIRST controls exact full canvas aspect, silhouette, proportions, native camera, source palette, lighting, internal divisions and existing source marks. SECOND is whole original scene for game usage only; do not paint the scene or add its objects to this crop. Output ONLY FIRST isolated fragment with real transparency at the original transparent areas and exactly the same framing/cropped ends. No padding, centering, rotation, new surrounding scenery, perspective change, subject scaling, extra objects, new emblems, invented lettering, structural redesign or added glow. Existing gaps stay transparent; native black recesses remain black. Quiet continuous fine hand-painted material detail, never a pixel-grid mosaic. Keep fine unresolved source marks as subtle native-shaped variation rather than inventing a readable design. No label, border, checkerboard, watermark. Native84x42 exactly2:1 landscape. Twin Castle cut227 dining/bed chamber foreground4: a small dark rounded chair back at upper LEFT behind a large pale tan tabletop edge that fills the lower long wedge of the crop. Chair back rises from lower-left with its original brown/gold curved narrow rim; central upholstery is very dark brown, with native faint irregular brown markings. Black dark horizontal lower seat/back strip remains at its original height and angle, not a new metal brace. Tabletop upper edge steps up slightly around left-center, then slopes gently down-right to reach the right bottom crop corner. Preserve exactly this table wedge and chair proportions, cropped left/bottom edges and all transparent space above table to the right of the chair. Paint very fine muted brown fabric/wood texture and quiet ivory/tan tabletop surface; no newly coherent floral embroidery, circular medallion, tufting buttons, extra rails, studding or carved heraldry. Source chamber is softly warm lit but chair is dark. Preserve the original low contrast and shadow; no bright gold outline or stylized throne. Existing small green/pale curve at bottom-left remains only as its source fragment, not new whole cutlery or dishes.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 24272,
+      "paintedGapPixelsExtended": 917,
+      "paintedUncoveredSourcePixels": 732,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 41,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        336,
+        168
+      ],
+      "outputSha256": "57c0addeb673bc793ab476195702ab308ddd5a8f4f259112cd2b7fd0da957338",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/ae3d002cd7ad47d37fe78e51a52145ef1afc615596ef2b67e511d4b74abe860a/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/ae3d002cd7ad47d37fe78e51a52145ef1afc615596ef2b67e511d4b74abe860a/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Twin Castle chair/table versions1/2 pass technical repair but retain a visible rectangular tabletop finish/light join. Version1 also brightens the rim/table into gold and implies stronger upholstery pattern; version2 reduces that drift but does not close the whole-surface seam or native pattern identity. Both held. Do not repeat identical whole-crop correction; constrain chair/table features and adjoining surface intent first."
+    },
+    {
+      "decodedRgbaSha256": "cae03a38ef095431e37c8c02444f3ac0e5601a7633b6b78193c0e37339cbc77f",
+      "generatedSha256": "917392636b8d7a5ea35544a90436aeb37a1805c767510bf55ee289eff66ec8e8",
+      "generatedSize": [
+        1223,
+        1286
+      ],
+      "sourceSize": [
+        40,
+        42
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "ba8659f654b4d5edd128f95fb04896ea2ab1d04f71e123494b9e98c1103d79fe:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 660,
+      "representativeLocation": "Black Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST original foreground crop into source-faithful detailed hand-painted HD game art for Legend of Dragoon EnvHD, restrained material finish comparable to Skurfa HD. FIRST controls exact full canvas aspect, silhouette, proportions, native camera, source palette, lighting, internal divisions and existing source marks. SECOND is whole original scene for game usage only; do not paint the scene or add its objects to this crop. Output ONLY FIRST isolated fragment with real transparency at the original transparent areas and exactly the same framing/cropped ends. No padding, centering, rotation, new surrounding scenery, perspective change, subject scaling, extra objects, new emblems, invented lettering, structural redesign or added glow. Existing gaps stay transparent; native black recesses remain black. Quiet continuous fine hand-painted material detail, never a pixel-grid mosaic. Keep fine unresolved source marks as subtle native-shaped variation rather than inventing a readable design. No label, border, checkerboard, watermark. Native40x42 exactly20:21 near-square. Black Castle cut660 foreground3: small very dark throne/chair-like furnishing with slim irregular upright outer left/right sides, grey-green diagonal and vertical original structural strips bordering a long dark red central back insert, narrow red horizontal seat and dark lower front panel with diffuse muted green/brown irregular details. Original top-right upright extends slightly above the low top span; bottom has existing angular taper and small feet/extensions. Retain every native band position, dark gaps, slim supports and red proportions. Whole throne-room context confirms furniture at rear center; it is not a doorway, full building facade or new ornate throne. Fine subdued aged frame texture and muted dark crimson upholstery, exact native green/purple low illumination. Lower panel small marks remain indistinct source-shaped variation; do not invent a lion, skull, crest, rosette, knobs, new pillars or raised ornaments. No new broad cloth folds over supports; native bands remain structural where source shows them. Keep all source darkness, not vivid scarlet or bright silver.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 19520,
+      "paintedGapPixelsExtended": 2218,
+      "paintedUncoveredSourcePixels": 1934,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 80,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        160,
+        168
+      ],
+      "outputSha256": "e0815cf62c16ed934f9815e9b72bf8cc018cc4a65ab180dff3ba3af505d73c5a",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/cae03a38ef095431e37c8c02444f3ac0e5601a7633b6b78193c0e37339cbc77f/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/cae03a38ef095431e37c8c02444f3ac0e5601a7633b6b78193c0e37339cbc77f/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Black Castle version1 adds strongly beveled/highlighted frame construction and diagonal marbled/raised lower-panel forms absent or unresolved in the small source. Technical repair passed; visual hold remains. Source-only corrected2 is a separate independently pending candidate."
+    },
+    {
+      "decodedRgbaSha256": "e6bea3e159ef60b60feb564cc6a70ac9f1278263d30bfacf9258b7a2ea7d662a",
+      "generatedSha256": "235354973b57f37dbbdfbbd2a1a0a2d7ddbdda3ae5f83abba00eb4c867629a42",
+      "generatedSize": [
+        815,
+        1928
+      ],
+      "sourceSize": [
+        50,
+        118
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "25d39d6bf5069f2216aa1f0be1b188613114df301b46df79bea5b791c6e78e92:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 542,
+      "representativeLocation": "Mayfil",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST original foreground crop into source-faithful detailed hand-painted HD game art for Legend of Dragoon EnvHD, restrained material finish comparable to Skurfa HD. FIRST controls exact full canvas aspect, silhouette, proportions, native camera, source palette, lighting, internal divisions and existing source marks. SECOND is whole original scene for game usage only; do not paint the scene or add its objects to this crop. Output ONLY FIRST isolated fragment with real transparency at the original transparent areas and exactly the same framing/cropped ends. No padding, centering, rotation, new surrounding scenery, perspective change, subject scaling, extra objects, new emblems, invented lettering, structural redesign or added glow. Existing gaps stay transparent; native black recesses remain black. Quiet continuous fine hand-painted material detail, never a pixel-grid mosaic. Keep fine unresolved source marks as subtle native-shaped variation rather than inventing a readable design. No label, border, checkerboard, watermark. Native50x118 exactly25:59 portrait. Mayfil cut542 foreground0: deeply shadowed teal-green curved architectural/support fragment crossing upper-left foreground of circular chamber. Large broad irregular upper cap/body enters cropped top edge around native x27 through47, angles toward left around upper quarter then broadens to asymmetrical low shoulder/projection toward right around midheight. At native y68 narrow straight shaft emerges from underside near x27 and slants down-right to native bottom edge around x41..45. The narrow lower shaft has subdued longitudinal shading and existing tiny lower edge steps, not added cylindrical rings. Preserve exact cap taper, source notches, all body/shaft contacts, cropped top and lower end, and transparent areas. Main upper body is almost black teal with subtle mottled source marks, not a bright carved statue. Give it only very quiet fine worn stone/architectural material texture and faint native longitudinal detail on the lower shaft. Do not invent faces, leaves, floral carving, screws, a sword, banners, light sources, glyphs, extra ridges, clear brick courses or glowing aura. Retain source dim teal-black illumination and native irregular internal shading; SECOND bright circular platform is context only, never copied onto this dark fragment.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 36560,
+      "paintedGapPixelsExtended": 848,
+      "paintedUncoveredSourcePixels": 475,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 25,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        200,
+        472
+      ],
+      "outputSha256": "4cc28a45cb90d428df0a05e3b2f9cf7c8ae74287266aff98319c2e0b3869bde4",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/e6bea3e159ef60b60feb564cc6a70ac9f1278263d30bfacf9258b7a2ea7d662a/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/e6bea3e159ef60b60feb564cc6a70ac9f1278263d30bfacf9258b7a2ea7d662a/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Mayfil cut542 version1 imposes large fracture/block seams and coarse raised stone detail on a diffuse shadowed source face. Technical footprint repair passed but source finish/lighting interpretation fails. Corrected2 is independently pending."
+    },
+    {
+      "decodedRgbaSha256": "f49c19350faa7b6d8baff4e376061ce1d7b80965648b2ef797c2d276a0e86d2a",
+      "generatedSha256": "95a77437106871a773677495cce94f83fc18ecf7b590a0277548e4e757490b8a",
+      "generatedSize": [
+        863,
+        1822
+      ],
+      "sourceSize": [
+        56,
+        118
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "113b37bc5240e5bffe453a1c9a84c9f6f0ae3f093fecfc0766b7469d3f1b7834:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 544,
+      "representativeLocation": "Mayfil",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST original foreground crop into source-faithful detailed hand-painted HD game art for Legend of Dragoon EnvHD, restrained material finish comparable to Skurfa HD. FIRST controls exact full canvas aspect, silhouette, proportions, native camera, source palette, lighting, internal divisions and existing source marks. SECOND is whole original scene for game usage only; do not paint the scene or add its objects to this crop. Output ONLY FIRST isolated fragment with real transparency at the original transparent areas and exactly the same framing/cropped ends. No padding, centering, rotation, new surrounding scenery, perspective change, subject scaling, extra objects, new emblems, invented lettering, structural redesign or added glow. Existing gaps stay transparent; native black recesses remain black. Quiet continuous fine hand-painted material detail, never a pixel-grid mosaic. Keep fine unresolved source marks as subtle native-shaped variation rather than inventing a readable design. No label, border, checkerboard, watermark. Native56x118 exactly28:59 portrait. Mayfil cut544 foreground0, separate native image/configuration from cut542. Deeply shadowed teal-green foreground architectural support: broad irregular upper body enters top crop near x29..52, tapers outward toward native left/middle, small source right notches and shoulder projection at midheight; narrower shaft descends from underside near x28 and slants right toward bottom at x45..53. Native lower shaft has faint lengthwise streaks and a pale teal small angular widened foot/band touching bottom crop at right. Keep this exact source foot size and position, asymmetrical upper contour, cap notches, contacts, dark holes/recesses, lower tip and transparent gaps. Subtle dark mottled upper face and quiet longitudinal shaft wear, with original cool green lighting stronger than cut542 but still deeply shadowed. No invented face, ornamental leafy relief, new upper bevel blocks, new foot rings, sword blade, broad brick seams, glowing glyphs or spotlight. Do not make a full freestanding object, recenter or extend the cropped ends. SECOND circular chamber is usage only; keep this foreground fragment dark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 42192,
+      "paintedGapPixelsExtended": 1908,
+      "paintedUncoveredSourcePixels": 1572,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 50,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        224,
+        472
+      ],
+      "outputSha256": "66c97e3a17a32a67aabe4e092925ddec9d84de9fbcb306d4b6659a3c00ec5c5c",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f49c19350faa7b6d8baff4e376061ce1d7b80965648b2ef797c2d276a0e86d2a/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f49c19350faa7b6d8baff4e376061ce1d7b80965648b2ef797c2d276a0e86d2a/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Mayfil cut544 version1 imposes large masonry/block fractures and coarse relief on a dim source face. Technical footprint repair passed but does not clear invented construction. Corrected2 is independently pending."
+    },
+    {
+      "decodedRgbaSha256": "ae3d002cd7ad47d37fe78e51a52145ef1afc615596ef2b67e511d4b74abe860a",
+      "generatedSha256": "cef45cc9efb41eafc1ee18a1e7288fd322ba59b27cf2d1916a7e90c07b2dddc9",
+      "generatedSize": [
+        1774,
+        887
+      ],
+      "sourceSize": [
+        84,
+        42
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "defd38c0c12e4ec8cf109d445d5482d0764c0dc5dae6adcdffbd5281d4a3ff90:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 227,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise-object-edit. Edit FIRST original foreground crop into source-faithful detailed hand-painted HD game art for Legend of Dragoon EnvHD, restrained material finish comparable to Skurfa HD. FIRST controls exact full canvas aspect, silhouette, proportions, native camera, source palette, lighting, internal divisions and existing source marks. SECOND is whole original scene for game usage only; do not paint the scene or add its objects to this crop. Output ONLY FIRST isolated fragment with real transparency at the original transparent areas and exactly the same framing/cropped ends. No padding, centering, rotation, new surrounding scenery, perspective change, subject scaling, extra objects, new emblems, invented lettering, structural redesign or added glow. Existing gaps stay transparent; native black recesses remain black. Quiet continuous fine hand-painted material detail, never a pixel-grid mosaic. Keep fine unresolved source marks as subtle native-shaped variation rather than inventing a readable design. No label, border, checkerboard, watermark. Native84x42 exactly2:1 landscape. Twin Castle cut227 dining/bed chamber foreground4: a small dark rounded chair back at upper LEFT behind a large pale tan tabletop edge that fills the lower long wedge of the crop. Chair back rises from lower-left with its original brown/gold curved narrow rim; central upholstery is very dark brown, with native faint irregular brown markings. Black dark horizontal lower seat/back strip remains at its original height and angle, not a new metal brace. Tabletop upper edge steps up slightly around left-center, then slopes gently down-right to reach the right bottom crop corner. Preserve exactly this table wedge and chair proportions, cropped left/bottom edges and all transparent space above table to the right of the chair. Paint very fine muted brown fabric/wood texture and quiet ivory/tan tabletop surface; no newly coherent floral embroidery, circular medallion, tufting buttons, extra rails, studding or carved heraldry. Source chamber is softly warm lit but chair is dark. Preserve the original low contrast and shadow; no bright gold outline or stylized throne. Existing small green/pale curve at bottom-left remains only as its source fragment, not new whole cutlery or dishes. CORRECTION OVERRIDING FINISH: The native chair and table are quiet DARK BROWN and muted pale GRAY-TAN, not bright gold/ochre. Restore those exact lowcontrast source values. The rounded rim is dull warm brown with minimal edge light, never shiny gold. Upper upholstery faint sparse dark brown source specks remain irregular, do not turn into brocade, organized vine scrolls or embroidered leaves. Keep lower black upholstered strip dark and separate. The table wedge must have extremely subtle, nearly invisible fine diffuse patina and remain the same gray-tan as native. No heavy marbling, speckled erosion, mottled orange, or additional gold inlay beyond the tiny native bottom-left curved fragment. Match the neighboring tabletop visible in SECOND without adding its dishes; fine detail should not reveal the rectangular cropped piece as a different brightly lit material.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 24272,
+      "paintedGapPixelsExtended": 1021,
+      "paintedUncoveredSourcePixels": 851,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 61,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        336,
+        168
+      ],
+      "outputSha256": "02ab2f3b0a9f652d23fc9013759fb41180b5ac7d10f6f6f6a197ed27c176cc0e",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/ae3d002cd7ad47d37fe78e51a52145ef1afc615596ef2b67e511d4b74abe860a/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/ae3d002cd7ad47d37fe78e51a52145ef1afc615596ef2b67e511d4b74abe860a/draft-repaired-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Twin Castle chair/table versions1/2 pass technical repair but retain a visible rectangular tabletop finish/light join. Version1 also brightens the rim/table into gold and implies stronger upholstery pattern; version2 reduces that drift but does not close the whole-surface seam or native pattern identity. Both held. Do not repeat identical whole-crop correction; constrain chair/table features and adjoining surface intent first."
+    }
+  ]
+}
