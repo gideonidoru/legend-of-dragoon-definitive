@@ -109,4 +109,55 @@ class ReconstructedCharactersTest {
     assertEquals(2,mapped.faceDetailTexture().width);assertEquals(2,nativeMesh.faceDetailTexture().width);
     mapped.delete();nativeMesh.delete();java.lang.ref.Reference.reachabilityFence(listener);
   }
+
+  private static void alphaFixture(final Fixture fixture, final String mode) throws Exception {
+    final var image = new BufferedImage(2, 2, BufferedImage.TYPE_INT_ARGB);
+    image.setRGB(0, 0, 0x00204080); // Invisible colored pixel must remain a hole.
+    image.setRGB(1, 0, 0xff000000); // Visible black must remain visible.
+    image.setRGB(0, 1, 0xff204080); image.setRGB(1, 1, 0xff204080);
+    final var out = new ByteArrayOutputStream(); ImageIO.write(image, "png", out);
+    fixture.resources.put("fixture/paint.png", out.toByteArray());
+    final var entry = fixture.manifest.getAsJsonArray("parts").get(0).getAsJsonObject();
+    final String hash = TexturePilot.sha256(out.toByteArray()); entry.addProperty("textureSha256", hash);
+    entry.addProperty("alphaMode", mode);
+    final var uv = JsonParser.parseString(new String(fixture.resources.get("fixture/uv.json"), java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
+    uv.addProperty("textureSha256", hash); uv.addProperty("alphaMode", mode);
+    final byte[] bytes = uv.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8);
+    fixture.resources.put("fixture/uv.json", bytes); entry.addProperty("uvSha256", TexturePilot.sha256(bytes));
+  }
+
+  @Test void cutoutRetainsHolesAndVisibleBlackAcrossNativeRgbaAndMappedRoutes() throws Exception {
+    for(final String route : List.of("indexed", "rgba", "mapped")) {
+      access.reset(); access.initialize(GameEngine.MODS);
+      final var fixture = fixture(); alphaFixture(fixture, "cutout");
+      final var character = fixture.load();
+      final var event = new TmdAppearanceEvent(fixture.source, fixture.source, 0); assertTrue(character.apply(event));
+      assertTrue(event.appearance.faceDetail().image().cutout);
+      assertEquals(0, event.appearance.faceDetail().pixels().get(3));
+      assertEquals(255, Byte.toUnsignedInt(event.appearance.faceDetail().pixels().get(7)));
+      final var listener = new Listener(character); GameEngine.EVENTS.register(listener);
+      if(route.equals("rgba")) for(final var primitive : fixture.source.primitives_10) UvAdjustmentMetrics14.PNG.apply(primitive);
+      final var object = route.equals("mapped") ? TmdObjLoader.fromObjTableMapped("cutout mapped", fixture.source, (clut,u,v,header) -> new float[]{.2f,.3f}) : TmdObjLoader.fromObjTable("cutout " + route, fixture.source, 0, route.equals("rgba") ? 256 : 0, route.equals("rgba") ? 256 : 0);
+      for(final var mesh : object.meshes) for(int offset = 15; offset < mesh.vertices().length; offset += 16) {
+        final int flags = (int)mesh.vertices()[offset];
+        assertNotEquals(0, flags & TmdObjLoader.FACE_DETAIL_FLAG);
+        assertNotEquals(0, flags & TmdObjLoader.FACE_DETAIL_CUTOUT_FLAG);
+      }
+      object.delete(); java.lang.ref.Reference.reachabilityFence(listener);
+    }
+  }
+
+  @Test void opaquePaintKeepsItsPreviousContractEvenForTransparentPng() throws Exception {
+    final var fixture = fixture(); alphaFixture(fixture, "opaque");
+    final var event = new TmdAppearanceEvent(fixture.source, fixture.source, 0); assertTrue(fixture.load().apply(event));
+    assertFalse(event.appearance.faceDetail().image().cutout);
+    assertEquals(255, Byte.toUnsignedInt(event.appearance.faceDetail().pixels().get(3)));
+  }
+
+  @Test void alphaModeMustBeKnownAndBoundToTheCheckedUvResource() throws Exception {
+    final var unknown = fixture(); alphaFixture(unknown, "blend"); assertThrows(IOException.class, unknown::load);
+    final var mismatched = fixture(); alphaFixture(mismatched, "cutout");
+    mismatched.manifest.getAsJsonArray("parts").get(0).getAsJsonObject().addProperty("alphaMode", "opaque");
+    assertThrows(IOException.class, mismatched::load);
+  }
 }

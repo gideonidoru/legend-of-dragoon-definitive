@@ -8,11 +8,17 @@ public final class TmdFaceDetail {
   public static final class Image {
     private final ByteBuffer rgba;
     public final int width, height;
+    public final boolean cutout;
 
     public Image(final ByteBuffer rgba, final int width, final int height) {
+      this(rgba, width, height, false);
+    }
+
+    /** Cutout is explicit: normal character paint retains its opaque contract. */
+    public Image(final ByteBuffer rgba, final int width, final int height, final boolean cutout) {
       if(width < 1 || height < 1 || width > 2048 || height > 2048 || rgba.remaining() != (long)width * height * 4)
         throw new IllegalArgumentException("Face detail exceeds pixel budget");
-      this.width = width; this.height = height;
+      this.width = width; this.height = height; this.cutout = cutout;
       final var data = ByteBuffer.allocateDirect(rgba.remaining());
       data.put(rgba.duplicate()); this.rgba = data.flip().asReadOnlyBuffer();
     }

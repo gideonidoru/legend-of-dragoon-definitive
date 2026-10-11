@@ -259,6 +259,7 @@ void main() {
     vec4 texColour;
     if((vertFlags & 0x20000) != 0) {
       texColour = texture(faceDetailTex, vertUv);
+      if((vertFlags & 0x40000) != 0 && texColour.a < 0.5) discard;
       texColour.a = 0.0; // Opaque authored face paint, independent of PSX STP.
     } else if(vertBpp == 0 || vertBpp == 1) {
       // Calculate CLUT index

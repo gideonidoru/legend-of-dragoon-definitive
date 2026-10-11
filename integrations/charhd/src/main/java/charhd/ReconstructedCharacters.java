@@ -58,6 +58,8 @@ final class ReconstructedCharacters {
             !geometry.equals(hash(uv, "geometrySha256")) || !hash(entry, "textureSha256").equals(hash(uv, "textureSha256")))
             throw new IOException("Character UV binding does not match geometry/material");
           final var rows = uv.getAsJsonArray("uvs");
+          final boolean cutout = alphaMode(entry);
+          if(cutout != alphaMode(uv)) throw new IOException("Character alpha binding does not match material");
           if(rows.isEmpty() || rows.size() > 65535) throw new IOException("Invalid character UV count");
           final float[][] coordinates = new float[rows.size()][2];
           for(int index = 0; index < rows.size(); index++) {
@@ -71,10 +73,10 @@ final class ReconstructedCharacters {
           }
           final int width = TmdGeometryPack.integer(entry.get("width")), height = TmdGeometryPack.integer(entry.get("height"));
           if(width < 1 || height < 1 || width > 2048 || height > 2048) throw new IOException("Character image exceeds pixel budget");
-          final String imageKey = hash(entry, "textureSha256") + ":" + width + ":" + height;
+          final String imageKey = hash(entry, "textureSha256") + ":" + width + ":" + height + ":" + cutout;
           TmdFaceDetail.Image image = images.get(imageKey);
           if(image == null) {
-            image = new TmdFaceDetail.Image(pixels(checked(resources, entry, "texture", 8 * 1024 * 1024), width, height), width, height);
+            image = new TmdFaceDetail.Image(pixels(checked(resources, entry, "texture", 8 * 1024 * 1024), width, height, cutout), width, height, cutout);
             images.put(imageKey, image);
           }
           detail = new Detail(geometry, coordinates, image);
@@ -162,7 +164,14 @@ final class ReconstructedCharacters {
     return bytes;
   }
 
-  private static ByteBuffer pixels(final byte[] png, final int width, final int height) throws IOException {
+  private static boolean alphaMode(final JsonObject value) throws IOException {
+    if(!value.has("alphaMode")) return false;
+    final String mode = value.get("alphaMode").getAsString();
+    if(!mode.equals("opaque") && !mode.equals("cutout")) throw new IOException("Unsupported character alpha mode");
+    return mode.equals("cutout");
+  }
+
+  private static ByteBuffer pixels(final byte[] png, final int width, final int height, final boolean cutout) throws IOException {
     try(final var input = ImageIO.createImageInputStream(new ByteArrayInputStream(png))) {
       final var readers = ImageIO.getImageReaders(input);
       if(!readers.hasNext()) throw new IOException("Invalid character image");
@@ -175,7 +184,7 @@ final class ReconstructedCharacters {
         final var rgba = ByteBuffer.allocateDirect(width * height * 4);
         for(int y = 0; y < height; y++) for(int x = 0; x < width; x++) {
           final int rgb = image.getRGB(x, y);
-          rgba.put((byte)(rgb >>> 16)).put((byte)(rgb >>> 8)).put((byte)rgb).put((byte)255);
+          rgba.put((byte)(rgb >>> 16)).put((byte)(rgb >>> 8)).put((byte)rgb).put((byte)(cutout ? rgb >>> 24 : 255));
         }
         return rgba.flip().asReadOnlyBuffer();
       } finally { reader.dispose(); }

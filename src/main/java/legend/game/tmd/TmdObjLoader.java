@@ -45,6 +45,8 @@ public final class TmdObjLoader {
   public static final int QUAD_FLAG = 0x10;
   /** Supplemental CharHD face color, separate from indexed/RGBA body textures. */
   public static final int FACE_DETAIL_FLAG = 0x20000;
+  /** Explicit authored alpha cutout, independent of native PSX translucency. */
+  public static final int FACE_DETAIL_CUTOUT_FLAG = 0x40000;
 
   public static Obj[] fromTmd(final String name, final Tmd tmd) {
     return fromTmd(name, tmd, 0);
@@ -386,6 +388,7 @@ public final class TmdObjLoader {
             flags |= TEXTURED_FLAG;
           }
           if(detail) flags |= FACE_DETAIL_FLAG;
+          if(detail && objTable.faceDetail().image().cutout) flags |= FACE_DETAIL_CUTOUT_FLAG;
 
           if(coloured) {
             flags |= COLOURED_FLAG;

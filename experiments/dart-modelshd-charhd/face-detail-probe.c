@@ -14,12 +14,13 @@ static void uniforms(GLuint p,float *lights) {
   for(int i=0;i<4;i++)transforms[i*5]=transforms[16+i*5]=models[i*5]=1;
   block(p,"transforms",0,transforms,32);block(p,"transforms2",1,models,2560);block(p,"lighting",2,lights,4096);
   block(p,"projectionInfo",3,projection,4);block(p,"scissor",4,scissor,4);block(p,"clutAnimation",5,cluts,4096);
-  glUseProgram(p);integer(p,"tex15",1);integer(p,"tex24",0);glUniform3f(glGetUniformLocation(p,"recolour"),1,1,1);glUniform3f(glGetUniformLocation(p,"battleColour"),1,1,1);
+  glUseProgram(p);integer(p,"tex15",1);integer(p,"effectDetailTex",1);integer(p,"tex24",0);integer(p,"faceDetailTex",6);integer(p,"normalMapTex",0);integer(p,"roughnessMapTex",0);glUniform3f(glGetUniformLocation(p,"recolour"),1,1,1);glUniform3f(glGetUniformLocation(p,"battleColour"),1,1,1);
   uniform(p,"alpha",-1);uniform(p,"discardTranslucency",0);integer(p,"smoothLighting",1);
 }
 static void draw(GLuint p,int adjacency,const float *vertices) {
   glUseProgram(p);glBufferData(GL_ARRAY_BUFFER,6*16*4,vertices,GL_STREAM_DRAW);glDrawArrays(adjacency?GL_TRIANGLES_ADJACENCY:GL_TRIANGLES,0,6);
-  require(glGetError()==GL_NO_ERROR,"modern draw has no GL errors");
+  GLenum error=glGetError();if(error!=GL_NO_ERROR)fprintf(stderr,"draw GL error: 0x%x\n",error);
+  require(error==GL_NO_ERROR,"modern draw has no GL errors");
 }
 static void quad(float *v,int flags,int adjacency) {
   float corners[6][2]={{-.9f,-.9f},{.9f,-.9f},{.9f,.9f},{-.9f,-.9f},{.9f,.9f},{-.9f,.9f}};
@@ -82,8 +83,19 @@ int main(int argc, char **argv) {
     glActiveTexture(GL_TEXTURE6); glTexSubImage2D(GL_TEXTURE_2D,0,0,0,1,1,GL_RGBA,GL_UNSIGNED_BYTE,black);
     clearTargets(); draw(p,1,vertices); readTarget(0,b);
     require(b[center]==0 && b[center+1]==0 && b[center+2]==0 && b[center+3]==255,"authored opaque black is not a PSX discard pixel");
+    quad(vertices,7|0x20000|0x40000,1);clearTargets();draw(p,1,vertices);readTarget(0,b);
+    require(b[center]==0&&b[center+1]==0&&b[center+2]==0&&b[center+3]==255,"cutout visible black retains coverage");
+    unsigned char hole[]={210,80,25,0};
+    glActiveTexture(GL_TEXTURE6);glTexSubImage2D(GL_TEXTURE_2D,0,0,0,1,1,GL_RGBA,GL_UNSIGNED_BYTE,hole);
+    clearTargets();draw(p,1,vertices);readTarget(0,b);
+    require(b[center+3]==0,"explicit cutout alpha rejects colored transparent pixels");
+    quad(vertices,7|0x20000,1);clearTargets();draw(p,1,vertices);readTarget(0,b);
+    require(b[center+3]==255,"opaque paint ignores alpha without explicit cutout mode");
+    quad(vertices,7|0x20000|0x40000,1);unsigned char low[]={210,80,25,127},high[]={210,80,25,128};
+    glActiveTexture(GL_TEXTURE6);glTexSubImage2D(GL_TEXTURE_2D,0,0,0,1,1,GL_RGBA,GL_UNSIGNED_BYTE,low);clearTargets();draw(p,1,vertices);readTarget(0,b);require(b[center+3]==0,"cutout rejects below threshold");
+    glActiveTexture(GL_TEXTURE6);glTexSubImage2D(GL_TEXTURE_2D,0,0,0,1,1,GL_RGBA,GL_UNSIGNED_BYTE,high);clearTargets();draw(p,1,vertices);readTarget(0,b);require(b[center+3]==255,"cutout retains above threshold");
     glActiveTexture(GL_TEXTURE6); glTexSubImage2D(GL_TEXTURE_2D,0,0,0,1,1,GL_RGBA,GL_UNSIGNED_BYTE,face);
-    printf("PASS: %s compile/link, baseline bypass, independent face/body sampling, opaque alpha, matching coverage, body UV/map isolation.\n",pipeline ? "battle" : "field");
+    printf("PASS: %s compile/link, baseline bypass, independent face/body sampling, opaque alpha, matching coverage, body UV/map isolation, explicit cutout/threshold and visible black.\n",pipeline ? "battle" : "field");
     glDeleteProgram(old); glDeleteProgram(p);
   }
   require(glGetError() == GL_NO_ERROR, "final GPU state");
