@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 19136,
+  "paintedGapPixelsExtended": 1909,
+  "paintedUncoveredSourcePixels": 1212,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 90,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    92,
+    56
+  ],
+  "targetSize": [
+    368,
+    224
+  ],
+  "generatedSha256": "0174d0a1c61cf72f9ca0be61ed287d59c1c8516d2ae178a197edabb4ae1f46bf",
+  "outputSha256": "a0119e0b0bda377d727b11f1bfee20ff9f470ef05efc328a36f6a5fa9a3bdbcf",
+  "decodedRgbaSha256": "6a70518c6ca7678c882edd168f70578ed2c9dd005521c6c6e175a09a5531321c",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/6a70518c6ca7678c882edd168f70578ed2c9dd005521c6c6e175a09a5531321c/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/6a70518c6ca7678c882edd168f70578ed2c9dd005521c6c6e175a09a5531321c/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect92:56. Rouge cut563 slot9. A long thin green branching plant runs diagonally from upper-left toward lower-right, with the original orange-yellow flower cluster near the upper-left/center and pale-green separated leaf/star-like sprays and thin stems extending toward lower-right. Trace the source branching topology and flower positions, preserve irregular petals and all thin leaf tips. Add restrained painted petal/leaf detail. Do not enlarge the flowering cluster, add blossoms, change to a different plant species or turn stems into geometric decoration.\n\nSource-detail correction:\nUse case: precise-object-edit. Image1 is a painted branch draft; image2 is the authoritative92x56 pixel source. Correct the flower grouping and fine leaf sprays to trace image2. The source has TWO separate orange-yellow star-like flower heads, one smaller to the left and one larger to its right, around source centers(26,12) and(41,15). The draft merged them into one huge flower. Restore the two separate source-sized blooms and their separate centers, individual narrow irregular petals and original gaps. Keep their orange/red edges and yellow highlights. Reduce the oversized broad leaves to thin separated pale-green narrow sprays matching the original branch topology, especially toward the lower-right. Keep exact92:56 canvas, diagonal branch direction, source positions, transparency and lower-right source stone/support fragment. No additional flowers, thickened plant mass or species redesign. One isolated painted cutout, no border or background.\n\nFinal targeted correction:\nUse case: precise-object-edit. Image1 is the initial92:56 source-shaped branch draft; image2 is the authoritative original. Change ONLY the orange flower cluster. Replace its one merged giant head with the original TWO separate smaller orange-yellow irregular star-like flower heads, centered around original native positions(26,12) and(41,15), with each head matching the original source extent. Keep their individual petal separations and the dark gap between the two centers. Keep every green leaf spray, stem, branch curve, lower-right stone fragment, canvas, crop, transparency and all other pixels' composition from image1 unchanged. Do not thin, remove, expand, reposition or redesign the green leaf groups. Do not add any flower elsewhere. Match the source orange-yellow palette and subdued source flower scale. One genuine-transparent cutout, no padding or background.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "427a47b395ee61d09c556089c7ed7de17e0e11a6a9d8de3aeb6dec0305f72589:-1",
+      "kind": "foreground",
+      "slot": 9,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 563,
+  "representativeLocation": "Rouge",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Rouge cut563 foreground slot9 thin green flowering branch descending diagonally toward a lower-right stone fragment; two nearby orange-yellow flower heads remain distinct.",
+    "style": "Initial painting merged the two flowers and was rejected on intent despite passing alpha repair. A two-flower revision shifted and thinned leaves beyond coverage limits and was rejected. The selected flower-only refinement preserves initial branch coverage and restores two source-positioned heads. Original, held neural, rejected drafts, repaired output and isolated scene placement compared. Fine petals, veins and leaf species are interpretive.",
+    "layout": "Exact4x source canvas [92, 56] to [368, 224]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 1909 target pixels, with 1212 uncovered source-visible target pixels and maximum squared extension distance 90. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "a0119e0b0bda377d727b11f1bfee20ff9f470ef05efc328a36f6a5fa9a3bdbcf",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

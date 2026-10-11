@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 5376,
+  "paintedGapPixelsExtended": 283,
+  "paintedUncoveredSourcePixels": 178,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 16,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    26,
+    28
+  ],
+  "targetSize": [
+    104,
+    112
+  ],
+  "generatedSha256": "728065fd4c0b592be01d9e1872972cd44e63cec07d74a0eb2ebe0964bd6dd10f",
+  "outputSha256": "a9c14d7c530af549c93c2b7f607e1d175b4c816b31f6c3f46832216d1fbd2805",
+  "decodedRgbaSha256": "9e96ddb7025afcbc7f44f79bf0617a6ecb3f03954767b6a4200e7c11e6065191",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/9e96ddb7025afcbc7f44f79bf0617a6ecb3f03954767b6a4200e7c11e6065191/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/9e96ddb7025afcbc7f44f79bf0617a6ecb3f03954767b6a4200e7c11e6065191/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect26:28. Fueno cut318 slot1, viewed obliquely from the side in a dim inn bedroom. Small chair with its curved brown wooden back partly cropped at the upper-left edge, muted dark green upholstered seat extending toward the lower right, thin shadowed wooden legs at the lower corners. Preserve the side-view profile, seat perspective and curved back opening; do not center it or enlarge the back to fit the canvas. Wood should show subtle worn grain and the cushion subtle green fabric weave, with the original dark palette.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "99d756966fc5abe04984700855f73207fcb8a45d18e0c122c1b024eb9b321aad:-1",
+      "kind": "foreground",
+      "slot": 1,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 318,
+  "representativeLocation": "Fueno",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Fueno cut318 foreground slot1 side-view wooden chair: curved cropped back at upper left, muted green padded seat extending right, thin shadowed legs.",
+    "style": "Source, held neural, repaired output and isolated scene placement compared. Curved brown frame and shaded green cushion retain the source side view and crop. Fine fabric weave and wood grain are interpretive; this view is not substituted for the two cut312 chair views.",
+    "layout": "Exact4x source canvas [26, 28] to [104, 112]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 283 target pixels, with 178 uncovered source-visible target pixels and maximum squared extension distance 16. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "a9c14d7c530af549c93c2b7f607e1d175b4c816b31f6c3f46832216d1fbd2805",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 3424,
+  "paintedGapPixelsExtended": 227,
+  "paintedUncoveredSourcePixels": 136,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 13,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    20,
+    24
+  ],
+  "targetSize": [
+    80,
+    96
+  ],
+  "generatedSha256": "c144d45e7c810f8e359120fe2be6efbb3727c1508787b6b15cdc041d7aec0ed0",
+  "outputSha256": "de25cfaf3c24109d7c630e8e51ce57dd8a0291c3e6dccd06ae9feeb84c70fc24",
+  "decodedRgbaSha256": "b0ef41e4641796fc6c3cc593c803070b2590e21ff8e14f9cd872cb1895e06ee8",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/b0ef41e4641796fc6c3cc593c803070b2590e21ff8e14f9cd872cb1895e06ee8/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/b0ef41e4641796fc6c3cc593c803070b2590e21ff8e14f9cd872cb1895e06ee8/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect20:24. Fueno cut312 slot6. Small green-backed tavern chair at the left of the restaurant interior, with rounded green upper back, warm curved wooden outline and slender brown legs splaying below the seat. Preserve the exact source viewpoint and negative gaps between its frame members, dark shaded seat and all small crossbars. Follow the visible source curve shapes, without adding floral upholstery, button tufting or new ornament. Low-contrast upholstery weave and worn wood grain only.\n\nSource-detail correction:\nUse case: precise-object-edit. EnvHD Fueno cut312 slot6, native20x24 pixel foreground chair. Image1 is authoritative original exact canvas; image2 is the SAME source with brightness increased solely to reveal its dark structure; image3 is scene context. Repaint this exact source chair as viewed from behind/obliquely, preserving the source shape rather than redesigning it as a front-facing upholstered armchair. The top is the source's broad dark olive-green rounded chair-back, with subtle irregular green mottling and warm thin brown rim. Beneath it are the narrow dark wooden frame/legs and gaps exactly as shown: a left leg diagonally spreads down-left, the right main leg down-right, and small dark crossbars connect the frame. The projecting broad visible seat of a new armchair is not present in this source. Preserve precisely the relative chair-back position and size, leg bends, splay, gaps, asymmetry and all edge-reaching thin tips. Keep20:24 canvas, framing and muted SOURCE1 palette, not the brightened guide palette. Add restrained green material weave and wood grain, no tacks, buttons, new ornaments, armrests or added structure. Actual transparency, no padding, no new cast shadow or background. One image only.\n\nFinal targeted correction:\nUse case: precise-object-edit. Image1 is the source-aligned EnvHD chair draft; image2 is the authoritative original. Keep precisely the complete image1 silhouette, canvas20:24 aspect, leg bends, splay, frame gaps, chair-back contour, crop and all macro mottled patch positions. Repaint the draft's visible coarse square pixel mosaic into continuous higher-resolution hand-painted materials: plain dark olive-green woven upholstery and subtly worn brown wood. Add fine low-contrast continuous thread/grain detail; blend the hard square shading tiles into smooth natural material shading without moving the source shapes. The final artwork must not look pixelated or like an enlarged nearest-neighbor sprite. Do not change geometry, perspective, lighting, object identity or silhouette. No new armrests, projecting seat, rivets, buttons, glyphs or trim. Genuine transparency, no padding. One source-faithful texture cutout.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "457509c6abe094a6598ec856570d0786ef00adc58f8b85fbcae3d04cdbc6abf5:-1",
+      "kind": "foreground",
+      "slot": 6,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 312,
+  "representativeLocation": "Fueno",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Fueno cut312 foreground slot6 left/rear-view wooden chair with rounded muted green upper panel, narrow legs, stretcher and rightward foot projection.",
+    "style": "Initial front-facing painting added a projecting seat and failed source coverage. A source retrace fit the silhouette but remained visibly pixelated and was rejected. The selected smoothing refinement preserves that retraced view while adding continuous cloth and timber shading. Original, held neural, all relevant drafts, repaired output and isolated scene placement compared. Fine upholstery mottling remains interpretive and final quality is pending.",
+    "layout": "Exact4x source canvas [20, 24] to [80, 96]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 227 target pixels, with 136 uncovered source-visible target pixels and maximum squared extension distance 13. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "de25cfaf3c24109d7c630e8e51ce57dd8a0291c3e6dccd06ae9feeb84c70fc24",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}
