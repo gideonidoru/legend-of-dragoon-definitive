@@ -46,6 +46,7 @@ public final class InstallStore {
     if(!deferRecovery && (Files.exists(this.root.resolve(".disc-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
       || Files.exists(this.root.resolve(".release-repair-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
       || Files.exists(this.root.resolve(".bootstrap-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
+      || Files.exists(this.root.resolve(CleanReinstall.JOURNAL), LinkOption.NOFOLLOW_LINKS)
       || !Files.exists(this.root.resolve("state.properties")) && Files.exists(this.root.resolve(".state-last-good.properties")))) {
       try(final var operation = this.operation()) { /* Recovery runs before missing paths are created. */ }
     }
@@ -66,7 +67,7 @@ public final class InstallStore {
   }
 
   private void checkOwnedPaths() throws IOException {
-    for(final String name : new String[]{".definitive-owned", "state.properties", ".state-last-good.properties", ".disc-transaction.properties", ".release-repair-transaction.properties", ".bootstrap-transaction.properties", ".game-lock", GameLease.PENDING, GameLease.RUNNING, ".operation-lock", "releases", "data", "workspaces", "snapshots", "isos", "definitive-manager.jar", "bootstrap-java", "Play Game.sh", "Manage Installation.sh", ".java-path", "launcher.log"}) {
+    for(final String name : new String[]{".definitive-owned", "state.properties", ".state-last-good.properties", ".disc-transaction.properties", ".release-repair-transaction.properties", ".bootstrap-transaction.properties", CleanReinstall.JOURNAL, ".game-lock", GameLease.PENDING, GameLease.RUNNING, ".operation-lock", "releases", "data", "workspaces", "snapshots", "isos", "definitive-manager.jar", "bootstrap-java", "Play Game.sh", "Manage Installation.sh", ".java-path", "launcher.log"}) {
       if(Files.isSymbolicLink(this.root.resolve(name))) throw new IOException("Unexpected link in installation: " + name);
     }
   }
@@ -90,6 +91,7 @@ public final class InstallStore {
       this.recoverState();
       this.recoverDiscs();
       this.recoverBootstrap();
+      CleanReinstall.recover(this, InstallProgress.NONE);
       return new Operation(owned);
     } catch(final IOException | RuntimeException failure) {
       try { if(owned.gameLease != null) owned.gameLease.close(); }
@@ -185,6 +187,7 @@ public final class InstallStore {
         if(revision != null && (!revision.sourceRevision().equals(manifest.metadata().getProperty("sourceRevision")) || !"definitive-current".equals(manifest.metadata().getProperty("releaseTag")))) throw new IOException("Package does not match the verified current build.");
         forceTree(staged);
         final Properties old = this.state();
+        try(final var clean = fullReinstall ? CleanReinstall.prepare(this, old) : null) {
         final Path release = this.root.resolve("releases").resolve(manifest.id());
         if(Files.exists(release)) {
           if(Files.isSymbolicLink(release)) throw new IOException("Unexpected linked release. No external files were changed.");
@@ -215,10 +218,13 @@ public final class InstallStore {
           return "This version is already installed.";
         }
 
-        final String dataId = "data-" + UUID.randomUUID();
+        final String dataId = fullReinstall ? clean.dataId() : "data-" + UUID.randomUUID();
         final Path nextData = this.root.resolve("data").resolve(dataId);
         final String snapshotId;
-        if(old.containsKey("version")) {
+        if(fullReinstall) {
+          snapshotId = "";
+          Files.move(clean.staged(), nextData, StandardCopyOption.ATOMIC_MOVE);
+        } else if(old.containsKey("version")) {
           final Path activeData = this.data(old);
           snapshotId = "snapshot-" + UUID.randomUUID();
           final Path snapshot = this.root.resolve("snapshots").resolve(snapshotId);
@@ -255,10 +261,16 @@ public final class InstallStore {
         this.writeLaunchers(release);
         forceTree(nextData);
         this.verifyInstalled(next);
+        if(fullReinstall) {
+          for(final String key : new ArrayList<>(next.stringPropertyNames())) if(key.startsWith("previous") || key.startsWith("retained") || key.startsWith("recovery")) next.remove(key);
+          CleanReinstall.journal(this.root, next);
+        }
         atomicProperties(this.root.resolve("state.properties"), next);
+        if(fullReinstall) CleanReinstall.recover(this, progress);
         progress.phase("Installation verified", this.root.toString(), 100);
-        if(fullReinstall) return "Complete reinstall finished. All application files were replaced; your saves, settings, custom mods and disc images are retained. Prepare your discs again.";
+        if(fullReinstall) return "Complete reinstall finished. Old application versions and extracted files were removed. Your disc images, saves, configurations and custom mods are preserved; distinct older personal files are in recovered-reinstall. Prepare your discs again.";
         return old.containsKey("version") ? "Update installed. Previous engine and pre-update data are retained for rollback." : "Installed. Import your discs, then add Play Game.sh to Steam.";
+        }
       } finally { if(!Files.exists(this.root.resolve(".release-repair-transaction.properties"), LinkOption.NOFOLLOW_LINKS)) deleteOwnedTree(staged); }
     }
   }
@@ -530,9 +542,17 @@ public final class InstallStore {
       return this.prepareLaunch(state, release, manifest);
     }
   }
+  void prepareCleanWorkspace() throws IOException {
+    final Properties state = this.state();
+    final Path release = child(this.root.resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
+    this.prepareLaunch(state, release, PackageManifest.read(release), false);
+  }
   private Path prepareLaunch(final Properties state, final Path release, final PackageManifest manifest) throws IOException {
+    return this.prepareLaunch(state, release, manifest, true);
+  }
+  private Path prepareLaunch(final Properties state, final Path release, final PackageManifest manifest, final boolean configure) throws IOException {
     final Path data = this.data(state);
-    if(PackageManifest.hostPlatform().equals("linux-x64")) configureFullscreen(data, Boolean.parseBoolean(state.getProperty("fullscreen", "true")));
+    if(configure && PackageManifest.hostPlatform().equals("linux-x64")) configureFullscreen(data, Boolean.parseBoolean(state.getProperty("fullscreen", "true")));
     try(final var entries = Files.walk(data)) {
       if(entries.anyMatch(Files::isSymbolicLink)) throw new IOException("Linked private data is not supported in a managed installation.");
     }

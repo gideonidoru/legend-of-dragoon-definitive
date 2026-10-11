@@ -201,7 +201,7 @@ class FileDeliveryTest {
     final Path pack = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack); final Properties before = store.state();
     Files.writeString(store.data(before).resolve("saves/owner.txt"), "save"); final Path workspace = store.prepareLaunch(); Files.writeString(workspace.resolve("files/version"), "5");
     assertTrue(store.install(pack, "", null, InstallProgress.NONE, true).contains("Complete reinstall")); assertNotEquals(before.getProperty("data"), store.state().getProperty("data")); assertEquals("save", Files.readString(store.data(store.state()).resolve("saves/owner.txt"))); assertFalse(store.discsPrepared()); store.verifyInstalled();
-    try(final var files = Files.list(store.root())) { assertTrue(files.anyMatch(path -> path.getFileName().toString().startsWith("release-recovery-"))); }
+    try(final var files = Files.list(store.root())) { assertFalse(files.anyMatch(path -> path.getFileName().toString().startsWith("release-recovery-"))); }
   }
   @Test void repairCannotSilentlyUpgradeToAnotherPackageIdentity() throws Exception {
     final Path pack = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack);
