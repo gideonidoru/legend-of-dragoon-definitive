@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "sourceReviewCommit": "fa0cf0a3954bdbc13cb69c9c8090935cb92ff8b8",
+  "sourceManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+  "sourceManifestSha256": "3bddc850f1660de9f53c8d1b352688800a4473ca2f28cb46526ce848cddec76e",
+  "reviewer": "Independent EnvHD Standards/source-integrity and Spec/original-fidelity agents",
+  "standardsReviewer": "/root/hd_standards_review",
+  "specReviewer": "/root/hd_spec_review",
+  "standardsResult": "CLEAR after documentation-only historical-checkpoint correction",
+  "standardsDocumentationFixCommit": "7773b9b641299bb0588343a54360c97696e5790b",
+  "standardsFindingsRemaining": 0,
+  "sourceChecksReported": [
+    "All83 current-original-source recipes reproduced",
+    "New candidate and held input/output hashes, original identities, owners/bindings, fourfold alpha and visible-black footprints verified",
+    "Prior80 records, selected42 records and runtime bytes exact; failed coverage versions have no repaired outputs"
+  ],
+  "individualDispositions": [
+    {
+      "decodedRgbaSha256": "93c6bbad7b079b3488c3abebbf3e7195568727ad527cc65c7954fcf22caa30ba",
+      "outputSha256": "06942cfe693154e0a715e8d89d8dce4998dd11cee6ef53a1d34c24072afcdb0f",
+      "disposition": "revise",
+      "reason": "Both lower cloth panels turn faint unequal native strokes into three crisp cross-like marks. Soften them and preserve differing stroke lengths and brightness. Panel perspective, lower curves and placement remain recognizable; the earlier box/cage treatment is substantially reduced.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283",
+      "outputSha256": "fea5f2faaedd982ad78cc718ab27be553b4ff5c01f23040d28c3df23060af743",
+      "disposition": "revise",
+      "reason": "Side marks still read as repeated six-point stars, particularly on the top and middle panels. Preserve quieter unresolved native flecks. Reduce conspicuous round bolt/ring details on the middle hanging fitting that make the irregular highlighted native mass read as an engineered fixture.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "d05996398e40653d0f7e78b2f4f1a849575938fdc30da830cd735c5b40d6b1f2",
+      "outputSha256": "a0f93ce9a8dde5daf45b3d3b1680338870d692c0425f26442d10dab354f73c08",
+      "disposition": "clear-development-intent",
+      "reason": "Cropped panel angle, small upright branching stroke with unequal side marks, nested lower curves, unequal finial, thin rails and curved lower wire retain native relationships. Sharper weave/seam and fitting highlights remain interpretations without a material identity or placement change requiring a development hold.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "independentlyPendingCandidates": 34,
+  "independentlyReviewedRevisionCandidates": 6,
+  "independentlyClearedUnselectedCandidates": 1,
+  "runtimeSelectedFields": 4928,
+  "selectedPaintings": 42,
+  "fieldHolds": 234,
+  "knownRemainingStaticImages": 235,
+  "runtimeSelectionChanged": false,
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "scope": "Only three new Twin Castle cool-light candidates. Previous83-record authoring and held receipts retain historical checkpoint metrics. No runtime selection or coordinator review implied.",
+  "limits": "Development review only. No script visibility/depth, alternate-state, native/GPU, Deck, campaign or final-quality acceptance. Coordinator parallel review and clean integration remain separate."
+}
