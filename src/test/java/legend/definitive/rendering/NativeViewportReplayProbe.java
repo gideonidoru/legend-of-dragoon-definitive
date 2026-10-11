@@ -31,10 +31,13 @@ public final class NativeViewportReplayProbe {
 
   private static final class OffscreenApi extends GlApi {
     private int output;
+    private RenderBatch extraBatch;
+    private int nonemptyExtraBatchDraws;
     private final int[] sceneViewport = new int[4];
     @Override public void unbindFramebuffer() { glBindFramebuffer(GL_FRAMEBUFFER, this.output); }
     @Override public void initBatch(final RenderBatch batch) {
       glGetIntegerv(GL_VIEWPORT, this.sceneViewport);
+      if(batch == this.extraBatch && !batch.orthoPool.isEmpty()) this.nonemptyExtraBatchDraws++;
       super.initBatch(batch);
     }
   }
@@ -81,7 +84,10 @@ public final class NativeViewportReplayProbe {
   }
 
   public static void main(final String[] args) throws Exception {
-    if(args.length != 1) throw new IllegalArgumentException("Supply the windowless renderer JNI library");
+    if(args.length < 1 || args.length > 2) throw new IllegalArgumentException("Supply the windowless renderer JNI library and optional transitions mode");
+    final boolean copyOnly = args.length == 2 && "copy-transitions".equals(args[1]);
+    final boolean transitions = copyOnly || (args.length == 2 && "transitions".equals(args[1]));
+    if(args.length == 2 && !transitions) throw new IllegalArgumentException("Unknown probe mode");
     System.load(args[0]);
     final var open = NativeRendererProbe.class.getDeclaredMethod("open");
     final var close = NativeRendererProbe.class.getDeclaredMethod("close", long.class);
@@ -108,12 +114,25 @@ public final class NativeViewportReplayProbe {
       GameEngine.GPU.vramTexture15.persistent = true;
       final Obj quad = new QuadBuilder("Stationary placement markers").monochrome(1).size(12, 12).build();
       quad.persistent = true;
+      final Texture copySource = Texture.create("Non-square texture-copy source", builder -> {
+        final ByteBuffer data = BufferUtils.createByteBuffer(96 * 40 * 4);
+        for(int y = 0; y < 40; y++) for(int x = 0; x < 96; x++) data.put((byte)x).put((byte)y).put((byte)(x + y)).put((byte)255);
+        data.flip(); builder.data(data, 96, 40);
+      });
+      copySource.persistent = true;
+      final byte[] copyReference = pixels(copySource);
+      final RenderBatch extraBatch = transitions ? renderer.addBatch() : null;
+      api.extraBatch = extraBatch;
+      final int[] workload = {0}, copies = {0}, copiedWithoutTick = {0};
       final AtomicLong time = new AtomicLong();
       final var clock = RenderEngine.class.getDeclaredField("simulationClock");
       clock.setAccessible(true); clock.set(renderer, new SimulationClock(time::get));
       final int[] ticks = {0};
       renderer.setSimulationCallback(() -> {
         ticks[0]++;
+        if(workload[0] == 2) {
+          extraBatch.queueOrthoModel(quad, new Matrix4f().translation(305, 225, 100), QueuedModelStandard.class).colour(1, .2f, .4f).ui();
+        }
         for(int i = 0; i < 300; i++) {
           renderer.queueUiOrthoModel(quad, new Matrix4f().translation(i % 20 * 15, i / 20 * 15, 100), QueuedModelStandard.class)
             .colour((i % 3 + 1) / 3.0f, (i % 5 + 1) / 5.0f, (i % 7 + 1) / 7.0f);
@@ -125,41 +144,61 @@ public final class NativeViewportReplayProbe {
       for(final Resolution resolution : new Resolution[] {Resolution._1440, Resolution._480, Resolution.NATIVE}) {
         for(final boolean smaa : new boolean[] {false, true}) {
           for(final boolean legacy : new boolean[] {false, true}) {
-            config(CoreMod.RESOLUTION_CONFIG.get(), resolution);
-            config(CoreMod.SMAA_CONFIG.get(), smaa);
-            config(CoreMod.EDGE_SMOOTHING_CONFIG.get(), .5f);
-            config(CoreMod.LEGACY_WIDESCREEN_MODE_CONFIG.get(), SubmapWidescreenMode.FORCED_4_3);
-            renderer.setRenderMode(legacy ? EngineState.RenderMode.LEGACY : EngineState.RenderMode.PERSPECTIVE);
-            window.show();
-            byte[] reference = null, outputReference = null;
-            int before = ticks[0];
-            for(int frame = 0; frame < 80; frame++) {
-              time.addAndGet(frame % 10 == 0 ? 100_000_000 : frame % 3 == 0 ? 1_000_000 : 16_666_667);
-              final int previousTicks = ticks[0];
-              draw.invoke(window.events());
-              final int index = (int)field(renderer, "renderBufferIndex");
-              final Texture scene = ((Texture[])field(renderer, "renderTextures"))[index];
-              final byte[] image = pixels(scene), presentation = pixels(output);
-              if(reference == null) { reference = image; outputReference = presentation; }
-              else if(!Arrays.equals(reference, image) || !Arrays.equals(outputReference, presentation)) {
-                throw new AssertionError("Stationary scene scaled/flickered: resolution=" + resolution + " smaa=" + smaa + " legacy=" + legacy
-                  + " frame=" + frame + " gameplaySteps=" + (ticks[0] - previousTicks) + " viewport=" + Arrays.toString(api.sceneViewport)
-                  + " reference=" + footprint(reference, scene.width) + " actual=" + footprint(image, scene.width));
+            for(int work = copyOnly ? 1 : 0; work < (transitions ? 3 : 1); work++) {
+              workload[0] = work;
+              config(CoreMod.RESOLUTION_CONFIG.get(), resolution);
+              config(CoreMod.SMAA_CONFIG.get(), smaa);
+              config(CoreMod.EDGE_SMOOTHING_CONFIG.get(), .5f);
+              config(CoreMod.LEGACY_WIDESCREEN_MODE_CONFIG.get(), SubmapWidescreenMode.FORCED_4_3);
+              renderer.setRenderMode(legacy ? EngineState.RenderMode.LEGACY : EngineState.RenderMode.PERSPECTIVE);
+              if(extraBatch != null) extraBatch.setRenderMode(legacy ? EngineState.RenderMode.LEGACY : EngineState.RenderMode.PERSPECTIVE);
+              window.show();
+              byte[] reference = null, outputReference = null;
+              int before = ticks[0];
+              for(int frame = 0; frame < 80; frame++) {
+                time.addAndGet(frame % 10 == 0 ? 100_000_000 : frame % 3 == 0 ? 1_000_000 : 16_666_667);
+                final int previousTicks = ticks[0];
+                final boolean copyScheduled = work != 0 && frame % 3 == 0;
+                if(copyScheduled) {
+                  renderer.addTask(() -> {
+                    final Texture copy = renderer.copyTexture("Placement boundary copy", copySource);
+                    if(!Arrays.equals(copyReference, pixels(copy))) throw new AssertionError("Production texture copy changed pixels");
+                    final int[] copiedViewport = new int[4]; glGetIntegerv(GL_VIEWPORT, copiedViewport);
+                    if(!Arrays.equals(new int[] {0, 0, 96, 40}, copiedViewport)) throw new AssertionError("Copy did not exercise a different viewport");
+                    copy.delete(); copies[0]++;
+                    // Deleting the copy FBO binds the real window's valid default target.
+                    // CGL has no drawable, so supply that target without changing viewport.
+                    api.unbindFramebuffer();
+                  });
+                }
+                draw.invoke(window.events());
+                if(copyScheduled && ticks[0] == previousTicks) copiedWithoutTick[0]++;
+                final int index = (int)field(renderer, "renderBufferIndex");
+                final Texture scene = ((Texture[])field(renderer, "renderTextures"))[index];
+                final byte[] image = pixels(scene), presentation = pixels(output);
+                if(reference == null) { reference = image; outputReference = presentation; }
+                else if(!Arrays.equals(reference, image) || !Arrays.equals(outputReference, presentation)) {
+                  throw new AssertionError("Stationary scene scaled/flickered: resolution=" + resolution + " smaa=" + smaa + " legacy=" + legacy
+                    + " workload=" + work + " frame=" + frame + " gameplaySteps=" + (ticks[0] - previousTicks) + " viewport=" + Arrays.toString(api.sceneViewport)
+                    + " reference=" + footprint(reference, scene.width) + " actual=" + footprint(image, scene.width));
+                }
+                if(ticks[0] == previousTicks) reused++;
+                if(glGetError() != GL_NO_ERROR) throw new AssertionError("GPU error");
+                presentations++;
               }
-              if(ticks[0] == previousTicks) reused++;
-              if(glGetError() != GL_NO_ERROR) throw new AssertionError("GPU error");
-              presentations++;
+              cases++;
+              System.out.println("PASS resolution=" + resolution + " internal=" + renderer.getRenderWidth() + "x" + renderer.getRenderHeight()
+                + " output=" + WIDTH + "x" + HEIGHT + " smaa=" + smaa + " legacy=" + legacy + " workload=" + work + " ticks=" + (ticks[0] - before));
             }
-            cases++;
-            System.out.println("PASS resolution=" + resolution + " internal=" + renderer.getRenderWidth() + "x" + renderer.getRenderHeight()
-              + " output=" + WIDTH + "x" + HEIGHT + " smaa=" + smaa + " legacy=" + legacy + " ticks=" + (ticks[0] - before));
           }
         }
       }
       if(reused == 0) throw new AssertionError("No retained simulation frames exercised");
-      System.out.println("SUMMARY cases=" + cases + " presentations=" + presentations + " zeroStepPresentations=" + reused + " GLerrors=0 verdict=PASS");
+      if(transitions && api.nonemptyExtraBatchDraws != 960) throw new AssertionError("Expected 960 real nonempty extra-batch renders, got " + api.nonemptyExtraBatchDraws);
+      if(transitions && copiedWithoutTick[0] == 0) throw new AssertionError("No zero-tick presentation after a texture-copy transition");
+      System.out.println("SUMMARY extraBatchDraws=" + api.nonemptyExtraBatchDraws + " copies=" + copies[0] + " zeroTickCopies=" + copiedWithoutTick[0] + " cases=" + cases + " presentations=" + presentations + " zeroStepPresentations=" + reused + " GLerrors=0 verdict=PASS");
       renderer.delete();
-      outputBuffer.delete(); output.delete();
+      outputBuffer.delete(); output.delete(); copySource.delete();
     } finally { close.invoke(null, context); }
   }
 }

@@ -24,6 +24,7 @@ allprojects {
           def contextPath = providers.gradleProperty('rendererContextPath').orNull
           if (!contextPath) throw new GradleException('Supply -PrendererContextPath with the compiled windowless JNI library.')
           args contextPath
+          if (providers.gradleProperty('viewportTransitions').isPresent()) args 'transitions'
         }
       }
       tasks.register('assetStreamingProbe', JavaExec) {

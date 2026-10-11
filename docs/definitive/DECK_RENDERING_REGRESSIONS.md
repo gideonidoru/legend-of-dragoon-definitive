@@ -41,6 +41,17 @@ Run explicitly on macOS with the existing windowless JNI context helper:
   -PrendererContextPath=/absolute/path/to/librenderer-context.dylib
 ```
 
+For explicit texture-copy and multi-batch boundary coverage, add
+`-PviewportTransitions`. This runs 36 combinations and 2880 presentations, including
+648 production 96x40 texture copies, 543 copies followed by zero-step redraws,
+and 813 zero-step presentations. Source-copy RGBA bytes, stationary scene bytes and
+final output bytes remain exact, with zero GL errors. The published negative
+control instead inherits the copy viewport `[0, 0, 96, 40]` and shrinks the scene
+from 1555200 to 1800 colored pixels on a zero-step redraw. Copy pixels themselves
+are unchanged. The windowless harness supplies an offscreen default target after
+the temporary copy framebuffer is deleted; this emulates a window's valid drawable
+without restoring the viewport under test. No production API code is changed.
+
 The context library can be built from `scripts/headless-renderer-context.c` using
 the JNI headers from the local JDK and the macOS OpenGL framework. The probe prints
 the engine code source so a negative control can be checked against a published JAR.
