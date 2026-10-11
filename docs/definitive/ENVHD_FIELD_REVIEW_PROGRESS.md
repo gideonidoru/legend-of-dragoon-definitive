@@ -2,14 +2,14 @@
 
 The published combined installer `definitive-alpha-2026-10-11-envhd` contains
 **4,892 selected development field images** from package source `0af4f997`.
-This authoring branch selects **4,910 images**: **4,886 reviewed neural baselines**
-and **twenty-four source-verified painted repairs**. The eighteen new fields await coordinated
-integration. Native gameplay and final Skurfa-equivalent quality remain pending.
+This authoring branch selects **4,918 images**: **4,886 reviewed neural baselines**
+and **thirty-two source-verified painted repairs**. The twenty-six new fields await coordinated
+publication. Native gameplay and final Skurfa-equivalent quality remain pending.
 
 All **5,162 generated field sources** have been individually compared against
 original pixels and scene placement. The 2,163 additional reviewed neural images
-are now versioned and selected on this branch. Twenty-four original neural holds have
-separately reviewed painted replacements; **252 source images remain held**.
+are now versioned and selected on this branch. Thirty-two original neural holds have
+separately reviewed painted replacements; **244 source images remain held**.
 Three uniform sources and empty/missing native slots retain their original data.
 
 | Field images | Count |
@@ -18,10 +18,10 @@ Three uniform sources and empty/missing native slots retain their original data.
 | Individually compared source images | 5,162 |
 | Reviewed neural development baselines | 4,886 |
 | Original neural repair holds | 276 |
-| Separately reviewed painted replacements | 24 |
-| Remaining held source images | 252 |
+| Separately reviewed painted replacements | 32 |
+| Remaining held source images | 244 |
 | Still awaiting individual source comparison | 0 |
-| Selected on this development branch | 4,910 |
+| Selected on this development branch | 4,918 |
 | Selected in the published installer | 4,892 |
 | Reviewed baselines awaiting candidate publication/selection | 0 |
 
@@ -66,7 +66,7 @@ into the background. Its isolated native slot placement was checked because
 stacking all foreground state variants obscures this object.
 
 The authoring selection accepts `--files <private extracted source directory>`
-and `--painted-manifest integrations/envhd/production/field-bespoke-weave-wood-foliage.json`.
+and `--painted-manifest integrations/envhd/production/field-bespoke-bedding-upholstery.json`.
 Omitting both selects only the verified neural candidates. Fresh source census,
 Env-only ownership, usage bindings, original source hashes, generation/output
 hashes, recorded review hashes and exact repaired pixels are checked before
@@ -216,3 +216,47 @@ Selected previews and complete prompt histories for this batch:
 - [moon red plant](../../integrations/envhd/production/bespoke-field-candidates/c6bcf2903e68d9c9c2f8382227137b5a8c9405d314b86b33849aa9b6efda286d/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/c6bcf2903e68d9c9c2f8382227137b5a8c9405d314b86b33849aa9b6efda286d/generation-prompts.txt).
 - [valley vegetation](../../integrations/envhd/production/bespoke-field-candidates/71ad24516af82052db0d6ffcaed4dded06c7d1d778f4760dbf8cdf3301f24726/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/71ad24516af82052db0d6ffcaed4dded06c7d1d778f4760dbf8cdf3301f24726/generation-prompts.txt).
 - [queen hanging crate](../../integrations/envhd/production/bespoke-field-candidates/d72362f570ad1396d84521b7de27a27293990e1989a331e7ff08373e07174fc8/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/d72362f570ad1396d84521b7de27a27293990e1989a331e7ff08373e07174fc8/generation-prompts.txt).
+
+## Bedding and upholstery repair batch
+
+Eight more independently cropped foregrounds add Deningrad cut354 slots4/5 and
+cut355 slot5; Bale cut76 slot2 and cut71 slots0/1; and Crystal Palace cut369
+slots16/17. The complete `field-bespoke-bedding-upholstery.json` preserves all
+previous twenty-four candidate records verbatim and appends these eight.
+Source-e7eb runtime/review/progress controls archive the exact previous
+4,910-field selection. All historical neural review verdicts remain unchanged.
+Current selection is 4,918 (4,886 neural plus 32 painted), with 244 source holds.
+The public source 0af installation still has 4,892; all 26 newer field repairs
+await coordinated publication, with one EnvHD switch and four resource packs.
+
+Original, held neural, repaired target and each isolated native source slot's
+scene placement were compared individually. Brightened source guides, source
+occupancy and missing-coverage guides remain private. First drafts added prominent
+flower/diamond patterns on several fabrics; corrections replace those with smaller
+restrained woven marks. The full Deningrad bed's first two drafts omitted dark
+occupied material and failed coverage. The selected correction includes its dark
+olive-brown underside/shadow-facing plane before exact native cutout restoration.
+Its larger nearest-color extensions at lower wood/support/shadow edges are recorded
+in the review, not a mechanical internal-registration or native seam guarantee.
+The exact role of that dim plane remains interpretive.
+
+The two green benches use related small golden-olive marks in their separate camera
+views. Palace slot17 retains its opaque dark-grey left inset instead of copying
+slot16's silhouette or making that region transparent. Fine motif topology, weave,
+folds, pillow pattern, timber/joinery, post relief and tiny vessel detail are
+interpretive. Source alpha, visible-black classes and exact 4x canvases are restored
+by the unchanged pinned cutout operation. No registration or new border recipe
+is used for these eight; native gameplay, occlusion and final art acceptance remain
+pending. Custom raw/final PNGs, rejected drafts and full prompt histories are
+versioned; original pixels and comparison boards are not published.
+
+Selected previews and full prompts:
+
+- [deningrad blue edge](../../integrations/envhd/production/bespoke-field-candidates/7bdefad38d8855c31c9277bcf9468fc2e058bf2750a6304ec947f3f8a80b5c13/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/7bdefad38d8855c31c9277bcf9468fc2e058bf2750a6304ec947f3f8a80b5c13/generation-prompts.txt).
+- [deningrad muted bed](../../integrations/envhd/production/bespoke-field-candidates/a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382/generation-prompts.txt).
+- [deningrad full bed](../../integrations/envhd/production/bespoke-field-candidates/afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19/generation-prompts.txt).
+- [bale rust bed](../../integrations/envhd/production/bespoke-field-candidates/ec8b91c3b778e37e0f561c0361a5c06b0f641f123a0119c381257c38f1a1cb7f/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/ec8b91c3b778e37e0f561c0361a5c06b0f641f123a0119c381257c38f1a1cb7f/generation-prompts.txt).
+- [bale green bench table](../../integrations/envhd/production/bespoke-field-candidates/989261f7875eefae7dd70b8cb179f659af48ae9f96b2de0ce1cf70be74f6fcb4/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/989261f7875eefae7dd70b8cb179f659af48ae9f96b2de0ce1cf70be74f6fcb4/generation-prompts.txt).
+- [bale green bench](../../integrations/envhd/production/bespoke-field-candidates/a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5/generation-prompts.txt).
+- [palace pale bed16](../../integrations/envhd/production/bespoke-field-candidates/e2d0768d6eb22d2ef40f2ae4a2859de3b8d1bbfcd7a61f48b6d2f00bb9ecf214/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/e2d0768d6eb22d2ef40f2ae4a2859de3b8d1bbfcd7a61f48b6d2f00bb9ecf214/generation-prompts.txt).
+- [palace pale bed17](../../integrations/envhd/production/bespoke-field-candidates/f1f892eb7441868656bbd630df9cbb2b40407a2192d4646a6ca481ee6e00501e/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/f1f892eb7441868656bbd630df9cbb2b40407a2192d4646a6ca481ee6e00501e/generation-prompts.txt).

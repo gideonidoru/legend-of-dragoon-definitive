@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 12912,
+  "paintedGapPixelsExtended": 624,
+  "paintedUncoveredSourcePixels": 487,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 53,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    44,
+    38
+  ],
+  "targetSize": [
+    176,
+    152
+  ],
+  "generatedSha256": "aebc026a2bc68d2a43930ff7031b5396fe62d4d9191cf48331c6b35c7d08f7ab",
+  "outputSha256": "236f7faa7e4af4cb72fdada4d335972122956c4faa5dd016261df23b0ecbcbcd",
+  "decodedRgbaSha256": "a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Deningrad cut355 slot5 diagonal bedcover with a pale cream pillow at upper left, muted grey-blue/teal patterned cloth extending toward lower right, and a warm brown wooden footboard with a thin warm top edge and its existing low protrusions. Keep the original cooler, dimmer desaturated blue of this damaged-room scene. Restore small subtle repeated textile marks and shallow folds on the cover, not plain featureless foam. Keep the diagonal perspective and original brown footboard dimensions, crop and lighting; do not make it the bright blue of another room. Strict canvas: exactly 44:38 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "b338bf674a63dbd7907841e4473e604dbb0d55f0c36f8ace6966d79d9f53684d:-1",
+      "kind": "foreground",
+      "slot": 5,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 355,
+  "representativeLocation": "Deningrad",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Deningrad cut355 slot5 pale pillow and muted grey-blue/teal patterned bedcover above a brown footboard in the damaged-room scene.",
+    "style": "Original, held neural, output and isolated native slot placement compared. Subdued geometric textile marks and soft folds replace featureless neural cloth; this view retains its cooler/desaturated source lighting rather than the intact room's bright blue. Wood grain, exact thread shapes and fold relief are interpretive.",
+    "layout": "Exact4x canvas [44, 38] to [176, 152]; source alpha and visible-black classes exact. Pinned cutout stage extends 624 target pixels, uncovered 487, maximum squared extension distance 53. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "236f7faa7e4af4cb72fdada4d335972122956c4faa5dd016261df23b0ecbcbcd",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

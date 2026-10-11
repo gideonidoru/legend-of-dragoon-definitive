@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 10496,
+  "paintedGapPixelsExtended": 342,
+  "paintedUncoveredSourcePixels": 233,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 26,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    52,
+    42
+  ],
+  "targetSize": [
+    208,
+    168
+  ],
+  "generatedSha256": "9f254e4388f0a7a08dd0325233a412ee6115e4a900a11a3aaf102db8f32783fc",
+  "outputSha256": "de0979c14922f8708f4d2f7315d4872940a3239a8e2365252701a2957ca16cdb",
+  "decodedRgbaSha256": "7bdefad38d8855c31c9277bcf9468fc2e058bf2750a6304ec947f3f8a80b5c13",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/7bdefad38d8855c31c9277bcf9468fc2e058bf2750a6304ec947f3f8a80b5c13/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/7bdefad38d8855c31c9277bcf9468fc2e058bf2750a6304ec947f3f8a80b5c13/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Deningrad cut354 slot5 narrow diagonal bed fragment. Keep the small cropped brown/pale pillow/head section at upper left, the long bright muted-blue quilt at center, and the warm brown/red/olive patterned foot drape/foot end at lower right. The blue textile has subtle repeated pale-blue geometric weave, small dense marks and folds; the warm foot end has small red/green/tan source flecks rather than a blank smooth board. Maintain the exact narrow diagonal footprint and all overlaps; do not invent a full mattress, extra bed posts or broad frame outside this cropped fragment. Treat the quilt as fabric, not smooth foam. Strict canvas: exactly 52:42 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.\n\nRefinement 1:\nEdit the high-definition draft in image2, using authoritative original image1 and scene image3. Keep its exact canvas, blue quilt, folds, source silhouette and warm head/foot fabric sections. Remove the invented prominent red/green flower emblems and broad decorative border stripes from the warm head and foot fabric. Replace them with densely woven muted tan/brown fabric containing very small restrained irregular red/green/tan geometric flecks, following the original's small-scale pattern density. No recognizable flowers, stars, badges or large decorative symbols. Keep the blue quilt's subtle fine pale-blue weave and original bright-blue lighting; do not add objects or change proportions. Output real transparency. Exactly 52:42 canvas aspect.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "3afb3efaa7e337ba72ac95342b4d48c5ac3c96ac0fbe984cf4ad0abda75cb680:-1",
+      "kind": "foreground",
+      "slot": 5,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 354,
+  "representativeLocation": "Deningrad",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Deningrad cut354 slot5 narrow diagonal blue quilt fragment with warm patterned head/foot sections.",
+    "style": "Original, held neural, rejected ornate draft, corrected output and isolated native slot placement compared. Fine blue geometric weave replaces the neural smooth blanket; prominent red/green flower emblems and broad borders were removed from the warm ends in favor of restrained small woven flecks. Cloth folds and tiny patterns/trim are interpretive; no exact embroidery or tiny fitting identity claim.",
+    "layout": "Exact4x canvas [52, 42] to [208, 168]; source alpha and visible-black classes exact. Pinned cutout stage extends 342 target pixels, uncovered 233, maximum squared extension distance 26. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "de0979c14922f8708f4d2f7315d4872940a3239a8e2365252701a2957ca16cdb",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}
