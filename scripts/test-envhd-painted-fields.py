@@ -124,6 +124,63 @@ class PaintedFieldTests(unittest.TestCase):
         self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.manifest['nativeAccepted']=1;self.save()
         with self.assertRaisesRegex(ValueError,'acceptance changed'):self.preflight()
 
+    def rgb_repack_fixture(self):
+        original = self.raw_path.with_name('painted-rgb-input-v1.png')
+        Image.open(self.raw_path).convert('RGB').save(original)
+        data, operation = verify.rgb_repack.repack(original.read_bytes(), self.source.size)
+        self.raw_path.write_bytes(data)
+        self.candidate['generatedInputMode'] = 'RGBA'
+        self.candidate['generatedSha256'] = verify.batch.terrain.digest(data)
+        self.candidate['sourceRgbContainerRepack'] = dict(operation,
+            algorithmPath='scripts/repack-envhd-painted-rgb.py', algorithmSha256=verify.RGB_REPACK_SHA256,
+            originalGeneratedPath=original.relative_to(self.root).as_posix())
+        self.save()
+        return original
+
+    def test_explicit_rgb_repack_reproduces_cutout_without_changing_source_or_output(self):
+        before = self.source.tobytes(), self.output_path.read_bytes()
+        original = self.rgb_repack_fixture(); raw_before = original.read_bytes()
+        self.assertEqual(1, len(self.preflight()[0]))
+        self.assertEqual(before, (self.source.tobytes(), self.output_path.read_bytes()))
+        self.assertEqual(raw_before, original.read_bytes())
+
+    def test_changed_original_rgb_is_rejected_even_with_rehashed_container(self):
+        original = self.rgb_repack_fixture()
+        Image.new('RGB', (8,8), (120,30,10)).save(original)
+        with self.assertRaisesRegex(ValueError, 'differs from its recorded original'):
+            self.preflight()
+
+    def test_rehashed_container_cannot_change_rgb_or_alpha(self):
+        for colour in [(120,30,10,255), (35,65,20,128)]:
+            with self.subTest(colour=colour):
+                self.rgb_repack_fixture()
+                Image.new('RGBA', (8,8), colour).save(self.raw_path)
+                self.candidate['generatedSha256'] = verify.batch.terrain.digest(self.raw_path.read_bytes());self.save()
+                with self.assertRaisesRegex(ValueError, 'differs from its recorded original'):
+                    self.preflight()
+
+    def test_rgb_repack_identity_and_source_path_must_be_pinned(self):
+        for field, value in [('algorithmSha256', '0'*64), ('originalGeneratedPath', '../private.png')]:
+            with self.subTest(field=field):
+                self.rgb_repack_fixture();self.candidate['sourceRgbContainerRepack'][field] = value;self.save()
+                with self.assertRaisesRegex(ValueError, 'repack identity'):
+                    self.preflight()
+
+    def test_rgb_repack_may_not_claim_source_pixels_or_geometry_changes(self):
+        for field, value in [('sourceRgbApplied', True), ('geometryChanged', True), ('opaqueAlphaAdded', 128)]:
+            with self.subTest(field=field):
+                self.rgb_repack_fixture();self.candidate['sourceRgbContainerRepack'][field] = value;self.save()
+                with self.assertRaisesRegex(ValueError, 'differs from its recorded original'):
+                    self.preflight()
+
+    def test_rgb_repack_is_exclusive_of_geometry_and_padding_operations(self):
+        for key in ['registration','opaqueBorderRepair','sourceCanvasNormalization','sourceSurroundRestore','sourceAuthoringCrop']:
+            with self.subTest(key=key):
+                self.rgb_repack_fixture();self.candidate[key] = {};self.save()
+                with self.assertRaisesRegex(ValueError, 'exclusive operation'):
+                    self.preflight()
+                self.candidate.pop(key)
+
     def test_rgb_generated_patch_requires_an_opaque_source(self):
         Image.open(self.raw_path).convert('RGB').save(self.raw_path)
         self.candidate['generatedSha256']=verify.batch.terrain.digest(self.raw_path.read_bytes());self.candidate['generatedInputMode']='RGB';self.save()

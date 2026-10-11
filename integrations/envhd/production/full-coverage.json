@@ -59,7 +59,9 @@
     "field-table-selection-readiness.json": "39a48c1c0ea2464799fd115865239b07a43f3ea90ab22ab7734730b3496eef3e",
     "field-bespoke-stone-fittings-reviewed-selection.json": "f132478ea18ab077f26824669aff7c97acef0a8edcccd596c6fd0e4df9a043ff",
     "field-bespoke-stone-fittings-held-drafts.json": "11d2668adc44f2b397d6c22ac78f0a6756ebef1f62a1d4d6c242eda481fa8471",
-    "field-stone-fittings-authoring-readiness.json": "b5d3c19f76266c73b5f3dafa5b377f50aee159cc98e2ebd325cf9279598a0817"
+    "field-stone-fittings-authoring-readiness.json": "b5d3c19f76266c73b5f3dafa5b377f50aee159cc98e2ebd325cf9279598a0817",
+    "field-bespoke-rgb-wall-reviewed-selection.json": "5d45c89f6f048967c23a4f3477f39a788d27b44fd451ea429950951e47d07cd0",
+    "field-rgb-wall-authoring-readiness.json": "ba6684a203b115de1dfaeaa2c0b3ae35efa5c901579b0cdb9505c024d593f3de"
   },
   "categories": [
     {
@@ -213,7 +215,7 @@
       "independentNativePixelAgreement": "650/650 configurations and 5528/5528 unique decodes",
       "envhdPublishedCandidateMasters": 4926,
       "generationReceipt": "field-generation-receipt.json",
-      "generationStage": "Runtime4926 fields/40paintings preserved. Complete70-candidate input retains prior68/selected40 records and adds Forbidden Land green base and Ulara finial pedestal;27 independent pending,3 source-fidelity revisions. Nine raw/seven repaired art payloads hash-verified; seven held versions across four sources, including two unchanged coverage failures and one Shrine wall3 opaque-RGB/cutout preflight hold. Original source/context/native/final and adjoining finish review remain pending. Clean one-table integration branch is separate; no new runtime/release selection.",
+      "generationStage": "Runtime4926 fields/40paintings unchanged. Complete71-candidate input preserves prior70 records and adds existing Shrine flat-wall3 painting via explicit pinned RGB-container repack. All generated RGB pixels/geometry exact; originalRGB retained. Native alpha/black/cutout repair and all original bounds/coverage checks unchanged. Complete71 source recipes reproduced,54 focused guard checks passed.28 independent pending candidates and3 source-fidelity revisions,236field holds,54unique custom unselected sources. No runtime/release changes; native/device/final and adjoining finish review remain pending.",
       "envhdRepairedMasters": 5162,
       "sourceGuardedBackgroundMasters": 342,
       "individuallyComparedMasters": 5162,

@@ -24,12 +24,14 @@ opaque_border = module('painted_field_opaque_border', 'repair-envhd-painted-opaq
 canvas_fit = module('painted_field_canvas_fit', 'normalize-envhd-painted-canvas.py')
 surround = module('painted_field_surround', 'repair-envhd-painted-surround.py')
 authoring_crop = module('painted_field_authoring_crop', 'crop-envhd-painted-authoring-canvas.py')
+rgb_repack = module('painted_field_rgb_repack', 'repack-envhd-painted-rgb.py')
 REPAIR_SHA256 = 'd94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a'
 REGISTRATION_SHA256 = '7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784'
 OPAQUE_BORDER_SHA256 = 'd5a6b3b9b9177b2292863ee3391720065e7e9155f943b221ee1edcd2b73365bc'
 CANVAS_FIT_SHA256 = '375f8284c4ca6a558e099c018f58c21f419e428d15e3662f6c81d051f87ef739'
 SURROUND_SHA256 = '11017bae4bf16c21bdd6e923b36dc46dae63a023ed0c8d0a26dfe70da1e3d767'
 AUTHORING_CROP_SHA256 = '939125d63c15725d6c91637eb981ccbf8c667b5b13c52061d5a91345c3ba7676'
+RGB_REPACK_SHA256 = 'fce3e10260df107249fe85ec0583b3edbf0581c9f5ecc21dc1c94f77508a83ba'
 METHOD = 'python-painted-cutout-nearest-colour-exact-visibility-1'
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
 ROOT = Path(__file__).resolve().parents[1]
@@ -97,6 +99,26 @@ def preflight(files, manifest_path, root=ROOT):
         if (batch.terrain.digest(raw_data) != candidate.get('generatedSha256')
                 or batch.terrain.digest(output_data) != candidate.get('outputSha256')):
             raise ValueError('Painted field artwork bytes changed')
+        if 'sourceRgbContainerRepack' in candidate:
+            recorded_repack = candidate['sourceRgbContainerRepack']
+            if (not isinstance(recorded_repack, dict)
+                    or any(k in candidate for k in ('registration', 'opaqueBorderRepair', 'sourceCanvasNormalization', 'sourceSurroundRestore', 'sourceAuthoringCrop'))
+                    or recorded_repack.get('algorithmPath') != 'scripts/repack-envhd-painted-rgb.py'
+                    or recorded_repack.get('algorithmSha256') != RGB_REPACK_SHA256
+                    or batch.terrain.digest(Path(rgb_repack.__file__).read_bytes()) != RGB_REPACK_SHA256
+                    or recorded_repack.get('originalGeneratedPath') != prefix + 'painted-rgb-input-v1.png'
+                    or candidate.get('generatedInputMode') != 'RGBA'):
+                raise ValueError('Painted RGB repack identity or exclusive operation changed')
+            original_path = batch.battle.staging_path(root, recorded_repack['originalGeneratedPath'])
+            original_data = batch.terrain.bounded_read(original_path, 32 * 1024 * 1024)
+            # Validate the converted header before decoding the original RGB too.
+            repair.validate_png_header(raw_data, 'painted', source.size)
+            converted_data, operation = rgb_repack.repack(original_data, source.size)
+            expected_repack = dict(operation, algorithmPath='scripts/repack-envhd-painted-rgb.py',
+                                   algorithmSha256=RGB_REPACK_SHA256,
+                                   originalGeneratedPath=prefix + 'painted-rgb-input-v1.png')
+            if recorded_repack != expected_repack or raw_data != converted_data:
+                raise ValueError('Painted RGB container differs from its recorded original painting')
         cropping = 'sourceAuthoringCrop' in candidate
         if cropping:
             recorded_crop = candidate['sourceAuthoringCrop']
