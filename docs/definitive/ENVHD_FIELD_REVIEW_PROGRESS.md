@@ -2,14 +2,14 @@
 
 The published combined installer `definitive-alpha-2026-10-11-envhd` contains
 **4,892 selected development field images** from package source `0af4f997`.
-This authoring branch selects **4,902 images**: **4,886 reviewed neural baselines**
-and **sixteen source-verified painted repairs**. The ten new fields await coordinated
+This authoring branch selects **4,910 images**: **4,886 reviewed neural baselines**
+and **twenty-four source-verified painted repairs**. The eighteen new fields await coordinated
 integration. Native gameplay and final Skurfa-equivalent quality remain pending.
 
 All **5,162 generated field sources** have been individually compared against
 original pixels and scene placement. The 2,163 additional reviewed neural images
-are now versioned and selected on this branch. Sixteen original neural holds have
-separately reviewed painted replacements; **260 source images remain held**.
+are now versioned and selected on this branch. Twenty-four original neural holds have
+separately reviewed painted replacements; **252 source images remain held**.
 Three uniform sources and empty/missing native slots retain their original data.
 
 | Field images | Count |
@@ -18,10 +18,10 @@ Three uniform sources and empty/missing native slots retain their original data.
 | Individually compared source images | 5,162 |
 | Reviewed neural development baselines | 4,886 |
 | Original neural repair holds | 276 |
-| Separately reviewed painted replacements | 16 |
-| Remaining held source images | 260 |
+| Separately reviewed painted replacements | 24 |
+| Remaining held source images | 252 |
 | Still awaiting individual source comparison | 0 |
-| Selected on this development branch | 4,902 |
+| Selected on this development branch | 4,910 |
 | Selected in the published installer | 4,892 |
 | Reviewed baselines awaiting candidate publication/selection | 0 |
 
@@ -66,7 +66,7 @@ into the background. Its isolated native slot placement was checked because
 stacking all foreground state variants obscures this object.
 
 The authoring selection accepts `--files <private extracted source directory>`
-and `--painted-manifest integrations/envhd/production/field-bespoke-organic-furnishings.json`.
+and `--painted-manifest integrations/envhd/production/field-bespoke-weave-wood-foliage.json`.
 Omitting both selects only the verified neural candidates. Fresh source census,
 Env-only ownership, usage bindings, original source hashes, generation/output
 hashes, recorded review hashes and exact repaired pixels are checked before
@@ -105,8 +105,8 @@ EnvHD backlog and unresolved environment prop/animation ownership remain in
 The two new fittings use the existing pinned cutout repair, with no decoder,
 engine, installer or algorithm changes. The complete eight-record selection
 manifest preserves all six earlier candidate records verbatim. The original
-neural review receipt retains its 276 historical hold verdicts; the current sixteen-painting
-manifest clears sixteen sources, leaving 260 remaining holds. The eight-record fittings
+neural review receipt retains its 276 historical hold verdicts; the current twenty-four-painting
+manifest clears twenty-four sources, leaving 252 remaining holds. The eight-record fittings
 manifest remains an immutable historical selection input.
 
 Queen Fury cut 282 slot 0 is a shadowed wooden barrel/furnishing with a warm engraved
@@ -165,3 +165,53 @@ Selected previews and complete prompt histories for this batch:
 - [donau garden](../../integrations/envhd/production/bespoke-field-candidates/3a1853b560a051c9bea10d6b8529e527f76a6a8ca3d02ef7401397ecac63e332/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/3a1853b560a051c9bea10d6b8529e527f76a6a8ca3d02ef7401397ecac63e332/generation-prompts.txt).
 - [woven counter](../../integrations/envhd/production/bespoke-field-candidates/77930282f41ecef6e6b70590b3e46cfdd44672ce05a067d7caf156c9f91c58ec/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/77930282f41ecef6e6b70590b3e46cfdd44672ce05a067d7caf156c9f91c58ec/generation-prompts.txt).
 - [rouge flowers](../../integrations/envhd/production/bespoke-field-candidates/6a70518c6ca7678c882edd168f70578ed2c9dd005521c6c6e175a09a5531321c/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/6a70518c6ca7678c882edd168f70578ed2c9dd005521c6c6e175a09a5531321c/generation-prompts.txt).
+
+The next eight repairs add Lohan cut151's red tiled canopy; Fueno cut314's woven chair
+beside a cropped warm table/surface; Lohan cut147's two independent woven surfaces;
+Twin Castle cut667's patterned curved chair back; Moon cut607's red-capped plant;
+Valley cut258's vegetation/rock fragment; and Queen Fury cut284's hanging lattice crate.
+The complete `field-bespoke-weave-wood-foliage.json` preserves all sixteen prior
+painted records verbatim. Source-e050 runtime/review/progress controls preserve the
+previous 4,902-image selection. The original 276 neural hold verdicts are unchanged;
+252 sources currently remain held after twenty-four painted replacements.
+
+Canopy drafts missing the occupied left strip failed coverage and were rejected.
+A private source-occupancy guide restores its cropped left edge and central opening.
+The first woven-front draft added heavy uprights; a correction restores continuous
+weave. The chair's invented radial flowers/stars were replaced with small dark marks.
+Source alpha and visible-black classes remain exact at4x; fine weave, tile relief,
+cloth, marks, leaf species, cap morphology and hoist details remain interpretive.
+The tiny Evergreen cut339 fragment remains held because its precise material role
+is ambiguous. No source guide, comparison or original image is published.
+
+Moon's opaque ground originally has a uniform RGB224 border. Its first snowy draft
+introduced a visible square patch. A color correction reduced that seam but still
+varied by2-5 channel values at the edge. `repair-envhd-painted-opaque-border.py` now
+provides an explicitly optional, separately pinned repair before the unchanged
+cutout repair. It requires a fully opaque source with an exactly uniform border and
+an opaque painting. It matches the outer source pixel (four target pixels) exactly
+and blends through the next four target pixels only where native RGB is identical
+to that background. Non-flat source feature/shadow pixels are excluded. The record
+contains the derived source color, dimensions, changed-pixel count and algorithm
+hash; preflight independently reproduces it and rejects changed receipts/algorithms
+or a combined registration recipe. The raw RGB tool PNG remains unchanged.
+
+This step corrects3216 target pixels of Moon's112x112 patch; the original alpha and
+black classes are still restored by the unchanged pinned cutout operation afterward.
+The cutout stage's no-edge-averaging receipt refers to that stage; the optional border
+stage explicitly blends source-flat background color. Five targeted regressions
+cover exact borders, nearby source-feature preservation, invalid source/painting
+alpha or color, allocation bounds, recipe identity and source-bound reproduction.
+The existing twelve cutout, nineteen preflight and three install-selection checks
+also pass. These are source/packaging evidence, not native gameplay or final quality.
+
+Selected previews and complete prompt histories for this batch:
+
+- [lohan canopy](../../integrations/envhd/production/bespoke-field-candidates/7fb3caf32e4d1a805c0b7f5a73d01c0fef692fcb9b261ad524a53d23b47a0e31/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/7fb3caf32e4d1a805c0b7f5a73d01c0fef692fcb9b261ad524a53d23b47a0e31/generation-prompts.txt).
+- [fueno woven chair](../../integrations/envhd/production/bespoke-field-candidates/e50a510f3c6232207e8f6fd1e7e0cf9a59ad18ef32577a084ad520732177b99f/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/e50a510f3c6232207e8f6fd1e7e0cf9a59ad18ef32577a084ad520732177b99f/generation-prompts.txt).
+- [lohan round weave](../../integrations/envhd/production/bespoke-field-candidates/f762b2a9c7aa84c072fec8a34b987cf6b1860eed99501b55bd8f47493b48514f/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/f762b2a9c7aa84c072fec8a34b987cf6b1860eed99501b55bd8f47493b48514f/generation-prompts.txt).
+- [lohan front weave](../../integrations/envhd/production/bespoke-field-candidates/fd36077b0ba662973a55d37803be1376b75cb538a808b7b72258f11186eb2d5a/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/fd36077b0ba662973a55d37803be1376b75cb538a808b7b72258f11186eb2d5a/generation-prompts.txt).
+- [twin patterned chair](../../integrations/envhd/production/bespoke-field-candidates/e65b2467ad46f137f61117c25a530646b320267ffcff62ec87b5012099d92185/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/e65b2467ad46f137f61117c25a530646b320267ffcff62ec87b5012099d92185/generation-prompts.txt).
+- [moon red plant](../../integrations/envhd/production/bespoke-field-candidates/c6bcf2903e68d9c9c2f8382227137b5a8c9405d314b86b33849aa9b6efda286d/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/c6bcf2903e68d9c9c2f8382227137b5a8c9405d314b86b33849aa9b6efda286d/generation-prompts.txt).
+- [valley vegetation](../../integrations/envhd/production/bespoke-field-candidates/71ad24516af82052db0d6ffcaed4dded06c7d1d778f4760dbf8cdf3301f24726/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/71ad24516af82052db0d6ffcaed4dded06c7d1d778f4760dbf8cdf3301f24726/generation-prompts.txt).
+- [queen hanging crate](../../integrations/envhd/production/bespoke-field-candidates/d72362f570ad1396d84521b7de27a27293990e1989a331e7ff08373e07174fc8/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/d72362f570ad1396d84521b7de27a27293990e1989a331e7ff08373e07174fc8/generation-prompts.txt).
