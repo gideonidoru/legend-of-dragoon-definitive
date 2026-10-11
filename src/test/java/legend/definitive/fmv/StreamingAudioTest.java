@@ -13,12 +13,23 @@ final class StreamingAudioTest {
   private static final class Probe extends GenericSource {
     Runnable beforePosition;
     Runnable afterProcessed;
+    Runnable afterConnectionSnapshot;
+    boolean connected = true;
     Probe() { this(AL_FORMAT_STEREO16); }
     Probe(final int format) { super(format, 48000); }
     void floats(final float[] samples) { super.bufferOutput(org.lwjgl.openal.EXTFloat32.AL_FORMAT_STEREO_FLOAT32, samples, 48000); }
     void initialize() { super.init(); }
     void process() { super.handleProcessedBuffers(); }
     void release() { super.destroy(); }
+    @Override protected boolean isOutputConnected() {
+      final boolean wasConnected = this.connected;
+      if(this.afterConnectionSnapshot != null) {
+        final Runnable action = this.afterConnectionSnapshot;
+        this.afterConnectionSnapshot = null;
+        action.run();
+      }
+      return wasConnected;
+    }
     @Override public float getPosition() {
       if(this.beforePosition != null) { final Runnable action = this.beforePosition; this.beforePosition = null; action.run(); }
       return super.getPosition();
@@ -40,6 +51,29 @@ final class StreamingAudioTest {
       for(int i = 0; i < samples.length; i++) floats[i] = samples[i] / 32768.0f;
       audio.floats(floats);
     }
+  }
+
+  @Test void cinematicPauseKeepsSamplesAndAudioTickCannotRestartIt() {
+    final long device = alcLoopbackOpenDeviceSOFT((java.nio.ByteBuffer)null);
+    assertNotEquals(0, device);
+    final var caps = ALC.createCapabilities(device);
+    final long context = alcCreateContext(device, new int[]{ALC_FREQUENCY, 48000, ALC_FORMAT_CHANNELS_SOFT, ALC_STEREO_SOFT, ALC_FORMAT_TYPE_SOFT, ALC_FLOAT_SOFT, 0});
+    assertNotEquals(0, context);
+    alcMakeContextCurrent(context); AL.createCapabilities(caps);
+    final Probe audio = new Probe();
+    try {
+      audio.initialize(); audio.bufferOutput(new short[960 * 2]); audio.tick();
+      final float[] output = new float[9600];
+      alcRenderSamplesSOFT(device, output, 480);
+      final double position = audio.getPlaybackPositionSeconds();
+      audio.setPlaybackPaused(true); audio.bufferOutput(new short[960 * 2]);
+      for(int tick = 0; tick < 10; tick++) { audio.tick(); alcRenderSamplesSOFT(device, output, 480); }
+      assertEquals(position, audio.getPlaybackPositionSeconds(), 0.000001);
+      assertTrue(audio.hasQueuedOutput());
+      audio.setPlaybackPaused(false); audio.tick(); alcRenderSamplesSOFT(device, output, 1920);
+      assertEquals(0.04, audio.getPlaybackPositionSeconds(), 0.000001);
+      assertFalse(audio.hasQueuedOutput());
+    } finally { audio.release(); assertEquals(AL_NO_ERROR, alGetError()); alcMakeContextCurrent(0); alcDestroyContext(context); alcCloseDevice(device); }
   }
 
   @Test void refillingAllSampleFormatsPreservesContinuousAudioSamples() {
@@ -173,6 +207,72 @@ final class StreamingAudioTest {
     } finally { audio.release(); assertEquals(AL_NO_ERROR, alGetError()); alcMakeContextCurrent(0); alcDestroyContext(context); alcCloseDevice(device); }
   }
 
+  @Test void disconnectedOutputCannotCreditUnplayedNativeQueueAtAnySamplingBoundary() throws Exception {
+    // ALC_EXT_disconnect forces a playing queue to STOPPED/PROCESSED without mixing it.
+    // Inject that native transition and its connection flag; never disconnect user hardware.
+    for(int kind = 0; kind < 3; kind++) {
+      for(int boundary = 0; boundary < 5; boundary++) {
+        final long device = alcLoopbackOpenDeviceSOFT((java.nio.ByteBuffer)null);
+        assertNotEquals(0, device);
+        final var caps = ALC.createCapabilities(device);
+        final long context = alcCreateContext(device, new int[]{ALC_FREQUENCY, 48000, ALC_FORMAT_CHANNELS_SOFT, ALC_STEREO_SOFT, ALC_FORMAT_TYPE_SOFT, ALC_FLOAT_SOFT, 0});
+        assertNotEquals(0, context);
+        alcMakeContextCurrent(context); AL.createCapabilities(caps);
+        final Probe audio = new Probe(kind == 2 ? org.lwjgl.openal.EXTFloat32.AL_FORMAT_STEREO_FLOAT32 : AL_FORMAT_STEREO16);
+        try {
+          audio.initialize();
+          final int generation = audio.generation();
+          final short[] packet = new short[1024 * 2];
+          java.util.Arrays.fill(packet, (short)9000);
+          for(int i = 0; i < 15; i++) queuePacket(audio, packet, kind);
+          audio.tick(); alcRenderSamplesSOFT(device, new float[960], 480);
+          assertEquals(0.01, audio.getPlaybackPositionSeconds(), 0.000001);
+          final var field = legend.core.audio.AudioSource.class.getDeclaredField("sourceId");
+          field.setAccessible(true);
+          final int id = field.getInt(audio);
+          final Runnable disconnect = () -> { alSourceStop(id); audio.connected = false; };
+          if(boundary == 0) disconnect.run();
+          else if(boundary == 2) audio.beforePosition = disconnect;
+          else audio.afterConnectionSnapshot = disconnect;
+          if(boundary == 3) audio.process();
+          else if(boundary == 4) queuePacket(audio, packet, kind);
+          assertTrue(audio.getPlaybackPositionSeconds() <= 0.010001,
+            "Device loss must not credit 310ms of unplayed queue: format=" + kind + ", boundary=" + boundary);
+          assertFalse(audio.outputAvailable());
+          assertFalse(audio.canBuffer());
+          assertEquals(0, audio.availableBuffers());
+          assertFalse(audio.hasQueuedOutput());
+          assertEquals(generation + 1, audio.generation(), "Lost output invalidates the cinematic generation exactly once");
+          audio.tick(); audio.process();
+          assertEquals(generation + 1, audio.generation());
+          assertTrue(audio.getPlaybackPositionSeconds() <= 0.010001);
+        } finally { audio.release(); assertEquals(AL_NO_ERROR, alGetError()); alcMakeContextCurrent(0); alcDestroyContext(context); alcCloseDevice(device); }
+      }
+    }
+  }
+
+  @Test void nativeOutputLossAbortsMovieClockBeforeUnplayedAudioCanAdvanceIt() throws Exception {
+    final long device = alcLoopbackOpenDeviceSOFT((java.nio.ByteBuffer)null);
+    assertNotEquals(0, device);
+    final var caps = ALC.createCapabilities(device);
+    final long context = alcCreateContext(device, new int[]{ALC_FREQUENCY, 48000, ALC_FORMAT_CHANNELS_SOFT, ALC_STEREO_SOFT, ALC_FORMAT_TYPE_SOFT, ALC_FLOAT_SOFT, 0});
+    assertNotEquals(0, context);
+    alcMakeContextCurrent(context); AL.createCapabilities(caps);
+    final Probe audio = new Probe();
+    try(final var movie = new StreamingMovie(java.nio.file.Path.of("gfx/intro.mp4"))) {
+      audio.initialize();
+      for(int i = 0; i < 15; i++) audio.bufferOutput(new short[1024 * 2]);
+      audio.tick(); alcRenderSamplesSOFT(device, new float[960], 480);
+      final var playback = new MoviePlayback(movie);
+      assertEquals(10_000, playback.tick(audio, 1), 1);
+      final var field = legend.core.audio.AudioSource.class.getDeclaredField("sourceId");
+      field.setAccessible(true);
+      alSourceStop(field.getInt(audio)); audio.connected = false;
+      assertThrows(java.io.IOException.class, () -> playback.tick(audio, 1), "Changed output must reach the existing normal-speed recovery path");
+      assertTrue(audio.getPlaybackPositionSeconds() <= 0.010001);
+    } finally { audio.release(); assertEquals(AL_NO_ERROR, alGetError()); alcMakeContextCurrent(0); alcDestroyContext(context); alcCloseDevice(device); }
+  }
+
   @Test void shippedIntroAdvancesAtPlayedAudioSpeed() throws Exception {
     assertPlayedAudioSpeed(java.nio.file.Path.of("gfx/intro.mp4"));
   }
@@ -197,12 +297,11 @@ final class StreamingAudioTest {
     try(final var zip = new java.util.zip.ZipFile(payload.toFile())) {
       final var films = zip.stream().filter(entry -> entry.getName().endsWith(".mp4")).toList();
       assertEquals(18, films.size(), "Every shipped film must participate in the pacing check");
-      int index = 0;
       for(final var film : films) {
         final var video = temporary.resolve("film.mp4");
         try {
           try(final var input = zip.getInputStream(film)) { java.nio.file.Files.copy(input, video); }
-          assertPlayedAudioSpeed(video, 1, new int[]{30, 60, 120}[index++ % 3]);
+          for(final int renderHz : new int[]{30, 60, 120}) assertPlayedAudioSpeed(video, 1, renderHz);
         } finally { java.nio.file.Files.deleteIfExists(video); }
       }
     }
@@ -218,11 +317,15 @@ final class StreamingAudioTest {
     final Probe audio = new Probe();
     try(final var movie = new StreamingMovie(video)) {
       audio.initialize();
+      // The audio thread can tick before the decoder supplies its first packet.
+      // A stopped, empty source must never retire later queued samples as played.
+      audio.tick();
       final var playback = new MoviePlayback(movie);
       final int samplesPerFrame = 48_000 / renderHz;
       final float[] output = new float[samplesPerFrame * 2];
       long renderedMicros = 0;
       long lastImage = 0;
+      double energy = 0;
       for(int tick = 0; tick < seconds * renderHz; tick++) {
         final long deadline = System.nanoTime() + 2_000_000_000L;
         while((movie.bufferedImages() == 0 || movie.bufferedAudio() < 16) && !movie.audioDrained() && System.nanoTime() < deadline) Thread.sleep(1);
@@ -235,10 +338,12 @@ final class StreamingAudioTest {
         }
         audio.tick();
         alcRenderSamplesSOFT(device, output, samplesPerFrame);
+        for(final float sample : output) energy += Math.abs(sample);
         renderedMicros = (tick + 1L) * samplesPerFrame * 1_000_000L / 48_000;
         audio.process();
       }
       assertTrue(lastImage >= seconds * 1_000_000L - 100_000, "Video frames must track played audio at " + renderHz + " Hz");
+      assertTrue(energy > 0, "Decoded movie audio must actually reach the native mixer at " + renderHz + " Hz");
       assertFalse(movie.drained(), "A longer movie cannot finish before the played duration");
     } finally { audio.release(); assertEquals(AL_NO_ERROR, alGetError()); alcMakeContextCurrent(0); alcDestroyContext(context); alcCloseDevice(device); }
   }

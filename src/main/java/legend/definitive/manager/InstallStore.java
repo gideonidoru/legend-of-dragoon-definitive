@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.zip.ZipInputStream;
@@ -23,8 +24,10 @@ public final class InstallStore {
   private static final long MAX_ARCHIVE_BYTES = 8L * 1024 * 1024 * 1024;
   static final long PREPARATION_RESERVE_BYTES = 6L * 1024 * 1024 * 1024;
 
-  public InstallStore(final Path root) throws IOException { this(root, InstallStore::replaceFile); }
-  InstallStore(final Path root, final BootstrapPublisher bootstrapPublisher) throws IOException {
+  public InstallStore(final Path root) throws IOException { this(root, InstallStore::replaceFile, false); }
+  static InstallStore forMaintenance(final Path root) throws IOException { return new InstallStore(root, InstallStore::replaceFile, true); }
+  InstallStore(final Path root, final BootstrapPublisher bootstrapPublisher) throws IOException { this(root, bootstrapPublisher, false); }
+  private InstallStore(final Path root, final BootstrapPublisher bootstrapPublisher, final boolean deferRecovery) throws IOException {
     this.bootstrapPublisher = bootstrapPublisher;
     this.root = root.toAbsolutePath().normalize();
     if(this.root.toString().matches("(?s).*[:\\n\\r].*")) throw new IOException("Choose a folder without colons or line breaks.");
@@ -40,10 +43,10 @@ public final class InstallStore {
     if(Files.isSymbolicLink(marker) || !Files.isRegularFile(marker, LinkOption.NOFOLLOW_LINKS) || Files.size(marker) > 1024 || !Files.readString(marker).equals("Legend of Dragoon Definitive install format 1\n")) throw new IOException("This folder does not have a recognized Definitive ownership record. No installation files were replaced.");
     this.checkOwnedPaths();
     for(final String dir : new String[]{"releases", "data", "workspaces", "snapshots"}) Files.createDirectories(this.root.resolve(dir));
-    if(Files.exists(this.root.resolve(".disc-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
+    if(!deferRecovery && (Files.exists(this.root.resolve(".disc-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
       || Files.exists(this.root.resolve(".release-repair-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
       || Files.exists(this.root.resolve(".bootstrap-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
-      || !Files.exists(this.root.resolve("state.properties")) && Files.exists(this.root.resolve(".state-last-good.properties"))) {
+      || !Files.exists(this.root.resolve("state.properties")) && Files.exists(this.root.resolve(".state-last-good.properties")))) {
       try(final var operation = this.operation()) { /* Recovery runs before missing paths are created. */ }
     }
     if(!Files.exists(this.root.resolve(".disc-transaction.properties"), LinkOption.NOFOLLOW_LINKS)) Files.createDirectories(this.root.resolve("isos"));
@@ -69,23 +72,28 @@ public final class InstallStore {
   }
 
   public Operation lock() throws IOException {
+    return this.lock(false);
+  }
+  private Operation lock(final boolean maintenance) throws IOException {
     final HeldOperation existing = this.held.get();
-    if(existing != null) { if(!existing.reentrant) throw new IOException("Close the game or other installation operation first."); existing.depth++; return new Operation(existing); }
+    if(existing != null) { if(!existing.reentrant) throw new GameLease.Busy("Close the game or other installation operation first."); existing.depth++; return new Operation(existing); }
     this.checkOwnedPaths();
     final FileChannel channel = FileChannel.open(this.root.resolve(".operation-lock"), StandardOpenOption.CREATE, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS);
     final FileLock lock;
     try { lock = channel.tryLock(); }
-    catch(final java.nio.channels.OverlappingFileLockException e) { channel.close(); throw new IOException("Close the game or other installation operation first."); }
-    if(lock == null) { channel.close(); throw new IOException("Close the game or other installation operation first."); }
+    catch(final java.nio.channels.OverlappingFileLockException e) { channel.close(); throw new GameLease.Busy("Close the game or other installation operation first."); }
+    if(lock == null) { channel.close(); throw new GameLease.Busy("Close the game or other installation operation first."); }
     final HeldOperation owned = new HeldOperation(channel, lock); this.held.set(owned);
     try {
-      GameLease.checkIdle(this.root);
+      owned.gameLease = GameLease.checkIdle(this.root, maintenance);
       this.recoverReleaseRepair();
       this.recoverState();
       this.recoverDiscs();
       this.recoverBootstrap();
       return new Operation(owned);
     } catch(final IOException | RuntimeException failure) {
+      try { if(owned.gameLease != null) owned.gameLease.close(); }
+      catch(final IOException cleanup) { failure.addSuppressed(cleanup); }
       try { lock.release(); } finally { channel.close(); this.held.remove(); }
       throw failure;
     }
@@ -96,7 +104,7 @@ public final class InstallStore {
   }
 
   private static final class HeldOperation {
-    final FileChannel channel; final FileLock lock; int depth = 1; boolean reentrant;
+    final FileChannel channel; final FileLock lock; GameLease.IdleLease gameLease; int depth = 1; boolean reentrant;
     HeldOperation(final FileChannel channel, final FileLock lock) { this.channel = channel; this.lock = lock; }
   }
   public final class Operation implements AutoCloseable {
@@ -104,16 +112,36 @@ public final class InstallStore {
     private Operation(final HeldOperation operation) { this.operation = operation; }
     public FileChannel channel() { return this.operation.channel; }
     public FileLock lock() { return this.operation.lock; }
+    void allowGameLaunch() throws IOException {
+      if(this.operation.gameLease != null) { this.operation.gameLease.close(); this.operation.gameLease = null; }
+    }
     @Override public void close() throws IOException {
       if(this.closed) return;
       if(held.get() != this.operation) throw new IOException("Installation operation closed from the wrong thread.");
       this.closed = true;
-      if(--this.operation.depth == 0) try { this.operation.lock.release(); } finally { this.operation.channel.close(); held.remove(); }
+      if(--this.operation.depth == 0) {
+        try { if(this.operation.gameLease != null) this.operation.gameLease.close(); }
+        finally { try { this.operation.lock.release(); } finally { this.operation.channel.close(); held.remove(); } }
+      }
     }
   }
   @FunctionalInterface public interface Work<T> { T run() throws IOException, InterruptedException; }
   public <T> T withOperation(final Work<T> work) throws IOException, InterruptedException {
     try(final var operation = this.operation()) { return work.run(); }
+  }
+  public <T> T withMaintenance(final InstallProgress progress, final Work<T> work) throws IOException, InterruptedException {
+    this.checkOwnedPaths();
+    final long deadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(8);
+    while(true) {
+      GameLease.stopForMaintenance(this.root, progress);
+      final Operation operation;
+      try { operation = this.lock(true); operation.operation.reentrant = true; }
+      catch(final GameLease.Busy busy) {
+        if(System.nanoTime() >= deadline) throw busy;
+        Thread.sleep(50); continue;
+      }
+      try(operation) { return work.run(); }
+    }
   }
 
   public String install(final Path source) throws IOException { return this.install(source, ""); }
@@ -241,10 +269,11 @@ public final class InstallStore {
   }
 
   private void verifyBootstrap() throws IOException { this.verifiedRouterRelease(); }
-  Path verifiedRouterRelease() throws IOException {
+  Path verifiedRouterRelease() throws IOException { return this.verifiedRouterRelease(true); }
+  Path verifiedRouterRelease(final boolean requireBootstrapPair) throws IOException {
     this.checkOwnedPaths();
     final String managerHash = PackageManifest.sha256(this.root.resolve("definitive-manager.jar"));
-    final String bootstrapHash = PackageManifest.sha256(this.root.resolve("bootstrap-java"));
+    final String bootstrapHash = requireBootstrapPair ? PackageManifest.sha256(this.root.resolve("bootstrap-java")) : "";
     // The router can be newer than the active engine after rollback. Require a
     // matching pair from an installed package's platform-valid closed inventory.
     try(final var releases = Files.list(this.root.resolve("releases"))) {
@@ -255,7 +284,7 @@ public final class InstallStore {
         if(reference.platform().equals(PackageManifest.hostPlatform()) && candidate.getFileName().toString().equals(reference.id())
           && PackageManifest.identity(reference.metadata(), reference.hashes()).equals(reference.id())
           && managerHash.equals(reference.hashes().getProperty("definitive-manager.jar"))
-          && bootstrapHash.equals(reference.hashes().getProperty("bootstrap-java"))) { reference.verifyManagerDependencies(candidate); return candidate; }
+          && (!requireBootstrapPair || bootstrapHash.equals(reference.hashes().getProperty("bootstrap-java")))) { reference.verifyManagerDependencies(candidate); return candidate; }
       }
     }
     throw new IOException("Launcher files are damaged or unrecognized. Retry installation to repair them.");
@@ -537,7 +566,7 @@ public final class InstallStore {
     }
     try(final var files = Files.list(release.resolve("bundled-mods"))) {
       for(final Path mod : files.toList()) {
-        if("original".equals(state.getProperty("artwork", "hd")) && !mod.getFileName().toString().matches("(?:EnvHD|CharHD|UIHD|FxHD|FMVHD)-v[0-9.]+\\.jar")) continue;
+        if("original".equals(state.getProperty("artwork", "hd")) && !mod.getFileName().toString().matches("(?:(?:EnvHD|CharHD|UIHD|FxHD|FMVHD)-v[0-9.]+\\.jar|Env[1-4]HD-v[0-9.]+\\.zip)")) continue;
         if(Files.exists(mods.resolve(mod.getFileName()), LinkOption.NOFOLLOW_LINKS)) throw new IOException("Duplicate bundled artwork mod. Remove its custom copy before playing.");
         link(mods.resolve(mod.getFileName()), mod);
       }
@@ -692,7 +721,10 @@ public final class InstallStore {
     try(final var operation = this.operation()) { final var state = this.state(); this.setPreferences(!"original".equals(state.getProperty("artwork", "hd")), Boolean.parseBoolean(state.getProperty("legacyTextures", "false")), enabled); }
   }
 
-  public String uninstall(final boolean deleteIsos, final InstallProgress progress) throws IOException {
+  public String uninstall(final boolean deleteIsos, final InstallProgress progress) throws IOException, InterruptedException {
+    return this.withMaintenance(progress, () -> this.removeInstallation(deleteIsos, progress));
+  }
+  private String removeInstallation(final boolean deleteIsos, final InstallProgress progress) throws IOException {
     try(final var operation = this.operation()) {
       final Properties state = this.state(); this.data(state); // Requires a recognized data generation, even for a damaged install.
       final var targets = new ArrayList<Path>();
@@ -813,9 +845,11 @@ public final class InstallStore {
       command.add(Path.of(System.getProperty("java.home"), "bin", "java").toString());
       if(PackageManifest.hostPlatform().startsWith("macos")) command.add("-XstartOnFirstThread");
       command.add("-Ddefinitive.legacyTextures=" + Boolean.parseBoolean(state.getProperty("legacyTextures", "false")));
+      command.addAll(this.managedModArguments(state));
       final Path log = workspace.resolve("launcher.log");
       DiagnosticLogs.checked(log);
       this.verifiedRouterRelease();
+      operation.allowGameLaunch();
       final String token = GameLease.begin(this.root);
       try {
         command.add("-Ddefinitive.installRoot=" + this.root);
@@ -827,6 +861,16 @@ public final class InstallStore {
         try(final var running = ProcessRunner.start(builder, log)) { return running.await(); }
       } finally { GameLease.finished(this.root, token); }
     }
+  }
+
+  /** Bind runtime module choices to this installation's preserved private data. */
+  List<String> managedModArguments(final Properties state) throws IOException {
+    final Path preferences = this.data(state).resolve("definitive-hd-mods.properties");
+    if(Files.exists(preferences, LinkOption.NOFOLLOW_LINKS) && !Files.isRegularFile(preferences, LinkOption.NOFOLLOW_LINKS)) {
+      throw new IOException("Unexpected HD module preferences file. No game was started.");
+    }
+    return List.of("-Ddefinitive.artworkProfile=" + state.getProperty("artwork", "hd"),
+      "-Ddefinitive.hdModPreferences=" + preferences);
   }
 
   static void normalizeSteamOverlay(final java.util.Map<String, String> environment) {

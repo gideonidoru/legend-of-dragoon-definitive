@@ -145,6 +145,6 @@ public class NoopWindow extends Window {
 
   private void tick() {
     this.events().onDraw();
-    this.manager.clearPressed();
+    if(!this.simulationConsumesInput()) this.manager.clearPressed();
   }
 }

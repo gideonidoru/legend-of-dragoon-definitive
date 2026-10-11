@@ -9,10 +9,11 @@ import sys
 import tempfile
 import zipfile
 from package_validation import ROOT
+from desktop_bootstrap import desktop_entry
 
 repo = Path(__file__).resolve().parents[1]
 source = 'a' * 40
-for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob', 'file-delivery-many-assets-draft', 'file-delivery-many-assets-omitted-page', 'ci-source-input-omitted'):
+for scenario in ('crlf-checksum-manifest', 'bare-cr-checksum-manifest', 'unicode-checksum-manifest', 'missing-final-lf', 'legacy-pinned-desktop', 'altered-latest-desktop', 'cache-success', 'cache-corrupt', 'cache-missing', 'cache-linked', 'file-delivery-thin-success', 'success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob', 'file-delivery-many-assets-draft', 'file-delivery-many-assets-omitted-page', 'ci-source-input-omitted'):
     with tempfile.TemporaryDirectory(prefix='definitive-release-fixture-') as directory:
         root = Path(directory); assets = root / 'assets'; assets.mkdir(); tools = root / 'tools'; tools.mkdir()
         with zipfile.ZipFile(assets / 'Definitive-Installer.zip', 'w') as archive:
@@ -21,11 +22,14 @@ for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch
         sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
         tag = 'fixture-recovery'
         (assets / 'Install-Definitive.sh').write_text(f'TAG={tag}\nEXPECTED={sha(assets / "Definitive-Installer.zip")}\n')
-        (assets / 'Install-Definitive.desktop').write_text(f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/{tag}/Install-Definitive.sh {sha(assets / "Install-Definitive.sh")}')
+        (assets / 'Install-Definitive.desktop').write_text(desktop_entry())
+        if scenario=='legacy-pinned-desktop':(assets / 'Install-Definitive.desktop').write_text(f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/{tag}/Install-Definitive.sh {sha(assets / "Install-Definitive.sh")}')
+        if scenario=='altered-latest-desktop':(assets / 'Install-Definitive.desktop').write_text(desktop_entry().replace('/releases/latest/', '/releases/download/old/'))
         for platform in ('linux-x64', 'macos-arm64'):
             metadata = {'format': '1', 'java': '25', 'sourceRevision': source, 'releaseTag': tag,
                         'platform': platform, 'gameJar': 'lod-game-fixture.jar'}
             payload = {n: b'original synthetic package fixture' for n in ROOT | {'lod-game-fixture.jar', 'libs/library.jar', 'bundled-mods/art.jar'}}
+            if scenario.startswith('file-delivery'):payload['bundled-mods/Env1HD-v0.1.0.zip']=b'custom environment pack'
             if scenario.startswith('file-delivery-many-assets'): payload.update({f'gfx/item-{i}.txt': ('unique-'+str(i)).encode() for i in range(120)})
             hashes = {n: hashlib.sha256(b).hexdigest() for n, b in payload.items()}
             canonical = ''.join(k + '=' + metadata[k] + '\n' for k in sorted(metadata))
@@ -47,7 +51,7 @@ for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch
             import importlib.util
             spec=importlib.util.spec_from_file_location('file_assembler',repo/'scripts/assemble-file-delivery.py'); assembler=importlib.util.module_from_spec(spec);spec.loader.exec_module(assembler)
             for platform in ('linux-x64','macos-arm64'):
-                assembler.assemble(assets/f'Legend-of-Dragoon-Definitive-{platform}.zip',assets)
+                assembler.assemble(assets/f'Legend-of-Dragoon-Definitive-{platform}.zip',assets,thin_release=scenario=='file-delivery-thin-success',archive_limit=0)
             for blob in (assets/'files').iterdir():blob.rename(assets/blob.name)
             (assets/'files').rmdir()
             if scenario=='file-delivery-missing-blob':next(assets.glob('file-*')).unlink()
@@ -56,7 +60,7 @@ for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch
                                              (2, 'delivery-macos-15', ('Legend-of-Dragoon-Definitive-macos-arm64.zip',))):
             if scenario.startswith('file-delivery'):
                 platform='linux-x64' if id==1 else 'macos-arm64'
-                selected=tuple(selected)+(f'Definitive-Contents-{platform}.zip',)+tuple(p.name for p in assets.glob('file-*'))
+                selected=tuple(selected)+(f'Definitive-Contents-{platform}.zip',)+tuple(p.name for p in assets.glob('file-*'))+tuple(p.name for p in assets.glob('Env[1-4]HD-*.zip'))
             path = root / f'artifact-{id}.zip'
             with zipfile.ZipFile(path, 'w') as artifact:
                 if scenario == 'ci-source-input-omitted': artifact.writestr('distributions/FMVHD-v0.1.0-videos.zip', b'approved synthetic source input')
@@ -69,6 +73,11 @@ for scenario in ('success', 'lookup-failure', 'build-failure', 'account-mismatch
         (root / 'artifacts.json').write_text(json.dumps([{'artifacts': artifact_records}]))
         names = sorted(p.name for p in assets.iterdir())
         (assets / 'SHA256SUMS').write_text(''.join(sha(assets / n) + '  ' + n + '\n' for n in names))
+        sums=assets/'SHA256SUMS'
+        if scenario=='crlf-checksum-manifest':sums.write_bytes(sums.read_bytes().replace(b'\n',b'\r\n'))
+        if scenario=='bare-cr-checksum-manifest':sums.write_bytes(sums.read_bytes().replace(b'\n',b'\r'))
+        if scenario=='unicode-checksum-manifest':sums.write_bytes(sums.read_bytes().replace(b'\n','\u2028'.encode('utf-8')))
+        if scenario=='missing-final-lf':sums.write_bytes(sums.read_bytes()[:-1])
         temporary_tag = 'untagged-e8c0b3b8be797c205abe'
         release = {'databaseId':456, 'tagName': tag, 'targetCommitish': source, 'isDraft': scenario not in ('already-public', 'temporary-public-url'), 'url': f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/{temporary_tag if scenario in ("draft-temporary-urls", "wrong-draft-url", "temporary-public-url", "file-delivery-many-assets-draft", "file-delivery-many-assets-omitted-page") else tag}', 'assets': []}
         for path in assets.iterdir():
@@ -117,11 +126,23 @@ elif a[:2]==['release','edit']:
 else:raise AssertionError(a)
 ''')
         gh.chmod(0o755)
+        extra=[]
+        if scenario.startswith('cache-'):
+            cache=root/'cache';cache.mkdir()
+            for record in artifact_records:
+                (cache/(record['name']+'.zip')).write_bytes((root/f'artifact-{record["id"]}.zip').read_bytes())
+            path=cache/'delivery-ubuntu-24.04.zip'
+            if scenario=='cache-corrupt':
+                data=path.read_bytes();path.write_bytes(bytes([data[0]^1])+data[1:])
+            if scenario=='cache-missing':path.unlink()
+            if scenario=='cache-linked':path.unlink();path.symlink_to(root/'artifact-1.zip')
+            extra=['--ci-artifacts-dir',str(cache)]
         env = dict(os.environ, PATH=str(tools) + ':' + os.environ['PATH'], FIXTURE_ROOT=str(root), FIXTURE_SCENARIO=scenario)
-        result = subprocess.run([sys.executable, str(repo / 'scripts/publish-verified-release.py'), '--tag', tag, '--source-sha', source, '--run', '123', '--assets-dir', str(assets), '--notes-file', str(root / 'notes.md')], env=env, capture_output=True, text=True, timeout=10)
+        result = subprocess.run([sys.executable, str(repo / 'scripts/publish-verified-release.py'), '--tag', tag, '--source-sha', source, '--run', '123', '--assets-dir', str(assets), '--notes-file', str(root / 'notes.md')]+extra, env=env, capture_output=True, text=True, timeout=10)
         calls = [json.loads(line) for line in (root / 'calls.jsonl').read_text().splitlines()] if (root / 'calls.jsonl').exists() else []
+        if scenario.startswith('cache-'):assert not any(a[0]=='api' and '/actions/artifacts/' in a[1] for a in calls)
         publications = [a for a in calls if a[:2] == ['release', 'edit']]
-        if scenario in ('success', 'annotated-tag', 'draft-temporary-urls', 'file-delivery-success', 'file-delivery-many-assets-draft'):assert result.returncode == 0 and len(publications) == 1 and '--draft=false' in publications[0], result.stderr
+        if scenario in ('cache-success', 'file-delivery-thin-success', 'success', 'annotated-tag', 'draft-temporary-urls', 'file-delivery-success', 'file-delivery-many-assets-draft'):assert result.returncode == 0 and len(publications) == 1 and '--draft=false' in publications[0], result.stderr
         elif scenario == 'already-public':assert result.returncode == 0 and not publications, result.stderr
         else:assert result.returncode != 0 and not publications, 'Failed gate published: ' + scenario
         print('PASS', scenario)

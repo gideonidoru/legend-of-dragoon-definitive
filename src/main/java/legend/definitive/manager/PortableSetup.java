@@ -15,8 +15,19 @@ public final class PortableSetup {
     return install(supplied, store, progress, false);
   }
   static String install(final Path supplied, final InstallStore store, final InstallProgress progress, final boolean fullReinstall) throws IOException, InterruptedException {
+    if(fullReinstall) return store.withMaintenance(progress, () -> installSelected(supplied, store, progress, true));
+    return installSelected(supplied, store, progress, false);
+  }
+  private static String installSelected(final Path supplied, final InstallStore store, final InstallProgress progress, final boolean fullReinstall) throws IOException, InterruptedException {
     InstallerLog.write("Install target: " + store.root() + "; platform: " + PackageManifest.hostPlatform() + "; Java: " + Runtime.version());
-    if(supplied != null && Files.isRegularFile(supplied.resolve(PackageManifest.METADATA))) return store.install(supplied, "", null, progress, fullReinstall);
+    if(supplied != null && Files.isRegularFile(supplied.resolve(PackageManifest.METADATA))) {
+      if(Files.exists(supplied.resolve(FileDelivery.SIZES))) {
+        progress.phase("Finding your build", "Checking the supplied online package against the published release", 5);
+        final var candidate = ReleaseUpdates.latest().orElseThrow(() -> new IOException("No compatible release is published. Download the current installer again."));
+        return installOnline(supplied, store, candidate, progress, ReleaseUpdates::sendAsset, fullReinstall);
+      }
+      return store.install(supplied, "", null, progress, fullReinstall);
+    }
     progress.phase("Checking available space", store.root().toString(), 2);
     if(Files.getFileStore(store.root()).getUsableSpace() < 1024L * 1024 * 1024) throw new IOException("Setup needs at least 1 GB free before downloading. Installation and disc preparation check their full storage needs separately.");
     progress.phase("Finding your build", "Checking GitHub for the " + PackageManifest.hostPlatform() + " package", 5);
@@ -39,6 +50,14 @@ public final class PortableSetup {
       return store.install(checkout.resolve("build/definitive/package"), "", null, progress, fullReinstall);
     } catch(final IOException e) { throw new IOException("Setup could not finish its source build. Check your connection and free space. Build details: " + log, e); }
     // Retain build logs/source on failure and success for diagnosis and corresponding source access.
+  }
+  static String installOnline(final Path supplied, final InstallStore store, final ReleaseUpdates.Candidate candidate, final InstallProgress progress, final ReleaseUpdates.AssetDownload connection, final boolean fullReinstall) throws IOException, InterruptedException {
+    final var manifest = PackageManifest.read(supplied);
+    if(!Files.isRegularFile(supplied.resolve(FileDelivery.SIZES), LinkOption.NOFOLLOW_LINKS) || Files.isSymbolicLink(supplied.resolve(FileDelivery.SIZES)) || !PackageManifest.hostPlatform().equals(manifest.platform()) || !PackageManifest.identity(manifest.metadata(), manifest.hashes()).equals(manifest.id()) || !candidate.tag().equals(manifest.metadata().getProperty("releaseTag")) || candidate.contents() == null) throw new IOException("This online package does not match the current published release. Download the current installer again.");
+    manifest.verifyManagerDependencies(supplied);
+    ReleaseUpdates.validateContents(candidate);
+    if(fullReinstall) return store.withMaintenance(progress, () -> FileDelivery.install(store, candidate, progress, connection, false, true, manifest.id()));
+    return FileDelivery.install(store, candidate, progress, connection, false, false, manifest.id());
   }
   static String fallbackRevision() throws IOException {
     final Properties pin = new Properties();

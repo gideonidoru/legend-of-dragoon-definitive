@@ -7,6 +7,7 @@ import org.legendofdragoon.modloader.events.Event;
 public final class BattleStageTextureEvent extends Event {
   private final byte[] model, tim;
   public MaterialAtlas replacement;
+  public legend.definitive.artwork.BattleMaterialAtlas staticReplacement;
   public BattleStageTextureEvent(final byte[] model, final byte[] tim) {
     this.model = model.clone(); this.tim = tim.clone();
   }

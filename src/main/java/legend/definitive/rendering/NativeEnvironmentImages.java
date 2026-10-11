@@ -40,6 +40,7 @@ public final class NativeEnvironmentImages {
     for(int i=0;i<tiles.length;i++) {
       final Tile tile=tiles[i];
       if(tile == null) continue;
+      if(tile.width() == 0 || tile.height() == 0) continue;
       if(tile.width() <= 0 || tile.height() <= 0 || tile.width() > 16384 || tile.height() > 16384) throw new IllegalArgumentException("Native environment dimensions");
       Decoded decoded=sources.get(tile.source());
       if(decoded == null) {
@@ -56,6 +57,7 @@ public final class NativeEnvironmentImages {
       if(tile.foreground()) {
         region.w=Math.min(region.w,decoded.texture().rect.w-region.x);
         region.h=Math.min(region.h,decoded.texture().rect.h-region.y);
+        if((region.w == 0 || region.h == 0) && region.x >= 0 && region.y >= 0 && region.x <= decoded.texture().rect.w && region.y <= decoded.texture().rect.h) continue;
       }
       final long segmentBytes=(long)region.w*region.h*4;
       if(region.x < 0 || region.y < 0 || region.w <= 0 || region.h <= 0 || region.x > decoded.texture().rect.w || region.y > decoded.texture().rect.h || region.w > decoded.texture().rect.w-region.x || region.h > decoded.texture().rect.h-region.y || segmentBytes > MAX_BYTES-bytes) throw new IllegalArgumentException("Native environment region budget");

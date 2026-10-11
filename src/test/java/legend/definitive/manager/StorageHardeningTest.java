@@ -10,6 +10,28 @@ import java.util.jar.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StorageHardeningTest {
+  @Test void opaqueUnrelatedProcessesCannotBlockStaleLaunchRecovery() throws Exception {
+    final var unknown = new GameLease.LaunchProcess(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(UUID.randomUUID().toString(), "fixture-user", Instant.now(), () -> unknown, () -> true));
+  }
+  @Test void terminationRequiresExactRootAndTokenArgumentsIncludingSpacesAndPrefixPaths() {
+    final Path root = Path.of("/tmp/game"); final String token = UUID.randomUUID().toString();
+    assertTrue(GameLease.gameArguments(Optional.of(new String[]{"-Ddefinitive.installRoot=" + root, "-Ddefinitive.launchToken=" + token}), root, Set.of(token)));
+    for(final String other : new String[]{"/tmp/game -copy", "/tmp/game-other", "/tmp/game/child"}) {
+      assertFalse(GameLease.gameArguments(Optional.of(new String[]{"-Ddefinitive.installRoot=" + other, "-Ddefinitive.launchToken=" + token}), root, Set.of(token)));
+    }
+    assertFalse(GameLease.gameArguments(Optional.of(new String[]{"-Dother=-Ddefinitive.installRoot=" + root, "-Ddefinitive.launchToken=" + token}), root, Set.of(token)));
+    assertFalse(GameLease.gameArguments(Optional.of(new String[]{"-Ddefinitive.installRoot=" + root, "-Dother=-Ddefinitive.launchToken=" + token}), root, Set.of(token)));
+    assertFalse(GameLease.gameArguments(Optional.empty(), root, Set.of(token)));
+    assertFalse(GameLease.gameArguments(Optional.of(new String[]{"-Ddefinitive.installRoot=/other", "-Ddefinitive.launchToken=" + token, "-cp", "classpath", ManagedGameMain.class.getName(), "-Ddefinitive.installRoot=" + root}), root, Set.of(token)));
+    assertFalse(GameLease.gameArguments(Optional.of(new String[]{"-Ddefinitive.installRoot=" + root, "-Ddefinitive.installRoot=/other", "-Ddefinitive.launchToken=" + token}), root, Set.of(token)));
+    assertTrue(GameLease.gameArguments(Optional.of(new String[]{"-Ddefinitive.installRoot=/other", "-Ddefinitive.installRoot=" + root, "-Ddefinitive.launchToken=" + token}), root, Set.of(token)));
+    assertFalse(GameLease.gameArguments(Optional.of(new String[]{"-Ddefinitive.installRoot=/other", "-Ddefinitive.launchToken=" + token, "-cp", "-Ddefinitive.installRoot=" + root, ManagedGameMain.class.getName()}), root, Set.of(token)));
+    assertFalse(GameLease.gameArguments(Optional.of(new String[]{"-Ddefinitive.installRoot=" + root, "-Ddefinitive.installRoot", "-Ddefinitive.launchToken=" + token}), root, Set.of(token)));
+    assertFalse(GameLease.gameArguments(Optional.of(new String[]{"-Ddefinitive.installRoot=" + root, "-Ddefinitive.launchToken=" + token, "-Ddefinitive.launchToken"}), root, Set.of(token)));
+    final Path spaced = Path.of("/tmp/game with spaces");
+    assertTrue(GameLease.gameArguments(Optional.of(new String[]{"-Ddefinitive.installRoot=" + spaced, "-Ddefinitive.launchToken=" + token}), spaced, Set.of(token)));
+  }
   @TempDir Path temporary;
   private InstallStoreTest fixtures;
   @BeforeEach void prepare() throws Exception { this.temporary = this.temporary.toRealPath(); this.fixtures = new InstallStoreTest(); this.fixtures.temporary = this.temporary; }
@@ -56,6 +78,18 @@ class StorageHardeningTest {
     final var reopened = new InstallStore(store.root()); reopened.verifyInstalled(); assertEquals(old, reopened.state());
     assertFalse(Files.exists(store.root().resolve(".bootstrap-transaction.properties")));
     assertEquals(PackageManifest.sha256(candidate.resolve("bootstrap-java")), PackageManifest.sha256(store.root().resolve("bootstrap-java")));
+  }
+  @Test void manageRoutesVerifiedManagerWithPartialBootstrapAndCorruptHandoffBeforeRecovery() throws Exception {
+    final var store = install("manage-bootstrap"); final Path candidate = this.fixtures.pack("manage-bootstrap-next", PackageManifest.hostPlatform());
+    Files.writeString(candidate.resolve("definitive-manager.jar"), "distinct verified fixture manager"); Files.writeString(candidate.resolve("bootstrap-java"), "#!/bin/bash\nexit 0\n# distinct verified fixture bootstrap\n");
+    Files.delete(candidate.resolve(PackageManifest.METADATA)); Files.delete(candidate.resolve(PackageManifest.HASHES)); ManagerMain.makeManifest(candidate, PackageManifest.hostPlatform(), "fixture-next");
+    final Process child = start("bootstrap", store.root(), List.of(candidate)); assertTrue(child.waitFor(15, TimeUnit.SECONDS)); assertEquals(91, child.exitValue());
+    Files.writeString(store.root().resolve(GameLease.PENDING), "\\uNOTHEX\n");
+    final Path routed = ManagerMain.routerRelease(store.root(), true);
+    assertEquals(PackageManifest.sha256(store.root().resolve("definitive-manager.jar")), PackageManifest.read(routed).hashes().getProperty("definitive-manager.jar"));
+    assertTrue(Files.exists(store.root().resolve(".bootstrap-transaction.properties")), "Routing must not mutate an interrupted transaction before explicit maintenance");
+    InstallStore.forMaintenance(store.root()).withMaintenance(InstallProgress.NONE, () -> { new InstallStore(store.root()).verifyInstalled(); return null; });
+    assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(".bootstrap-transaction.properties")));
   }
   @Test void killedDiscPublicationRecoversVerifiedStagingBeforeRecreatingIsos() throws Exception {
     final var store = install("discs"); final var inputs = discs("crash-");
@@ -123,6 +157,141 @@ class StorageHardeningTest {
   private Path leasePackage() throws Exception {
     return this.leasePackage(false);
   }
+  @Test void maintenanceRetainsGameLeaseAndReleasesBothLocksOnFailure() throws Exception {
+    final var store = install("maintenance-game-lease");
+    assertThrows(java.io.IOException.class, () -> store.withMaintenance(InstallProgress.NONE, () -> {
+      try(final var channel = java.nio.channels.FileChannel.open(store.root().resolve(".game-lock"), StandardOpenOption.WRITE)) {
+        assertThrows(java.nio.channels.OverlappingFileLockException.class, channel::tryLock);
+      }
+      throw new java.io.IOException("Injected maintenance failure");
+    }));
+    try(final var operation = new InstallStore(store.root()).lock()) { assertTrue(operation.lock().isValid()); }
+  }
+  @Test void normalGameExitWithStaleReceiptsRepairsAutomatically() throws Exception {
+    final var store = install("normal-exit-repair"); final Properties before = store.state();
+    final Path sentinel = store.data(before).resolve("saves/normal-exit-owner"); Files.writeString(sentinel, "preserve normal quit data");
+    final Process game = start("normal-game-exit", store.root(), List.of()); assertTrue(game.waitFor(10, TimeUnit.SECONDS)); assertEquals(0, game.exitValue());
+    assertTrue(Files.exists(store.root().resolve(GameLease.PENDING))); assertTrue(Files.exists(store.root().resolve(GameLease.RUNNING)));
+    store.withMaintenance(InstallProgress.NONE, () -> { store.verifyInstalled(); return null; });
+    assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+    assertEquals(before.getProperty("data"), store.state().getProperty("data")); assertEquals("preserve normal quit data", Files.readString(sentinel));
+  }
+  @Test void repairStopsPublishedLegacyChildPausedAfterItsOldTokenValidation() throws Exception {
+    final var store = new InstallStore(this.temporary.resolve("legacy-paused-repair")); final Path pack = leasePackage();
+    final String original;
+    try(final var input = StorageHardeningTest.class.getResourceAsStream("managed-game-main-5c.java")) { assertNotNull(input); original = new String(input.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8); }
+    final String gate = "GameLease.validatePending(root, token);\n    Files.writeString(root.resolve(\"fixture-legacy-validated\"), \"legacy entry validated before the game lease\");\n    while(!Files.exists(root.resolve(\"fixture-legacy-continue\"))) Thread.sleep(20);";
+    final Path source = this.temporary.resolve("legacy-source/legend/definitive/manager/ManagedGameMain.java"); Files.createDirectories(source.getParent()); Files.writeString(source, original.replace("GameLease.validatePending(root, token);", gate));
+    assertNotEquals(original, Files.readString(source)); final Path classes = this.temporary.resolve("legacy-classes"); Files.createDirectories(classes);
+    assertEquals(0, javax.tools.ToolProvider.getSystemJavaCompiler().run(null, null, null, "-cp", System.getProperty("java.class.path"), "-d", classes.toString(), source.toString()));
+    final Path manager = pack.resolve("definitive-manager.jar"), replacement = pack.resolve("legacy-manager.jar");
+    try(final var old = new JarFile(manager.toFile()); final var changed = new JarOutputStream(Files.newOutputStream(replacement))) {
+      final var entries = old.entries(); while(entries.hasMoreElements()) {
+        final var entry = entries.nextElement(); changed.putNextEntry(new JarEntry(entry.getName()));
+        if(entry.getName().equals("legend/definitive/manager/ManagedGameMain.class")) changed.write(Files.readAllBytes(classes.resolve(entry.getName())));
+        else try(final var input = old.getInputStream(entry)) { input.transferTo(changed); }
+        changed.closeEntry();
+      }
+    }
+    Files.move(replacement, manager, StandardCopyOption.REPLACE_EXISTING); Files.delete(pack.resolve(PackageManifest.METADATA)); Files.delete(pack.resolve(PackageManifest.HASHES)); ManagerMain.makeManifest(pack, PackageManifest.hostPlatform(), "legacy-fixture"); store.install(pack);
+    final Process parent = start("handoff", store.root(), List.of()); assertTrue(parent.waitFor(10, TimeUnit.SECONDS)); assertEquals(94, parent.exitValue());
+    final ProcessHandle child = ProcessHandle.of(Long.parseLong(Files.readString(store.root().resolve("fixture-child.pid")))).orElseThrow();
+    try {
+      Files.writeString(store.root().resolve("fixture-spawn-gap.continue"), "continue into the old pre-lease validation boundary");
+      final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
+      while(!Files.exists(store.root().resolve("fixture-legacy-validated")) && child.isAlive() && System.nanoTime() < deadline) Thread.sleep(20);
+      assertTrue(Files.exists(store.root().resolve("fixture-legacy-validated")), Files.readString(store.root().resolve("handoff-child.log")));
+      assertTrue(child.isAlive()); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+      if(PackageManifest.hostPlatform().equals("linux-x64")) assertTrue(child.info().arguments().isEmpty(), "The 16K legacy command must exercise exact /proc argv recovery");
+      store.withMaintenance(InstallProgress.NONE, () -> { assertFalse(child.isAlive()); store.verifyInstalled(); return null; });
+      assertFalse(Files.exists(store.root().resolve("fixture-game.started"))); assertFalse(Files.exists(store.root().resolve(GameLease.PENDING)));
+    } finally { if(child.isAlive()) { child.destroyForcibly(); child.onExit().get(10, TimeUnit.SECONDS); } }
+  }
+  @Test void explicitRepairStopsOnlyOwnedGameAndKeepsPersonalData() throws Exception {
+    final var store = new InstallStore(this.temporary.resolve("repair-owned-game")); store.install(leasePackage()); DiscImporter.importDiscs(store, discs("repair-owned-"));
+    final Path workspace = store.prepareLaunch(); Files.writeString(workspace.resolve("files/version"), "5");
+    final Properties before = store.state();
+    final Path sentinel = store.data(before).resolve("saves/repair-owner"); Files.writeString(sentinel, "retain personal data");
+    final Process unrelated = new ProcessBuilder("/bin/sleep", "60").start();
+    final Process outer = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin/java").toString(), "-Djava.awt.headless=true", "-Ddefinitive.installerLog=" + this.temporary.resolve("installer.log"), "-jar", store.root().resolve("definitive-manager.jar").toString(), "--play", store.root().toString()).redirectErrorStream(true).redirectOutput(this.temporary.resolve("repair-router-output.log").toFile()).start();
+    try {
+      final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
+      while(!Files.exists(store.root().resolve("fixture-game.started")) && outer.isAlive() && System.nanoTime() < deadline) Thread.sleep(20);
+      assertTrue(Files.exists(store.root().resolve("fixture-game.started")), Files.readString(this.temporary.resolve("repair-router-output.log")));
+      final Properties receipt = PackageManifest.readProperties(store.root().resolve(GameLease.RUNNING));
+      final ProcessHandle game = ProcessHandle.of(Long.parseLong(receipt.getProperty("pid"))).orElseThrow();
+      assertTrue(game.isAlive());
+      final Set<String> phases = new HashSet<>();
+      store.withMaintenance(update -> phases.add(update.phase()), () -> { store.verifyInstalled(); return null; });
+      assertFalse(game.isAlive()); assertTrue(outer.waitFor(10, TimeUnit.SECONDS)); assertTrue(unrelated.isAlive());
+      assertTrue(phases.contains("Closing the managed game"));
+      assertEquals(before.getProperty("version"), store.state().getProperty("version"));
+      assertEquals(before.getProperty("data"), store.state().getProperty("data"));
+      assertEquals("retain personal data", Files.readString(sentinel)); assertEquals(workspace, store.prepareLaunch());
+      assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+    } finally { outer.destroyForcibly(); outer.waitFor(10, TimeUnit.SECONDS); unrelated.destroyForcibly(); unrelated.waitFor(10, TimeUnit.SECONDS); }
+  }
+  @org.junit.jupiter.params.ParameterizedTest
+  @org.junit.jupiter.params.provider.ValueSource(booleans = {false, true})
+  void uninstallStopsOwnedGameOrRemainingWorkerAndPreservesPersonalData(final boolean returningWorker) throws Exception {
+    uninstallOwnedGame(returningWorker, this.temporary.resolve("uninstall-owned-game"));
+  }
+  @Test @org.junit.jupiter.api.condition.EnabledOnOs(org.junit.jupiter.api.condition.OS.LINUX)
+  void uninstallStopsLongArgvManagedGameWithoutUsableReceipts() throws Exception {
+    Path root = this.temporary;
+    for(int i = 0; i < 12; i++) root = root.resolve("long-" + i + "-" + "x".repeat(175));
+    uninstallOwnedGame(false, root);
+  }
+  private void uninstallOwnedGame(final boolean returningWorker, final Path root) throws Exception {
+    final var store = new InstallStore(root); store.install(leasePackage(returningWorker)); DiscImporter.importDiscs(store, discs("uninstall-owned-"));
+    final Path workspace = store.prepareLaunch(); Files.writeString(workspace.resolve("files/version"), "5");
+    store.setFullscreen(false); final Properties before = store.state(); final Path data = store.data(before);
+    final Path sentinel = data.resolve("saves/uninstall-owner"); Files.writeString(sentinel, "retain personal data");
+    final Process unrelated = new ProcessBuilder("/bin/sleep", "60").start();
+    final Process outer = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin/java").toString(), "-Djava.awt.headless=true", "-Dfixture.longCommand=" + "x".repeat(16384), "-Ddefinitive.installerLog=" + this.temporary.resolve("installer.log"), "-jar", store.root().resolve("definitive-manager.jar").toString(), "--play", store.root().toString()).redirectErrorStream(true).redirectOutput(this.temporary.resolve("uninstall-router-output.log").toFile()).start();
+    try {
+      final Path started = store.root().resolve(returningWorker ? "fixture-worker.progress" : "fixture-game.started");
+      final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
+      while(!Files.exists(started) && outer.isAlive() && System.nanoTime() < deadline) Thread.sleep(20);
+      assertTrue(Files.exists(started), Files.readString(this.temporary.resolve("uninstall-router-output.log")));
+      final var receipt = PackageManifest.readProperties(store.root().resolve(GameLease.RUNNING));
+      final ProcessHandle game = ProcessHandle.of(Long.parseLong(receipt.getProperty("pid"))).orElseThrow(); assertTrue(game.isAlive());
+      if(PackageManifest.hostPlatform().equals("linux-x64")) assertTrue(outer.info().arguments().isEmpty(), "Exercise /proc argv for the actual installed launcher");
+      if(PackageManifest.hostPlatform().equals("linux-x64") && root.toString().length() > 1500) assertTrue(game.info().arguments().isEmpty(), "Exercise /proc argv for the actual ManagedGameMain child with broken receipts");
+      Files.delete(store.root().resolve(GameLease.PENDING)); Files.writeString(store.root().resolve(GameLease.RUNNING), "\\uNOTHEX\n");
+      if(returningWorker) { Files.delete(store.root().resolve("state.properties")); assertThrows(java.io.IOException.class, () -> new InstallStore(store.root())); }
+      final Set<String> phases = new HashSet<>(); InstallStore.forMaintenance(store.root()).uninstall(false, update -> phases.add(update.phase()));
+      assertFalse(game.isAlive()); assertTrue(outer.waitFor(10, TimeUnit.SECONDS)); assertTrue(unrelated.isAlive());
+      assertTrue(phases.contains("Closing the managed game")); assertTrue(Boolean.parseBoolean(store.state().getProperty("uninstalled")));
+      assertEquals(before.getProperty("data"), store.state().getProperty("data")); assertEquals("retain personal data", Files.readString(sentinel));
+      assertFalse(Files.exists(workspace)); assertFalse(Files.exists(store.root().resolve("definitive-manager.jar")));
+      try(final var releases = Files.list(store.root().resolve("releases"))) { assertEquals(0, releases.count()); } assertTrue(Files.exists(store.root().resolve("isos")));
+      assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+    } finally { outer.destroyForcibly(); outer.waitFor(10, TimeUnit.SECONDS); unrelated.destroyForcibly(); unrelated.waitFor(10, TimeUnit.SECONDS); }
+  }
+  @Test void uninstallRecoversAbandonedLaunchBeforeGameWasEverStarted() throws Exception {
+    final var store = install("uninstall-never-started"); final Path save = store.data(store.state()).resolve("saves/owner"); Files.writeString(save, "keep");
+    final Process launcher = start("pending", store.root(), List.of()); assertTrue(launcher.waitFor(10, TimeUnit.SECONDS)); assertEquals(93, launcher.exitValue());
+    assertTrue(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+    store.uninstall(false, InstallProgress.NONE);
+    assertTrue(Boolean.parseBoolean(store.state().getProperty("uninstalled"))); assertEquals("keep", Files.readString(save));
+    assertFalse(Files.exists(store.root().resolve(GameLease.PENDING)));
+  }
+  @org.junit.jupiter.params.ParameterizedTest
+  @org.junit.jupiter.params.provider.ValueSource(strings = {"repair", "reinstall", "uninstall"})
+  void explicitMaintenanceClearsCorruptAndUnrelatedPidReceipts(final String action) throws Exception {
+    final var store = install("bad-receipts-" + action); final Path save = store.data(store.state()).resolve("saves/owner"); Files.writeString(save, "keep");
+    final var receipt = new Properties(); receipt.setProperty("pid", Long.toString(ProcessHandle.current().pid())); receipt.setProperty("start", ProcessHandle.current().info().startInstant().orElseThrow().toString());
+    receipt.setProperty("token", "broken"); InstallStore.atomicProperties(store.root().resolve(GameLease.PENDING), receipt);
+    Files.writeString(store.root().resolve(GameLease.RUNNING), "\\uNOTHEX\n");
+    assertThrows(IllegalArgumentException.class, store::lock);
+    store.withMaintenance(InstallProgress.NONE, () -> {
+      if(action.equals("uninstall")) store.uninstall(false, InstallProgress.NONE);
+      else store.install(this.temporary.resolve("bad-receipts-" + action + "-pack"), "", null, InstallProgress.NONE, action.equals("reinstall"));
+      return null;
+    });
+    assertEquals("keep", Files.readString(save)); assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+  }
   private Path leasePackage(final boolean returningWorker) throws Exception {
     final Path pack = this.fixtures.pack("lease-package", PackageManifest.hostPlatform());
     final Path source = this.temporary.resolve("fake-source/legend/game/Main.java"); Files.createDirectories(source.getParent());
@@ -179,7 +348,7 @@ class StorageHardeningTest {
       final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10);
       while(!Files.exists(store.root().resolve("fixture-game.started")) && child.isAlive() && System.nanoTime() < deadline) Thread.sleep(20);
       assertTrue(Files.exists(store.root().resolve("fixture-game.started")), Files.readString(store.root().resolve("handoff-child.log")));
-      assertThrows(java.io.IOException.class, () -> store.uninstall(true, InstallProgress.NONE));
+      assertThrows(java.io.IOException.class, () -> store.setFullscreen(false));
       child.destroyForcibly(); child.onExit().get(10, TimeUnit.SECONDS);
       try(final var operation = store.lock()) { assertTrue(operation.lock().isValid()); }
     } finally { if(child.isAlive()) { child.destroyForcibly(); child.onExit().get(10, TimeUnit.SECONDS); } }
@@ -196,7 +365,7 @@ class StorageHardeningTest {
       assertTrue(Files.exists(store.root().resolve(GameLease.PENDING))); assertTrue(Files.exists(store.root().resolve(GameLease.RUNNING)));
       assertEquals(Long.toString(child.pid()), PackageManifest.readProperties(store.root().resolve(GameLease.RUNNING)).getProperty("pid"));
       try(final var channel = java.nio.channels.FileChannel.open(store.root().resolve(".game-lock"), StandardOpenOption.WRITE); final var lease = channel.tryLock()) { assertNull(lease, "The actual child must retain its OS lease after Main.main returns and GC runs."); }
-      assertThrows(java.io.IOException.class, store::lock); assertThrows(java.io.IOException.class, () -> store.uninstall(true, InstallProgress.NONE));
+      assertThrows(java.io.IOException.class, store::lock); assertThrows(java.io.IOException.class, () -> store.setFullscreen(false));
       final Path progress = store.root().resolve("fixture-worker.progress"); final String first = Files.readString(progress); final long writing = System.nanoTime() + TimeUnit.SECONDS.toNanos(5);
       while(Files.readString(progress).equals(first) && System.nanoTime() < writing) Thread.sleep(20);
       assertNotEquals(first, Files.readString(progress), "A non-daemon worker must still be writing after entry return.");
@@ -205,24 +374,25 @@ class StorageHardeningTest {
       assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
     } finally { if(child.isAlive()) { child.destroyForcibly(); child.onExit().get(10, TimeUnit.SECONDS); } }
   }
-  @Test void failedLeaseAcquisitionCleansUnpublishedHandoffWithoutReleasingAnotherGameLease() throws Exception {
+  @Test void failedLeaseAcquisitionLeavesParentHandoffForSerializedRecoveryAndKeepsOtherLease() throws Exception {
     final var store = install("lease-failure");
     try(final var channel = java.nio.channels.FileChannel.open(store.root().resolve(".game-lock"), StandardOpenOption.CREATE, StandardOpenOption.WRITE); final var lease = channel.lock()) {
       final Process child = start("lease-failure", store.root(), List.of()); assertTrue(child.waitFor(10, TimeUnit.SECONDS)); assertEquals(96, child.exitValue());
-      assertTrue(lease.isValid()); assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+      assertTrue(lease.isValid()); assertTrue(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
     }
     try(final var operation = store.lock()) { assertTrue(operation.lock().isValid()); }
+    assertFalse(Files.exists(store.root().resolve(GameLease.PENDING)));
   }
   @Test void interruptedLaunchUsesOsStartClockAndTruncatedCommandLineFailClosed() throws Exception {
     final Instant launcher = Instant.parse("2026-10-10T16:00:00Z"); final String token = UUID.randomUUID().toString();
     final var child = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(launcher.plusMillis(100)), Optional.empty(), Optional.of("java -Ddefinitive.launchToken=" + token + " -cp truncated"), Optional.of("/jdk/bin/java"));
     assertTrue(assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, child)).getMessage().contains("surviving game"));
     final var hiddenArguments = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(launcher.plusMillis(100)), Optional.empty(), Optional.empty(), Optional.of("/jdk/bin/java"));
-    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, hiddenArguments));
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, hiddenArguments));
     final var hiddenOwner = new GameLease.LaunchProcess(Optional.empty(), Optional.of(launcher), Optional.of(new String[]{"unresolved-helper"}), Optional.empty(), Optional.empty());
-    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, hiddenOwner));
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, hiddenOwner));
     final var beforeExec = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(launcher), Optional.of(new String[]{"25", "pipes"}), Optional.empty(), Optional.of("/jdk/lib/jspawnhelper"));
-    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, beforeExec));
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, beforeExec));
     final var older = new GameLease.LaunchProcess(Optional.empty(), Optional.of(launcher.minusMillis(1)), Optional.empty(), Optional.empty(), Optional.empty());
     assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", launcher, older));
   }
@@ -232,10 +402,10 @@ class StorageHardeningTest {
     assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", started, git));
     for(final String command : new String[]{"/jdk/bin/java", "/jdk/lib/jspawnhelper", "/bin/bash"}) {
       final var uncertain = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(started), Optional.empty(), Optional.empty(), Optional.of(command));
-      assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", started, uncertain));
+      assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", started, uncertain));
     }
     final var hiddenExecutable = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(started), Optional.of(new String[]{"25", "pipes"}), Optional.empty(), Optional.empty());
-    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", started, hiddenExecutable));
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", started, hiddenExecutable));
     final var tokenBearing = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(started), Optional.empty(), Optional.of("git -Ddefinitive.launchToken=" + token), Optional.of("/usr/bin/git"));
     assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", started, tokenBearing), "Positive token evidence must still block regardless of executable");
   }
@@ -248,7 +418,7 @@ class StorageHardeningTest {
     assertTrue(GameLease.recordedAlive(started, () -> true, () -> Optional.of(started)));
     assertFalse(GameLease.recordedAlive(started, () -> true, () -> Optional.of(started.plusSeconds(1))), "A reused PID must not match the recorded identity");
   }
-  @Test void exitingProcessesDoNotBlockInterruptedLaunchRecoveryButLivingUnknownProcessesDo() throws Exception {
+  @Test void exitingAndOpaqueUnrelatedProcessesDoNotBlockInterruptedLaunchRecovery() throws Exception {
     final Instant started = Instant.now(); final String token = UUID.randomUUID().toString();
     final var unknown = new GameLease.LaunchProcess(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     final var reads = new java.util.concurrent.atomic.AtomicInteger();
@@ -256,7 +426,7 @@ class StorageHardeningTest {
     assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", started, () -> unknown, () -> reads.incrementAndGet() == 1));
     reads.set(0);
     assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", started, () -> unknown, () -> reads.incrementAndGet() < 3));
-    assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", started, () -> unknown, () -> true));
+    assertDoesNotThrow(() -> GameLease.checkInterruptedProcess(token, "fixture-user", started, () -> unknown, () -> true));
     final var livingChild = new GameLease.LaunchProcess(Optional.of("fixture-user"), Optional.of(started), Optional.of(new String[]{"-Ddefinitive.launchToken=" + token}), Optional.empty(), Optional.of("/jdk/bin/java"));
     assertThrows(java.io.IOException.class, () -> GameLease.checkInterruptedProcess(token, "fixture-user", started, () -> livingChild, () -> true));
   }

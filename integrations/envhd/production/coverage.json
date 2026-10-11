@@ -12,7 +12,7 @@
   "integrated": 70,
   "totalKnownBattleSkies": 74,
   "goalComplete": false,
-  "remainingCensus": "The existing whole-environment source census is a workload baseline; visual duplicates, palette variants and empty foreground layers still require production mapping.",
+  "remainingCensus": "Field pixel deduplication, foreground state families, environment prop/overlay ownership and animation frame/palette denominators remain unresolved; see full-coverage.json.",
   "ownershipAudit": "field-ownership.json",
   "protectedSkurfaScenePacks": 38,
   "protectedSkurfaCutPeriodMappings": 87,
@@ -56,5 +56,8 @@
     "status": "source-faithful-development-baselines; bespoke quality pending",
     "ledger": "world-artwork.json"
   },
-  "scope": "EnvHD only. CharHD, UIHD and FxHD production is owned by other threads."
+  "scope": "EnvHD only. CharHD, UIHD and FxHD production is owned by other threads.",
+  "fullCoverageLedger": "full-coverage.json",
+  "legacyCounterScope": "Top-level generated/integrated counters describe battle panoramas only. They are not whole-EnvHD completion totals.",
+  "wholeCampaignImageDenominator": null
 }

@@ -1,0 +1,54 @@
+{
+  "decodedRgbaSha256": "eb8a03e99cff778c98e3de327d6065ec2636a33cf0524cc091e14dd6ce496af4",
+  "sourceSize": [
+    136,
+    80
+  ],
+  "bindings": [
+    {
+      "stage": 46,
+      "page": 7,
+      "clut": 15644,
+      "parts": [
+        0
+      ],
+      "sourceCrop": [
+        120,
+        56,
+        256,
+        136
+      ],
+      "sourceUvOrigin": [
+        120,
+        56
+      ]
+    }
+  ],
+  "targetSize": [
+    544,
+    320
+  ],
+  "outputSha256": "8a9a27b0cfb3ee45918c13e0a045258544d529f0c9d9f3abb1a6297cf0f1f638",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Static battle model surface; source geometry uses stage/parts {46: [0]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
+    "style": "Visually inspected original/candidate comparison. Source colors, material identity and silhouettes retained as a neural development baseline; inferred/smoothed detail is not final Skurfa-equivalent bespoke quality. Skurfa resources are untouched.",
+    "layout": "Comparison board 11, cell 11; crop and tile arrangement remain source-bound. All outputs independently revalidated against fresh original decodes: exact 4x STP, discard and visible-black class; no edge averaging or geometry changes. Native seam/blend/mip inspection remains pending.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "8a9a27b0cfb3ee45918c13e0a045258544d529f0c9d9f3abb1a6297cf0f1f638",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "7862ee67731b77e646c22f298ebcb3325206a0a38ddf2eb8bea21882ce03c153",
+  "batchDependencySha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "sourceRole": "Static battle floor, wall and scenery surfaces; geometry and native animations remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources are unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

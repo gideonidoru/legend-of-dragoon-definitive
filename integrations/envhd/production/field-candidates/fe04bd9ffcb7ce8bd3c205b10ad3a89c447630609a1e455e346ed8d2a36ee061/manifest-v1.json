@@ -1,0 +1,122 @@
+{
+  "decodedRgbaSha256": "fe04bd9ffcb7ce8bd3c205b10ad3a89c447630609a1e455e346ed8d2a36ee061",
+  "sourceSize": [
+    64,
+    46
+  ],
+  "owners": [
+    "envhd"
+  ],
+  "bindings": [
+    {
+      "renderKey": "8c91490f17ec19b46dbcda7198ec2f30564de3221cfbf46e5962abb52f4df5d3:-1",
+      "kind": "foreground",
+      "slot": 6,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "schema": 1,
+  "outputSha256": "48e9e3c9de544b52c1d9884d28d93057a2cda9116d1ea4914e3c36e9afa2b8df",
+  "method": "python-field-source-color-perimeter-repair",
+  "algorithmSha256": "93ba237d75d8846e670d64f56901831feeb516dce1b7b7c775eea8d5af7b6949",
+  "targetSize": [
+    256,
+    184
+  ],
+  "scale": 4,
+  "guardedNativePixels": 0,
+  "guardColors": [
+    [
+      0,
+      248,
+      0
+    ],
+    [
+      0,
+      248,
+      248
+    ],
+    [
+      248,
+      248,
+      0
+    ],
+    [
+      248,
+      0,
+      248
+    ],
+    [
+      248,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      248
+    ]
+  ],
+  "minimumColorPixels": 16,
+  "sourcePerimeterPixels": 1,
+  "edgeAveraging": false,
+  "inputCandidate": {
+    "decodedRgbaSha256": "fe04bd9ffcb7ce8bd3c205b10ad3a89c447630609a1e455e346ed8d2a36ee061",
+    "sourceSize": [
+      64,
+      46
+    ],
+    "owners": [
+      "envhd"
+    ],
+    "bindings": [
+      {
+        "renderKey": "8c91490f17ec19b46dbcda7198ec2f30564de3221cfbf46e5962abb52f4df5d3:-1",
+        "kind": "foreground",
+        "slot": 6,
+        "canDeriveFromBackground": false
+      }
+    ],
+    "targetSize": [
+      256,
+      184
+    ],
+    "outputSha256": "48e9e3c9de544b52c1d9884d28d93057a2cda9116d1ea4914e3c36e9afa2b8df",
+    "method": "real-esrgan-x4plus-clamped-source-layout",
+    "scale": 4,
+    "sourceVisibility": "exact-nearest-4x-field-alpha-discard-and-visible-black",
+    "edgeAveraging": false,
+    "reviewStatus": "pending-source-intent-style-layout-review",
+    "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+  },
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "review": {
+    "intent": "Kazas cut 172 small wooden chair beside a rectangular table. Original/candidate/scene placement compared on board-0376.jpg.",
+    "style": "The individual chair-back bars and separate table legs remain recognizable. Development visual assessment only; final Skurfa-level quality is pending.",
+    "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "48e9e3c9de544b52c1d9884d28d93057a2cda9116d1ea4914e3c36e9afa2b8df",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "generationCommit": "cf492c377d5a06cfab48e05aa83103a309d2e52b",
+  "generationScriptSha256": "93ba237d75d8846e670d64f56901831feeb516dce1b7b7c775eea8d5af7b6949",
+  "batchPipelineSha256": "93ba237d75d8846e670d64f56901831feeb516dce1b7b7c775eea8d5af7b6949",
+  "sourceRole": "Independent field background or foreground; native placement, depth and script state remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources are unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10",
+  "repairPipelineSha256": "93ba237d75d8846e670d64f56901831feeb516dce1b7b7c775eea8d5af7b6949",
+  "inputGeneration": {
+    "commit": "8b9fc0b6d3ae373ae3061359ff729ecd67de20a9",
+    "pipeline": "envhd-complete-field-directory-batch-2",
+    "scriptSha256": "fc8ab4285afeb6181d0d17dcf8eeb5a7ab508858f8b39720d5ecfabd9cb216ba",
+    "dependencySha256": {
+      "census-envhd-fields.py": "061d791e6af5d3c3cf62ae814442e658ab5c2dcd7b5761b9756963669fee543b",
+      "batch-envhd-battle-materials.py": "b6e15d1183cd2920b47fcf6225d5cbbe6d2c02e7df8690324b07f53841fbd23b",
+      "batch-envhd-terrain.py": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "modelshd-field-map.py": "95f275c4178cf1bafca65f87082d579758eb09156d8f605f1d1d4130332194a9"
+    }
+  }
+}

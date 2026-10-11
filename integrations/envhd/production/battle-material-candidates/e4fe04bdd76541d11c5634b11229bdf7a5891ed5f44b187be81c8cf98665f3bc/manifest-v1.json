@@ -1,0 +1,54 @@
+{
+  "decodedRgbaSha256": "e4fe04bdd76541d11c5634b11229bdf7a5891ed5f44b187be81c8cf98665f3bc",
+  "sourceSize": [
+    48,
+    72
+  ],
+  "bindings": [
+    {
+      "stage": 50,
+      "page": 7,
+      "clut": 15452,
+      "parts": [
+        0
+      ],
+      "sourceCrop": [
+        24,
+        0,
+        72,
+        72
+      ],
+      "sourceUvOrigin": [
+        24,
+        0
+      ]
+    }
+  ],
+  "targetSize": [
+    192,
+    288
+  ],
+  "outputSha256": "87ebe5aa15e15c8141dbeb1006990fc27ed660f1eb571cc28a4dda440ca2a769",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
+    "style": "Visually inspected original/candidate comparison. Source colors, material identity and silhouettes retained as a neural development baseline; inferred/smoothed detail is not final Skurfa-equivalent bespoke quality. Skurfa resources are untouched.",
+    "layout": "Comparison board 12, cell 6; crop and tile arrangement remain source-bound. All outputs independently revalidated against fresh original decodes: exact 4x STP, discard and visible-black class; no edge averaging or geometry changes. Native seam/blend/mip inspection remains pending.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "87ebe5aa15e15c8141dbeb1006990fc27ed660f1eb571cc28a4dda440ca2a769",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "7862ee67731b77e646c22f298ebcb3325206a0a38ddf2eb8bea21882ce03c153",
+  "batchDependencySha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "sourceRole": "Static battle floor, wall and scenery surfaces; geometry and native animations remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources are unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

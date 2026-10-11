@@ -97,6 +97,9 @@ public final class ReleaseUpdates {
   public static String install(final InstallStore store, final Candidate candidate, final InstallProgress progress) throws IOException, InterruptedException {
     return install(store, candidate, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()));
   }
+  static HttpResponse<java.io.InputStream> sendAsset(final HttpRequest request) throws IOException, InterruptedException {
+    return HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream());
+  }
   @FunctionalInterface interface AssetDownload { HttpResponse<java.io.InputStream> send(HttpRequest request) throws IOException, InterruptedException; }
   /** Cache only complete, bounded scans; a failed/partial scan never becomes update metadata. */
   static final class MetadataCache {
@@ -215,36 +218,58 @@ public final class ReleaseUpdates {
   private static final class Cooldown extends IOException { Cooldown(final String message) { super(message); } }
   static String install(final InstallStore store, final Candidate candidate, final InstallProgress progress, final AssetDownload connection) throws IOException, InterruptedException {
     if(!candidate.url().toString().startsWith("https://github.com/" + REPO + "/releases/download/") || !candidate.sha256().matches("[a-f0-9]{64}")) throw new IOException("Invalid release source.");
-    if(candidate.contents() != null && store.state().containsKey("version")) {
+    if(candidate.contents() != null) {
       validateContents(candidate);
       return FileDelivery.install(store, candidate, progress, connection, false);
     }
     return installArchive(store, candidate, progress, connection, false);
   }
-  private static void validateContents(final Candidate candidate) throws IOException {
+  static void validateContents(final Candidate candidate) throws IOException {
+    if(!candidate.url().toString().startsWith("https://github.com/" + REPO + "/releases/download/") || !candidate.sha256().matches("[a-f0-9]{64}")) throw new IOException("Invalid release source.");
     if(!candidate.tag().matches("[A-Za-z0-9._-]+") || !candidate.contents().sha256().matches("[a-f0-9]{64}") || !candidate.contents().url().equals(candidate.url().resolve("Definitive-Contents-" + PackageManifest.hostPlatform() + ".zip"))) throw new IOException("Invalid release inventory source.");
   }
   public static String repair(final InstallStore store, final InstallProgress progress) throws IOException, InterruptedException {
-    return store.withOperation(() -> {
+    return repair(store, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()));
+  }
+  static String repair(final InstallStore store, final InstallProgress progress, final AssetDownload connection) throws IOException, InterruptedException {
+    return store.withMaintenance(progress, () -> {
       final var state = store.state();
       final Path current = InstallStore.child(store.root().resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
       final String tag = state.getProperty("installedReleaseTag", "").isEmpty() ? PackageManifest.read(current).metadata().getProperty("releaseTag", "") : state.getProperty("installedReleaseTag");
       if(!tag.matches("[A-Za-z0-9._-]+")) throw new IOException("Installed release has no published repair identity. Choose Reinstall.");
-      final var response = sendWithRetry(HttpRequest.newBuilder(URI.create("https://api.github.com/repos/" + REPO + "/releases/tags/" + tag)).timeout(Duration.ofSeconds(20)).GET().build(), request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()));
+      final var response = sendWithRetry(HttpRequest.newBuilder(URI.create("https://api.github.com/repos/" + REPO + "/releases/tags/" + tag)).timeout(Duration.ofSeconds(20)).GET().build(), connection);
       final String json;
       try(final var input = response.body(); final var output = new java.io.ByteArrayOutputStream()) {
-        if(response.statusCode() != 200) throw new IOException("Installed release is unavailable for repair. Retry or choose Reinstall.");
-        DownloadBody.copy(input, output, 16 * 1024 * 1024, Duration.ofSeconds(30));
-        json = "[" + output.toString(java.nio.charset.StandardCharsets.UTF_8) + "]";
+        if(response.statusCode() == 404) json = null;
+        else {
+          if(response.statusCode() != 200) throw new IOException("Installed release is unavailable for repair (HTTP " + response.statusCode() + "). Retry when GitHub is available.");
+          DownloadBody.copy(input, output, 16 * 1024 * 1024, Duration.ofSeconds(30));
+          json = "[" + output.toString(java.nio.charset.StandardCharsets.UTF_8) + "]";
+        }
+      }
+      if(json == null) {
+        final String currentReleases = new MetadataCache().fetch(true, connection);
+        final Instant installed = parseDate(state.getProperty("releasePublishedAt", ""));
+        final Candidate currentCandidate = (installed == null ? select(currentReleases, PackageManifest.hostPlatform(), "", "") : select(currentReleases, PackageManifest.hostPlatform(), state.getProperty("releaseAssetId", ""), tag, installed)).orElseThrow(() -> new IOException("No compatible current release is available for repair."));
+        if(currentCandidate.contents() == null) throw new IOException("The current release has no verified repair inventory.");
+        validateContents(currentCandidate);
+        progress.phase("Repairing with the current release", "The installed release was retired; retrieving only changed or missing files", 5);
+        return "Repair complete using the current release. " + FileDelivery.install(store, currentCandidate, progress, connection, false);
       }
       final Candidate candidate = select(json, PackageManifest.hostPlatform(), "", "").orElseThrow(() -> new IOException("No compatible repair files are published."));
       if(!tag.equals(candidate.tag()) || candidate.contents() == null) throw new IOException("This older release has no selective repair inventory. Choose a complete Reinstall.");
       validateContents(candidate);
-      return FileDelivery.install(store, candidate, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()), true);
+      return FileDelivery.install(store, candidate, progress, connection, true);
     });
   }
   public static String reinstall(final InstallStore store, final Candidate candidate, final InstallProgress progress) throws IOException, InterruptedException {
-    return installArchive(store, candidate, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()), true);
+    return store.withMaintenance(progress, () -> {
+      if(candidate.contents() != null) {
+        validateContents(candidate);
+        return FileDelivery.install(store, candidate, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()), false, true);
+      }
+      return installArchive(store, candidate, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()), true);
+    });
   }
   static String installArchive(final InstallStore store, final Candidate candidate, final InstallProgress progress, final AssetDownload connection, final boolean fullReinstall) throws IOException, InterruptedException {
     if(!candidate.url().toString().startsWith("https://github.com/" + REPO + "/releases/download/") || !candidate.sha256().matches("[a-f0-9]{64}")) throw new IOException("Invalid release source.");

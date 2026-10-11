@@ -1,0 +1,54 @@
+{
+  "decodedRgbaSha256": "f1a7855e2e66e6861bdb36a1675e658222ae49820ff50246c2e24ddb242faaeb",
+  "sourceSize": [
+    72,
+    80
+  ],
+  "bindings": [
+    {
+      "stage": 92,
+      "page": 7,
+      "clut": 15580,
+      "parts": [
+        0
+      ],
+      "sourceCrop": [
+        184,
+        56,
+        256,
+        136
+      ],
+      "sourceUvOrigin": [
+        184,
+        56
+      ]
+    }
+  ],
+  "targetSize": [
+    288,
+    320
+  ],
+  "outputSha256": "55e2fd092723d16868413457b61713daabfa4621c6841fddddfbb55959284b05",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Static battle model surface; source geometry uses stage/parts {92: [0]}. Source family: Nest of Dragoon: grey stone, webs, roots and shaded architectural gradients. Engine random-encounter location mapping: Nest of Dragon.",
+    "style": "Visually inspected original/candidate comparison. Source colors, material identity and silhouettes retained as a neural development baseline; inferred/smoothed detail is not final Skurfa-equivalent bespoke quality. Skurfa resources are untouched.",
+    "layout": "Comparison board 22, cell 12; crop and tile arrangement remain source-bound. All outputs independently revalidated against fresh original decodes: exact 4x STP, discard and visible-black class; no edge averaging or geometry changes. Native seam/blend/mip inspection remains pending.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "55e2fd092723d16868413457b61713daabfa4621c6841fddddfbb55959284b05",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "7862ee67731b77e646c22f298ebcb3325206a0a38ddf2eb8bea21882ce03c153",
+  "batchDependencySha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "sourceRole": "Static battle floor, wall and scenery surfaces; geometry and native animations remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources are unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

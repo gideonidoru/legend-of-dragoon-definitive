@@ -75,7 +75,7 @@ import static legend.core.GameEngine.PLATFORM;
 import static legend.core.GameEngine.REGISTRIES;
 import static legend.core.GameEngine.RENDERER;
 import static legend.core.GameEngine.SAVES;
-import static legend.core.GameEngine.bootMods;
+import static legend.core.GameEngine.bootVisibleMods;
 import static legend.core.GameEngine.getUpdate;
 import static legend.core.gpu.VramTextureLoader.palettesFromTim;
 import static legend.core.gpu.VramTextureLoader.stitchHorizontal;
@@ -577,7 +577,7 @@ public class Ttle extends EngineState<Ttle> {
               whichMenu_800bdc38 = WhichMenu.UNLOAD;
             }));
           } finally {
-            bootMods(MODS.getAllModIds());
+            bootVisibleMods(MODS.getAllModIds());
           }
         }));
       } else {

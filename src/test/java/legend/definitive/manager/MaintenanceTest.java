@@ -17,6 +17,24 @@ class MaintenanceTest {
     this.registry = System.getProperty("definitive.locationRegistry"); System.setProperty("definitive.locationRegistry", this.temporary.resolve("location.properties").toString());
   }
   @AfterEach void restore() { if(this.registry == null) System.clearProperty("definitive.locationRegistry"); else System.setProperty("definitive.locationRegistry", this.registry); }
+  @Test void discoveryKeepsOwnedNondefaultRootWithBrokenStateTransactionAndLaunchRecords() throws Exception {
+    InstallLocation.record(this.store); Files.delete(this.store.root().resolve("state.properties"));
+    Files.writeString(this.store.root().resolve(".bootstrap-transaction.properties"), "broken transaction");
+    Files.writeString(this.store.root().resolve(GameLease.PENDING), "\\uNOTHEX\n");
+    assertEquals(this.store.root(), InstallLocation.discover().orElseThrow());
+    assertFalse(Files.exists(this.store.root().resolve("state.properties")), "Discovery must not recover or modify the installation");
+    assertEquals("broken transaction", Files.readString(this.store.root().resolve(".bootstrap-transaction.properties")));
+  }
+  @Test void ownedInstallationWithMissingStateShowsAllMaintenanceActionsHeadlessly() throws Exception {
+    this.store.setFullscreen(false); Files.delete(this.store.root().resolve("state.properties"));
+    Files.writeString(this.store.root().resolve(GameLease.PENDING), "\\uNOTHEX\n");
+    SwingUtilities.invokeAndWait(() -> {
+      final var panel = new ManagerView(null, this.pack, this.store.root()); final Set<String> labels = new HashSet<>();
+      final var pending = new ArrayDeque<java.awt.Component>(); pending.add(panel);
+      while(!pending.isEmpty()) { final var component = pending.removeFirst(); if(component instanceof JButton button) { labels.add(button.getText()); if(Set.of("Repair", "Reinstall", "Uninstall").contains(button.getText())) assertTrue(button.isEnabled(), button.getText()); } if(component instanceof java.awt.Container container) Collections.addAll(pending, container.getComponents()); }
+      assertTrue(labels.containsAll(Set.of("Repair", "Reinstall", "Uninstall")), labels.toString());
+    });
+  }
   @Test void reinstallRepairsTheExactManagedReleaseAndRetainsTheDamagedCopy() throws Exception {
     final Path release = this.store.root().resolve("releases").resolve(this.store.state().getProperty("version")); Files.writeString(release.resolve("lod-game-test.jar"), "damaged");
     final Path saved = this.store.data(this.store.state()).resolve("saves/owner.txt"); Files.writeString(saved, "retained");

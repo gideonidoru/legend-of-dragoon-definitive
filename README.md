@@ -16,55 +16,136 @@ HD artwork. Smoother models. Enhanced cinematics. One guided installation.
 
 Built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains), Definitive adds an integrated presentation and installation experience: custom model and texture upgrades, restored interface and effect artwork, enhanced films, lighting improvements, campaign presets, and a launcher for updates and recovery. The story, recognizable character designs, original music and Addition-based combat remain central to the experience.
 
-> **Alpha availability:** The current download contains the all-HD repair release. This feature tour also includes upcoming installer additions: broader model smoothing, full UIHD and FxHD artwork, SMAA, audio and playback fixes, and expanded convenience settings. The remaster is unfinished, and Steam Deck gameplay/performance testing is ongoing. [See what your download includes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
+> **Available in the current download:** all seven HD modules, Dart’s accepted reconstruction, expanded environment artwork, SMAA, enhanced films and the audio, timing and recovery improvements described below. This is a development alpha; character and environment restoration are unfinished, and physical Steam Deck gameplay and performance validation remain ongoing. [Release details](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
+
+## The heroes you remember. In greater detail.
+
+Dart’s crimson armor. Meru’s patterned hammer. The faces, hair and costumes that make the party unmistakable. Definitive brings those details into focus with smoother geometry, restored texture artwork and individually reconstructed character features.
+
+### Dart · Rebuilt face. Sculpted hair. Painted detail.
+
+![Dart head comparison: earlier Definitive face and hair on the left, accepted CharHD reconstruction on the right](docs/definitive/images/comparisons/dart-head-reconstruction.jpg)
+
+*Earlier Definitive model → accepted CharHD reconstruction. Matched studio view of the actual geometry and materials; the left side already includes earlier face artwork.*
+
+Dart’s reconstructed head combines modeled facial features, sculpted hair locks and a **2048 × 2048 painted material**. Custom body shapes and authored armor artwork accompany the reconstructed head, while the original animation hierarchy and attachment points remain intact. The head, geometry and material activate together through **CharHD**.
+
+<details>
+<summary><strong>See the reconstruction in the native game renderer</strong></summary>
+
+![Dart in a matching battle inspection before and after head reconstruction, with the same armor and environment](docs/definitive/images/comparisons/dart-reconstruction-native.jpg)
+
+*Matched Mac renderer inspection with an enlarged actor. The body artwork and environment are unchanged between views. This is an inspection pose, not a Steam Deck gameplay capture.*
+
+</details>
+
+### HD textures · Detail you can see
+
+Armor paneling, cloth patterns and weapon ornamentation deserve the same attention as silhouettes. These comparisons keep the original geometry, camera and lighting fixed so the artwork changes are visible on their own.
+
+<table>
+<tr><th>Dart · Authored armor</th><th>Meru · Texture restoration study</th></tr>
+<tr>
+<td width="50%"><img src="docs/definitive/images/comparisons/dart-textures-before-after.png" alt="Dart original textures beside authored crimson armor in two matching poses" /></td>
+<td width="50%"><img src="docs/definitive/images/comparisons/meru-textures-before-after.png" alt="Meru original textures beside a 4x restoration candidate in two matching poses" /></td>
+</tr>
+<tr>
+<td>Crimson armor panels and painted costume detail. Selected development artwork on original geometry.</td>
+<td>Hammer motifs and clothing patterns at 4× resolution. A preview candidate, currently not enabled in the installed mod.</td>
+</tr>
+</table>
+
+### A foundation across the party
+
+**ModelsHD** refines eligible surfaces across all nine party field models and all 19 party battle forms, including Dragoon forms. It also reaches supported enemies, NPCs and scenery. **CharHD** supplies the separate character artwork and Dart’s accepted head reconstruction. Broader smoothing and individually rebuilt characters are distinct layers of the remaster.
+
+The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, Meru, Kongol and Miranda**: faces and hair, costume panels, hands and grips, boots and weapons, guided by the original illustrations and in-game designs. Dart’s head is the first accepted reconstruction; his complete body and the remaining party reconstructions are unfinished. Dragoon-form reconstruction is a later adaptation pass.
+
+<details>
+<summary><strong>Compare the geometry · Dart and Meru</strong></summary>
+
+<table>
+<tr><th>Dart</th><th>Meru</th></tr>
+<tr>
+<td width="50%"><img src="docs/definitive/images/comparisons/dart-before-after.png" alt="Dart original geometry and ModelsHD 0.3 smoothing, textured and untextured" /></td>
+<td width="50%"><img src="docs/definitive/images/comparisons/meru-before-after.png" alt="Meru original geometry and ModelsHD 0.3 smoothing, textured and untextured" /></td>
+</tr>
+</table>
+
+*Matched offline previews from ModelsHD 0.3. Untextured views reveal the geometry changes. The broader 0.4 pass uses more conservative smoothing; these images show the earlier treatment.*
+
+</details>
+
+[Character reconstruction](docs/definitive/PARTY_RECONSTRUCTION.md) · [Model coverage](docs/definitive/MODELS_HD_WORLD_PASS.md) · [Comparison details](docs/definitive/images/comparisons/README.md).
 
 ## More detail. The same unmistakable world.
 
-### Characters with smoother shapes and richer detail
-
-ModelsHD refines angular surfaces on supported party, enemy, NPC and scenery models while retaining their original animations. CharHD includes Dart’s reconstructed face and sculpted hair, with restored painted detail on armor, clothing and weapons. Together, they target more convincing characters without losing the silhouettes and costume designs that define them.
-
 ### Painted environments, restored for a modern screen
 
-Skurfa's HD backgrounds preserve the game's distinctive painted setting. EnvHD extends that presentation with battle panoramas, location artwork and the parchment world map. The full remaster goal also covers terrain, battle surfaces, missing field scenes and environmental props, with the original foreground placement and occlusion preserved.
+Explore painted towns, forests and interiors with **4,892 restored field images**, covering backgrounds and foreground layers. Skurfa’s HD backgrounds retain their own artwork and attribution; EnvHD expands the world around them with additional field art, battle panoramas, location landscapes and the parchment map. World-map terrain and selected battle floors, walls and scenery also receive restored textures.
+
+Foregrounds keep their original placement, visibility and depth, so scenery remains part of the scene rather than being flattened into a single picture. The installer automatically supplies **Env1HD through Env4HD** as four resource packs under one EnvHD switch—there is no separate pack setup. Remaining held surfaces use original artwork; animated environments and props are still being developed. [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 ### Magic with sharper detail
 
-FxHD restores effect textures across Dragoon spells and transformations, item magic, enemy and boss attacks, battle cutscenes, animated save points, world-map atmosphere and title flames. Its full texture catalog follows the original animated palettes, scrolling, transparency and blending, keeping each effect's movement and timing intact.
+FxHD supplies **2,160 unique 2× detail maps** across the audited effect-texture catalog, covering Dragoon spells and transformations, item magic, enemy and boss attacks, battle cutscenes, animated save points, world-map atmosphere and title flames. Its full texture catalog follows the original animated palettes, scrolling, transparency and blending, keeping each effect's movement and timing intact.
 
 ### A crisp interface, from portraits to battle prompts
 
 UIHD restores all nine party portraits, menus, dialogue borders, save-card artwork, world-map markers, chapter cards and credits. Combat cues retain their original size and timing, so clearer artwork supports the precision Additions demand. Smooth fonts remain available in Graphics settings.
 
-## See the difference
+## Your campaign. Your preferences.
 
-Matched pose, camera and lighting make the changes easy to compare. The smoothing images change geometry; the texture images keep the original geometry and change the artwork.
+Start with **Definitive** for saving anywhere, battle autosaves, running by default, faster text, shorter transitions, enemy HP bars and turn-order information. Choose **Faithful** for settings closer to the original game.
 
-### Dart · Model smoothing
+Both presets preserve normal Additions and timing windows, default to **1× rewards**, and leave Addition feedback off. Optional settings add equipment filtering and sorting, quantity buying and selling, binding-aware action hints, XP/gold multipliers, and timing feedback. Feedback helps identify Early, Late or Wrong Button results without changing hit windows or damage. Difficulty overhauls are not bundled. [Compare presets](docs/definitive/PRESETS.md) · [Explore the settings](docs/definitive/QOL_SETTINGS.md).
 
-![Dart before and after ModelsHD 0.3, with matching textured and untextured views](docs/definitive/images/comparisons/dart-before-after.png)
+## Ready to play on Steam Deck
 
-*ModelsHD 0.3 geometry comparison. Untextured views reveal the surface changes.*
+1. Enter **Desktop Mode** and [download the installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop).
+2. Open `Install-Definitive.desktop` in **Dolphin**. Allow execution if prompted.
+3. Choose a folder and supply your **four US game-disc images**, or reuse an existing installation's discs. BIN/raw ISO files and ZIP, RAR or 7z containers are supported.
+4. Let setup prepare the game, add the optional Steam shortcut, and launch from Steam or the Definitive launcher.
 
-### Dart · Texture restoration
+Keep the downloaded installer: **each launch retrieves and checksum-verifies the latest setup**. Replace an older pinned `.desktop` once; the current saved copy keeps following new releases.
 
-![Dart texture before and after: original artwork and authored armor v1 on identical geometry in two matching poses](docs/definitive/images/comparisons/dart-textures-before-after.png)
+If an older “Manage Installation” or Play shortcut fails before setup opens, download the installer again and select **Repair**, **Reinstall** or **Uninstall** for your existing installation. Repair refreshes the installed launcher when its old hosted release has been retired.
 
-*Authored crimson armor on unchanged original geometry. Selected development artwork.*
+Custom folders and SD cards are supported. Allow roughly **12 GB free for initial setup**, in addition to source discs already present; actual use depends on disc compression, and retained updates need additional room. Setup downloads the engine, artwork, dependencies and Java automatically. An internet connection is required. Game discs are not included, and source images stay untouched.
 
-### Meru · Model smoothing
+![Definitive launcher with Play, artwork choices, version restore and Steam library actions](docs/definitive/images/launcher-linux.png)
 
-![Meru before and after ModelsHD 0.3, with matching textured and untextured views](docs/definitive/images/comparisons/meru-before-after.png)
+*Linux launcher preview.*
 
-*ModelsHD 0.3 geometry comparison, retaining Meru's recognizable silhouette.*
+### Keep playing. Keep your saves.
 
-### Meru · Texture restoration
+The launcher offers Play, updates and local version restore; the installer also provides maintenance for an existing installation.
 
-![Meru texture before and after: original artwork and 4x restoration candidate on identical geometry in two matching poses](docs/definitive/images/comparisons/meru-textures-before-after.png)
+| Action | What it does |
+| --- | --- |
+| **Update** | Installs a newer release, reusing verified unchanged files and downloading changed or new ones. |
+| **Repair** | Replaces missing or damaged files. If the old hosted release has been retired, retrieves the verified current version and refreshes the launcher. |
+| **Reinstall** | Downloads the entire application again and prepares a fresh workspace, retaining saves, settings, custom mods and imported discs. |
+| **Restore** | Returns to a retained local version. |
+| **Uninstall** | Removes managed application/workspace files while retaining personal data. Imported discs stay unless you choose to remove them. |
 
-*4× restoration of the hammer motifs and clothing patterns. Preview candidate; not enabled in the installed mod.*
+Repair, Reinstall and Uninstall can recover from stale or damaged launch records, closing this installation’s verified game processes before maintenance. [Installation and recovery guide](docs/definitive/INSTALLER.md).
 
-These are offline previews, not Steam Deck gameplay captures. The geometry images depict ModelsHD 0.3; the broader 0.4 pass uses a more conservative smoothing treatment. [Comparison details](docs/definitive/images/comparisons/README.md).
+## One installation. Seven HD modules.
+
+Choose artwork modules individually in the game's **Mods** menu. Installed HD modules also work with existing campaigns without requiring a new game. Your explicit opt-outs are remembered, and cancelling a menu change leaves the previous choices intact. The launcher’s original/HD preference controls Skurfa backgrounds and ModelsHD; the other five modules have their own choices in Mods. [Artwork selection details](docs/definitive/HD_MOD_ACTIVATION.md).
+
+| Module | Enhancement |
+| --- | --- |
+| **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Remastered field backgrounds and foreground layers. |
+| **[ModelsHD](integrations/modelshd/README.md)** | Refined character, enemy, NPC and scenery geometry. |
+| **[CharHD](integrations/charhd/README.md)** | Reconstructed character models, restored textures and authored costume detail. |
+| **[EnvHD](docs/definitive/ENVHD_FULL_COVERAGE.md)** | 4,892 field images, battle panoramas, world-map artwork, terrain and selected battle materials. |
+| **[UIHD](docs/definitive/UIHD_PRODUCTION.md)** | Portraits, menus, interface artwork and combat cues. |
+| **[FxHD](integrations/fxhd/README.md)** | Spell, attack, transformation and animated effect textures. |
+| **[FMVHD](integrations/fmvhd/README.md)** | Enhanced versions of all 18 cinematics. |
+
+The scope is the whole campaign. Character faces and costumes across the party, NPCs and enemies, plus remaining field scenes, terrain, battle materials, props and animated surfaces still need work. Including all seven modules does not mean every asset is finished. [Visual direction](docs/definitive/CHARACTER_REMASTER.md) · [Character coverage](docs/definitive/CHARHD_PRODUCTION.md) · [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 ## Technical presentation
 
@@ -84,64 +165,45 @@ Definitive extends Severed Chains' shared rendering, texture-loading, audio and 
 
 ### High-resolution artwork, original animation
 
+**Character geometry and materials.** Dart’s accepted head uses **5,748 triangles** and a **2K material**, integrated through twelve selected field/battle part packs with custom body geometry. Exact source identities bind each replacement to the correct model. Geometry and material are accepted together; original CPU geometry, animation hierarchy and script-facing indices remain unchanged. Disabling CharHD restores the selected ModelsHD or original presentation. [Character integration](integrations/charhd/production/party-reconstruction/DART_PROMOTION.md).
+
 **Palette-live effects.** FxHD's shared indexed detail path resolves restored colors from the current palette. Texture writes, copies and scrolling retain native animation and transparency. One persistent **16 MiB GPU companion** serves the effect system, with no GPU texture allocation per particle.
 
 **Protected interface rendering.** UIHD keeps native clipping, logical coordinates, animation offsets and transparency while displaying larger artwork. Native palette variants load on demand within a **32 MiB source/restoration GPU budget**. Current-frame pages remain pinned; unused pages can be evicted, including while paused. Changed or invalid sources fall back to original artwork.
+
+**Source-bound environments.** Field replacements match decoded source pixels and a pinned artwork checksum before allocation. Separate foreground layers retain their script slots, movement, translucency and depth. Painted-image inputs have bounded dimensions and decode checks before pixel allocation; invalid or mismatched artwork falls back to the original layer. The published selection includes 4,892 field images from 5,162 individually reviewed candidates, with 270 held sources, twelve battle-motif holds and one terrain hold still requiring repair. [Full environment scope](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 **Bounded loading.** A shared **64 MiB decoded-artwork cache** reuses image data. Low-priority workers prepare native field backgrounds and eligible HD images during loading; GPU work stays on the renderer thread. Scene changes cancel obsolete preparation. These are component budgets, not a total game-memory or Steam Deck performance guarantee.
 
 ### Cinematics, audio and pacing
 
-**All 18 enhanced films** use bounded streaming at 1280×768, retaining the original 15 fps motion and soundtrack. Enhanced video follows actually played audio; original-video fallback keeps its own 15 Hz cadence. Cinematic presentation bypasses gameplay frame skipping and restores normal gameplay settings afterward. Cancellation and original-video fallback remain available.
+**All 18 enhanced films** use bounded streaming at 1280×768, retaining the original 15 fps motion and soundtrack. Enhanced and original video follow actually played audio; original-video fallback preserves its native 15 fps cadence. Cinematic presentation bypasses gameplay frame skipping and restores normal gameplay settings afterward. Cancellation and original-video fallback remain available.
 
-**PCM audio preservation** avoids an additional lossy encode after decoding prerecorded XA clips. Queue handling preserves clip endings and does not count unplayed buffers during empty starts or underruns. Playback recovery resumes from the played position, retaining the original score, voices and effects.
+**PCM audio preservation** avoids an additional lossy encode after decoding prerecorded XA clips, retaining the original score, voices and effects. Queue handling preserves clip endings and counts only audio that actually played, including empty starts, underruns and output disconnections.
 
-**Reliable rate transitions** reset the scheduler's deadline when callback speed changes, while repeated assignments preserve timing phase. Script ticks, model animation and sample-driven audio retain their respective clock ownership. This improves transitions between gameplay and movies without changing Addition windows.
+**Reliable output selection.** The default audio setting follows the operating system’s default output. Explicit device choices remain supported; unavailable or failed outputs trigger a bounded search for a working alternative without rewriting your saved preference. A lost audio device cannot fast-forward a cinematic by crediting its abandoned queue. Enhanced game films fall back to original playback when the output generation changes; original films and the launch video stop safely.
+
+**Independent engine clocks** separate gameplay simulation from presentation. Monotonic fixed steps advance scripts, model animation and gameplay at the selected game speed, with bounded catch-up after a stall. Hardware/minigame timers and sample-driven audio keep their own rates. Movie exits restore input, display and pause state independently; skip prompts follow movie time. Addition windows remain unchanged.
 
 ### Graphics reliability and control
 
 Failed shader reloads retain the working program. Texture uploads select the correct binding, deleted textures clear cached bindings, and stale artwork callbacks cannot restore an obsolete mod selection. Shared resources have explicit limits and cleanup paths.
 
+Native character uploads and deferred texture retirement retain renderer-thread ownership, including cancellation and failed uploads.
+
 Presentation controls live in **Graphics**, independently of campaign presets. The pipeline uses conventional rendering with assets prepared before installation. Whole-campaign visual review and physical Steam Deck frame-time, memory and power measurements remain ongoing.
 
-[Rendering technology](docs/definitive/RENDERING_LIGHTING.md) · [Cinematic playback](docs/definitive/CINEMATIC_TIMING.md) · [Audio](docs/definitive/AUDIO_VALIDATION.md) · [Engine pacing](docs/definitive/ENGINE_PACING.md).
+### Installation, save compatibility and recovery
 
-## Your campaign. Your preferences.
+**HD support for existing campaigns.** The managed launcher activates installed HD modules even when a campaign predates them. Visual defaults leave existing save bytes untouched. Explicit module opt-outs persist, custom gameplay-mod selections remain intact, and changes in the Mods menu take effect only when accepted. New-campaign choices are saved when you start the game.
 
-Start with **Definitive** for saving anywhere, battle autosaves, running by default, faster text, shorter transitions, enemy HP bars and turn-order information. Choose **Faithful** for settings closer to the original game.
+**Durable artwork preferences.** Accepted HD choices use an atomic preferences-file replacement followed by file and directory synchronization on Linux and macOS. A failed write keeps the selection screen open so you can retry or cancel.
 
-Both presets preserve normal Additions and timing windows, default to **1× rewards**, and leave Addition feedback off. Optional settings add equipment filtering and sorting, quantity buying and selling, binding-aware action hints, XP/gold multipliers, and timing feedback. Feedback helps identify Early, Late or Wrong Button results without changing hit windows or damage. Difficulty overhauls are not bundled. [Compare presets](docs/definitive/PRESETS.md) · [Explore the settings](docs/definitive/QOL_SETTINGS.md).
+**Recovery after an interrupted launch.** Repair, Reinstall and Uninstall recover from stale, missing or corrupt launch records and close verified game/launcher processes belonging to that installation before maintenance. Ownership checks distinguish those processes from other applications, and operation locks remain held through verification and activation. Repair and Reinstall retain saves, settings, module choices and imported discs. Same-release Repair also retains prepared game data; Uninstall retains personal data and imported discs unless disc removal is explicitly selected.
 
-## Ready to play on Steam Deck
+**Verified delivery at larger sizes.** ZIP64 support accommodates the expanded HD package. Checksum-addressed file delivery installs the complete inventory even when a full platform archive exceeds hosting limits. Update and Repair reuse verified matching files; full Reinstall downloads every payload again. Files are checked before activation, and failed transfers cannot activate an incomplete package. When an older hosted version has been retired, Repair can retrieve the verified current release and refresh the installed launcher while retaining personal data and the previous workspace. [Delivery technology](docs/definitive/FILE_DELIVERY.md).
 
-1. Enter **Desktop Mode** and [download the installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop).
-2. Open `Install-Definitive.desktop` in **Dolphin**. Allow execution if prompted.
-3. Choose a folder and supply your **four US game-disc images**, or reuse an existing installation's discs. BIN/raw ISO files and ZIP, RAR or 7z containers are supported.
-4. Let setup prepare the game, add the optional Steam shortcut, and launch from Steam or the Definitive launcher.
-
-Custom folders and SD cards are supported. Allow space for the roughly **1.7 GB game package**, Java, your discs and prepared game data. Game discs are not included, and source images stay untouched.
-
-![Definitive launcher with Play, artwork choices, version restore and Steam library actions](docs/definitive/images/launcher-linux.png)
-
-*Linux launcher preview.*
-
-The launcher brings **Play, Update, Repair and Restore** together. Update reuses unchanged files; Repair retrieves missing or changed application files. Reinstall replaces the application while keeping saves, settings, custom mods and imported discs. [Installation and recovery guide](docs/definitive/INSTALLER.md).
-
-## One installation. Seven HD modules.
-
-Choose artwork modules individually in the game's **Mods** menu. The launcher also offers an original/HD artwork preference. Existing campaigns may prompt you to enable newly installed mods.
-
-| Module | Enhancement |
-| --- | --- |
-| **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Remastered field backgrounds and foreground layers. |
-| **[ModelsHD](integrations/modelshd/README.md)** | Refined character, enemy, NPC and scenery geometry. |
-| **[CharHD](docs/definitive/CHARHD_PRODUCTION.md)** | Restored character textures and authored costume detail. |
-| **[EnvHD](docs/definitive/ENVHD_STATUS.md)** | Battle panoramas, world-map artwork and environment restoration. |
-| **[UIHD](docs/definitive/UIHD_PRODUCTION.md)** | Portraits, menus, interface artwork and combat cues. |
-| **[FxHD](integrations/fxhd/README.md)** | Spell, attack, transformation and animated effect textures. |
-| **[FMVHD](integrations/fmvhd/README.md)** | Enhanced versions of all 18 cinematics. |
-
-The scope is the whole campaign. Character faces and costumes across the party, NPCs and enemies, plus remaining field scenes, terrain, battle materials, props and animated surfaces still need work. Including all seven modules does not mean every asset is finished. [Visual direction](docs/definitive/CHARACTER_REMASTER.md) · [Character coverage](docs/definitive/CHARHD_PRODUCTION.md) · [Environment coverage](docs/definitive/ENVHD_STATUS.md).
+[Rendering technology](docs/definitive/RENDERING_LIGHTING.md) · [Cinematic playback](docs/definitive/CINEMATIC_TIMING.md) · [Audio](docs/definitive/AUDIO_VALIDATION.md) · [Engine pacing](docs/definitive/ENGINE_PACING.md) · [HD module behavior](docs/definitive/HD_MOD_ACTIVATION.md) · [Launch recovery](docs/definitive/MAINTENANCE_GAME_RECOVERY.md).
 
 ## Built with the community
 

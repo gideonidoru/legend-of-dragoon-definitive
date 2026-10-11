@@ -53,7 +53,7 @@ import static legend.core.GameEngine.PLATFORM;
 import static legend.core.GameEngine.REGISTRIES;
 import static legend.core.GameEngine.RENDERER;
 import static legend.core.GameEngine.SCRIPTS;
-import static legend.core.GameEngine.bootMods;
+import static legend.core.GameEngine.bootVisibleMods;
 import static legend.game.DrgnFiles.drgnBinIndex_800bc058;
 import static legend.game.DrgnFiles.loadDrgnDir;
 import static legend.game.EngineStates.FUN_80020ed8;
@@ -192,7 +192,7 @@ public final class Scus94491BpeSegment {
   private static void setGameplayTiming() {
     final int frames = Math.max(1, vsyncMode_8007a3b8);
     final int hz = 60 / frames * Config.getGameSpeedMultiplier();
-    RENDERER.window().setFpsLimit(hz);
+    RENDERER.setSimulationRate(hz);
     PLATFORM.setInputTickRate(hz);
   }
 
@@ -215,7 +215,7 @@ public final class Scus94491BpeSegment {
       }
     });
 
-    RENDERER.setRenderCallback(Scus94491BpeSegment::gameLoop);
+    RENDERER.setSimulationCallback(Scus94491BpeSegment::gameLoop);
 
     RENDERER.events().onClose(() -> {
       stopSound();
@@ -586,7 +586,7 @@ public final class Scus94491BpeSegment {
     submapCutBeforeBattle_80052c3c = -1;
     shouldRestoreCameraPosition_80052c40 = false;
     submapEnvState_80052c44 = SubmapEnvState.CHECK_TRANSITIONS_1_2;
-    bootMods(MODS.getAllModIds());
+    bootVisibleMods(MODS.getAllModIds());
   }
 
   private static int randSeed = 0x24040001;

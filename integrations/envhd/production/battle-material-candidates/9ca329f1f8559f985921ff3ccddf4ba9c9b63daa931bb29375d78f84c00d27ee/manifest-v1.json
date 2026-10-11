@@ -1,0 +1,54 @@
+{
+  "decodedRgbaSha256": "9ca329f1f8559f985921ff3ccddf4ba9c9b63daa931bb29375d78f84c00d27ee",
+  "sourceSize": [
+    48,
+    48
+  ],
+  "bindings": [
+    {
+      "stage": 45,
+      "page": 7,
+      "clut": 15389,
+      "parts": [
+        0
+      ],
+      "sourceCrop": [
+        120,
+        136,
+        168,
+        184
+      ],
+      "sourceUvOrigin": [
+        120,
+        136
+      ]
+    }
+  ],
+  "targetSize": [
+    192,
+    192
+  ],
+  "outputSha256": "e394da45393ed2f2ddd31b16a3312b1689275d4298ddd4ef76440aea5370a259",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "intent-revision-needed",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+    "style": "Lit architectural icon needs exact source contour/motif detail before selection. Visually inspected original/candidate comparison. Source colors, material identity and silhouettes retained as a neural development baseline; inferred/smoothed detail is not final Skurfa-equivalent bespoke quality. Skurfa resources are untouched.",
+    "layout": "Comparison board 09, cell 17; crop and tile arrangement remain source-bound. All outputs independently revalidated against fresh original decodes: exact 4x STP, discard and visible-black class; no edge averaging or geometry changes. Native seam/blend/mip inspection remains pending.",
+    "verdict": "intent-revision-needed",
+    "outputSha256": "e394da45393ed2f2ddd31b16a3312b1689275d4298ddd4ef76440aea5370a259",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "7862ee67731b77e646c22f298ebcb3325206a0a38ddf2eb8bea21882ce03c153",
+  "batchDependencySha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "sourceRole": "Static battle floor, wall and scenery surfaces; geometry and native animations remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources are unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

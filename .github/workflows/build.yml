@@ -39,13 +39,13 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/definitive-visual-checks"
           "$RUNNER_TEMP/definitive-visual-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
-          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing charhd-full-production visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass fxhd-field fxhd-full-production; do
+          for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass envhd-sky-batch envhd-sky-import envhd-world envhd-ownership envhd-terrain envhd-terrain-pack envhd-battle-materials envhd-fields envhd-painted-cutout envhd-painted-registration envhd-painted-fields envhd-install-selection charhd-full-production fxhd-field fxhd-full-production; do
             "$RUNNER_TEMP/definitive-visual-checks/bin/python" "scripts/test-$fixture.py"
           done
   build:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.runner }}
-    timeout-minutes: 20
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
@@ -63,6 +63,12 @@ jobs:
           persist-credentials: false
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           submodules: recursive
+      - name: Make room for custom artwork bundles
+        if: runner.os == 'Linux'
+        run: |
+          # Disposable hosted runner SDKs unused by this Java build.
+          sudo rm -rf -- /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          df -h .
       - name: Set up Java 25
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
@@ -93,6 +99,7 @@ jobs:
           ./gradlew --no-daemon --console=plain stageDefinitivePackage ${{ matrix.args }}
           python3 scripts/verify-fxhd-package.py build/definitive/package --stale-fxhd build/libs/mods/FxHD-v0.1.0.jar
           python3 scripts/verify-charhd-package.py build/definitive/package
+          python3 scripts/verify-envhd-package.py build/definitive/package
       - name: Assemble reviewed portable entry points
         if: runner.os == 'Linux'
         run: python3 scripts/assemble-installer.py --output-dir build/distributions --tag "$RELEASE_TAG"
@@ -103,7 +110,7 @@ jobs:
           sudo apt-get install -y ffmpeg libopenal1
           ffmpeg -y -v error -f lavfi -i testsrc2=size=320x192:rate=15:duration=2 -f lavfi -i sine=frequency=440:sample_rate=48000:duration=2 -c:v libx264 -pix_fmt yuv420p -c:a aac -ac 2 "$RUNNER_TEMP/fmv-fixture.mp4"
           ffmpeg -y -v error -f lavfi -i testsrc2=size=320x192:rate=15:duration=3 -f lavfi -i sine=frequency=440:sample_rate=48000:duration=1 -c:v libx264 -pix_fmt yuv420p -c:a aac -ac 2 "$RUNNER_TEMP/fmv-tail.mp4"
-          ./gradlew --no-daemon --console=plain deliveryTest -PfmvFixture="$RUNNER_TEMP/fmv-fixture.mp4" -PfmvTailFixture="$RUNNER_TEMP/fmv-tail.mp4" ${{ matrix.args }}
+          ./gradlew --no-daemon --console=plain deliveryTest cinematicHandoffProbe -PfmvFixture="$RUNNER_TEMP/fmv-fixture.mp4" -PfmvTailFixture="$RUNNER_TEMP/fmv-tail.mp4" ${{ matrix.args }}
       - name: Verify test opt-in using a headless fixture
         run: python3 scripts/verify-test-controls.py
       - name: Check bundled ModelsHD geometry and texture handoff
@@ -146,6 +153,7 @@ jobs:
           path: |
             build/distributions/Legend-of-Dragoon-Definitive-*.zip
             build/distributions/Definitive-Contents-*.zip
+            build/distributions/Env[1-4]HD-*.zip
             build/distributions/files/file-*
             build/distributions/FMVHD-v0.1.0-videos.zip
             build/distributions/Definitive-Installer.zip

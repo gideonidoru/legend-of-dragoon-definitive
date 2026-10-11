@@ -68,9 +68,9 @@ final class ManagerView extends JPanel {
   ManagerView(final JFrame frame, final Path packageRoot, final Path root, final Runnable close) {
     this.close = close;
     this.frame = frame; this.packageRoot = packageRoot; this.root = root;
-    if(Files.isRegularFile(root.resolve("state.properties"))) {
-      this.inspectingIdentity = true;
-      this.screen = packageRoot == null ? Screen.LAUNCHER : Files.isRegularFile(root.resolve(".definitive-owned")) ? Screen.MAINTENANCE : Screen.INSTALL;
+    if(Files.isRegularFile(root.resolve("state.properties")) || Files.isRegularFile(root.resolve(".definitive-owned"))) {
+      this.inspectingIdentity = Files.isRegularFile(root.resolve("state.properties"));
+      this.screen = !Files.isRegularFile(root.resolve("state.properties")) ? Screen.MAINTENANCE : packageRoot == null ? Screen.LAUNCHER : Files.isRegularFile(root.resolve(".definitive-owned")) ? Screen.MAINTENANCE : Screen.INSTALL;
       if(this.screen.launcher()) {
         try { DiscImporter.validateSet(root.resolve("isos")); if(!new InstallStore(root).discsPrepared()) this.screen = Screen.DISCS; }
         catch(final Exception e) { this.screen = Screen.DISCS; }
@@ -188,7 +188,14 @@ final class ManagerView extends JPanel {
     if(this.screen == Screen.MAINTENANCE) {
       this.heading("Your installation", "Repair changed files, reinstall everything, or remove Definitive.");
       this.body.add(infoCard("LOCATION", "Legend of Dragoon: Definitive", this.root.toString())); this.body.add(Box.createVerticalStrut(24));
-      this.primary("Repair", () -> this.run("Repairing Definitive", () -> ReleaseUpdates.repair(new InstallStore(this.root), this.currentProgress), () -> { this.loadInstallationInfo(); this.render(); }));
+      this.primary("Repair", () -> this.run("Repairing Definitive", () -> {
+        final var store = InstallStore.forMaintenance(this.root);
+        return new RepairResult(ReleaseUpdates.repair(store, this.currentProgress), store.discsPrepared());
+      }, result -> {
+        this.message(result.message());
+        if(!result.prepared()) { this.screen = Screen.DISCS; this.inspectExistingDiscs(); }
+        this.loadInstallationInfo(); this.render();
+      }));
       this.body.add(Box.createVerticalStrut(12)); final JButton reinstall = button("Reinstall", false); reinstall.addActionListener(event -> this.install(true)); this.body.add(reinstall);
       this.body.add(Box.createVerticalStrut(12)); final JButton uninstall = button("Uninstall", false); uninstall.addActionListener(e -> this.uninstall()); this.setupActions(uninstall);
       return;
@@ -232,7 +239,7 @@ final class ManagerView extends JPanel {
     try { this.root = installationPath(this.destination.getText()); this.destination.setText(this.root.toString()); }
     catch(final Exception error) { this.showFailure(error); return; }
     this.run("Installing Definitive", () -> {
-      final var store = new InstallStore(this.root); final InstallProgress installing = update -> this.currentProgress.report(update.scaled(update.startPercent() * 75 / 100, update.endPercent() * 75 / 100));
+      final var store = fullReinstall ? InstallStore.forMaintenance(this.root) : new InstallStore(this.root); final InstallProgress installing = update -> this.currentProgress.report(update.scaled(update.startPercent() * 75 / 100, update.endPercent() * 75 / 100));
       final String result = PortableSetup.install(this.packageRoot, store, installing, fullReinstall);
       store.verifyInstalled(); InstallLocation.record(store); final InstallProgress checking = update -> this.currentProgress.report(update.scaled(75 + update.startPercent() / 4, 75 + update.endPercent() / 4));
       this.installedDiscs = DiscImporter.existing(store, checking); this.currentProgress.phase("Installation ready", "Choose whether to reuse or replace your disc images", 100); return result;
@@ -245,8 +252,8 @@ final class ManagerView extends JPanel {
     if(!ManagerDialogs.confirm(this.frame, "Uninstall Definitive", options, "Uninstall")) return;
     final boolean deleteIsos = delete.isSelected();
     this.run("Uninstalling Definitive", () -> {
-      final var store = new InstallStore(this.root);
-      return store.withOperation(() -> { for(final var account : SteamLibrary.accounts()) SteamIntegration.remove(account, this.root, this.currentProgress); return store.uninstall(deleteIsos, this.currentProgress); });
+      final var store = InstallStore.forMaintenance(this.root);
+      return store.withMaintenance(this.currentProgress, () -> { for(final var account : SteamLibrary.accounts()) SteamIntegration.remove(account, this.root, this.currentProgress); return store.uninstall(deleteIsos, this.currentProgress); });
     }, () -> { this.screen = Screen.UNINSTALLED; this.render(); });
   }
   private void setupActions(final JButton secondary) {
@@ -309,11 +316,13 @@ final class ManagerView extends JPanel {
       try { DiscImporter.validateSet(this.root.resolve("isos")); return store.discsPrepared() ? Screen.LAUNCHER : Screen.DISCS; } catch(final java.io.IOException missingDiscs) { return Screen.DISCS; }
     }, next -> { this.recoveryPending = false; this.screen = next; this.loadInstallationInfo(); this.render(); }));
     this.body.add(Box.createVerticalStrut(12)); final JButton preserved = button("Review preserved data", false); preserved.addActionListener(event -> this.loadStorage()); this.body.add(preserved);
+    this.body.add(Box.createVerticalStrut(12)); final JButton maintenance = button("Repair / reinstall / uninstall", false); maintenance.addActionListener(event -> { this.screen = Screen.MAINTENANCE; this.render(); }); this.body.add(maintenance);
     this.body.add(Box.createVerticalStrut(12)); final JButton details = button("Recovery details", false); details.addActionListener(event -> {
       final JTextArea text = new JTextArea("Recovery notice:\n" + this.recoveryNotice + "\n\nVerified recovered package:\n" + this.recoveryRestoredRelease + "\n\nVerified recovered data:\n" + this.recoveryRestoredData + "\n\nPreserved locations:\n" + this.recoveryPreservedLocations); text.setEditable(false); text.setLineWrap(true); text.setWrapStyleWord(true); text.setFont(font(14, false)); text.setCaretPosition(0); ManagerDialogs.confirm(this.frame, "Recovery details", new JScrollPane(text), "Close");
     }); this.body.add(details);
   }
   private record StorageResult(String message, InstallStore.RetentionInventory inventory) { }
+  private record RepairResult(String message, boolean prepared) { }
 
   private void stages() {
     final JPanel stages = new JPanel(new GridLayout(1, 3, 12, 0)); stages.setOpaque(false); stages.setAlignmentX(LEFT_ALIGNMENT);

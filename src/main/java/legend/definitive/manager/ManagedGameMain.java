@@ -15,7 +15,6 @@ public final class ManagedGameMain {
   public static void main(final String[] args) throws Throwable {
     final Path root = Path.of(System.getProperty("definitive.installRoot")).toAbsolutePath().normalize();
     final String token = System.getProperty("definitive.launchToken", "");
-    GameLease.validatePending(root, token);
     holdForProcessLifetime(root, token);
     try {
       Class.forName("legend.game.Main").getMethod("main", String[].class).invoke(null, (Object)args);
@@ -29,13 +28,18 @@ public final class ManagedGameMain {
       channel = FileChannel.open(root.resolve(".game-lock"), StandardOpenOption.CREATE, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS);
       lease = channel.tryLock();
       if(lease == null) throw new java.io.IOException("Another managed game is running.");
+      // Maintenance can revoke a stale spawn while holding this same OS lease.
+      // Validate inside it, so a delayed child cannot pass an earlier check and
+      // start writing after Repair has begun or completed.
+      GameLease.validatePending(root, token);
       GameLease.recordRunning(root, token);
       lifetimeLease = lease;
       lifetimeChannel = channel;
     } catch(final java.io.IOException | RuntimeException | Error failure) {
       try { if(lease != null) lease.release(); } catch(final java.io.IOException cleanup) { failure.addSuppressed(cleanup); }
       try { if(channel != null) channel.close(); } catch(final java.io.IOException cleanup) { failure.addSuppressed(cleanup); }
-      try { GameLease.finished(root, token); } catch(final java.io.IOException cleanup) { failure.addSuppressed(cleanup); }
+      // The launcher owns its handoff receipt under the operation lock. A
+      // rejected/delayed child must not race a newer launch's receipt cleanup.
       throw failure;
     }
   }

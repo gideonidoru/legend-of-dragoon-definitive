@@ -6,6 +6,7 @@ from falling through into publication; it never creates or overwrites an asset.
 """
 from pathlib import Path
 import argparse
+from contextlib import contextmanager
 import hashlib
 import json
 import re
@@ -24,7 +25,20 @@ def gh(*arguments):
     return subprocess.check_output(['gh', *arguments], text=True, stderr=subprocess.PIPE)
 
 
-def verify_ci_artifacts(run_id, source, expected):
+@contextmanager
+def artifact_archive(artifact, cache):
+    if cache is not None:
+        path=cache/(artifact['name']+'.zip')
+        if path.is_symlink() or not path.is_file():raise ValueError('Missing or linked cached CI artifact')
+        with path.open('rb') as stream:yield stream
+    else:
+        with tempfile.TemporaryFile() as stream:
+            subprocess.run(['gh','api',f'repos/{REPO}/actions/artifacts/{artifact["id"]}/zip'],stdout=stream,stderr=subprocess.PIPE,check=True,timeout=1800)
+            stream.seek(0)
+            yield stream
+
+
+def verify_ci_artifacts(run_id, source, expected, cache=None):
     pages = json.loads(gh('api', f'repos/{REPO}/actions/runs/{run_id}/artifacts?per_page=100', '--paginate', '--slurp'))
     artifacts = [a for page in pages for a in page['artifacts']]
     for artifact_name, names in {
@@ -41,9 +55,7 @@ def verify_ci_artifacts(run_id, source, expected):
         contents_name = 'Definitive-Contents-' + platform + '.zip'
         if contents_name in expected: names = names | {contents_name}
         if 'FMVHD-v0.1.0-videos.zip' in expected: names = names | {'FMVHD-v0.1.0-videos.zip'}
-        with tempfile.TemporaryFile() as output:
-            subprocess.run(['gh', 'api', f'repos/{REPO}/actions/artifacts/{artifact["id"]}/zip'],
-                           stdout=output, stderr=subprocess.PIPE, check=True, timeout=1800)
+        with artifact_archive(artifact,cache) as output:
             output.seek(0)
             if artifact.get('digest') != 'sha256:' + hashlib.file_digest(output, 'sha256').hexdigest():
                 raise ValueError('Downloaded CI artifact digest mismatch')
@@ -61,6 +73,7 @@ def verify_ci_artifacts(run_id, source, expected):
                     with zipfile.ZipFile(io.BytesIO(data)) as contents:
                         hashes = properties(contents.read('definitive-files.properties'))
                     names |= {'file-' + digest for digest in hashes.values()}
+                    names |= {name.split('/')[-1] for name in hashes if re.fullmatch(r'bundled-mods/Env[1-4]HD-v[0-9.]+\.zip',name)}
                 for name in names:
                     candidates = [e for n, e in entries.items() if n.split('/')[-1] == name and not e.is_dir()]
                     if len(candidates) != 1:
@@ -118,6 +131,7 @@ def main():
     parser.add_argument('--assets-dir', type=Path, required=True, help='Complete upload inputs and SHA256SUMS')
     parser.add_argument('--notes-file', type=Path, required=True)
     parser.add_argument('--check-only', action='store_true')
+    parser.add_argument('--ci-artifacts-dir',type=Path,help='Reuse downloaded raw artifact ZIPs; fresh GitHub source/run/digest checks remain mandatory')
     args = parser.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9._-]+', args.tag) or not re.fullmatch(r'[a-f0-9]{40}', args.source_sha) or not args.run.isdecimal():
         raise ValueError('Invalid release tag, source SHA or build ID')
@@ -150,20 +164,22 @@ def main():
         path = args.assets_dir / name
         if path.is_symlink() or not path.is_file():raise ValueError('Invalid upload file: ' + name)
         with path.open('rb') as stream:digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+        if path.stat().st_size > 2 * 1024**3:raise ValueError('Upload exceeds GitHub per-asset limit: '+name)
         expected[name] = (path.stat().st_size, digest)
-    sums = (args.assets_dir / 'SHA256SUMS').read_text().splitlines()
-    if len(sums) != len(names) or set(sums) != {expected[n][1] + '  ' + n for n in names}:
+    sums = ''.join(expected[n][1] + '  ' + n + '\n' for n in sorted(names)).encode('ascii')
+    if (args.assets_dir / 'SHA256SUMS').read_bytes() != sums:
         raise ValueError('SHA256SUMS does not match the complete upload set')
     if has_contents and any(expected[name] != identity for name, identity in blobs.items()): raise ValueError('Per-file blob checksum or size mismatch')
     for platform in ('linux-x64', 'macos-arm64'):
-        verify_package(args.assets_dir / f'Legend-of-Dragoon-Definitive-{platform}.zip', platform, args.source_sha, args.tag)
+        verify_package(args.assets_dir / f'Legend-of-Dragoon-Definitive-{platform}.zip', platform, args.source_sha, args.tag, allow_file_delivery=has_contents)
     verify_installer(args.assets_dir / 'Definitive-Installer.zip')
     script = (args.assets_dir / 'Install-Definitive.sh').read_text()
     if f'TAG={args.tag}\n' not in script or f'EXPECTED={expected["Definitive-Installer.zip"][1]}\n' not in script:
         raise ValueError('Portable entry point has stale tag/checksum')
     desktop = (args.assets_dir / 'Install-Definitive.desktop').read_text()
-    if expected['Install-Definitive.sh'][1] not in desktop or f'/releases/download/{args.tag}/Install-Definitive.sh' not in desktop:
-        raise ValueError('Desktop entry has stale source/checksum')
+    from desktop_bootstrap import desktop_entry
+    if desktop != desktop_entry():
+        raise ValueError('Desktop entry must resolve and verify the latest installer')
     if gh('api', 'user', '--jq', '.login').strip() != 'gideonidoru':raise ValueError('Wrong GitHub account')
     run = json.loads(gh('api', f'repos/{REPO}/actions/runs/{args.run}'))
     if any(run.get(k) != v for k, v in {'status': 'completed', 'conclusion': 'success', 'head_sha': args.source_sha, 'path': '.github/workflows/build.yml'}.items()):
@@ -173,7 +189,7 @@ def main():
     checked = [j for j in jobs if j['name'] in required]
     if len(checked) != len(required) or {j['name'] for j in checked} != required or any(j['status'] != 'completed' or j['conclusion'] != 'success' for j in checked):
         raise ValueError('Required packaging/test jobs are missing or did not pass')
-    verify_ci_artifacts(args.run, args.source_sha, expected)
+    verify_ci_artifacts(args.run, args.source_sha, expected, args.ci_artifacts_dir)
     def read():
         release = json.loads(gh('release', 'view', args.tag, '-R', REPO, '--json', 'databaseId,tagName,targetCommitish,isDraft,url,assets'))
         if len(expected) > 100:

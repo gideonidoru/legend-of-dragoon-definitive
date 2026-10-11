@@ -12,6 +12,7 @@ ROOT = {'definitive-manager.jar', 'bootstrap-java', 'Install.sh', 'LICENSE', 'CR
         'credits.txt', 'README.md', 'log4j2.xml', 'gamecontrollerdb.txt'}
 SUPPORT = {'gfx', 'patches', 'lang', 'libs', 'bundled-mods', 'tools'}
 META = {'definitive-package.properties', 'definitive-files.properties'}
+BOOTSTRAP = {'definitive-manager.jar', 'bootstrap-java', 'Install.sh', 'LICENSE', 'CREDITS'}
 
 
 def inventory(archive, size_limit=32 * 1024**3, entry_limit=100000):
@@ -63,7 +64,7 @@ def properties(data):
     return result
 
 
-def verify_package(path, platform, source, tag):
+def verify_package(path, platform, source, tag, allow_file_delivery=False):
     with zipfile.ZipFile(path) as archive:
         entries = inventory(archive, 8 * 1024**3, 30000)
         files = {n for n, e in entries.items() if not e.is_dir()}
@@ -78,7 +79,12 @@ def verify_package(path, platform, source, tag):
         game = metadata.get('gameJar', '')
         if not re.fullmatch(r'lod-game-[A-Za-z0-9._-]+\.jar', game):
             raise ValueError('Invalid game archive identity')
-        payload = files - META
+        index_only=allow_file_delivery and 'definitive-sizes.properties' in files
+        if index_only:
+            bootstrap=BOOTSTRAP | {name for name in hashes if name.startswith('libs/')}
+            if files != META | {'definitive-sizes.properties'} | bootstrap or not any(name.endswith('.jar') for name in bootstrap if name.startswith('libs/')):
+                raise ValueError('Online platform package lacks its runnable bootstrap or dependency closure')
+        payload = set(hashes) if index_only else files - META
         if payload != set(hashes) or not ROOT | {game} <= payload:
             raise ValueError('Package inventory is incomplete')
         for name, entry in entries.items():
@@ -86,12 +92,22 @@ def verify_package(path, platform, source, tag):
                 if name.rstrip('/').split('/')[0] not in SUPPORT:
                     raise ValueError('Unexpected package directory')
                 continue
-            if name in META:
+            if name in META or index_only and name=='definitive-sizes.properties':
                 continue
             if not (name in ROOT or name == game or '/' in name and name.split('/')[0] in SUPPORT):
                 raise ValueError('Unexpected package input: ' + name)
             if not re.fullmatch('[a-f0-9]{64}', hashes[name]) or digest_entry(archive, entry) != hashes[name]:
                 raise ValueError('Package checksum mismatch: ' + name)
+        if index_only:
+            if any(entries[n].file_size>4*1024**2 for n in META|{'definitive-sizes.properties'}):raise ValueError('Oversized file-only release metadata')
+            sizes=properties(archive.read('definitive-sizes.properties'))
+            if set(sizes)!=set(hashes) or len(hashes)>30000:raise ValueError('Incomplete file-only release inventory')
+            total=0
+            for name,digest in hashes.items():
+                parts=name.split('/')
+                if any(p in ('','.','..') for p in parts) or any(c in name for c in '\\:\n\r\0') or not (name in ROOT or name==game or '/' in name and parts[0] in SUPPORT) or not re.fullmatch('[a-f0-9]{64}',digest) or not re.fullmatch(r'0|[1-9][0-9]{0,10}',sizes[name]):raise ValueError('Unsafe file-only inventory')
+                size=int(sizes[name]);total+=size
+                if size>2*1024**3 or total>8*1024**3:raise ValueError('File-only release exceeds publication bounds')
         if any(not any(n.startswith(folder + '/') and n.endswith('.jar') for n in payload)
                for folder in ('libs', 'bundled-mods')):
             raise ValueError('Missing engine dependencies or bundled artwork')
@@ -126,6 +142,8 @@ def file_delivery_assets(package, contents):
         for name in META:
             if manifest.read(name) != full.read(name):
                 raise ValueError('Per-file inventory differs from complete package')
+        thin='definitive-sizes.properties' in full.namelist()
+        if thin and full.read('definitive-sizes.properties')!=manifest.read('definitive-sizes.properties'):raise ValueError('File-only inventory sizes differ')
         hashes = properties(manifest.read('definitive-files.properties'))
         sizes = properties(manifest.read('definitive-sizes.properties'))
         if set(sizes) != set(hashes):
@@ -133,11 +151,15 @@ def file_delivery_assets(package, contents):
         result = {}
         for name, digest in hashes.items():
             if len(name) > 1024 or '\0' in name or not re.fullmatch('[a-f0-9]{64}', digest): raise ValueError('Unsupported per-file path or checksum')
-            if not re.fullmatch(r'0|[1-9][0-9]{0,10}', sizes[name]) or int(sizes[name]) != full.getinfo(name).file_size:
+            if not re.fullmatch(r'0|[1-9][0-9]{0,10}', sizes[name]) or not thin and int(sizes[name]) != full.getinfo(name).file_size:
                 raise ValueError('Per-file length mismatch')
             asset = 'file-' + digest
             value = int(sizes[name]), digest
             if asset in result and result[asset] != value:
                 raise ValueError('Conflicting per-file blob identity')
             result[asset] = value
+            if re.fullmatch(r'bundled-mods/Env[1-4]HD-v[0-9.]+\.zip', name):
+                alias=name.split('/')[-1]
+                if alias in result and result[alias] != value:raise ValueError('Conflicting named EnvHD pack')
+                result[alias]=value
         return result

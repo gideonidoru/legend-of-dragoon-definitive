@@ -11,10 +11,6 @@ public final class XaAdpcm {
 
   private static final int BYTES_PER_HEADER = 24;
 
-  private static short oldL;
-  private static short olderL;
-  private static short oldR;
-  private static short olderR;
   private static int sixStep = 6;
   private static int resamplePointer;
   private static final short[][] resampleRingBuffer = { new short[32], new short[32] };
@@ -73,59 +69,69 @@ public final class XaAdpcm {
     }
   };
 
-  public static short[] decode(final byte[] xaadpcm, final byte codingInfo) {
-    final ShortList decoded = new ShortArrayList();
+  private static final Decoder legacyDecoder = new Decoder();
 
-    final ShortList l = new ShortArrayList();
-    final ShortList r = new ShortArrayList();
+  public static short[] decode(final byte[] data, final byte codingInfo) {
+    synchronized(legacyDecoder) { return legacyDecoder.decode(data, codingInfo); }
+  }
 
-    final boolean isStereo = (codingInfo & 0x1) != 0;
-    final boolean is18900hz = (codingInfo >>> 2 & 0x1) != 0;
-    final boolean is8BitPerSample = (codingInfo >>> 4 & 0x1) != 0;
+  /** Predictor history belongs to one recording, including a restarted fallback. */
+  public static final class Decoder {
+    private short oldL, olderL, oldR, olderR;
+    public short[] decode(final byte[] xaadpcm, final byte codingInfo) {
+      final ShortList decoded = new ShortArrayList();
 
-    //Console.WriteLine($"decoding XAPCDM {xaadpcm.Length} is18900: {is18900hz} is8Bit: {is8BitPerSample} isStereo: {isStereo}");
+      final ShortList l = new ShortArrayList();
+      final ShortList r = new ShortArrayList();
 
-    int position = BYTES_PER_HEADER; //Skip sync, header and subheader
-    for(int i = 0; i < 18; i++) { //Each sector consists of 12h 128-byte portions (=900h bytes) (the remaining 14h bytes of the sectors 914h-byte data region are 00h filled).
-      for(int blk = 0; blk < 4; blk++) {
-        final Ref<Short> oldLRef = new Ref<>(oldL);
-        final Ref<Short> oldRRef = new Ref<>(oldR);
-        final Ref<Short> olderLRef = new Ref<>(olderL);
-        final Ref<Short> olderRRef = new Ref<>(olderR);
+      final boolean isStereo = (codingInfo & 0x1) != 0;
+      final boolean is18900hz = (codingInfo >>> 2 & 0x1) != 0;
+      final boolean is8BitPerSample = (codingInfo >>> 4 & 0x1) != 0;
 
-        l.addAll(decodeNibbles(xaadpcm, position, blk, 0, oldLRef, olderLRef));
+      //Console.WriteLine($"decoding XAPCDM {xaadpcm.Length} is18900: {is18900hz} is8Bit: {is8BitPerSample} isStereo: {isStereo}");
 
-        if(isStereo) {
-          r.addAll(decodeNibbles(xaadpcm, position, blk, 1, oldRRef, olderRRef));
-        } else {
-          l.addAll(decodeNibbles(xaadpcm, position, blk, 1, oldLRef, olderLRef));
+      int position = BYTES_PER_HEADER; //Skip sync, header and subheader
+      for(int i = 0; i < 18; i++) { //Each sector consists of 12h 128-byte portions (=900h bytes) (the remaining 14h bytes of the sectors 914h-byte data region are 00h filled).
+        for(int blk = 0; blk < 4; blk++) {
+          final Ref<Short> oldLRef = new Ref<>(oldL);
+          final Ref<Short> oldRRef = new Ref<>(oldR);
+          final Ref<Short> olderLRef = new Ref<>(olderL);
+          final Ref<Short> olderRRef = new Ref<>(olderR);
+
+          l.addAll(decodeNibbles(xaadpcm, position, blk, 0, oldLRef, olderLRef));
+
+          if(isStereo) {
+            r.addAll(decodeNibbles(xaadpcm, position, blk, 1, oldRRef, olderRRef));
+          } else {
+            l.addAll(decodeNibbles(xaadpcm, position, blk, 1, oldLRef, olderLRef));
+          }
+          //Console.WriteLine("nextblock " + blk);
+
+          oldL = oldLRef.get();
+          oldR = oldRRef.get();
+          olderL = olderLRef.get();
+          olderR = olderRRef.get();
         }
-        //Console.WriteLine("nextblock " + blk);
 
-        oldL = oldLRef.get();
-        oldR = oldRRef.get();
-        olderL = olderLRef.get();
-        olderR = olderRRef.get();
+        //Console.WriteLine("next i " + i + "position" + position);
+        position += 128;
       }
 
-      //Console.WriteLine("next i " + i + "position" + position);
-      position += 128;
+      if(isStereo) {
+        for(int sample = 0; sample < l.size(); sample++) {
+          decoded.add(l.getShort(sample));
+          decoded.add(r.getShort(sample));
+        }
+      } else {
+        for(int sample = 0; sample < l.size(); sample++) {
+          //duplicating because out output expects 44100 Stereo
+          decoded.add(l.getShort(sample));
+          decoded.add(l.getShort(sample));
+        }
+      }
+
+      return decoded.toShortArray();
     }
-
-    if(isStereo) {
-      for(int sample = 0; sample < l.size(); sample++) {
-        decoded.add(l.getShort(sample));
-        decoded.add(r.getShort(sample));
-      }
-    } else {
-      for(int sample = 0; sample < l.size(); sample++) {
-        //duplicating because out output expects 44100 Stereo
-        decoded.add(l.getShort(sample));
-        decoded.add(l.getShort(sample));
-      }
-    }
-
-    return decoded.toShortArray();
   }
 
   private static ShortList resampleTo44100Hz(final List<Short> samples, final boolean is18900hz, final int channel) {

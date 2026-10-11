@@ -1,0 +1,73 @@
+{
+  "decodedRgbaSha256": "03cb306758c80a5397884dcccfb37f7cdc625cd2eb19e08cf0ce4934a5ffd43e",
+  "sourceSize": [
+    136,
+    72
+  ],
+  "bindings": [
+    {
+      "stage": 14,
+      "page": 7,
+      "clut": 15388,
+      "parts": [
+        3,
+        7
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        136,
+        72
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ]
+    },
+    {
+      "stage": 92,
+      "page": 7,
+      "clut": 15388,
+      "parts": [
+        4
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        136,
+        72
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ]
+    }
+  ],
+  "targetSize": [
+    544,
+    288
+  ],
+  "outputSha256": "8b59670a74e28afc5093bddda140fc0c5dd720a0143792ee3c9cd010fad8a46c",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Static battle model surface; source geometry uses stage/parts {14: [3, 7], 92: [4]}. Source family: grey stone and skeletal/webbed organic construction; Nest of Dragoon: grey stone, webs, roots and shaded architectural gradients. Engine random-encounter location mapping: Nest of Dragon.",
+    "style": "Visually inspected original/candidate comparison. Source colors, material identity and silhouettes retained as a neural development baseline; inferred/smoothed detail is not final Skurfa-equivalent bespoke quality. Skurfa resources are untouched.",
+    "layout": "Comparison board 03, cell 2; crop and tile arrangement remain source-bound. All outputs independently revalidated against fresh original decodes: exact 4x STP, discard and visible-black class; no edge averaging or geometry changes. Native seam/blend/mip inspection remains pending.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "8b59670a74e28afc5093bddda140fc0c5dd720a0143792ee3c9cd010fad8a46c",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "7862ee67731b77e646c22f298ebcb3325206a0a38ddf2eb8bea21882ce03c153",
+  "batchDependencySha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "sourceRole": "Static battle floor, wall and scenery surfaces; geometry and native animations remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources are unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

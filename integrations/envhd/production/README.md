@@ -42,12 +42,14 @@ Visual review, source/layout validation, runtime integration, and native scene
 acceptance are separate states. The overall goal is still incomplete; no inventory
 or build result is a claim of 100% visual coverage.
 
-Current development coverage is 36 custom revisions across 26 of the 70 battle
-restoration masters. Seven are selected after source-intent, style, layout and
-repeat review; sixteen need repeat corrections and three need layout corrections.
-Forty-four masters remain ungenerated and native scene acceptance is pending for
-all selections. `coverage.json` and the per-source review ledgers are the detailed
-controls. World-map encounter-table evidence is recorded separately from field
+Current battle development coverage is 123 custom revisions with reviewed selections
+for all 70 restoration masters. The 73 source/header bindings share those masters;
+the verified uniform-black image remains native. World artwork adds 38 source-bound
+location landscapes and one parchment backdrop. Native scene acceptance and final
+Skurfa-equivalent bespoke detail remain pending. `battle-skies.json`, the world
+ledger and per-source manifests control current selections; older census summaries
+are historical evidence rather than current completion counts.
+World-map encounter-table evidence is recorded separately from field
 usage; stage86's 8x8 MCQ is below the renderer's drawable threshold and requires no
 panorama generation. Its other battle materials remain in the backlog.
 
@@ -56,6 +58,25 @@ under the owner's October 10 authorization. Rejected/development revisions retai
 their review status and stay outside `runtime-assets`; only selected reviewed
 images enter the installed mod. Private original extraction and source-comparison
 diagnostic images remain outside this repository.
+
+`terrain-artwork.json` records 293 custom static world-material candidates, including
+292 visually reviewed development baselines and one uniform-color native exemption.
+There are 366 material bindings across eight regions, with one wrapped Tiberoa
+binding held. Animated ocean part zero retains its native texture/CLUT animation.
+`terrain-runtime-artwork.json` selects 292 masters through eight region atlases,
+covering 364 HD material bindings in the default development installation. The
+uniform-color exemption and wrapped binding remain native. Native scene inspection
+and final visual acceptance are still pending. Candidate history lives under
+`terrain-candidates`; these are selected development resources for the owner-requested default installation.
+See `docs/definitive/ENVHD_TERRAIN_PRODUCTION.md` for the source and integration gates.
+
+`battle-material-artwork.json` records 518 new static battle-material candidates
+for 525 bindings, with 506 reviewed development baselines and twelve bespoke
+revision flags. Their immutable custom images/manifests live in
+`battle-material-candidates`; `battle-material-runtime-artwork.json` selects 506 masters
+through 72 static stage atlases covering 513 new bindings. Revision holds retain native sampling. The fresh
+900-binding census protects 24 existing pilot bindings and holds 351 animation or
+incomplete-palette dependencies. See `docs/definitive/ENVHD_BATTLE_MATERIAL_PRODUCTION.md`.
 
 Reviewed bitmaps live once under `envhd/sky-images/<decoded-pixel-hash>`. Each
 source MCQ variant has its own source-bound manifest in `envhd/skies/<source-hash>`.
@@ -70,3 +91,12 @@ withdrawing the exact selected image removes its bindings and unreferenced runti
 copy while preserving the public candidate. A failed local publication rolls back
 the touched files. Run `scripts/test-envhd-sky-import.py` for synthetic regression
 fixtures; they use no retail artwork or game window.
+
+`field-artwork.json` publishes 2,723 reviewed development outputs and immutable
+source/output/review manifests under `field-candidates`. The reviewed-subset import
+still validates the complete private census and pinned repair/generation histories;
+it excludes 117 held and 2,322 unreviewed images. `field-runtime-artwork.json`
+selects 603 background-bound and 2,120 foreground-bound images. Selection replaces
+its complete owned runtime tree atomically, so withdrawn candidates cannot execute.
+Original foreground slots and cropped placement remain independent. The four
+resource-only field ZIPs are installed with the single EnvHD mod.
