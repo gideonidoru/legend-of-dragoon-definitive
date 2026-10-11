@@ -187,7 +187,7 @@ public final class InstallStore {
         if(revision != null && (!revision.sourceRevision().equals(manifest.metadata().getProperty("sourceRevision")) || !"definitive-current".equals(manifest.metadata().getProperty("releaseTag")))) throw new IOException("Package does not match the verified current build.");
         forceTree(staged);
         final Properties old = this.state();
-        try(final var clean = fullReinstall ? CleanReinstall.prepare(this, old) : null) {
+        try(final var clean = fullReinstall ? CleanReinstall.prepare(this, old, manifest) : null) {
         final Path release = this.root.resolve("releases").resolve(manifest.id());
         if(Files.exists(release)) {
           if(Files.isSymbolicLink(release)) throw new IOException("Unexpected linked release. No external files were changed.");
