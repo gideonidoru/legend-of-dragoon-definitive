@@ -72,41 +72,62 @@ final class FileDelivery {
         if(!PackageManifest.sha256(inventory).equals(asset.sha256())) throw new IOException("Release inventory checksum mismatch. Your current installation is unchanged.");
         if(candidate.revision() != null && Files.size(inventory) != candidate.revision().contentsBytes()) throw new IOException("Current build inventory size mismatch.");
         final Contents contents = read(inventory, candidate.tag());
+        if(candidate.revision() != null) candidate.revision().validateMovieContents(contents.manifest().hashes(), contents.sizes());
         if(candidate.revision() != null && !candidate.revision().sourceRevision().equals(contents.manifest().metadata().getProperty("sourceRevision"))) throw new IOException("Current build inventory source mismatch.");
         if(!expectedIdentity.isEmpty() && !expectedIdentity.equals(contents.manifest().id())) throw new IOException("Downloaded inventory differs from the supplied online package. Download the current installer again.");
         if(repairing && candidate.revision() == null && !contents.manifest().id().equals(state.getProperty("version"))) throw new IOException("Repair must match the installed release exactly. Use Update for another release.");
         store.requireFileDeliverySpace(contents.bytes(), contents.manifest().id());
+        final var recipe = candidate.revision() == null ? null : ArchiveAssembly.fetch(candidate.revision(), contents, store.root(), connection);
+        final var assembler = recipe == null ? null : new ArchiveAssembly(recipe, current, fullReinstall ? null : ArchiveAssembly.cache(store.root(), current), connection);
+        final Properties previousHashes = fullReinstall ? null : previousHashes(current);
         for(final String support : PackageManifest.SUPPORT) Files.createDirectories(staged.resolve(support));
         for(final String name : List.of(PackageManifest.METADATA, PackageManifest.HASHES)) Files.write(staged.resolve(name), contents.documents().get(name));
         long completed = 0; int fetched = 0, reused = 0;
-        for(final String name : new TreeSet<>(contents.manifest().hashes().stringPropertyNames())) {
-          if(Thread.currentThread().isInterrupted()) throw new InterruptedException("File delivery cancelled.");
-          final long size = Long.parseLong(contents.sizes().getProperty(name));
-          final String digest = contents.manifest().hashes().getProperty(name);
-          final Path target = staged.resolve(name); Files.createDirectories(target.getParent());
-          final Path prior = current == null ? null : current.resolve(name);
-          final long base = completed;
-          if(!fullReinstall && reusable(prior, current, size, digest)) {
-            progress.report(new InstallProgress.Update("Reusing verified files", module(name) + " · " + name, 10, 60, completed, contents.bytes(), name, 0, size));
-            try(final var input = Files.newInputStream(prior, LinkOption.NOFOLLOW_LINKS); final var output = Files.newOutputStream(target, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
-              DownloadBody.copy(input, output, size, Duration.ofMinutes(15), bytes -> progress.report(new InstallProgress.Update("Reusing verified files", module(name) + " · " + name, 10, 60, base + bytes, contents.bytes(), name, bytes, size)));
+        try(final var movies = new FmvMigration(current, staged, contents.manifest(), !fullReinstall)) {
+          for(final String name : new TreeSet<>(contents.manifest().hashes().stringPropertyNames())) {
+            if(Thread.currentThread().isInterrupted()) throw new InterruptedException("File delivery cancelled.");
+            final long size = Long.parseLong(contents.sizes().getProperty(name));
+            final String digest = contents.manifest().hashes().getProperty(name);
+            final Path target = staged.resolve(name); Files.createDirectories(target.getParent());
+            final Path prior = current == null ? null : current.resolve(name);
+            final long base = completed;
+            if(!fullReinstall && (assembler == null || !assembler.contains(name) || previousHashes == null || digest.equals(previousHashes.getProperty(name))) && reusable(prior, current, size, digest)) {
+              progress.report(new InstallProgress.Update("Reusing verified files", module(name) + " · " + name, 10, 60, completed, contents.bytes(), name, 0, size));
+              try(final var input = Files.newInputStream(prior, LinkOption.NOFOLLOW_LINKS); final var output = Files.newOutputStream(target, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
+                DownloadBody.copy(input, output, size, Duration.ofMinutes(15), bytes -> progress.report(new InstallProgress.Update("Reusing verified files", module(name) + " · " + name, 10, 60, base + bytes, contents.bytes(), name, bytes, size)));
+              }
+              reused++;
+            } else if(movies.importMovie(name, digest, size, target)) {
+              progress.report(new InstallProgress.Update("Reusing verified movies", "FMVHD · " + name, 10, 60, completed, contents.bytes(), name, size, size));
+              reused++;
+            } else if(assembler != null && assembler.contains(name)) {
+              final long reusedBytes = assembler.assemble(name, target, !fullReinstall, bytes -> progress.report(new InstallProgress.Update("Updating " + module(name), name, 10, 60, base + bytes, contents.bytes(), name, bytes, size)));
+              if(reusedBytes == size) reused++; else fetched++;
+            } else {
+              final var blob = new ReleaseUpdates.Candidate(candidate.tag(), "", candidate.url().resolve("file-" + digest), digest);
+              Files.createFile(target);
+              ReleaseUpdates.download(blob, target, update -> progress.report(new InstallProgress.Update("Downloading " + module(name), name, 10, 60, base + Math.min(size, update.completed()), contents.bytes(), name, update.completed(), size)), connection, size);
+              fetched++;
             }
-            reused++;
-          } else {
-            final var blob = new ReleaseUpdates.Candidate(candidate.tag(), "", candidate.url().resolve("file-" + digest), digest);
-            Files.createFile(target);
-            ReleaseUpdates.download(blob, target, update -> progress.report(new InstallProgress.Update("Downloading " + module(name), name, 10, 60, base + Math.min(size, update.completed()), contents.bytes(), name, update.completed(), size)), connection, size);
-            fetched++;
+            if(Files.size(target) != size || !PackageManifest.sha256(target).equals(digest)) throw new IOException("File checksum mismatch: " + name + ". Your current installation is unchanged.");
+            completed += size;
+            progress.report(new InstallProgress.Update("File verified", module(name) + " · " + name, 10, 60, completed, contents.bytes(), name, size, size));
           }
-          if(Files.size(target) != size || !PackageManifest.sha256(target).equals(digest)) throw new IOException("File checksum mismatch: " + name + ". Your current installation is unchanged.");
-          completed += size;
-          progress.report(new InstallProgress.Update("File verified", module(name) + " · " + name, 10, 60, completed, contents.bytes(), name, size, size));
         }
         contents.manifest().verify(staged, PackageManifest.hostPlatform());
+        if(candidate.revision() != null) candidate.revision().validateMovieManifest(staged);
         final String result = store.install(staged, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall, candidate.revision());
+        try { ArchiveAssembly.saveCache(store.root(), store.data(store.state()), contents.manifest().id(), recipe); }
+        catch(final IOException optionalCache) { progress.phase("Installation complete", "Archive reuse cache will be rebuilt on the next update", 100); }
         return (repairing ? "Repair complete. " : fullReinstall ? "Reinstall complete. " : state.containsKey("version") ? "Update complete. " : "Install complete. ") + fetched + " files downloaded; " + reused + " verified files reused. " + result;
       } finally { Files.deleteIfExists(inventory); InstallStore.deleteOwnedTree(staged); }
     });
+  }
+  private static Properties previousHashes(final Path current) throws IOException {
+    if(current == null) return null;
+    try { return PackageManifest.read(current).hashes(); }
+    catch(final java.io.InterruptedIOException cancelled) { throw cancelled; }
+    catch(final IOException | IllegalArgumentException unavailable) { return null; }
   }
   private static boolean reusable(final Path prior, final Path release, final long size, final String digest) throws IOException {
     if(prior == null) return false;
@@ -116,6 +137,7 @@ final class FileDelivery {
   static String module(final String name) {
     if(name.startsWith("bundled-mods/")) return name.substring(13).replaceFirst("(?:-v?\\d.*)?\\.jar$", "");
     if(name.startsWith("libs/")) return "engine libraries";
+    if(name.startsWith("gfx/fmvhd/")) return "FMVHD";
     if(name.startsWith("gfx/")) return "engine artwork";
     return "Definitive engine";
   }

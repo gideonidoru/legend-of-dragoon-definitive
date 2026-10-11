@@ -17,7 +17,46 @@ public final class ReleaseUpdates {
   private static final String REPO = "gideonidoru/legend-of-dragoon-definitive";
   private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).followRedirects(HttpClient.Redirect.NORMAL).build();
   public record ContentsAsset(String id, URI url, String sha256) { }
-  public record CurrentRevision(long generation, String sourceRevision, String manifestSha256, String buildRun, long packageBytes, long contentsBytes) { }
+  public record MovieSource(String sha256, long bytes) { }
+  public record AssemblyAsset(String id, URI url, String sha256, long bytes) { }
+  public record SourceAsset(String id, URI url, long bytes) { }
+  public record CurrentRevision(long generation, String sourceRevision, String manifestSha256, String buildRun, long packageBytes, long contentsBytes,
+                                Map<String, MovieSource> movieSources, AssemblyAsset assembly, Map<String, SourceAsset> sources) {
+    public CurrentRevision { movieSources = Map.copyOf(movieSources); sources = Map.copyOf(sources); }
+    public CurrentRevision(final long generation, final String sourceRevision, final String manifestSha256, final String buildRun, final long packageBytes, final long contentsBytes, final Map<String, MovieSource> movieSources, final AssemblyAsset assembly) {
+      this(generation, sourceRevision, manifestSha256, buildRun, packageBytes, contentsBytes, movieSources, assembly, Map.of());
+    }
+    public CurrentRevision(final long generation, final String sourceRevision, final String manifestSha256, final String buildRun, final long packageBytes, final long contentsBytes) {
+      this(generation, sourceRevision, manifestSha256, buildRun, packageBytes, contentsBytes, Map.of(), null);
+    }
+    void validateMovieManifest(final Path staged) throws IOException {
+      if(this.movieSources.isEmpty()) return;
+      final legend.definitive.fmv.FmvAssetManifest assets;
+      try(final var input = Files.newInputStream(staged.resolve(legend.definitive.fmv.FmvAssetManifest.FILE), LinkOption.NOFOLLOW_LINKS)) {
+        assets = legend.definitive.fmv.FmvAssetManifest.read(input);
+      }
+      for(final var entry : this.movieSources.entrySet()) {
+        final var film = assets.films().get(entry.getKey());
+        if(film == null || !entry.getValue().sha256().equals(film.source().sha256()) || entry.getValue().bytes() != film.source().bytes()) throw new IOException("Current movie name and approved manifest disagree.");
+      }
+    }
+    void validateMovieContents(final Properties hashes, final Properties sizes) throws IOException {
+      if(this.movieSources.isEmpty()) return;
+      if(!this.movieSources.keySet().equals(Set.copyOf(legend.definitive.fmv.FmvAssetManifest.NAMES))) throw new IOException("Current build movie source set is incomplete.");
+      final Set<String> expected = new HashSet<>();
+      for(final MovieSource source : this.movieSources.values()) {
+        if(!source.sha256().matches("[a-f0-9]{64}") || source.bytes() <= 0 || source.bytes() > 512L * 1024 * 1024) throw new IOException("Invalid current movie source.");
+        final String path = legend.definitive.fmv.FmvAssetManifest.ROOT + "videos/" + source.sha256() + ".mp4";
+        expected.add(path);
+        if(!source.sha256().equals(hashes.getProperty(path)) || !Long.toString(source.bytes()).equals(sizes.getProperty(path))) throw new IOException("Current movie source and package disagree.");
+      }
+      final String root = legend.definitive.fmv.FmvAssetManifest.ROOT;
+      expected.addAll(Set.of(legend.definitive.fmv.FmvAssetManifest.FILE, root + "provenance.json", root + "NOTICE.txt"));
+      final Set<String> actual = new HashSet<>();
+      for(final String name : hashes.stringPropertyNames()) if(name.startsWith(root)) actual.add(name);
+      if(!actual.equals(expected)) throw new IOException("Current movie package closure is incomplete or unexpected.");
+    }
+  }
   public record Candidate(String tag, String assetId, URI url, String sha256, Instant publishedAt, String releaseNotes, ContentsAsset contents, CurrentRevision revision) {
     public Candidate(final String tag, final String assetId, final URI url, final String sha256, final Instant publishedAt, final String releaseNotes, final ContentsAsset contents) { this(tag, assetId, url, sha256, publishedAt, releaseNotes, contents, null); }
     public Candidate(final String tag, final String assetId, final URI url, final String sha256, final Instant publishedAt, final String releaseNotes) { this(tag, assetId, url, sha256, publishedAt, releaseNotes, null); }
@@ -157,7 +196,7 @@ public final class ReleaseUpdates {
       throw new IOException("Release history is too large to check safely. Update discovery has stopped without selecting an older package.");
     }
   }
-  /** Blob asset metadata is irrelevant to discovery: authenticated contents inventory binds it. */
+  /** Format-2 recipes bind source IDs to this bounded immutable carrier snapshot. */
   private static String compactPage(final String body) throws IOException {
     final Object parsed = new Json(body).read();
     if(!(parsed instanceof List<?> releases) || releases.size() > 10) throw new IOException("Unexpected release page.");
@@ -171,16 +210,20 @@ public final class ReleaseUpdates {
         summary.put(field, value instanceof String text && field.equals("body") ? text.substring(0, Math.min(12000, text.length())) : value);
       }
       final Set<String> currentNames = release.get("body") instanceof String releaseBody && releaseBody.contains("DEFINITIVE_CURRENT_") ? CurrentRelease.referencedNames(releaseBody) : Set.of();
+      final boolean assemblySources = release.get("body") instanceof String releaseBody && CurrentRelease.usesAssembly(releaseBody);
       final var packages = new ArrayList<Object>();
-      if(release.get("assets") instanceof List<?> assets) for(final Object assetValue : assets) {
+      if(release.get("assets") instanceof List<?> assets) {
+        if(assemblySources) CurrentRelease.validateCarrierIds(assets);
+        for(final Object assetValue : assets) {
         if(!(assetValue instanceof Map<?, ?> asset) || !(asset.get("name") instanceof String name)) continue;
         final boolean relevant = currentNames.isEmpty()
           ? name.matches("Legend-of-Dragoon-Definitive-(?:linux|macos)-(?:x64|arm64)\\.zip") || name.matches("Definitive-Contents-(?:linux|macos)-(?:x64|arm64)\\.zip")
-          : currentNames.contains(name);
+          : currentNames.contains(name) || assemblySources && name.matches("file-[a-f0-9]{64}");
         if(!relevant) continue;
         final var selected = new LinkedHashMap<String, Object>();
         for(final String field : List.of("name", "id", "digest", "browser_download_url", "state", "size")) selected.put(field, asset.get(field));
         packages.add(selected);
+        }
       }
       summary.put("assets", packages); compact.add(summary);
     }
@@ -376,7 +419,7 @@ public final class ReleaseUpdates {
     private final String source; private int position; private int count;
     Json(final String source) { this.source = source; }
     Object read() throws IOException { final Object value = value(0); white(); if(this.position != this.source.length()) throw bad(); return value; }
-    private void white() { while(this.position < this.source.length() && Character.isWhitespace(this.source.charAt(this.position))) this.position++; }
+    private void white() { while(this.position < this.source.length() && " \n\r\t".indexOf(this.source.charAt(this.position)) >= 0) this.position++; }
     private char take() throws IOException { if(this.position >= this.source.length()) throw bad(); return this.source.charAt(this.position++); }
     private IOException bad() { return new IOException("Invalid update metadata."); }
     private Object value(final int depth) throws IOException {
