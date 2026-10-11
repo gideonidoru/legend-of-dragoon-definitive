@@ -26,6 +26,8 @@ The source reports used here are `Project-Progress-Ratings-2026-10-11.json`, `En
 
 The owner directly reported in the MEDIA chat: **“the FMV are working correctly”**, then separately reported the rendering problems above. This is positive physical playback feedback for the observed scenes, not a signed all-18-film, device-routing or suspend matrix. An older MEDIA final response still says physical playback is unverified; retain both timestamps/scopes rather than discarding the newer owner observation. Root's coordination report supplied the Deck context; the device/build details still need attachment to the case record. No cause is confirmed here. The photo attached to that report is private and is not exported into this document.
 
+**B01 appearance detail, direct human report in ROOT:** “the flicker looked more like the original renderer was at like 50% anchored to the bottom left then it was scaling to the full screen.” Preserve the existing ordinary-gameplay/no-recent-movie and stationary-changing context. MEDIA and RENDER are testing viewport, framebuffer, internal/output scaling and pass state alongside the separate clipping/depth defects. This describes the observed image; it proves neither that two renderers are active nor that viewport state is the cause. No fix is accepted or integrated from this observation.
+
 ### Reproduced engineering defects under investigation
 
 Owner evidence was read directly from the existing RENDER and MEDIA chats. These are two separate defects, not two interchangeable explanations for all three symptoms. Exact immutable fix sources and retained test receipts are still pending; neither is merged or physically accepted at this evidence checkpoint.
