@@ -2,9 +2,9 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **237 images: 236 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **235 images: 234 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,926 development images: 4,886 neural and 40 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
+Field selection is 4,928 development images: 4,886 neural and 42 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
 
 The [observed current download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8`, generation4, contains 4,925 field selections/39paintings and34 battle paintings. Main contains 4,926 fields/40paintings and47 battle paintings: one field painting and13 battle paintings await coordinated publication. These download counts are derived from the committed source ledgers named by the live canonical carrier manifest; this observation did not download or verify package pixels or exercise the game. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
@@ -74,3 +74,10 @@ The [complete 40-painting input](../../integrations/envhd/production/field-bespo
 ## Current publication checkpoint
 
 Generation4/source `5d3db5c84174f2936fe7256123a11f6bb640760a` publishes4,925 selected fields/39 painted fields and34 painted battle masters. Accepted main `6612a533307e5f066bc46e7870d658f8add42752` selects4,926/40 and47 respectively; one table and13 Giganto paintings await the next coordinated download. The earlier0af publication receipt remains historical. Native and final artistic acceptance remain separate.
+
+
+## Two Donau development selections
+
+[Independent original-reference review](../../integrations/envhd/production/field-independent-donau-two-review.json) clears the Donau column and arch (cut244 foreground8) and larger exterior wall (cut241 foreground0) for development selection. Their source silhouettes, openings and main color landmarks remain anchored. Fine surface detail is interpretive. The tablet remains excluded until its dense chips and pits are softened and independently reviewed.
+
+The [complete42-painting input](../../integrations/envhd/production/field-bespoke-donau-two-independent-reviewed-selection.json) preserves main's prior40 candidate records exactly. All42 recipes reproduce from current original sources. Runtime selection preserves all4926 prior records and every protected Skurfa cut. The [readiness receipt](../../integrations/envhd/production/field-donau-two-selection-readiness.json) binds the selection, independent review and86 focused checks. Only these two custom input/output images, their recipes/review, runtime resources and coverage metadata are included. Unfinished authoring remains on the ongoing branch. Native/scripted state, physical Deck, campaign and final artistic acceptance remain pending; ROOT coordinates the current installer publication.

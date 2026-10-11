@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "scope": "Clean main-forward increment selecting only two independently cleared Donau paintings; prior40 candidate and4926 runtime records exact.",
+  "integrationBaseCommit": "bcb612f5ad0c3df5cfbe5b08593596ecae20d062",
+  "authoringSourceCommit": "b6f0a764f551bdfd0cf4bffd83a2bc83488cad5c",
+  "selectionManifest": "field-bespoke-donau-two-independent-reviewed-selection.json",
+  "selectionManifestSha256": "f7f5ab51e5afbe13c566300a863bfb25019575810368fe72d7d3f00264c295b5",
+  "independentReview": "field-independent-donau-two-review.json",
+  "independentReviewSha256": "0018f0828106bada7ac8caa41dae15f1387e3a5b29fa89f03f9ddba32f48a6b9",
+  "fieldRuntimeSha256": "5e81786b0b9816dbe756b20cc5bf4c86ae3e84a95d84055f873f393b2136994f",
+  "currentSourcePreflightCandidates": 42,
+  "priorSelectedCandidateRecordsExact": 40,
+  "priorRuntimeAssetRecordsExact": 4926,
+  "onlyAddedSourceKeys": [
+    "7478cfa11edc1e38fc2efdb15fa933aac1674ac4ef8df19b685f4a4b796f9b38",
+    "eaa444e4fbf2f33ab180d560338249e836b4d897f4332c98be0be8c871b3d261"
+  ],
+  "protectedCutsExact": true,
+  "selectedFields": 4928,
+  "selectedPaintings": 42,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 234,
+  "knownRemainingStaticImages": 235,
+  "tests": [
+    {
+      "script": "scripts/test-envhd-painted-fields.py",
+      "passed": 32
+    },
+    {
+      "script": "scripts/test-envhd-install-selection.py",
+      "passed": 3
+    },
+    {
+      "script": "scripts/test-archive-assembly.py",
+      "passed": 39
+    },
+    {
+      "script": "scripts/test-envhd-battle-presentation-pack.py",
+      "passed": 12
+    }
+  ],
+  "freshPackageVerified": false,
+  "tabletExcluded": true,
+  "unfinishedAuthoringPreservedOnOngoingBranch": true,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true
+}
