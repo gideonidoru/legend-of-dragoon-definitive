@@ -1,0 +1,859 @@
+{
+  "schema": 1,
+  "method": "python-painted-rect-exact-source-palette-marking-1",
+  "algorithmSha256": "aa05883f5fdb923724976de015b9ef1c853b737a1f5d41e65d8f0c890a5d0142",
+  "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "scope": "Five separately reviewed static shrine/panel/floor/Moon repairs; source neural history remains unchanged.",
+  "visualReviewedBespokeCandidates": 5,
+  "revisionsNeeded": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceSize": [
+        40,
+        32
+      ],
+      "targetSize": [
+        160,
+        128
+      ],
+      "paletteRgba": [
+        [
+          49,
+          57,
+          24,
+          0
+        ],
+        [
+          74,
+          82,
+          41,
+          0
+        ],
+        [
+          98,
+          106,
+          57,
+          0
+        ]
+      ],
+      "sourceMaskRectangle": [
+        13,
+        12,
+        27,
+        21
+      ],
+      "sourcePalettePixels": [
+        {
+          "rgba": [
+            49,
+            57,
+            24,
+            0
+          ],
+          "sourcePixels": 4
+        },
+        {
+          "rgba": [
+            74,
+            82,
+            41,
+            0
+          ],
+          "sourcePixels": 12
+        },
+        {
+          "rgba": [
+            98,
+            106,
+            57,
+            0
+          ],
+          "sourcePixels": 35
+        }
+      ],
+      "sourceMarkingPixels": 51,
+      "sourceMarkingMaskSha256": "80ea0b001b537ce523cc8f8719170c8fb33a77aa0a7c3551e6b8a97a2ec6149a",
+      "listedPaletteCellCoverageExact": true,
+      "bevelInsideSourceMask": true,
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "listed-palette-cells-locked; other-features-individually-reviewed",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "9b6ff4c48ee775f24e3ed41d9538e7992659dfecd299e8f38c33ac99c490c4fe",
+      "method": "python-painted-rect-exact-source-palette-marking-1",
+      "algorithmSha256": "aa05883f5fdb923724976de015b9ef1c853b737a1f5d41e65d8f0c890a5d0142",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "376431f30cf7b8b380d034dba4c712ad1fa218a01e441173a859ef64fd1d829f",
+      "outputSha256": "1a9749baa873b1949ba791f0f6db73a34ae51a4584085e3847d0861912e627fc",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 15,
+          "page": 7,
+          "clut": 16220,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            40,
+            184,
+            80,
+            216
+          ],
+          "sourceUvOrigin": [
+            40,
+            184
+          ]
+        }
+      ],
+      "priorCandidateSha256": "31d59ba04a18d3e22b858c839a03ee32db1793a902f5bbde80deeb7c171cbb0a",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/9b6ff4c48ee775f24e3ed41d9538e7992659dfecd299e8f38c33ac99c490c4fe/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/9b6ff4c48ee775f24e3ed41d9538e7992659dfecd299e8f38c33ac99c490c4fe/image-v1.png",
+      "prompt": "Use case: style-transfer\nEdit target: the supplied enlargement of the actual40x32 native Shirley's Shrine battle-stage15 stone plaque crop. Restore restrained hand-painted HD shrine masonry in EXACT40:32 aspect and feature positions. Main rectangular inset plaque at source x9..28,y9..21 has a muted moss/olive-green face in grey-green stone framing. Surrounding top/left masonry and lower/right original black discarded areas must retain their layout. Preserve original low-saturation grey/olive palette, flat top lighting, old stone material and inset frame dimensions; improve restrained fine grain and worn stone edges without moving the frame.\nChange ONLY the interior green inset: make it a BLANK unmarked olive stone face with no lettering, rune, carving, dots or decorative strokes. Its exact native abstract marking will be restored by Python using source palette geometry. Do not invent readable words, symbols, faces or new shapes. Keep every existing surrounding fragment in place. Flat texture crop, no perspective/margins or standalone plaque scene; no text/watermark, no ivy or new fixtures. Opaque full canvas; Python restores exact native discard/STP classes.",
+      "editingPrompts": [
+        "Use case: precise-object-edit\nEdit target: supplied40:32 shrine plaque texture. Keep ALL broad original material boundaries and positions: grey-green rectangular frame, moss/olive blank inset face, top/left adjoining masonry fragments and black missing areas, exact crop/aspect and original dim grey/olive lighting.\nChange only material rendering quality: remove the large pixel/mosaic blocks and create clean high-resolution hand-painted old stone with continuous restrained fine grain, softly worn edges, slight pitting and smooth original broad shading. Keep the inset face entirely BLANK with no symbol, outline, mark, carving, letters or runes. No new stones/joints/fixtures, no vegetation, no perspective or additional borders. It must remain a flat texture crop. Full opaque canvas, no text/watermark."
+      ],
+      "customDraftHistory": [
+        {
+          "path": "integrations/envhd/production/bespoke-battle-candidates/9b6ff4c48ee775f24e3ed41d9538e7992659dfecd299e8f38c33ac99c490c4fe/painted-layout-v1.png",
+          "sha256": "279e8a252f81002bfece1738fb152879cf1bac8336c6d2772c3f5e86bb4b2a5a"
+        }
+      ],
+      "review": {
+        "intent": "Shirleys Shrine stage15 part0, page7 CLUT16220, sourcecrop40,184,80,216: moss/olive inset plaque and grey-green shrine stone frame. Three source faces sample UV48,192 through71,207, central24x16. Marking is an abstract native form; no readable shrine text or canonical glyph meaning inferred.",
+        "style": "Individually compared original, held neural and repaired160x128 painting. Held neural invents letter-like curves. Initial blank-face material remained coarse; a separate refinement adds subtle worn stone, pitting and grain with original inset/frame placement. The authorized source-palette pass restores the actual marking; material detail is interpreted development art, not final Skurfa-equivalent quality. Skurfa untouched.",
+        "layout": "Three native green palette classes in rectangle13,12,27,21 restore51 accent/shadow cells at4x. Only those nominated cells have mechanical marking coverage proof; remaining frame and stone texture require individual source comparison. Crop/aspect, native STP/discard/visible-black classes exact. Frame, top/left neighboring fragments and black gaps compared. Native seam/blend/camera and final-quality acceptance pending.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "1a9749baa873b1949ba791f0f6db73a34ae51a4584085e3847d0861912e627fc",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        48
+      ],
+      "targetSize": [
+        192,
+        192
+      ],
+      "paletteRgba": [
+        [
+          32,
+          65,
+          65,
+          0
+        ],
+        [
+          41,
+          98,
+          98,
+          0
+        ],
+        [
+          41,
+          106,
+          106,
+          0
+        ],
+        [
+          41,
+          123,
+          123,
+          0
+        ],
+        [
+          57,
+          172,
+          180,
+          0
+        ],
+        [
+          65,
+          255,
+          255,
+          0
+        ]
+      ],
+      "sourceMaskRectangle": [
+        14,
+        12,
+        34,
+        37
+      ],
+      "sourcePalettePixels": [
+        {
+          "rgba": [
+            32,
+            65,
+            65,
+            0
+          ],
+          "sourcePixels": 73
+        },
+        {
+          "rgba": [
+            41,
+            98,
+            98,
+            0
+          ],
+          "sourcePixels": 24
+        },
+        {
+          "rgba": [
+            41,
+            106,
+            106,
+            0
+          ],
+          "sourcePixels": 28
+        },
+        {
+          "rgba": [
+            41,
+            123,
+            123,
+            0
+          ],
+          "sourcePixels": 29
+        },
+        {
+          "rgba": [
+            57,
+            172,
+            180,
+            0
+          ],
+          "sourcePixels": 7
+        },
+        {
+          "rgba": [
+            65,
+            255,
+            255,
+            0
+          ],
+          "sourcePixels": 2
+        }
+      ],
+      "sourceMarkingPixels": 163,
+      "sourceMarkingMaskSha256": "f0dcfec8f19d46d7a9230d08831f442fcbb296d5c353fe06fc72b05fa63a9da5",
+      "listedPaletteCellCoverageExact": true,
+      "bevelInsideSourceMask": true,
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "listed-palette-cells-locked; other-features-individually-reviewed",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "9ca329f1f8559f985921ff3ccddf4ba9c9b63daa931bb29375d78f84c00d27ee",
+      "method": "python-painted-rect-exact-source-palette-marking-1",
+      "algorithmSha256": "aa05883f5fdb923724976de015b9ef1c853b737a1f5d41e65d8f0c890a5d0142",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "7755cb8a52b515728bb9a7870a9f3dccfb79a6b925348051aa3b5e9ce8c46d92",
+      "outputSha256": "1c6ffc7b276aafea6ce00cf1973582b5ceaab41662d3a15d54b97c517960f5ab",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 15389,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            136,
+            168,
+            184
+          ],
+          "sourceUvOrigin": [
+            120,
+            136
+          ]
+        }
+      ],
+      "priorCandidateSha256": "e394da45393ed2f2ddd31b16a3312b1689275d4298ddd4ef76440aea5370a259",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/9ca329f1f8559f985921ff3ccddf4ba9c9b63daa931bb29375d78f84c00d27ee/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/9ca329f1f8559f985921ff3ccddf4ba9c9b63daa931bb29375d78f84c00d27ee/image-v1.png",
+      "prompt": "Use case: style-transfer\nEdit target: actual48x48 native battle-stage45 environmental architectural panel crop. Create restrained detailed hand-painted HD teal/aqua-green ancient architecture with EXACT48:48 aspect, crop and layout. Preserve central dark teal oval/rounded inset at approximately x12..34,y8..38, green raised sides, horizontal ribbed/recessed strips on left and right, and all bright cyan native fragments at the top/bottom in their original positions. Preserve native deep teal/green palette and subtle aqua highlights; no new geometry, margins, glowing beams or added props.\nMake ONLY the central dark inset BLANK and unmarked: remove all the small cyan interior icon/curled strokes from this inset, leaving matching low-contrast dark teal painted material. The exact native marking will be restored by Python afterward. Keep the inset boundary and surroundings unchanged. No symbols, writing, faces, creatures or new lights inside the blank inset. Material microtexture only, not photographs or a scene. Fully opaque full canvas; no text or watermark.",
+      "editingPrompts": [],
+      "customDraftHistory": [],
+      "review": {
+        "intent": "Stage45 part0, page7 CLUT15389, sourcecrop120,136,168,184: aqua-green environmental panel with dark rounded inset, cyan curved icon, horizontal side ribs and bright neighboring fragments. Two native faces sample128,144 through159,175. This is static architecture, not a new emissive FxHD effect or symbol.",
+        "style": "Original, held neural and repaired192x192 painting individually compared. Held neural redraws the icon as smoother invented loops. Blank-inset painting retains panel/side ribs while adding restrained hand-painted aqua stone grain. Six native blue/cyan classes restore actual lit/shadow marking cells. Stronger edge/material definition remains a development interpretation; game lighting and final visual quality pending.",
+        "layout": "Six source RGBA classes inside rectangle14,12,34,37 restore163 cells, retaining native curl/stroke positions, gaps and cyan endpoints at4x. Bevel stays within mask. Broader inset/frame geometry and neighboring bright cyan fragments checked individually; not a full internal-geometry or final RGB-classifier proof. Native STP/discard/visible-black classes/canvas exact; original UV mapping remains source-bound.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "1c6ffc7b276aafea6ce00cf1973582b5ceaab41662d3a15d54b97c517960f5ab",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        40,
+        48
+      ],
+      "targetSize": [
+        160,
+        192
+      ],
+      "paletteRgba": [
+        [
+          32,
+          139,
+          139,
+          0
+        ],
+        [
+          57,
+          41,
+          74,
+          0
+        ],
+        [
+          65,
+          172,
+          172,
+          0
+        ],
+        [
+          90,
+          74,
+          106,
+          0
+        ],
+        [
+          123,
+          41,
+          98,
+          0
+        ],
+        [
+          123,
+          57,
+          32,
+          0
+        ],
+        [
+          123,
+          106,
+          32,
+          0
+        ],
+        [
+          131,
+          131,
+          131,
+          0
+        ],
+        [
+          156,
+          74,
+          131,
+          0
+        ],
+        [
+          156,
+          90,
+          65,
+          0
+        ],
+        [
+          156,
+          139,
+          65,
+          0
+        ],
+        [
+          164,
+          164,
+          164,
+          0
+        ]
+      ],
+      "sourceMaskRectangle": [
+        0,
+        0,
+        40,
+        48
+      ],
+      "sourcePalettePixels": [
+        {
+          "rgba": [
+            32,
+            139,
+            139,
+            0
+          ],
+          "sourcePixels": 60
+        },
+        {
+          "rgba": [
+            57,
+            41,
+            74,
+            0
+          ],
+          "sourcePixels": 202
+        },
+        {
+          "rgba": [
+            65,
+            172,
+            172,
+            0
+          ],
+          "sourcePixels": 46
+        },
+        {
+          "rgba": [
+            90,
+            74,
+            106,
+            0
+          ],
+          "sourcePixels": 19
+        },
+        {
+          "rgba": [
+            123,
+            41,
+            98,
+            0
+          ],
+          "sourcePixels": 6
+        },
+        {
+          "rgba": [
+            123,
+            57,
+            32,
+            0
+          ],
+          "sourcePixels": 14
+        },
+        {
+          "rgba": [
+            123,
+            106,
+            32,
+            0
+          ],
+          "sourcePixels": 8
+        },
+        {
+          "rgba": [
+            131,
+            131,
+            131,
+            0
+          ],
+          "sourcePixels": 9
+        },
+        {
+          "rgba": [
+            156,
+            74,
+            131,
+            0
+          ],
+          "sourcePixels": 9
+        },
+        {
+          "rgba": [
+            156,
+            90,
+            65,
+            0
+          ],
+          "sourcePixels": 12
+        },
+        {
+          "rgba": [
+            156,
+            139,
+            65,
+            0
+          ],
+          "sourcePixels": 9
+        },
+        {
+          "rgba": [
+            164,
+            164,
+            164,
+            0
+          ],
+          "sourcePixels": 9
+        }
+      ],
+      "sourceMarkingPixels": 403,
+      "sourceMarkingMaskSha256": "5f1af1d5dc2fa2f34f42f4eb1ff56a6d85b6a1c82b98b4c390c58dc21d3cf744",
+      "listedPaletteCellCoverageExact": true,
+      "bevelInsideSourceMask": true,
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "listed-palette-cells-locked; other-features-individually-reviewed",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "c90dedb797873d745a28bc343e03d274b39256023daf7de4023e3eb69b85aca5",
+      "method": "python-painted-rect-exact-source-palette-marking-1",
+      "algorithmSha256": "aa05883f5fdb923724976de015b9ef1c853b737a1f5d41e65d8f0c890a5d0142",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "b0b3773f3ba20b03ff95b720ee3067478421c8075b798c8a6e655cc7b3962b37",
+      "outputSha256": "49a31f9256bd2badc62fc2d451b2becfd25e861baaac63fd69aff321245418e6",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 15453,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            216,
+            168,
+            256,
+            216
+          ],
+          "sourceUvOrigin": [
+            216,
+            168
+          ]
+        }
+      ],
+      "priorCandidateSha256": "f9d4795321123ff02e3ba8168c4b202eb902bad3d28392f8c1b80c67ade29e09",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/c90dedb797873d745a28bc343e03d274b39256023daf7de4023e3eb69b85aca5/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/c90dedb797873d745a28bc343e03d274b39256023daf7de4023e3eb69b85aca5/image-v1.png",
+      "prompt": "Use case: style-transfer\nEdit target: supplied enlargement of actual40x48 native battle-stage17 texture crop. Actual model usage is eight opaque unlit ground quads at y=0, sampling the central32x32 area x8..39,y8..39. This is sparse small colored floor-decoration/fragment material, not a hanging banner, character or creature.\nRestore this as a detailed restrained hand-painted flat texture with EXACT40:48 aspect, original positions and silhouettes of every tiny scattered cyan, muted purple/magenta, tan/ochre and grey fragment on the black discarded background. Keep the adjoining cyan/purple strip across the top and cyan/tan lower-left padding fragment exactly positioned; these are original crop padding, not new decorations. Add fine weathered stone/paint microtexture within the existing colored patches only, preserving their original color and shading. Do not enlarge, connect, move or multiply any patch. Do not fill black gaps with pavement or extra material. The native source palette-cell geometry and exact discarded background will be restored by Python.\nNo new tessellation, tile grid, objects, scene, symbols, writing or interpretation of the tiny marks. No perspective, border or margin; no text/watermark. Output full opaque canvas with original black gaps; Python restores native visibility.",
+      "editingPrompts": [],
+      "customDraftHistory": [],
+      "review": {
+        "intent": "Stage17 part0, page7 CLUT15453, sourcecrop216,168,256,216. Fresh original packet/vertex audit identifies eight opaque unlit textured ground quads: mode0x3d, all referenced vertices at y0, shared UV224,176 through255,207. These sample the central32x32 part of sparse colored floor fragments; surrounding cyan/purple top and lower-left pieces are crop padding. No actor, hanging decoration or invented symbol assigned.",
+        "style": "Original, held neural and repaired160x192 painting individually compared. Held neural reshapes miniature fragments and changes their hues/relative proportions. Source-palette repair retains every original visible colored cell while using restrained painted material micrograin from the custom input. Intentionally preserves angular source shapes; material interpretation remains conservative and is not final modern painted-quality acceptance.",
+        "layout": "All12 nonblack native RGBA palette classes across full rectangle0,0,40,48 lock403 visible cells at4x: tiny scattered cyan/purple/magenta/tan/gold/grey fragment silhouettes, color identities and native gaps/placements are retained. Native discarded black background is exact through STP repair. Actual ground-face usage is separately audited; no full model or source image is published. Native visibility/filter/camera acceptance pending.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "49a31f9256bd2badc62fc2d451b2becfd25e861baaac63fd69aff321245418e6",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        48
+      ],
+      "targetSize": [
+        256,
+        192
+      ],
+      "paletteRgba": [
+        [
+          49,
+          49,
+          49,
+          0
+        ],
+        [
+          65,
+          57,
+          57,
+          0
+        ],
+        [
+          74,
+          74,
+          65,
+          0
+        ],
+        [
+          82,
+          82,
+          82,
+          0
+        ]
+      ],
+      "sourceMaskRectangle": [
+        9,
+        16,
+        55,
+        29
+      ],
+      "sourcePalettePixels": [
+        {
+          "rgba": [
+            49,
+            49,
+            49,
+            0
+          ],
+          "sourcePixels": 43
+        },
+        {
+          "rgba": [
+            65,
+            57,
+            57,
+            0
+          ],
+          "sourcePixels": 68
+        },
+        {
+          "rgba": [
+            74,
+            74,
+            65,
+            0
+          ],
+          "sourcePixels": 81
+        },
+        {
+          "rgba": [
+            82,
+            82,
+            82,
+            0
+          ],
+          "sourcePixels": 89
+        }
+      ],
+      "sourceMarkingPixels": 281,
+      "sourceMarkingMaskSha256": "680f8be5174b6e8e406addf899d9d1e7c634a1c6119f507108cdd51777def6e5",
+      "listedPaletteCellCoverageExact": true,
+      "bevelInsideSourceMask": true,
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "listed-palette-cells-locked; other-features-individually-reviewed",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "256fdd9a7b0462ad364b6d71f8d17a9a728525d27c6c0f820b61dbdf1a2b6e42",
+      "method": "python-painted-rect-exact-source-palette-marking-1",
+      "algorithmSha256": "aa05883f5fdb923724976de015b9ef1c853b737a1f5d41e65d8f0c890a5d0142",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "9cc9cbf15eb220d7842707d632ef85cdd328f82ae850b2b32e92f990df74bafe",
+      "outputSha256": "89edd475efe7b07faa74f5d45ea09b1aa11e46de2334463adef085007acd3d84",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 81,
+          "page": 7,
+          "clut": 15900,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            152,
+            136,
+            216,
+            184
+          ],
+          "sourceUvOrigin": [
+            152,
+            136
+          ]
+        }
+      ],
+      "priorCandidateSha256": "5d14721e2aa63fdd52287f2c96992cc3db109e636647f7549c8da5d3556d3c95",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/256fdd9a7b0462ad364b6d71f8d17a9a728525d27c6c0f820b61dbdf1a2b6e42/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/256fdd9a7b0462ad364b6d71f8d17a9a728525d27c6c0f820b61dbdf1a2b6e42/image-v1.png",
+      "prompt": "Use case: style-transfer\nEdit target: actual64x48 native Moon battle-stage81 architecture texture crop. Restore restrained HD hand-painted weathered neutral grey stone in EXACT64:48 aspect, original crop, source lighting and broad layout. Main carved/inset stone slab fills the upper two-thirds with grey highlights, rough surrounding left/right edge stone and a lower dark band containing two pale broad angular stone fragments; keep those lower fragments and their boundaries in exactly the same places. Subtle pitting and worn material grain consistent with old Moon ruins, low saturation grey/brown, no new brick joints or fixtures.\nChange ONLY the dark abstract marking across the center of the upper slab (roughly source x9..54,y16..31): REMOVE it entirely, including all dark strokes/shadows, and fill with matching blank unmarked grey stone. No lettering, inscription, rune, ornament, face or decorative shapes on that blank upper slab. Its exact native marking geometry will be restored by Python. No perspective change, no new border or margin, no new object, no standalone scene. Opaque full texture canvas, no text or watermark.",
+      "editingPrompts": [],
+      "customDraftHistory": [],
+      "review": {
+        "intent": "Moon stage81 part0, page7 CLUT15900, sourcecrop152,136,216,184: grey carved stone slab, rough edge fragments and two broad pale lower angular pieces in a darker band. Sixteen native faces sample160,144 through207,175. Central dark abstract carving is retained without inferring readable letters, symbols or new anatomy.",
+        "style": "Original, held neural and repaired256x192 painting individually compared. Held neural changes the carving to ambiguous elongated strokes. Blank-slab painting supplies weathered grey stone and modest pitting; four original dark palette classes restore native marking cells and their gaps. Grey low-saturation palette, slab placement and lower fragments retained; fine texture is inferred development detail and final visual acceptance remains pending.",
+        "layout": "Four source classes in rectangle9,16,55,29 lock281 native dark/transition cells at4x. This preserves nominated carving/shadow cells rather than asserting all stone relief geometry is mechanically exact. Outer edge and lower fragments individually compared. Full canvas, STP/discard/visible-black classes exact and UV mappings source-bound; native seam/blending/gameplay pending.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "89edd475efe7b07faa74f5d45ea09b1aa11e46de2334463adef085007acd3d84",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        216,
+        112
+      ],
+      "targetSize": [
+        864,
+        448
+      ],
+      "paletteRgba": [
+        [
+          8,
+          8,
+          8,
+          0
+        ],
+        [
+          16,
+          16,
+          16,
+          0
+        ],
+        [
+          32,
+          24,
+          24,
+          0
+        ],
+        [
+          49,
+          41,
+          32,
+          0
+        ]
+      ],
+      "sourceMaskRectangle": [
+        121,
+        16,
+        167,
+        29
+      ],
+      "sourcePalettePixels": [
+        {
+          "rgba": [
+            8,
+            8,
+            8,
+            0
+          ],
+          "sourcePixels": 43
+        },
+        {
+          "rgba": [
+            16,
+            16,
+            16,
+            0
+          ],
+          "sourcePixels": 68
+        },
+        {
+          "rgba": [
+            32,
+            24,
+            24,
+            0
+          ],
+          "sourcePixels": 81
+        },
+        {
+          "rgba": [
+            49,
+            41,
+            32,
+            0
+          ],
+          "sourcePixels": 89
+        }
+      ],
+      "sourceMarkingPixels": 281,
+      "sourceMarkingMaskSha256": "e756c9030772e4e0f51abb9a26541ec9ce862c0a6e1dd2aaa7815bf32c81d152",
+      "listedPaletteCellCoverageExact": true,
+      "bevelInsideSourceMask": true,
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "listed-palette-cells-locked; other-features-individually-reviewed",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "8daf24509e3a115bc276df11157c8e0bbc16c0bb14ed023debc8aad42099dd0e",
+      "method": "python-painted-rect-exact-source-palette-marking-1",
+      "algorithmSha256": "aa05883f5fdb923724976de015b9ef1c853b737a1f5d41e65d8f0c890a5d0142",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "ea2ffa28d24eb0038c2b758b64dfff0be9c835827216aeeb733cdcdbf11d749a",
+      "outputSha256": "c398c68693bc3002990052180c101e5176a933989ddc265a860c42ded14fd97f",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 81,
+          "page": 7,
+          "clut": 15772,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            40,
+            136,
+            256,
+            248
+          ],
+          "sourceUvOrigin": [
+            40,
+            136
+          ]
+        }
+      ],
+      "priorCandidateSha256": "63ab635240a88a6cf4df6b8b75025f09546debe2384fbb719db25e2aad6eed5d",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/8daf24509e3a115bc276df11157c8e0bbc16c0bb14ed023debc8aad42099dd0e/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/8daf24509e3a115bc276df11157c8e0bbc16c0bb14ed023debc8aad42099dd0e/image-v1.png",
+      "prompt": "Use case: style-transfer\nEdit target: supplied nearest-neighbour enlargement of actual216x112 native Moon battle-stage81 architecture sheet crop. Restore restrained hand-painted HD weathered grey/brown Moon ruins in EXACT216:112 aspect and original full sheet layout. This is a flat environment texture atlas crop, not a scene: preserve every original slab, column strip, arch fragment, skeletal/organic relief fragment, angled footing and black discarded gap in its exact native rectangle/position. Particularly preserve top-row rectangular stone panels and partial curved relief fragments, central two broad curved architectural relief pieces, and lower row plain blocks/cropped pillars. Trace the source; do not recenter pieces or create a unified building/scene.\nMatch original muted grey/brown/taupe palette, broad light direction and aged stone character. Add modest stone micrograin and subtle worn edge shading without redesigning broad shapes, relief openings or boundaries. Dark abstract carved markings must retain their exact stroke arrangement, gaps and locations. Do not reinterpret them as readable text, letters, runes, faces, skulls, creatures or newly invented anatomy. Preserve source detail rather than adding decorative patterns. No extra stones, joints, props, foliage, borders or perspective change. Keep original black gaps where they are; Python restores exact native discard/STP classes. Opaque full canvas; no watermark or text.",
+      "editingPrompts": [
+        "Use case: precise-object-edit\nEdit target: supplied Moon weathered stone architecture sheet. Preserve the ENTIRE216:112 canvas layout, every original tile/fragment, stone texture, outer silhouette, top/left/right/bottom boundary and black gap unchanged.\nChange ONLY the dark inscription-like markings in the upper stone slab centered roughly source x121..167,y16..29 (the rectangular panel in the TOP ROW, just right of the middle). Remove every black/dark glyph, circle, dot, line and their carving shadows from that slab's interior. Fill the removed marks with matching BLANK unmarked grey-brown/taupe stone, same broad light and grain as the surrounding slab. Its actual native abstract marking will be restored from exact palette cells by Python.\nDo not alter any other panel, arch, column, relief or neighboring piece. No new lettering, symbol, seams, props or decoration in the blank slab. No reorganization, perspective, borders or margins. One opaque full texture canvas; no text or watermark."
+      ],
+      "customDraftHistory": [
+        {
+          "path": "integrations/envhd/production/bespoke-battle-candidates/8daf24509e3a115bc276df11157c8e0bbc16c0bb14ed023debc8aad42099dd0e/painted-layout-v1.png",
+          "sha256": "f228bdedc60e101b833ed969685c23bbacb52f193349e1475846c25f6d7c1061"
+        }
+      ],
+      "review": {
+        "intent": "Moon stage81 part0, page7 CLUT15772, sourcecrop40,136,256,248: dense architecture sheet of slabs, pillars, curved relief fragments, arches/footings and black gaps. Central top-row carving shares the same native indexed pixels as the separately decoded grey slab, with this material CLUTs darker taupe/brown palette. This is an environment atlas crop, not a new scene or anatomical interpretation.",
+        "style": "Original, held neural and repaired864x448 painting individually compared across top, middle and lower rows. Held neural smooths architecture and alters carved detail. Painting sharpens muted grey/brown aged stone, relief ridges and grain while keeping each source fragment/layout. Generated inscription-like shapes were removed by a separate blank-slab edit before exact native markings were restored. Fine pitting, fissures and relief edge thickness are inferred; final Skurfa-equivalent quality pending.",
+        "layout": "Same-index source palette correspondence freshly compared between the two stage81 crops. The four dark grey-slab classes map to this sheets8,8,8;16,16,16;32,24,24;49,41,32 RGBA/STP0 classes. Rectangle121,16,167,29 restores exactly281 marking cells at4x, with source gaps/junctions intact. Other architecture piece positions, major relief openings and black-gapped tile layout individually compared; no mechanical proof of every interior relief curve. Full native STP/discard/visible-black classes/crop exact, UV mapping fresh; native acceptance pending.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "c398c68693bc3002990052180c101e5176a933989ddc265a860c42ded14fd97f",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    }
+  ]
+}

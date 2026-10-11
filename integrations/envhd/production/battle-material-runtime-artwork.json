@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtimeSelectedMasters": 512,
-  "runtimeSelectedBindings": 519,
+  "runtimeSelectedMasters": 518,
+  "runtimeSelectedBindings": 525,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
   "scenes": [
@@ -1567,7 +1567,7 @@
     },
     {
       "stage": 15,
-      "hdBindings": 11,
+      "hdBindings": 12,
       "schema": 1,
       "pipeline": "envhd-static-battle-atlas-1",
       "modelSha256": "9f95b78ba55bd11636c56a37737f91eabb161336c064549d42edff1971d64313",
@@ -1577,7 +1577,7 @@
         4096,
         864
       ],
-      "atlasSha256": "4d0aa1dd856305d0bc1b50ac6c51cece708f2845083735779cf81100d2be93ff",
+      "atlasSha256": "c893ee30d9165051f658f969c77e1b126874687bc3e68c90e7f2ce1cae705a83",
       "regions": [
         {
           "page": 7,
@@ -1831,6 +1831,31 @@
         },
         {
           "page": 7,
+          "clut": 16220,
+          "sourceCrop": [
+            40,
+            184,
+            80,
+            216
+          ],
+          "sourceUvOrigin": [
+            40,
+            184
+          ],
+          "sourceSize": [
+            40,
+            32
+          ],
+          "decodedRgbaSha256": "9b6ff4c48ee775f24e3ed41d9538e7992659dfecd299e8f38c33ac99c490c4fe",
+          "atlasRect": [
+            576,
+            640,
+            160,
+            128
+          ]
+        },
+        {
+          "page": 7,
           "clut": 16284,
           "sourceCrop": [
             72,
@@ -2024,7 +2049,7 @@
     },
     {
       "stage": 17,
-      "hdBindings": 10,
+      "hdBindings": 11,
       "schema": 1,
       "pipeline": "envhd-static-battle-atlas-1",
       "modelSha256": "f0bf11be2b5c0293350fe5bcfcecc0ba43f03b29c5252019c0d15e6fa63879a7",
@@ -2034,7 +2059,7 @@
         4096,
         384
       ],
-      "atlasSha256": "5e094bbca402eaa669c5f205fe9e3c1dbacc45496d3ff7124ca9783da018e936",
+      "atlasSha256": "222f63c90ae4f7442ea87108f5bb9b8639e58e476e683e1dbc82ddfbacb6bcb0",
       "regions": [
         {
           "page": 7,
@@ -2109,6 +2134,31 @@
             32,
             320,
             288
+          ]
+        },
+        {
+          "page": 7,
+          "clut": 15453,
+          "sourceCrop": [
+            216,
+            168,
+            256,
+            216
+          ],
+          "sourceUvOrigin": [
+            216,
+            168
+          ],
+          "sourceSize": [
+            40,
+            48
+          ],
+          "decodedRgbaSha256": "c90dedb797873d745a28bc343e03d274b39256023daf7de4023e3eb69b85aca5",
+          "atlasRect": [
+            3040,
+            32,
+            160,
+            192
           ]
         },
         {
@@ -2280,7 +2330,7 @@
           ],
           "decodedRgbaSha256": "06148916abfb2e97f3e673b13f7fb2b170ed4accc456a43a8574d94dc239a025",
           "atlasRect": [
-            3040,
+            3264,
             32,
             128,
             192
@@ -5660,7 +5710,7 @@
     },
     {
       "stage": 45,
-      "hdBindings": 38,
+      "hdBindings": 39,
       "schema": 1,
       "pipeline": "envhd-static-battle-atlas-1",
       "modelSha256": "8063a6e41e5d879b4730143b9b3c6198eb7d3e7fe6ee94f804b75a282b238f2d",
@@ -5670,7 +5720,7 @@
         4096,
         800
       ],
-      "atlasSha256": "5b3cf4de227f6187ec6196606960db1a65f1b076e4805ef21f897ed108fc23cf",
+      "atlasSha256": "323901d5a524f9581425a347a926cc220a7ebe9a0f38ec5894a02a3ef7884adc",
       "regions": [
         {
           "page": 7,
@@ -5699,6 +5749,31 @@
         },
         {
           "page": 7,
+          "clut": 15389,
+          "sourceCrop": [
+            120,
+            136,
+            168,
+            184
+          ],
+          "sourceUvOrigin": [
+            120,
+            136
+          ],
+          "sourceSize": [
+            48,
+            48
+          ],
+          "decodedRgbaSha256": "9ca329f1f8559f985921ff3ccddf4ba9c9b63daa931bb29375d78f84c00d27ee",
+          "atlasRect": [
+            544,
+            384,
+            192,
+            192
+          ]
+        },
+        {
+          "page": 7,
           "clut": 15390,
           "sourceCrop": [
             40,
@@ -5716,7 +5791,7 @@
           ],
           "decodedRgbaSha256": "16e7acb4d6b8f607fde368520f066ac88eb61da6fa26380cf6ae9a8b0a4fef87",
           "atlasRect": [
-            2496,
+            2752,
             384,
             128,
             192
@@ -5766,7 +5841,7 @@
           ],
           "decodedRgbaSha256": "c1ec54d1584862bd9906b55dae0655fed1f97b591beb7cd1785c4fb2c58869ad",
           "atlasRect": [
-            544,
+            800,
             384,
             192,
             192
@@ -5791,7 +5866,7 @@
           ],
           "decodedRgbaSha256": "e5b640e0eb72a8c97129cac87207c4bf6cb1991f9aef667fb228ff1313c3b5d3",
           "atlasRect": [
-            3072,
+            3328,
             384,
             128,
             192
@@ -5866,7 +5941,7 @@
           ],
           "decodedRgbaSha256": "80cba694d8a4cc6ab3c96bddee00b2fb0f88fe45eefd1c471dd343d196e5520c",
           "atlasRect": [
-            2688,
+            2944,
             384,
             128,
             192
@@ -5916,7 +5991,7 @@
           ],
           "decodedRgbaSha256": "d4d83d5975ee7b2ec58dbba1eca19ff3a82931263f685f96fad6234864a9f0f6",
           "atlasRect": [
-            2272,
+            2528,
             384,
             160,
             192
@@ -5941,7 +6016,7 @@
           ],
           "decodedRgbaSha256": "7da0a20d510d5c96099f8dbe46425269a1ada9910314803542e2207d4650cbea",
           "atlasRect": [
-            3584,
+            3840,
             384,
             84,
             156
@@ -6041,8 +6116,8 @@
           ],
           "decodedRgbaSha256": "52e28aa9591b60278d4d9727299b58bce33d98f25e2f6679312ed9c253deed22",
           "atlasRect": [
-            3732,
-            384,
+            32,
+            640,
             256,
             128
           ]
@@ -6091,7 +6166,7 @@
           ],
           "decodedRgbaSha256": "e2b9fb166032f7ed738a24057cd0d2113cf148016058c7d1d4e0bdfbb794ca80",
           "atlasRect": [
-            1312,
+            1568,
             384,
             192,
             192
@@ -6116,7 +6191,7 @@
           ],
           "decodedRgbaSha256": "0719a58e380ab899ae8793a322ba1fbf021eed99a21a0fd35432e098adcbed22",
           "atlasRect": [
-            736,
+            1056,
             640,
             96,
             128
@@ -6141,7 +6216,7 @@
           ],
           "decodedRgbaSha256": "c52bbcec8c59beb70ff21dc3be10ccf5b245b56a840480efc4a02101e83513c7",
           "atlasRect": [
-            800,
+            1056,
             384,
             192,
             192
@@ -6166,7 +6241,7 @@
           ],
           "decodedRgbaSha256": "b443c81e5b8df73e3ae1ce11b3eb8e07e065f1c91ce7e8c242ea08768b1abc72",
           "atlasRect": [
-            1216,
+            1536,
             640,
             96,
             128
@@ -6216,7 +6291,7 @@
           ],
           "decodedRgbaSha256": "6667881df768dc85f1468c10178115520297cf45a8ecc907e330d60c182b90bb",
           "atlasRect": [
-            1056,
+            1376,
             640,
             96,
             128
@@ -6291,7 +6366,7 @@
           ],
           "decodedRgbaSha256": "3bbeb61560e98ef63a9261b6f98011408378e396c50139e02909d7088501ff60",
           "atlasRect": [
-            896,
+            1216,
             640,
             96,
             128
@@ -6366,7 +6441,7 @@
           ],
           "decodedRgbaSha256": "7856de832ebaae9409601e9e8943fe40adbc230eb06173925924e0820b556231",
           "atlasRect": [
-            544,
+            864,
             640,
             128,
             128
@@ -6416,7 +6491,7 @@
           ],
           "decodedRgbaSha256": "1a011a070d862da1d26b89effbecdfefdceeca61ef85eeee3877d113ec3fdd19",
           "atlasRect": [
-            3424,
+            3680,
             384,
             96,
             160
@@ -6441,7 +6516,7 @@
           ],
           "decodedRgbaSha256": "b015a8449747b3151495b4ec478911168865ac96164fb3a5b495e4efbb1a98ea",
           "atlasRect": [
-            288,
+            608,
             640,
             192,
             128
@@ -6466,7 +6541,7 @@
           ],
           "decodedRgbaSha256": "b0f14cca283958cf1b9b7759c1f29608f794faa42ad4a88a2085a3be66a2f64c",
           "atlasRect": [
-            2048,
+            2304,
             384,
             160,
             192
@@ -6491,7 +6566,7 @@
           ],
           "decodedRgbaSha256": "812af65c308161b8d2d9bc96f660fcdf60eb375409fab6a8052dc50a150e070e",
           "atlasRect": [
-            32,
+            352,
             640,
             192,
             128
@@ -6516,7 +6591,7 @@
           ],
           "decodedRgbaSha256": "d428e642da7672f50f1fae0dd6a013a0c842e1895969d5980e6a3e0a75ce3c8a",
           "atlasRect": [
-            1056,
+            1312,
             384,
             192,
             192
@@ -6541,7 +6616,7 @@
           ],
           "decodedRgbaSha256": "7e9d9efb0cc1daf83bd3b48543528a6135810e96cb1176fff7c3773cf8486f19",
           "atlasRect": [
-            1824,
+            2080,
             384,
             160,
             192
@@ -6566,7 +6641,7 @@
           ],
           "decodedRgbaSha256": "72dc4b42ce81acadbe3025fc44389caa05641c93ffc0e318758ebb2b73fdcc96",
           "atlasRect": [
-            3264,
+            3520,
             384,
             96,
             192
@@ -6591,7 +6666,7 @@
           ],
           "decodedRgbaSha256": "e48242f2099c3b215931d43eada5fb9dd311019eca9f62fd14a256f66137b004",
           "atlasRect": [
-            1568,
+            1824,
             384,
             192,
             192
@@ -6616,7 +6691,7 @@
           ],
           "decodedRgbaSha256": "8bc4f745faeaa766e358e74af8225e5dddcf6958d990f376ad756435dc87cbea",
           "atlasRect": [
-            2880,
+            3136,
             384,
             128,
             192
@@ -10787,7 +10862,7 @@
     },
     {
       "stage": 69,
-      "hdBindings": 15,
+      "hdBindings": 16,
       "schema": 1,
       "pipeline": "envhd-static-battle-atlas-1",
       "modelSha256": "d54e519c176eebeb52e9f99ae82cfaf36901ae004e9a26b8df88edabdac52cb5",
@@ -10797,7 +10872,7 @@
         4096,
         708
       ],
-      "atlasSha256": "1b9a661f9da92787bd541ea54dd85f5f33e27e88d385acb0d41a7cc140b2243d",
+      "atlasSha256": "442713ba4da28eb47e0d217be2fde0232e94db98806c2fe711ebf20c33310801",
       "regions": [
         {
           "page": 7,
@@ -11172,6 +11247,31 @@
             416,
             256,
             248
+          ]
+        },
+        {
+          "page": 7,
+          "clut": 16348,
+          "sourceCrop": [
+            184,
+            187,
+            248,
+            248
+          ],
+          "sourceUvOrigin": [
+            184,
+            187
+          ],
+          "sourceSize": [
+            64,
+            61
+          ],
+          "decodedRgbaSha256": "2a5813a03bdd9fdfca6219e04507a26c01551142438f4246fdce06fd031c9189",
+          "atlasRect": [
+            1660,
+            416,
+            256,
+            244
           ]
         }
       ]
@@ -11751,7 +11851,7 @@
     },
     {
       "stage": 81,
-      "hdBindings": 11,
+      "hdBindings": 13,
       "schema": 1,
       "pipeline": "envhd-static-battle-atlas-1",
       "modelSha256": "1e210fded77a51e4eff4682817e1128048e9e09b1c7430bb3d8a9abf0e55ebb3",
@@ -11759,9 +11859,9 @@
       "scale": 4,
       "atlasSize": [
         4096,
-        288
+        768
       ],
-      "atlasSha256": "21550109c806aaf8de7e2e6904c56487fe9b73d61243b26d541adb227df424df",
+      "atlasSha256": "59ee3b8a798592a4d07972740462a63863257cb8bd6273255145354db77c406d",
       "regions": [
         {
           "page": 7,
@@ -11782,7 +11882,7 @@
           ],
           "decodedRgbaSha256": "719137f3bc48e53a157334c889390cc1c895c54a79f63a41469593e4905f56db",
           "atlasRect": [
-            32,
+            960,
             32,
             288,
             224
@@ -11807,7 +11907,7 @@
           ],
           "decodedRgbaSha256": "07cf7eff75f3966697cf20a985e2fa079a4791350dfbbb4e265f879ff2fb478a",
           "atlasRect": [
-            384,
+            1312,
             32,
             256,
             224
@@ -11832,10 +11932,35 @@
           ],
           "decodedRgbaSha256": "4aabcf48128e7365dc46e293ade5ac583828ae235143a7d06dca76811f08a19d",
           "atlasRect": [
-            704,
+            1632,
             32,
             192,
             224
+          ]
+        },
+        {
+          "page": 7,
+          "clut": 15772,
+          "sourceCrop": [
+            40,
+            136,
+            256,
+            248
+          ],
+          "sourceUvOrigin": [
+            40,
+            136
+          ],
+          "sourceSize": [
+            216,
+            112
+          ],
+          "decodedRgbaSha256": "8daf24509e3a115bc276df11157c8e0bbc16c0bb14ed023debc8aad42099dd0e",
+          "atlasRect": [
+            32,
+            32,
+            864,
+            448
           ]
         },
         {
@@ -11857,7 +11982,32 @@
           ],
           "decodedRgbaSha256": "ee08e8cb1bfdfbcf7c5b2959efffd0ab831c5ec171312e5f09069e6e49ec25f3",
           "atlasRect": [
-            1600,
+            2848,
+            32,
+            256,
+            192
+          ]
+        },
+        {
+          "page": 7,
+          "clut": 15900,
+          "sourceCrop": [
+            152,
+            136,
+            216,
+            184
+          ],
+          "sourceUvOrigin": [
+            152,
+            136
+          ],
+          "sourceSize": [
+            64,
+            48
+          ],
+          "decodedRgbaSha256": "256fdd9a7b0462ad364b6d71f8d17a9a728525d27c6c0f820b61dbdf1a2b6e42",
+          "atlasRect": [
+            2528,
             32,
             256,
             192
@@ -11882,7 +12032,7 @@
           ],
           "decodedRgbaSha256": "e8e3a1f9447d23c25155829358f2c4d5910d8330c410f5e410dbb81d3c89cb44",
           "atlasRect": [
-            2432,
+            3680,
             32,
             192,
             192
@@ -11907,7 +12057,7 @@
           ],
           "decodedRgbaSha256": "8dfa3e7a3c742c8b66b5f16551e5a56f55c21c03c1f70682fcc7adbfe2d2e898",
           "atlasRect": [
-            960,
+            1888,
             32,
             576,
             192
@@ -11932,8 +12082,8 @@
           ],
           "decodedRgbaSha256": "dbe6b175a448db7ac7a0184ce9e288eb9e257218147a2774623630f6e1de7396",
           "atlasRect": [
-            2944,
-            32,
+            288,
+            544,
             160,
             192
           ]
@@ -11957,7 +12107,7 @@
           ],
           "decodedRgbaSha256": "906349ee5b91cfea9fd55fe77451cfdf908afda7bd2409c5c710e9e9101d271a",
           "atlasRect": [
-            2176,
+            3424,
             32,
             192,
             192
@@ -11982,7 +12132,7 @@
           ],
           "decodedRgbaSha256": "45b127ab44563c68d318a353e9d247659a2267755caf92e4e9a4bf1fd133b7a6",
           "atlasRect": [
-            1920,
+            3168,
             32,
             192,
             192
@@ -12007,8 +12157,8 @@
           ],
           "decodedRgbaSha256": "ed0721a12a80e87b318218b4b31519f0057655ddabe920c77857f03288c52847",
           "atlasRect": [
-            2688,
             32,
+            544,
             192,
             192
           ]
@@ -12032,8 +12182,8 @@
           ],
           "decodedRgbaSha256": "cb29290753e43e593c32b2115e3ce673ba160647574909c88bf5c554741a5126",
           "atlasRect": [
-            3168,
-            32,
+            512,
+            544,
             160,
             128
           ]
@@ -14134,12 +14284,14 @@
     }
   ],
   "scope": "Reviewed neural static surfaces plus separately source-verified painted repairs; pilots, animation and remaining revision holds retain original sampling",
-  "paintedSelectedMasters": 6,
+  "paintedSelectedMasters": 12,
   "paintedReviewReceipts": {
     "f60749d01390d24a4ca40f678040452be1312cc341396e9190f2dcb34d352168": "integrations/envhd/production/battle-bespoke-motifs.json",
     "8a352ed1657b2de9f372988a6687e322fd650cd606c04e8e948a6176cd70c3a7": "integrations/envhd/production/battle-bespoke-lattice.json",
     "03fe2f9c3231adcc77634e23ffb98b844c2f3f9561f302e39468a7a1c64367e4": "integrations/envhd/production/battle-bespoke-architecture.json",
     "bcc2cec28ff510045c7733750fe40f6fad5c3fe4bcd77a092bcab8c6573c9512": "integrations/envhd/production/battle-bespoke-royal-panels.json",
-    "e6fc4e4630a3eca05751346b2877d93a6e2442f523c669a6a06821a88d375264": "integrations/envhd/production/battle-bespoke-flame.json"
+    "e6fc4e4630a3eca05751346b2877d93a6e2442f523c669a6a06821a88d375264": "integrations/envhd/production/battle-bespoke-flame.json",
+    "d7f5d512be169d576146c8af3385172b568fa07214f085730b4a4323db9dbcec": "integrations/envhd/production/battle-bespoke-final-static.json",
+    "4372c89bfc964e62d7f3a5b941b34bdbb92a7b21678138d7380ee520cb828ef4": "integrations/envhd/production/battle-bespoke-radial.json"
   }
 }

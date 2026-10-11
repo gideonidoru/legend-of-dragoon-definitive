@@ -1,11 +1,12 @@
 # EnvHD painted battle motif repairs
 
-Six battle materials have separately reviewed painted replacements. Three are
+Twelve battle materials have separately reviewed painted replacements. Three are
 Flanvel Tower materials:
 the orthogonal maze-like stone marking, central circular lattice and looped
 architectural stone relief. Their
 original neural outputs remain archived as held candidates.
-Main `0af4f997` and its in-flight installer release do not include these paintings.
+The published `definitive-alpha-2026-10-11-envhd` package source `0af4f997`
+and main entrypoint metadata `0b8df09a` do not include these paintings.
 They are selected only on the future authoring branch.
 
 The material pass uses built-in image generation for blank pale mint stone only.
@@ -122,9 +123,77 @@ painted manifests are requested. The five manifests together select512 masters,
 519 new bindings and543 bindings including the24 pilot bindings. Only stage30,
 38 and44 atlases/manifests and the battle runtime ledger change. Existing source
 bindings are identical; every other atlas and the four field packs are unchanged.
-The authoring branch now applies those writes, archives the former runtime ledger
-and refreshes coverage counts and hashes. Six static battle sources still need
-replacements. Native gameplay and final-quality acceptance remain zero.
+That six-painting checkpoint applied those writes and archived the former runtime
+ledger. The next six replacements below complete development artwork for all
+518 identified static candidate masters. Native gameplay and final-quality
+acceptance remain zero.
+
+## Remaining shrine, floor, aqua and Moon materials
+
+[`battle-bespoke-final-static.json`](../../integrations/envhd/production/battle-bespoke-final-static.json) records five individually compared replacements
+using the unchanged rectangle/palette recipe. It preserves only the nominated
+palette cells mechanically; surrounding material detail is individually compared.
+Source comparisons include original, held neural and repaired painting. No
+canonical text or meaning is inferred from the abstract markings.
+
+| Source material | Native crop and usage | Repaired size | Locked source cells |
+| --- | --- | --- | --- |
+| [Shirley's Shrine plaque](../../integrations/envhd/production/bespoke-battle-candidates/9b6ff4c48ee775f24e3ed41d9538e7992659dfecd299e8f38c33ac99c490c4fe/render-preview-v1.png) | Stage15 part0, page7/CLUT16220, crop `[40,184,80,216]`; three faces sample central24x16 | 160x128 | 51 cells from three green classes in `[13,12,27,21]` |
+| [Sparse floor fragments](../../integrations/envhd/production/bespoke-battle-candidates/c90dedb797873d745a28bc343e03d274b39256023daf7de4023e3eb69b85aca5/render-preview-v1.png) | Stage17 part0, page7/CLUT15453, crop `[216,168,256,216]`; eight unlit opaque ground quads at y0 sample central32x32 | 160x192 | All403 colored cells, twelve classes, full40x48 rectangle |
+| [Aqua architectural panel](../../integrations/envhd/production/bespoke-battle-candidates/9ca329f1f8559f985921ff3ccddf4ba9c9b63daa931bb29375d78f84c00d27ee/render-preview-v1.png) | Stage45 part0, page7/CLUT15389, crop `[120,136,168,184]`; two faces sample central32x32 | 192x192 | 163 cells from six cyan/blue classes in `[14,12,34,37]` |
+| [Grey Moon carved slab](../../integrations/envhd/production/bespoke-battle-candidates/256fdd9a7b0462ad364b6d71f8d17a9a728525d27c6c0f820b61dbdf1a2b6e42/render-preview-v1.png) | Stage81 part0, page7/CLUT15900, crop `[152,136,216,184]`; sixteen faces sample central48x32 | 256x192 | 281 dark/transition cells, four classes, `[9,16,55,29]` |
+| [Moon architecture sheet](../../integrations/envhd/production/bespoke-battle-candidates/8daf24509e3a115bc276df11157c8e0bbc16c0bb14ed023debc8aad42099dd0e/render-preview-v1.png) | Stage81 part0, page7/CLUT15772, crop `[40,136,256,248]` | 864x448 | Same281 carving cells in `[121,16,167,29]`, under this material's taupe CLUT |
+
+Blank-face paintings prevent invented lettering and icons from being selected.
+The shrine's initial material was still coarse, so a separate refinement improves
+stone grain before the native green marking is restored. The floor packet/vertex
+audit resolves its actual use: the small colored forms are ground fragments,
+rather than hanging decoration. Its repair deliberately preserves all original
+angular shapes and hues, using only restrained painted grain. The aqua icon's
+blue/cyan stroke cells remain positioned while a blank inset painting improves
+the surrounding green architecture. The Moon sheet and grey slab share the same
+indexed source carving; fresh pixel correspondence verifies the four dark slab
+colors map to `[8,8,8,0]`, `[16,16,16,0]`, `[32,24,24,0]` and `[49,41,32,0]`
+in the sheet. The sheet's generated inscription-like marks are removed before
+that precise palette repair. Other relief pieces, frame boundaries and adjoining
+crop fragments have individual comparison evidence rather than topology proof.
+
+## Dark circular ornament
+
+The [twelfth replacement](../../integrations/envhd/production/bespoke-battle-candidates/2a5813a03bdd9fdfca6219e04507a26c01551142438f4246fdce06fd031c9189/render-preview-v1.png) is stage69 part0, page7/CLUT16348, crop
+`[184,187,248,248]`,64x61 to256x244. Eight native faces sample192,195 through239,239.
+The source is very dark blue-violet architecture with asymmetric curving bands,
+short horizontal left extensions and right/lower hooked segments. It is neither
+a clock nor an emissive effect. The held neural output erases most band detail.
+
+The first painted design added unsupported sector/central-ring shapes; a separate
+blank-face edit removes them. A targeted source-tracing edit then restores the
+source-led asymmetric bands. A private brightness-boosted native image helps
+read the original low-contrast layout; its brighter palette is not copied into
+the final painting. Original, held and final repaired images are individually
+compared. Groove thickness, worn edges and micrograin remain inferred detail.
+The fully source-color-locked experiment stays private and unselected because
+it retains too much coarse internal shading. The selected modern painting uses
+the existing generic STP repair, recorded in
+[`battle-bespoke-radial.json`](../../integrations/envhd/production/battle-bespoke-radial.json), with
+the same explicit limit: internal relief geometry is checked individually,
+not mechanically proven exact. Low-light gameplay/final-quality acceptance pending.
+
+Seven painted manifests now select518 masters and525 new bindings, or549 with
+24 protected pilot bindings. All twelve original static neural holds have a
+reviewed development replacement. The new batch changes only stage15,17,45,69
+and81 atlases/manifests and the runtime ledger; the earlier stage30,38,44 changes
+are retained. Every existing source binding, other atlas, four field pack, field
+selection and Skurfa resource is unchanged. Both former runtime ledgers remain
+byte-exact archives. The default pack operation without painted manifests still
+reproduces original main's506/513 selection. Animation/context350 and incomplete
+palette1 bindings remain native, and broader EnvHD coverage remains unfinished.
+
+Custom inputs, outputs, previews and all generation/edit prompts are saved under
+`integrations/envhd/production/bespoke-battle-candidates/<source-key>/`. Original
+images, enhanced source guides, geometry diagnostic dumps and comparison boards
+are private. `image-v1.png` keeps the native STP channel; use
+`render-preview-v1.png` for conventional-alpha review.
 
 Next coordinated integration must verify the rebuilt EnvHD JAR/source mapping
 and run the final-source installer gates. This authoring
