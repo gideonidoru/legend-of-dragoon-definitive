@@ -21,7 +21,8 @@
     "field-bespoke-wood-architecture-held-drafts.json": "1095e8b9710961310ecfcbca92f117501546b801dddb5f4eb81524233010b71d",
     "field-bespoke-canvas-fit-reviewed-selection.json": "af0906f578b502217a6d7e800b6a9553029bad8375290aeac41b244d259e3bd1",
     "field-bespoke-forest-fittings-reviewed-selection.json": "005b74c0851cfb7ac58811ec05188cb9f663d88017307c305bba3d26fd94c1a3",
-    "field-bespoke-forest-door-fittings-held-drafts.json": "59a3910ca0eb358211562ea1627a4cf7e1faf6566e731d858d1e9460dc563c55"
+    "field-bespoke-forest-door-fittings-held-drafts.json": "59a3910ca0eb358211562ea1627a4cf7e1faf6566e731d858d1e9460dc563c55",
+    "field-bespoke-architecture.json": "57221f4ec9db7762d97f7a8849413572cd8e9116662836c083f73bf6c0bd3b35"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -39,11 +40,32 @@
       "selectedPainted": 32,
       "held": 244,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 17,
+      "customHeldDraftSourceImages": 18,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
       "nextTask": "Independently review8pending source-bound candidates; resolve opaque Furni surround transition, continue Twin Castle and remaining244field holds. Static composites expose further neighboring texture/edge finish work; native/final quality acceptance still pending.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 8
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 8,
+      "customHeldDraftSourceKeys": [
+        "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
+        "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
+        "1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d",
+        "282909e0b634d43d1d82e55cdf62afae620ddc72d6ad4fc25e5831c01ea669e1",
+        "417db5229525bfb64b3dfbd767ff8cb7313b262305577cefd05c38951baf6477",
+        "49247bd98311d7e0cad111ac3af416aea54a2bc1feeb3b277040ab69980c3779",
+        "5fc04ff6f16aa8e1bc7eff701095983ba1d5a5a1c32a7f5c935b1e6337036b89",
+        "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+        "6ca24f005553c031d0d27b507ad335ce95fec5d7a9443a2854fd1a23fd0639e1",
+        "6ff4ccdc87601d4544fc501efe6aa6bd52ae80030bd10a80b1c51bc0085f1088",
+        "73b25780b6df62143f5f3f489706004112114f04e7ab4d4fa58cf7fa4d5293cf",
+        "745736c6a0d1c9a694b2295793ff1e4573a9861c9f999995ce85fdbecafd3d90",
+        "7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827",
+        "82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6",
+        "83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5",
+        "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab",
+        "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
+        "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
+      ],
+      "draftCountMethod": "Unique64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding4918current runtime selections. Includes older held Deningrad doorway05376f9a previously omitted from incremental draft count; all18are a subset of244field holds."
     },
     {
       "id": "static-terrain",
@@ -201,6 +223,11 @@
       "newUniqueHeldSourceImages": 1,
       "heldSourceImages": 2,
       "reason": "Furni three variants remain held; rejected Bale1 overlaps corrected Bale2 pending candidate. Unique draft sources deduplicated across all manifests."
+    },
+    {
+      "manifest": "field-bespoke-architecture.json",
+      "heldSourceImages": 1,
+      "reason": "Older held Deningrad doorway05376f9a retained byte-exact; included now in complete deduplicated draft census. Does not change244field holds or runtime coverage."
     }
   ],
   "publication": {
