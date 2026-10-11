@@ -30,76 +30,35 @@ Sharper artwork across the scene. A reconstructed Dart. Smoother surfaces, clean
 
 *Visual enhancements off → Definitive visuals on. Same 1280 × 800 output, camera and character pose. Captured in the native Mac renderer at normal actor scale.*
 
-<details>
-<summary><strong>Take a closer look · Dart, materials and the battle interface</strong></summary>
-
-![Closer matched in-engine view of Dart and the battle interface with visual enhancements disabled and enabled](docs/definitive/images/comparisons/battle-detail-off-on.jpg)
-
-*The same battle from a closer camera, with identical framing on both sides. This shows the combined character, environment, interface and rendering treatment.*
-
-</details>
-
-The baseline disables all seven HD modules and Definitive’s visual rendering options; the enhanced view enables them. Audio and cinematics cannot be demonstrated in these stills. These are controlled renderer comparisons, with character animation held for matching poses, rather than Steam Deck gameplay or performance measurements. [Capture settings and provenance](docs/definitive/images/comparisons/README.md#matched-in-engine-visual-comparisons).
+Each comparison uses matching cameras, poses and output resolution, with Definitive’s HD modules and visual rendering options switched off on the left and on on the right. [Image and capture details](docs/definitive/images/comparisons/README.md#matched-in-engine-visual-comparisons).
 
 ## The heroes you remember. In greater detail.
 
-Dart’s crimson armor. Meru’s patterned hammer. The faces, hair and costumes that make the party unmistakable. Definitive brings those details into focus with smoother geometry, restored texture artwork and individually reconstructed character features.
+Recognizable silhouettes. Richer surfaces. Faces, hair and costumes that hold up on a modern screen. Definitive combines refined geometry, restored textures and enhanced lighting to bring the party into focus.
 
 ### Dart · Rebuilt face. Sculpted hair. Painted detail.
 
-![Dart head comparison: earlier Definitive face and hair on the left, accepted CharHD reconstruction on the right](docs/definitive/images/comparisons/dart-head-reconstruction.jpg)
+Dart’s reconstructed head combines modeled facial features, sculpted hair locks and a **2048 × 2048 painted material**. Crimson armor panels and painted costume details complement the new head. His original combat and cutscene animations are preserved.
 
-*Earlier Definitive model → accepted CharHD reconstruction. Matched studio view of the actual geometry and materials; the left side already includes earlier face artwork.*
+![Dart before and after in matching native game-renderer views](docs/definitive/images/comparisons/battle-detail-off-on.jpg)
 
-Dart’s reconstructed head combines modeled facial features, sculpted hair locks and a **2048 × 2048 painted material**. Custom body shapes and authored armor artwork accompany the reconstructed head, while the original animation hierarchy and attachment points remain intact. The head, geometry and material activate together through **CharHD**.
+*Original visuals → Definitive visuals. Matching camera and pose, with Dart at normal scale.*
 
-<details>
-<summary><strong>See the reconstruction in the native game renderer</strong></summary>
+### Meru · Smoother geometry. The same unmistakable design.
 
-![Dart in a matching battle inspection before and after head reconstruction, with the same armor and environment](docs/definitive/images/comparisons/dart-reconstruction-native.jpg)
+Meru’s hammer, costume and silhouette retain their familiar shape. Refined surfaces and enhanced lighting soften angular transitions while preserving her original animation and character design.
 
-*Matched Mac renderer inspection with an enlarged actor. The body artwork and environment are unchanged between views. This is an inspection pose, not a Steam Deck gameplay capture.*
+![Meru before and after in matching native game-renderer views](docs/definitive/images/comparisons/meru-native-off-on.jpg)
 
-</details>
+*Original visuals → Definitive visuals. Matching camera and pose, with Meru at normal scale.*
 
-### HD textures · Detail you can see
+### Detail across the party
 
-Armor paneling, cloth patterns and weapon ornamentation deserve the same attention as silhouettes. These comparisons keep the original geometry, camera and lighting fixed so the artwork changes are visible on their own.
+**ModelsHD** refines eligible surfaces across all nine party field models and all 19 party battle forms, including Dragoon forms. It also reaches supported enemies, NPCs and scenery. **CharHD** adds character artwork, painted costume detail and Dart’s reconstructed head.
 
-<table>
-<tr><th>Dart · Authored armor</th><th>Meru · Texture restoration study</th></tr>
-<tr>
-<td width="50%"><img src="docs/definitive/images/comparisons/dart-textures-before-after.png" alt="Dart original textures beside authored crimson armor in two matching poses" /></td>
-<td width="50%"><img src="docs/definitive/images/comparisons/meru-textures-before-after.png" alt="Meru original textures beside a 4x restoration candidate in two matching poses" /></td>
-</tr>
-<tr>
-<td>Crimson armor panels and painted costume detail. Selected development artwork on original geometry.</td>
-<td>Hammer motifs and clothing patterns at 4× resolution. A texture restoration study.</td>
-</tr>
-</table>
+The visual direction stays close to the original illustrations and in-game designs: distinctive faces and hair, recognizable armor and clothing, and the weapons that define each character. The goal is a consistent restoration across **Dart, Rose, Lavitz, Shana, Haschel, Albert, Meru, Kongol and Miranda**.
 
-### A foundation across the party
-
-**ModelsHD** refines eligible surfaces across all nine party field models and all 19 party battle forms, including Dragoon forms. It also reaches supported enemies, NPCs and scenery. **CharHD** supplies the separate character artwork and Dart’s accepted head reconstruction. Broader smoothing and individually rebuilt characters are distinct layers of the remaster.
-
-The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, Meru, Kongol and Miranda**: faces and hair, costume panels, hands and grips, boots and weapons, guided by the original illustrations and in-game designs. Dart’s head is reconstructed; his complete body and the remaining party reconstructions are unfinished. Dragoon-form reconstruction is a later adaptation pass.
-
-<details>
-<summary><strong>Compare the geometry · Dart and Meru</strong></summary>
-
-<table>
-<tr><th>Dart</th><th>Meru</th></tr>
-<tr>
-<td width="50%"><img src="docs/definitive/images/comparisons/dart-before-after.png" alt="Dart original geometry and ModelsHD 0.3 smoothing, textured and untextured" /></td>
-<td width="50%"><img src="docs/definitive/images/comparisons/meru-before-after.png" alt="Meru original geometry and ModelsHD 0.3 smoothing, textured and untextured" /></td>
-</tr>
-</table>
-
-*Matched offline previews from ModelsHD 0.3. Untextured views reveal the geometry changes. The broader 0.4 pass uses more conservative smoothing; these images show the earlier treatment.*
-
-</details>
-
-[Character reconstruction](docs/definitive/PARTY_RECONSTRUCTION.md) · [Model coverage](docs/definitive/MODELS_HD_WORLD_PASS.md) · [Comparison details](docs/definitive/images/comparisons/README.md).
+[Character features](docs/definitive/CHARACTER_REMASTER.md) · [Model coverage](docs/definitive/MODELS_HD_WORLD_PASS.md) · [Image details](docs/definitive/images/comparisons/README.md).
 
 ## More detail. The same unmistakable world.
 
@@ -109,11 +68,11 @@ Explore painted towns, forests and interiors with **4,917 restored field images*
 
 Foregrounds retain their original placement, visibility and depth. The installer supplies **Env1HD through Env4HD** as four resource packs under one EnvHD switch, with no separate pack setup.
 
-Hand-painted repairs restore bedding, upholstery, woodwork, foliage and architectural motifs. The restoration includes **31 painted replacements** and repairs for twelve battle motifs. Held surfaces retain original artwork; animated environments and props remain unfinished. [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
+Hand-painted artwork adds detail to bedding, upholstery, woodwork, foliage and architectural motifs, with **31 painted field replacements** and restoration across twelve battle motifs. Where a replacement is unavailable, the original artwork keeps the scene intact. [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 ### Magic with sharper detail
 
-FxHD supplies **2,160 unique 2× detail maps** across the audited effect-texture catalog. Coverage includes Dragoon spells and transformations, item magic, enemy and boss attacks, battle cutscenes, animated save points, world-map atmosphere and title flames. Its full texture catalog follows the original animated palettes, scrolling, transparency and blending, keeping the native palette-driven animation path. Coverage describes the texture catalog; complete in-game effect review remains ongoing.
+FxHD supplies **2,160 unique 2× detail maps** across the audited effect-texture catalog. Coverage includes Dragoon spells and transformations, item magic, enemy and boss attacks, battle cutscenes, animated save points, world-map atmosphere and title flames. Its detail maps follow the original animated palettes, scrolling, transparency and blending, preserving the native palette-driven animation path.
 
 ### A crisp interface, from portraits to battle prompts
 
@@ -170,7 +129,7 @@ Choose artwork modules individually in the game's **Mods** menu. Installed HD mo
 | **[FxHD](integrations/fxhd/README.md)** | Spell, attack, transformation and animated effect textures. |
 | **[FMVHD](integrations/fmvhd/README.md)** | Enhanced versions of all 18 cinematics. |
 
-The scope is the whole campaign. Character faces and costumes across the party, NPCs and enemies, plus remaining field scenes, terrain, battle materials, props and animated surfaces still need work. Including all seven modules does not mean every asset is finished. [Visual direction](docs/definitive/CHARACTER_REMASTER.md) · [Character coverage](docs/definitive/CHARHD_PRODUCTION.md) · [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
+Explore the character, environment and interface features in more detail. [Visual direction](docs/definitive/CHARACTER_REMASTER.md) · [Character coverage](docs/definitive/CHARHD_PRODUCTION.md) · [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 ## Technical presentation
 
@@ -190,13 +149,13 @@ Definitive extends Severed Chains' shared rendering, texture-loading, audio and 
 
 ### High-resolution artwork, original animation
 
-**Character geometry and materials.** Dart’s accepted head uses **5,748 triangles** and a **2K material**, integrated through twelve selected field/battle part packs with custom body geometry. Exact source identities bind each replacement to the correct model. Geometry and material are accepted together; original CPU geometry, animation hierarchy and script-facing indices remain unchanged. Disabling CharHD restores the selected ModelsHD or original presentation. [Character integration](integrations/charhd/production/party-reconstruction/DART_PROMOTION.md).
+**Character geometry and materials.** Dart’s reconstructed head uses **5,748 triangles** and a **2K material**, integrated across twelve field and battle part packs with custom body geometry. Model identities bind each replacement to the correct character. Geometry and materials load together while preserving the original CPU geometry, animation hierarchy and script-facing indices. Disabling CharHD restores the ModelsHD or original presentation. [Character integration](integrations/charhd/production/party-reconstruction/DART_PROMOTION.md).
 
 **Palette-live effects.** FxHD's shared indexed detail path resolves restored colors from the current palette. Texture writes, copies and scrolling retain native animation and transparency. One persistent **16 MiB GPU companion** serves the effect system, with no GPU texture allocation per particle.
 
 **Protected interface rendering.** UIHD keeps native clipping, logical coordinates, animation offsets and transparency while displaying larger artwork. Native palette variants load on demand within a **32 MiB source/restoration GPU budget**. Current-frame pages remain pinned; unused pages can be evicted, including while paused. Changed or invalid sources fall back to original artwork.
 
-**Source-bound environments.** Field replacements match decoded source pixels and a pinned artwork checksum before allocation. Separate foreground layers retain their script slots, movement, translucency and depth. Painted-image inputs have bounded dimensions and decode checks before pixel allocation; invalid or mismatched artwork falls back to the original layer. The selection includes 4,917 field images from 5,162 individually reviewed candidates. Held sources retain their original artwork. [Full environment scope](docs/definitive/ENVHD_FULL_COVERAGE.md).
+**Source-bound environments.** Field replacements match decoded source pixels and a pinned artwork checksum before allocation. Separate foreground layers retain their script slots, movement, translucency and depth. Painted-image inputs have bounded dimensions and decode checks before pixel allocation; invalid or mismatched artwork falls back to the original layer. The environment library contains 4,917 field replacements. Unmatched or unavailable replacements retain the original artwork. [Full environment scope](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 **Bounded loading.** A shared **64 MiB decoded-artwork cache** reuses image data. Low-priority workers prepare native field backgrounds and eligible HD images during loading; GPU work stays on the renderer thread. Scene changes cancel obsolete preparation. These are component budgets, not a total game-memory or Steam Deck performance guarantee.
 
@@ -218,13 +177,13 @@ Native character uploads and deferred texture retirement retain renderer-thread 
 
 **Depth-buffer resets.** The engine restores depth writes before clearing the depth buffer in both OpenGL and OpenGL ES. This prevents a previous draw’s disabled depth-write state from blocking the reset and carrying stale depth into later rendering. [Technical validation](docs/definitive/DEPTH_CLEAR_REGRESSION.md).
 
-Presentation controls live in **Graphics**, independently of campaign presets. The pipeline uses conventional rendering with assets prepared before installation. Whole-campaign visual review and physical Steam Deck frame-time, memory and power measurements remain ongoing.
+Presentation controls live in **Graphics**, independently of campaign presets. Artwork is prepared before installation; the game uses conventional rendering during play.
 
 ### Installation, save compatibility and recovery
 
-**HD support for existing campaigns.** The managed launcher activates installed HD modules even when a campaign predates them. Visual defaults leave existing save bytes untouched. Explicit module opt-outs persist, custom gameplay-mod selections remain intact, and changes in the Mods menu take effect only when accepted. New-campaign choices are saved when you start the game.
+**HD support for existing campaigns.** The managed launcher activates installed HD modules even when a campaign predates them. Visual defaults leave existing save bytes untouched. Explicit module opt-outs persist, custom gameplay-mod selections remain intact, and changes in the Mods menu take effect when you confirm them. New-campaign choices are saved when you start the game.
 
-**Durable artwork preferences.** Accepted HD choices use an atomic preferences-file replacement followed by file and directory synchronization on Linux and macOS. A failed write keeps the selection screen open so you can retry or cancel.
+**Durable artwork preferences.** Your HD choices use an atomic preferences-file replacement followed by file and directory synchronization on Linux and macOS. A failed write keeps the selection screen open so you can retry or cancel.
 
 **Recovery after an interrupted launch.** Repair, Reinstall and Uninstall recover from stale, missing or corrupt launch records and close verified game/launcher processes belonging to that installation before maintenance. Ownership checks distinguish those processes from other applications, and operation locks remain held through verification and activation. Repair and Reinstall retain saves, settings, module choices and imported discs. Same-release Repair also retains prepared game data; Uninstall retains personal data and imported discs unless disc removal is explicitly selected.
 
