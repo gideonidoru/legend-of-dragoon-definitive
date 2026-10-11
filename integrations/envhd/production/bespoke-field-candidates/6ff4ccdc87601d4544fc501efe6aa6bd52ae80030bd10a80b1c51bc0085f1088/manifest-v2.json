@@ -1,0 +1,62 @@
+{
+  "decodedRgbaSha256": "6ff4ccdc87601d4544fc501efe6aa6bd52ae80030bd10a80b1c51bc0085f1088",
+  "generatedSha256": "56b626f9732195e899aed8bae5c0e86d1b702e5a60f51dc6b8ed36b3aca95069",
+  "generatedSize": [
+    965,
+    1630
+  ],
+  "sourceSize": [
+    26,
+    44
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "6e5e691c9684b860f6cf6b2a43759eceeaa23e60e324a315570b245bb0103958:-1",
+      "kind": "foreground",
+      "slot": 3,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 70,
+  "representativeLocation": "Bale",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 2,
+  "prompt": "Use case: precise-object-edit. Source-faithful HD game architectural fitting26x44canvas, requested832x1408. Reference1 authoritative original nearest zoom; reference2 COMPLETE native Bale street scene; reference3 failed custom draft for comparison. Correct the draft: the large symmetrical central leaf and decorative floral flourishes are inventions not established by reference1. Trace the source broad irregular raised brown forms and source dark channels in their exact original positions, treating unresolved tiny detail as understated worn mottled relief without assigning any identifiable leaf, flower, face, symbol or letters. Material texture should be shallow/fine, low contrast, matching the warm source brown and dark right side; no gilded bright ornamental centerpiece. Preserve original small upper-left protrusion, incomplete top crop, right vertical recessed area, original lit lower ledge projecting left and thin descending dark support. EXACT same26:44 canvas, identical crop, silhouette, scale and placement. No extra parts, recentering, padding, complete freestandingpanel, writing, logo or watermark. True alpha outside source silhouette. This is fixed wall architectural relief, not new narrative ornament.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 11888,
+  "paintedGapPixelsExtended": 307,
+  "paintedUncoveredSourcePixels": 153,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 25,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    104,
+    176
+  ],
+  "outputSha256": "c8bda1b11acf6bf724e5a7138496adc71a63cfaa3efbe0bc107ecadb9c3d0d18",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/6ff4ccdc87601d4544fc501efe6aa6bd52ae80030bd10a80b1c51bc0085f1088/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/6ff4ccdc87601d4544fc501efe6aa6bd52ae80030bd10a80b1c51bc0085f1088/image-v1.png",
+  "review": {
+    "intent": "Bale cut70 foreground3: attached upright brown architectural relief on the right street facade. Original source/full street and current EnvHD placement compared; preserve projecting lit lower ledge, dark right recess and thin descending support.",
+    "style": "Corrected version2 removes the unsupported identifiable leaf/floral pattern in version1, replacing it with restrained worn irregular raised forms. Fine original motif identity remains unresolved and is not claimed; broad shape/shadow correspondence needs independent review. Surface finish/final quality pending.",
+    "layout": "Exact26x44 source restored at104x176 with source alpha/visible black unchanged and original crop/placement. Correction retains ledge/support divisions. Static source/current EnvHD comparisons are authoring checks, not native state/occlusion or final placement acceptance.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "c8bda1b11acf6bf724e5a7138496adc71a63cfaa3efbe0bc107ecadb9c3d0d18",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

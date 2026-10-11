@@ -19,7 +19,9 @@
     "field-bespoke-textile-detail-reviewed-selection.json": "44fd1d2dbab5807500cfc82186a2414aa2f8bb33026b90d72a3e01802d262adb",
     "field-bespoke-wood-architecture-reviewed-selection.json": "2dbd7deb027c3c9b3cac84bb0528ff3df2593ecb91f72206714450b4b91d0557",
     "field-bespoke-wood-architecture-held-drafts.json": "1095e8b9710961310ecfcbca92f117501546b801dddb5f4eb81524233010b71d",
-    "field-bespoke-canvas-fit-reviewed-selection.json": "af0906f578b502217a6d7e800b6a9553029bad8375290aeac41b244d259e3bd1"
+    "field-bespoke-canvas-fit-reviewed-selection.json": "af0906f578b502217a6d7e800b6a9553029bad8375290aeac41b244d259e3bd1",
+    "field-bespoke-forest-fittings-reviewed-selection.json": "005b74c0851cfb7ac58811ec05188cb9f663d88017307c305bba3d26fd94c1a3",
+    "field-bespoke-forest-door-fittings-held-drafts.json": "59a3910ca0eb358211562ea1627a4cf7e1faf6566e731d858d1e9460dc563c55"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -37,11 +39,11 @@
       "selectedPainted": 32,
       "held": 244,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 13,
+      "customHeldDraftSourceImages": 17,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
-      "nextTask": "Independently review5pending Fletz/Rouge/Deningrad partition/Indels relief/explicitly fitted Phantom Ship candidates; continue Twin Castle corrections and all244held fields.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 5
+      "nextTask": "Independently review8pending source-bound candidates; resolve opaque Furni surround transition, continue Twin Castle and remaining244field holds. Static composites expose further neighboring texture/edge finish work; native/final quality acceptance still pending.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 8
     },
     {
       "id": "static-terrain",
@@ -188,6 +190,17 @@
       "newHeldSourceImages": 0,
       "duplicatesHeldDraftSource": true,
       "reason": "Phantom Ship generated version2 raw preserved; separate bounded silhouette fit plus unchanged original cutout repair now author-reviewed, pending independent review. Both earlier aspect-rejected histories unchanged."
+    },
+    {
+      "manifest": "field-bespoke-forest-fittings-reviewed-selection.json",
+      "newHeldSourceImages": 3,
+      "reason": "Two source-context-proved conifer material drafts and corrected Bale relief pending independent review; prior37records exact."
+    },
+    {
+      "manifest": "field-bespoke-forest-door-fittings-held-drafts.json",
+      "newUniqueHeldSourceImages": 1,
+      "heldSourceImages": 2,
+      "reason": "Furni three variants remain held; rejected Bale1 overlaps corrected Bale2 pending candidate. Unique draft sources deduplicated across all manifests."
     }
   ],
   "publication": {
