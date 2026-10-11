@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "373b34a94a1fe52beb4547b215d451df14557633",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "c16ba081f27b63d547f282c13545c418804dae68e8d6eaf1d616f1ef3e258728",
+    "full-coverage.json": "5de4e1eee03ea5f32e9792db587a21d8eef0e2b0834eb58ce5117e9471c5e54f",
     "field-runtime-artwork.json": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
@@ -33,7 +33,8 @@
     "field-bespoke-organic-storage-reviewed-selection.json": "abd5fef9bc81876c97da16f95a9e691e9be3ae3b102db01638f4bf0f2fbb3932",
     "field-bespoke-organic-storage-held-drafts.json": "e874c6ca915dc3f185340cfb6eee52a9e953cf263b1ecd6bd921b67f73d29b5c",
     "field-bespoke-scenic-materials-reviewed-selection.json": "7babbfcb0a36cfe976bb74c68b037de0f6d2fc3c13ab877ec9fde2f155b15974",
-    "field-bespoke-scenic-materials-held-drafts.json": "9341d555f30b5a18c8b78ab9ee0908d512e1eaa81ca3a6b7cfffbf5bceda850b"
+    "field-bespoke-scenic-materials-held-drafts.json": "9341d555f30b5a18c8b78ab9ee0908d512e1eaa81ca3a6b7cfffbf5bceda850b",
+    "field-bespoke-palace-railings-reviewed-selection.json": "b5e096e5f3eb3c9bd677d37a6db9338dc4ab25967e26e4cb48e994d2fadb3ab5"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -51,11 +52,11 @@
       "selectedPainted": 39,
       "held": 237,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 27,
+      "customHeldDraftSourceImages": 31,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
-      "nextTask": "Independently review ten pending field candidates; correct Rouge and Phantom landmarks with a more constrained authoring method; continue237 field holds and native/final validation.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 10,
+      "nextTask": "Independently review fourteen pending field candidates; correct Rouge and Phantom internal landmarks with a more constrained authoring method; continue the 237 field holds and native/final validation.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 14,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
@@ -68,9 +69,11 @@
         "83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5",
         "83fe643a2962f4801576f8ebf15bd41aa63e16575ff2386fd1b8296134c8d5a9",
         "8672f8df1037e8923d56b9e9e523c672d4b0d3dbeebff918ad0f6c8d50491662",
+        "867b4dc9569220985c79320571ee12cb046a6a1bdb7503b5d05778cecdedcae4",
         "877e9c3a907d346bbd50a41cb79ce4f801f207f86e3f5ecdf24c9f2a6d09badd",
         "8c03049a6e5993f19813f7d3606c0d6736d85fe575c3ef0fa3629eb80f8b5e4e",
         "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
+        "99fe3ae3f675d6fc68f88b15b0432a884fee59c7f04b6be8c9c1c51f02948e81",
         "9b74793a802626789aa46bf4776e968c5af1c3e749fe9033af7dcc1e96dcc66b",
         "9e38a3f37d0eed732d30954194e28fa0b749949e5d4ef81cc8a85d00b56241e9",
         "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab",
@@ -79,13 +82,15 @@
         "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
         "b88a83c36c8e7e7e09112c6174606d9498252c7deca051cb4ceef656d0819523",
         "bef65a35570d58e1698fa959797fc680e72b1cd72af026bfe1dd79c6fe0f3197",
+        "d46bd57a4ab4715e8191cd0e1fee2a155cc04cb70413844af2510647a87d7229",
         "da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5",
+        "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
         "df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b",
         "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
         "f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique64-character source directories across bespoke-field-candidates and held-field-art-drafts, excluding4925 runtime selections. Twenty-seven source keys remain a subset of237 field holds; repeated/rejected versions deduplicated.",
+      "draftCountMethod": "Unique 64-character source directories across bespoke-field-candidates and held-field-art-drafts, excluding 4,925 runtime selections. Thirty-one source keys remain a subset of 237 field holds; repeated/rejected versions deduplicated.",
       "independentlyReviewedCandidatesRequiringRevision": 2
     },
     {
@@ -294,6 +299,11 @@
       "newUniqueHeldSourceImages": 2,
       "heldSourceImages": 4,
       "reason": "Undersea coral coverage failures and Hoax material ambiguity introduce2 held sources; rejected Ulara1/Fueno1 overlap corrected2 candidates. Four new unique source keys, no thresholds waived and no selections added."
+    },
+    {
+      "manifest": "field-bespoke-palace-railings-reviewed-selection.json",
+      "newUniqueHeldSourceImages": 4,
+      "reason": "Four Crystal Palace railings/support candidates independently pending; all 51 prior and 39 selected candidate records exact. Individual and joint cut 368/369 static placements inspected. No selections added."
     }
   ],
   "publication": {
@@ -316,5 +326,5 @@
     "paintedBattleMastersAwaitingCoordinatedPublication": 12
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "Two additional scenic-material candidates and five held versions. Current selected runtime and installer unchanged."
+  "authoringCheckpoint": "Four additional Crystal Palace architectural candidates, independently pending. Current selected runtime and installer unchanged."
 }
