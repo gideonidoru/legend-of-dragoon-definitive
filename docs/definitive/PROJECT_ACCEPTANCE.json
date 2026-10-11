@@ -44,7 +44,7 @@
       "threadId": "01a126fa-0565-7642-b4cd-3bc9314967c5"
     }
   },
-  "casesStatusPolicy": "not-run means this acceptance requirement has no attached case-level sign-off; existing component tests are retained separately.",
+  "casesStatusPolicy": "not-run/pass/fail/blocked describe the case result only. runtimeSafety, contentCoverage and finalAcceptance are separate fields. Safe native fallback cannot close required HD content or establish 10/10; accepted-native is not a final/content closure status.",
   "domains": [
     {
       "id": "A01",
@@ -67,25 +67,49 @@
           "id": "A01.01",
           "requirement": "Fresh-install all seven modules and four EnvHD packs on internal and SD storage, including a folder with spaces; verify exact inventory, notices, disc identity and executable shortcut.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A01.02",
           "requirement": "Exercise healthy and one-file-corrupt Repair, missing/corrupt launch receipts, partial bootstrap state and retired-release HTTP 404 migration; preserve personal-data hashes and prove unrelated processes survive.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A01.03",
           "requirement": "Full Reinstall must fetch every payload and prepare a new workspace; Uninstall must retain saves/settings/discs unless disc deletion is explicitly selected.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A01.04",
           "requirement": "Interrupt download and activation, retry after network failure, reject corrupt payloads and insufficient space without activating partial data; offline maintenance gives a recoverable explanation.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ],
       "deliveryCaseIds": [
@@ -126,25 +150,49 @@
           "id": "A02.01",
           "requirement": "Launch from Desktop and Gaming Mode with controller only; repeat Steam Stop/relaunch and ensure only the intended installation game processes are managed.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A02.02",
           "requirement": "Update a real campaign from an older installation, verify changed/new/removed files and saved mod choices, then Restore and reload the same campaign.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A02.03",
           "requirement": "After successful preparation, cold-launch offline from internal and SD storage; distinguish first-install network requirements from offline gameplay.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A02.04",
           "requirement": "Exercise cancelled/failed update and stale shortcut recovery; verify stable Desktop resolves the current checksum-matched script and retained local Restore data survives hosted retirement.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ],
       "deliveryCaseIds": [
@@ -181,19 +229,37 @@
           "id": "A03.01",
           "requirement": "Run battle entry, field/battle/world transitions, Additions and selected gameplay speeds with measured simulation/presentation cadence; no speed-dependent hit-window or timer drift.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A03.02",
           "requirement": "Exercise movie entry/exit, skip, pause, fallback, suspend and stalls; restore input/display state without accumulated simulation bursts.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A03.03",
           "requirement": "Compare ordinary battle entry against the same save on upstream/native artwork and each module-isolation route; record latency and frame-time traces before calling a fix complete.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -222,19 +288,37 @@
           "id": "A04.01",
           "requirement": "Exercise OS-default and named speakers, wired headphones and Bluetooth; unavailable devices recover without rewriting the saved preference.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A04.02",
           "requirement": "Disconnect/reconnect and suspend during gameplay and films; unplayed queued samples must not advance media, truncate tails or leave silent gameplay.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A04.03",
           "requirement": "Measure A/V synchronization through long opening/endings and sustained gameplay with captured timing evidence; native loopback results remain separate from physical routing.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -263,25 +347,49 @@
           "id": "A05.01",
           "requirement": "Individually watch and record all 18 enhanced and 18 original films, logo and new-game opening on the candidate Deck build; check normal speed, dialogue/music sync, endings and skip.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A05.02",
           "requirement": "Reconcile 602 conversion warnings and seven-frame aggregate difference from the ratings checkpoint to per-film source/output timelines; document intended exclusions or repair defects.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A05.03",
           "requirement": "Check crop, color, aspect, detail/artifacts and audio by matched source frames; corrupt/missing replacement must recover through the supported original route.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A05.04",
           "requirement": "Owner reports current Deck FMVs work; retain that observation, but do not mark every film/device scenario passed from it.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -314,25 +422,49 @@
           "id": "A06.01",
           "requirement": "Reconcile every selected field master to source, output hash, consumer, mask and runtime state; verify all 605 partially covered configurations without claiming complete scene coverage.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A06.02",
-          "requirement": "Close or explicitly accept native preservation for 245 field holds and one terrain hold; classify 350 battle animation/context bindings plus one palette gap and all world animation families.",
+          "requirement": "Complete and accept the required HD artwork for 245 field holds and one terrain hold; safe native fallback leaves those content requirements open. Any removal from finished release scope requires direct explicit HUMAN approval recorded for each affected case/family. Classify 350 battle animation/context bindings plus one palette gap and all world animation families against controlling source scope.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A06.03",
           "requirement": "Validate complete animated palette/frame/scroll families and source-bound foreground movement, visibility, STP, depth and transitions in actual field/battle/world scenes.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A06.04",
           "requirement": "Complete props/overlay ownership census before assigning jobs; compare selected scenes with original/Skurfa art at normal handheld size, then measure combined residency.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -361,19 +493,37 @@
           "id": "A07.01",
           "requirement": "Verify all pinned Skurfa resource bytes and notices remain unchanged through install/update/restore.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A07.02",
           "requirement": "Exercise protected cut/period aliases, foreground occlusion, transitions and filtering with EnvHD toggled and listener order varied; no redraw, ownership conflict or duplicate replacement.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A07.03",
           "requirement": "Record representative complete-scene visual approval and combined Deck load/residency costs; 38 packs or protected aliases alone do not imply campaign acceptance.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -403,25 +553,49 @@
           "id": "A08.01",
           "requirement": "Reconcile 1,343 supported containers: 964 refined and 379 native, with justification per retained case; keep unknown routes named rather than guessing identities.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A08.02",
           "requirement": "Exercise all nine field actors and 19 battle forms through idle/attack/damage/victory/death, joints/grips/weapons and scene reloads; inspect seams, deformation and original-index effects.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A08.03",
           "requirement": "Resolve 80 mixed-bit-depth references and 30 unresolved routes/formats from the checkpoint; test original, CharHD, mapped/RGBA and other texture-owner combinations.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A08.04",
           "requirement": "Measure three-party-actor plus effect residency/performance on Deck; smoothing counts do not establish bespoke character fidelity.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -452,31 +626,61 @@
           "id": "A09.01",
           "requirement": "Approve each of nine normal characters against original illustrations/in-game references: silhouette, asymmetry, costume construction/colors/motifs, hair/face, hands, feet and weapon proportions.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A09.02",
           "requirement": "For every candidate, validate field and battle articulated topology through front/side/rear and moving idle/attack/damage/victory/death poses; a good still pose cannot clear detached surfaces or open partitions.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A09.03",
           "requirement": "Integrate geometry and exact material atomically with source identity, fallback and unknown-owner priority; exercise CharHD/ModelsHD on/off and shared material lifetime.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A09.04",
           "requirement": "Inventory and accept Dragoon/Divine forms and the wider NPC/enemy/boss scope separately; resolve checkpoint 69 unbound routes, 33 source failures, 22 format cases and 103 animation/extra holds without summing unlike units.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A09.05",
           "requirement": "Dart accepted head remains the installed selection; nine new body/artwork studies are draft and require fidelity, moving-geometry, native and Deck approval before promotion.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -506,25 +710,49 @@
           "id": "A10.01",
           "requirement": "Reconcile 6,466 source bindings and 2,160 unique detail maps, plus the procedural/copy/mesh consumer families; classify 30 unchanged generated outputs.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A10.02",
           "requirement": "Inspect spells, transformations, items, enemy/boss attacks, title, save points, field/world and cutscene effects across palette animation, scrolling, copy/write, STP and black transparency.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A10.03",
           "requirement": "Exercise stale epochs, mod toggles, original fallback and combined load with CharHD sampler/material ownership; verify bounded memory and no per-particle GPU allocation.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A10.04",
           "requirement": "Approve real-scene appearance and reduced-flashing behavior with battle/camera transitions; full catalog source coverage is not full campaign visual acceptance.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -552,25 +780,49 @@
           "id": "A11.01",
           "requirement": "Reconcile 738 outputs, nine portraits and 99 post-battle extra bindings from the checkpoint; render actual portrait/palette atlases rather than accepting CPU file counts.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A11.02",
           "requirement": "Walk title/loading, menus, inventory/shop, dialogue, battle/Additions, world map, chapter cards, credits and save-card variants at handheld size; check clipping, colors, animation and legibility.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A11.03",
           "requirement": "Exercise paused cache eviction, current-frame pinning, stale/invalid source fallback and original/HD combinations; record peak residency with all seven modules.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A11.04",
           "requirement": "Verify save-card rendering does not rewrite older saves and controls/accessibility remain usable with UIHD off.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -598,25 +850,49 @@
           "id": "A12.01",
           "requirement": "Reproduce ordinary stationary flicker and disappearing ground/props during Dart/enemy attacks and camera flips on the affected published build, then retain deterministic regression scenes.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A12.02",
           "requirement": "Check native/HD textures, sampler formats/units, uploads, blending, depth, culling, shader reloads and deferred retirement before assigning a confirmed cause; test fixes with all modules and isolation.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A12.03",
           "requirement": "Approve scene-coherent lights/materials/shadows/SMAA/bloom/filtering at normal game size with authored maps and native fallback; retain UI/Additions coverage and reduced-flashing behavior.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A12.04",
           "requirement": "Measure each added effect and combined GPU cost on Deck; select and document defaults only after physical frame-time and memory evidence.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -643,25 +919,49 @@
           "id": "A13.01",
           "requirement": "Walk Definitive and Faithful presets with controller only; save/load old and new campaigns and confirm normal Addition timing/damage and 1x default rewards.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A13.02",
           "requirement": "Exercise sorting/filtering, full bag, equipment comparison, quantity buy/sell bounds, cancel/back, remapped context hints and reward settings without losing inventory or applying cancelled choices.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A13.03",
           "requirement": "Check battle autosave/save-anywhere, transition speed, enemy HP/turn order and optional Early/Late/Wrong Button feedback against actual game behavior.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A13.04",
           "requirement": "Inventory planned guidance/journal requirements separately; component features must not be presented as completion of unimplemented scope.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ]
     },
@@ -690,19 +990,37 @@
           "id": "A14.01",
           "requirement": "Complete setup, Gaming Mode launch, campaign, menus, battle and maintenance using Deck controls; cover touch/keyboard fallbacks and Steam Input enabled/disabled.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A14.02",
           "requirement": "Remap every required action, reconnect/hotplug and resume held-input boundaries; verify prompt glyphs match current bindings without double input or stuck buttons.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A14.03",
           "requirement": "Check handheld legibility, focus/order, scalable text where supported, reduced-flashing and screen-reader paths; explicitly inventory unsupported accessibility expectations rather than assume them passed.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ],
       "deliveryCaseIds": [
@@ -740,25 +1058,49 @@
           "id": "A15.01",
           "requirement": "Complete P02 physical profile runs with measured frame-time percentiles, load/cold-start latency, RAM/VRAM, power/battery and temperatures; a resource budget is not a device measurement.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A15.02",
           "requirement": "Complete ten cold launches, twenty suspend/resume cycles and two 120-minute combined-mod sessions on internal and SD storage; record every hang/crash/texture fault and recovery.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A15.03",
           "requirement": "Choose measured 60fps or 30fps target profiles and explicit scene/load/memory/power budgets before performance sign-off; no invented 10/10 from Linux CI.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A15.04",
           "requirement": "Confirm stable battery/charging and thermals across representative complex fights/field/world/films, rather than one quiet scene.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ],
       "deliveryCaseIds": [
@@ -797,25 +1139,49 @@
           "id": "A16.01",
           "requirement": "Complete P05 four-disc progression/checkpoint playthrough including bosses, party/form changes, field/world/scripted scenes, the documented ENDING1H and ENDING2H film sequences and transitions; record chapter/cut/state coverage.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A16.02",
           "requirement": "At every checkpoint save/load and compare inventory, story flags, HP/MP, rewards and selected mods; test updates/Restore and real-save migration without silent data loss.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A16.03",
           "requirement": "Run P04 combined-mod and fallback matrix with palette/shared-page/animation states and third-party owner priority; original and Faithful routes remain usable.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A16.04",
           "requirement": "Close all severe defects, inventory unknown consumer denominators and obtain whole-campaign artistic/gameplay acceptance with regression evidence on the intended candidate.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ],
       "deliveryCaseIds": [
@@ -852,25 +1218,49 @@
           "id": "A17.01",
           "requirement": "Maintain this 17-domain matrix and source/consumer/owner/state inventory; link each pass to an exact source, package, device and reviewer rather than a rolling branch.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A17.02",
           "requirement": "Before a combined publication, verify exact-source Linux/Mac/synthetic gates, full asset inventory/hashes, anonymous installer entrypoints and actual public maintenance; preserve current-only retention and pinned clean-build input.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A17.03",
           "requirement": "Keep custom code, meshes and HD art public/versioned/in normal installation; retain licenses/upstream notices and exclude originals, discs, saves, credentials, local runtimes and private diagnostic/control data.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         },
         {
           "id": "A17.04",
           "requirement": "Update front-facing README only for accepted published features, preserving prominent Steam Deck download, Ko-fi and accurately scoped comparison images; root alone merges/publishes coordinated releases.",
           "status": "not-run",
-          "evidence": []
+          "evidence": [],
+          "acceptanceDimensions": {
+            "runtimeSafety": "not-assessed",
+            "contentCoverage": "not-assessed against controlling requirement",
+            "finalAcceptance": "not-run",
+            "scopeApproval": null
+          }
         }
       ],
       "deliveryCaseIds": [
@@ -987,5 +1377,23 @@
       ],
       "requiredClosure": "Pin exact shader/camera fix and failing-before/passing-after face-visibility scenes; exercise field/battle attacks and camera flips, original/all-mod routes, plus physical missing-texture reproduction."
     }
-  ]
+  ],
+  "scopeControl": {
+    "controllingDocument": "docs/definitive/PROJECT_PLAN.md",
+    "controllingInstruction": "Explicitly approve a narrower 1.0 scope; do not silently label an incomplete feature set complete.",
+    "requiredHdFallback": "Runtime safety only; required content remains open.",
+    "scopeReductionAuthority": "Direct explicit HUMAN approval, recorded per affected case/family. Agent-owner rationale, fixture success, safe fallback or source uncertainty cannot authorize narrowing.",
+    "approvalReceiptRequired": [
+      "direct human instruction or verified human message reference",
+      "date",
+      "exact approved case/family scope",
+      "original requirement",
+      "approved narrower release boundary",
+      "deferred/backlog work and preserved original goal",
+      "public-facing disclosure"
+    ],
+    "existingNativeProcedural": "A consumer already deliberately native/procedural under controlling source scope can pass its native/procedural contract with source and runtime evidence. That classification is not newly withholding required HD work and must not be guessed from the presence of a fallback.",
+    "unknownOwnership": "Unresolved families remain unresolved; no automatic exemption.",
+    "completionClaim": "A narrower human-approved release scope must be named as such; it does not finish deferred original full-remaster goals."
+  }
 }
