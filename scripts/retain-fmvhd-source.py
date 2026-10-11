@@ -25,6 +25,12 @@ def digest(path):
     with path.open('rb') as stream:
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
+def reject_linked_output(output):
+    # Inspect the lexical path before mkdir: resolving it would hide an ancestor
+    # link and turn an external owner directory into an apparently ordinary output.
+    if any(path.is_symlink() for path in (output, *output.parents)):
+        raise ValueError('Linked source output or ancestor')
+
 def retain(lock, manifest, output, local=None, opener=None):
     for path in (lock, manifest):
         if path.is_symlink() or not path.is_file() or path.stat().st_size > 65536:
@@ -34,9 +40,9 @@ def retain(lock, manifest, output, local=None, opener=None):
     if not re.fullmatch('[a-f0-9]{64}', sha) or properties(manifest.read_bytes()).get('legacyBundleSha256') != sha:
         raise ValueError('Legacy source and approved film pins differ')
     output = output.absolute()
+    reject_linked_output(output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    if output.is_symlink() or output.parent.is_symlink():
-        raise ValueError('Linked source output')
+    reject_linked_output(output)
     if output.exists() and digest(output) == sha:
         return {'sha256': sha, 'bytes': output.stat().st_size, 'reused': True}
     fd, temporary = tempfile.mkstemp(prefix='.fmv-source-', dir=output.parent)
@@ -67,6 +73,7 @@ def retain(lock, manifest, output, local=None, opener=None):
             target.flush(); os.fsync(target.fileno())
         if value.hexdigest() != sha:
             raise ValueError('Source transfer checksum mismatch')
+        reject_linked_output(output)
         temporary.replace(output)
         return {'sha256': sha, 'bytes': size, 'reused': False}
     finally:

@@ -13,7 +13,7 @@ module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
 class BridgeTest(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name); self.bytes = b'approved custom movie source'
+        self.root = Path(self.temp.name).resolve(); self.bytes = b'approved custom movie source'
         self.sha = hashlib.sha256(self.bytes).hexdigest()
         self.lock = self.root / 'lock'; self.manifest = self.root / 'manifest'
         self.lock.write_text('sha256='+self.sha+'\nurl=https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/definitive-current/source-fmvhd-'+self.sha+'.zip\n')
@@ -38,6 +38,20 @@ class BridgeTest(unittest.TestCase):
         self.output.parent.mkdir(); self.output.symlink_to(self.local)
         with self.assertRaises(ValueError): self.run_bridge(local=self.local)
         self.assertEqual(self.bytes,self.local.read_bytes())
+    def test_linked_earlier_ancestor_preserves_foreign_sentinel(self):
+        foreign = self.root / 'foreign'; (foreign / 'fmvhd').mkdir(parents=True)
+        sentinel = foreign / 'fmvhd' / 'videos.zip'; sentinel.write_bytes(b'owner sentinel')
+        (self.root / 'build').symlink_to(foreign, target_is_directory=True)
+        self.output = self.root / 'build' / 'fmvhd' / 'videos.zip'
+        with self.assertRaises(ValueError): self.run_bridge(local=self.local)
+        self.assertEqual(b'owner sentinel',sentinel.read_bytes())
+        self.assertEqual([],list(foreign.rglob('.fmv-source-*')))
+    def test_linked_ancestor_rejected_before_creating_foreign_directories(self):
+        foreign = self.root / 'foreign'; foreign.mkdir()
+        (self.root / 'build').symlink_to(foreign, target_is_directory=True)
+        self.output = self.root / 'build' / 'new' / 'fmvhd' / 'videos.zip'
+        with self.assertRaises(ValueError): self.run_bridge(local=self.local)
+        self.assertEqual([],list(foreign.iterdir()))
     def test_remote_stream_is_hash_verified(self):
         def fetch(request, timeout):
             self.assertEqual('identity',request.get_header('Accept-encoding'))
