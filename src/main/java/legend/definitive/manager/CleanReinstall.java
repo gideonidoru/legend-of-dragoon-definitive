@@ -57,7 +57,7 @@ final class CleanReinstall {
           }
         }
       }
-      quarantineBundledDuplicates(preserved);
+      excludeBundledDuplicates(preserved);
       final Properties receipt = inventory(preserved);
       InstallStore.atomicProperties(preserved.resolve(RECEIPT), receipt);
       verify(preserved);
@@ -197,23 +197,20 @@ final class CleanReinstall {
       }
     }
   }
-  private static void quarantineBundledDuplicates(final Path data) throws IOException {
-    final Path mods = data.resolve("mods");
+  private static void excludeBundledDuplicates(final Path data) throws IOException {
     final List<String> identities = List.of("envhd/EnvHdMod.class", "charhd/CharHdMod.class", "uihd/UiHdMod.class",
       "fxhd/FxHdMod.class", "fmvhd/FmvHdMod.class", "modelshd/ModelsHdMod.class", "scbackgroundhd/BackgroundHdMod.class");
-    try(final var entries = Files.list(mods)) {
+    try(final var entries = Files.walk(data)) {
       for(final Path mod : entries.toList()) {
+        checkCancelled();
+        if(!Files.isRegularFile(mod, LinkOption.NOFOLLOW_LINKS)) continue;
         final String name = mod.getFileName().toString();
-        boolean duplicate = name.matches("(?i)(?:(?:EnvHD|CharHD|UIHD|FxHD|FMVHD|ModelsHD|Skurfa)(?:[-v0-9.]*))\\.jar")
-          || name.matches("(?i)Env[1-4]HD(?:[-v0-9.]*)\\.zip");
-        if(!duplicate && name.endsWith(".jar") && Files.isRegularFile(mod, LinkOption.NOFOLLOW_LINKS)) {
-          for(final String identity : identities) if(ModArchiveIdentity.containsClass(mod, identity)) { duplicate = true; break; }
+        boolean duplicate = bundledArchive(name);
+        if(!duplicate && name.endsWith(".jar")) {
+          try { for(final String identity : identities) if(ModArchiveIdentity.containsClass(mod, identity)) { duplicate = true; break; } }
+          catch(final IOException unknown) { /* An unreadable identity never authorizes deleting an unknown owner's mod. */ }
         }
-        if(duplicate) {
-          final Path inactive = data.resolve("recovered-reinstall/disabled-bundled-mods").resolve(name);
-          Files.createDirectories(inactive.getParent());
-          Files.move(mod, inactive, StandardCopyOption.ATOMIC_MOVE);
-        }
+        if(duplicate) Files.delete(mod); // Only a staged copy; original remains until activation and cleanup.
       }
     }
   }

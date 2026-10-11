@@ -60,10 +60,10 @@ class CleanReinstallTest {
     assertEquals("custom mod",Files.readString(data.resolve("mods/owner.jar")));
     for(final String family : List.of("EnvHD", "CharHD", "UIHD", "FxHD", "FMVHD", "ModelsHD", "Skurfa")) {
       assertFalse(Files.exists(data.resolve("mods/" + family + "-v0.1.0.jar")));
-      assertEquals(family, Files.readString(data.resolve("recovered-reinstall/disabled-bundled-mods/" + family + "-v0.1.0.jar")));
+      try(final var files = Files.walk(data)) { assertFalse(files.anyMatch(file -> file.getFileName().toString().equals(family + "-v0.1.0.jar")), "No old bundled bytes remain in any preserved generation"); }
     }
     assertFalse(Files.exists(data.resolve("mods/renamed.jar")));
-    assertTrue(Files.exists(data.resolve("recovered-reinstall/disabled-bundled-mods/renamed.jar")));
+    try(final var files = Files.walk(data)) { assertFalse(files.anyMatch(file -> file.getFileName().toString().equals("renamed.jar"))); }
     assertEquals("old save",Files.readString(data.resolve("recovered-reinstall/data/"+oldData.getFileName()+"/saves/owner.txt")));
     assertEquals("private disc",Files.readString(store.root().resolve("isos/owner.iso")));
     assertEquals("release note", Files.readString(data.resolve("recovered-reinstall/releases/" + before.getProperty("version") + "/owner-note.txt")));
