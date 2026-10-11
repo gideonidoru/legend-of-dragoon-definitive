@@ -72,7 +72,7 @@ def audit(files):
                     newBespokeCandidates=len(candidates),
                     newlySelectedBespokeMasters=selected.get('presentationSelectedMasters', 0),
                     baselineMastersStillNeedingPresentationReview=len(assets)-len(candidates)-selected.get('paintedSelectedMasters', 0),
-                    pendingCandidateReviews=len(candidates),
+                    pendingCandidateReviews=len(candidates - set(presentation_keys)),
                     dynamicOrContextBindingHolds=dynamic['summary']['animationOrContextBindings'],
                     incompletePaletteBindingHolds=dynamic['summary']['separateIncompletePaletteBindings'],
                     uniqueDecodedSkyArtwork=skies['uniqueDecodedArtwork'],

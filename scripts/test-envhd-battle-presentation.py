@@ -174,6 +174,7 @@ class BattlePresentationAuditTests(unittest.TestCase):
         result = self.audit()
         self.assertEqual(result['staticSources'][0]['presentationStatus'], 'new-bespoke-awaiting-independent-review')
         self.assertEqual(result['counts']['newlySelectedBespokeMasters'], 0)
+        self.assertEqual(result['counts']['pendingCandidateReviews'], 1)
 
     def test_selected_art_is_reported_without_native_or_beauty_acceptance(self):
         self.selection.update(presentationSourceKeys=[self.key], presentationSelectedMasters=1,
@@ -182,6 +183,8 @@ class BattlePresentationAuditTests(unittest.TestCase):
         self.assertEqual(result['staticSources'][0]['presentationStatus'],
                          'new-bespoke-development-selection-pending-native-review')
         self.assertEqual(result['counts']['newlySelectedBespokeMasters'], 1)
+        self.assertEqual(result['counts']['pendingCandidateReviews'], 0)
+        self.assertEqual(result['counts']['nativeSceneAccepted'], 0)
         self.assertFalse(result['staticSources'][0]['nativeSceneAccepted'])
         self.assertFalse(result['allBattlePresentationAccepted'])
 
