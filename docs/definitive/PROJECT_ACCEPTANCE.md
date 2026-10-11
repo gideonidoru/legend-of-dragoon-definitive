@@ -10,7 +10,7 @@ Checkpoint: **2026-10-11**. This is the shared plan for proving a finished proje
 | Integrated main | `696cea631db511041ed7ab6466f03da355eebb7c` | 4,917 selected fields, 31 painted field replacements, 245 field holds; twelve painted battle repairs integrated, one terrain hold remains |
 | Latest integrated candidate gates | `32f5db9ffd3859bb1436020a4897556c8622721e`, merged by PR 30 | [Linux, Mac and synthetic run 38137903656](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38137903656) passed; this is candidate-tree evidence, not a new published build |
 | Public native package gate | source `0af4f997e`, [run 38111833335](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38111833335) | Package/source/resource checks; reported public maintenance checks are headless, not Deck gameplay |
-| Character authoring | draft PR 25, separately moving source | Existing accepted Dart head remains installed; new nine-character studies are not accepted runtime replacements |
+| Character authoring | draft PR 25 at coordinator-confirmed `264f8645784de50a2d6aa399f2d8118272043727` | Existing accepted Dart head remains installed; new nine-character studies are not accepted runtime replacements |
 
 The [current public release](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest) is the download authority. Main's 25 additional fields and twelve painted battle repairs must not be described as already shipped. Preserve the [Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop) and README character showcase. This docs branch does not publish a release or change main.
 
@@ -31,11 +31,11 @@ The owner directly reported in the MEDIA chat: **“the FMV are working correctl
 | Key | Accountable existing chat | Responsibility |
 | --- | --- | --- |
 | ROOT | Orchestrate project workstreams | Integration, installer/launcher/updater, combined device/campaign gates and sole merge/release authority |
-| MEDIA | Improve Steam Deck FMV quality | Pacing, audio, FMVHD, FxHD and primary current rendering-defect diagnosis |
+| MEDIA | Improve Steam Deck FMV quality | Pacing, audio, FMVHD and primary current rendering-defect diagnosis; supports FxHD timing/transition diagnosis |
 | ENV | Plan texture upscaling | Environment/Skurfa assets, source/state families and static holds |
 | CHAR | Check Mac Studio connection | ModelsHD, CharHD and individual character fidelity/rigging acceptance |
 | MODS | Assess Definitive mod integrations | Consumer/material ownership, cross-mod compatibility, QoL, controls/accessibility |
-| RENDER | Improve rendering and lighting | Renderer/UIHD, lighting, GPU evidence and support for current diagnosis |
+| RENDER | Improve rendering and lighting | Renderer/UIHD/FxHD, lighting, GPU evidence and support for current diagnosis |
 | DOCS | Update Definitive project README | Acceptance/coverage inventory, README, provenance and license evidence |
 
 These are accountable coordinators, not proof of exclusive code ownership. ROOT arranges owner evidence and physical sessions. Authoring owners deliver case IDs, exact source/package identity, evidence type and remaining scope to ROOT; DOCS reconciles them here. No outgoing chat messages were sent while preparing this checkpoint. Owner thread identifiers are retained in the companion for retrieval.
@@ -46,7 +46,7 @@ Use **not-run**, **pass**, **fail**, **blocked**, or **accepted-native** per cas
 
 Every result must record: case ID; source SHA; tag/package and file inventory digests; platform/device model, SteamOS/runtime and Steam Input mode; installed module versions/toggles; private disc/save/scene identifiers; reproducible steps; expected versus observed behavior; timing/memory measurements where relevant; evidence file hashes; reviewer and date; exclusions and follow-up issue. Keep private save/disc identities and original captures out of public artifacts; publish sanitized receipts and custom deliverables with notices.
 
-A severe open defect blocks its affected domains and the combined release gate even when fixtures pass. A rating increase requires owner/reviewer evidence against this matrix; 10/10 requires complete denominators or explicitly approved exclusions, all required content/state families, actual runtime/artistic/device/campaign checks and no unresolved severe blockers. A docs commit or clean CI run cannot earn it.
+A severe open defect blocks its affected domains and the combined release gate even when fixtures pass. A rating increase requires owner/reviewer evidence against this matrix; 10/10 requires complete denominators or explicitly approved exclusions, all required content/state families, actual runtime/artistic/device/campaign checks and no unresolved severe blockers. A docs commit or clean CI run cannot earn it. The controlling scope is the repository source/contracts and the coordinator’s 17-domain snapshot; shared stress workloads below are proposed qualification procedures, not additional promised features. Owners may refine workload length with a documented rationale. Passing an invented count of cases alone does not establish completion. Component checks can run before final campaign acceptance; the prerequisites sequence closure, not permission to begin source work.
 
 ## Shared physical and integration cases
 
@@ -54,7 +54,7 @@ A severe open defect blocks its affected domains and the combined release gate e
 - **P02 — Performance:** log actual resolution/settings, target profile and refresh/cap; measure p50/p95/p99 frame times, dropped frames, CPU/GPU time, RAM/VRAM, load and cold-launch latency, temperature/power/battery. Use quiet and complex fields, world map, battle entry, three party actors plus effects and films. ROOT must approve explicit budgets for a measured 60fps or 30fps profile before pass; none are asserted by this document.
 - **P03 — Lifecycle:** ten cold launches and twenty suspend/resume cycles spread across menu, field, battle, Addition, loading and movie states. Two 120-minute all-mod sessions with save/reload, audio route changes and Steam Stop/relaunch. Record failures rather than resetting the count silently; retain case-level coverage of all storage/input routes.
 - **P04 — Combined mods:** all seven default-on; all optional HD off; each module individually toggled against all-on; CharHD × ModelsHD on/off; EnvHD × Skurfa on/off; FxHD × CharHD sampler/material coexistence; original/enhanced FMV fallback; UIHD palette/save variants; unknown custom-owner priority. Exercise changes only at supported reload/boot boundaries and preserve explicit opt-outs. Expand this risk-based set when shared-page/state evidence reveals a dependency; it is not proof of all 128 binary combinations.
-- **P05 — Four-disc campaign:** for each of four US discs, maintain chapter/cut/state checkpoints, bosses, party swaps/forms, scripted scenes, Additions, world/field transitions and films. Save/load each checkpoint, check story/inventory/reward state, then Update/Restore a real campaign. Include both endings and all reachable required source families; source presence alone does not prove reachability.
+- **P05 — Four-disc campaign:** for each of four US discs, maintain chapter/cut/state checkpoints, bosses, party swaps/forms, scripted scenes, Additions, world/field transitions and films. Save/load each checkpoint, check story/inventory/reward state, then Update/Restore a real campaign. Include the documented `ENDING1H` and `ENDING2H` film sequences from the [FMV production manifest](../../integrations/fmvhd/production-manifest.json) and all reachable required source families; source presence alone does not prove reachability.
 - **P06 — Delivery/maintenance:** initial install, offline prepared launch, network loss, interrupted download/activation, low space, corrupt payload and receipts, selective Repair, full Reinstall, old/retired release migration, Update/Restore and Uninstall on both storage types. Sentinel saves/preferences/custom mods/discs must survive the applicable actions; no unrelated process can be terminated. Hardware tests require a coordinated owner session rather than an unrequested desktop launch.
 
 ## Delivery owner case crosswalk
@@ -79,7 +79,12 @@ The coordinator supplied eighteen concrete delivery cases. The sanitized, source
 - Character/model: broad smoothing covers supported containers, not completed bespoke heads/bodies. Nine new character studies, field/battle adaptation, Dragoon/Divine forms and the wider NPC/enemy/boss census remain separate. Missing routes/format/source/animation counts in the domain snapshot can overlap and must not be summed into a completion percentage.
 - Effects/UI: audited texture/resource coverage does not close procedural consumers, native GPU output, palette/copy state, save variants or whole-campaign scene acceptance. Maintain source and runtime denominators separately.
 
-The coordinator additionally reports a `c98f` animation-discovery checkpoint with fourteen passing behavioral checks and an open ENOSPC writer-cleanup finding. This has not been independently audited here and changes neither runtime selection nor animation acceptance. Keep discovery incomplete until owner evidence, cleanup correction and state-family coverage are reconciled.
+The coordinator reports a `c98f` animation-discovery checkpoint: Spec clear; fourteen behavioral checks passed with no skips; Standards found **two reproduced P2 findings**, both active and owned by ENV:
+
+- **ANIM-P2-01:** ENOSPC cleanup can leave a partial final ledger.
+- **ANIM-P2-02:** a late worklist reread creates a receipt race against the pinned worklist.
+
+Neither review nor those failures was independently reproduced here. The full checkpoint identity and corrected owner receipt remain prerequisites for closure. They change neither runtime selection nor animation acceptance; discovery remains incomplete.
 
 ## Domain matrix
 
@@ -94,7 +99,7 @@ The coordinator additionally reports a `c98f` animation-discovery checkpoint wit
 | A07 | Skurfa integration | ENV | 8/10 | pending |
 | A08 | ModelsHD | CHAR | 6/10 | blocked |
 | A09 | CharHD | CHAR | 4/10 | pending |
-| A10 | FxHD | MEDIA | 7/10 | blocked |
+| A10 | FxHD | RENDER | 7/10 | blocked |
 | A11 | UIHD | RENDER | 8/10 | pending |
 | A12 | Rendering and lighting | RENDER | 7/10 | blocked |
 | A13 | QoL and gameplay settings | MODS | 7/10 | pending |
@@ -220,7 +225,7 @@ Evidence context: [PARTY_RECONSTRUCTION](PARTY_RECONSTRUCTION.md) · [CHARHD_COV
 
 ### A10 — FxHD
 
-**Owner:** MEDIA. **Prerequisites:** INV01, A12, B01, B02.
+**Owner:** RENDER, with MEDIA timing/transition support. **Prerequisites:** INV01, A12, B01, B02.
 
 **Checkpoint evidence:** 6466retail source bindings checked;palette-live integration and bounded residency. This is inherited evidence, not a newly executed domain acceptance pass.
 
@@ -259,7 +264,7 @@ Evidence context: [RENDERING_LIGHTING](RENDERING_LIGHTING.md).
 
 ### A13 — QoL and gameplay settings
 
-**Owner:** MODS. **Prerequisites:** P01, A03, A16.
+**Owner:** MODS. **Prerequisites:** P01, A03. QoL component work precedes final A16 campaign acceptance.
 
 **Checkpoint evidence:** Inventory sorting/filtering,quantity selection,context hints,reward controls andAddition feedback integrated. This is inherited evidence, not a newly executed domain acceptance pass.
 
@@ -301,7 +306,7 @@ Evidence context: [RENDERING_LIGHTING](RENDERING_LIGHTING.md) · [ENGINE_PACING]
 
 **Checkpoint evidence:** Regression fixtures and supported module/default/fallback combinations tested. This is inherited evidence, not a newly executed domain acceptance pass.
 
-- **A16.01 · not-run:** Complete P05 four-disc progression/checkpoint playthrough including bosses, party/form changes, field/world/scripted scenes, both endings and transitions; record chapter/cut/state coverage.
+- **A16.01 · not-run:** Complete P05 four-disc progression/checkpoint playthrough including bosses, party/form changes, field/world/scripted scenes, the documented ENDING1H/ENDING2H film sequences and transitions; record chapter/cut/state coverage.
 - **A16.02 · not-run:** At every checkpoint save/load and compare inventory, story flags, HP/MP, rewards and selected mods; test updates/Restore and real-save migration without silent data loss.
 - **A16.03 · not-run:** Run P04 combined-mod and fallback matrix with palette/shared-page/animation states and third-party owner priority; original and Faithful routes remain usable.
 - **A16.04 · not-run:** Close all severe defects, inventory unknown consumer denominators and obtain whole-campaign artistic/gameplay acceptance with regression evidence on the intended candidate.

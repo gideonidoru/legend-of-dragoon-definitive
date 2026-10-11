@@ -483,9 +483,9 @@
     {
       "id": "A10",
       "domain": "FxHD",
-      "accountableOwner": "MEDIA",
+      "accountableOwner": "RENDER",
       "supportOwners": [
-        "RENDER"
+        "MEDIA"
       ],
       "readinessSnapshot": 7,
       "status": "blocked",
@@ -629,8 +629,7 @@
       "status": "pending",
       "prerequisites": [
         "P01",
-        "A03",
-        "A16"
+        "A03"
       ],
       "checkpointEvidence": "Inventory sorting/filtering,quantity selection,context hints,reward controls andAddition feedback integrated.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
@@ -796,7 +795,7 @@
       "cases": [
         {
           "id": "A16.01",
-          "requirement": "Complete P05 four-disc progression/checkpoint playthrough including bosses, party/form changes, field/world/scripted scenes, both endings and transitions; record chapter/cut/state coverage.",
+          "requirement": "Complete P05 four-disc progression/checkpoint playthrough including bosses, party/form changes, field/world/scripted scenes, the documented ENDING1H and ENDING2H film sequences and transitions; record chapter/cut/state coverage.",
           "status": "not-run",
           "evidence": []
         },
@@ -904,5 +903,34 @@
       "status": "active"
     }
   ],
-  "deliveryCasesRef": "docs/definitive/DELIVERY_ACCEPTANCE.json"
+  "deliveryCasesRef": "docs/definitive/DELIVERY_ACCEPTANCE.json",
+  "characterDraftCheckpoint": {
+    "source": "264f8645784de50a2d6aa399f2d8118272043727",
+    "status": "unaccepted moving draft",
+    "evidence": "Coordinator remotely confirmed draft head; not independently run or visually accepted in this audit"
+  },
+  "animationDiscoveryReview": {
+    "checkpoint": "c98f (short coordinator checkpoint; full source identity pending receipt)",
+    "standards": "two reproduced P2 findings",
+    "spec": "clear per coordinator",
+    "behavioralChecks": "14 passed, no skips per coordinator",
+    "independentlyAuditedHere": false,
+    "findings": [
+      {
+        "id": "ANIM-P2-01",
+        "issue": "ENOSPC leaves partial final-ledger cleanup incomplete",
+        "status": "active pending corrected owner checkpoint",
+        "owner": "ENV"
+      },
+      {
+        "id": "ANIM-P2-02",
+        "issue": "Late worklist reread can race and diverge from the pinned receipt",
+        "status": "active pending corrected owner checkpoint",
+        "owner": "ENV"
+      }
+    ],
+    "runtimeSelectionChanged": false,
+    "discoveryComplete": false
+  },
+  "qualificationPlanPolicy": "Shared workload and scenario counts are proposed qualification procedures for controlling source scope, not new promised features or executed evidence. Owners can refine workloads with rationale and exact receipts; neither fixture success nor arbitrary case counts alone establish 10/10."
 }
