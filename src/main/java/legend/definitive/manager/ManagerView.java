@@ -16,6 +16,7 @@ final class ManagerView extends JPanel {
   private final JFrame frame;
   private final Path packageRoot;
   private final Runnable close;
+  private final InstallationInspector installationInspector;
   private Path root;
   private final JPanel body = column();
   private final JPanel content = column();
@@ -66,15 +67,15 @@ final class ManagerView extends JPanel {
     this(frame, packageRoot, root, frame == null ? () -> { } : frame::dispose);
   }
   ManagerView(final JFrame frame, final Path packageRoot, final Path root, final Runnable close) {
+    this(frame, packageRoot, root, close, ManagerView::inspectInstallation);
+  }
+  ManagerView(final JFrame frame, final Path packageRoot, final Path root, final Runnable close, final InstallationInspector installationInspector) {
+    this.installationInspector = installationInspector;
     this.close = close;
     this.frame = frame; this.packageRoot = packageRoot; this.root = root;
     if(Files.isRegularFile(root.resolve("state.properties")) || Files.isRegularFile(root.resolve(".definitive-owned"))) {
       this.inspectingIdentity = Files.isRegularFile(root.resolve("state.properties"));
       this.screen = !Files.isRegularFile(root.resolve("state.properties")) ? Screen.MAINTENANCE : packageRoot == null ? Screen.LAUNCHER : Files.isRegularFile(root.resolve(".definitive-owned")) ? Screen.MAINTENANCE : Screen.INSTALL;
-      if(this.screen.launcher()) {
-        try { DiscImporter.validateSet(root.resolve("isos")); if(!new InstallStore(root).discsPrepared()) this.screen = Screen.DISCS; }
-        catch(final Exception e) { this.screen = Screen.DISCS; }
-      }
     }
     this.destination = new JTextField(root.toString()); this.destination.setFont(font(15, false)); this.destination.setAlignmentX(LEFT_ALIGNMENT);
     this.destination.setBackground(Color.WHITE); this.destination.setForeground(INK); this.destination.setBorder(BorderFactory.createCompoundBorder(roundedBorder(), BorderFactory.createEmptyBorder(12, 14, 12, 14)));
@@ -241,7 +242,7 @@ final class ManagerView extends JPanel {
     this.run("Installing Definitive", () -> {
       final var store = fullReinstall ? InstallStore.forMaintenance(this.root) : new InstallStore(this.root); final InstallProgress installing = update -> this.currentProgress.report(update.scaled(update.startPercent() * 75 / 100, update.endPercent() * 75 / 100));
       final String result = PortableSetup.install(this.packageRoot, store, installing, fullReinstall);
-      store.verifyInstalled(); InstallLocation.record(store); final InstallProgress checking = update -> this.currentProgress.report(update.scaled(75 + update.startPercent() / 4, 75 + update.endPercent() / 4));
+      InstallLocation.record(store); final InstallProgress checking = update -> this.currentProgress.report(update.scaled(75 + update.startPercent() / 4, 75 + update.endPercent() / 4));
       this.installedDiscs = DiscImporter.existing(store, checking); this.currentProgress.phase("Installation ready", "Choose whether to reuse or replace your disc images", 100); return result;
     }, () -> { this.screen = this.recoveryPending ? Screen.RECOVERY : Screen.DISCS; this.loadInstallationInfo(); this.render(); });
   }
@@ -453,28 +454,34 @@ final class ManagerView extends JPanel {
       }
     });
   }
-  private record InstallationInfo(String label, String full, boolean restorable, boolean identifiable, boolean uninstalled, boolean pending, String notice, String restoredRelease, String restoredData, String preservedLocations) { }
+  @FunctionalInterface interface InstallationInspector { InstallationInfo inspect(Path root) throws java.io.IOException; }
+  record InstallationInfo(String label, String full, boolean restorable, boolean identifiable, boolean uninstalled, boolean prepared, boolean pending, String notice, String restoredRelease, String restoredData, String preservedLocations) { }
+  static InstallationInfo inspectInstallation(final Path root) throws java.io.IOException {
+    final var store = new InstallStore(root); final var state = store.state();
+    final boolean uninstalled = Boolean.parseBoolean(state.getProperty("uninstalled", "false"));
+    String label = "Retained installation", full = "Package: " + state.getProperty("version", ""); boolean identifiable = false, restorable = false;
+    if(!uninstalled) try {
+      final var release = InstallStore.child(store.root().resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
+      final var metadata = PackageManifest.read(release).metadata();
+      final String tag = metadata.getProperty("releaseTag", state.getProperty("version", "Installed release"));
+      label = releaseLabel(tag); full = "Release: " + tag + " · Source: " + metadata.getProperty("sourceRevision", "unknown") + " · Package: " + state.getProperty("version", ""); identifiable = true; restorable = store.hasRestorableVersion();
+    } catch(final java.io.IOException unavailableRelease) { InstallerLog.write("Installed release identity unavailable: " + unavailableRelease.getMessage()); }
+    boolean prepared = false;
+    if(!uninstalled) try { DiscImporter.validateSet(root.resolve("isos")); prepared = store.discsPrepared(); }
+    catch(final java.io.IOException unavailableDiscs) { InstallerLog.write("Prepared disc status unavailable: " + unavailableDiscs.getMessage()); }
+    // Recovery is state metadata; it remains reviewable even after an intentional uninstall removed the release.
+    return new InstallationInfo(label, full, restorable, identifiable, uninstalled, prepared, Boolean.parseBoolean(state.getProperty("recoveryPending", "false")), state.getProperty("recoveryNotice", ""), state.getProperty("recoveryRestoredRelease", ""), state.getProperty("recoveryRestoredData", ""), state.getProperty("recoveryPreservedLocations", ""));
+  }
   private void loadInstallationInfo() {
     final long request = ++this.identityRequest;
+    final Path inspectedRoot = this.root;
     this.inspectingIdentity = true;
     new SwingWorker<InstallationInfo, Void>() {
-      @Override protected InstallationInfo doInBackground() throws Exception {
-        final var store = new InstallStore(ManagerView.this.root); final var state = store.state();
-        final boolean uninstalled = Boolean.parseBoolean(state.getProperty("uninstalled", "false"));
-        String label = "Retained installation", full = "Package: " + state.getProperty("version", ""); boolean identifiable = false, restorable = false;
-        if(!uninstalled) try {
-          final var release = InstallStore.child(store.root().resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
-          final var metadata = PackageManifest.read(release).metadata();
-          final String tag = metadata.getProperty("releaseTag", state.getProperty("version", "Installed release"));
-          label = releaseLabel(tag); full = "Release: " + tag + " · Source: " + metadata.getProperty("sourceRevision", "unknown") + " · Package: " + state.getProperty("version", ""); identifiable = true; restorable = store.hasRestorableVersion();
-        } catch(final java.io.IOException unavailableRelease) { InstallerLog.write("Installed release identity unavailable: " + unavailableRelease.getMessage()); }
-        // Recovery is state metadata; it remains reviewable even after an intentional uninstall removed the release.
-        return new InstallationInfo(label, full, restorable, identifiable, uninstalled, Boolean.parseBoolean(state.getProperty("recoveryPending", "false")), state.getProperty("recoveryNotice", ""), state.getProperty("recoveryRestoredRelease", ""), state.getProperty("recoveryRestoredData", ""), state.getProperty("recoveryPreservedLocations", ""));
-      }
+      @Override protected InstallationInfo doInBackground() throws Exception { return ManagerView.this.installationInspector.inspect(inspectedRoot); }
       @Override protected void done() {
         if(request != ManagerView.this.identityRequest) return;
         ManagerView.this.inspectingIdentity = false;
-        try { final var info = this.get(); ManagerView.this.installedIdentity = info.label(); ManagerView.this.fullIdentity = info.full(); ManagerView.this.restoreAvailable = info.restorable(); ManagerView.this.identityReady = info.identifiable(); ManagerView.this.recoveryPending = info.pending(); ManagerView.this.recoveryNotice = info.notice(); ManagerView.this.recoveryRestoredRelease = info.restoredRelease(); ManagerView.this.recoveryRestoredData = info.restoredData(); ManagerView.this.recoveryPreservedLocations = info.preservedLocations(); if(info.pending() && ManagerView.this.screen != Screen.STORAGE) ManagerView.this.screen = Screen.RECOVERY; else if(info.uninstalled() && ManagerView.this.screen != Screen.STORAGE) ManagerView.this.screen = ManagerView.this.packageRoot == null ? Screen.UNINSTALLED : Screen.MAINTENANCE; }
+        try { final var info = this.get(); ManagerView.this.installedIdentity = info.label(); ManagerView.this.fullIdentity = info.full(); ManagerView.this.restoreAvailable = info.restorable(); ManagerView.this.identityReady = info.identifiable(); ManagerView.this.recoveryPending = info.pending(); ManagerView.this.recoveryNotice = info.notice(); ManagerView.this.recoveryRestoredRelease = info.restoredRelease(); ManagerView.this.recoveryRestoredData = info.restoredData(); ManagerView.this.recoveryPreservedLocations = info.preservedLocations(); if(info.pending() && ManagerView.this.screen != Screen.STORAGE) ManagerView.this.screen = Screen.RECOVERY; else if(info.uninstalled() && ManagerView.this.screen != Screen.STORAGE) ManagerView.this.screen = ManagerView.this.packageRoot == null ? Screen.UNINSTALLED : Screen.MAINTENANCE; else if(!info.prepared() && ManagerView.this.screen == Screen.LAUNCHER) ManagerView.this.screen = Screen.DISCS; }
         catch(final Exception failure) { ManagerView.this.identityReady = false; ManagerView.this.restoreAvailable = false; InstallerLog.write("Could not inspect installed identity: " + failure.getMessage()); }
         if(!ManagerView.this.busy && !ManagerView.this.failed) { ManagerView.this.render(); if(!ManagerView.this.recoveryPending && ManagerView.this.screen == Screen.DISCS) ManagerView.this.inspectExistingDiscs(); }
       }

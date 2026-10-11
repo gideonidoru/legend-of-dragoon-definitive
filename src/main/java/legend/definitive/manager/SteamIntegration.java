@@ -52,8 +52,8 @@ final class SteamIntegration {
           progress.phase("Starting Steam", "Refreshing your library with the verified shortcut", 85);
           restarting = true;
           try { client.start(); }
-          catch(final IOException failure) { throw new IOException("The shortcut was added, but Steam couldn’t restart. Retry Add to Steam. Details: " + failure.getMessage(), failure); }
-          await(client::started, startTimeout, "The shortcut was added, but Steam did not restart. Try Add to Steam again. Details: " + install.resolve("steam-integration.log"));
+          catch(final IOException failure) { throw new IOException("The shortcut was " + (remove ? "removed" : "added") + ", but Steam couldn’t restart. Retry " + (remove ? "Remove from Steam" : "Add to Steam") + ". Details: " + failure.getMessage(), failure); }
+          await(client::started, startTimeout, "The shortcut was " + (remove ? "removed" : "added") + ", but Steam did not restart. Try " + (remove ? "Remove from Steam" : "Add to Steam") + " again. Details: " + install.resolve("steam-integration.log"));
           progress.phase(remove ? "Steam shortcut removed" : "Steam shortcut ready", remove ? "Steam is open; Definitive’s entry is removed." : "Definitive is added. Return to Gaming Mode to play.", 100);
           return remove ? "Removed Definitive from Steam." : "Added to Steam. Return to Gaming Mode to play.";
         } catch(final IOException | InterruptedException failure) {

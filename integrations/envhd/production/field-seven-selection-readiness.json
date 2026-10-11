@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "sourceSelectionBaseCommit": "8801b3d26b1835502ed66974620d0e22352de8d3",
+  "scope": "Seven independently development-intent-cleared painted field selections, preserving prior4918asset records and allprotected Skurfa cuts. Source/CPU/resource checks only; coordinated review/CI/main publication and native/final acceptance remain separate.",
+  "selectionInput": "field-bespoke-seven-independent-reviewed-selection.json",
+  "selectionInputSha256": "8b63f5db27d7c91c8a44b48b37eadcd8fb76bbea9a0236ffbc8aba889767677a",
+  "independentReviewReceiptSha256": "bf2f2aacf93c4893b8861a7fb1e87b57525ed4fbdbf8f44b5c01925fc03f42f4",
+  "runtimeLedgerSha256": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
+  "selectedFields": 4925,
+  "selectedPaintedFields": 39,
+  "prior4918RecordsExact": true,
+  "newKeys": [
+    "1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d",
+    "282909e0b634d43d1d82e55cdf62afae620ddc72d6ad4fc25e5831c01ea669e1",
+    "417db5229525bfb64b3dfbd767ff8cb7313b262305577cefd05c38951baf6477",
+    "49247bd98311d7e0cad111ac3af416aea54a2bc1feeb3b277040ab69980c3779",
+    "5fc04ff6f16aa8e1bc7eff701095983ba1d5a5a1c32a7f5c935b1e6337036b89",
+    "6ff4ccdc87601d4544fc501efe6aa6bd52ae80030bd10a80b1c51bc0085f1088",
+    "73b25780b6df62143f5f3f489706004112114f04e7ab4d4fa58cf7fa4d5293cf"
+  ],
+  "remainingKnownStaticImages": 238,
+  "heldFieldImages": 237,
+  "unselectedSourceRevisionKeys": [
+    "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
+    "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612"
+  ],
+  "nativeCpuSourceAudit": {
+    "renderConfigurations": 650,
+    "visibleBindings": 5560,
+    "uniqueDecodes": 5528,
+    "emptySlots": 124,
+    "missingSlots": 7,
+    "selectedFieldImagesVerified": 4925,
+    "gameLaunched": false
+  },
+  "packageProof": {
+    "selectedFields": 4925,
+    "paintedFields": 39,
+    "normalFivePartResourceSetAndBytesVerified": true,
+    "files": [
+      {
+        "name": "Env1HD-v0.1.0.zip",
+        "bytes": 552566853,
+        "sha256": "07fe5b5ab717b62e164b6b1240e7ec0ca0d6cbd639112b91dabcd81429a45d9f"
+      },
+      {
+        "name": "Env2HD-v0.1.0.zip",
+        "bytes": 573556667,
+        "sha256": "f8796a15188f2a1ab5354c04019fdbef8ea9df5d3512fcc28af32765fe176718"
+      },
+      {
+        "name": "Env3HD-v0.1.0.zip",
+        "bytes": 570092317,
+        "sha256": "2092c3660151873efdf44098e0bd00427b5389e7681fb9fb71950fe51952a24b"
+      },
+      {
+        "name": "Env4HD-v0.1.0.zip",
+        "bytes": 672957319,
+        "sha256": "a457915e652f8382e85dad5c4a785a02f5ca2e44a2ec776f0c048c71e41f85ed"
+      },
+      {
+        "name": "EnvHD-v0.1.0.jar",
+        "bytes": 277185060,
+        "sha256": "8a2c12b76f862ee90717585ae596b5372f3a803393eb2e0a7a0bc54d10ccb8c9"
+      }
+    ]
+  },
+  "engineSkurfaDeliveryUnchanged": true,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "independentMainIntegration": "pending",
+  "releasePublished": false
+}

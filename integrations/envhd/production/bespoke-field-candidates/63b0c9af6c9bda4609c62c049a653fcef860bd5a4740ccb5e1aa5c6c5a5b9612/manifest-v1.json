@@ -1,0 +1,95 @@
+{
+  "decodedRgbaSha256": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+  "generatedSha256": "a305f5bf82b8dbf0ea40e1538036d9c95577b2d5169039fc7cda9deffca183b6",
+  "generatedSize": [
+    1040,
+    1512
+  ],
+  "sourceSize": [
+    36,
+    62
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "1fee3f003f01bba4d60081f78eb5273934fc2f3eaa60a939e62aa18924021c82:-1",
+      "kind": "foreground",
+      "slot": 5,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 291,
+  "representativeLocation": "Phantom Ship",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 2,
+  "prompt": "Precise source-faithful game texture edit. Output an explicitly NARROW PORTRAIT CANVAS, exactly36:62 width:height aspect ratio, requested864x1488. Reference1 is authoritative original36x62 column crop and defines the entire canvas including every crop edge. Reference2 gives original Phantom Ship scene placement; reference3 Skurfa painterly finish only. Repaint only reference1, at the identical full-canvas layout. No extra transparent side padding, no recentering, no square canvas, no completing unseen column sides or top. The source column fills the narrow crop width with blue worn left face, dark center groove and muted green right face; its top extends to the top canvas edge and its cropped stepped base stays at the source bottom edge. Retain exact width proportions, narrow right-face steps, thin horizontal lower band, fluted grooves and negative spaces. Trace native pale weathered surface spots from source1 at their exact positions, not new writing, people, symbols or heraldry. Fine restrained aged painterly surface finish in original dark blue/green-gray lighting. Do not add rough cracks or exaggerated stone/wood grain. Original36:62 canvas repeated:864x1488 with true alpha only outside source silhouette. Green scene placeholders are not content. One crop, no borders, words, watermark or additional scene.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612/painted-input-v1.png",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 30352,
+  "paintedGapPixelsExtended": 699,
+  "paintedUncoveredSourcePixels": 673,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 85,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceCanvasNormalization": {
+    "method": "python-painted-source-canvas-silhouette-fit-1",
+    "sourceSize": [
+      36,
+      62
+    ],
+    "generatedSize": [
+      1040,
+      1512
+    ],
+    "targetSize": [
+      144,
+      248
+    ],
+    "scale": 4,
+    "resampling": "lanczos",
+    "aspectDeviation": 0.18459729570840677,
+    "maximumAspectDeviation": 0.2,
+    "sourceVisibleFraction": 0.849910394265233,
+    "generatedCoverageAlpha": 128,
+    "silhouetteIntersectionPixels": 29653,
+    "silhouetteUnionPixels": 30363,
+    "silhouetteIou": 0.9766162763890262,
+    "minimumSilhouetteIou": 0.97,
+    "maximumRowBoundaryErrorTargetPixels": 11,
+    "maximumAllowedRowBoundaryErrorNativePixels": 3,
+    "sourceAlphaApplied": false,
+    "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+    "algorithmPath": "scripts/normalize-envhd-painted-canvas.py",
+    "algorithmSha256": "375f8284c4ca6a558e099c018f58c21f419e428d15e3662f6c81d051f87ef739",
+    "normalizedInputSha256": "ca3c372bdb4aa853e0dff37440725298c04482c1e1e7bc786316e18b57378d65"
+  },
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    144,
+    248
+  ],
+  "outputSha256": "855553364a7a607bf918f346a0dbe4ce7813d50cef6f1f3462c1e0de7c92bf73",
+  "candidateVersion": 1,
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612/image-v1.png",
+  "review": {
+    "intent": "Phantom Ship cut291 worn blue/green column beside wreck stairs. Original native crop and complete room compared. Preserve dark central groove, thin lower band, stepped muted-green right/base and pale left weathering; those marks are not assumed to be writing or heraldry.",
+    "style": "Restrained aged wood finish in the original blue/green-gray shadow. Generated pale weathering follows the main source groups more closely than the held neural cream glyph-like strokes; fine scratch/grain positions remain interpreted and require independent review. Final Skurfa quality pending.",
+    "layout": "Original generated version2 remains byte-exact1040x1512. Explicit source-canvas fit restores36x62 proportions at144x248, recorded separately from unchanged native-alpha/visible-black repair. Fitted silhouette IoU0.9766 and maximum row boundary error2.75nativepixels; these establish bounded outline agreement, not exact internal motif correspondence or native placement acceptance.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "855553364a7a607bf918f346a0dbe4ce7813d50cef6f1f3462c1e0de7c92bf73",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

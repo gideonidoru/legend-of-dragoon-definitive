@@ -1,0 +1,39 @@
+{
+  "decodedRgbaSha256": "1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d",
+  "generatedSha256": "9e730023eebd3a4c0b92468f25b7c843cd2a089ec8813cf0bf959d240226753d",
+  "generatedSize": [
+    1293,
+    1216
+  ],
+  "sourceSize": [
+    68,
+    64
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "4464eaf2e684c00494b7d269dcc9b3426cbcbc01b1d743f13d8874f3431fd66a:-1",
+      "kind": "foreground",
+      "slot": 10,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 331,
+  "representativeLocation": "Furni",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 2,
+  "prompt": "Use case: precise-object-edit. Source-faithful HD game door68x64canvas, requested1360x1280. Reference1 is authoritative original nearest zoom and includes surrounding cream stone pixels; reference2 is COMPLETE native scene; reference3 is the previous custom draft, useful ONLY for restrained wooden surface detail. Correct reference3: its surrounding cream frame is too bright/textured and forms an obvious rectangular patch on the original building. Preserve reference1 broad colors and shading EXACTLY at all four canvas edges and throughout the cream stone surround. Keep outer corners dark cool gray/green where reference1 has them, lower stone pale muted tan/gray with the same smooth shading gradient; no new bright beige stone slab or hard rectangular transition. Wood inside door may receive fine restrained grain, lower contrast than reference3, but follow reference1 existing center seam and original two broad upper inset curves, small middle curls and lower sweeping curves; do not redesign their shape, complete symmetry or add ornament. Preserve original cream opening boundary, source crop, size, placement, perspective and lighting. Only replace reference1 in exact same68:64canvas, no padding, zoom, newscene, crest, words, watermark or border. True alpha only where the original has transparency.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "repairPassed": false,
+  "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+  "generatedPath": "integrations/envhd/production/held-field-art-drafts/1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d/draft-input-v2.png",
+  "verdict": "source-fidelity-revision-needed",
+  "reason": "Furni source68x64 crop has an opaque nonuniform architectural surround. Version1/3 retain a visible rectangular surround transition in static placement; source-edge colour closer in3 but not a proved seamless repair. Version2 instead loses original opaque surround and fails the original coverage gate."
+}

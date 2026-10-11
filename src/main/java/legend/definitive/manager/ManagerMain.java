@@ -21,6 +21,11 @@ public final class ManagerMain {
     if(args.length == 2 && args[0].equals("--prepare")) { System.out.println(new InstallStore(Path.of(args[1])).prepareDiscs()); return; }
     if(args.length == 2 && args[0].equals("--rollback")) { System.out.println(new InstallStore(Path.of(args[1])).rollback()); return; }
     if(args.length >= 3 && args[0].equals("--import")) { System.out.println(DiscSources.importSelected(new InstallStore(Path.of(args[1])), Arrays.stream(args).skip(2).map(Path::of).toList())); return; }
+    if(args.length == 1 && args[0].equals("--help")) {
+      System.out.println("Definitive: --setup <package>, --manage <installation>, --play <installation>, --verify <package> <platform>, --install <package> <installation>, --prepare <installation>, --rollback <installation>, --import <installation> <disc files...>");
+      return;
+    }
+    if(args.length != 0 && !(args.length == 2 && java.util.Set.of("--setup", "--manage", "--play").contains(args[0]))) throw new IOException("Unsupported launcher arguments. Use --help for supported commands.");
     final Path packageRoot = args.length == 2 && args[0].equals("--setup") ? Path.of(args[1]).toAbsolutePath() : null;
     final Path installedRoot = args.length == 2 && (args[0].equals("--manage") || args[0].equals("--play")) ? Path.of(args[1]).toAbsolutePath() : InstallLocation.discover().orElse(Path.of(System.getProperty("user.home"), "Games", "Legend-of-Dragoon-Definitive"));
     // Keep the current hardened manager while selecting an older engine for rollback.

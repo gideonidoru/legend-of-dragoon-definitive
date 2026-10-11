@@ -85,4 +85,57 @@ class LauncherFailureTest {
     assertTrue(Files.readString(store.root().resolve("Play Game.sh")).contains("owner customization"));
     assertTrue(Files.readString(store.root().resolve("Manage Installation.sh")).contains("could not start"));
   }
+  private ProcessBuilder fixtureLauncher(final InstallStore store, final Path tools) throws Exception {
+    Files.writeString(store.root().resolve("bootstrap-java"), "#!/bin/bash\nprintf '%s\\n' '" + tools.resolve("fixture-java") + "'\n");
+    store.root().resolve("bootstrap-java").toFile().setExecutable(true);
+    Files.writeString(tools.resolve("fixture-java"), "#!/bin/bash\necho fixture-startup-output\nexit 0\n"); tools.resolve("fixture-java").toFile().setExecutable(true);
+    for(final String tool : java.util.List.of("dirname", "mktemp", "head", "cat", "uname", "mv", "rm", "rmdir")) {
+      final Path executable = Files.isExecutable(Path.of("/usr/bin",tool)) ? Path.of("/usr/bin",tool) : Path.of("/bin",tool);
+      Files.createSymbolicLink(tools.resolve(tool),executable);
+    }
+    var builder = new ProcessBuilder("/bin/bash",store.root().resolve("Play Game.sh").toString()).redirectErrorStream(true);
+    builder.environment().put("PATH",tools.toString()); return builder;
+  }
+  @Test void loggerFailureCannotReportSuccessfulLaunch() throws Exception {
+    final var store = store(); final Path tools = Files.createDirectory(temporary.resolve("logging-tools"));
+    final var builder = fixtureLauncher(store,tools);
+    Files.delete(tools.resolve("head")); Files.writeString(tools.resolve("head"),"#!/bin/bash\necho fixture-logger-failure >&2\nexit 17\n"); tools.resolve("head").toFile().setExecutable(true);
+    final var process = builder.start(); assertTrue(process.waitFor(5,TimeUnit.SECONDS));
+    assertNotEquals(0,process.exitValue()); assertTrue(new String(process.getInputStream().readAllBytes()).contains("Could not save complete launcher output"));
+  }
+  @Test void failedLogPublicationRetainsPrivateOutputAndReportsItsLocation() throws Exception {
+    final var store = store(); final Path tools = Files.createDirectory(temporary.resolve("publish-tools"));
+    final var builder = fixtureLauncher(store,tools);
+    Files.delete(tools.resolve("mv")); Files.writeString(tools.resolve("mv"),"#!/bin/bash\necho fixture-publication-failure >&2\nexit 19\n"); tools.resolve("mv").toFile().setExecutable(true);
+    final var process = builder.start(); assertTrue(process.waitFor(5,TimeUnit.SECONDS)); assertNotEquals(0,process.exitValue());
+    final String message = new String(process.getInputStream().readAllBytes()); assertTrue(message.contains("Launcher output retained at"));
+    try(final var paths = Files.walk(store.root())) {
+      final var output = paths.filter(path -> path.getFileName().toString().equals("output") && path.getParent().getFileName().toString().startsWith(".launcher-log.")).toList();
+      assertEquals(1,output.size()); assertTrue(Files.readString(output.getFirst()).contains("fixture-startup-output"));
+    }
+  }
+  @Test void previousBoundedLauncherUpgradesAndCustomManageScriptRemainsUntouched() throws Exception {
+    final var store = store();
+    try(final var input = LauncherFailureTest.class.getResourceAsStream("managed-launcher-bounded-v1.sh")) {
+      assertNotNull(input); Files.writeString(store.root().resolve("Play Game.sh"),new String(input.readAllBytes()).replace("@MODE@","--play"));
+    }
+    Files.writeString(store.root().resolve("Manage Installation.sh"),"#!/bin/bash\n# owner launcher\nexit 0\n");
+    store.install(temporary.resolve("fixture")); store.verifyInstalled();
+    assertTrue(Files.readString(store.root().resolve("Play Game.sh")).contains("LOG_CODE="));
+    assertEquals("#!/bin/bash\n# owner launcher\nexit 0\n",Files.readString(store.root().resolve("Manage Installation.sh")));
+  }
+
+  @Test void reinstallPreservesReadOnlyExecutableCustomLauncher() throws Exception {
+    final var store = store(); final Path script = store.root().resolve("Play Game.sh");
+    final String custom = "#!/bin/bash\n# owner read-only launcher\nexit 0\n";
+    Files.writeString(script, custom);
+    final var permissions = java.nio.file.attribute.PosixFilePermissions.fromString("r-xr-xr-x");
+    Files.setPosixFilePermissions(script, permissions);
+    try {
+      store.install(temporary.resolve("fixture")); store.verifyInstalled();
+      assertEquals(custom, Files.readString(script));
+      assertEquals(permissions, Files.getPosixFilePermissions(script));
+    } finally { Files.setPosixFilePermissions(script, java.nio.file.attribute.PosixFilePermissions.fromString("rwxr-xr-x")); }
+  }
+
 }

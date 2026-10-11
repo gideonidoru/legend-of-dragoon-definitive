@@ -333,15 +333,17 @@ public final class ReleaseUpdates {
             throw new IOException("GitHub temporarily could not serve the package (HTTP " + response.statusCode() + ").");
           }
           if(response.statusCode() != 200 && response.statusCode() != 206) throw new InvalidDownload("Update download failed (HTTP " + response.statusCode() + "). Your current installation is unchanged.");
+          if(response.headers().allValues("Content-Encoding").stream().anyMatch(value -> !value.equalsIgnoreCase("identity"))) throw new InvalidDownload("Release download has unsupported content encoding.");
           final long length;
           try { length = response.headers().firstValueAsLong("Content-Length").orElse(-1); }
           catch(final NumberFormatException malformed) { throw new InvalidDownload("Release has an invalid download size."); }
-          long start = 0, total = length;
+          long start = 0, total = length, bodyLimit = length < 0 ? maxBytes : length;
           if(response.statusCode() == 206) {
             if(offset == 0 || !etag.equals(response.headers().firstValue("ETag").orElse(""))) throw new InvalidDownload("Release continuation has a different identity.");
             final var range = java.util.regex.Pattern.compile("bytes ([0-9]{1,12})-([0-9]{1,12})/([0-9]{1,12})").matcher(response.headers().firstValue("Content-Range").orElse(""));
             if(!range.matches()) throw new InvalidDownload("Release continuation has an invalid byte range.");
             start = Long.parseLong(range.group(1)); final long end = Long.parseLong(range.group(2)); total = Long.parseLong(range.group(3));
+            bodyLimit = end - start + 1;
             if(start != offset || end < start || end >= total || (length >= 0 && length != end - start + 1)) throw new InvalidDownload("Release continuation does not match the staged bytes.");
           } else {
             final String validator = response.headers().firstValue("ETag").orElse("");
@@ -356,12 +358,12 @@ public final class ReleaseUpdates {
           final long bodyRemaining = deadline - System.nanoTime();
           if(bodyRemaining <= 0) throw new IOException("Release download took too long.");
           try(final var output = Files.newOutputStream(file, StandardOpenOption.WRITE, start == 0 ? StandardOpenOption.TRUNCATE_EXISTING : StandardOpenOption.APPEND, LinkOption.NOFOLLOW_LINKS)) {
-            DownloadBody.copy(input, output, maxBytes - completed, Duration.ofNanos(bodyRemaining), bytes -> progress.bytes("Downloading Definitive + HD mods", 10, 60, completed + bytes, size));
+            DownloadBody.copy(input, output, Math.min(bodyLimit, maxBytes - completed), Duration.ofNanos(bodyRemaining), bytes -> progress.bytes("Downloading Definitive + HD mods", 10, 60, completed + bytes, size));
           }
           if(total >= 0 && Files.size(file) != total) throw new IOException("Release transfer stopped before its expected size.");
           return;
         }
-      } catch(final InvalidDownload | Cooldown | DownloadBody.SizeLimitException | DownloadBody.WriteException permanent) { throw permanent; }
+      } catch(final InvalidDownload | Cooldown | DownloadBody.SizeLimitException | DownloadBody.WriteException | DownloadBody.WorkerCleanupException permanent) { throw permanent; }
       catch(final IOException transientFailure) { failure = transientFailure; }
       if(attempt < 2) Thread.sleep(250L << attempt);
     }

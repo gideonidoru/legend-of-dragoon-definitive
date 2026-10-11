@@ -1,0 +1,56 @@
+{
+  "decodedRgbaSha256": "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
+  "generatedSha256": "bdb2fda04dead9b0afbbe7695d56bacefdad8269f4735ed106dd0f2b175af9b9",
+  "generatedSize": [
+    1153,
+    1364
+  ],
+  "sourceSize": [
+    22,
+    26
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "f93b0f145362e198ce148bb4e8165782871c2e89370f4084185415bbede7d212:-1",
+      "kind": "foreground",
+      "slot": 2,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 79,
+  "representativeLocation": "Bale",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generationVersion": 1,
+  "prompt": "Edit the FIRST reference image into ONE faithful high-definition game foreground texture fragment. The FIRST image controls composition, colors, crop, silhouette, proportions and shading; the SECOND image is the complete original scene for context only; the THIRD image is existing Skurfa HD art for the restrained painted surface finish only. Do not copy the third image's lighting, palette, geometry or imagery. Maintain the exact first-image canvas aspect ratio, its framing and all feature locations; do not add padding, complete missing objects, rotate, recenter or change camera. Smooth material detail with delicate highlights, natural worn edges and painted realism suitable for Legend of Dragoon pre-rendered field backgrounds. Preserve broad original values and local hue. No interface, text, letters, new glyphs, characters, logos or invented symbolic ornament. Output the texture fragment only, not the whole scene, not a comparison board. Native crop is 22 wide by 26 high (11:13 portrait). This is a tiny cropped architectural corner where muted terracotta-brown roof/facade detail meets dark olive-brown masonry and a narrow pale dull ochre edge slanting upward to the right. Full scene locates it at the building corner below the roof. Keep the exact dark left strip, the broad brown upper-right shape, the small existing worn curved strokes and the diagonal pale lower edge. Source motif identity is ambiguous: keep the irregular curves irregular; do not interpret them as a face, creature, leaf, crest or letter. Maintain the soft dim brown/olive values, not bright gold. Where the original is transparent/black outside the fragment, use transparent background with the same cropped outline.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 6624,
+  "paintedGapPixelsExtended": 556,
+  "paintedUncoveredSourcePixels": 444,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 45,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    88,
+    104
+  ],
+  "outputSha256": "83dfdbedcb6e49c4eb06d7a94f5c6921aa1a39620b816eb1851d0bb61d9dfed9",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/held-field-art-drafts/8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f/draft-input-v1.png",
+  "outputPath": "integrations/envhd/production/held-field-art-drafts/8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f/repaired-draft-v1.png",
+  "verdict": "source-fidelity-revision-needed",
+  "reason": "Version1 invents large cracked stone/plaster subdivisions and overly bright relief in the tiny roof/facade corner; rejected after original and current EnvHD placement comparison. Separate corrected version2 pending independent review."
+}

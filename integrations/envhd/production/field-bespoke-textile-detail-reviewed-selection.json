@@ -1,0 +1,1941 @@
+{
+  "schema": 1,
+  "scope": "Complete33 author-reviewed painted development candidates: preserve32 currently selected paintings and add softened Fletz patterned bedding-edge candidate. New candidate awaits independent intent/style review and source preflight; not selected. Deningrad and Twin Castle holds retained. Native/final acceptance pending.",
+  "sourceSelectionBaseCommit": "045889ba22deceac5436ab005dd788653d8e9f9b",
+  "algorithmPath": "scripts/repair-envhd-painted-cutout.py",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "environment": {
+    "python": "3.12.0",
+    "pillow": "12.3.0",
+    "numpy": "2.5.1"
+  },
+  "visualReviewedBespokeCandidates": 33,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 13008,
+      "paintedGapPixelsExtended": 1435,
+      "paintedUncoveredSourcePixels": 1192,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 265,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "153b6e55f8d202237062cd9913875bdfb3db03b6569c5d800d897e13864f2d17",
+      "generatedSha256": "989d7d447a5dd003f499dbf0585b8a87323d5107149c82e45ea1a393c61b17ac",
+      "outputSha256": "f19cda3093b9f86b0867178e0043e6df07886e8f74248190a164f3d75f0c7bd4",
+      "sourceSize": [
+        38,
+        36
+      ],
+      "targetSize": [
+        152,
+        144
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/153b6e55f8d202237062cd9913875bdfb3db03b6569c5d800d897e13864f2d17/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/153b6e55f8d202237062cd9913875bdfb3db03b6569c5d800d897e13864f2d17/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer. Asset type: one isolated prerendered environment foreground texture for Legend of Dragoon: Definitive EnvHD. Edit target: the attached 38x36 original RGBA cutout, a low-light potted flowering plant in Donau's flower-shop interior. Repaint only the visible pixels into polished detailed hand-painted HD game art while faithfully preserving the original object, irregular outline, footprint, camera angle, proportions, lighting and colors. This is a round squat brown terracotta pot below a dense clustered mound of dark green leaves with many small rusty-red/orange blossoms. Clearly paint separate leaves and small blossom clusters, retaining their original red/green distribution. Keep the plant dark to match the indoor game scene, not a bright product photograph. Keep the pot rim and base at precisely the same locations relative to the canvas. Preserve the original full canvas framing and transparent background; do not center, enlarge, crop, rotate, relight or add extra foliage beyond the source outline. Avoid invented boards/planks, shiny stone, broad smooth slabs, text, labels, extra objects, shadow outside the original object or checkerboard. Produce only the upgraded texture with true transparency.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "8be61413b2742692d4d207f16030d7e48e59b02574c591d1e74b9be04d3c1520:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Donau",
+      "representativeCut": 243,
+      "priorCandidateSha256": "e681db7eb6eaf78b62c68a3e55220e1e689accca05efd2e2f37c1e4f9dd64fdf",
+      "review": {
+        "intent": "Donau cut 243 foreground potted flowering plant at the flower-shop entrance.",
+        "style": "Rusty red blossoms and dark green leaves are recognizable again, replacing the prior brown plank-like mass. The terracotta pot remains beneath the original foliage footprint. Fine blossom grouping is a painted interpretation of the low-resolution source.",
+        "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "outputSha256": "f19cda3093b9f86b0867178e0043e6df07886e8f74248190a164f3d75f0c7bd4"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 32832,
+      "paintedGapPixelsExtended": 3335,
+      "paintedUncoveredSourcePixels": 2452,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 433,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "2d63dba80ef018b0a05fda895e1d2d81e28cf41d10a23aa41befb2fbd4368eb5",
+      "generatedSha256": "63967b5bb0f0753da8b309cc91cded4d0744a6df0273d623fc0102f75af10c22",
+      "outputSha256": "3b144832b672d7e6c8b0417bc75830e2313cf68a91147ae52c96abc7f6b68fbd",
+      "sourceSize": [
+        38,
+        84
+      ],
+      "targetSize": [
+        152,
+        336
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/2d63dba80ef018b0a05fda895e1d2d81e28cf41d10a23aa41befb2fbd4368eb5/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/2d63dba80ef018b0a05fda895e1d2d81e28cf41d10a23aa41befb2fbd4368eb5/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer. Asset type: one isolated foreground environment texture for Legend of Dragoon Definitive EnvHD. Edit target: attached original RGBA game texture. Repaint the visible pixels as detailed polished hand-painted HD game art while faithfully keeping source camera angle, exact canvas composition, crop boundaries, object outline, palette, proportions and lighting. This is a 38x84 narrow, tall crop of dark green evergreen foliage at the left foreground of a forest path. Its left edge is a straight cropped canvas boundary; its right edge slopes diagonally and has irregular small branch tips. It is a cropped part of foliage, not a complete centered tree. The source shows mottled leaf/needle clusters and darker brown woody patches throughout its interior. Preserve clusters in their original locations, make fine leaves recognizable and naturally irregular. No smooth broad slabs, sculpted folds, rock cracks, new branches, added objects, text, shadows or background. Do not rotate, center, enlarge, relight or complete the cropped shape; keep all clipped source edges clipped exactly. Output only the upgraded cropped texture on true transparent background.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "f7a55816ac038e8232431207f9d3f408249c2ac42a5a03588b712c4f1f686b9d:-1",
+          "kind": "foreground",
+          "slot": 10,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Evergreen Frst",
+      "representativeCut": 340,
+      "priorCandidateSha256": "075a72ff3b0db265a30c55cb31562898d368b0fc3ddbbd1294c0dc4f8fb2c580",
+      "review": {
+        "intent": "Evergreen Forest cut 340 tall foreground evergreen foliage fragment.",
+        "style": "Separated dark green needle clusters replace the broad olive slab. Cropped left edge, diagonal silhouette and native branch-tip footprint remain unchanged. The painted interior has new detailed branch arrangement and awaits full-scene quality matching.",
+        "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "outputSha256": "3b144832b672d7e6c8b0417bc75830e2313cf68a91147ae52c96abc7f6b68fbd"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 20816,
+      "paintedGapPixelsExtended": 1154,
+      "paintedUncoveredSourcePixels": 817,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 73,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "6c9f7a1ff67d83b5d584f0f1ac6b6d88d4dd0fb14a44cb9f6eadb8d64d056ccb",
+      "generatedSha256": "9966799e6dc21c6e49c8196802a9a209ae8d05cd1c0aa88ec0ed70ec4f8f0076",
+      "outputSha256": "e0423281a9eab716a29b23be5e8d17c4bd939df9c1481bc427582818f87194cf",
+      "sourceSize": [
+        30,
+        72
+      ],
+      "targetSize": [
+        120,
+        288
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/6c9f7a1ff67d83b5d584f0f1ac6b6d88d4dd0fb14a44cb9f6eadb8d64d056ccb/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/6c9f7a1ff67d83b5d584f0f1ac6b6d88d4dd0fb14a44cb9f6eadb8d64d056ccb/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer. Asset type: one isolated foreground environment texture for Legend of Dragoon Definitive EnvHD. Edit target: attached original RGBA game texture. Repaint the visible pixels as detailed polished hand-painted HD game art while faithfully keeping source camera angle, exact canvas composition, crop boundaries, object outline, palette, proportions and lighting. This is a 30x72 narrow cropped strip of dark green evergreen foliage at the left foreground of the SAME forest path as the other evergreen asset. Left boundary is cut straight at the canvas, right silhouette slopes and has stepped little branch tips, bottom narrows. Paint the source mottled leafy/needle surface with subtly visible brown woody patches. It must look consistent with other dark moss-green woodland foliage, not a centered whole tree. Preserve clusters in their original locations, make fine leaves recognizable and naturally irregular. No smooth broad slabs, sculpted folds, rock cracks, new branches, added objects, text, shadows or background. Do not rotate, center, enlarge, relight or complete the cropped shape; keep all clipped source edges clipped exactly. Output only the upgraded cropped texture on true transparent background.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "f7a55816ac038e8232431207f9d3f408249c2ac42a5a03588b712c4f1f686b9d:-1",
+          "kind": "foreground",
+          "slot": 7,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Evergreen Frst",
+      "representativeCut": 340,
+      "priorCandidateSha256": "33fee3effefab0fabd95e91f88f0c7131f03662227569dbd19e7a6bbabfd88d0",
+      "review": {
+        "intent": "Evergreen Forest cut 340 related narrow foreground evergreen foliage fragment.",
+        "style": "Dark green conifer needles and brown woody recesses remain consistent with the related repaint. The native clipped outline and bottom narrowing are preserved. New painted branch detail still needs coordinated scene quality review.",
+        "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "outputSha256": "e0423281a9eab716a29b23be5e8d17c4bd939df9c1481bc427582818f87194cf"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 22208,
+      "paintedGapPixelsExtended": 1394,
+      "paintedUncoveredSourcePixels": 1130,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 113,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "a98e7fd00230229a4aa03062fa996fc1c9d5133e9654ec10f00b8b762a835228",
+      "generatedSha256": "705c682c05f20fbef53af0ab880afd8ad91c236a2f851f5086f996dbbd3e96de",
+      "outputSha256": "90aded554612c65e197fa14ed5153b9564a0e9c3a90717dad203f9212b9ae4bd",
+      "sourceSize": [
+        44,
+        46
+      ],
+      "targetSize": [
+        176,
+        184
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/a98e7fd00230229a4aa03062fa996fc1c9d5133e9654ec10f00b8b762a835228/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/a98e7fd00230229a4aa03062fa996fc1c9d5133e9654ec10f00b8b762a835228/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer. Asset type: one isolated foreground environment texture for Legend of Dragoon Definitive EnvHD. Edit target: attached original RGBA game texture. Repaint the visible pixels as detailed polished hand-painted HD game art while faithfully keeping source camera angle, exact canvas composition, crop boundaries, object outline, palette, proportions and lighting. This is a 44x46 cropped pale olive-green shrub at Shirleys Shrine in muted daylight. The left side cuts straight at the canvas; upper and right outline are irregular leaves, bottom roughly horizontal. Its native surface is many small leaf clusters with lighter yellow-green tips and deeper olive gaps. It is living leafy foliage, not cracked stone or a rock. Preserve clusters in their original locations, make fine leaves recognizable and naturally irregular. No smooth broad slabs, sculpted folds, rock cracks, new branches, added objects, text, shadows or background. Do not rotate, center, enlarge, relight or complete the cropped shape; keep all clipped source edges clipped exactly. Output only the upgraded cropped texture on true transparent background.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "ef0301c5db99911169872b3b8e7ed278be0aa3512740b689dcb5f77a4773aeba:-1",
+          "kind": "foreground",
+          "slot": 10,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Shirley's Shrine",
+      "representativeCut": 155,
+      "priorCandidateSha256": "0986f5d98ea3a35a05f76fad658c169c87537131ff6a6fe924b565b7c1051147",
+      "review": {
+        "intent": "Shirley's Shrine cut 155 small pale olive shrub.",
+        "style": "Individual yellow-green leaves replace the cracked-stone appearance. Source silhouette and palette remain identifiable. Leaf size and directional lighting require full-scene painted-quality matching before final acceptance.",
+        "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "outputSha256": "90aded554612c65e197fa14ed5153b9564a0e9c3a90717dad203f9212b9ae4bd"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 24000,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "455126e71faad27bacd91a505cf193201a6004c80933d686a6e522875d757227",
+      "generatedSha256": "a458a19197e37f3614880408df412f68fd41415ac35481a0363e1013b6932ae3",
+      "outputSha256": "efe49e891b701e0fa97a401cda8e6e3384731e3dbecd181ecb82116a2a6245d6",
+      "sourceSize": [
+        50,
+        30
+      ],
+      "targetSize": [
+        200,
+        120
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/455126e71faad27bacd91a505cf193201a6004c80933d686a6e522875d757227/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/455126e71faad27bacd91a505cf193201a6004c80933d686a6e522875d757227/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "prompt": "Use case: precise-object-edit. Asset type: opaque rectangular foreground environment texture patch for Legend of Dragoon Definitive EnvHD. Edit target: attached 50x30 original game texture. Upgrade this exact patch as detailed hand-painted HD game art while retaining every element in its existing position and proportions. The small pale grey-green handled vase/pitcher sits in the lower left-of-center with a dense purple-blue flower cluster above it. Paint distinct small flower heads/petals and green leaves, replacing the low-resolution ambiguity with recognizable blossoms, not fabric loops or folded ribbons. Preserve the same pale vase silhouette and curved handle at its right. Retain the orange-brown wooden wall panels, thin horizontal warm trim above the darker bottom rail, vertical wooden frame at the right edge and all original warm indoor lighting. This is a complete opaque rectangular texture patch, not an isolated object: keep the original background and full canvas crop. Do not enlarge, center, rotate, change the layout, add flowers elsewhere, change the wall design, make flowers red, add text or create transparency. Output only the upgraded original composition.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "2729034499314e73adaafbcd9fca1f8f1bedf7e129eaf317e3eb71842ee2ed05:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Lohan",
+      "representativeCut": 636,
+      "priorCandidateSha256": "232b2a63fa261a0e5e44d616b85f28af9333d180e7121530f75afae896380526",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Lohan cut 636 independent purple-blue flower variant in a pale handled vase against an opaque wooden wall patch.",
+        "style": "Recognizable separate purple-blue blossoms and leaves replace folded ribbon-like neural strokes. The pale vase and right-side handle remain under the cluster. Warm wall panels and trim stay in their source positions. Vase highlights and wall-patch palette still need coordinated painted scene matching before final quality acceptance.",
+        "layout": "Original, neural candidate and repaired painting compared at 200x120 target size, then at the exact native slot 8 placement on the original background. Other foreground states were omitted because an all-slots assembly obscures this variant. In-game script visibility and depth remain pending.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "efe49e891b701e0fa97a401cda8e6e3384731e3dbecd181ecb82116a2a6245d6",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 7632,
+      "paintedGapPixelsExtended": 684,
+      "paintedUncoveredSourcePixels": 521,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 100,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "43cf12d2a76b640953c2b725b955ba0025b26c94b81ee01a32a26c79c63271b0",
+      "generatedSha256": "90a593d120c08d042100965d660a264f720da82ee585d8e1239ce236428b6f45",
+      "outputSha256": "4d904a830d0392634ad7b017306480535759145157fdbdd59f91afb7ada9ca2b",
+      "sourceSize": [
+        42,
+        24
+      ],
+      "targetSize": [
+        168,
+        96
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/43cf12d2a76b640953c2b725b955ba0025b26c94b81ee01a32a26c79c63271b0/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/43cf12d2a76b640953c2b725b955ba0025b26c94b81ee01a32a26c79c63271b0/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "prompt": "Use case: style-transfer. Asset type: precise RGBA foreground texture for Legend of Dragoon EnvHD. Image 1 is the authoritative edit target and exact canvas/shape/palette blueprint: an enlarged nearest-pixel view of the original 42x24 Donau flower display. Image 2 is only a painting-detail reference from an earlier attempt; its changed geometry and bright lighting must NOT be copied. Repaint image 1 as detailed hand-painted HD game art. Keep the object footprint exactly as image 1: upper bend/peak occurs about one third across the canvas, not one sixth; left end is shallow and cropped, then the pale curved rim and flower cluster slope down right into the rounded pale end. Preserve every original clipped edge, full canvas framing, width/height proportions and original diagonal perspective. Retain the original muted grey-ivory/ochre rim, dark inner planting, dominant blue/purple blossoms, small pale white/pink accents and subdued green leaves. Restore recognizable individual petals and leaves inside those same color regions. Keep the darker original shop lighting, not bright sunlit yellow stone. Do not elongate or widen the planter, move the upper-left bend, add trailing leaves, cast shadows or new objects. Output only the same-shaped upgraded cutout on actual transparent background.",
+      "registration": {
+        "method": "python-painted-cutout-perspective-registration-1",
+        "algorithmSha256": "7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784",
+        "sourceQuad": [
+          [
+            13,
+            0
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            35,
+            23
+          ],
+          [
+            42,
+            17
+          ]
+        ],
+        "paintedQuad": [
+          [
+            6.5,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            35,
+            24
+          ],
+          [
+            42,
+            19
+          ]
+        ],
+        "sourceSize": [
+          42,
+          24
+        ],
+        "targetSize": [
+          168,
+          96
+        ],
+        "scale": 4,
+        "resampling": "bicubic",
+        "sourceAlphaApplied": false,
+        "algorithmPath": "scripts/register-envhd-painted-cutout.py",
+        "registeredInputSha256": "b96761a2fb3007a431fa8263b76ad76bd874260b29371c9622ecacdf5da2de49"
+      },
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "d07f62a2914bc240c6c0659ba5926e2070a03c124af72df0c164b3a46a76a35c:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Donau",
+      "representativeCut": 248,
+      "priorCandidateSha256": "e4457014feb94e591a486692901791ae7bf1620978f1a20dc31a073c3df91cb1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Donau cut 248 diagonal pale curved flower-shop display with blue, purple, pink and white flowers and green leaves.",
+        "style": "Separate painted petals and leaves replace the ambiguous neural streaks while retaining an ivory/ochre rim, hollow planted interior and rounded pale right end. Perspective registration restores the source bend without the flower smearing seen in the rejected row-wise trial. Flower grouping is a painted interpretation; full-scene colour harmonization and final quality remain pending.",
+        "layout": "Original, neural and registered painted texture compared at 168x96 target size and at its original native slot placement on the Donau shop background. Source alpha and visible-black classes are exact. The isolated layer comparison does not prove scripted visibility, depth or full gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "4d904a830d0392634ad7b017306480535759145157fdbdd59f91afb7ada9ca2b",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 19664,
+      "paintedGapPixelsExtended": 834,
+      "paintedUncoveredSourcePixels": 669,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 45,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        44,
+        38
+      ],
+      "targetSize": [
+        176,
+        152
+      ],
+      "decodedRgbaSha256": "0b1ee202a8c1144471e0281f0af94b918ed5e9930d2d0ea4e36584afb33da3b8",
+      "outputSha256": "779f64c8e510b7c171cbcf56a3b3be1a8a92f4ca4ee3cfff49463835571bebbb",
+      "generatedSha256": "3f136da0dfb7df53bf60e697e3115da328c94479798304950b74277db6335a63",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/0b1ee202a8c1144471e0281f0af94b918ed5e9930d2d0ea4e36584afb33da3b8/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/0b1ee202a8c1144471e0281f0af94b918ed5e9930d2d0ea4e36584afb33da3b8/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD foreground texture, Queen Fury cut 282 slot 0, original canvas 44:38. Image 1 is the authoritative enlarged original cutout; image 2 shows its scene placement at the lower right of the captain's cabin. Repaint exactly this squat, dark wooden barrel/cylindrical furnishing with its pale warm ochre elliptical decorated lid, viewed obliquely from above. Match the source silhouette, perspective, cropped lid position, rim, side contour, lighting and dark body. Trace the lid's existing engraved radial/curving relief from the reference; preserve its uneven source pattern and central shapes, without simplifying to a new letter, logo or emblem. Add restrained carved wood grain, fine worn lid edges and subtle warm hand-painted detail compatible with the existing HD backgrounds. The dark lower body is wooden staves in deep shadow, not a metal pedestal. Keep the exact 44:38 canvas aspect and object placement, no additional margins, no scene background. Output one isolated texture cutout on actual transparency. No text, border, props or cast shadow beyond the source silhouette.\n\nSource-motif correction:\nUse case: precise-object-edit. Image 1 is the painted draft; image 2 is the exact authoritative original foreground texture. Correct the lid decoration only: remove the draft's invented central concentric circle and three-spoke swirling logo. Trace the original's uneven individual raised relief shapes from image 2 instead, including the off-center taller narrow roughly triangular/arched inner shape and surrounding angular/curved bands. These are weathered shallow wood relief strokes, not a modern symbol. Keep all outer shape, elliptical lid, source-defined placement, dark shadowed wooden body, palette, canvas 44:38 aspect and transparency unchanged. Add no extra ornament or text. Preserve the original source motif topology, with fine hand-painted weathered wood detail. Output the single complete barrel cutout on actual transparency.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "6597329e92442b8aacb4b54265b3922b2803dacf7d248b3fb7a2a1ee340e9f8b:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 282,
+      "representativeLocation": "The Queen Fury",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Queen Fury cut282 independent foreground furnishing: squat dark wooden cylindrical barrel with a warm decorated elliptical lid, cropped obliquely from above in the captain cabin. Wood is retained; no character or effect ownership.",
+        "style": "Original, rejected neural, initial invented-circle draft and corrected painting compared at176x152 and source slot placement. Corrected shallow raised relief follows the source central narrow arched form and surrounding bands; no letter meaning is assigned. Weathered warm wood and shaded staves add restrained painted detail. Fine relief engraving is interpretive, not an exact pixel topology claim.",
+        "layout": "Source alpha and visible-black classes exact at4x; canvas[44, 38] and independent foreground slot preserved. Pinned nearest-colour repair extends 834 target pixels into small source-visible painting gaps; maximum squared extension distance 45. Individual comparison checks broad object proportions and crop; categorical proof does not establish interior motif alignment, runtime depth or scripted state visibility.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "779f64c8e510b7c171cbcf56a3b3be1a8a92f4ca4ee3cfff49463835571bebbb",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 5568,
+      "paintedGapPixelsExtended": 449,
+      "paintedUncoveredSourcePixels": 344,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 41,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        22,
+        32
+      ],
+      "targetSize": [
+        88,
+        128
+      ],
+      "decodedRgbaSha256": "1a0aa3ab88ff20d2522b48dacb4fca3128561980fbad7d1379bcb8d16dc2a00a",
+      "outputSha256": "cf0ed3141b0ab24bf07c31faf1dbd35e7323418f2a35fbaabc6d688ee0f80b8b",
+      "generatedSha256": "67cc88c0b896dda1ecdbb358fb2f2b45070ef9ed27dd4e2a4dcc568d3571c3c9",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/1a0aa3ab88ff20d2522b48dacb4fca3128561980fbad7d1379bcb8d16dc2a00a/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/1a0aa3ab88ff20d2522b48dacb4fca3128561980fbad7d1379bcb8d16dc2a00a/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD foreground fitting in Kazas cut 181 slot 6. Image 1 is the authoritative original cutout, canvas aspect exactly 22:32; image 2 is the dim wooden workshop scene for context only. Repaint the exact visible copper/brass vessel cluster: three rounded warm rusty copper bodies close together at the bottom, the taller central pear-shaped body with its narrow upward neck and pale metal tip near the top. Keep the source outlines, overlapping arrangement, dark circular openings, warm highlight on the upper right central body and lower left/right vessel proportions. Follow visible original contours; do not invent additional pipes, valves, handles, flame, smoke, labels, treasure or characters. Add fine restrained hammered copper texture and warm hand-painted highlights, consistent with a dim rustic game interior and existing HD painted backgrounds. Preserve exact framing, 22:32 aspect, position and negative space, no added padding. Output one isolated texture cutout on actual transparency, no backdrop or border. Source intent is a stationary workshop fixture, not an animated effect.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "174fadd79604d00fc4a7d5ab81303d9887b034c7e5a71ef5f9f1c4312348fc05:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 181,
+      "representativeLocation": "Kazas",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Kazas cut181 independent foreground workshop fixture: three closely overlapping rounded copper vessels with taller central body, narrow neck and pale upper metal tip; the dark mouth positions and source silhouettes remain separate. Stationary fitting, not animated fire.",
+        "style": "Original, rejected neural and repaired painting compared at88x128 and original slot placement. Warm hammered copper highlights, dark round mouths and the central pale neck preserve source material cues, resolving the smeared neural bodies. Fine pitting and rim detail are interpretive and await final painted-quality review.",
+        "layout": "Source alpha and visible-black classes exact at4x; canvas[22, 32] and independent foreground slot preserved. Pinned nearest-colour repair extends 449 target pixels into small source-visible painting gaps; maximum squared extension distance 41. Individual comparison checks broad object proportions and crop; categorical proof does not establish interior motif alignment, runtime depth or scripted state visibility.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "cf0ed3141b0ab24bf07c31faf1dbd35e7323418f2a35fbaabc6d688ee0f80b8b",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 6256,
+      "paintedGapPixelsExtended": 314,
+      "paintedUncoveredSourcePixels": 196,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 25,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        42,
+        16
+      ],
+      "targetSize": [
+        168,
+        64
+      ],
+      "generatedSha256": "9ae8b0b195ec6ec3a42ec060d85fc2b956b1df7d288e466aed4d8b0580b76af2",
+      "outputSha256": "f225ce69ef672c5df0fafde7e3c804234eaa8e141bc0231ece73f6bb6dcf8358",
+      "decodedRgbaSha256": "6537488dc9ec32b1e455a5ec800de0357d69899cdcd0f0eefb42c30af962d4fd",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/6537488dc9ec32b1e455a5ec800de0357d69899cdcd0f0eefb42c30af962d4fd/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/6537488dc9ec32b1e455a5ec800de0357d69899cdcd0f0eefb42c30af962d4fd/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect42:16. Prairie cut40 slot1. A low cut tree stump: pale warm ochre irregular elliptical cut top with visible nested wood growth rings and off-center darker center, dark olive-brown bark side beneath it, low root extensions left and right. Restore its wood cross-section rings and restrained bark grain. Match the top's flattening, broad oval location and its shaded cylindrical body, without carving a new symbol or turning the rings into a spiral, writing, spokes or face.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "481b6e7102a01272c20179b8b5e18abd5770495433be07140fd925c7c3076b93:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 40,
+      "representativeLocation": "Prairie",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Prairie cut40 foreground slot1 cut wooden stump seen from above, with pale elliptical growth-ring face, dark bark and short root projections.",
+        "style": "Source, held neural, repaired output and isolated scene placement compared. Restores concentric growth rings erased by neural smoothing and restrained bark grain; timber palette and oblique face remain. Fine growth-ring count and bark texture are interpretive.",
+        "layout": "Exact4x source canvas [42, 16] to [168, 64]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 314 target pixels, with 196 uncovered source-visible target pixels and maximum squared extension distance 25. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "f225ce69ef672c5df0fafde7e3c804234eaa8e141bc0231ece73f6bb6dcf8358",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 5376,
+      "paintedGapPixelsExtended": 283,
+      "paintedUncoveredSourcePixels": 178,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 16,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        26,
+        28
+      ],
+      "targetSize": [
+        104,
+        112
+      ],
+      "generatedSha256": "728065fd4c0b592be01d9e1872972cd44e63cec07d74a0eb2ebe0964bd6dd10f",
+      "outputSha256": "a9c14d7c530af549c93c2b7f607e1d175b4c816b31f6c3f46832216d1fbd2805",
+      "decodedRgbaSha256": "9e96ddb7025afcbc7f44f79bf0617a6ecb3f03954767b6a4200e7c11e6065191",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/9e96ddb7025afcbc7f44f79bf0617a6ecb3f03954767b6a4200e7c11e6065191/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/9e96ddb7025afcbc7f44f79bf0617a6ecb3f03954767b6a4200e7c11e6065191/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect26:28. Fueno cut318 slot1, viewed obliquely from the side in a dim inn bedroom. Small chair with its curved brown wooden back partly cropped at the upper-left edge, muted dark green upholstered seat extending toward the lower right, thin shadowed wooden legs at the lower corners. Preserve the side-view profile, seat perspective and curved back opening; do not center it or enlarge the back to fit the canvas. Wood should show subtle worn grain and the cushion subtle green fabric weave, with the original dark palette.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "99d756966fc5abe04984700855f73207fcb8a45d18e0c122c1b024eb9b321aad:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 318,
+      "representativeLocation": "Fueno",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Fueno cut318 foreground slot1 side-view wooden chair: curved cropped back at upper left, muted green padded seat extending right, thin shadowed legs.",
+        "style": "Source, held neural, repaired output and isolated scene placement compared. Curved brown frame and shaded green cushion retain the source side view and crop. Fine fabric weave and wood grain are interpretive; this view is not substituted for the two cut312 chair views.",
+        "layout": "Exact4x source canvas [26, 28] to [104, 112]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 283 target pixels, with 178 uncovered source-visible target pixels and maximum squared extension distance 16. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "a9c14d7c530af549c93c2b7f607e1d175b4c816b31f6c3f46832216d1fbd2805",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 3424,
+      "paintedGapPixelsExtended": 227,
+      "paintedUncoveredSourcePixels": 136,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 13,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        20,
+        24
+      ],
+      "targetSize": [
+        80,
+        96
+      ],
+      "generatedSha256": "c144d45e7c810f8e359120fe2be6efbb3727c1508787b6b15cdc041d7aec0ed0",
+      "outputSha256": "de25cfaf3c24109d7c630e8e51ce57dd8a0291c3e6dccd06ae9feeb84c70fc24",
+      "decodedRgbaSha256": "b0ef41e4641796fc6c3cc593c803070b2590e21ff8e14f9cd872cb1895e06ee8",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/b0ef41e4641796fc6c3cc593c803070b2590e21ff8e14f9cd872cb1895e06ee8/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/b0ef41e4641796fc6c3cc593c803070b2590e21ff8e14f9cd872cb1895e06ee8/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect20:24. Fueno cut312 slot6. Small green-backed tavern chair at the left of the restaurant interior, with rounded green upper back, warm curved wooden outline and slender brown legs splaying below the seat. Preserve the exact source viewpoint and negative gaps between its frame members, dark shaded seat and all small crossbars. Follow the visible source curve shapes, without adding floral upholstery, button tufting or new ornament. Low-contrast upholstery weave and worn wood grain only.\n\nSource-detail correction:\nUse case: precise-object-edit. EnvHD Fueno cut312 slot6, native20x24 pixel foreground chair. Image1 is authoritative original exact canvas; image2 is the SAME source with brightness increased solely to reveal its dark structure; image3 is scene context. Repaint this exact source chair as viewed from behind/obliquely, preserving the source shape rather than redesigning it as a front-facing upholstered armchair. The top is the source's broad dark olive-green rounded chair-back, with subtle irregular green mottling and warm thin brown rim. Beneath it are the narrow dark wooden frame/legs and gaps exactly as shown: a left leg diagonally spreads down-left, the right main leg down-right, and small dark crossbars connect the frame. The projecting broad visible seat of a new armchair is not present in this source. Preserve precisely the relative chair-back position and size, leg bends, splay, gaps, asymmetry and all edge-reaching thin tips. Keep20:24 canvas, framing and muted SOURCE1 palette, not the brightened guide palette. Add restrained green material weave and wood grain, no tacks, buttons, new ornaments, armrests or added structure. Actual transparency, no padding, no new cast shadow or background. One image only.\n\nFinal targeted correction:\nUse case: precise-object-edit. Image1 is the source-aligned EnvHD chair draft; image2 is the authoritative original. Keep precisely the complete image1 silhouette, canvas20:24 aspect, leg bends, splay, frame gaps, chair-back contour, crop and all macro mottled patch positions. Repaint the draft's visible coarse square pixel mosaic into continuous higher-resolution hand-painted materials: plain dark olive-green woven upholstery and subtly worn brown wood. Add fine low-contrast continuous thread/grain detail; blend the hard square shading tiles into smooth natural material shading without moving the source shapes. The final artwork must not look pixelated or like an enlarged nearest-neighbor sprite. Do not change geometry, perspective, lighting, object identity or silhouette. No new armrests, projecting seat, rivets, buttons, glyphs or trim. Genuine transparency, no padding. One source-faithful texture cutout.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "457509c6abe094a6598ec856570d0786ef00adc58f8b85fbcae3d04cdbc6abf5:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 312,
+      "representativeLocation": "Fueno",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Fueno cut312 foreground slot6 left/rear-view wooden chair with rounded muted green upper panel, narrow legs, stretcher and rightward foot projection.",
+        "style": "Initial front-facing painting added a projecting seat and failed source coverage. A source retrace fit the silhouette but remained visibly pixelated and was rejected. The selected smoothing refinement preserves that retraced view while adding continuous cloth and timber shading. Original, held neural, all relevant drafts, repaired output and isolated scene placement compared. Fine upholstery mottling remains interpretive and final quality is pending.",
+        "layout": "Exact4x source canvas [20, 24] to [80, 96]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 227 target pixels, with 136 uncovered source-visible target pixels and maximum squared extension distance 13. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "de25cfaf3c24109d7c630e8e51ce57dd8a0291c3e6dccd06ae9feeb84c70fc24",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 3328,
+      "paintedGapPixelsExtended": 273,
+      "paintedUncoveredSourcePixels": 185,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 25,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        20,
+        22
+      ],
+      "targetSize": [
+        80,
+        88
+      ],
+      "generatedSha256": "9b70af8d5c90ade1ff5790b3253257f2411673b7ffa7051dc5e27353d5967f45",
+      "outputSha256": "baf33288be2346384673ce6c6cbd06faa6952d9fcd06dff6907592ab7e5311ea",
+      "decodedRgbaSha256": "ee63fb3aa03347e029cfe48f9428590c8659c1d39b90b25d9280681f002051b3",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/ee63fb3aa03347e029cfe48f9428590c8659c1d39b90b25d9280681f002051b3/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/ee63fb3aa03347e029cfe48f9428590c8659c1d39b90b25d9280681f002051b3/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect20:22. Fueno cut312 slot5. Separate small green-backed tavern chair, seen from the source's distinct angle: broad dark green upper back, brown frame, tiny shadowed seat, thin legs spreading at lower left and right, source dark gaps kept open. Retain its original asymmetry and frame-member positions. This is a different source cutout from the other tavern chair; do not substitute a repeated view. Restrained green upholstery texture and warm dark worn wood only.\n\nSource-detail correction:\nUse case: precise-object-edit. Image1 is a draft EnvHD Fueno chair cutout; image2 is its authoritative original source, canvas20:22. Correct only the green chair-back material: remove all newly invented metal rivets/buttons and leather cracks. Use dark muted green plain woven upholstery with low-contrast threads, retaining the source's tiny pale mottled patches without introducing an emblem or regular dot pattern. Preserve exactly the draft canvas, brown wooden frame, slender splayed legs, openings, crop, perspective and source placement. No new structural details or ornaments. One cutout on genuine transparency, no padding or background.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "457509c6abe094a6598ec856570d0786ef00adc58f8b85fbcae3d04cdbc6abf5:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 312,
+      "representativeLocation": "Fueno",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Fueno cut312 foreground slot5 back-view wooden chair with rounded muted green padded upper panel, separated legs, central opening and angled right foot.",
+        "style": "Initial painting invented metal studs; the selected correction removes them and uses plain shaded woven green upholstery with a restrained timber frame. Original, held neural, rejected draft, repaired output and isolated scene placement compared. Fine fabric weave and joinery detail are interpretive; the neighboring left/rear-view chair remains independent.",
+        "layout": "Exact4x source canvas [20, 22] to [80, 88]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 273 target pixels, with 185 uncovered source-visible target pixels and maximum squared extension distance 25. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "baf33288be2346384673ce6c6cbd06faa6952d9fcd06dff6907592ab7e5311ea",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 15824,
+      "paintedGapPixelsExtended": 1548,
+      "paintedUncoveredSourcePixels": 762,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 17,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        54,
+        40
+      ],
+      "targetSize": [
+        216,
+        160
+      ],
+      "generatedSha256": "98b6c373899f7bbde5bd4f0f6eed4af12453e5520fe3bdd24f772b20f99b1db0",
+      "outputSha256": "d89af267f60845af4315f56afda10889581be1b9f2da53eab81149a1389af0b2",
+      "decodedRgbaSha256": "907e965f59860be4fbf362570a91c11d702a602f9af196b5d21b5a0ffe38a2eb",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/907e965f59860be4fbf362570a91c11d702a602f9af196b5d21b5a0ffe38a2eb/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/907e965f59860be4fbf362570a91c11d702a602f9af196b5d21b5a0ffe38a2eb/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect54:40. Crystal Palace cut369 slot6. A diagonal narrow brown wooden railing/support slanting up to the right, its thin descending posts, and irregular green foliage clustered along its left/upper edge. Preserve the separate green leaf sprays, fine stems and source gaps; the earlier upscaler flattened them into a solid green blob. Add modest leaf veins and shaded leaf surfaces and restrained wood grain, matching the palace room palette. Do not infer a new plant species, flowers, an object inside the foliage, or additional balusters.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "e1b3176346f070ca8d9ecf851e766d6994ac34f91d4256cd196708b85c5d503b:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 369,
+      "representativeLocation": "Crystal Palace",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Crystal Palace cut369 foreground slot6 green foliage sprays attached to a diagonal brown railing/support, with thin branches and vertical timber projections.",
+        "style": "Source, held neural, repaired output and isolated scene placement compared. Distinct fine leaf clusters replace the flat neural mass while retaining branch direction, diagonal support, crop and subdued green/brown palette. Individual leaf species, veins and wood grain are interpretive.",
+        "layout": "Exact4x source canvas [54, 40] to [216, 160]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 1548 target pixels, with 762 uncovered source-visible target pixels and maximum squared extension distance 17. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "d89af267f60845af4315f56afda10889581be1b9f2da53eab81149a1389af0b2",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 19104,
+      "paintedGapPixelsExtended": 858,
+      "paintedUncoveredSourcePixels": 667,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 37,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        40,
+        58
+      ],
+      "targetSize": [
+        160,
+        232
+      ],
+      "generatedSha256": "2c445da2ed32e4b2d2277dfaff820c9c278ca6c767cacaed74c5080571eac427",
+      "outputSha256": "f68b70f86deb522132117aa229ba5385c2dc8252beac1f6b406076ec589104a4",
+      "decodedRgbaSha256": "3a1853b560a051c9bea10d6b8529e527f76a6a8ca3d02ef7401397ecac63e332",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/3a1853b560a051c9bea10d6b8529e527f76a6a8ca3d02ef7401397ecac63e332/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/3a1853b560a051c9bea10d6b8529e527f76a6a8ca3d02ef7401397ecac63e332/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect40:58. Donau cut239 slot3. An irregular pale cool cream-gray curved architectural/garden fragment with its broad upper-left surface, narrow vertical stem, and diagonal orange-yellow trim/rail at the lower right. Attached small purple, pink, yellow and blue flower/leaf clusters must stay in their source regions and retain the little plant shapes. Add fine stone shading and clustered petals/leaves matching the flower-rich Donau scene. Preserve the broken diagonal outline and all negative space; this is a cropped scene fragment, not a new complete column, doorway or standalone garden.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "af73eebff95779d0c353d1a0bb907144409960cce29a13e5081530d2f619a8d4:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 239,
+      "representativeLocation": "Donau",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Donau cut239 foreground slot3 garden/architecture fragment: curved pale cream/cool stone structure, orange-yellow lower diagonal trim and attached upper pink-purple, middle blue and lower pink-yellow flower clusters.",
+        "style": "Source, held neural, repaired output and isolated scene placement compared. Architectural curves, warm trim and separated source flower-color groups survive, replacing blurred neural ornament and foliage. Fine masonry grain, petal shapes and leaf species are interpretive.",
+        "layout": "Exact4x source canvas [40, 58] to [160, 232]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 858 target pixels, with 667 uncovered source-visible target pixels and maximum squared extension distance 37. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "f68b70f86deb522132117aa229ba5385c2dc8252beac1f6b406076ec589104a4",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 58560,
+      "paintedGapPixelsExtended": 3199,
+      "paintedUncoveredSourcePixels": 2861,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 90,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        102,
+        84
+      ],
+      "targetSize": [
+        408,
+        336
+      ],
+      "generatedSha256": "08734637345ac6492e850e26283acb30c907db42f99c28f6f8994c011f074ebd",
+      "outputSha256": "c2070d572c437ca493a494d10db127b082df4d1c869fc096495d5e10b7a8a663",
+      "decodedRgbaSha256": "77930282f41ecef6e6b70590b3e46cfdd44672ce05a067d7caf156c9f91c58ec",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/77930282f41ecef6e6b70590b3e46cfdd44672ce05a067d7caf156c9f91c58ec/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/77930282f41ecef6e6b70590b3e46cfdd44672ce05a067d7caf156c9f91c58ec/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect102:84. Queen Fury cut281 slot1, ship kitchen. An angled warm brown wooden counter running from lower-left to upper-right, thin left-front supports beneath it, the source pale blue/white bowls or dishes arranged along the near edge, warm flat food/cutting surfaces behind the bowls, and at upper-right a woven tan wicker basket filled with the same green produce and orange vegetable shapes. Restore visible basket weave, rim and tiny handles, not a plain ceramic or wooden pot. Keep the original bowl count, positions and blue rims, exact counter perspective, produce arrangement and cast shading. Don't add plates, utensils, food, objects or labels.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "a838108d876fc92d16b9498771ef1d01432a6d6903708a5e4c0ec5affbf0bf0f:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 281,
+      "representativeLocation": "The Queen Fury",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Queen Fury cut281 foreground slot1 oblique wooden kitchen counter with two warm cutting surfaces, six pale ceramic bowls and upper-right woven produce basket.",
+        "style": "Source, held neural, repaired output and isolated scene placement compared. Retains six bowls in source order, two cutting boards and dark supporting cabinet while restoring the basket weave lost in neural smoothing. Green/orange produce follows source color masses; exact produce species, basket strands and ceramic rim detail are interpretive.",
+        "layout": "Exact4x source canvas [102, 84] to [408, 336]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 3199 target pixels, with 2861 uncovered source-visible target pixels and maximum squared extension distance 90. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "c2070d572c437ca493a494d10db127b082df4d1c869fc096495d5e10b7a8a663",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 19136,
+      "paintedGapPixelsExtended": 1909,
+      "paintedUncoveredSourcePixels": 1212,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 90,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        92,
+        56
+      ],
+      "targetSize": [
+        368,
+        224
+      ],
+      "generatedSha256": "0174d0a1c61cf72f9ca0be61ed287d59c1c8516d2ae178a197edabb4ae1f46bf",
+      "outputSha256": "a0119e0b0bda377d727b11f1bfee20ff9f470ef05efc328a36f6a5fa9a3bdbcf",
+      "decodedRgbaSha256": "6a70518c6ca7678c882edd168f70578ed2c9dd005521c6c6e175a09a5531321c",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/6a70518c6ca7678c882edd168f70578ed2c9dd005521c6c6e175a09a5531321c/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/6a70518c6ca7678c882edd168f70578ed2c9dd005521c6c6e175a09a5531321c/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect92:56. Rouge cut563 slot9. A long thin green branching plant runs diagonally from upper-left toward lower-right, with the original orange-yellow flower cluster near the upper-left/center and pale-green separated leaf/star-like sprays and thin stems extending toward lower-right. Trace the source branching topology and flower positions, preserve irregular petals and all thin leaf tips. Add restrained painted petal/leaf detail. Do not enlarge the flowering cluster, add blossoms, change to a different plant species or turn stems into geometric decoration.\n\nSource-detail correction:\nUse case: precise-object-edit. Image1 is a painted branch draft; image2 is the authoritative92x56 pixel source. Correct the flower grouping and fine leaf sprays to trace image2. The source has TWO separate orange-yellow star-like flower heads, one smaller to the left and one larger to its right, around source centers(26,12) and(41,15). The draft merged them into one huge flower. Restore the two separate source-sized blooms and their separate centers, individual narrow irregular petals and original gaps. Keep their orange/red edges and yellow highlights. Reduce the oversized broad leaves to thin separated pale-green narrow sprays matching the original branch topology, especially toward the lower-right. Keep exact92:56 canvas, diagonal branch direction, source positions, transparency and lower-right source stone/support fragment. No additional flowers, thickened plant mass or species redesign. One isolated painted cutout, no border or background.\n\nFinal targeted correction:\nUse case: precise-object-edit. Image1 is the initial92:56 source-shaped branch draft; image2 is the authoritative original. Change ONLY the orange flower cluster. Replace its one merged giant head with the original TWO separate smaller orange-yellow irregular star-like flower heads, centered around original native positions(26,12) and(41,15), with each head matching the original source extent. Keep their individual petal separations and the dark gap between the two centers. Keep every green leaf spray, stem, branch curve, lower-right stone fragment, canvas, crop, transparency and all other pixels' composition from image1 unchanged. Do not thin, remove, expand, reposition or redesign the green leaf groups. Do not add any flower elsewhere. Match the source orange-yellow palette and subdued source flower scale. One genuine-transparent cutout, no padding or background.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "427a47b395ee61d09c556089c7ed7de17e0e11a6a9d8de3aeb6dec0305f72589:-1",
+          "kind": "foreground",
+          "slot": 9,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 563,
+      "representativeLocation": "Rouge",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Rouge cut563 foreground slot9 thin green flowering branch descending diagonally toward a lower-right stone fragment; two nearby orange-yellow flower heads remain distinct.",
+        "style": "Initial painting merged the two flowers and was rejected on intent despite passing alpha repair. A two-flower revision shifted and thinned leaves beyond coverage limits and was rejected. The selected flower-only refinement preserves initial branch coverage and restores two source-positioned heads. Original, held neural, rejected drafts, repaired output and isolated scene placement compared. Fine petals, veins and leaf species are interpretive.",
+        "layout": "Exact4x source canvas [92, 56] to [368, 224]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 1909 target pixels, with 1212 uncovered source-visible target pixels and maximum squared extension distance 90. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "a0119e0b0bda377d727b11f1bfee20ff9f470ef05efc328a36f6a5fa9a3bdbcf",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 33008,
+      "paintedGapPixelsExtended": 583,
+      "paintedUncoveredSourcePixels": 323,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 58,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        52,
+        64
+      ],
+      "targetSize": [
+        208,
+        256
+      ],
+      "generatedSha256": "6af544660cab14892b3f6a5fe7317ee6d0f9755bca7f858e944be3d4366b23f3",
+      "outputSha256": "7afe860087627fe43483956ce56b3443355feab865dbbff4d4a48484cd105c3d",
+      "decodedRgbaSha256": "7fb3caf32e4d1a805c0b7f5a73d01c0fef692fcb9b261ad524a53d23b47a0e31",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/7fb3caf32e4d1a805c0b7f5a73d01c0fef692fcb9b261ad524a53d23b47a0e31/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/7fb3caf32e4d1a805c0b7f5a73d01c0fef692fcb9b261ad524a53d23b47a0e31/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Lohan cut151 slot4 red-brown tiled canopy and lower timber frontage, with a small pale round basket/fitting near the upper right. Trace the left low roof plane, the taller diagonal roof plane rising off the top right, the gap beneath the left canopy and the cropped vertical timber face at lower right. Restore small overlapping rows of reddish roof tiles rather than plain red boards. Keep the basket/fitting in exactly the source location and size, without invented fruit, labels or handles. Add restrained dim rustic tile relief and timber grain. Strict framing: exactly 52:64 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.\n\nSource correction:\nPrecise source-footprint correction. Image1 is the custom draft, image2 authoritative original cutout, image3 original scene context. Keep the red-brown small overlapping roof tiles and dim timber shading, but trace the COMPLETE original52:64 silhouette and all internal openings from image2. The draft incorrectly leaves the lower-left source footprint empty: restore the full broad pale tan stone/pier fragment along the left edge down to the bottom and the short dark timber section beneath the left roof. Match the original opening width, not the draft's oversized empty gap. Preserve the right cropped vertical timber face, diagonal roof planes and small pale basket/fitting at the original location. Do not turn the pale left pier into a skinny wooden leg. Make the entire original occupied footprint covered by painted material, retaining real transparent negative space only where the original has it. Exact52:64 canvas, no padding or new objects. Continue restrained hand-painted HD game style; one isolated texture on transparency.\n\nSource mask correction:\nPrecise source-locked HD repaint. Lohan cut151 slot4, canvas exactly52:64. Image1 authoritative original; image2 same original brightened only for reading dim materials; image3 the EXACT source occupancy mask (WHITE=painted material must cover, BLACK=transparent hole); image4 native scene context. Reconstruct the red-brown tiled canopy and timber front in the precise position of image1, strictly following image3 occupancy. Restore fine overlapping red tile rows. The LEFT pale weathered stone/pier is a cropped strip TOUCHING THE LEFT CANVAS EDGE from mid-height down to the bottom: do not leave any transparent left margin there, do not center a free-standing pillar, do not taper its occupied strip into nothing. The dark opening below the low left roof occupies approximately20%-44% of width,53%-86% of height, with original stepped contour; match the mask's opening, do not shift it to the right. The right vertical warm-brown wood face fills the source region beside that opening and reaches the right/bottom crop. Retain the rising roof plane off the upper right, narrow ridge and small pale round basket/fitting at original upper-right-middle location. Keep source plane proportions and original dim rusty-brown/gray palette. Refine tile and timber material continuously, without inventing architecture or contents. No thick added beams or new roof planes. One original-framed high-definition hand-painted texture on actual transparency exactly where image3 is black. No mask/guide/board/text in final output, no added canvas padding.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "dbe6e8675cd05446200cd20f6e7abfa92fda81a4df303fc80c726fb59f75fa9f:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 151,
+      "representativeLocation": "Lohan",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Lohan cut151 slot4 cropped red tiled canopy over dark timber frontage, with pale left edge fragment, an opening beneath the low roof and a small pale round fitting with dark warm projections near the upper right.",
+        "style": "Original, held neural, rejected drafts, corrected output and isolated native slot placement compared. First two paintings omitted or shifted the left occupied strip and exceeded source coverage limits. A source occupancy guide restores the left-edge footprint and opening position; separate reddish tile rows replace the neural plain roof. Fine tile grain, masonry interpretation and fitting details/projections are interpretive, not a new object-identity or exact tiny contents claim.",
+        "layout": "Exact4x canvas [52, 64] to [208, 256]; source alpha and visible-black classes exact. Pinned cutout stage extends 583 target pixels, uncovered 323, maximum squared extension distance 58. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "7afe860087627fe43483956ce56b3443355feab865dbbff4d4a48484cd105c3d",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 63968,
+      "paintedGapPixelsExtended": 1137,
+      "paintedUncoveredSourcePixels": 775,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 25,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        118,
+        64
+      ],
+      "targetSize": [
+        472,
+        256
+      ],
+      "generatedSha256": "8cc97e633575248322744a0db33ed2846c4420d81a7fd67d76babdfc1575ead3",
+      "outputSha256": "cf7ca17da34640a616eb4d1211ea8f0bfffc028f14d5886b4a64f75ea2cb1215",
+      "decodedRgbaSha256": "e50a510f3c6232207e8f6fd1e7e0cf9a59ad18ef32577a084ad520732177b99f",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/e50a510f3c6232207e8f6fd1e7e0cf9a59ad18ef32577a084ad520732177b99f/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/e50a510f3c6232207e8f6fd1e7e0cf9a59ad18ef32577a084ad520732177b99f/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Fueno cut314 slot3 rounded bent wooden chair at left and the cropped warm tabletop/surface at right. Preserve the rounded oval back opening, two horizontal back rails, thin oblique legs, dark woven seat in the lower left/center and the broad curved warm surface cropped against the right and bottom edges. The seat must be fine interlaced cane lattice, not parallel boards or a black solid patch. Keep the chair perspective and scale, with warm wood on the curved right-hand surface. Do not add another chair, rug or cushion. Strict framing: exactly 118:64 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "af6ffd2fe470a39996173584a4197ebc6cd43a514e23aad2442b807660fceeb3:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 314,
+      "representativeLocation": "Fueno",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Fueno cut314 slot3 rounded wooden chair with oval back opening, horizontal rails and fine woven cane seat beside a cropped broad warm curved tabletop/surface.",
+        "style": "Original, held neural, output and isolated source slot placement compared. Cane crossings replace parallel neural seat ribs while preserving back openings and oblique chair/table crop. Scene position supports a tabletop/surface beside the chair rather than assuming the older floor label. Fine fiber count and timber grain are interpretive.",
+        "layout": "Exact4x canvas [118, 64] to [472, 256]; source alpha and visible-black classes exact. Pinned cutout stage extends 1137 target pixels, uncovered 775, maximum squared extension distance 25. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "cf7ca17da34640a616eb4d1211ea8f0bfffc028f14d5886b4a64f75ea2cb1215",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 12112,
+      "paintedGapPixelsExtended": 662,
+      "paintedUncoveredSourcePixels": 566,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 157,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        36,
+        24
+      ],
+      "targetSize": [
+        144,
+        96
+      ],
+      "generatedSha256": "18223a3467f88674f3f96d18b5a074f153c02f26c2e6da03f048ac8565bd06ff",
+      "outputSha256": "9a082e8d6568b3bcc5c64939a0bcd7152ed318f9e2aa4253503afdfe5a6e54ea",
+      "decodedRgbaSha256": "f762b2a9c7aa84c072fec8a34b987cf6b1860eed99501b55bd8f47493b48514f",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/f762b2a9c7aa84c072fec8a34b987cf6b1860eed99501b55bd8f47493b48514f/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/f762b2a9c7aa84c072fec8a34b987cf6b1860eed99501b55bd8f47493b48514f/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Lohan cut147 slot3 round/oval warm woven decorative surface inside a pale lower rim, seen obliquely. Trace the original dome/ellipse, central warm darker vertical illumination and the small pale rim/background strip at the bottom. Restore fine crossing straw/cane fibers and small interlaced weave cells, not broad vertical wooden panels. Keep the same warm ochre/brown shading, footprint and crop. The source does not establish a pot, hat or fruit basket: do not add handles, contents, spout or a new opening. Strict framing: exactly 36:24 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "adf59cf64a24324d0b6b10e5f3948ede8a16ca450b0be5a22abb06ecf7857954:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 147,
+      "representativeLocation": "Lohan",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Lohan cut147 slot3 oval warm woven decorative surface within a pale lower rim, with shaded left and highlighted right portions.",
+        "style": "Original, held neural, output and isolated source slot placement compared. Crossing woven fibers replace the neural broad vertical wood panels; warm oval surface, pale rim and source lighting direction remain. The exact woven object role is not assigned as a pot, hat or basket; fine weave count and curvature shading are interpretive.",
+        "layout": "Exact4x canvas [36, 24] to [144, 96]; source alpha and visible-black classes exact. Pinned cutout stage extends 662 target pixels, uncovered 566, maximum squared extension distance 157. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "9a082e8d6568b3bcc5c64939a0bcd7152ed318f9e2aa4253503afdfe5a6e54ea",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 17712,
+      "paintedGapPixelsExtended": 268,
+      "paintedUncoveredSourcePixels": 238,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 49,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        42,
+        28
+      ],
+      "targetSize": [
+        168,
+        112
+      ],
+      "generatedSha256": "723d57c94e52357d678aa25dc78128bea4d4bf8e0c873878fdf5265988f0ed89",
+      "outputSha256": "c28a83040c1cb0f537b63f32d4de92a4fdd628121f24d7115f6a52ade974758a",
+      "decodedRgbaSha256": "fd36077b0ba662973a55d37803be1376b75cb538a808b7b72258f11186eb2d5a",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/fd36077b0ba662973a55d37803be1376b75cb538a808b7b72258f11186eb2d5a/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/fd36077b0ba662973a55d37803be1376b75cb538a808b7b72258f11186eb2d5a/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Lohan cut147 slot1 yellow woven architectural/decorative surface above and around a rounded dark inset. Preserve the nearly rectangular bright upper woven band and broad dark arch beneath it, including the rounded inset near the lower center. Restore dense fine crossing straw/cane weave with source-light yellow and olive-brown shading. Do not replace this weave with large black beams or angular timber panels. Do not invent doors, handles, lettering, a basket or foliage. Strict framing: exactly 42:28 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.\n\nSource correction:\nPrecise source-faithful repaint of Lohan cut147 slot1. Image1 is authoritative42:28 original, image2 original scene context. Restore the original fine yellow/ochre interlaced straw/cane surface. STRICT exact42:28 canvas and source silhouette: the bright rectangular upper band touches the top and spans the FULL canvas width; no padded or rounded upper corners. The lower broad dark rounded inset is a flatter source-shaped oval/arch extending to the bottom, not a new hanging basket. Keep its source-positioned shading and curved sides. Texture is many SMALL crossing woven fibers with light checker-like highlights. NO thick vertical bamboo poles, NO three posts, NO large dark X-braces, NO new horizontal beams, NO binding knots or invented framework. Restore all original occupied pixels and their color masses, including sides of the dark inset. Keep continuous fine woven texture and warm dim source lighting, improving resolution without a pixel mosaic. No lettering, handles, flowers or new doors. One exact-framed HD texture on real transparency where the source has empty space.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "adf59cf64a24324d0b6b10e5f3948ede8a16ca450b0be5a22abb06ecf7857954:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 147,
+      "representativeLocation": "Lohan",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Lohan cut147 slot1 bright yellow woven upper band above a dark rounded inset, cropped as an architectural/decorative surface.",
+        "style": "Original, held neural, rejected draft, corrected output and isolated native slot placement compared. Initial painting added three heavy uprights and rounded/padded the occupied upper corners; rejected on geometry/material. Selected correction restores a full-width upper band and dense fine continuous weave over the lower curved inset. No invented framework is selected. Weave topology and exact function of the dark inset remain interpretive.",
+        "layout": "Exact4x canvas [42, 28] to [168, 112]; source alpha and visible-black classes exact. Pinned cutout stage extends 268 target pixels, uncovered 238, maximum squared extension distance 49. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "c28a83040c1cb0f537b63f32d4de92a4fdd628121f24d7115f6a52ade974758a",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 13936,
+      "paintedGapPixelsExtended": 784,
+      "paintedUncoveredSourcePixels": 664,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 100,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        58,
+        22
+      ],
+      "targetSize": [
+        232,
+        88
+      ],
+      "generatedSha256": "1f5154c467182c729862b56d9bbaf35f66c72c65af6aef03442e9a89ba656106",
+      "outputSha256": "0a82cc875ccd0382902df02bfdf7aa351ae30be3ea8d814e8e1c40e9cba422d2",
+      "decodedRgbaSha256": "e65b2467ad46f137f61117c25a530646b320267ffcff62ec87b5012099d92185",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/e65b2467ad46f137f61117c25a530646b320267ffcff62ec87b5012099d92185/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/e65b2467ad46f137f61117c25a530646b320267ffcff62ec87b5012099d92185/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Twin Castle cut667 slot1 cropped curved green upholstered furnishing back at lower foreground. Preserve the partial oval right back panel with narrow warm gold/brown rim, its source repeated small dark inset marks in their visible relative positions, and the left dark curved support/partial neighboring back fragment with a thin light crosspiece. Image 3, when present, is an exposure-lifted copy of the original for visibility only: retain original dim lighting from image 1 and scene. Keep the distinctive small dark patterned upholstery marks, not a plain smooth cushion, not ornate invented brocade, lettering or studs. Add fine restrained cloth and frame detail while tracing source internal geometry. Strict framing: exactly 58:22 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.\n\nSource correction:\nPrecise pattern-only correction of custom Twin Castle chair texture. Image1 custom draft; image2 authoritative58:22 original; image3 scene context; image4 exposure-lifted original guide ONLY for reading dim marks. Keep the draft's current green cloth shading, gold/brown rim, cropped curved right panel and partial curved left support geometry. Correct the repeated dark marks to the ORIGINAL pattern's location, approximate spacing and density. The draft invented red radial flower/star florettes: REMOVE every radial flower/star symbol. Source marks are very small plain dark brown/near-black understated square/diamond spots, sparsely near top then more clustered toward lower right. Trace visible source marks in image2/4; do not add dense new pattern rows to fill empty fabric, and do not invent brocade or letters. Retain original dim source lighting; no luminous gold or added studs. Exact58:22 canvas, same source footprint and framing, source-negative-space transparency. One finished painted HD texture.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "eb9b947e46f0d0c3ba1a39d01adc5e290ee0c10ed407482fd2166323aa4ec168:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 667,
+      "representativeLocation": "Twin Castle",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Twin Castle cut667 slot1 cropped green upholstered curved furnishing back with a narrow warm rim, repeated small dark inset marks and partial left curved support.",
+        "style": "Original, exposure-lifted private guide, held neural, rejected radial-symbol draft, corrected output and isolated scene placement compared. Removes invented radial flowers/stars; small plain dark marks follow the source sparse upper and denser lower-right pattern. Exact subpixel mark shapes/positions and cloth weave are interpretive, not embroidered lettering, new emblems or studs.",
+        "layout": "Exact4x canvas [58, 22] to [232, 88]; source alpha and visible-black classes exact. Pinned cutout stage extends 784 target pixels, uncovered 664, maximum squared extension distance 100. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "0a82cc875ccd0382902df02bfdf7aa351ae30be3ea8d814e8e1c40e9cba422d2",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 12544,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        28,
+        28
+      ],
+      "targetSize": [
+        112,
+        112
+      ],
+      "generatedSha256": "e431ee3224a19697c4f2a7064cabbb310a4b952554f7f3f8283b37fe152a4784",
+      "outputSha256": "d92586d5617065928fe0d7997ca574b5d854083e185e5cd8d536121c7f63708d",
+      "decodedRgbaSha256": "c6bcf2903e68d9c9c2f8382227137b5a8c9405d314b86b33849aa9b6efda286d",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/c6bcf2903e68d9c9c2f8382227137b5a8c9405d314b86b33849aa9b6efda286d/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/c6bcf2903e68d9c9c2f8382227137b5a8c9405d314b86b33849aa9b6efda286d/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Moon cut607 slot3 tiny red-capped plant with slender pale vertical stem, green leaf sprays and very pale snow/ground patch. Preserve the small flattened umbrella-like red cap near upper center-left, thin stem down toward bottom, original separate left/right green leaves and soft lavender-gray ground shadow. Trace all original stem/leaf positions; do not turn them into black twig branches. Keep the entire source square ground background opaque, cool off-white with subtle scene illumination. Add restrained painted red/green/pale detail without adding flowers, berries, a second plant or extra stems. Strict framing: exactly 28:28 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Keep the complete square off-white ground patch opaque; do not output a transparent isolated plant. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.\n\nSource ground-color correction:\nPrecise ground-color correction, no new composition. Image1 custom painted Moon plant; image2 authoritative original28x28 texture; image3 original scene. Preserve the custom plant's red cap, pale vertical stem and separate green leaf positions. The generated snow background creates a visible square seam. Replace ALL background outside the plant and its very local original foot shadow with an exactly uniform neutral light gray RGB(224,224,224), hex#E0E0E0, matching image2. The whole canvas edge and corners must be that single solid gray color. NO snowy brush texture, NO blue tint, NO white highlights, NO vignette, NO gradient, NO lighting noise, NO paper texture in this flat background. Keep only the original small lavender-gray foot shadow immediately around the stem base, in its original location, fading locally into flat gray. Match source cap/leaf proportions and placement, source square28:28 framing, no margins added. Entire texture opaque, not transparent: seamless flat gray around a refined small painted red-capped plant. Exactly one texture.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "c7b206afb4ae1915783289505d7a609277649aa61bdd8299ee15d25534010d1c:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 607,
+      "representativeLocation": "Moon",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "opaqueBorderRepair": {
+        "method": "python-painted-opaque-uniform-source-border-1",
+        "sourceBorderRgb": [
+          224,
+          224,
+          224
+        ],
+        "exactSourceBorderPixels": 1,
+        "featherTargetPixels": 4,
+        "modifiedTargetPixels": 3216,
+        "sourceFeaturePixelsExcluded": true,
+        "workingSize": [
+          112,
+          112
+        ],
+        "algorithmPath": "scripts/repair-envhd-painted-opaque-border.py",
+        "algorithmSha256": "d5a6b3b9b9177b2292863ee3391720065e7e9155f943b221ee1edcd2b73365bc"
+      },
+      "review": {
+        "intent": "Moon cut607 slot3 small red-capped plant with pale stem, separate left/right green leaf sprays and local lavender-gray foot shadow on an opaque flat neutral-gray ground patch.",
+        "style": "Original, held neural, rejected snowy draft, color-corrected output and isolated native slot placement compared. Red cap, pale stem and separate green leaves resolve altered neural black branching. Snowy generation introduced a square seam; targeted color edit improved it and separately pinned Python uniform-border repair matches native RGB224 at the outer source pixel, blending only into source-identical flat background pixels. Fine petal/cap morphology, leaf veins and local shadow remain interpretive. Border source matching does not prove native lighting/state behavior.",
+        "layout": "Exact4x canvas [28, 28] to [112, 112]; source alpha and visible-black classes exact. Pinned cutout stage extends 0 target pixels, uncovered 0, maximum squared extension distance 0. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay. Before cutout repair, the separately pinned opaque-border stage changes3216 source-flat target pixels; exact uniform native border required, non-flat source feature/shadow pixels excluded. Source boundaries match RGB224 exactly. Raw RGB tool PNG is preserved byte-for-byte; only constant opaque alpha is added for repair.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "d92586d5617065928fe0d7997ca574b5d854083e185e5cd8d536121c7f63708d",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 9856,
+      "paintedGapPixelsExtended": 1008,
+      "paintedUncoveredSourcePixels": 648,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 212,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        36,
+        28
+      ],
+      "targetSize": [
+        144,
+        112
+      ],
+      "generatedSha256": "ad7b0748174e005b57a00999226c90bb9bb342d829de88260cb941e945931537",
+      "outputSha256": "494fbecfa14bfd61642a604f70173f4121961b83bee4faca42b92ca289037781",
+      "decodedRgbaSha256": "71ad24516af82052db0d6ffcaed4dded06c7d1d778f4760dbf8cdf3301f24726",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/71ad24516af82052db0d6ffcaed4dded06c7d1d778f4760dbf8cdf3301f24726/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/71ad24516af82052db0d6ffcaed4dded06c7d1d778f4760dbf8cdf3301f24726/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Valley cut258 slot7 tiny dim vegetation and brown rocky fragment by the lower-right path. Preserve the original bushy dark-green sprays at upper left, warm angular rock planes at lower center/right and small green rise at far right. Image 3 is an exposure-lifted source guide to reveal structure only; match original dim canyon lighting from image 1 and image 2. Add fine restrained leaves and weathered rock while keeping every branch direction, broad color mass and crop. Do not invent metal spikes, a container, carved symbols or new objects. Strict framing: exactly 36:28 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "80242e8d5ea1f00bfbacb02550d2cd273d6cbcee8c8dccd326cefe1d8d5772c4:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 258,
+      "representativeLocation": "Valley",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Valley cut258 slot7 dim dark-green vegetation sprays beside warm brown rocky planes at the lower-right path, with a small green rise at the right edge.",
+        "style": "Original, exposure-lifted private guide, held neural, output and isolated native slot placement compared. Fine leaf clusters and weathered rock replace the neural sharpened protrusions; source green/brown masses and branch directions retained. Species, rock fissures and thin branches are interpretive; actual native visibility/reachability remains pending.",
+        "layout": "Exact4x canvas [36, 28] to [144, 112]; source alpha and visible-black classes exact. Pinned cutout stage extends 1008 target pixels, uncovered 648, maximum squared extension distance 212. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "494fbecfa14bfd61642a604f70173f4121961b83bee4faca42b92ca289037781",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 31920,
+      "paintedGapPixelsExtended": 1584,
+      "paintedUncoveredSourcePixels": 990,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 20,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        46,
+        116
+      ],
+      "targetSize": [
+        184,
+        464
+      ],
+      "generatedSha256": "6071eb95296735eca0785ed5bf02a6dddb0c90cc4f05ec4bdabc522f19c52d57",
+      "outputSha256": "67869692e667dd122743a4570d441af6f03aeea24f3c1a9e7972f3a32313aa22",
+      "decodedRgbaSha256": "d72362f570ad1396d84521b7de27a27293990e1989a331e7ff08373e07174fc8",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/d72362f570ad1396d84521b7de27a27293990e1989a331e7ff08373e07174fc8/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/d72362f570ad1396d84521b7de27a27293990e1989a331e7ff08373e07174fc8/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Queen Fury cut284 slot1 suspended wooden lattice crate beneath two chains, a rounded dark metal hoist fitting and angled suspension straps. Preserve both chains entering from the top, the source rounded hoist shape with tiny pale fastener highlights, narrow lower neck, angled triangular strap outline and the small open-topped crate at the bottom. The crate sides are a dense small crossing wood lattice, not solid dark panels or merely two large X-braces. Restore the fine open lattice on both angled visible side faces while matching source dark lighting and warm timber. Keep the original chain/link positions and crate perspective, without adding cargo, treasure, labels, a new pulley wheel or more chains. Strict framing: exactly 46:116 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "248583f2b89a5ed1069e5b6406f54515cd412ec561b2720fbd94fc934e1f7b4f:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 284,
+      "representativeLocation": "The Queen Fury",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Queen Fury cut284 slot1 open-topped suspended wooden lattice crate beneath two chains, a rounded hoist fitting and angled suspension straps.",
+        "style": "Original, held neural, output and isolated scene placement compared. Crossing lattice returns on both oblique crate faces instead of the neural solid panels/large braces. Two chain runs, round fitting, straps, empty top and crate perspective remain. Fine lattice cell count, fasteners, link relief and hoist details are interpretive; no cargo or treasure is added.",
+        "layout": "Exact4x canvas [46, 116] to [184, 464]; source alpha and visible-black classes exact. Pinned cutout stage extends 1584 target pixels, uncovered 990, maximum squared extension distance 20. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "67869692e667dd122743a4570d441af6f03aeea24f3c1a9e7972f3a32313aa22",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 10496,
+      "paintedGapPixelsExtended": 342,
+      "paintedUncoveredSourcePixels": 233,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 26,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        52,
+        42
+      ],
+      "targetSize": [
+        208,
+        168
+      ],
+      "generatedSha256": "9f254e4388f0a7a08dd0325233a412ee6115e4a900a11a3aaf102db8f32783fc",
+      "outputSha256": "de0979c14922f8708f4d2f7315d4872940a3239a8e2365252701a2957ca16cdb",
+      "decodedRgbaSha256": "7bdefad38d8855c31c9277bcf9468fc2e058bf2750a6304ec947f3f8a80b5c13",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/7bdefad38d8855c31c9277bcf9468fc2e058bf2750a6304ec947f3f8a80b5c13/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/7bdefad38d8855c31c9277bcf9468fc2e058bf2750a6304ec947f3f8a80b5c13/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Deningrad cut354 slot5 narrow diagonal bed fragment. Keep the small cropped brown/pale pillow/head section at upper left, the long bright muted-blue quilt at center, and the warm brown/red/olive patterned foot drape/foot end at lower right. The blue textile has subtle repeated pale-blue geometric weave, small dense marks and folds; the warm foot end has small red/green/tan source flecks rather than a blank smooth board. Maintain the exact narrow diagonal footprint and all overlaps; do not invent a full mattress, extra bed posts or broad frame outside this cropped fragment. Treat the quilt as fabric, not smooth foam. Strict canvas: exactly 52:42 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.\n\nRefinement 1:\nEdit the high-definition draft in image2, using authoritative original image1 and scene image3. Keep its exact canvas, blue quilt, folds, source silhouette and warm head/foot fabric sections. Remove the invented prominent red/green flower emblems and broad decorative border stripes from the warm head and foot fabric. Replace them with densely woven muted tan/brown fabric containing very small restrained irregular red/green/tan geometric flecks, following the original's small-scale pattern density. No recognizable flowers, stars, badges or large decorative symbols. Keep the blue quilt's subtle fine pale-blue weave and original bright-blue lighting; do not add objects or change proportions. Output real transparency. Exactly 52:42 canvas aspect.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "3afb3efaa7e337ba72ac95342b4d48c5ac3c96ac0fbe984cf4ad0abda75cb680:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 354,
+      "representativeLocation": "Deningrad",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Deningrad cut354 slot5 narrow diagonal blue quilt fragment with warm patterned head/foot sections.",
+        "style": "Original, held neural, rejected ornate draft, corrected output and isolated native slot placement compared. Fine blue geometric weave replaces the neural smooth blanket; prominent red/green flower emblems and broad borders were removed from the warm ends in favor of restrained small woven flecks. Cloth folds and tiny patterns/trim are interpretive; no exact embroidery or tiny fitting identity claim.",
+        "layout": "Exact4x canvas [52, 42] to [208, 168]; source alpha and visible-black classes exact. Pinned cutout stage extends 342 target pixels, uncovered 233, maximum squared extension distance 26. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "de0979c14922f8708f4d2f7315d4872940a3239a8e2365252701a2957ca16cdb",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 12912,
+      "paintedGapPixelsExtended": 624,
+      "paintedUncoveredSourcePixels": 487,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 53,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        44,
+        38
+      ],
+      "targetSize": [
+        176,
+        152
+      ],
+      "generatedSha256": "aebc026a2bc68d2a43930ff7031b5396fe62d4d9191cf48331c6b35c7d08f7ab",
+      "outputSha256": "236f7faa7e4af4cb72fdada4d335972122956c4faa5dd016261df23b0ecbcbcd",
+      "decodedRgbaSha256": "a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Deningrad cut355 slot5 diagonal bedcover with a pale cream pillow at upper left, muted grey-blue/teal patterned cloth extending toward lower right, and a warm brown wooden footboard with a thin warm top edge and its existing low protrusions. Keep the original cooler, dimmer desaturated blue of this damaged-room scene. Restore small subtle repeated textile marks and shallow folds on the cover, not plain featureless foam. Keep the diagonal perspective and original brown footboard dimensions, crop and lighting; do not make it the bright blue of another room. Strict canvas: exactly 44:38 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "b338bf674a63dbd7907841e4473e604dbb0d55f0c36f8ace6966d79d9f53684d:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 355,
+      "representativeLocation": "Deningrad",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Deningrad cut355 slot5 pale pillow and muted grey-blue/teal patterned bedcover above a brown footboard in the damaged-room scene.",
+        "style": "Original, held neural, output and isolated native slot placement compared. Subdued geometric textile marks and soft folds replace featureless neural cloth; this view retains its cooler/desaturated source lighting rather than the intact room's bright blue. Wood grain, exact thread shapes and fold relief are interpretive.",
+        "layout": "Exact4x canvas [44, 38] to [176, 152]; source alpha and visible-black classes exact. Pinned cutout stage extends 624 target pixels, uncovered 487, maximum squared extension distance 53. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "236f7faa7e4af4cb72fdada4d335972122956c4faa5dd016261df23b0ecbcbcd",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 47120,
+      "paintedGapPixelsExtended": 2825,
+      "paintedUncoveredSourcePixels": 2571,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 725,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        92,
+        54
+      ],
+      "targetSize": [
+        368,
+        216
+      ],
+      "generatedSha256": "d1813c9213b18badb65338db95b7f0f20dc5ad0612f8de8afdba5b4ae7ecd71b",
+      "outputSha256": "14aa386473e1233fd249f89c443e76248c84844fefb3ba71c4dfce71322d3116",
+      "decodedRgbaSha256": "ec8b91c3b778e37e0f561c0361a5c06b0f641f123a0119c381257c38f1a1cb7f",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/ec8b91c3b778e37e0f561c0361a5c06b0f641f123a0119c381257c38f1a1cb7f/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/ec8b91c3b778e37e0f561c0361a5c06b0f641f123a0119c381257c38f1a1cb7f/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Bale cut76 slot2 diagonal bed with dark warm wooden head/foot ends and existing thin posts, brown pillow at upper left, pale cream folded sheet band, and rust/brown textured cloth bedcover extending to lower right. The brown cover is softly folded fabric with a dense subtle repeating warm pattern, not parallel wooden planks or heavy rigid ribs. Preserve the original broad folds, subdued rust/brown palette, cream band, oblique camera view and wood posts exactly. Add fine restrained textile fibers and small source-like weave details without invented florals, writing or new objects. Strict canvas: exactly 92:54 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.\n\nRefinement 1:\nEdit the high-definition draft in image2 against source image1 and scene image3. Preserve exact layout, dark wood head/foot ends and posts, brown pillow, cream sheet band, soft cloth folds and subdued rust/brown palette. Remove the prominent large diamond pattern on the brown blanket/pillow. Replace with very fine dense low-contrast warm woven dashes/flecks, with slightly aligned small rows tracing the original textile pattern and fold directions. The cover must read as softly draped woven cloth, with neither large geometric emblems nor rigid wood ribs. Keep the original light direction and all object positions. Output real transparency. Exactly 92:54 canvas aspect.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "33b022d89bc49a38aed135ee84162df2e1cc5742a5b2117ff969b7111d69622d:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 76,
+      "representativeLocation": "Bale",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Bale cut76 slot2 warm dark wooden bed ends/posts, brown pillow, cream sheet band and rust/brown woven cloth cover.",
+        "style": "Original, held neural, rejected large-diamond draft, corrected output and isolated source slot placement compared. Dense subtle warm woven rows/flecks follow the original cloth direction and replace the neural rigid plank/rib appearance. Prominent diamond emblems were removed. Pillow/cloth folds, precise thread count, post relief and grain are interpretive.",
+        "layout": "Exact4x canvas [92, 54] to [368, 216]; source alpha and visible-black classes exact. Pinned cutout stage extends 2825 target pixels, uncovered 2571, maximum squared extension distance 725. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "14aa386473e1233fd249f89c443e76248c84844fefb3ba71c4dfce71322d3116",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 26816,
+      "paintedGapPixelsExtended": 1496,
+      "paintedUncoveredSourcePixels": 1145,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 50,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        90,
+        46
+      ],
+      "targetSize": [
+        360,
+        184
+      ],
+      "generatedSha256": "820dbba43ca5273fde9025c747f5f831ec25fe839d48d255a0315fd7b814d967",
+      "outputSha256": "960a3e61c51a00b4c2fce59fbf3560d629927f043bb5540581d67edb178adbce",
+      "decodedRgbaSha256": "989261f7875eefae7dd70b8cb179f659af48ae9f96b2de0ce1cf70be74f6fcb4",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/989261f7875eefae7dd70b8cb179f659af48ae9f96b2de0ce1cf70be74f6fcb4/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/989261f7875eefae7dd70b8cb179f659af48ae9f96b2de0ce1cf70be74f6fcb4/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Bale cut71 slot1 long dark green upholstered bench rising diagonally from lower left toward upper right, with warm dark wooden side rails, thin legs and raised end panels. Preserve the existing small warm wooden table and rounded grey/olive vessel at far left. The green seat contains dense, tiny subdued golden-olive geometric flecks/diamond-like weave marks, not featureless green and not ornate floral brocade. Retain the small-motif density and dim green/brown source lighting. Image3 is an exposure-lifted source guide only: do not brighten the final to that exposure. Keep each object angle, silhouette and gap unchanged. Strict canvas: exactly 90:46 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "341db4825f7aff6187e1f2d420497691445d7776ada62dbff539398d81c2be35:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 71,
+      "representativeLocation": "Bale",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Bale cut71 slot1 long dark-green patterned upholstered bench in warm timber framing beside its small warm table and rounded grey/olive vessel.",
+        "style": "Original, private exposure guide, held neural, output and isolated slot placement compared. Dense small subdued golden-olive geometric marks replace the plain neural seat. Bench crop, table/vessel position and dim room palette remain. Fine motif grouping, thread count, joinery/grain and vessel material are interpretive; no extra furnishing is added.",
+        "layout": "Exact4x canvas [90, 46] to [360, 184]; source alpha and visible-black classes exact. Pinned cutout stage extends 1496 target pixels, uncovered 1145, maximum squared extension distance 50. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "960a3e61c51a00b4c2fce59fbf3560d629927f043bb5540581d67edb178adbce",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 16640,
+      "paintedGapPixelsExtended": 1651,
+      "paintedUncoveredSourcePixels": 1424,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 100,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        60,
+        40
+      ],
+      "targetSize": [
+        240,
+        160
+      ],
+      "generatedSha256": "81dc9b7fb4c298ee5ebe27c06f17db59d41078001f4ada99b59132a35e527de1",
+      "outputSha256": "19ed40db516901f7fa4eccf5c2350a21e1b01ca75079865641d9e26e40d3b55a",
+      "decodedRgbaSha256": "a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Bale cut71 slot0 matching dark green upholstered bench seen from the reverse diagonal, upper left to lower right, within its own exact crop. Preserve the warm brown wooden rails, thin legs and curved/raised end supports. Restore dense small subdued golden-olive flecks/diamond-like woven marks on the dark green seat, consistent in material with the other bench but using this source view. Keep original very dim room lighting. Image3 is an exposure-lifted source guide only, not final exposure. Do not add a table, vessel, large floral symbols, thick cushions or upholstery beyond the original footprint. Strict canvas: exactly 60:40 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "341db4825f7aff6187e1f2d420497691445d7776ada62dbff539398d81c2be35:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 71,
+      "representativeLocation": "Bale",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Bale cut71 slot0 matching dark-green patterned upholstered bench in the opposite diagonal view with its own timber rails/end supports and crop.",
+        "style": "Original, private exposure guide, held neural, output and isolated slot placement compared. Small golden-olive woven marks match the related bench material while retaining this distinct source view. Exact motif count/positions and timber relief are interpretive. The unchanged cutout stage removes generated outside-footprint matte/halo and restores exact native alpha/black classes; it does not prove interior registration.",
+        "layout": "Exact4x canvas [60, 40] to [240, 160]; source alpha and visible-black classes exact. Pinned cutout stage extends 1651 target pixels, uncovered 1424, maximum squared extension distance 100. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "19ed40db516901f7fa4eccf5c2350a21e1b01ca75079865641d9e26e40d3b55a",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 8016,
+      "paintedGapPixelsExtended": 237,
+      "paintedUncoveredSourcePixels": 164,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 26,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        32,
+        30
+      ],
+      "targetSize": [
+        128,
+        120
+      ],
+      "generatedSha256": "a2ca9d16ecae7569ed55b37ea57a35cfe875d847c9769aab4d61f42488880f8b",
+      "outputSha256": "d18e66215ed6a5f0ad831691aa874ef4ec5b45daa4dc32d3d4501d20e3495ce0",
+      "decodedRgbaSha256": "e2d0768d6eb22d2ef40f2ae4a2859de3b8d1bbfcd7a61f48b6d2f00bb9ecf214",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/e2d0768d6eb22d2ef40f2ae4a2859de3b8d1bbfcd7a61f48b6d2f00bb9ecf214/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/e2d0768d6eb22d2ef40f2ae4a2859de3b8d1bbfcd7a61f48b6d2f00bb9ecf214/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Crystal Palace cut369 slot16 narrow diagonal pale bed section running from upper left to lower right. Preserve the cool grey/cream bedding with a subtle dense faint woven pattern of small muted pink, green and blue-grey flecks, the pale upper fold and soft cloth shading, and the small warm golden-brown curved footboard with its thin upright post at right. The textile must retain delicate small-scale color variation, not plain white foam, stone or a coarse pixel mosaic. Keep the original narrow silhouette, gold footboard size and stepped cutout footprint. No invented motifs, trim, additional objects or brighter scene lighting. Strict canvas: exactly 32:30 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.\n\nRefinement 1:\nEdit the high-definition draft in image2 using original source image1 and scene image3. Retain exact pale-grey/cream cloth geometry, narrow diagonal crop, soft folds and warm golden-brown footboard/right upright post. Remove recognizable floral leaves and pink flower silhouettes from the cloth. Replace them with a very subtle dense pattern of tiny irregular muted pink, green and blue-grey woven flecks/geometric thread marks, with no recognizable plants or new emblem shapes. Match the faint small pattern scale of original bedding. Keep gentle original brightness and exact source occupied footprint; do not add padding or background. Output real transparency. Exactly 32:30 canvas aspect.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "e1b3176346f070ca8d9ecf851e766d6994ac34f91d4256cd196708b85c5d503b:-1",
+          "kind": "foreground",
+          "slot": 16,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 369,
+      "representativeLocation": "Crystal Palace",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Crystal Palace cut369 slot16 narrow diagonal pale grey/cream patterned bedding and warm golden-brown curved footboard with thin right upright.",
+        "style": "Original, held neural, rejected floral draft, corrected output and isolated source slot placement compared. Delicate dense tiny pink/green/blue-grey woven flecks restore original pale color variation; recognizable flowers/leaves from the draft were removed. Fine pattern topology, folds, post geometry and wood grain are interpretive.",
+        "layout": "Exact4x canvas [32, 30] to [128, 120]; source alpha and visible-black classes exact. Pinned cutout stage extends 237 target pixels, uncovered 164, maximum squared extension distance 26. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "d18e66215ed6a5f0ad831691aa874ef4ec5b45daa4dc32d3d4501d20e3495ce0",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 7328,
+      "paintedGapPixelsExtended": 598,
+      "paintedUncoveredSourcePixels": 462,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 68,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        32,
+        30
+      ],
+      "targetSize": [
+        128,
+        120
+      ],
+      "generatedSha256": "9a62abc75cde82d96be63ed349ec2bd2e4ea04f173713b2df78daead817fb747",
+      "outputSha256": "2768332ba19c9584a3989e62496d9da48efc023ba255e46c1f2a10daaaf6c359",
+      "decodedRgbaSha256": "f1f892eb7441868656bbd630df9cbb2b40407a2192d4646a6ca481ee6e00501e",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/f1f892eb7441868656bbd630df9cbb2b40407a2192d4646a6ca481ee6e00501e/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/f1f892eb7441868656bbd630df9cbb2b40407a2192d4646a6ca481ee6e00501e/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Crystal Palace cut369 slot17 distinct partly cropped pale bed section. Trace this specific source: pale grey/cream diagonally sloping bedding from upper left toward lower right; a large dark grey roughly rectangular underside/inset region at left under the pale upper fold; narrower pale patterned cloth to its right; and the golden-brown curved footboard and thin upright right post at bottom right. Preserve the dark inset as opaque dark grey visible material in exactly its position and area, not transparency and not extra pale bedding. Restore faint dense tiny muted pink/green/blue-grey woven flecks on the pale cloth, consistent with the neighboring bed material. Do not copy the simpler slot16 silhouette, fill the dark region with cloth, widen the bed or invent ornate patterns. Strict canvas: exactly 32:30 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.\n\nRefinement 1:\nEdit the high-definition draft in image2 against original source image1 and scene image3. Keep this slot17 view unchanged, including the large opaque dark-grey left inset under the pale upper cloth fold, the narrower diagonal pale cloth to its right, and the gold footboard and thin right upright post. Remove recognizable leaves and pink flower shapes from the pale cloth. Use faint dense tiny irregular muted pink/green/blue-grey woven flecks/geometric thread marks, consistent with the neighboring pale bed material but following this original view. No plant imagery, ornate emblems, extra cloth over the dark inset, altered crop, padding or added objects. Output real transparency. Exactly 32:30 canvas aspect.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "e1b3176346f070ca8d9ecf851e766d6994ac34f91d4256cd196708b85c5d503b:-1",
+          "kind": "foreground",
+          "slot": 17,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 369,
+      "representativeLocation": "Crystal Palace",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Crystal Palace cut369 slot17 distinct cropped pale patterned bedding with a large opaque dark-grey left inset beneath its upper fold, gold footboard and right upright.",
+        "style": "Original, held neural, rejected floral draft, corrected output and isolated source slot placement compared. Dark left inset stays visible opaque material rather than being filled with pale cloth or discarded. Pale tiny pink/green/blue-grey thread flecks match the neighboring bedding style in this separate source view; recognizable flowers/leaves were removed. Exact inset role, motif count/positions and fold/wood relief remain interpretive.",
+        "layout": "Exact4x canvas [32, 30] to [128, 120]; source alpha and visible-black classes exact. Pinned cutout stage extends 598 target pixels, uncovered 462, maximum squared extension distance 68. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "2768332ba19c9584a3989e62496d9da48efc023ba255e46c1f2a10daaaf6c359",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 24512,
+      "paintedGapPixelsExtended": 1120,
+      "paintedUncoveredSourcePixels": 673,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 41,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "decodedRgbaSha256": "fc277e19a8fe83aca3ebf38815bc09484bb67863f329bc936ce0aef5a001fb5a",
+      "generatedSha256": "2d9611d943d1350eaabd0f3616aa71482a70971c6db2ea1036d382acc4f7c12f",
+      "outputSha256": "6342664be1f6e20cabb00b4e47efc8bde58f8844cc478231a1eac05dbbebee9e",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceSize": [
+        60,
+        38
+      ],
+      "targetSize": [
+        240,
+        152
+      ],
+      "generatedSize": [
+        1576,
+        998
+      ],
+      "generatedInputMode": "RGBA",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "generatedBy": "builtin-imagegen",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "a0b3aef49f70d081da5f68840af6badab105444bdde2521c821bdb4ae725b22e:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 249,
+      "representativeLocation": "Donau",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/fc277e19a8fe83aca3ebf38815bc09484bb67863f329bc936ce0aef5a001fb5a/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/fc277e19a8fe83aca3ebf38815bc09484bb67863f329bc936ce0aef5a001fb5a/image-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: one independent EnvHD foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original isolated source. Image2 is original Donau tavern context for material, placement and light only. Image3 is Skurfa HD detail/style reference only; do not copy objects, palette or lighting from it. Repaint image1 as a source-faithful detailed HD game texture. Preserve the exact 60:38 full-canvas aspect ratio, perspective, occupied outline and all existing planes. These are two compact brown upholstered furnishing/cushion surfaces with subtly irregular red and ochre woven speckles, separated by the original dark diagonal gap. Preserve the LEFT larger angled cushion, RIGHT smaller angled cushion, their dim brown-to-olive highlights, scattered tiny red/gold stitch or speckle positions and the low green-brown occupied support at the lower-left. Resolve fine fabric weave and soft edge seams without inventing a regular diamond pattern, flower, crest, letters, tufted buttons, large motif or carpentry. The original scattered design must remain small and low-contrast, not erased to blank brown or replaced with new symbols. Keep source light direction, broad colors and dark exposure; do not make a product photo or brighter/new chair. Exact original placement and sizes, no reframing, recentering, padding, crop, rotation, added shadow or missing occupied planes. Modern cohesive prerendered fantasy-game detail matching the care of Skurfa, with restrained surface texture. Output ONE isolated full-canvas texture, real transparency only outside the source occupied silhouette, no background/scene/comparison/labels. Requested 1440x912 pixels (exact 60:38 canvas).\n",
+      "styleReferencePath": "integrations/skurfa/runtime-assets/scbackgroundhd/cut31/background.png",
+      "styleReferenceSha256": "d25692cff87dd458ee5830b7762fc9ab1d7f608332b5a3a85b157503830dcb5a",
+      "review": {
+        "intent": "Donau cut249 tavern furnishing: preserve two angled brown upholstered surfaces, scattered muted red/ochre woven marks, dark diagonal separation and green-brown support. Original, rejected neural and painted repair compared; painting restores the colored surface detail lost by neural smoothing.",
+        "style": "Detailed dark brown weave and restrained small colored stitches, matching the surface finish of the supplied Skurfa reference without copying cave objects or lighting. Author-reviewed development candidate; independent detail/quality review remains pending.",
+        "layout": "Original perspective, left/right size relationship and broad shaded planes retained. Exact source canvas, alpha and visible-black classes verified separately; small source-visible edge gaps extended by the unchanged cutout recipe. Native state, occlusion and final quality remain pending.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "6342664be1f6e20cabb00b4e47efc8bde58f8844cc478231a1eac05dbbebee9e",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "decodedRgbaSha256": "73b25780b6df62143f5f3f489706004112114f04e7ab4d4fa58cf7fa4d5293cf",
+      "generatedSha256": "c96374b4120ef937f286310e8488dd0508d75f9faa3ab2d458d4ad70f2219794",
+      "generatedSize": [
+        1464,
+        1075
+      ],
+      "sourceSize": [
+        30,
+        22
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "377f5ed8f66dfba324cf418870ff59c9907a2fb5f91c46b4b56febfe78aefeca:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 206,
+      "representativeLocation": "Fletz",
+      "generatedBy": "builtin-imagegen",
+      "generationVersion": 2,
+      "prompt": "Precise source-faithful object edit for EnvHD game art. Reference1 is authoritative 30x22 Fletz bedding crop, reference2 original room placement, reference3 rejected painted attempt, reference4 Skurfa material finish only. Repaint the exact source1 crop with fine cloth texture. The prior attempt3 incorrectly turns the source's diffuse low-contrast gray-green flecks into bright outlined curlicues that look like decorative writing. Restore only the ACTUAL native pattern: irregular soft interwoven gray-green mottles and dark spots on deeply shadowed blue textile. Keep the same broad patches, their relative positions and native low contrast; do NOT invent outlines, scrolls, looping gold shapes, letters, runes or a new trim border. Restrained detailed woven fabric, dim navy/gray-green palette, original diagonal strip silhouette and source perspective. No added bed parts, reframe, padding or recentering. Exactly30:22 full-canvas aspect,1440x1056, true transparent background outside the original footprint; every native occupied region filled. Cyan room regions are missing-layer placeholders and must never be painted. Only restore the existing dark bedding fragment; no scene, labels, borders, watermark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 5216,
+      "paintedGapPixelsExtended": 390,
+      "paintedUncoveredSourcePixels": 309,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 25,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        120,
+        88
+      ],
+      "outputSha256": "54dc3e936773bb443acebb82030f966365f8628cd317784edd0c03d9e8fd31d5",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/73b25780b6df62143f5f3f489706004112114f04e7ab4d4fa58cf7fa4d5293cf/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/73b25780b6df62143f5f3f489706004112114f04e7ab4d4fa58cf7fa4d5293cf/image-v1.png",
+      "review": {
+        "intent": "Fletz cut206 narrow dark navy/gray-green patterned textile edge on bedroom furnishing. Original isolated crop and complete native room placement compared; cloth restored without the held neural pale writing-like strokes.",
+        "style": "Fine navy weave and irregular muted gray-green mottles retain shadowed textile material. Version1 outlined scrolls rejected; version2 softens those into scattered woven patches. Small motif boundaries remain interpreted; exact stitch/final Skurfa quality unaccepted.",
+        "layout": "Native30x22 full-canvas fragment retained at120x88, source alpha and visible black exact. Diagonal silhouette and original scene placement checked on private source/candidate comparisons. Native state/depth/occlusion pending.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "54dc3e936773bb443acebb82030f966365f8628cd317784edd0c03d9e8fd31d5",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    }
+  ],
+  "inputLimits": {
+    "compressedBytes": 33554432,
+    "maximumTargetPixels": 1000000,
+    "maximumGeneratedPixels": 4194304,
+    "maximumGeneratedSide": 4096,
+    "outputDimensions": "exactly four times the source; verified before decoding",
+    "decoderHeaderAgreement": "Require lazy decoded PNG format, dimensions and mode to match the validated header before any pixel allocation."
+  },
+  "heldCandidates": [
+    {
+      "decodedRgbaSha256": "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
+      "outputSha256": "24959c3a98436e8406e2044454f99391a8d79a3a7a7bccbdc0a6bbac1b526e2d",
+      "candidateManifest": "field-bespoke-bedding-upholstery.json",
+      "candidateManifestSha256": "c117248145f6e4991dfc32dfa2e70f825463e5c4956cdbee8b5b86a45cd79f4c",
+      "verdict": "intent-revision-needed",
+      "runtimeSelected": false,
+      "reason": "Independent review: substantial occupied dark support/shadow plane has uncertain intended material/content. Coverage and exact alpha cannot establish semantic fidelity. Retain native source until source-context classification or a source-faithful correction is reviewed.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "independentNewCandidateReview": "pending"
+}
