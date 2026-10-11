@@ -215,6 +215,12 @@ public final class Scus94491BpeSegment {
       }
     });
 
+    PLATFORM.onInputActionCancelled(action -> {
+      if(currentEngineState_8004dd04 != null) {
+        currentEngineState_8004dd04.inputActionCancelled(action);
+      }
+    });
+
     RENDERER.setSimulationCallback(Scus94491BpeSegment::gameLoop);
 
     RENDERER.events().onClose(() -> {

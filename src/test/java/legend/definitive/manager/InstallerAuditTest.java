@@ -118,17 +118,33 @@ class InstallerAuditTest {
     final var store = new InstallStore(temporary.resolve("startup")); store.install(fixture.pack("startup-pack", PackageManifest.hostPlatform()));
     final var started = new java.util.concurrent.CountDownLatch(1); final var finish = new java.util.concurrent.CountDownLatch(1);
     final var completed = new java.util.concurrent.CountDownLatch(1); final var responsive = new java.util.concurrent.CountDownLatch(1);
-    javax.swing.SwingUtilities.invokeAndWait(() -> new ManagerView(null,null,store.root(),() -> { },root -> {
+    final var view = new java.util.concurrent.atomic.AtomicReference<ManagerView>();
+    javax.swing.SwingUtilities.invokeAndWait(() -> view.set(new ManagerView(null,null,store.root(),() -> { },root -> {
       assertFalse(javax.swing.SwingUtilities.isEventDispatchThread()); started.countDown();
       try { if(!finish.await(5,java.util.concurrent.TimeUnit.SECONDS)) throw new java.io.IOException("Fixture inspection timeout"); return ManagerView.inspectInstallation(root); }
       catch(final InterruptedException interrupted) { Thread.currentThread().interrupt(); throw new InterruptedIOException(); }
       finally { completed.countDown(); }
-    }));
+    })));
     try {
       assertTrue(started.await(3,java.util.concurrent.TimeUnit.SECONDS));
       javax.swing.SwingUtilities.invokeLater(responsive::countDown);
       assertTrue(responsive.await(1,java.util.concurrent.TimeUnit.SECONDS),"Slow recovery/inspection must not freeze UI events");
-    } finally { finish.countDown(); assertTrue(completed.await(5,java.util.concurrent.TimeUnit.SECONDS)); }
+    } finally {
+      finish.countDown(); assertTrue(completed.await(5,java.util.concurrent.TimeUnit.SECONDS));
+      // The inspector's return is not completion: its EDT callback can start a
+      // disc worker. Drain that entire chain before TempDir cleanup is allowed.
+      awaitStartupIdle(view.get());
+    }
+  }
+  private static void awaitStartupIdle(final ManagerView view) throws Exception {
+    final long deadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(10);
+    while(System.nanoTime() < deadline) {
+      final var busy = new java.util.concurrent.atomic.AtomicBoolean();
+      javax.swing.SwingUtilities.invokeAndWait(() -> busy.set(view.isBusy()));
+      if(!busy.get()) return;
+      Thread.sleep(20);
+    }
+    fail("Installer startup workers did not finish before fixture cleanup");
   }
 
   @Test void discArchiveStagingCannotRaceAnotherInstallationOperation() throws Exception {
