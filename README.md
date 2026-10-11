@@ -28,7 +28,7 @@ Dart’s crimson armor. Meru’s patterned hammer. The faces, hair and costumes 
 
 *Earlier Definitive model → accepted CharHD reconstruction. Matched studio view of the actual geometry and materials; the left side already includes earlier face artwork.*
 
-Dart’s reconstructed head combines modeled facial features, sculpted hair locks and a **2048 × 2048 painted material**. Custom body shapes and authored armor artwork complete the current presentation, while the original animation hierarchy and attachment points remain intact. The head, geometry and material activate together through **CharHD**.
+Dart’s reconstructed head combines modeled facial features, sculpted hair locks and a **2048 × 2048 painted material**. Custom body shapes and authored armor artwork accompany the reconstructed head, while the original animation hierarchy and attachment points remain intact. The head, geometry and material activate together through **CharHD**.
 
 <details>
 <summary><strong>See the reconstruction in the native game renderer</strong></summary>
@@ -57,7 +57,7 @@ Armor paneling, cloth patterns and weapon ornamentation deserve the same attenti
 
 ### A foundation across the party
 
-**ModelsHD** refines eligible surfaces across all nine party field models and all 19 party battle forms, including Dragoon forms. It also reaches supported enemies, NPCs and scenery. **CharHD** supplies the separate character artwork and accepted bespoke reconstructions. Broader smoothing and individually rebuilt characters are distinct layers of the remaster.
+**ModelsHD** refines eligible surfaces across all nine party field models and all 19 party battle forms, including Dragoon forms. It also reaches supported enemies, NPCs and scenery. **CharHD** supplies the separate character artwork and Dart’s accepted head reconstruction. Broader smoothing and individually rebuilt characters are distinct layers of the remaster.
 
 The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, Meru, Kongol and Miranda**: faces and hair, costume panels, hands and grips, boots and weapons, guided by the original illustrations and in-game designs. Dart’s head is the first accepted reconstruction; his complete body and the remaining party reconstructions are unfinished. Dragoon-form reconstruction is a later adaptation pass.
 
