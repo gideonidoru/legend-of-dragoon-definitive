@@ -201,8 +201,8 @@ final class CleanReinstall {
         }
         if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) continue;
         if(!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Unsupported personal data: " + path);
-        if(source.getParent().equals(root.resolve("snapshots")) && source.getFileName().toString().matches("snapshot-[a-f0-9-]{36}")
-          && path.equals(source.resolve("snapshot-files.properties"))) continue;
+        // Historical metadata-looking files have no journal-bound ownership proof.
+        // Preserve them as personal bytes rather than trusting a legacy basename.
         // Historical identical data already retained as active data needs no duplicate copy.
         if(active != null && Files.isDirectory(source, LinkOption.NOFOLLOW_LINKS)) {
           final Path matching = active.resolve(source.relativize(path));

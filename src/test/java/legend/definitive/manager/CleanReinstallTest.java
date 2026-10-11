@@ -9,6 +9,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CleanReinstallTest {
   @TempDir Path temporary;
+  @org.junit.jupiter.params.ParameterizedTest
+  @org.junit.jupiter.params.provider.ValueSource(strings = {"ordinary owner notes", "not-a-complete-inventory=owner value", "saves/owner.txt=1:deadbeef"})
+  void historicalLegacySnapshotRootMetadataNameIsPreservedWithoutProvenOwnership(String bytes) throws Exception {
+    var store = new InstallStore(temporary.resolve("historical-root")); var pack = pack("historical-root-pack"); store.install(pack);
+    final String id = "snapshot-" + UUID.randomUUID(); final Path snapshot = store.root().resolve("snapshots").resolve(id);
+    Files.createDirectory(snapshot); Files.writeString(snapshot.resolve("snapshot-files.properties"), bytes);
+    store.install(pack, "", null, InstallProgress.NONE, true); store.verifyInstalled();
+    assertEquals(bytes, Files.readString(store.data(store.state()).resolve("recovered-reinstall/snapshots").resolve(id).resolve("snapshot-files.properties")));
+  }
   @Test void ownerRootReceiptFilenameSurvivesCompleteReinstallAndRepeat() throws Exception {
     var store = new InstallStore(temporary.resolve("owner-receipt")); var pack = pack("owner-receipt-pack"); store.install(pack);
     final String name = ".reinstall-preserved.properties";
