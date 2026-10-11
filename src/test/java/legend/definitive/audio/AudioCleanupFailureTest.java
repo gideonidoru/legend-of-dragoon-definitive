@@ -28,7 +28,7 @@ final class AudioCleanupFailureTest {
   @TempDir Path temporary;
 
   @ParameterizedTest
-  @ValueSource(strings = {"workerError", "workerRuntime", "workerMultiple", "directError", "directRuntime", "directMultiple", "workerHealthy", "directHealthy"})
+  @ValueSource(strings = {"workerError", "workerRuntime", "workerMultiple", "directError", "directRuntime", "directMultiple", "workerHealthy", "directHealthy", "workerXaError", "workerXaRuntime", "directXaError", "directSourceXaErrors"})
   void actualOwnerCleanup(final String scenario) throws Exception {
     final Path output = this.temporary.resolve(scenario + ".log");
     final Process child = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(),
@@ -79,21 +79,34 @@ final class AudioCleanupFailureTest {
   }
 
   private static final class Decoder implements XaDecoder {
+    private final Throwable failure;
     private boolean closed;
+    private boolean failureThrown;
+    Decoder(final Throwable failure) { this.failure = failure; }
     @Override public int channels() { return 2; }
     @Override public int read(final short[] output) { throw new AssertionError("Shutdown must not decode"); }
     @Override public void seek(final long frame) { throw new AssertionError("Shutdown must not seek"); }
-    @Override public void close() { this.closed = true; }
+    @Override public void close() {
+      this.closed = true;
+      // A controlled failure after release; a repeat close can complete the fixture teardown.
+      if(!this.failureThrown) {
+        this.failureThrown = true;
+        if(this.failure instanceof Error error) throw error;
+        if(this.failure instanceof RuntimeException exception) throw exception;
+      }
+    }
   }
 
   @SuppressWarnings("unchecked")
   public static void main(final String[] args) throws Exception {
     final String scenario = args[0];
     final boolean direct = scenario.startsWith("direct"), healthy = scenario.endsWith("Healthy"), multiple = scenario.endsWith("Multiple");
-    final Throwable failure = healthy ? null : scenario.endsWith("Runtime") ? new IllegalStateException("controlled source cleanup failure") : new AssertionError("controlled source cleanup error");
+    final boolean xaFailure = scenario.contains("Xa"), combined = scenario.equals("directSourceXaErrors");
+    final Throwable failure = healthy || xaFailure && !combined ? null : scenario.endsWith("Runtime") ? new IllegalStateException("controlled source cleanup failure") : new AssertionError("controlled source cleanup error");
+    final Throwable decoderFailure = !xaFailure ? null : scenario.endsWith("Runtime") ? new IllegalStateException("controlled decoder cleanup failure") : new AssertionError("controlled decoder cleanup error");
     final Throwable second = multiple ? new IllegalArgumentException("second cleanup failure") : null;
     final FaultSource firstFault = new FaultSource(failure), secondFault = new FaultSource(second);
-    final Decoder decoder = new Decoder();
+    final Decoder decoder = new Decoder(decoderFailure);
     final AtomicReference<Throwable> workerFailure = new AtomicReference<>(), closeFailure = new AtomicReference<>();
     long device = 0, context = 0;
     AudioThread audio = null;
@@ -134,14 +147,17 @@ final class AudioCleanupFailureTest {
       closer.start();
       closer.join(1_000);
       if(worker != null) worker.join(1_000);
+      System.out.println("callerAlive=" + closer.isAlive() + " workerAlive=" + (worker != null && worker.isAlive()) + " laterNativeSourceRetired=" + nativeSource.retired + " deviceRetired=" + (field("audioDevice").getLong(audio) == 0) + " originalDecoderFailure=" + (closeFailure.get() == decoderFailure));
       assertFalse(closer.isAlive(), "A cleanup failure must not leave the close caller waiting");
+      assertTrue(worker == null || !worker.isAlive(), "A decoder cleanup failure must not leave the worker asleep");
       assertTrue(nativeSource.retired, "A failed earlier source must not skip later native source retirement");
       assertEquals(0, field("audioDevice").getLong(audio));
       assertEquals(0, field("audioContext").getLong(audio));
       assertTrue(decoder.closed, "Terminal cleanup must release the retained XA decoder");
-      assertSame(failure, direct ? closeFailure.get() : workerFailure.get(), "Preserve the first cleanup failure");
-      assertNull(direct ? workerFailure.get() : closeFailure.get());
+      assertSame(direct ? failure == null ? decoderFailure : failure : decoderFailure, closeFailure.get(), "Preserve the caller's first cleanup failure");
+      assertSame(direct ? null : failure, workerFailure.get(), "Preserve the worker's first cleanup failure");
       if(multiple) assertArrayEquals(new Throwable[] {second}, failure.getSuppressed(), "Retain subsequent cleanup failures in order");
+      if(combined) assertArrayEquals(new Throwable[] {decoderFailure}, failure.getSuppressed(), "Retain terminal decoder failure after source failure");
       if(!healthy) assertNull(field("tmp").get(audio), "Clear the retired native buffer reference");
       audio.destroy();
       System.out.println("PASS " + scenario);

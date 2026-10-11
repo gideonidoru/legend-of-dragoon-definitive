@@ -194,6 +194,7 @@ public final class AudioThread implements Runnable {
 
   public void destroy() {
     this.scheduler.shutdown();
+    Throwable failure = null;
 
     synchronized(this) {
       this.shutdownRequested = true;
@@ -205,13 +206,20 @@ public final class AudioThread implements Runnable {
       }
 
       this.running = false;
-      this.xaPlayer.unloadOpusFile();
-      this.notify();
+      try {
+        this.xaPlayer.unloadOpusFile();
+      } catch(final Throwable thrown) {
+        failure = thrown;
+      } finally {
+        // A decoder failure must still wake the worker to retire its native resources.
+        this.notify();
+      }
     }
 
     while(this.audioDevice != 0) {
       DebugHelper.sleep(1);
     }
+    throwCleanupFailure(failure);
   }
 
   private void destroyInternal() {
