@@ -1,0 +1,234 @@
+{
+  "schema": 1,
+  "scope": "Independent original-reference review of five Undersea Cavern stage-33 candidates only; ongoing whole-game authoring remains separate.",
+  "candidateSourceRevision": "797d73b458412de3e7afcb81583413703670f0d3",
+  "runtimeSelected": false,
+  "independentArtReview": "pending",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "requiredComparisons": [
+    "Decode authorized local original game data using each exact page/CLUT/crop/UV binding; verify decoded RGBA hash. Do not publish original/comparison pixels.",
+    "Compare original, source-bound current neural baseline, and repaired render-preview-v1.png at native aspect.",
+    "Check pale diffuse areas, uneven rock divisions, pit count/placement, broad values, neighboring atlas fragments and muted source green-gray palette. Reject new fissures, cavern openings, halos or higher-contrast glow.",
+    "Review mapped stage placement and native camera, seams, filtering and effect transitions separately before native/final acceptance."
+  ],
+  "selectionAfterClearance": "Select cleared keys only using a cumulative manifest preserving all prior installed paintings and immutable receipts. Expected next cumulative count after the cleared Giganto Home increment is 40. Run actual-source atlas rebuild/byte/pixel checks. Exclude unreviewed inspector.",
+  "candidates": [
+    {
+      "decodedRgbaSha256": "bcd4e05db0ec8fe64ba0c2ac3cd591ae5b6203e60f781d45d4b51f56140cc48a",
+      "sourceSize": [
+        72,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 33,
+          "page": 7,
+          "clut": 15388,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            72,
+            72
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "dd70209dbbcac7fc2ada21fd22bfdd84a8cb162d85097f71b4f0afcdd2ea6d7e",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/bcd4e05db0ec8fe64ba0c2ac3cd591ae5b6203e60f781d45d4b51f56140cc48a/painted-input-v1.png",
+      "generatedSha256": "c1135837ed33bc90640598bc08f9ef8eda9b8a12a8ed0fdd8f5da9b8c0fcc8c6",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/bcd4e05db0ec8fe64ba0c2ac3cd591ae5b6203e60f781d45d4b51f56140cc48a/image-v1.png",
+      "outputSha256": "6d0cf2de440ed35769869590ff649f788ff8c9dd14acdfd7fe24c78c73198b2c",
+      "review": {
+        "intent": "Muted gray-green cavern rock around existing pale central tapered diffuse patch. Keep that pale area flat and original shaped, no opening, waterfall, new light or stronger glow. Preserve all broad rock divisions and bottom/right fragments. Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original structure, feature counts, motif marks, palette and broad values control fine material repair; independent scene acceptance pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "6d0cf2de440ed35769869590ff649f788ff8c9dd14acdfd7fe24c78c73198b2c",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "currentNeuralPath": "integrations/envhd/production/battle-material-candidates/bcd4e05db0ec8fe64ba0c2ac3cd591ae5b6203e60f781d45d4b51f56140cc48a/image-v1.png",
+      "previewPath": "integrations/envhd/production/battle-presentation-candidates/bcd4e05db0ec8fe64ba0c2ac3cd591ae5b6203e60f781d45d4b51f56140cc48a/render-preview-v1.png"
+    },
+    {
+      "decodedRgbaSha256": "d6133bb99d918696b4de9bd430d09174f67918c359aa0a576014ef1a5b3f2e3e",
+      "sourceSize": [
+        80,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 33,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            0,
+            136,
+            72
+          ],
+          "sourceUvOrigin": [
+            56,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "55e470ec15a06ad69e3576bfe0ac67a8bba389d76e2516d341e0faca6e3f60ea",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/d6133bb99d918696b4de9bd430d09174f67918c359aa0a576014ef1a5b3f2e3e/painted-input-v1.png",
+      "generatedSha256": "76779f475f689c2d0b892e3d2bdc99e2e64b3106b9cca831856f673263a3552a",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/d6133bb99d918696b4de9bd430d09174f67918c359aa0a576014ef1a5b3f2e3e/image-v1.png",
+      "outputSha256": "0bc1360995b1e16012092897482220c0e5b9c99d4c49f219f6728de97ea29129",
+      "review": {
+        "intent": "Muted gray-green cavern rock around the original pale roughly oval diffuse region. Copy the uneven rounded surrounding contours and plain right strip. No new cave opening, luminous beam or raised glow; preserve original broad values. Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original structure, feature counts, motif marks, palette and broad values control fine material repair; independent scene acceptance pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "0bc1360995b1e16012092897482220c0e5b9c99d4c49f219f6728de97ea29129",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "currentNeuralPath": "integrations/envhd/production/battle-material-candidates/d6133bb99d918696b4de9bd430d09174f67918c359aa0a576014ef1a5b3f2e3e/image-v1.png",
+      "previewPath": "integrations/envhd/production/battle-presentation-candidates/d6133bb99d918696b4de9bd430d09174f67918c359aa0a576014ef1a5b3f2e3e/render-preview-v1.png"
+    },
+    {
+      "decodedRgbaSha256": "5a7b472007a7f1a701e390de5d8fac555ca5320809820155f815e078e49ccd5e",
+      "sourceSize": [
+        80,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 33,
+          "page": 7,
+          "clut": 15516,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            0,
+            200,
+            72
+          ],
+          "sourceUvOrigin": [
+            120,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "21f0cf0d07385df53d8da810f36e250376e4a293e2699c6cf649fa362f2d5299",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/5a7b472007a7f1a701e390de5d8fac555ca5320809820155f815e078e49ccd5e/painted-input-v1.png",
+      "generatedSha256": "440f27d575d66e8bca6f4737c0ded42eae6261f7e61ccc932f0d0a80a976100c",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/5a7b472007a7f1a701e390de5d8fac555ca5320809820155f815e078e49ccd5e/image-v1.png",
+      "outputSha256": "638968476623ccf85d24d4ef27d1c5b32e3dadf21590e0656004dc8d85d3e66a",
+      "review": {
+        "intent": "Very pale gray-green upper haze grading into original shallow darker cracked rock at the bottom, narrow boundary fragments at both sides. Preserve smooth original diffuse gradient, do not add new large cracks or rock relief. Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original structure, feature counts, motif marks, palette and broad values control fine material repair; independent scene acceptance pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "638968476623ccf85d24d4ef27d1c5b32e3dadf21590e0656004dc8d85d3e66a",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "currentNeuralPath": "integrations/envhd/production/battle-material-candidates/5a7b472007a7f1a701e390de5d8fac555ca5320809820155f815e078e49ccd5e/image-v1.png",
+      "previewPath": "integrations/envhd/production/battle-presentation-candidates/5a7b472007a7f1a701e390de5d8fac555ca5320809820155f815e078e49ccd5e/render-preview-v1.png"
+    },
+    {
+      "decodedRgbaSha256": "ea80f659c5b213376cfea423d84bab720281c3ffde58002ddd0d4070277a58b7",
+      "sourceSize": [
+        72,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 33,
+          "page": 7,
+          "clut": 15580,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            0,
+            256,
+            72
+          ],
+          "sourceUvOrigin": [
+            184,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "0abd7ebfec8fb3570ed901ad9e777c087f8746fa8fa69bc8294694bbf7a61ecd",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/ea80f659c5b213376cfea423d84bab720281c3ffde58002ddd0d4070277a58b7/painted-input-v1.png",
+      "generatedSha256": "d130da1d38a6c7811feb415261eafed02e54cbc3cc38ce3aae2a1d4a26a3a37e",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/ea80f659c5b213376cfea423d84bab720281c3ffde58002ddd0d4070277a58b7/image-v1.png",
+      "outputSha256": "ea843b6bd630825e80214440562a3b70072d82c1da786fc4d9568698de6b816b",
+      "review": {
+        "intent": "Muted green-gray craggy rock with original oblique and vertical dark shallow divisions, plain left neighbor band and bottom fragments. Repair fine continuous mineral grain only; do not rearrange cracks or increase depth/contrast. Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original structure, feature counts, motif marks, palette and broad values control fine material repair; independent scene acceptance pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "ea843b6bd630825e80214440562a3b70072d82c1da786fc4d9568698de6b816b",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "currentNeuralPath": "integrations/envhd/production/battle-material-candidates/ea80f659c5b213376cfea423d84bab720281c3ffde58002ddd0d4070277a58b7/image-v1.png",
+      "previewPath": "integrations/envhd/production/battle-presentation-candidates/ea80f659c5b213376cfea423d84bab720281c3ffde58002ddd0d4070277a58b7/render-preview-v1.png"
+    },
+    {
+      "decodedRgbaSha256": "17778cdbca7a2bb6e9e68a67cd9a4592e065974e7acfe159bd39b467a92815d1",
+      "sourceSize": [
+        72,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 33,
+          "page": 7,
+          "clut": 15836,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            56,
+            256,
+            136
+          ],
+          "sourceUvOrigin": [
+            184,
+            56
+          ]
+        }
+      ],
+      "priorCandidateSha256": "283b441a6e2f3f68f40d1bcd25dc40d642bbe20510db8dc890543393fa498e78",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/17778cdbca7a2bb6e9e68a67cd9a4592e065974e7acfe159bd39b467a92815d1/painted-input-v1.png",
+      "generatedSha256": "5eb5ddb373df04d697123f7aebf92c8d48f5262ef61fd40a0bdfa9c09cfb2189",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/17778cdbca7a2bb6e9e68a67cd9a4592e065974e7acfe159bd39b467a92815d1/image-v1.png",
+      "outputSha256": "46fcbaedb8129fced75a14a2ba82312c2754e0459e0c2ceef3b5dd305bbbccb8",
+      "review": {
+        "intent": "Pale muted gray-green stone with the exact original uneven dark pits, existing two largest irregular pits and smaller marks in their source positions and sizes. Copy every pit rather than adding/regularizing circles; preserve bottom dark band/fragments. Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original structure, feature counts, motif marks, palette and broad values control fine material repair; independent scene acceptance pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "46fcbaedb8129fced75a14a2ba82312c2754e0459e0c2ceef3b5dd305bbbccb8",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "currentNeuralPath": "integrations/envhd/production/battle-material-candidates/17778cdbca7a2bb6e9e68a67cd9a4592e065974e7acfe159bd39b467a92815d1/image-v1.png",
+      "previewPath": "integrations/envhd/production/battle-presentation-candidates/17778cdbca7a2bb6e9e68a67cd9a4592e065974e7acfe159bd39b467a92815d1/render-preview-v1.png"
+    }
+  ],
+  "expectedPriorSelectedPresentationMastersAfterGigantoIntegration": 35
+}

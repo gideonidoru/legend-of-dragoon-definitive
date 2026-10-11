@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "56acdb4ea74de9a2b7c4e9350583baa34852486cdc22adcec0b1a74eb84b19a7",
+    "battle-presentation-artwork-v1.json": "105e863c44d2007129331d4b38d0d441a37a626d80e91079ac5f2e1bf2f5ec9a",
     "battle-presentation-reviews/93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817.json": "93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817"
   },
   "counts": {
@@ -19,10 +19,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 187,
+    "newBespokeCandidates": 208,
     "newlySelectedBespokeMasters": 22,
-    "baselineMastersStillNeedingPresentationReview": 319,
-    "pendingCandidateReviews": 165,
+    "baselineMastersStillNeedingPresentationReview": 298,
+    "pendingCandidateReviews": 186,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -859,7 +859,10 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "b4c4c7826e66fb1b2683337de6c3b01d475ef562fb6ca8543aff3a0f47e242cc",
+        "ea0146b5da11b9c02e809ee4a2bdb7114d0d411919fd0206b3bf807b9ba2bba4"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -877,7 +880,11 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "03e9384e5eb908db993dfb534bdca9077f7c0fd025e4a8f3da51c813c61d657d",
+        "d62c1e2a5b7848577e67e9f8d7b9135467a111d2da968ea452fe4300a6319f2f",
+        "ff3214e80256e31090bcc3dd03169b1a2adaffe3144db110a2614f60b25c1577"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -894,7 +901,14 @@
         4096,
         608
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "1d7ca715b77ae671c66c45fd210a23f855ab33aa5aa903c4fce784d35ca4c60d",
+        "7832408aa9310980344b3cdd465355d2200a0ad3158355c9922863b92e762d0c",
+        "842c425c6ec17e5120517560e6f4b9f6f0e39e257f120a5c3b6124fd67aead08",
+        "915ea7e602df052c441e50b5435dd93ce09a1d56fe00b2e467f276ebc0d6c390",
+        "ab10a5b25d6c6f5aa30125dca82b14b1e408c0b183d87ad90c0cd2ac90bf9c7f",
+        "ef4a708d86d097e6033fd29c4d3c7dc8e6d08513aaa0b7794ac652cc5414f77a"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -961,7 +975,14 @@
         4096,
         608
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "08d04821f7cab58068624f6640e50d31cb6615e7a4436f18aa2ea8e2afdb2358",
+        "378cf5375fd44392c7b209305f30dac9f6f1b81acdbf0c9b661b585d71ea7744",
+        "a29d3de29ffed8e438174eb26f33a3ab641ac610ed770dff0f2a9e616a31fb3a",
+        "e0ba06fed0c7bcc3be1bcc72cf7b3ac5189da0d0c33045565bda04907ef5842d",
+        "eb8a03e99cff778c98e3de327d6065ec2636a33cf0524cc091e14dd6ce496af4",
+        "fbabab05450cb330ac15f15e75e793535f4d05a5c264118801750d4256bd7302"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -979,7 +1000,12 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "70402d253c3c49f5c449bdf17d6acef45c9acf523606c36da03af97a61a2c971",
+        "b33dbf42aa9ef0ea2515960fa6ead46ca6e079c5d6094d6bae1724eac24541e1",
+        "f7ecadd10c715da1fa96ac033f71e8d2ae52a711b7da3918521356f7ccb7a7a5",
+        "f910b0848bb02a1615c0cc3839e0ae69cc719b0891998cf1897d8265fe6d47f4"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7416,7 +7442,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {40: [0, 3, 8, 9]}. Source family: cold blue stone and red-lit cave material.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7447,7 +7473,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {40: [2]}. Source family: cold blue stone and red-lit cave material.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7478,7 +7504,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {41: [0]}. Source family: green forest ground/vegetation and pale ground patches.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7509,7 +7535,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {41: [0]}. Source family: green forest ground/vegetation and pale ground patches.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7540,7 +7566,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {41: [0]}. Source family: green forest ground/vegetation and pale ground patches.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7571,7 +7597,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7602,7 +7628,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7633,7 +7659,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7664,7 +7690,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7695,7 +7721,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7726,7 +7752,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9494,7 +9520,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [1, 2]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9527,7 +9553,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [1, 2, 3]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9558,7 +9584,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [1]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9589,7 +9615,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [1]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9620,7 +9646,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [0]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9653,7 +9679,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [1, 2, 3]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9684,7 +9710,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {47: [0]}. Source family: Fort Magrad: icicles, snow, rock and vegetation. Engine random-encounter location mapping: Fort Magrad.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9715,7 +9741,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {47: [0]}. Source family: Fort Magrad: icicles, snow, rock and vegetation. Engine random-encounter location mapping: Fort Magrad.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9746,7 +9772,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {47: [0]}. Source family: Fort Magrad: icicles, snow, rock and vegetation. Engine random-encounter location mapping: Fort Magrad.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9777,7 +9803,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {47: [0]}. Source family: Fort Magrad: icicles, snow, rock and vegetation. Engine random-encounter location mapping: Fort Magrad.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
