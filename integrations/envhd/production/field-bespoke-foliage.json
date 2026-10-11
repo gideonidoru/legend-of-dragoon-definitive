@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Four custom painted EnvHD field repair candidates; candidate-only and not part of any runtime selection or download pack. Historical neural review holds remain unchanged until publication/selection supports this provenance.",
+  "scope": "Five custom painted EnvHD vegetation repair candidates; candidate-only and not part of any installed runtime or download pack. Explicit source-verified selection is supported; historical neural review holds remain unchanged until selection and packaging.",
   "sourceSelectionBaseCommit": "476c004ca4d4eacce5a763c41b570c479380b5e7",
   "algorithmPath": "scripts/repair-envhd-painted-cutout.py",
   "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
@@ -9,7 +9,7 @@
     "pillow": "12.3.0",
     "numpy": "2.5.1"
   },
-  "visualReviewedBespokeCandidates": 4,
+  "visualReviewedBespokeCandidates": 5,
   "runtimeSelected": 0,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
@@ -65,7 +65,8 @@
         "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
         "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
         "nativeAcceptance": "pending",
-        "finalQualityAcceptance": "pending"
+        "finalQualityAcceptance": "pending",
+        "outputSha256": "f19cda3093b9f86b0867178e0043e6df07886e8f74248190a164f3d75f0c7bd4"
       }
     },
     {
@@ -119,7 +120,8 @@
         "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
         "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
         "nativeAcceptance": "pending",
-        "finalQualityAcceptance": "pending"
+        "finalQualityAcceptance": "pending",
+        "outputSha256": "3b144832b672d7e6c8b0417bc75830e2313cf68a91147ae52c96abc7f6b68fbd"
       }
     },
     {
@@ -173,7 +175,8 @@
         "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
         "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
         "nativeAcceptance": "pending",
-        "finalQualityAcceptance": "pending"
+        "finalQualityAcceptance": "pending",
+        "outputSha256": "e0423281a9eab716a29b23be5e8d17c4bd939df9c1481bc427582818f87194cf"
       }
     },
     {
@@ -226,6 +229,63 @@
         "style": "Individual yellow-green leaves replace the cracked-stone appearance. Source silhouette and palette remain identifiable. Leaf size and directional lighting require full-scene painted-quality matching before final acceptance.",
         "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
         "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "outputSha256": "90aded554612c65e197fa14ed5153b9564a0e9c3a90717dad203f9212b9ae4bd"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 24000,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "455126e71faad27bacd91a505cf193201a6004c80933d686a6e522875d757227",
+      "generatedSha256": "a458a19197e37f3614880408df412f68fd41415ac35481a0363e1013b6932ae3",
+      "outputSha256": "efe49e891b701e0fa97a401cda8e6e3384731e3dbecd181ecb82116a2a6245d6",
+      "sourceSize": [
+        50,
+        30
+      ],
+      "targetSize": [
+        200,
+        120
+      ],
+      "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/455126e71faad27bacd91a505cf193201a6004c80933d686a6e522875d757227/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/455126e71faad27bacd91a505cf193201a6004c80933d686a6e522875d757227/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "prompt": "Use case: precise-object-edit. Asset type: opaque rectangular foreground environment texture patch for Legend of Dragoon Definitive EnvHD. Edit target: attached 50x30 original game texture. Upgrade this exact patch as detailed hand-painted HD game art while retaining every element in its existing position and proportions. The small pale grey-green handled vase/pitcher sits in the lower left-of-center with a dense purple-blue flower cluster above it. Paint distinct small flower heads/petals and green leaves, replacing the low-resolution ambiguity with recognizable blossoms, not fabric loops or folded ribbons. Preserve the same pale vase silhouette and curved handle at its right. Retain the orange-brown wooden wall panels, thin horizontal warm trim above the darker bottom rail, vertical wooden frame at the right edge and all original warm indoor lighting. This is a complete opaque rectangular texture patch, not an isolated object: keep the original background and full canvas crop. Do not enlarge, center, rotate, change the layout, add flowers elsewhere, change the wall design, make flowers red, add text or create transparency. Output only the upgraded original composition.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "2729034499314e73adaafbcd9fca1f8f1bedf7e129eaf317e3eb71842ee2ed05:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Lohan",
+      "representativeCut": 636,
+      "priorCandidateSha256": "232b2a63fa261a0e5e44d616b85f28af9333d180e7121530f75afae896380526",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Lohan cut 636 independent purple-blue flower variant in a pale handled vase against an opaque wooden wall patch.",
+        "style": "Recognizable separate purple-blue blossoms and leaves replace folded ribbon-like neural strokes. The pale vase and right-side handle remain under the cluster. Warm wall panels and trim stay in their source positions. Vase highlights and wall-patch palette still need coordinated painted scene matching before final quality acceptance.",
+        "layout": "Original, neural candidate and repaired painting compared at 200x120 target size, then at the exact native slot 8 placement on the original background. Other foreground states were omitted because an all-slots assembly obscures this variant. In-game script visibility and depth remain pending.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "efe49e891b701e0fa97a401cda8e6e3384731e3dbecd181ecb82116a2a6245d6",
         "nativeAcceptance": "pending",
         "finalQualityAcceptance": "pending"
       }
