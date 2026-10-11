@@ -92,12 +92,14 @@ The coordinator supplied eighteen concrete delivery cases. The sanitized, source
 - Character/model: broad smoothing covers supported containers, not completed bespoke heads/bodies. Nine new character studies, field/battle adaptation, Dragoon/Divine forms and the wider NPC/enemy/boss census remain separate. Missing routes/format/source/animation counts in the domain snapshot can overlap and must not be summed into a completion percentage.
 - Effects/UI: audited texture/resource coverage does not close procedural consumers, native GPU output, palette/copy state, save variants or whole-campaign scene acceptance. Maintain source and runtime denominators separately.
 
-The coordinator reports a `c98f` animation-discovery checkpoint: Spec clear; fourteen behavioral checks passed with no skips; Standards found **two reproduced P2 findings**, both active and owned by ENV:
+The original `c98f` animation-discovery checkpoint had two reproduced Standards P2 findings. Both are now **closed at `036d7cfedef528a8993cfb20666800d370065ecc`** by independent coordinator review:
 
-- **ANIM-P2-01:** ENOSPC cleanup can leave a partial final ledger.
-- **ANIM-P2-02:** a late worklist reread creates a receipt race against the pinned worklist.
+- **ANIM-P2-01:** ENOSPC cleanup could leave a partial final ledger; corrected and closed.
+- **ANIM-P2-02:** a late worklist reread could race the pinned receipt; corrected and closed.
 
-Neither review nor those failures was independently reproduced here. The full checkpoint identity and corrected owner receipt remain prerequisites for closure. They change neither runtime selection nor animation acceptance; discovery remains incomplete.
+The coordinator reports Standards and Spec clear, and **60 focused checks (21+22+17), Java enabled with no skips**. The 350 records/67 shards match `c98f` except the generator pin; runtime selection is unchanged. This docs audit independently verified the [PR 31](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/31) head and open status, not the tests themselves. Its [run 38143229506](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38143229506) had all three hosted gates in progress at observation; no merge or release is recorded here.
+
+This closes two specific publication/input-provenance defects only. Discovery remains stage-local; full encounter, presentation, animation-content and physical-device holds remain open. Do not convert fixture or ledger success into whole-animation acceptance.
 
 ## Domain matrix
 

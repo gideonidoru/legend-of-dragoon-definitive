@@ -915,26 +915,38 @@
   },
   "animationDiscoveryReview": {
     "checkpoint": "c98f (short coordinator checkpoint; full source identity pending receipt)",
-    "standards": "two reproduced P2 findings",
-    "spec": "clear per coordinator",
-    "behavioralChecks": "14 passed, no skips per coordinator",
+    "standards": "clear at corrected source per coordinator independent review",
+    "spec": "clear at corrected source per coordinator independent review",
+    "behavioralChecks": "60 focused checks (21+22+17), Java enabled, no skips per coordinator",
     "independentlyAuditedHere": false,
     "findings": [
       {
         "id": "ANIM-P2-01",
         "issue": "ENOSPC leaves partial final-ledger cleanup incomplete",
-        "status": "active pending corrected owner checkpoint",
-        "owner": "ENV"
+        "status": "closed by independent coordinator review at corrected source",
+        "owner": "ENV",
+        "closedSource": "036d7cfedef528a8993cfb20666800d370065ecc"
       },
       {
         "id": "ANIM-P2-02",
         "issue": "Late worklist reread can race and diverge from the pinned receipt",
-        "status": "active pending corrected owner checkpoint",
-        "owner": "ENV"
+        "status": "closed by independent coordinator review at corrected source",
+        "owner": "ENV",
+        "closedSource": "036d7cfedef528a8993cfb20666800d370065ecc"
       }
     ],
     "runtimeSelectionChanged": false,
-    "discoveryComplete": false
+    "discoveryComplete": false,
+    "correctedSource": "036d7cfedef528a8993cfb20666800d370065ecc",
+    "verificationBoundary": "Coordinator independently closed these two defects; docs audit verified GitHub PR head/status, not rerun tests.",
+    "correctedInventory": "350 records / 67 shards equal c98f except generator pin per coordinator",
+    "integration": {
+      "pullRequest": 31,
+      "state": "open; three hosted gates in progress at observation",
+      "run": 38143229506,
+      "merged": false,
+      "published": false
+    }
   },
   "qualificationPlanPolicy": "Shared workload and scenario counts are proposed qualification procedures for controlling source scope, not new promised features or executed evidence. Owners can refine workloads with rationale and exact receipts; neither fixture success nor arbitrary case counts alone establish 10/10.",
   "engineeringDefectEvidence": [
