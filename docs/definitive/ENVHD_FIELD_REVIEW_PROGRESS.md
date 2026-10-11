@@ -4,9 +4,9 @@ The current Env1HD–Env4HD payload contains **2,723 selected development field
 images**. The additional reviews recorded here do not change those installed
 files or the release currently being prepared.
 
-A further **768 images** have been individually compared against their original
-pixels and scene placement after that selection. **706** are development
-baselines awaiting future candidate publication and packaging; **62** remain
+A further **1,056 images** have been individually compared against their original
+pixels and scene placement after that selection. **973** are development
+baselines awaiting future candidate publication and packaging; **83** remain
 held for source identity, meaningful motifs, fine structure or material repair.
 
 Including the original review receipt, the complete generated field worklist is:
@@ -14,14 +14,14 @@ Including the original review receipt, the complete generated field worklist is:
 | Field images | Count |
 | --- | ---: |
 | Generated and source-layout repaired | 5,162 |
-| Individually compared | 3,608 |
-| Reviewed development baselines | 3,429 |
-| Bespoke repair holds | 179 |
-| Still awaiting individual review | 1,554 |
+| Individually compared | 3,896 |
+| Reviewed development baselines | 3,696 |
+| Bespoke repair holds | 200 |
+| Still awaiting individual review | 1,266 |
 | Currently selected for installation | 2,723 |
-| Newly reviewed baselines awaiting publication/selection | 706 |
+| Newly reviewed baselines awaiting publication/selection | 973 |
 
-The latest comparisons cover foreground boards 186–249. Board 250 is next.
+The latest comparisons cover foreground boards 186–273. Board 274 is next.
 `integrations/envhd/production/field-review-progress.json` contains the additional
 notes and their exact output hashes, along with the original review and runtime
 ledger identities. Read it alongside `field-review-receipt.json`; the latter
