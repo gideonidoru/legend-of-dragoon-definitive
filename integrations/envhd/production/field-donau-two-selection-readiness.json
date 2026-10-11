@@ -50,7 +50,7 @@
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
   "originalSourcesReferencesAndComparisonsExcluded": true,
-  "packageVerifiedSourceCommit": "84ca7e6d2362ca7f304447c79686ad6695bfec41",
+  "packageVerifiedSourceCommit": "83dc5e199ff7ff9a63bfd2fd657d05bb8e35aa16",
   "build": "PASS: Java25/Gradle9.1 frozen committed source; EnvHD JAR and all four field packs.",
   "packageVerification": {
     "scope": "EnvHD normal-package resource subset; full installer/public-carrier closure remains coordinator-owned",
@@ -97,6 +97,31 @@
   "evidenceLogSha256": {
     "envhd-donau-main-preflight.log": "7f541f4877b149d626686e7ad067c0059e251e25487e55ea9dc8956837cfc458",
     "envhd-donau-main-build.log": "3d2bd91f289e631284dbb224ab6fd167918e31d29f5e7ec715521bd2aa8b2a5e",
-    "envhd-donau-main-package-verification.log": "23cb3a42d39e6a7904c075ad5e1423a6165566018f3b26935911b63f1ff8072e"
-  }
+    "envhd-donau-main-package-verification.log": "23cb3a42d39e6a7904c075ad5e1423a6165566018f3b26935911b63f1ff8072e",
+    "envhd-donau-main-forward-build.log": "ae0b71baa21bbd14fc8167d68ef1a716dcc7101b6d8174129c98fbe255246b4a",
+    "envhd-donau-main-forward-package-verification.log": "23cb3a42d39e6a7904c075ad5e1423a6165566018f3b26935911b63f1ff8072e"
+  },
+  "previousPackageVerifiedSourceCommit": "84ca7e6d2362ca7f304447c79686ad6695bfec41",
+  "acceptedMainForwardBase": "0754e2a0604d3587d2c94a9a5510c1b8f09e0b31",
+  "reviewedIntegrationSource": "727bf4f1416b76690a497e1f6915b8f885649472",
+  "reviewedDonauBinaryDiffExactAfterMainForward": true,
+  "allFivePackageArtifactsExactAfterMainForward": true,
+  "independentIntegrationReviews": {
+    "standards": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedIntegration": "727bf4f1416b76690a497e1f6915b8f885649472",
+      "reportSha256": "082f96fde4b29b560a53ab0b549187d2ed9fe056071cc70b029e0a5705bc339c",
+      "reviewer": "/root/hd_standards_review"
+    },
+    "spec": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedIntegration": "727bf4f1416b76690a497e1f6915b8f885649472",
+      "reportSha256": "724722d6d72a558e22d6ab5afee3caa2b9f1e88346b06a9fe829ea5a4194e737",
+      "reviewer": "/root/hd_spec_review"
+    }
+  },
+  "independentFreshOriginalSourceReplay": 42,
+  "independentFreshPackageReplay": true
 }
