@@ -13,6 +13,18 @@ from scipy.spatial import cKDTree
 ROOT=Path(__file__).resolve().parents[1]
 HEAD_PARTS={'dart':[7],'rose':[7,10],'lavitz':[8],'shana':[12],'haschel':[7,8,9],'albert':[8],'meru':[8,9,10,11,13,14],'kongol':[7],'miranda':[11]}
 
+def closest_native_triangles(native_triangles,generated_centroids,metric):
+    """Return indices in the supplied native triangle table and fit distances."""
+    if not len(native_triangles):raise ValueError('Selected native part has no usable triangles')
+    scaled_triangles=native_triangles*metric;query_points=generated_centroids*metric
+    neighbor_count=min(48,len(native_triangles))
+    _,neighbor_indices=cKDTree(scaled_triangles.mean(1)).query(query_points,k=neighbor_count)
+    neighbor_indices=np.asarray(neighbor_indices).reshape(len(query_points),neighbor_count)
+    closest_points=trimesh.triangles.closest_point(scaled_triangles[neighbor_indices].reshape(-1,3,3),np.repeat(query_points,neighbor_count,axis=0)).reshape(-1,neighbor_count,3)
+    distances=np.linalg.norm(closest_points-query_points[:,None],axis=2)
+    closest_columns=distances.argmin(1);query_indices=np.arange(len(query_points))
+    return neighbor_indices[query_indices,closest_columns],distances[query_indices,closest_columns]
+
 def geometry_hash(part,headers):
     digest=hashlib.sha256();put=lambda n:digest.update(struct.pack('>I',n&0xffffffff));put(1);put(0)
     for rows in [part['vertices'],part['normals']]:put(len(rows));digest.update(np.asarray(rows,dtype='>f4').tobytes())
@@ -52,10 +64,9 @@ def fit(files,character,mesh_path,output,depth_weight=1.0,overlap_rings=0,form='
                 if np.linalg.norm(np.cross(tri[1]-tri[0],tri[2]-tri[0]))>1e-8:
                     triangles.append(tri);owners.append(index);source_faces.append(face)
     triangles=np.asarray(triangles);owners=np.asarray(owners);source_faces=np.asarray(source_faces)
-    centroids=points[np.asarray(mesh.faces)].mean(1);metric=np.array([1.,1.,depth_weight]);fit_triangles=triangles*metric;k=min(48,len(triangles));_,neighbors=cKDTree(fit_triangles.mean(1)).query(centroids*metric,k=k)
-    closest=trimesh.triangles.closest_point(fit_triangles[neighbors].reshape(-1,3,3),np.repeat(centroids*metric,k,axis=0)).reshape(-1,k,3)
-    distances=np.linalg.norm(closest-(centroids*metric)[:,None],axis=2);col=distances.argmin(1);rows=np.arange(len(centroids));selected=neighbors[rows,col]
-    assigned=owners[selected];face_sources=source_faces[selected];distance=distances[rows,col]
+    centroids=points[np.asarray(mesh.faces)].mean(1);metric=np.array([1.,1.,depth_weight])
+    nearest_native_indices,distance=closest_native_triangles(triangles,centroids,metric)
+    assigned=owners[nearest_native_indices];face_sources=source_faces[nearest_native_indices]
     # Explicit anatomical regions replace unreliable nearest-surface ownership
     # where limbs and the sword overlap in the approved reconstruction pose.
     if segmentation:
@@ -73,12 +84,12 @@ def fit(files,character,mesh_path,output,depth_weight=1.0,overlap_rings=0,form='
         indices=np.clip(pixels.astype(int),0,size-1);mapped=np.asarray(labels)[indices[:,1],indices[:,0]];mask=mapped>=0;assigned[mask]=mapped[mask]
         # Source-face lineage must be recomputed inside the selected native part.
         for index in np.unique(assigned):
-            selected_faces=np.flatnonzero(assigned==index);triangles_in_part=np.flatnonzero(owners==index);k=min(48,len(triangles_in_part))
-            query=centroids[selected_faces]*metric;part_triangles=fit_triangles[triangles_in_part]
-            _,near=cKDTree(part_triangles.mean(1)).query(query,k=k);near=np.asarray(near).reshape(len(query),k)
-            closest=trimesh.triangles.closest_point(part_triangles[near].reshape(-1,3,3),np.repeat(query,k,axis=0)).reshape(-1,k,3)
-            distances=np.linalg.norm(closest-query[:,None],axis=2);best=distances.argmin(1);match=triangles_in_part[near[np.arange(len(query)),best]]
-            face_sources[selected_faces]=source_faces[match];distance[selected_faces]=distances[np.arange(len(query)),best]
+            generated_face_indices=np.flatnonzero(assigned==index)
+            native_triangle_indices=np.flatnonzero(owners==index)
+            nearest_part_triangle_indices,part_distances=closest_native_triangles(triangles[native_triangle_indices],centroids[generated_face_indices],metric)
+            nearest_native_indices=native_triangle_indices[nearest_part_triangle_indices]
+            face_sources[generated_face_indices]=source_faces[nearest_native_indices]
+            distance[generated_face_indices]=part_distances
     _,weld=np.unique(np.round(points,4),axis=0,return_inverse=True)
     adjacency=trimesh.Trimesh(np.unique(np.round(points,4),axis=0),weld[np.asarray(mesh.faces)],process=False).face_adjacency
     output.mkdir(parents=True);(output/'parts').mkdir();(output/'uvs').mkdir();texture=mesh.visual.material.baseColorTexture.convert('RGB');texture.save(output/'body-basecolour.png');texture_sha=hashlib.sha256((output/'body-basecolour.png').read_bytes()).hexdigest()
