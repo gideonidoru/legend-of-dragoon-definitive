@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "date": "2026-10-11",
-  "sourceCheckpoint": "696cea631db511041ed7ab6466f03da355eebb7c",
+  "sourceCheckpoint": "7a8f16155894e53886ff3832a1c5860389ab8c8f",
   "publicSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
   "publicTag": "definitive-alpha-2026-10-11-envhd",
   "mainFields": 4917,
@@ -1332,9 +1332,12 @@
     "correctedInventory": "350 records / 67 shards equal c98f except generator pin per coordinator",
     "integration": {
       "pullRequest": 31,
-      "state": "open; three hosted gates in progress at observation",
+      "state": "merged",
+      "mergeSource": "ee4d58201e416f83b31ffab91aea8c8d78159b70",
+      "candidateSource": "036d7cfedef528a8993cfb20666800d370065ecc",
       "run": 38143229506,
-      "merged": false,
+      "hostedGates": "Linux/Mac/synthetic SUCCESS independently checked via GitHub",
+      "merged": true,
       "published": false
     }
   },
@@ -1350,15 +1353,16 @@
         "src/main/java/legend/core/renderer/opengl/GlApi.java",
         "src/main/java/legend/core/renderer/opengles/GlesApi.java"
       ],
-      "fixStatus": "assigned isolated API correction/regression; unmerged at this evidence checkpoint",
+      "fixStatus": "isolated candidate frozen for review; not integrated into checkpoint main or public release",
       "symptomStatus": "Not established cause of ordinary Deck flicker; coordinator notes no current production addBatch caller and ordinary rendering ends opaque.",
-      "immutableFixSource": null,
+      "immutableFixSource": "bcee65e743923431ceafd0e6919f7a428d93fcec",
       "attachedTestReceipts": [],
       "affectedCases": [
         "A12.01",
         "A12.02"
       ],
-      "requiredClosure": "Pin fix source, reproduce failing-before/passing-after native depth-clear test including GlApi/GlesApi contract, then test intended production transitions and physical symptoms."
+      "requiredClosure": "Pin fix source, reproduce failing-before/passing-after native depth-clear test including GlApi/GlesApi contract, then test intended production transitions and physical symptoms.",
+      "verificationBoundary": "Git object and owner report inspected, native checks not rerun by DOCS; device symptom remains unproved."
     },
     {
       "id": "ENG-D02",
@@ -1376,6 +1380,22 @@
         "A03.03"
       ],
       "requiredClosure": "Pin exact shader/camera fix and failing-before/passing-after face-visibility scenes; exercise field/battle attacks and camera flips, original/all-mod routes, plus physical missing-texture reproduction."
+    },
+    {
+      "id": "ENG-D03",
+      "owner": "MEDIA",
+      "supportOwner": "RENDER",
+      "defect": "Internal/output viewport sizing across presentation and rendering passes",
+      "evidence": "Primary diagnosis owner reports a reproduced viewport bug matching the bottom-left/half-size observation; existing checks cover 1280x800 output and larger/smaller internal images. Texture-copy and multiple-batch transitions are being added.",
+      "immutableFixSource": null,
+      "attachedTestReceipts": [],
+      "fixStatus": "pending frozen source/review/integration; no public fix",
+      "symptomStatus": "Matches appearance report but physical symptom before/after acceptance remains open; does not close stationary corruption or sluggish entry.",
+      "affectedCases": [
+        "A12.01",
+        "A12.02",
+        "A03.03"
+      ]
     }
   ],
   "scopeControl": {
@@ -1395,5 +1415,44 @@
     "existingNativeProcedural": "A consumer already deliberately native/procedural under controlling source scope can pass its native/procedural contract with source and runtime evidence. That classification is not newly withholding required HD work and must not be guessed from the presence of a fallback.",
     "unknownOwnership": "Unresolved families remain unresolved; no automatic exemption.",
     "completionClaim": "A narrower human-approved release scope must be named as such; it does not finish deferred original full-remaster goals."
-  }
+  },
+  "sourceCheckpointHistory": [
+    {
+      "source": "696cea631db511041ed7ab6466f03da355eebb7c",
+      "scope": "17-domain baseline plus PR30 static content; prior acceptance document checkpoint"
+    },
+    {
+      "source": "7a8f16155894e53886ff3832a1c5860389ab8c8f",
+      "scope": "PR31 stage-local ledger and PR32 acceptance docs merged; no new download or artwork selection"
+    }
+  ],
+  "documentationIntegration": {
+    "pullRequest": 32,
+    "reviewedSource": "2f12f53d3a3b53365d3e356dec923d48eaed9362",
+    "mergeSource": "7a8f16155894e53886ff3832a1c5860389ab8c8f",
+    "scope": "three reviewed documents; no runtime/asset/entrypoint change"
+  },
+  "pendingWork": [
+    {
+      "domain": "A14",
+      "owner": "MODS",
+      "issue": "Gamepad disconnect clears axes but leaves held-button state; may repeat actions and suppress keyboard under Steam Input workaround",
+      "status": "isolated correction/headless tests in progress; no immutable reviewed source attached",
+      "source": null
+    },
+    {
+      "domain": "A06",
+      "owner": "ENV",
+      "issue": "Additional rock, patterned cushion and bedding repairs remain authoring work",
+      "status": "coordinator references Env440; full immutable authoring receipt/count unresolved in this audit; outside integrated/published counts",
+      "source": null
+    },
+    {
+      "domain": "A09",
+      "owner": "CHAR",
+      "issue": "Revised elbow curve samples and body fitting/collision work",
+      "status": "isolated geometry study; full-body moving topology/fidelity/physical acceptance pending",
+      "source": "264f8645784de50a2d6aa399f2d8118272043727 is last coordinator-confirmed draft reference, not asserted as source of later study"
+    }
+  ]
 }

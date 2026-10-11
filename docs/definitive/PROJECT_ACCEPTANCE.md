@@ -7,12 +7,14 @@ Checkpoint: **2026-10-11**. This is the shared plan for proving a finished proje
 | Checkpoint | Exact identity | Scope |
 | --- | --- | --- |
 | Published download | `definitive-alpha-2026-10-11-envhd`, source `0af4f997e27f49783180cb2ff1c5a04012467289` | 4,892 selected field images, six painted field replacements, 270 field holds; twelve battle motifs and one terrain material remain held |
-| Integrated main | `696cea631db511041ed7ab6466f03da355eebb7c` | 4,917 selected fields, 31 painted field replacements, 245 field holds; twelve painted battle repairs integrated, one terrain hold remains |
+| Integrated main | `7a8f16155894e53886ff3832a1c5860389ab8c8f` | 4,917 selected fields, 31 painted field replacements, 245 field holds; twelve painted battle repairs integrated, one terrain hold remains |
 | Latest integrated candidate gates | `32f5db9ffd3859bb1436020a4897556c8622721e`, merged by PR 30 | [Linux, Mac and synthetic run 38137903656](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38137903656) passed; this is candidate-tree evidence, not a new published build |
 | Public native package gate | source `0af4f997e`, [run 38111833335](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38111833335) | Package/source/resource checks; reported public maintenance checks are headless, not Deck gameplay |
+| Animation ledger integration | PR 31 merge `ee4d58201e416f83b31ffab91aea8c8d78159b70`, candidate `036d7cfedef528a8993cfb20666800d370065ecc` | Linux/Mac/synthetic gates passed; stage-local discovery only; no artwork/runtime selection or public-release change |
+| Acceptance docs integration | PR 32 merge `7a8f16155894e53886ff3832a1c5860389ab8c8f`, reviewed `2f12f53d3a3b53365d3e356dec923d48eaed9362` | Exactly three acceptance documents integrated; no runtime or asset change |
 | Character authoring | draft PR 25 at coordinator-confirmed `264f8645784de50a2d6aa399f2d8118272043727` | Existing accepted Dart head remains installed; new nine-character studies are not accepted runtime replacements |
 
-The [current public release](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest) is the download authority. Main's 25 additional fields and twelve painted battle repairs must not be described as already shipped. Preserve the [Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop) and README character showcase. This docs branch does not publish a release or change main.
+The [current public release](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest) is the download authority. Main's 25 additional fields and twelve painted battle repairs must not be described as already shipped. Preserve the [Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop) and README character showcase. This follow-up docs branch does not publish a release or change main; the preceding acceptance matrix was integrated through PR 32.
 
 The source reports used here are `Project-Progress-Ratings-2026-10-11.json`, `EnvHD-Combined-Release-Results-2026-10-11.txt` and `Prop-Overlay-Reconciliation-Checkpoint-14d7.txt`. They remain local evidence records; this document copies only curated counts and conclusions, not private controls or original game data. The ratings JSON digest is recorded in the companion. Domain documentation can contain historical checkpoints; use the exact release/source identity above, not an old document's opening count.
 
@@ -30,12 +32,14 @@ The owner directly reported in the MEDIA chat: **“the FMV are working correctl
 
 ### Reproduced engineering defects under investigation
 
-Owner evidence was read directly from the existing RENDER and MEDIA chats. These are two separate defects, not two interchangeable explanations for all three symptoms. Exact immutable fix sources and retained test receipts are still pending; neither is merged or physically accepted at this evidence checkpoint.
+Owner evidence was read directly from the existing RENDER and MEDIA chats. These are two separate defects, not two interchangeable explanations for all three symptoms. The depth candidate is pinned below; immutable primary camera/viewport fixes and retained test receipts remain pending. None of these rendering candidates is integrated or physically accepted at this source checkpoint.
 
 | ID | Owner | Reproduced evidence | Remaining proof |
 | --- | --- | --- | --- |
-| ENG-D01 | RENDER, MEDIA support | Windowless native M5 Max/OpenGL 4.1 depth-clear probe: disabled depth writes retain seeded 0.25 instead of clearing to 1.0; restoring writes before clear removes stale depth | Isolated GlApi/GlesApi correction and failing-before/passing-after regression, exact source receipt and production-transition checks. No confirmed connection to Deck flicker; coordinator notes no current production addBatch caller and ordinary rendering ends opaque |
+| ENG-D01 | RENDER, MEDIA support | Windowless native M5 Max/OpenGL 4.1 depth-clear probe: disabled depth writes retain seeded 0.25 instead of clearing to 1.0; restoring writes before clear removes stale depth | Isolated candidate `bcee65e743923431ceafd0e6919f7a428d93fcec` is frozen for review. Git object and owner report inspected; DOCS did not rerun native checks. Retained regression receipts, independent review and production-transition checks remain. No confirmed connection to Deck flicker; coordinator notes no current production addBatch caller and ordinary rendering ends opaque |
 | ENG-D02 | MEDIA, RENDER support | Published field and battle rendering rejects a whole textured face when a corner crosses an old PlayStation clipping threshold although it remains visible under the modern camera | Exact shader/camera correction, retained face-visibility symptom regression, repeated attacks/camera flips and physical Deck before/after. Strong match for disappearing ground/props, not physical closure |
+
+**ENG-D03, MEDIA with RENDER support:** the primary diagnosis owner reports a reproduced viewport-sizing bug matching the bottom-left/half-size report. The existing checks cover 1280×800 output with larger and smaller internal images; texture-copy and multiple-batch transitions are being added. Exact frozen source and test receipts are not attached here. This is still pending integration and physical symptom before/after acceptance.
 
 B01 stationary corruption and B03 sluggish/flickering battle setup remain open independently. Existing GPU texture-retirement/UI-atlas/shader-state fixtures did not reproduce the reported corruption and do not clear it. Update A12 and related A03 cases only when source, native regression and symptom evidence arrive; do not describe the public download as fixed.
 
@@ -103,7 +107,7 @@ The original `c98f` animation-discovery checkpoint had two reproduced Standards 
 - **ANIM-P2-01:** ENOSPC cleanup could leave a partial final ledger; corrected and closed.
 - **ANIM-P2-02:** a late worklist reread could race the pinned receipt; corrected and closed.
 
-The coordinator reports Standards and Spec clear, and **60 focused checks (21+22+17), Java enabled with no skips**. The 350 records/67 shards match `c98f` except the generator pin; runtime selection is unchanged. This docs audit independently verified the [PR 31](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/31) head and open status, not the tests themselves. Its [run 38143229506](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38143229506) had all three hosted gates in progress at observation; no merge or release is recorded here.
+The coordinator reports Standards and Spec clear, and **60 focused checks (21+22+17), Java enabled with no skips**. The 350 records/67 shards match `c98f` except the generator pin; runtime selection is unchanged. This docs audit independently verified the [PR 31](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/31) head and open status, not the tests themselves. Its [run 38143229506](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38143229506) now has all three hosted gates successful, independently checked through GitHub. PR 31 merged at `ee4d58201e416f83b31ffab91aea8c8d78159b70`; no new release was published.
 
 This closes two specific publication/input-provenance defects only. Discovery remains stage-local; full encounter, presentation, animation-content and physical-device holds remain open. Do not convert fixture or ledger success into whole-animation acceptance.
 
@@ -346,6 +350,12 @@ Evidence context: [ARCHITECTURE](ARCHITECTURE.md) · [ENVHD_FULL_COVERAGE](ENVHD
 - **A17.04 · not-run:** Update front-facing README only for accepted published features, preserving prominent Steam Deck download, Ko-fi and accurately scoped comparison images; root alone merges/publishes coordinated releases.
 
 Evidence context: [ASSET_POLICY](ASSET_POLICY.md) · [FILE_DELIVERY](FILE_DELIVERY.md) · [INSTALLER](INSTALLER.md).
+
+## Pending owner work after the merged checkpoint
+
+- **Controls/accessibility (MODS):** a disconnect-state defect leaves held buttons after axes clear, potentially repeating actions and suppressing keyboard input under the Steam Input workaround. An isolated correction and headless checks are in progress; no immutable reviewed fix is attached here.
+- **EnvHD (ENV):** further rock, patterned-cushion and bedding repairs are draft authoring work. The coordinator references an `Env440` checkpoint, but this audit has no full pinned receipt/count for it. Do not add candidates to the 4,917 integrated or 4,892 published field counts.
+- **CharHD (CHAR):** revised elbow curves pass the owner's sampled field/battle geometry checks; full armored-body fit, collisions and moving topology remain unfinished. `264f864…` remains the last coordinator-confirmed draft reference, not an asserted source identity for later moving studies. No new character is accepted for runtime promotion.
 
 ## Update and publication procedure
 
