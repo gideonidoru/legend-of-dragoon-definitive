@@ -77,4 +77,30 @@ class ReleaseDownloadHardeningTest {
       assertEquals(2, calls.get()); assertArrayEquals(Arrays.copyOf(bytes, 5), Files.readAllBytes(file));
     }
   }
+  @Test void advertisedContinuationRangeBoundsBodyEvenWithoutContentLength() throws Exception {
+    final Path root = temporary.toRealPath(); final byte[] bytes = "0123456789".getBytes();
+    final Path file = Files.createTempFile(root,"overrun-range-",".zip"); final AtomicInteger calls = new AtomicInteger();
+    assertThrows(IOException.class, () -> ReleaseUpdates.download(candidate("a".repeat(64)),file,InstallProgress.NONE, request -> {
+      if(calls.getAndIncrement() == 0) return response(request,200,dropped(bytes,5),Map.of("ETag",List.of("\"original\"")));
+      return response(request,206,new ByteArrayInputStream(Arrays.copyOfRange(bytes,5,10)),Map.of("ETag",List.of("\"original\""),"Content-Range",List.of("bytes 5-7/10")));
+    }));
+    assertEquals(2,calls.get()); assertTrue(Files.size(file) <= 8);
+  }
+  @Test void unexpectedContentEncodingStopsBeforeWritingOrRetrying() throws Exception {
+    final Path file = Files.createTempFile(temporary.toRealPath(),"encoded-",".zip"); final AtomicInteger calls = new AtomicInteger();
+    assertThrows(IOException.class, () -> ReleaseUpdates.download(candidate("a".repeat(64)),file,InstallProgress.NONE,request -> {
+      calls.incrementAndGet(); return response(request,200,new ByteArrayInputStream(new byte[]{1,2,3}),Map.of("Content-Encoding",List.of("gzip"),"Content-Length",List.of("3")));
+    }));
+    assertEquals(1,calls.get()); assertEquals(0,Files.size(file));
+  }
+
+  @Test void failedReaderCleanupIsNotRetriedAsANetworkFailure() throws Exception {
+    final Path file = Files.createTempFile(temporary.toRealPath(),"stuck-reader-",".zip"); final AtomicInteger calls = new AtomicInteger();
+    assertThrows(DownloadBody.WorkerCleanupException.class,() -> ReleaseUpdates.download(candidate("a".repeat(64)),file,InstallProgress.NONE,request -> {
+      calls.incrementAndGet();
+      return response(request,200,new InputStream() { @Override public int read() throws IOException { throw new DownloadBody.WorkerCleanupException(); } },Map.of());
+    }));
+    assertEquals(1,calls.get());
+  }
+
 }
