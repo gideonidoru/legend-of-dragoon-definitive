@@ -2,6 +2,7 @@ package legend.definitive.fmv;
 
 import legend.core.Config;
 import legend.core.GameEngine;
+import legend.core.audio.AudioSource;
 import legend.core.platform.NoopPlatformManager;
 import legend.core.platform.NoopWindow;
 import legend.core.platform.Window;
@@ -95,6 +96,13 @@ public final class OriginalFmvHandoffProbe {
         final Thread videoWorker = (Thread)get(OriginalMovie.class, movie, "worker"), audioWorker = (Thread)get(OriginalMovie.class, movie, "audioWorker");
         draw.invoke(window);
         require(get(Fmv.class, null, "displayTexture") != null, "Actual original frame must upload through the headless renderer");
+        final AudioSource movieSource = (AudioSource)get(Fmv.class, null, "source");
+        final int ticksBeforeReset = gameplayTicks[0];
+        set(AudioSource.class, movieSource, "generation", movieSource.generation() + 1);
+        draw.invoke(window);
+        require(Fmv.isPlaying && !(boolean)get(Fmv.class, null, "stopping") && get(Fmv.class, null, "originalMovie") == movie,
+          "Actual FMV callback must preserve the remaining movie across output-generation changes");
+        require(gameplayTicks[0] == ticksBeforeReset, "Source recreation cannot prematurely resume gameplay");
         set(RenderEngine.class, renderer, "togglePause", true); draw.invoke(window);
         require(renderer.isPaused(), "Pause must remain active during cleanup");
         // Debug presentation can retain the frozen movie quad while the renderer is paused.
@@ -140,6 +148,6 @@ public final class OriginalFmvHandoffProbe {
         require(!renderer.isPaused(), "Restored gameplay must resume normally");
       }
     }
-    System.out.println("PASS: actual original-FMV paused stop/action skip/mouse skip for all 48 gameplay rate/speed combinations; no gameplay advancement; exact callback, pause observer, projection, config and rates restored; workers/source/retained movie queues released.");
+    System.out.println("PASS: actual original-FMV output-generation continuity and paused stop/action skip/mouse skip for all 48 gameplay rate/speed combinations; no premature gameplay advancement; exact callback, pause observer, projection, config and rates restored; workers/source/retained movie queues released.");
   }
 }
