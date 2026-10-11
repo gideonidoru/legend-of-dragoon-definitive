@@ -18,6 +18,7 @@ def module(name, filename):
 
 
 verify = module('presentation_verify_test', 'verify-envhd-battle-presentation.py')
+audit_module = module('presentation_audit_test', 'audit-envhd-battle-presentation.py')
 fixture = module('presentation_source_fixture', 'test-envhd-painted-battle.py')
 
 
@@ -141,6 +142,59 @@ class BattlePresentationTests(unittest.TestCase):
         with mock.patch.object(verify.recipe, 'repair', side_effect=AssertionError('Must reject before repair')):
             with self.assertRaisesRegex(ValueError, 'aspect ratio'):
                 self.preflight()
+
+
+class BattlePresentationAuditTests(unittest.TestCase):
+    def setUp(self):
+        self.source_case = BattlePresentationTests()
+        self.source_case.setUp()
+        self.addCleanup(self.source_case.doCleanups)
+        self.root, self.key = self.source_case.root, self.source_case.key
+        self.production = self.root / 'integrations/envhd/production'
+        self.selection = dict(scenes=[], runtimeSelectedMasters=1, runtimeSelectedBindings=1,
+                              paintedSelectedMasters=0)
+        self.source_case.ledger.update(protectedPilotBindings=0)
+        self.source_case.ledger['assets'][0].update(sourceSize=[4, 4], bindings=[self.source_case.fixture.binding],
+                                                  review=dict(intent='Source material'))
+        self.source_case.fixture.save_ledger()
+        self.verified = dict(verified=[dict(candidate=self.source_case.candidate)], manifestSha256='receipt')
+        (self.production / 'battle-presentation-artwork-v1.json').write_text('{}')
+        (self.production / 'battle-skies.json').write_text(json.dumps(dict(uniqueDecodedArtwork=0, total=0)))
+        (self.production / 'battle-stage-family-ledger.json').write_text(json.dumps(dict(
+            summary=dict(animationOrContextBindings=0, separateIncompletePaletteBindings=0))))
+
+    def audit(self):
+        (self.production / 'battle-material-runtime-artwork.json').write_text(json.dumps(self.selection))
+        with mock.patch.object(audit_module, 'ROOT', self.root), \
+             mock.patch.object(audit_module.verify.battle, 'census', return_value=([], {self.key: {}}, [])), \
+             mock.patch.object(audit_module.verify, 'preflight', return_value=self.verified):
+            return audit_module.audit(self.root / 'files')
+
+    def test_unselected_art_remains_pending(self):
+        result = self.audit()
+        self.assertEqual(result['staticSources'][0]['presentationStatus'], 'new-bespoke-awaiting-independent-review')
+        self.assertEqual(result['counts']['newlySelectedBespokeMasters'], 0)
+
+    def test_selected_art_is_reported_without_native_or_beauty_acceptance(self):
+        self.selection.update(presentationSourceKeys=[self.key], presentationSelectedMasters=1,
+                              presentationReviewReceipt='receipt')
+        result = self.audit()
+        self.assertEqual(result['staticSources'][0]['presentationStatus'],
+                         'new-bespoke-development-selection-pending-native-review')
+        self.assertEqual(result['counts']['newlySelectedBespokeMasters'], 1)
+        self.assertFalse(result['staticSources'][0]['nativeSceneAccepted'])
+        self.assertFalse(result['allBattlePresentationAccepted'])
+
+    def test_stale_or_rebound_selection_cannot_claim_coverage(self):
+        valid = dict(presentationSourceKeys=[self.key], presentationSelectedMasters=1,
+                     presentationReviewReceipt='receipt')
+        for change in [dict(presentationSourceKeys=['unknown']), dict(presentationSourceKeys=[self.key, self.key]),
+                       dict(presentationSelectedMasters=2), dict(presentationReviewReceipt='stale'),
+                       dict(presentationSourceKeys=[{}])]:
+            with self.subTest(change=change):
+                self.selection.update(valid | change)
+                with self.assertRaisesRegex(ValueError, 'selection does not match'):
+                    self.audit()
 
 
 if __name__ == '__main__':

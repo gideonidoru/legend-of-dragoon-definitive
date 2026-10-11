@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "cb89f386fc5b7e24db263cd28848b9eed52392de5e9b24176cb63e875d4280d2"
+    "battle-presentation-artwork-v1.json": "f72731929f13a8810e18f19c023636fb1c67b1711a2b7006dbb1dc0ca0f9b8b6"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,10 +18,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 69,
+    "newBespokeCandidates": 87,
     "newlySelectedBespokeMasters": 0,
-    "baselineMastersStillNeedingPresentationReview": 437,
-    "pendingCandidateReviews": 69,
+    "baselineMastersStillNeedingPresentationReview": 419,
+    "pendingCandidateReviews": 87,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -109,7 +109,10 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "204ef93329e77f624abcdda0a09cfb650f97f3bf3046425f9ab78cb6f449556d",
+        "219c29330050e8def8d6c96d9c17bc2ab8ef7a8c0d5061d5ca333a9f3cd1307f"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -127,7 +130,18 @@
         4096,
         380
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "075675a7cb1e37cbdae7446953d3cbccb009561fbaf75bca821985c62060b299",
+        "2e0acd3ddd621070ff393264efcf9a59732217c2cb30782ee8206315ee3dfb3f",
+        "5ed72f7c937a8eeaf74ef033b5527b216fe06e8f7f8df29892986c247e30c511",
+        "78b7dacab594bdd3347342e010b45f8f0e0ddeb29a72460bbc5af4173d03df87",
+        "a9891770eec8e466d015588688d0797e31aaf80a2ccd202787b4036c220c5069",
+        "bcaa757ab085f602173783b986fc7e5e0386182e36a0ebe2b33e9d7b1650a9f1",
+        "bd8628eeba5110c22ade865244e77255e1d0612a2806e43fd2356ce179a2fdac",
+        "f93bf10b723acfa3d4b945e2bcd5e8ef347fe8b880d35bc0fd6974ced1c56c18",
+        "fa04eb9e48f8ea56fe0533930a030d350ed6cec5ec8d6cf890c86c1860230948",
+        "ffc7a2cd693ee6dfb7ec7488cb60b11b495a28f926c81ee431fb60ea18631c2a"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -145,7 +159,13 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "230ff4789edd0b948aa1d7ac3701f4d648b29f85a7e421db3c3944edb5d37e21",
+        "477b1117cf230586f1480d6c1b61406bc8d013338e4c3144fbf6aa9f5057dd51",
+        "53dd81a69b075cf7f44bf061703d57f73cbc44fbbc0091672cfc10887bda07ff",
+        "6ad6d0eff6bc835376a4e0b8a807b1275eb81579595e5c33fd9ec28a83d9aec4",
+        "d5098e18ef0b1156f532334cf12a283a367ee71329b9174cf0c7b3f3f4c48508"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -191,7 +211,9 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "124eac7b3bbe695fc770affed31dac82b9671311860bfb3db0d6bd0d92c1e1d0"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1910,7 +1932,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {3: [0]}. Source family: dim brown corridor and mottled earth/rock surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1941,7 +1963,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {3: [0]}. Source family: dim brown corridor and mottled earth/rock surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1972,7 +1994,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2003,7 +2025,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2034,7 +2056,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2065,7 +2087,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2096,7 +2118,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2127,7 +2149,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2158,7 +2180,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2189,7 +2211,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2220,7 +2242,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2251,7 +2273,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2282,7 +2304,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {5: [0]}. Source family: masonry, round cobbles and building ornaments.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2313,7 +2335,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {5: [0]}. Source family: masonry, round cobbles and building ornaments.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2344,7 +2366,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {5: [0]}. Source family: masonry, round cobbles and building ornaments.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2375,7 +2397,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {5: [0]}. Source family: masonry, round cobbles and building ornaments.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2406,7 +2428,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {5: [0]}. Source family: masonry, round cobbles and building ornaments.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2437,7 +2459,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {8: [3]}. Source family: muted grey rock strata and ground.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
