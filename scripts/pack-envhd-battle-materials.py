@@ -9,7 +9,9 @@ spec=importlib.util.spec_from_file_location('battle_atlas_tools',ROOT/'scripts/p
 
 spec=importlib.util.spec_from_file_location('battle_source_tools',ROOT/'scripts/batch-envhd-battle-materials.py');battle_sources=importlib.util.module_from_spec(spec);spec.loader.exec_module(battle_sources)
 
-def publish(files):
+spec=importlib.util.spec_from_file_location('battle_painted_tools',ROOT/'scripts/verify-envhd-painted-battle.py');painted_tools=importlib.util.module_from_spec(spec);spec.loader.exec_module(painted_tools)
+
+def publish(files,painted_manifest=None):
     battle=battle_sources
     scenes,masters,empty=battle.census(files);production=ROOT/'integrations/envhd/production'
     ledger=json.loads((production/'battle-material-artwork.json').read_text())
@@ -27,6 +29,12 @@ def publish(files):
         if note['outputSha256']!=tools.terrain.digest(png) or note['verdict']!=a['reviewStatus'] or note['nativeAcceptance']!='pending' or note['finalQualityAcceptance']!='pending':raise ValueError('Review differs')
         if a['reviewStatus']=='visual-reviewed-runtime-pending':images[key]=np.array(Image.open(io.BytesIO(png)))
         elif a['reviewStatus']!='intent-revision-needed':raise ValueError('Unknown review')
+    painted=painted_tools.preflight(files,painted_manifest) if painted_manifest is not None else None
+    if painted is not None:
+        for item in painted['verified']:
+            key=item['candidate']['decodedRgbaSha256']
+            if key in images or key not in masters:raise ValueError('Painted battle cannot replace an already selected/protected source')
+            images[key]=item['image']
     writes={};inventory=[];keys=set()
     for scene in scenes:
         bindings=[m for m in scene['materials'] if m['status']=='candidate-pending' and m['decodedRgbaSha256'] in images]
@@ -39,10 +47,12 @@ def publish(files):
         folder=ROOT/'integrations/envhd/runtime-assets/envhd/battle-materials'/scene['modelSha256'];writes[folder/'atlas-v1.png']=png;writes[folder/'manifest.json']=tools.publication.json_bytes(manifest)
         inventory.append(dict(stage=scene['stage'],hdBindings=len(regions),**manifest));keys.update(selected)
     selection=dict(schema=1,runtimeSelectedMasters=len(keys),runtimeSelectedBindings=sum(s['hdBindings'] for s in inventory),nativeAccepted=0,finalQualityAccepted=0,scenes=inventory,scope='Reviewed static development surfaces only; pilots, animation and revision holds retain their original sampling')
+    if painted is not None:
+        selection.update(paintedSelectedMasters=len(painted['verified']),paintedReviewReceiptSha256=painted['manifestSha256'],scope='Reviewed neural static surfaces plus separately source-verified painted repairs; pilots, animation and remaining revision holds retain original sampling')
     writes[production/'battle-material-runtime-artwork.json']=tools.publication.json_bytes(selection)
     runtime=ROOT/'integrations/envhd/runtime-assets/envhd/battle-materials'
     removals={p for p in runtime.rglob('*') if p.is_file() and p not in writes}
     tools.publication.publish(writes,removals);return selection
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--files',required=True,type=Path);args=parser.parse_args();print('Selected battle material masters:',publish(args.files)['runtimeSelectedMasters'])
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--files',required=True,type=Path);parser.add_argument('--painted-manifest',type=Path);args=parser.parse_args();print('Selected battle material masters:',publish(args.files,args.painted_manifest)['runtimeSelectedMasters'])
