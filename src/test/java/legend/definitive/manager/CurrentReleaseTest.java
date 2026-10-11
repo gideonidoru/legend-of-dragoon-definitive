@@ -212,4 +212,127 @@ class CurrentReleaseTest {
     assertThrows(IOException.class,store::rollback); assertArrayEquals(before,Files.readAllBytes(store.root().resolve("state.properties")));
   }
 
+  private void formatTwo(final Build build) throws Exception {
+    build.pointer.put("format", 2L); build.pointer.remove("fmvSource");
+    final var sources = new TreeMap<String,Object>();
+    // Two names deliberately share one physical movie object.
+    for(final String name : legend.definitive.fmv.FmvAssetManifest.NAMES) {
+      final String identity = name.equals("DRAGON2") ? "DEMO2" : name;
+      final byte[] bytes = identity.getBytes(java.nio.charset.StandardCharsets.US_ASCII);
+      final String digest = PackageManifest.digest(bytes), assetName = "file-" + digest;
+      Map<String,Object> descriptor = null;
+      for(final var prior : sources.values()) if(prior instanceof Map<?,?> map && assetName.equals(map.get("name"))) descriptor = new TreeMap<>((Map<String,Object>)map);
+      if(descriptor == null) descriptor = build.descriptor(assetName, "", bytes);
+      sources.put(name, descriptor);
+    }
+    build.pointer.put("fmvSources", sources);
+    final var platforms = (Map<String,Object>)build.pointer.get("platforms");
+    for(final String platform : List.of("linux-x64", "macos-arm64")) {
+      ((Map<String,Object>)platforms.get(platform)).put("assembly", build.descriptor("assembly-" + platform + "-", ".json", "recipe".getBytes()));
+    }
+    build.publish();
+  }
+  @Test void formatTwoBindsEighteenNamesSeventeenObjectsAndAssemblyMetadata() throws Exception {
+    var build = new Build("split", 2, "a".repeat(40), "engine"); formatTwo(build);
+    var candidate = build.candidate(); assertEquals(18, candidate.revision().movieSources().size());
+    assertEquals(candidate.revision().movieSources().get("DEMO2"), candidate.revision().movieSources().get("DRAGON2"));
+    assertNotNull(candidate.revision().assembly());
+    assertThrows(UnsupportedOperationException.class, () -> candidate.revision().movieSources().clear());
+    final Set<String> names = CurrentRelease.referencedNames((String)build.release.get("body"));
+    assertEquals(17, names.stream().filter(name -> name.startsWith("file-")).count());
+    assertEquals(2, names.stream().filter(name -> name.startsWith("assembly-")).count());
+    final var requests = new ArrayList<String>();
+    final var cache = new ReleaseUpdates.MetadataCache();
+    var compact = cache.fetch(true, build.connection(requests));
+    assertTrue(CurrentRelease.select(compact, PackageManifest.hostPlatform(), new Properties(), true).isPresent());
+    final var hashes = new Properties(); final var sizes = new Properties();
+    for(final var source : candidate.revision().movieSources().values()) {
+      final String path = "gfx/fmvhd/videos/" + source.sha256() + ".mp4"; hashes.setProperty(path, source.sha256()); sizes.setProperty(path, Long.toString(source.bytes()));
+    }
+    for(final String name : List.of("manifest.properties", "provenance.json", "NOTICE.txt")) hashes.setProperty("gfx/fmvhd/" + name, "b".repeat(64));
+    candidate.revision().validateMovieContents(hashes, sizes);
+    sizes.setProperty(sizes.stringPropertyNames().iterator().next(), "999");
+    assertThrows(IOException.class, () -> candidate.revision().validateMovieContents(hashes, sizes));
+  }
+  @Test void formatTwoCompactionRetainsTransitiveSourcesAndRejectsCarrierIdRebinding() throws Exception {
+    final var build = new Build("catalog", 2, "a".repeat(40), "engine"); formatTwo(build);
+    final byte[] bytes = "retained prior archive".getBytes();
+    final var descriptor = build.descriptor("file-" + PackageManifest.digest(bytes), "", bytes);
+    // Empty ordinary managed files are valid carrier objects, although recipe sources must be positive.
+    build.descriptor("file-" + PackageManifest.digest(new byte[0]), "", new byte[0]); build.publish();
+    final var requests = new ArrayList<String>(); final var compact = new ReleaseUpdates.MetadataCache().fetch(true, build.connection(requests));
+    final var candidate = CurrentRelease.select(compact, PackageManifest.hostPlatform(), new Properties(), true).orElseThrow();
+    assertEquals(19, candidate.revision().sources().size());
+    assertEquals(descriptor.get("id"), candidate.revision().sources().get(PackageManifest.digest(bytes)).id());
+    assertThrows(UnsupportedOperationException.class, () -> candidate.revision().sources().clear());
+    build.assets.add(new TreeMap<>(Map.of("name", "unrelated-note", "id", Long.parseLong((String)descriptor.get("id")), "size", 1L))); build.publish();
+    assertThrows(IOException.class, build::candidate);
+    assertThrows(IOException.class, () -> new ReleaseUpdates.MetadataCache().fetch(true, build.connection(new ArrayList<>())));
+  }
+  @org.junit.jupiter.params.ParameterizedTest
+  @org.junit.jupiter.params.provider.ValueSource(strings = {"id", "duplicate", "budget"})
+  void formatTwoRejectsUnboundTransitiveCarrierSources(final String defect) throws Exception {
+    final var build = new Build("catalog-invalid", 2, "a".repeat(40), "engine"); formatTwo(build);
+    final byte[] bytes = "retained prior archive".getBytes(); build.descriptor("file-" + PackageManifest.digest(bytes), "", bytes);
+    final var asset = build.assets.getLast();
+    switch(defect) {
+      case "id" -> asset.put("id", 0L);
+      case "size" -> asset.put("size", 2L * 1024 * 1024 * 1024);
+      case "digest" -> asset.put("digest", "sha256:" + "b".repeat(64));
+      case "state" -> asset.put("state", "new");
+      case "url" -> asset.put("browser_download_url", "https://example.com/file-" + PackageManifest.digest(bytes));
+      case "duplicate" -> { final var duplicate = new TreeMap<>(asset); duplicate.put("id", 888L); build.assets.add(duplicate); }
+      case "budget" -> { for(int i = 0; i < 1000; i++) build.assets.add(new TreeMap<>(Map.of("name", "unrelated-" + i, "id", 10000L + i))); }
+    }
+    build.publish(); assertThrows(IOException.class, build::candidate);
+  }
+
+  @org.junit.jupiter.params.ParameterizedTest
+  @org.junit.jupiter.params.provider.ValueSource(strings = {"size", "digest", "state", "url"})
+  void unrelatedUnverifiedUploadCannotHideCommittedCurrentBuild(final String defect) throws Exception {
+    final var build = new Build("staged", 2, "a".repeat(40), "engine"); formatTwo(build);
+    final byte[] bytes = "unrelated pending upload".getBytes(); build.descriptor("file-" + PackageManifest.digest(bytes), "", bytes);
+    final var asset = build.assets.getLast();
+    switch(defect) {
+      case "size" -> asset.put("size", 2L * 1024 * 1024 * 1024);
+      case "digest" -> asset.remove("digest");
+      case "state" -> asset.put("state", "new");
+      case "url" -> asset.put("browser_download_url", "https://example.com/file-" + PackageManifest.digest(bytes));
+    }
+    build.publish(); assertFalse(build.candidate().revision().sources().containsKey(PackageManifest.digest(bytes)));
+    final var compact = new ReleaseUpdates.MetadataCache().fetch(true, build.connection(new ArrayList<>()));
+    assertTrue(CurrentRelease.select(compact, PackageManifest.hostPlatform(), new Properties(), true).isPresent());
+  }
+
+  @Test void formatTwoRejectsMissingExtraOversizedAndCarrierMismatchedSources() throws Exception {
+    var build = new Build("split-invalid", 2, "a".repeat(40), "engine"); formatTwo(build);
+    var sources = (Map<String,Object>)build.pointer.get("fmvSources"); var saved = sources.remove("OPENH"); build.publish(); assertThrows(IOException.class, build::candidate);
+    sources.put("OPENH",saved); sources.put("UNKNOWN",saved); build.publish(); assertThrows(IOException.class, build::candidate); sources.remove("UNKNOWN");
+    var descriptor = (Map<String,Object>)saved; var original = descriptor.put("bytes",512L*1024*1024+1); build.publish(); assertThrows(IOException.class,build::candidate); descriptor.put("bytes",original);
+    original = descriptor.put("id","9999"); build.publish(); assertThrows(IOException.class,build::candidate); descriptor.put("id",original);
+    build.publish(); assertNotNull(build.candidate());
+    final var hashes = new Properties(); final var sizes = new Properties();
+    assertThrows(IOException.class, () -> build.candidate().revision().validateMovieContents(hashes,sizes));
+  }
+
+  @Test void movieSourceNameMappingMustMatchApprovedManifestEvenWhenWholeClosureMatches() throws Exception {
+    temporary = temporary.toRealPath();
+    final var fixture = new legend.definitive.fmv.FmvSplitFixture();
+    final Path staged = Files.createDirectory(temporary.resolve("movie-map")); fixture.split(staged,"code");
+    final var sources = new HashMap<String,ReleaseUpdates.MovieSource>();
+    final var hashes = new Properties(); final var sizes = new Properties();
+    for(final var entry : fixture.movies.entrySet()) {
+      final String digest = legend.definitive.fmv.FmvSplitFixture.sha(entry.getValue());
+      sources.put(entry.getKey(),new ReleaseUpdates.MovieSource(digest,entry.getValue().length));
+      final String name = "gfx/fmvhd/videos/" + digest + ".mp4"; hashes.setProperty(name,digest); sizes.setProperty(name,Integer.toString(entry.getValue().length));
+    }
+    for(final String name : List.of("manifest.properties","provenance.json","NOTICE.txt")) hashes.setProperty("gfx/fmvhd/"+name,"b".repeat(64));
+    final var good = new ReleaseUpdates.CurrentRevision(1,"a".repeat(40),"b".repeat(64),"1",1,1,sources,null);
+    good.validateMovieContents(hashes,sizes); good.validateMovieManifest(staged);
+    final var first = sources.get("OPENH"); sources.put("OPENH",sources.get("DEMOH")); sources.put("DEMOH",first);
+    final var swapped = new ReleaseUpdates.CurrentRevision(1,"a".repeat(40),"b".repeat(64),"1",1,1,sources,null);
+    swapped.validateMovieContents(hashes,sizes);
+    assertThrows(IOException.class,() -> swapped.validateMovieManifest(staged));
+  }
+
 }

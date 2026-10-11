@@ -138,6 +138,11 @@ public abstract class EngineState<T extends EngineState<T>> {
 
   }
 
+  /** Discard action ownership and any edges that have not reached a gameplay tick. */
+  public void inputActionCancelled(final InputAction action) {
+
+  }
+
   public int getInputsPressed() {
     return 0;
   }

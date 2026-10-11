@@ -646,40 +646,34 @@ public class Battle extends EngineState<Battle> {
   private int inputRepeat;
   private int inputHeld;
 
+  private static int getInputMask(final InputAction action) {
+    if(action == INPUT_ACTION_BTTL_ATTACK.get()) return 0x20;
+    if(action == INPUT_ACTION_BTTL_COUNTER.get()) return 0x40;
+    return 0;
+  }
+
   @Override
   public void inputActionPressed(final InputAction action, final boolean repeat) {
     super.inputActionPressed(action, repeat);
-
-    if(action == INPUT_ACTION_BTTL_ATTACK.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x20;
-      }
-
-      this.inputRepeat |= 0x20;
-      this.inputHeld |= 0x20;
-    }
-
-    if(action == INPUT_ACTION_BTTL_COUNTER.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x40;
-      }
-
-      this.inputRepeat |= 0x40;
-      this.inputHeld |= 0x40;
-    }
+    final int mask = getInputMask(action);
+    if(!repeat) this.inputPressed |= mask;
+    this.inputRepeat |= mask;
+    this.inputHeld |= mask;
   }
 
   @Override
   public void inputActionReleased(final InputAction action) {
     super.inputActionReleased(action);
+    this.inputHeld &= ~getInputMask(action);
+  }
 
-    if(action == INPUT_ACTION_BTTL_ATTACK.get()) {
-      this.inputHeld &= ~0x20;
-    }
-
-    if(action == INPUT_ACTION_BTTL_COUNTER.get()) {
-      this.inputHeld &= ~0x40;
-    }
+  @Override
+  public void inputActionCancelled(final InputAction action) {
+    super.inputActionCancelled(action);
+    final int mask = ~getInputMask(action);
+    this.inputPressed &= mask;
+    this.inputRepeat &= mask;
+    this.inputHeld &= mask;
   }
 
   @Override

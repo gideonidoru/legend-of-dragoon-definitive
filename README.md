@@ -24,7 +24,7 @@ Painted towns, forests and interiors carry the atmosphere of *The Legend of Drag
 
 *Forest cliff · Visual enhancements off → on.*
 
-The environment library includes **4,917 field images**, with separate backgrounds and foregrounds, plus battle panoramas, world-map artwork and selected terrain and scenery textures. Hand-painted replacements add detail to woodwork, fabrics, plants and buildings across 31 field images and twelve battle motifs. Foreground layers keep their original placement and depth, so your party still moves through the scene as intended.
+The environment library includes **4,925 field images**, with separate backgrounds and foregrounds, plus battle panoramas, world-map artwork and selected terrain and scenery textures. Hand-painted replacements add detail to woodwork, fabrics, plants and buildings across 39 field paintings and 34 battle paintings. Foreground layers keep their original placement and depth, so your party still moves through the scene as intended.
 
 ![Matched battle view with all Definitive visual enhancements disabled on the left and enabled on the right](docs/definitive/images/comparisons/battle-visuals-off-on.jpg)
 
