@@ -129,14 +129,25 @@ Deck profiling and visual acceptance.
 
 ## Native probe verdicts include cleanup
 
-Both viewport and camera-clipping probes emit their final summary only after
-resource retirement, a bounded GL error drain, and validation of both CGL context
-unbind and destruction statuses. A rendering exception or any cleanup failure
-produces `verdict=FAIL` and a nonzero process exit. Independent cleanup actions
-continue after an earlier action throws. The clipping probe explicitly retires its
-RGB albedo texture as well as its other allocations. NativeRendererProbe retains
-its existing void JNI close signature; the helper now throws when either native
-close status fails, and its normal renderer acceptance run still passes.
+For completed rendering cases, both viewport and camera-clipping probes emit
+an aggregate summary only after resource retirement, a bounded GL error drain,
+and validation of both CGL context unbind and destruction statuses. Any cleanup
+failure produces `verdict=FAIL` and a nonzero process exit. The Java viewport probe
+also catches execution exceptions after context creation and attempts each
+registered cleanup action; later actions continue when an earlier action throws.
+
+The C camera probe's inherited fatal `require` checks instead exit immediately
+with status 1 for setup, shader loading/compilation, or draw errors. These paths do
+not run the normal teardown epilogue or emit an aggregate summary; they never
+report aggregate success. Missing-shader and invalid-shader controls verify this
+fatal execution boundary separately from cleanup-failure controls. Full teardown
+proof for the C probe is limited to completed rendering cases and the normal
+epilogue, including the explicit cleanup-failure controls below.
+
+The clipping probe explicitly retires its RGB albedo texture as well as its other
+allocations in that epilogue. NativeRendererProbe retains its existing void JNI
+close signature; the helper now throws when either native close status fails, and
+its normal renderer acceptance run still passes.
 
 Recompile `scripts/headless-renderer-context.c` before running the viewport probe:
 the updated probe requires its own JNI close entrypoint. The opt-in negative
