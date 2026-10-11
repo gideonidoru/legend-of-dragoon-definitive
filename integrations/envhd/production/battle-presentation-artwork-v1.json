@@ -11,7 +11,7 @@
   "runtimeSelected": 0,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "visualReviewedBespokeCandidates": 503,
+  "visualReviewedBespokeCandidates": 506,
   "candidates": [
     {
       "scale": 4,
@@ -32892,6 +32892,198 @@
         "layout": "Exact original topology, fragments, counts, values and shapes preserved. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
         "verdict": "visual-reviewed-runtime-pending",
         "outputSha256": "46fd7e1a39925111e736d44a9ef99669db3d3d16596d2d71092b84d23c72839b",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        80
+      ],
+      "targetSize": [
+        320,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "0e65c5fa342ff7154671567a77c136ad9fcddaf095355d3f3225456a181dc73c",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "de1794a1ba98736e46999fe03bc4ee8edfe8c71cbb4d021601376ae8237fb5fc",
+      "outputSha256": "0e4723ff44e77507ba2109c4c59778484d7c0b59310ff1b3f972bebe098c7e3d",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 82,
+          "page": 7,
+          "clut": 15708,
+          "parts": [
+            2
+          ],
+          "sourceCrop": [
+            56,
+            56,
+            136,
+            136
+          ],
+          "sourceUvOrigin": [
+            56,
+            56
+          ]
+        }
+      ],
+      "priorCandidateSha256": "29672c9ce2fc75f5ba6bcc6a427837863f24445f9a9186054ba52aaabe5463e4",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/0e65c5fa342ff7154671567a77c136ad9fcddaf095355d3f3225456a181dc73c/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/0e65c5fa342ff7154671567a77c136ad9fcddaf095355d3f3225456a181dc73c/image-v1.png",
+      "prompt": "Create a source-faithful, beautiful hand-painted HD version of the original battle atlas in reference 1. Reference 2 is the existing neural baseline; it has overly sharp skeletal strands and is only a boundary aid. Preserve EXACT original atlas proportions, all strand CENTERLINES and the original coarse relief layout. Every large hole, crossing junction and surrounding fragment must stay in place. The large central ridge runs nearly horizontally across the original: preserve its broad mass and the original direction. Render the existing forms as softly shaded MATTE organic relief with broad clean surfaces and only minimal fine grain. Absolutely no fibers, rope, fur, woodgrain, bundles of threads, shiny metal or glassy white highlights; no additional branches or bridges. Preserve the original subdued palette, low light and original broad values. The adjoining upper, lower and side fragments require continuous painted surfaces, not enlarged square pixels or camo blotches. Preserve ambiguous patterns as ambiguous. Keep a flat opaque atlas, no scene composition, no crop/zoom/frame/text. This needs a clean polished retro painterly surface, not a generative reinterpretation of the web.",
+      "references": [],
+      "review": {
+        "intent": "Bespoke source-faithful repair. Second distinct pale tan organic lattice, dominated by a large diagonal oval black opening. Exact strands and holes, no extra roots or brighter outlines. Preserve its own source topology independently. Static battle model surface; source geometry uses stage/parts {82: [2]}. Source family: dark brown stone, arches, border ornament and tangled/root-like surfaces.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original strand centerlines, broad central ridge, loops/crossings and adjoining atlas strips retained. Three revisions rejected for crossing or fibrous/glossy finish; final matte original/baseline attempt author-reviewed. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "0e4723ff44e77507ba2109c4c59778484d7c0b59310ff1b3f972bebe098c7e3d",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        72
+      ],
+      "targetSize": [
+        256,
+        288
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "9870fa03358b0ff44e2005e82106d880a18e3c05b61dfab849cc21b9c3468c8c",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "a4d1ee084166a92079fcf8c02787ef94f96d257d062894cfadceb722b48f348d",
+      "outputSha256": "f18796b496bc1eda7dea4d4d8b68cc3a8bada5d55f5f07f1a4049383c2b32eec",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 83,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            40,
+            0,
+            104,
+            72
+          ],
+          "sourceUvOrigin": [
+            40,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "b704276ca686a4447512524c7186bd97e3227f5a7cf821aba8debb5189563874",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/9870fa03358b0ff44e2005e82106d880a18e3c05b61dfab849cc21b9c3468c8c/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/9870fa03358b0ff44e2005e82106d880a18e3c05b61dfab849cc21b9c3468c8c/image-v1.png",
+      "prompt": "Create a source-faithful, beautiful hand-painted HD version of the original battle atlas in reference 1. Reference 2 is the existing neural baseline; it has overly sharp skeletal strands and is only a boundary aid. Preserve EXACT original atlas proportions, all strand CENTERLINES and the original coarse relief layout. Every large hole, crossing junction and surrounding fragment must stay in place. The large central ridge runs nearly horizontally across the original: preserve its broad mass and the original direction. Render the existing forms as softly shaded MATTE organic relief with broad clean surfaces and only minimal fine grain. Absolutely no fibers, rope, fur, woodgrain, bundles of threads, shiny metal or glassy white highlights; no additional branches or bridges. Preserve the original subdued palette, low light and original broad values. The adjoining upper, lower and side fragments require continuous painted surfaces, not enlarged square pixels or camo blotches. Preserve ambiguous patterns as ambiguous. Keep a flat opaque atlas, no scene composition, no crop/zoom/frame/text. This needs a clean polished retro painterly surface, not a generative reinterpretation of the web.",
+      "references": [],
+      "review": {
+        "intent": "Bespoke source-faithful repair. Distinct dark violet lattice with a large diagonal oval gap and thin neighboring right strip. Preserve every source branch and original pale violet patches. No added roots, anatomy or glow. Static battle model surface; source geometry uses stage/parts {83: [0]}. Source family: Moon: purple organic lattice and green cliffs/rock. Engine random-encounter location mapping: Moon.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original strand centerlines, broad central ridge, loops/crossings and adjoining atlas strips retained. Three revisions rejected for crossing or fibrous/glossy finish; final matte original/baseline attempt author-reviewed. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "f18796b496bc1eda7dea4d4d8b68cc3a8bada5d55f5f07f1a4049383c2b32eec",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        64
+      ],
+      "targetSize": [
+        256,
+        256
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "cf87e2f471c633b05bd31cd6567dd46ea97715d919d52b36f7d68e14d584b672",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "76bda7d998111bfa30e2c72f39a7b7f354cf31318bb04631034633aeb23afdb6",
+      "outputSha256": "afe61d6aa1dafdfe8c9f568e9b7f7f4d967a305d2283fbf20761693eaa362ffa",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 84,
+          "page": 7,
+          "clut": 15900,
+          "parts": [
+            1
+          ],
+          "sourceCrop": [
+            168,
+            184,
+            232,
+            248
+          ],
+          "sourceUvOrigin": [
+            168,
+            184
+          ]
+        }
+      ],
+      "priorCandidateSha256": "e10035b398dc8f7424c602ff692084ab17c71d0fa26a23873694fda8df6444a1",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/cf87e2f471c633b05bd31cd6567dd46ea97715d919d52b36f7d68e14d584b672/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/cf87e2f471c633b05bd31cd6567dd46ea97715d919d52b36f7d68e14d584b672/image-v1.png",
+      "prompt": "Create a source-faithful, beautiful hand-painted HD version of the original battle atlas in reference 1. Reference 2 is the existing neural baseline; it has overly sharp skeletal strands and is only a boundary aid. Preserve EXACT original atlas proportions, all strand CENTERLINES and the original coarse relief layout. Every large hole, crossing junction and surrounding fragment must stay in place. The large central ridge runs nearly horizontally across the original: preserve its broad mass and the original direction. Render the existing forms as softly shaded MATTE organic relief with broad clean surfaces and only minimal fine grain. Absolutely no fibers, rope, fur, woodgrain, bundles of threads, shiny metal or glassy white highlights; no additional branches or bridges. Preserve the original subdued palette, low light and original broad values. The adjoining upper, lower and side fragments require continuous painted surfaces, not enlarged square pixels or camo blotches. Preserve ambiguous patterns as ambiguous. Keep a flat opaque atlas, no scene composition, no crop/zoom/frame/text. This needs a clean polished retro painterly surface, not a generative reinterpretation of the web.",
+      "references": [],
+      "review": {
+        "intent": "Bespoke source-faithful repair. Second distinct violet lattice with a large diagonal oval opening and separate top fragments. Preserve its exact original strand topology and broad values, no extra roots, stronger highlights or new anatomy. Static battle model surface; source geometry uses stage/parts {84: [1]}. Source family: Moon: purple organic lattice and green cliffs/rock. Engine random-encounter location mapping: Moon.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original strand centerlines, broad central ridge, loops/crossings and adjoining atlas strips retained. Three revisions rejected for crossing or fibrous/glossy finish; final matte original/baseline attempt author-reviewed. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "afe61d6aa1dafdfe8c9f568e9b7f7f4d967a305d2283fbf20761693eaa362ffa",
         "nativeAcceptance": "pending",
         "finalQualityAcceptance": "pending"
       }

@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "eb9b95619f81e63e923059c14d1c3c69a9f7d6c036b980397ddaf7b60143b6d7",
+    "battle-presentation-artwork-v1.json": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
     "battle-presentation-reviews/2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274"
   },
   "counts": {
@@ -19,10 +19,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 503,
+    "newBespokeCandidates": 506,
     "newlySelectedBespokeMasters": 35,
-    "baselineMastersStillNeedingPresentationReview": 3,
-    "pendingCandidateReviews": 468,
+    "baselineMastersStillNeedingPresentationReview": 0,
+    "pendingCandidateReviews": 471,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -1826,6 +1826,7 @@
       ],
       "authoredNewPresentationMasters": [
         "07e9fdd3455bdbb68eac9dc7964d7a1f252ff05c3650742d0d336a02c08dfcaf",
+        "0e65c5fa342ff7154671567a77c136ad9fcddaf095355d3f3225456a181dc73c",
         "250c92d5b48a30a78a24ea533028b3b042fc66155ba7ba542a7bb458f4fc59c1",
         "40e13531438c42a0ba13fa3514f6bb1b3c3034b6f84cba5facfa5c3a94d7d872",
         "57f23836616c02ad3ba333d308618bc9fb099370fc94f699ed7052c82ea54345",
@@ -1858,6 +1859,7 @@
         "414df5299c21d399e1fda3ef87d9f469a5b279e20fe3549c065a4568c9ade68b",
         "857e85e9cae8897c0f6116d658e2ab9b48eff3be6c5ad5d74b28683fcae02226",
         "85d3750903c4c260d1844000c32c861e0726ae00e6291b95e1b37fb520bc7f66",
+        "9870fa03358b0ff44e2005e82106d880a18e3c05b61dfab849cc21b9c3468c8c",
         "9e201daf5cead150ae51bfbbbb275b844d3d7e3db6fa0e088b653c2bb56ff55b",
         "ae9d134a13e963f1e850c55e4b04ef397448a35c8aee7bc797e6c362511bba10"
       ],
@@ -1880,6 +1882,7 @@
       ],
       "authoredNewPresentationMasters": [
         "09d29ab9b5c01199d90ba7b6d7019a69c737df83bf1497ce916f9d1d254f728a",
+        "cf87e2f471c633b05bd31cd6567dd46ea97715d919d52b36f7d68e14d584b672",
         "e78e239df94f1d191dc192851eefc459ca6e383a0bccb1063741a0343f6a270b",
         "f68e6cbebe04edfcfb4bfd5460c43d3b6febaceaafcf2c84b9021a3ce132a961",
         "ffb9f63d6144bbc4c6a9eb3ac6f1a00830a059dd3bc89bd026115c528e48a4da"
@@ -16192,7 +16195,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {82: [2]}. Source family: dark brown stone, arches, border ornament and tangled/root-like surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -16378,7 +16381,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {83: [0]}. Source family: Moon: purple organic lattice and green cliffs/rock. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -16781,7 +16784,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {84: [1]}. Source family: Moon: purple organic lattice and green cliffs/rock. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
