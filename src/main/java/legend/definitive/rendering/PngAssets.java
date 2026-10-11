@@ -133,7 +133,7 @@ public final class PngAssets implements AutoCloseable {
           // Completion callbacks may inspect memory or disable retention inline.
           // They must observe the finished operation, including resource cleanup.
           result.complete(true);
-        } catch(final Exception failure) { result.completeExceptionally(failure); }
+        } catch(final Throwable failure) { result.completeExceptionally(failure); }
       });
     } catch(final java.util.concurrent.RejectedExecutionException full) { result.complete(false); }
     return result;

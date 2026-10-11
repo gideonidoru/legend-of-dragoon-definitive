@@ -91,3 +91,4 @@ tasks.register('modelsHdBundle', Zip) {
   reproducibleFileOrder = true
 }
 tasks.named('build') { dependsOn 'modelsHdJar' }
+tasks.named('check') { dependsOn 'modelsHdTests' }
