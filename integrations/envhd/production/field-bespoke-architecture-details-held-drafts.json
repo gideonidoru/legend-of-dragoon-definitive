@@ -1,0 +1,292 @@
+{
+  "schema": 1,
+  "scope": "Five rejected unselected architecture versions: Bale corner1, Bale doorway frame1/2 and Deningrad doorway1/2. Source references and static comparison dumps remain private. Corrected Bale corner2 and Shrine arch1 separately await independent review.",
+  "sourceSelectionBaseCommit": "16b74d96578829d7a0196b1fc2cc72bcbca85f14",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 3,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
+      "generatedSha256": "bdb2fda04dead9b0afbbe7695d56bacefdad8269f4735ed106dd0f2b175af9b9",
+      "generatedSize": [
+        1153,
+        1364
+      ],
+      "sourceSize": [
+        22,
+        26
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "f93b0f145362e198ce148bb4e8165782871c2e89370f4084185415bbede7d212:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 79,
+      "representativeLocation": "Bale",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Edit the FIRST reference image into ONE faithful high-definition game foreground texture fragment. The FIRST image controls composition, colors, crop, silhouette, proportions and shading; the SECOND image is the complete original scene for context only; the THIRD image is existing Skurfa HD art for the restrained painted surface finish only. Do not copy the third image's lighting, palette, geometry or imagery. Maintain the exact first-image canvas aspect ratio, its framing and all feature locations; do not add padding, complete missing objects, rotate, recenter or change camera. Smooth material detail with delicate highlights, natural worn edges and painted realism suitable for Legend of Dragoon pre-rendered field backgrounds. Preserve broad original values and local hue. No interface, text, letters, new glyphs, characters, logos or invented symbolic ornament. Output the texture fragment only, not the whole scene, not a comparison board. Native crop is 22 wide by 26 high (11:13 portrait). This is a tiny cropped architectural corner where muted terracotta-brown roof/facade detail meets dark olive-brown masonry and a narrow pale dull ochre edge slanting upward to the right. Full scene locates it at the building corner below the roof. Keep the exact dark left strip, the broad brown upper-right shape, the small existing worn curved strokes and the diagonal pale lower edge. Source motif identity is ambiguous: keep the irregular curves irregular; do not interpret them as a face, creature, leaf, crest or letter. Maintain the soft dim brown/olive values, not bright gold. Where the original is transparent/black outside the fragment, use transparent background with the same cropped outline.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 6624,
+      "paintedGapPixelsExtended": 556,
+      "paintedUncoveredSourcePixels": 444,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 45,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        88,
+        104
+      ],
+      "outputSha256": "83dfdbedcb6e49c4eb06d7a94f5c6921aa1a39620b816eb1851d0bb61d9dfed9",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f/repaired-draft-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version1 invents large cracked stone/plaster subdivisions and overly bright relief in the tiny roof/facade corner; rejected after original and current EnvHD placement comparison. Separate corrected version2 pending independent review."
+    },
+    {
+      "decodedRgbaSha256": "df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b",
+      "generatedSha256": "17055e0b092d08111df6b19f86f9a93f51ce0df71ee70851a277ae16ee3a42a5",
+      "generatedSize": [
+        1145,
+        1374
+      ],
+      "sourceSize": [
+        40,
+        48
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "f93b0f145362e198ce148bb4e8165782871c2e89370f4084185415bbede7d212:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 79,
+      "representativeLocation": "Bale",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Edit the FIRST reference image into ONE faithful high-definition game foreground texture fragment. The FIRST image controls composition, colors, crop, silhouette, proportions and shading; the SECOND image is the complete original scene for context only; the THIRD image is existing Skurfa HD art for the restrained painted surface finish only. Do not copy the third image's lighting, palette, geometry or imagery. Maintain the exact first-image canvas aspect ratio, its framing and all feature locations; do not add padding, complete missing objects, rotate, recenter or change camera. Smooth material detail with delicate highlights, natural worn edges and painted realism suitable for Legend of Dragoon pre-rendered field backgrounds. Preserve broad original values and local hue. No interface, text, letters, new glyphs, characters, logos or invented symbolic ornament. Output the texture fragment only, not the whole scene, not a comparison board. Native crop is 40 wide by 48 high (5:6 portrait). This is the cropped lit ochre stone/masonry doorframe corner on Bale's facade: a top lintel slopes down to the right into a right-hand upright; large dark/transparent doorway interior occupies left/bottom. Exact silhouette and perspective from original. Keep the pale cream/dull-ochre worn curved carved strokes across the top/right over dark brown-green recesses. Follow the existing irregular loop and sweep geometry conservatively; do not invent a new Celtic knot, leaf design, face, lettering or repeat pattern. The upright has broken, restrained horizontal masonry/material variations, darkest near the lower part. Preserve dim original light, warm dull stone hues and soft wear, with subtle HD detail but no bright gilding. Keep original missing regions transparent.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 14976,
+      "paintedGapPixelsExtended": 196,
+      "paintedUncoveredSourcePixels": 125,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 13,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        160,
+        192
+      ],
+      "outputSha256": "6e535483375e53f3444ebf769da79bfd66bef608ad446b50405318100e112b03",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b/repaired-draft-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Both versions invent prominent stacked block joints and a strong pale loop pattern in the upright/lintel. Version2 correction does not remove this sufficiently; source motif identity and whole-facade continuity remain unproved. Original foreground remains selected native fallback."
+    },
+    {
+      "decodedRgbaSha256": "f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813",
+      "generatedSha256": "ca4fa1b26b586f098d22061ae288cd4ea7ea466e4c7c54b3ffae7f9fd2c34cba",
+      "generatedSize": [
+        1034,
+        1521
+      ],
+      "sourceSize": [
+        34,
+        50
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "de7c78e3ca660dd83acd47f8e78fa6e979e1484024acc2c16efc59b1c52ee670:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 348,
+      "representativeLocation": "Deningrad",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "generationVersion": 1,
+      "prompt": "Edit the FIRST reference image into ONE faithful high-definition game foreground texture fragment. The FIRST image controls composition, colors, crop, silhouette, proportions and shading; the SECOND image is the complete original scene for context only; the THIRD image is existing Skurfa HD art for the restrained painted surface finish only. Do not copy the third image's lighting, palette, geometry or imagery. Maintain the exact first-image canvas aspect ratio, its framing and all feature locations; do not add padding, complete missing objects, rotate, recenter or change camera. Smooth material detail with delicate highlights, natural worn edges and painted realism suitable for Legend of Dragoon pre-rendered field backgrounds. Preserve broad original values and local hue. No interface, text, letters, new glyphs, characters, logos or invented symbolic ornament. Output the texture fragment only, not the whole scene, not a comparison board. Native crop is 34 wide by 50 high (17:25 portrait). This is an OPAQUE rectangular image patch containing an arched warm-brown wooden doorway on Deningrad's right-side building. Keep the arch and every coarse wooden curved/radiating ornamental strip in exactly its original location, with dark inset gaps; preserve the thin original curved strips, not a new decorative tree, fan or Celtic knot. On the right the original contains a narrow dark blue/green vertical hanging architectural object, its curved pale-blue lower edge, and a cropped red surface with dull ochre sides and a pale top stripe. Keep those original abstract shapes without guessing a sign/icon identity. At the bottom retain the foreground diagonal blue tiled roof and its pale narrow border that occludes the door. Keep the source's muted pale grey/green irregular masonry surround fully OPAQUE right out to every border: do not replace surround with transparency, a flat neutral panel or shadow vignette. Preserve all crop boundaries and subdued daylight, no shiny gold. No new handles or different lattice pattern.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 27200,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        136,
+        200
+      ],
+      "outputSha256": "59f09b6dd28a08f3d6f6eaedac70aa1d9a06a9257d5a1a2718fe8e7466925c5b",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813/repaired-draft-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version1 invents two spherical blue details; version2 removes them but still changes the door lattice density, adjoining red/ochre shape, pale roof ridge and masonry surround. Opaque rectangle transitions remain visible in current EnvHD static placement. Full source-region geometry and adjoining surface continuity remain unresolved."
+    },
+    {
+      "decodedRgbaSha256": "df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b",
+      "generatedSha256": "e6bca5a5c69ac850076ce81ddd1db137db931bea425cee4584cfa189e5e817da",
+      "generatedSize": [
+        1145,
+        1374
+      ],
+      "sourceSize": [
+        40,
+        48
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "f93b0f145362e198ce148bb4e8165782871c2e89370f4084185415bbede7d212:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 79,
+      "representativeLocation": "Bale",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "The previous draft (SECOND reference) is rejected because the upright doorway corner invents prominent stacked stone blocks and dark joints. FIRST original is authoritative: preserve its softly worn irregular tan/brown narrow upright with small subdued horizontal variations and dim darkening toward bottom. Follow the pale narrow curved lines already in the FIRST crop's upper/right area, preserving the exact individual loops, bends and joins; no new big loop or thick central curving symbol. No identifiable Celtic pattern and no new masonry block subdivisions. Keep the exact dark sloping underside of top lintel, broad dark doorway void, silhouette and5:6 canvas. FIRST original hues and shading, no extra dramatic light or gilding. THIRD is complete original context, FOURTH surface finish only. Output only original40x48-proportion foreground crop with transparent original absent pixels.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 14976,
+      "paintedGapPixelsExtended": 625,
+      "paintedUncoveredSourcePixels": 483,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 36,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        160,
+        192
+      ],
+      "outputSha256": "790f79726bc430029805ab86762fad2043121a0c88f7073401196233ead459d1",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b/repaired-draft-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Both versions invent prominent stacked block joints and a strong pale loop pattern in the upright/lintel. Version2 correction does not remove this sufficiently; source motif identity and whole-facade continuity remain unproved. Original foreground remains selected native fallback."
+    },
+    {
+      "decodedRgbaSha256": "f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813",
+      "generatedSha256": "5b47b0de1bb2395df79a0a160154d6fe81f70779ce042d8f2a44494788fc4995",
+      "generatedSize": [
+        1034,
+        1521
+      ],
+      "sourceSize": [
+        34,
+        50
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "de7c78e3ca660dd83acd47f8e78fa6e979e1484024acc2c16efc59b1c52ee670:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 348,
+      "representativeLocation": "Deningrad",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "generationVersion": 2,
+      "prompt": "The previous draft (SECOND reference) is rejected because it invents two shiny spherical blue ornaments and moves adjoining decorative/roof shapes. FIRST original controls every region. Keep the arched wood lattice strokes at the exact same coarse positions and thin widths, no new ornament. The narrow right hanging dark blue/green form has only the original small diffuse pale strokes at y roughly18..25 of50; keep these irregular strokes soft, do not resolve as two round knobs, balls, a face or sculpted object. The adjoining red/ochre patch must preserve its original uneven crop, proportions, pale top edge and flat painted character rather than making a new rigid projecting box. Foreground roof's pale diagonal ridge must match FIRST original's angle/endpoints and its muted blue roof tile field, no new heavy cap row; no new wall blocks. Preserve the muted original green-grey surround at EVERY rectangular edge and exact opaque17:25 canvas. THIRD is complete original context; FOURTH finish only. Output this34x50-proportion rectangular crop only, original local diffuse shading and palette.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 27200,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        136,
+        200
+      ],
+      "outputSha256": "0da318e6e2530f3cdbb9c6cf5d0fc649b92cc79bfd869981653af847adb0cdde",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813/repaired-draft-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version1 invents two spherical blue details; version2 removes them but still changes the door lattice density, adjoining red/ochre shape, pale roof ridge and masonry surround. Opaque rectangle transitions remain visible in current EnvHD static placement. Full source-region geometry and adjoining surface continuity remain unresolved."
+    }
+  ]
+}

@@ -23,7 +23,9 @@
     "field-bespoke-forest-fittings-reviewed-selection.json": "005b74c0851cfb7ac58811ec05188cb9f663d88017307c305bba3d26fd94c1a3",
     "field-bespoke-forest-door-fittings-held-drafts.json": "59a3910ca0eb358211562ea1627a4cf7e1faf6566e731d858d1e9460dc563c55",
     "field-bespoke-architecture.json": "57221f4ec9db7762d97f7a8849413572cd8e9116662836c083f73bf6c0bd3b35",
-    "field-bespoke-source-surround-reviewed-selection.json": "091359b3ce4781814cc67913c42a793c423d2ff9b68e247636defeb2466ec02b"
+    "field-bespoke-source-surround-reviewed-selection.json": "091359b3ce4781814cc67913c42a793c423d2ff9b68e247636defeb2466ec02b",
+    "field-bespoke-architecture-details-reviewed-selection.json": "643273f33630f412713d6bc47021710458952e72da2d9289215abdc463a800de",
+    "field-bespoke-architecture-details-held-drafts.json": "ba777a58ae14945b0550299126e6c3486cfbaa86465fb066d76fa70e3749ca6a"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -41,11 +43,11 @@
       "selectedPainted": 32,
       "held": 244,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 18,
+      "customHeldDraftSourceImages": 22,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
-      "nextTask": "Independently review9pending source-bound field candidates, including Furni source-surround repair; continue remaining244field holds and native/whole-scene finish acceptance.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 9,
+      "nextTask": "Independent source/design review of11pending candidates; continue244field holds, with Bale frame and Deningrad doorway lattice/surround corrections still required. Native and full-scene finish acceptance pending.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 11,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
@@ -62,11 +64,15 @@
         "7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827",
         "82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6",
         "83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5",
+        "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
         "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab",
         "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
+        "b88a83c36c8e7e7e09112c6174606d9498252c7deca051cb4ceef656d0819523",
+        "df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b",
+        "f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding4918current runtime selections. Includes older held Deningrad doorway05376f9a previously omitted from incremental draft count; all18are a subset of244field holds."
+      "draftCountMethod": "Unique64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding4918current runtime selections.22unique draft sources are a subset of244field holds; candidate and rejected versions deduplicated."
     },
     {
       "id": "static-terrain",
@@ -235,6 +241,17 @@
       "newHeldSourceImages": 0,
       "duplicatesHeldDraftSource": true,
       "reason": "Existing Furni generated3 with separately pinned/replayed source-surround restoration now author-reviewed. Source wall interpolated and native border RGB recoverable; old failed/held versions preserved. Runtime/native/final selection pending."
+    },
+    {
+      "manifest": "field-bespoke-architecture-details-reviewed-selection.json",
+      "newHeldSourceImages": 2,
+      "reason": "Corrected Bale roof/facade corner2 and Shrine arch1 author-reviewed, independently pending; all41earlier records exact."
+    },
+    {
+      "manifest": "field-bespoke-architecture-details-held-drafts.json",
+      "newUniqueHeldSourceImages": 2,
+      "heldSourceImages": 3,
+      "reason": "Bale doorway frame and Deningrad doorway remain held after two variants each. Rejected Bale corner1 overlaps corrected pending corner2; all4new source keys remain a subset of244field holds."
     }
   ],
   "publication": {
