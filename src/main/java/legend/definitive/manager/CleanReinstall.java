@@ -45,6 +45,8 @@ final class CleanReinstall {
             try(final var applications = Files.list(entry)) {
               for(final Path application : applications.toList()) preserveApplication(root, application, preserved, active, name.equals("workspaces"), next);
             }
+          } else if(name.equals("files") || PackageManifest.SUPPORT.contains(name)) {
+            preserveFlatDirectory(root, entry, preserved, active, next);
           } else if(PRIVATE.contains(name)) {
             preserveTree(root, entry, preserved, active);
           } else if(name.startsWith("release-recovery-")) {
@@ -65,6 +67,32 @@ final class CleanReinstall {
       try { result.close(); } catch(final IOException cleanup) { failure.addSuppressed(cleanup); }
       throw failure;
     }
+  }
+  private static void preserveFlatDirectory(final Path root, final Path source, final Path staged, final Path active, final PackageManifest next) throws IOException {
+    if(Files.isSymbolicLink(source)) throw new IOException("Linked flat application folder prevents personal-data census: " + source);
+    final Set<String> known = new HashSet<>();
+    if(next != null) known.addAll(next.hashes().stringPropertyNames());
+    try {
+      final PackageManifest old = PackageManifest.read(root);
+      if(old.id().equals(PackageManifest.identity(old.metadata(), old.hashes()))) for(final String name : old.hashes().stringPropertyNames()) if(PackageManifest.allowed(name)) known.add(name);
+    } catch(final IOException | RuntimeException absent) { /* Legacy root need not have a package inventory. */ }
+    try(final var paths = Files.walk(source)) {
+      final var bounded = paths.limit(100001).toList();
+      if(bounded.size() > 100000) throw new IOException("Flat personal-data census exceeds its safe bound.");
+      for(final Path path : bounded) {
+        checkCancelled();
+        if(Files.isSymbolicLink(path)) throw new IOException("Linked personal flat application entry: " + path);
+        if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) continue;
+        if(!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Unsupported flat application entry: " + path);
+        final String name = root.relativize(path).toString().replace('\\', '/');
+        final boolean image = name.matches("(?i).*\\.(iso|cue|chd|img|mdf)");
+        final boolean app = known.contains(name) || generatedExtraction(name) || name.startsWith("bundled-mods/") && bundledArchive(path.getFileName().toString());
+        if(image || !app) preserveTree(root, path, staged, active);
+      }
+    }
+  }
+  private static boolean generatedExtraction(final String name) {
+    return name.matches("files/(?:SECT|STR|XA|OVL)/.*") || Set.of("files/version", "files/.gitignore").contains(name);
   }
   private static void preserveApplication(final Path root, final Path source, final Path staged, final Path active, final boolean workspace, final PackageManifest next) throws IOException {
     if(Files.isSymbolicLink(source)) throw new IOException("Linked old application folder prevents personal-data census: " + source);
@@ -111,7 +139,7 @@ final class CleanReinstall {
         if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) continue;
         if(!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Unsupported old application entry: " + path);
         final boolean image = relative.matches("(?i).*\\.(iso|cue|chd|img|mdf)") || !first.equals("files") && relative.matches("(?i).*\\.bin");
-        final boolean generated = workspace && (relative.matches("files/(?:SECT|STR|XA|OVL)/.*") || Set.of("files/version", "files/.gitignore").contains(relative)
+        final boolean generated = workspace && (generatedExtraction(relative)
           || Set.of("gamecontrollerdb.txt", "log4j2.xml", "launcher.log").contains(relative));
         final boolean appArchive = !workspace && first.equals("bundled-mods") && bundledArchive(path.getFileName().toString());
         if(image || !generated && !appArchive && !known.contains(relative)) preserveTree(root, path, staged, active);
