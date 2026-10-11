@@ -84,3 +84,34 @@ The public FMV fix was separately confirmed working by the player on Steam Deck.
 Shader GLES transpilation and headless simulation/resource/cinematic cadence tests
 remain separate from actual GLES or Deck GPU execution. Independent depth-clear
 work is owned by the rendering integration stream and is not part of this patch.
+
+## Battle artwork loading uses the existing image cache
+
+Battle atlas selection calls `ArtworkResources.image` on the renderer thread.
+It previously decoded PNGs with ImageIO and converted pixels individually, bypassing
+the engine's existing bounded native decoder/cache. The loader now uses `PngAssets`,
+respects the image-cache setting, releases its decode lease, and returns a separate
+owned RGBA array. Header/dimension bounds and the source/payload/coverage validation
+performed by each caller remain in place. No new cache budget is introduced.
+
+Private measurements used three actual published battle atlases and matching local
+source data. Each full-load trial began with an empty decoded cache and an already
+initialized native decoder. Median CPU wall times for trials 1–3 were:
+
+| Stage directory | Published full atlas load | Corrected full atlas load |
+| --- | ---: | ---: |
+| 2498 | 52.211 ms | 21.667 ms |
+| 2499 | 95.196 ms | 24.638 ms |
+| 2500 | 36.445 ms | 9.203 ms |
+
+These are CPU asset-loading measurements on an Apple M5 Max, including integrity
+checks, rather than Deck frame times or GPU upload times. Native decoder startup
+was measured separately and is not represented as a first-launch speedup. Repeated
+loads can reuse the shared decode; the first cache-reuse regression fails on the
+old loader and passes on the corrected one. Synthetic RGB/RGBA pixel oracles cover
+transparent RGB, exact alpha/STP, malformed input, independent result ownership,
+cache disabling and lease cleanup. All 71 published battle atlases pass their complete source/payload/coverage checks.
+All 190 embedded EnvHD PNGs (345641472 pixels across battle atlases, skies and world
+artwork) are additionally byte-identical to the previous decoder's RGBA output. Full cold battle entry—including
+mesh construction, first GPU upload and scripted transition—still needs physical
+Deck profiling and visual acceptance.

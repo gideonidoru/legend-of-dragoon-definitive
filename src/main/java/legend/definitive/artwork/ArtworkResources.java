@@ -4,7 +4,6 @@ import legend.game.textures.Image;
 import java.io.IOException;
 import java.io.ByteArrayInputStream;
 import java.util.Properties;
-import javax.imageio.ImageIO;
 
 public final class ArtworkResources {
   private ArtworkResources() { }
@@ -20,14 +19,16 @@ public final class ArtworkResources {
     if(png.length > 32 * 1024 * 1024 || width < 1 || height < 1 || width > 4096 || height > 4096) throw new IOException("Artwork size exceeds bounds");
     final var header = java.nio.ByteBuffer.wrap(png).order(java.nio.ByteOrder.BIG_ENDIAN);
     if(png.length < 33 || header.getLong(0) != 0x89504e470d0a1a0aL || header.getInt(8) != 13 || header.getInt(12) != 0x49484452 || header.getInt(16) != width || header.getInt(20) != height || png[24] != 8 || (png[25] != 2 && png[25] != 6)) throw new IOException("Artwork PNG header differs");
-    final var image = ImageIO.read(new ByteArrayInputStream(png));
-    if(image == null || image.getWidth() != width || image.getHeight() != height) throw new IOException("Invalid artwork PNG");
-    final byte[] rgba = new byte[width * height * 4];
-    for(int y = 0; y < height; y++) for(int x = 0; x < width; x++) {
-      final int pixel = image.getRGB(x, y), i = (y * width + x) * 4;
-      rgba[i] = (byte)(pixel >>> 16); rgba[i + 1] = (byte)(pixel >>> 8); rgba[i + 2] = (byte)pixel; rgba[i + 3] = (byte)(pixel >>> 24);
+    final var cache = legend.core.renderer.Texture.imageCachingEnabled()
+      ? legend.definitive.rendering.PngAssets.SHARED : legend.definitive.rendering.PngAssets.UNCACHED;
+    try(final var decoded = cache.acquire(java.nio.ByteBuffer.wrap(png))) {
+      if(decoded.width() != width || decoded.height() != height) throw new IOException("Invalid artwork PNG");
+      final byte[] rgba = new byte[width * height * 4];
+      decoded.pixels().get(rgba);
+      return new Image(rgba, width, height);
+    } catch(final IllegalArgumentException failure) {
+      throw new IOException("Invalid artwork PNG", failure);
     }
-    return new Image(rgba, width, height);
   }
   public static Properties metadata(final Class<?> owner, final String path) throws IOException {
     final var result = new Properties(); result.load(new ByteArrayInputStream(read(owner, path, 65536))); return result;
