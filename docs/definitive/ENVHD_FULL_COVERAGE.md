@@ -138,3 +138,9 @@ that hold, preserving all 32 original candidate records in the unchanged bedding
 manifest. Runtime resources exclude the full bed and use its native source layer;
 all other 4,917 records remain exact. Current selection is 4,917 (4,886 neural plus 31
 painted), with 245 field holds plus one terrain hold. No recipes or thresholds change.
+
+The prop/animation raw-page figures above are historical discovery snapshots,
+not complete EnvHD material/image counts. See the [remaining discovery plan](ENVHD_REMAINING_DISCOVERY_PLAN.md)
+for fresh battle dependency checks, current prop route/raw-page counts, unresolved
+aliases and source-located workstreams with acceptance conditions. Current selected
+artwork and its source-ledger controls remain unchanged by that discovery work.
