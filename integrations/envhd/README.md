@@ -2,10 +2,16 @@
 
 Independent presentation mod for Legend of Dragoon Definitive, release 0.1.0.
 
-Static battle material pilot for stages 0 and 6. Production is extending coverage
-to source-bound battle panoramas, then world-map art and remaining environments.
-Skurfa's existing field scenes remain protected and are reused. See the
-[production ownership ledger](production/README.md) for gaps and review status.
+Includes 70 battle panorama masters, 38 location landscapes, one world parchment,
+eight static continent atlases (292 reviewed masters), the original stages 0/6
+battle pilot, 506 new reviewed static battle material masters and 2,723 reviewed
+field images. These are development baselines; held/unreviewed layers retain
+native sampling. Gameplay and final bespoke visual acceptance remain pending.
+Skurfa's existing field resources, code and notices are unchanged and protected.
+See the [production ledger](production/full-coverage.json) for exact gaps.
+
+Four resource-only `Env1HD-v0.1.0.zip` through `Env4HD-v0.1.0.zip` files accompany the EnvHD JAR.
+They are installed automatically and remain owned by the single `envhd` mod.
 
 Included by the normal Definitive build/installer. Enable or disable `envhd` in the game’s Mods menu. No installer toggle. Requires the matching Definitive engine hooks; unmodified Severed Chains is not supported for this pilot. See [HD mod integration](../../docs/definitive/HD_MODS.md) for coverage, validation and limitations.
 

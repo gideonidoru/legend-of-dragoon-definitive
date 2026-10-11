@@ -4,7 +4,7 @@ The owner requested four independent artwork mods, installed with Definitive by 
 
 | Mod / ID | Bundled content | Extension boundary |
 | --- | --- | --- |
-| EnvHD / `envhd` | 24 separately addressed palette regions on static battle stages 0 and 6; 4× reconstruction with source coverage preserved | Additional verified static stage packs, then field props/world-map surfaces. Existing Skurfa scene artwork is untouched. |
+| EnvHD / `envhd` | 70 panoramas, 39 world images, 364 static terrain bindings, 537 battle-material bindings, 2,723 reviewed field images; source-bound 4× development reconstruction | Remaining field review/bespoke holds, props, wrapped terrain and environment animation. Existing Skurfa artwork is untouched. |
 | CharHD / `charhd` | Source-bound battle material adapter with a Dart armor development pilot; field adapter retained | Explicit surface/roughness settings use current material lighting. Full character reconstruction and native/Deck acceptance remain open. See [production status](CHARHD_PRODUCTION.md). |
 | UIHD / `uihd` | All audited default HUD/portrait/UI families: 738 assets, including world-map/exploration cues, chapter states, credits, title/end screens and both save-card formats | Full source denominator and component validation complete; native artistic, whole-game and physical Deck acceptance pending. See [coverage ledger](UIHD_COVERAGE.md). |
 | FxHD / `fxhd` | All 6,466 retail FX source bindings through 2,160 palette-live 2× detail maps, plus six explicit field replacements | Common battle, spells, Dragoon/enemy/boss attacks, cutscenes, field/save-point animation, world atmosphere and title fire; procedural/framebuffer routes accounted. Native/Deck appearance acceptance pending. |
@@ -100,3 +100,11 @@ battle floors/walls/surfaces; then field forests, towns, buildings, and interior
 Track accepted unique artwork, scene coverage and exception reasons separately
 from source-file and delivered-layer counts. CharHD, UIHD and FxHD remain separately
 controlled mods for their corresponding artwork.
+
+The expanded EnvHD field delivery uses four resource-only ZIPs beside its JAR,
+under the same `envhd` mod switch. Both HD and legacy original-background installer
+profiles retain these bundles. Mixed static battle atlases preserve native sampling
+for held/animated materials; counterattack darkening still uses the native route.
+Fields preserve each native foreground slot, cropped placement and script state.
+See `ENVHD_STATUS.md` and `ENVHD_FULL_COVERAGE.md` for controlling counts and open
+quality/native-validation gates; older pilot evidence above is historical.

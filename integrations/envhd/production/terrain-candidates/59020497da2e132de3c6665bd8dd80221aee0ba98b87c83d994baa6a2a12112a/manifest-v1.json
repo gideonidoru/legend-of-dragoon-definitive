@@ -1,0 +1,45 @@
+{
+  "decodedRgbaSha256": "59020497da2e132de3c6665bd8dd80221aee0ba98b87c83d994baa6a2a12112a",
+  "sourceSize": [
+    128,
+    128
+  ],
+  "bindings": [
+    {
+      "bank": 7,
+      "region": "Endiness",
+      "page": 139,
+      "clut": 32112,
+      "imageFile": 9,
+      "parts": [
+        2
+      ]
+    }
+  ],
+  "targetSize": [
+    512,
+    512
+  ],
+  "outputSha256": "9b6f67e131346ab02394bdf20b633e130df9e1a9c4852bc725d89500bacc47a2",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "World-map land, mountain, coast and road patch in Endiness. Retains source silhouette, surface organization and principal colors; location names identify source usage rather than invented scene details.",
+    "style": "Neural detail and smoothing provide a development baseline; bespoke Skurfa-equivalent finishing remains pending.",
+    "layout": "Compared source and 4x candidate on private boards 01\u201313, including a separate corrected-black review for six cloud materials. Source-owned opaque/discard/visible-black/STP classes are validated from the final ordered VRAM upload.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "9b6f67e131346ab02394bdf20b633e130df9e1a9c4852bc725d89500bacc47a2",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "23ce08235491afd853f1cc15cc63b965928054f7f70ccd88c9c2085b9d51d948",
+  "sourceRole": "Static world-map model parts; original geometry and coordinates remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources remain unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

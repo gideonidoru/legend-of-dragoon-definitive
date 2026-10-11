@@ -182,6 +182,7 @@ public class RetailSubmap extends Submap {
   private Obj backgroundObj;
   private final MV backgroundTransforms = new MV();
   private Texture[] foregroundTextures;
+  private Rect4i[] foregroundArtworkRects;
   private final Int2ObjectMap<Consumer<TextureBuilder>> sobjTextureOverrides = new Int2ObjectOpenHashMap<>();
 
   public RetailSubmap(final SMap smap, final int cut, final NewRootStruct newRoot, final Vector2f screenOffset, final CollisionGeometry collisionGeometry) {
@@ -875,7 +876,21 @@ public class RetailSubmap extends Submap {
       }
     }
 
-    final SubmapEnvironmentTextureEvent event = EVENTS.postEvent(new SubmapEnvironmentTextureEvent(this.smap, gameState_800babc8, this, drgnBinIndex_800bc058, this.cut, this.envForegroundTextureCount_800cb580));
+    final Rect4i canvas = Rect4i.bound(rects);
+    final SubmapEnvironmentTextureEvent hint = new SubmapEnvironmentTextureEvent(this.smap, gameState_800babc8, this, drgnBinIndex_800bc058, this.cut, this.envForegroundTextureCount_800cb580);
+    hint.nativeImages = () -> {
+      final legend.definitive.rendering.NativeEnvironmentImages.Tile[] tiles = new legend.definitive.rendering.NativeEnvironmentImages.Tile[tims.length];
+      final int[][] placements = new int[tims.length][];
+      for(int i = 0; i < tims.length; i++) {
+        if(tims[i] == null) continue;
+        final EnvironmentRenderingMetrics24 metrics = this.envRenderMetrics_800cb710[i];
+        tiles[i] = new legend.definitive.rendering.NativeEnvironmentImages.Tile(tims[i], metrics.u_14, metrics.v_15, rects[i].w, rects[i].h, i >= this.envBackgroundTextureCount_800cb57c);
+        placements[i] = new int[]{metrics.offsetX_1c, metrics.offsetY_1e};
+      }
+      final var segments = this.preparedEnvironment == null ? legend.definitive.rendering.NativeEnvironmentImages.decode(tiles) : this.preparedEnvironment;
+      return legend.definitive.artwork.FieldImages.compose(canvas, this.envBackgroundTextureCount_800cb57c, segments, placements);
+    };
+    final SubmapEnvironmentTextureEvent event = EVENTS.postEvent(hint);
     this.environmentLighting = event.lighting == null ? legend.definitive.rendering.EnvironmentLight.NONE : event.lighting;
 
     this.backgroundRect = Rect4i.bound(rects);
@@ -912,6 +927,7 @@ public class RetailSubmap extends Submap {
     }
 
     this.foregroundTextures = event.foregrounds;
+    this.foregroundArtworkRects = event.foregroundRects;
     if(this.foregroundTextures != null) {
       for(final Texture texture : this.foregroundTextures) {
         if(texture != null) texture.hdFiltering();
@@ -1388,10 +1404,11 @@ public class RetailSubmap extends Submap {
         final EnvironmentRenderingMetrics24 metrics = this.envRenderMetrics_800cb710[this.envBackgroundTextureCount_800cb57c + i];
 
         if(metrics.obj == null) {
+          final Rect4i artworkRect = this.foregroundArtworkRects == null || this.foregroundArtworkRects[i] == null ? this.backgroundRect : this.foregroundArtworkRects[i];
           metrics.obj = new QuadBuilder("CutoutTexture (index " + i + ')')
             .bpp(Bpp.BITS_24)
-            .pos(this.backgroundRect.x, this.backgroundRect.y, 0.0f)
-            .posSize(this.backgroundRect.w, this.backgroundRect.h)
+            .pos(artworkRect.x, artworkRect.y, 0.0f)
+            .posSize(artworkRect.w, artworkRect.h)
             .uvSize(1.0f, 1.0f)
             .build();
         }

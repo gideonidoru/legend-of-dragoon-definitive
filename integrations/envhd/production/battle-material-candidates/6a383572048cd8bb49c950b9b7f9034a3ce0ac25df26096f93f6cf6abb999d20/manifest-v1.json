@@ -1,0 +1,54 @@
+{
+  "decodedRgbaSha256": "6a383572048cd8bb49c950b9b7f9034a3ce0ac25df26096f93f6cf6abb999d20",
+  "sourceSize": [
+    39,
+    48
+  ],
+  "bindings": [
+    {
+      "stage": 30,
+      "page": 7,
+      "clut": 15645,
+      "parts": [
+        0
+      ],
+      "sourceCrop": [
+        117,
+        168,
+        156,
+        216
+      ],
+      "sourceUvOrigin": [
+        117,
+        168
+      ]
+    }
+  ],
+  "targetSize": [
+    156,
+    192
+  ],
+  "outputSha256": "ae763402ad383778877335674dc5fa5673936d88f8ec0162bf3ed5caae2ded38",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
+    "style": "Visually inspected original/candidate comparison. Source colors, material identity and silhouettes retained as a neural development baseline; inferred/smoothed detail is not final Skurfa-equivalent bespoke quality. Skurfa resources are untouched.",
+    "layout": "Comparison board 06, cell 16; crop and tile arrangement remain source-bound. All outputs independently revalidated against fresh original decodes: exact 4x STP, discard and visible-black class; no edge averaging or geometry changes. Native seam/blend/mip inspection remains pending.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "ae763402ad383778877335674dc5fa5673936d88f8ec0162bf3ed5caae2ded38",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "7862ee67731b77e646c22f298ebcb3325206a0a38ddf2eb8bea21882ce03c153",
+  "batchDependencySha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "sourceRole": "Static battle floor, wall and scenery surfaces; geometry and native animations remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources are unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

@@ -2627,6 +2627,7 @@ public class Battle extends EngineState<Battle> {
         try {
           final var event = EVENTS.postEvent(new legend.game.modding.events.battle.BattleStageTextureEvent(originalModel, originalTim));
           if(event.replacement != null) stage.artwork = legend.definitive.artwork.StageArtwork.create(stage, event.replacement, originalModel, originalTim);
+          else if(event.staticReplacement != null) stage.artwork = legend.definitive.artwork.StageArtwork.create(stage, event.staticReplacement, originalModel, originalTim);
         } catch(final Exception failure) { LOGGER.warn("EnvHD stage retained original artwork: {}", failure.getMessage()); }
       }
       stage.coord2_558.coord.transfer.set(0, 0, 0);
@@ -8112,7 +8113,7 @@ public class Battle extends EngineState<Battle> {
         GTE.setTransforms(ls);
         Renderer.renderDobj2(part, true, 0);
 
-        final boolean useArtwork = stage.artwork != null && !stage.artworkDarkened && java.util.Arrays.stream(stage._618).allMatch(value -> value == 0);
+        final boolean useArtwork = stage.artwork != null && !stage.artworkDarkened && (stage.artwork.preservesNativeAnimation || java.util.Arrays.stream(stage._618).allMatch(value -> value == 0));
         final var queued = RENDERER.queueModel(useArtwork ? stage.artwork.meshes[i] : part.tmd_08.getObj(), lw, QueuedModelBattleTmd.class);
         if(useArtwork) queued.texture(stage.artwork.texture);
         queued.depthOffset(stage.z_5e8 * 4)

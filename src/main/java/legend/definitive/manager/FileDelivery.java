@@ -53,6 +53,12 @@ final class FileDelivery {
   }
 
   static String install(final InstallStore store, final ReleaseUpdates.Candidate candidate, final InstallProgress progress, final ReleaseUpdates.AssetDownload connection, final boolean repairing) throws IOException, InterruptedException {
+    return install(store,candidate,progress,connection,repairing,false);
+  }
+  static String install(final InstallStore store, final ReleaseUpdates.Candidate candidate, final InstallProgress progress, final ReleaseUpdates.AssetDownload connection, final boolean repairing, final boolean fullReinstall) throws IOException, InterruptedException {
+    return install(store, candidate, progress, connection, repairing, fullReinstall, "");
+  }
+  static String install(final InstallStore store, final ReleaseUpdates.Candidate candidate, final InstallProgress progress, final ReleaseUpdates.AssetDownload connection, final boolean repairing, final boolean fullReinstall, final String expectedIdentity) throws IOException, InterruptedException {
     return store.withOperation(() -> {
       final Properties state = store.state();
       final Path current = state.containsKey("version") ? InstallStore.child(store.root().resolve("releases"), state.getProperty("version"), "alpha-[a-f0-9]{16}") : null;
@@ -63,6 +69,7 @@ final class FileDelivery {
         ReleaseUpdates.download(new ReleaseUpdates.Candidate(candidate.tag(), asset.id(), asset.url(), asset.sha256()), inventory, update -> progress.phase("Checking release inventory", candidate.tag(), 8), connection, 8 * 1024 * 1024);
         if(!PackageManifest.sha256(inventory).equals(asset.sha256())) throw new IOException("Release inventory checksum mismatch. Your current installation is unchanged.");
         final Contents contents = read(inventory, candidate.tag());
+        if(!expectedIdentity.isEmpty() && !expectedIdentity.equals(contents.manifest().id())) throw new IOException("Downloaded inventory differs from the supplied online package. Download the current installer again.");
         if(repairing && !contents.manifest().id().equals(state.getProperty("version"))) throw new IOException("Repair must match the installed release exactly. Use Update for another release.");
         store.requireFileDeliverySpace(contents.bytes(), contents.manifest().id());
         for(final String support : PackageManifest.SUPPORT) Files.createDirectories(staged.resolve(support));
@@ -75,7 +82,7 @@ final class FileDelivery {
           final Path target = staged.resolve(name); Files.createDirectories(target.getParent());
           final Path prior = current == null ? null : current.resolve(name);
           final long base = completed;
-          if(reusable(prior, current, size, digest)) {
+          if(!fullReinstall && reusable(prior, current, size, digest)) {
             progress.report(new InstallProgress.Update("Reusing verified files", module(name) + " · " + name, 10, 60, completed, contents.bytes(), name, 0, size));
             try(final var input = Files.newInputStream(prior, LinkOption.NOFOLLOW_LINKS); final var output = Files.newOutputStream(target, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
               DownloadBody.copy(input, output, size, Duration.ofMinutes(15), bytes -> progress.report(new InstallProgress.Update("Reusing verified files", module(name) + " · " + name, 10, 60, base + bytes, contents.bytes(), name, bytes, size)));
@@ -92,8 +99,8 @@ final class FileDelivery {
           progress.report(new InstallProgress.Update("File verified", module(name) + " · " + name, 10, 60, completed, contents.bytes(), name, size, size));
         }
         contents.manifest().verify(staged, PackageManifest.hostPlatform());
-        final String result = store.install(staged, candidate.assetId(), candidate.publishedAt(), progress);
-        return (repairing ? "Repair complete. " : "Update complete. ") + fetched + " files downloaded; " + reused + " verified files reused. " + result;
+        final String result = store.install(staged, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall);
+        return (repairing ? "Repair complete. " : fullReinstall ? "Reinstall complete. " : state.containsKey("version") ? "Update complete. " : "Install complete. ") + fetched + " files downloaded; " + reused + " verified files reused. " + result;
       } finally { Files.deleteIfExists(inventory); InstallStore.deleteOwnedTree(staged); }
     });
   }

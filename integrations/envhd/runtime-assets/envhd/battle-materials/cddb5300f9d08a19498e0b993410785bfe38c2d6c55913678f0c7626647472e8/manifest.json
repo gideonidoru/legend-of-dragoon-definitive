@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "pipeline": "envhd-static-battle-atlas-1",
+  "modelSha256": "cddb5300f9d08a19498e0b993410785bfe38c2d6c55913678f0c7626647472e8",
+  "timSha256": "bfd1852a850872800feb8969604756e97dec9fd41ebe787eaee65af21ad3b3c9",
+  "scale": 4,
+  "atlasSize": [
+    4096,
+    608
+  ],
+  "atlasSha256": "83bf92b8b291ceb855d7bbd53de48484a06b0cf6d827921d9cfd2ff80d80abb0",
+  "regions": [
+    {
+      "page": 7,
+      "clut": 15388,
+      "sourceCrop": [
+        0,
+        0,
+        136,
+        72
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "sourceSize": [
+        136,
+        72
+      ],
+      "decodedRgbaSha256": "c2c708b18699e6fd006b6d5d29e6b1725046f1e8dd5f8e9ff92b78555591a1f0",
+      "atlasRect": [
+        1472,
+        32,
+        544,
+        288
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 15452,
+      "sourceCrop": [
+        120,
+        0,
+        200,
+        72
+      ],
+      "sourceUvOrigin": [
+        120,
+        0
+      ],
+      "sourceSize": [
+        80,
+        72
+      ],
+      "decodedRgbaSha256": "d2074ca73a599a09c3f8d540612b5906af2f62d59cbfc719e491c9a7612e655c",
+      "atlasRect": [
+        2080,
+        32,
+        320,
+        288
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 15516,
+      "sourceCrop": [
+        0,
+        0,
+        256,
+        136
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "sourceSize": [
+        256,
+        136
+      ],
+      "decodedRgbaSha256": "988b7036936e8b3aa3faec6cca47c6b5d5e621a913b033b5e9fb30286c8c6df9",
+      "atlasRect": [
+        32,
+        32,
+        1024,
+        544
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 15580,
+      "sourceCrop": [
+        184,
+        56,
+        256,
+        136
+      ],
+      "sourceUvOrigin": [
+        184,
+        56
+      ],
+      "sourceSize": [
+        72,
+        80
+      ],
+      "decodedRgbaSha256": "3a15cf4d1911ed06d3839e16589f864ed59409830c6729e64b6bed841697172a",
+      "atlasRect": [
+        1120,
+        32,
+        288,
+        320
+      ]
+    }
+  ]
+}

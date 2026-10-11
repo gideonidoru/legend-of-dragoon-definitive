@@ -48,6 +48,58 @@ class FileDeliveryTest {
     };
   }
 
+  private Path online(final Path pack, final Map<String, byte[]> served, final ReleaseUpdates.Candidate candidate) throws Exception {
+    final Path root=this.temporary.resolve("online");Files.createDirectory(root);
+    final var manifest=PackageManifest.read(pack);
+    for(final String name : manifest.hashes().stringPropertyNames()) {
+      if(!Set.of("definitive-manager.jar","bootstrap-java","Install.sh","LICENSE","CREDITS").contains(name) && !name.startsWith("libs/")) continue;
+      Files.createDirectories(root.resolve(name).getParent());Files.copy(pack.resolve(name),root.resolve(name));
+    }
+    for(final String name : List.of(PackageManifest.METADATA,PackageManifest.HASHES)) Files.copy(pack.resolve(name),root.resolve(name));
+    try(final var zip=new ZipInputStream(new ByteArrayInputStream(served.get(candidate.contents().url().getPath().substring(candidate.contents().url().getPath().lastIndexOf('/')+1))))) {
+      for(ZipEntry entry;(entry=zip.getNextEntry())!=null;) if(entry.getName().equals(FileDelivery.SIZES)) Files.copy(zip,root.resolve(FileDelivery.SIZES));
+    }
+    return root;
+  }
+  @Test void suppliedOnlinePackageInstallsAndReinstallsEveryPayloadAgainstPublishedInventory() throws Exception {
+    final Path pack=pack();final var store=new InstallStore(this.temporary.resolve("online-install"));
+    final Map<String,byte[]> served=new HashMap<>();final var candidate=contents(pack,served);final Path online=online(pack,served,candidate);
+    assertFalse(Files.exists(online.resolve("lod-game-test.jar")));
+    final List<String> requested=new ArrayList<>();
+    PortableSetup.installOnline(online,store,candidate,InstallProgress.NONE,connection(served,requested),false);
+    final int completeCount=PackageManifest.read(pack).hashes().size()+1;
+    assertEquals(completeCount,requested.size());store.verifyInstalled();
+    final Path before=store.data(store.state());Files.writeString(before.resolve("saves/owner.txt"),"personal");
+    requested.clear();PortableSetup.installOnline(online,store,candidate,InstallProgress.NONE,connection(served,requested),true);
+    assertEquals(completeCount,requested.size());assertNotEquals(before,store.data(store.state()));
+    assertEquals("personal",Files.readString(store.data(store.state()).resolve("saves/owner.txt")));store.verifyInstalled();
+  }
+  @Test void suppliedOnlinePackageRejectsDifferentPublishedIdentityBeforeFetchingPayloads() throws Exception {
+    final Path pack=pack();final var store=new InstallStore(this.temporary.resolve("online-mismatch"));store.install(pack);
+    final byte[] before=Files.readAllBytes(store.root().resolve("state.properties"));
+    final Map<String,byte[]> served=new HashMap<>();final var original=contents(pack,served);final Path online=online(pack,served,original);
+    final Path next=this.temporary.resolve("next");InstallStore.copyTree(pack,next);Files.writeString(next.resolve("lod-game-test.jar"),"changed");refresh(next);
+    final var changed=contents(next,served);final List<String> requested=new ArrayList<>();
+    assertThrows(IOException.class,()->PortableSetup.installOnline(online,store,changed,InstallProgress.NONE,connection(served,requested),false));
+    assertEquals(1,requested.size());assertArrayEquals(before,Files.readAllBytes(store.root().resolve("state.properties")));store.verifyInstalled();
+  }
+  @Test void suppliedOnlinePackageRejectsStaleTagBeforeDownloading() throws Exception {
+    final Path pack=pack();final var store=new InstallStore(this.temporary.resolve("online-stale"));
+    final Map<String,byte[]> served=new HashMap<>();final var candidate=contents(pack,served);final Path online=online(pack,served,candidate);
+    final var newer=new ReleaseUpdates.Candidate("newer",candidate.assetId(),candidate.url(),candidate.sha256(),null,"",candidate.contents());
+    final List<String> requested=new ArrayList<>();
+    assertThrows(IOException.class,()->PortableSetup.installOnline(online,store,newer,InstallProgress.NONE,connection(served,requested),false));
+    assertTrue(requested.isEmpty());assertFalse(store.state().containsKey("version"));
+  }
+
+  @Test void reinstallRejectsExternalSourceBeforeDownloading() throws Exception {
+    final var store = new InstallStore(this.temporary.toRealPath().resolve("uninstalled"));
+    final URI base = URI.create("https://example.com/releases/fixture/");
+    final var candidate = new ReleaseUpdates.Candidate("fixture", "2", base.resolve("package.zip"), "a".repeat(64), null, "", new ReleaseUpdates.ContentsAsset("3", base.resolve("Definitive-Contents-" + PackageManifest.hostPlatform() + ".zip"), "b".repeat(64)));
+    assertThrows(IOException.class, () -> ReleaseUpdates.reinstall(store, candidate, InstallProgress.NONE));
+    assertTrue(store.state().getProperty("version", "").isEmpty());
+  }
+
   @Test void updateDownloadsOnlyChangedAndNewFilesAndRemovesObsoleteFiles() throws Exception {
     final Path one = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(one);
     final Path data = store.data(store.state()); Files.writeString(data.resolve("saves/owner.txt"), "personal");
@@ -58,6 +110,27 @@ class FileDeliveryTest {
     final Path active = store.root().resolve("releases").resolve(store.state().getProperty("version")); assertFalse(Files.exists(active.resolve("gfx/obsolete.txt"))); assertEquals("new art", Files.readString(active.resolve("gfx/added.txt")));
     assertEquals("personal", Files.readString(store.data(store.state()).resolve("saves/owner.txt"))); assertTrue(progress.stream().anyMatch(update -> !update.file().isEmpty() && update.filePercent() == 100)); store.verifyInstalled();
     store.rollback(); assertTrue(Files.exists(store.root().resolve("releases").resolve(store.state().getProperty("version")).resolve("gfx/obsolete.txt")));
+  }
+  @Test void freshInstallUsesCompleteVerifiedFilesWithoutRetrievingTheFullArchive() throws Exception {
+    final Path pack=pack();final InstallStore store=new InstallStore(this.temporary.resolve("fresh"));
+    final Map<String,byte[]> served=new HashMap<>();final List<String> requested=new ArrayList<>();final var candidate=contents(pack,served);
+    ReleaseUpdates.install(store,candidate,InstallProgress.NONE,connection(served,requested));
+    assertTrue(requested.stream().noneMatch(name->name.startsWith("Legend-of-Dragoon-Definitive-")));
+    store.verifyInstalled();assertTrue(store.state().containsKey("version"));
+  }
+  @Test void completeFileReinstallRetainsSavesAndReplacesManagedExtraction() throws Exception {
+    final Path pack=pack();final InstallStore store=new InstallStore(this.temporary.resolve("reinstall-files"));store.install(pack);
+    final Path before=store.data(store.state());Files.writeString(before.resolve("saves/owner.txt"),"personal");
+    final Map<String,byte[]> served=new HashMap<>();final var candidate=contents(pack,served);
+    final List<String> requested=new ArrayList<>();
+    FileDelivery.install(store,candidate,InstallProgress.NONE,connection(served,requested),false,true);
+    final var hashes=PackageManifest.read(pack).hashes();
+    assertEquals(hashes.size()+1,requested.size(),"Full Reinstall fetches the inventory and every payload, including healthy files");
+    final Map<String,Long> counts=new HashMap<>();
+    requested.forEach(name->counts.merge(name,1L,Long::sum));
+    for(final String digest : new HashSet<>(hashes.values().stream().map(Object::toString).toList()))
+      assertEquals(hashes.values().stream().filter(digest::equals).count(),counts.get("file-"+digest));
+    assertNotEquals(before,store.data(store.state()));assertEquals("personal",Files.readString(store.data(store.state()).resolve("saves/owner.txt")));store.verifyInstalled();
   }
   @Test void repairDownloadsOnlyCorruptOrMissingFilesAndKeepsDataAndExtraction() throws Exception {
     final Path pack = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack);

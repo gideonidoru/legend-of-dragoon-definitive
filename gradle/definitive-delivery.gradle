@@ -150,6 +150,39 @@ tasks.register('worldSourceAudit', JavaExec) {
   }
 }
 
+// Explicit independent private static world texture check, without rendering.
+tasks.register('worldTerrainSourceAudit', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.WorldTerrainSourceAudit'
+  jvmArgs '-Xmx2g', '-Djava.awt.headless=true'
+  doFirst {
+    args providers.gradleProperty('terrainSourceRoot').get(), providers.gradleProperty('terrainBatch').get(), providers.gradleProperty('terrainAtlases').get()
+  }
+}
+
+// Actual world materials plus the packaged ModelsHD hook on a recording renderer.
+tasks.register('worldTerrainMeshProbe', JavaExec) {
+  dependsOn testClasses, 'modelshdClasses'
+  classpath = sourceSets.test.runtimeClasspath + sourceSets.modelshd.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.WorldTerrainMeshProbe'
+  jvmArgs '-Xmx2g', '-Djava.awt.headless=true'
+  doFirst {
+    args providers.gradleProperty('terrainSourceRoot').get(), providers.gradleProperty('terrainAtlases').get()
+  }
+}
+
+// Optional actual shipping terrain shader readback with no app or window creation.
+tasks.register('windowlessTerrainShaderProbe', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.WindowlessTerrainShaderProbe'
+  jvmArgs '-Djava.awt.headless=true', '--enable-native-access=ALL-UNNAMED'
+  doFirst {
+    args providers.gradleProperty('rendererContextPath').get(), projectDir.absolutePath
+  }
+}
+
 // Explicit private animation inspection using the actual source methods, without rendering.
 tasks.register('nativePoseProbe', JavaExec) {
   dependsOn testClasses
@@ -235,5 +268,27 @@ tasks.named('portableInstaller') { into('manager-libs') { from configurations.ma
 // Per-file downloads are emitted from the same verified archive, without recompression.
 tasks.register('definitiveFileDelivery', Exec) {
   dependsOn definitivePackage
-  doFirst { commandLine 'python3', 'scripts/assemble-file-delivery.py', '--package', tasks.definitivePackage.archiveFile.get().asFile.absolutePath, '--output', layout.buildDirectory.dir('distributions').get().asFile.absolutePath }
+  doFirst { commandLine 'python3', 'scripts/assemble-file-delivery.py', '--thin-release', '--package', tasks.definitivePackage.archiveFile.get().asFile.absolutePath, '--output', layout.buildDirectory.dir('distributions').get().asFile.absolutePath }
+}
+
+// Explicit private field census check using actual native CPU decoders; no renderer.
+tasks.register('fieldSourceAudit', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.FieldSourceAudit'
+  jvmArgs '-Xmx2g', '-Djava.awt.headless=true'
+  doFirst {
+    args providers.gradleProperty('fieldSourceRoot').get(), providers.gradleProperty('fieldCensus').get()
+    if(providers.gradleProperty('fieldRuntime').isPresent()) args providers.gradleProperty('fieldRuntime').get()
+  }
+}
+
+tasks.register('battleMaterialSourceAudit', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.BattleMaterialSourceAudit'
+  jvmArgs '-Xmx2g', '-Djava.awt.headless=true'
+  doFirst {
+    args providers.gradleProperty('battleSourceRoot').get(), file('integrations/envhd/runtime-assets/envhd').absolutePath, file('integrations/envhd/production/battle-material-runtime-artwork.json').absolutePath
+  }
 }

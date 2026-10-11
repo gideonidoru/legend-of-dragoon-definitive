@@ -1,0 +1,45 @@
+{
+  "decodedRgbaSha256": "506bfdb2e00e28d58a354711069b4c4f12e5bf9f1b7613b0447a370f06a8d8a8",
+  "sourceSize": [
+    64,
+    32
+  ],
+  "bindings": [
+    {
+      "bank": 3,
+      "region": "Illisa Bay",
+      "page": 21,
+      "clut": 31093,
+      "imageFile": 23,
+      "parts": [
+        3
+      ]
+    }
+  ],
+  "targetSize": [
+    256,
+    128
+  ],
+  "outputSha256": "931521dcb8e502080620a9899b2997544e002cfa37db9939f0aa62b04c869f0d",
+  "method": "real-esrgan-x4plus-clamped-source-layout",
+  "scale": 4,
+  "sourceVisibility": "exact-nearest-4x-stp-discard-and-visible-black",
+  "edgeAveraging": false,
+  "reviewStatus": "visual-reviewed-runtime-pending",
+  "engineSha256": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+  "weightsSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+  "parametersSha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86",
+  "review": {
+    "intent": "Rock and timber wall in Illisa Bay. Retains source silhouette, surface organization and principal colors; location names identify source usage rather than invented scene details.",
+    "style": "Neural detail and smoothing provide a development baseline; bespoke Skurfa-equivalent finishing remains pending.",
+    "layout": "Compared source and 4x candidate on private boards 01\u201313, including a separate corrected-black review for six cloud materials. Source-owned opaque/discard/visible-black/STP classes are validated from the final ordered VRAM upload.",
+    "verdict": "visual-reviewed-runtime-pending",
+    "outputSha256": "931521dcb8e502080620a9899b2997544e002cfa37db9939f0aa62b04c869f0d",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  },
+  "batchPipelineSha256": "23ce08235491afd853f1cc15cc63b965928054f7f70ccd88c9c2085b9d51d948",
+  "sourceRole": "Static world-map model parts; original geometry and coordinates remain authoritative",
+  "styleReferenceUse": "Skurfa visual reference only; its resources remain unchanged",
+  "ownerApproval": "Batch pipeline and Python repair explicitly authorized 2026-10-10"
+}

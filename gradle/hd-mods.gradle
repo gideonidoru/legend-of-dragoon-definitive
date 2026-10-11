@@ -17,7 +17,7 @@
     destinationDirectory = layout.buildDirectory.dir('libs/mods')
     from output
     from new File(root, 'src/main/resources')
-    from new File(root, 'runtime-assets')
+    from(new File(root, 'runtime-assets')) { if(id == 'envhd') exclude 'envhd/fields/**/image-v1.png' }
     into("META-INF/${id}") { from 'LICENSE'; from new File(root, 'README.md'); from new File(root, 'ARTWORK-NOTICES.txt') }
     manifest { attributes 'Implementation-Title': title, 'Implementation-Version': releaseVersion }
     preserveFileTimestamps = false
@@ -25,4 +25,24 @@
   }
   tasks.named('build') { dependsOn "${id}Jar" }
   tasks.named('stageDefinitivePackage') { dependsOn "${id}Jar" }
+}
+
+// Keep every retrievable release file below GitHub's 2 GiB asset limit.
+// Resource parts are owned by the single EnvHD mod and installed without toggles.
+def envhdParts = (0..3).collect { part ->
+  tasks.register("envhdFieldsPart${part}", Zip) {
+    archiveFileName = "Env${part + 1}HD-v0.1.0.zip"
+    destinationDirectory = layout.buildDirectory.dir('libs/mods')
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+    into('envhd/fields') {
+      from('integrations/envhd/runtime-assets/envhd/fields') {
+        (part*4..part*4+3).each { nibble -> include "${Integer.toHexString(nibble)}*/image-v1.png" }
+      }
+    }
+  }
+}
+tasks.named('stageDefinitivePackage') {
+  dependsOn envhdParts
+  into('bundled-mods') { from { envhdParts.collect { it.get().archiveFile.get() } } }
 }

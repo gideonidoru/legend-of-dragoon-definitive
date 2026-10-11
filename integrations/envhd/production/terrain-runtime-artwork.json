@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "pipeline": "envhd-static-world-atlas-1",
+  "scenes": [
+    {
+      "bank": 0,
+      "region": "South Serdio",
+      "modelSha256": "9d301400bd004ef6f4ae9776d0eec9570cb09cb3ad038f9d1f92f8f260b571fd",
+      "bankSha256": "8e2d994e6f1b394a2e573df2279c34ce3b14c48beee014c629814995f38f1970",
+      "atlasSha256": "5176d751347d6b93e5eba1f95057cfadc39838ddf0e7b6cc3eb2559c5d55f18e",
+      "atlasSize": [
+        4096,
+        2112
+      ],
+      "hdBindings": 64
+    },
+    {
+      "bank": 1,
+      "region": "North Serdio",
+      "modelSha256": "15c9a48d76dae4f8b03766598e8b6b0bd8c31d88522b418bfd6c938cfd047140",
+      "bankSha256": "e764f46336d7ac679b4c7869a9916289ae552b4d45f96024f0b7f14c227006ae",
+      "atlasSha256": "0abae73dd3766dca8a2467998d174a5aea23139cea17063cab6fc891f5634052",
+      "atlasSize": [
+        4096,
+        2560
+      ],
+      "hdBindings": 67
+    },
+    {
+      "bank": 2,
+      "region": "Tiberoa",
+      "modelSha256": "3abcfbf7683c7805690fd0ba44f7e15b49a39862a2465b1c59acc184a4905cc3",
+      "bankSha256": "8c2d844dc9f6ce295514a087ed9d0e996ef456c4172223bca58211a44b1178bc",
+      "atlasSha256": "33dd93597a8c62e4c8212224d116e7ec086a3c44ddb06ab8ef849fbff1bb3c55",
+      "atlasSize": [
+        4096,
+        1984
+      ],
+      "hdBindings": 47
+    },
+    {
+      "bank": 3,
+      "region": "Illisa Bay",
+      "modelSha256": "67e55741b0be5d33d622f288ed3ebc89165e1635efd43d7f4e4964fcb854f112",
+      "bankSha256": "b6d8da1e0c760c939be9bbf5e45cd0bc9913b933503d54a361813159d6eddfce",
+      "atlasSha256": "e1f8ed43a44194cf92f98537ee9a3c0a96eae4c58ca40f47c2aecc07feb5d7d4",
+      "atlasSize": [
+        4096,
+        2240
+      ],
+      "hdBindings": 56
+    },
+    {
+      "bank": 4,
+      "region": "Mille Seseau",
+      "modelSha256": "55d99b1d6733daef9eba59e1d22ff41e7c72c05d969bd6af3ba75913b62bf127",
+      "bankSha256": "7d852405dd0baae84659883f8a65d321319e6f9c4827aa6ab585a5abab7d64fd",
+      "atlasSha256": "defef8c21403f8559731377c8e6806447a200e62092d414ee62579f506a244bb",
+      "atlasSize": [
+        4096,
+        2304
+      ],
+      "hdBindings": 53
+    },
+    {
+      "bank": 5,
+      "region": "Gloriano",
+      "modelSha256": "53016f4ed4f1cc5dbdb186b261e03ef327312fe15f802358e064f20f30321977",
+      "bankSha256": "56d3c574ad6e6f9e349da9dd841b198f4b2fd0b7199e8d4d07987441f75b37c1",
+      "atlasSha256": "6ca4f6f8167fdb1c0a623586d2c3b00bcc10df1a20cc481328887ea70eb84b9b",
+      "atlasSize": [
+        4096,
+        1920
+      ],
+      "hdBindings": 29
+    },
+    {
+      "bank": 6,
+      "region": "Death Frontier",
+      "modelSha256": "2b5c28cd6905c6b6e38964b24f3f9443c8c5fc009547926c1eb57f4a63dcfba4",
+      "bankSha256": "b5c26abdb30ecc82601c820da6079eab49de77a333433d2749c91687a5655d8a",
+      "atlasSha256": "15d68786f011b9b5311bd927a6f0a61f97c791a3144529b87092f246d88962e2",
+      "atlasSize": [
+        4096,
+        1920
+      ],
+      "hdBindings": 30
+    },
+    {
+      "bank": 7,
+      "region": "Endiness",
+      "modelSha256": "3007635a3a7e2abdbe7a4536df2c12314792b450150cd2462bf2068b45bfb554",
+      "bankSha256": "8c61af4adc7cc6f400ea48d5d8cf8c66fefbb2556ab7e9ab51646dca3fa2aee0",
+      "atlasSha256": "4d04513b3e20beff08d9f7138f783042aafd8d2d8b211d122aa42cf85eb79502",
+      "atlasSize": [
+        4096,
+        1728
+      ],
+      "hdBindings": 18
+    }
+  ],
+  "runtimeSelectedMasters": 292,
+  "runtimeSelectedBindings": 364,
+  "retainedAnimatedParts": 8,
+  "retainedUniformBindings": 1,
+  "heldNativeBindings": 1,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending"
+}

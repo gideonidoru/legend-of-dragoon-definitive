@@ -13,7 +13,25 @@ import java.nio.ByteOrder;
 public final class StageArtwork {
   public final Obj[] meshes;
   public final Texture texture;
-  private StageArtwork(final Obj[] meshes, final Texture texture) { this.meshes = meshes; this.texture = texture; }
+  public final boolean preservesNativeAnimation;
+  private StageArtwork(final Obj[] meshes, final Texture texture) { this(meshes, texture, false); }
+  private StageArtwork(final Obj[] meshes, final Texture texture, final boolean preservesNativeAnimation) { this.meshes = meshes; this.texture = texture; this.preservesNativeAnimation = preservesNativeAnimation; }
+
+  public static StageArtwork create(final BattleStage stage, final BattleMaterialAtlas atlas, final byte[] model, final byte[] tim) throws IOException {
+    ArtworkResources.hash(model, atlas.modelHash); ArtworkResources.hash(tim, atlas.timHash);
+    final Obj[] meshes = new Obj[stage.dobj2s_00.length]; Texture texture = null;
+    try {
+      texture = Texture.create("EnvHD static battle", builder -> {
+        final var pixels = org.lwjgl.BufferUtils.createByteBuffer(atlas.width() * atlas.height() * 4);
+        pixels.put(atlas.rgba()).flip(); builder.data(pixels, atlas.width(), atlas.height()); builder.wrapS(false); builder.wrapT(false);
+      }).hdAtlasFiltering(32);
+      for(int i = 0; i < meshes.length; i++) meshes[i] = TmdObjLoader.fromObjTable("EnvHD static " + stage.name + " part " + i, stage.dobj2s_00[i].tmd_08, 0, atlas.width(), atlas.height(), atlas);
+      return new StageArtwork(meshes, texture, true);
+    } catch(final RuntimeException | Error failure) {
+      for(final Obj mesh : meshes) if(mesh != null) mesh.delete();
+      if(texture != null) texture.delete(); throw failure;
+    }
+  }
 
   public static StageArtwork create(final BattleStage stage, final MaterialAtlas atlas, final byte[] originalModel, final byte[] tim) throws IOException {
     if(!atlas.modelHash().equals(legend.definitive.textures.TexturePilot.sha256(originalModel)) || !atlas.timHash().equals(legend.definitive.textures.TexturePilot.sha256(tim))) throw new IOException("Stage source changed");

@@ -1,0 +1,1355 @@
+{
+  "schema": 1,
+  "pipeline": "envhd-static-world-atlas-1",
+  "modelSha256": "15c9a48d76dae4f8b03766598e8b6b0bd8c31d88522b418bfd6c938cfd047140",
+  "bankSha256": "e764f46336d7ac679b4c7869a9916289ae552b4d45f96024f0b7f14c227006ae",
+  "scale": 4,
+  "paddingSourceTexels": 8,
+  "atlasSize": [
+    4096,
+    2560
+  ],
+  "atlasSha256": "0abae73dd3766dca8a2467998d174a5aea23139cea17063cab6fc891f5634052",
+  "materials": [
+    {
+      "page": 7,
+      "clut": 31093,
+      "decodedRgbaSha256": "f77a19e6dc4d594fde98441bf4c3e1813cb7dfa8466bda45c48d2ac44c6e87dd",
+      "sourceSize": [
+        16,
+        32
+      ],
+      "sourceUvOrigin": [
+        128,
+        96
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2336,
+        2400,
+        64,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31096,
+      "decodedRgbaSha256": "502ecf2ec1014ba1606f0d90c8aff79ab5bf89da7a74b26c4ac6f12657965fa4",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        64,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        416,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31158,
+      "decodedRgbaSha256": "92e3fa80ce15a945f38b7d567d4e5591c586402a9518b5ff06e964374c6d9269",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        96,
+        96
+      ],
+      "status": "hd",
+      "atlasRect": [
+        800,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31160,
+      "decodedRgbaSha256": "52d7a0ffe58cee2b146fe1ba7eebb7ea0870621e1fa32d9abc44e318c42c7a7f",
+      "sourceSize": [
+        64,
+        32
+      ],
+      "sourceUvOrigin": [
+        160,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        3232,
+        2080,
+        256,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31220,
+      "decodedRgbaSha256": "90b1a213c5cdb435e21a25ef325640fa25367bcee81c5b035ae90e5567e2c726",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        96,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        608,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31224,
+      "decodedRgbaSha256": "12928b2d90d83699cb1bff29005159e9338e5b314c05ced7a1faa2185e9425b7",
+      "sourceSize": [
+        64,
+        32
+      ],
+      "sourceUvOrigin": [
+        144,
+        96
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2912,
+        2080,
+        256,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31284,
+      "decodedRgbaSha256": "09ac79db4acdf9844921af0779ab8b55e6bf009efd7d402c34fef5c7d6236afd",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        0,
+        96
+      ],
+      "status": "hd",
+      "atlasRect": [
+        3872,
+        2080,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31285,
+      "decodedRgbaSha256": "cdba817838fc8efda27d9f4b12b507d80f597e08b91d3ff8ddfdaa420b956e3d",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        32,
+        96
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1952,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31288,
+      "decodedRgbaSha256": "d6cbdb758bd5d5fa7c1bf65950f5118207f46e5381d73e019c5ecb4b3300fb4d",
+      "sourceSize": [
+        64,
+        32
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        3552,
+        2080,
+        256,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31352,
+      "decodedRgbaSha256": "1f4003a850cca3b2b52ef7985535310cb5d4b1fcbca30e44ab5be1917b58671e",
+      "sourceSize": [
+        32,
+        64
+      ],
+      "sourceUvOrigin": [
+        224,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2208,
+        2080,
+        128,
+        256
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31540,
+      "decodedRgbaSha256": "b5ad340da45f666a04566e15a6846288a768dc637c5906704b1ffabd66ab7dbc",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        32,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1184,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31605,
+      "decodedRgbaSha256": "a3595f679874875590ae8364112fc1eb99c043f47d7e330d46e07f4e2b65f588",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        64,
+        96
+      ],
+      "status": "hd",
+      "atlasRect": [
+        992,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31615,
+      "decodedRgbaSha256": "c41274586dbedecab248eed9b47fbc228a29c9d2734b3d72a0117b129b188c32",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        0,
+        224
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1568,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31671,
+      "decodedRgbaSha256": "21ab8c9477c1ae6574c3ea3e81700407a291171b5dfa724630b6176e0dd4a819",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        0,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        224,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31679,
+      "decodedRgbaSha256": "13501ea5c4c59cf56b8148367d765f83432cdc74a25ae93386a7ab078e71ba3a",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        32,
+        224
+      ],
+      "status": "hd",
+      "atlasRect": [
+        32,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 31733,
+      "decodedRgbaSha256": "cda3d1ef325f0ca1e356e9fee9cb032da8c0078feeec70718a320b3d07efa86f",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        128,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1760,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31094,
+      "decodedRgbaSha256": "9af5eac9fa5987bd5fcac0c4733b365bb680faf6e881df2e60a08d152029e6c0",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        0,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        992,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31095,
+      "decodedRgbaSha256": "b59c7f323654637e70d066dfa61122a687cb476bf412c441e3749677fa8384cd",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        128,
+        192
+      ],
+      "status": "hd",
+      "atlasRect": [
+        3552,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31159,
+      "decodedRgbaSha256": "2d9eaeadaf595ce9ee9d2d041153110ec2918f1ca1a4262d6875f926f5903d96",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        0,
+        192
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2144,
+        1184,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31221,
+      "decodedRgbaSha256": "76d059f06514ab0bd4690a21fc8836607fc822b4a91a3c93ba7b84ae4831dfb8",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        64,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        3424,
+        1184,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31287,
+      "decodedRgbaSha256": "8d32b83776a8b7c891349ef58315aacf213ba8d80d4f7d4201961b0b5bc54cf4",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        192,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        32,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31350,
+      "decodedRgbaSha256": "983370675fd72db958c8007cf64c6859db8e9be7c23e3da2e2664848c232bb6b",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        128,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        672,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31413,
+      "decodedRgbaSha256": "537fecfe8b660726157b0dac25bcaeed0c45708221bfc2d1a5a449b8c11c1fd0",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2784,
+        1184,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31414,
+      "decodedRgbaSha256": "02cb3db2bee5303db006225c4f8590579547a084a6832503d641c119670d0911",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1184,
+        1184,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31479,
+      "decodedRgbaSha256": "8d32b83776a8b7c891349ef58315aacf213ba8d80d4f7d4201961b0b5bc54cf4",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        128,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        32,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31541,
+      "decodedRgbaSha256": "a1bb4f4ff32a0e062d565648775a7d6d284776157035e5d6ad6a51e755119b2f",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        64,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1632,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31543,
+      "decodedRgbaSha256": "a04e2706a80e5c895664752a41f5ba41f5d9099d55d200dab29d45d6a32cafba",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        64,
+        192
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1312,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31606,
+      "decodedRgbaSha256": "91c6179639c70afb1bcbee189056f83a904b4ed10252f967e62dbc33c8b9ef9c",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        64,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        352,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31607,
+      "decodedRgbaSha256": "f2abf6fcf0fc57e0a477b4deb2dcc29de0eef4228cf058cbddc9c4d79c13f6b0",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        192,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1632,
+        2080,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31669,
+      "decodedRgbaSha256": "ba2aed83148117b9e8043ab3f3ed74023a83df6a580e8ddd56b102607f51a146",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        128,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        32,
+        2080,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31670,
+      "decodedRgbaSha256": "a99c35d4c759675c3c7aee24dde76ed6a359c23a8d47c373b7100b09de062f2e",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        192,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2272,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 21,
+      "clut": 31734,
+      "decodedRgbaSha256": "b5243a9442e05b3e984e510952e3f521ec06fb4c6e6edadc4b3cdc9de47222f8",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        192,
+        192
+      ],
+      "status": "hd",
+      "atlasRect": [
+        3232,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31092,
+      "decodedRgbaSha256": "eed4ea730cf3d1756629b8052dba95407d184d195c3f4ed94784b8ba397c3d27",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        224,
+        160
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2144,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31156,
+      "decodedRgbaSha256": "a4917f281d909a92e9e2fd29ac4019970a94111ab2baa35d425402cdbe5f9848",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        0,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1952,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31157,
+      "decodedRgbaSha256": "bcd43fe9290382a379ccf9f6b260a39d6f079408c68bde1c339f76118bf85acf",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        64,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        352,
+        2080,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31222,
+      "decodedRgbaSha256": "515a86cd83806f778105b3842af4d4fd4bf045212eb8dae337e8f99100020187",
+      "sourceSize": [
+        64,
+        48
+      ],
+      "sourceUvOrigin": [
+        192,
+        192
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2592,
+        2080,
+        256,
+        192
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31223,
+      "decodedRgbaSha256": "d9a2dc4e2c070d318cb3b356f1558b89ecb1b943dbf18ede834562361727994b",
+      "sourceSize": [
+        48,
+        16
+      ],
+      "sourceUvOrigin": [
+        192,
+        144
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2784,
+        2400,
+        192,
+        64
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31286,
+      "decodedRgbaSha256": "08184e79300a54e5166b111e1948962f590cefa9b2e62b4b6f7b3e3985ff7a5f",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        192,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1504,
+        1184,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31348,
+      "decodedRgbaSha256": "e1a241698ede1c9e22fb0b9bf373e20f6a91022b9132070cb99222544b27c772",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        192,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1312,
+        2080,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31349,
+      "decodedRgbaSha256": "e1517108be52d2a7143f1f0049b5157cff2374fd3e3d918626aa64d11e78787c",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        96,
+        192
+      ],
+      "status": "hd",
+      "atlasRect": [
+        992,
+        2080,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31351,
+      "decodedRgbaSha256": "a0fbffce0c9323af7de2c1b6c4627118dbf028745fc299ca1925649a88d6c16d",
+      "sourceSize": [
+        48,
+        64
+      ],
+      "sourceUvOrigin": [
+        48,
+        192
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1952,
+        2080,
+        192,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31412,
+      "decodedRgbaSha256": "b315a9f8dd0a2a8a853d48dbd8ed17a1665320a764fd2a91258cc63e32ca581e",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        128,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2912,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31415,
+      "decodedRgbaSha256": "cb9c5f8ecbd43774ef829b190fed7dfd58d8d2564c8e2fe3261056bf77d258f7",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        672,
+        2080,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31476,
+      "decodedRgbaSha256": "23c1df6ca9ca0f9558ffecf03cb4b93fee9a4570ccfe417a1427517fefadd7f7",
+      "sourceSize": [
+        32,
+        64
+      ],
+      "sourceUvOrigin": [
+        160,
+        192
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2400,
+        2080,
+        128,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31477,
+      "decodedRgbaSha256": "1d4dc78416dbef4d0cf67baf46d798fe36fbee96262c76e99f9e0bbf5225dce8",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        128,
+        64
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1824,
+        1184,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31478,
+      "decodedRgbaSha256": "b5f7e9b3b1f6193104c2d42ef56af7c9fc63fc0e5eaf52783f6d4ac6632f19db",
+      "sourceSize": [
+        32,
+        32
+      ],
+      "sourceUvOrigin": [
+        192,
+        160
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1376,
+        2400,
+        128,
+        128
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31542,
+      "decodedRgbaSha256": "4fd90424e1f95cac815e6ff4c4ab0711052313946f1d3cf3cd6f634ddf8317ce",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        64,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2464,
+        1184,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31604,
+      "decodedRgbaSha256": "5ea4c54a38cb9adab1cba259f3ecc28368d60dccddc2626314e31fbb46cda4de",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        128,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        3104,
+        1184,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31668,
+      "decodedRgbaSha256": "83a434f4c1395702dc1cc83d63576a1862b6db6605d6e62a06bb1389dcf1961b",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        64,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        3744,
+        1184,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31732,
+      "decodedRgbaSha256": "afb8c257b69bbf3bc09094ffc86723641e36a0157dca81cb06c432f909cafcb2",
+      "sourceSize": [
+        64,
+        64
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2592,
+        1760,
+        256,
+        256
+      ]
+    },
+    {
+      "page": 22,
+      "clut": 31735,
+      "decodedRgbaSha256": "3dd9ba2a0bcd001e3c66d1b6017a9c5cf82e3c9d9eb9df0515edc88dcd7818f1",
+      "sourceSize": [
+        64,
+        16
+      ],
+      "sourceUvOrigin": [
+        192,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2464,
+        2400,
+        256,
+        64
+      ]
+    },
+    {
+      "page": 136,
+      "clut": 31792,
+      "decodedRgbaSha256": "8425b28ec90117a268a43e6a2f87fef69cc17163e000abff11baf9d0273efbe4",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        608,
+        608,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 136,
+      "clut": 31856,
+      "decodedRgbaSha256": "6bb8e81a246dfc5f8d2160ae35600db3a62bf0358dda6cadaddcce3dd8985ca0",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2336,
+        32,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 137,
+      "clut": 31920,
+      "decodedRgbaSha256": "8ace90b2f31a424069d16665f88ae03f867c3f75dec47618c2153686ec79687a",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1184,
+        608,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 137,
+      "clut": 31984,
+      "decodedRgbaSha256": "fc24dbb096e798512088176b6735d703cedd811fdb89224761d9becc71dc7653",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        608,
+        1184,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 138,
+      "clut": 31792,
+      "decodedRgbaSha256": "bc0e8235cdbf3687ad30f530354dbfcf80c6db40d03ee1906c926a093bc497f9",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2336,
+        608,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 138,
+      "clut": 32048,
+      "decodedRgbaSha256": "f0febe4cee76f42385a2972180c024e247d8fada90a03576d4b42fcc50bd1719",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        3488,
+        608,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 139,
+      "clut": 31984,
+      "decodedRgbaSha256": "f10e6ed6fc39bc7329bfd5ece37c6e6347955d5aef3eb868bb8e9089c66cb656",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        32,
+        1184,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 139,
+      "clut": 32112,
+      "decodedRgbaSha256": "5a89a44d871d5942e1bac80594c9c8805feb109dedf7d1bb1d205fd18883c519",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1760,
+        32,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 140,
+      "clut": 32176,
+      "decodedRgbaSha256": "e3a55b5ae279996a5f087f51ecea46861772a9a58ad9cab339f1f76b531828f1",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2912,
+        608,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 140,
+      "clut": 32240,
+      "decodedRgbaSha256": "314dae89582332c70ef6e5a52422ce2a0a95138fd3fd9a53bd08f9f851320721",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        608,
+        32,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 141,
+      "clut": 32304,
+      "decodedRgbaSha256": "6fff6ef8d8bb68066c1bca355176743d8652579f38414a852fd9d8354b968f68",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        2912,
+        32,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 141,
+      "clut": 32368,
+      "decodedRgbaSha256": "826a113cd1bacddb58c294a94cbc416fd8d15b4f6dc9ff12e75e84102b46fdc9",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        32,
+        608,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 142,
+      "clut": 32176,
+      "decodedRgbaSha256": "a672d22bc6f0d00197167e3b187575c604eafebaba8c6fae04afce53dd2d102c",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1760,
+        608,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 142,
+      "clut": 32432,
+      "decodedRgbaSha256": "811dfff46cad9ad96e71e7dbe10c80416d9b7e6da4e75affefa3f6fce5bb5cf9",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        3488,
+        32,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 143,
+      "clut": 32368,
+      "decodedRgbaSha256": "0c0a88d6b4a6fa8cfbf2a0b62ba0188101495701c1847b6e4a49d69c29982361",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        128
+      ],
+      "status": "hd",
+      "atlasRect": [
+        32,
+        32,
+        512,
+        512
+      ]
+    },
+    {
+      "page": 143,
+      "clut": 32496,
+      "decodedRgbaSha256": "56f2462f0be7d3cb35a7a36ba1c30fe5ce012adc1a1256dbbcc968cd5741065d",
+      "sourceSize": [
+        128,
+        128
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "status": "hd",
+      "atlasRect": [
+        1184,
+        32,
+        512,
+        512
+      ]
+    }
+  ]
+}
