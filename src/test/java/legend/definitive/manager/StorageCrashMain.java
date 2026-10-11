@@ -26,6 +26,11 @@ public final class StorageCrashMain {
         }
         // Ordinary exit without a surviving launcher to clean its receipts.
       }
+      case "linked-game-root" -> {
+        System.setProperty("definitive.installRoot", root.toString()); System.setProperty("definitive.launchToken", java.util.UUID.randomUUID().toString());
+        try { ManagedGameMain.main(new String[0]); } catch(final java.io.IOException expected) { System.out.println(expected.getMessage()); System.exit(97); } catch(final Throwable failure) { throw new RuntimeException(failure); }
+        throw new AssertionError("Linked game root must reject startup before invoking the game.");
+      }
       case "lease-failure" -> {
         System.setProperty("definitive.installRoot", root.toString()); System.setProperty("definitive.launchToken", GameLease.begin(root));
         try { ManagedGameMain.main(new String[0]); } catch(final java.io.IOException expected) { System.exit(96); } catch(final Throwable failure) { throw new RuntimeException(failure); }
