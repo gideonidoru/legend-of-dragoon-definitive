@@ -1,0 +1,9 @@
+# Music commands during unavailable audio output
+
+Music load, start and stop commands previously returned without changing sequencer state when its native output source was unavailable. A scene change during an output outage could leave the previous song selected or discard the latest start/stop request. These operations only change Java sequencer state; they do not invoke OpenAL.
+
+The audio owner now applies those three commands under its existing monitor regardless of source availability. There is no deferred command queue: replacement selects the latest song, stop/start ordering takes effect immediately, and unload clears the song through the existing sequencer path. Native output initialization, buffering and availability checks retain their existing lifecycle. The worker remains paused while output initialization is unavailable.
+
+`MusicIntentTest` uses synthetic music data parsed by the actual BackgroundMusic constructor, the actual AudioThread command methods and the actual Sequencer. Four unavailable-output cases cover initial load/start, successive replacements plus stop, stop/start ordering, and unload. A fifth case uses a native OpenAL loopback context to destroy and recreate the sequencer source, checking that replacement/start, replacement/stop and unload survive recreation and produce no OpenAL error. The loopback does not play device audio.
+
+The unchanged baseline fails the four Java-state cases; the corrected source passes all five cases and the existing audio regression suite. The source recreation case is a native source-lifecycle check, not a full AudioThread device-selection/reinitialization rehearsal. Physical Steam Deck output removal, suspend/resume and scene changes during recovery remain acceptance checks. This change does not address music fades, the timing of resumed music, or original-FMV recovery following an output-generation change.
