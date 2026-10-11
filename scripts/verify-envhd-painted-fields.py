@@ -21,9 +21,11 @@ batch = module('painted_field_sources', 'batch-envhd-fields.py')
 repair = module('painted_field_repair', 'repair-envhd-painted-cutout.py')
 registration = module('painted_field_registration', 'register-envhd-painted-cutout.py')
 opaque_border = module('painted_field_opaque_border', 'repair-envhd-painted-opaque-border.py')
+canvas_fit = module('painted_field_canvas_fit', 'normalize-envhd-painted-canvas.py')
 REPAIR_SHA256 = 'd94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a'
 REGISTRATION_SHA256 = '7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784'
 OPAQUE_BORDER_SHA256 = 'd5a6b3b9b9177b2292863ee3391720065e7e9155f943b221ee1edcd2b73365bc'
+CANVAS_FIT_SHA256 = '375f8284c4ca6a558e099c018f58c21f419e428d15e3662f6c81d051f87ef739'
 METHOD = 'python-painted-cutout-nearest-colour-exact-visibility-1'
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
 ROOT = Path(__file__).resolve().parents[1]
@@ -91,10 +93,21 @@ def preflight(files, manifest_path, root=ROOT):
         if (batch.terrain.digest(raw_data) != candidate.get('generatedSha256')
                 or batch.terrain.digest(output_data) != candidate.get('outputSha256')):
             raise ValueError('Painted field artwork bytes changed')
-        raw_size = repair.validate_png_header(raw_data, 'painted', source.size, allow_rgb=True)
+        fitting = 'sourceCanvasNormalization' in candidate
+        if fitting:
+            recorded = candidate['sourceCanvasNormalization']
+            if (not isinstance(recorded, dict) or 'registration' in candidate or 'opaqueBorderRepair' in candidate
+                    or recorded.get('algorithmPath') != 'scripts/normalize-envhd-painted-canvas.py'
+                    or recorded.get('algorithmSha256') != CANVAS_FIT_SHA256
+                    or batch.terrain.digest(Path(canvas_fit.__file__).read_bytes()) != CANVAS_FIT_SHA256):
+                raise ValueError('Painted field canvas normalization identity or exclusive operation changed')
+        # An explicit, reproducible fit has its own bounded aspect/silhouette
+        # checks. Legacy inputs still go through the original aspect gate.
+        raw_source_size = None if fitting else source.size
+        raw_size = repair.validate_png_header(raw_data, 'painted', raw_source_size, allow_rgb=not fitting)
         output_size = repair.validate_png_header(output_data, 'output', source.size)
         with Image.open(io.BytesIO(raw_data)) as raw:
-            repair.validate_opened_png(raw, raw_size, 'painted', source.size,
+            repair.validate_opened_png(raw, raw_size, 'painted', raw_source_size,
                                       'RGB' if raw_data[25] == 2 else 'RGBA')
             if candidate.get('generatedInputMode', 'RGBA') != raw.mode:
                 raise ValueError('Painted field input colour mode changed')
@@ -104,6 +117,15 @@ def preflight(files, manifest_path, root=ROOT):
                 # Opaque generated patches need a constant alpha channel for
                 # the same pinned RGBA repair; the RGB artwork is unchanged.
                 raw = raw.convert('RGBA')
+            if fitting:
+                raw, operation = canvas_fit.normalize(source, raw)
+                stream = io.BytesIO()
+                raw.save(stream, format='PNG')
+                expected_fit = dict(operation, algorithmPath='scripts/normalize-envhd-painted-canvas.py',
+                                    algorithmSha256=CANVAS_FIT_SHA256,
+                                    normalizedInputSha256=batch.terrain.digest(stream.getvalue()))
+                if recorded != expected_fit:
+                    raise ValueError('Painted field canvas normalization differs from its recorded source silhouette')
             if 'registration' in candidate:
                 recorded = candidate['registration']
                 if (not isinstance(recorded, dict) or recorded.get('algorithmPath') != 'scripts/register-envhd-painted-cutout.py'

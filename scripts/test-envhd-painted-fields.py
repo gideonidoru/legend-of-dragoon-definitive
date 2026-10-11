@@ -155,6 +155,59 @@ class PaintedFieldTests(unittest.TestCase):
         self.candidate['registration']['registeredInputSha256']='0'*64;self.save()
         with self.assertRaisesRegex(ValueError,'recorded source geometry'):self.preflight()
 
+    def normalization_fixture(self):
+        raw=self.source.resize((80,80),Image.Resampling.NEAREST).resize((88,80),Image.Resampling.NEAREST)
+        raw.save(self.raw_path)
+        normalized,operation=verify.canvas_fit.normalize(self.source,raw)
+        stream=io.BytesIO();normalized.save(stream,format='PNG')
+        self.candidate['sourceCanvasNormalization']=dict(operation,algorithmPath='scripts/normalize-envhd-painted-canvas.py',algorithmSha256=verify.CANVAS_FIT_SHA256,normalizedInputSha256=verify.batch.terrain.digest(stream.getvalue()))
+        painted,repair_operation=verify.repair.repair(self.source,normalized);painted.save(self.output_path)
+        self.candidate.update(repair_operation,generatedSha256=verify.batch.terrain.digest(self.raw_path.read_bytes()),outputSha256=verify.batch.terrain.digest(self.output_path.read_bytes()))
+        self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save()
+
+    def test_explicit_canvas_fit_replays_original_generated_png_then_original_cutout_recipe(self):
+        self.normalization_fixture();before=self.raw_path.read_bytes()
+        self.assertEqual(1,len(self.preflight()[0]));self.assertEqual(before,self.raw_path.read_bytes())
+
+    def test_unrecorded_stretched_input_still_fails_legacy_aspect_gate(self):
+        self.normalization_fixture();del self.candidate['sourceCanvasNormalization'];self.save()
+        with self.assertRaisesRegex(ValueError,'aspect ratio'):self.preflight()
+
+    def test_canvas_fit_identity_receipt_and_intermediate_bytes_cannot_change_silently(self):
+        self.normalization_fixture();recorded=self.candidate['sourceCanvasNormalization'];original=copy.deepcopy(recorded)
+        for key,value,message in [('algorithmSha256','0'*64,'normalization identity'),('silhouetteIou',0.5,'recorded source silhouette'),('normalizedInputSha256','0'*64,'recorded source silhouette'),('sourceAlphaApplied',True,'recorded source silhouette')]:
+            with self.subTest(key=key):
+                recorded.clear();recorded.update(original);recorded[key]=value;self.save()
+                with self.assertRaisesRegex(ValueError,message):self.preflight()
+
+    def test_canvas_fit_cannot_be_combined_with_other_geometric_or_border_operations(self):
+        self.normalization_fixture()
+        for key in ['registration','opaqueBorderRepair']:
+            with self.subTest(key=key):
+                self.candidate[key]={};self.save()
+                with self.assertRaisesRegex(ValueError,'exclusive operation'):self.preflight()
+                del self.candidate[key]
+
+    def test_explicit_canvas_fit_still_bounds_compressed_input_before_decode(self):
+        self.normalization_fixture();data=compressed_png();self.raw_path.write_bytes(data)
+        self.candidate['generatedSha256']=verify.batch.terrain.digest(data);self.save()
+        with mock.patch.object(verify.Image,'open',side_effect=AssertionError('Pixel allocation')):
+            with self.assertRaisesRegex(ValueError,'bounded painted canvas'):self.preflight()
+
+    def test_explicit_canvas_fit_still_validates_decoder_header_agreement_before_pixels(self):
+        self.normalization_fixture();data=duplicate_header_png(first=(88,80),second=(80,80))
+        self.raw_path.write_bytes(data);self.candidate['generatedSha256']=verify.batch.terrain.digest(data);self.save()
+        original_open=Image.open
+        def guarded_open(stream):
+            image=original_open(stream);image.load=mock.Mock(side_effect=AssertionError('Pixel allocation'));return image
+        with mock.patch.object(verify.Image,'open',side_effect=guarded_open):
+            with self.assertRaisesRegex(ValueError,'decoder differs'):self.preflight()
+
+    def test_explicit_canvas_fit_does_not_accept_rgb_input(self):
+        self.normalization_fixture();Image.open(self.raw_path).convert('RGB').save(self.raw_path)
+        self.candidate['generatedSha256']=verify.batch.terrain.digest(self.raw_path.read_bytes());self.candidate['generatedInputMode']='RGB';self.save()
+        with self.assertRaisesRegex(ValueError,'RGBA output'):self.preflight()
+
     def test_rebound_layout_and_symlinked_artwork_are_rejected(self):
         self.candidate['sourceBindings']=[self.binding|dict(slot=1)];self.save()
         with self.assertRaisesRegex(ValueError,'rebound'):self.preflight()
