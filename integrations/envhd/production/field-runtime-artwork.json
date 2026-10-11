@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "scope": "Owner-requested reviewed neural and source-verified painted development installation; Skurfa and remaining held/unreviewed sources remain native",
-  "runtimeSelected": 4934,
+  "runtimeSelected": 4938,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
   "protectedCuts": [
@@ -79162,9 +79162,73 @@
           "canDeriveFromBackground": false
         }
       ]
+    },
+    {
+      "decodedRgbaSha256": "bef65a35570d58e1698fa959797fc680e72b1cd72af026bfe1dd79c6fe0f3197",
+      "outputSha256": "952827bb5a6eb04bfb797a047a50e3f6624d81959749d5cca7a2b66c2ca6c405",
+      "sourceSize": [
+        64,
+        44
+      ],
+      "bindings": [
+        {
+          "renderKey": "55022c2b991e387741ac21809da3317b4eff11dd0be8308b20fdcb447026a06c:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "d46bd57a4ab4715e8191cd0e1fee2a155cc04cb70413844af2510647a87d7229",
+      "outputSha256": "997128b541021f22bafd745516507b7a6aadf49f6328533b559b24b00fb1da13",
+      "sourceSize": [
+        60,
+        44
+      ],
+      "bindings": [
+        {
+          "renderKey": "e1b3176346f070ca8d9ecf851e766d6994ac34f91d4256cd196708b85c5d503b:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "99fe3ae3f675d6fc68f88b15b0432a884fee59c7f04b6be8c9c1c51f02948e81",
+      "outputSha256": "c416b8fab4735126bb111ac3c07a6dfa632443a3ea49788555a47814e5db2f1c",
+      "sourceSize": [
+        94,
+        76
+      ],
+      "bindings": [
+        {
+          "renderKey": "06b95bffbddbad1e4dea5d84e724bedd349b7de833ac8cf2307cd4e05994ae82:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "e87bbe9dc68db62ba77591f5d95fbb41db2b59bdee7bb7648d7e0871e0d2413d",
+      "outputSha256": "3290a7d1b4f3ab4f6ec686afcfcd13e0a950d51c2d8a96e7605f4e8c7d8d4c99",
+      "sourceSize": [
+        120,
+        100
+      ],
+      "bindings": [
+        {
+          "renderKey": "c14509a210d183c61927f920c03f5d7e58db3294adacf02536b046f31296e1db:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ]
     }
   ],
   "reviewReceiptSha256": "f2845bdff322c04b8496a0eff151389da53594de54446ec25dfb0d42cab9ea51",
-  "paintedReviewReceiptSha256": "9e17f93736ca72679c7c4c1f4f3c124712e0f558007b411bb490a29c2744531c",
-  "paintedRuntimeSelected": 48
+  "paintedReviewReceiptSha256": "6a7a42680b7b366cc5229d60f48ce4e26d669fb34b5c89d1d9db0bfa8167a262",
+  "paintedRuntimeSelected": 52
 }

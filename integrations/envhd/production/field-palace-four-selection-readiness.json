@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "scope": "Clean main-forward increment selecting four independently cleared scenery crops; prior48 recipes and4929 runtime records exact.",
+  "integrationBaseCommit": "291191bc4a47e70c44178e6b394d9d02ec364579",
+  "authoringSourceCommit": "09278d5f020c7163610263db090d6f3b8bc11a53",
+  "selectionManifest": "field-bespoke-palace-four-independent-reviewed-selection.json",
+  "selectionManifestSha256": "6a7a42680b7b366cc5229d60f48ce4e26d669fb34b5c89d1d9db0bfa8167a262",
+  "independentReview": "field-independent-palace-eight-review.json",
+  "independentReviewSha256": "1bdf5b506865f005b9a4151133cb09da446a94a173f335fd3b98f6cfbb98e35c",
+  "fieldRuntimeSha256": "329409e16e896ec4bbae12bc581a8b55ff411b859b6fbf0f3e7b62891584777a",
+  "currentSourcePreflightCandidates": 52,
+  "currentSourcePreflightLogSha256": "6aaba02301e5a49bb38fbae6f194a21bd0e9e87a77969736499469fc19c0203e",
+  "priorSelectedCandidateRecordsExact": 48,
+  "priorRuntimeAssetRecordsExact": 4934,
+  "onlyAddedSourceKeys": [
+    "99fe3ae3f675d6fc68f88b15b0432a884fee59c7f04b6be8c9c1c51f02948e81",
+    "bef65a35570d58e1698fa959797fc680e72b1cd72af026bfe1dd79c6fe0f3197",
+    "d46bd57a4ab4715e8191cd0e1fee2a155cc04cb70413844af2510647a87d7229",
+    "e87bbe9dc68db62ba77591f5d95fbb41db2b59bdee7bb7648d7e0871e0d2413d"
+  ],
+  "protectedCutsExact": true,
+  "selectedFields": 4938,
+  "selectedPaintings": 52,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 224,
+  "knownRemainingStaticImages": 225,
+  "tests": [
+    {
+      "script": "scripts/test-envhd-painted-fields.py",
+      "passed": 32
+    },
+    {
+      "script": "scripts/test-envhd-install-selection.py",
+      "passed": 3
+    },
+    {
+      "script": "scripts/test-archive-assembly.py",
+      "passed": 39
+    },
+    {
+      "script": "scripts/test-envhd-battle-presentation-pack.py",
+      "passed": 12
+    }
+  ],
+  "freshPackageVerified": false,
+  "fourRevisionCandidatesExcluded": true,
+  "unfinishedAuthoringPreservedOnOngoingBranch": true,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true
+}
