@@ -8,7 +8,7 @@
     4096,
     968
   ],
-  "atlasSha256": "5f1397051f95189a3a3076a9581ad9c2d51721949a6ac94acf9dfc53e76c6ce2",
+  "atlasSha256": "e0a8f42d5bde14453c18ddd7b3a835471f6a85ea46d477eddf94bbc8e22d1796",
   "regions": [
     {
       "page": 7,
@@ -29,9 +29,59 @@
       ],
       "decodedRgbaSha256": "bdd034f5d3df83679296b6553d19690c9ecb4545d6f5cb79ee9ba8fbb0fd3e39",
       "atlasRect": [
-        1704,
+        2024,
         32,
         160,
+        288
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 15389,
+      "sourceCrop": [
+        72,
+        200,
+        120,
+        248
+      ],
+      "sourceUvOrigin": [
+        72,
+        200
+      ],
+      "sourceSize": [
+        48,
+        48
+      ],
+      "decodedRgbaSha256": "84c837626b1b43418ddcf28337e56ad2e279a5c52ead7af89d4be65a228e51f1",
+      "atlasRect": [
+        1760,
+        680,
+        192,
+        192
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 15452,
+      "sourceCrop": [
+        24,
+        0,
+        88,
+        72
+      ],
+      "sourceUvOrigin": [
+        24,
+        0
+      ],
+      "sourceSize": [
+        64,
+        72
+      ],
+      "decodedRgbaSha256": "d6432fcf0e1fc34e147c22c8f17c74b72547adf354f1c4c6ac86ae9db04b1be9",
+      "atlasRect": [
+        1704,
+        32,
+        256,
         288
       ]
     },
@@ -54,10 +104,35 @@
       ],
       "decodedRgbaSha256": "334e399e2166c4ac9fba3d5ea3afe2f983bc2cfd9fc47e1b2a933a7dd2283a1a",
       "atlasRect": [
-        1928,
+        2248,
         32,
         320,
         284
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 15580,
+      "sourceCrop": [
+        136,
+        0,
+        200,
+        56
+      ],
+      "sourceUvOrigin": [
+        136,
+        0
+      ],
+      "sourceSize": [
+        64,
+        56
+      ],
+      "decodedRgbaSha256": "447a34db71e232fc7b788dc76e5ea40ccde91b26b5cc61113a2bf2105f8bf7f9",
+      "atlasRect": [
+        960,
+        680,
+        256,
+        224
       ]
     },
     {
@@ -104,7 +179,7 @@
       ],
       "decodedRgbaSha256": "561f0ece3fa3e92904a3c08d5e1ae42f0f41f4c8fbe2c6dd811e67522e6d4358",
       "atlasRect": [
-        2312,
+        2632,
         32,
         288,
         256
@@ -154,7 +229,7 @@
       ],
       "decodedRgbaSha256": "f4b606c7535de71a95443737e0f68bea9dc9c7b07115d85b3a83bf6c9ae59a68",
       "atlasRect": [
-        3016,
+        3336,
         32,
         288,
         256
@@ -179,7 +254,7 @@
       ],
       "decodedRgbaSha256": "bcffa763b5ff8baf92b855610929743d5d4bcaafb88f92e375fd101ce39fc5e4",
       "atlasRect": [
-        2664,
+        2984,
         32,
         288,
         256
@@ -204,7 +279,7 @@
       ],
       "decodedRgbaSha256": "59b36974ce5da2c737bcf22e8fec5921972a9e3f88a326ba0db065c80f91258e",
       "atlasRect": [
-        640,
+        1280,
         680,
         96,
         220
@@ -229,7 +304,7 @@
       ],
       "decodedRgbaSha256": "0e36156a50ad2db5f2e6a6ba845880277d69d6ef331fbe8e90a4ec1958f9988a",
       "atlasRect": [
-        3368,
+        3688,
         32,
         256,
         256
@@ -254,7 +329,7 @@
       ],
       "decodedRgbaSha256": "d2b61cac7f814f974b2420b547fcd8b53be3810b5392807b2194231b3dda90ff",
       "atlasRect": [
-        32,
+        352,
         680,
         256,
         256
@@ -279,8 +354,8 @@
       ],
       "decodedRgbaSha256": "292786ab6dfa34676999a25e6344b164ea30ca7b79088fda2b13bf58143de424",
       "atlasRect": [
-        3688,
         32,
+        680,
         256,
         256
       ]
@@ -304,7 +379,7 @@
       ],
       "decodedRgbaSha256": "9aef5cea9abf8c9f8102161ccd6e98f5175b12bbfa0f090b04a8cbc7e3a2711a",
       "atlasRect": [
-        352,
+        672,
         680,
         224,
         256
@@ -329,7 +404,7 @@
       ],
       "decodedRgbaSha256": "c4ac55249ba768ba19eb995df86cf278c823f7e50d5e488fc93d5b2a91a40b10",
       "atlasRect": [
-        1120,
+        2016,
         680,
         160,
         192
@@ -354,7 +429,7 @@
       ],
       "decodedRgbaSha256": "7b171eb8cdaba610afeea7daffe5a7cdd4b0957347f3102850230817c1409848",
       "atlasRect": [
-        800,
+        1440,
         680,
         256,
         192

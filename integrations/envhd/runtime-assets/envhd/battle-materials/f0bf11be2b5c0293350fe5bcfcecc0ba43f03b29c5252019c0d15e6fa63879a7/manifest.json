@@ -8,7 +8,7 @@
     4096,
     384
   ],
-  "atlasSha256": "5e094bbca402eaa669c5f205fe9e3c1dbacc45496d3ff7124ca9783da018e936",
+  "atlasSha256": "222f63c90ae4f7442ea87108f5bb9b8639e58e476e683e1dbc82ddfbacb6bcb0",
   "regions": [
     {
       "page": 7,
@@ -83,6 +83,31 @@
         32,
         320,
         288
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 15453,
+      "sourceCrop": [
+        216,
+        168,
+        256,
+        216
+      ],
+      "sourceUvOrigin": [
+        216,
+        168
+      ],
+      "sourceSize": [
+        40,
+        48
+      ],
+      "decodedRgbaSha256": "c90dedb797873d745a28bc343e03d274b39256023daf7de4023e3eb69b85aca5",
+      "atlasRect": [
+        3040,
+        32,
+        160,
+        192
       ]
     },
     {
@@ -254,7 +279,7 @@
       ],
       "decodedRgbaSha256": "06148916abfb2e97f3e673b13f7fb2b170ed4accc456a43a8574d94dc239a025",
       "atlasRect": [
-        3040,
+        3264,
         32,
         128,
         192

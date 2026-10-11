@@ -1,0 +1,100 @@
+{
+  "scale": 4,
+  "sourceSize": [
+    64,
+    48
+  ],
+  "targetSize": [
+    256,
+    192
+  ],
+  "paletteRgba": [
+    [
+      49,
+      49,
+      49,
+      0
+    ],
+    [
+      65,
+      57,
+      57,
+      0
+    ],
+    [
+      74,
+      74,
+      65,
+      0
+    ],
+    [
+      82,
+      82,
+      82,
+      0
+    ]
+  ],
+  "sourceMaskRectangle": [
+    9,
+    16,
+    55,
+    29
+  ],
+  "sourcePalettePixels": [
+    {
+      "rgba": [
+        49,
+        49,
+        49,
+        0
+      ],
+      "sourcePixels": 43
+    },
+    {
+      "rgba": [
+        65,
+        57,
+        57,
+        0
+      ],
+      "sourcePixels": 68
+    },
+    {
+      "rgba": [
+        74,
+        74,
+        65,
+        0
+      ],
+      "sourcePixels": 81
+    },
+    {
+      "rgba": [
+        82,
+        82,
+        82,
+        0
+      ],
+      "sourcePixels": 89
+    }
+  ],
+  "sourceMarkingPixels": 281,
+  "sourceMarkingMaskSha256": "680f8be5174b6e8e406addf899d9d1e7c634a1c6119f507108cdd51777def6e5",
+  "listedPaletteCellCoverageExact": true,
+  "bevelInsideSourceMask": true,
+  "sourceStpExact": true,
+  "discardAndVisibleBlackExact": true,
+  "edgeAveraging": false,
+  "internalFeatureAlignment": "listed-palette-cells-locked; other-features-individually-reviewed",
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "decodedRgbaSha256": "256fdd9a7b0462ad364b6d71f8d17a9a728525d27c6c0f820b61dbdf1a2b6e42",
+  "method": "python-painted-rect-exact-source-palette-marking-1",
+  "algorithmSha256": "7a6e4f282f126aec4028f2e321d22e94e077c29d933bd3be8dee1c25c276e57e",
+  "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "generatedSha256": "9cc9cbf15eb220d7842707d632ef85cdd328f82ae850b2b32e92f990df74bafe",
+  "outputSha256": "89edd475efe7b07faa74f5d45ea09b1aa11e46de2334463adef085007acd3d84",
+  "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+}

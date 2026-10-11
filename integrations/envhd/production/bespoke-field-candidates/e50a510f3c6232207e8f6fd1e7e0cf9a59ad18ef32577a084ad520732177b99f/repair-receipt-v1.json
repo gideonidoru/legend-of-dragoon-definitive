@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 63968,
+  "paintedGapPixelsExtended": 1137,
+  "paintedUncoveredSourcePixels": 775,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 25,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    118,
+    64
+  ],
+  "targetSize": [
+    472,
+    256
+  ],
+  "generatedSha256": "8cc97e633575248322744a0db33ed2846c4420d81a7fd67d76babdfc1575ead3",
+  "outputSha256": "cf7ca17da34640a616eb4d1211ea8f0bfffc028f14d5886b4a64f75ea2cb1215",
+  "decodedRgbaSha256": "e50a510f3c6232207e8f6fd1e7e0cf9a59ad18ef32577a084ad520732177b99f",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/e50a510f3c6232207e8f6fd1e7e0cf9a59ad18ef32577a084ad520732177b99f/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/e50a510f3c6232207e8f6fd1e7e0cf9a59ad18ef32577a084ad520732177b99f/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Fueno cut314 slot3 rounded bent wooden chair at left and the cropped warm tabletop/surface at right. Preserve the rounded oval back opening, two horizontal back rails, thin oblique legs, dark woven seat in the lower left/center and the broad curved warm surface cropped against the right and bottom edges. The seat must be fine interlaced cane lattice, not parallel boards or a black solid patch. Keep the chair perspective and scale, with warm wood on the curved right-hand surface. Do not add another chair, rug or cushion. Strict framing: exactly 118:64 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "af6ffd2fe470a39996173584a4197ebc6cd43a514e23aad2442b807660fceeb3:-1",
+      "kind": "foreground",
+      "slot": 3,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 314,
+  "representativeLocation": "Fueno",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Fueno cut314 slot3 rounded wooden chair with oval back opening, horizontal rails and fine woven cane seat beside a cropped broad warm curved tabletop/surface.",
+    "style": "Original, held neural, output and isolated source slot placement compared. Cane crossings replace parallel neural seat ribs while preserving back openings and oblique chair/table crop. Scene position supports a tabletop/surface beside the chair rather than assuming the older floor label. Fine fiber count and timber grain are interpretive.",
+    "layout": "Exact4x canvas [118, 64] to [472, 256]; source alpha and visible-black classes exact. Pinned cutout stage extends 1137 target pixels, uncovered 775, maximum squared extension distance 25. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "cf7ca17da34640a616eb4d1211ea8f0bfffc028f14d5886b4a64f75ea2cb1215",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

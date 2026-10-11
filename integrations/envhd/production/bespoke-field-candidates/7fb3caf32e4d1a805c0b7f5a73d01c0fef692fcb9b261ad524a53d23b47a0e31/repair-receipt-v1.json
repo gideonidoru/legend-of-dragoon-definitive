@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 33008,
+  "paintedGapPixelsExtended": 583,
+  "paintedUncoveredSourcePixels": 323,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 58,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    52,
+    64
+  ],
+  "targetSize": [
+    208,
+    256
+  ],
+  "generatedSha256": "6af544660cab14892b3f6a5fe7317ee6d0f9755bca7f858e944be3d4366b23f3",
+  "outputSha256": "7afe860087627fe43483956ce56b3443355feab865dbbff4d4a48484cd105c3d",
+  "decodedRgbaSha256": "7fb3caf32e4d1a805c0b7f5a73d01c0fef692fcb9b261ad524a53d23b47a0e31",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/7fb3caf32e4d1a805c0b7f5a73d01c0fef692fcb9b261ad524a53d23b47a0e31/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/7fb3caf32e4d1a805c0b7f5a73d01c0fef692fcb9b261ad524a53d23b47a0e31/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Lohan cut151 slot4 red-brown tiled canopy and lower timber frontage, with a small pale round basket/fitting near the upper right. Trace the left low roof plane, the taller diagonal roof plane rising off the top right, the gap beneath the left canopy and the cropped vertical timber face at lower right. Restore small overlapping rows of reddish roof tiles rather than plain red boards. Keep the basket/fitting in exactly the source location and size, without invented fruit, labels or handles. Add restrained dim rustic tile relief and timber grain. Strict framing: exactly 52:64 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.\n\nSource correction:\nPrecise source-footprint correction. Image1 is the custom draft, image2 authoritative original cutout, image3 original scene context. Keep the red-brown small overlapping roof tiles and dim timber shading, but trace the COMPLETE original52:64 silhouette and all internal openings from image2. The draft incorrectly leaves the lower-left source footprint empty: restore the full broad pale tan stone/pier fragment along the left edge down to the bottom and the short dark timber section beneath the left roof. Match the original opening width, not the draft's oversized empty gap. Preserve the right cropped vertical timber face, diagonal roof planes and small pale basket/fitting at the original location. Do not turn the pale left pier into a skinny wooden leg. Make the entire original occupied footprint covered by painted material, retaining real transparent negative space only where the original has it. Exact52:64 canvas, no padding or new objects. Continue restrained hand-painted HD game style; one isolated texture on transparency.\n\nSource mask correction:\nPrecise source-locked HD repaint. Lohan cut151 slot4, canvas exactly52:64. Image1 authoritative original; image2 same original brightened only for reading dim materials; image3 the EXACT source occupancy mask (WHITE=painted material must cover, BLACK=transparent hole); image4 native scene context. Reconstruct the red-brown tiled canopy and timber front in the precise position of image1, strictly following image3 occupancy. Restore fine overlapping red tile rows. The LEFT pale weathered stone/pier is a cropped strip TOUCHING THE LEFT CANVAS EDGE from mid-height down to the bottom: do not leave any transparent left margin there, do not center a free-standing pillar, do not taper its occupied strip into nothing. The dark opening below the low left roof occupies approximately20%-44% of width,53%-86% of height, with original stepped contour; match the mask's opening, do not shift it to the right. The right vertical warm-brown wood face fills the source region beside that opening and reaches the right/bottom crop. Retain the rising roof plane off the upper right, narrow ridge and small pale round basket/fitting at original upper-right-middle location. Keep source plane proportions and original dim rusty-brown/gray palette. Refine tile and timber material continuously, without inventing architecture or contents. No thick added beams or new roof planes. One original-framed high-definition hand-painted texture on actual transparency exactly where image3 is black. No mask/guide/board/text in final output, no added canvas padding.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "dbe6e8675cd05446200cd20f6e7abfa92fda81a4df303fc80c726fb59f75fa9f:-1",
+      "kind": "foreground",
+      "slot": 4,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 151,
+  "representativeLocation": "Lohan",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Lohan cut151 slot4 cropped red tiled canopy over dark timber frontage, with pale left edge fragment, an opening beneath the low roof and a small pale round fitting with dark warm projections near the upper right.",
+    "style": "Original, held neural, rejected drafts, corrected output and isolated native slot placement compared. First two paintings omitted or shifted the left occupied strip and exceeded source coverage limits. A source occupancy guide restores the left-edge footprint and opening position; separate reddish tile rows replace the neural plain roof. Fine tile grain, masonry interpretation and fitting details/projections are interpretive, not a new object-identity or exact tiny contents claim.",
+    "layout": "Exact4x canvas [52, 64] to [208, 256]; source alpha and visible-black classes exact. Pinned cutout stage extends 583 target pixels, uncovered 323, maximum squared extension distance 58. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "7afe860087627fe43483956ce56b3443355feab865dbbff4d4a48484cd105c3d",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

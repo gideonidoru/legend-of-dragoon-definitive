@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "scope": "Custom painted EnvHD architectural candidate history. This first doorway pass remains held for motif/palette refinement and is not selected in any runtime or download pack. Do not pass this manifest to runtime selection before an explicit reviewed revision.",
+  "sourceSelectionBaseCommit": "759bd79b27aa68939104556386b3a3afb22d38f6",
+  "algorithmPath": "scripts/repair-envhd-painted-cutout.py",
+  "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
+  "visualReviewedBespokeCandidates": 0,
+  "revisionsNeeded": 1,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 49920,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "sourceSize": [
+        40,
+        78
+      ],
+      "targetSize": [
+        160,
+        312
+      ],
+      "outputSha256": "72bab4205501839696e1d79c91623476cc12bc477305d5342d8b2aeb7ca2ff90",
+      "generatedSha256": "6460096d90d187b44f0ecc8ec9d33480ecc5bcb076ee6a8031a05e2bf3264099",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "decodedRgbaSha256": "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
+      "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531/image-v1.png",
+      "prompt": "Edit target: the supplied nearest-neighbour enlarged original Legend of Dragoon field texture, a 40 x 78 pixel fully opaque architectural patch used on the foreground doorway of Deningrad cut 348. Supporting reference: the original scene shows this narrow carved brown door on the right-side building with blue roof tiles, pale cool curved frame and right stone jamb. Create a source-faithful higher-resolution hand-painted game texture, with restrained modern painted detail harmonizing with the existing HD backgrounds. Keep the EXACT original rectangular canvas aspect 40:78, crop, door silhouette, curved frame contour, perspective, wood panel proportions, blue roof-tile area at left, right vertical stone strip and tiny green patch along the bottom. No added margins. The wood is warm dark brown with a weathered golden-brown curved raised relief: concentric curved bands above a central elongated looping/openwork motif, followed by curved diagonal bands down the lower half. Trace the visible source pattern rather than inventing new emblems, letters, runes, animals, faces, knobs or signage. Sharpen the existing carving and material grain with small low-contrast highlights; preserve the original warm/cool palette and shaded light direction. Keep the ornament's large strokes in their original positions and make the blue tile rows follow the same slope and spacing. Output one fully opaque image, no text, no comparison panels, no border. This is a texture patch, not a redesign of the building or a standalone door on a new background.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "de7c78e3ca660dd83acd47f8e78fa6e979e1484024acc2c16efc59b1c52ee670:-1",
+          "kind": "foreground",
+          "slot": 9,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 348,
+      "representativeLocation": "Deningrad",
+      "priorCandidateSha256": "d5913a66813a28b9b5288041639c5ac824ec898eca9559dcd4aa590fb459e5b2",
+      "review": {
+        "intent": "Deningrad cut 348 foreground slot 9: warm carved brown doorway within a pale curved frame, blue roof tiles at left, stone jamb at right and a small green base patch. It is architecture, not text or an emblem inferred from lore.",
+        "style": "First painted pass adds restrained wood grain, raised curved relief and cool stone/tile detail. The carving has become a simpler interlaced loop and the blue tiles are brighter. Finer motif topology and scene palette still need a source-bound correction; this pass does not clear the original hold.",
+        "layout": "Inspected original, rejected neural and repaired painting at the 160x312 target size, then at exact original isolated foreground placement. The fully opaque source alpha and visible-black classes are exact, with zero extended/uncovered pixels. These categorical checks do not prove interior feature alignment, runtime depth or final quality.",
+        "verdict": "intent-revision-needed",
+        "outputSha256": "72bab4205501839696e1d79c91623476cc12bc477305d5342d8b2aeb7ca2ff90",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    }
+  ]
+}
