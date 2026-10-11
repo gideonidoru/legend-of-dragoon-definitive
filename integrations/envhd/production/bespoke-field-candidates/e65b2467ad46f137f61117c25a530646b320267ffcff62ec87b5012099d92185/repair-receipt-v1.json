@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 13936,
+  "paintedGapPixelsExtended": 784,
+  "paintedUncoveredSourcePixels": 664,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 100,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    58,
+    22
+  ],
+  "targetSize": [
+    232,
+    88
+  ],
+  "generatedSha256": "1f5154c467182c729862b56d9bbaf35f66c72c65af6aef03442e9a89ba656106",
+  "outputSha256": "0a82cc875ccd0382902df02bfdf7aa351ae30be3ea8d814e8e1c40e9cba422d2",
+  "decodedRgbaSha256": "e65b2467ad46f137f61117c25a530646b320267ffcff62ec87b5012099d92185",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/e65b2467ad46f137f61117c25a530646b320267ffcff62ec87b5012099d92185/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/e65b2467ad46f137f61117c25a530646b320267ffcff62ec87b5012099d92185/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Twin Castle cut667 slot1 cropped curved green upholstered furnishing back at lower foreground. Preserve the partial oval right back panel with narrow warm gold/brown rim, its source repeated small dark inset marks in their visible relative positions, and the left dark curved support/partial neighboring back fragment with a thin light crosspiece. Image 3, when present, is an exposure-lifted copy of the original for visibility only: retain original dim lighting from image 1 and scene. Keep the distinctive small dark patterned upholstery marks, not a plain smooth cushion, not ornate invented brocade, lettering or studs. Add fine restrained cloth and frame detail while tracing source internal geometry. Strict framing: exactly 58:22 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.\n\nSource correction:\nPrecise pattern-only correction of custom Twin Castle chair texture. Image1 custom draft; image2 authoritative58:22 original; image3 scene context; image4 exposure-lifted original guide ONLY for reading dim marks. Keep the draft's current green cloth shading, gold/brown rim, cropped curved right panel and partial curved left support geometry. Correct the repeated dark marks to the ORIGINAL pattern's location, approximate spacing and density. The draft invented red radial flower/star florettes: REMOVE every radial flower/star symbol. Source marks are very small plain dark brown/near-black understated square/diamond spots, sparsely near top then more clustered toward lower right. Trace visible source marks in image2/4; do not add dense new pattern rows to fill empty fabric, and do not invent brocade or letters. Retain original dim source lighting; no luminous gold or added studs. Exact58:22 canvas, same source footprint and framing, source-negative-space transparency. One finished painted HD texture.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "eb9b947e46f0d0c3ba1a39d01adc5e290ee0c10ed407482fd2166323aa4ec168:-1",
+      "kind": "foreground",
+      "slot": 1,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 667,
+  "representativeLocation": "Twin Castle",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Twin Castle cut667 slot1 cropped green upholstered curved furnishing back with a narrow warm rim, repeated small dark inset marks and partial left curved support.",
+    "style": "Original, exposure-lifted private guide, held neural, rejected radial-symbol draft, corrected output and isolated scene placement compared. Removes invented radial flowers/stars; small plain dark marks follow the source sparse upper and denser lower-right pattern. Exact subpixel mark shapes/positions and cloth weave are interpretive, not embroidered lettering, new emblems or studs.",
+    "layout": "Exact4x canvas [58, 22] to [232, 88]; source alpha and visible-black classes exact. Pinned cutout stage extends 784 target pixels, uncovered 664, maximum squared extension distance 100. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "0a82cc875ccd0382902df02bfdf7aa351ae30be3ea8d814e8e1c40e9cba422d2",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "method": "python-painted-circle-exact-source-palette-lattice-1",
+  "algorithmSha256": "929afefe6883aa2665ce4de5de476979fa975f7c7ec5722dd1124c773895ae22",
+  "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "schema": 1,
+  "scope": "Separately reviewed custom circular lattice candidate; source history and selected runtime unchanged.",
+  "visualReviewedBespokeCandidates": 1,
+  "revisionsNeeded": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        56
+      ],
+      "targetSize": [
+        256,
+        224
+      ],
+      "motifRgba": [
+        [
+          131,
+          156,
+          139,
+          0
+        ],
+        [
+          148,
+          172,
+          148,
+          0
+        ]
+      ],
+      "sourceMaskCircle": [
+        31.5,
+        23.5,
+        13
+      ],
+      "lightingRadius": 15,
+      "sourceMotifPixels": 187,
+      "motifSilhouetteExact": true,
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "bevelInsideSourceMask": true,
+      "edgeAveraging": false,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "447a34db71e232fc7b788dc76e5ea40ccde91b26b5cc61113a2bf2105f8bf7f9",
+      "method": "python-painted-circle-exact-source-palette-lattice-1",
+      "algorithmSha256": "929afefe6883aa2665ce4de5de476979fa975f7c7ec5722dd1124c773895ae22",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "7db099a102b6b82797b0c4b019aca59e23751536e1a7445bc0a4e3c9cc645ca4",
+      "outputSha256": "216009e9e2704b618ce5da8f989d39610f8ecfde49e20dafad73cf3defb0675e",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 44,
+          "page": 7,
+          "clut": 15580,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            136,
+            0,
+            200,
+            56
+          ],
+          "sourceUvOrigin": [
+            136,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "c281cb2182ab93626d647d05ff443540dc4b1657956e040a0dd287e338b2bf4d",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/447a34db71e232fc7b788dc76e5ea40ccde91b26b5cc61113a2bf2105f8bf7f9/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/447a34db71e232fc7b788dc76e5ea40ccde91b26b5cc61113a2bf2105f8bf7f9/image-v1.png",
+      "prompt": "Use case: precise-object-edit\nEdit target: the supplied generated Flanvel Tower stone texture. Keep the exact canvas dimensions/aspect, composition, all surrounding dark teal stonework, circular rim, diagonal spokes and partial neighboring medallions unchanged.\nChange ONLY the inside face of the large central circular medallion: remove every checker, maze, lattice and other gray or green marking completely. Replace it with one blank pale-mint stone face, gentle diffuse illumination, faint stone grain, brighter toward the center and duller near its rim. Preserve its circular outline and rim. No pattern or engraving inside the face at all. This blank face will receive the exact original native lattice via authorized Python repair afterward.\nConstraints: no new objects, no letters, no runes, no symbols, no extra cracks or ornament, no watermark, no margin, fully opaque texture.",
+      "paintingStages": [
+        {
+          "path": "integrations/envhd/production/bespoke-battle-candidates/447a34db71e232fc7b788dc76e5ea40ccde91b26b5cc61113a2bf2105f8bf7f9/painted-layout-stage1-v1.png",
+          "sha256": "e73247a848702caa71a65c993882b037a501af254f7ca804b328d0446a7181ba",
+          "prompt": "Use case: style-transfer\nAsset type: source-faithful HD battle architecture texture for Legend of Dragoon, Flanvel Tower.\nInput image: edit target, nearest-neighbour enlarged actual 64x56 source crop. Preserve this exact crop and aspect 64:56, all circular feature centers, rims, diagonal spokes and relative positions. The game samples the central 48x48 area; keep padding consistent with the original.\nPrimary request: restore this dark teal-green carved stone architecture with a mint luminous central round medallion, as restrained detailed hand-painted fantasy RPG environment art. Keep exactly the central pale round medallion centered at x=32/64,y=24/56, diameter about32/64 of image width. Keep the original charcoal teal, dull mint and soft pale-green palette, original light direction, four diagonal radial supports and thin dark rim. Preserve partial neighboring lit round details at the left and bottom corners. Add fine stone grain and subtle edge highlights only. No new fixtures or scenery.\nThe center contains the original gray-green pixel-lattice marking on a pale mint surface: follow the supplied pattern without interpreting it as letters or runes. Python repair will restore exact native lattice topology inside the central disk after generation. Do not add symbols or extra motifs elsewhere.\nConstraints: Flat texture crop, no perspective change, no border, no new light sources, no new ornaments, no invented text, no letters, no watermark. Keep shadows dark and matte. No fluorescent neon, no metallic redesign. Output one opaque texture covering the full canvas; do not add transparent margins.",
+          "scope": "Intermediate painted stone layout; lattice reinterpretation not accepted. Final blank-face edit removes all generated markings before source restoration."
+        }
+      ],
+      "review": {
+        "intent": "Flanvel Tower static battle architecture, stage44 part0, page7 CLUT15580, crop136,0,200,56: dark teal stone with a pale mint circular medallion, original central lattice, diagonal supports and partial neighboring light faces. No glyph meaning or canonical text inferred.",
+        "style": "Individually compared actual source, held neural, painted layout, blank-face edit and source-repaired final. Original pale/dark green palette and circular architecture are retained with restrained painted stone detail. Exact central marking restored from its two native grey palette classes rather than invented strokes. Original grey annular shading outside the marking is material lighting, not extra glyphs. Reviewed development repair; Skurfa resources untouched; final visual acceptance pending.",
+        "layout": "64x56 becomes256x224. All187 central source marking cells (59 darker-grey and128 grey-green) within native circle31.5,23.5,r13 retain exact4x layout, junctions, gaps and disconnected points. Final RGB contrast inside that source region independently recovers the same mask. Narrow bevel stays inside strokes. Smoothly relit blank material preserves visibility. Exact native STP/discard/visible-black classes and fresh sampled UV/crop/model/texture identities required before selection. Camera/seams/blend/gameplay remain pending.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "216009e9e2704b618ce5da8f989d39610f8ecfde49e20dafad73cf3defb0675e",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "sourceMotifPalettePixels": [
+        59,
+        128
+      ],
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+    }
+  ],
+  "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+}

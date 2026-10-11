@@ -9,7 +9,9 @@ spec=importlib.util.spec_from_file_location('battle_atlas_tools',ROOT/'scripts/p
 
 spec=importlib.util.spec_from_file_location('battle_source_tools',ROOT/'scripts/batch-envhd-battle-materials.py');battle_sources=importlib.util.module_from_spec(spec);spec.loader.exec_module(battle_sources)
 
-def publish(files):
+spec=importlib.util.spec_from_file_location('battle_painted_tools',ROOT/'scripts/verify-envhd-painted-battle.py');painted_tools=importlib.util.module_from_spec(spec);spec.loader.exec_module(painted_tools)
+
+def publish(files,painted_manifest=None):
     battle=battle_sources
     scenes,masters,empty=battle.census(files);production=ROOT/'integrations/envhd/production'
     ledger=json.loads((production/'battle-material-artwork.json').read_text())
@@ -27,6 +29,26 @@ def publish(files):
         if note['outputSha256']!=tools.terrain.digest(png) or note['verdict']!=a['reviewStatus'] or note['nativeAcceptance']!='pending' or note['finalQualityAcceptance']!='pending':raise ValueError('Review differs')
         if a['reviewStatus']=='visual-reviewed-runtime-pending':images[key]=np.array(Image.open(io.BytesIO(png)))
         elif a['reviewStatus']!='intent-revision-needed':raise ValueError('Unknown review')
+    painted=None;manifest_checks=[]
+    if painted_manifest is not None:
+        paths=list(painted_manifest) if isinstance(painted_manifest,(list,tuple)) else [painted_manifest]
+        if not paths:raise ValueError('Explicit painted battle manifest required')
+        receipts={};verified=[]
+        for path in paths:
+            path=battle.staging_path(ROOT,str(Path(path).absolute().relative_to(ROOT)))
+            relative=str(path.relative_to(ROOT))
+            result=painted_tools.preflight(files,path,ROOT)
+            if result['manifestSha256'] in receipts:raise ValueError('Duplicate painted battle manifest')
+            receipts[result['manifestSha256']]=relative
+            manifest_checks.append((path,result['manifestSha256']))
+            verified.extend(result['verified'])
+        painted=dict(verified=verified,receipts=receipts)
+        verify_manifest_identities(manifest_checks)
+    if painted is not None:
+        for item in painted['verified']:
+            key=item['candidate']['decodedRgbaSha256']
+            if key in images or key not in masters:raise ValueError('Painted battle cannot replace an already selected/protected source')
+            images[key]=item['image']
     writes={};inventory=[];keys=set()
     for scene in scenes:
         bindings=[m for m in scene['materials'] if m['status']=='candidate-pending' and m['decodedRgbaSha256'] in images]
@@ -39,10 +61,18 @@ def publish(files):
         folder=ROOT/'integrations/envhd/runtime-assets/envhd/battle-materials'/scene['modelSha256'];writes[folder/'atlas-v1.png']=png;writes[folder/'manifest.json']=tools.publication.json_bytes(manifest)
         inventory.append(dict(stage=scene['stage'],hdBindings=len(regions),**manifest));keys.update(selected)
     selection=dict(schema=1,runtimeSelectedMasters=len(keys),runtimeSelectedBindings=sum(s['hdBindings'] for s in inventory),nativeAccepted=0,finalQualityAccepted=0,scenes=inventory,scope='Reviewed static development surfaces only; pilots, animation and revision holds retain their original sampling')
+    if painted is not None:
+        selection.update(paintedSelectedMasters=len(painted['verified']),paintedReviewReceipts=painted['receipts'],scope='Reviewed neural static surfaces plus separately source-verified painted repairs; pilots, animation and remaining revision holds retain original sampling')
     writes[production/'battle-material-runtime-artwork.json']=tools.publication.json_bytes(selection)
     runtime=ROOT/'integrations/envhd/runtime-assets/envhd/battle-materials'
     removals={p for p in runtime.rglob('*') if p.is_file() and p not in writes}
+    verify_manifest_identities(manifest_checks)
     tools.publication.publish(writes,removals);return selection
 
+def verify_manifest_identities(checks):
+    for path,expected in checks:
+        if tools.terrain.digest(tools.terrain.bounded_read(path,32*1024*1024))!=expected:
+            raise ValueError('Painted battle manifest changed after preflight')
+
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--files',required=True,type=Path);args=parser.parse_args();print('Selected battle material masters:',publish(args.files)['runtimeSelectedMasters'])
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--files',required=True,type=Path);parser.add_argument('--painted-manifest',type=Path,action='append');args=parser.parse_args();print('Selected battle material masters:',publish(args.files,args.painted_manifest)['runtimeSelectedMasters'])

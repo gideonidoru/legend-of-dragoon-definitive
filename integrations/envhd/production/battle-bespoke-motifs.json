@@ -1,0 +1,90 @@
+{
+  "method": "python-painted-material-exact-source-palette-motif-1",
+  "algorithmSha256": "1e732070b32e9459b57d5697165044e05ae3adfbcfd98f00346c868f03a7b344",
+  "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "schema": 1,
+  "scope": "Separately reviewed custom painted battle repair candidates; source history and selected runtime remain unchanged.",
+  "visualReviewedBespokeCandidates": 1,
+  "revisionsNeeded": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        48
+      ],
+      "targetSize": [
+        192,
+        192
+      ],
+      "motifRgba": [
+        148,
+        180,
+        156,
+        0
+      ],
+      "lowerBandStart": 41,
+      "sourceMotifPixels": 379,
+      "sourceBandPixels": 336,
+      "motifSilhouetteExact": true,
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "bevelInsideSourceMask": true,
+      "edgeAveraging": false,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "84c837626b1b43418ddcf28337e56ad2e279a5c52ead7af89d4be65a228e51f1",
+      "method": "python-painted-material-exact-source-palette-motif-1",
+      "algorithmSha256": "1e732070b32e9459b57d5697165044e05ae3adfbcfd98f00346c868f03a7b344",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "f8179c55ac75ddc63b1b734da44f5eeda1ea85830da93cce5bf7f9277dbe5e53",
+      "outputSha256": "f36099bde6af9037baaeb39aea6c8137c0e46d065f59268d710c75610695d06d",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 44,
+          "page": 7,
+          "clut": 15389,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            72,
+            200,
+            120,
+            248
+          ],
+          "sourceUvOrigin": [
+            72,
+            200
+          ]
+        }
+      ],
+      "priorCandidateSha256": "984e3ccfd6ec7dd3a4c4deedd5479fa39904585fbe31d6b10b207416e1d47c4d",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/84c837626b1b43418ddcf28337e56ad2e279a5c52ead7af89d4be65a228e51f1/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/84c837626b1b43418ddcf28337e56ad2e279a5c52ead7af89d4be65a228e51f1/image-v1.png",
+      "prompt": "Use case: stylized-concept\nAsset type: environment material base for a Legend of Dragoon HD battle architecture texture.\nInput image: reference for palette and surface role only. Its maze marking will be restored separately from exact source geometry by authorized Python repair.\nPrimary request: create only the blank pale mint-green stone material beneath that marking. A flat front-on square seamless light jade/mint stone slab, subtle chalky grain and broad irregular pale mineral color variation. Modern hand-painted classic fantasy RPG background style compatible with detailed painted prerendered backgrounds. Gentle diffuse illumination without cast shadows. Match the reference's light green values, without white clipping. No object perspective, no scenery.\nConstraints: Entire canvas filled with one blank stone surface; NO maze, NO markings, NO carving, NO borders, NO letters, NO symbols, NO cracks, NO ornament, NO objects, no text, no watermark. Low contrast microtexture only; this is a reusable material layer below the source-locked carved motif, not a new design.",
+      "review": {
+        "intent": "Flanvel Tower static battle architecture, stage44 part0, page7 CLUT15389: pale mint stone with a grey orthogonal maze-like marking. Preserve actual sampled UVs/crop and marking; no lore or canonical text inferred.",
+        "style": "Individually compared actual source, held neural and final painted repair. The neural candidate bent and joined original strokes. New low-contrast painted stone grain and a narrow internal bevel add material detail while retaining the exact source-palette line topology, endpoints, disconnected marks and lower grey band. This is a reviewed development repair; Skurfa resources remain untouched and final quality is pending.",
+        "layout": "48x48 source becomes192x192. All379 motif source pixels and336 lower-band pixels map to exact4x silhouettes, with no new strokes or exterior shadows. Final RGB contrast independently recovers the same mask. Native STP=0 coloured pixels remain visible; source STP/discard/visible-black categories exact. Fresh page/CLUT/model/texture bindings and exact deterministic pixel reproduction required before selection; game-camera/seam/blend validation pending.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "f36099bde6af9037baaeb39aea6c8137c0e46d065f59268d710c75610695d06d",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+    }
+  ],
+  "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+}

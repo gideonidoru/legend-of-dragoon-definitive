@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "method": "python-reviewed-painted-battle-material-exact-stp-1",
+  "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+  "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "scope": "Separately reviewed source-traced stage69 dark radial architecture; source history unchanged.",
+  "visualReviewedBespokeCandidates": 1,
+  "revisionsNeeded": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        61
+      ],
+      "targetSize": [
+        256,
+        244
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "2a5813a03bdd9fdfca6219e04507a26c01551142438f4246fdce06fd031c9189",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "7298666a6fe4650ba417a02fa6158f4085a50ab480ecd10b7c24a40885a2dac2",
+      "outputSha256": "2d22faed459593b6aa65e45c11e2e03306302e6669209040f691b8fc2072e8ab",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 69,
+          "page": 7,
+          "clut": 16348,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            187,
+            248,
+            248
+          ],
+          "sourceUvOrigin": [
+            184,
+            187
+          ]
+        }
+      ],
+      "priorCandidateSha256": "ce31fbb2f808597af6b8641ff0a3e7ca73421ea999f2946dd8c3b2304b7fc2e7",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/2a5813a03bdd9fdfca6219e04507a26c01551142438f4246fdce06fd031c9189/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/2a5813a03bdd9fdfca6219e04507a26c01551142438f4246fdce06fd031c9189/image-v1.png",
+      "prompt": "Use case: style-transfer\nEdit target: supplied nearest-neighbour enlargement of actual64x61 native battle-stage69 dark architectural circular ornament crop. Restore source-faithful restrained HD hand-painted dark blue/purple stone or architectural metal relief, with EXACT64:61 aspect and crop. Preserve the original flat circular face and outer rim at x8..54,y5..52, its original dark radial curving segments and alternating narrow/wide native strokes, the near-black navy background and the original horizontal muted blue-grey strip across the top. Keep all surrounding tiny neighboring fragments in place. Match the very low native brightness and muted blue-violet-grey palette: this disc is dark architectural ornament, not a light/emissive effect. Light source and rim highlights stay exactly understated.\nTrace the actual original radial pattern; no new clockwork, teeth, screws, holes, flowers, faces, skulls, crest, text, runes or symbolic meaning. Add modest fine material grain, subtle incised relief and edge definition without relocating pattern strokes, changing the circle size or raising its brightness. No perspective, extra margins, standalone object or new fixtures. One opaque full texture canvas, no text or watermark; native discard/STP classes will be restored by Python.",
+      "editingPrompts": [
+        "Use case: precise-object-edit\nEdit target: supplied dark blue-violet circular architectural texture. Change ONLY the circular face inside the original outer perimeter: remove EVERY internal ring, center circle, radial dividing seam, raised spoke and carved groove. Replace the complete face with one flat, blank, unmarked very dark blue-violet material with restrained fine painted grain and the same low overall brightness. Retain ONLY the outside circular silhouette/perimeter at exactly its current position. Its exact original native palette pattern will be restored by Python, so no structural marks may remain in the blank face.\nKeep the whole canvas, near-black background, top horizontal grey-blue strip, edge neighboring fragments and relative placement unchanged. No new symbols, circles, lines, seams, writing, illumination, highlights or perspective. Do not change palette/surface brightness; full opaque flat texture, no margin/watermark.",
+        "Use case: precise-object-edit\nInput1 is the edit target: blank hand-painted very dark blue-violet circular ornament texture. Input2 is the exact native source/layout/palette reference. Input3 is ONLY a brightness-boosted copy of the native source to make its actual low-contrast grooves easier to trace; DO NOT copy its brighter palette.\nChange ONLY the blank circular face by tracing/restoring the ORIGINAL NATIVE RELIEF PATTERN from inputs2/3, in EXACT original positions and proportions. The source has curving concentric/spiral stepped bands, asymmetrical radial bands, shorter horizontal extensions from the LEFT toward the center, and hooked/curved descending segments around the right/lower part. Preserve original dark gaps, connections and broad shading. Do not replace it with symmetrical spoke sectors or a new centered wheel/ring/clock face. Carefully follow every native major band and opening in the boosted guide; modernize only subtle edge bevel and material microtexture. Keep low native blue/purple-grey brightness and understated relief; this is dark environmental architecture, not emissive.\nKeep canvas64:61 aspect, original circular outer silhouette/perimeter, top horizontal grey-blue strip, surrounding black/navy padding and tiny neighboring fragments exactly as the edit target. No new central disk, teeth, screws, flowers, skulls, symbols, runes, writing, extra structural grooves or lights. Flat texture crop, no perspective/margins, full opaque canvas, no text or watermark."
+      ],
+      "customDraftHistory": [
+        {
+          "path": "integrations/envhd/production/bespoke-battle-candidates/2a5813a03bdd9fdfca6219e04507a26c01551142438f4246fdce06fd031c9189/painted-layout-v1.png",
+          "sha256": "e45d520d2e3ac6be092b4442cb72aa0ca20e8ae4f32533b42c22fda194e1c553"
+        },
+        {
+          "path": "integrations/envhd/production/bespoke-battle-candidates/2a5813a03bdd9fdfca6219e04507a26c01551142438f4246fdce06fd031c9189/blank-face-v1.png",
+          "sha256": "80e38c3c342f12b9e98729a6d04647b135ab2288ea4256b648bdbbb0c0205519"
+        }
+      ],
+      "review": {
+        "intent": "Stage69 part0, page7 CLUT16348, sourcecrop184,187,248,248: dark blue-violet circular architectural ornament with asymmetric curving bands, two horizontal left extensions, right/lower hooked bands and muted grey-blue top strip. Eight native faces sample192,195 through239,239. Not a clock, new crest, emissive effect or independently animated prop.",
+        "style": "Original, held neural and repaired256x244 painting individually compared, using a private brightness-boosted native reference only to inspect low-contrast source curves. Held neural erases most radial bands. Initial painting added unsupported sector/central-ring detail; a blank-face edit removes that pattern, then a targeted source-tracing edit restores the asymmetric source-led arcs and left extensions with sharper incised relief. Original dark palette retained; groove thickness/edge highlights and micrograin are inferred material detail, not final visual acceptance.",
+        "layout": "Final individually reviewed painting restores major native curved-band positions and asymmetric left/right arrangements rather than selecting the experimental fully source-color-locked prototype. Generic recipe proves exact4x canvas and native STP/discard/visible-black classes; internal relief topology is individually compared, not mechanically exact. Top strip and adjoining tiny fragments remain placed. Native low-light/camera/blend/filter inspection and final quality pending.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "2d22faed459593b6aa65e45c11e2e03306302e6669209040f691b8fc2072e8ab",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+    }
+  ],
+  "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+}

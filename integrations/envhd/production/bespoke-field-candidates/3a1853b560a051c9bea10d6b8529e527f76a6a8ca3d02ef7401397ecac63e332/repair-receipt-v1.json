@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 19104,
+  "paintedGapPixelsExtended": 858,
+  "paintedUncoveredSourcePixels": 667,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 37,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    40,
+    58
+  ],
+  "targetSize": [
+    160,
+    232
+  ],
+  "generatedSha256": "2c445da2ed32e4b2d2277dfaff820c9c278ca6c767cacaed74c5080571eac427",
+  "outputSha256": "f68b70f86deb522132117aa229ba5385c2dc8252beac1f6b406076ec589104a4",
+  "decodedRgbaSha256": "3a1853b560a051c9bea10d6b8529e527f76a6a8ca3d02ef7401397ecac63e332",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/3a1853b560a051c9bea10d6b8529e527f76a6a8ca3d02ef7401397ecac63e332/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/3a1853b560a051c9bea10d6b8529e527f76a6a8ca3d02ef7401397ecac63e332/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect40:58. Donau cut239 slot3. An irregular pale cool cream-gray curved architectural/garden fragment with its broad upper-left surface, narrow vertical stem, and diagonal orange-yellow trim/rail at the lower right. Attached small purple, pink, yellow and blue flower/leaf clusters must stay in their source regions and retain the little plant shapes. Add fine stone shading and clustered petals/leaves matching the flower-rich Donau scene. Preserve the broken diagonal outline and all negative space; this is a cropped scene fragment, not a new complete column, doorway or standalone garden.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "af73eebff95779d0c353d1a0bb907144409960cce29a13e5081530d2f619a8d4:-1",
+      "kind": "foreground",
+      "slot": 3,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 239,
+  "representativeLocation": "Donau",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Donau cut239 foreground slot3 garden/architecture fragment: curved pale cream/cool stone structure, orange-yellow lower diagonal trim and attached upper pink-purple, middle blue and lower pink-yellow flower clusters.",
+    "style": "Source, held neural, repaired output and isolated scene placement compared. Architectural curves, warm trim and separated source flower-color groups survive, replacing blurred neural ornament and foliage. Fine masonry grain, petal shapes and leaf species are interpretive.",
+    "layout": "Exact4x source canvas [40, 58] to [160, 232]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 858 target pixels, with 667 uncovered source-visible target pixels and maximum squared extension distance 37. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "f68b70f86deb522132117aa229ba5385c2dc8252beac1f6b406076ec589104a4",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

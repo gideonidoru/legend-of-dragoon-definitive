@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 48832,
+  "paintedGapPixelsExtended": 3922,
+  "paintedUncoveredSourcePixels": 3559,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 1402,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    94,
+    56
+  ],
+  "targetSize": [
+    376,
+    224
+  ],
+  "generatedSha256": "c2213477989d80f0088d4b06afc022ff98da8e641340831e0fc856d8917bec04",
+  "outputSha256": "24959c3a98436e8406e2044454f99391a8d79a3a7a7bccbdc0a6bbac1b526e2d",
+  "decodedRgbaSha256": "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Deningrad cut354 slot4 wider bed arrangement. Preserve the thin dark diagonal headboard at upper left, pale grey/beige patterned pillow on a broad blue upper bedcover, the darker grey-blue lower cloth with small repeated weave/fleck marks, the warm wood diagonal footboard at lower right, and the existing small round warm bedside table with a tiny grey/pale vessel at the far right. Keep the blue top cloth distinct from the darker lower patterned cover. Restore fine small-scale textile texture especially on the dark lower cover; avoid plain smooth fabric, stone, boards, new emblems, added objects or moving the side table. Strict canvas: exactly 94:56 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.\n\nRefinement 1:\nCorrect the high-definition draft in image2 to the exact authoritative source image1 composition. Image3 is original scene context; image4 is an occupancy guide: pale areas are source-visible material, dark grey areas are empty outside the cutout. The previous draft added left/top padding and omitted too much occupied lower-left bed material. Expand and position the bed/table to occupy exactly the guide, with the headboard reaching the source upper-left edge, the blue quilt/pillow in the original upper-left mass, the patterned dark grey-blue lower cover reaching the source lower-left footprint, and warm footboard/table in their original right/lower-right positions. Preserve source camera angles and all material boundaries. Use fine small textile flecks rather than large florals; keep the grey/beige patterned pillow, brighter blue upper cloth, darker patterned lower cloth, warm wood and tiny vessel. Do not treat the occupancy guide as background artwork; final output real transparency with no padding or scene. Exactly 94:56 canvas aspect.\n\nRefinement 2:\nCorrect only the remaining source footprint of this EnvHD texture. Image1 is authoritative original; image2 is the current painted draft; image3 scene; image4 shows missing original visible areas in bright RED for diagnosis; image5 is a brightened original revealing its dark planes, not final exposure. The missing area at lower left is a broad dark olive-brown bedside underside/shadow-facing plane beneath and beside the blue upper bedcover, running from the LEFT canvas edge at about half image height toward the lower-center edge. It must remain occupied dark opaque material as in the source, not a transparent triangular gap. Paint that dark plane with faint low-contrast original brown/olive texture; do not invent a new beam, leg, object, rug or bright floor. Match the original dark plane position and illumination. Also retain the full source occupied warm footboard underside/table-support footprint at bottom/right and the small source blue-cover edge at upper right; do not shrink these objects. Keep the same blue cover, patterned beige pillow, dark grey-blue lower textile, warm wood and small bedside vessel, with all established camera angles/material boundaries. The red and exposure guides are diagnostic only: never paint red marks or guide backgrounds. Exactly 94:56 canvas, no padding, source-visible occupied regions filled, actual original outside-cutout regions transparent. Output one corrected texture on real transparency.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "3afb3efaa7e337ba72ac95342b4d48c5ac3c96ac0fbe984cf4ad0abda75cb680:-1",
+      "kind": "foreground",
+      "slot": 4,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 354,
+  "representativeLocation": "Deningrad",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Deningrad cut354 slot4 blue upper bedding/patterned pale pillow, darker patterned lower cloth, dark olive-brown underside/shadow-facing plane, warm diagonal footboard and small round bedside table/vessel.",
+    "style": "Original, private exposure/occupancy/missing-coverage guides, held neural, two rejected footprint drafts, corrected output and isolated native slot placement compared. First two paintings missed too much native occupied material and failed coverage. The final edit restores the dark lower-left plane and full bed footprint before unchanged cutout repair. Exact role of the dim underside plane, fine pillow/lower-cover motif shapes, vessel detail, wood grain and relief remain interpretive. Larger nearest-color extensions at lower wood/support/shadow edges are recorded, not evidence of exact internal topology or a native seam check.",
+    "layout": "Exact4x canvas [94, 56] to [376, 224]; source alpha and visible-black classes exact. Pinned cutout stage extends 3922 target pixels, uncovered 3559, maximum squared extension distance 1402. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "24959c3a98436e8406e2044454f99391a8d79a3a7a7bccbdc0a6bbac1b526e2d",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}
