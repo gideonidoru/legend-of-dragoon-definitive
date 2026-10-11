@@ -63,6 +63,13 @@ class Retention(unittest.TestCase):
         asset=fixtures.asset('manifest-'+sha+'.json',sha,size=len(data),id=99)
         gc.audit_manifests(self.manifest,[asset],lambda _:data)
         with self.assertRaises(ValueError):gc.audit_manifests(self.manifest,[asset],lambda _:data+b'changed')
+    def test_active_old_runs_and_old_runs_restarted_later_are_protected(self):
+        kept=dict(id=10,created_at='2026-10-11T12:00:00Z')
+        old=dict(id=9,status='completed',created_at='2026-10-10T12:00:00Z',updated_at='2026-10-10T13:00:00Z')
+        self.assertFalse(gc.protected_candidate(old,kept))
+        self.assertTrue(gc.protected_candidate(dict(old,status='in_progress'),kept))
+        self.assertTrue(gc.protected_candidate(dict(old,run_started_at='2026-10-11T13:00:00Z'),kept))
+        self.assertTrue(gc.protected_candidate(dict(old,updated_at='2026-10-11T13:00:00Z'),kept))
 
 
 if __name__=='__main__':unittest.main()

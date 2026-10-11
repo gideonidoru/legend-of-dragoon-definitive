@@ -60,6 +60,13 @@ def audit_manifests(manifest, assets, fetch):
             raise ValueError('An equal or newer staged manifest protects its referenced files; cleanup stopped')
 
 
+def protected_candidate(run, kept):
+    if run['id']==kept['id']:return False
+    if run.get('status')!='completed':return True
+    chronology=[run['created_at']]+[run[key] for key in ('run_started_at','updated_at') if run.get(key)]
+    return max(map(time,chronology))>=time(kept['created_at'])
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--publication',type=Path,required=True);parser.add_argument('--execute',action='store_true')
@@ -81,9 +88,8 @@ def main():
             raise ValueError('Active draft references require a complete audit before asset cleanup')
         runs=[run for page in stager.paged(f'repos/{REPO}/actions/workflows/build.yml/runs?event=workflow_dispatch&per_page=100') for run in page['workflow_runs']]
         for run in runs:
-            if run['id']==keep_run['id']:continue
-            if time(run['created_at'])>=time(keep_run['created_at']):
-                raise ValueError('A newer candidate build requires reference auditing before cleanup')
+            if protected_candidate(run,keep_run):
+                raise ValueError('An active, newer or rerun candidate requires reference auditing before cleanup')
     def verify():
         protect_work()
         latest=server.api(f'repos/{REPO}/releases/latest');current=server.release()
