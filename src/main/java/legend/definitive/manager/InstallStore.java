@@ -226,7 +226,7 @@ public final class InstallStore {
           Files.move(clean.staged(), nextData, StandardCopyOption.ATOMIC_MOVE);
         } else if(old.containsKey("version")) {
           final Path activeData = this.data(old);
-          snapshotId = "snapshot-" + UUID.randomUUID();
+          snapshotId = "snapshot2-" + UUID.randomUUID();
           final Path snapshot = this.root.resolve("snapshots").resolve(snapshotId);
           copyTree(activeData, snapshot);
           writeInventory(snapshot);
@@ -318,11 +318,11 @@ public final class InstallStore {
       if(version.isEmpty() || snapshot.isEmpty()) throw new IOException("There is no previous update to restore.");
       final Path release = child(this.root.resolve("releases"), version, "alpha-[a-f0-9]{16}");
       PackageManifest.read(release).verify(release, PackageManifest.hostPlatform());
-      final Path oldData = child(this.root.resolve("snapshots"), snapshot, "snapshot-[a-f0-9-]{36}");
+      final Path oldData = child(this.root.resolve("snapshots"), snapshot, "snapshot(?:2)?-[a-f0-9-]{36}");
       verifyInventory(oldData);
       final String dataId = "data-" + UUID.randomUUID();
       copyTree(oldData, this.root.resolve("data").resolve(dataId));
-      Files.delete(this.root.resolve("data").resolve(dataId).resolve("snapshot-files.properties"));
+      if(snapshotInventory(oldData).startsWith(oldData)) Files.delete(this.root.resolve("data").resolve(dataId).resolve("snapshot-files.properties"));
       current.setProperty("retainedNewerVersion", current.getProperty("version"));
       current.setProperty("retainedNewerData", current.getProperty("data"));
       current.setProperty("version", version);
@@ -352,7 +352,7 @@ public final class InstallStore {
     try {
       final Properties state = this.state();
       final Path release = child(this.root.resolve("releases"), state.getProperty("previousVersion", ""), "alpha-[a-f0-9]{16}");
-      final Path snapshot = child(this.root.resolve("snapshots"), state.getProperty("previousSnapshot", ""), "snapshot-[a-f0-9-]{36}");
+      final Path snapshot = child(this.root.resolve("snapshots"), state.getProperty("previousSnapshot", ""), "snapshot(?:2)?-[a-f0-9-]{36}");
       PackageManifest.read(release).verify(release, PackageManifest.hostPlatform()); verifyInventory(snapshot); return true;
     } catch(final IOException | RuntimeException failure) { return false; }
   }
@@ -1098,7 +1098,7 @@ public final class InstallStore {
     catch(final IllegalArgumentException failure) { throw new IOException("Installation state is damaged.", failure); }
     if(!state.getProperty("version", "").matches("alpha-[a-f0-9]{16}") || !state.getProperty("data", "").matches("data-[a-f0-9-]{36}")) throw new IOException("Installation state is damaged. Recovery is required.");
     for(final String name : new String[]{"previousVersion", "retainedNewerVersion"}) if(!state.getProperty(name, "").isEmpty() && !state.getProperty(name).matches("alpha-[a-f0-9]{16}")) throw new IOException("Invalid retained release reference.");
-    for(final String name : new String[]{"previousSnapshot"}) if(!state.getProperty(name, "").isEmpty() && !state.getProperty(name).matches("snapshot-[a-f0-9-]{36}")) throw new IOException("Invalid snapshot reference.");
+    for(final String name : new String[]{"previousSnapshot"}) if(!state.getProperty(name, "").isEmpty() && !state.getProperty(name).matches("snapshot(?:2)?-[a-f0-9-]{36}")) throw new IOException("Invalid snapshot reference.");
     if(!state.getProperty("retainedNewerData", "").isEmpty() && !state.getProperty("retainedNewerData").matches("data-[a-f0-9-]{36}")) throw new IOException("Invalid retained private data reference.");
     CurrentRelease.validateState(state);
     return state;
@@ -1300,16 +1300,26 @@ public final class InstallStore {
     try(final var files = Files.walk(root)) {
       for(final Path file : files.filter(Files::isRegularFile).toList()) hashes.setProperty(root.relativize(file).toString(), PackageManifest.sha256(file));
     }
-    atomicProperties(root.resolve("snapshot-files.properties"), hashes);
+    final Path inventory = snapshotInventory(root);
+    if(Files.isSymbolicLink(inventory.getParent())) throw new IOException("Linked snapshot inventory directory.");
+    Files.createDirectories(inventory.getParent());
+    atomicProperties(inventory, hashes);
+  }
+
+  /** Versioned IDs keep new receipts outside owner payloads; legacy snapshots retain their original layout. */
+  private static Path snapshotInventory(final Path root) {
+    return root.getFileName().toString().startsWith("snapshot2-") ? root.getParent().resolve(".inventories").resolve(root.getFileName() + ".properties") : root.resolve("snapshot-files.properties");
   }
 
   private static void verifyInventory(final Path root) throws IOException {
-    final Properties hashes = PackageManifest.readProperties(root.resolve("snapshot-files.properties"));
+    final Path inventory = snapshotInventory(root);
+    if(Files.isSymbolicLink(inventory.getParent())) throw new IOException("Linked snapshot inventory directory.");
+    final Properties hashes = PackageManifest.readProperties(inventory);
     final java.util.Set<String> actual = new java.util.HashSet<>();
     try(final var paths = Files.walk(root)) {
       for(final Path file : paths.toList()) {
         if(Files.isSymbolicLink(file)) throw new IOException("Linked snapshot file.");
-        if(!Files.isRegularFile(file, LinkOption.NOFOLLOW_LINKS) || file.equals(root.resolve("snapshot-files.properties"))) continue;
+        if(!Files.isRegularFile(file, LinkOption.NOFOLLOW_LINKS) || file.equals(inventory)) continue;
         final String name = root.relativize(file).toString();
         actual.add(name);
         if(!PackageManifest.sha256(file).equals(hashes.getProperty(name))) throw new IOException("Snapshot checksum mismatch; original data has been retained.");

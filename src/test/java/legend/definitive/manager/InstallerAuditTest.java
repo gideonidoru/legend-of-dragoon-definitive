@@ -9,6 +9,68 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Isolated files only; no desktop, game or network. */
 class InstallerAuditTest {
   @TempDir Path temporary;
+  @Test void updateAndRestorePreserveOwnerSnapshotFilenameAtDataRoot() throws Exception {
+    temporary = temporary.toRealPath();
+    final var fixture = new InstallStoreTest(); fixture.temporary = temporary;
+    final var store = new InstallStore(temporary.resolve("installed"));
+    store.install(fixture.pack("old", PackageManifest.hostPlatform()));
+    final Path old = store.data(store.state()); Files.writeString(old.resolve("snapshot-files.properties"), "owner root notes");
+    store.install(fixture.pack("new", PackageManifest.hostPlatform()));
+    assertEquals("owner root notes", Files.readString(old.resolve("snapshot-files.properties")));
+    assertEquals("owner root notes", Files.readString(store.data(store.state()).resolve("snapshot-files.properties")));
+    assertTrue(store.hasRestorableVersion());
+    Files.writeString(store.data(store.state()).resolve("snapshot-files.properties"), "newer owner notes");
+    store.rollback(); store.verifyInstalled();
+    assertEquals("owner root notes", Files.readString(store.data(store.state()).resolve("snapshot-files.properties")));
+    assertEquals("newer owner notes", Files.readString(store.root().resolve("data").resolve(store.state().getProperty("retainedNewerData")).resolve("snapshot-files.properties")));
+  }
+  @Test void missingReceiptAndTamperedRootOwnerFileRefuseRestoreWithoutChangingCurrentData() throws Exception {
+    temporary = temporary.toRealPath(); final var fixture = new InstallStoreTest(); fixture.temporary = temporary;
+    final var store = new InstallStore(temporary.resolve("installed")); store.install(fixture.pack("old", PackageManifest.hostPlatform()));
+    Files.writeString(store.data(store.state()).resolve("snapshot-files.properties"), "owner root notes");
+    store.install(fixture.pack("new", PackageManifest.hostPlatform())); final var current = store.state();
+    final Path snapshot = store.root().resolve("snapshots").resolve(current.getProperty("previousSnapshot"));
+    final Path receipt = snapshot.getParent().resolve(".inventories").resolve(snapshot.getFileName() + ".properties");
+    final byte[] inventory = Files.readAllBytes(receipt); Files.delete(receipt);
+    assertFalse(store.hasRestorableVersion()); assertThrows(java.io.IOException.class, store::rollback); assertEquals(current, store.state());
+    Files.write(receipt, inventory); Files.writeString(snapshot.resolve("snapshot-files.properties"), "tampered notes");
+    assertFalse(store.hasRestorableVersion()); assertThrows(java.io.IOException.class, store::rollback); assertEquals(current, store.state());
+    assertEquals("owner root notes", Files.readString(store.data(current).resolve("snapshot-files.properties")));
+  }
+  @Test void legacySnapshotLayoutStillRestoresAndRemovesOnlyItsGeneratedRootReceipt() throws Exception {
+    temporary = temporary.toRealPath(); final var fixture = new InstallStoreTest(); fixture.temporary = temporary;
+    final var store = new InstallStore(temporary.resolve("installed")); store.install(fixture.pack("old", PackageManifest.hostPlatform()));
+    Files.writeString(store.data(store.state()).resolve("saves/owner.txt"), "old save");
+    store.install(fixture.pack("new", PackageManifest.hostPlatform())); final var state = store.state();
+    final Path snapshot = store.root().resolve("snapshots").resolve(state.getProperty("previousSnapshot"));
+    final Path legacy = snapshot.resolveSibling(snapshot.getFileName().toString().replace("snapshot2-", "snapshot-"));
+    Files.move(snapshot, legacy); Files.move(snapshot.getParent().resolve(".inventories").resolve(snapshot.getFileName() + ".properties"), legacy.resolve("snapshot-files.properties"));
+    state.setProperty("previousSnapshot", legacy.getFileName().toString()); InstallStore.atomicProperties(store.root().resolve("state.properties"), state);
+    assertTrue(store.hasRestorableVersion()); store.rollback(); store.verifyInstalled();
+    assertEquals("old save", Files.readString(store.data(store.state()).resolve("saves/owner.txt")));
+    assertFalse(Files.exists(store.data(store.state()).resolve("snapshot-files.properties")));
+  }
+  @Test void cleanReinstallPreservesHistoricalRootOwnerSnapshotFilename() throws Exception {
+    temporary = temporary.toRealPath(); final var fixture = new InstallStoreTest(); fixture.temporary = temporary;
+    final var store = new InstallStore(temporary.resolve("installed")); store.install(fixture.pack("old", PackageManifest.hostPlatform()));
+    Files.writeString(store.data(store.state()).resolve("snapshot-files.properties"), "historical notes");
+    final Path latest = fixture.pack("new", PackageManifest.hostPlatform()); store.install(latest);
+    final String snapshot = store.state().getProperty("previousSnapshot");
+    Files.writeString(store.data(store.state()).resolve("snapshot-files.properties"), "current notes");
+    store.install(latest, "", null, InstallProgress.NONE, true); store.verifyInstalled();
+    final Path data = store.data(store.state());
+    assertEquals("current notes", Files.readString(data.resolve("snapshot-files.properties")));
+    assertEquals("historical notes", Files.readString(data.resolve("recovered-reinstall/snapshots").resolve(snapshot).resolve("snapshot-files.properties")));
+  }
+  @Test void linkedSnapshotInventoryDirectoryCannotReceiveWrites() throws Exception {
+    temporary = temporary.toRealPath(); final var fixture = new InstallStoreTest(); fixture.temporary = temporary;
+    final var store = new InstallStore(temporary.resolve("installed")); store.install(fixture.pack("old", PackageManifest.hostPlatform()));
+    final var before = store.state(); final Path outside = Files.createDirectory(temporary.resolve("outside"));
+    Files.createSymbolicLink(store.root().resolve("snapshots/.inventories"), outside);
+    assertThrows(java.io.IOException.class, () -> store.install(fixture.pack("new", PackageManifest.hostPlatform())));
+    assertEquals(before, store.state());
+    try(final var paths = Files.list(outside)) { assertEquals(0, paths.count()); }
+  }
   @Test void updateAndRestorePreserveNestedOwnerFileNamedLikeSnapshotMetadata() throws Exception {
     temporary = temporary.toRealPath();
     final var fixture = new InstallStoreTest(); fixture.temporary = temporary;
