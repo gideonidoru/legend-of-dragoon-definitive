@@ -103,5 +103,25 @@
     "envhd-palace-four-preflight.log": "6aaba02301e5a49bb38fbae6f194a21bd0e9e87a77969736499469fc19c0203e",
     "envhd-palace-four-build.log": "abfa2c8b80ded4eade8eeddd13f4532ebe76a7ba5efc67c3e8efa94f1309828a",
     "envhd-palace-four-package-verification.log": "5947d60f3603f2639eed37c9fd832e0d921fbc1ac5729fde2296ff3b97347af0"
-  }
+  },
+  "independentIntegrationReviews": {
+    "spec": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedSource": "57768e602bc0f0dd4234aa0e3061a5558d493b5b",
+      "reviewedMetadata": "961d8b988af0d6e415ed36f39365d4970333f04d",
+      "reportSha256": "5e0c97fa571d6851dd71498c839a3001068be22b3dca175e196cee07419b9cfe",
+      "reviewer": "/root/hd_spec_review"
+    },
+    "standards": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedSource": "57768e602bc0f0dd4234aa0e3061a5558d493b5b",
+      "reviewedMetadata": "961d8b988af0d6e415ed36f39365d4970333f04d",
+      "reportSha256": "3c5c9a999917e07e7bd3ac68338296161c691cc8bac0ea0e7095403ef687cfcf",
+      "reviewer": "/root/hd_standards_review"
+    }
+  },
+  "independentFreshOriginalSourceReplay": 52,
+  "independentFreshPackageReplay": true
 }
