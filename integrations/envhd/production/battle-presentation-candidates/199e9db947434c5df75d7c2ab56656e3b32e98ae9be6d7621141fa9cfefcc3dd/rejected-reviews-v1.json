@@ -1,0 +1,16 @@
+[
+  {
+    "path": "integrations/envhd/production/battle-presentation-candidates/199e9db947434c5df75d7c2ab56656e3b32e98ae9be6d7621141fa9cfefcc3dd/rejected-input-1.png",
+    "sha256": "1c5ea1e4c80d0a2443cf60c9884fcc33dd54405cae682cd074c8f03653752f6d",
+    "prompt": "Edit the attached ORIGINAL battle material atlas (first reference controls every structure, glyph and feature); second is the existing neural baseline, for style diagnosis only. Wide atlas of isolated softly luminous gray-brown inset motifs on black: keep the original left small round patch, then the small vertical carved glyph, broad arched/radial motif, narrow vertical glyph, and the two rounded-square glyph plaques at their exact positions, proportions and glow. Preserve actual source marks rather than redesigning symbols. Keep narrow top/bottom strips and no added text. Preserve the ENTIRE native 200:64 aspect, opaque canvas, pure black only at original unused areas, all fragments in original normalized locations with no padding or crop. Beautiful sophisticated retro2026AA painted material surfaces: fine restrained continuous grain and natural wear, matte stone/metal texture, no enlarged pixel squares or smooth blurry neural surfaces. Keep source muted green/gray/brown palette, soft source illumination and overall contrast. Exact source silhouette, holes, structural pattern/counts, lattice geometry and ambiguous small glyphs remain unchanged; no added objects, joints, carving, text, cracks or fantasy redesign. Do not turn it into a scene, invent depth or add a light source. No watermark.",
+    "reason": "Wrong wide glyph atlas canvas; pinned original200:64aspect rejects.",
+    "runtimeSelected": false
+  },
+  {
+    "path": "integrations/envhd/production/battle-presentation-candidates/199e9db947434c5df75d7c2ab56656e3b32e98ae9be6d7621141fa9cfefcc3dd/rejected-input-2.png",
+    "sha256": "2362986684902b7cbb54896988f6cb3914ed72a13c2ddd5b3633896e98277ff7",
+    "prompt": "Use case: style-transfer. Edit target is the attached ORIGINAL flattened battle UV atlas, native width200 height64. Output MUST have exact200:64 aspect ratio (3.125:1), a very wide flat2000by640 image. Fill full canvas and do not add letterbox bars or external padding. Preserve the exact separated source motifs: original lower-left small softly luminous round patch; upper-middle/right sequence of small vertical carved plaque, wider arched/radial plaque, narrow vertical carved plaque, and two rounded square glyph plaques. Keep each original glyph mark, plaque count, location, width/height, source soft halo, and narrow top and bottom fragments. Do not redesign ancient symbols or add text, new carvings or panels. Enhance only very fine gray-brown stone material texture and refined continuous painted rendering at2026AA retro quality, preserving original subdued values/colors. Black remains at all original unused source positions. No new objects, ornament, stronger light, crop, stretch, camera, scene, border or watermark. Exact3.125:1 wide canvas is required by source UV contract.",
+    "reason": "Wrong output canvas aspect; rejected by immutable source-bound recipe.",
+    "runtimeSelected": false
+  }
+]
