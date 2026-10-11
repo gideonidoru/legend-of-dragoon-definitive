@@ -25,7 +25,7 @@ def validate_previous_selection(selection,root):
     if selection['nativeAccepted'] or selection['finalQualityAccepted']:invalid()
     scenes=selection.get('scenes')
     if not isinstance(scenes,list) or not isinstance(selection.get('scope'),str) or not selection['scope']:invalid()
-    models=set();stages=set();keys=set();bindings=0
+    models=set();stages=set();keys=set();bindings=0;atlas_regions=[]
     for scene in scenes:
         if not isinstance(scene,dict) or type(scene.get('stage')) is not int or scene['stage'] in stages:invalid()
         if not isinstance(scene.get('modelSha256'),str) or not scene['modelSha256']:invalid()
@@ -49,9 +49,15 @@ def validate_previous_selection(selection,root):
         folder=root/'integrations/envhd/runtime-assets/envhd/battle-materials'/scene['modelSha256']
         manifest=json.loads(battle_sources.terrain.bounded_read(folder/'manifest.json',32*1024*1024))
         if manifest!={k:v for k,v in scene.items() if k not in ('stage','hdBindings')}:invalid()
-        if battle_sources.terrain.digest(battle_sources.terrain.bounded_read(folder/'atlas-v1.png',32*1024*1024))!=scene['atlasSha256']:invalid()
+        atlas_data=battle_sources.terrain.bounded_read(folder/'atlas-v1.png',32*1024*1024)
+        if battle_sources.terrain.digest(atlas_data)!=scene['atlasSha256']:invalid()
+        with Image.open(io.BytesIO(atlas_data)) as image:
+            if image.mode!='RGBA' or list(image.size)!=scene['atlasSize']:invalid()
+            for region in regions:
+                x,y,w,h=region['atlasRect']
+                atlas_regions.append((region['decodedRgbaSha256'],np.array(image.crop((x,y,x+w,y+h)))))
     if selection['runtimeSelectedMasters']!=len(keys) or selection['runtimeSelectedBindings']!=bindings:invalid()
-    painted_keys=set()
+    painted_keys=set();painted_candidates={}
     painting_fields=('paintedSelectedMasters','paintedReviewReceipts')
     if not all(k in selection for k in painting_fields):invalid()
     if any(k in selection for k in painting_fields):
@@ -69,9 +75,10 @@ def validate_previous_selection(selection,root):
             for candidate in candidates:
                 key=candidate.get('decodedRgbaSha256') if isinstance(candidate,dict) else None
                 if not sha(key) or key not in keys or key in painted_keys:invalid()
-                painted_keys.add(key)
+                painted_keys.add(key);painted_candidates[key]=candidate
             paths.add(relative)
         if len(painted_keys)!=selection['paintedSelectedMasters']:invalid()
+    presentation_keys=set()
     presentation_fields=('presentationSelectedMasters','presentationSourceKeys','presentationReviewReceipt')
     if any(k in selection for k in presentation_fields):
         if not all(k in selection for k in presentation_fields):invalid()
@@ -79,12 +86,34 @@ def validate_previous_selection(selection,root):
         if not isinstance(sources,list) or not sources or any(not sha(k) for k in sources) or len(set(sources))!=len(sources):invalid()
         if type(selection['presentationSelectedMasters']) is not int or selection['presentationSelectedMasters']!=len(sources) or not set(sources).issubset(keys) or not sha(selection['presentationReviewReceipt']):invalid()
         if set(sources)&painted_keys:invalid()
+        presentation_keys=set(sources)
+    ledger=json.loads(battle_sources.terrain.bounded_read(root/'integrations/envhd/production/battle-material-artwork.json',32*1024*1024))
+    records={a['decodedRgbaSha256']:a for a in ledger['assets']}
+    if not keys.issubset(records) or {k for k in keys if records[k]['reviewStatus']=='intent-revision-needed'}!=painted_keys:invalid()
+    expected={}
+    for key in keys:
+        if key in painted_candidates:
+            candidate=painted_candidates[key];path=battle_sources.staging_path(root,candidate['outputPath']);digest=candidate['outputSha256']
+        elif key in presentation_keys:
+            path=root/'integrations/envhd/production/battle-presentation-candidates'/key/'image-v1.png';digest=None
+        else:
+            if records[key]['reviewStatus']!='visual-reviewed-runtime-pending':invalid()
+            path=root/'integrations/envhd/production/battle-material-candidates'/key/'image-v1.png';digest=records[key]['outputSha256']
+        data=battle_sources.terrain.bounded_read(path,32*1024*1024)
+        if digest is not None and battle_sources.terrain.digest(data)!=digest:invalid()
+        with Image.open(io.BytesIO(data)) as image:
+            if image.mode!='RGBA' or tuple(image.size)!=tuple(v*4 for v in records[key]['sourceSize']):invalid()
+            expected[key]=np.array(image)
+    if any(not np.array_equal(pixels,expected[key]) for key,pixels in atlas_regions):invalid()
 
 def publish(files,painted_manifest=None,presentation_manifest=None):
     battle=battle_sources
     production=ROOT/'integrations/envhd/production'
     painted=None;manifest_checks=[];presentation=None;previous_selection=None
     selection_path=production/'battle-material-runtime-artwork.json'
+    runtime_root=ROOT/'integrations/envhd/runtime-assets/envhd/battle-materials'
+    if not selection_path.exists() and any(p.is_file() for p in runtime_root.rglob('*')):
+        raise ValueError('Existing battle atlases require a complete prior selection; refusing to overwrite them')
     if selection_path.exists():
         selection_data=battle.terrain.bounded_read(selection_path,32*1024*1024)
         previous_selection=json.loads(selection_data)

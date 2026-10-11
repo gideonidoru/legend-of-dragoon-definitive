@@ -114,6 +114,24 @@ class PresentationPackTests(unittest.TestCase):
                     census.assert_not_called()
                 self.assertEqual(before,self.f.runtime_snapshot())
 
+    def test_consistent_receipt_omissions_and_missing_selection_fail_before_census(self):
+        self.publish();valid=json.loads(self.f.selection.read_text())
+        controls=[]
+        malformed=copy.deepcopy(valid);malformed['paintedSelectedMasters']=0;malformed['paintedReviewReceipts']={};controls.append(malformed)
+        malformed=copy.deepcopy(valid)
+        for field in ('presentationSelectedMasters','presentationSourceKeys','presentationReviewReceipt'):del malformed[field]
+        controls.append(malformed)
+        controls.append(None)
+        for selection in controls:
+            with self.subTest(selection=selection):
+                if selection is None:self.f.selection.unlink()
+                else:self.f.selection.write_text(json.dumps(selection))
+                before=self.f.runtime_snapshot()
+                with mock.patch.object(pack,'ROOT',self.f.root),mock.patch.object(pack.battle_sources,'census') as census:
+                    with self.assertRaises(ValueError):pack.publish(self.f.root/'files')
+                    census.assert_not_called()
+                self.assertEqual(before,self.f.runtime_snapshot())
+
     def test_valid_repair_preserves_prior_painting_coverage_mapping_and_allocation(self):
         result = self.publish()
         self.assertEqual(result['runtimeSelectedMasters'], 2)
