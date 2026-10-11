@@ -1942,7 +1942,7 @@
   "mainPaintedFields": 40,
   "mainPaintedBattleMasters": 47,
   "branchConsolidation": {
-    "main": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+    "main": "6612a533307e5f066bc46e7870d658f8add42752",
     "result": "Completed proven ref retirements; active authoring retained",
     "completedActions": [
       {
@@ -2079,7 +2079,8 @@
       "fmv-completed-branch-retirement.json": "442b9ea10f6c8cde852ee4dc1f80db485f2719f7227276c3e326f49e68d1b0cf"
     },
     "preservation": "Detached checkouts, private/ignored files and needed source graph preserved; verified bundles retain historical patch-equivalent graph. No active draft retirement implied.",
-    "acceptanceBoundary": "Ref retirement is source housekeeping, not whole-mod, visual/device or publication acceptance."
+    "acceptanceBoundary": "Ref retirement is source housekeeping, not whole-mod, visual/device or publication acceptance.",
+    "historicalMain": "e5a0344b648c2d0ccefd78a51990417efb070f8a"
   },
   "activeAuthoringCheckpoints": [
     {
@@ -2157,26 +2158,28 @@
     "pullRequest": 42,
     "mainMerge": "3594409a91079ba198ad118eac3581a5e998dea8",
     "mainMerged": true,
-    "published": false,
+    "published": true,
     "delivery": {
       "found": 645,
       "passed": 637,
       "skipped": 8,
       "failed": 0
     },
-    "limits": "Headless source integration only; public release remains ad1, whole-film/device acceptance not established."
+    "limits": "Published17 individual enhanced movie files with18 runtime bindings; whole-film/device acceptance remains separate.",
+    "publicSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+    "publicGeneration": 4
   },
   "pendingEngineeringAudit": {
     "status": "Active independent engine audit; owners correcting separately",
     "issues": [
-      "input cancellation",
-      "loader failure and cycles",
-      "audio/FMV route resets"
+      "scene-loader callsite failure handling",
+      "audio/FMV route resets",
+      "physical input/loading/audio acceptance"
     ],
     "newAudioCheckpoint": {
       "review": "Independently reviewed source correction retained byte-exact in integration and merged through PR44",
       "mainMerged": true,
-      "published": false,
+      "published": true,
       "source": "416bb8b003e72db0d7f7692cb96b9caf106c2dcc",
       "baselineFailures": 1,
       "focusedTestsPassed": 19,
@@ -2205,9 +2208,28 @@
         "headlessPresentation": "PASS",
         "source": "1ab32e98ee1ea2e03fe21d63c13f6df2bb26bfe4",
         "evidence": "Reviewed source-bound owner receipt; physical Deck acceptance remains open."
-      }
+      },
+      "publicSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+      "publicGeneration": 4
     },
-    "limits": "Audio shutdown correction integrated in source; input/loading/audio-FMV-route fixes still tracked separately. No blanket domain or physical acceptance."
+    "limits": "Paused audio shutdown shipped in generation4. Input, music intent and loader foundation corrections merged in later main; scene callsite and FMV route work remain separate. No blanket domain or physical acceptance.",
+    "acceptedMainIncrements": [
+      {
+        "pullRequest": 49,
+        "domain": "input cancellation",
+        "published": false
+      },
+      {
+        "pullRequest": 50,
+        "domain": "music intent across initialization/reset",
+        "published": false
+      },
+      {
+        "pullRequest": 52,
+        "domain": "loader failure/cycles foundation",
+        "published": false
+      }
+    ]
   },
   "caseInventoryHistoryPolicy": "All 65 original case definitions, results and dimensions retained. Historical references to 245 public holds mean generation 2; generation 3 has 237 still held and eight newly selected fields still require final scene acceptance.",
   "publicEvidenceHistory": [
