@@ -62,6 +62,9 @@ The existing ModelsHD refined/fallback material-UV fixture now supplies the new
 owned RGBA representation to the private constructor; its geometry and UV
 assertions are unchanged. Independent review identified the previous reflective
 argument-type mismatch, which was reproduced by running that actual fixture.
+The standard local `check` task previously omitted ModelsHD tests, although CI
+invoked them separately. It now depends on that existing suite, so the same
+material/geometry integration is exercised by ordinary local validation as well.
 
 The same complete 73-atlas CPU probe was rerun after the correction. All 73 complete
 RGBA fingerprints match the baseline, and decoded bytes return to zero after each
