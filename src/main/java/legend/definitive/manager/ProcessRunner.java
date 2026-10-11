@@ -42,19 +42,33 @@ public final class ProcessRunner {
   }
 
   public static Running start(final ProcessBuilder builder, final Path log, final boolean append) throws IOException, InterruptedException {
+    return start(builder, log, append, MAX_LOG_BYTES, null);
+  }
+
+  /** Supervise a binary archive helper without mixing diagnostics into its output. */
+  static Running startBinary(final ProcessBuilder builder, final Path output, final Path errors, final long limit) throws IOException, InterruptedException {
+    if(limit <= 0) throw new IllegalArgumentException("Choose a positive archive output limit.");
+    DiagnosticLogs.checked(errors);
+    return start(builder, output, false, limit, errors);
+  }
+
+  private static Running start(final ProcessBuilder builder, final Path log, final boolean append, final long limit, final Path errors) throws IOException, InterruptedException {
     // Open before starting any child: an invalid path must not cause an unlogged operation.
     final OutputStream output = DiagnosticLogs.openLog(log, append);
+    OutputStream errorOutput = null;
     Path controlDirectory = null;
     Process process = null;
     try {
+      if(errors != null) errorOutput = DiagnosticLogs.openLog(errors, false);
       controlDirectory = Files.createTempDirectory(log.toAbsolutePath().getParent(), ".process-");
       final Path control = controlDirectory.resolve("group");
       final List<String> command = new ArrayList<>(List.of("/bin/bash", "-c", SUPERVISOR, "definitive-process", control.toString()));
       command.addAll(builder.command());
       builder.environment().remove("BASH_ENV"); builder.environment().remove("ENV");
-      builder.command(command).redirectErrorStream(true).redirectOutput(ProcessBuilder.Redirect.PIPE).redirectInput(ProcessBuilder.Redirect.PIPE);
+      builder.command(command).redirectErrorStream(errors == null).redirectOutput(ProcessBuilder.Redirect.PIPE).redirectInput(ProcessBuilder.Redirect.PIPE);
+      if(errors != null) builder.redirectError(ProcessBuilder.Redirect.PIPE);
       process = builder.start();
-      final Running running = new Running(process, output, controlDirectory);
+      final Running running = new Running(process, output, controlDirectory, limit, errors, errorOutput);
       try {
         final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(5);
         while(!Files.exists(control) && process.isAlive() && System.nanoTime() < deadline) Thread.sleep(10);
@@ -67,7 +81,7 @@ public final class ProcessRunner {
       } catch(final IOException | InterruptedException | RuntimeException failure) { running.close(); throw failure; }
     } catch(final IOException | InterruptedException | RuntimeException failure) {
       if(process == null) {
-        output.close();
+        try { output.close(); } finally { if(errorOutput != null) errorOutput.close(); }
         if(controlDirectory != null) Files.deleteIfExists(controlDirectory);
       }
       throw failure;
@@ -78,14 +92,24 @@ public final class ProcessRunner {
     private final Process process;
     private final Path controlDirectory;
     private final Thread drain;
+    private final Thread errorDrain;
     private final Map<Long, ProcessHandle> children = new java.util.concurrent.ConcurrentHashMap<>();
     private final AtomicReference<String> lastLine = new AtomicReference<>("");
     private final AtomicReference<IOException> outputFailure = new AtomicReference<>();
     private long group;
     private boolean closed;
 
-    private Running(final Process process, final OutputStream output, final Path controlDirectory) {
+    private Running(final Process process, final OutputStream output, final Path controlDirectory, final long limit, final Path errors, final OutputStream errorOutput) {
       this.process = process; this.controlDirectory = controlDirectory;
+      this.errorDrain = errorOutput == null ? null : Thread.ofVirtual().name("definitive-process-errors").start(() -> {
+        try(final var input = process.getErrorStream(); errorOutput) {
+          final byte[] buffer = new byte[8192]; long logged = 0;
+          for(int count; (count = input.read(buffer)) != -1;) {
+            if(count > 1024 * 1024 - logged) throw new IOException("Archive error output exceeded its size limit.");
+            errorOutput.write(buffer, 0, count); logged += count;
+          }
+        } catch(final IOException failure) { this.outputFailure.compareAndSet(null, failure); }
+      });
       this.drain = Thread.ofVirtual().name("definitive-process-output").start(() -> {
         long logged = 0; boolean capped = false;
         final byte[] tail = new byte[65536]; int tailPosition = 0, tailCount = 0;
@@ -93,8 +117,10 @@ public final class ProcessRunner {
         try(final InputStream input = process.getInputStream(); output) {
           final byte[] bytes = new byte[8192];
           for(int count; (count = input.read(bytes)) != -1;) {
-            final int accepted = (int)Math.min(count, Math.max(0, MAX_LOG_BYTES - logged));
+            if(errors != null && count > limit - logged) throw new IOException("Archive output exceeded its size limit.");
+            final int accepted = (int)Math.min(count, Math.max(0, limit - logged));
             if(accepted > 0) { output.write(bytes, 0, accepted); logged += accepted; }
+            if(errors != null) { output.flush(); continue; }
             if(accepted < count && !capped) { output.write("\n[Further output omitted from this bounded log.]\n".getBytes(StandardCharsets.UTF_8)); capped = true; }
             final int first = Math.min(count, tail.length - tailPosition);
             System.arraycopy(bytes, 0, tail, tailPosition, first);
@@ -136,13 +162,17 @@ public final class ProcessRunner {
       try {
         while(this.process.isAlive()) {
           rememberChildren();
-          if(this.outputFailure.get() != null) throw new IOException("Could not save process diagnostics.", this.outputFailure.get());
+          this.checkOutput();
           if(System.nanoTime() >= deadline) throw new IOException("Setup process exceeded its allowed time.");
           this.process.waitFor(50, TimeUnit.MILLISECONDS);
           tick.run();
         }
         return this.process.exitValue();
       } finally { close(); }
+    }
+
+    private void checkOutput() throws IOException {
+      if(this.outputFailure.get() != null) throw new IOException("Could not save process output.", this.outputFailure.get());
     }
 
     private void signalGroup(final String signal) throws IOException, InterruptedException {
@@ -170,7 +200,12 @@ public final class ProcessRunner {
         this.drain.join(2000);
         if(this.drain.isAlive()) { this.process.getInputStream().close(); this.drain.interrupt(); this.drain.join(1000); }
         if(this.drain.isAlive()) throw new IOException("Setup output did not close after cancellation.");
-        if(this.outputFailure.get() != null) throw new IOException("Could not save process diagnostics.", this.outputFailure.get());
+        if(this.errorDrain != null) {
+          this.errorDrain.join(2000);
+          if(this.errorDrain.isAlive()) { this.process.getErrorStream().close(); this.errorDrain.interrupt(); this.errorDrain.join(1000); }
+          if(this.errorDrain.isAlive()) throw new IOException("Archive diagnostics did not close after cancellation.");
+        }
+        this.checkOutput();
       } catch(final InterruptedException e) {
         interrupted = true;
         this.children.values().stream().filter(ProcessHandle::isAlive).forEach(ProcessHandle::destroyForcibly);

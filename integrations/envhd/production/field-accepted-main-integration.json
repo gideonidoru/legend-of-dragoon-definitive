@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "scope": "Accepted main integration into ongoing EnvHD authoring; no new artwork selection.",
+  "acceptedMain": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+  "authoringCheckpoint": "8789c4e58d72df940b92f44a8fc74a496d2af0f8",
+  "fieldAuthoringFilesPreservedByteExact": 406,
+  "completeCandidates": 66,
+  "independentlyPending": 25,
+  "independentlyReviewedRevisionCandidates": 2,
+  "knownRemainingStaticImages": 238,
+  "selectedFieldMasters": 4925,
+  "selectedFieldPaintings": 39,
+  "fieldRuntimeSha256": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
+  "selectedBattlePaintings": 34,
+  "selectedBattleRuntimeExactMain": true,
+  "newCandidatesSelectedByMerge": 0,
+  "holdsClearedByMerge": 0,
+  "skurfaAndFieldRuntimeResourcesUnchanged": true,
+  "sourcePreflight": {
+    "verifiedCandidates": 66,
+    "manifestSha256": "9519da7e89c246b6d2d9e3edbe8a12d29a8a6f41cb1402becb4fc1bbebedf369",
+    "candidateAndRelevantSourceVerifierBytesUnchangedAfterMerge": true
+  },
+  "publicationSnapshot": "Main-recorded d7311334 with 4917 fields/12 battle paintings; live publication remains coordinator-owned.",
+  "nativeArtAccepted": 0,
+  "finalArtAccepted": 0,
+  "localGameLaunched": false,
+  "focusedFixtureValidation": {
+    "passed": 75,
+    "authoringCrop": 14,
+    "paintedFields": 40,
+    "macroDetail": 9,
+    "battlePresentationPack": 12,
+    "syntheticFixtureOnly": true
+  },
+  "ciFixtureUnion": {
+    "uniqueScripts": 42,
+    "allPathsPresent": true,
+    "duplicateNames": 0
+  }
+}

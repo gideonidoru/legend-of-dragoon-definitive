@@ -18,7 +18,7 @@
     "field-review-receipt.json": "f2845bdff322c04b8496a0eff151389da53594de54446ec25dfb0d42cab9ea51",
     "field-artwork.json": "d2e03bf46ac238025063ee8a463371131a3ea85a49dcef0db91fe216a593664d",
     "field-runtime-artwork.json": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
-    "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
+    "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
     "field-bespoke-foliage.json": "a5ed3d3c90fbf07ec82a745c5058c766d51b32fbbf53a67301d32e40a639d270",
     "battle-bespoke-motifs.json": "96fd0ca29e85e4fc4e3a96c4bb3e87b05f5874365bfcd57d9af9a04920512053",
     "battle-bespoke-lattice.json": "26d084cabd72414ad3569389936d383e41e6e799c40f563c0850dc659d00b2ef",
@@ -50,7 +50,8 @@
     "field-bespoke-interior-supports-reviewed-selection.json": "3c053dbd8d42726e4878f4a9bd1df5a7eb55097ee6edaa5c3e29c63dc96fb0e3",
     "field-bespoke-interior-supports-held-drafts.json": "8353026af1811a7e1d17b3bfc922324c546057c12dd48af953b7bb2975abb685",
     "field-bespoke-carved-furnishings-reviewed-selection.json": "9519da7e89c246b6d2d9e3edbe8a12d29a8a6f41cb1402becb4fc1bbebedf369",
-    "field-bespoke-carved-furnishings-held-drafts.json": "34245d3334340c4b9ef12ecd9248015fad1dea7101055ab582aa02153670c5de"
+    "field-bespoke-carved-furnishings-held-drafts.json": "34245d3334340c4b9ef12ecd9248015fad1dea7101055ab582aa02153670c5de",
+    "battle-presentation-artwork-v1.json": "93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817"
   },
   "categories": [
     {
@@ -157,8 +158,13 @@
         "battle-bespoke-final-static.json",
         "battle-bespoke-radial.json"
       ],
-      "publishedInstallerSelectedMasters": 506,
-      "publishedInstallerTotalSelectedBindings": 537
+      "publishedInstallerSelectedMasters": 518,
+      "publishedInstallerTotalSelectedBindings": 549,
+      "previouslySelectedPaintedMasters": 12,
+      "newPresentationSelectedMasters": 22,
+      "totalPaintedSelectedMasters": 34,
+      "currentlySelectedNeuralMasters": 484,
+      "presentationManifest": "battle-presentation-artwork-v1.json"
     },
     {
       "id": "field-backgrounds-and-foregrounds",
@@ -197,7 +203,7 @@
       "independentNativePixelAgreement": "650/650 configurations and 5528/5528 unique decodes",
       "envhdPublishedCandidateMasters": 4925,
       "generationReceipt": "field-generation-receipt.json",
-      "generationStage": "Development runtime remains 39 painted repairs and 4,886 neural images. Complete 66-candidate input preserves 63 prior records and adds Twin Castle red chair, Crystal Palace openwork support and corrected Wingly Forest pale fragment. Twenty-five candidates independently pending; Rouge/Phantom P2 revisions held. Three new held versions retain Wingly Forest dark hanging fitting versions 1/2 relief and whole-fixture finish drift plus pale fragment version 1 ornate ridges. All six raw/repaired pairs verified; no thresholds waived or runtime/installer changes. Native/final whole-scene acceptance pending.",
+      "generationStage": "Development runtime remains 39 painted repairs and 4,886 neural images. Complete 66-candidate input preserves 63 prior records and adds Twin Castle red chair, Crystal Palace openwork support and corrected Wingly Forest pale fragment. Twenty-five candidates independently pending; Rouge/Phantom P2 revisions held. Three new held versions retain Wingly Forest dark hanging fitting versions 1/2 relief and whole-fixture finish drift plus pale fragment version 1 ornate ridges. All six raw/repaired pairs verified; no thresholds waived or runtime/installer changes. Native/final whole-scene acceptance pending. Accepted main ad1a234d selection is integrated; the recorded d7311334 published-source snapshot has 4917 fields, so 8 accepted paintings still await coordinated exact-source publication. The 66 authoring candidates/25 pending candidates are not installed by this merge.",
       "envhdRepairedMasters": 5162,
       "sourceGuardedBackgroundMasters": 342,
       "individuallyComparedMasters": 5162,
@@ -216,7 +222,7 @@
       "neuralReviewedDevelopmentMasters": 4886,
       "neuralBespokeRevisionMasters": 276,
       "paintedReviewReceipt": "field-bespoke-seven-independent-reviewed-selection.json",
-      "publishedInstallerSelectedMasters": 4892,
+      "publishedInstallerSelectedMasters": 4917,
       "envhdHeldPaintedCandidateMasters": 1,
       "unselectedCustomDraftSourceMasters": 47,
       "heldPaintedCandidateMastersMeaning": "The existing envhdHeldPaintedCandidateMasters1 is the explicitly held full Deningrad bed from the legacy selection manifest; all current unselected draft sources counted separately."

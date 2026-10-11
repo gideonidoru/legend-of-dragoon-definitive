@@ -290,7 +290,7 @@ class StorageHardeningTest {
       else store.install(this.temporary.resolve("bad-receipts-" + action + "-pack"), "", null, InstallProgress.NONE, action.equals("reinstall"));
       return null;
     });
-    assertEquals("keep", Files.readString(save)); assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+    assertEquals("keep", Files.readString(store.data(store.state()).resolve("saves/owner"))); assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
   }
   private Path leasePackage(final boolean returningWorker) throws Exception {
     final Path pack = this.fixtures.pack("lease-package", PackageManifest.hostPlatform());

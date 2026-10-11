@@ -4,10 +4,10 @@
   "sourceSelectionCheckpoint": "373b34a94a1fe52beb4547b215d451df14557633",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "669c080f9079a1156c7d4d57fcc7fa9aaa4e49fd4209df534f7e2994a39cd969",
+    "full-coverage.json": "3932b041df5a01b63bcdf45a4efb45b6c92a6fd6b0cad333cdf2c0d02a3cf88f",
     "field-runtime-artwork.json": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
-    "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
+    "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "field-bespoke-bedding-reviewed-selection.json": "6af60fa9447818366fda841ff1b9b362d84ad6a9a4aac2f2384a53725f75b123",
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
@@ -43,7 +43,9 @@
     "field-bespoke-interior-supports-reviewed-selection.json": "3c053dbd8d42726e4878f4a9bd1df5a7eb55097ee6edaa5c3e29c63dc96fb0e3",
     "field-bespoke-interior-supports-held-drafts.json": "8353026af1811a7e1d17b3bfc922324c546057c12dd48af953b7bb2975abb685",
     "field-bespoke-carved-furnishings-reviewed-selection.json": "9519da7e89c246b6d2d9e3edbe8a12d29a8a6f41cb1402becb4fc1bbebedf369",
-    "field-bespoke-carved-furnishings-held-drafts.json": "34245d3334340c4b9ef12ecd9248015fad1dea7101055ab582aa02153670c5de"
+    "field-bespoke-carved-furnishings-held-drafts.json": "34245d3334340c4b9ef12ecd9248015fad1dea7101055ab582aa02153670c5de",
+    "battle-presentation-artwork-v1.json": "93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817",
+    "field-accepted-main-integration.json": "8fcbda28fda91ec1a7db2bff3f39195e831d1137eb3e69494d718a32a2e7ce69"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -63,7 +65,7 @@
       "unreviewed": 0,
       "customHeldDraftSourceImages": 47,
       "draftsAreSubsetOfHolds": true,
-      "publishedInstallerSelected": 4892,
+      "publishedInstallerSelected": 4917,
       "nextTask": "Independently review twenty-five pending field candidates; constrain held fine motifs, source landmarks and whole-fixture/tabletop finish joins; continue 237 field holds and native/final validation.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 25,
       "customHeldDraftSourceKeys": [
@@ -116,7 +118,8 @@
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
       "draftCountMethod": "Unique 64-character source directories across bespoke-field-candidates and held-field-art-drafts, excluding 4,925 runtime selections. Forty-seven source keys remain a subset of 237 field holds; repeated/rejected versions deduplicated.",
-      "independentlyReviewedCandidatesRequiringRevision": 2
+      "independentlyReviewedCandidatesRequiringRevision": 2,
+      "publishedInstallerSnapshotEvidence": "Main ad1a234d full-coverage.json records d7311334; not a fresh live release query."
     },
     {
       "id": "static-terrain",
@@ -138,7 +141,11 @@
       "isolatedStageCyclesExplained": 350,
       "fullEncounterContractsClosed": 0,
       "selectedAnimationFamilies": 0,
-      "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette."
+      "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette.",
+      "selectedPaintedMasters": 34,
+      "previouslySelectedPaintedMasters": 12,
+      "newPresentationSelectedMasters": 22,
+      "selectedNeuralMasters": 484
     },
     {
       "id": "battle-panoramas",
@@ -383,6 +390,20 @@
     "installerChanged": false,
     "releaseChanged": false,
     "publishedInstaller": {
+      "tag": "definitive-current",
+      "recordedPackageSource": "d7311334",
+      "sourceEvidence": "Main ad1a234d full-coverage.json and ENVHD_FULL_COVERAGE.md snapshot, not a live release query.",
+      "fieldSelectedMasters": 4917,
+      "battleNewSelectedMasters": 518,
+      "battleNewSelectedBindings": 525,
+      "battleTotalSelectedBindings": 549,
+      "paintedBattleReplacements": 12,
+      "nativeArtAccepted": 0,
+      "finalArtAccepted": 0
+    },
+    "selectedFieldImagesAwaitingCoordinatedPublication": 8,
+    "paintedBattleMastersAwaitingCoordinatedPublication": 22,
+    "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
       "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
       "entrypointMetadataSource": "0b8df09ab1aa5cfab8dc3c7051cbc49708be8b64",
@@ -393,10 +414,18 @@
       "paintedBattleReplacements": 0,
       "nativeArtAccepted": 0,
       "finalArtAccepted": 0
-    },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 33,
-    "paintedBattleMastersAwaitingCoordinatedPublication": 12
+    }
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "Three additional furnishing/architectural candidates and three held versions. Selected runtime and installer unchanged by authoring."
+  "authoringCheckpoint": "Three additional furnishing/architectural candidates and three held versions. Selected runtime and installer unchanged by authoring.",
+  "acceptedMainIntegrated": {
+    "sourceCommit": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+    "fieldSelected": 4925,
+    "fieldPainted": 39,
+    "battleNewSelectedMasters": 518,
+    "battlePainted": 34,
+    "authoringCandidates": 66,
+    "independentlyPending": 25,
+    "holdsClearedByMerge": 0
+  }
 }

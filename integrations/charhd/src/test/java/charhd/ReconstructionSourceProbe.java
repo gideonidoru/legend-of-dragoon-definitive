@@ -13,7 +13,7 @@ import java.util.*;
 /** Explicit owner-input CPU probe of bundled resources. No external model overrides or GPU draw. */
 public final class ReconstructionSourceProbe {
   public static void main(final String[] args) throws Exception {
-    if(args.length != 2) throw new IllegalArgumentException("files report");
+    if(args.length < 2 || args.length > 3) throw new IllegalArgumentException("files report [field model]");
     final var renderer=GameEngine.RENDERER.getClass().getDeclaredField("api");renderer.setAccessible(true);renderer.set(GameEngine.RENDERER,new NoopApi());
     final var field=GameEngine.class.getDeclaredField("EVENT_ACCESS");field.setAccessible(true);final var access=(EventManager.Access)field.get(null);
     final Path files=Path.of(args[0]);final var rows=new ArrayList<Map<String,Object>>();
@@ -22,7 +22,7 @@ public final class ReconstructionSourceProbe {
         access.reset();access.initialize(GameEngine.MODS);
         final var modelMod=models?Class.forName("modelshd.ModelsHdMod").getConstructor().newInstance():null;
         final var charMod=chars?new CharHdMod():null;
-        final String path=form.equals("field")?"SECT/DRGN21.BIN/101/0":"characters/dart/models/combat/32";
+        final String path=form.equals("field")?(args.length == 3 ? args[2] : "SECT/DRGN21.BIN/101/0"):"characters/dart/models/combat/32";
         final var source=new CContainer("bundled CharHD source",new FileData(Files.readAllBytes(files.resolve(path))));
         int textures=0,vertices=0;
         for(int index=0;index<source.tmdPtr_00.tmd.objTable.length;index++) {
@@ -33,7 +33,10 @@ public final class ReconstructionSourceProbe {
           final var object=route.equals("mapped")?TmdObjLoader.fromObjTableMapped("CharHD body mapping",table,(clut,u,v,header)->new float[]{.2f,.3f}):
             TmdObjLoader.fromObjTable("CharHD body",table,0,route.equals("rgba")?256:0,route.equals("rgba")?256:0);
           if(object.faceDetailTexture()!=null) {textures++;if(index!=7 || object.faceDetailTexture().width!=2048)throw new AssertionError("Wrong supplemental texture");}
-          if(index==7 && chars && object.faceDetailTexture()==null)throw new AssertionError("Bundled CharHD head did not activate without manual overrides");
+          if(index==7 && chars && object.faceDetailTexture()==null) {
+            final var geometry=GameEngine.EVENTS.postEvent(new legend.game.modding.events.tmd.TmdGeometryEvent(table,0,0,0)).geometry;
+            throw new AssertionError("Bundled CharHD head did not activate: "+path+" route="+route+" models="+models+" source="+TmdGeometryIdentity.identity(new TmdObjTable1c[]{table})+" baseline="+TmdGeometryIdentity.identity(new TmdObjTable1c[]{geometry}));
+          }
           for(final var mesh:object.meshes) {for(final var value:mesh.vertices())if(!Float.isFinite(value))throw new AssertionError("Nonfinite mesh");vertices+=mesh.vertices().length/16;}
           if(!Arrays.equals(positions,table.vert_top_00) || !Arrays.deepEquals(originalPackets,Arrays.stream(table.primitives_10).flatMap(p->Arrays.stream(p.data())).toArray(byte[][]::new)))throw new AssertionError("Original CPU tables changed");
           object.delete();

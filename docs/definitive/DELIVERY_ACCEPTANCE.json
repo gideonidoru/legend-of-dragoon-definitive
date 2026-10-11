@@ -1,0 +1,321 @@
+{
+  "schema": 1,
+  "date": "2026-10-11",
+  "owner": "Orchestrate project workstreams",
+  "developmentSource": "696cea631db511041ed7ab6466f03da355eebb7c",
+  "publicSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
+  "purpose": "Explicit delivery acceptance cases; earlier headless evidence exists, physical completion not inferred. User reports FMVs work on Deck but new rendering blocker remains.",
+  "physicalAcceptanceStatus": "pending per case; no complete maintenance/device signoff supplied",
+  "cases": [
+    {
+      "id": "DEL-01",
+      "case": "Fresh installation on Deck internal storage",
+      "acceptance": "All seven modules and four EnvHD packs install; component and current-file progress visible; first launch succeeds.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-02",
+      "case": "Fresh installation on Deck SD storage",
+      "acceptance": "Same module selection works on supported SD filesystem, spaces in paths and limited free space.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-03",
+      "case": "Checksum Repair",
+      "acceptance": "One corrupted and one missing managed file restored; unchanged managed files not downloaded; saves/settings/original data preserved.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-04",
+      "case": "Complete Reinstall",
+      "acceptance": "Fresh managed application and prepared workspace created; no corrupt managed file retained; personal data preserved.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-05",
+      "case": "Uninstall after normal exit or no launch",
+      "acceptance": "Managed files removed without stale-launch receipt blocking; selected personal-data policy honored.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-06",
+      "case": "Maintenance with active game",
+      "acceptance": "Verified owned game process terminated and lease released before modification; unrelated process never killed.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-07",
+      "case": "Stale or malformed launch records",
+      "acceptance": "Dead PID, reused PID, malformed receipt, pending/no-game launch and reboot leftovers recover without arbitrary process termination.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-08",
+      "case": "Differential Update",
+      "acceptance": "Changed/new managed files downloaded; retired managed files removed; unchanged files untouched; local saves/settings preserved.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-09",
+      "case": "Offline launch after setup",
+      "acceptance": "Installed game launches without download service or network; failed update leaves known valid installation usable.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-10",
+      "case": "Interrupted download and preparation",
+      "acceptance": "Process exit/network loss/full storage leaves recoverable state and retry completes with integrity verified.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-11",
+      "case": "Interrupted activation and recovery",
+      "acceptance": "Termination during activation/recovery returns to complete validated installed version; no partial active runtime.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-12",
+      "case": "Steam Stop/relaunch",
+      "acceptance": "Stop ends actual game and owned launcher; immediate relaunch/Repair can proceed; unrelated Java processes remain alive.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-13",
+      "case": "Older installation migration",
+      "acceptance": "Retired download tag and old launch receipts migrate through latest maintenance tools without losing valid personal data.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-14",
+      "case": "Latest Desktop shortcut",
+      "acceptance": "Saved current shortcut resolves latest matching installer and published checksums; release race retries; mismatch never launches.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "delivery/Install-Definitive.desktop",
+        "scripts/verify-desktop-entry.py",
+        "scripts/desktop_bootstrap.py"
+      ],
+      "requiresForegroundOrDeviceAction": false,
+      "pointerVerification": {
+        "delivery/Install-Definitive.desktop": "present at matrix source checkpoint",
+        "scripts/verify-desktop-entry.py": "present at matrix source checkpoint",
+        "scripts/desktop_bootstrap.py": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-15",
+      "case": "Public package identity",
+      "acceptance": "Public Linux/Mac packages and installed module assets match accepted exact-source CI, inventory, sizes and checksums.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "scripts/publish-verified-release.py",
+        "src/test/java/legend/definitive/manager/ManagerDependencyVerificationTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": false,
+      "pointerVerification": {
+        "scripts/publish-verified-release.py": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/ManagerDependencyVerificationTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-16",
+      "case": "Current-only release retention",
+      "acceptance": "Publish/verify replacement before pruning; preserve active drafts/newer builds and required FMV build inputs; latest shortcut remains valid.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "AGENTS.md",
+        "scripts/prune-release-history.py",
+        "scripts/test-release-retention.py",
+        "scripts/test-release-publication.py"
+      ],
+      "requiresForegroundOrDeviceAction": false,
+      "pointerVerification": {
+        "AGENTS.md": "present at matrix source checkpoint",
+        "scripts/prune-release-history.py": "present at matrix source checkpoint",
+        "scripts/test-release-retention.py": "present at matrix source checkpoint",
+        "scripts/test-release-publication.py": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-17",
+      "case": "Combined default/opt-out launch",
+      "acceptance": "All seven modules boot existing campaigns by default; supported opt-outs/fallbacks remain coherent and visible.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    },
+    {
+      "id": "DEL-18",
+      "case": "Physical durability acceptance",
+      "acceptance": "Internal/SD cold launches, save/load, suspend/resume and long sessions checked against same accepted build; error logs give actionable recovery.",
+      "status": "pending physical acceptance or exact next-release gate",
+      "sourcePointers": [
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java"
+      ],
+      "requiresForegroundOrDeviceAction": true,
+      "pointerVerification": {
+        "src/test/java/legend/definitive/manager/InstallStoreTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/InstallerFlowTest.java": "present at matrix source checkpoint",
+        "src/test/java/legend/definitive/manager/UpdateFailureTest.java": "present at matrix source checkpoint"
+      }
+    }
+  ],
+  "sourceReceipt": {
+    "file": "Delivery-Acceptance-Cases-2026-10-11.json",
+    "sha256": "85339b06da300fab6aca4d9961ffe95edfa7f8a74bb830dc2b04ff53f2890c3d"
+  }
+}

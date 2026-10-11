@@ -1,0 +1,20 @@
+// Opt-in native readback; never part of ordinary tests or game startup.
+allprojects {
+  afterEvaluate {
+    if (project == rootProject) {
+      tasks.register('nativeDepthClearProbe', JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'legend.definitive.rendering.NativeDepthClearProbe'
+        jvmArgs '-Djava.awt.headless=true', '--enable-native-access=ALL-UNNAMED'
+        doFirst {
+          def contextPath = providers.gradleProperty('depthClearContextPath').orNull
+          def reportPath = providers.gradleProperty('depthClearReportPath').orNull
+          if (!contextPath || !reportPath) throw new GradleException('Supply -PdepthClearContextPath and -PdepthClearReportPath.')
+          args contextPath, reportPath
+          if (providers.gradleProperty('depthClearInjectCleanupFailure').isPresent()) args '--inject-cleanup-failure'
+        }
+      }
+    }
+  }
+}

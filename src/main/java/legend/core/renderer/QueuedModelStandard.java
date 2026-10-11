@@ -17,6 +17,7 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
   private boolean useTextureAlpha;
   private boolean uiArtwork;
   private boolean nativeUiTracked;
+  private boolean uiPaletteDetail;
   private final Vector4f uiArtworkBounds = new Vector4f();
 
   /** Enhance RGB only; indexed VRAM continues to decide visibility and blend mode. */
@@ -32,9 +33,13 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
 
   /** Engine-owned selections can be retired without invalidating independently authored UI textures. */
   public QueuedModelStandard nativeUiArtwork(final Texture artwork, final Texture source, final float x, final float y, final float width, final float height) {
+    return this.nativeUiArtwork(artwork, source, x, y, width, height, false);
+  }
+
+  public QueuedModelStandard nativeUiArtwork(final Texture artwork, final Texture source, final float x, final float y, final float width, final float height, final boolean paletteDetail) {
     if(!this.uiArtwork) {
       this.uiArtwork(artwork,source,x,y,width,height);
-      if(this.uiArtwork) this.nativeUiTracked = true;
+      if(this.uiArtwork) { this.nativeUiTracked = true; this.uiPaletteDetail = paletteDetail; }
     }
     return this;
   }
@@ -95,6 +100,7 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
     this.useTextureAlpha = false;
     this.uiArtwork = false;
     this.nativeUiTracked = false;
+    this.uiPaletteDetail = false;
   }
 
   @Override
@@ -169,6 +175,7 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
     }
 
     this.shaderOptions.uiArtwork(this.uiArtwork, this.uiArtworkBounds);
+    this.shaderOptions.uiPaletteDetail(this.uiArtwork && this.uiPaletteDetail);
     this.shaderOptions.alpha(this.alpha);
     this.shaderOptions.useTextureAlpha(this.useTextureAlpha);
 

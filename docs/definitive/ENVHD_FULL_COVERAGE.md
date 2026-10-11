@@ -31,7 +31,7 @@ including changing padding and initial transients. It selects no artwork and
 clears no hold; complete encounter upload/darkening/presentation contracts remain
 open. Its combined frame-hash counts are not an EnvHD authoring-job denominator.
 
-The authoring branch selects twelve separately reviewed painted battle replacements:
+The published package selects twelve separately reviewed painted battle replacements:
 three Flanvel Tower materials, two stage-30 decorative panels and a stage-38
 static flame-shaped surface, plus a Shirley's Shrine plaque, stage-17 floor
 fragments, stage-45 aqua panel, stage-69 circular ornament and two Moon materials.
@@ -41,18 +41,26 @@ and individual comparisons remain separate from gameplay acceptance. The
 previous 506-master/513-binding runtime ledger is archived byte for byte as
 `battle-material-runtime-artwork-source-0af4f997.json`; the earlier six-painting
 selection is archived as `battle-material-runtime-artwork-source-a6a0b62f.json`.
-The historical `definitive-alpha-2026-10-11-envhd` package source `0af4f997` and
-main entrypoint metadata `0b8df09a` excluded these twelve paintings and contained
-537 battle bindings. Later release publication is tracked separately by the coordinator.
-Known static repair work on this authoring branch is 237 fields plus one terrain
+The published `definitive-current` package source `d7311334` includes these twelve
+paintings and 549 total selected battle bindings. Its field selection has 4,917
+images; the coordinated source candidate adds eight accepted field paintings for
+4,925 selected images. The candidate field additions require their own exact-source
+build and publication before the installer can retrieve them.
+The coordinated source candidate also selects 22 reviewed battle paintings for
+Forest, Barrens and Evergreen, bringing its painted battle selection to 34. They
+retain the prior twelve and all other atlas regions, layouts and visibility classes.
+The additional 22 require exact-source build and publication; native scene and
+final artwork acceptance remain pending.
+Known static repair work on this selected checkpoint is 237 fields plus one terrain
 mapping hold. The [Tiberoa investigation](ENVHD_TIBEROA_MAPPING.md) records the
 three unsigned-UV faces and complete upload evidence; it clears no hold. This
 does not count unresolved animation/prop families as completed.
 
-The current [47-record field authoring input](../../integrations/envhd/production/field-bespoke-scenery-fittings-reviewed-selection.json)
-contains the 39 selected paintings, six independently pending candidates and two
-independently reviewed source-fidelity revisions. New scenery work and its crop
-checks are detailed in [the active coverage notes](ENVHD_ACTIVE_COVERAGE.md).
+The current [66-record field authoring input](../../integrations/envhd/production/field-bespoke-carved-furnishings-reviewed-selection.json)
+contains the 39 selected paintings, 25 independently pending candidates and two
+independently reviewed source-fidelity revisions. All pending/held history remains
+outside runtime selection. New scenery work, source checks and context corrections
+are detailed in [the active coverage notes](ENVHD_ACTIVE_COVERAGE.md).
 
 The field ownership audit freshly verified all 1,044 source folders and all
 protected Skurfa background/foreground hashes. Existing resources are unchanged:

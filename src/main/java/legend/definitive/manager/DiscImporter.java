@@ -140,7 +140,7 @@ public final class DiscImporter {
           final String phase = "Copying disc " + (++number) + " of 4";
           try(final var input = Files.newInputStream(disc.getValue()); final var output = Files.newOutputStream(copy, java.nio.file.StandardOpenOption.CREATE_NEW)) {
             final byte[] buffer = new byte[1024 * 1024];
-            for(int n; (n = input.read(buffer)) != -1;) { output.write(buffer, 0, n); copied += n; progress.bytes(phase, 20, 45, copied, totalBytes); }
+            for(int n; (n = input.read(buffer)) != -1;) { PackageManifest.checkCancelled(); output.write(buffer, 0, n); copied += n; progress.bytes(phase, 20, 45, copied, totalBytes); }
           }
           progress.report(new InstallProgress.Update("Verifying disc " + number + " of 4", "Comparing original and installed SHA256 checksums", 20, 45, copied, totalBytes));
           if(!PackageManifest.sha256(copy).equals(hashes.getProperty(disc.getKey())) || !PackageManifest.sha256(disc.getValue()).equals(hashes.getProperty(disc.getKey()))) throw new IOException("Disc copy verification failed. Original inputs are unchanged.");
