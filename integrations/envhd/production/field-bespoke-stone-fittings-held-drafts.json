@@ -1,0 +1,382 @@
+{
+  "schema": 1,
+  "scope": "Seven held versions across four sources, including Shrine wall3 RGB/cutout input preflight hold. Original cutout and source-visibility gates unchanged; no waivers.",
+  "sourceSelectionBaseCommit": "46e43745f",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 4,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "86c7cc84c0b847bed2d30b59a1e80a118941f5a93d9132bd63cd738203a367a5",
+      "generatedSha256": "f6d90543d061d68530b3be8c62b1010e691b0234e1af44af3fa54c3e3a0c6acd",
+      "generatedSize": [
+        1596,
+        986
+      ],
+      "sourceSize": [
+        42,
+        26
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "5d88d0002e9c4c84b4e04eddc164c1c56c8e80174ced0cbbcc01473639dc3c7f:-1",
+          "kind": "foreground",
+          "slot": 9,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 399,
+      "representativeLocation": "Forbidden Land",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: one source-bound Legend of Dragoon EnvHD field foreground texture. Image1 is the authoritative cutout enlarged by nearest-neighbor only; image2 is the complete original scene for usage context only. Repaint only image1 as faithful hand-painted HD game art compatible with restrained Skurfa HD backgrounds. Preserve the original camera, canvas registration, silhouette, crop, negative spaces, internal landmarks, material divisions, colors and light. Forbidden Land cut399 foreground9: a low green stepped base at the center/back of the industrial ruin. Preserve the four narrow horizontal pale-green ledges across the upper third, unequal source lengths and tiny clipped top ends, dark separators, widening tapered lower face, irregular lower-left/right cropped corners, and the mottled angular green-brown relief across the lower face. This is the small base below a display; do not render the skeleton displays, floor, stair rails or a whole building. Lower source pattern is shallow, subdued, indistinct surface relief: keep its particular dark/light patch locations instead of inventing a new emblem, letters, diamonds, inset plaque, plant or coherent deeply carved motif. Add restrained fine continuous stone shading, keeping the original dark green cast and the native viewpoint. No deep new joints, strong scratches, beveled outlines or extra steps. Strict full canvas aspect 42:26; keep all objects at their source scales/positions and their original crop-edge contacts. Do not pad, center, enlarge, rotate, crop or recompose. Fine continuous brush shading instead of enlarged pixel blocks. Output only the isolated texture with real transparency; no background scene, text, labels, comparison, border or watermark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 12224,
+      "paintedGapPixelsExtended": 709,
+      "paintedUncoveredSourcePixels": 643,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 50,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        168,
+        104
+      ],
+      "outputSha256": "d6b037114aee8574db1da139247c8cc529ca0e2dc0bfe7dd2bac658bc1f980d8",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/86c7cc84c0b847bed2d30b59a1e80a118941f5a93d9132bd63cd738203a367a5/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/86c7cc84c0b847bed2d30b59a1e80a118941f5a93d9132bd63cd738203a367a5/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version1 passes unchanged technical repair but introduces regular chevron/diamond crest and symmetric raised relief where original contains diffuse shallow irregular mottling. Held; corrected2 separately pending independent source review."
+    },
+    {
+      "decodedRgbaSha256": "89651d87eefcbc393e996054f5ebd55c7d8dc91f86fbb5e2a0fd1a54e16c4f85",
+      "generatedSha256": "47adfc30238e9e1eebe9a14f298f9a1f9a1fd68be0cc6d8e59855438369c8f00",
+      "generatedSize": [
+        1221,
+        1289
+      ],
+      "sourceSize": [
+        36,
+        38
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "30615335047efa051b4fccb22909757df1b57cd3c63a17ed54d9a543b004ab86:-1",
+          "kind": "foreground",
+          "slot": 11,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 158,
+      "representativeLocation": "Shirley's Shrine",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: one source-bound Legend of Dragoon EnvHD field foreground texture. Image1 is the authoritative cutout enlarged by nearest-neighbor only; image2 is the complete original scene for usage context only. Repaint only image1 as faithful hand-painted HD game art compatible with restrained Skurfa HD backgrounds. Preserve the original camera, canvas registration, silhouette, crop, negative spaces, internal landmarks, material divisions, colors and light. Shirley's Shrine cut158 foreground11: the pale weathered stone fitting/support at the right side of the stair path next to a golden adjoining object. Preserve the cropped asymmetrical stone structure, pale sloping top lip, stepped horizontal divisions of its right face, dark narrow vertical inset on its upper-left face, narrow pale upright strip near upper-middle, three small pale horizontal marks below that strip, dark lower separation and the pale irregular rectangular lower support. The small face marks are existing shallow weathering/relief of uncertain identity; do not turn them into writing, skull, a face, buttons, new deep emblem or perfectly symmetrical ornament. Preserve scattered olive-gray weathering and original diffuse sunlight. Do not include the golden adjoining object or invent full paired architectural wings. Trace all crop boundaries and exact small dark gaps. Strict full canvas aspect 36:38; keep all objects at their source scales/positions and their original crop-edge contacts. Do not pad, center, enlarge, rotate, crop or recompose. Fine continuous brush shading instead of enlarged pixel blocks. Output only the isolated texture with real transparency; no background scene, text, labels, comparison, border or watermark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 15072,
+      "paintedGapPixelsExtended": 664,
+      "paintedUncoveredSourcePixels": 523,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 26,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        144,
+        152
+      ],
+      "outputSha256": "9e9efc7bd3bbf749f8281908993f8490c065e94b4a28a961190a71ad87c24fbe",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/89651d87eefcbc393e996054f5ebd55c7d8dc91f86fbb5e2a0fd1a54e16c4f85/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/89651d87eefcbc393e996054f5ebd55c7d8dc91f86fbb5e2a0fd1a54e16c4f85/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Both versions pass unchanged technical repair but introduce four heavy white knob-like forms, strong stone joints/fractures and projecting shelves around faint source details. Version2 reduces some roughness but retains wrong feature count/identity and conflicts with adjoining pale soft material. Both held. Use local native feature anchors and adjoining finish before another full-crop attempt; no invented fitting identity."
+    },
+    {
+      "decodedRgbaSha256": "882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc",
+      "generatedSha256": "7ec8952f5b7de3dcf624e38663cd382591a602257733e56704543b8a86f8760e",
+      "generatedSize": [
+        1254,
+        1254
+      ],
+      "sourceSize": [
+        30,
+        30
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "feb547ceb0efb4200a92cba866c89073bfd46d79335fcb11fca9d63b71875049:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 153,
+      "representativeLocation": "Shirley's Shrine",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: one source-bound Legend of Dragoon EnvHD field foreground texture. Image1 is the authoritative cutout enlarged by nearest-neighbor only; image2 is the complete original scene for usage context only. Repaint only image1 as faithful hand-painted HD game art compatible with restrained Skurfa HD backgrounds. Preserve the original camera, canvas registration, silhouette, crop, negative spaces, internal landmarks, material divisions, colors and light. Shirley's Shrine cut153 foreground2: a small dark moss-covered wall/slab fragment in the ruin scene. Preserve its native roughly rectangular irregular crop, pale broken/slender left rim, pale and gray disconnected angular/curved marks confined near the top edge, upper dark violet-gray stone region, lower olive-green dark moss area, diffuse original light, and the small pale clipped bottom-right fragment. The upper pale marks have unresolved exact identity: keep their source positions, proportions, disconnected shapes and dark separation without converting them to readable symbols, a skull, a coherent ornamental crest or extra stone fixtures. Keep the source very dark and flat except for its existing subtle weathering; no new large cracks, brick pattern, dense leaves, bright moss glow or heavy carved relief. Strict full canvas aspect 30:30; keep all objects at their source scales/positions and their original crop-edge contacts. Do not pad, center, enlarge, rotate, crop or recompose. Fine continuous brush shading instead of enlarged pixel blocks. Output only the isolated texture with real transparency; no background scene, text, labels, comparison, border or watermark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc/draft-input-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Versions1/2 misinterpret flat near-rectangular wall crop as standing crown-like broken columns. They omit source-occupied upper corners and fail unchanged coverage. No repaired output or waiver. Version3 separately authors full-square opaque RGB and restores original native alpha/black with existing recipe."
+    },
+    {
+      "decodedRgbaSha256": "9d6ee81a6a9584c4f5d2ae829238be015881ae8235ec43458a27d78969fbb62e",
+      "generatedSha256": "fd8b53bf5e525364c0d1b992b2e4e686b680d4c4de2eabe3016b08ae55ae218b",
+      "generatedSize": [
+        986,
+        1595
+      ],
+      "sourceSize": [
+        68,
+        110
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "02a5fa6bce3fa4dccc8ede5476b07893ea885d9e0665fdcc9965632ace691f90:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 516,
+      "representativeLocation": "Ulara",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: one source-bound Legend of Dragoon EnvHD field foreground texture. Image1 is the authoritative cutout enlarged by nearest-neighbor only; image2 is the complete original scene for usage context only. Repaint only image1 as faithful hand-painted HD game art compatible with restrained Skurfa HD backgrounds. Preserve the original camera, canvas registration, silhouette, crop, negative spaces, internal landmarks, material divisions, colors and light. Ulara cut516 foreground4: a warm gray-purple sloping exterior pedestal/rim segment with a tall blue-gray finial held by slender dark purple open metal-like arms. Preserve the exact lower pedestal mass cropped at bottom/right, pale cream diagonal sunlit band running from lower left to upper middle, its narrow clipped left extension, dark muted purple sidewall, small raised circular/polygonal collar on top, and the native tall pointed blue-gray narrow finial. Preserve the two slender loop/arm supports, their separate diagonals/verticals and open transparent spaces around the central shaft: do not fuse the arms, widen them, add curls, repeat a decorative lattice, invent rivets or enlarge the pointed tip. Refine the existing subdued purple-gray surface and blue finial with fine coherent soft shading. Keep original upper-left warm sunlight, camera, shadow and crop; no new stone blocks, deep construction joints, bright gold, crystalline facets, relighting, extra plants or a whole platform. Strict full canvas aspect 68:110; keep all objects at their source scales/positions and their original crop-edge contacts. Do not pad, center, enlarge, rotate, crop or recompose. Fine continuous brush shading instead of enlarged pixel blocks. Output only the isolated texture with real transparency; no background scene, text, labels, comparison, border or watermark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 56352,
+      "paintedGapPixelsExtended": 2023,
+      "paintedUncoveredSourcePixels": 1619,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 533,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        272,
+        440
+      ],
+      "outputSha256": "19b55b16fde3b8399d02bac8883e1fcd2d5ab31df2c83a41d4ecc4e696e28ce7",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/9d6ee81a6a9584c4f5d2ae829238be015881ae8235ec43458a27d78969fbb62e/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/9d6ee81a6a9584c4f5d2ae829238be015881ae8235ec43458a27d78969fbb62e/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version1 passes technical repair but imposes heavy rough masonry/chips, stronger tiered collars and wide angular arms on the source pedestal/finial. Held; corrected2 reduces construction and awaits independent exact-feature/lighting review."
+    },
+    {
+      "decodedRgbaSha256": "89651d87eefcbc393e996054f5ebd55c7d8dc91f86fbb5e2a0fd1a54e16c4f85",
+      "generatedSha256": "c3c64b0a52ef43c5d5fa4f9121f525fee078eeaa36ba40225533b97498bb932d",
+      "generatedSize": [
+        1221,
+        1289
+      ],
+      "sourceSize": [
+        36,
+        38
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "30615335047efa051b4fccb22909757df1b57cd3c63a17ed54d9a543b004ab86:-1",
+          "kind": "foreground",
+          "slot": 11,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 158,
+      "representativeLocation": "Shirley's Shrine",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise-object-edit. Asset type: one faithful hand-painted HD field cutout for Legend of Dragoon EnvHD. Image1 is the original source cutout, image2 the source scene only, image3 the native silhouette occupancy guide only. Repaint the original as restrained HD game art. Correction from the original source only. Prior generated attempts added strong rigid stone slab joints, four heavy raised knobs and harsh pale edge highlights. Do not reproduce those additions. Retain the source's narrow pale upright strip and exactly the three small subtle pale horizontal marks beneath, with their uneven widths and native heights. Treat these as shallow indistinct marks, not knobs or deep carving. Preserve subdued olive-gray/pale weathered stone with smooth irregular soft transitions, native horizontal dark bands and the pale lower support; no strong fracture, deeply projecting shelves, sharp block seams, relief face or elaborate construction. Match the soft pale adjoining support visible in image2. Image3 is a cyan silhouette guide only; retain that occupied footprint, without rendering the cyan. Strict 36:38 full-canvas aspect and all source camera/scale/crop/negative spaces unchanged. Output only the isolated source cutout on real transparency. Continuous fine shading without enlarged pixel blocks. No new scene, objects, text, labels, watermark, border, centering or padding.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 15072,
+      "paintedGapPixelsExtended": 710,
+      "paintedUncoveredSourcePixels": 536,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 34,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        144,
+        152
+      ],
+      "outputSha256": "c3dc3c8ad1539c39ec5f88702c29bcfab51427afdf1342ecf817d83ca04bc366",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/89651d87eefcbc393e996054f5ebd55c7d8dc91f86fbb5e2a0fd1a54e16c4f85/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/89651d87eefcbc393e996054f5ebd55c7d8dc91f86fbb5e2a0fd1a54e16c4f85/draft-repaired-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Both versions pass unchanged technical repair but introduce four heavy white knob-like forms, strong stone joints/fractures and projecting shelves around faint source details. Version2 reduces some roughness but retains wrong feature count/identity and conflicts with adjoining pale soft material. Both held. Use local native feature anchors and adjoining finish before another full-crop attempt; no invented fitting identity."
+    },
+    {
+      "decodedRgbaSha256": "882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc",
+      "generatedSha256": "2c447cdf02ec39b3a07c850ea9569aaf1d47d34b2761954ed50999101de7b307",
+      "generatedSize": [
+        1254,
+        1254
+      ],
+      "sourceSize": [
+        30,
+        30
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "feb547ceb0efb4200a92cba866c89073bfd46d79335fcb11fca9d63b71875049:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 153,
+      "representativeLocation": "Shirley's Shrine",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise-object-edit. Asset type: one faithful hand-painted HD field cutout for Legend of Dragoon EnvHD. Image1 is the original source cutout, image2 the source scene only, image3 the native silhouette occupancy guide only. Repaint the original as restrained HD game art. Correction from the original source only. This is a cropped approximately rectangular dark wall surface, filling almost the complete square source canvas. Do not turn the small disconnected pale marks at its top into standing broken columns, a protruding crown, a coherent top ledge or any new sculpted outline. Trace image1 and the exact cyan occupied silhouette in image3. Keep the pale left edge and little top gray/pale marks as soft irregular surface remnants in exactly the source positions, a flat dark violet-brown upper surface and subdued mottled olive-green lower area. Do not introduce new large masonry blocks, cracks, geometric diagonal ridges, dense leafy foliage or bright lighting. Keep the lower edge and right edge filled wherever the source is occupied, including the small pale lower-right fragment. Do not crop back the original corners. Image3 conveys occupancy only, not target color. Strict 30:30 full-canvas aspect and all source camera/scale/crop/negative spaces unchanged. Output only the isolated source cutout on real transparency. Continuous fine shading without enlarged pixel blocks. No new scene, objects, text, labels, watermark, border, centering or padding.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc/draft-input-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Versions1/2 misinterpret flat near-rectangular wall crop as standing crown-like broken columns. They omit source-occupied upper corners and fail unchanged coverage. No repaired output or waiver. Version3 separately authors full-square opaque RGB and restores original native alpha/black with existing recipe."
+    },
+    {
+      "decodedRgbaSha256": "882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc",
+      "generatedSha256": "f1c2b9e49ee6293d774151b83763520b4d5f4102c5a2231c236fa0a17f47591b",
+      "generatedSize": [
+        1254,
+        1254
+      ],
+      "sourceSize": [
+        30,
+        30
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "feb547ceb0efb4200a92cba866c89073bfd46d79335fcb11fca9d63b71875049:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 153,
+      "representativeLocation": "Shirley's Shrine",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "generationVersion": 3,
+      "prompt": "Use case: style-transfer. Asset type: flat cropped wall texture for Legend of Dragoon EnvHD. Image1 is the authoritative 30x30-pixel wall-surface crop enlarged by nearest neighbor. Repaint this as a flat square surface image occupying the entire image canvas. The image is a texture patch cut from a wall, not an isolated stone object. Retain the near-rectangular entire canvas and every native patch position: dark violet-brown upper region, pale fragmented narrow strip at left, several disconnected gray/pale small shapes near the upper edge, olive-green dark soft moss mottling across the lower half, and the small pale right-bottom patch. The dark pixels in the upper-left and upper-right are occupied wall texture and MUST NOT become empty background or transparency. Do not create an outside silhouette, upper peaks, a crown, projecting blocks, a new crest, standing columns, new cracks or readable symbols. Keep all source marks as flat surface remnants without introducing relief or coherent emblems. Gentle fine continuous hand-painted shading and moss variation; preserve the source darkness and subtle light. Exact full square1:1 canvas, edge-to-edge texture image with no padding, cropping, camera changes or scene context. No text, borders, labels, comparison, watermark or transparent output. The existing one-pixel native empty right/bottom border is handled separately by the established source-alpha repair; do not move or stretch the surface features.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 13456,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        120,
+        120
+      ],
+      "outputSha256": "53a297f0d5df6886ce7ad44151ff1d7e2b80997dda624e191701bca324259836",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc/draft-input-v3.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc/draft-repaired-v3.png",
+      "publicationVersion": 1,
+      "review": {
+        "intent": "Shirley's Shrine cut153 foreground2: near-rectangular flat dark wall-surface patch with violet-brown upper area, pale fragment at left and disconnected upper gray marks, olive moss across lower area and small pale right-bottom fragment. This is a surface patch, not a crown/standing sculpture.",
+        "style": "Original source and full scene, all three raw versions, final repaired texture and static scene placement inspected. Version3 uses full-square opaque RGB authoring to retain occupied upper corners. Existing cutout repair restores native transparency/black exactly. Fine grain, irregular diagonal shading, patch contrast and adjoining wall finish remain interpretive; independent original-reference review pending.",
+        "layout": "Exact120x120 fourfold crop; native empty last row/column and source alpha/black restored by unchanged recipe. No invented silhouette, upper peaks or new sculpture accepted. Static placement near ruin pillar/vegetation reviewed, with native/script/final whole-scene acceptance pending.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "53a297f0d5df6886ce7ad44151ff1d7e2b80997dda624e191701bca324259836",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "verdict": "input-preflight-held",
+      "reason": "Version3 repairs to exact native alpha/black but authoring input is opaque RGB while the original has an empty border. Existing candidate preflight explicitly prohibits opaque RGB inputs for cutout sources. No gate is waived; preserve custom painting/repaired draft for a separately explicit supported container-conversion protocol. Native/final pending."
+    }
+  ]
+}

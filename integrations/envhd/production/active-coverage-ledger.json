@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "7be4488e85884870a501d52ba22a28f779542ff7",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "393e0611f6c9fec1d0f1465175ea0520da4d09a5cdc0c3430bf74135dc7c7299",
+    "full-coverage.json": "dc20814966152eb2eb29a557f9de402cccb6e32c6385e05934f5052ac86d7eef",
     "field-runtime-artwork.json": "085c1fe77c2cfd6299e415f583c845f4edda283507817b964ff1a588a20679dd",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
@@ -55,7 +55,10 @@
     "tiberoa-authoring-readiness.json": "853be72084766cb9c0b439ae4fc8edcfeb0b26df7b29cb789d82230244563d29",
     "field-bespoke-table-independent-reviewed-selection.json": "1a1f4d4ea682eb43b7bf0a1e8563e2646a35c556f1031d3a1d7b82ec73ea4000",
     "field-independent-small-furnishings-review.json": "911a16d9940aeb815aa69f83f6bd359b3ac4d0d52cae062027c585a1752e3cc3",
-    "field-table-selection-readiness.json": "39a48c1c0ea2464799fd115865239b07a43f3ea90ab22ab7734730b3496eef3e"
+    "field-table-selection-readiness.json": "39a48c1c0ea2464799fd115865239b07a43f3ea90ab22ab7734730b3496eef3e",
+    "field-bespoke-stone-fittings-reviewed-selection.json": "f132478ea18ab077f26824669aff7c97acef0a8edcccd596c6fd0e4df9a043ff",
+    "field-bespoke-stone-fittings-held-drafts.json": "11d2668adc44f2b397d6c22ac78f0a6756ebef1f62a1d4d6c242eda481fa8471",
+    "field-stone-fittings-authoring-readiness.json": "b5d3c19f76266c73b5f3dafa5b377f50aee159cc98e2ebd325cf9279598a0817"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -73,11 +76,11 @@
       "selectedPainted": 40,
       "held": 236,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 50,
+      "customHeldDraftSourceImages": 54,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4917,
-      "nextTask": "Independent review of25 pending field candidates; correct Rouge/Phantom internal landmarks and Ulara counter lighting/goods grouping; continue236 field holds and native/final validation.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 25,
+      "nextTask": "Independent original-reference review of27 pending field candidates. Correct source geometry/light/finish holds; define explicit supported container conversion for held Shrine flat RGB surface without weakening source-cutout input guards. Continue236 field holds and native/final validation.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 27,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
@@ -96,11 +99,15 @@
         "83fe643a2962f4801576f8ebf15bd41aa63e16575ff2386fd1b8296134c8d5a9",
         "8672f8df1037e8923d56b9e9e523c672d4b0d3dbeebff918ad0f6c8d50491662",
         "867b4dc9569220985c79320571ee12cb046a6a1bdb7503b5d05778cecdedcae4",
+        "86c7cc84c0b847bed2d30b59a1e80a118941f5a93d9132bd63cd738203a367a5",
         "877e9c3a907d346bbd50a41cb79ce4f801f207f86e3f5ecdf24c9f2a6d09badd",
+        "882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc",
+        "89651d87eefcbc393e996054f5ebd55c7d8dc91f86fbb5e2a0fd1a54e16c4f85",
         "8c03049a6e5993f19813f7d3606c0d6736d85fe575c3ef0fa3629eb80f8b5e4e",
         "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
         "99fe3ae3f675d6fc68f88b15b0432a884fee59c7f04b6be8c9c1c51f02948e81",
         "9b74793a802626789aa46bf4776e968c5af1c3e749fe9033af7dcc1e96dcc66b",
+        "9d6ee81a6a9584c4f5d2ae829238be015881ae8235ec43458a27d78969fbb62e",
         "9e38a3f37d0eed732d30954194e28fa0b749949e5d4ef81cc8a85d00b56241e9",
         "9ff5730dc191a7dd1091844f4505b77d9f0c1f6a8e75336630fc9e8267ff15df",
         "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab",
@@ -130,7 +137,7 @@
         "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique source directories across bespoke-field-candidates and held-field-art-drafts excluding4926 runtime selections. Fifty keys are a subset of236 holds; rejected versions deduplicated.",
+      "draftCountMethod": "Unique source directories across bespoke-field-candidates and held-field-art-drafts excluding4926 runtime selections.54 source keys are a subset of236 holds; repeated/rejected versions deduplicated.",
       "independentlyReviewedCandidatesRequiringRevision": 3,
       "publishedInstallerSnapshotEvidence": "Main ad1a234d full-coverage.json records d7311334; not a fresh live release query."
     },
@@ -416,6 +423,18 @@
       "selectedNewSourceImages": 1,
       "independentReview": "field-independent-small-furnishings-review.json",
       "reason": "Crystal Palace table clear for development; Ulara counter lighting/goods grouping revision. Historical68-candidate authoring receipt unchanged."
+    },
+    {
+      "manifest": "field-bespoke-stone-fittings-reviewed-selection.json",
+      "newUniqueHeldSourceImages": 2,
+      "reason": "Forbidden Land green base and Ulara finial pedestal corrected2 await independent review; prior68/selected40 records exact."
+    },
+    {
+      "manifest": "field-bespoke-stone-fittings-held-drafts.json",
+      "newUniqueHeldSourceImages": 2,
+      "heldSourceImages": 4,
+      "heldVersions": 7,
+      "reason": "Pale Shrine fitting1/2 invent feature counts/construction; wall1/2 fail coverage; wall3 opaque RGB/native empty border fails existing candidate input rule. Prior Forbidden/Ulara variants overinterpret relief. No gates waived."
     }
   ],
   "publication": {
@@ -450,7 +469,7 @@
     }
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "One independently cleared table selected;4926 fields/40 paintings,25 independent pending authoring candidates and3 revisions. Four download packs verified; coordinated release pending.",
+  "authoringCheckpoint": "Two new compatible stone candidates and seven held versions;70 complete candidates,27 pending and3 revisions. Shrine wall3 held at existing RGB/cutout guard. Runtime4926/40 and237 static holds unchanged.",
   "acceptedMainIntegrated": {
     "sourceCommit": "ad1a234d94b4397df681c7fd196581cf3a303a88",
     "fieldSelected": 4925,
