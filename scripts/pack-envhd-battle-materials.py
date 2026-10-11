@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Select reviewed static battle surfaces; hold animations, pilots and revision candidates native."""
-import argparse,importlib.util,io,json,re
+import argparse,importlib.util,io,json,re,struct
 from pathlib import Path
 import numpy as np
 from PIL import Image
@@ -11,6 +11,17 @@ spec=importlib.util.spec_from_file_location('battle_source_tools',ROOT/'scripts/
 
 spec=importlib.util.spec_from_file_location('battle_painted_tools',ROOT/'scripts/verify-envhd-painted-battle.py');painted_tools=importlib.util.module_from_spec(spec);spec.loader.exec_module(painted_tools)
 spec=importlib.util.spec_from_file_location('battle_presentation_tools',ROOT/'scripts/verify-envhd-battle-presentation.py');presentation_tools=importlib.util.module_from_spec(spec);spec.loader.exec_module(presentation_tools)
+
+def runtime_png_header(data,size,maximum_side):
+    if (not isinstance(size,(list,tuple)) or len(size)!=2
+            or any(type(v) is not int or not 1<=v<=maximum_side for v in size)
+            or len(data)<33 or data[:8]!=b'\x89PNG\r\n\x1a\n'
+            or data[8:16]!=struct.pack('>I',13)+b'IHDR' or data[24:26]!=bytes((8,6))):
+        raise ValueError('Existing battle PNG exceeds its bounded dimensions or format')
+    header_size=struct.unpack_from('>2I',data,16)
+    if tuple(size)!=header_size:raise ValueError('Existing battle PNG header differs from bounded dimensions')
+    return header_size
+
 
 def validate_previous_selection(selection,root):
     """Fail closed on incomplete receipts before source discovery or runtime writes."""
@@ -31,7 +42,7 @@ def validate_previous_selection(selection,root):
         if not isinstance(scene.get('modelSha256'),str) or not scene['modelSha256']:invalid()
         if not isinstance(scene.get('timSha256'),str) or not scene['timSha256']:invalid()
         if scene.get('schema')!=1 or scene.get('pipeline')!='envhd-static-battle-atlas-1' or scene.get('scale')!=4 or not sha(scene.get('atlasSha256')):invalid()
-        if not vector(scene.get('atlasSize'),2) or min(scene['atlasSize'])<=0:invalid()
+        if not vector(scene.get('atlasSize'),2) or min(scene['atlasSize'])<=0 or max(scene['atlasSize'])>tools.WIDTH:invalid()
         regions=scene.get('regions')
         if not isinstance(regions,list) or not regions or type(scene.get('hdBindings')) is not int or scene['hdBindings']!=len(regions):invalid()
         region_ids=set()
@@ -51,8 +62,9 @@ def validate_previous_selection(selection,root):
         if manifest!={k:v for k,v in scene.items() if k not in ('stage','hdBindings')}:invalid()
         atlas_data=battle_sources.terrain.bounded_read(folder/'atlas-v1.png',32*1024*1024)
         if battle_sources.terrain.digest(atlas_data)!=scene['atlasSha256']:invalid()
+        header_size=runtime_png_header(atlas_data,scene['atlasSize'],tools.WIDTH)
         with Image.open(io.BytesIO(atlas_data)) as image:
-            if image.mode!='RGBA' or list(image.size)!=scene['atlasSize']:invalid()
+            if image.format!='PNG' or image.mode!='RGBA' or image.size!=header_size:invalid()
             for region in regions:
                 x,y,w,h=region['atlasRect']
                 atlas_regions.append((region['decodedRgbaSha256'],np.array(image.crop((x,y,x+w,y+h)))))
@@ -104,8 +116,14 @@ def validate_previous_selection(selection,root):
             path=root/'integrations/envhd/production/battle-material-candidates'/key/'image-v1.png';digest=records[key]['outputSha256']
         data=battle_sources.terrain.bounded_read(path,32*1024*1024)
         if digest is not None and battle_sources.terrain.digest(data)!=digest:invalid()
+        bounds=presentation_tools.recipe.bounds
+        source_size=tuple(records[key]['sourceSize'])
+        if len(source_size)!=2 or any(type(v) is not int or not 1<=v<=256 for v in source_size):invalid()
+        header_size=runtime_png_header(data,tuple(v*4 for v in source_size),1024)
+        if key in painted_keys or key in presentation_keys:
+            bounds.validate_png_header(data,'output',source_size)
         with Image.open(io.BytesIO(data)) as image:
-            if image.mode!='RGBA' or tuple(image.size)!=tuple(v*4 for v in records[key]['sourceSize']):invalid()
+            if image.format!='PNG' or image.mode!='RGBA' or image.size!=header_size:invalid()
             expected[key]=np.array(image)
     if any(not np.array_equal(pixels,expected[key]) for key,pixels in atlas_regions):invalid()
 
