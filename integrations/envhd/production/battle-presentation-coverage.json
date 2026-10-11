@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "f72731929f13a8810e18f19c023636fb1c67b1711a2b7006dbb1dc0ca0f9b8b6"
+    "battle-presentation-artwork-v1.json": "0953ea9b8511d0123fb7d5f48582f90f61f0fbb4d7dd3af7ac0c2a62eae4e5df"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,10 +18,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 87,
+    "newBespokeCandidates": 109,
     "newlySelectedBespokeMasters": 0,
-    "baselineMastersStillNeedingPresentationReview": 419,
-    "pendingCandidateReviews": 87,
+    "baselineMastersStillNeedingPresentationReview": 397,
+    "pendingCandidateReviews": 109,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -231,7 +231,20 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "01447daa01620c5144454cd4e7be497051cd7cc2fd6ecb0c008baf7d16a1d8cc",
+        "01e26dcc5c88f9805f0aaee59149eb6b8786725dbca77660ae3506c845092107",
+        "06f1f8f0317521354e8d5e38bc107a2da92a26ac6a174b29bb3801c5a87e29fb",
+        "07402e6fe6a603b4324455ddf2a60b32d27389c87e32762c19cfe41cd854ce71",
+        "0874ebc8a42093f4e9c45dd31d46dbaa48f314e2b8e27fec043042760237c618",
+        "676b12557a2203bc6c7a58766212ea252eb7aa6566d711de0552e45d4cb02db2",
+        "67d9e6db965eb676c85fa76a3fefd4fc1bd2f5b9a7728ba11a15c69b2c824abc",
+        "6d2a91689780d89d4cb07eab72bbde0087a73b61c0257c6f06f8a61ccbcc8cb9",
+        "74e9c7343cd48687a8772658c7325f578cfaca23447030fcf2df45a61ddc3637",
+        "ac741a2e5bb5142874fd03ddefa8c492b63f8e5dae65f2718f9e7434977f3143",
+        "ce5b4ad94af1e14856c80f4173116e177cce95609f73552e4ddafe39f36736b4",
+        "f009aa28cc7b815632ac3496fc60c4da55614e24f296cf0e0d8e51f44a3ef727"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -304,7 +317,11 @@
         4096,
         512
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "4f0f6022edbd7bd6d2e6192250f3529fb77032527deec398d770a8f83174916e",
+        "babab8a2baf09318dc65af4537f0e40a8419142023073050b4979b650c4ec244",
+        "e85bdb71bc0d501c0ab8340c6cc943fd6f709eac62963d1ae21bfa8260149a6a"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -321,7 +338,15 @@
         4096,
         608
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "03cb306758c80a5397884dcccfb37f7cdc625cd2eb19e08cf0ce4934a5ffd43e",
+        "2a901db10d7e78e6ee494e01378dc747606516e690868776b023d8de075f24f6",
+        "814f2a1efa9505f61a3b9a006d1a0271eb9e5a65386ddc062744522614550ca9",
+        "854cf2789797543c059726dff651ff7a59a561b2cd457777f7fa15b3247802ad",
+        "acba35c69fa4b4164391efcc080f33fae6ea793a444221b30f90a1adfda15ec9",
+        "cf446d2373b5addd07d18cf76e532a18fe1070f363583bcb3fc8f42fe1b6a33c",
+        "fdbef7ada10278e364799563804756a7a9f97f6630d182931d851339e936268e"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1598,7 +1623,9 @@
         4096,
         608
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "03cb306758c80a5397884dcccfb37f7cdc625cd2eb19e08cf0ce4934a5ffd43e"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2490,7 +2517,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2521,7 +2548,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2552,7 +2579,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2583,7 +2610,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2614,7 +2641,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2645,7 +2672,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2676,7 +2703,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2707,7 +2734,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2738,7 +2765,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2769,7 +2796,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2800,7 +2827,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2831,7 +2858,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {9: [0]}. Source family: town masonry, tiled roof, timber, vegetation, fences, stairs, windows and a blue/gold banner.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3113,7 +3140,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {13: [1]}. Source family: Nest of Dragoon: fringed rock, stalks and skeletal/webbed organic construction. Engine random-encounter location mapping: Nest of Dragon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3144,7 +3171,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {13: [2]}. Source family: Nest of Dragoon: fringed rock, stalks and skeletal/webbed organic construction. Engine random-encounter location mapping: Nest of Dragon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3175,7 +3202,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {13: [6]}. Source family: Nest of Dragoon: fringed rock, stalks and skeletal/webbed organic construction. Engine random-encounter location mapping: Nest of Dragon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3225,7 +3252,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [3, 7], 92: [4]}. Source family: grey stone and skeletal/webbed organic construction; Nest of Dragoon: grey stone, webs, roots and shaded architectural gradients. Engine random-encounter location mapping: Nest of Dragon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3257,7 +3284,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [4, 6]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3288,7 +3315,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [7]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3319,7 +3346,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [0]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3351,7 +3378,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [1, 2]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3382,7 +3409,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [5]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3413,7 +3440,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [5]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
