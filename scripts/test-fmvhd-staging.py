@@ -115,6 +115,28 @@ class Staging(unittest.TestCase):
         self.manifest.write_text(self.manifest.read_text()+'OPENH.bytes=1\n')
         with self.assertRaises(ValueError): stager.contract(self.manifest)
 
+    def test_failed_promotion_restores_old_output_and_failed_restore_preserves_backup(self):
+        self.stage()
+        before = (self.output/'manifest.properties').read_bytes()
+        rename = Path.rename
+        for fail_restore in (False,True):
+            def fail(path, target):
+                if path.name.startswith('.fmv-stage-'): raise OSError('promotion failure')
+                if fail_restore and path.name.startswith('.fmv-old-'): raise OSError('restoration failure')
+                return rename(path,target)
+            with mock.patch.object(Path,'rename',fail):
+                with self.assertRaises(OSError): self.stage()
+            if fail_restore:
+                self.assertFalse(self.output.exists())
+                backups=list(self.root.glob('.fmv-old-*'))
+                self.assertEqual(1,len(backups))
+                self.assertEqual(before,(backups[0]/'manifest.properties').read_bytes())
+                self.assertEqual(18,len(list((backups[0]/'videos').glob('*.mp4'))))
+            else:
+                self.assertEqual(before,(self.output/'manifest.properties').read_bytes())
+                self.assertEqual([],list(self.root.glob('.fmv-old-*')))
+            self.assertEqual([],list(self.root.glob('.fmv-stage-*')))
+
     def test_local_zip_requires_pin_complete_inventory_and_exact_source_identity(self):
         archive = self.root/'local.zip'
         def make(extra=False):

@@ -64,7 +64,7 @@ def stage(manifest, output, local=None):
             if file.is_dir() and file.relative_to(output).as_posix()!='videos': raise ValueError('Unexpected old FMVHD build directory')
             if file.is_file(): actual.add(file.relative_to(output).as_posix())
         if actual!=expected: raise ValueError('Unexpected old FMVHD build output')
-    staging=Path(tempfile.mkdtemp(prefix='.fmv-stage-',dir=output.parent)); backup=None; archive=None
+    staging=Path(tempfile.mkdtemp(prefix='.fmv-stage-',dir=output.parent)); backup=None; archive=None; promoted=False
     try:
         (staging/'videos').mkdir()
         for name in ('NOTICE.txt','provenance.json'): shutil.copyfile(resources/name,staging/name)
@@ -99,15 +99,22 @@ def stage(manifest, output, local=None):
         if archive is not None: archive.close();archive=None
         if output.exists():
             backup=Path(tempfile.mkdtemp(prefix='.fmv-old-',dir=output.parent));backup.rmdir();output.rename(backup)
-        try: staging.rename(output)
+        try:
+            staging.rename(output)
+            promoted=True
         except BaseException:
-            if backup is not None:backup.rename(output);backup=None
+            if backup is not None:
+                try:
+                    backup.rename(output)
+                    backup=None
+                except OSError as recovery:
+                    raise OSError('FMVHD output restoration failed; verified previous output preserved at '+str(backup)) from recovery
             raise
         return {'films':18,'bytes':sum(int(p[n+'.bytes']) for n in NAMES),'movieSha256':{n:p[n+'.sha256'] for n in NAMES}}
     finally:
         if archive is not None:archive.close()
         if staging.exists():shutil.rmtree(staging)
-        if backup is not None:shutil.rmtree(backup)
+        if backup is not None and promoted:shutil.rmtree(backup)
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--manifest',type=Path,required=True);parser.add_argument('--output',type=Path,required=True);parser.add_argument('--local',type=Path)
