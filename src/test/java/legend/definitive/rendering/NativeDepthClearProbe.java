@@ -14,6 +14,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11C.*;
 import static org.lwjgl.opengl.GL14C.GL_BLEND_DST_RGB;
@@ -23,9 +24,10 @@ import static org.lwjgl.opengl.GL20C.GL_BLEND_EQUATION_RGB;
 /** Opt-in windowless GPU regression; ordinary tests never open a graphics context. */
 public final class NativeDepthClearProbe {
   private static native long open();
-  private static native void close(long context);
+  private static native long close(long context, boolean injectDestroyFailure);
   private static final JSONArray cases = new JSONArray();
   private static int failures;
+  private record Cleanup(String name, Runnable action) { }
 
   private static void field(final String name, final Object value) throws ReflectiveOperationException {
     final var field = GameEngine.RENDERER.getClass().getDeclaredField(name);
@@ -66,13 +68,35 @@ public final class NativeDepthClearProbe {
     return new int[] {glGetInteger(GL_BLEND_SRC_RGB), glGetInteger(GL_BLEND_DST_RGB), glGetInteger(GL_BLEND_EQUATION_RGB)};
   }
 
-  public static void main(final String[] args) throws Exception {
-    if(args.length != 2) throw new IllegalArgumentException("Supply windowless JNI library and JSON output path");
-    System.load(Path.of(args[0]).toAbsolutePath().toString());
-    final long context = open();
-    if(context == 0) throw new IllegalStateException("Windowless accelerated CGL context unavailable; this is not a test pass");
+  private static void cleanup(final Cleanup step, final JSONArray errors) {
     try {
+      step.action.run();
+    } catch(final Throwable error) {
+      errors.put(new JSONObject().put("step", step.name).put("type", error.getClass().getName())
+        .put("message", String.valueOf(error.getMessage())));
+    }
+  }
+
+  public static void main(final String[] args) throws Exception {
+    if(args.length < 2 || args.length > 3 || args.length == 3 && !args[2].equals("--inject-cleanup-failure")) {
+      throw new IllegalArgumentException("Supply windowless JNI library and JSON output path, optionally --inject-cleanup-failure");
+    }
+    final boolean injectCleanupFailure = args.length == 3;
+    final var cleanupErrors = new JSONArray();
+    final var cleanup = new JSONObject().put("exceptions", cleanupErrors).put("injectedFailure", injectCleanupFailure);
+    final var report = new JSONObject().put("cases", cases).put("cleanup", cleanup).put("deckCauseConfirmed", false)
+      .put("scope", "Actual GlApi depth readback and real empty RenderEngine.renderBatch transitions; macOS CGL, no window, no gameplay or GLES acceptance");
+    final var actions = new ArrayList<Cleanup>();
+    long context = 0;
+    boolean capabilitiesCreated = false;
+    Throwable executionFailure = null;
+    try {
+      System.load(Path.of(args[0]).toAbsolutePath().toString());
+      context = open();
+      if(context == 0) throw new IllegalStateException("Windowless accelerated CGL context unavailable; this is not a test pass");
       GL.createCapabilities();
+      capabilitiesCreated = true;
+      report.put("device", glGetString(GL_RENDERER)).put("version", glGetString(GL_VERSION));
       final GlApi api = new GlApi();
       field("api", api);
       api.init();
@@ -82,7 +106,9 @@ public final class NativeDepthClearProbe {
       field("camera2d", new BasicCamera(0, 0));
       field("camera3d", new QuaternionCamera(0, 0, 0));
       final var transforms = api.makeUniformBuffer(32 * Float.BYTES, ShaderUniformBuffer.TRANSFORM);
+      actions.add(new Cleanup("transforms", transforms::delete));
       final var projection = api.makeUniformBuffer(4 * Float.BYTES, ShaderUniformBuffer.PROJECTION_INFO);
+      actions.add(new Cleanup("projection", projection::delete));
       field("transformsUniform", transforms);
       field("projectionUniform", projection);
       GameEngine.GTE.setProjectionPlaneDistance(256);
@@ -94,75 +120,104 @@ public final class NativeDepthClearProbe {
 
       final var colour = api.makeTexture(null, "Depth clear probe colour", 4, 4, TextureInternalFormat.RGBA_8,
         TextureDataFormat.RGBA, TextureDataType.UBYTE, false, false, false, false);
+      actions.add(new Cleanup("colour", colour::delete));
       final var depth = api.makeTexture(null, "Depth clear probe depth", 4, 4, TextureInternalFormat.DEPTH_COMPONENT,
         TextureDataFormat.DEPTH_COMPONENT, TextureDataType.FLOAT, false, false, false, false);
+      actions.add(new Cleanup("depth", depth::delete));
       final FrameBufferAttachment[] attachments = {
         new FrameBufferAttachment(FrameBufferAttachmentType.COLOUR, colour),
         new FrameBufferAttachment(FrameBufferAttachmentType.DEPTH, depth)
       };
       final var first = api.makeFrameBuffer("Depth clear first pass", attachments);
+      actions.add(new Cleanup("first", first::delete));
       final var second = api.makeFrameBuffer("Depth clear shared depth reuse", attachments);
-      try {
-        first.bind();
+      actions.add(new Cleanup("second", second::delete));
+      first.bind();
+      seed(api, .25f);
+      check("ordinary opaque depth clear", .25f, true, false, null);
+      // An inherited driver write mask must not prevent an API-requested opaque clear.
+      glDepthMask(false);
+      glClearDepth(1);
+      api.clear(false, true, false);
+      check("opaque clear with inherited disabled write mask", 1, true, false, null);
+
+      for(final Translucency mode : new Translucency[] {
+        Translucency.HALF_B_PLUS_HALF_F, Translucency.B_PLUS_F, Translucency.B_MINUS_F
+      }) {
         seed(api, .25f);
-        check("ordinary opaque depth clear", .25f, true, false, null);
-        // An inherited driver write mask must not prevent an API-requested opaque clear.
-        glDepthMask(false);
+        api.translucency(mode);
+        final int[] state = blendState();
         glClearDepth(1);
         api.clear(false, true, false);
-        check("opaque clear with inherited disabled write mask", 1, true, false, null);
+        check(mode + " depth clear", 1, false, true, state);
+        api.translucency(mode); // Cached state must agree with the driver after clearing.
+        check(mode + " continued translucent pass", 1, false, true, state);
 
-        for(final Translucency mode : new Translucency[] {
-          Translucency.HALF_B_PLUS_HALF_F, Translucency.B_PLUS_F, Translucency.B_MINUS_F
-        }) {
-          seed(api, .25f);
-          api.translucency(mode);
-          final int[] state = blendState();
-          glClearDepth(1);
-          api.clear(false, true, false);
-          check(mode + " depth clear", 1, false, true, state);
-          api.translucency(mode); // Cached state must agree with the driver after clearing.
-          check(mode + " continued translucent pass", 1, false, true, state);
+        seed(api, .5f);
+        api.translucency(mode);
+        api.clear(true, false, false);
+        check(mode + " colour-only clear", .5f, false, true, state);
 
-          seed(api, .5f);
-          api.translucency(mode);
-          api.clear(true, false, false);
-          check(mode + " colour-only clear", .5f, false, true, state);
+        // Exercise the real batch entry point (empty pools deliberately retain
+        // translucency), not a copied approximation of its clear ordering.
+        seed(api, .125f);
+        api.translucency(mode);
+        glClearDepth(1);
+        renderBatch.invoke(GameEngine.RENDERER, mainBatch);
+        check(mode + " actual empty renderBatch boundary", 1, false, true, state);
 
-          // Exercise the real batch entry point (empty pools deliberately retain
-          // translucency), not a copied approximation of its clear ordering.
-          seed(api, .125f);
+        second.bind();
+        for(int pass = 0; pass < 3; pass++) {
+          seed(api, .2f + pass * .1f);
           api.translucency(mode);
           glClearDepth(1);
-          renderBatch.invoke(GameEngine.RENDERER, mainBatch);
-          check(mode + " actual empty renderBatch boundary", 1, false, true, state);
-
-          second.bind();
-          for(int pass = 0; pass < 3; pass++) {
-            seed(api, .2f + pass * .1f);
-            api.translucency(mode);
-            glClearDepth(1);
-            renderBatch.invoke(GameEngine.RENDERER, new RenderBatch(GameEngine.RENDERER, java.nio.FloatBuffer.allocate(32)));
-            check(mode + " shared depth batch reuse " + pass, 1, false, true, state);
-          }
-          first.bind();
-          api.translucency(null);
-          check(mode + " following opaque pass", 1, true, false, null);
+          renderBatch.invoke(GameEngine.RENDERER, new RenderBatch(GameEngine.RENDERER, java.nio.FloatBuffer.allocate(32)));
+          check(mode + " shared depth batch reuse " + pass, 1, false, true, state);
         }
-        final var report = new JSONObject().put("device", glGetString(GL_RENDERER)).put("version", glGetString(GL_VERSION))
-          .put("cases", cases).put("failures", failures).put("passed", failures == 0).put("deckCauseConfirmed", false)
-          .put("scope", "Actual GlApi depth readback and real empty RenderEngine.renderBatch transitions; macOS CGL, no window, no gameplay or GLES acceptance");
-        Files.writeString(Path.of(args[1]), report.toString(2) + System.lineSeparator());
-        System.out.printf("%s: %d cases, %d failures; %s / %s%n", failures == 0 ? "PASS" : "FAIL", cases.length(), failures,
-          glGetString(GL_RENDERER), glGetString(GL_VERSION));
-      } finally {
-        first.delete(); second.delete(); colour.delete(); depth.delete(); Texture.deleteTextures();
-        transforms.delete(); projection.delete();
+        first.bind();
+        api.translucency(null);
+        check(mode + " following opaque pass", 1, true, false, null);
       }
-      if(glGetError() != GL_NO_ERROR) throw new AssertionError("GPU cleanup error");
-      if(failures != 0) throw new AssertionError(failures + " depth-clear regression cases failed");
+    } catch(final Throwable error) {
+      executionFailure = error;
+      report.put("executionFailure", new JSONObject().put("type", error.getClass().getName())
+        .put("message", String.valueOf(error.getMessage())));
     } finally {
-      close(context);
+      cleanup.put("glCleanupAttempted", capabilitiesCreated).put("nativeCloseAttempted", context != 0);
+      if(capabilitiesCreated) {
+        for(int i = actions.size() - 1; i >= 0; i--) cleanup(actions.get(i), cleanupErrors);
+        cleanup(new Cleanup("retired textures", Texture::deleteTextures), cleanupErrors);
+        cleanup(new Cleanup("GL error validation", () -> {
+          final var errors = new JSONArray();
+          int error;
+          for(int i = 0; i < 32 && (error = glGetError()) != GL_NO_ERROR; i++) errors.put(error);
+          cleanup.put("glErrors", errors);
+          if(!errors.isEmpty()) throw new AssertionError("GPU cleanup errors: " + errors);
+        }), cleanupErrors);
+      }
+      if(context != 0) {
+        final long ownedContext = context;
+        cleanup(new Cleanup("native context", () -> {
+          final long status = close(ownedContext, injectCleanupFailure);
+          final int unbindError = (int)(status >>> 32);
+          final int destroyError = (int)status;
+          cleanup.put("setCurrentContextError", unbindError).put("destroyContextError", destroyError);
+          if(unbindError != 0 || destroyError != 0) throw new AssertionError("CGL cleanup errors: " + unbindError + "," + destroyError);
+        }), cleanupErrors);
+      }
+      if(capabilitiesCreated) cleanup(new Cleanup("thread GL capabilities", () -> GL.setCapabilities(null)), cleanupErrors);
+    }
+    final boolean passed = executionFailure == null && failures == 0 && cases.length() == 26 && cleanupErrors.isEmpty();
+    cleanup.put("passed", cleanupErrors.isEmpty());
+    report.put("failures", failures).put("passed", passed);
+    // No success report exists until GPU resource cleanup AND native teardown finish.
+    Files.writeString(Path.of(args[1]), report.toString(2) + System.lineSeparator());
+    System.out.printf("%s: %d cases, %d case failures, %d cleanup failures; %s / %s%n", passed ? "PASS" : "FAIL",
+      cases.length(), failures, cleanupErrors.length(), report.optString("device", "unavailable"), report.optString("version", "unavailable"));
+    if(!passed) {
+      final var error = new AssertionError(failures + " depth-clear cases failed; " + cleanupErrors.length() + " cleanup failures");
+      if(executionFailure != null) error.initCause(executionFailure);
+      throw error;
     }
   }
 }

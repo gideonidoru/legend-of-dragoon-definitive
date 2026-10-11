@@ -12,6 +12,7 @@ allprojects {
           def reportPath = providers.gradleProperty('depthClearReportPath').orNull
           if (!contextPath || !reportPath) throw new GradleException('Supply -PdepthClearContextPath and -PdepthClearReportPath.')
           args contextPath, reportPath
+          if (providers.gradleProperty('depthClearInjectCleanupFailure').isPresent()) args '--inject-cleanup-failure'
         }
       }
     }

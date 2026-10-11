@@ -1,5 +1,6 @@
 // Optional macOS JNI regression context. No window/application UI. AGPL v3; see LICENSE.
 #include <jni.h>
+#include <stdint.h>
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/OpenGL.h>
 
@@ -20,7 +21,11 @@ JNIEXPORT jlong JNICALL Java_legend_definitive_rendering_NativeDepthClearProbe_o
   return (jlong)context;
 }
 
-JNIEXPORT void JNICALL Java_legend_definitive_rendering_NativeDepthClearProbe_close(JNIEnv *env, jclass type, jlong handle) {
-  CGLSetCurrentContext(NULL);
-  CGLDestroyContext((CGLContextObj)handle);
+JNIEXPORT jlong JNICALL Java_legend_definitive_rendering_NativeDepthClearProbe_close(JNIEnv *env, jclass type, jlong handle, jboolean injectDestroyFailure) {
+  CGLError unbindError = CGLSetCurrentContext(NULL);
+  CGLError destroyError = CGLDestroyContext((CGLContextObj)handle);
+  // Fault fixture reports a failed teardown status AFTER real context destruction.
+  // It never calls the driver with an invalid pointer or leaks a test context.
+  if(injectDestroyFailure && destroyError == kCGLNoError) destroyError = kCGLBadContext;
+  return (jlong)(((uint64_t)(uint32_t)unbindError << 32) | (uint32_t)destroyError);
 }

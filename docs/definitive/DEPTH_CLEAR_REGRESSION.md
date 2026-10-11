@@ -21,7 +21,10 @@ The 26 checks cover ordinary opaque clears, inherited disabled writes, all three
 supported translucent modes, continuing translucent draws' intended state,
 colour-only clears, real batch boundaries, repeated shared-depth reuse and the
 following opaque pass. Every check records depth, write mask, blend state and GL
-errors to JSON; any failing check exits nonzero. Cleanup errors also fail.
+errors to JSON; any failing check exits nonzero. The final JSON and exit verdict
+are decided after all GPU resource cleanup, GL error validation and native context
+teardown. Individual cleanup exceptions and both CGL unbind/destroy statuses are
+recorded; remaining cleanup steps still run if an earlier step fails.
 
 Ordinary builds/tests do not run this executable or create a graphics context.
 On macOS with JDK 25:
@@ -34,6 +37,16 @@ clang -dynamiclib -I "$JAVA_HOME/include" -I "$JAVA_HOME/include/darwin" \
   -PdepthClearContextPath=/tmp/libdepth-clear-context.dylib \
   -PdepthClearReportPath=/tmp/depth-clear-candidate.json
 ```
+
+To check failure reporting, add `-PdepthClearInjectCleanupFailure` (or append
+`--inject-cleanup-failure` to the direct Java invocation). The native helper really
+destroys its context, then substitutes `kCGLBadContext` for a successful destroy
+status. This controlled fixture never passes an invalid pointer to the driver.
+All 26 rendering cases still pass, but final JSON records `passed=false`,
+`cleanup.passed=false`, `cleanup.injectedFailure=true` and the destroy error; the
+process must exit nonzero. Normal runs record both native errors as zero. The
+fixture tests propagation of a teardown failure through the real JNI return path
+and final report, rather than pretending a rendering case failed.
 
 ## Exact published negative control
 
