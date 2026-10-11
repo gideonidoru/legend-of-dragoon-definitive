@@ -182,7 +182,7 @@ The first woven-front draft added heavy uprights; a correction restores continuo
 weave. The chair's invented radial flowers/stars were replaced with small dark marks.
 Source alpha and visible-black classes remain exact at4x; fine weave, tile relief,
 cloth, marks, leaf species, cap morphology and hoist details remain interpretive.
-The tiny Evergreen cut339 fragment remains held because its precise material role
+The tiny Evergreen cut 339 fragment remains held because its precise material role
 is ambiguous. No source guide, comparison or original image is published.
 
 Moon's opaque ground originally has a uniform RGB224 border. Its first snowy draft
@@ -286,3 +286,26 @@ The full bed requires source-context classification or a source-faithful correct
 and independent review before re-selection. Public installation still has 4,892;
 25 selected newer fields await coordinated publication. Native gameplay and final
 art acceptance remain pending.
+
+## Ground edge and recessed-door drafts: held
+
+Two further source-context authoring attempts clear no hold. Evergreen Forest
+cut 339 slot 7 ground-cover bank (`745736c6a0d1c9a694b2295793ff1e4573a9861c9f999995ce85fdbecafd3d90`)
+received two custom moss-detail drafts, but both changed the original 92:24 canvas
+aspect. They are rejected before cutout repair; neither is stretched/cropped into
+acceptance. Deningrad cut 347 slot 11 recessed wood door
+(`a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab`)
+received two drafts with exact 30:36 opaque canvases. Both replay the unchanged
+cutout recipe with zero extended/uncovered pixels, but their interpreted chevron
+and grain arrangement does not establish the original fine incision pattern.
+They remain intent holds; passing alpha/coverage does not clear that concern.
+
+`field-bespoke-stone-ground-held-drafts.json` records every tool input hash,
+prompt, source binding, rejection and door repair receipt. Only custom draft
+PNGs, repaired door drafts and prompts are versioned under
+`production/held-field-art-drafts`; original source pixels, exposure guides,
+context images and comparison boards remain private. Two shrine carvings checked
+in preparation were not generated because their ornament remained ambiguous.
+The current selection stays **4,917 fields / 31 painted**, with **245 field holds
+plus one terrain hold**. Its complete reviewed selection manifest, all runtime
+resources, source-ledger controls, recipes and normal packages remain unchanged.
