@@ -1,0 +1,62 @@
+# EnvHD current coverage
+
+[The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
+
+Current static work remaining is **238 images: 237 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+
+Field selection is 4,925 development images: 4,886 neural and 39 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. The last recorded installer snapshot at source0af has 4,892 field selections; another 33 fields and 12 painted battle replacements await coordinated publication. Later release publication is managed separately. All protected Skurfa work is reused.
+
+## Held natural-rock drafts
+
+[Three generated foreground drafts](../../integrations/envhd/production/field-bespoke-natural-rock-held-drafts.json) cover two Undersea Cavern formations and one Volcano Villude rock. Their raw paintings exaggerate rock relief and grain. The original pinned cutout recipe preserves canvas, source alpha and visible black, but those checks cannot establish source intent or quality.
+
+The separate experimental recipe `scripts/repair-envhd-painted-macro-detail.py` first applies the unchanged cutout gates. It discards broad painted colors and relief, combines source-derived interpolation with bounded painted detail, and anchors each native pixel's mean RGB within half an integer level. Saturated channels, hidden pixels, alpha and visible black remain constrained. Its receipts record the new method and dependency hashes; it does not impersonate the original cutout recipe.
+
+The refined drafts preserve broad source forms but remain too soft and pixelated for HD selection. All three jobs remain held, with their generated inputs, repaired variants and prompts retained as approved custom derivative-art history. The source-mean variants preserve recoverable native RGBA values: averaging and rounding each 4×4 cell reconstructs the original low-resolution image, verified against all three source hashes. Original input/reference/context files and comparison boards remain separate and are not added. Neither this recipe nor these drafts are inputs to the runtime mod or installer.
+
+Nine behavioral checks cover broad recoloring, invented relief, native visibility and saturated channels, original aspect/coverage gates, opaque-only RGB input, input identity/mutation, existing output preservation and determinism. Passing these checks does not clear the art holds. The next attempt must improve visible detail while preserving the actual source forms; independent review and native validation remain necessary.
+
+## Textile candidates
+
+[The complete 32-painting author-reviewed candidate set](../../integrations/envhd/production/field-bespoke-textiles-reviewed-selection.json) preserves the existing 31-painting selection and adds Donau cut 249's two patterned furnishing surfaces. The new painting restores dark brown weave and muted red/ochre marks erased by the neural baseline. It retains the original left/right proportions, dark separation and green-brown support. Independent development review is clear. Fresh source preflight reproduced all 32 paintings, then selection added only Donau while preserving all 4,917 prior assets and every protected Skurfa cut. Native and final quality acceptance remain pending.
+
+[Twin Castle cut 226's cropped embroidered bed](../../integrations/envhd/production/field-bespoke-textile-held-drafts.json) now has a detailed painting, but the upper embroidery loops have been regularized into circular nodes. The source pattern needs correction before selection. Both candidates pass the unchanged cutout canvas/coverage/alpha/black gates. Only custom generated artwork, repaired variants, prompts and hash-bound metadata are versioned; original game references and comparison boards remain private. Thirteen known custom-draft source images now remain a subset of the 244 held field images; repeated versions and reviewed/held histories are deduplicated by source identity.
+
+## Animated world water source
+
+[The partial source contract](../../integrations/envhd/production/world-water-source-audit.json) identifies one byte-identical water TIM across all eight continent banks. It initializes a 64×64 texture at native word rectangle `[448,0,16,64]` and eight palette rows at `[1008,485,16,8]`. All 296 part-zero textured faces use page 7 and UVs within `[0,0,63,63]`. Each continent's ordered uploads completely initializes these regions. General bank 5695 touches neither region, and both final whole-bank orders agree. These checks do not simulate partially interleaved asynchronous callbacks or every other upload/state.
+
+The source-extracted Java float counters were exercised with a fake row-offset recorder, without executing the full engine or GPU. At normal world initialization mode 1, the first row rotation occurs on invocation 1, then every six eligible invocations; the palette counter resets every **43**, rather than an assumed 42. Together with 64 row offsets, their isolated controller state repeats after a one-invocation transient and a 16,512-invocation period. Modes 2 and 3 were measured only as fixed-mode sensitivity probes. Periods are controller facts, not frame-image generation counts. Script/debug mode changes, guards and presentation remain unresolved.
+
+The Queen Fury wake samples the same page and palette sequence. The existing indexed-detail infrastructure could preserve palette and row movement, but its consumer ownership and EnvHD/FxHD switch behavior need coordination before integration. The next work should reuse this one water source across all eight parts, preserving live palettes and native timing, rather than generating thousands of phase combinations. No animated-world hold is cleared by this partial audit.
+
+## Four-times water candidate
+
+[One generated coefficient family](../../integrations/envhd/production/world-water-candidate-artwork.json) now covers the shared water source at 256×256. The pinned batch upscaler processed all eight palette profiles using 16 pixels of periodic context. A single source-local coefficient field was then fitted against all eight outputs together. Each sample retains its native index as the primary contribution and uses at most a half-strength mixture with a secondary index from the wrapped 3×3 source neighborhood. The exact primary channel makes the original indices recoverable; original TIM/input/palette files are not added.
+
+Eight custom RGB previews show clearer caustic highlights while retaining the source ripple pattern. They are opaque diagnostic renders, not independent jobs or runtime alpha/STP textures. Native index zero is visibly colored in all eight current palettes; index zero must never be treated as a transparency rule. The manifest records the actual source black/STP classes separately.
+
+The public replay tool verifies all common/continent bank files and part-zero model hashes, all captured neural inputs/outputs, source canvas and palette positions, and reproduces the private prototype's coefficient image byte-for-byte. Fourteen CPU behavior tests cover every palette's influence, bounded mixtures, periodic neighborhoods, live recoloring, signed row shift equivalence, native black, STP-independent preview RGB, malformed codes and source/inference changes before receipt publication. These checks do not exercise the renderer or prove native gameplay.
+
+The current shared indexed companion accepts 2× images and cannot load this 4× candidate. Coordinated consumer-local 4× support must preserve live palettes, row/copy ownership, UV64 fallback and all four EnvHD/FxHD combinations. EnvHD owns terrain water; the Queen Fury wake stays native unless FxHD supplies its own independently selected binding. This candidate is versioned but unselected, with artistic, renderer and device acceptance pending.
+
+## Further textile corrections
+
+[The complete 33-painting candidate input](../../integrations/envhd/production/field-bespoke-textile-detail-reviewed-selection.json) preserves every current32 painted record and adds Fletz cut206 slot2. Its native source is a small dark navy/gray-green textile fragment, not a sign. The first painted attempt made diffuse marks into outlined scrolls; the second softens them into woven patches. Original crop, room context and exact120×88 repaired output were compared. Fine pattern interpretation still needs independent review; the candidate is unselected. Fresh source preflight reproduces all33 paintings with unchanged recipe pins.
+
+Twin Castle bed versions2 and3 correct some closed embroidery junctions into open curls, but one upper junction remains closed and the last attempt adds embossed-looking upholstery texture. The throne-hall cloth version1 retains the broad plum/green panels, support rod and finial, but overinterprets ornament and the lower-left metal support. These versions remain held in the [versioned draft history](../../integrations/envhd/production/field-bespoke-textile-held-drafts.json), alongside the rejected Fletz first attempt. All five new attempts passed source canvas/alpha/black/coverage checks; those gates do not prove material or motif intent. No remaining hold, runtime selection or installer changed in this authoring checkpoint.
+
+## Architectural authoring batch
+
+[The complete36 candidate input](../../integrations/envhd/production/field-bespoke-wood-architecture-reviewed-selection.json) preserves all32 selected paintings and the pending Fletz fragment, then adds Rouge's interlocking timber railing, Deningrad's room partition and Indels Castle's small carved panel. Each native crop and complete original scene was compared with the generated/repaired output. Fine lattice joins, picture/fitting content and carved ornament remain interpretive and require independent review. New candidates are unselected; all244 field holds and the Tiberoa hold remain.
+
+[Two Phantom Ship column paintings](../../integrations/envhd/production/field-bespoke-wood-architecture-held-drafts.json) returned the wrong full-canvas aspect. Both were rejected by the existing36:62 source gate before repair. No repaired output or runtime selection exists for either. Their custom generated inputs and prompts are preserved; source references and diagnostics remain separate. Original cutout/registration algorithms and gates are unchanged.
+
+
+## Seven independently cleared development selections
+
+The [complete39-painting selection input](../../integrations/envhd/production/field-bespoke-seven-independent-reviewed-selection.json) retains every prior32 painted record and adds seven independently development-intent-cleared candidates: Fletz textile, Deningrad partition, Indels carved panel, two Evergreen canopy fragments, corrected Bale facade relief and Furni source-surround door repair. The [independent nine-image receipt](../../integrations/envhd/production/field-independent-nine-review.json) records exact raw/output identities and individual dispositions. Standards/source replay cleared all41 source-bound recipes; image-level Spec review cleared seven for development only.
+
+Rouge lattice openings cut misaligned generated connectors into fragments, and Phantom Ship canvas-fit moves an internal lower band and pale weathering groups. Both remain unselected until source landmarks are repaired and independently reviewed. New Bale corner and Shrine arch candidates remain independently pending. Current unselected draft sources are15 unique source keys within237field holds; histories and repeated versions are deduplicated by source identity.
+
+Selection preserves all4,918 earlier asset records and every Skurfa protected cut. Fresh current-source replay, complete selected-field CPU audit and five-part package byte checks are required before the coordinator integrates this source. This is not native/script/GPU/Steam Deck or final Skurfa-equivalent finish acceptance. No separate release was published.

@@ -1,0 +1,62 @@
+{
+  "decodedRgbaSha256": "49247bd98311d7e0cad111ac3af416aea54a2bc1feeb3b277040ab69980c3779",
+  "generatedSha256": "9258068182577f09ace7b849048420a7d50649e21a0dee43270804e85e7fe60e",
+  "generatedSize": [
+    1572,
+    1001
+  ],
+  "sourceSize": [
+    22,
+    14
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "f7a55816ac038e8232431207f9d3f408249c2ac42a5a03588b712c4f1f686b9d:-1",
+      "kind": "foreground",
+      "slot": 3,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 340,
+  "representativeLocation": "Evergreen Frst",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 1,
+  "prompt": "Use case: precise-object-edit. Asset: source-faithful HD game foreground texture. Reference1 is the authoritative original nearest-neighbor zoom; reference2 is the COMPLETE original game scene for usage and lighting; reference3 is Skurfa painterly surface finish only, not geometry or color. Repaint reference1 alone, preserving the exact full source canvas, crop, object placement and broad source color/motif arrangement. Evergreen Forest cut340 tiny22x14 isolated foliage fragment at294,333 beside the lower path and conifer canopy. Source context places it among dark green tree growth. Retain the broad dark olive upper/right patches, muted green central/lower areas and small brown accents in their source positions. Fine understated conifer foliage texture only; no large leaves, new trunk, smooth flat wall, horizontal panel lines or complete bush. Canvas22:14, requested1408x896. Match restrained detailed painterly HD finish while retaining reference1 palette/lighting. True transparent alpha only outside native occupied silhouette; never add empty padding, shift or center the object, zoom/crop differently, complete missing parts, or include other scenery. Pixelated source blocks define the broad design, not large square tessellation. No words, logo, watermark or border.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 3344,
+  "paintedGapPixelsExtended": 263,
+  "paintedUncoveredSourcePixels": 181,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 20,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    88,
+    56
+  ],
+  "outputSha256": "474a69c5b20cdde89f04d460bce1ba67954766ed2ab1edae5477f4914d2bd347",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/49247bd98311d7e0cad111ac3af416aea54a2bc1feeb3b277040ab69980c3779/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/49247bd98311d7e0cad111ac3af416aea54a2bc1feeb3b277040ab69980c3779/image-v1.png",
+  "review": {
+    "intent": "Evergreen Forest cut340 foreground3: complete original scene places this22x14 olive fragment at294,333 within the lower conifer canopy beside the winding path. Current native and EnvHD composites confirm foliage context, refining the earlier ground/root ambiguity.",
+    "style": "Fine mottled foliage replaces the neural result straight panel-like bands. Restrained olive/dark green surface and small brown accents retained. Individual needle/branch detail is interpreted from canopy context; independent review and final art acceptance pending.",
+    "layout": "Exact22x14 source canvas restored at88x56, original alpha/visible black exact. Native location and crop fixed; no new trunk or completed bush. Source/native and current EnvHD static composites inspected; native layering and renderer acceptance pending.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "474a69c5b20cdde89f04d460bce1ba67954766ed2ab1edae5477f4914d2bd347",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

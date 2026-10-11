@@ -1,0 +1,62 @@
+{
+  "decodedRgbaSha256": "5fc04ff6f16aa8e1bc7eff701095983ba1d5a5a1c32a7f5c935b1e6337036b89",
+  "generatedSha256": "e2b9b4d1ddb22571be6f578cc9c9e30631ea9757cd8df138d615323ab210edfb",
+  "generatedSize": [
+    1316,
+    1195
+  ],
+  "sourceSize": [
+    22,
+    20
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "ab52591d3af2f4497d9117056d653d5c3773efbd69ca6028b3c54c38a1c37c72:-1",
+      "kind": "foreground",
+      "slot": 10,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 93,
+  "representativeLocation": "Indels Castle",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 1,
+  "prompt": "Use case: precise-object-edit. One source-shaped EnvHD foreground game-art crop for Legend of Dragoon Definitive. Image1 authoritative native isolated source, image2 original game scene context, image3 Skurfa level of painterly surface finish only. Restore only the very small Indels Castle decorative panel fragment. Preserve image1 native warm gray/tan carved wall surface, its broad dark vertical groove and original scattered pale relief marks at their exact positions, using image2 for the architectural placement beside the right doorway. Refine restrained shallow carved-surface detail. Do not interpret ambiguous relief as letters, a human figure, an animal, a new symbol, deep cracks or newly drawn black outlines. No new elaborate scene or ornament. Keep exact clipped left edge and full original occupied panel. Avoid the held neural invented conspicuous dark strokes. Preserve original source canvas aspect 22:20, geometry, silhouette, positions, broad colors, shadows, negative spaces and crop borders. Requested 352x320 full canvas. True transparency outside original occupied source outline; fully paint all existing visible planes. Green/cyan image2 regions are private missing-layer placeholders and must never be included. One isolated crop only; no text, labels, scene/background, border, watermark, extra objects, recentering or completion of cropped forms.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 4432,
+  "paintedGapPixelsExtended": 12,
+  "paintedUncoveredSourcePixels": 9,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 9,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    88,
+    80
+  ],
+  "outputSha256": "73a534997b82401b256f6f481218c184e1b3c3fd83373c9052e93e23aa6bd47e",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/5fc04ff6f16aa8e1bc7eff701095983ba1d5a5a1c32a7f5c935b1e6337036b89/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/5fc04ff6f16aa8e1bc7eff701095983ba1d5a5a1c32a7f5c935b1e6337036b89/image-v1.png",
+  "review": {
+    "intent": "Indels Castle cut93 small tan/gray carved architectural panel beside the right doorway. Full native throne-room context and original22x20 crop compared, preserving the broad dark vertical channel and pale relief groups.",
+    "style": "Shallow curving relief and surface texture replace conspicuous neural black strokes. Tiny carved shapes are interpreted as architectural scroll/leaf relief based on their setting, not proven exact botanical or symbol identity. Independent motif review required before selection; final Skurfa quality pending.",
+    "layout": "Exact22x20 cropped panel restored at88x80 with native stepped left edge, alpha and visible black unchanged. Existing placement retained; native alias/state/depth checks pending.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "73a534997b82401b256f6f481218c184e1b3c3fd83373c9052e93e23aa6bd47e",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}
