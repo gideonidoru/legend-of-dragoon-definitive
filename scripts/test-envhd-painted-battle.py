@@ -99,5 +99,22 @@ class PaintedBattleTests(unittest.TestCase):
         Image.new('RGBA',(16,16),(200,230,220,0)).save(self.output);self.candidate['outputSha256']=self.candidate['review']['outputSha256']=sha(self.output);self.save()
         with self.assertRaisesRegex(ValueError,'source-locked recipe'):self.preflight()
 
+    def rectangle_recipe(self):
+        record,_=verify.rectangle.execute(self.root/'source.png',self.raw,self.output,self.key,[[148,180,156,0]],[0,0,4,3])
+        self.candidate.update(record);self.candidate['review']['outputSha256']=record['outputSha256']
+        self.manifest.update(method=verify.rectangle.METHOD,**verify.RECTANGLE_PINS);self.save()
+
+    def test_rectangle_recipe_requires_exact_classes_rectangle_and_count(self):
+        self.rectangle_recipe();self.assertEqual(len(self.preflight()['verified']),1)
+        self.candidate['sourceMarkingPixels']+=1;self.save()
+        with self.assertRaisesRegex(ValueError,'receipt changed'):self.preflight()
+        self.candidate['sourceMarkingPixels']-=1;self.candidate['sourceMaskRectangle']=[0,0,4,4];self.save()
+        with self.assertRaisesRegex(ValueError,'source-locked recipe'):self.preflight()
+
+    def test_rectangle_recipe_cannot_accept_rehashed_wrong_output(self):
+        self.rectangle_recipe();Image.new('RGBA',(16,16),(210,240,220,0)).save(self.output)
+        self.candidate['outputSha256']=self.candidate['review']['outputSha256']=sha(self.output);self.save()
+        with self.assertRaisesRegex(ValueError,'source-locked recipe'):self.preflight()
+
 
 if __name__ == '__main__': unittest.main()

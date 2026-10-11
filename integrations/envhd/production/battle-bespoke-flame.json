@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "method": "python-reviewed-painted-battle-material-exact-stp-1",
+  "algorithmSha256": "10d96f21c187ac579f19985e8463b6eebe56ccb09ca1c00b0893fc9535db9837",
+  "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "scope": "Separately reviewed stage38 static matte flame-shaped surface; animations and selected runtime unchanged.",
+  "visualReviewedBespokeCandidates": 1,
+  "revisionsNeeded": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceSize": [
+        40,
+        80
+      ],
+      "targetSize": [
+        160,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "ef23840d70a36406d6b62d1fffd7a1a9c74a5a23921639a448d7222aa2013a06",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "10d96f21c187ac579f19985e8463b6eebe56ccb09ca1c00b0893fc9535db9837",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "192cc2047d1fb4d50b6b5a7fb0447bef4f5e41699d97bf7210d1b95058d9adc9",
+      "outputSha256": "94c103552f722e81f5a9ba0db90bdb6953d6a9417ae37ff056ffe164f4ea759d",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 38,
+          "page": 7,
+          "clut": 15644,
+          "parts": [
+            5
+          ],
+          "sourceCrop": [
+            0,
+            56,
+            40,
+            136
+          ],
+          "sourceUvOrigin": [
+            0,
+            56
+          ]
+        }
+      ],
+      "priorCandidateSha256": "75f1188d7749392c5dd7ca68ef2b7cacdfbf61104d1c704ce2c91a55b36201ca",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/ef23840d70a36406d6b62d1fffd7a1a9c74a5a23921639a448d7222aa2013a06/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/ef23840d70a36406d6b62d1fffd7a1a9c74a5a23921639a448d7222aa2013a06/image-v1.png",
+      "prompt": "Use case: style-transfer\nEdit target: supplied nearest-neighbour enlargement of an actual40x80 Legend of Dragoon battle-stage38 environment texture crop, part5. Restore source-faithful hand-painted HD environmental architecture. EXACT40:80 portrait aspect and original feature placement. The main feature is a narrow tall orange/gold flame-shaped marking with a pale cream internal pattern, against dark charcoal-grey stone; it is a surface emblem, not an actual animated fire or a torch. Keep its tapered upper point, exact widening/re-entrant silhouette, forked/curved white-cream center, lower pale diagonal branches and long thin lower stem. Preserve the grey and gold adjoining fragments at the right edge, top and bottom rather than making a standalone object. Trace original motif details and interior gaps; do not add faces, dragons, animals, letters or new symbols. Add restrained rough stone and matte golden paint/relief texture, matching native orange/cream/charcoal palette and lighting. No new perspective, borders, margins, fixtures or scenery; no text, no watermark, no glow or sparks. Opaque full canvas; native STP/discard categories will be restored by Python.",
+      "review": {
+        "intent": "Stage38 part5 static environmental surface, page7 CLUT15644, sourcecrop0,56,40,136. Tall ochre/gold flame-shaped surface marking with pale branching center on charcoal stone; not an animated fire, torch or FxHD asset. Fresh census classifies this binding as candidate-pending; five separate stage texture-animation families remain native.",
+        "style": "Original, held neural and repaired160x320 painting individually compared. Held neural turns the creamy pattern into a glowing blurred shape. The replacement uses matte gold paint/relief, cream branches and textured charcoal stone; primary colors, tall tip and stem remain source-led. Grain and fissures are inferred material detail; game blending/lighting and final Skurfa-equivalent acceptance pending.",
+        "layout": "Individual comparison checks tapered silhouette, cream forked central branches, lower diagonal arms and thin stem, plus original top/right/bottom neighboring fragments. Generic recipe proves exact4x canvas, native STP including semi-transparent grey stone, discarded and visible-black cells. It does not mechanically prove the internal relief topology; individual comparison is that evidence. Stage animation/other atlas regions remain unchanged; native blend/camera validation pending.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "94c103552f722e81f5a9ba0db90bdb6953d6a9417ae37ff056ffe164f4ea759d",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    }
+  ]
+}

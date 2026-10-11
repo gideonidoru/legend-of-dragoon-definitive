@@ -13,7 +13,7 @@ owned. Custom deliverables are public; originals and private diagnostics are not
 | Location landscapes | 38 source images | 38 | Gameplay and final quality pending |
 | World parchment backdrop | 1 source image | 1 | Gameplay and final quality pending |
 | Static continent terrain | 366 material bindings | 364 bindings / 292 masters | 1 uniform native, 1 wrapped material held; gameplay and final quality pending |
-| Battle floors, walls and scenery | 900 bindings across 89 nonempty stages | 537 bindings (24 pilot + 513 new), 506 new selected masters | 363 native bindings: 12 revision holds, 350 animation/context bindings and 1 incomplete palette |
+| Battle floors, walls and scenery | 900 bindings across 89 nonempty stages | 543 bindings (24 pilot + 519 new), 512 new selected masters | 357 native bindings: six revision holds, 350 animation/context bindings and one incomplete palette |
 | Field backgrounds/foregrounds | 650 source configurations; 5,528 unique visible images | 38 existing Skurfa packs; 4,892 EnvHD development images (4,886 neural and six painted) | All 5,162 generated images reviewed; 270 remaining bespoke holds and zero unreviewed images; 3 uniform sources native; 605 configurations have at least one selected layer, not complete scene coverage; script/route/visual validation pending |
 | Field props and scene overlays | Mixed pool: 481 field-object page hashes and 400 overlay page hashes | EnvHD 0 | Complete consumer/ownership/material census first; these are **not** 881 EnvHD jobs |
 | Animated environment surfaces | Exact frame/palette denominator unresolved; eight continent animated parts and 350 held battle bindings known | 0 HD animation families | Water, scrolling surfaces, scenery frames/palettes, mapping and validation |
@@ -24,6 +24,16 @@ denominator still requires prop/overlay ownership and animation-family census.
 No total-image completion percentage is claimed. Each
 row's exact remaining work and intentional exclusions are in the JSON ledger.
 All custom native/final-quality acceptance counts remain zero.
+
+The authoring branch selects six separately reviewed painted battle replacements:
+three Flanvel Tower materials, two stage-30 decorative panels and a stage-38
+static flame-shaped surface. Their five source-bound painted manifests are
+recorded in the current battle runtime ledger. Fresh native CPU/source checks
+and individual comparisons remain separate from gameplay acceptance. The
+previous 506-master/513-binding runtime ledger is archived byte for byte as
+`battle-material-runtime-artwork-source-0af4f997.json`. Main `0af4f997` and its
+in-flight public release exclude these six paintings; their published battle
+selection remains 537 total bindings until the next coordinated integration.
 
 The field ownership audit freshly verified all 1,044 source folders and all
 protected Skurfa background/foreground hashes. Existing resources are unchanged:

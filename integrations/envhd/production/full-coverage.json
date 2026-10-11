@@ -18,8 +18,13 @@
     "field-review-receipt.json": "fe78489a9e3cbc60cdfab4bd9dee2d616f43789cf25a56a8cf11e08b62dd53cb",
     "field-artwork.json": "d2e03bf46ac238025063ee8a463371131a3ea85a49dcef0db91fe216a593664d",
     "field-runtime-artwork.json": "34f71f66795fa137b211d82abff6d326a2fda0c63f07fea8303a6561234d4634",
-    "battle-material-runtime-artwork.json": "011e5a9206e750b2b4fcfbeb0fb22aa524a97fbee3ca483ea68e09c2bfc941d8",
-    "field-bespoke-foliage.json": "a5ed3d3c90fbf07ec82a745c5058c766d51b32fbbf53a67301d32e40a639d270"
+    "battle-material-runtime-artwork.json": "1ca6fc7ade340e70e61055ce5694332d387304e737cb860cdc7e4aadd77693a5",
+    "field-bespoke-foliage.json": "a5ed3d3c90fbf07ec82a745c5058c766d51b32fbbf53a67301d32e40a639d270",
+    "battle-bespoke-motifs.json": "f60749d01390d24a4ca40f678040452be1312cc341396e9190f2dcb34d352168",
+    "battle-bespoke-lattice.json": "8a352ed1657b2de9f372988a6687e322fd650cd606c04e8e948a6176cd70c3a7",
+    "battle-bespoke-architecture.json": "03fe2f9c3231adcc77634e23ffb98b844c2f3f9561f302e39468a7a1c64367e4",
+    "battle-bespoke-royal-panels.json": "bcc2cec28ff510045c7733750fe40f6fad5c3fe4bcd77a092bcab8c6573c9512",
+    "battle-bespoke-flame.json": "e6fc4e4630a3eca05751346b2877d93a6e2442f523c669a6a06821a88d375264"
   },
   "categories": [
     {
@@ -91,10 +96,10 @@
       "existingPilotSelectedBindings": 24,
       "newCandidateBindings": 525,
       "generatedNewMasters": 518,
-      "reviewedNewDevelopmentMasters": 506,
-      "bespokeRevisionMasters": 12,
-      "newSelectedBindings": 513,
-      "uncoveredBindings": 363,
+      "reviewedNewDevelopmentMasters": 512,
+      "bespokeRevisionMasters": 6,
+      "newSelectedBindings": 519,
+      "uncoveredBindings": 357,
       "heldAnimationAndContextBindings": 350,
       "heldIncompletePaletteBindings": 1,
       "censusStatuses": {
@@ -106,14 +111,24 @@
       "adapter": "Source-bound mixed HD/native atlases select reviewed static crops; native animation and counterattack darkening remain original.",
       "ledger": "battle-material-artwork.json",
       "remaining": [
-        "Repair twelve output-bound carved/emblem/motif candidates.",
+        "Repair six remaining carved/emblem/motif sources; six original neural holds now have separately reviewed source-verified painted replacements.",
         "Restore animated textures, palettes and adjacent sampling context.",
         "Resolve stage 67 incomplete 8-bit palette from actual gameplay upload state.",
         "Native battle/camera/counterattack/lifetime validation and final quality."
       ],
-      "newSelectedMasters": 506,
-      "totalSelectedBindings": 537,
-      "runtimeLedger": "battle-material-runtime-artwork.json"
+      "newSelectedMasters": 512,
+      "totalSelectedBindings": 543,
+      "runtimeLedger": "battle-material-runtime-artwork.json",
+      "reviewedNeuralDevelopmentMasters": 506,
+      "originalNeuralRevisionMasters": 12,
+      "paintedSelectedMasters": 6,
+      "paintedManifests": [
+        "battle-bespoke-motifs.json",
+        "battle-bespoke-lattice.json",
+        "battle-bespoke-architecture.json",
+        "battle-bespoke-royal-panels.json",
+        "battle-bespoke-flame.json"
+      ]
     },
     {
       "id": "field-backgrounds-and-foregrounds",
@@ -256,5 +271,13 @@
     "selectedFieldImages": 4892,
     "selectedPaintedImages": 6,
     "currentPngBytesUnchanged": true
+  },
+  "paintedBattleSelection": {
+    "originalRuntimeLedger": "battle-material-runtime-artwork-source-0af4f997.json",
+    "originalRuntimeLedgerSha256": "011e5a9206e750b2b4fcfbeb0fb22aa524a97fbee3ca483ea68e09c2bfc941d8",
+    "selectedCustomReplacements": 6,
+    "selectionScope": "Future authoring branch only; excluded from main0af4f997 and its in-flight public release.",
+    "nativeAccepted": 0,
+    "finalQualityAccepted": 0
   }
 }

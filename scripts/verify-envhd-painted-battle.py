@@ -29,7 +29,10 @@ circle = module('painted_battle_circle', 'repair-envhd-painted-battle-circle.py'
 CIRCLE_PINS = dict(PINS, algorithmSha256='bc65c6067baf17e996cd908b36a30b7544c8c1160e2a2865878a14d4f6305484')
 material = module('painted_battle_material', 'repair-envhd-painted-battle-material.py')
 MATERIAL_PINS = dict(PINS, algorithmSha256='10d96f21c187ac579f19985e8463b6eebe56ccb09ca1c00b0893fc9535db9837')
-RECIPES = {repair.METHOD: (repair, PINS), circle.METHOD: (circle, CIRCLE_PINS), material.METHOD: (material, MATERIAL_PINS)}
+rectangle = module('painted_battle_rectangle', 'repair-envhd-painted-battle-rectangle.py')
+RECTANGLE_PINS = dict(PINS, algorithmSha256='aa05883f5fdb923724976de015b9ef1c853b737a1f5d41e65d8f0c890a5d0142')
+RECIPES = {repair.METHOD: (repair, PINS), circle.METHOD: (circle, CIRCLE_PINS),
+           material.METHOD: (material, MATERIAL_PINS), rectangle.METHOD: (rectangle, RECTANGLE_PINS)}
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
 
 
@@ -94,6 +97,8 @@ def preflight(files, manifest_path, root=ROOT):
                 expected, _, metrics = recipe.repair(source, raw, candidate.get('motifRgba'), candidate.get('lowerBandStart'))
             elif recipe.METHOD == circle.METHOD:
                 expected, _, metrics = recipe.repair(source, raw, candidate.get('motifRgba'), candidate.get('sourceMaskCircle'), candidate.get('lightingRadius'))
+            elif recipe.METHOD == rectangle.METHOD:
+                expected, _, metrics = recipe.repair(source, raw, candidate.get('paletteRgba'), candidate.get('sourceMaskRectangle'))
             else:
                 expected, _, metrics = recipe.repair(source, raw)
         with Image.open(io.BytesIO(output_data)) as output:
