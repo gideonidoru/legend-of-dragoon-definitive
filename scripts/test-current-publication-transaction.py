@@ -42,7 +42,7 @@ class Server:
 class Transaction(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.root=Path(self.tmp.name);(self.root/'uploads').mkdir()
-        self.server=Server();self.inputs=dict(format=1,result='STAGED',tag=TAG,source='a'*40,run=18,
+        self.server=Server();self.inputs=dict(format=1,result='STAGED',tag=TAG,source='a'*40,run=18,runAttempt=1,
             baselineRelease=publisher.snapshot(self.server.release()),immutable={},aliases={},descriptors={},sourceRename=None)
         for platform in PLATFORMS:
             for kind in ('package','contents'):self.descriptor(kind,platform)

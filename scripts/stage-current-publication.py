@@ -194,7 +194,7 @@ def main():
     # Reject omitted files and unexpected CI payloads, not only the desired subset.
     expected_names={n for n in required if n.startswith('file-')}|set(aliases)|{source_name}
     if set(records)!=expected_names:raise ValueError('CI receipt includes unexpected or incomplete assets')
-    result=dict(format=1,result='STAGED',source=args.source_sha,run=args.run,tag=TAG,
+    result=dict(format=1,result='STAGED',source=args.source_sha,run=args.run,runAttempt=run['run_attempt'],tag=TAG,
                 baselineRelease=dict(id=latest['id'],tag=latest['tag_name'],bodySha256=hashlib.sha256((latest.get('body') or '').encode()).hexdigest()),
                 immutable=required,aliases=aliases,descriptors=descriptor_inputs,receipts=receipts,
                 sourceRename=source_rename,

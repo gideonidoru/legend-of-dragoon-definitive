@@ -162,6 +162,7 @@ def publish(inputs, root, server, now=None):
     for name, record in inputs['immutable'].items():
         check_asset(index_assets(server.assets()).get(name, {}), name, record['bytes'], record['sha256'])
     return dict(result='PASS', unchanged=unchanged, manifest=manifest, manifestSha256=sha,
+                buildAttempt=inputs['runAttempt'],
                 uploaded=uploaded, reused=reused, renamed=renamed,
                 uploadedBytes=sum(uploaded.values()), reusedBytes=sum(v['bytes'] for v in reused.values()),
                 closure={**inputs['immutable'], 'manifest-'+sha+'.json':dict(bytes=len(data),sha256=sha)}, aliases=aliases)

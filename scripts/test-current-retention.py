@@ -70,6 +70,10 @@ class Retention(unittest.TestCase):
         self.assertTrue(gc.protected_candidate(dict(old,status='in_progress'),kept))
         self.assertTrue(gc.protected_candidate(dict(old,run_started_at='2026-10-11T13:00:00Z'),kept))
         self.assertTrue(gc.protected_candidate(dict(old,updated_at='2026-10-11T13:00:00Z'),kept))
+        accepted=dict(kept,status='completed',run_attempt=1)
+        self.assertFalse(gc.protected_candidate(accepted,accepted))
+        self.assertTrue(gc.protected_candidate(dict(accepted,status='in_progress'),accepted))
+        self.assertTrue(gc.protected_candidate(dict(accepted,run_attempt=2),accepted))
 
 
 if __name__=='__main__':unittest.main()

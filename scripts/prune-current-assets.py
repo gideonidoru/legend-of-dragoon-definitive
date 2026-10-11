@@ -61,8 +61,8 @@ def audit_manifests(manifest, assets, fetch):
 
 
 def protected_candidate(run, kept):
-    if run['id']==kept['id']:return False
     if run.get('status')!='completed':return True
+    if run['id']==kept['id']:return run.get('run_attempt')!=kept.get('run_attempt')
     chronology=[run['created_at']]+[run[key] for key in ('run_started_at','updated_at') if run.get(key)]
     return max(map(time,chronology))>=time(kept['created_at'])
 
@@ -82,6 +82,8 @@ def main():
     server=publisher.GitHub(int(proof['manifest']['releaseId']))
     stager=publisher.load_stager()
     keep_run=stager.verify_run(proof['manifest']['buildRun'],proof['manifest']['sourceRevision'])
+    if keep_run['run_attempt']!=proof['buildAttempt']:
+        raise ValueError('Accepted build run was rerun; cleanup requires a fresh reference audit')
     def protect_work():
         releases=[r for page in stager.paged(f'repos/{REPO}/releases?per_page=100') for r in page]
         if any(r.get('draft') for r in releases):
