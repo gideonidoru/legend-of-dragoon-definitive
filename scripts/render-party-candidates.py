@@ -139,7 +139,7 @@ def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,
             before[h]=json.loads((previous/'parts'/(ids[h]+'.json')).read_text())['parts'][0]
         meshbefore=[study.unpack(p,source) for p,source in zip(before,old)]
         meshafter=[study.unpack(p,source) for p,source in zip(after,old)]
-        meshafter[h]=(np.asarray(after[h]['vertices']),[(face['vertices'],uv[face['vertices']],0,np.full((3,3),127.5)) for face in after[h]['faces']])
+        meshafter[h]=(np.asarray(after[h]['vertices']),[(face['vertices'],uv[face['vertices']],0,np.full((len(face['vertices']),3),127.5)) for face in after[h]['faces']])
         for index,(coordinates,_) in extras.items():
             part=after[index]
             meshafter[index]=(np.asarray(part['vertices']),[(face['vertices'],coordinates[face['vertices']],0,np.full((len(face['vertices']),3),127.5)) for face in part['faces']])
@@ -147,7 +147,7 @@ def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,
         previous_texture=None
         if previous:
             previous_uv=np.asarray(json.loads((previous/(form+'-head-uv.json')).read_text())['uvs'])
-            meshbefore[h]=(np.asarray(before[h]['vertices']),[(face['vertices'],previous_uv[face['vertices']],0,np.full((3,3),127.5)) for face in before[h]['faces']])
+            meshbefore[h]=(np.asarray(before[h]['vertices']),[(face['vertices'],previous_uv[face['vertices']],0,np.full((len(face['vertices']),3),127.5)) for face in before[h]['faces']])
             previous_texture=Image.open(previous/'head-basecolour.png').convert('RGB')
         if form=='combat':timpath=Path('characters')/character/'textures/combat'
         else:

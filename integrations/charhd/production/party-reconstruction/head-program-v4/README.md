@@ -12,6 +12,11 @@ frontal face replacement. Ear paint is confined to authored ear volumes. Profile
 and rear passes transfer hair/ear detail while keeping five facial feature
 regions unchanged. They never add profile eyes, mouths or chins to the front.
 
+The inferred base still contains its own facial interpretation outside the
+visible frontal replacement. Occluded lower-jaw paint can remain visible in a
+quarter/profile view. One registered front source and zero added profile-face
+layers therefore do not prove that the whole head has one coherent face.
+
 The set still fails the full artistic gate. Haschel's lower jaw was relaxed in
 a bounded region without clipping faces or changing UV topology, but profile
 skin/sideburn transitions remain rough. Rose's original fringe and Meru's native

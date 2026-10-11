@@ -4,7 +4,9 @@
 
 ## Corrected draft
 
-`head-program-v4` replaces facial texels from one explicitly registered frontal source. Side passes paint bounded hair and ears and lock both eyes, nose, mouth and chin. They do not transfer another profile face. Registration inputs, authored landmarks, paint controls and receipts are versioned with each custom head. Accepted Dart remains unchanged.
+`head-program-v4` replaces visible frontal facial texels from one explicitly registered frontal source. Side passes paint bounded hair and ears and lock both eyes, nose, mouth and chin. They do not transfer another profile face. Registration inputs, authored landmarks, paint controls and receipts are versioned with each custom head. Accepted Dart remains unchanged.
+
+This does not make the entire atlas free of inherited facial paint. The inferred base remains on surfaces outside the visible frontal replacement, including occluded lower-jaw surfaces. Those surfaces can expose a differently scaled chin or beard in a quarter/profile view. A receipt reporting zero added profile-face layers does not check or remove that inherited paint. The whole-head result remains rejected until matching views show one coherent anatomy and one set of features.
 
 The preview helper previously defaulted to the superseded v2 study. It now defaults to v4, matching the verifier. This prevents a default preview from inadvertently selecting the older paint. Ordinary CharHD packaging still selects only accepted Dart resources.
 
@@ -48,6 +50,6 @@ Private comparisons retain original body geometry/materials and use matching ori
 
 ## Acceptance gate
 
-The front-face duplication is corrected in the v4 draft, but the overall party model set is **not review or release ready** while the defects above remain visible. Main, normal installation and releases must remain on accepted assets. Final owner review must cover all nine characters, both field and battle, front/quarter/profile/rear views, body proportions and neck attachment, followed by native motion/material checks and separate Steam Deck validation.
+The v4 draft improves the frontal registration, but the overall party model set is **not review or release ready** while inherited paint or the defects above remain visible. Main, normal installation and releases must remain on accepted assets. Final owner review must cover all nine characters, both field and battle, front/quarter/profile/rear views, body proportions and neck attachment, followed by native motion/material checks and separate Steam Deck validation.
 
 Public, versioned custom draft work is approved. Original game binaries/data, private source controls and original screenshots are not part of these deliverables. Public availability does not waive the visual acceptance gate.
