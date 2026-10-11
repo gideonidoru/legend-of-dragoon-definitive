@@ -4,7 +4,7 @@ set -euo pipefail
 umask 077
 TAG=definitive-current
 # Updated by scripts/assemble-installer.py after building the small portable UI package.
-EXPECTED=d1cd1e1bacba1dd243d1b407db9b0df761ada0ac3888e09ff6ef9cb73c1ade7d
+EXPECTED=85c4d7f241f2bc3efc4cf25a04b2d53fff2f5f05846bc637ef289fcca4d7644a
 CACHE="$HOME/.cache/legend-of-dragoon-definitive"
 mkdir -p -- "$CACHE"
 [[ ! -L "$CACHE" ]] || { echo 'Choose a real installer cache directory.' >&2; exit 1; }

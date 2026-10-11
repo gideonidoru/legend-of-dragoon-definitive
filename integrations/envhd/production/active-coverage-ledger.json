@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "85306cbb423f805ee40af50f78936585d070d1f4 accepted single Twin fragment; ongoing83 authoring preserved",
+  "sourceSelectionCheckpoint": "e54f3324be558f6de7fb5f2b8c700d0cd90aed03 accepted five scenery crops; ongoing83 authoring and new8 held versions preserved",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "bbe6e2d777003e3fbebcd60d6cb2fc2bb5e91991b48ebedc6ec351808ab1443e",
-    "field-runtime-artwork.json": "e31ef6ec015d82f70d190faac1d0895065c1d1752f31b54d2be30b0961c87ee4",
+    "full-coverage.json": "6c7cfcdf7b2e7e676d2f71f8d49881bcb14df95a13d0f957bd81e3c35d142bf3",
+    "field-runtime-artwork.json": "fed0bbc3f568cd9d045cbd633a44a866f1eaf88b03b985a3b20223206d336207",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
@@ -85,34 +85,37 @@
     "field-independent-twin-fragment-review.json": "3dd70d954d61e40b83e73eba92caa570a613a7d6732c007f5d967e19cbf47c40",
     "field-twin-fragment-selection-readiness.json": "6072dcf4c4a052d7287ba366c81931b86410fcf1bd31f008625554d4c887b459",
     "field-twin-authoring-main-forward.json": "541d7dcf9d36753c150bdb29ffb30cad4860a134a6fb277ccf671cb09d559529",
-    "field-bespoke-organic-scenery-held-drafts.json": "7712bcaea764aca90c13a0db6ebdb331e1c0d8e3f22b917f2c759ce3f72826d4"
+    "field-bespoke-organic-scenery-held-drafts.json": "7712bcaea764aca90c13a0db6ebdb331e1c0d8e3f22b917f2c759ce3f72826d4",
+    "field-bespoke-scenery-five-independent-reviewed-selection.json": "9e17f93736ca72679c7c4c1f4f3c124712e0f558007b411bb490a29c2744531c",
+    "field-independent-scenery-eight-review.json": "74c221c4c764449f81b410e4f1ec6d544ae1aed8ffa32a1f0e8a51ccafc4da0e",
+    "field-scenery-five-selection-readiness.json": "ae20a0ea81c3c47f25c57bee5d813a7bbf4b028b7d3a4ffa3850a61e0fd389f6",
+    "field-scenery-authoring-main-forward.json": "438174e2e456bbcf519b54b7fbc076ada3d52bcbef9271e1cdd046cabdbaf526"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 234,
+  "knownRemainingStaticImages": 229,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4929,
+      "selectedDevelopment": 4934,
       "selectedNeural": 4886,
-      "selectedPainted": 43,
-      "held": 233,
+      "selectedPainted": 48,
+      "held": 228,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 81,
+      "customHeldDraftSourceImages": 76,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Independent original-reference review of34 pending candidates; source-aligned corrections of6 independent revisions and held motifs/materials; continue233 field holds and source/state/native/final checks.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 34,
+      "nextTask": "Independent original-reference review of26 pending candidates; source-aligned correction of9 reviewed revisions and held organic/scenic/motif/material drafts; continue228field holds and state/native/final checks.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 26,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
         "2ce59703db78a4ad83f8b4828e2c5d265e9b441c96a93991333cbd576adcc12d",
-        "3fb018e1b7a7ad35c728ee5ecce588e012b70af301a470f89664804949491ed0",
         "42a945eedd9dbcf3a55c15facfbf1f975209ac42bf94150360379935d3ffbc98",
         "44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283",
         "4bd51eba14de1496e5d55996992fbe6d031841e9f31087697319336c4dc21796",
@@ -134,7 +137,6 @@
         "80701be87325066059c4a6b4de4cef1bf2ebc129929e8ec01ce84fa45aaa3a2f",
         "82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6",
         "83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5",
-        "83fe643a2962f4801576f8ebf15bd41aa63e16575ff2386fd1b8296134c8d5a9",
         "8462d7a2aafb4c8e944575f6c37c7821e02b9d88dd3c7da4e8b55e292a3e4315",
         "85a96a2ffc8a461d62131131d053af88cbcf7a14c767eeaf8c8b240cfa9f918c",
         "8672f8df1037e8923d56b9e9e523c672d4b0d3dbeebff918ad0f6c8d50491662",
@@ -154,19 +156,16 @@
         "99fe3ae3f675d6fc68f88b15b0432a884fee59c7f04b6be8c9c1c51f02948e81",
         "9b74793a802626789aa46bf4776e968c5af1c3e749fe9033af7dcc1e96dcc66b",
         "9d6ee81a6a9584c4f5d2ae829238be015881ae8235ec43458a27d78969fbb62e",
-        "9e38a3f37d0eed732d30954194e28fa0b749949e5d4ef81cc8a85d00b56241e9",
         "9ff5730dc191a7dd1091844f4505b77d9f0c1f6a8e75336630fc9e8267ff15df",
         "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab",
         "a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f",
         "a2ef10ffa4712d71a8cd05cf664fefa3f59b9d004eee24c0fa8107e8a14a81e3",
-        "a7b8dbb17416792c3b8bd899e2ddb2e455a2f8ea51372d8ef500046b08488093",
         "a8b3d4919642e0c982522322730ae602f3f33b5ec4ac1e38f6449aa2f8f4c390",
         "aa05988943ca081f21a6590703116b1ee20e90eeb8910cf4ba1be2fb8d6c2e2f",
         "ae3d002cd7ad47d37fe78e51a52145ef1afc615596ef2b67e511d4b74abe860a",
         "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
         "b525081b77578354e5eaf8dc82b7f83bc1d57ab5849f6c127f7ae4b365a655d2",
         "b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28",
-        "b88a83c36c8e7e7e09112c6174606d9498252c7deca051cb4ceef656d0819523",
         "be023e0b5599675425e3a0e361a3cf1ae5c57a4c51d10e5d49c0d4d857f830cc",
         "bef65a35570d58e1698fa959797fc680e72b1cd72af026bfe1dd79c6fe0f3197",
         "cae03a38ef095431e37c8c02444f3ac0e5601a7633b6b78193c0e37339cbc77f",
@@ -191,10 +190,16 @@
         "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding4929current selections;81unselected custom keys are a subset of233field holds. All prior versions retained.",
-      "independentlyReviewedCandidatesRequiringRevision": 6,
+      "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4934 selections.76keys subset228field holds; repeated versions deduplicated.83historical candidate records and all held records exact; latest main selection tracked separately.",
+      "independentlyReviewedCandidatesRequiringRevision": 9,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
-      "independentlyClearedCandidatesAwaitingIntegration": 0
+      "independentlyClearedCandidatesAwaitingIntegration": 0,
+      "independentNewSceneryReview": {
+        "source": "7262233bbffb1419bfda439b138e4bcc75f01591",
+        "clearedSelected": 5,
+        "requiresRevision": 3,
+        "receipt": "field-independent-scenery-eight-review.json"
+      }
     },
     {
       "id": "static-terrain",
@@ -557,6 +562,12 @@
       "heldSourceImages": 8,
       "heldVersions": 8,
       "reason": "First organic/scenic batch7 structural repairs/1 coverage failure held; fine material/motif relationships require review or revision. Separate independently cleared scenery integration proceeds without waiting."
+    },
+    {
+      "manifest": "field-bespoke-scenery-five-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 5,
+      "independentReview": "field-independent-scenery-eight-review.json",
+      "reason": "Shrine arch and left finial fragment, Moon radial layer, Queen Fury crate and Ulara rim independently clear for development. Three other scoped crops require revision and stay excluded. Prior43/4929 exact."
     }
   ],
   "publication": {
@@ -583,7 +594,7 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 4,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 9,
     "paintedBattleMastersAwaitingCoordinatedPublication": 13,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
@@ -612,15 +623,15 @@
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "Complete83 historical recipes exact; acceptedmain4929/43 including unanimously cleared Twin fragment. Current34 pending/6 revisions/0 cleared-awaiting-integration;73 unselected custom sources subset233 field holds.234 knownstatic backlog; native/final acceptance pending.",
+  "authoringCheckpoint": "83historical recipes exact; acceptedmain4934/48.26pending/9revisions/0cleared-awaiting-integration;76unselected custom sources within228fields;229knownstatic. Neworganic8held; native/final pending.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "85306cbb423f805ee40af50f78936585d070d1f4",
-    "fieldSelected": 4929,
-    "fieldPainted": 43,
+    "sourceCommit": "e54f3324be558f6de7fb5f2b8c700d0cd90aed03",
+    "fieldSelected": 4934,
+    "fieldPainted": 48,
     "authoringCandidates": 83,
-    "independentlyPending": 34,
-    "independentlyRevision": 6,
-    "heldSourceKeys": 73,
+    "independentlyPending": 26,
+    "independentlyRevision": 9,
+    "heldSourceKeys": 76,
     "nativeAccepted": 0,
     "finalQualityAccepted": 0
   }

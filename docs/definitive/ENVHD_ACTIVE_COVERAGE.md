@@ -2,11 +2,11 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **234 images: 233 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **229 images: 228 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,929 development images: 4,886 neural and 43 painted.
+Field selection is 4,934 development images: 4,886 neural and 48 painted.
 
-Current authoring queue: 34 candidates await independent review and 6 require source-fidelity corrections. The unanimously cleared Twin Castle foreground4 is integrated; its 83-record authoring recipe remains preserved as history. There are 73 unique unselected custom source keys within 233 field holds. Historical receipts retain their checkpoint counts. All protected Skurfa work is reused. Native gameplay and final Skurfa-equivalent quality acceptance remain pending.
+Current authoring queue:26 candidates await independent review and9 require source-fidelity correction. Five cleared scenery paintings are now integrated. All83 historical recipes and custom/held versions remain preserved;76 unique unselected custom source keys are a subset of228field holds. Eight newly authored organic/scenic sources remain held. Historical receipts retain checkpoint counts. Protected Skurfa art is reused; native gameplay/final quality pending.
 
 The [recorded generation4 download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8` contains 4,925 field selections/39paintings and34 battle paintings. The historical Donau increment selected4,928 fields/42paintings and retained47 battle paintings: three field paintings and13 battle paintings beyond that recorded snapshot. These are comparisons with the preserved generation4 source ledgers, not a fresh observation of the live carrier. ROOT tracks subsequent coordinated publication and installer verification. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
@@ -271,3 +271,15 @@ Accepted main selects 4,929 fields with 43 bespoke paintings. All83 historical c
 [Eight first-version custom paintings](../../integrations/envhd/production/field-bespoke-organic-scenery-held-drafts.json) cover Prison Island ribs, Moon radial scenery and layered planes, Aglis fittings and a Mayfil support. Seven pass the unchanged pinned cutout geometry/coverage/alpha/black repair; the Moon three-plane source fails coverage and has no repaired output. Material relief, hard ridge contrast and ambiguous pale marks need source-faithful correction or independent review. All eight remain unselected.
 
 Custom inputs, repaired outputs, prompts, hashes and source identities are versioned. Original crops, scene contexts and comparison/placement diagnostics remain private. Complete83 prior recipes and selected4,929 fields stay exact;81 unique unselected custom keys remain a subset of233 field holds. The separate five-cleared scenery main increment proceeds independently.
+
+
+## Five independently reviewed scenery selections
+
+The [independent eight-crop review](../../integrations/envhd/production/field-independent-scenery-eight-review.json) clears the Shrine arch, Shrine left V-finial fragment, Moon radial layer, Queen Fury open crate and Ulara rim for development selection. The Bale roof corner, Undersea coral rim and Fueno support require correction and remain excluded. Actual original/reference crops and static scene placements were inspected; source integrity and replay passed.
+
+The [complete48-painting selection](../../integrations/envhd/production/field-bespoke-scenery-five-independent-reviewed-selection.json) preserves every prior43 recipe exactly. All48 recipes replay from current originals; all4,929 previous runtime records and protected Skurfa cuts remain exact. The [readiness receipt](../../integrations/envhd/production/field-scenery-five-selection-readiness.json) binds the five-image change and86 focused checks. Native/scripted state, physical Deck, campaign and final artistic acceptance remain pending. ROOT coordinates the current installer publication; the prior publication ledger is a historical observed snapshot.
+
+
+## Ongoing authoring after scenery integration
+
+Accepted main selects4,934 fields with48 paintings; all83 historical recipes and every prior custom/held byte remain exact. Current queue26 independent-pending/9 reviewed revisions and76 unique unselected custom source keys within228field holds. Eight newly authored organic/scenic versions remain held separately. Known static remainder229 includes228fields and one terrain repair; animation/props denominators remain unresolved. Native/state/campaign/final acceptance is pending.
