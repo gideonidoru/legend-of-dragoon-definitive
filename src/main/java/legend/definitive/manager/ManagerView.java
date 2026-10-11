@@ -186,7 +186,7 @@ final class ManagerView extends JPanel {
       return;
     }
     if(this.screen == Screen.MAINTENANCE) {
-      this.heading("Your installation", "Repair changed files, reinstall everything, or remove Definitive.");
+      this.heading("Your installation", "Repair changed files or cleanly reinstall while preserving your discs, saves and settings.");
       this.body.add(infoCard("LOCATION", "Legend of Dragoon: Definitive", this.root.toString())); this.body.add(Box.createVerticalStrut(24));
       this.primary("Repair", () -> this.run("Repairing Definitive", () -> {
         final var store = InstallStore.forMaintenance(this.root);
