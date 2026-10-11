@@ -177,8 +177,9 @@ def main():
     if f'TAG={args.tag}\n' not in script or f'EXPECTED={expected["Definitive-Installer.zip"][1]}\n' not in script:
         raise ValueError('Portable entry point has stale tag/checksum')
     desktop = (args.assets_dir / 'Install-Definitive.desktop').read_text()
-    if expected['Install-Definitive.sh'][1] not in desktop or f'/releases/download/{args.tag}/Install-Definitive.sh' not in desktop:
-        raise ValueError('Desktop entry has stale source/checksum')
+    from desktop_bootstrap import desktop_entry
+    if desktop != desktop_entry():
+        raise ValueError('Desktop entry must resolve and verify the latest installer')
     if gh('api', 'user', '--jq', '.login').strip() != 'gideonidoru':raise ValueError('Wrong GitHub account')
     run = json.loads(gh('api', f'repos/{REPO}/actions/runs/{args.run}'))
     if any(run.get(k) != v for k, v in {'status': 'completed', 'conclusion': 'success', 'head_sha': args.source_sha, 'path': '.github/workflows/build.yml'}.items()):

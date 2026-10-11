@@ -9,10 +9,11 @@ import sys
 import tempfile
 import zipfile
 from package_validation import ROOT
+from desktop_bootstrap import desktop_entry
 
 repo = Path(__file__).resolve().parents[1]
 source = 'a' * 40
-for scenario in ('cache-success', 'cache-corrupt', 'cache-missing', 'cache-linked', 'file-delivery-thin-success', 'success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob', 'file-delivery-many-assets-draft', 'file-delivery-many-assets-omitted-page', 'ci-source-input-omitted'):
+for scenario in ('legacy-pinned-desktop', 'altered-latest-desktop', 'cache-success', 'cache-corrupt', 'cache-missing', 'cache-linked', 'file-delivery-thin-success', 'success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob', 'file-delivery-many-assets-draft', 'file-delivery-many-assets-omitted-page', 'ci-source-input-omitted'):
     with tempfile.TemporaryDirectory(prefix='definitive-release-fixture-') as directory:
         root = Path(directory); assets = root / 'assets'; assets.mkdir(); tools = root / 'tools'; tools.mkdir()
         with zipfile.ZipFile(assets / 'Definitive-Installer.zip', 'w') as archive:
@@ -21,7 +22,9 @@ for scenario in ('cache-success', 'cache-corrupt', 'cache-missing', 'cache-linke
         sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
         tag = 'fixture-recovery'
         (assets / 'Install-Definitive.sh').write_text(f'TAG={tag}\nEXPECTED={sha(assets / "Definitive-Installer.zip")}\n')
-        (assets / 'Install-Definitive.desktop').write_text(f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/{tag}/Install-Definitive.sh {sha(assets / "Install-Definitive.sh")}')
+        (assets / 'Install-Definitive.desktop').write_text(desktop_entry())
+        if scenario=='legacy-pinned-desktop':(assets / 'Install-Definitive.desktop').write_text(f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/download/{tag}/Install-Definitive.sh {sha(assets / "Install-Definitive.sh")}')
+        if scenario=='altered-latest-desktop':(assets / 'Install-Definitive.desktop').write_text(desktop_entry().replace('/releases/latest/', '/releases/download/old/'))
         for platform in ('linux-x64', 'macos-arm64'):
             metadata = {'format': '1', 'java': '25', 'sourceRevision': source, 'releaseTag': tag,
                         'platform': platform, 'gameJar': 'lod-game-fixture.jar'}
