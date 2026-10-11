@@ -48,3 +48,7 @@ The probe exits nonzero on a bounded numerical/crossing failure and retains its 
 ## Next useful art work
 
 Author dedicated upper-arm and forearm shapes from the original-design controls, with separate rigid armor and a deliberate narrower flex region. Use the welded representation to inspect the complete silhouette and original grip through motion, rather than spending more time polishing isolated seam metrics. Then establish final source-face/material ownership, CharHD/alternate texture compatibility and native animated rendering. Only a visibly successful complete Dart actor should set the production template for the other eight characters. Owner approval remains required before main/release selection; gameplay and physical Steam Deck performance remain unvalidated.
+
+## Shared CI synchronization
+
+The shared workflow on newer main invoked an EnvHD family fixture missing from the older authoring head, causing runs `38145453993` and `38147209471` to fail before that test could run. This branch now includes byte-for-byte copies of the workflow, three EnvHD test/discovery/replay tools and their public discovery metadata from main `0d4492ed69c04ce4acc0af692fca0ce169822908`. All 21 family fixtures pass locally with Java 25. No rendering, installer, selected artwork or runtime behavior was imported by this synchronization. The new arm/crossing fixtures remain local authoring evidence; hosted CI completion is tracked separately.
