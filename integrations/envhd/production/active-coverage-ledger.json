@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "373b34a94a1fe52beb4547b215d451df14557633",
+  "sourceSelectionCheckpoint": "7be4488e85884870a501d52ba22a28f779542ff7",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "abe3d4240621f2f35d10628436c7853fb97e0742e9921e03375a9cdc825a2518",
-    "field-runtime-artwork.json": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
+    "full-coverage.json": "576964aee411e0e4576e8bbbc83c1fb153caa61b8bc02b48b5f8109430d99078",
+    "field-runtime-artwork.json": "085c1fe77c2cfd6299e415f583c845f4edda283507817b964ff1a588a20679dd",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
@@ -52,34 +52,36 @@
     "tiberoa-cross-page-source-contract.json": "99bae0322b0fac8b9063410586396511a5964a354c0ef769a93f4a9aeab9f00d",
     "tiberoa-stairs-context-audit.json": "175f46fd2483ee32f43b806e54361324a4faf91c24eb4535973bd34a3f61d8c1",
     "tiberoa-stairs-pending-artwork.json": "bef0beabf7a3f9925163e16b27a40c540288ca2a699c3f467274fbb52e9339d5",
-    "tiberoa-authoring-readiness.json": "853be72084766cb9c0b439ae4fc8edcfeb0b26df7b29cb789d82230244563d29"
+    "tiberoa-authoring-readiness.json": "853be72084766cb9c0b439ae4fc8edcfeb0b26df7b29cb789d82230244563d29",
+    "field-bespoke-table-independent-reviewed-selection.json": "1a1f4d4ea682eb43b7bf0a1e8563e2646a35c556f1031d3a1d7b82ec73ea4000",
+    "field-independent-small-furnishings-review.json": "911a16d9940aeb815aa69f83f6bd359b3ac4d0d52cae062027c585a1752e3cc3",
+    "field-table-selection-readiness.json": "cf1f6abaf29b53f4a925e4b8dde5b7c987380fc6402d9731499b3373179fb231"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 238,
+  "knownRemainingStaticImages": 237,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4925,
+      "selectedDevelopment": 4926,
       "selectedNeural": 4886,
-      "selectedPainted": 39,
-      "held": 237,
+      "selectedPainted": 40,
+      "held": 236,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 51,
+      "customHeldDraftSourceImages": 50,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4917,
-      "nextTask": "Independently review twenty-seven pending field candidates; constrain held source footprints/internal motifs and adjoining finish, including Fueno/Wingly corrected coverage failures; continue 237 field holds and native/final validation.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 27,
+      "nextTask": "Independent review of25 pending field candidates; correct Rouge/Phantom internal landmarks and Ulara counter lighting/goods grouping; continue236 field holds and native/final validation.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 25,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
         "2ce59703db78a4ad83f8b4828e2c5d265e9b441c96a93991333cbd576adcc12d",
-        "304a735a241c9a78c78ad01e429d15d81bb29529a8b3881fbd5598a98713e754",
         "3fb018e1b7a7ad35c728ee5ecce588e012b70af301a470f89664804949491ed0",
         "52195fc64e021bc14b78d4cf1c10b81f2207b26bd0072cd50ce1a7572c60f2f4",
         "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
@@ -128,8 +130,8 @@
         "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique 64-character source directories across bespoke-field-candidates and held-field-art-drafts excluding 4,925 runtime selections. Fifty-one source keys are a subset of 237 field holds; repeated/rejected versions deduplicated.",
-      "independentlyReviewedCandidatesRequiringRevision": 2,
+      "draftCountMethod": "Unique source directories across bespoke-field-candidates and held-field-art-drafts excluding4926 runtime selections. Fifty keys are a subset of236 holds; rejected versions deduplicated.",
+      "independentlyReviewedCandidatesRequiringRevision": 3,
       "publishedInstallerSnapshotEvidence": "Main ad1a234d full-coverage.json records d7311334; not a fresh live release query."
     },
     {
@@ -408,6 +410,12 @@
       "heldSourceImages": 3,
       "heldVersions": 5,
       "reason": "Fueno and Wingly rail introduce two held sources; Ulara version1 overlaps corrected pending candidate. Two corrected footprints fail unchanged coverage. No holds cleared or gates waived."
+    },
+    {
+      "manifest": "field-bespoke-table-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 1,
+      "independentReview": "field-independent-small-furnishings-review.json",
+      "reason": "Crystal Palace table clear for development; Ulara counter lighting/goods grouping revision. Historical68-candidate authoring receipt unchanged."
     }
   ],
   "publication": {
@@ -426,7 +434,7 @@
       "nativeArtAccepted": 0,
       "finalArtAccepted": 0
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 8,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 9,
     "paintedBattleMastersAwaitingCoordinatedPublication": 22,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
@@ -442,7 +450,7 @@
     }
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "One source-bound Tiberoa stair candidate with explicit pending cross-page mapping proposal; 27 field candidates remain independently pending, 238 static holds unchanged. Runtime and install selections preserved.",
+  "authoringCheckpoint": "One independently cleared table selected;4926 fields/40 paintings,25 independent pending authoring candidates and3 revisions. Four download packs verified; coordinated release pending.",
   "acceptedMainIntegrated": {
     "sourceCommit": "ad1a234d94b4397df681c7fd196581cf3a303a88",
     "fieldSelected": 4925,
