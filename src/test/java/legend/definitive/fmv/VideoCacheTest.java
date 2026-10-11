@@ -66,4 +66,17 @@ final class VideoCacheTest {
     assertFalse(Files.exists(workspace.resolve("cache")));
   }
 
+  @Test void installedLookupRejectsMissingCorruptAndLinkedDataWithoutWriting() throws Exception {
+    final Path gfx=this.root.resolve("gfx"), videos=gfx.resolve("fmvhd/videos");Files.createDirectories(videos);
+    final Path movie=videos.resolve(digest()+".mp4");
+    assertThrows(IOException.class,()->VideoCache.installed(gfx,digest(),DATA.length));
+    Files.write(movie,new byte[DATA.length]);assertThrows(IOException.class,()->VideoCache.installed(gfx,digest(),DATA.length));
+    Files.delete(movie);final Path outside=this.root.resolve("outside");Files.write(outside,DATA);Files.createSymbolicLink(movie,outside);
+    assertThrows(IOException.class,()->VideoCache.installed(gfx,digest(),DATA.length));assertArrayEquals(DATA,Files.readAllBytes(outside));
+    Files.delete(movie);Files.delete(videos);Files.createSymbolicLink(videos,this.root);
+    assertThrows(IOException.class,()->VideoCache.installed(gfx,digest(),DATA.length));
+    assertThrows(IOException.class,()->VideoCache.installed(gfx,"../escape",DATA.length));
+    assertThrows(IOException.class,()->VideoCache.installed(gfx,digest(),0));
+  }
+
 }

@@ -9,52 +9,32 @@ sourceSets {
 sourceSets.test.compileClasspath += sourceSets.fmvhd.output
 sourceSets.test.runtimeClasspath += sourceSets.fmvhd.output
 
+// Source and runtime share these exact immutable per-film objects. The historical
+// ZIP is accepted only as an explicitly supplied local bootstrap, never emitted.
 tasks.register('fmvHdAssets') {
-  final File lock = file('integrations/fmvhd/release.properties')
-  final def localAssets = providers.gradleProperty('fmvHdAssets')
-  inputs.file(lock)
-  inputs.property('localAssets', localAssets.getOrElse(''))
-  if(localAssets.isPresent()) inputs.file(file(localAssets.get()))
-  outputs.file(layout.buildDirectory.file('fmvhd/videos.zip'))
+  final def local = providers.gradleProperty('fmvHdAssets')
+  inputs.files(fileTree('integrations/fmvhd/src/main/resources/fmvhd'))
+  inputs.file('scripts/stage-fmvhd-assets.py')
+  inputs.file('scripts/package_validation.py')
+  inputs.property('localAssets', local.getOrElse(''))
+  if(local.isPresent()) inputs.files(file(local.get()))
+  outputs.dir(layout.buildDirectory.dir('fmvhd/assets'))
   doLast {
-    final Properties metadata = new Properties()
-    lock.withInputStream { metadata.load(it) }
-    final File target = layout.buildDirectory.file('fmvhd/videos.zip').get().asFile
-    target.parentFile.mkdirs()
-    final String local = providers.gradleProperty('fmvHdAssets').getOrNull()
-    if(local != null) java.nio.file.Files.copy(file(local).toPath(), target.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING)
-    else {
-      final def fetch = { String url -> providers.exec {
-        commandLine 'curl', '--fail', '--location', '--proto', '=https', '--proto-redir', '=https', '--connect-timeout', '20', '--max-time', '1800', '--retry', '2', '--output', target.absolutePath, url
-        ignoreExitValue = true
-      }.result.get() }
-      def result = null
-      for(final String key : ['url', 'migrationUrl', 'migrationUrl2']) {
-        final String url = metadata.getProperty(key, '')
-        if(url.isEmpty()) continue
-        result = fetch(url)
-        if(result.exitValue == 0) break
-      }
-      if(result == null) throw new GradleException('FMVHD source URL is missing')
-      result.assertNormalExitValue()
-    }
-    final def digest = java.security.MessageDigest.getInstance('SHA-256')
-    target.withInputStream { input ->
-      final byte[] buffer = new byte[65536]
-      int count
-      while((count = input.read(buffer)) != -1) digest.update(buffer, 0, count)
-    }
-    final String actual = digest.digest().encodeHex().toString()
-    if(actual != metadata.getProperty('sha256')) { target.delete(); throw new GradleException('FMVHD release checksum mismatch') }
+    final def command = ['python3', 'scripts/stage-fmvhd-assets.py', '--manifest', 'integrations/fmvhd/src/main/resources/fmvhd/assets.properties', '--output', layout.buildDirectory.dir('fmvhd/assets').get().asFile.absolutePath]
+    if(local.isPresent()) command.addAll(['--local', file(local.get()).absolutePath])
+    final def execution = providers.exec { commandLine command }
+    final def result = execution.result.get()
+    logger.lifecycle(execution.standardOutput.asText.get())
+    if(result.exitValue != 0) throw new GradleException(execution.standardError.asText.get())
+    result.assertNormalExitValue()
   }
 }
 
 tasks.register('fmvHdJar', Jar) {
-  dependsOn sourceSets.fmvhd.classesTaskName, tasks.named('fmvHdAssets'), tasks.named('jar')
+  dependsOn sourceSets.fmvhd.classesTaskName, tasks.named('jar')
   archiveFileName = 'FMVHD-v0.1.0.jar'
   destinationDirectory = layout.buildDirectory.dir('libs/mods')
   from sourceSets.fmvhd.output
-  from({ zipTree(tasks.fmvHdAssets.outputs.files.singleFile) }) { include 'fmvhd/**' }
   into('META-INF/fmvhd') { from 'LICENSE'; from 'integrations/fmvhd/README.md' }
   manifest { attributes 'Implementation-Title': 'FMVHD', 'Implementation-Version': '0.1.0' }
   preserveFileTimestamps = false
@@ -69,15 +49,10 @@ tasks.named('deliveryTest') {
   if(providers.gradleProperty('fmvFixture').isPresent()) systemProperty 'fmvhd.fixture', providers.gradleProperty('fmvFixture').get()
 }
 
-// Retain the checksum-pinned source input in the current release itself, so
-// historical mod releases can be removed without breaking future clean builds.
-tasks.register('fmvHdSourceBundle', Copy) {
+tasks.named('stageDefinitivePackage') {
   dependsOn tasks.named('fmvHdAssets')
-  from(tasks.fmvHdAssets.outputs.files.singleFile)
-  into layout.buildDirectory.dir('distributions')
-  rename { 'FMVHD-v0.1.0-videos.zip' }
+  into('gfx/fmvhd') { from layout.buildDirectory.dir('fmvhd/assets') }
 }
-tasks.named('definitiveFileDelivery') { dependsOn tasks.named('fmvHdSourceBundle') }
 
 tasks.register('originalMovieSourceProbe', JavaExec) {
   dependsOn testClasses
@@ -96,4 +71,17 @@ tasks.register('originalFmvHandoffProbe', JavaExec) {
   jvmArgs '--add-opens', 'java.base/java.util=ALL-UNNAMED'
   environment 'ALSOFT_DRIVERS', 'null'
   doFirst { args providers.gradleProperty('fmvOriginalFile').get() }
+}
+
+tasks.register('fmvSplitSourceProbe', JavaExec) {
+  dependsOn testClasses, tasks.named('fmvHdAssets'), tasks.named('fmvHdJar')
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.manager.FmvSplitSourceProbe'
+  systemProperty 'java.awt.headless', 'true'
+  environment 'ALSOFT_DRIVERS', 'null'
+  doFirst {
+    args layout.buildDirectory.dir('fmvhd/assets').get().asFile.absolutePath,
+      tasks.named('fmvHdJar').get().archiveFile.get().asFile.absolutePath,
+      providers.gradleProperty('fmvLegacyRelease').get()
+  }
 }

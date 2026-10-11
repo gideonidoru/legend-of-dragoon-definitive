@@ -55,9 +55,13 @@ final class FmvMigration implements AutoCloseable {
   }
   boolean importMovie(final String name, final String digest, final long bytes, final Path destination) throws IOException, InterruptedException {
     if(this.closed) throw new IOException("FMV import is closed");
+    if(Thread.currentThread().isInterrupted()) throw new InterruptedException("FMV import cancelled");
     if(!destination.toAbsolutePath().normalize().equals(this.staged.resolve(name).toAbsolutePath().normalize())
       || this.staged.equals(this.current) || Files.isSymbolicLink(this.staged) || Files.exists(destination, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Movie import must target a new staged file");
     if(!this.enabled || this.current == null || !name.startsWith(FmvAssetManifest.ROOT + "videos/")) return false;
+    for(Path part = destination.getParent(); part != null && part.startsWith(this.staged); part = part.getParent()) {
+      if(Files.isSymbolicLink(part) || !Files.isDirectory(part, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Linked or missing movie staging directory");
+    }
     if(this.target == null) {
       final Path metadata = this.staged.resolve(FmvAssetManifest.FILE);
       if(!ordinary(this.staged, metadata) || !PackageManifest.sha256(metadata).equals(this.next.hashes().getProperty(FmvAssetManifest.FILE))) throw new IOException("Unverified candidate FMVHD manifest");
@@ -70,10 +74,15 @@ final class FmvMigration implements AutoCloseable {
       try { openLegacy(); }
       catch(final IOException | RuntimeException failure) { InstallerLog.write("FMVHD local import unavailable; verified downloads retained: " + failure.getMessage()); }
     }
-    if(this.archive == null || !film.source().equals(this.legacy.get(film.name()))) return false;
+    if(this.archive == null) return false;
+    // Different native movie names can share an enhanced payload. Import from
+    // any matching source-bound legacy record, without dropping either gate.
+    final var matching = this.target.films().values().stream().filter(f -> f.path().equals(name) && f.source().equals(this.legacy.get(f.name()))).findFirst();
+    if(matching.isEmpty()) return false;
+    final var sourceFilm = matching.get();
     final Path temporary = Files.createTempFile(destination.getParent(), ".fmv-import-", ".partial");
     try {
-      try(final var input = this.archive.getInputStream(this.archive.getEntry("fmvhd/videos/" + film.name() + ".mp4")); final var output = Files.newOutputStream(temporary)) {
+      try(final var input = this.archive.getInputStream(this.archive.getEntry("fmvhd/videos/" + sourceFilm.name() + ".mp4")); final var output = Files.newOutputStream(temporary)) {
         DownloadBody.copy(input, output, bytes, Duration.ofMinutes(15));
       }
       if(Files.size(temporary) != bytes || !PackageManifest.sha256(temporary).equals(digest)) throw new IOException("Imported movie checksum mismatch");
