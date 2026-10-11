@@ -14,10 +14,10 @@
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "world-artwork.json": "958abf47591e6d4d3e9d1c48a1db843e4662bc0c7f521868b3a684ab30f9e5b7",
     "field-source-worklist.json": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
-    "field-repair-receipt.json": "6acbbcbafd10e4a808629a8164f2e57323cbb6dfef7264ca7d40c62767eb62d3",
-    "field-review-receipt.json": "6a2d8b54611dceeab0328776e26ad653a82b9fce295a7a1f5f4fbe0d0d2c84f3",
-    "field-artwork.json": "015b85f1412bed2acfe07244338c3f271e6bb4caf6cbfc941e51ce215f175041",
-    "field-runtime-artwork.json": "a99d04d724191d82fad0d5b4c3fd489c2d2acdc1670ffd8486be9ee1196dd3b9",
+    "field-repair-receipt.json": "b59c2e3e2af128b0b30bd08d9237647fc9cfcb15a60fc8a98f66120d4f5ac221",
+    "field-review-receipt.json": "fe78489a9e3cbc60cdfab4bd9dee2d616f43789cf25a56a8cf11e08b62dd53cb",
+    "field-artwork.json": "d2e03bf46ac238025063ee8a463371131a3ea85a49dcef0db91fe216a593664d",
+    "field-runtime-artwork.json": "bc66cb386e748c38802b9ebe40e4a23dd7cdb7499e15d1cf07523fc9fac3e070",
     "battle-material-runtime-artwork.json": "011e5a9206e750b2b4fcfbeb0fb22aa524a97fbee3ca483ea68e09c2bfc941d8"
   },
   "categories": [
@@ -224,5 +224,14 @@
     "All source-bound runtime adapters and default-install package checks pass.",
     "Native gameplay and Steam Deck visual acceptance plus final Skurfa-equivalent quality review."
   ],
-  "publication": "Owner-requested consolidated default installation includes only reviewed development selections. Public immutable candidate history is separate from runtime selection. Exact-source release validation remains required; EnvHD campaign and final quality completion are not claimed."
+  "publication": "Owner-requested consolidated default installation includes only reviewed development selections. Public immutable candidate history is separate from runtime selection. Exact-source release validation remains required; EnvHD campaign and final quality completion are not claimed.",
+  "historicalPublishedFieldControls": {
+    "source": "476c004ca4d4eacce5a763c41b570c479380b5e7",
+    "reviewReceipt": "field-review-receipt-source-476c004ca.json",
+    "reviewReceiptSha256": "6a2d8b54611dceeab0328776e26ad653a82b9fce295a7a1f5f4fbe0d0d2c84f3",
+    "runtimeLedger": "field-runtime-artwork-source-476c004ca.json",
+    "runtimeLedgerSha256": "a99d04d724191d82fad0d5b4c3fd489c2d2acdc1670ffd8486be9ee1196dd3b9",
+    "selectedFieldImages": 2723
+  },
+  "sourceLedgerHashScope": "Current candidate production controls; historical published field controls are recorded separately."
 }
