@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "date": "2026-10-11",
-  "sourceCheckpoint": "37737dfecb5abaae24d16d09294fb3e2c2336cc4",
+  "sourceCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
   "publicSource": "d73113341610af56f27a1c68e7f5172d157b62c0",
   "publicTag": "definitive-current",
   "mainFields": 4917,
@@ -54,7 +54,7 @@
       "readinessSnapshot": 8,
       "status": "pending",
       "prerequisites": [],
-      "checkpointEvidence": "All seven mods plus four EnvHD packs; checksum repair and full reinstall verified.",
+      "checkpointEvidence": "All seven mods plus four EnvHD packs; checksum repair and full reinstall verified. Reviewed audit 697 / production 0afd preservation corrections integrated into candidate; owner 533 and pre-Dart combined 536 headless suites passed with 10 existing optional skips. Final CI/main/publication/device gates pending.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "Real Deck fresh/install/repair/reinstall/uninstall on internal and SD storage; offline and interruption checks.",
       "documents": [
@@ -614,7 +614,7 @@
         "A12",
         "P01"
       ],
-      "checkpointEvidence": "Accepted Dart head installed; live owner reports9new artwork candidates and is reviewing meshes.",
+      "checkpointEvidence": "Accepted Dart head installed; four exact field source variants bound in reviewed 9bb candidate using unchanged accepted artwork/geometry. 96 route/mod checks and 64 CPU/cache cycles plus 13 CharHD / 32 ModelsHD tests passed. Nine new artwork/body studies remain separate; physical transitions pending.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "Accept/rig/integrate nine full characters and forms;hair,hands,feet,costumes,weapons;NPC/enemy/boss inventory;69unbound routes,33source failures,22format cases,103animation/extra holds.",
       "documents": [
@@ -1467,7 +1467,7 @@
       "paintedBattleMasters": 12
     },
     "candidate": {
-      "source": "37737dfecb5abaae24d16d09294fb3e2c2336cc4",
+      "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
       "fields": 4925,
       "paintedFields": 39,
       "fieldHolds": 237,
@@ -1477,7 +1477,8 @@
       "totalPaintedBattleMasters": 34,
       "published": false,
       "nativeAcceptedFields": 0,
-      "finalQualityAcceptedFields": 0
+      "finalQualityAcceptedFields": 0,
+      "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4"
     }
   },
   "publicEvidence": {
@@ -1519,6 +1520,14 @@
     {
       "source": "37737dfecb5abaae24d16d09294fb3e2c2336cc4",
       "scope": "Reviewed integration candidate; fields 4,925 / 39 / 237, 22 additional battle paintings, UI 1ccd source accepted; not yet public."
+    },
+    {
+      "source": "b09250ab9a25697169f50ca52739c7f79066cc1e",
+      "scope": "Reviewed installer audit 697 / production 0afd integrated; combined 536 delivery cases, 526 passed and 10 optional skips, plus 32 ModelsHD and 12 CharHD passed; not public."
+    },
+    {
+      "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+      "scope": "Dart four exact source-bound field head variants integrated; existing accepted artwork/geometry unchanged. ROOT 57f CharHD 13 tests newly passed and JAR built; ModelsHD 32 up to date from passing b092. Final CI, main merge and publication pending."
     }
   ],
   "historicalLedgerSource": "b4f2efb15c05cad4a9f2997454d9a71142151b6a",
@@ -1532,7 +1541,7 @@
   },
   "uiMarkerCorrection": {
     "source": "1ccd1fc831fac6e67eb73ce5d0ec19c69150c8d2",
-    "integrationCheckpoint": "37737dfecb5abaae24d16d09294fb3e2c2336cc4",
+    "integrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
     "status": "accepted source; candidate integration, not public",
     "nativeDraws": 38,
     "focusedTestsPassed": 15,
@@ -1544,33 +1553,67 @@
   },
   "installerAuditReview": {
     "pullRequest": 39,
-    "state": "open; latest corrective source held under independent review, not yet the remote PR head",
+    "state": "Standards and Spec clear at frozen 697 / production 0afd; integrated in reviewed candidate, main merge and publication pending",
     "findings": [
       {
         "priority": 1,
         "issue": "Personal-root receipt placement",
-        "status": "fix implemented; independent review pending"
+        "status": "closed in source by independently reviewed 0afd correction; integrated into candidate, not public"
       },
       {
         "priority": 2,
         "issue": "Snapshot receipt/payload filename collision",
-        "status": "fix implemented; independent review pending"
+        "status": "closed in source by independently reviewed 0afd correction; integrated into candidate, not public"
       },
       {
         "priority": 1,
         "issue": "Legacy snapshot-root snapshot-files.properties skipped by basename during Reinstall; old folder subsequently deleted",
-        "status": "Independently reproduced; basename-only exclusion removed at 0afd9c30a; both corrective reviews and full delivery run pending",
+        "status": "closed in source by independently reviewed 0afd correction; integrated into candidate, not public",
         "correctiveSource": "0afd9c30a164e52f0d2162b02feb69b906ca67a4",
         "ownerControls": "Three parameterized failing-before/passing-after cases: ordinary owner notes, malformed receipt-like bytes and incomplete receipt-like bytes; reported by owner, not rerun in this documentation update."
       }
     ],
     "collisionCorrectionSource": "865dfc1920866cf59cdc9d7987af9454b00b771a",
     "correctiveSource": "0afd9c30a164e52f0d2162b02feb69b906ca67a4",
-    "finalDocumentationSource": "ebb592748eb17418d7dc56080769341fc8a3778d",
+    "finalDocumentationSource": "69736473ca4bba7e0a3bce971b6a46e694554ce5",
     "merged": false,
     "published": false,
     "priorCorrectiveSource": "f8a582932316c8b0339684553619f9954d2ec804",
-    "remotePullRequestHead": "ebb592748eb17418d7dc56080769341fc8a3778d"
+    "remotePullRequestHead": "69736473ca4bba7e0a3bce971b6a46e694554ce5",
+    "frozenReviewedHead": "69736473ca4bba7e0a3bce971b6a46e694554ce5",
+    "integrationSource": "b09250ab9a25697169f50ca52739c7f79066cc1e",
+    "currentIntegrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+    "integratedIntoCandidate": true,
+    "mainMerged": false,
+    "standards": "clear per independent root review",
+    "spec": "clear per independent root review",
+    "reviewBoundary": "Engineering source closure only; final combined CI, main/publication and physical acceptance remain pending.",
+    "readOnlyPreservationStatus": "Read-only custom-launcher and personal-file Update/Reinstall defects closed in reviewed production 0afd; device acceptance remains pending.",
+    "verification": {
+      "ownerDelivery": {
+        "found": 533,
+        "passed": 523,
+        "skipped": 10,
+        "failed": 0,
+        "errors": 0,
+        "skipScope": "existing optional tests"
+      },
+      "independentRootCorrectiveControls": [
+        20,
+        36
+      ],
+      "combinedPreDartSource": "b09250ab9a25697169f50ca52739c7f79066cc1e",
+      "combinedPreDartDelivery": {
+        "found": 536,
+        "passed": 526,
+        "skipped": 10,
+        "failed": 0,
+        "errors": 0
+      },
+      "combinedPreDartModelsTestsPassed": 32,
+      "combinedPreDartCharTestsPassed": 12,
+      "evidenceScope": "Recorded owner/root headless results, not newly rerun by this metadata reconciliation."
+    }
   },
   "pendingWork": [
     {
@@ -1578,7 +1621,8 @@
       "owner": "ENV",
       "issue": "Remaining field/terrain and animated/state artwork plus final scene acceptance",
       "status": "Candidate has 237 held fields and one terrain hold; partial rock/cushion/bedding authoring accepted in source does not finish required coverage.",
-      "source": "37737dfecb5abaae24d16d09294fb3e2c2336cc4"
+      "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+      "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4"
     },
     {
       "domain": "A09",
@@ -1590,9 +1634,9 @@
     {
       "domain": "A01",
       "owner": "ROOT",
-      "issue": "Installer personal-root receipt, snapshot payload collision and legacy metadata-looking bytes preservation",
-      "status": "Latest basename-exclusion correction implemented at 0afd9c30a; independent PR39 corrective reviews and full delivery run pending; no merge/publication.",
-      "source": "0afd9c30a164e52f0d2162b02feb69b906ca67a4"
+      "issue": "Final integrated installer CI, main/public delivery and physical maintenance acceptance",
+      "status": "Reviewed preservation defects closed in source and integrated; final combined candidate CI/main merge/publication and device gates pending.",
+      "source": "57f4dcf26ceb25ea0907760da87a0e967a837159"
     }
   ],
   "installerKnownGaps": [
@@ -1601,8 +1645,56 @@
       "issue": "Legacy snapshot metadata-looking personal bytes were lost by basename-only exclusion",
       "sourceWithConfirmedFailure": "f8a582932316c8b0339684553619f9954d2ec804",
       "implementedCorrectionSource": "0afd9c30a164e52f0d2162b02feb69b906ca67a4",
-      "status": "held under independent corrective review; not closed, merged or published",
-      "requiredClosure": "Both independent reviews, full delivery regression run, integrated-source gates and verified publication."
+      "status": "closed in source at reviewed 0afd; integrated into candidate; publication and physical acceptance pending",
+      "requiredClosure": "Final exact-source combined CI, main merge, verified publication and physical acceptance; source-defect closure already verified.",
+      "engineeringReviewClosure": "Standards and Spec clear per independent root review",
+      "integrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159"
     }
-  ]
+  ],
+  "candidateVerification": {
+    "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+    "status": "Final candidate CharHD tests and JAR pass; exact final CI/main merge/publication pending",
+    "priorCombinedSource": "b09250ab9a25697169f50ca52739c7f79066cc1e",
+    "priorCombinedDelivery": {
+      "found": 536,
+      "passed": 526,
+      "skipped": 10,
+      "failed": 0,
+      "errors": 0
+    },
+    "priorCombinedModelsPassed": 32,
+    "priorCombinedCharPassed": 12,
+    "requiredFinalCharTests": 13,
+    "mainMerged": false,
+    "published": false,
+    "limits": "Headless source/component results do not pass device or campaign cases.",
+    "finalCandidateCharTests": {
+      "passed": 13,
+      "skipped": 0,
+      "failed": 0,
+      "execution": "Newly executed at exact 57f source by ROOT"
+    },
+    "finalCandidateModelsTests": {
+      "passed": 32,
+      "skipped": 0,
+      "failed": 0,
+      "execution": "Up-to-date result from passing b092 run; not rerun at 57f"
+    },
+    "finalCandidateCharHdJar": "pass"
+  },
+  "dartFieldHeadBindings": {
+    "source": "9bb30ecb86262c50838b67427b72e0db59205f8e",
+    "integrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+    "status": "independently reviewed source binding correction; integrated, not public",
+    "inventoriedExactVariants": 4,
+    "inventoriedReferences": 1086,
+    "actualSourceRouteModChecksPassed": 96,
+    "cpuCacheLifecycleCyclesPassed": 64,
+    "componentCharTestsPassed": 13,
+    "componentModelsTestsPassed": 32,
+    "existingAcceptedTextureGeometryUvsFitUnchanged": true,
+    "newArtworkPromoted": false,
+    "evidenceDocument": "docs/definitive/DART_FIELD_HEAD_BINDINGS.md",
+    "limits": "Inventoried routes/source and CPU/cache checks only; no actual game-state transition/GPU/Deck/final visual/full-campaign acceptance."
+  }
 }
