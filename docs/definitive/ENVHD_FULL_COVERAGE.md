@@ -56,8 +56,8 @@ mapping hold. The [Tiberoa investigation](ENVHD_TIBEROA_MAPPING.md) records the
 three unsigned-UV faces and complete upload evidence; it clears no hold. This
 does not count unresolved animation/prop families as completed.
 
-The current [66-record field authoring input](../../integrations/envhd/production/field-bespoke-carved-furnishings-reviewed-selection.json)
-contains the 39 selected paintings, 25 independently pending candidates and two
+The current [68-record field authoring input](../../integrations/envhd/production/field-bespoke-small-furnishings-reviewed-selection.json)
+contains the 39 selected paintings, 27 independently pending candidates and two
 independently reviewed source-fidelity revisions. All pending/held history remains
 outside runtime selection. New scenery work, source checks and context corrections
 are detailed in [the active coverage notes](ENVHD_ACTIVE_COVERAGE.md).

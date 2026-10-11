@@ -1,0 +1,260 @@
+{
+  "schema": 1,
+  "scope": "Five held versions across three sources: Fueno cut309 ledge/fittings versions1/2, Ulara counter version1, Wingly Forest cut386 rail versions1/2. Two corrected footprints fail the unchanged coverage gate. No gates waived; original sources/layout/context/comparisons remain private.",
+  "sourceSelectionBaseCommit": "373b34a94a1fe52beb4547b215d451df14557633",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 3,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "2ce59703db78a4ad83f8b4828e2c5d265e9b441c96a93991333cbd576adcc12d",
+      "generatedSha256": "96ac97d32b9e2248085030117f4ce3c7d875cc46f5369bce70ac468250c5fdd3",
+      "generatedSize": [
+        1060,
+        1484
+      ],
+      "sourceSize": [
+        50,
+        70
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "34e3cda39869ef1e08a1921d28d8a11abb8143867e67427ec6d671fd4fb4956d:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 309,
+      "representativeLocation": "Fueno",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: one source-bound Legend of Dragoon EnvHD field foreground texture. Image 1 is the authoritative native cutout enlarged by nearest neighbor; image 2 is the full original scene for context only. Repaint only image 1 into polished detailed hand-painted HD game artwork compatible with restrained Skurfa HD scene art. Preserve all source objects, internal landmark registration, camera perspective, silhouette, negative spaces, material divisions, lighting, colors and crop.  Fueno cut 309 foreground 0: a warm tan curved architecture/ledge fragment in the original coastal town exterior. Trace the exact source: textured tan wall across the top, two narrow upright dark green-black forms near upper middle, irregular dark fittings below and to their left, small rusty orange patches at the left middle and right middle, a long pale-tan curved diagonal edge running from left-middle toward bottom-right, dark textured lower-left masonry face, and a reddish-brown curved surface at bottom right. The very large irregular empty central/right region is true source transparency and must remain empty, not filled by architecture. The exact identity of the tiny dark objects is unresolved: retain their original shapes and small marks rather than inventing humans, statues, flowers, pots or new handles. Refine fine warm plaster/stone texture with soft mottling, preserving source shadow shapes and the source camera. No new bricks, heavy masonry grids, carved emblems, added objects or relighting. Keep the two dark upright source forms distinct and their lower junctions registered. Strict full canvas aspect 50:70, no padding, centering, enlargement, rotation, crop or recomposition. Keep the source object reaching the same crop edges. Render finer coherent brush shading and material detail without reproducing enlarged square pixel blocks. Output exactly one isolated finished texture on real transparency, no scene, labels, text, comparison, border or background.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 45200,
+      "paintedGapPixelsExtended": 1776,
+      "paintedUncoveredSourcePixels": 1534,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 634,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        200,
+        280
+      ],
+      "outputSha256": "c9702c60e13d18713392de024add7d20f7bebd3aeb0b4360e7c6a5572e52b031",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/2ce59703db78a4ad83f8b4828e2c5d265e9b441c96a93991333cbd576adcc12d/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/2ce59703db78a4ad83f8b4828e2c5d265e9b441c96a93991333cbd576adcc12d/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Fueno cut309 foreground0 version1 passes technical repair but invents rigid coherent iron-like bracket arms, heavy fractured masonry and rough slab material around uncertain dark source fittings. Source-only correction2 removes those additions but changes the cropped wall/ledge footprint too much and fails the unchanged coverage gate. Both held. The dark object identities remain unresolved. Use a constrained source canvas and internal feature anchors plus adjoining plaster finish before another whole-crop attempt; no coverage waiver or arbitrary invented bracket construction."
+    },
+    {
+      "decodedRgbaSha256": "ed28e7d93d5636f737f4e2175ea43d33600dda3bde450f0738406d4a035cc7b8",
+      "generatedSha256": "c1c73a1876b3ff7c75877539c56d74bda9fe140559256867604ce7a7a33780e4",
+      "generatedSize": [
+        1100,
+        1430
+      ],
+      "sourceSize": [
+        40,
+        52
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "f8d205f8547f7d5b46f814fe05106142f2f5365e52808be1c85054b2ff0f79f2:-1",
+          "kind": "foreground",
+          "slot": 12,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 525,
+      "representativeLocation": "Ulara",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: one source-bound Legend of Dragoon EnvHD field foreground texture. Image 1 is the authoritative native cutout enlarged by nearest neighbor; image 2 is the full original scene for context only. Repaint only image 1 into polished detailed hand-painted HD game artwork compatible with restrained Skurfa HD scene art. Preserve all source objects, internal landmark registration, camera perspective, silhouette, negative spaces, material divisions, lighting, colors and crop.  Image 3 is an exposure-lifted source guide solely for seeing dark internal detail, not the target brightness. Ulara cut 525 foreground 12: a long narrow shop counter viewed diagonally, near-end lower left and far-end upper right. Restore the pale warm-gray frame and its thin bars surrounding the orange-brown goods in the front recessed tray, the long muted ochre-tan countertop behind it, a dark round blue-gray inset near the far upper-middle, and the dark green-black vertical openings along the right flank. Keep the source dark round inset visible at exactly its position and size; do not erase it, turn it into a painted flat stain, add a faucet, or invent a bowl projecting upward. The small orange source goods are clustered irregular forms, not a new uniform row of named fruit or a fiery glowing display. Their exact identity remains unresolved; preserve their number/grouping and orange-dark gaps. Preserve the thin pale front railing, dark lower recesses, angled bottom edge and source crop. Paint fine continuous material detail appropriate to the dim green-lit original scene, retaining the deep original shadows and subtle green cast. No ornate scrollwork, new construction divisions, brighter exposure, symbols or extra merchandise. Strict full canvas aspect 40:52, no padding, centering, enlargement, rotation, crop or recomposition. Keep the source object reaching the same crop edges. Render finer coherent brush shading and material detail without reproducing enlarged square pixel blocks. Output exactly one isolated finished texture on real transparency, no scene, labels, text, comparison, border or background.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 18400,
+      "paintedGapPixelsExtended": 501,
+      "paintedUncoveredSourcePixels": 349,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 34,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        160,
+        208
+      ],
+      "outputSha256": "c20f87ca87190f7604eb4f5c3e1c2e3bc04622c3db7be1260dd2d2a82cb32f13",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/ed28e7d93d5636f737f4e2175ea43d33600dda3bde450f0738406d4a035cc7b8/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/ed28e7d93d5636f737f4e2175ea43d33600dda3bde450f0738406d4a035cc7b8/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Ulara cut525 foreground12 version1 imposes strongly scratched/rusty metal-like material, thick round inset ring, sharply beveled polygon and regular charred orange lumps. Source-only corrected2 removes heavy construction/material assumptions and is separately independently pending. Version1 remains held despite technical repair pass."
+    },
+    {
+      "decodedRgbaSha256": "e22a7b2917dc0277ef411a3573333b54e4f6d56662bb68bc472c05a746537116",
+      "generatedSha256": "abe7a5b89c70fa59f33ccd11e7316173912da3af563d80a00104743b6049453c",
+      "generatedSize": [
+        1740,
+        904
+      ],
+      "sourceSize": [
+        50,
+        26
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "0ee1037f39f02d33f18a726a5a051126fb5f20fec49ea65723f3c65d52bd8f0c:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 386,
+      "representativeLocation": "Wingly Forest",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Asset type: one source-bound Legend of Dragoon EnvHD field foreground texture. Image 1 is the authoritative native cutout enlarged by nearest neighbor; image 2 is the full original scene for context only. Repaint only image 1 into polished detailed hand-painted HD game artwork compatible with restrained Skurfa HD scene art. Preserve all source objects, internal landmark registration, camera perspective, silhouette, negative spaces, material divisions, lighting, colors and crop.  Image 3 is an exposure-lifted source guide solely for seeing dark internal detail, not the target brightness. Wingly Forest cut 386 foreground 6: a low, very dark curved/sloping interior rail or architectural rim in the foreground of the green-lit room with the large magenta ceiling feature. The crop rises from bottom left toward upper right. Trace image 1: dark brown-maroon upper band with sparse tiny muted green and reddish-pink painted marks, an interrupted blue-gray inset strip below following the same rising curve, and dark green-black lower supports/recesses. Preserve the particular irregular coloured mark distribution instead of replacing it with a plain brown edge or a regularly repeating vine, emblem, floral pattern or new carved motifs. Preserve each blue-gray inset division and its native spacing without inventing a coherent repeated ladder pattern. Keep the source exceptionally dark, its exact angle/curvature and narrow footprint; exposure-lifted image 3 is only to see source marks. Use restrained fine continuous shading with soft material texture compatible with the original organic architecture. No heavy wood grain, new gold trim, bevel outlines, new plants, new structural relief or relighting. Strict full canvas aspect 50:26, no padding, centering, enlargement, rotation, crop or recomposition. Keep the source object reaching the same crop edges. Render finer coherent brush shading and material detail without reproducing enlarged square pixel blocks. Output exactly one isolated finished texture on real transparency, no scene, labels, text, comparison, border or background.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 15136,
+      "paintedGapPixelsExtended": 496,
+      "paintedUncoveredSourcePixels": 404,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 26,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        200,
+        104
+      ],
+      "outputSha256": "d5db344e96afe59941259d742e52751160af5ec73daebc68c10f5c915aa33171",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/e22a7b2917dc0277ef411a3573333b54e4f6d56662bb68bc472c05a746537116/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/e22a7b2917dc0277ef411a3573333b54e4f6d56662bb68bc472c05a746537116/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Wingly Forest cut386 foreground6 version1 imposes repeated raised circular green studs, evenly rimmed blue blocks and new lower concentric relief inconsistent with irregular flat source markings. Source-only correction2 reduces those motifs but changes the lower/right occupied footprint and fails unchanged coverage. Both held. Constrain native canvas/internal blue-band landmarks and whole-rail finish; do not repeat an identical whole-crop prompt or waive footprint checks."
+    },
+    {
+      "decodedRgbaSha256": "2ce59703db78a4ad83f8b4828e2c5d265e9b441c96a93991333cbd576adcc12d",
+      "generatedSha256": "043aa70c8494811902b16d0e294ffbbc4c6ee452792ac6329f44c834c2364df3",
+      "generatedSize": [
+        1060,
+        1484
+      ],
+      "sourceSize": [
+        50,
+        70
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "34e3cda39869ef1e08a1921d28d8a11abb8143867e67427ec6d671fd4fb4956d:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 309,
+      "representativeLocation": "Fueno",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise-object-edit. Asset: one source-bound Legend of Dragoon EnvHD foreground cutout, polished restrained hand-painted HD compatible with Skurfa scene art. Image1 authoritative original; image2 original scene context; image3 exposure guide only. Source-only correction. The first painting wrongly made tiny uncertain source dark forms into rigid black iron bracket arms and embossed the surrounding tan/gray faces with heavy fractured stone. Repaint directly from authoritative image 1 and whole original scene image 2, with fine soft plaster mottling and subdued grey-brown lower wall texture, not hard rock/brick relief. Trace the observed narrow dark forms and warm small patches without deciding a construction or inventing arms, rivets, pipe elbows or new vessels. Preserve the low-contrast dark irregular connections as source soft shapes, not a newly coherent symmetric metal bracket. Keep their centers and boundaries unchanged. The diagonal pale tan curve is a thin smooth architectural lip, preserve exact native thickness; source steps remain in their exact native positions with gentle shadows, no added tiers or chunks. Right lower brown surface should have soft fine variation, not a rough cracked stone slab. Match source lighting and adjoining tan architecture rather than emphasizing golden directional highlights. Full image exact50:70 crop with source transparency region empty. Fine controlled brush shading at HD; no pixel mosaic and no invented structural relief. Output exactly one isolated finished cutout on real transparency. No background, scene, labels, border or comparison.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/2ce59703db78a4ad83f8b4828e2c5d265e9b441c96a93991333cbd576adcc12d/draft-input-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Fueno cut309 foreground0 version1 passes technical repair but invents rigid coherent iron-like bracket arms, heavy fractured masonry and rough slab material around uncertain dark source fittings. Source-only correction2 removes those additions but changes the cropped wall/ledge footprint too much and fails the unchanged coverage gate. Both held. The dark object identities remain unresolved. Use a constrained source canvas and internal feature anchors plus adjoining plaster finish before another whole-crop attempt; no coverage waiver or arbitrary invented bracket construction."
+    },
+    {
+      "decodedRgbaSha256": "e22a7b2917dc0277ef411a3573333b54e4f6d56662bb68bc472c05a746537116",
+      "generatedSha256": "6951a78bb813b05572856651b215638803734ee21760b63fc5d87b7ed122de4b",
+      "generatedSize": [
+        1740,
+        904
+      ],
+      "sourceSize": [
+        50,
+        26
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "0ee1037f39f02d33f18a726a5a051126fb5f20fec49ea65723f3c65d52bd8f0c:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 386,
+      "representativeLocation": "Wingly Forest",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise-object-edit. Asset: one source-bound Legend of Dragoon EnvHD foreground cutout, polished restrained hand-painted HD compatible with Skurfa scene art. Image1 authoritative original; image2 original scene context; image3 exposure guide only. Source-only correction. The first painting invented a strongly carved upper surface with repeated circular green studs and evenly spaced deeply rimmed blue stone blocks; it does not match the original rail. Paint directly from source image 1 with whole scene image 2 for lighting and exposure guide image 3 to reveal source detail only. Preserve the exceptionally low source brightness. The upper dark maroon-brown band should be a fairly flat, gently mottled continuous face with sparse tiny irregular green and pink marks exactly where the source has them; these are flat coloured marks, not embossed beads, studs, vines, leaves or emblems. The blue-gray band below is a softly shaded inset with irregular source interruptions, retain the original number and position of darker vertical marks instead of designing a new regular architectural block pattern. Lower green-black face is largely smooth dark shading with its existing broad forms; no added nested ornamental ridges or coherent concentric sculpture. Keep fine small brush variation and soft edges, not blurred/pixel mosaic, thick bevels, engraved woodgrain or new piping. Match the flat subdued organic architecture finish in the neighboring original layer. Exact50:26 canvas, same slope, source curvature, cropped right/bottom and source transparency; no padding, centering, enlargement, rotation or extra objects. Output exactly one isolated finished cutout on real transparency. No background, scene, labels, border or comparison.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/e22a7b2917dc0277ef411a3573333b54e4f6d56662bb68bc472c05a746537116/draft-input-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Wingly Forest cut386 foreground6 version1 imposes repeated raised circular green studs, evenly rimmed blue blocks and new lower concentric relief inconsistent with irregular flat source markings. Source-only correction2 reduces those motifs but changes the lower/right occupied footprint and fails unchanged coverage. Both held. Constrain native canvas/internal blue-band landmarks and whole-rail finish; do not repeat an identical whole-crop prompt or waive footprint checks."
+    }
+  ]
+}
