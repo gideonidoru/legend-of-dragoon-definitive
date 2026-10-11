@@ -10,23 +10,23 @@
     "scriptSha256": "93ba237d75d8846e670d64f56901831feeb516dce1b7b7c775eea8d5af7b6949"
   },
   "backgroundImagesReviewed": 608,
-  "foregroundImagesReviewed": 2856,
-  "reviewedImages": 3464,
-  "visualReviewedDevelopmentImages": 3295,
-  "bespokeRevisionImages": 169,
-  "unreviewedImages": 1698,
+  "foregroundImagesReviewed": 3000,
+  "reviewedImages": 3608,
+  "visualReviewedDevelopmentImages": 3429,
+  "bespokeRevisionImages": 179,
+  "unreviewedImages": 1554,
   "generatedImages": 5162,
   "currentRuntimeSelected": 2723,
-  "additionalReviewedDevelopmentImagesAwaitingPublication": 572,
-  "additionalImagesReviewed": 624,
-  "additionalBespokeRevisionImages": 52,
+  "additionalReviewedDevelopmentImagesAwaitingPublication": 706,
+  "additionalImagesReviewed": 768,
+  "additionalBespokeRevisionImages": 62,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
   "reviewedForegroundBoardRange": [
     186,
-    237
+    249
   ],
-  "nextForegroundBoard": 238,
+  "nextForegroundBoard": 250,
   "reviews": {
     "7bddd3e8376657c5eb449a3988e12c5cb814ddb00a4a0ceb9d880452b86bd24b": {
       "intent": "Kazas cut 175 wooden dining table with chairs, two plates and bottles. Original/candidate/scene placement compared on board-0186.jpg.",
@@ -5641,6 +5641,1302 @@
       "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
       "verdict": "visual-reviewed-runtime-pending",
       "outputSha256": "31d091451bbace4fe6d175a84abfa8d3f4a23995712f4d01298b493c5ea1460b",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a0f7a565d43366b92d4aa853b37f5276031e4db32781fa7fd0035132963ad432": {
+      "intent": "Vellweb cut 493 dark angled wall or stair side. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The diagonal ridge and notched left boundary remain within the same violet-black shadows. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "a0e1abc1e5472d9102e7e51c355c9bc7e259ee035e7a4217d1419db72062a487",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a12bdd011a776cf1e794fcffc9e5ce1ed843cb1d49d74ecd0db02c0a701504a6": {
+      "intent": "Aglis cut 571 pale blue curved architectural panel. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The curved upper edge and vertical blue shading remain; fine color variation is smoothed. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "04d12d063292f76f8e5ced702c24b0fb6422c63c5c236e906bfbc09f9f9e6285",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a12e5d31bb845b39428cbaf2f1b717cfdd824d77cbeaddfa571fab22938a37fb": {
+      "intent": "Moon cut 609 long thin brown railing over an illuminated organic platform. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The repeated uprights and raised right end remain aligned with the platform. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "042b7f7b86d2ce5566a3178936fac1d014795bc1615dab375bfb3716468cbf09",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a12edb11ee35337a24d5be8291294d607ceb9718a8322fac9b097540e789f1fd": {
+      "intent": "Moon cut 730 separated dark block surfaces with pale upper seams. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The separate pieces and narrow pale seams remain intact. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "5575fbd865d93df9d5f757ccf28bc8ee474d89fe1731e4ad246b78a6c8d898d1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab": {
+      "intent": "Deningrad cut 347 small recessed brown door or inset panel beside snow. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The candidate becomes a generic smooth inset while source diagonal patterning is mostly lost. Hold for the original door detail. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "intent-revision-needed",
+      "outputSha256": "3744f25862dab0e6d26ed822d120a9983b1209510728b1a252a0655c5a5d756a",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f": {
+      "intent": "Fueno cut 314 curved brown wall support above a stepped lower edge. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The curve remains, but repeated relief lines disappear into a plain surface. Restore the carved divisions before selection. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "intent-revision-needed",
+      "outputSha256": "db397234808e8fa9ca157fb12938c73163daae3da1e90cbdedb720f1434332ba",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a16f5d7333a4b9a7533df21e2c9d4768e74f00c55493e9b122a39efa90d4dcc5": {
+      "intent": "Volcano Villude cut 121 separated green-grey rock plates beside lava. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The plate divisions and deep cracks remain; green reflected light is retained. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "7c588e2fb92629dea68eee7fd370474e6c877e746fcfe029ea58657f65610426",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a1748755aced943ac93f3993fc5f01b187cba787348fcccd6d2f0a5a8b1a4cf6": {
+      "intent": "Giganto Home cut 263 pale curved stone balcony lip. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The central dip and pale horizontal stone bands remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "32881520e65c4eab12fb313573c3464119800c24bdb74736e7dfbe26509ec329",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a17a9dc9c2ff395bc7c8d104d7918c8f257551b45159fd7ad0ed654a0f0bba91": {
+      "intent": "Town of Hoax cut 627 curved wooden bed or seat frame. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The curved pale-brown surface and dark transverse beam remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b7e674b918696bc5860ee16d13283f344c7759d2d2280490fe6e373faaaf2729",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a183acbd3983559b1700170092079b89d64b29b696980ad6d8b4256f90f49219": {
+      "intent": "Twin Castle cut 665 pale curved trim with repeated oval openings. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "Every large oval opening and the curved white border remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "2bb3fea6d04769b37ad6da67cc22f6cdbe7f8457a9c4d276b91e6f0fad65dbd2",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a1acbd276dfb6ec6e5ed4e86594681e541d24e680bf1f694b2ba42ab0443f3cc": {
+      "intent": "Black Castle cut 194 green wall fragments above a dark rectangular inset. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The gaps between green fragments and dark lower inset remain; green surface weathering is softer. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "9681f63b72c8a3408ff2d3a4abf31e3347fdcbc8aeef2a9db367e3fc5b2741c2",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a1b2734c89a647fbd7e8bd120d760d78f4f52a73ba5a6b72251eb8e8ad04bbfd": {
+      "intent": "Lohan cut 150 angled brown stair or roof fragment. Original/candidate/scene placement compared on board-0238.jpg.",
+      "style": "The broad stepped bands and lower warm edge remain in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b140fcf2e3c0534161791e5f43cd97fb8d6c89e211f7fb6b2ba20c865bcf1fb5",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a1b5fd6531ee10c2a2cd7d434234932dbf8237b51adb21abb47ed7bb4124c5c4": {
+      "intent": "Rouge cut 563 separated wooden dock planks. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The individual planks, their gaps and raised rear end remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "0c63cdbdf8980f7bb1886de5e55d74374aa31c0448a45ba64c0cb2d8b9e36b8e",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a1ba2aae76bc29ced8d42e1760433bfb8ba2ae301faae10811514786676f4f32": {
+      "intent": "Ulara cut 526 dark sculptural edge with pale gold ornamental foot. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The gold foot and pale upper curl remain separated from the dark panel. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "231af75d22924ed81106ee5bf88a0e5eecc33d307465faa29d8f0a8288e0ccc4",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a1be1330fc18c9aab77c133f7b43f0a0d40b33040034a831d8f79b9277ca5a30": {
+      "intent": "Mayfil cut 705 low green-lit stone platform. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The stepped top and separate illuminated right inset remain aligned in the shadows. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "d2a447863405c77fd30de343db28497981ad9d6d63149ba93774e986ece6f608",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a1c22543a218a9ad251a2286113e46a8989bf73ab4ce04b9bea0489733477cef": {
+      "intent": "Fletz cut 205 pale blue stairs beside a small golden fixture. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The individual stair treads and golden fixture remain separate. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "2be33fe11c2bcdd4452d5392fb782c38e8acffb30d08f309be66bec25bec1fa1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a1d30d4c249ddb121f139492689bc844c0f5aac58a21359f3af3ac0a0cfe5122": {
+      "intent": "Neet cut 379 snowy roots and a curved bridge-like railing. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The snow-covered limbs, railing curve and icicle gaps remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "bfc105dd926419dbe3b53e43af7e05695110eaaa9e79c8602760238a3d853f26",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a1f854580c7eb58d78526a4690c6b3e52b0fd09bee9865e92ad4e2a921b5ff92": {
+      "intent": "Town of Hoax cut 103 diagonal warm interior wall trim and supports. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The diagonal pale trim and both downward supports remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "7fd3527ce3a3d57ca4aaded524fa71176e6ccdc99c09d292a9792cb7389fc8b9",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a20647a3c5ffc9e67fb313c2a997f984658a11ffa2658d500ef88379262122e0": {
+      "intent": "Flanvel Tower cut 444 dark blue-grey surface below a green architectural rim. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The green rim and dark folded blue-grey shading retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "ba2e497fe9bc7827740f4830b988d81e1a7639e9b158d7a508dc62e69fc2e557",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a21afeb586e61100353f0c782f47f8ac181d0a7f8e8cea49868f354555316c8e": {
+      "intent": "Town of Hoax cut 657 wooden rail above a blue-black roof surface. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The rail posts, horizontal beams and diagonal roof seams remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "706be4e44362f16ebc9a00feedb5d936eaa2bd89f6e87b068eb2ca0bbc8714e7",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a2215f6da242addcb1a2c9be63d177e31ce663f48d7f7f8a15578fda366570a9": {
+      "intent": "Valley cut 252 separate layered rocks beside a rough light ledge. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The upper rock pieces and rough pale lower ledge remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b4ccabad6ece859517be7acd4e2ad55beedb302f8f6004d613f9ebf37d24c2ed",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a239c0bc2ba41ccf3d2cd8eaf815f257d4b7de6037a9d0ccf5305e6026c8548c": {
+      "intent": "Death Frontier cut 746 pointed sandstone block beside a lower upright fragment. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The pointed face and lower upright maintain their dry stone forms. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b22c324ba2aa7016e9adc4e549d3de36109e6cf133bd092722633549d4bb2be5",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a258b0eccb782348cb8555acfef80163532edb89e08796776ec203aa6a4cb9c0": {
+      "intent": "Death Frontier cut 746 tall sandstone face with thin twig branches. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "Both stone grain and separate twig branches remain visible. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b7c622fa6cc76b877b24dfba6668526eff911995f5379b8d3c6309b4ef03cbee",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a267e29b671abaf7f9e508696f04164abcd88bc6f832e23d2e4fd72e3b4563aa": {
+      "intent": "Ulara cut 519 curved dark balcony edge with repeated pale ornamental panels. Original/candidate/scene placement compared on board-0239.jpg.",
+      "style": "The pale panels and dark oval motifs retain their spacing along the curve. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "f2051160b195749754bc99b2edb1f7f7aa822a15899f57cad46c4d5fb64960c4",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a26b25a0b34d4d72de5f02271044375162a1b8ab692d492a75a05ee0d79ec697": {
+      "intent": "Furni cut 336 warm organic wall with a small wooden railing and green leaves. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "The leaves, railing posts and rounded wall opening remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "eaf316bd68700806b613f9c1b990738e72bf1df3085718f7cd6633bad35a99b9",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a277077d308dc775049af8675fc069bbc3d858ac06d859e43fab72bbf188d4bc": {
+      "intent": "Kazas cut 178 sagging dark cord between two short posts. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "The cord droop and both post tips stay aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b468cbbde53792045fa137774e7d45d114093cc820186ba69f51663d85691a86",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a27f5562f0d940c0e50218d0605523808427046592a3c839ac6dd7c81ebbb613": {
+      "intent": "Shirley's Shrine cut 155 dense green shrub beneath a detached pale stone. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "The shrub silhouette and small leaf texture remain; the pale stone stays separate. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b49cf816b55a6243a46a6dcaff9e4381cb47aba687bd09fb8686f7558e99dd09",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a282293c89724f47fee17bc922eabd5ea8604fbf383d26a45bb8221048d4cfe5": {
+      "intent": "Wingly Forest cut 387 blue circular insets beside a ribbed stone column. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "The three bright blue circles and the tall ribbed column retain their distinct arrangement. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "37b51d77db62a12101a009fe3aa785a35501b85057ff6b70493da0aacb8de351",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a2858214523a38a1af84d7466029a6f90a4c7a582f14074dd80ace0e27bc87c9": {
+      "intent": "Mortal Dragon Mountain cut 413 several small stone posts and a detached stone. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "The separate posts and stone remain recognizable with gaps preserved. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "9d9e529be5f85539aef683c359e029a434d6e3b8d853d5811d32deed5c0d174b",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a293e10dd5434e3927773af6f84b30420b2deee0aa993bd41b3a900c0476c55c": {
+      "intent": "Kazas cut 181 angled ladder or rail with warm crosspieces. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "Individual rungs and warm joints remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "489e143fe9c4025211fcdfce2389530a296be7298b58e2732001a4446e0323ce",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a29736e71bb9e972f64ef58ce8419fdbd50fea9372dfa6e4c6e71ce6a905d253": {
+      "intent": "Forbidden Land cut 400 long dark architectural ledge with thin upward points. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "The upward points and small warm lower accents remain in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "faba7ec08445303cdf15878926bb8e8cef0f928fcdb3a30bfcf0eea221564874",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a2ab1f2687227e174f78341489a81137e4e6b8791635486831fd92828506f59c": {
+      "intent": "Lohan cut 142 green arched double door with horizontal dark straps. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "Door divisions, dark straps and two pale metal fittings remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "77bead9e0e7a4bbbc327c6efa8a83f644ed6aaf3d3ff566f7ae2dc4b8079918a",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a2b1eb638f06357334699dbded3d83803aee9194ee89b772a6a9a834cb83bcc3": {
+      "intent": "Ulara cut 515 elongated pale altar or furnishing with orange objects in its inset. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "The long inset, orange objects and dark lower supports retain their arrangement. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "088281d1dfcc6e82b597fbaefe2fa3a83d8af52c0759aab6f6bd83f63662799d",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a2b6671711e7dff42225c12838c0f7c1cf6ab4ee484f6593f3772c0009bd6925": {
+      "intent": "Neet cut 724 dark ruined timber structure beside orange light. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "The timber intersections and bright upper orange slats remain visible without closing gaps. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "2870b0b4f1bbac2f106332bbb0499ed5dbc569c87149f96e72e0bddb297926fe",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a2d139404e82f2457f95c17407a35e54b8a8e33f5c03c806ae21a37ac0448b52": {
+      "intent": "Black Castle cut 199 glowing red-orange vessel with several small bottles. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "The vessel rim, bright contents and separate bottles retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "4c33400ce794a342899025b13f16544e1cf0a33943e800a97a8a21cf2a3b92b8",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a2ef10ffa4712d71a8cd05cf664fefa3f59b9d004eee24c0fa8107e8a14a81e3": {
+      "intent": "Lohan cut 636 paired red hanging lamps above a dark base. Original/candidate/scene placement compared on board-0240.jpg.",
+      "style": "The paired red lamps remain, but their white decorative marks are redrawn as repeated blocks. Hold for source-faithful lamp pattern repair. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "intent-revision-needed",
+      "outputSha256": "03bb0eb3813c72f8870bd1df6e7bdeae02b7c5f783cfe9772a15f99ea6687d9e",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a2f83655bfb5e393a0dd9e67a118b011e7dfdc8fe135a537dc61bf1c23ecf065": {
+      "intent": "Black Castle cut 658 curving brown rail with pointed uprights. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The pointed uprights and curved connecting rail remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "2a855b9a99c453b2b0250e506ba8b1ff7a5b4f58bcac1a4c2426a791fc9ce217",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a2fd9cfe7bd2ee33cde41d3a18e9a1a06cf063a43582e99d16cd92665db5134b": {
+      "intent": "Black Castle cut 188 green-lit diagonal architectural arm. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The round glowing joints and dark upper frame retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "1af31b6210dfa39788b0b9107d5eef31d9423856dc57298b829e5e158e71259d",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a30b7d118920cdb7f5877e57661579134483494b9755f338b859ccfcae7c69d7": {
+      "intent": "Black Castle cut 187 narrow dark diagonal wall or support. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The diagonal pale edge and deep violet shadow remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "bbdfeb540ca372bc13efde0429dbef77124c8f0a8d0fec0b07e9d07b76610514",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a30ea8e20b9da22542a0cc2a4e7df597d47a2103e42a0a6a43f9fddd6f5bade8": {
+      "intent": "Ulara cut 522 violet pedestal with green crystal finial and pale branching frame. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The green finial and separated pale frame loops remain identifiable. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "86f3d444001a312f8fd23e0a2b5cca865f6d70d0a5ec678e9fb7fd1536e8218f",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a3258dcc629eeee251fb7fa8d0b85e1cc308657ce6da8c22bb6ddafd72e2a462": {
+      "intent": "Furni cut 330 tiny pale curved organic wall opening. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The inward curve and pale lower point retain their shape against the green shadow. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "e3d0a40e7d48a1ccc46f13f2fa56c037079db70318d18392e30a7b7972dbe7b1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a32ad0c5ff00fb884bf33ee8f4a5eb5f1c6b93b174e8e602b899a8e67b364bd9": {
+      "intent": "Giganto Home cut 266 dark floor platform with radial gold lines. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The central upright seam and radiating golden lines remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "5158b4db557cc14d14592d3d588dc75bfe1112359dc7415169c7f7944d9250d2",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a33aaf51affcacba954dce25d0953632dc4d87f236b35d0031b0c209d7fe5f1d": {
+      "intent": "Forbidden Land cut 396 narrow golden stone lip above a dark inset. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The bright upper strip and small recessed feature remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "77e73f6a885a3525c6a08c6c8e544d0227e9346fd03e9ff1f4e0a19984f01396",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a33b14242485568fbfcd2f72d426d6c5b3913eda266fb9161d33c16f90130a91": {
+      "intent": "Fletz cut 217 descending dark railing. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "Repeated short posts and the diagonal top rail remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "e4fccb581d19263c4cc677dc88f7f1d309efed5ee57d849976c1e623d045a291",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a35285a9da5cedb37f6582e5a229ced1d87f180b4a19f94079d087943bc20e55": {
+      "intent": "Town of Hoax cut 105 curved brown interior wall and stone base. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The curved base divisions and diagonal upper edge remain in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "292650a8bdcf6b3aecf10962802b785ec64a05485ef86063f70abf7fad082cd7",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a36231b2998e0eb8e974dda8d431a99df684c08bcb05ba2f9244df6c56d113d8": {
+      "intent": "Lohan cut 636 long warm interior beam beneath dark upper panels. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The horizontal beam and vertical upper panel divisions retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "c16719e7b408aa426ecc37c2bd4cebf2763d101cb55ffa44fbc9d17df8513228",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a36895b6d3d9d52147b2ff9ae7b39a9fb3f29b9fdd8479cfc2389516e8a19850": {
+      "intent": "Forbidden Land cut 394 layered red-brown rock projection. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The overlapping rock ridges and dark undercut remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "66ea348a79477054cb771c625f693bf162ea07132c14dabc04b1d5f6baf821db",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a36cb9b96576dddda12d6acc74eb89fcaee63526dd6ab690b9027cd22147e696": {
+      "intent": "Vellweb cut 493 diagonal ruined masonry rim. Original/candidate/scene placement compared on board-0241.jpg.",
+      "style": "The repeated angled masonry bands and broken outer edge remain readable. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "c80e591aade321a888e7e5f979462c87419384b84fd00d38db1a9a4ef99723a5",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a36f3a36ac93b5430a9213256c66c70b2b2bd7bba2e7c6261d46529a4f3ccb2b": {
+      "intent": "Valley cut 254 fragmented rock shelf with a raised triangular face. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The triangular right face and lower broken ledge stay separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "a3fcae6fd8970e11316f85b1797befed8ab948a0feca5d758b43ae320ff067cf",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a37d4039987c1df17364c84b21bec91be5ae9a6a4bcefe1be22187c5c47fb549": {
+      "intent": "Lohan cut 151 wooden desk or counter with pale papers and rear shelving. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The broad wood top, central pale sheet and rear shelving remain in their source positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "0e43cf60d0a3f1705f7e49c740b66460468082ea497bab47e1ca3d2df1445ecb",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a38a69e616ef1c51df1891aba826966253789044d9c136408ced9ef1f6f163cd": {
+      "intent": "Bale cut 69 pale elevated walkway with dark railing and long supports. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The repeated railing uprights and separate downward supports remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "5b6c4ce454b1d4aa5fd346bdefea61029ede6b0d215b044c1499a23ef6157a70",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a38bde92eaec6899b9fe66646df8f38d2d0409feaee37f5edb477f47bf2e3811": {
+      "intent": "Furni cut 337 wooden lattice railing beside a pale organic wall. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The individual vertical rails and horizontal joins remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "ffa224efc88ebe304363242ca17509df124d0388229cad4119216af90506b3b3",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a394861b07267912cfece09bad7d5ffdd9eef4bc221873affc90904c5f8d8780": {
+      "intent": "Deningrad cut 351 diagonal grey stone wall fragment. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The broad cracks and the separated lower stone piece remain in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "9341cd554eb53e030e8348943720864732b12c505ce3f46eda45f6197e2a08b6",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a39e08b8b43a92a46ac0f978d44b00b93b6f20321c6bfc70a68cba163cdd0880": {
+      "intent": "Phantom Ship cut 287 diagonal wreck beam with a square raised opening. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The square opening, metallic-dark beam and warm reflected patches remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "9894455eb2f0ce32b031911a39dd4d13a12d39944a9cd2785a5c6a21a9fce227",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a3adbfb2659bf0f09024d981da4bd967d70b4e2fb835dc5d8b81e24151013f83": {
+      "intent": "Prairie cut 38 tiny yellow grass stems. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "Separate narrow grass stems remain in their source arrangement. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "7e79b105f6c032710d5490b6013911dff7298f3d10b8909133b6c42742a54882",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a3b9ee9b0b70f998841d7a3e54b4bcbe570fb2c35d9b1bc41acc0572101475da": {
+      "intent": "Aglis cut 573 paired slender blue curved supports. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The two supports and their triangular feet remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "547baece03b2d3a5d90e7671163470d33eae6aa97cc3c512e76ece6fbb86258b",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a3bd630f498bf417cf3990e0c0f6d1159e2fc9fc161241402d47a3180ef91021": {
+      "intent": "Shirley's Shrine cut 155 rectangular wooden frame with two descending posts. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The central opening, horizontal crossing piece and downward posts remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "4c8714354bf1d161c24b6106d870c7beafc42a29aff99b3943b59f1f83992bab",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a3c4aadc28948f7e3f79b4c4cd64de18529a337d356d6a989d4040a3b911d8b0": {
+      "intent": "Kazas cut 178 small brown timber fitting with a vertical end. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The horizontal piece and darker downward end retain their shapes. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "6858647d2b66dcfad5b0f7e111e8e59ea4de48781bb86a622c040ce021c516f6",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4073c3156287c99348fe06aa077017b63aac1c8c0ef223bae94e2c49b63e2b3": {
+      "intent": "Fletz cut 208 low dark curved architectural band. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The long shallow curve and small pale side details remain readable. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "5eaf0eb1fb0f0ae4804d1f1bcf60f1a45e60d48ba57971ceccf6c91de7674047",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4092a66ef074f60515b25553fd627c5b6ab5141129b656b5b2aaa93b07a0608": {
+      "intent": "Aglis cut 576 straight slim blue upright and stepped foot. Original/candidate/scene placement compared on board-0242.jpg.",
+      "style": "The upright line and stepped lower block remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "99d2a0344976feab9af01b93740560babd106575c92701e2de13aea3044fa80e",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a409875f2e78391ccad67a4b060b5776c7b3774723bb938e33933fc772b77737": {
+      "intent": "Rouge cut 629 long wooden dock railing with raised posts. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "Each post and two horizontal rails remain separated along the dock. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "099f9ca15488fc2ff0a6b011e34a91b4c764be6393cbd53e6e10741947edec50",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a40afee0fc8fb3352b94e23885660b071d1290d6f6d6674631410a7bd578f25d": {
+      "intent": "Cave cut 47 blue-grey cavern wall with horizontal rock shelves. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "The horizontal shelves and dark lower recesses remain visible. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "cf9aa27b88f16a59c08b5bc177b7dd0a4f50a8aac47f7e8a6e77917996c7afc5",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a40cd160bfe9f718f7170a9e623b94543a373492213db680b2665aebcf0a01c1": {
+      "intent": "Furni cut 327 stepped pale parapet over warm timber. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "The raised parapet ends and pale twig-like tips retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "24af0f6b07b28c33c78a7509ea8f9517e0d354e69f615a837787446c7f89b671",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a41a091300e59719be4ee6d911f64c6af09044908d9f0b6a4772944d68307dc9": {
+      "intent": "Bale cut 78 round pale stool or table top over a lower circular base. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "The top, narrow center support and lower circular base remain separate. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "bb300b53ba16a9e92f5c28459604d2903fff8d9f9c693462fec9995d37fb5668",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a41f1478c077b59121f607ab54346f2d2aad21c81288d309549a332318729ce3": {
+      "intent": "Marshland cut 106 long bent exposed root. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "The bends and thin parallel root strands remain recognizable. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "bdf78c75555d686dcf44d8b0f238226fb5f0c65550f02345a26ae4009b9399b0",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a44229ec36705d603e871edae460b947a7d397355253b5a4dcd81252e8aff517": {
+      "intent": "Moon cut 619 round cloth-covered table with small objects and a lower seat. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "The circular cloth edge, upper objects and separate lower seat remain in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "4ea913b2874a81a7dfabce9415f2cc1f11777e482e80614d7744c318ab9a8ae8",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a44a9f656813cbecc22886184ba75c68603677391376e5ea34d1d627fffc2e1e": {
+      "intent": "Forbidden Land cut 404 golden curved rock or architectural ledge. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "The curved upper peaks and horizontal cracks retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "20fa8d161c7c37fc778e1d3016ab44071d6c87551d148ccd074209ed984f63e5",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a46c0bc155dfda27e422242d3f5c68fb86bcf907f3f8f227340e3a8eb03d9403": {
+      "intent": "Donau cut 248 small pale ornamental flower or patterned decoration. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "The candidate introduces stronger black outlines and reorganizes the tiny pale and pink details. Hold for source-faithful decorative repair. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "intent-revision-needed",
+      "outputSha256": "e0752664d61132b6566b21a99283b6e2ffbcfb8e68004e1dbf1014cab5b82b8b",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a46fdc8b6edad850e2584269365bf894b917d8649518916d893e55ec4f6867a9": {
+      "intent": "Vellweb cut 499 two green-rimmed circular openings beside a darker fan-shaped edge. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "Both round openings and the right segmented edge remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "90eac3d793058498c354af317d2f229eb169389cfd1793aca0dd919b3dc8c374",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a472ef3ea6e96c0454af8cb09aecf956346b293fd81af0935833c92392c6b2c9": {
+      "intent": "Furni cut 330 pale sloping organic wall with a narrow mossy base. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "The sloping wall edge and dark green lower strip remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "e49de0e625c554918ee66bbde016dc7c2d95d9955f3d36b00cca39f50ac64e6f",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a47d3c8398f7f86d0e71c0eb829edd516bc9fd41c5ee5b09a99bf9dc55e02dcc": {
+      "intent": "Indels Castle cut 89 small brown curved support under a dark beam. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "The curved support and narrow warm vertical edge remain intact. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "6c266a4933c84fd1c664ab7a1d8d1050ded213d0d2781f0a2e873ee4b02e985e",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a48a3ae3818a7b80bc6bbf11363abbed1f05b0beda34338f967b28f1963ee6d6": {
+      "intent": "Town of Hoax cut 99 dark rounded masonry wall section. Original/candidate/scene placement compared on board-0243.jpg.",
+      "style": "The horizontal stone courses and rounded reddish boundary remain visible. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "a56e62d2f205ff124773ee390ef9fdbfa3d827e4a9b26b629e9a0d9062a583b8",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a49c1d3f3e3fd1f604e84d20fde1364ed2ba2ab100635c3f4db1d5e8261ce471": {
+      "intent": "Forbidden Land cut 394 ridged red-brown diagonal rock ledge. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The repeated large ridges and narrowing lower tip remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "9e04f0082f32c286c2d7b1dad4e98fe4bf7b81905d79a2929ad7726dff5b08e4",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4a44997a7a3930873f62d853d76f1aed8b75a9222b0ea3b88faacbf8a790dd3": {
+      "intent": "Mayfil cut 721 thin curved teal structural strand. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The strand curve and bright upper tip remain in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "1c0854fd5330d42f072422bc96882417b3a7dd6a0b359665f8aef2a50329a750",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4b55026684aa420d022d4ed5bb990d7e13c50f989b924e97e494256ec01bb4a": {
+      "intent": "Nest of Dragon cut 136 blue bare branches in front of a dark cliff. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "Branch forks and cliff edge remain separated; the cold blue shading survives. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "71f7e33ccf878b355f6c850fb7f20f53c107548e9daa75d7ab7c902fd1bb6b73",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4b7ae07d8773de57e4608bb842308a709dfbd18e48120075c297a86c8b90ac2": {
+      "intent": "Ulara cut 525 green architectural furnishing with orange inset and rounded rear fitting. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The orange inset, upright green piece and pale rounded rear fitting remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "16626833eca38a9b652480600f26954a13568d39fd142cd527bf705af685c12e",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4c17dec258afdb7e898cb293425c84da9c7b88cd6c499a1f65a4a207ddea27a": {
+      "intent": "Kazas cut 180 warm sloping wooden platform or furniture edge. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The curved front lip and narrow supports remain wood-like and in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "cff3eb99ee8a6f65da2a1bcdc67e5813387099d81a96a70acb51ffb2be5c9cae",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4c6955739f0efddddc1b5b6f8cec0f3932426801064c29d3a70370b197a2ddf": {
+      "intent": "Giganto Home cut 265 very long suspended brown shaft with rounded lower fitting. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The shaft, small upper crosspiece and rounded lower fitting remain separated from the background. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "3261c581ee7764f59e244557a894d7026fb855a439550d3866c4f24753900133",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4d4b41bd9424552a22d5b3563b784506322d776323e68a505648a53de4b19a6": {
+      "intent": "Town of Hoax cut 103 warm timber wall with dark diagonal crossbar. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The crossbar and repeated vertical boards retain their arrangement. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "1a2b7ada58b5d7a95bbb28dd0b499536e51ed52aa2a793c86780fc521b0d8054",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4d80b31e9ce88544f5d5fc00563b6dede6bd42e731049549a532444464ef08b": {
+      "intent": "Black Castle cut 191 orange-lit narrow platform strip. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The repeated orange divisions and dark lower edge remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "973fe837bb8825ee5b0e0792fdc24b1c5345bd47e4b0eb8491621d9640b05e9e",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4e4fbbb39945bc7b5ff9496381158c904a475e8ed62f1e6876039304f3e0e80": {
+      "intent": "Black Castle cut 196 dark stairs with thin purple-lit posts. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The stair treads, posts and small purple highlights remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "92a6be56a2f097f1bae15ffe745217d9d98a68011943aac289f7dd3cfa810beb",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a4f37b8c6aeed200c4344371c7b939ab2a79911f7e316f620153fca4435a4364": {
+      "intent": "Black Castle cut 194 narrow warm architectural lip. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The slope and brighter upper edge stay in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "6c3812ecca5ddb089edd2c2a08171c041785ae9123678cf8237ae28965d344a4",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a51c1b6cf9f14f03f54782266598352334214f9d9abf9a11c9c5c15ea0cd6300": {
+      "intent": "The Queen Fury cut 284 pale warm panel with dark crossed framing. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The crossing dark beams and separate lit panels retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "942106f9247c3c46547b378239400f6c7affd5039799d9b981cc2a43ee213d31",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a521659b033f4b2b0d4959267e2fc904b4e22c11061bf28d70f31b448a505893": {
+      "intent": "Valley cut 252 thin dark sloping rock underside. Original/candidate/scene placement compared on board-0244.jpg.",
+      "style": "The shallow sloping silhouette remains within the original shadow range. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "86396b93a13c45df427b83d1cf918055c0aaba272ca4b870ed8989adff8145d1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a521d93be307e48ac897f76707d141e26567f5d6379c15d686f217e189addb62": {
+      "intent": "Fletz cut 202 pale blue curved architecture above a rounded decorated base. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "The curved shaft, blue accents and rounded base retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "bd4251ae3adce24c4f83a7bed06a40ab85fea05f207c65315757c7bed2659e11",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a52db6383faeb8305e6e1d39a142dd103b7ec82d4e49d9e4e1e231a7aa40b8ab": {
+      "intent": "Divine Tree cut 586 very narrow brown organic strip. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "The taper and shallow inward bend remain intact. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "c0ad1f3b41893346ad697d96aa770de256e4db4657170a71afda757e6712bce1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a54173e6017a218f06df3746d03f3526c034b0d2a6161c4718dfd5f0d8cb9ad7": {
+      "intent": "Death Frontier cut 775 low broad sandstone slab. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "The raised center and layered outer rim remain recognizable as weathered stone. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "25d2cf46b59757a7c994a3433eeae5fbc9ee7dce290959a373045e52c21a45c6",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a5492ebcb9e5d1a5ab304b6c672931d34e1bf8c7cec78d2b4c60d7ace9b118dd": {
+      "intent": "Volcano Villude cut 120 narrow dark rock column. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "The slightly bowed outline and darker lower step remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "647567051a462e066302ea6f4c900c12d3dc5e140af0bb92e120bf3bc08d1809",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a551fdc65900a14487b2d393b0175a77f044ea262f6e276cffb814b47b6ba4e6": {
+      "intent": "Death Frontier cut 763 low sloping sandstone outcrop. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "The sloping pale center and rough darker ends remain stone-like. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "9517e01d29a694d2e140ddb378d57c44d51474f45315ca918fd84c79a235ebcb",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a56524e4936ff7ff179f5d32ba2206c54d3bf82c7dea13dea112984a41a0257b": {
+      "intent": "Town of Hoax cut 102 small warm table or stand with pale central object and separate upper fitting. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "Both separated pieces and the pale central object retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "34e52757f0c7eb6c634f2a2f8fbea728707aa66211d581a2015a10a6fe962766",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a56c6d029dec15841a081f654d03789bafaf5da511aa2d4c4ea9385dfdcc4112": {
+      "intent": "Neet cut 692 thin charred timber fragment. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "The long sliver and small warm left edge remain intact. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "a685b0a133a75fc61795ffc478e6bfa1091206d11c8584193845b96b535edde0",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a577f0c6b3a7f7131149ce2f16bb8572e53847881761c95994aa356b9971088e": {
+      "intent": "Ulara cut 520 long magenta railing with branching lower struts. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "The thin lower struts and curved magenta top line remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "ce0286a11a6f49fef14a794315109c106a079bc1256cd9910b909d2456c70fd7",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a5849c62870cf02e422c9755e731387c5f52e928f70378109000653fe4cdcedd": {
+      "intent": "Black Castle cut 187 green block arch around a dark inset. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "The green block divisions and dark center remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "d0e1e54355c2202b006eace1fd1ecd94f1d2b83e6eef551e043fb715bdf108f3",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a59738bbad844d02ffd5e9236b5b421433c8a7cd9201cd1e4f68ef58a790100c": {
+      "intent": "Furni cut 329 two pointed green leaf forms. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "Both leaf tips and the gap between them remain intact. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "fdf2d2549b98b86c346390187fe4f359f75e796e17d8c0344670b7fda5d96b03",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a598c6b3e3b6e6dd1ab082e2b729735370144af0e48ea58db9851bba5ff0c5e1": {
+      "intent": "Shirley's Shrine cut 156 paired stone stair or ribbed wall sections. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "Both sections retain their regular horizontal ribs and separate rounded tops. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "7027aeb1a541f2032b8b86ec5472dadc3da3a062212d8bb64453d42b59c415f9",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a5a17ea359ab7b4e71caa4664f9b41f942f59ebe7ddef87a2fa02fd03e8af493": {
+      "intent": "Death Frontier cut 775 sharply ridged sandstone outcrop. Original/candidate/scene placement compared on board-0245.jpg.",
+      "style": "The diagonal stone layers and pointed upper ridge remain in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "4d3509bda4e266f23832bafee5c2cf4274ebd5d9f576749d8367018cda83cf80",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a5a65974b9e8a76ac1b1fd9832a066e8b630b472b7b37ed2f24d5ef3a859b57e": {
+      "intent": "Crystal Palace cut 368 golden framed lantern beside a green curved parapet. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The lantern frame and luminous center remain separate from the green parapet. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "4aa5c62139e2e751415b9937c3324583ec43158b0cf65b34b11ceb45ff66e65e",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a5ac0dac1093fb35d8d6e1838d086c94032b3403666b91332e85bb359a093abd": {
+      "intent": "Fletz cut 209 low interior furnishings across a pale platform strip. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The separate dark vessels and small furniture shapes remain in their original positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "412d5326acc6bd7528612b2430e69a0787b68c107d83b37b0ff963e599bcfde7",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a5d031acedf80d3deec9208cc2394e6fd9ae6303f1e78727a73ddf507342fafa": {
+      "intent": "Forbidden Land cut 394 narrow dark red-brown rock face. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The large folded ridges and rounded upper edge remain visible. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "6e808dbbd6398f544489821971eb141cdc375b91f431c1bc41b62c4efb17099b",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a5e9d9f95f217c6a862504cac9406e0ac28ab148b6efdeafc95472585d947078": {
+      "intent": "Town of Hoax cut 102 wooden panel or tabletop with a central decorative mark. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The wood outline survives, but the central mark is redrawn rather than faithfully retained. Hold for ornament repair. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "intent-revision-needed",
+      "outputSha256": "076c1363dc0bee5542a2ff099a2626a60b114154fd6bcd9d8dcc9c3792647d2c",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a5fbc2cef41706b771b1b0ba3e0fea3f1dbcd1fd53b2e3421d0a5973fc73b4cc": {
+      "intent": "Phantom Ship cut 322 slender damaged posts with sagging rope. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The individual posts and rope attachment points remain separated; the rope is brighter. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "79aed108083d410f3550302dface960b7609b573186b769071d61235b50030c7",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a615224986a5dde784a881766ffda8d28d53f66c12e80a9de70c5849c23d14c3": {
+      "intent": "Lohan cut 152 warm vertical timber wall with thin diagonal support. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The individual board seams and diagonal brace remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "47b84824144d88fc68fd47ee55379788f07385c6e55ee2c88c1ce1b0f01934f9",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a6186cac34a4e4691cec26bc5fe83b9728ea53d7d2ef0942d8ff3cceb32cffbb": {
+      "intent": "Mortal Dragon Mountain cut 413 tall angular blue-grey rock and root surface. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The angled rock faces, pale ridges and thin reddish root lines retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b5b16d73a194db7b4d949be68187eb07562bea460b59979cba345f1cf52a9cdd",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a623cbef2e0b6dc83add678af04f5f70179011a851618434f978a546d0bfd77d": {
+      "intent": "Twin Castle cut 229 curved golden ornamental furnishing edge. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The broad curve survives, but the repeated gold fabric or surface pattern becomes diffuse patches. Hold for consistent patterned-surface restoration. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "intent-revision-needed",
+      "outputSha256": "a103af31839074705fdae7cdce25b5519109dd739985156c25f449eb94b616fa",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a62e54c4207efbd9cfb439461aff12edd31e487f8a89ebde8b52c2ad4f5813a0": {
+      "intent": "Lohan cut 143 grey-green wall with orange diagonal trim. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The diagonal trim and vertical wall divisions remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "d4b78b96268fbb6c7d709146faea1349e2af47a282a528107cf17a83f8a23d3d",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a63ab639a0b65184eb89154ef5c3ded575ffc3440335d1a91c5d7d6896041248": {
+      "intent": "Shirley's Shrine cut 157 long pale stair or rail edge. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The straight upper slant and repeated lower steps remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "26c0b74e03bbbdb82cb5d881cd2a3a7abfffd588e25507660f4a74e3bba8f2cc",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382": {
+      "intent": "Deningrad cut 355 blue bedcover above a brown footboard. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The blue cloth and footboard remain, but the cloth pattern is erased. Hold for the same bedding-detail repair as related images. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "intent-revision-needed",
+      "outputSha256": "6c860fcab47334ad596c3d15932bef05dd96586f0928be3ae63133e2fba01365",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a647b35766db3785819c5b6e86122c1e5e69f3ad1063d62e088e60a7881463c5": {
+      "intent": "Lohan cut 143 timber walkway with dark handrail. Original/candidate/scene placement compared on board-0246.jpg.",
+      "style": "The plank divisions, thin handrail and individual uprights remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "283935e776eb3c7215328d623fa02ccd2cd0badd0f0963ad69a45c8204042013",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a66210b183a52f630b6259666424945370c339785453fb5006ace46474c91c64": {
+      "intent": "Donau cut 241 tall sloping pale wooden railing. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "The two long rails, narrow inner gap and lower upright remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "8eb7382fab2507faa2c368f70124f4e6f37893b79cb04a2a33262e2d1805ac42",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a667b91658c071488d487cabcddd8aa003643d10f1fad8f8fab17aa2ce9e865d": {
+      "intent": "Giganto Home cut 261 pale column above a rough broken stone base. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "The column, triangular dark trim and broken lower slab remain separate. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "fd8b2b1c234bd5324307e1504edf790c0a3732a33f26eab7e4102a018a0c02e1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a6696fe68b2d676b0993221bb78e25387a956c2d6db8502097f46aa1654ee614": {
+      "intent": "Bale cut 673 foliage-covered branch extending over the sea. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "The branching outline and pale green leafy clusters remain in their source positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "efac065731cc5715c6dd8ab7ce69e40e94a9aa85c6daced8054d572371778692",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a67e3d46bd212d2ecc8d4a03eb178bb55cf7bb656fec524d7597d739ff851eaa": {
+      "intent": "Moon cut 728 violet column with curling side branches. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "The main column and thin lower branches remain separated; violet light stays within the original range. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "e4192704f8c2bb5e02ed7af8a8f15510a1bde646495e71b41f2acb69488fc580",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a694b0278e48110751b53909554eafe62f7ce629f70bae1c4f1a8734fee7f45d": {
+      "intent": "Zenebatos cut 528 stone pedestal with stacked rectangular reliefs. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "The two inset rectangular reliefs and layered base remain identifiable. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "eda219251a4d734300b5d2e777a83f69eeeb25579b393e2cd6a4c725313bb55f",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a69d356857342434b59ccf5de4744a32aaa5367d0b9067f70eec577c5363b0ba": {
+      "intent": "Prairie cut 44 grassy bank beside a pale tree or rock edge. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "The separate grass tips and pale vertical edge remain visible. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "e2a6eef53457ce30935c481e41227fd373684941bd0d2d18705411d27a9736f0",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a6a2ef3c78f24370ca40767e88ae8545a814f3f682937d4c13adea1f3b7bed0a": {
+      "intent": "Rouge cut 565 weathered pale plank wall or platform surface. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "Repeated plank divisions and dark joins remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "7f4ef151273b610ccf37ea191440118495904282cd37b774644ace45a0606fcb",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a6c4ff2bdc3eb9f5574a000fb6d9d839802a492653e33a34140416b443133cb1": {
+      "intent": "Fueno cut 310 pale sloped architectural lip beside a grey wall. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "The pale lip and taller dark side remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "aacfeedf519d8e4624f2515d7f360cccecc0acac49894210970c4fe8c68c6030",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a6ca97bddca7e57b756b76c6272bede6a55499db7433030d030555dbe1e4dfe6": {
+      "intent": "Ulara cut 516 long violet parapet ending at a blue ornamental finial. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "The pale top strip, regular lower divisions and small finial remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "5302b4e4a675131701d8bf13ad705a15b867f073b6619049ae3e85ea0d922468",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a6d32ebb4429b1f9c9057c2a3665b23c35bed1dfe41877205b2e43d4456cb401": {
+      "intent": "Town of Hoax cut 627 separated warm interior wall pieces. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "Both pieces and their pale upper edges retain the source perspective. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "6b4fa7b96b2f8eb3877cf3231c00b4c984848be7bac1ad4cc71bcb09ffae2a5f",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a6dc2cde49b6193fa5b430695beeefaff2fe793bf963009a8a227345c7614d45": {
+      "intent": "Town of Hoax cut 627 tiny pale underside of a warm architectural corner. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "The pale sliver and dark brown right face remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "2af84a2213d36341ee52ab64084a78e2f692ec83a368bf2fda8d05a481420cb6",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5": {
+      "intent": "Bale cut 71 green upholstered bench with a brown frame. Original/candidate/scene placement compared on board-0247.jpg.",
+      "style": "The frame and bench silhouette remain, but the repeated upholstery detail is erased as in the matching bench view. Hold for consistent cloth repair. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "intent-revision-needed",
+      "outputSha256": "d70a264574caa3eee4f13616ef0eb22558c5013e1b65cf118d2340c9aacdffcd",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a6f3fc6592fcea8e2462b4ea509fb985f85c26680b70113e2d5f0bd7272cc4ef": {
+      "intent": "Moon cut 733 large distorted city wall and floor section under pink and green illumination. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The floating block arrangement, window patches and illuminated floor courses remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "32df6b60cbafe07c26cdb327a8a5a997f5cf309f574cd9eb36efbe2547814d79",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a72f8f26acf987202a856ea15f5c5c670f4fac421f98d5ba69dbc987643827c3": {
+      "intent": "Moon cut 601 narrow brown upright with projecting upper block. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The top projection and angled middle division remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b1b932f36f9e1fbe0337cbb940fb55d91ad93cb92b357d09e0f0a9e3bfc2f280",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a73b6235c521d1924086beeedc1379d5b48f3de34131d288da6905b9d9e995a8": {
+      "intent": "Fueno cut 309 sloping warm roof and pale building face. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The roof edge, lower dark opening and red trim retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b704f4af1164b1e5d5d8a344fea7e69c43d79714017a23f745d61b1e46c1be73",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a77002d2b7a81b08fc19262341699809e44fed20a8dcd5b2bae35861f6743a28": {
+      "intent": "Death Frontier cut 773 layered low sandstone outcrop. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The pale upper slab and darker irregular stone pieces remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "2e302bd435ac45390ab45a73f1315adf00fb624b860fe5d9ba95d207593dd006",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a7737c1473c4036f11686f2335251d77b03acd2e18e54f0fb6cc75ae199f4ce7": {
+      "intent": "Furni cut 337 warm organic wall with a small projecting wooden rail. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The wall curve and projecting rail remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "f072014f9ac28c581e8be30a79fb071d5ed60f6850939bfa421446e45e5665df",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a77a80745c0f5f26b7931876b80fc07280c0c82ce109555c1ccb8dc6c8a0716d": {
+      "intent": "Black Castle cut 189 diagonal green wall edge. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The shallow sloping outline and subdued pale green stripe remain in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "a2d645b88473676f6ba20dd3793c911bab5d4f901b2e9e8e7e9a017a5d2cc59f",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a77b0995a586bb473e059ee2a2908d20f2193ed36e7001e1ce163e8adfd76be4": {
+      "intent": "Crystal Palace cut 375 small pale sculpted support over a blue-grey block. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The original support has several small relief divisions that merge into a plain upper cap. Hold for ornamental repair. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "intent-revision-needed",
+      "outputSha256": "1d5d89618d488b1f7e7a2efcd8aa95fc214169446cf29d409247a958e8ea9dd6",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a79bcf227a3db87402e166ef1f71906ca9f7fa4df5cca72dbf6d98a6a860de5b": {
+      "intent": "Marshland cut 107 dark branching trees and thin foreground root. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The branch forks, small leaf clusters and long lower root remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "6e980dfa8a694d4cf74f8266f739acb4fcbd2dbeb46bf4d578a2f668499c833d",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a7b8dbb17416792c3b8bd899e2ddb2e455a2f8ea51372d8ef500046b08488093": {
+      "intent": "The Queen Fury cut 284 dark storage box or chest on the cabin floor. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The source front has a broad rounded inset that becomes a different angled recess. Hold until the front-panel identity is restored. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "intent-revision-needed",
+      "outputSha256": "d4155a77d3a2054a53e2a6f37791509a66dba329c5057066003020bc12cdae55",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a7cb9164da283aa522cd20e3e466702168be9bfd5b022c67fa7614dc3ac96e86": {
+      "intent": "Death Frontier cut 755 tall pale sandstone ridge. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The raised right crest and diagonal lower furrows remain in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "0e5de5a3e68668a08cfd6635255dc8d19fa7f28aa82cfda83f7cbe800ffcf709",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a7d8da3c5f251bd84121d06dcdcb6be0397620cb7bbe6d4476baa6e57a2707dc": {
+      "intent": "Twin Castle cut 224 low dark chairs and warm interior divider. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The separated chair backs and vertical divider slats retain their arrangement. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "fb326cc4a00650ce16b3465cfb0a857d99f5873d805eaa5a0a8691a034c4f47f",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a7d959fb944e3eddcc5387f97a894f7a1ff43e39b3f6b4ee8d4d0864d8727ad0": {
+      "intent": "The Queen Fury cut 281 dining table with plates, mugs, bottles and stools. Original/candidate/scene placement compared on board-0248.jpg.",
+      "style": "The tableware, bottles and separate stools remain readable in their original positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "b7b4da3c6234a1644fac75f2acfb8b09e8ecb50fcd16542aa10c4e25d566ef26",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a7f712ce8a20f51593bcb77849b3cced39ec12124059b588b889cf0cd3d98108": {
+      "intent": "Moon cut 728 violet night sky above distant illuminated spires. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The cloud sweep, stars and lower spire line remain aligned with the city. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "1fa1df0f871fa10aae93e4eef3183aedf7971afd2d29d50a62aaf6175dbc6f9f",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a7f7cb1edbc975ee8997cc4460d21c4f5de9128d3e9848e8c0333c0fc67b4dba": {
+      "intent": "Twin Castle cut 225 small orange-gold architectural fitting. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The elongated inset and stepped lower edge retain their source shape. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "813b6cc3946d87ac134b311f9b84b795359e14cf9eaaecfdca81264b64e2e08f",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a7fde12a580f79219df0e97c39e94771f36e52d0da1887c6b7f31f0dbe68e14e": {
+      "intent": "Zenebatos cut 535 two separated pale masonry ledges. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The individual stone courses and dark lower supports remain visible across both pieces. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "68d4c348194605b05439b0ae1186366a3163aac6ce725f4c4e4a0273b56cfa31",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a806d38080ed1bae7b77c19c897a56fce7b924977dabe0b77ec0831a69446981": {
+      "intent": "The Queen Fury cut 280 pale green hanging panel or cloth. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The irregular outer edge, brighter upper field and darker lower band remain in place. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "2b639a21b4f66d0bcf54c151d0f9d33961f7aff4178395020bdfbcaaecda4636",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a810c53105f67defc1c814f4d7e5acfd88e239949f85cdea663adc0f63195cc4": {
+      "intent": "Moon cut 610 fine pale branching organic strands with small colored tips. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The separate branch intersections and tip positions remain intact; pale highlights are sharper. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "a53e881164bb336c13c47d8f4f925e326c51d4ec681ebb972b24b17fb4986f32",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a82142549bf9d46460ba3348520457dc48d4f7c699707165d85e9f10cb8815d4": {
+      "intent": "Bale cut 68 small pale staircase beside a tall green curved railing. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The separate stair treads and narrow railing retain their arrangement. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "0dd417649d873dcea174ce85bdc98bda250030c001eed38cc4ad693ec081a2ae",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a82da562e13fb858c7477e6e49ac6a63f46a321b16fc6e43e59c8394078c4b90": {
+      "intent": "Forbidden Land cut 398 green curved wall or suspended panel with warm upper fitting. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The green lower field, crossing dark band and warm top remain separated. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "116a0ef2fbb19563c7822aaaab7c64bc115bbb6971cb46c4423c0afef9ecf3d3",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a839ed3dd4898dfe4605afa0e533bb543c32e4d334ab076ac898114332ec6d72": {
+      "intent": "Evergreen Forest cut 343 dark tree trunk with a pale bark patch. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The vertical bark furrows and pale patch remain aligned. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "043486713d6bcb9467a72c41cafaa92d1cd0fd9c86d1d53e5d1e1e7feafe6544",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a83ae3438cdc6dc654efa1ffaa8b9789d276c2fd764ba70f99c57253608b660b": {
+      "intent": "Lohan cut 144 very narrow dark vertical trim. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The straight trim stays in the original deep shadow range. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "3b11b93848e591dfd58fc97ee2e07c334358aa0d779fd83766b1d403c0c03ea7",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a8623670096f7a0bbb442dd7cab16fb543c535f54a418698c23ef96d8a70f036": {
+      "intent": "Vellweb cut 501 ruined low wall beside a pale rounded object. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The pale rounded object, dark wall top and vertical lower seams remain distinct. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "6037874effd34d3249b95f3d8e04007bf59166626944dfa3e4032131b1e91c31",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a867588803537dd8b84c173459f62815a77ba72e5d9b18f7f0e61b5b464d8128": {
+      "intent": "Volcano Villude cut 119 red-lit rough rock wall. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The jagged wall silhouette and orange-red crevices retain their positions. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "bea9950967184403ca4a41937158a5c8a3412b6a8e92f13f64baf5135fcf12ba",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    "a87d249d2e54db1979fc31ef1a25d2e9784a28f1475525dad8d3973ab440af20": {
+      "intent": "The Queen Fury cut 278 narrow warm wooden upright. Original/candidate/scene placement compared on board-0249.jpg.",
+      "style": "The upright outline and several small lit edge notches remain visible. Development visual assessment only; final Skurfa-level quality is pending.",
+      "layout": "Source outline and scene position compared. Pixel alpha and canvas checks are separate; in-game depth, state changes and full-resolution gameplay remain pending.",
+      "verdict": "visual-reviewed-runtime-pending",
+      "outputSha256": "3cf4f4ab97298c51fabf9a54a6197d598a0569d3443770157ee42679b73fdd7f",
       "nativeAcceptance": "pending",
       "finalQualityAcceptance": "pending"
     }
