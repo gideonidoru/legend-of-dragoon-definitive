@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "6bf376f5f4ca3306148c3efbe61aeb40b073f010943d50d5e9b7d59bbecc49dc",
+    "battle-presentation-artwork-v1.json": "56acdb4ea74de9a2b7c4e9350583baa34852486cdc22adcec0b1a74eb84b19a7",
     "battle-presentation-reviews/93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817.json": "93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817"
   },
   "counts": {
@@ -19,10 +19,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 177,
+    "newBespokeCandidates": 187,
     "newlySelectedBespokeMasters": 22,
-    "baselineMastersStillNeedingPresentationReview": 329,
-    "pendingCandidateReviews": 155,
+    "baselineMastersStillNeedingPresentationReview": 319,
+    "pendingCandidateReviews": 165,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -729,7 +729,13 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "17778cdbca7a2bb6e9e68a67cd9a4592e065974e7acfe159bd39b467a92815d1",
+        "5a7b472007a7f1a701e390de5d8fac555ca5320809820155f815e078e49ccd5e",
+        "bcd4e05db0ec8fe64ba0c2ac3cd591ae5b6203e60f781d45d4b51f56140cc48a",
+        "d6133bb99d918696b4de9bd430d09174f67918c359aa0a576014ef1a5b3f2e3e",
+        "ea80f659c5b213376cfea423d84bab720281c3ffde58002ddd0d4070277a58b7"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -810,7 +816,9 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "f1036d3e68a21d3e2f8132a2b387525ecfa0d7682bddfaa76e659ea146065afa"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -828,7 +836,12 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "01a9221a10223d56d6486e89ae6548a181ca642d19e3f939e9883aa3a0bf1471",
+        "1ba66143eff96bbd8e6338bc1e404851fef42098dc670bd9f91cc510419fc4ae",
+        "70d218fc47ea912641634c72bb487a1069095b4868b49b14fabaedb1b76923db",
+        "7574e26476c210a8f198670b86cf33f552a2f7549a6864cc3cc588182ec20588"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6624,7 +6637,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6655,7 +6668,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6686,7 +6699,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6717,7 +6730,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6748,7 +6761,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7244,7 +7257,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {38: [8]}. Source family: orange brick/rock and flame-shaped surface emblem.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7275,7 +7288,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {39: [0]}. Source family: Mortal Dragon Mountain: cold blue cliffs, cave opening and rough rock. Engine random-encounter location mapping: Mortal Dr Mt..",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7306,7 +7319,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {39: [0]}. Source family: Mortal Dragon Mountain: cold blue cliffs, cave opening and rough rock. Engine random-encounter location mapping: Mortal Dr Mt..",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7338,7 +7351,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {39: [1, 2]}. Source family: Mortal Dragon Mountain: cold blue cliffs, cave opening and rough rock. Engine random-encounter location mapping: Mortal Dr Mt..",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7369,7 +7382,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {39: [2]}. Source family: Mortal Dragon Mountain: cold blue cliffs, cave opening and rough rock. Engine random-encounter location mapping: Mortal Dr Mt..",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
