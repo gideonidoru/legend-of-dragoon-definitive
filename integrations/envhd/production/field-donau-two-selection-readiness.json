@@ -39,7 +39,7 @@
       "passed": 12
     }
   ],
-  "freshPackageVerified": false,
+  "freshPackageVerified": true,
   "tabletExcluded": true,
   "unfinishedAuthoringPreservedOnOngoingBranch": true,
   "skurfaRegenerated": false,
@@ -49,5 +49,54 @@
   "publicReleasePublished": false,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "originalSourcesReferencesAndComparisonsExcluded": true
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "packageVerifiedSourceCommit": "84ca7e6d2362ca7f304447c79686ad6695bfec41",
+  "build": "PASS: Java25/Gradle9.1 frozen committed source; EnvHD JAR and all four field packs.",
+  "packageVerification": {
+    "scope": "EnvHD normal-package resource subset; full installer/public-carrier closure remains coordinator-owned",
+    "selectedFields": 4928,
+    "jarResources": 5314,
+    "parts": 4,
+    "oneModSwitch": true,
+    "allSelectedResourceNamesSizesAndBytesExact": true,
+    "files": [
+      {
+        "name": "EnvHD-v0.1.0.jar",
+        "size": 278282663,
+        "sha256": "7fc6f3363d7dce16cbc5c16988261d878b59a521ce2eb05fa751369877fd005c",
+        "exactToPriorAcceptedPackage": false
+      },
+      {
+        "name": "Env1HD-v0.1.0.zip",
+        "size": 552595435,
+        "sha256": "eb4d0119eacfa81c98982a9780bffca4ae56b28aedb5d182227774bd09bc5205",
+        "exactToPriorAcceptedPackage": true
+      },
+      {
+        "name": "Env2HD-v0.1.0.zip",
+        "size": 573665312,
+        "sha256": "a74a0b6246996eb1e158fabb339a32f864bd0c8ea096fef63df387133b4c0ae8",
+        "exactToPriorAcceptedPackage": false
+      },
+      {
+        "name": "Env3HD-v0.1.0.zip",
+        "size": 570092317,
+        "sha256": "2092c3660151873efdf44098e0bd00427b5389e7681fb9fb71950fe51952a24b",
+        "exactToPriorAcceptedPackage": true
+      },
+      {
+        "name": "Env4HD-v0.1.0.zip",
+        "size": 673010347,
+        "sha256": "6c1dfcddd2488df6c353d3cd556511d7321afb91600a0ac35e8ef2bf14c8ff16",
+        "exactToPriorAcceptedPackage": false
+      }
+    ],
+    "onlyEnv2AndEnv4FieldPacksChanged": true,
+    "battleResourcesExactToAcceptedMain": true
+  },
+  "evidenceLogSha256": {
+    "envhd-donau-main-preflight.log": "7f541f4877b149d626686e7ad067c0059e251e25487e55ea9dc8956837cfc458",
+    "envhd-donau-main-build.log": "3d2bd91f289e631284dbb224ab6fd167918e31d29f5e7ec715521bd2aa8b2a5e",
+    "envhd-donau-main-package-verification.log": "23cb3a42d39e6a7904c075ad5e1423a6165566018f3b26935911b63f1ff8072e"
+  }
 }
