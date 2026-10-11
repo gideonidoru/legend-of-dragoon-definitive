@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "sourceReviewCommit": "fa0cf0a3954bdbc13cb69c9c8090935cb92ff8b8",
+  "sourceManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+  "sourceManifestSha256": "3bddc850f1660de9f53c8d1b352688800a4473ca2f28cb46526ce848cddec76e",
+  "reviewer": "Independent ROOT and EnvHD original-fidelity/source-integrity review agents",
+  "reviewerThreadId": "01a12671-4c0a-7c30-bfe5-ba87b8d1496f",
+  "independentReportsSha256": {
+    "spec": "7c51bf036328e58c749bc0e6e355feccc2e09d08a5a1e688f191a7f1a1d35a08",
+    "standards": "a927c88876c0ad98988d5e71dd811710f3cfe718cf5b1795dbc41d4539e5d02c",
+    "ownerDispositions": "749c847b637991198fcbf4ddf96ccc7293d4448208f71cd6bc27d8fdec6e7a0a"
+  },
+  "scope": "Only unanimously development-cleared cut228 foreground4 cropped hanging. Foreground0 remains held due to reviewer disagreement on crisp marks; foreground8 requires side-star/fitting revision. All ongoing authoring/held histories remain on their branch.",
+  "individualDispositions": [
+    {
+      "decodedRgbaSha256": "d05996398e40653d0f7e78b2f4f1a849575938fdc30da830cd735c5b40d6b1f2",
+      "outputSha256": "a0f93ce9a8dde5daf45b3d3b1680338870d692c0425f26442d10dab354f73c08",
+      "generatedSha256": "af9528d9aaf1445baf2dc0c32a0632bfa68513d0e41cccf6d9e2336006e77fc2",
+      "disposition": "clear-development-intent",
+      "reason": "Single clipped panel, thin upper rail branches, original finial, small upright branching mark and unequal side strokes, lower nested curves and hanging wire remain source anchored. No additional panel or unsupported clear symbol identified. The brighter resolved fitting and textile detail are interpretive; full scene material/lighting acceptance remains pending.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "sourceChecksReported": [
+    "Original pixel identity, source bindings and fourfold alpha/visible-black footprint independently checked",
+    "Exact frozen input/output bytes compared against original/reference, original room and static EnvHD placement",
+    "Both original-fidelity reviewers independently clear only this selected crop; disagreements on other crops preserved"
+  ],
+  "excludedSourceKeys": [
+    "93c6bbad7b079b3488c3abebbf3e7195568727ad527cc65c7954fcf22caa30ba",
+    "44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283"
+  ],
+  "limits": "Development selection only. No native/script/GPU depth or state, physical Deck, campaign or final-quality acceptance. Narrow reports did not replay all83 authoring recipes; complete selected43 preflight is separate."
+}

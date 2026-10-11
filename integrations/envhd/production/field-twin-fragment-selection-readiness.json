@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "scope": "Clean main-forward increment selecting only unanimously cleared Twin Castle cut228 foreground4; prior42 recipes and4928 runtime records exact.",
+  "integrationBaseCommit": "0729ff3f4b8f5a4d78c938638a54ac13d8ed8529",
+  "authoringSourceCommit": "fa0cf0a3954bdbc13cb69c9c8090935cb92ff8b8",
+  "selectionManifest": "field-bespoke-twin-fragment-independent-reviewed-selection.json",
+  "selectionManifestSha256": "b5f037cbdeb5cd4cd1334bcf1f5c26be2d91802eb5c977bb23410c502532c2ef",
+  "independentReview": "field-independent-twin-fragment-review.json",
+  "independentReviewSha256": "3dd70d954d61e40b83e73eba92caa570a613a7d6732c007f5d967e19cbf47c40",
+  "fieldRuntimeSha256": "e31ef6ec015d82f70d190faac1d0895065c1d1752f31b54d2be30b0961c87ee4",
+  "currentSourcePreflightCandidates": 43,
+  "priorSelectedCandidateRecordsExact": 42,
+  "priorRuntimeAssetRecordsExact": 4928,
+  "onlyAddedSourceKeys": [
+    "d05996398e40653d0f7e78b2f4f1a849575938fdc30da830cd735c5b40d6b1f2"
+  ],
+  "protectedCutsExact": true,
+  "selectedFields": 4929,
+  "selectedPaintings": 43,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 233,
+  "knownRemainingStaticImages": 234,
+  "tests": [
+    {
+      "script": "scripts/test-envhd-painted-fields.py",
+      "passed": 32
+    },
+    {
+      "script": "scripts/test-envhd-install-selection.py",
+      "passed": 3
+    },
+    {
+      "script": "scripts/test-archive-assembly.py",
+      "passed": 39
+    },
+    {
+      "script": "scripts/test-envhd-battle-presentation-pack.py",
+      "passed": 12
+    }
+  ],
+  "freshPackageVerified": true,
+  "disputedTwoPanelAndRevisionThreePanelExcluded": true,
+  "unfinishedAuthoringPreservedOnOngoingBranch": true,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "packageVerifiedSourceCommit": "48171317d0db52cdd71123ea749fb027f00d2e70",
+  "build": "PASS: Java25/Gradle9.1 frozen committed source; EnvHD JAR and four field packs.",
+  "packageVerification": {
+    "scope": "EnvHD normal-package resource subset; full installer/public-carrier closure remains coordinator-owned",
+    "selectedFields": 4929,
+    "jarResources": 5315,
+    "parts": 4,
+    "oneModSwitch": true,
+    "allSelectedResourceNamesSizesAndBytesExact": true,
+    "onlyEnv4FieldPackChanged": true,
+    "files": [
+      {
+        "name": "Env1HD-v0.1.0.zip",
+        "size": 552595435,
+        "sha256": "eb4d0119eacfa81c98982a9780bffca4ae56b28aedb5d182227774bd09bc5205",
+        "exactToPriorAcceptedPackage": true
+      },
+      {
+        "name": "Env2HD-v0.1.0.zip",
+        "size": 573665312,
+        "sha256": "a74a0b6246996eb1e158fabb339a32f864bd0c8ea096fef63df387133b4c0ae8",
+        "exactToPriorAcceptedPackage": true
+      },
+      {
+        "name": "Env3HD-v0.1.0.zip",
+        "size": 570092317,
+        "sha256": "2092c3660151873efdf44098e0bd00427b5389e7681fb9fb71950fe51952a24b",
+        "exactToPriorAcceptedPackage": true
+      },
+      {
+        "name": "Env4HD-v0.1.0.zip",
+        "size": 673166524,
+        "sha256": "ee199beea702dee5656167c64c7779c227fb1f5fb6c544fdc8ab7583a4f62334",
+        "exactToPriorAcceptedPackage": false
+      },
+      {
+        "name": "EnvHD-v0.1.0.jar",
+        "size": 278283319,
+        "sha256": "b127229c01f7edee510ed137108e35d29d69f25ddaefa5f9a82e7c6efd49ce16",
+        "exactToPriorAcceptedPackage": false
+      }
+    ]
+  },
+  "evidenceLogSha256": {
+    "envhd-twin-fragment-main-preflight.log": "de354b9fbd53c71acf0f85915cbd3a23a59855f9bfa4ba2fb7eb1833f1e78a21",
+    "envhd-twin-fragment-main-build.log": "4c629dc1f362748d48cb7e14c6fecd11f018a3a91e41749623bbdf6a9b40c75a",
+    "envhd-twin-fragment-main-package-verification.log": "d55edf929b91a89415efd75b73f4536dff68d159bce85f0df007ddd83c3dfaee"
+  },
+  "independentIntegrationReviews": {
+    "standards": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedIntegration": "48171317d0db52cdd71123ea749fb027f00d2e70",
+      "reviewedDocumentationAndPackageFollowup": "7b8bdad25a9a804e8ea946f0f0b111816e0dc07d",
+      "reportSha256": "11e1b3e48ad0993f97cd397ac8a8f121dd587280f8d35904958714fcd51f0165",
+      "reviewer": "/root/hd_standards_review"
+    },
+    "spec": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedIntegration": "48171317d0db52cdd71123ea749fb027f00d2e70",
+      "reviewedDocumentationAndPackageFollowup": "7b8bdad25a9a804e8ea946f0f0b111816e0dc07d",
+      "reportSha256": "247c4f9f9582d1741b6beb502435cee1daf742aa3e39deb3a76d3715aab526a8",
+      "reviewer": "/root/hd_spec_review"
+    }
+  },
+  "independentFreshOriginalSourceReplay": 43,
+  "independentFreshPackageReplay": true
+}
