@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "sourceReviewCommit": "16b74d96578829d7a0196b1fc2cc72bcbca85f14",
+  "selectionBaseCommit": "8801b3d26b1835502ed66974620d0e22352de8d3",
+  "scope": "Independent Standards and image-level Spec review of nine pending field candidates. Seven clear development intent; two source-fidelity revisions remain held. No native/script/renderer/GPU/Steam Deck or final Skurfa finish clearance.",
+  "standardsReviewSha256": "6d4a3bf0aa7bebe18545e2655a36279dad769d2a6891af49ed2037c40edf405a",
+  "specReviewSha256": "97a3d62daab33ed1348038be5b967977a29e04d689a256339c59c651ceb8a255",
+  "individualDispositions": [
+    {
+      "decodedRgbaSha256": "73b25780b6df62143f5f3f489706004112114f04e7ab4d4fa58cf7fa4d5293cf",
+      "disposition": "clear-development-intent",
+      "outputSha256": "54dc3e936773bb443acebb82030f966365f8628cd317784edd0c03d9e8fd31d5",
+      "generatedSha256": "c96374b4120ef937f286310e8488dd0508d75f9faa3ab2d458d4ad70f2219794",
+      "reason": "Fletz navy textile material and diagonal edge remain coherent with the bedroom furnishing. Fine gray-green woven motif is interpretation, not canonical stitch geometry; development intent clear.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
+      "disposition": "request-revision",
+      "outputSha256": "02834fba54385b2b3f60ecd8562d27fb8841c3a02d518b47bafec485dc7531fa",
+      "generatedSha256": "e8828cc1be4d9b7867302330aa8ba790871590851d4151c7956c32840802be86",
+      "reason": "See prioritized visual finding.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "417db5229525bfb64b3dfbd767ff8cb7313b262305577cefd05c38951baf6477",
+      "disposition": "clear-development-intent",
+      "outputSha256": "0da4251f6ca8ec1ddc0e1017bedfabc753c694a45df3518ed1813a526f92e1a0",
+      "generatedSha256": "e92d0c5993912aa8775fe2256cc6f8e640a102069740c1262e2a137f2e485604",
+      "reason": "Deningrad partition retains broad dark cap/light wall/framed bands/fitting/plant arrangement. Finer cap/wall/fitting content is interpretation; development intent clear, separate from the still-held full bed.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "5fc04ff6f16aa8e1bc7eff701095983ba1d5a5a1c32a7f5c935b1e6337036b89",
+      "disposition": "clear-development-intent",
+      "outputSha256": "73a534997b82401b256f6f481218c184e1b3c3fd83373c9052e93e23aa6bd47e",
+      "generatedSha256": "e2b9b4d1ddb22571be6f578cc9c9e30631ea9757cd8df138d615323ab210edfb",
+      "reason": "Indels crop remains architectural bas-relief, with central dark channel and pale raised forms. Source scene supports carved ornament; fine leaf/scroll identity cannot be recovered exactly from22x20; development intent clear.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+      "disposition": "request-revision",
+      "outputSha256": "855553364a7a607bf918f346a0dbe4ce7813d50cef6f1f3462c1e0de7c92bf73",
+      "generatedSha256": "a305f5bf82b8dbf0ea40e1538036d9c95577b2d5169039fc7cda9deffca183b6",
+      "reason": "See prioritized visual finding.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "282909e0b634d43d1d82e55cdf62afae620ddc72d6ad4fc25e5831c01ea669e1",
+      "disposition": "clear-development-intent",
+      "outputSha256": "8a2d3d7103152586b5333300c5f59c04bc0547a042ce9ab36830f1532d7da5af",
+      "generatedSha256": "556931072051596096c3a9d4f52c1f1e6a05af13888c0ed5acddebd910f4d160",
+      "reason": "Evergreen339 native scene establishes conifer canopy, rather than a flat panel. Small olive highlight/dark groups and cropped source silhouette retained; no new completed tree/trunk. Development intent clear.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "49247bd98311d7e0cad111ac3af416aea54a2bc1feeb3b277040ab69980c3779",
+      "disposition": "clear-development-intent",
+      "outputSha256": "474a69c5b20cdde89f04d460bce1ba67954766ed2ab1edae5477f4914d2bd347",
+      "generatedSha256": "9258068182577f09ace7b849048420a7d50649e21a0dee43270804e85e7fe60e",
+      "reason": "Evergreen340 scene establishes lower conifer canopy beside path. Fragment retains muted olive/brown placement and crop; avoids neural straight-panel bands. Development intent clear.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "6ff4ccdc87601d4544fc501efe6aa6bd52ae80030bd10a80b1c51bc0085f1088",
+      "disposition": "clear-development-intent",
+      "outputSha256": "c8bda1b11acf6bf724e5a7138496adc71a63cfaa3efbe0bc107ecadb9c3d0d18",
+      "generatedSha256": "56b626f9732195e899aed8bae5c0e86d1b702e5a60f51dc6b8ed36b3aca95069",
+      "reason": "Bale version2 retains ledge/right recess/lower support and rough abstract raised forms, removing unsupported explicit floral/leaf interpretation. Fine historical motif remains unresolved; approval limited to restrained abstract surface intent.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d",
+      "disposition": "clear-development-intent",
+      "outputSha256": "7963f66383ccb6e4b9824196791b2ac4915080fdaf59446e4ef4e73317e6fd9b",
+      "generatedSha256": "ba8c8304fa3ce60b6a002779fc10074be47bd8c11fae1fa7eff42b69df61eda0",
+      "reason": "Furni wood double-door identity, central seam and upper/middle/lower inset curve groups remain recognizable. Recorded source-surround polygons retain opaque building border and surrounding palette. Development feature intent clear; interpolated native surround is not newly authored wall detail or final Skurfa finish.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "findings": [
+    {
+      "priority": "P2",
+      "title": "Realign painted rail lattice to native openings",
+      "key": "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
+      "behavior": "Native alpha/black restoration passes, but generated beam positions differ from the source lattice. Restored openings cut the painted connectors into disconnected rectangular fragments, especially lower horizontal rows and beside the central support. The raw painting looks like a coherent alternate rail; repaired output is not a faithful continuous native lattice.",
+      "fixAndAcceptance": "Repaint/register against exact native lattice anchors and each opening/connecting bar; preserve support, barrel and lower plank positions. Review repaired output, not only raw painting, at4x and native sampling in full source context. Keep original/raw/rejected history and leave this key unselected until new independent review.",
+      "boundary": "Authoring/selection blocker for this image, not a current installed runtime defect. Pixel/alpha/source checksum checks remain valid; native scene acceptance has not been inferred."
+    },
+    {
+      "priority": "P2",
+      "title": "Fit column internal landmarks, not only outline",
+      "key": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+      "behavior": "The18.46%source-canvas fit passes IoU0.9766/outline tolerance, but lower left cross-band is shifted from roughly native rows40\u201342 to43\u201345 and its angle changes. Left pale weathering groups extend/rearrange into a longer connected stripe. These are internal source landmarks, not silhouette boundaries; normalized output visibly breaks their continuation in the source scene.",
+      "fixAndAcceptance": "Source-anchor the lower band and pale groups before final repair, using internal landmark registration or a revised source-shaped painting. Silhouette fit metrics may remain as bounds; add comparative internal-anchor acceptance and retain previous raw/fitted candidate history.",
+      "boundary": "Authoring/selection blocker for this image, not a current installed runtime defect. Pixel/alpha/source checksum checks remain valid; native scene acceptance has not been inferred."
+    }
+  ],
+  "sourceRecipeEvidence": {
+    "previous32RecordsExact": true,
+    "runtimeSelectionsExact": 4918,
+    "priorPaintedRuntimeSelectionsExact": 32,
+    "new9RuntimeSelected": 0,
+    "protectedFieldHoldsUnchanged": 244,
+    "protectedTerrainHoldUnchanged": 1,
+    "privateSourceFingerprints": 9,
+    "exactSourceAlphaAndVisibleBlack": 9,
+    "allRecipeReplays": 41,
+    "allRecipeReplayLedgerSha256": "091359b3ce4781814cc67913c42a793c423d2ff9b68e247636defeb2466ec02b",
+    "actualFurniOuterNativePixelBandExact": true,
+    "promptAndIndividualManifestMatches": 9,
+    "compressedHeaderAndLazyDecoderGatesPreserved": true
+  },
+  "focusedTests": {
+    "paintedFields": 32,
+    "cutout": 12,
+    "canvas": 14,
+    "surround": 13,
+    "registration": 4,
+    "opaqueBorder": 5,
+    "total": 80,
+    "failures": 0,
+    "runtime": "Python3.12 private source replay; frozen immutable scripts with bytecode disabled"
+  }
+}

@@ -2,9 +2,9 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **245 images: 244 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **238 images: 237 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,918 development images: 4,886 neural and 32 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. The published installer has 4,892 field selections; another 26 fields and 12 painted battle replacements await coordinated publication. All protected Skurfa work is reused.
+Field selection is 4,925 development images: 4,886 neural and 39 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. The last recorded installer snapshot at source0af has 4,892 field selections; another 33 fields and 12 painted battle replacements await coordinated publication. Later release publication is managed separately. All protected Skurfa work is reused.
 
 ## Held natural-rock drafts
 
@@ -51,3 +51,12 @@ Twin Castle bed versions2 and3 correct some closed embroidery junctions into ope
 [The complete36 candidate input](../../integrations/envhd/production/field-bespoke-wood-architecture-reviewed-selection.json) preserves all32 selected paintings and the pending Fletz fragment, then adds Rouge's interlocking timber railing, Deningrad's room partition and Indels Castle's small carved panel. Each native crop and complete original scene was compared with the generated/repaired output. Fine lattice joins, picture/fitting content and carved ornament remain interpretive and require independent review. New candidates are unselected; all244 field holds and the Tiberoa hold remain.
 
 [Two Phantom Ship column paintings](../../integrations/envhd/production/field-bespoke-wood-architecture-held-drafts.json) returned the wrong full-canvas aspect. Both were rejected by the existing36:62 source gate before repair. No repaired output or runtime selection exists for either. Their custom generated inputs and prompts are preserved; source references and diagnostics remain separate. Original cutout/registration algorithms and gates are unchanged.
+
+
+## Seven independently cleared development selections
+
+The [complete39-painting selection input](../../integrations/envhd/production/field-bespoke-seven-independent-reviewed-selection.json) retains every prior32 painted record and adds seven independently development-intent-cleared candidates: Fletz textile, Deningrad partition, Indels carved panel, two Evergreen canopy fragments, corrected Bale facade relief and Furni source-surround door repair. The [independent nine-image receipt](../../integrations/envhd/production/field-independent-nine-review.json) records exact raw/output identities and individual dispositions. Standards/source replay cleared all41 source-bound recipes; image-level Spec review cleared seven for development only.
+
+Rouge lattice openings cut misaligned generated connectors into fragments, and Phantom Ship canvas-fit moves an internal lower band and pale weathering groups. Both remain unselected until source landmarks are repaired and independently reviewed. New Bale corner and Shrine arch candidates remain independently pending. Current unselected draft sources are15 unique source keys within237field holds; histories and repeated versions are deduplicated by source identity.
+
+Selection preserves all4,918 earlier asset records and every Skurfa protected cut. Fresh current-source replay, complete selected-field CPU audit and five-part package byte checks are required before the coordinator integrates this source. This is not native/script/GPU/Steam Deck or final Skurfa-equivalent finish acceptance. No separate release was published.
