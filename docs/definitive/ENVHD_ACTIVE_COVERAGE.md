@@ -245,3 +245,10 @@ Fresh original-source preflight reproduced all83 recipes. All42 selected paintin
 The [independent three-crop review](../../integrations/envhd/production/field-independent-twin-hangings-review.json) clears foreground4 for development: its cropped cloth angle, unequal small marks, nested curves, rails, finial and curved lower wire preserve native relationships. Foreground0 needs its crisp cross-like marks softened into unequal native strokes. Foreground8 needs repeated six-point stars reduced to unresolved flecks and its new round fitting bolt/ring details reduced. Both remain held for revision. Source-integrity review passed; its historical-checkpoint wording finding is fixed.
 
 All83 authoring recipes and prior versions remain exact. The current queue is34 independent-pending,6 independent revisions and1 development-cleared/unselected candidate. Runtime4,928 fields/42 paintings,234 field holds and235 known static remaining images remain unchanged. Coordinator parallel review, clean selection integration and native/final acceptance are separate.
+
+
+## Held Twin Castle local corrections
+
+[Five third-version corrections](../../integrations/envhd/production/field-bespoke-twin-hangings-local-corrections-held-drafts.json) retain four repaired local motif/material holds and one repeated warm narrow coverage failure. Fitting cage/window details are reduced, but the three-panel cloth still has regular star-like marks, the warm pair overdefines the cloth and lower illumination, and the cool pair makes the side strokes too faint. The warm narrow source fails the unchanged coverage gate for a third time; it has no repaired output. A different local source-aligned repair is needed before these held motifs can advance.
+
+All83 candidate recipes and all prior versions remain exact. No new source keys, candidates or runtime selections are added. The separate unanimously cleared foreground4 integration proceeds independently. Original/reference/layout/comparison pixels remain private; all public PNGs are custom generated or repaired art.

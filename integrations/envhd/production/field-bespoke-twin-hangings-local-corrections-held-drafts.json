@@ -1,0 +1,286 @@
+{
+  "schema": 1,
+  "scope": "Five third-version local correction attempts remain held: four structurally repaired but motif/material fidelity unresolved, one repeated unchanged native coverage failure. No candidates or runtime selections added. Prior83 recipes and all earlier custom versions preserved.",
+  "sourceSelectionBaseCommit": "94c2b6c7cb2e7cc7896adf1589ff59045a9d3962",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 5,
+  "newUniqueSourceImages": 0,
+  "generatedVersions": 5,
+  "repairedVersions": 4,
+  "coverageFailures": 1,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "7e95886bf9fad612869478d0b31d83ee1bae483e4be214cc7d5e30f507c1702a",
+      "generatedSha256": "e7c65c59e66b2b512d26576955df0c843b4170dbfeb4b4ad0e416781136335c5",
+      "generatedSize": [
+        1003,
+        1569
+      ],
+      "sourceSize": [
+        110,
+        172
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "cc0b8af5ae23e5bf3ae288c3c97cdaede4ea66aa0fe1a4893496bb8ba2cbae14:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 229,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 3,
+      "prompt": "Make a strictly LOCAL edit to image1, the existing HD texture layer. Image2 is the original pixel source enlarged without interpolation, authoritative for shapes, marks, colors and illumination. Change only the tiny light marks in the lower green/teal cloth fields and the excessive mechanical details on the lower hanging fittings. Keep the cloth angles, registration, separate panels, rails, round finials, support widths, upper woven fields, lower nested curves and overall weave unchanged. The small side marks must be faint, short, soft irregular strokes matching image2; they are not crisp crosses, stars or six-ray emblems. Each stroke must differ in length, direction and brightness. Keep the existing small central upright branching stroke, but soften its ends and brightness to match image2. The side marks are much less legible than the central mark. Do not erase the markings entirely. On the lower hanging fittings, replace obvious round screw/bolt/ring embellishments and rectangular window/cage outlines with quiet irregular olive/gold highlight and dark shading patches that match image2. Retain occupied silhouette, native dark parts, thin lower curved wire and each fitting size/location. No added metal collars, new mounting rings, extra trim or hard-machined component detail. Keep the original muted maroon upper and olive-green lower fabric state, reduced brightness on lower panels. Remove the coherent paisley-like/engraved internal cloth swirl texture, retaining only very fine soft plain weave and source sparse diagonal dots. Asset: Twin Castle cut229 foreground0, exact FULL canvas aspect 110:172. Output the single isolated layer on genuine transparency, with unchanged registration and crop contacts. Preserve source illumination and restrained hand-painted Skurfa-compatible texture. No room, background, matte, cyan, newly invented logo or writing, comparison sheet, border, padding or watermark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 136800,
+      "paintedGapPixelsExtended": 4572,
+      "paintedUncoveredSourcePixels": 3721,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 626,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        440,
+        688
+      ],
+      "outputSha256": "cc821b7a5530f9b9ae528921caf9a6fe2a217818813d0a16d871c302c3818419",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/7e95886bf9fad612869478d0b31d83ee1bae483e4be214cc7d5e30f507c1702a/draft-input-v3.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/7e95886bf9fad612869478d0b31d83ee1bae483e4be214cc7d5e30f507c1702a/draft-repaired-v3.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Lower fitting cage details reduced, but native lower-panel dark illumination is not sufficiently retained and the pale marks still resolve as repeated cross-like strokes. Coherent internal cloth pattern remains overdefined. Hold for source-aligned local motif and material repair."
+    },
+    {
+      "decodedRgbaSha256": "8ef6765e6c438e62adcd2309ef0551bbf4a05718216a7eb7f4dee74149af5c20",
+      "generatedSha256": "e84c0c9e901246e0d4575c6cc19a30bc2438c05afaf9051e660d7c3b2acaa1d0",
+      "generatedSize": [
+        998,
+        1576
+      ],
+      "sourceSize": [
+        162,
+        256
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "cc0b8af5ae23e5bf3ae288c3c97cdaede4ea66aa0fe1a4893496bb8ba2cbae14:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        },
+        {
+          "renderKey": "1714f5a037007373b30e5b7e59c659741fb05005f01ebe894d62630232464616:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 229,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 3,
+      "prompt": "Make a strictly LOCAL edit to image1, the existing HD texture layer. Image2 is the original pixel source enlarged without interpolation, authoritative for shapes, marks, colors and illumination. Change only the tiny light marks in the lower green/teal cloth fields and the excessive mechanical details on the lower hanging fittings. Keep the cloth angles, registration, separate panels, rails, round finials, support widths, upper woven fields, lower nested curves and overall weave unchanged. The small side marks must be faint, short, soft irregular strokes matching image2; they are not crisp crosses, stars or six-ray emblems. Each stroke must differ in length, direction and brightness. Keep the existing small central upright branching stroke, but soften its ends and brightness to match image2. The side marks are much less legible than the central mark. Do not erase the markings entirely. On the lower hanging fittings, replace obvious round screw/bolt/ring embellishments and rectangular window/cage outlines with quiet irregular olive/gold highlight and dark shading patches that match image2. Retain occupied silhouette, native dark parts, thin lower curved wire and each fitting size/location. No added metal collars, new mounting rings, extra trim or hard-machined component detail. Keep the original muted maroon upper and olive-green lower fabric state, reduced brightness on lower panels. Remove the coherent paisley-like/engraved internal cloth swirl texture, retaining only very fine soft plain weave and source sparse diagonal dots. Asset: Twin Castle cut229 foreground8, exact FULL canvas aspect 162:256. Output the single isolated layer on genuine transparency, with unchanged registration and crop contacts. Preserve source illumination and restrained hand-painted Skurfa-compatible texture. No room, background, matte, cyan, newly invented logo or writing, comparison sheet, border, padding or watermark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 330880,
+      "paintedGapPixelsExtended": 27975,
+      "paintedUncoveredSourcePixels": 24863,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 1186,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        648,
+        1024
+      ],
+      "outputSha256": "050d7d9a2b9d1d80bbbbca731ba2390f8a31eaaded3bdc44759b2628c11c2fd4",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/8ef6765e6c438e62adcd2309ef0551bbf4a05718216a7eb7f4dee74149af5c20/draft-input-v3.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/8ef6765e6c438e62adcd2309ef0551bbf4a05718216a7eb7f4dee74149af5c20/draft-repaired-v3.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Fitting window/screw details reduced, but all three lower cloth fields retain regular repeated star-like side marks. Panel light/texture contrast remains interpretive. Requested uneven short native strokes are unmet."
+    },
+    {
+      "decodedRgbaSha256": "903d3733a79d054d7e8802bdfd341474335eeaaf0c00c0e5ba58843c9dc35f97",
+      "generatedSha256": "90d7b0483733f7bf5ab7886dacf7abd259ab8c3740be6f312e7b032627953498",
+      "generatedSize": [
+        1019,
+        1543
+      ],
+      "sourceSize": [
+        70,
+        106
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "cc0b8af5ae23e5bf3ae288c3c97cdaede4ea66aa0fe1a4893496bb8ba2cbae14:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 229,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 3,
+      "prompt": "Make a strictly LOCAL edit to image1, the existing HD texture layer. Image2 is the original pixel source enlarged without interpolation, authoritative for shapes, marks, colors and illumination. Image3 is the exact native occupied silhouette in cyan, for geometry only. This is a geometry correction: output at the full original70:106 canvas aspect, preserving the exact source footprint from image2/3. The left cloth edge MUST touch the left crop; the right cloth tip nearly touches the right crop; the complete slender lower wire ends at the bottom crop at the native position. The existing image1 enlarged fitting/collars and shortened wire do not fit this native source. Make the lower fitting a subdued slim irregular gold/olive highlighted mass matching image2; no large window cage, screws, collars or stacked capsule pieces. The rail branches and uneven spherical finial keep image2 geometry. Keep the original one clipped sloping cloth panel, maroon upper/green lower plane, subdued source tiny unequal marks and shallow bottom curves. Tiny marks stay faint and unresolved, no plant symbol or cross. Asset: Twin Castle cut229 foreground4, exact FULL canvas aspect 70:106. Output the single isolated layer on genuine transparency, with unchanged registration and crop contacts. Preserve source illumination and restrained hand-painted Skurfa-compatible texture. No room, background, matte, cyan, newly invented logo or writing, comparison sheet, border, padding or watermark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/903d3733a79d054d7e8802bdfd341474335eeaaf0c00c0e5ba58843c9dc35f97/draft-input-v3.png",
+      "verdict": "painted-coverage-failure-held",
+      "reason": "Third narrow warm attempt still fails unchanged painted coverage. Retain raw custom image only; no repaired output or gate waiver. Raw fitting remains overdefined and small central markings were lost."
+    },
+    {
+      "decodedRgbaSha256": "93c6bbad7b079b3488c3abebbf3e7195568727ad527cc65c7954fcf22caa30ba",
+      "generatedSha256": "e895f17f5a306a509497d9bef75a77ee9faf15f880f6cbf4ec6ad496d95118e0",
+      "generatedSize": [
+        1002,
+        1569
+      ],
+      "sourceSize": [
+        110,
+        172
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1185d641e3cb7d4645bffd9e0d387bbfe3e625432970a2a7300ca1b25eef4e60:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 228,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 3,
+      "prompt": "Make a strictly LOCAL edit to image1, the existing HD texture layer. Image2 is the original pixel source enlarged without interpolation, authoritative for shapes, marks, colors and illumination. Change only the tiny light marks in the lower green/teal cloth fields and the excessive mechanical details on the lower hanging fittings. Keep the cloth angles, registration, separate panels, rails, round finials, support widths, upper woven fields, lower nested curves and overall weave unchanged. The small side marks must be faint, short, soft irregular strokes matching image2; they are not crisp crosses, stars or six-ray emblems. Each stroke must differ in length, direction and brightness. Keep the existing small central upright branching stroke, but soften its ends and brightness to match image2. The side marks are much less legible than the central mark. Do not erase the markings entirely. On the lower hanging fittings, replace obvious round screw/bolt/ring embellishments and rectangular window/cage outlines with quiet irregular olive/gold highlight and dark shading patches that match image2. Retain occupied silhouette, native dark parts, thin lower curved wire and each fitting size/location. No added metal collars, new mounting rings, extra trim or hard-machined component detail. Asset: Twin Castle cut228 foreground0, exact FULL canvas aspect 110:172. Output the single isolated layer on genuine transparency, with unchanged registration and crop contacts. Preserve source illumination and restrained hand-painted Skurfa-compatible texture. No room, background, matte, cyan, newly invented logo or writing, comparison sheet, border, padding or watermark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 136800,
+      "paintedGapPixelsExtended": 4171,
+      "paintedUncoveredSourcePixels": 3272,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 144,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        440,
+        688
+      ],
+      "outputSha256": "a37f1e2e64c629f97a8022eeabbdfecf3c2b8db5bade8bb7bb77cd8af65768d6",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/93c6bbad7b079b3488c3abebbf3e7195568727ad527cc65c7954fcf22caa30ba/draft-input-v3.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/93c6bbad7b079b3488c3abebbf3e7195568727ad527cc65c7954fcf22caa30ba/draft-repaired-v3.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Crisp pale crosses are softer, but the side markings are now too weak and nearly omitted relative to the particular native three-mark relationship. Fine coherent weave and sharp lower nested curves remain interpretive. This version does not resolve the motif dispute and remains held; prior candidate bytes preserved."
+    },
+    {
+      "decodedRgbaSha256": "44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283",
+      "generatedSha256": "f45c45c4a11f7effaea84ce70d4e714639b1da916159e8de0d30b76f738918cd",
+      "generatedSize": [
+        998,
+        1575
+      ],
+      "sourceSize": [
+        162,
+        256
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1185d641e3cb7d4645bffd9e0d387bbfe3e625432970a2a7300ca1b25eef4e60:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 228,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 3,
+      "prompt": "Make a strictly LOCAL edit to image1, the existing HD texture layer. Image2 is the original pixel source enlarged without interpolation, authoritative for shapes, marks, colors and illumination. Change only the tiny light marks in the lower green/teal cloth fields and the excessive mechanical details on the lower hanging fittings. Keep the cloth angles, registration, separate panels, rails, round finials, support widths, upper woven fields, lower nested curves and overall weave unchanged. The small side marks must be faint, short, soft irregular strokes matching image2; they are not crisp crosses, stars or six-ray emblems. Each stroke must differ in length, direction and brightness. Keep the existing small central upright branching stroke, but soften its ends and brightness to match image2. The side marks are much less legible than the central mark. Do not erase the markings entirely. On the lower hanging fittings, replace obvious round screw/bolt/ring embellishments and rectangular window/cage outlines with quiet irregular olive/gold highlight and dark shading patches that match image2. Retain occupied silhouette, native dark parts, thin lower curved wire and each fitting size/location. No added metal collars, new mounting rings, extra trim or hard-machined component detail. Asset: Twin Castle cut228 foreground8, exact FULL canvas aspect 162:256. Output the single isolated layer on genuine transparency, with unchanged registration and crop contacts. Preserve source illumination and restrained hand-painted Skurfa-compatible texture. No room, background, matte, cyan, newly invented logo or writing, comparison sheet, border, padding or watermark.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 330880,
+      "paintedGapPixelsExtended": 6984,
+      "paintedUncoveredSourcePixels": 5007,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 121,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        648,
+        1024
+      ],
+      "outputSha256": "5257e1dcc264eaa8ece057a092ec676d263a6128f112c59f5f3a3399513b2efe",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283/draft-input-v3.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283/draft-repaired-v3.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Bright side stars were reduced but still read as repeated symmetric multi-ray marks across the three cloth fields; the specific uneven native strokes remain unmet. Lower fitting mechanical highlights and collar details remain interpretive. Hold until a different source-aligned local repair is independently reviewed."
+    }
+  ]
+}

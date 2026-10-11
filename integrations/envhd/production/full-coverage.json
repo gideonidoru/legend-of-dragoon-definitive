@@ -80,7 +80,8 @@
     "field-bespoke-twin-hangings-reviewed-selection.json": "3bddc850f1660de9f53c8d1b352688800a4473ca2f28cb46526ce848cddec76e",
     "field-bespoke-twin-hangings-held-drafts.json": "ff332a6e10efcd3e35facab133738c980fb9f4e44070d4e33a21419cf153f922",
     "field-twin-hangings-authoring-readiness.json": "8aaea4f5092ce2591a5b64daa7adfe384df9bef861e710b59569643eb1cdd18a",
-    "field-independent-twin-hangings-review.json": "749c847b637991198fcbf4ddf96ccc7293d4448208f71cd6bc27d8fdec6e7a0a"
+    "field-independent-twin-hangings-review.json": "749c847b637991198fcbf4ddf96ccc7293d4448208f71cd6bc27d8fdec6e7a0a",
+    "field-bespoke-twin-hangings-local-corrections-held-drafts.json": "8a702fc3794bffeda985fc15d91376ab89b4258f0a51f710e03236472fd89831"
   },
   "categories": [
     {
@@ -234,7 +235,7 @@
       "independentNativePixelAgreement": "650/650 configurations and 5528/5528 unique decodes",
       "envhdPublishedCandidateMasters": 4928,
       "generationReceipt": "field-generation-receipt.json",
-      "generationStage": "Complete83 authoring recipes preserved exactly. Independent Twin review:1 development-clear/unselected and2 revisions. Current queue34 pending/6 revisions/1 cleared awaiting coordinator review and integration;74 unselected custom source keys subset234 field holds. Runtime4928/42 and235 knownstatic backlog unchanged. Historical authoring receipts retain checkpoint counts; native/final acceptance pending.",
+      "generationStage": "Complete83 authoring recipes preserved exactly. Independent Twin review:1 development-clear/unselected and2 revisions. Current queue34 pending/6 revisions/1 cleared awaiting coordinator review and integration;74 unselected custom source keys subset234 field holds. Runtime4928/42 and235 knownstatic backlog unchanged. Historical authoring receipts retain checkpoint counts; native/final acceptance pending. Five further local corrections remain held:4 repaired fidelity holds/1 coverage failure. Complete83 recipes unchanged; no source keys or selections added.",
       "envhdRepairedMasters": 5162,
       "sourceGuardedBackgroundMasters": 342,
       "individuallyComparedMasters": 5162,
