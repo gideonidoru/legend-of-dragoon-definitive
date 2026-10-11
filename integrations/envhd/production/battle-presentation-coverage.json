@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "b5a318a3c1ace28b9158206d4a40a7ba1565e3ef5291095e9186293e8fabc59f"
+    "battle-presentation-artwork-v1.json": "cb89f386fc5b7e24db263cd28848b9eed52392de5e9b24176cb63e875d4280d2"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,10 +18,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 55,
+    "newBespokeCandidates": 69,
     "newlySelectedBespokeMasters": 0,
-    "baselineMastersStillNeedingPresentationReview": 451,
-    "pendingCandidateReviews": 55,
+    "baselineMastersStillNeedingPresentationReview": 437,
+    "pendingCandidateReviews": 69,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -227,7 +227,16 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "054c87e1a55d9104492e518cc88aada8278f67a6894827d5c81bb18d6ba36be6",
+        "11d8fd5665d3aa7b327ea04aafccfaef33a37613cb6f40bef160a52353cc116d",
+        "414cc6a7991c4ec54403df9d8007852b1f8c560da7b2028d92619859033a1c0c",
+        "74f59e6f5771ab9b5de638c62ec95f77f71d0edbf4568155c7870cf874b71434",
+        "aed9171ced7062941ac461488392cdb96b8adebf9648d5b4e91cdd409164e780",
+        "b3c1198fac68c1f5c167ca50cab6099a07f513f89737a9a6ef398d0640ab8d03",
+        "b42b77cd7a5c0c6d8d4374f6ef0bad7b5cc2a4f7273b4ebcc0ffcf0b2bef80bb",
+        "e29f905598c53e8e46c1847d816e4bad9bcc6bf48a95473e66def6d6884d2c0e"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -326,7 +335,14 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "1db4b88136590d79cf4ab87d8eb1b974f39a127bbfbc06f5c306beeeb82bd7ec",
+        "62f8c36eae5ed612725c9e52d5aa5d9d1b4b0821edcb50f6a359f37f2e75dd94",
+        "886455c43c5226077d59990c2fcceb04d6dba7c5039a5b6eb366c8452263ab35",
+        "a5c78981c4f601d5cf33e5b1bd18109bda46b164a1aa7d4a096a7922cf958ed7",
+        "b139612bc6533967482620ee08fec67747652fe0c23ee932560e752ede24dca4",
+        "f2db88cc3df3d3d1f6d20835bc1b336584d24d2d4fe59ed1640b9884c8c361c9"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2824,7 +2840,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2855,7 +2871,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2886,7 +2902,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2917,7 +2933,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2948,7 +2964,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2980,7 +2996,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0, 1]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3012,7 +3028,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0, 1]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3044,7 +3060,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0, 1]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3782,7 +3798,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3813,7 +3829,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3844,7 +3860,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3875,7 +3891,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3906,7 +3922,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3937,7 +3953,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
