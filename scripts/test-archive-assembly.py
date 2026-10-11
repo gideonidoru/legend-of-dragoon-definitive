@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import struct
 import tempfile
+import threading
 import unittest
 from unittest import mock
 import warnings
@@ -161,6 +162,44 @@ class ArchiveTests(unittest.TestCase):
         with mock.patch.object(assembly, 'prove_plan', side_effect=ValueError('injected proof failure')):
             with self.assertRaisesRegex(ValueError, 'proof failure'): self.plan()
         self.assertFalse(list((self.root/'bundles').iterdir()))
+
+    def test_failed_concurrent_proof_cannot_remove_successful_plan_bundle(self):
+        entered = threading.Event(); release = threading.Event(); errors = []
+        original = assembly.prove_plan
+        def prove(plan, sources):
+            if threading.current_thread().name == 'failing-plan':
+                entered.set()
+                if not release.wait(5): raise AssertionError('Concurrent proof did not finish')
+                raise ValueError('injected proof failure')
+            return original(plan, sources)
+        def failing():
+            try: self.plan()
+            except BaseException as error: errors.append(error)
+        with mock.patch.object(assembly, 'prove_plan', side_effect=prove):
+            thread = threading.Thread(target=failing, name='failing-plan')
+            thread.start()
+            try:
+                self.assertTrue(entered.wait(5))
+                succeeded = self.plan()
+                expected = {item.path:item.path.read_bytes() for item in succeeded.uploads.values()}
+            finally:
+                release.set(); thread.join(5)
+            self.assertFalse(thread.is_alive())
+        self.assertEqual(1,len(errors)); self.assertIsInstance(errors[0],ValueError)
+        for path, data in expected.items(): self.assertEqual(data,path.read_bytes())
+        self.assertFalse(list((self.root/'bundles').glob('.archive-bundle-*')))
+
+    def test_later_link_failure_retains_already_published_immutable_bundle(self):
+        real_link = assembly.os.link; calls = []
+        def link(source, destination):
+            if calls: raise OSError('injected later publication failure')
+            real_link(source,destination); calls.append(Path(destination))
+        with mock.patch.object(assembly, 'MAX_BUNDLE_BYTES', 50), mock.patch.object(assembly.os, 'link', side_effect=link):
+            with self.assertRaisesRegex(OSError, 'later publication failure'): self.plan()
+        self.assertEqual(1,len(calls))
+        content=calls[0].read_bytes()
+        self.assertEqual('file-'+hashlib.sha256(content).hexdigest(),calls[0].name)
+        self.assertFalse(list((self.root/'bundles').glob('.archive-bundle-*')))
 
     def test_aggregate_baseline_span_budget_is_bounded(self):
         other = write_zip(self.root/'other.zip', [('one',b'one'),('two',b'two')])

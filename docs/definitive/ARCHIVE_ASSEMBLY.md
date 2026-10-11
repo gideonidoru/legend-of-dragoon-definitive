@@ -68,9 +68,12 @@ against the managed inventory without writing an installation.
 
 Use a dedicated trusted output directory. Input files must be regular files with
 the expected size; source symlinks are rejected. Bundles are created exclusively,
-and a retry accepts an existing bundle only after verifying its bytes. Failure
-removes only temporary and newly created bundle files owned by that attempt;
-existing files and input archives are preserved.
+and a retry accepts an existing bundle only after verifying its bytes. The complete
+plan is proved against private temporary bytes before shared objects are published.
+Failure removes temporary files. Valid published immutable bundles are retained:
+another successful concurrent plan may already reference them. Existing files and
+input archives are preserved; removing unreferenced bundles needs a separate
+complete reference audit.
 
 ## Bounds and archive validation
 

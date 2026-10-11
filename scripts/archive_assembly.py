@@ -378,7 +378,8 @@ def plan_files(targets, baselines, bundle_directory, baseline_ranges=None):
     bundle_directory.mkdir(parents=True, exist_ok=True)
     if bundle_directory.is_symlink() or not bundle_directory.is_dir():
         raise ValueError('Unsafe bundle directory')
-    reusable, records, pending, created, uploads, sources = {}, {}, [], [], {}, {}
+    reusable, records, pending, uploads, sources = {}, {}, [], {}, {}
+    temporary_sources = {}
     current = None
     try:
         baseline_spans = 0
@@ -442,17 +443,12 @@ def plan_files(targets, baselines, bundle_directory, baseline_ranges=None):
                     digest.update(block)
             sha = digest.hexdigest()
             destination = bundle_directory / ('file-' + sha)
-            # Exclusive publication prevents overwriting any caller-owned file.
             if sha in baselines:
                 if baselines[sha].bytes != length:
                     raise ValueError('Bundle and baseline identities conflict')
             else:
-                try:
-                    os.link(path, destination)
-                    created.append(destination)
-                except FileExistsError:
-                    verify_file(FileIdentity(destination, sha, length))
                 uploads[sha] = FileIdentity(destination, sha, length)
+                temporary_sources[sha] = FileIdentity(path, sha, length)
             sources[sha] = length
             for row in bundle['rows']:
                 row['source'] = sha
@@ -460,12 +456,17 @@ def plan_files(targets, baselines, bundle_directory, baseline_ranges=None):
             raise ValueError('Plan source count exceeds budget')
         plan = AssemblyPlan(sources, records, uploads, dict(targets))
         # Check hashes again during the actual mixed-source concatenation.
-        prove_plan(plan, {**baselines, **uploads})
+        # Prove private temporary bytes before making any shared immutable object
+        # available to another successful planner.
+        prove_plan(plan, {**baselines, **temporary_sources})
+        for sha, identity in uploads.items():
+            try:
+                os.link(temporary_sources[sha].path, identity.path)
+            except FileExistsError:
+                verify_file(identity)
+        # Published valid immutable objects may already be referenced by another
+        # successful plan. A later publication failure cannot delete them.
         return plan
-    except BaseException:
-        for path in created:
-            path.unlink(missing_ok=True)
-        raise
     finally:
         for bundle in pending:
             bundle['stream'].close()
