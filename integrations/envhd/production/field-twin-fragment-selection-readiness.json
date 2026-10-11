@@ -96,5 +96,25 @@
     "envhd-twin-fragment-main-preflight.log": "de354b9fbd53c71acf0f85915cbd3a23a59855f9bfa4ba2fb7eb1833f1e78a21",
     "envhd-twin-fragment-main-build.log": "4c629dc1f362748d48cb7e14c6fecd11f018a3a91e41749623bbdf6a9b40c75a",
     "envhd-twin-fragment-main-package-verification.log": "d55edf929b91a89415efd75b73f4536dff68d159bce85f0df007ddd83c3dfaee"
-  }
+  },
+  "independentIntegrationReviews": {
+    "standards": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedIntegration": "48171317d0db52cdd71123ea749fb027f00d2e70",
+      "reviewedDocumentationAndPackageFollowup": "7b8bdad25a9a804e8ea946f0f0b111816e0dc07d",
+      "reportSha256": "11e1b3e48ad0993f97cd397ac8a8f121dd587280f8d35904958714fcd51f0165",
+      "reviewer": "/root/hd_standards_review"
+    },
+    "spec": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedIntegration": "48171317d0db52cdd71123ea749fb027f00d2e70",
+      "reviewedDocumentationAndPackageFollowup": "7b8bdad25a9a804e8ea946f0f0b111816e0dc07d",
+      "reportSha256": "247c4f9f9582d1741b6beb502435cee1daf742aa3e39deb3a76d3715aab526a8",
+      "reviewer": "/root/hd_spec_review"
+    }
+  },
+  "independentFreshOriginalSourceReplay": 43,
+  "independentFreshPackageReplay": true
 }
