@@ -27,6 +27,13 @@ def audit(files):
         raise ValueError('Battle presentation census changed')
     verified = verify.preflight(files, production / 'battle-presentation-artwork-v1.json')
     candidates = {c['candidate']['decodedRgbaSha256'] for c in verified['verified']}
+    presentation_keys = selected.get('presentationSourceKeys', [])
+    if (not isinstance(presentation_keys, list) or any(not isinstance(k, str) for k in presentation_keys)
+            or len(set(presentation_keys)) != len(presentation_keys)
+            or not set(presentation_keys).issubset(candidates)
+            or selected.get('presentationSelectedMasters', 0) != len(presentation_keys)
+            or (presentation_keys and selected.get('presentationReviewReceipt') != verified['manifestSha256'])):
+        raise ValueError('Battle presentation selection does not match the verified manifest')
     stages = []
     for scene in scenes:
         atlas = next((s for s in selected['scenes'] if s['modelSha256'] == scene['modelSha256']), None)
@@ -43,7 +50,8 @@ def audit(files):
         key = record['decodedRgbaSha256']
         if key not in masters:
             raise ValueError('Battle presentation source disappeared')
-        status = ('new-bespoke-awaiting-independent-review' if key in candidates else
+        status = ('new-bespoke-development-selection-pending-native-review' if key in presentation_keys else
+                  'new-bespoke-awaiting-independent-review' if key in candidates else
                   'existing-bespoke-development-selection' if record['reviewStatus'] == 'intent-revision-needed' else
                   'neural-baseline-needs-presentation-review')
         assets.append(dict(decodedRgbaSha256=key, sourceSize=record['sourceSize'], bindings=record['bindings'],
