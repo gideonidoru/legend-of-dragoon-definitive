@@ -103,9 +103,9 @@
     },
     "characterKeyframe": 0
   },
-  "captureMethod": "Read default framebuffer GL_FRONT RGBA on renderer thread; flip rows for PNG storage. Isolated native game sessions using the published engine and artwork. Fresh game state, seeded RNG; battle fixture performs one Guard action before capture. Freeze actor animations and use renderer debug frame advancement to refresh identical camera studies. Field views start from a separate fresh title-to-field fixture, invoke normal title resource cleanup, load cut 5/scene 0, then pause scripts and freeze actor keyframes. All field actor pose and native camera logs match between sessions.",
+  "captureMethod": "Read default framebuffer GL_FRONT RGBA on renderer thread; flip rows for PNG storage. Isolated native game sessions using the published engine and artwork. Fresh game state, seeded RNG; battle fixture performs one Guard action before capture. Freeze actor animations and use renderer debug frame advancement to refresh identical camera studies. Field views start from a separate fresh title-to-field fixture, invoke normal title resource cleanup, load cut 5/scene 0, then pause scripts and freeze actor keyframes. All field actor pose and native camera logs match between sessions. Meru uses a separate seeded battle fixture with her as the sole active party member; normal title resource cleanup runs before the scene transition. Camera, position, rotation, keyframe and actor scale logs match between sessions.",
   "captureLimitation": "The published engine reproduced a zero-tick viewport shrink in initial paused captures. Final captures advance a simulation step on each presentation; no production shader or renderer correction was applied. This does not establish a fix, normal continuous gameplay, or physical Steam Deck acceptance.",
-  "scope": "All seven HD modules and listed Definitive visual rendering options disabled versus enabled; native engine, resolution and gameplay conveniences held constant. Two battle camera views plus one native field scene. Static images do not demonstrate every asset, spells, films, audio, animation behavior or performance.",
+  "scope": "All seven HD modules and listed Definitive visual rendering options disabled versus enabled; native engine, resolution and gameplay conveniences held constant. Dart battle camera views, Meru battle view and one native field scene. Static images do not demonstrate every asset, spells, films, audio, animation behavior or performance.",
   "imageProcessing": "Matched frames placed side by side without resizing, cropping, retouching or extra sharpening; separate labels and gutter added. JPEG encoding only.",
   "runtimeFiles": [
     {
@@ -319,6 +319,57 @@
         "on": {
           "file": "field.png",
           "sha256": "dfb3d4e14b19b641491a9519ee53b53eb49ca482ae3768608001129ea76c3dc9",
+          "dimensions": [
+            1280,
+            800
+          ]
+        }
+      }
+    },
+    {
+      "file": "meru-native-off-on.jpg",
+      "sha256": "4714e8fe5811b0376b2e42d0bd37fb787ca9afb7e7e4d5d0d7d45f495abf0954",
+      "dimensions": [
+        2576,
+        906
+      ],
+      "scene": "Battle encounter 0, stage 0; Meru and Berserk Mouse",
+      "view": "front-facing character camera",
+      "characterId": 6,
+      "characterKeyframe": 0,
+      "actorScale": [
+        1,
+        1,
+        1
+      ],
+      "position": [
+        2560,
+        0,
+        0
+      ],
+      "yawRadiansApprox": 5.673,
+      "viewpoint": [
+        5000,
+        -1400,
+        -1850
+      ],
+      "reference": [
+        2200,
+        -700,
+        58.47
+      ],
+      "inputs": {
+        "off": {
+          "file": "meru.png",
+          "sha256": "1ddb4c92f67c3a4e984cb87f573a93e57dd9378fe9d9c9441b950178472b8e29",
+          "dimensions": [
+            1280,
+            800
+          ]
+        },
+        "on": {
+          "file": "meru.png",
+          "sha256": "b144c4f9a86ca7ed9cfad5af7269d840d8e0456bf86654b8a53e3b72e61171ca",
           "dimensions": [
             1280,
             800
