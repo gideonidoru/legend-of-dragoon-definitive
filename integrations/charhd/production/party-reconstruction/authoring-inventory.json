@@ -21,10 +21,15 @@
       "combatBodyPartsTargeted": 16,
       "combatTriangles": 21236,
       "missingCombatPartIndices": [],
-      "bodyFieldAdaptation": false,
+      "bodyFieldAdaptation": "separate-neutral-field-study-not-validated",
       "nativeBodyGameplayValidated": false,
       "headOwnerAccepted": true,
-      "physicalDeckValidated": false
+      "physicalDeckValidated": false,
+      "fieldBodyPartsPopulated": 14,
+      "fieldBodyPartsTargeted": 14,
+      "nativeBattleConstructionChecked": true,
+      "nativeAnimationVisualAcceptance": false,
+      "bodyValidation": "dart/BODY-VALIDATION-v2.json"
     },
     {
       "character": "rose",

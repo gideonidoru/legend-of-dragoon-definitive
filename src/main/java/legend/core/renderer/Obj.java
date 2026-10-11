@@ -20,6 +20,7 @@ public abstract class Obj {
   /** This Obj won't be deleted on state transition */
   public boolean persistent;
   private Texture faceDetailTexture;
+  private SharedFaceTexture.Lease faceDetailLease;
 
   public Texture faceDetailTexture() { return this.faceDetailTexture; }
 
@@ -29,6 +30,13 @@ public abstract class Obj {
     this.faceDetailTexture = java.util.Objects.requireNonNull(texture);
     // Object ownership determines lifetime, including persistent objects and state transitions.
     this.faceDetailTexture.persistent = true;
+  }
+
+  /** Transfers a shared-image lease to this object's renderer retirement. */
+  public void faceDetailTexture(final SharedFaceTexture.Lease lease) {
+    if(this.faceDetailTexture != null || this.deleted) throw new IllegalStateException("Face detail already owned or object deleted");
+    this.faceDetailTexture = lease.texture();
+    this.faceDetailLease = lease;
   }
 
   NativeUiQuad[] nativeUiQuads;
@@ -65,7 +73,6 @@ public abstract class Obj {
 
   public void delete() {
     this.deleted = true;
-    if(this.faceDetailTexture != null) this.faceDetailTexture.delete();
   }
 
   protected abstract void performDelete();
@@ -76,6 +83,8 @@ public abstract class Obj {
 
       if(obj.deleted) {
         obj.performDelete();
+        if(obj.faceDetailLease != null) obj.faceDetailLease.close();
+        else if(obj.faceDetailTexture != null) obj.faceDetailTexture.delete();
         objList.remove(i);
       }
     }

@@ -8,6 +8,7 @@ from pathlib import Path
 import argparse,hashlib,importlib.util,json,struct
 import numpy as np
 import trimesh
+from PIL import Image,ImageDraw
 from scipy.spatial import cKDTree
 ROOT=Path(__file__).resolve().parents[1]
 HEAD_PARTS={'dart':[7],'rose':[7,10],'lavitz':[8],'shana':[12],'haschel':[7,8,9],'albert':[8],'meru':[8,9,10,11,13,14],'kongol':[7],'miranda':[11]}
@@ -24,13 +25,17 @@ def geometry_hash(part,headers):
             put(vertex)
     return digest.hexdigest()
 
-def fit(files,character,mesh_path,output):
+def fit(files,character,mesh_path,output,depth_weight=1.0,overlap_rings=0,form='combat',segmentation=None):
+    if form not in ('field','combat'):raise ValueError('Unsupported native form')
+    if form=='field' and character!='dart':raise ValueError('Only Dart has a verified field body part map')
+    if overlap_rings not in (0,1,2):raise ValueError("Overlap ring count outside budget")
+    if not .05<=depth_weight<=1:raise ValueError("Depth weight outside development fit budget")
     if output.exists():raise ValueError('Use a new candidate output')
     spec=importlib.util.spec_from_file_location('party_study',ROOT/'experiments/dart-modelshd-charhd/build-study.py');st=importlib.util.module_from_spec(spec);spec.loader.exec_module(st)
-    audit=json.loads((ROOT/'integrations/charhd/production/party-reconstruction/source-audit.json').read_text());actor=next(a for a in audit['characters'] if a['character']==character);record=next(m for m in actor['models'] if m['form']=='combat')
+    audit=json.loads((ROOT/'integrations/charhd/production/party-reconstruction/source-audit.json').read_text());actor=next(a for a in audit['characters'] if a['character']==character);record=next(m for m in actor['models'] if m['form']==form)
     model=files/record['source'];data=model.read_bytes()
     if hashlib.sha256(data).hexdigest()!=record['sourceSha256']:raise ValueError('Source drift')
-    source,_,identity,ids,baseline=st.baseline(data);animation=model.with_name('0').read_bytes()
+    source,_,identity,ids,baseline=st.baseline(data);animation=model.with_name('0' if form=='combat' else str(int(model.name)+1)).read_bytes()
     if hashlib.sha256(animation).hexdigest()!=record['animationSha256']:raise ValueError('Animation drift')
     keys=st.poses.read_keyframes(animation,len(source));key=keys[0];posed=st.poses.posed_vertices(source,key,0)
     mesh=next(iter(trimesh.load(mesh_path,force='scene',process=False).geometry.values()));raw=np.asarray(mesh.vertices);normals=np.asarray(mesh.vertex_normals);uv=np.asarray(mesh.visual.uv)*[1,-1]+[0,1]
@@ -47,24 +52,61 @@ def fit(files,character,mesh_path,output):
                 if np.linalg.norm(np.cross(tri[1]-tri[0],tri[2]-tri[0]))>1e-8:
                     triangles.append(tri);owners.append(index);source_faces.append(face)
     triangles=np.asarray(triangles);owners=np.asarray(owners);source_faces=np.asarray(source_faces)
-    centroids=points[np.asarray(mesh.faces)].mean(1);k=min(24,len(triangles));_,neighbors=cKDTree(triangles.mean(1)).query(centroids,k=k)
-    closest=trimesh.triangles.closest_point(triangles[neighbors].reshape(-1,3,3),np.repeat(centroids,k,axis=0)).reshape(-1,k,3)
-    distances=np.linalg.norm(closest-centroids[:,None],axis=2);col=distances.argmin(1);rows=np.arange(len(centroids));selected=neighbors[rows,col]
+    centroids=points[np.asarray(mesh.faces)].mean(1);metric=np.array([1.,1.,depth_weight]);fit_triangles=triangles*metric;k=min(48,len(triangles));_,neighbors=cKDTree(fit_triangles.mean(1)).query(centroids*metric,k=k)
+    closest=trimesh.triangles.closest_point(fit_triangles[neighbors].reshape(-1,3,3),np.repeat(centroids*metric,k,axis=0)).reshape(-1,k,3)
+    distances=np.linalg.norm(closest-(centroids*metric)[:,None],axis=2);col=distances.argmin(1);rows=np.arange(len(centroids));selected=neighbors[rows,col]
     assigned=owners[selected];face_sources=source_faces[selected];distance=distances[rows,col]
+    # Explicit anatomical regions replace unreliable nearest-surface ownership
+    # where limbs and the sword overlap in the approved reconstruction pose.
+    if segmentation:
+        authored=json.loads(segmentation.read_text())
+        if authored['character']!=character or authored['form']!=form or authored['meshInputSha256']!=hashlib.sha256(mesh_path.read_bytes()).hexdigest():raise ValueError('Part regions belong to a different sculpt')
+        size=authored['viewSize'];padding=authored['viewPadding']
+        if size!=640 or padding!=20:raise ValueError('Unsupported authored inspection frame')
+        original=np.asarray(mesh.vertices);center=(original.min(0)+original.max(0))*.5;extent=np.linalg.norm(original-center,axis=1).max();pixel_scale=(size-padding)/(2*extent)
+        pixels=np.column_stack(((original[:,1]-center[1])*pixel_scale+size/2,-(original[:,2]-center[2])*pixel_scale+size/2))[np.asarray(mesh.faces)].mean(1)
+        labels=Image.new('I',(size,size),-1);draw=ImageDraw.Draw(labels)
+        for region in authored['regions']:
+            index=region['sourcePartIndex']
+            if not 0<=index<len(source):raise ValueError('Unknown native part')
+            draw.polygon([tuple(p) for p in region['polygon']],fill=index)
+        indices=np.clip(pixels.astype(int),0,size-1);mapped=np.asarray(labels)[indices[:,1],indices[:,0]];mask=mapped>=0;assigned[mask]=mapped[mask]
+        # Source-face lineage must be recomputed inside the selected native part.
+        for index in np.unique(assigned):
+            selected_faces=np.flatnonzero(assigned==index);triangles_in_part=np.flatnonzero(owners==index);k=min(48,len(triangles_in_part))
+            query=centroids[selected_faces]*metric;part_triangles=fit_triangles[triangles_in_part]
+            _,near=cKDTree(part_triangles.mean(1)).query(query,k=k);near=np.asarray(near).reshape(len(query),k)
+            closest=trimesh.triangles.closest_point(part_triangles[near].reshape(-1,3,3),np.repeat(query,k,axis=0)).reshape(-1,k,3)
+            distances=np.linalg.norm(closest-query[:,None],axis=2);best=distances.argmin(1);match=triangles_in_part[near[np.arange(len(query)),best]]
+            face_sources[selected_faces]=source_faces[match];distance[selected_faces]=distances[np.arange(len(query)),best]
+    _,weld=np.unique(np.round(points,4),axis=0,return_inverse=True)
+    adjacency=trimesh.Trimesh(np.unique(np.round(points,4),axis=0),weld[np.asarray(mesh.faces)],process=False).face_adjacency
     output.mkdir(parents=True);(output/'parts').mkdir();(output/'uvs').mkdir();texture=mesh.visual.material.baseColorTexture.convert('RGB');texture.save(output/'body-basecolour.png');texture_sha=hashlib.sha256((output/'body-basecolour.png').read_bytes()).hexdigest()
     records=[];part_objects={};custom_faces=[];table=struct.unpack_from('<I',data)[0]+12
     for index in range(len(source)):
         if index in HEAD_PARTS[character]:continue
         selected_faces=np.flatnonzero(assigned==index)
+        owned=set(selected_faces.tolist())
+        for _ in range(overlap_rings):
+            neighbors=adjacency[np.isin(adjacency[:,0],selected_faces)|np.isin(adjacency[:,1],selected_faces)].reshape(-1)
+            selected_faces=np.union1d(selected_faces,neighbors)
         if not len(selected_faces):
             records.append({'sourcePartIndex':index,'state':'missing-generated-part-original-fallback-required','triangles':0});continue
         original_refs=np.asarray(mesh.faces)[selected_faces];refs,inverse=np.unique(original_refs,return_inverse=True);faces=inverse.reshape(-1,3)
-        bone=st.poses.rotation(*(key[index,:3]*(2*np.pi/4096)));local=((points[refs]-key[index,3:])@bone).astype(np.float32);ns=(normals[refs]@bone).astype(np.float32);ns/=np.maximum(np.linalg.norm(ns,axis=1)[:,None],1e-8)
+        bone=st.poses.rotation(*(key[index,:3]*(2*np.pi/4096)));part_points=points[refs].copy()
+        # A single front image underestimates limb depth; restore the native rest
+        # depth per rigid part without changing the approved front silhouette.
+        if depth_weight<1:part_points[:,2]+=np.median(posed[index][:,2])-np.median(part_points[:,2])
+        if overlap_rings:
+            original_owned_refs=np.unique(np.asarray(mesh.faces)[np.asarray(sorted(owned))]);expanded=~np.isin(refs,original_owned_refs)
+            part_points[expanded]-=normals[refs][expanded]*.75
+        local=((part_points-key[index,3:])@bone).astype(np.float32);ns=(normals[refs]@bone).astype(np.float32);ns/=np.maximum(np.linalg.norm(ns,axis=1)[:,None],1e-8)
         old=baseline[index];signs=[]
         for f in old['faces']:
             a,b,c=np.asarray(old['vertices'])[f['vertices'][:3]];signs.append(np.dot(np.cross(b-a,c-a),np.asarray(old['normals'])[f['normals']].mean(0)))
         sign=np.sign(np.median(signs));packed=[]
-        for face,original_face in zip(faces,face_sources[selected_faces]):
+        for face,original_face,triangle_index in zip(faces,face_sources[selected_faces],selected_faces):
+            if triangle_index not in owned:original_face=0
             face=face.tolist();a,b,c=local[face]
             if np.linalg.norm(np.cross(b-a,c-a))<1e-8:continue
             if np.dot(np.cross(b-a,c-a),ns[face].mean(0))*sign<0:face.reverse()
@@ -77,7 +119,7 @@ def fit(files,character,mesh_path,output):
             h=struct.unpack_from('<I',data,cursor)[0];headers.append(h);cursor+=4+((h>>8)&255)*4
         geometry=geometry_hash(part,headers);binding={'version':1,'sourceGeometrySha256':ids[index],'geometrySha256':geometry,'uvs':uv[refs].tolist(),'texture':'body-basecolour.png','textureSha256':texture_sha};uvpath=output/'uvs'/(ids[index]+'.json');uvpath.write_text(json.dumps(binding,separators=(',',':'),allow_nan=False))
         open_edges=np.bincount(trimesh.Trimesh(local,faces,process=False).edges_unique_inverse)
-        record={'character':character,'form':'combat','sourcePartIndex':index,'sourceGeometrySha256':ids[index],'geometrySha256':geometry,'baselineGeometrySha256':geometry_hash(old,headers),'pack':'parts/'+path.name,'packSha256':hashlib.sha256(path.read_bytes()).hexdigest(),'uv':'uvs/'+uvpath.name,'uvSha256':hashlib.sha256(uvpath.read_bytes()).hexdigest(),'texture':'body-basecolour.png','textureSha256':texture_sha,'width':2048,'height':2048,'triangles':len(packed),'vertices':len(refs),'uncappedPartitionBoundaryEdges':int((open_edges==1).sum()),'p95SourceFitDistance':float(np.percentile(distance[selected_faces],95)),'state':'initial-rigid-part-partition-needs-joint-and-native-review'}
+        record={'character':character,'form':form,'sourcePartIndex':index,'sourceGeometrySha256':ids[index],'geometrySha256':geometry,'baselineGeometrySha256':geometry_hash(old,headers),'pack':'parts/'+path.name,'packSha256':hashlib.sha256(path.read_bytes()).hexdigest(),'uv':'uvs/'+uvpath.name,'uvSha256':hashlib.sha256(uvpath.read_bytes()).hexdigest(),'texture':'body-basecolour.png','textureSha256':texture_sha,'width':2048,'height':2048,'triangles':len(packed),'vertices':len(refs),'uncappedPartitionBoundaryEdges':int((open_edges==1).sum()),'p95SourceFitDistance':float(np.percentile(distance[selected_faces],95)),'state':'initial-rigid-part-partition-needs-joint-and-native-review'}
         part_objects[index]=part;records.append(record);custom_faces.extend(original_refs.tolist())
     # Verify rigid transforms across every stored idle keyframe; this is numerical evidence only.
     for pose in keys:
@@ -87,7 +129,7 @@ def fit(files,character,mesh_path,output):
     # Public editable mesh excludes generated face/hair parts: those use the separate approved/head candidates.
     meshbody=trimesh.Trimesh(points,np.asarray(custom_faces),vertex_normals=normals,process=False);meshbody.visual=trimesh.visual.TextureVisuals(uv=np.asarray(mesh.visual.uv),material=trimesh.visual.material.PBRMaterial(baseColorTexture=texture,roughnessFactor=1,metallicFactor=0));meshbody.remove_unreferenced_vertices();meshbody.export(output/'body-mesh.glb')
     manifest={'format':1,'state':'development-not-runtime-selected','parts':[row for row in records if 'pack' in row]};(output/'characters.json').write_text(json.dumps(manifest,indent=2)+'\n')
-    receipt={'format':1,'character':character,'state':'development-not-runtime-selected','sourceModelSha256':hashlib.sha256(data).hexdigest(),'sourceAnimationSha256':hashlib.sha256(animation).hexdigest(),'meshInputSha256':hashlib.sha256(mesh_path.read_bytes()).hexdigest(),'textureSha256':texture_sha,'bodyMeshSha256':hashlib.sha256((output/'body-mesh.glb').read_bytes()).hexdigest(),'scale':scale,'storedIdlePoseSamples':len(keys),'excludedHeadParts':HEAD_PARTS[character],'parts':records,'scope':'Initial generated body partition on native rigid pivots. Uncapped joints, changed grips, missing thin accessories and side/rear material cleanup must be reviewed. UV fallback uses source material lineage; new material uses its own normalized atlas. Not animation, gameplay or Steam Deck acceptance.'};(output/'fit-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n');return receipt
+    receipt={'format':1,'character':character,'form':form,'state':'development-not-runtime-selected','sourceModelSha256':hashlib.sha256(data).hexdigest(),'sourceAnimationSha256':hashlib.sha256(animation).hexdigest(),'meshInputSha256':hashlib.sha256(mesh_path.read_bytes()).hexdigest(),'textureSha256':texture_sha,'bodyMeshSha256':hashlib.sha256((output/'body-mesh.glb').read_bytes()).hexdigest(),'scale':scale,'partitionDepthWeight':depth_weight,'overlapRings':overlap_rings,'segmentationSha256':hashlib.sha256(segmentation.read_bytes()).hexdigest() if segmentation else None,'storedIdlePoseSamples':len(keys),'excludedHeadParts':HEAD_PARTS[character],'parts':records,'scope':'Initial generated body partition on native rigid pivots. Uncapped joints, changed grips, missing thin accessories and side/rear material cleanup must be reviewed. UV fallback uses source material lineage; new material uses its own normalized atlas. Not animation, gameplay or Steam Deck acceptance.'};(output/'fit-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n');return receipt
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--files',type=Path,required=True);p.add_argument('--character',choices=list(HEAD_PARTS),required=True);p.add_argument('--mesh',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();result=fit(a.files,a.character,a.mesh,a.output);print(a.character,len(result['parts']),'body-part records')
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--files',type=Path,required=True);p.add_argument('--character',choices=list(HEAD_PARTS),required=True);p.add_argument('--form',choices=('field','combat'),default='combat');p.add_argument('--mesh',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--depth-weight',type=float,default=1.0);p.add_argument('--overlap-rings',type=int,default=0);p.add_argument('--segmentation',type=Path);a=p.parse_args();result=fit(a.files,a.character,a.mesh,a.output,a.depth_weight,a.overlap_rings,a.form,a.segmentation);print(a.character,a.form,len(result['parts']),'body-part records')

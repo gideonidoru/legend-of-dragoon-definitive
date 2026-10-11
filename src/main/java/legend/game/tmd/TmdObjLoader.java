@@ -422,20 +422,17 @@ public final class TmdObjLoader {
 
       final Mesh[] reversed = new Mesh[meshes.length];
       Arrays.setAll(reversed, i -> meshes[meshes.length - i - 1]);
-      legend.core.renderer.Texture detailTexture = null;
+      legend.core.renderer.SharedFaceTexture.Lease detailTexture = null;
       try {
         if(objTable.faceDetail() != null) {
           final var detail = objTable.faceDetail();
-          detailTexture = legend.core.renderer.Texture.create(name + " face detail", builder -> {
-            builder.data(detail.pixels(), detail.width, detail.height);
-            builder.minFilter(true); builder.magFilter(true); builder.wrapS(false); builder.wrapT(false);
-          });
+          detailTexture = legend.core.renderer.SharedFaceTexture.acquire(name + " face detail", detail.image());
         }
         final var result = new TmdMeshObj(name, reversed, backfaceCulling);
         if(detailTexture != null) result.faceDetailTexture(detailTexture);
         return result;
       } catch(final RuntimeException | Error failure) {
-        if(detailTexture != null) detailTexture.delete();
+        if(detailTexture != null) detailTexture.close();
         throw failure;
       }
     } catch(final RuntimeException | Error failure) {

@@ -69,3 +69,16 @@ tasks.register('charHdPartyCandidateProbe', JavaExec) {
     args providers.gradleProperty('charFiles').get(), file('integrations/charhd/production/party-reconstruction').absolutePath, providers.gradleProperty('charReport').get()
   }
 }
+
+tasks.register('charHdDartBodyProbe', JavaExec) {
+  description = 'Explicit staged development full-body check; never enters normal packaging.'
+  dependsOn 'charhdTestClasses', 'modelshdClasses'
+  classpath = sourceSets.charhdTest.runtimeClasspath + sourceSets.modelshd.output
+  mainClass = 'charhd.DartBodySourceProbe'
+  jvmArgs '-Djava.awt.headless=true', '-Xmx2g'
+  workingDir = layout.buildDirectory.dir('charhd-probe-home').get().asFile
+  doFirst {
+    workingDir.mkdirs()
+    args providers.gradleProperty('charFiles').get(), providers.gradleProperty('charCandidateResources').get(), providers.gradleProperty('charReport').get()
+  }
+}

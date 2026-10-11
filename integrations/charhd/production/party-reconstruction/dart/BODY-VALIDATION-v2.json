@@ -1,0 +1,317 @@
+{
+  "format": 1,
+  "date": "2026-10-10",
+  "sourceBaseCommit": "ad19a817149f4393f203e3a4966b113ede871a23",
+  "status": "development-not-runtime-selected",
+  "environment": {
+    "machine": "Mac Studio Mac17,14",
+    "chip": "Apple M5 Max",
+    "os": "macOS 27.0.1",
+    "jdk": "Amazon Corretto Java 25",
+    "gradle": "9.1.0",
+    "authoring": "Python 3.12, CPU, pinned TripoSR, offline model weights"
+  },
+  "exactAcceptedHeadTextureSha256": "8e75f9c5297bca7981b9be3a77c3210636fa8a80f2304768c109954536fb4f38",
+  "constructionProbe": {
+    "status": "passed",
+    "combinations": 24,
+    "reportSha256": "db91bf7da2c1f3873eb82dcd7a6704a3343fbe792100a480a14a5a8f11a0f512",
+    "scope": "CPU construction and shared-image ownership; not native animation or Steam Deck acceptance",
+    "routes": "indexed, simulated RGBA, simulated mapped; ModelsHD off/on; candidate off/on; field/battle",
+    "checks": [
+      {
+        "modelsHd": false,
+        "route": "indexed",
+        "vertices": 1082,
+        "charHdCandidate": false,
+        "form": "field",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": false,
+        "route": "indexed",
+        "vertices": 75351,
+        "charHdCandidate": true,
+        "form": "field",
+        "paintedParts": 15,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": true,
+        "route": "indexed",
+        "vertices": 4618,
+        "charHdCandidate": false,
+        "form": "field",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": true,
+        "route": "indexed",
+        "vertices": 75351,
+        "charHdCandidate": true,
+        "form": "field",
+        "paintedParts": 15,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": false,
+        "route": "rgba",
+        "vertices": 1082,
+        "charHdCandidate": false,
+        "form": "field",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": false,
+        "route": "rgba",
+        "vertices": 75351,
+        "charHdCandidate": true,
+        "form": "field",
+        "paintedParts": 15,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": true,
+        "route": "rgba",
+        "vertices": 4618,
+        "charHdCandidate": false,
+        "form": "field",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": true,
+        "route": "rgba",
+        "vertices": 75351,
+        "charHdCandidate": true,
+        "form": "field",
+        "paintedParts": 15,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": false,
+        "route": "mapped",
+        "vertices": 1082,
+        "charHdCandidate": false,
+        "form": "field",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": false,
+        "route": "mapped",
+        "vertices": 75351,
+        "charHdCandidate": true,
+        "form": "field",
+        "paintedParts": 15,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": true,
+        "route": "mapped",
+        "vertices": 4618,
+        "charHdCandidate": false,
+        "form": "field",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": true,
+        "route": "mapped",
+        "vertices": 75351,
+        "charHdCandidate": true,
+        "form": "field",
+        "paintedParts": 15,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": false,
+        "route": "indexed",
+        "vertices": 1954,
+        "charHdCandidate": false,
+        "form": "combat",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": false,
+        "route": "indexed",
+        "vertices": 80952,
+        "charHdCandidate": true,
+        "form": "combat",
+        "paintedParts": 17,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": true,
+        "route": "indexed",
+        "vertices": 8440,
+        "charHdCandidate": false,
+        "form": "combat",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": true,
+        "route": "indexed",
+        "vertices": 80952,
+        "charHdCandidate": true,
+        "form": "combat",
+        "paintedParts": 17,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": false,
+        "route": "rgba",
+        "vertices": 1954,
+        "charHdCandidate": false,
+        "form": "combat",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": false,
+        "route": "rgba",
+        "vertices": 80952,
+        "charHdCandidate": true,
+        "form": "combat",
+        "paintedParts": 17,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": true,
+        "route": "rgba",
+        "vertices": 8440,
+        "charHdCandidate": false,
+        "form": "combat",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": true,
+        "route": "rgba",
+        "vertices": 80952,
+        "charHdCandidate": true,
+        "form": "combat",
+        "paintedParts": 17,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": false,
+        "route": "mapped",
+        "vertices": 1954,
+        "charHdCandidate": false,
+        "form": "combat",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": false,
+        "route": "mapped",
+        "vertices": 80952,
+        "charHdCandidate": true,
+        "form": "combat",
+        "paintedParts": 17,
+        "uniqueGpuImages": 2
+      },
+      {
+        "modelsHd": true,
+        "route": "mapped",
+        "vertices": 8440,
+        "charHdCandidate": false,
+        "form": "combat",
+        "paintedParts": 0,
+        "uniqueGpuImages": 0
+      },
+      {
+        "modelsHd": true,
+        "route": "mapped",
+        "vertices": 80952,
+        "charHdCandidate": true,
+        "form": "combat",
+        "paintedParts": 17,
+        "uniqueGpuImages": 2
+      }
+    ]
+  },
+  "nativeBattle": {
+    "source": "dart/body-candidate-v1 + exact accepted Dart head; battle pack/UV/texture checksums match final staged overlay",
+    "nativeTestsPassed": 7,
+    "storedAnimationFilesSampled": 7,
+    "storedPosesSampled": 21,
+    "samples": [
+      "0:0",
+      "0:5",
+      "0:9",
+      "1:0",
+      "1:4",
+      "1:7",
+      "5:0",
+      "5:3",
+      "5:5",
+      "10:0",
+      "10:6",
+      "10:11",
+      "11:0",
+      "11:7",
+      "11:13",
+      "14:0",
+      "14:3",
+      "14:5",
+      "29:0",
+      "29:3",
+      "29:5"
+    ],
+    "visualAcceptance": "FAILED: open rigid partitions and detached regions in moving poses. Loader/finite-transform checks passing is not animation-quality acceptance.",
+    "scope": "Isolated Mac native battle boot, guard smoke check, material residency and scripted stored-pose inspection. Not full attack/damage/victory/death gameplay or Deck validation.",
+    "logSha256": "1b428dba2b20c68846497660c350f7201eafcbe2203522a4a3efe963b592dcb0"
+  },
+  "fieldStudy": {
+    "source": "field-body-source-v2.png",
+    "partsPopulated": 14,
+    "targetedParts": 14,
+    "triangles": 19369,
+    "nativeGameplayValidated": false,
+    "visualOwnerAccepted": false,
+    "rearAndAttachmentReview": "pending"
+  },
+  "sharedImages": {
+    "battleUploads": 2,
+    "battlePaintedParts": 17,
+    "rgba8BaseTextureBudgetMiB": 32,
+    "oldIndependentPartUploadBudgetMiB": 272,
+    "scope": "Calculated 2048x2048 RGBA8 base textures, no mipmaps. Native object identity asserts two textures. Not a physical Deck profile."
+  },
+  "promotion": "No new bodies selected in runtime assets; no main merge or release. Explicit owner approval required after visual and native gates.",
+  "supportedBuild": {
+    "command": "./gradlew build deliveryTest stageDefinitivePackage",
+    "status": "passed",
+    "headless": true,
+    "nativeGameTests": "separate explicit private harness",
+    "results": {
+      "deliveryTest": {
+        "tests": 351,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 7
+      },
+      "charHdTests": {
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "modelsHdTests": {
+        "tests": 32,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "logSha256": "fd3413bc4af293864bcc37f508c8fb0614cf6689b88899807ab436f937c09388",
+    "runtimeSelections": "12 existing accepted Dart packs; new body studies excluded"
+  }
+}
