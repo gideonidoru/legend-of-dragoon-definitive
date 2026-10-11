@@ -76,6 +76,9 @@ def publish(inputs, root, server, now=None):
     if original is not None and baseline['tag_name'] != TAG:
         raise ValueError('Manifest is on the wrong carrier')
     uploaded = {}; reused = {}; renamed = []
+    # Keep one inventory while staging immutable objects. Refresh after each
+    # mutation and verify the entire closure again before committing the pointer.
+    assets = index_assets(server.assets())
 
     def guard():
         current = server.release()
@@ -83,8 +86,9 @@ def publish(inputs, root, server, now=None):
             raise ValueError('Concurrent current-release publication detected')
 
     def ensure(name, record):
+        nonlocal assets
         guard()
-        asset = index_assets(server.assets()).get(name)
+        asset = assets.get(name)
         if asset is None:
             if 'path' not in record:
                 raise ValueError('Missing immutable server asset without verified upload: ' + name)
@@ -93,7 +97,8 @@ def publish(inputs, root, server, now=None):
                 raise ValueError('Upload bytes changed')
             server.upload(path)
             uploaded[name] = record['bytes']
-            asset = index_assets(server.assets()).get(name, {})
+            assets = index_assets(server.assets())
+            asset = assets.get(name, {})
         else:
             reused[name] = dict(id=asset['id'], bytes=record['bytes'])
         return check_asset(asset, name, record['bytes'], record['sha256'], baseline['tag_name'])
@@ -110,6 +115,7 @@ def publish(inputs, root, server, now=None):
                 raise ValueError('Source rename is only allowed during initial verified migration')
             server.rename(old['id'], rename['name'])
             renamed.append(dict(id=old['id'], oldName=old['name'], name=rename['name']))
+            assets = index_assets(server.assets())
         else:
             check_asset(new, rename['name'], rename['bytes'], rename['sha256'], baseline['tag_name'])
             if new['id'] != rename['id']:
@@ -152,15 +158,19 @@ def publish(inputs, root, server, now=None):
         uploaded[name] = record['bytes']
         check_asset(index_assets(server.assets()).get(name, {}), name, record['bytes'], record['sha256'], baseline['tag_name'])
     guard()
-    check_references(manifest, server.assets(), baseline['tag_name'])
+    assets = index_assets(server.assets())
+    check_references(manifest, list(assets.values()), baseline['tag_name'])
+    for name, record in inputs['immutable'].items():
+        check_asset(assets.get(name, {}), name, record['bytes'], record['sha256'], baseline['tag_name'])
     notes = 'Legend of Dragoon: Definitive\n\nCurrent test download for Steam Deck and macOS.\nRendering, viewport and input fixes; verified incremental installation and repair.\n'
     if not unchanged:server.commit(manifest, body(manifest, notes))
     fresh = server.release()
     if fresh['id'] != baseline['id'] or fresh['tag_name'] != TAG or parse_body(fresh.get('body') or '', fresh['id']) != manifest or fresh.get('draft') or fresh.get('prerelease'):
         raise ValueError('Publication commit could not be verified; do not clean up')
-    check_references(manifest, server.assets())
+    assets = index_assets(server.assets())
+    check_references(manifest, list(assets.values()))
     for name, record in inputs['immutable'].items():
-        check_asset(index_assets(server.assets()).get(name, {}), name, record['bytes'], record['sha256'])
+        check_asset(assets.get(name, {}), name, record['bytes'], record['sha256'])
     return dict(result='PASS', unchanged=unchanged, manifest=manifest, manifestSha256=sha,
                 buildAttempt=inputs['runAttempt'],
                 uploaded=uploaded, reused=reused, renamed=renamed,
