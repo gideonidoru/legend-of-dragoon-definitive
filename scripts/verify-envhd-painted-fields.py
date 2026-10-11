@@ -20,8 +20,10 @@ def module(name, filename):
 batch = module('painted_field_sources', 'batch-envhd-fields.py')
 repair = module('painted_field_repair', 'repair-envhd-painted-cutout.py')
 registration = module('painted_field_registration', 'register-envhd-painted-cutout.py')
+opaque_border = module('painted_field_opaque_border', 'repair-envhd-painted-opaque-border.py')
 REPAIR_SHA256 = 'd94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a'
 REGISTRATION_SHA256 = '7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784'
+OPAQUE_BORDER_SHA256 = 'd5a6b3b9b9177b2292863ee3391720065e7e9155f943b221ee1edcd2b73365bc'
 METHOD = 'python-painted-cutout-nearest-colour-exact-visibility-1'
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
 ROOT = Path(__file__).resolve().parents[1]
@@ -115,6 +117,18 @@ def preflight(files, manifest_path, root=ROOT):
                                              registeredInputSha256=batch.terrain.digest(stream.getvalue()))
                 if recorded != expected_registration:
                     raise ValueError('Painted field registration differs from its recorded source geometry')
+            if 'opaqueBorderRepair' in candidate:
+                recorded = candidate['opaqueBorderRepair']
+                if ('registration' in candidate or not isinstance(recorded, dict)
+                        or recorded.get('algorithmPath') != 'scripts/repair-envhd-painted-opaque-border.py'
+                        or recorded.get('algorithmSha256') != OPAQUE_BORDER_SHA256
+                        or batch.terrain.digest(Path(opaque_border.__file__).read_bytes()) != OPAQUE_BORDER_SHA256):
+                    raise ValueError('Painted field opaque border repair identity changed')
+                raw, operation = opaque_border.repair_border(source, raw)
+                expected_border = dict(operation, algorithmPath='scripts/repair-envhd-painted-opaque-border.py',
+                                       algorithmSha256=OPAQUE_BORDER_SHA256)
+                if recorded != expected_border:
+                    raise ValueError('Painted field opaque border differs from its recorded source colour')
             expected, operation = repair.repair(source, raw)
         with Image.open(io.BytesIO(output_data)) as actual:
             repair.validate_opened_png(actual, output_size, 'output', source.size)

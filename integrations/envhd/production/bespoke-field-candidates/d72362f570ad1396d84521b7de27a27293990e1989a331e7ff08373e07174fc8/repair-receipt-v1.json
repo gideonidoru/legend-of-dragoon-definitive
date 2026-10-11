@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 31920,
+  "paintedGapPixelsExtended": 1584,
+  "paintedUncoveredSourcePixels": 990,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 20,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    46,
+    116
+  ],
+  "targetSize": [
+    184,
+    464
+  ],
+  "generatedSha256": "6071eb95296735eca0785ed5bf02a6dddb0c90cc4f05ec4bdabc522f19c52d57",
+  "outputSha256": "67869692e667dd122743a4570d441af6f03aeea24f3c1a9e7972f3a32313aa22",
+  "decodedRgbaSha256": "d72362f570ad1396d84521b7de27a27293990e1989a331e7ff08373e07174fc8",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/d72362f570ad1396d84521b7de27a27293990e1989a331e7ff08373e07174fc8/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/d72362f570ad1396d84521b7de27a27293990e1989a331e7ff08373e07174fc8/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image 1 is the authoritative source cutout, image 2 is the original scene only for context. Repaint image 1 into clean high-definition hand-painted game art that fits restrained Skurfa-style HD backgrounds. Description: Queen Fury cut284 slot1 suspended wooden lattice crate beneath two chains, a rounded dark metal hoist fitting and angled suspension straps. Preserve both chains entering from the top, the source rounded hoist shape with tiny pale fastener highlights, narrow lower neck, angled triangular strap outline and the small open-topped crate at the bottom. The crate sides are a dense small crossing wood lattice, not solid dark panels or merely two large X-braces. Restore the fine open lattice on both angled visible side faces while matching source dark lighting and warm timber. Keep the original chain/link positions and crate perspective, without adding cargo, treasure, labels, a new pulley wheel or more chains. Strict framing: exactly 46:116 canvas aspect, same object positions, source silhouette, internal openings, overlapping planes and negative space. Fill the same visible footprint, without widening or centering the object, adding padding, rotating it or cropping a new composition. Refine continuous material detail; do not reproduce a coarse pixel mosaic. Do not invent any objects or alter scene lighting. Output on real transparency with no backdrop. No border, text, logo, comparison board or full-scene output. Produce exactly one finished texture.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "248583f2b89a5ed1069e5b6406f54515cd412ec561b2720fbd94fc934e1f7b4f:-1",
+      "kind": "foreground",
+      "slot": 1,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 284,
+  "representativeLocation": "The Queen Fury",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Queen Fury cut284 slot1 open-topped suspended wooden lattice crate beneath two chains, a rounded hoist fitting and angled suspension straps.",
+    "style": "Original, held neural, output and isolated scene placement compared. Crossing lattice returns on both oblique crate faces instead of the neural solid panels/large braces. Two chain runs, round fitting, straps, empty top and crate perspective remain. Fine lattice cell count, fasteners, link relief and hoist details are interpretive; no cargo or treasure is added.",
+    "layout": "Exact4x canvas [46, 116] to [184, 464]; source alpha and visible-black classes exact. Pinned cutout stage extends 1584 target pixels, uncovered 990, maximum squared extension distance 20. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "67869692e667dd122743a4570d441af6f03aeea24f3c1a9e7972f3a32313aa22",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

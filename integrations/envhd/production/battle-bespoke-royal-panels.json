@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "method": "python-painted-rect-exact-source-palette-marking-1",
+  "algorithmSha256": "7a6e4f282f126aec4028f2e321d22e94e077c29d933bd3be8dee1c25c276e57e",
+  "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "scope": "Two separately reviewed stage30 decorative panel repairs; existing controls/runtime unchanged.",
+  "visualReviewedBespokeCandidates": 2,
+  "revisionsNeeded": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceSize": [
+        56,
+        63
+      ],
+      "targetSize": [
+        224,
+        252
+      ],
+      "paletteRgba": [
+        [
+          115,
+          115,
+          90,
+          0
+        ],
+        [
+          123,
+          131,
+          115,
+          0
+        ],
+        [
+          156,
+          156,
+          115,
+          0
+        ],
+        [
+          164,
+          123,
+          98,
+          0
+        ],
+        [
+          189,
+          172,
+          123,
+          0
+        ]
+      ],
+      "sourceMaskRectangle": [
+        14,
+        15,
+        48,
+        50
+      ],
+      "sourcePalettePixels": [
+        {
+          "rgba": [
+            115,
+            115,
+            90,
+            0
+          ],
+          "sourcePixels": 80
+        },
+        {
+          "rgba": [
+            123,
+            131,
+            115,
+            0
+          ],
+          "sourcePixels": 50
+        },
+        {
+          "rgba": [
+            156,
+            156,
+            115,
+            0
+          ],
+          "sourcePixels": 44
+        },
+        {
+          "rgba": [
+            164,
+            123,
+            98,
+            0
+          ],
+          "sourcePixels": 21
+        },
+        {
+          "rgba": [
+            189,
+            172,
+            123,
+            0
+          ],
+          "sourcePixels": 20
+        }
+      ],
+      "sourceMarkingPixels": 215,
+      "sourceMarkingMaskSha256": "3412f2925c49c99ec863873e865a1319df68e669923f9888d566c1561842fbb8",
+      "listedPaletteCellCoverageExact": true,
+      "bevelInsideSourceMask": true,
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "listed-palette-cells-locked; other-features-individually-reviewed",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "8ff9a0b099de09726d145ee493bca5a389610d25214e100e2b5dab20ff7bcbe9",
+      "method": "python-painted-rect-exact-source-palette-marking-1",
+      "algorithmSha256": "7a6e4f282f126aec4028f2e321d22e94e077c29d933bd3be8dee1c25c276e57e",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "a99f79a66f66be994e1fa42a37f0ddd32309c53a49c05419505e1fbc6707806f",
+      "outputSha256": "5479997176d62c3e27ff435d7413a0a7686d723832195ff469f34772af69c00d",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 30,
+          "page": 7,
+          "clut": 15772,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            200,
+            40,
+            256,
+            103
+          ],
+          "sourceUvOrigin": [
+            200,
+            40
+          ]
+        }
+      ],
+      "priorCandidateSha256": "46bf74ba36b1e8fd6f957fddfa2010c20e6091bdb61db1c5dc0bf4b34d826691",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/8ff9a0b099de09726d145ee493bca5a389610d25214e100e2b5dab20ff7bcbe9/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/8ff9a0b099de09726d145ee493bca5a389610d25214e100e2b5dab20ff7bcbe9/image-v1.png",
+      "prompt": "Use case: style-transfer\nEdit target: supplied nearest-neighbour enlargement of an actual56x63 Legend of Dragoon battle-stage30 texture crop, royal architecture family. Create a detailed hand-painted HD texture, preserving the EXACT56:63 aspect, source crop, folded deep-red fabric/carpet panel, muted gold/olive-grey upper fringe, diagonal shadowed left edge and original bottom adjoining tan/olive strips. The central pale-gold/olive-grey angular heraldic marking is an abstract crossed/star-like interlaced design; trace its exact original silhouette and position (roughlyx31/56,y33/63). Do not reinterpret it as a dragon, lion, flower, face, letters or runes. Keep its small central gap and the original pointed arms and lower stroke. Improve restrained cloth weave and antique embroidered/painted gold material detail, preserving original lighting, red/olive palette and texture arrangement. Flat texture crop, no new perspective, no added margin, no new symbols, no new fixtures, no text, no watermark. Original black padding is only missing/discarded texture area, not a new frame; keep its placement and leave source masks for Python to restore. Output opaque full canvas.",
+      "review": {
+        "intent": "Stage30 part0 static surface, page7 CLUT15772, sourcecrop200,40,256,103: deep-red fabric with muted gold/olive angular crest, upper fringe, left fold and bottom adjoining strips. Treated as a decorative environment material rather than new heraldry or readable text.",
+        "style": "Original, held neural and repaired 224x252 painting individually compared. New woven fabric and aged trim improve material definition; five source accent shades restore the original central marking rather than the looped crest invented by generated inputs. Contrast and grain are development interpretations, not final Skurfa-equivalent acceptance; Skurfa assets untouched.",
+        "layout": "Five source RGBA classes in rectangle14,15,48,50 preserve all215 nominated accent cells, disconnected endpoints, gaps and positions at4x. One-pixel bevel stays inside that mask. Darker source shading and outer fringe are not covered by that palette proof; their placement is individually compared. Crop/aspect and native STP/discard/visible-black classes are exact. Fresh usage verified; native camera, material blending and final visual acceptance pending.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "5479997176d62c3e27ff435d7413a0a7686d723832195ff469f34772af69c00d",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "blankMaterialPrompt": "Use case: precise-object-edit\nEdit target: the supplied royal red fabric texture. Keep the exact canvas, red cloth panel, left folded fragments, top woven gold/olive trim, bottom adjoining strips, black padding and all feature boundaries unchanged.\nChange ONLY the large central gold embroidered star/crest: remove it entirely, including all arms, center and shadows, and replace that area with matching blank deep-red woven cloth. No marking, embroidery, symbol, outline or extra decoration anywhere in the central panel. Preserve the cloth shading and fine weave. The actual original crest will be restored from its exact native palette geometry by Python afterward.\nOne full opaque flat texture; no margin, text or watermark.",
+      "layoutDraftPath": "integrations/envhd/production/bespoke-battle-candidates/8ff9a0b099de09726d145ee493bca5a389610d25214e100e2b5dab20ff7bcbe9/painted-layout-v1.png",
+      "layoutDraftSha256": "a6d2d030f77b71fc3b81da539a510df5008050650d7072cb1284c967a0c5b18d",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        48
+      ],
+      "targetSize": [
+        192,
+        192
+      ],
+      "paletteRgba": [
+        [
+          148,
+          139,
+          164,
+          0
+        ],
+        [
+          164,
+          156,
+          180,
+          0
+        ],
+        [
+          180,
+          172,
+          197,
+          0
+        ]
+      ],
+      "sourceMaskRectangle": [
+        8,
+        8,
+        37,
+        40
+      ],
+      "sourcePalettePixels": [
+        {
+          "rgba": [
+            148,
+            139,
+            164,
+            0
+          ],
+          "sourcePixels": 112
+        },
+        {
+          "rgba": [
+            164,
+            156,
+            180,
+            0
+          ],
+          "sourcePixels": 67
+        },
+        {
+          "rgba": [
+            180,
+            172,
+            197,
+            0
+          ],
+          "sourcePixels": 43
+        }
+      ],
+      "sourceMarkingPixels": 222,
+      "sourceMarkingMaskSha256": "b5619c0fd7bcb39c1ecea82c2744cb914ed960e69257f11111d82a28a9691b84",
+      "listedPaletteCellCoverageExact": true,
+      "bevelInsideSourceMask": true,
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "listed-palette-cells-locked; other-features-individually-reviewed",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "7b60ba648187a985ab7249a1be339b5e866bf172fdfb021af08cdc4c94e31d4a",
+      "method": "python-painted-rect-exact-source-palette-marking-1",
+      "algorithmSha256": "7a6e4f282f126aec4028f2e321d22e94e077c29d933bd3be8dee1c25c276e57e",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "b81210fd1961ab520e88dc164fa708afe0c3dc2c5cbc7468f40fd290ed013625",
+      "outputSha256": "8835c1f50ce4d436d26319432ab1cae630c2a208db94d4edf7e440f5f35401ae",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 30,
+          "page": 7,
+          "clut": 15773,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            200,
+            168,
+            248,
+            216
+          ],
+          "sourceUvOrigin": [
+            200,
+            168
+          ]
+        }
+      ],
+      "priorCandidateSha256": "7f2de08ec39098a410f2b06b0b6240e4e04002540d79bb72ea84e2981aa100a8",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/7b60ba648187a985ab7249a1be339b5e866bf172fdfb021af08cdc4c94e31d4a/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/7b60ba648187a985ab7249a1be339b5e866bf172fdfb021af08cdc4c94e31d4a/image-v1.png",
+      "prompt": "Use case: style-transfer\nEdit target: supplied nearest-neighbour enlargement of an actual48x48 Legend of Dragoon battle-stage30 decorative banner/panel crop in royal architecture. Restore it as detailed restrained hand-painted HD art with EXACT original crop/aspect and feature positions. Main muted lavender-purple square field has a very pale lavender abstract etched marking: connected curved/angled arms, long diagonals and a lower bent segment. Trace the supplied marking rather than inventing a crest or readable letter. Preserve the gold/olive vertical trim at left and right, original partial adjoining framed panel at top-right/right edge, and original black missing/discarded areas at upper-left and bottom. Keep the original purple/gold palette, broad illumination, panel boundaries and motif placement. Subtle material grain and engraved edge light only. No new symbols, animals, creatures, flowers, faces, writing or runes. Flat texture crop with no added margins or perspective change; no text or watermark. Output opaque full canvas; exact native visibility will be restored separately by Python.",
+      "review": {
+        "intent": "Stage30 part0 static surface, page7 CLUT15773, sourcecrop200,168,248,216: lavender decorative panel with three pale angular star markings, connected diagonals, rounded endpoints and gold/olive frames. No canonical constellation, readable symbol or lettering inferred.",
+        "style": "Original, held neural and repaired192x192 painting individually compared. Held neural replaces the stars with tiny curled marks and changes connecting arms. A separately generated blank panel receives all three native pale-lavender classes, retaining markings while adding muted panel grain and aged gold framing. Exact source cells deliberately retain angular pixel geometry; not final visual acceptance.",
+        "layout": "Three source palette classes in rectangle8,8,37,40 preserve222 marking cells at4x, including all three star positions, disconnected pixels and original diagonals/endpoints. Bevel stays inside the mask. Adjacent gold frames and top/right fragments require individual comparison; proof covers nominated cells rather than all internal geometry or a final RGB classifier. Native STP/discard/visible-black classes and crop/aspect exact; native gameplay and final quality pending.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "8835c1f50ce4d436d26319432ab1cae630c2a208db94d4edf7e440f5f35401ae",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      },
+      "blankMaterialPrompt": "Use case: precise-object-edit\nEdit target: the supplied lavender/purple royal panel texture. Keep the exact canvas, gold side frames, adjoining right/top-right pieces, original black padding and all panel boundaries unchanged.\nChange ONLY the central large lavender square panel: remove every pale marking, constellation line, circle, star and engraving completely. Replace them with one unmarked muted lavender-purple stone/fabric surface with the same broad shading and low-contrast fine grain. Leave no residual symbolic shapes, dots or outlines. The exact original native marking will be restored separately by Python.\nNo extra decoration, no writing, no margin or watermark. Opaque full canvas.",
+      "layoutDraftPath": "integrations/envhd/production/bespoke-battle-candidates/7b60ba648187a985ab7249a1be339b5e866bf172fdfb021af08cdc4c94e31d4a/painted-layout-v1.png",
+      "layoutDraftSha256": "96925b3917f77f0726f61792b7b7a893c6684a0029f2986f3fabf604a07175d1",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+    }
+  ],
+  "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+}

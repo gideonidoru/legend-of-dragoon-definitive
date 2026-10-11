@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 58560,
+  "paintedGapPixelsExtended": 3199,
+  "paintedUncoveredSourcePixels": 2861,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 90,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    102,
+    84
+  ],
+  "targetSize": [
+    408,
+    336
+  ],
+  "generatedSha256": "08734637345ac6492e850e26283acb30c907db42f99c28f6f8994c011f074ebd",
+  "outputSha256": "c2070d572c437ca493a494d10db127b082df4d1c869fc096495d5e10b7a8a663",
+  "decodedRgbaSha256": "77930282f41ecef6e6b70590b3e46cfdd44672ce05a067d7caf156c9f91c58ec",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/77930282f41ecef6e6b70590b3e46cfdd44672ce05a067d7caf156c9f91c58ec/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/77930282f41ecef6e6b70590b3e46cfdd44672ce05a067d7caf156c9f91c58ec/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: source-bound EnvHD independent field foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original source enlarged without smoothing; image2 is its original scene placement for palette and usage only. Repaint only the exact source cutout as restrained higher-detail hand-painted game art compatible with HD painted backgrounds. Preserve source composition, framing, crop, perspective, major shapes, object placement, lighting and palette. Keep the exact stated canvas aspect and original negative space, with no extra margins or recentering. Restore the source material rather than inventing a replacement object. No new symbols, letters, decorative emblems, characters, fixtures, background, border, or comparison panels. Output one texture image on genuine transparency, including all source-visible tiny edges.\nCanvas aspect102:84. Queen Fury cut281 slot1, ship kitchen. An angled warm brown wooden counter running from lower-left to upper-right, thin left-front supports beneath it, the source pale blue/white bowls or dishes arranged along the near edge, warm flat food/cutting surfaces behind the bowls, and at upper-right a woven tan wicker basket filled with the same green produce and orange vegetable shapes. Restore visible basket weave, rim and tiny handles, not a plain ceramic or wooden pot. Keep the original bowl count, positions and blue rims, exact counter perspective, produce arrangement and cast shading. Don't add plates, utensils, food, objects or labels.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "a838108d876fc92d16b9498771ef1d01432a6d6903708a5e4c0ec5affbf0bf0f:-1",
+      "kind": "foreground",
+      "slot": 1,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 281,
+  "representativeLocation": "The Queen Fury",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Queen Fury cut281 foreground slot1 oblique wooden kitchen counter with two warm cutting surfaces, six pale ceramic bowls and upper-right woven produce basket.",
+    "style": "Source, held neural, repaired output and isolated scene placement compared. Retains six bowls in source order, two cutting boards and dark supporting cabinet while restoring the basket weave lost in neural smoothing. Green/orange produce follows source color masses; exact produce species, basket strands and ceramic rim detail are interpretive.",
+    "layout": "Exact4x source canvas [102, 84] to [408, 336]; source alpha and visible-black classes retained exactly. Pinned nearest-color repair extends 3199 target pixels, with 2861 uncovered source-visible target pixels and maximum squared extension distance 90. Individual texture and source-slot comparisons support broad object proportions and interior placement. Categorical checks and static CPU placement do not prove interior topology, runtime occlusion, scripted visibility, route reachability or gameplay acceptance.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "c2070d572c437ca493a494d10db127b082df4d1c869fc096495d5e10b7a8a663",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}
