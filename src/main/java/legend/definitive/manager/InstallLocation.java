@@ -19,10 +19,9 @@ final class InstallLocation {
       for(Path part = root; part != null; part = part.getParent()) if(Files.isSymbolicLink(part)) throw new IOException("Recorded installation location is linked.");
       final Path marker = root.resolve(".definitive-owned");
       if(!Files.isRegularFile(marker, LinkOption.NOFOLLOW_LINKS) || Files.size(marker) > 1024 || !Files.readString(marker).equals("Legend of Dragoon Definitive install format 1\n")) throw new IOException("Recorded folder is not a Definitive managed installation.");
-      final Properties state = new InstallStore(root).state();
-      InstallStore.child(root.resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
-      final Path data = InstallStore.child(root.resolve("data"), state.getProperty("data", ""), "data-[a-f0-9-]{36}");
-      if(!Files.isDirectory(data, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Recorded installation data is missing.");
+      // Discovery is a read-only location hint. A damaged state or interrupted
+      // transaction must not hide this owned folder before explicit maintenance
+      // can acquire its leases and recover it. Each action validates its inputs.
       return Optional.of(root);
     } catch(final IOException | RuntimeException failure) { InstallerLog.write("Previous installation location unavailable: " + failure.getMessage()); return Optional.empty(); }
   }

@@ -50,6 +50,9 @@ final class GameLease {
     @Override public void close() throws IOException { try { this.lock.release(); } finally { this.channel.close(); } }
   }
   static IdleLease checkIdle(final Path root) throws IOException {
+    return checkIdle(root, false);
+  }
+  static IdleLease checkIdle(final Path root, final boolean maintenance) throws IOException {
     final Path file = root.resolve(".game-lock");
     final var channel = FileChannel.open(file, StandardOpenOption.CREATE, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS);
     final FileLock held;
@@ -58,6 +61,22 @@ final class GameLease {
     catch(final IOException | RuntimeException failure) { channel.close(); throw failure; }
     final IdleLease lease = new IdleLease(channel, held);
     try {
+      if(maintenance) {
+        // Receipts are advisory, not process ownership. Under both OS leases,
+        // revoke stale/corrupt handoffs only after checking exact live argv.
+        final String user = ProcessHandle.current().info().user().orElseThrow(() -> new IOException("Cannot inspect managed game ownership."));
+        final Set<String> tokens = maintenanceTokens(root);
+        try(final var processes = ProcessHandle.allProcesses()) {
+          for(final ProcessHandle process : processes.toList()) {
+            if(!process.isAlive() || process.pid() == ProcessHandle.current().pid()) continue;
+            final var info = process.info(); if(!info.user().filter(user::equals).isPresent() || !javaProcess(info)) continue;
+            final var args = arguments(process, info);
+            if(ownedGame(args, root, tokens) || launcher(args, root)) throw new Busy("The managed game is still closing. Retrying maintenance.");
+          }
+        }
+        for(final String name : new String[]{RUNNING, PENDING}) Files.deleteIfExists(root.resolve(name));
+        InstallStore.forceDirectory(root); return lease;
+      }
       final Path running = root.resolve(RUNNING);
       if(Files.exists(running, LinkOption.NOFOLLOW_LINKS)) {
         if(alive(PackageManifest.readProperties(running))) throw new Busy("Close the managed game before changing this installation.");
@@ -130,54 +149,84 @@ final class GameLease {
       final byte[] bytes = input.readNBytes(2 * 1024 * 1024 + 1);
       if(bytes.length == 0 || bytes.length > 2 * 1024 * 1024 || bytes[bytes.length - 1] != 0) return Optional.empty();
       final String value = java.nio.charset.StandardCharsets.UTF_8.newDecoder().decode(java.nio.ByteBuffer.wrap(bytes)).toString();
-      return Optional.of(value.substring(0, value.length() - 1).split("\0", -1));
+      final String[] argv = value.substring(0, value.length() - 1).split("\0", -1);
+      return Optional.of(Arrays.copyOfRange(argv, 1, argv.length)); // Same contract as Info.arguments(): excludes executable.
     } catch(final IOException | RuntimeException unavailable) { return Optional.empty(); }
   }
   static boolean gameArguments(final Optional<String[]> args, final Path root, final Set<String> tokens) {
-    if(args.isEmpty()) return false;
-    final List<String> values = Arrays.asList(args.get());
-    return values.contains("-Ddefinitive.installRoot=" + root)
-      && tokens.stream().anyMatch(token -> values.contains("-Ddefinitive.launchToken=" + token));
+    return root.toString().equals(property(args, "definitive.installRoot")) && tokens.contains(property(args, "definitive.launchToken"));
+  }
+  private static boolean gameArguments(final Optional<String[]> args, final Path root) {
+    return root.toString().equals(property(args, "definitive.installRoot")) && property(args, "definitive.launchToken").matches("[a-f0-9-]{36}");
+  }
+  private static boolean ownedGame(final Optional<String[]> args, final Path root, final Set<String> tokens) {
+    return gameArguments(args, root, tokens) || gameArguments(args, root) && javaEntry(args).equals(ManagedGameMain.class.getName());
+  }
+  private static boolean javaProcess(final ProcessHandle.Info info) {
+    return info.command().filter(command -> Path.of(command).getFileName().toString().equals("java")).isPresent();
+  }
+  private static Set<String> maintenanceTokens(final Path root) {
+    final Set<String> tokens = new HashSet<>();
+    for(final String name : new String[]{RUNNING, PENDING}) {
+      final Path path = root.resolve(name);
+      try {
+        if(!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS) || Files.size(path) > 8192) continue;
+        final String token = PackageManifest.readProperties(path).getProperty("token", "");
+        if(token.matches("[a-f0-9-]{36}")) tokens.add(token);
+      } catch(final IOException | IllegalArgumentException invalidReceipt) { /* Advisory records are revoked under the OS lease. */ }
+    }
+    return tokens;
+  }
+  private record JavaInvocation(String entry, int optionsEnd, int applicationStart) { }
+  private static final Set<String> VALUE_OPTIONS = Set.of("-cp", "-classpath", "--class-path", "-p", "--module-path", "--add-opens", "--add-exports", "--add-reads", "--patch-module", "--limit-modules", "--add-modules");
+  private static JavaInvocation invocation(final Optional<String[]> args) {
+    if(args.isEmpty()) return new JavaInvocation("", 0, 0);
+    final String[] values = args.get();
+    for(int i = 0; i < values.length; i++) {
+      final String value = values[i];
+      if(value.equals("-jar")) return new JavaInvocation(i + 1 < values.length ? "jar:" + values[i + 1] : "", i, Math.min(values.length, i + 2));
+      if(VALUE_OPTIONS.contains(value)) { i++; continue; }
+      if(!value.startsWith("-")) return new JavaInvocation(value, i, i + 1);
+    }
+    return new JavaInvocation("", values.length, values.length);
+  }
+  private static String javaEntry(final Optional<String[]> args) { return invocation(args).entry(); }
+  private static String property(final Optional<String[]> args, final String name) {
+    if(args.isEmpty()) return "";
+    final String prefix = "-D" + name + "="; String value = "";
+    final int end = invocation(args).optionsEnd();
+    for(int i = 0; i < end; i++) {
+      if(VALUE_OPTIONS.contains(args.get()[i])) { i++; continue; }
+      if(args.get()[i].equals("-D" + name)) value = "";
+      if(args.get()[i].startsWith(prefix)) value = args.get()[i].substring(prefix.length());
+    }
+    return value; // Java uses the last JVM assignment; application arguments do not assign properties.
   }
   private static boolean launcher(final Optional<String[]> args, final Path root) {
     if(args.isEmpty()) return false;
-    final var values = Arrays.asList(args.get());
-    final int play = values.indexOf("--play");
-    return values.contains(ManagerMain.class.getName()) && play >= 0 && play + 1 < values.size() && values.get(play + 1).equals(root.toString());
+    final String[] values = args.get(); final JavaInvocation call = invocation(args); final int play = call.applicationStart();
+    final String entry = call.entry();
+    final boolean manager = entry.equals(ManagerMain.class.getName()) || entry.equals("jar:" + root.resolve("definitive-manager.jar"));
+    return manager && play + 2 == values.length && values[play].equals("--play") && values[play + 1].equals(root.toString());
   }
-  /** Only explicit Repair/Reinstall requests stop a token-bound owned game. */
+  /** Explicit Repair/Reinstall/Uninstall stop only exact-root owned processes. */
   static void stopForMaintenance(final Path root, final InstallProgress progress) throws IOException, InterruptedException {
-    final Set<String> tokens = new HashSet<>();
-    Properties pending = null;
-    for(final String name : new String[]{RUNNING, PENDING}) {
-      final Path file = root.resolve(name);
-      if(!Files.exists(file, LinkOption.NOFOLLOW_LINKS)) continue;
-      final Properties receipt;
-      try { receipt = PackageManifest.readProperties(file); }
-      catch(final IOException failure) { if(!Files.exists(file, LinkOption.NOFOLLOW_LINKS)) continue; throw failure; }
-      final String token = receipt.getProperty("token", "");
-      if(!token.matches("[a-f0-9-]{36}")) throw new IOException("Invalid game launch handoff. No processes were stopped.");
-      tokens.add(token);
-      if(name.equals(PENDING)) pending = receipt;
-    }
-    if(tokens.isEmpty()) return;
+    final Set<String> tokens = maintenanceTokens(root);
     final String user = ProcessHandle.current().info().user().orElseThrow(() -> new IOException("Cannot inspect managed game ownership."));
     final Map<Long, OwnedProcess> owned = new LinkedHashMap<>();
     try(final var processes = ProcessHandle.allProcesses()) {
       for(final ProcessHandle process : processes.toList()) {
         if(!process.isAlive() || process.pid() == ProcessHandle.current().pid()) continue;
         final var info = process.info();
-        if(!info.user().filter(user::equals).isPresent()) continue;
+        if(!info.user().filter(user::equals).isPresent() || !javaProcess(info)) continue;
         final var args = arguments(process, info);
-        final boolean game = gameArguments(args, root, tokens);
-        final boolean parent = pending != null && Long.toString(process.pid()).equals(pending.getProperty("pid"))
-          && info.startInstant().map(Instant::toString).filter(pending.getProperty("start", "")::equals).isPresent()
-          && launcher(args, root);
+        final boolean game = ownedGame(args, root, tokens);
+        final boolean parent = launcher(args, root);
         if(!game && !parent) continue;
         rememberOwned(owned, process, user);
         try(final var descendants = process.descendants()) { for(final ProcessHandle child : descendants.toList()) rememberOwned(owned, child, user); }
       }
-    } catch(final RuntimeException failure) { throw new IOException("Could not inspect the managed game before Repair. No installation files were changed.", failure); }
+    } catch(final RuntimeException failure) { throw new IOException("Could not inspect the managed game before maintenance. No installation files were changed.", failure); }
     if(owned.isEmpty()) return;
     progress.phase("Closing the managed game", "Stopping this installation's game before maintenance", 2);
     InstallerLog.write("Maintenance stopping " + owned.size() + " verified game/launcher processes for " + root);

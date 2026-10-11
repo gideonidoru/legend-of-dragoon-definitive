@@ -28,7 +28,7 @@ public final class ManagerMain {
     if(args.length == 2 && (args[0].equals("--manage") || args[0].equals("--play"))) {
       final Path self = Path.of(ManagerMain.class.getProtectionDomain().getCodeSource().getLocation().toURI()).toAbsolutePath();
       if(self.equals(installedRoot.resolve("definitive-manager.jar")) && !Boolean.getBoolean("definitive.routerReady")) {
-        final Path router = new InstallStore(installedRoot).verifiedRouterRelease();
+        final Path router = routerRelease(installedRoot, args[0].equals("--manage"));
         System.exit(runRouter(new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(), "--enable-native-access=ALL-UNNAMED", "-Ddefinitive.routerReady=true", "-Ddefinitive.installerLog=" + InstallerLog.path(), "-cp", self + java.io.File.pathSeparator + router.resolve("libs/*"), "legend.definitive.manager.ManagerMain", args[0], installedRoot.toString()), installedRoot));
       }
     }
@@ -52,6 +52,18 @@ public final class ManagerMain {
     });
     SwingUtilities.invokeAndWait(() -> window.set(show(packageRoot, installedRoot)));
     DeckControls.loop(window);
+  }
+
+  static Path routerRelease(final Path root, final boolean managing) throws IOException {
+    if(!managing) return new InstallStore(root).verifiedRouterRelease();
+    try { return new InstallStore(root).verifiedRouterRelease(); }
+    catch(final IOException | IllegalArgumentException needsMaintenance) {
+      // A partial bootstrap publication or busy/corrupt lifecycle record must
+      // not prevent opening maintenance. Verify the running manager and its
+      // dependencies against a closed retained inventory; actions recover the
+      // bootstrap pair only after acquiring both leases. Opening UI stops nothing.
+      return InstallStore.forMaintenance(root).verifiedRouterRelease(false);
+    }
   }
 
   static int runRouter(final ProcessBuilder command, final Path root) throws IOException, InterruptedException {

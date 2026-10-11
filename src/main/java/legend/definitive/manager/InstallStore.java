@@ -24,8 +24,10 @@ public final class InstallStore {
   private static final long MAX_ARCHIVE_BYTES = 8L * 1024 * 1024 * 1024;
   static final long PREPARATION_RESERVE_BYTES = 6L * 1024 * 1024 * 1024;
 
-  public InstallStore(final Path root) throws IOException { this(root, InstallStore::replaceFile); }
-  InstallStore(final Path root, final BootstrapPublisher bootstrapPublisher) throws IOException {
+  public InstallStore(final Path root) throws IOException { this(root, InstallStore::replaceFile, false); }
+  static InstallStore forMaintenance(final Path root) throws IOException { return new InstallStore(root, InstallStore::replaceFile, true); }
+  InstallStore(final Path root, final BootstrapPublisher bootstrapPublisher) throws IOException { this(root, bootstrapPublisher, false); }
+  private InstallStore(final Path root, final BootstrapPublisher bootstrapPublisher, final boolean deferRecovery) throws IOException {
     this.bootstrapPublisher = bootstrapPublisher;
     this.root = root.toAbsolutePath().normalize();
     if(this.root.toString().matches("(?s).*[:\\n\\r].*")) throw new IOException("Choose a folder without colons or line breaks.");
@@ -41,10 +43,10 @@ public final class InstallStore {
     if(Files.isSymbolicLink(marker) || !Files.isRegularFile(marker, LinkOption.NOFOLLOW_LINKS) || Files.size(marker) > 1024 || !Files.readString(marker).equals("Legend of Dragoon Definitive install format 1\n")) throw new IOException("This folder does not have a recognized Definitive ownership record. No installation files were replaced.");
     this.checkOwnedPaths();
     for(final String dir : new String[]{"releases", "data", "workspaces", "snapshots"}) Files.createDirectories(this.root.resolve(dir));
-    if(Files.exists(this.root.resolve(".disc-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
+    if(!deferRecovery && (Files.exists(this.root.resolve(".disc-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
       || Files.exists(this.root.resolve(".release-repair-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
       || Files.exists(this.root.resolve(".bootstrap-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
-      || !Files.exists(this.root.resolve("state.properties")) && Files.exists(this.root.resolve(".state-last-good.properties"))) {
+      || !Files.exists(this.root.resolve("state.properties")) && Files.exists(this.root.resolve(".state-last-good.properties")))) {
       try(final var operation = this.operation()) { /* Recovery runs before missing paths are created. */ }
     }
     if(!Files.exists(this.root.resolve(".disc-transaction.properties"), LinkOption.NOFOLLOW_LINKS)) Files.createDirectories(this.root.resolve("isos"));
@@ -70,6 +72,9 @@ public final class InstallStore {
   }
 
   public Operation lock() throws IOException {
+    return this.lock(false);
+  }
+  private Operation lock(final boolean maintenance) throws IOException {
     final HeldOperation existing = this.held.get();
     if(existing != null) { if(!existing.reentrant) throw new GameLease.Busy("Close the game or other installation operation first."); existing.depth++; return new Operation(existing); }
     this.checkOwnedPaths();
@@ -80,7 +85,7 @@ public final class InstallStore {
     if(lock == null) { channel.close(); throw new GameLease.Busy("Close the game or other installation operation first."); }
     final HeldOperation owned = new HeldOperation(channel, lock); this.held.set(owned);
     try {
-      owned.gameLease = GameLease.checkIdle(this.root);
+      owned.gameLease = GameLease.checkIdle(this.root, maintenance);
       this.recoverReleaseRepair();
       this.recoverState();
       this.recoverDiscs();
@@ -130,7 +135,7 @@ public final class InstallStore {
     while(true) {
       GameLease.stopForMaintenance(this.root, progress);
       final Operation operation;
-      try { operation = this.operation(); }
+      try { operation = this.lock(true); operation.operation.reentrant = true; }
       catch(final GameLease.Busy busy) {
         if(System.nanoTime() >= deadline) throw busy;
         Thread.sleep(50); continue;
@@ -264,10 +269,11 @@ public final class InstallStore {
   }
 
   private void verifyBootstrap() throws IOException { this.verifiedRouterRelease(); }
-  Path verifiedRouterRelease() throws IOException {
+  Path verifiedRouterRelease() throws IOException { return this.verifiedRouterRelease(true); }
+  Path verifiedRouterRelease(final boolean requireBootstrapPair) throws IOException {
     this.checkOwnedPaths();
     final String managerHash = PackageManifest.sha256(this.root.resolve("definitive-manager.jar"));
-    final String bootstrapHash = PackageManifest.sha256(this.root.resolve("bootstrap-java"));
+    final String bootstrapHash = requireBootstrapPair ? PackageManifest.sha256(this.root.resolve("bootstrap-java")) : "";
     // The router can be newer than the active engine after rollback. Require a
     // matching pair from an installed package's platform-valid closed inventory.
     try(final var releases = Files.list(this.root.resolve("releases"))) {
@@ -278,7 +284,7 @@ public final class InstallStore {
         if(reference.platform().equals(PackageManifest.hostPlatform()) && candidate.getFileName().toString().equals(reference.id())
           && PackageManifest.identity(reference.metadata(), reference.hashes()).equals(reference.id())
           && managerHash.equals(reference.hashes().getProperty("definitive-manager.jar"))
-          && bootstrapHash.equals(reference.hashes().getProperty("bootstrap-java"))) { reference.verifyManagerDependencies(candidate); return candidate; }
+          && (!requireBootstrapPair || bootstrapHash.equals(reference.hashes().getProperty("bootstrap-java")))) { reference.verifyManagerDependencies(candidate); return candidate; }
       }
     }
     throw new IOException("Launcher files are damaged or unrecognized. Retry installation to repair them.");
@@ -715,7 +721,10 @@ public final class InstallStore {
     try(final var operation = this.operation()) { final var state = this.state(); this.setPreferences(!"original".equals(state.getProperty("artwork", "hd")), Boolean.parseBoolean(state.getProperty("legacyTextures", "false")), enabled); }
   }
 
-  public String uninstall(final boolean deleteIsos, final InstallProgress progress) throws IOException {
+  public String uninstall(final boolean deleteIsos, final InstallProgress progress) throws IOException, InterruptedException {
+    return this.withMaintenance(progress, () -> this.removeInstallation(deleteIsos, progress));
+  }
+  private String removeInstallation(final boolean deleteIsos, final InstallProgress progress) throws IOException {
     try(final var operation = this.operation()) {
       final Properties state = this.state(); this.data(state); // Requires a recognized data generation, even for a damaged install.
       final var targets = new ArrayList<Path>();

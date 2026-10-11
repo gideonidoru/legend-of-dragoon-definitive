@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FileDeliveryTest {
   @TempDir Path temporary;
-  private record Response(HttpRequest request, InputStream body, HttpHeaders headers) implements HttpResponse<InputStream> {
-    @Override public int statusCode() { return 200; }
+  private record Response(HttpRequest request, InputStream body, HttpHeaders headers, int statusCode) implements HttpResponse<InputStream> {
+    Response(final HttpRequest request, final InputStream body, final HttpHeaders headers) { this(request, body, headers, 200); }
     @Override public Optional<HttpResponse<InputStream>> previousResponse() { return Optional.empty(); }
     @Override public Optional<javax.net.ssl.SSLSession> sslSession() { return Optional.empty(); }
     @Override public URI uri() { return this.request.uri(); }
@@ -46,6 +46,44 @@ class FileDeliveryTest {
       final byte[] bytes = served.get(name); if(bytes == null) throw new IOException("Unexpected request: " + name);
       return new Response(request, new ByteArrayInputStream(bytes), HttpHeaders.of(Map.of("Content-Length", List.of(Integer.toString(bytes.length))), (key, value) -> true));
     };
+  }
+  private static String releaseJson(final ReleaseUpdates.Candidate candidate, final String date) {
+    return "{\"draft\":false,\"tag_name\":\"" + candidate.tag() + "\",\"published_at\":\"" + date + "\",\"assets\":[{\"id\":2,\"name\":\"Legend-of-Dragoon-Definitive-" + PackageManifest.hostPlatform() + ".zip\",\"digest\":\"sha256:" + candidate.sha256() + "\",\"browser_download_url\":\"" + candidate.url() + "\"},{\"id\":3,\"name\":\"Definitive-Contents-" + PackageManifest.hostPlatform() + ".zip\",\"digest\":\"sha256:" + candidate.contents().sha256() + "\",\"browser_download_url\":\"" + candidate.contents().url() + "\"}]}";
+  }
+  @Test void repairOfRetiredReleaseSelectivelyRestoresCurrentReleaseAndKeepsPersonalData() throws Exception {
+    final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("retired-install")); store.install(original);
+    final Path oldData = store.data(store.state()); Files.writeString(oldData.resolve("saves/owner.txt"), "personal");
+    final var state = store.state(); state.setProperty("installedReleaseTag", "retired-fixture"); state.setProperty("releasePublishedAt", "2026-10-09T00:00:00Z"); InstallStore.atomicProperties(store.root().resolve("state.properties"), state);
+    final Path next = this.temporary.resolve("current"); InstallStore.copyTree(original, next); Files.writeString(next.resolve("lod-game-test.jar"), "fixed manager and engine fixture"); refresh(next);
+    final Map<String, byte[]> served = new HashMap<>(); final var candidate = contents(next, served); final List<String> requested = new ArrayList<>();
+    final String currentJson = "[" + releaseJson(candidate, "2026-10-10T00:00:00Z") + "]";
+    final ReleaseUpdates.AssetDownload transport = request -> {
+      if(request.uri().getHost().equals("api.github.com")) {
+        final boolean retired = request.uri().getPath().contains("/tags/");
+        return new Response(request, new ByteArrayInputStream((retired ? "{}" : currentJson).getBytes(java.nio.charset.StandardCharsets.UTF_8)), HttpHeaders.of(Map.of(), (key, value) -> true), retired ? 404 : 200);
+      }
+      return connection(served, requested).send(request);
+    };
+    final String result = ReleaseUpdates.repair(store, InstallProgress.NONE, transport);
+    assertTrue(result.startsWith("Repair complete using the current release."));
+    assertEquals(List.of("Definitive-Contents-" + PackageManifest.hostPlatform() + ".zip", "file-" + PackageManifest.sha256(next.resolve("lod-game-test.jar"))), requested);
+    assertEquals(PackageManifest.read(next).id(), store.state().getProperty("version")); assertEquals("personal", Files.readString(store.data(store.state()).resolve("saves/owner.txt"))); store.verifyInstalled();
+  }
+  @Test void repairDoesNotTreatPermissionFailureAsRetirementOrChangeTheVersion() throws Exception {
+    final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("repair-forbidden")); store.install(original); final var before = store.state();
+    final List<URI> requested = new ArrayList<>();
+    assertThrows(IOException.class, () -> ReleaseUpdates.repair(store, InstallProgress.NONE, request -> { requested.add(request.uri()); return new Response(request, InputStream.nullInputStream(), HttpHeaders.of(Map.of(), (key, value) -> true), 403); }));
+    assertEquals(1, requested.size()); assertTrue(requested.getFirst().getPath().contains("/tags/")); assertEquals(before, store.state()); store.verifyInstalled();
+  }
+  @Test void retiredRepairRejectsCurrentReleaseOlderThanVerifiedInstalledDate() throws Exception {
+    final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("repair-downgrade")); store.install(original);
+    final var state = store.state(); state.setProperty("installedReleaseTag", "retired-fixture"); state.setProperty("releasePublishedAt", "2026-10-11T00:00:00Z"); InstallStore.atomicProperties(store.root().resolve("state.properties"), state);
+    final Map<String, byte[]> served = new HashMap<>(); final var candidate = contents(original, served); final String json = "[" + releaseJson(candidate, "2026-10-10T00:00:00Z") + "]";
+    assertThrows(IOException.class, () -> ReleaseUpdates.repair(store, InstallProgress.NONE, request -> {
+      assertEquals("api.github.com", request.uri().getHost()); final boolean retired = request.uri().getPath().contains("/tags/");
+      return new Response(request, new ByteArrayInputStream((retired ? "{}" : json).getBytes(java.nio.charset.StandardCharsets.UTF_8)), HttpHeaders.of(Map.of(), (key, value) -> true), retired ? 404 : 200);
+    }));
+    assertEquals(state, store.state()); store.verifyInstalled();
   }
 
   private Path online(final Path pack, final Map<String, byte[]> served, final ReleaseUpdates.Candidate candidate) throws Exception {
