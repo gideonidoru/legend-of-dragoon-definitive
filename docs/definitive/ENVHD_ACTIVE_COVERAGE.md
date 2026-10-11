@@ -2,9 +2,11 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **238 images: 237 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **237 images: 236 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,925 development images: 4,886 neural and 39 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. The last recorded installer snapshot at source0af has 4,892 field selections; another 33 fields and 12 painted battle replacements await coordinated publication. Later release publication is managed separately. All protected Skurfa work is reused.
+Field selection is 4,926 development images: 4,886 neural and 40 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
+
+The [observed current download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8`, generation4, contains 4,925 field selections/39paintings and34 battle paintings. Main contains 4,926 fields/40paintings and47 battle paintings: one field painting and13 battle paintings await coordinated publication. These download counts are derived from the committed source ledgers named by the live canonical carrier manifest; this observation did not download or verify package pixels or exercise the game. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
 ## Held natural-rock drafts
 
@@ -60,3 +62,15 @@ The [complete39-painting selection input](../../integrations/envhd/production/fi
 Rouge lattice openings cut misaligned generated connectors into fragments, and Phantom Ship canvas-fit moves an internal lower band and pale weathering groups. Both remain unselected until source landmarks are repaired and independently reviewed. New Bale corner and Shrine arch candidates remain independently pending. Current unselected draft sources are15 unique source keys within237field holds; histories and repeated versions are deduplicated by source identity.
 
 Selection preserves all4,918 earlier asset records and every Skurfa protected cut. Fresh current-source replay, complete selected-field CPU audit and five-part package byte checks are required before the coordinator integrates this source. This is not native/script/GPU/Steam Deck or final Skurfa-equivalent finish acceptance. No separate release was published.
+
+
+## Crystal Palace table development selection
+
+[Independent original-reference review](../../integrations/envhd/production/field-independent-table-review.json) clears cut 369 foreground 14 for development use. The original oval tabletop framing, two pale dishes, small central angular form, cropped chair fragments and restrained warm lighting are retained. Fine wood and ceramic detail remains interpretive; native/device/final art acceptance is pending.
+
+The [complete 40-painting input](../../integrations/envhd/production/field-bespoke-table-independent-reviewed-selection.json) preserves main's prior 39 candidate records exactly. Fresh original-source preflight reproduced all 40 recipes. Runtime selection retains all 4,925 prior records and every protected Skurfa cut, adding only the table. The [readiness receipt](../../integrations/envhd/production/field-table-selection-readiness.json) records the source bindings and focused checks. This branch contains only the table's custom generated/repaired pixels, prompt-bearing recipe, review and selection metadata and coverage updates. Unrelated authoring, Tiberoa, pending drafts, verifier support and workflow changes are excluded. The EnvHD mod and four field packs built from clean committed source. Strict package verification compared all 4,926 selected field image names, sizes and bytes across the four parts, plus 5,312 JAR resources. The 32 painted-field, three install-selection and 39 archive checks passed. Public release publication remains the coordinator's responsibility.
+
+
+## Current publication checkpoint
+
+Generation4/source `5d3db5c84174f2936fe7256123a11f6bb640760a` publishes4,925 selected fields/39 painted fields and34 painted battle masters. Accepted main `6612a533307e5f066bc46e7870d658f8add42752` selects4,926/40 and47 respectively; one table and13 Giganto paintings await the next coordinated download. The earlier0af publication receipt remains historical. Native and final artistic acceptance remain separate.

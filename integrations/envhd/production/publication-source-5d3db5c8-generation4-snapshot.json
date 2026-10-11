@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "scope": "Immutable observation of the canonical current carrier manifest, with art counts derived from its committed source ledgers. No package download or native acceptance claimed.",
+  "observedAt": "2026-10-11T21:03:34.203880+00:00",
+  "carrierUrl": "https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-current",
+  "tag": "definitive-current",
+  "generation": 4,
+  "packageSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+  "buildRun": 38171282483,
+  "releaseId": "409425077",
+  "canonicalManifestSha256": "df7f95b8d946c4b03476c560e1aa4f26421b3302ab9233a553a9eefcde66195e",
+  "sourceLedgerSha256": {
+    "field-runtime-artwork.json": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
+    "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b"
+  },
+  "counts": {
+    "fieldSelectedMasters": 4925,
+    "paintedFieldReplacements": 39,
+    "fieldHolds": 237,
+    "battleNewSelectedMasters": 518,
+    "battleNewSelectedBindings": 525,
+    "battleTotalSelectedBindings": 549,
+    "paintedBattleReplacements": 34,
+    "nativeArtAccepted": 0,
+    "finalArtAccepted": 0
+  },
+  "method": "Observed live gh release body, validated and parsed with repository current_publication. Derived counts from exact Git blobs at manifest sourceRevision. Owner did not download packages or run native/game/Deck QA in this observation.",
+  "publicReleaseChangedByThisMetadata": false
+}

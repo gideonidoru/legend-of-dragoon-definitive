@@ -2,6 +2,14 @@
 
 Checkpoint: **2026-10-11**. This is the shared plan for proving a finished project, not a claim that it is finished. The 17 readiness ratings from the coordinator's progress snapshot are subjective assessments, not completion percentages. No domain is accepted as 10/10. The machine-readable companion is [PROJECT_ACCEPTANCE.json](PROJECT_ACCEPTANCE.json).
 
+## Current incremental checkpoint
+
+Current download: generation4, source `5d3db5c84174f2936fe7256123a11f6bb640760a`, [run38171282483](https://github.com/gideonidoru/legend-of-dragoon-definitive/actions/runs/38171282483). Publication and anonymous downloads PASS. Three full Reinstall runs using the actual downloaded manager PASS; independent final checks rehashed all574 managed files and40 owner entries. These checks used synthetic discs and ran headlessly; physical maintenance cases remain open. Historical generation3 failed on recovery-name collisions; PR47 corrected that behavior, and its failure/safe-abort receipts remain retained.
+
+Accepted main checkpoint `6612a533307e5f066bc46e7870d658f8add42752` contains the completed input, music and loader corrections,13 further Giganto paintings and one cleared table. Main selects4,926 field images/40 painted fields with236 field holds plus one terrain hold, and47 painted battle masters. Current public selects4,925/39 with237 field holds plus one terrain hold, and34 painted battle masters. One table and13 battle paintings await the next coordinated download. Full archive assembly publication remains inactive; its planner and reader are integrated. All17 ratings and65 acceptance case definitions/statuses are preserved.
+
+The following source table and accompanying narrative record the historical generation3 checkpoint; the current checkpoint above supersedes its then-current publication and blocker statements.
+
 ## Source, release and evidence boundaries
 
 | Checkpoint | Exact identity | Scope |
