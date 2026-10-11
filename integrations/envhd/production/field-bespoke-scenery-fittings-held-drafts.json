@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "scope": "Two rejected scenery/fitting versions retained as custom derivative history. Source references/layout images and comparison boards remain private.",
+  "sourceSelectionBaseCommit": "373b34a94a1fe52beb4547b215d451df14557633",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 2,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
+      "generatedSha256": "9303678c0cb1c0ae8a4aaedc8bd17ab90a5df81bd55613652613c067ba304e49",
+      "generatedSize": [
+        1389,
+        1132
+      ],
+      "sourceSize": [
+        98,
+        80
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "248583f2b89a5ed1069e5b6406f54515cd412ec561b2720fbd94fc934e1f7b4f:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 284,
+      "representativeLocation": "The Queen Fury",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST reference into a faithful HD foreground texture fragment for Legend of Dragoon. FIRST controls exact layout, proportions, cropped boundaries, silhouette, original palette and light. SECOND is complete original scene for object/material context only. THIRD is existing Skurfa HD style reference for restrained painted surface detail only; do not copy its imagery, lighting or palette. Output the FIRST fragment only with exactly the same canvas aspect and framing. Keep every source-transparent gap transparent. Add subtle natural material texture, worn edges and fine detail, retain soft original values. No new text, letters, glyphs, emblems, actors or objects. Native source98x80 (49:40 landscape). This is a dim ship cargo fragment in The Queen Fury hold. Several overlapping open wooden cargo crates/cages with dark plank and cross-braced faces occupy the left/lower region, partly cropped at left/bottom; separately cropped dark crate fragment upper-right and small warm tan fitting lower-right. Inspect FIRST outline: do not merge separate fragments or fill its intervening gaps. Preserve exact count and placement of open black interiors, rim diagonals, existing vertical/horizontal face bars and diagonal braces. Fine source face divisions need visible restrained wooden construction, not an opaque smooth flat box and not elaborate ornamental lattice. No new ropes, handles, contents, labels or rearranged stacks. Keep very dark brown/olive wood with slight warm tan edge lights from original dim hold; no glowing highlighted showcase.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 71536,
+      "paintedGapPixelsExtended": 943,
+      "paintedUncoveredSourcePixels": 691,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 36,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        392,
+        320
+      ],
+      "outputSha256": "14bcbdf39755ba655b89e81b1a19469418f5beb4a9869378cf5f16e1da71b075",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/repaired-draft-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version 1 replaces the original fine lattice cargo-cage faces with broad opaque planks and strong X braces. Source construction intent is wrong despite unchanged cutout checks. Retained unselected history; corrected version 2 separately pending independent review."
+    },
+    {
+      "decodedRgbaSha256": "bef65a35570d58e1698fa959797fc680e72b1cd72af026bfe1dd79c6fe0f3197",
+      "generatedSha256": "7093490905a14486d61bfc1c6e3290b3438d26ddfb7e36ffe013af1e113ac8e6",
+      "generatedSize": [
+        1512,
+        1040
+      ],
+      "sourceSize": [
+        64,
+        44
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "55022c2b991e387741ac21809da3317b4eff11dd0be8308b20fdcb447026a06c:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 368,
+      "representativeLocation": "Crystal Palace",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST reference into a faithful HD foreground texture fragment for Legend of Dragoon. FIRST controls exact layout, proportions, cropped boundaries, silhouette, original palette and light. SECOND is complete original scene for object/material context only. THIRD is existing Skurfa HD style reference for restrained painted surface detail only; do not copy its imagery, lighting or palette. Output the FIRST fragment only with exactly the same canvas aspect and framing. Keep every source-transparent gap transparent. Add subtle natural material texture, worn edges and fine detail, retain soft original values. No new text, letters, glyphs, emblems, actors or objects. Native source64x44 (16:11 landscape). This is dark green palace balustrade with a tall cropped post at left and short green/gold fitting above right of rail. Keep both dark rectangular lantern/inset openings and dull yellow-gold inner/lower fittings exactly in place; do not fill dark openings with light or glass. Source railing curves/slants up to the right, with two subtly separated panels and a fine dark engraved/mottled face rather than glossy featureless plastic. Preserve original subtle irregular dark green/blue-grey panel markings conservatively as worn surface variations, not identifiable leaves, new glyphs or a repeated geometric design. Gold fittings stay dim and subdued, dark green rail stays dark, no new bright glow. Do not add rail behind transparent gaps, additional posts, finials or new ornament.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 23904,
+      "paintedGapPixelsExtended": 1839,
+      "paintedUncoveredSourcePixels": 1517,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 153,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        256,
+        176
+      ],
+      "outputSha256": "0faf0696e7477e650ad15bc4878a432aab03c41e50bab38058e435984fd10bb6",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/bef65a35570d58e1698fa959797fc680e72b1cd72af026bfe1dd79c6fe0f3197/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/bef65a35570d58e1698fa959797fc680e72b1cd72af026bfe1dd79c6fe0f3197/repaired-draft-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version 1 invents extra green rail panel divisions and an additional row. Source structural divisions are not preserved despite unchanged cutout checks. Retained unselected history; corrected version 2 separately pending independent review."
+    }
+  ]
+}

@@ -208,6 +208,79 @@ class PaintedFieldTests(unittest.TestCase):
         self.candidate['generatedSha256']=verify.batch.terrain.digest(self.raw_path.read_bytes());self.candidate['generatedInputMode']='RGB';self.save()
         with self.assertRaisesRegex(ValueError,'RGBA output'):self.preflight()
 
+    def authoring_crop_fixture(self):
+        raw=Image.new('RGBA',(24,16))
+        detail=self.source.resize((8,8),Image.Resampling.NEAREST)
+        pixels=np.asarray(detail).copy()
+        pixels[0,0,:3]=[60,70,80]
+        raw.paste(Image.fromarray(pixels,'RGBA'),(8,4));raw.save(self.raw_path)
+        cropped,operation=verify.authoring_crop.crop(self.source,raw,[6,4],[2,1])
+        stream=io.BytesIO();cropped.save(stream,format='PNG')
+        self.candidate['sourceAuthoringCrop']=dict(operation,algorithmPath='scripts/crop-envhd-painted-authoring-canvas.py',algorithmSha256=verify.AUTHORING_CROP_SHA256,croppedInputSha256=verify.batch.terrain.digest(stream.getvalue()))
+        output,repair_operation=verify.repair.repair(self.source,cropped);output.save(self.output_path)
+        self.candidate.update(repair_operation,generatedSha256=verify.batch.terrain.digest(self.raw_path.read_bytes()),outputSha256=verify.batch.terrain.digest(self.output_path.read_bytes()))
+        self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save()
+
+    def test_explicit_authoring_crop_replays_untouched_raw_before_original_visibility_repair(self):
+        self.authoring_crop_fixture();before=self.raw_path.read_bytes()
+        self.assertEqual(1,len(self.preflight()[0]));self.assertEqual(before,self.raw_path.read_bytes())
+        with Image.open(self.output_path) as image:
+            self.assertEqual((60,70,80,255),image.getpixel((0,0)))
+            self.assertEqual((0,0,0,255),image.getpixel((4,0)))
+            self.assertEqual(0,image.getpixel((0,4))[3])
+
+    def test_unrecorded_authoring_padding_cannot_bypass_original_aspect_gate(self):
+        self.authoring_crop_fixture();del self.candidate['sourceAuthoringCrop'];self.save()
+        with self.assertRaisesRegex(ValueError,'aspect ratio'):self.preflight()
+
+    def test_authoring_crop_identity_receipt_and_intermediate_are_bound(self):
+        self.authoring_crop_fixture();recorded=self.candidate['sourceAuthoringCrop'];original=copy.deepcopy(recorded)
+        for key,value,message in [('algorithmSha256','0'*64,'crop identity'),('sourceSilhouetteIoU',0.5,'recorded source placement'),('croppedInputSha256','0'*64,'recorded source placement'),('sourceRgbApplied',True,'recorded source placement'),('sourceOriginNative',[1,1],'silhouette differs')]:
+            with self.subTest(key=key):
+                recorded.clear();recorded.update(original);recorded[key]=value;self.save()
+                with self.assertRaisesRegex(ValueError,message):self.preflight()
+
+    def test_authoring_crop_rejects_combined_repair_operations(self):
+        self.authoring_crop_fixture()
+        for key in ['registration','opaqueBorderRepair','sourceCanvasNormalization','sourceSurroundRestore']:
+            with self.subTest(key=key):
+                self.candidate[key]={};self.save()
+                with self.assertRaisesRegex(ValueError,'exclusive operation'):self.preflight()
+                del self.candidate[key]
+
+    def test_authoring_crop_checks_geometry_before_generated_pixel_decode(self):
+        self.authoring_crop_fixture()
+        for field,value in [('sourceOriginNative',[0,1]),('sourceCanvasSize',[True,4]),('sourceOriginNative',None)]:
+            with self.subTest(field=field):
+                original=copy.deepcopy(self.candidate['sourceAuthoringCrop']);self.candidate['sourceAuthoringCrop'][field]=value;self.save()
+                with mock.patch.object(verify.Image,'open',side_effect=AssertionError('Pixel allocation')):
+                    with self.assertRaises(ValueError):self.preflight()
+                self.candidate['sourceAuthoringCrop']=original
+
+    def test_authoring_crop_bounds_generated_png_before_decode(self):
+        self.authoring_crop_fixture();data=compressed_png();self.raw_path.write_bytes(data)
+        self.candidate['generatedSha256']=verify.batch.terrain.digest(data);self.save()
+        with mock.patch.object(verify.Image,'open',side_effect=AssertionError('Pixel allocation')):
+            with self.assertRaisesRegex(ValueError,'bounded painted canvas'):self.preflight()
+
+    def test_authoring_crop_checks_decoder_header_before_pixels(self):
+        self.authoring_crop_fixture();data=duplicate_header_png(first=(24,16),second=(48,32))
+        self.raw_path.write_bytes(data);self.candidate['generatedSha256']=verify.batch.terrain.digest(data);self.save();original_open=Image.open
+        def guarded_open(stream):
+            image=original_open(stream);image.load=mock.Mock(side_effect=AssertionError('Pixel allocation'));return image
+        with mock.patch.object(verify.Image,'open',side_effect=guarded_open):
+            with self.assertRaisesRegex(ValueError,'decoder differs'):self.preflight()
+
+    def test_authoring_crop_cannot_accept_rgb_or_rehashed_changed_output(self):
+        self.authoring_crop_fixture();before=self.raw_path.read_bytes()
+        Image.open(self.raw_path).convert('RGB').save(self.raw_path)
+        self.candidate['generatedSha256']=verify.batch.terrain.digest(self.raw_path.read_bytes());self.candidate['generatedInputMode']='RGB';self.save()
+        with self.assertRaisesRegex(ValueError,'RGBA output'):self.preflight()
+        self.raw_path.write_bytes(before);self.candidate.update(generatedSha256=verify.batch.terrain.digest(before),generatedInputMode='RGBA')
+        Image.new('RGBA',(8,8),(90,10,10,255)).save(self.output_path)
+        self.candidate['outputSha256']=verify.batch.terrain.digest(self.output_path.read_bytes());self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save()
+        with self.assertRaisesRegex(ValueError,'exact recorded repair'):self.preflight()
+
     def surround_fixture(self):
         old_key=self.key;self.source=Image.new('RGBA',(24,24),(70,80,90,255))
         self.key=verify.batch.terrain.fingerprint(self.source);folder=self.raw_path.parent.with_name(self.key)

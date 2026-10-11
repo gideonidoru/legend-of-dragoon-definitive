@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "8801b3d26b1835502ed66974620d0e22352de8d3 plus seven independently development-cleared field selections",
+  "sourceSelectionCheckpoint": "373b34a94a1fe52beb4547b215d451df14557633",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "d2ef36271b49dd7d01519a600e97511e1ffa5c5335774f8db53f7ec93484d9b8",
+    "full-coverage.json": "dd58fc1882995459d75c9aeaac0b4e377015b4e843692769c00e85130bddae67",
     "field-runtime-artwork.json": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
@@ -27,7 +27,9 @@
     "field-bespoke-architecture-details-reviewed-selection.json": "643273f33630f412713d6bc47021710458952e72da2d9289215abdc463a800de",
     "field-bespoke-architecture-details-held-drafts.json": "ba777a58ae14945b0550299126e6c3486cfbaa86465fb066d76fa70e3749ca6a",
     "field-bespoke-seven-independent-reviewed-selection.json": "8b63f5db27d7c91c8a44b48b37eadcd8fb76bbea9a0236ffbc8aba889767677a",
-    "field-independent-nine-review.json": "bf2f2aacf93c4893b8861a7fb1e87b57525ed4fbdbf8f44b5c01925fc03f42f4"
+    "field-independent-nine-review.json": "bf2f2aacf93c4893b8861a7fb1e87b57525ed4fbdbf8f44b5c01925fc03f42f4",
+    "field-bespoke-scenery-fittings-reviewed-selection.json": "76e1cc1a0f7707be2a80b0816093d82fc3fb123a83c8905923f0c7cc25deaa82",
+    "field-bespoke-scenery-fittings-held-drafts.json": "f5c953c7cfa8b67cdf38125161fbddb0827521eaed60087371664060ad373d14"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -45,14 +47,15 @@
       "selectedPainted": 39,
       "held": 237,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 15,
+      "customHeldDraftSourceImages": 19,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
-      "nextTask": "Independently review Bale corner and Shrine arch; repair Rouge lattice/Phantom internal source landmarks, continue237field holds and native/final finish validation.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 2,
+      "nextTask": "Independently review six pending architecture/scenery candidates; correct Rouge lattice and Phantom internal source landmarks; continue 237 field holds and native/final scene validation.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 6,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
+        "3fb018e1b7a7ad35c728ee5ecce588e012b70af301a470f89664804949491ed0",
         "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
         "6ca24f005553c031d0d27b507ad335ce95fec5d7a9443a2854fd1a23fd0639e1",
         "745736c6a0d1c9a694b2295793ff1e4573a9861c9f999995ce85fdbecafd3d90",
@@ -63,11 +66,14 @@
         "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab",
         "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
         "b88a83c36c8e7e7e09112c6174606d9498252c7deca051cb4ceef656d0819523",
+        "bef65a35570d58e1698fa959797fc680e72b1cd72af026bfe1dd79c6fe0f3197",
+        "da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5",
         "df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b",
+        "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
         "f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding4925current runtime selections.15unselected draft source keys are a subset of237field holds; all previous candidate/rejected versions retained.",
+      "draftCountMethod": "Unique 64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding 4,925 current runtime selections. Nineteen unselected custom source keys are a subset of the 237 field holds; repeated and rejected versions are deduplicated.",
       "independentlyReviewedCandidatesRequiringRevision": 2
     },
     {
@@ -275,5 +281,6 @@
     "selectedFieldImagesAwaitingCoordinatedPublication": 33,
     "paintedBattleMastersAwaitingCoordinatedPublication": 12
   },
-  "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint."
+  "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
+  "authoringCheckpoint": "Four additional scenery/fitting candidates and two rejected versions; current selected runtime is unchanged."
 }

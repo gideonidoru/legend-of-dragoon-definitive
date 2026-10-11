@@ -23,11 +23,13 @@ registration = module('painted_field_registration', 'register-envhd-painted-cuto
 opaque_border = module('painted_field_opaque_border', 'repair-envhd-painted-opaque-border.py')
 canvas_fit = module('painted_field_canvas_fit', 'normalize-envhd-painted-canvas.py')
 surround = module('painted_field_surround', 'repair-envhd-painted-surround.py')
+authoring_crop = module('painted_field_authoring_crop', 'crop-envhd-painted-authoring-canvas.py')
 REPAIR_SHA256 = 'd94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a'
 REGISTRATION_SHA256 = '7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784'
 OPAQUE_BORDER_SHA256 = 'd5a6b3b9b9177b2292863ee3391720065e7e9155f943b221ee1edcd2b73365bc'
 CANVAS_FIT_SHA256 = '375f8284c4ca6a558e099c018f58c21f419e428d15e3662f6c81d051f87ef739'
 SURROUND_SHA256 = '11017bae4bf16c21bdd6e923b36dc46dae63a023ed0c8d0a26dfe70da1e3d767'
+AUTHORING_CROP_SHA256 = '939125d63c15725d6c91637eb981ccbf8c667b5b13c52061d5a91345c3ba7676'
 METHOD = 'python-painted-cutout-nearest-colour-exact-visibility-1'
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
 ROOT = Path(__file__).resolve().parents[1]
@@ -95,11 +97,21 @@ def preflight(files, manifest_path, root=ROOT):
         if (batch.terrain.digest(raw_data) != candidate.get('generatedSha256')
                 or batch.terrain.digest(output_data) != candidate.get('outputSha256')):
             raise ValueError('Painted field artwork bytes changed')
+        cropping = 'sourceAuthoringCrop' in candidate
+        if cropping:
+            recorded_crop = candidate['sourceAuthoringCrop']
+            if (not isinstance(recorded_crop, dict)
+                    or any(k in candidate for k in ('registration', 'opaqueBorderRepair', 'sourceCanvasNormalization', 'sourceSurroundRestore'))
+                    or recorded_crop.get('algorithmPath') != 'scripts/crop-envhd-painted-authoring-canvas.py'
+                    or recorded_crop.get('algorithmSha256') != AUTHORING_CROP_SHA256
+                    or batch.terrain.digest(Path(authoring_crop.__file__).read_bytes()) != AUTHORING_CROP_SHA256):
+                raise ValueError('Painted field authoring crop identity or exclusive operation changed')
+            authoring_crop.validate_layout(source.size, recorded_crop.get('sourceCanvasSize'), recorded_crop.get('sourceOriginNative'))
         restoring_surround = 'sourceSurroundRestore' in candidate
         if restoring_surround:
             recorded_surround = candidate['sourceSurroundRestore']
             if (not isinstance(recorded_surround, dict)
-                    or any(k in candidate for k in ('registration', 'opaqueBorderRepair', 'sourceCanvasNormalization'))
+                    or any(k in candidate for k in ('registration', 'opaqueBorderRepair', 'sourceCanvasNormalization', 'sourceAuthoringCrop'))
                     or recorded_surround.get('algorithmPath') != 'scripts/repair-envhd-painted-surround.py'
                     or recorded_surround.get('algorithmSha256') != SURROUND_SHA256
                     or batch.terrain.digest(Path(surround.__file__).read_bytes()) != SURROUND_SHA256):
@@ -107,15 +119,15 @@ def preflight(files, manifest_path, root=ROOT):
         fitting = 'sourceCanvasNormalization' in candidate
         if fitting:
             recorded = candidate['sourceCanvasNormalization']
-            if (not isinstance(recorded, dict) or 'registration' in candidate or 'opaqueBorderRepair' in candidate
+            if (not isinstance(recorded, dict) or 'registration' in candidate or 'opaqueBorderRepair' in candidate or cropping
                     or recorded.get('algorithmPath') != 'scripts/normalize-envhd-painted-canvas.py'
                     or recorded.get('algorithmSha256') != CANVAS_FIT_SHA256
                     or batch.terrain.digest(Path(canvas_fit.__file__).read_bytes()) != CANVAS_FIT_SHA256):
                 raise ValueError('Painted field canvas normalization identity or exclusive operation changed')
         # An explicit, reproducible fit has its own bounded aspect/silhouette
         # checks. Legacy inputs still go through the original aspect gate.
-        raw_source_size = None if fitting else source.size
-        raw_size = repair.validate_png_header(raw_data, 'painted', raw_source_size, allow_rgb=not fitting)
+        raw_source_size = None if fitting else recorded_crop['sourceCanvasSize'] if cropping else source.size
+        raw_size = repair.validate_png_header(raw_data, 'painted', raw_source_size, allow_rgb=not (fitting or cropping))
         output_size = repair.validate_png_header(output_data, 'output', source.size)
         with Image.open(io.BytesIO(raw_data)) as raw:
             repair.validate_opened_png(raw, raw_size, 'painted', raw_source_size,
@@ -128,6 +140,15 @@ def preflight(files, manifest_path, root=ROOT):
                 # Opaque generated patches need a constant alpha channel for
                 # the same pinned RGBA repair; the RGB artwork is unchanged.
                 raw = raw.convert('RGBA')
+            if cropping:
+                raw, operation = authoring_crop.crop(source, raw, recorded_crop['sourceCanvasSize'], recorded_crop['sourceOriginNative'])
+                stream = io.BytesIO()
+                raw.save(stream, format='PNG')
+                expected_crop = dict(operation, algorithmPath='scripts/crop-envhd-painted-authoring-canvas.py',
+                                     algorithmSha256=AUTHORING_CROP_SHA256,
+                                     croppedInputSha256=batch.terrain.digest(stream.getvalue()))
+                if recorded_crop != expected_crop:
+                    raise ValueError('Painted field authoring crop differs from recorded source placement')
             if fitting:
                 raw, operation = canvas_fit.normalize(source, raw)
                 stream = io.BytesIO()

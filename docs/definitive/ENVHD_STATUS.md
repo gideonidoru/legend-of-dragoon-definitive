@@ -65,8 +65,12 @@ All 5,162 unowned nonuniform field images were generated, repaired and compared
 individually. Current development selection is 4,925 images, including 39 painted
 repairs. Seven new selections passed independent Standards and source-intent
 review; Rouge lattice and Phantom Ship internal landmark corrections remain held.
-Bale corner and Shrine arch candidates still await independent review. Known
-static repairs remaining are 238: 237 fields and one wrapped terrain source.
+Bale corner, Shrine arch and four new scenery/fitting candidates await independent
+review. The complete 47-record authoring input preserves every prior candidate;
+it adds corrected lattice cargo, a two-panel rail, a left stone finial fragment
+and a coral rim authored with explicit transparent padding. All 47 recipes
+reproduced from current sources and 109 focused checks passed. Known static
+repairs remaining are 238: 237 fields and one wrapped terrain source.
 
 Immutable generation/repair/review receipts are historical checkpoints and retain
 their original counters. Current selections and remaining work are controlled by
