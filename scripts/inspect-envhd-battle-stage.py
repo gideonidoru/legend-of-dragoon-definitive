@@ -9,6 +9,7 @@ import importlib.util
 import io
 import json
 import math
+import struct
 from pathlib import Path
 
 import numpy as np
@@ -153,14 +154,22 @@ def stage_textures(model, tim, scene, selected, paintings):
         sources[page, clut] = (np.array(image), origin, 1)
     existing = dict(sources)
     if selected:
+        size=selected.get('atlasSize')
+        if (not isinstance(size,list) or len(size)!=2
+                or any(type(v) is not int or not 1<=v<=4096 for v in size)):
+            raise ValueError('Selected stage atlas exceeds bounded dimensions')
         if any(selected[k] != scene[k] for k in ('stage', 'modelSha256', 'timSha256')) or selected['scale'] != 4:
             raise ValueError('Selected stage identity changed')
         path = ROOT / 'integrations/envhd/runtime-assets/envhd/battle-materials' / scene['modelSha256'] / 'atlas-v1.png'
         data = battle.terrain.bounded_read(path, 32 * 1024 * 1024)
         if battle.terrain.digest(data) != selected['atlasSha256']:
             raise ValueError('Selected stage atlas changed')
+        if (len(data)<33 or data[:8]!=b'\x89PNG\r\n\x1a\n'
+                or data[8:16]!=struct.pack('>I',13)+b'IHDR' or data[24:26]!=bytes((8,6))
+                or list(struct.unpack_from('>2I',data,16))!=size):
+            raise ValueError('Selected stage atlas header differs from bounded dimensions')
         with Image.open(io.BytesIO(data)) as im:
-            if im.mode != 'RGBA' or list(im.size) != selected['atlasSize']:
+            if im.format!='PNG' or im.mode != 'RGBA' or list(im.size) != size:
                 raise ValueError('Selected stage atlas layout changed')
             for region in selected['regions']:
                 x, y, w, h = region['atlasRect']

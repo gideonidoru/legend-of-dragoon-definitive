@@ -86,6 +86,12 @@ class StageInspectionTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 preview.render(preview.geometry(data), textures, textures, yaw, 0., size)
 
+    def test_oversized_selected_atlas_fails_before_file_or_pixel_decode(self):
+        data,tim=model(),fixtures.tim();scene,_=preview.battle.scene(data,tim,10)
+        with mock.patch.object(preview.Image,'open',side_effect=AssertionError('Unbounded atlas decoded')):
+            with self.assertRaisesRegex(ValueError,'bounded dimensions'):
+                preview.stage_textures(data,tim,scene,dict(atlasSize=[8256,8256]),{})
+
     def test_private_preview_cannot_write_original_geometry_inside_checkout(self):
         with self.assertRaisesRegex(ValueError, 'private output'):
             preview.inspect(Path('/unused'), preview.ROOT / 'public-original-preview', [1])

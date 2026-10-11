@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Select reviewed static battle surfaces; hold animations, pilots and revision candidates native."""
-import argparse,importlib.util,io,json,re
+import argparse,importlib.util,io,json,re,struct
 from pathlib import Path
 import numpy as np
 from PIL import Image
@@ -31,7 +31,7 @@ def validate_previous_selection(selection,root):
         if not isinstance(scene.get('modelSha256'),str) or not scene['modelSha256']:invalid()
         if not isinstance(scene.get('timSha256'),str) or not scene['timSha256']:invalid()
         if scene.get('schema')!=1 or scene.get('pipeline')!='envhd-static-battle-atlas-1' or scene.get('scale')!=4 or not sha(scene.get('atlasSha256')):invalid()
-        if not vector(scene.get('atlasSize'),2) or min(scene['atlasSize'])<=0:invalid()
+        if not vector(scene.get('atlasSize'),2) or min(scene['atlasSize'])<=0 or max(scene['atlasSize'])>tools.WIDTH:invalid()
         regions=scene.get('regions')
         if not isinstance(regions,list) or not regions or type(scene.get('hdBindings')) is not int or scene['hdBindings']!=len(regions):invalid()
         region_ids=set()
@@ -51,8 +51,12 @@ def validate_previous_selection(selection,root):
         if manifest!={k:v for k,v in scene.items() if k not in ('stage','hdBindings')}:invalid()
         atlas_data=battle_sources.terrain.bounded_read(folder/'atlas-v1.png',32*1024*1024)
         if battle_sources.terrain.digest(atlas_data)!=scene['atlasSha256']:invalid()
+        if (len(atlas_data)<33 or atlas_data[:8]!=b'\x89PNG\r\n\x1a\n'
+                or atlas_data[8:16]!=struct.pack('>I',13)+b'IHDR' or atlas_data[24:26]!=bytes((8,6))):invalid()
+        header_size=struct.unpack_from('>2I',atlas_data,16)
+        if list(header_size)!=scene['atlasSize']:invalid()
         with Image.open(io.BytesIO(atlas_data)) as image:
-            if image.mode!='RGBA' or list(image.size)!=scene['atlasSize']:invalid()
+            if image.format!='PNG' or image.mode!='RGBA' or image.size!=header_size:invalid()
             for region in regions:
                 x,y,w,h=region['atlasRect']
                 atlas_regions.append((region['decodedRgbaSha256'],np.array(image.crop((x,y,x+w,y+h)))))
@@ -104,8 +108,12 @@ def validate_previous_selection(selection,root):
             path=root/'integrations/envhd/production/battle-material-candidates'/key/'image-v1.png';digest=records[key]['outputSha256']
         data=battle_sources.terrain.bounded_read(path,32*1024*1024)
         if digest is not None and battle_sources.terrain.digest(data)!=digest:invalid()
+        bounds=presentation_tools.recipe.bounds
+        source_size=tuple(records[key]['sourceSize'])
+        bounds.validate_dimensions(source_size,'source')
+        header_size=bounds.validate_png_header(data,'output',source_size)
         with Image.open(io.BytesIO(data)) as image:
-            if image.mode!='RGBA' or tuple(image.size)!=tuple(v*4 for v in records[key]['sourceSize']):invalid()
+            bounds.validate_opened_png(image,header_size,'output',source_size)
             expected[key]=np.array(image)
     if any(not np.array_equal(pixels,expected[key]) for key,pixels in atlas_regions):invalid()
 

@@ -5,6 +5,8 @@ import importlib.util
 import json
 from pathlib import Path
 import shutil
+import struct
+import io
 import unittest
 from unittest import mock
 
@@ -131,6 +133,30 @@ class PresentationPackTests(unittest.TestCase):
                     with self.assertRaises(ValueError):pack.publish(self.f.root/'files')
                     census.assert_not_called()
                 self.assertEqual(before,self.f.runtime_snapshot())
+
+    def test_oversized_prior_atlas_rejected_before_any_decode_or_census(self):
+        previous=copy.deepcopy(self.previous);previous['scenes'][0]['atlasSize']=[8256,8256]
+        self.f.selection.write_text(json.dumps(previous));before=self.f.runtime_snapshot()
+        with mock.patch.object(pack,'ROOT',self.f.root),mock.patch.object(pack.battle_sources,'census') as census, \
+                mock.patch.object(pack.Image,'open',side_effect=AssertionError('Oversized atlas decoded')):
+            with self.assertRaises(ValueError):pack.publish(self.f.root/'files')
+            census.assert_not_called()
+        self.assertEqual(before,self.f.runtime_snapshot())
+
+    def test_oversized_candidate_header_rejected_before_candidate_decode(self):
+        path=self.f.production/'battle-material-candidates'/self.key/'image-v1.png'
+        data=bytearray(path.read_bytes());struct.pack_into('>2I',data,16,64000,64000);data=bytes(data);path.write_bytes(data)
+        self.f.records[-1]['outputSha256']=pack.tools.terrain.digest(data);self.f.records[-1]['sourceSize']=[16000,16000];self.f.write_ledger()
+        original=pack.Image.open
+        def guarded(stream,*args,**kwargs):
+            if hasattr(stream,'getvalue') and stream.getvalue()==data:raise AssertionError('Oversized candidate decoded')
+            return original(stream,*args,**kwargs)
+        before=self.f.runtime_snapshot()
+        with mock.patch.object(pack,'ROOT',self.f.root),mock.patch.object(pack.battle_sources,'census') as census, \
+                mock.patch.object(pack.Image,'open',side_effect=guarded):
+            with self.assertRaises(ValueError):pack.publish(self.f.root/'files')
+            census.assert_not_called()
+        self.assertEqual(before,self.f.runtime_snapshot())
 
     def test_valid_repair_preserves_prior_painting_coverage_mapping_and_allocation(self):
         result = self.publish()
