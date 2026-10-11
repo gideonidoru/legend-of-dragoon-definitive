@@ -4,7 +4,9 @@
 
 Current static work remaining is **237 images: 236 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,926 development images: 4,886 neural and 40 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. This active-ledger historical installer snapshot at source0af has 4,892 field selections; another 34 fields and 12 painted battle replacements await coordinated publication. Later release publication is managed separately. All protected Skurfa work is reused.
+Field selection is 4,926 development images: 4,886 neural and 40 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
+
+The [observed current download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8`, generation4, contains 4,925 field selections/39paintings and34 battle paintings. Main contains 4,926 fields/40paintings and47 battle paintings: one field painting and13 battle paintings await coordinated publication. These download counts are derived from the committed source ledgers named by the live canonical carrier manifest; this observation did not download or verify package pixels or exercise the game. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
 ## Held natural-rock drafts
 

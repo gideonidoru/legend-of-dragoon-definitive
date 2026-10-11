@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "ef0f5838652f81e3bc5c1fe2e53d37a526243bbf plus the independently reviewed frozen5b Crystal Palace table",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "5bdac4f979dc0b7b287431e989ed5e6229baddcc641b8062ab120619452c568b",
+    "full-coverage.json": "8abd81c7f3c1dec6c1499114a0abc321151e8470b8fd42e4198c9495238f3811",
     "field-runtime-artwork.json": "b4c0dc3f07c089c9fe727be0fd19e457b255ccc16b63db4f3cc40a313125b257",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
@@ -31,7 +31,8 @@
     "field-bespoke-table-independent-reviewed-selection.json": "addfc9dbc087ed058af2029cee7347b044161e97252a62939fa51a959a5d2db6",
     "field-independent-table-review.json": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a",
     "field-table-selection-readiness.json": "0c46044a0b825c381066bbe0407210a4bc4d126d6da0b030aebc0e34954ed811",
-    "battle-presentation-artwork-v1.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274"
+    "battle-presentation-artwork-v1.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274",
+    "publication-source-5d3db5c8-generation4-snapshot.json": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -51,7 +52,7 @@
       "unreviewed": 0,
       "customHeldDraftSourceImages": 15,
       "draftsAreSubsetOfHolds": true,
-      "publishedInstallerSelected": 4892,
+      "publishedInstallerSelected": 4925,
       "nextTask": "Continue236 field holds and native/final validation; existing independently pending candidates and revisions unchanged. Later authoring remains on its ongoing branch.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 2,
       "customHeldDraftSourceKeys": [
@@ -72,7 +73,8 @@
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
       "draftCountMethod": "Unique64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding4926current runtime selections.15unselected draft source keys are a subset of236field holds; all previous candidate/rejected versions retained.",
-      "independentlyReviewedCandidatesRequiringRevision": 2
+      "independentlyReviewedCandidatesRequiringRevision": 2,
+      "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json"
     },
     {
       "id": "static-terrain",
@@ -278,12 +280,21 @@
       "tag": "definitive-current",
       "generation": 4,
       "packageSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
-      "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
+      "buildRun": 38171282483,
+      "snapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
+      "snapshotEvidenceSha256": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f",
+      "countEvidence": "Exact source ledgers at observed canonical manifest source; not fresh owner package-byte or device QA.",
       "fieldSelectedMasters": 4925,
       "paintedFieldReplacements": 39,
+      "fieldHolds": 237,
+      "battleNewSelectedMasters": 518,
+      "battleNewSelectedBindings": 525,
+      "battleTotalSelectedBindings": 549,
       "paintedBattleReplacements": 34,
       "nativeArtAccepted": 0,
-      "finalArtAccepted": 0
+      "finalArtAccepted": 0,
+      "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
+      "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
     "selectedFieldImagesAwaitingCoordinatedPublication": 1,
     "paintedBattleMastersAwaitingCoordinatedPublication": 13,
@@ -298,7 +309,20 @@
       "paintedBattleReplacements": 0,
       "nativeArtAccepted": 0,
       "finalArtAccepted": 0
-    }
+    },
+    "previousPublishedInstallerSnapshots": [
+      {
+        "tag": "definitive-current",
+        "generation": 4,
+        "packageSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+        "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
+        "fieldSelectedMasters": 4925,
+        "paintedFieldReplacements": 39,
+        "paintedBattleReplacements": 34,
+        "nativeArtAccepted": 0,
+        "finalArtAccepted": 0
+      }
+    ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint."
 }
