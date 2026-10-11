@@ -20,7 +20,7 @@ Original crown/chin scale and native bone/anatomical pose frames are verified fo
 | Rose | Frontal face no longer stacked | Resolve duplicate fringe and field neck/back-hair transition |
 | Lavitz | Single registered frontal face | Refine rear jaw/neck transition in field and battle |
 | Shana | Single registered frontal face | Repair neck/collar gap and braid transition without changing reference scale |
-| Haschel | Single registered frontal face | Rebuild jaw underside/neck attachment; remove stray lower-jaw paint |
+| Haschel | Frontal replacement registered; whole head rejected | Rebuild jaw underside/neck attachment; remove stray lower-jaw paint |
 | Albert | Single registered frontal face | Refine collar/neck and rear hair transition at the original head size |
 | Meru | Single registered frontal face | Repair jaw/neck paint and bow/ponytail overlap; smooth segmented hair |
 | Kongol | Single registered frontal face | Check jaw-to-muscular-neck continuity across stored poses |
@@ -47,6 +47,16 @@ The explicit construction fixture contains v4 head packs plus the eight optional
 `scripts/verify-party-head-preview.py` passed for the sixteen heads, accepted Dart's twelve parts, nineteen unchanged normal runtime files and three invalid resource cases. `scripts/verify-party-hair-details.py` passed for all eight additional parts, exact binding/geometry preservation and explicit alpha behavior. Rose fringe silhouette overlap was 0.9958655566 in the offline rest-pose comparison.
 
 Private comparisons retain original body geometry/materials and use matching original part poses and cameras. They are offline renders, not captured gameplay, and do not demonstrate all-nine body texture upgrades. Original comparison pixels remain outside Git.
+
+## Follow-up: skin ownership and source geometry
+
+Additional construction studies cover all eight pending heads. Starting from a feature-free skin atlas removes the inherited smaller facial painting; restoring hair by color alone can put old dark facial features back onto the jaw/neck, or turn genuine hair tips into skin. That classifier is insufficient as a final ownership rule. A fresh neural reconstruction from the exact latest Haschel painting still invented an extra lower chin. Reconstructing again is therefore not a reliable cure.
+
+A second study starts from each original ModelsHD head surface and adds two linear subdivisions. Its head budgets are Rose 2,032; Lavitz 2,112; Shana 2,448; Haschel 2,352; Albert 2,272; Meru 2,864; Kongol 9,856; Miranda 2,096 triangles. One custom frontal painting is mapped to explicitly inspected original eye/nose/mouth/chin positions. Original RGB is used only for private material diagnostics; it is not copied into the custom atlas. Matched original-body comparisons were completed for Haschel and Rose in both forms. The source geometry keeps the attachment as the reference, but its angular hair caps and stretched side/neck painting remain inadequate.
+
+Combining this source skin with the detailed custom hair is still an experiment. Quarter/profile inspection exposed open scalp/ear boundaries. Filling them with a projected source cap introduced folds and was rejected. No result in these follow-up studies is selected for normal installation or owner approval. Native gameplay and physical Deck behavior were not tested for them. Accepted Dart remains unchanged.
+
+The next useful increment is an explicit connected skin/hair boundary and a jaw/neck ownership map, evaluated on the original body before broadening the bake. More landmark receipts, generic head templates or successful reconstruction runs cannot substitute for that visual check.
 
 ## Acceptance gate
 
