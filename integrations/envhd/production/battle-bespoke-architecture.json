@@ -1,0 +1,78 @@
+{
+  "method": "python-reviewed-painted-battle-material-exact-stp-1",
+  "algorithmSha256": "10d96f21c187ac579f19985e8463b6eebe56ccb09ca1c00b0893fc9535db9837",
+  "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "schema": 1,
+  "scope": "Separately reviewed custom looped architectural stone candidate; original history/runtime unchanged.",
+  "visualReviewedBespokeCandidates": 1,
+  "revisionsNeeded": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        72
+      ],
+      "targetSize": [
+        256,
+        288
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "d6432fcf0e1fc34e147c22c8f17c74b72547adf354f1c4c6ac86ae9db04b1be9",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "10d96f21c187ac579f19985e8463b6eebe56ccb09ca1c00b0893fc9535db9837",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "generatedSha256": "67199c6494c9fdcc5599646704eb008e280da246243219d265fd2511bbec43fd",
+      "outputSha256": "e5a79184e7380b0c6ed01512b621fdd4f4f7f63d1afd998e4fc930ccffaf002e",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 44,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            24,
+            0,
+            88,
+            72
+          ],
+          "sourceUvOrigin": [
+            24,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "188cc84557af357d26dc55b62124ea2aa68e1af9b59c39d8ce8851b89fc2d087",
+      "generatedPath": "integrations/envhd/production/bespoke-battle-candidates/d6432fcf0e1fc34e147c22c8f17c74b72547adf354f1c4c6ac86ae9db04b1be9/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-battle-candidates/d6432fcf0e1fc34e147c22c8f17c74b72547adf354f1c4c6ac86ae9db04b1be9/image-v1.png",
+      "prompt": "Use case: style-transfer\nAsset type: exact-crop HD environmental stone texture for Legend of Dragoon Flanvel Tower battle stage44, part0, page7/CLUT15452.\nInput image: edit target, a nearest-neighbour enlargement of the actual64x72 native crop. Restore this texture at higher detail while keeping ALL original raised loop shapes, openings, thick connected ribbons, shaded recesses and layout in the same positions. The visible sampled stone motif occupies source x8..55,y0..63; x0..7 andx56..63 are neighboring padding. The bottom8rows are texture-page padding of a different adjoining strip, not a new sculpture pedestal.\nPrimary request: source-faithful hand-painted neutral pale gray-beige organic stone architecture. Preserve the original intertwined rounded ribbon/loop relief and broad dark green-gray recesses. Soft diffuse original light from above, subtle aged stone grain, restrained edge highlights. Match original low-saturation gray/olive palette and modest contrast, harmonizing with painted HD prerendered backgrounds. Improve material detail without redesigning the relief.\nComposition: flat texture crop with exact64:72 aspect, exact original positions, no added margins. No perspective or geometry changes. Keep the original thin olive-gray horizontal padding strip and mottled bottom-right/left padding where they are.\nConstraints: Do not interpret the abstract loops as writing, runes, a face, eyes, a skull, animals, creatures or a crest. No added ornament, no ivy, no scene, no character, no standalone object, no stone-block seams that aren't in the source. No text, no watermark. One fully opaque texture covering the canvas.",
+      "review": {
+        "intent": "Flanvel Tower static battle architecture, stage44 part0, page7 CLUT15452, sourcecrop24,0,88,72: intertwined pale grey-beige stone ribbons, rounded openings and shaded olive-grey recesses. Native UVs32,0,79,63 sample the central48x64 region; adjoining edge and bottom8row padding remain part of the crop. No face, creature, text or emblem inferred.",
+        "style": "Individually compared original, held neural and target256x288 painted/STP-repaired output. The held neural candidate reduces relief to thin dark outlines and alters small arches. New hand-painted aged stone gives thickness to the original broad curved ribbons and retains main opening positions, muted grey/olive palette and top lighting. Fine pits and roughness are inferred material detail; not final Skurfa-equivalent visual acceptance. Skurfa assets untouched.",
+        "layout": "Original broad loops, recesses and lower horizontal padding strip compared at4x; sourcecrop/aspect and major feature positions preserved. Unlike the two source-palette lattice recipes, this repair does not prove exact internal-feature topology by code: the individual source comparison is its layout evidence. Native STP/discard/visible-black classes are exact and full repaired pixels reproducible from the recorded input. Fresh model/texture/page/CLUT/UV mapping, edge sampling and game-camera/blend/visual acceptance remain separate checks.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "e5a79184e7380b0c6ed01512b621fdd4f4f7f63d1afd998e4fc930ccffaf002e",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    }
+  ]
+}

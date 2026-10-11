@@ -27,7 +27,9 @@ PINS = {
 }
 circle = module('painted_battle_circle', 'repair-envhd-painted-battle-circle.py')
 CIRCLE_PINS = dict(PINS, algorithmSha256='bc65c6067baf17e996cd908b36a30b7544c8c1160e2a2865878a14d4f6305484')
-RECIPES = {repair.METHOD: (repair, PINS), circle.METHOD: (circle, CIRCLE_PINS)}
+material = module('painted_battle_material', 'repair-envhd-painted-battle-material.py')
+MATERIAL_PINS = dict(PINS, algorithmSha256='10d96f21c187ac579f19985e8463b6eebe56ccb09ca1c00b0893fc9535db9837')
+RECIPES = {repair.METHOD: (repair, PINS), circle.METHOD: (circle, CIRCLE_PINS), material.METHOD: (material, MATERIAL_PINS)}
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
 
 
@@ -90,8 +92,10 @@ def preflight(files, manifest_path, root=ROOT):
                 raise ValueError('Painted battle input mode changed')
             if recipe.METHOD == repair.METHOD:
                 expected, _, metrics = recipe.repair(source, raw, candidate.get('motifRgba'), candidate.get('lowerBandStart'))
-            else:
+            elif recipe.METHOD == circle.METHOD:
                 expected, _, metrics = recipe.repair(source, raw, candidate.get('motifRgba'), candidate.get('sourceMaskCircle'), candidate.get('lightingRadius'))
+            else:
+                expected, _, metrics = recipe.repair(source, raw)
         with Image.open(io.BytesIO(output_data)) as output:
             repair.bounds.validate_opened_png(output, output_size, 'output', source.size)
             if not np.array_equal(np.asarray(output), np.asarray(expected)):

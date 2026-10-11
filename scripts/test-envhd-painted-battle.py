@@ -92,5 +92,12 @@ class PaintedBattleTests(unittest.TestCase):
         self.candidate['outputSha256']=self.candidate['review']['outputSha256']=sha(self.output);self.save()
         with self.assertRaisesRegex(ValueError,'source-locked recipe'):self.preflight()
 
+    def test_reviewed_material_recipe_keeps_its_geometry_limit_and_rejects_pixel_forgery(self):
+        record,_=verify.material.execute(self.root/'source.png',self.raw,self.output,self.key)
+        self.candidate.update(record);self.candidate['review']['outputSha256']=record['outputSha256'];self.manifest.update(method=verify.material.METHOD,**verify.MATERIAL_PINS);self.save()
+        result=self.preflight();self.assertEqual(result['verified'][0]['candidate']['internalFeatureAlignment'],'individual-source-comparison-required')
+        Image.new('RGBA',(16,16),(200,230,220,0)).save(self.output);self.candidate['outputSha256']=self.candidate['review']['outputSha256']=sha(self.output);self.save()
+        with self.assertRaisesRegex(ValueError,'source-locked recipe'):self.preflight()
+
 
 if __name__ == '__main__': unittest.main()
