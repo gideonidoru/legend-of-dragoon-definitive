@@ -31,7 +31,7 @@ including changing padding and initial transients. It selects no artwork and
 clears no hold; complete encounter upload/darkening/presentation contracts remain
 open. Its combined frame-hash counts are not an EnvHD authoring-job denominator.
 
-The authoring branch selects twelve separately reviewed painted battle replacements:
+The published package selects twelve separately reviewed painted battle replacements:
 three Flanvel Tower materials, two stage-30 decorative panels and a stage-38
 static flame-shaped surface, plus a Shirley's Shrine plaque, stage-17 floor
 fragments, stage-45 aqua panel, stage-69 circular ornament and two Moon materials.
@@ -46,6 +46,11 @@ paintings and 549 total selected battle bindings. Its field selection has 4,917
 images; the coordinated source candidate adds eight accepted field paintings for
 4,925 selected images. The candidate field additions require their own exact-source
 build and publication before the installer can retrieve them.
+The coordinated source candidate also selects 22 reviewed battle paintings for
+Forest, Barrens and Evergreen, bringing its painted battle selection to 34. They
+retain the prior twelve and all other atlas regions, layouts and visibility classes.
+The additional 22 require exact-source build and publication; native scene and
+final artwork acceptance remain pending.
 Known static repair work on this selected checkpoint is 237 fields plus one terrain
 mapping hold. The [Tiberoa investigation](ENVHD_TIBEROA_MAPPING.md) records the
 three unsigned-UV faces and complete upload evidence; it clears no hold. This
