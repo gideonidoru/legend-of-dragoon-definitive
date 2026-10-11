@@ -12,7 +12,7 @@ spec=importlib.util.spec_from_file_location('party_study',ROOT/'experiments/dart
 study=importlib.util.module_from_spec(spec);spec.loader.exec_module(study)
 materials=study.poses.materials
 packed_coordinates=study.poses.packed_coordinates
-def render(parts, positions, tim, candidate, bounds, size=(640,640), material_map=None, normal_faces=None, detail_parts=None):
+def render(parts, positions, tim, candidate, bounds, size=(640,640), material_map=None, normal_faces=None, detail_parts=None, diagnostics=None):
     width, height, cw, ch, colors, indices = materials.texture(tim)
     palette = np.array(colors, dtype=np.uint16)
     packed = np.frombuffer(indices[:width * height // 2], dtype=np.uint8)
@@ -21,6 +21,8 @@ def render(parts, positions, tim, candidate, bounds, size=(640,640), material_ma
     canvas = np.zeros((size[1], size[0], 3), dtype=np.uint8)
     canvas[:] = (31, 39, 36)
     zbuffer = np.full((size[1], size[0]), np.inf)
+    owners = np.full(zbuffer.shape, -1, dtype=np.int16)
+    face_owners = np.full(zbuffer.shape, -1, dtype=np.int32)
     min_x, max_x, min_y, max_y = bounds
     fit = min((size[0]-48) / max(1, max_x-min_x), (size[1]-48) / max(1, max_y-min_y))
     center = np.array(((size[0]-(min_x+max_x)*fit)/2, (size[1]-(min_y+max_y)*fit)/2))
@@ -79,10 +81,14 @@ def render(parts, positions, tim, candidate, bounds, size=(640,640), material_ma
                     rgb*= (.52+.48*np.maximum(0,ns@light))[...,None]
                 canvas[low[1]:high[1]+1, low[0]:high[0]+1][valid] = np.clip(rgb[valid], 0, 255).astype(np.uint8)
                 old_depth[valid] = depth[valid]
+                owners[low[1]:high[1]+1, low[0]:high[0]+1][valid] = part_index
+                face_owners[low[1]:high[1]+1, low[0]:high[0]+1][valid] = face_index
     coverage = np.where(np.isfinite(zbuffer), 255, 0).astype(np.uint8)
+    if diagnostics is not None:
+        diagnostics.update(owners=owners, faces=face_owners, depth=zbuffer, scale=fit, center=center)
     return Image.fromarray(np.dstack((canvas, coverage)))
 
-def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,35,90,180),last_pose=True,previous=None):
+def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,35,90,180),last_pose=True,previous=None,focus='actor'):
     if output.exists() or output.resolve().is_relative_to(ROOT):raise ValueError('Use new private output')
     audit=json.loads((ROOT/'integrations/charhd/production/party-reconstruction/source-audit.json').read_text())
     actor=next(a for a in audit['characters'] if a['character']==character)
@@ -136,6 +142,16 @@ def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,
                     variant.append([normal[face['normals']] for face in pack['faces']])
                 ns.append(variant)
             bounds=study.poses.framing_bounds([pbefore,pafter])
+            if focus=='head':
+                heads=np.concatenate((pbefore[h],pafter[h]))
+                # Use the same camera for both variants; retain neck/collar context.
+                # Crown/jaw controls describe pose zero only. Later keys use both
+                # posed head bounds rather than reusing a fixed rest-frame crop.
+                if frame==0:
+                    crown=row['targetCrownY'];chin=row['sourceChinY'];height=chin-crown
+                    bounds=(heads[:,0].min(),heads[:,0].max(),crown-height*.45,chin+height*.45)
+                else:
+                    bounds=(heads[:,0].min(),heads[:,0].max(),heads[:,1].min(),heads[:,1].max())
             board=Image.new('RGB',(1200,970),(26,30,34));draw=ImageDraw.Draw(board)
             for i,(meshes,positions) in enumerate([(meshbefore,pbefore),(meshafter,pafter)]):
                 details={h:texture} if i else ({h:previous_texture} if previous else None)
@@ -144,9 +160,9 @@ def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,
                 label=('Before: previous head fit' if previous else 'Before: ModelsHD / source texture') if i==0 else 'After: fitted head candidate'
                 board.paste(base,(i*600,44));draw.text((i*600+24,12),label,font=font,fill='#e5e1da')
             draw.text((24,934),f'{character.title()} / {form} / frame {frame} / {angle}° — offline native part pose; not gameplay',font=font,fill='#acb1b8')
-            filename=f'{form}-{frame}-{angle}-comparison.jpg';board.save(output/filename,quality=95)
+            filename=f'{form}-{frame}-{angle}-comparison.png';board.save(output/filename)
             reports.append({'path':filename,'sha256':hashlib.sha256((output/filename).read_bytes()).hexdigest()})
     (output/'manifest.json').write_text(json.dumps({'character':character,'scope':'Offline orthographic native-part geometry/UV inspection only; not gameplay or Steam Deck','images':reports},indent=2)+'\n')
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--files',type=Path,required=True);p.add_argument('--character',required=True);p.add_argument('--candidate',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--form',choices=['field','combat']);p.add_argument('--angles',type=float,nargs='+',default=[0,35,90,180]);p.add_argument('--no-last-pose',action='store_true');p.add_argument('--previous',type=Path);a=p.parse_args();compare(a.files,a.character,a.candidate,a.output,(a.form,) if a.form else ('field','combat'),a.angles,not a.no_last_pose,a.previous)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--files',type=Path,required=True);p.add_argument('--character',required=True);p.add_argument('--candidate',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--form',choices=['field','combat']);p.add_argument('--angles',type=float,nargs='+',default=[0,35,90,180]);p.add_argument('--no-last-pose',action='store_true');p.add_argument('--previous',type=Path);p.add_argument('--focus',choices=['actor','head'],default='actor');a=p.parse_args();compare(a.files,a.character,a.candidate,a.output,(a.form,) if a.form else ('field','combat'),a.angles,not a.no_last_pose,a.previous,a.focus)

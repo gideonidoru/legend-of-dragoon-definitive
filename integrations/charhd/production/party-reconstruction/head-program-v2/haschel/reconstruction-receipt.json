@@ -1,0 +1,97 @@
+{
+  "experiment": "party-aa-head-reconstruction-1",
+  "character": "haschel",
+  "sourceRevision": "107cefdc244c39106fa830359024f6a2f1c78871",
+  "inputSha256": "0116dae276cc8e671b1f31beb6e528230a216f531b55e94e3d2cff2cea5ffce5",
+  "weightsSha256": "429e2c6b22a0923967459de24d67f05962b235f79cde6b032aa7ed2ffcd970ee",
+  "configSha256": "74ca708ce086bf68e97709ea6b3d91f14717921c04691e84043f0eb8fcc68e62",
+  "dinoConfigSha256": "b87c0270b97db085fd82cf114a761fd0f62ae7914fbd407c752a2260646b689c",
+  "dependencyLockSha256": "1ecc364a00dc00ba2dbade66fcf5e2b0b986e49189583ed42d76716a5770889a",
+  "runnerSha256": "2ed429873774e343bede83205dcc808153c0c9a730a2efd5136705fde48da37f",
+  "device": "cpu",
+  "threads": 8,
+  "resolution": 256,
+  "foregroundRatio": 0.85,
+  "networkDisabled": true,
+  "nativeImport": false,
+  "artAccepted": false,
+  "torch": "2.14.1",
+  "python": "3.12.0 (v3.12.0:0fb18b02c8, Oct  2 2023, 09:45:56) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "inferencePixelsSha256": "53e7181d26e663020c6d4303bfc5f1977944dd0f6841451451a7236b3df3cf23",
+  "inferenceSize": [
+    1525,
+    1525
+  ],
+  "sourceMeshSha256": "74a0fcc1ce9ec64b3200ff5b3a51c402aabc41b459d5215dd06744d4d58278fe",
+  "sourceTriangles": 168124,
+  "mainComponentTriangles": 168068,
+  "excludedComponentTriangles": [
+    8,
+    32,
+    16
+  ],
+  "componentRepair": false,
+  "textureSize": [
+    2048,
+    2048
+  ],
+  "fastSimplification": "0.2.0",
+  "xatlas": "0.0.11",
+  "variants": [
+    {
+      "targetTriangles": 6000,
+      "projectionTransferredTexels": 302585,
+      "projectionVisibleTexels": 497932,
+      "cleanupIterations": 6,
+      "pinnedBoundaryVertices": 512,
+      "maximumCleanupDisplacement": 0.017883323275066,
+      "p95CleanupDisplacement": 0.007430192951618159,
+      "triangles": 6000,
+      "verticesWithUvSeams": 4704,
+      "watertightAfterUvSplits": false,
+      "coveredTexels": 1416307,
+      "facesWithoutPixelCenters": 24,
+      "uvCharts": 209,
+      "atlasPackingDimensions": [
+        796,
+        790
+      ],
+      "paddingPixels": 4,
+      "elapsedSeconds": 3.5427039590431377,
+      "meshSha256": "c323b57a97fcda92e182fcc19cb3090f74b3b2b28a934ef83baaf44dd7c84f6c",
+      "textureSha256": "4c712b512b35eb2cc2c9fcf68e7efcd2ae7c00d9e280a854dc5948c9bb6d0dc0",
+      "glbBytes": 1708476
+    },
+    {
+      "targetTriangles": 12000,
+      "projectionTransferredTexels": 257961,
+      "projectionVisibleTexels": 427780,
+      "cleanupIterations": 6,
+      "pinnedBoundaryVertices": 512,
+      "maximumCleanupDisplacement": 0.014914272276800799,
+      "p95CleanupDisplacement": 0.005205772738142811,
+      "triangles": 12000,
+      "verticesWithUvSeams": 8787,
+      "watertightAfterUvSplits": false,
+      "coveredTexels": 1221184,
+      "facesWithoutPixelCenters": 31,
+      "uvCharts": 320,
+      "atlasPackingDimensions": [
+        859,
+        852
+      ],
+      "paddingPixels": 4,
+      "elapsedSeconds": 4.310310959001072,
+      "meshSha256": "70a306a1d12108ed285f82f605ef33c3e46b2cb2ec3e7a9097627ae02e5aec74",
+      "textureSha256": "56121f591e411ee8b80b2c2592f0e8e6b63f14882e321d679170c9b5eca5ecc4",
+      "glbBytes": 1802560
+    }
+  ],
+  "stages": {
+    "loadSeconds": 1.2862871249672025,
+    "inferenceSeconds": 4.216257666004822,
+    "extractSeconds": 10.65427004196681
+  },
+  "elapsedSeconds": 25.876941499998793,
+  "peakRssBytes": 5567725568
+}

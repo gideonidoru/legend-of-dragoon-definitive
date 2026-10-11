@@ -13,6 +13,8 @@ parser.add_argument('--output',type=Path,required=True)
 parser.add_argument('--character',default='dart',help='Authoring receipt identity; does not imply approval')
 parser.add_argument('--asset-kind',choices=['head','body'],default='head')
 parser.add_argument('--triangles',type=int,nargs='+',default=[6000,12000])
+parser.add_argument('--paint-mode', choices=['neural', 'legacy-projection'], default='neural',
+                    help='Coherent surface colors by default. Legacy unregistered projection reproduces rejected experiments only.')
 args=parser.parse_args()
 import os,sys,json,time,hashlib,resource,socket,subprocess
 os.environ.update(HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_HUB_DISABLE_TELEMETRY='1',TORCH_FORCE_WEIGHTS_ONLY_LOAD='1')
@@ -29,6 +31,8 @@ assert subprocess.check_output(['git','-C',str(source),'rev-parse','HEAD'],text=
 assert not subprocess.check_output(['git','-C',str(source),'status','--porcelain'],text=True).strip()
 manifest={'experiment':'party-aa-head-reconstruction-1','character':args.character,'assetKind':args.asset_kind,'sourceRevision':'107cefdc244c39106fa830359024f6a2f1c78871','inputSha256':digest(input_image),'weightsSha256':digest(weights/'model.ckpt'),'configSha256':digest(weights/'config.yaml'),'dinoConfigSha256':digest(weights/'dino-config.json'),'dependencyLockSha256':digest(root/'dependency-lock-round30.txt'),'runnerSha256':digest(__file__),'device':'cpu','threads':8,'resolution':256,'foregroundRatio':0.85,'networkDisabled':True,'nativeImport':False,'artAccepted':False}
 began=time.monotonic(); stages={}
+manifest['paintMode']=args.paint_mode
+manifest['unregisteredProjectionRejected']=True
 def stage(name):print(json.dumps({'stage':name,'elapsedSeconds':round(time.monotonic()-began,3)}),flush=True)
 stage('Importing isolated runtime')
 sys.path.insert(0,str(source))
@@ -109,8 +113,13 @@ for target in args.triangles:
   colour=model.renderer.query_triplane(model.decoder,torch.from_numpy(points[covered]),codes[0])['color'].cpu().numpy()
  projection_spec=importlib.util.spec_from_file_location('projection',Path(__file__).with_name('projection-bake.py'))
  projection=importlib.util.module_from_spec(projection_spec);projection_spec.loader.exec_module(projection)
- transferred,weight,transfer_report=projection.transfer(points,baked_normals,covered,rgba,reduced)
- colour=colour*(1-weight[:,None])+transferred*weight[:,None]
+ transfer_report={'projectionTransferredTexels':0, 'projectionVisibleTexels':0}
+ if args.paint_mode=='legacy-projection':
+  transferred,weight,transfer_report=projection.transfer(points,baked_normals,covered,rgba,reduced)
+  colour=colour*(1-weight[:,None])+transferred*weight[:,None]
+  transfer_report['visualStatus']='rejected-unregistered-projection-do-not-promote'
+ else:
+  transfer_report['visualStatus']='single-surface-neural-paint-needs-artistic-review'
  pixels=np.zeros((resolution,resolution,3),dtype=np.uint8);pixels[covered]=np.clip(colour*255,0,255).astype(np.uint8)
  distance,nearest=distance_transform_edt(~covered,return_indices=True);padding=(~covered)&(distance<=4)
  pixels[padding]=pixels[tuple(nearest[:,padding])]

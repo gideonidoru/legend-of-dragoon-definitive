@@ -1,0 +1,368 @@
+{
+  "format": 1,
+  "state": "experimental-unaccepted",
+  "meshSha256": "d1de07fad63caa3f8f5e3716dc207081075108edf5983c6c1c05f205c92eb9b1",
+  "baseTextureSha256": "9b7f7fb4fba9b8fea73c7ae36f4ef4b5c971b17d312c61d71aa223a32f8a9665",
+  "paintSha256": "ff2770a857b46078e90f115ed14ed05ec2405dd69a2af8771ea62de770e8e16d",
+  "frontalFaceLock": {
+    "halfWidth": 0.24,
+    "top": -0.21,
+    "bottom": 0.39,
+    "back": -0.22
+  },
+  "views": [
+    {
+      "ear": {
+        "paintEar": true,
+        "commonPoint": [
+          0.2935582822085889,
+          0.035582822085889566,
+          -0.03018039100664134
+        ],
+        "commonRadii": [
+          0.08,
+          0.13,
+          0.1
+        ],
+        "paintPixel": [
+          322,
+          377
+        ],
+        "paintRadii": [
+          35,
+          60
+        ]
+      },
+      "angle": 90,
+      "camera": {
+        "size": 700,
+        "scale": 562.0689655172414,
+        "center": [
+          350,
+          350
+        ]
+      },
+      "paintRect": [
+        627,
+        0,
+        1254,
+        627
+      ],
+      "anchors": [
+        {
+          "name": "authored-boundary-0",
+          "meshPixel": [
+            118.15809648612449,
+            95.4631748898276
+          ],
+          "paintPixel": [
+            89.32907348242811,
+            73.6964856230032
+          ]
+        },
+        {
+          "name": "authored-boundary-1",
+          "meshPixel": [
+            590.0940799507601,
+            95.4631748898276
+          ],
+          "paintPixel": [
+            627.5367412140575,
+            73.6964856230032
+          ]
+        },
+        {
+          "name": "authored-boundary-2",
+          "meshPixel": [
+            590.0940799507601,
+            538.9540675385244
+          ],
+          "paintPixel": [
+            627.5367412140575,
+            596.2715654952076
+          ]
+        },
+        {
+          "name": "authored-boundary-3",
+          "meshPixel": [
+            118.15809648612449,
+            538.9540675385244
+          ],
+          "paintPixel": [
+            89.32907348242811,
+            596.2715654952076
+          ]
+        },
+        {
+          "name": "authored-boundary-4",
+          "meshPixel": [
+            333.03653884799127,
+            370.0
+          ],
+          "paintPixel": [
+            322,
+            377
+          ]
+        }
+      ],
+      "minimumAnatomicalBack": -0.25
+    },
+    {
+      "ear": {
+        "paintEar": true,
+        "commonPoint": [
+          -0.2579754601226994,
+          0.03558282208588957,
+          -0.0044895441095171434
+        ],
+        "commonRadii": [
+          0.08,
+          0.13,
+          0.1
+        ],
+        "paintPixel": [
+          378,
+          377
+        ],
+        "paintRadii": [
+          35,
+          60
+        ]
+      },
+      "angle": -90,
+      "camera": {
+        "size": 700,
+        "scale": 562.0689655172414,
+        "center": [
+          350,
+          350
+        ]
+      },
+      "paintRect": [
+        0,
+        627,
+        627,
+        1254
+      ],
+      "anchors": [
+        {
+          "name": "authored-boundary-0",
+          "meshPixel": [
+            109.90592004923985,
+            95.4631748898276
+          ],
+          "paintPixel": [
+            103.84504792332268,
+            59.18051118210863
+          ]
+        },
+        {
+          "name": "authored-boundary-1",
+          "meshPixel": [
+            581.8419035138755,
+            95.4631748898276
+          ],
+          "paintPixel": [
+            643.1693290734823,
+            59.18051118210863
+          ]
+        },
+        {
+          "name": "authored-boundary-2",
+          "meshPixel": [
+            581.8419035138755,
+            538.9540675385244
+          ],
+          "paintPixel": [
+            643.1693290734823,
+            577.2891373801917
+          ]
+        },
+        {
+          "name": "authored-boundary-3",
+          "meshPixel": [
+            109.90592004923985,
+            538.9540675385244
+          ],
+          "paintPixel": [
+            103.84504792332268,
+            577.2891373801917
+          ]
+        },
+        {
+          "name": "authored-boundary-4",
+          "meshPixel": [
+            352.5234334132803,
+            370.0
+          ],
+          "paintPixel": [
+            378,
+            377
+          ]
+        }
+      ],
+      "minimumAnatomicalBack": -0.25
+    },
+    {
+      "ear": {
+        "paintEar": true,
+        "commonPoint": [
+          -0.2579754601226994,
+          0.03558282208588957,
+          -0.0044895441095171434
+        ],
+        "commonRadii": [
+          0.08,
+          0.13,
+          0.1
+        ],
+        "paintPixel": [
+          378,
+          377
+        ],
+        "paintRadii": [
+          35,
+          60
+        ]
+      },
+      "angle": 180,
+      "camera": {
+        "size": 700,
+        "scale": 562.0689655172414,
+        "center": [
+          350,
+          350
+        ]
+      },
+      "paintRect": [
+        627,
+        627,
+        1254,
+        1254
+      ],
+      "anchors": [
+        {
+          "name": "authored-boundary-0",
+          "meshPixel": [
+            135.0306522229622,
+            95.4631748898276
+          ],
+          "paintPixel": [
+            99.37859424920127,
+            61.41373801916933
+          ]
+        },
+        {
+          "name": "authored-boundary-1",
+          "meshPixel": [
+            534.8389930766205,
+            95.4631748898276
+          ],
+          "paintPixel": [
+            592.9217252396166,
+            61.41373801916933
+          ]
+        },
+        {
+          "name": "authored-boundary-2",
+          "meshPixel": [
+            534.8389930766205,
+            538.9540675385244
+          ],
+          "paintPixel": [
+            592.9217252396166,
+            591.8051118210863
+          ]
+        },
+        {
+          "name": "authored-boundary-3",
+          "meshPixel": [
+            135.0306522229622,
+            538.9540675385244
+          ],
+          "paintPixel": [
+            99.37859424920127,
+            591.8051118210863
+          ]
+        }
+      ],
+      "minimumAnatomicalBack": -0.1
+    }
+  ],
+  "hairMaterial": "blond",
+  "geometricHair": {
+    "foreheadY": -0.15478527607361964,
+    "backStart": 0.02,
+    "sideHalfWidth": 0.24,
+    "longHair": false,
+    "chinY": 0.2935582822085889
+  },
+  "protectGoldOrnaments": false,
+  "featureLocks": [
+    {
+      "name": "left-eye",
+      "commonPoint": [
+        -0.09785276073619632,
+        -0.01067484662576687,
+        -0.314194086852916
+      ],
+      "commonRadii": [
+        0.07,
+        0.035,
+        0.1
+      ]
+    },
+    {
+      "name": "right-eye",
+      "commonPoint": [
+        0.0996319018404908,
+        -0.010674846625766872,
+        -0.32603865318931036
+      ],
+      "commonRadii": [
+        0.07,
+        0.035,
+        0.1
+      ]
+    },
+    {
+      "name": "nose",
+      "commonPoint": [
+        0.0017791411042944797,
+        0.0907361963190184,
+        -0.40700846126789636
+      ],
+      "commonRadii": [
+        0.08,
+        0.075,
+        0.09
+      ]
+    },
+    {
+      "name": "mouth",
+      "commonPoint": [
+        0.0017791411042944794,
+        0.16546012269938648,
+        -0.35204043259281714
+      ],
+      "commonRadii": [
+        0.12,
+        0.035,
+        0.08
+      ]
+    },
+    {
+      "name": "chin",
+      "commonPoint": [
+        0.0017791411042944833,
+        0.2935582822085889,
+        -0.3170573325768483
+      ],
+      "commonRadii": [
+        0.14,
+        0.04,
+        0.09
+      ]
+    }
+  ]
+}

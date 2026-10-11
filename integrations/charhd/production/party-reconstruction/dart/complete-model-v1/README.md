@@ -1,5 +1,7 @@
 # Dart · full actor review
 
+> Owner rejected this body candidate on October 11, 2026: arm shapes and head attachment did not meet the visual target. Retained as a historical experiment. Active work now improves the other eight heads on their existing native bodies.
+
 Open the `viewer` directory through a local HTTP server, then inspect Dart in
 your browser. All viewer dependencies and textures are included.
 

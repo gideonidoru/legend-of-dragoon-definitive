@@ -46,7 +46,8 @@ public final class PartyCandidateSourceProbe {
         final var actor = actorValue.getAsJsonObject();
         final String name = actor.get("character").getAsString();
         if(name.equals("dart")) continue; // Exact promoted Dart uses its separate bundled-source gate.
-        final var fit = JsonParser.parseString(Files.readString(root.resolve(name + "/candidate-v1/fit-receipt.json"))).getAsJsonObject();
+        final Path directFit = root.resolve(name + "/fit-receipt.json");
+        final var fit = JsonParser.parseString(Files.readString(Files.isRegularFile(directFit) ? directFit : root.resolve(name + "/candidate-v1/fit-receipt.json"))).getAsJsonObject();
         for(final var modelValue : actor.getAsJsonArray("models")) {
           final var model = modelValue.getAsJsonObject();
           final String form = model.get("form").getAsString();

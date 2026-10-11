@@ -1,5 +1,7 @@
 # Dart: complete actor for visual review
 
+> Owner rejected this body candidate on October 11, 2026: arm shapes and head attachment did not meet the visual target. Retained as a historical experiment. Active work now improves the other eight heads on their existing native bodies.
+
 This milestone delivers a whole, editable Dart review candidate: body, armor,
 hands, boots, accepted CharHD head/hair and a separate custom sword. It replaces
 the disconnected body-part approach in the authoring experiment with a continuous

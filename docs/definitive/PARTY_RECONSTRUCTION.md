@@ -40,3 +40,12 @@ This plan is in progress. The remaining eight heads and nine complete bodies are
 ## Original-design party pass — October 11, 2026
 
 All nine normal-form character controls have now been located and compared with a new custom artwork set. The [original-design CharHD pass](PARTY_ORIGINAL_DESIGN_V3.md) includes nine public editable static GLBs, their own 2K textures, exact prompts, reconstruction receipts and front/side/rear inspection boards. This corrects the earlier Shana dress description: the selected normal-form CG reference shows a white tunic and shorts. No new native replacement, field/battle fit, animation acceptance or physical Deck performance is claimed. The existing selected CharHD resources remain byte unchanged.
+
+## Active direction — October 11, 2026
+
+The owner rejected the complete Dart body reconstruction and redirected this work
+to the other eight heads using the accepted live Dart route. Preserve original
+in-game head size; improve appearance rather than imposing new proportions.
+The [native-size head candidate](PARTY_HEADS_NATIVE_SIZE.md) supersedes the body
+reconstruction priority above. Complete bodies are deferred; all selected runtime
+resources remain unchanged pending review.

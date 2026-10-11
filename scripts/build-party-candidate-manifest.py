@@ -41,14 +41,14 @@ def geometry_hash(part, headers):
     return digest.hexdigest()
 
 
-def build(files, root):
+def build(files, root, candidate_root=None):
     spec = importlib.util.spec_from_file_location('party_study', ROOT / 'experiments/dart-modelshd-charhd/build-study.py')
     study = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(study)
     audit = json.loads((root / 'source-audit.json').read_text())
     rows = []
     for name in NAMES:
-        directory = root / name / 'candidate-v1'
+        directory = candidate_root / name if candidate_root else root / name / 'candidate-v1'
         fit = json.loads((directory / 'fit-receipt.json').read_text())
         actor = next(a for a in audit['characters'] if a['character'] == name)
         for row in fit['forms']:
@@ -78,12 +78,12 @@ def build(files, root):
                 'character': name, 'form': form,
                 'sourceGeometrySha256': identities[index], 'geometrySha256': geometry,
                 'baselineGeometrySha256': geometry_hash(baseline[index], headers),
-                'pack': str(pack.relative_to(root)), 'packSha256': sha(pack),
-                'uv': str(uv.relative_to(root)), 'uvSha256': sha(uv),
-                'texture': str(texture.relative_to(root)), 'textureSha256': sha(texture),
+                'pack': str(pack.relative_to(candidate_root or root)), 'packSha256': sha(pack),
+                'uv': str(uv.relative_to(candidate_root or root)), 'uvSha256': sha(uv),
+                'texture': str(texture.relative_to(candidate_root or root)), 'textureSha256': sha(texture),
                 'width': 2048, 'height': 2048,
             })
-    destination = root / 'candidate-manifest.json'
+    destination = (candidate_root or root) / 'candidate-manifest.json'
     destination.write_text(json.dumps({'format': 1, 'state': 'development-not-runtime-selected', 'parts': rows}, indent=2) + '\n')
     return len(rows)
 
@@ -92,5 +92,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--files', type=Path, required=True)
     parser.add_argument('--root', type=Path, default=ROOT / 'integrations/charhd/production/party-reconstruction')
+    parser.add_argument('--candidate-root', type=Path, help='Explicit alternate head-only candidate root; leaves the historical registry unchanged')
     args = parser.parse_args()
-    print('Wrote', build(args.files, args.root), 'development head bindings')
+    print('Wrote', build(args.files, args.root, args.candidate_root), 'development head bindings')

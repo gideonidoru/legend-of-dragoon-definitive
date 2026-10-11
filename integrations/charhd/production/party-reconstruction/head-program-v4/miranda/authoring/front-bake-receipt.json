@@ -1,0 +1,19 @@
+{
+  "state": "development-needs-artistic-review",
+  "method": "one registered front facial source; coherent surface colors elsewhere",
+  "inputs": {
+    "head-smoothed.glb": "18376c246715ac8d0df9668abf4792f0727c2543fea27397395e8e4a360b1908",
+    "head-6000-basecolour.png": "62dbd310f75a88d6373ce98860bc0d7b3f012811833e65a960fb59f9c684ff40",
+    "head-paint-four-views-v1.png": "9fbcdca17cbc5b0194cf4b7c5ed708455218cd822d2e39c8c0f7ac7adc052cab",
+    "miranda-front-registration-v13.json": "0715325cc7bfae91750c26227e67e1be88de4025c581973687027d1e7bd436df"
+  },
+  "bakerSha256": "5f46d010146bae137d95a12497f1e618218fea6e67096777d108b72d56db22d6",
+  "anchorResidualPixels": 9.679712650596723e-13,
+  "minimumFacialWarpDeterminant": 1.0062977374855724,
+  "paintedTexels": 457740,
+  "fullyReplacedFacialTexels": 178945,
+  "preventedMisplacedFeatureTexels": 12428,
+  "triangles": 6000,
+  "faceProfilePaintLayers": 0,
+  "accepted": false
+}
