@@ -15,8 +15,11 @@ final class GameLease {
     receipt.setProperty("token", token); receipt.setProperty("created", Instant.now().toString());
     InstallStore.atomicProperties(root.resolve(PENDING), receipt); return token;
   }
-  static void validatePending(final Path root, final String token) throws IOException {
+  static void validateRoot(final Path root) throws IOException {
     for(Path p = root; p != null; p = p.getParent()) if(Files.isSymbolicLink(p)) throw new IOException("Linked game installation.");
+  }
+  static void validatePending(final Path root, final String token) throws IOException {
+    validateRoot(root);
     if(!token.matches("[a-f0-9-]{36}") || !token.equals(PackageManifest.readProperties(root.resolve(PENDING)).getProperty("token"))) throw new IOException("Invalid game launch handoff.");
   }
   static void recordRunning(final Path root, final String token) throws IOException {

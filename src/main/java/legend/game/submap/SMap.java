@@ -83,6 +83,7 @@ import legend.game.types.TextboxChar08;
 import legend.game.types.TextboxText84;
 import legend.game.types.TmdAnimationFile;
 import legend.game.ui.GameOverlay;
+import legend.game.unpacker.FileData;
 import legend.game.unpacker.Loader;
 import legend.lodmod.LodCharacterTemplates;
 import legend.lodmod.LodConfig;
@@ -103,7 +104,12 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import static legend.core.GameEngine.CONFIG;
 import static legend.core.GameEngine.DEFAULT_FONT;
@@ -273,6 +279,7 @@ public class SMap extends EngineState<SMap> {
   private int currentSubmapScene_800caaf8;
 
   private NewRootStruct newrootPtr_800cab04;
+  private long requiredLoadGeneration;
 
   private final MapTransitionData4c mapTransitionData_800cab24 = new MapTransitionData4c();
   private int mapTransitionTicks_800cab28;
@@ -470,6 +477,7 @@ public class SMap extends EngineState<SMap> {
 
   @Override
   public void destroy() {
+    this.requiredLoadGeneration++;
     sssqResetStuff();
   }
 
@@ -604,6 +612,17 @@ public class SMap extends EngineState<SMap> {
     this.createNewSave();
   }
 
+  private static int getInputMask(final InputAction action) {
+    if(action == INPUT_ACTION_GENERAL_MOVE_UP.get()) return 0x1000;
+    if(action == INPUT_ACTION_GENERAL_MOVE_RIGHT.get()) return 0x2000;
+    if(action == INPUT_ACTION_GENERAL_MOVE_DOWN.get()) return 0x4000;
+    if(action == INPUT_ACTION_GENERAL_MOVE_LEFT.get()) return 0x8000;
+    if(action == INPUT_ACTION_GENERAL_RUN.get()) return 0x40;
+    if(action == INPUT_ACTION_SMAP_INTERACT.get()) return 0x20;
+    if(action == INPUT_ACTION_SMAP_SNOWFIELD_WARP.get()) return 0x800;
+    return 0;
+  }
+
   @Override
   public void inputActionPressed(final InputAction action, final boolean repeat) {
     super.inputActionPressed(action, repeat);
@@ -612,101 +631,25 @@ public class SMap extends EngineState<SMap> {
       this.createNewSave();
     }
 
-    if(action == INPUT_ACTION_GENERAL_MOVE_UP.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x1000;
-      }
-
-      this.inputRepeat |= 0x1000;
-      this.inputHeld |= 0x1000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_RIGHT.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x2000;
-      }
-
-      this.inputRepeat |= 0x2000;
-      this.inputHeld |= 0x2000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_DOWN.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x4000;
-      }
-
-      this.inputRepeat |= 0x4000;
-      this.inputHeld |= 0x4000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_LEFT.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x8000;
-      }
-
-      this.inputRepeat |= 0x8000;
-      this.inputHeld |= 0x8000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_RUN.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x40;
-      }
-
-      this.inputRepeat |= 0x40;
-      this.inputHeld |= 0x40;
-    }
-
-    if(action == INPUT_ACTION_SMAP_INTERACT.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x20;
-      }
-
-      this.inputRepeat |= 0x20;
-      this.inputHeld |= 0x20;
-    }
-
-    if(action == INPUT_ACTION_SMAP_SNOWFIELD_WARP.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x800;
-      }
-
-      this.inputRepeat |= 0x800;
-      this.inputHeld |= 0x800;
-    }
+    final int mask = getInputMask(action);
+    if(!repeat) this.inputPressed |= mask;
+    this.inputRepeat |= mask;
+    this.inputHeld |= mask;
   }
 
   @Override
   public void inputActionReleased(final InputAction action) {
     super.inputActionReleased(action);
+    this.inputHeld &= ~getInputMask(action);
+  }
 
-    if(action == INPUT_ACTION_GENERAL_MOVE_UP.get()) {
-      this.inputHeld &= ~0x1000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_RIGHT.get()) {
-      this.inputHeld &= ~0x2000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_DOWN.get()) {
-      this.inputHeld &= ~0x4000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_LEFT.get()) {
-      this.inputHeld &= ~0x8000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_RUN.get()) {
-      this.inputHeld &= ~0x40;
-    }
-
-    if(action == INPUT_ACTION_SMAP_INTERACT.get()) {
-      this.inputHeld &= ~0x20;
-    }
-
-    if(action == INPUT_ACTION_SMAP_SNOWFIELD_WARP.get()) {
-      this.inputHeld &= ~0x800;
-    }
+  @Override
+  public void inputActionCancelled(final InputAction action) {
+    super.inputActionCancelled(action);
+    final int mask = ~getInputMask(action);
+    this.inputPressed &= mask;
+    this.inputRepeat &= mask;
+    this.inputHeld &= mask;
   }
 
   private int getRunInput(final int input) {
@@ -3230,7 +3173,11 @@ public class SMap extends EngineState<SMap> {
       case LOAD_SOBJ_ASSETS_AND_SCRIPTS_5 -> {
         this.unloadSubmapParticles_800c6870 = false;
         this.mediaLoadingStage_800c68e4 = SubmapMediaState.WAIT_FOR_SOBJ_ASSETS_AND_SCRIPTS_6;
-        this.submap.loadAssets(() -> this.mediaLoadingStage_800c68e4 = SubmapMediaState.FINALIZE_SUBMAP_LOADING_7);
+        final Submap loadingSubmap = this.submap;
+        this.awaitRequiredLoad("submap assets",
+          () -> this.submap == loadingSubmap && this.mediaLoadingStage_800c68e4 == SubmapMediaState.WAIT_FOR_SOBJ_ASSETS_AND_SCRIPTS_6,
+          loadingSubmap::loadAssets,
+          ignored -> this.mediaLoadingStage_800c68e4 = SubmapMediaState.FINALIZE_SUBMAP_LOADING_7);
       }
 
       // Load submap objects
@@ -4057,6 +4004,44 @@ public class SMap extends EngineState<SMap> {
 
   }
 
+  private record SavepointAssets(AnmFile anm1, AnmFile anm2, CContainer model, TmdAnimationFile animation,
+                                CContainer dustModel, TmdAnimationFile dustAnimation) {
+    private static SavepointAssets parse(final List<FileData> files) {
+      return new SavepointAssets(new AnmFile(files.get(0)), new AnmFile(files.get(1)),
+        new CContainer("Savepoint", files.get(2)), new TmdAnimationFile(files.get(3)),
+        new CContainer("Dust", files.get(4)), new TmdAnimationFile(files.get(5)));
+    }
+  }
+
+  private record StartupAssets(NewRootStruct root, SavepointAssets savepoint) { }
+
+  /** Worker completion never publishes state or throws a required-load failure outside the render owner. */
+  private <T> void awaitRequiredLoad(final String resource, final BooleanSupplier stillLoading,
+                                    final Supplier<CompletableFuture<T>> prepare, final Consumer<T> commit) {
+    final long generation = ++this.requiredLoadGeneration;
+    final CompletableFuture<T> preparation;
+    try {
+      preparation = prepare.get();
+    } catch(final RuntimeException failure) {
+      this.queueRequiredLoadCompletion(generation, resource, stillLoading, commit, null, failure);
+      return;
+    }
+    preparation.whenComplete((data, failure) -> this.queueRequiredLoadCompletion(generation, resource, stillLoading, commit, data, failure));
+  }
+
+  private <T> void queueRequiredLoadCompletion(final long generation, final String resource,
+                                              final BooleanSupplier stillLoading, final Consumer<T> commit,
+                                              final T data, final Throwable failure) {
+    RENDERER.addTask(() -> {
+      if(legend.game.EngineStates.currentEngineState_8004dd04 != this || generation != this.requiredLoadGeneration || !stillLoading.getAsBoolean()) return;
+      if(failure != null) {
+        final Throwable cause = failure instanceof CompletionException && failure.getCause() != null ? failure.getCause() : failure;
+        throw new IllegalStateException("Failed to prepare required " + resource, cause);
+      }
+      commit.accept(data);
+    });
+  }
+
   @Override
   @Method(0x800e5914L)
   public void tick() {
@@ -4081,23 +4066,24 @@ public class SMap extends EngineState<SMap> {
       }
 
       case LOAD_NEWROOT_1 -> {
-        loadFile("\\SUBMAP\\NEWROOT.RDT").thenAccept(data -> this.newrootPtr_800cab04 = new NewRootStruct(data));
-        loadDir("\\SUBMAP\\savepoint").thenAccept(files -> {
-          this.savepointAnm1 = new AnmFile(files.get(0));
-          this.savepointAnm2 = new AnmFile(files.get(1));
-          this.savepointTmd = new CContainer("Savepoint", files.get(2));
-          this.savepointAnimation = new TmdAnimationFile(files.get(3));
-          this.attachedSobjEffect.dustTmd = new CContainer("Dust", files.get(4));
-          this.attachedSobjEffect.dustAnimation = new TmdAnimationFile(files.get(5));
-        });
         this.smapLoadingStage_800cb430 = SubmapState.WAIT_FOR_NEWROOT_2;
+        this.awaitRequiredLoad("submap startup",
+          () -> this.smapLoadingStage_800cb430 == SubmapState.WAIT_FOR_NEWROOT_2,
+          () -> loadFile("\\SUBMAP\\NEWROOT.RDT").thenApply(NewRootStruct::new)
+            .thenCombine(loadDir("\\SUBMAP\\savepoint").thenApply(SavepointAssets::parse), StartupAssets::new),
+          assets -> {
+            this.newrootPtr_800cab04 = assets.root();
+            this.savepointAnm1 = assets.savepoint().anm1();
+            this.savepointAnm2 = assets.savepoint().anm2();
+            this.savepointTmd = assets.savepoint().model();
+            this.savepointAnimation = assets.savepoint().animation();
+            this.attachedSobjEffect.dustTmd = assets.savepoint().dustModel();
+            this.attachedSobjEffect.dustAnimation = assets.savepoint().dustAnimation();
+            this.smapLoadingStage_800cb430 = SubmapState.LOAD_ENVIRONMENT_3;
+          });
       }
 
-      case WAIT_FOR_NEWROOT_2 -> {
-        if(Loader.getLoadingFileCount() == 0) {
-          this.smapLoadingStage_800cb430 = SubmapState.LOAD_ENVIRONMENT_3;
-        }
-      }
+      case WAIT_FOR_NEWROOT_2 -> { }
 
       case LOAD_ENVIRONMENT_3 -> {
         this.mapTransitionTicks_800cab28 = 0;
@@ -4107,10 +4093,11 @@ public class SMap extends EngineState<SMap> {
         this.submap = new RetailSubmap(this, submapCut_80052c30, this.newrootPtr_800cab04, this.screenOffset_800cb568, this.collisionGeometry_800cbe08);
 
         this.smapLoadingStage_800cb430 = SubmapState.WAIT_FOR_ENVIRONMENT;
-        final Submap loadingSubmap=this.submap;
-        loadingSubmap.loadEnv().thenAccept(v -> RENDERER.addTask(() -> {
-          if(legend.game.EngineStates.currentEngineState_8004dd04 == this && this.submap == loadingSubmap && this.smapLoadingStage_800cb430 == SubmapState.WAIT_FOR_ENVIRONMENT) this.smapLoadingStage_800cb430 = SubmapState.START_LOADING_MEDIA_10;
-        }));
+        final Submap loadingSubmap = this.submap;
+        this.awaitRequiredLoad("submap environment",
+          () -> this.submap == loadingSubmap && this.smapLoadingStage_800cb430 == SubmapState.WAIT_FOR_ENVIRONMENT,
+          loadingSubmap::loadEnv,
+          ignored -> this.smapLoadingStage_800cb430 = SubmapState.START_LOADING_MEDIA_10);
       }
 
       case CHANGE_SUBMAP_4 -> {

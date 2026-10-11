@@ -133,7 +133,7 @@ def verify_installer(path):
                 digest_entry(archive, entry)  # Read every byte, validating CRC and decompression.
 
 
-def file_delivery_assets(package, contents):
+def file_delivery_assets(package, contents, include_env_aliases=True):
     """Bind per-file inventory byte-for-byte to the already verified complete ZIP."""
     with zipfile.ZipFile(package) as full, zipfile.ZipFile(contents) as manifest:
         entries = inventory(manifest, 8 * 1024**2, 3)
@@ -158,7 +158,7 @@ def file_delivery_assets(package, contents):
             if asset in result and result[asset] != value:
                 raise ValueError('Conflicting per-file blob identity')
             result[asset] = value
-            if re.fullmatch(r'bundled-mods/Env[1-4]HD-v[0-9.]+\.zip', name):
+            if include_env_aliases and re.fullmatch(r'bundled-mods/Env[1-4]HD-v[0-9.]+\.zip', name):
                 alias=name.split('/')[-1]
                 if alias in result and result[alias] != value:raise ValueError('Conflicting named EnvHD pack')
                 result[alias]=value

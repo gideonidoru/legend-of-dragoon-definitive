@@ -14,7 +14,7 @@ owned. Custom deliverables are public; originals and private diagnostics are not
 | World parchment backdrop | 1 source image | 1 | Gameplay and final quality pending |
 | Static continent terrain | 366 material bindings | 364 bindings / 292 masters | 1 uniform native, 1 wrapped material held; gameplay and final quality pending |
 | Battle floors, walls and scenery | 900 bindings across 89 nonempty stages | 549 bindings (24 pilot + 525 new), 518 new selected masters | All identified static candidate masters reviewed; 351 native bindings: 350 animation/context and one incomplete palette |
-| Field backgrounds/foregrounds | 650 source configurations; 5,528 unique visible images | 38 existing Skurfa packs; 4,917 EnvHD development images (4,886 neural and thirty-one painted) | All 5,162 generated images reviewed; 245 remaining bespoke holds and zero unreviewed images; 3 uniform sources native; 605 configurations have at least one selected layer, not complete scene coverage; script/route/visual validation pending |
+| Field backgrounds/foregrounds | 650 source configurations; 5,528 unique visible images | 38 existing Skurfa packs; 4,925 EnvHD development images (4,886 neural and thirty-nine painted) | All 5,162 generated images reviewed; 237 remaining bespoke holds and zero unreviewed images; 3 uniform sources native; 605 configurations have at least one selected layer, not complete scene coverage; script/route/visual validation pending |
 | Field props and scene overlays | Mixed pool: 481 field-object page hashes and 400 overlay page hashes | EnvHD 0 | Complete consumer/ownership/material census first; these are **not** 881 EnvHD jobs |
 | Animated environment surfaces | Exact frame/palette denominator unresolved; eight continent animated parts and 350 held battle bindings known | 0 HD animation families | Water, scrolling surfaces, scenery frames/palettes, mapping and validation |
 
@@ -25,7 +25,13 @@ No total-image completion percentage is claimed. Each
 row's exact remaining work and intentional exclusions are in the JSON ledger.
 All custom native/final-quality acceptance counts remain zero.
 
-The authoring branch selects twelve separately reviewed painted battle replacements:
+The [battle animation family checkpoint](ENVHD_BATTLE_ANIMATION_FAMILIES.md)
+explains all 350 animation/context bindings' isolated stage-local source cycles,
+including changing padding and initial transients. It selects no artwork and
+clears no hold; complete encounter upload/darkening/presentation contracts remain
+open. Its combined frame-hash counts are not an EnvHD authoring-job denominator.
+
+The published package selects twelve separately reviewed painted battle replacements:
 three Flanvel Tower materials, two stage-30 decorative panels and a stage-38
 static flame-shaped surface, plus a Shirley's Shrine plaque, stage-17 floor
 fragments, stage-45 aqua panel, stage-69 circular ornament and two Moon materials.
@@ -35,10 +41,17 @@ and individual comparisons remain separate from gameplay acceptance. The
 previous 506-master/513-binding runtime ledger is archived byte for byte as
 `battle-material-runtime-artwork-source-0af4f997.json`; the earlier six-painting
 selection is archived as `battle-material-runtime-artwork-source-a6a0b62f.json`.
-The published `definitive-alpha-2026-10-11-envhd` package source `0af4f997` and
-historical main entrypoint metadata `0b8df09a` exclude these twelve paintings. Published
-battle selection remains 537 total bindings until the next coordinated integration.
-Known static repair work on this authoring branch is 245 fields plus one terrain
+The published `definitive-current` package source `d7311334` includes these twelve
+paintings and 549 total selected battle bindings. Its field selection has 4,917
+images; the coordinated source candidate adds eight accepted field paintings for
+4,925 selected images. The candidate field additions require their own exact-source
+build and publication before the installer can retrieve them.
+The coordinated source candidate also selects 22 reviewed battle paintings for
+Forest, Barrens and Evergreen, bringing its painted battle selection to 34. They
+retain the prior twelve and all other atlas regions, layouts and visibility classes.
+The additional 22 require exact-source build and publication; native scene and
+final artwork acceptance remain pending.
+Known static repair work on this selected checkpoint is 237 fields plus one terrain
 mapping hold. The [Tiberoa investigation](ENVHD_TIBEROA_MAPPING.md) records the
 three unsigned-UV faces and complete upload evidence; it clears no hold. This
 does not count unresolved animation/prop families as completed.
@@ -81,23 +94,23 @@ source work, not completed or installed artwork.
 All 5,162 field candidates completed private generation and Python repair; 342
 backgrounds received source-color perimeter guards. All 5,162 generated images
 have been individually reviewed: 4,886 neural development baselines and 276
-original neural holds. Thirty-one selected painted replacements clear thirty-one
-of those holds for development selection, leaving 245 held sources and zero
-unreviewed images. The current candidate selects 4,917 public custom PNGs; its
+original neural holds. Thirty-two selected painted replacements clear thirty-two
+of those holds for development selection, leaving 244 held sources and zero
+unreviewed images. The current candidate selects 4,918 public custom PNGs; its
 painted inputs, prompts and source-bound repair receipts are also versioned.
 Original comparisons remain private, and held/uniform sources retain native art.
 
 The published combined installer includes 4,892 selected development field images.
-This authoring branch adds twenty-five selected fields: the earlier Queen Fury/Kazas fittings,
-eight organic/furnishing, eight weave/wood/foliage and seven selected bedding/upholstery repairs. Selection is 4,917,
-awaiting coordinated publication. The complete thirty-one-painting selection input is
-`field-bespoke-bedding-reviewed-selection.json`; prior foliage, fittings, organic and weave manifests remain
+This authoring branch adds twenty-six selected fields: the earlier Queen Fury/Kazas fittings,
+eight organic/furnishing, eight weave/wood/foliage, seven selected bedding/upholstery repairs and independently cleared Donau furnishing. Selection is 4,918,
+awaiting coordinated publication. The complete thirty-two-painting selection input is
+`field-bespoke-textiles-reviewed-selection.json`; prior foliage, fittings, organic and weave manifests remain
 byte-identical. Source-719, source-464, source-e050, source-e7eb and source-260c field controls preserve earlier selections.
 The previous maintenance installer used the historical source-476 checkpoint of 2,723.
 At that checkpoint 2,840 images had been reviewed, 117 were held and 2,322
 awaited review. Those are historical counters, not the current candidate's status.
 Archived generation/repair/review controls preserve their checkpoint counters;
-`field-runtime-artwork.json` records the current 4,917-image authoring selection. Field source
+`field-runtime-artwork.json` records the current 4,918-image authoring selection. Field source
 identities and selected visibility classes are checked independently of visual
 acceptance; all 72 new battle atlases pass source upload,
 palette, STP, black, padding and 36,584 original textured-face UV checks. Native
@@ -126,8 +139,8 @@ reproduces repaired pixels from freshly decoded source and unchanged raw tool ar
 The unchanged cutout recipe preserves alpha/black classes; tiny textile motifs and
 interior folds remain interpretive. The initial selection cleared eight development
 source holds. Independent review subsequently withdraws the full Deningrad bed and retains seven of the eight.
-Current remaining work is 245 field repairs plus the one terrain mapping hold
-(246 known static repairs).
+At the bedding withdrawal checkpoint, remaining work was 245 field repairs plus the one terrain mapping hold
+(246 known static repairs at that checkpoint).
 It does not complete the unresolved prop/animation inventory or native acceptance.
 
 Independent review retains the full Deningrad bed as a held custom candidate:
@@ -136,5 +149,10 @@ Exact alpha and repaired footprint coverage do not resolve that intent gap.
 `field-bespoke-bedding-reviewed-selection.json` selects 31 paintings and records
 that hold, preserving all 32 original candidate records in the unchanged bedding
 manifest. Runtime resources exclude the full bed and use its native source layer;
-all other 4,917 records remain exact. Current selection is 4,917 (4,886 neural plus 31
-painted), with 245 field holds plus one terrain hold. No recipes or thresholds change.
+all other 4,917 records remain exact at that checkpoint. Subsequent independent review and full source preflight add Donau cut 249, preserving all prior records. Current selection is 4,918 (4,886 neural plus 32 painted), with 244 field holds plus one terrain hold (245 static repairs). No recipes or thresholds change.
+
+The prop/animation raw-page figures above are historical discovery snapshots,
+not complete EnvHD material/image counts. See the [remaining discovery plan](ENVHD_REMAINING_DISCOVERY_PLAN.md)
+for fresh battle dependency checks, current prop route/raw-page counts, unresolved
+aliases and source-located workstreams with acceptance conditions. Current selected
+artwork and its source-ledger controls remain unchanged by that discovery work.

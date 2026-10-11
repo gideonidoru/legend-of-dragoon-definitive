@@ -1,0 +1,56 @@
+{
+  "decodedRgbaSha256": "df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b",
+  "generatedSha256": "17055e0b092d08111df6b19f86f9a93f51ce0df71ee70851a277ae16ee3a42a5",
+  "generatedSize": [
+    1145,
+    1374
+  ],
+  "sourceSize": [
+    40,
+    48
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "f93b0f145362e198ce148bb4e8165782871c2e89370f4084185415bbede7d212:-1",
+      "kind": "foreground",
+      "slot": 8,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 79,
+  "representativeLocation": "Bale",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generationVersion": 1,
+  "prompt": "Edit the FIRST reference image into ONE faithful high-definition game foreground texture fragment. The FIRST image controls composition, colors, crop, silhouette, proportions and shading; the SECOND image is the complete original scene for context only; the THIRD image is existing Skurfa HD art for the restrained painted surface finish only. Do not copy the third image's lighting, palette, geometry or imagery. Maintain the exact first-image canvas aspect ratio, its framing and all feature locations; do not add padding, complete missing objects, rotate, recenter or change camera. Smooth material detail with delicate highlights, natural worn edges and painted realism suitable for Legend of Dragoon pre-rendered field backgrounds. Preserve broad original values and local hue. No interface, text, letters, new glyphs, characters, logos or invented symbolic ornament. Output the texture fragment only, not the whole scene, not a comparison board. Native crop is 40 wide by 48 high (5:6 portrait). This is the cropped lit ochre stone/masonry doorframe corner on Bale's facade: a top lintel slopes down to the right into a right-hand upright; large dark/transparent doorway interior occupies left/bottom. Exact silhouette and perspective from original. Keep the pale cream/dull-ochre worn curved carved strokes across the top/right over dark brown-green recesses. Follow the existing irregular loop and sweep geometry conservatively; do not invent a new Celtic knot, leaf design, face, lettering or repeat pattern. The upright has broken, restrained horizontal masonry/material variations, darkest near the lower part. Preserve dim original light, warm dull stone hues and soft wear, with subtle HD detail but no bright gilding. Keep original missing regions transparent.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 14976,
+  "paintedGapPixelsExtended": 196,
+  "paintedUncoveredSourcePixels": 125,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 13,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    160,
+    192
+  ],
+  "outputSha256": "6e535483375e53f3444ebf769da79bfd66bef608ad446b50405318100e112b03",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/held-field-art-drafts/df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b/draft-input-v1.png",
+  "outputPath": "integrations/envhd/production/held-field-art-drafts/df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b/repaired-draft-v1.png",
+  "verdict": "source-fidelity-revision-needed",
+  "reason": "Both versions invent prominent stacked block joints and a strong pale loop pattern in the upright/lintel. Version2 correction does not remove this sufficiently; source motif identity and whole-facade continuity remain unproved. Original foreground remains selected native fallback."
+}

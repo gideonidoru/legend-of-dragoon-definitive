@@ -277,33 +277,27 @@ final class StreamingAudioTest {
     assertPlayedAudioSpeed(java.nio.file.Path.of("gfx/intro.mp4"));
   }
 
-  @Test void shippedOpeningCinematicAdvancesAtPlayedAudioSpeed(@org.junit.jupiter.api.io.TempDir final java.nio.file.Path temporary) throws Exception {
-    final var source = java.nio.file.Path.of("build/fmvhd/videos.zip");
-    org.junit.jupiter.api.Assumptions.assumeTrue(java.nio.file.Files.isRegularFile(source), "Build the pinned FMV payload before the actual opening check");
-    final var opening = temporary.resolve("opening.mp4");
-    try(final var zip = new java.util.zip.ZipFile(source.toFile()); final var input = zip.getInputStream(zip.getEntry("fmvhd/videos/OPENH.mp4"))) {
-      java.nio.file.Files.copy(input, opening);
-    }
-    assertPlayedAudioSpeed(opening);
+  @Test void shippedOpeningCinematicAdvancesAtPlayedAudioSpeed() throws Exception {
+    final var data = java.nio.file.Path.of("build/fmvhd/assets");
+    org.junit.jupiter.api.Assumptions.assumeTrue(java.nio.file.Files.isRegularFile(data.resolve("manifest.properties")), "Stage the pinned individual FMV payload before the actual opening check");
+    final FmvAssetManifest assets;
+    try(final var input = java.nio.file.Files.newInputStream(data.resolve("manifest.properties"))) { assets = FmvAssetManifest.read(input); }
+    assertPlayedAudioSpeed(data.resolve("videos/" + assets.films().get("OPENH").source().sha256() + ".mp4"));
   }
 
   private static void assertPlayedAudioSpeed(final java.nio.file.Path video) throws Exception {
     assertPlayedAudioSpeed(video, 8, 100);
   }
 
-  @Test void everyShippedFilmKeepsItsClockAcrossRenderRates(@org.junit.jupiter.api.io.TempDir final java.nio.file.Path temporary) throws Exception {
-    final var payload = java.nio.file.Path.of("build/fmvhd/videos.zip");
-    org.junit.jupiter.api.Assumptions.assumeTrue(java.nio.file.Files.isRegularFile(payload), "Build the pinned FMV payload before checking all films");
-    try(final var zip = new java.util.zip.ZipFile(payload.toFile())) {
-      final var films = zip.stream().filter(entry -> entry.getName().endsWith(".mp4")).toList();
-      assertEquals(18, films.size(), "Every shipped film must participate in the pacing check");
-      for(final var film : films) {
-        final var video = temporary.resolve("film.mp4");
-        try {
-          try(final var input = zip.getInputStream(film)) { java.nio.file.Files.copy(input, video); }
-          for(final int renderHz : new int[]{30, 60, 120}) assertPlayedAudioSpeed(video, 1, renderHz);
-        } finally { java.nio.file.Files.deleteIfExists(video); }
-      }
+  @Test void everyShippedFilmKeepsItsClockAcrossRenderRates() throws Exception {
+    final var data = java.nio.file.Path.of("build/fmvhd/assets");
+    org.junit.jupiter.api.Assumptions.assumeTrue(java.nio.file.Files.isRegularFile(data.resolve("manifest.properties")), "Stage the pinned individual FMV payload before checking all films");
+    final FmvAssetManifest assets;
+    try(final var input = java.nio.file.Files.newInputStream(data.resolve("manifest.properties"))) { assets = FmvAssetManifest.read(input); }
+    assertEquals(18, assets.films().size(), "Every native film binding must participate in the pacing check");
+    for(final String name : FmvAssetManifest.NAMES) {
+      final var video = data.resolve("videos/" + assets.films().get(name).source().sha256() + ".mp4");
+      for(final int renderHz : new int[]{30, 60, 120}) assertPlayedAudioSpeed(video, 1, renderHz);
     }
   }
 

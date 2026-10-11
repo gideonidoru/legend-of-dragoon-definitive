@@ -14,6 +14,29 @@ import java.util.HexFormat;
 public final class VideoCache {
   private VideoCache() { }
 
+  public static Path installed(final Path artworkRoot, final String digest, final long size) throws IOException {
+    if(!digest.matches("[0-9a-f]{64}") || size <= 0 || size > 512L * 1024 * 1024) throw new IOException("Invalid FMVHD asset metadata");
+    // The manager intentionally links the top-level gfx root to its verified
+    // release. Resolve that one support root; never accept links within FMV data.
+    final Path root = artworkRoot.toRealPath();
+    final Path data = root.resolve("fmvhd"), videos = data.resolve("videos");
+    if(!Files.isDirectory(data, LinkOption.NOFOLLOW_LINKS) || Files.isSymbolicLink(data)
+      || !Files.isDirectory(videos, LinkOption.NOFOLLOW_LINKS) || Files.isSymbolicLink(videos)) throw new IOException("Invalid FMVHD data directory");
+    final Path file = videos.resolve(digest + ".mp4");
+    if(!Files.isRegularFile(file, LinkOption.NOFOLLOW_LINKS) || Files.size(file) != size) throw new IOException("FMVHD installed movie is missing or has the wrong size");
+    final MessageDigest hash;
+    try { hash = MessageDigest.getInstance("SHA-256"); } catch(final NoSuchAlgorithmException e) { throw new AssertionError(e); }
+    try(final InputStream input = Files.newInputStream(file, LinkOption.NOFOLLOW_LINKS)) {
+      final byte[] buffer = new byte[65536]; long bytes = 0; int count;
+      while((count = input.read(buffer)) != -1) {
+        bytes += count; if(bytes > size) throw new IOException("FMVHD installed movie grew during verification");
+        hash.update(buffer, 0, count);
+      }
+      if(bytes != size || !HexFormat.of().formatHex(hash.digest()).equals(digest)) throw new IOException("FMVHD installed movie checksum mismatch");
+    }
+    return file;
+  }
+
   public static Path materialize(final Path root, final String digest, final long size, final InputStream resource) throws IOException {
     if(!digest.matches("[0-9a-f]{64}") || size <= 0 || size > 512L * 1024 * 1024) throw new IOException("Invalid FMVHD asset metadata");
     final Path absolute = root.toAbsolutePath().normalize();

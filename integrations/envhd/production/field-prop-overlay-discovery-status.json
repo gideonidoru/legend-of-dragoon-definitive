@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "scope": "Fresh source-located prop/overlay discovery status; private detailed index retained separately. No original pixels/scripts, absolute extraction paths or private diagnostic dump published.",
+  "sourceSelectionCheckpoint": "32f5db9ffd3859bb1436020a4897556c8622721e",
+  "routeBuilder": "scripts/modelshd-field-map.py",
+  "routeBuilderSha256": "95f275c4178cf1bafca65f87082d579758eb09156d8f605f1d1d4130332194a9",
+  "privateConsumerIndexSha256": "7ac91f315425a325204e50a4c36b4e501e80286c6b063c0d2d35a5545cee795f",
+  "sourceTableSha256": "bdfb716fe1a6646095a8727c38461bdbdb7e6974b6eb790228577f3d296adfa3",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "summary": {
+    "routedObjectModelRecords": 6993,
+    "routedOverlayModelRecords": 511,
+    "fieldObjectRawPageFiles": 6968,
+    "fieldObjectRawPageUniqueHashes": 505,
+    "fieldObjectRawPageFilesWithoutEnumeratedRouteHint": 0,
+    "routedOverlayTimFiles": 467,
+    "routedOverlayTimUniqueHashes": 400,
+    "ownershipResolvedEnvhdMaterials": 0,
+    "envhdMaterialImageDenominator": null,
+    "meaning": "Raw files, route records and hashes have different units. These are route hints, not EnvHD artwork jobs, recognized model/material counts or proof of route reachability. Physical-file absence has not been reconciled against aliases, sentinel routes or inherited source reuse and is not a confirmed runtime missing asset. The routed overlay TIM pool must be reconciled by source identity with the historical all-overlay snapshot, even when aggregate counts agree.",
+    "routedModelsWithoutPhysicalFile": 0,
+    "routedTextureReferencesWithoutPhysicalFile": 25,
+    "routedScriptReferencesWithoutPhysicalFile": 608,
+    "historicalFieldObjectRawPageSnapshot": {
+      "files": 6767,
+      "uniqueHashes": 481,
+      "scope": "Previous full-coverage.json source snapshot; not a complete EnvHD material/image denominator."
+    },
+    "fieldObjectRawPoolSnapshotDifference": {
+      "files": 201,
+      "uniqueHashes": 24,
+      "status": "requires-row-identity/scope/source-checkpoint-reconciliation"
+    }
+  },
+  "sourceCode": [
+    "src/main/java/legend/game/submap/RetailSubmap.java:252",
+    "src/main/java/legend/game/submap/RetailSubmap.java:300",
+    "src/main/java/legend/game/Models.java:141",
+    "src/main/java/legend/game/submap/SMap.java:2473"
+  ],
+  "remaining": [
+    "Reconcile every raw page against model/script/texture routes, aliases and explicitly explained unused/sentinel records.",
+    "Decode model faces and ordered page/CLUT uploads; attach material/page/palette/source-crop identifiers to actual consumers.",
+    "Classify environment/CharHD/FxHD/UIHD/shared ownership with source-context evidence; routeRole prop and ModelsHD scene bucket are not sufficient.",
+    "Deduplicate decoded environment material/frame/palette identities and publish the complete EnvHD denominator only after reconciliation."
+  ]
+}

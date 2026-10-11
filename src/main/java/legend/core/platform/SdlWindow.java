@@ -449,8 +449,9 @@ public class SdlWindow extends Window {
   }
 
   private void tick() {
-    SDL_GL_SwapWindow(this.window);
+    // Present this tick's completed frame rather than delaying it until the next tick.
     this.events().onDraw();
+    SDL_GL_SwapWindow(this.window);
     if(!this.simulationConsumesInput()) this.manager.clearPressed();
   }
 }

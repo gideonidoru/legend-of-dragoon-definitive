@@ -73,7 +73,7 @@ class FileDeliveryTest {
     final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("repair-forbidden")); store.install(original); final var before = store.state();
     final List<URI> requested = new ArrayList<>();
     assertThrows(IOException.class, () -> ReleaseUpdates.repair(store, InstallProgress.NONE, request -> { requested.add(request.uri()); return new Response(request, InputStream.nullInputStream(), HttpHeaders.of(Map.of(), (key, value) -> true), 403); }));
-    assertEquals(1, requested.size()); assertTrue(requested.getFirst().getPath().contains("/tags/")); assertEquals(before, store.state()); store.verifyInstalled();
+    assertEquals(1, requested.size()); assertEquals("/repos/gideonidoru/legend-of-dragoon-definitive/releases", requested.getFirst().getPath()); assertEquals(before, store.state()); store.verifyInstalled();
   }
   @Test void retiredRepairRejectsCurrentReleaseOlderThanVerifiedInstalledDate() throws Exception {
     final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("repair-downgrade")); store.install(original);
@@ -201,7 +201,7 @@ class FileDeliveryTest {
     final Path pack = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack); final Properties before = store.state();
     Files.writeString(store.data(before).resolve("saves/owner.txt"), "save"); final Path workspace = store.prepareLaunch(); Files.writeString(workspace.resolve("files/version"), "5");
     assertTrue(store.install(pack, "", null, InstallProgress.NONE, true).contains("Complete reinstall")); assertNotEquals(before.getProperty("data"), store.state().getProperty("data")); assertEquals("save", Files.readString(store.data(store.state()).resolve("saves/owner.txt"))); assertFalse(store.discsPrepared()); store.verifyInstalled();
-    try(final var files = Files.list(store.root())) { assertTrue(files.anyMatch(path -> path.getFileName().toString().startsWith("release-recovery-"))); }
+    try(final var files = Files.list(store.root())) { assertFalse(files.anyMatch(path -> path.getFileName().toString().startsWith("release-recovery-"))); }
   }
   @Test void repairCannotSilentlyUpgradeToAnotherPackageIdentity() throws Exception {
     final Path pack = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack);
@@ -209,4 +209,20 @@ class FileDeliveryTest {
     final Map<String, byte[]> served = new HashMap<>(); final var candidate = contents(next, served); final List<String> requested = new ArrayList<>();
     assertThrows(IOException.class, () -> FileDelivery.install(store, candidate, InstallProgress.NONE, connection(served, requested), true)); assertEquals(1, requested.size()); store.verifyInstalled();
   }
+  @Test void initialFmvSplitImportsAllMoviesFromVerifiedInstalledJarWithoutDownloads() throws Exception {
+    final var films = new legend.definitive.fmv.FmvSplitFixture();
+    final Path old = pack(); films.jar(old, true, "legacy-code"); refresh(old);
+    final var store = new InstallStore(this.temporary.resolve("fmv-install")); store.install(old);
+    final var before = store.state(); final Path active = store.root().resolve("releases").resolve(before.getProperty("version"));
+    Files.writeString(store.data(before).resolve("saves/owner.txt"), "preserved save");
+    final String pinnedJar = PackageManifest.sha256(active.resolve("bundled-mods/FMVHD-v0.1.0.jar"));
+    final Path next = this.temporary.resolve("split"); InstallStore.copyTree(old, next); films.split(next, "small-code"); refresh(next);
+    final Map<String, byte[]> served = new HashMap<>(); final var candidate = contents(next, served); final List<String> requested = new ArrayList<>();
+    FileDelivery.install(store, candidate, InstallProgress.NONE, connection(served, requested), false);
+    for(final byte[] video : films.movies.values()) assertFalse(requested.contains("file-" + legend.definitive.fmv.FmvSplitFixture.sha(video)), "Unchanged legacy movie must be imported locally");
+    assertEquals(pinnedJar, PackageManifest.sha256(active.resolve("bundled-mods/FMVHD-v0.1.0.jar")));
+    store.verifyInstalled(); assertEquals("preserved save", Files.readString(store.data(store.state()).resolve("saves/owner.txt")));
+    assertEquals("preserved save", Files.readString(store.data(before).resolve("saves/owner.txt")));
+  }
+
 }

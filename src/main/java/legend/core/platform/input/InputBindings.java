@@ -81,6 +81,7 @@ public final class InputBindings {
   }
 
   public static void overwriteBindings(final InputAction action, final List<InputActivation> activations) {
+    PLATFORM.resetActionState(action);
     // Clear all existing bindings for the action
     for(final var entry : BINDINGS.entrySet()) {
       final Iterator it = entry.getValue().iterator();

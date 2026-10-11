@@ -46,6 +46,27 @@ class StorageHardeningTest {
     for(final Path path : inputs) command.add(path.toString());
     return new ProcessBuilder(command).redirectErrorStream(true).redirectOutput(this.temporary.resolve(mode + "-child.log").toFile()).start();
   }
+  @Test void gameChildRejectsLinkedRootBeforeCreatingExternalLease() throws Exception {
+    final Path external = this.temporary.resolve("external-root"); Files.createDirectories(external);
+    Files.writeString(external.resolve("owner.conf"), "preserve external owner bytes");
+    final Path linked = this.temporary.resolve("linked-game"); Files.createSymbolicLink(linked, external);
+    this.verifyRejectedLinkedGame(linked, external);
+  }
+  @Test void gameChildRejectsLinkedAncestorBeforeCreatingExternalLease() throws Exception {
+    final Path external = this.temporary.resolve("external-parent"); Files.createDirectories(external.resolve("installation"));
+    Files.writeString(external.resolve("installation/owner.conf"), "preserve external owner bytes");
+    final Path linked = this.temporary.resolve("linked-parent"); Files.createSymbolicLink(linked, external);
+    this.verifyRejectedLinkedGame(linked.resolve("installation"), external.resolve("installation"));
+  }
+  private void verifyRejectedLinkedGame(final Path root, final Path external) throws Exception {
+    final Process child = start("linked-game-root", root, List.of());
+    try {
+      assertTrue(child.waitFor(10, TimeUnit.SECONDS)); assertEquals(97, child.exitValue(), Files.readString(this.temporary.resolve("linked-game-root-child.log")));
+      assertTrue(Files.readString(this.temporary.resolve("linked-game-root-child.log")).contains("Linked game installation."));
+      assertEquals("preserve external owner bytes", Files.readString(external.resolve("owner.conf")));
+      try(final var entries = Files.list(external)) { assertEquals(Set.of("owner.conf"), entries.map(path -> path.getFileName().toString()).collect(java.util.stream.Collectors.toSet()), "Rejected game must not create an external lease or receipt"); }
+    } finally { if(child.isAlive()) { child.destroyForcibly(); assertTrue(child.waitFor(10, TimeUnit.SECONDS)); } }
+  }
   @Test void preparationRejectsLinkedOutputBeforeStartingAndKeepsExternalBytes() throws Exception {
     final var store = install("linked-log"); DiscImporter.importDiscs(store, discs("log-"));
     final Path external = this.temporary.resolve("protected-save"); Files.writeString(external, "preserve owner bytes");
@@ -290,7 +311,7 @@ class StorageHardeningTest {
       else store.install(this.temporary.resolve("bad-receipts-" + action + "-pack"), "", null, InstallProgress.NONE, action.equals("reinstall"));
       return null;
     });
-    assertEquals("keep", Files.readString(save)); assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
+    assertEquals("keep", Files.readString(store.data(store.state()).resolve("saves/owner"))); assertFalse(Files.exists(store.root().resolve(GameLease.PENDING))); assertFalse(Files.exists(store.root().resolve(GameLease.RUNNING)));
   }
   private Path leasePackage(final boolean returningWorker) throws Exception {
     final Path pack = this.fixtures.pack("lease-package", PackageManifest.hostPlatform());
@@ -304,6 +325,12 @@ class StorageHardeningTest {
     final var manifest = new Manifest(); manifest.getMainAttributes().putValue("Manifest-Version", "1.0"); manifest.getMainAttributes().putValue("Main-Class", ManagerMain.class.getName());
     try(final var jar = new JarOutputStream(Files.newOutputStream(pack.resolve("definitive-manager.jar")), manifest); final var paths = Files.walk(output.resolve("legend/definitive/manager"))) {
       for(final Path path : paths.filter(p -> p.toString().endsWith(".class")).toList()) { jar.putNextEntry(new JarEntry(output.relativize(path).toString())); jar.write(Files.readAllBytes(path)); jar.closeEntry(); }
+      // The production manager includes the strict shared external movie inventory helpers.
+      try(final var movieClasses = Files.walk(output.resolve("legend/definitive/fmv"))) {
+        for(final Path path : movieClasses.filter(p -> p.getFileName().toString().matches("Fmv(?:AssetManifest|PackageAssets).*\\.class")).toList()) {
+          jar.putNextEntry(new JarEntry(output.relativize(path).toString())); jar.write(Files.readAllBytes(path)); jar.closeEntry();
+        }
+      }
       jar.putNextEntry(new JarEntry("legend/definitive/manager/managed-log4j2.xml"));
       try(final var resource = InstallStore.class.getResourceAsStream("managed-log4j2.xml")) { assertNotNull(resource); resource.transferTo(jar); } jar.closeEntry();
     }

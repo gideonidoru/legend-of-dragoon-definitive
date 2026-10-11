@@ -1,0 +1,189 @@
+{
+  "schema": 1,
+  "scope": "Unselected custom-art draft history only. These attempts clear no source hold and are not inputs to runtime selection. Original source/context/diagnostic guides and comparison boards remain private. No pinned recipe, threshold, runtime resource, selected ledger or other mod change.",
+  "sourceSelectionBaseCommit": "32f5db9ffd3859bb1436020a4897556c8622721e",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "selectedFieldsUnchanged": 4917,
+  "selectedPaintedFieldsUnchanged": 31,
+  "remainingHeldFieldsUnchanged": 245,
+  "terrainMappingHoldsUnchanged": 1,
+  "knownRemainingStaticRepairsUnchanged": 246,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "745736c6a0d1c9a694b2295793ff1e4573a9861c9f999995ce85fdbecafd3d90",
+      "representativeLocation": "Evergreen Frst",
+      "representativeCut": 339,
+      "sourceSize": [
+        92,
+        24
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "fb9c3264300bfc8b7df87d11074e9734fdcca61a32389ead8d11c86c8b90fbea:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "verdict": "intent-revision-needed",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "attempts": [
+        {
+          "version": 1,
+          "generatedBy": "builtin-imagegen",
+          "generatedPath": "integrations/envhd/production/held-field-art-drafts/745736c6a0d1c9a694b2295793ff1e4573a9861c9f999995ce85fdbecafd3d90/draft-input-v1.png",
+          "generatedSha256": "8ce0ccc88d39c364060a722ced9f3918bfb988c8a434f05051d9636c69e8f23f",
+          "generatedInputMode": "RGBA",
+          "generatedSize": [
+            2172,
+            724
+          ],
+          "prompt": "Use case: precise-object-edit. Asset: one independent prerendered environment foreground texture for Legend of Dragoon Definitive EnvHD. Image1 is the authoritative original isolated cutout; image2 is original Evergreen Forest scene context for role and lighting only. Repaint image1 as restrained detailed hand-painted HD game artwork. This is a low sloping moss/short ground-cover bank along the LEFT wooded path, not a wall, cloth, hedge or new plant. Preserve the exact 92:24 full canvas aspect and original occupied silhouette: straight vertical left crop, shallow irregular top descending right, gently rounded far-right end, dark diagonal lower-left shadow and muted olive-green brighter right/top surface. Restore fine clustered moss tufts and short fibrous grass texture at the same original density and color distribution. Keep it low, dense and dark to blend into the wooded path. Do not add long grass stems, bushes, flowers, rocks, carved cracks, buildings, trunks, a new shadow or extra soil beyond the source outline. Do not brighten, recenter, crop, rotate, pad or change slope/proportions. Only refine the source surface; all source shapes/lighting planes/negative space remain. Output exactly one isolated HD texture with real transparency outside the source, no background, labels, borders or comparison board. Exact 92:24 aspect, no padding.",
+          "sourceContextUsed": true,
+          "privateDiagnosticGuidesPublished": false,
+          "runtimeSelected": false,
+          "sourceCanvasAndVisibility": "rejected",
+          "verdict": "canvas-revision-needed",
+          "reason": "Painted cutout changed the source canvas aspect ratio",
+          "repairPerformed": false
+        },
+        {
+          "version": 2,
+          "generatedBy": "builtin-imagegen",
+          "generatedPath": "integrations/envhd/production/held-field-art-drafts/745736c6a0d1c9a694b2295793ff1e4573a9861c9f999995ce85fdbecafd3d90/draft-input-v2.png",
+          "generatedSha256": "74244aba060e81ab7883805369354b17936c987525d4b165d06909162b6779e2",
+          "generatedInputMode": "RGBA",
+          "generatedSize": [
+            2005,
+            784
+          ],
+          "prompt": "Fix only framing and source footprint for this EnvHD moss-ground-edge texture. Image1 is authoritative original, image2 is the HD draft to correct, image3 original forest context. The draft was rejected because its canvas was3:1 instead of original92:24. REQUIRED OUTPUT PNG DIMENSIONS:2300x600 pixels, exact92:24 ratio. Use the whole original full canvas, no extra top/bottom padding. Shape and surface occupy exactly the source footprint: straight left edge, original shallow irregular top, low descending bank terminating at rounded right edge, original dark lower-left slope shading and muted olive/yellow-green brighter right. Keep finely textured low moss/very short ground cover only. No long stems, flowers, shrubs, new rocks, cracks or new objects. Do not change source slope/shape, rotate, recenter or vertically stretch. Preserve original silhouette and palette. Make a2300x600 full-canvas isolated texture with actual transparency ONLY where the source is empty, no labels, border, text, scene or comparison board. Canvas dimensions2300x600 are mandatory; exact source aspect, no padding.",
+          "sourceContextUsed": true,
+          "privateDiagnosticGuidesPublished": false,
+          "runtimeSelected": false,
+          "sourceCanvasAndVisibility": "rejected",
+          "verdict": "canvas-revision-needed",
+          "reason": "Painted cutout changed the source canvas aspect ratio",
+          "repairPerformed": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab",
+      "representativeLocation": "Deningrad",
+      "representativeCut": 347,
+      "sourceSize": [
+        30,
+        36
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "fa1be823ed0c5a181dbf078b5acd8ed1dd993c32a5093a4d6adbcc1bc49e4087:-1",
+          "kind": "foreground",
+          "slot": 11,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "verdict": "intent-revision-needed",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "attempts": [
+        {
+          "version": 1,
+          "generatedBy": "builtin-imagegen",
+          "generatedPath": "integrations/envhd/production/held-field-art-drafts/a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab/draft-input-v1.png",
+          "generatedSha256": "ae3bd4ea2ccf9ea707020c8ce6e05a19e0a42c6aab66f734f1228365d8b0b429",
+          "generatedInputMode": "RGB",
+          "generatedSize": [
+            1145,
+            1374
+          ],
+          "prompt": "Use case: precise-object-edit. Asset: one prerendered environment foreground texture for Legend of Dragoon Definitive EnvHD. Image1 is the authoritative original 30x36 image to refine. Image2 is the original snow-covered Deningrad street for source-context lighting/role only. Image3 is a brightened original diagnostic for visibility, not final exposure. Preserve the complete OPAQUE original canvas exactly: this cropped recessed warm-brown wood door/panel has a dark arched upper inset, narrow dark left vertical division, original subtle diagonal/staggered incised wood markings across the central brown area, cool dark green-grey outer frame, and pale existing snowy sill/lower-right surround. Repaint into restrained detailed hand-painted HD game art while matching the original perspective, framing, dark upper illumination, brown/gold tone distribution, every major material boundary and the fine original marking arrangement. Recover the source's small diagonal/interrupted lines without inventing a new diamond emblem, swirls, writing, geometric logo, knob, hinge or decorative object. Do not turn the door into a blank flat board or broad generic chevrons. The small incisions must follow the source locations and direction; improve material finish only. Keep the inset door dim as the original, not the bright guide. Exact30:36 canvas aspect, full original opaque frame and snow included; no transparency, padding, new background, text, label, logo, border or comparison board. Output one complete upgraded texture.",
+          "sourceContextUsed": true,
+          "privateDiagnosticGuidesPublished": false,
+          "runtimeSelected": false,
+          "sourceCanvasAndVisibility": "pass",
+          "repairReceipt": {
+            "scale": 4,
+            "sourceVisiblePixelsAtTargetScale": 17280,
+            "paintedGapPixelsExtended": 0,
+            "paintedUncoveredSourcePixels": 0,
+            "minimumPaintedCoverageAlpha": 16,
+            "minimumPaintedAnchorAlpha": 128,
+            "maximumExtensionSquaredTargetPixels": 0,
+            "sourceAlphaExact": true,
+            "visibleBlackExact": true,
+            "edgeAveraging": false,
+            "algorithmPath": "scripts/repair-envhd-painted-cutout.py",
+            "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+            "sourceSize": [
+              30,
+              36
+            ],
+            "targetSize": [
+              120,
+              144
+            ],
+            "outputPath": "integrations/envhd/production/held-field-art-drafts/a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab/repaired-draft-v1.png",
+            "outputSha256": "0d28ac9740743372a0325865fe9dd69cfaf171302e7d842c802a5a127f4f09e3"
+          },
+          "verdict": "intent-revision-needed",
+          "reason": "Source fine diagonal/interrupted marking arrangement is not established by the painting; broad chevron/grain interpretation remains despite subdued second draft. Do not select on coverage/alpha alone."
+        },
+        {
+          "version": 2,
+          "generatedBy": "builtin-imagegen",
+          "generatedPath": "integrations/envhd/production/held-field-art-drafts/a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab/draft-input-v2.png",
+          "generatedSha256": "7f67f31bbfddda63a275e6a3a6dd5aef94e5a6a8f989e5e9e0b8981bc6aaa32b",
+          "generatedInputMode": "RGB",
+          "generatedSize": [
+            1145,
+            1374
+          ],
+          "prompt": "Correct the source fidelity of the EnvHD Deningrad recessed door. Image1 is authoritative original; image2 is rejected HD draft; image3 original street context; image4 brightened original for diagnostic visibility only, not final exposure. The draft changed the source's fine subtle incision arrangement into three bold generic chevron plank joints, added split/chipped boards and exaggerated the white frost on the upper/right frame. REMOVE those invented large V-shaped plank boundaries, deep broken joints, bright upper frost and heavy grunge. Preserve the original dark arched inset, thin left vertical separation and cool muted grey-green outer frame at their precise source positions. Follow the ORIGINAL faint short staggered diagonal and vertical marks across the brown inset, with the same small scale, direction and distribution asimage1. These are understated surface marks, not new geometric emblems or replacement carpentry. Restore the source's smoother dim brown wood, modest golden lower-area lighting and dark upper-area shade. The pale bottom/right snow or surround must follow image1 exactly, without increasing whiteness/area around the arch. No new hardware, writing, swirl or object. Do not simplify to a blank slab, invent a new pattern, move material boundaries or recompose. Exact30:36 canvas aspect, complete original OPAQUE canvas, no padding, transparency, labels, borders, comparison board or scene. Output one source-faithful finished texture.",
+          "sourceContextUsed": true,
+          "privateDiagnosticGuidesPublished": false,
+          "runtimeSelected": false,
+          "sourceCanvasAndVisibility": "pass",
+          "repairReceipt": {
+            "scale": 4,
+            "sourceVisiblePixelsAtTargetScale": 17280,
+            "paintedGapPixelsExtended": 0,
+            "paintedUncoveredSourcePixels": 0,
+            "minimumPaintedCoverageAlpha": 16,
+            "minimumPaintedAnchorAlpha": 128,
+            "maximumExtensionSquaredTargetPixels": 0,
+            "sourceAlphaExact": true,
+            "visibleBlackExact": true,
+            "edgeAveraging": false,
+            "algorithmPath": "scripts/repair-envhd-painted-cutout.py",
+            "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+            "sourceSize": [
+              30,
+              36
+            ],
+            "targetSize": [
+              120,
+              144
+            ],
+            "outputPath": "integrations/envhd/production/held-field-art-drafts/a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab/repaired-draft-v2.png",
+            "outputSha256": "f5751f085b2c553ce7f340c78706e9a9371d2df4f9ef85c9d69b33d21f3a76e8"
+          },
+          "verdict": "intent-revision-needed",
+          "reason": "Source fine diagonal/interrupted marking arrangement is not established by the painting; broad chevron/grain interpretation remains despite subdued second draft. Do not select on coverage/alpha alone."
+        }
+      ]
+    }
+  ]
+}

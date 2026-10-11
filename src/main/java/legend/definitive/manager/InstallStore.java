@@ -46,6 +46,7 @@ public final class InstallStore {
     if(!deferRecovery && (Files.exists(this.root.resolve(".disc-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
       || Files.exists(this.root.resolve(".release-repair-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
       || Files.exists(this.root.resolve(".bootstrap-transaction.properties"), LinkOption.NOFOLLOW_LINKS)
+      || Files.exists(this.root.resolve(CleanReinstall.JOURNAL), LinkOption.NOFOLLOW_LINKS)
       || !Files.exists(this.root.resolve("state.properties")) && Files.exists(this.root.resolve(".state-last-good.properties")))) {
       try(final var operation = this.operation()) { /* Recovery runs before missing paths are created. */ }
     }
@@ -66,7 +67,7 @@ public final class InstallStore {
   }
 
   private void checkOwnedPaths() throws IOException {
-    for(final String name : new String[]{".definitive-owned", "state.properties", ".state-last-good.properties", ".disc-transaction.properties", ".release-repair-transaction.properties", ".bootstrap-transaction.properties", ".game-lock", GameLease.PENDING, GameLease.RUNNING, ".operation-lock", "releases", "data", "workspaces", "snapshots", "isos", "definitive-manager.jar", "bootstrap-java", "Play Game.sh", "Manage Installation.sh", ".java-path", "launcher.log"}) {
+    for(final String name : new String[]{".definitive-owned", "state.properties", ".state-last-good.properties", ".disc-transaction.properties", ".release-repair-transaction.properties", ".bootstrap-transaction.properties", CleanReinstall.JOURNAL, ".game-lock", GameLease.PENDING, GameLease.RUNNING, ".operation-lock", "releases", "data", "workspaces", "snapshots", "isos", "definitive-manager.jar", "bootstrap-java", "Play Game.sh", "Manage Installation.sh", ".java-path", "launcher.log"}) {
       if(Files.isSymbolicLink(this.root.resolve(name))) throw new IOException("Unexpected link in installation: " + name);
     }
   }
@@ -90,6 +91,7 @@ public final class InstallStore {
       this.recoverState();
       this.recoverDiscs();
       this.recoverBootstrap();
+      CleanReinstall.recover(this, InstallProgress.NONE);
       return new Operation(owned);
     } catch(final IOException | RuntimeException failure) {
       try { if(owned.gameLease != null) owned.gameLease.close(); }
@@ -156,9 +158,14 @@ public final class InstallStore {
     return this.install(source, releaseAssetId, publishedAt, progress, false);
   }
   String install(final Path source, final String releaseAssetId, final java.time.Instant publishedAt, final InstallProgress progress, final boolean fullReinstall) throws IOException {
+    return this.install(source, releaseAssetId, publishedAt, progress, fullReinstall, null);
+  }
+  String install(final Path source, final String releaseAssetId, final java.time.Instant publishedAt, final InstallProgress progress, final boolean fullReinstall, final ReleaseUpdates.CurrentRevision revision) throws IOException {
     try(final var operation = this.operation()) {
       final Properties active = this.state();
-      if(publishedAt != null && !active.getProperty("releasePublishedAt", "").isEmpty()) {
+      if(revision != null) CurrentRelease.requireAllowed(active, revision);
+      else if(CurrentRelease.generation(active, "acceptedGeneration") > 0) throw new IOException("Choose a verified current build before updating this installation.");
+      if(revision == null && publishedAt != null && !active.getProperty("releasePublishedAt", "").isEmpty()) {
         final java.time.Instant installed;
         try { installed = java.time.Instant.parse(active.getProperty("releasePublishedAt")); }
         catch(final java.time.DateTimeException failure) { throw new IOException("Invalid installed release ordering. No update was activated.", failure); }
@@ -177,8 +184,10 @@ public final class InstallStore {
         progress.phase("Verifying installed files", "Checking the engine, libraries, artwork and license inventory", 82);
         final PackageManifest manifest = PackageManifest.read(staged);
         manifest.verify(staged, PackageManifest.hostPlatform());
+        if(revision != null && (!revision.sourceRevision().equals(manifest.metadata().getProperty("sourceRevision")) || !"definitive-current".equals(manifest.metadata().getProperty("releaseTag")))) throw new IOException("Package does not match the verified current build.");
         forceTree(staged);
         final Properties old = this.state();
+        try(final var clean = fullReinstall ? CleanReinstall.prepare(this, old, manifest) : null) {
         final Path release = this.root.resolve("releases").resolve(manifest.id());
         if(Files.exists(release)) {
           if(Files.isSymbolicLink(release)) throw new IOException("Unexpected linked release. No external files were changed.");
@@ -203,17 +212,21 @@ public final class InstallStore {
           this.writeLaunchers(release);
           old.setProperty("installedReleaseTag", manifest.metadata().getProperty("releaseTag", ""));
           this.verifyInstalled();
+          if(revision != null) CurrentRelease.activate(old, old, revision);
           if(!releaseAssetId.isEmpty()) old.setProperty("releaseAssetId", releaseAssetId); if(publishedAt != null) old.setProperty("releasePublishedAt", publishedAt.toString()); atomicProperties(this.root.resolve("state.properties"), old);
           progress.phase("Installation verified", this.root.toString(), 100);
           return "This version is already installed.";
         }
 
-        final String dataId = "data-" + UUID.randomUUID();
+        final String dataId = fullReinstall ? clean.dataId() : "data-" + UUID.randomUUID();
         final Path nextData = this.root.resolve("data").resolve(dataId);
         final String snapshotId;
-        if(old.containsKey("version")) {
+        if(fullReinstall) {
+          snapshotId = "";
+          Files.move(clean.staged(), nextData, StandardCopyOption.ATOMIC_MOVE);
+        } else if(old.containsKey("version")) {
           final Path activeData = this.data(old);
-          snapshotId = "snapshot-" + UUID.randomUUID();
+          snapshotId = "snapshot2-" + UUID.randomUUID();
           final Path snapshot = this.root.resolve("snapshots").resolve(snapshotId);
           copyTree(activeData, snapshot);
           writeInventory(snapshot);
@@ -243,14 +256,21 @@ public final class InstallStore {
         next.setProperty("previousReleasePublishedAt", old.getProperty("releasePublishedAt", ""));
         if(!releaseAssetId.isEmpty()) next.setProperty("releaseAssetId", releaseAssetId);
         if(publishedAt != null) next.setProperty("releasePublishedAt", publishedAt.toString());
+        CurrentRelease.activate(next, old, revision);
         progress.phase("Creating the launcher", "Writing Play Game.sh and activating the verified version", 95);
         this.writeLaunchers(release);
         forceTree(nextData);
         this.verifyInstalled(next);
+        if(fullReinstall) {
+          for(final String key : new ArrayList<>(next.stringPropertyNames())) if(key.startsWith("previous") || key.startsWith("retained") || key.startsWith("recovery")) next.remove(key);
+          CleanReinstall.journal(this.root, next);
+        }
         atomicProperties(this.root.resolve("state.properties"), next);
+        if(fullReinstall) CleanReinstall.recover(this, progress);
         progress.phase("Installation verified", this.root.toString(), 100);
-        if(fullReinstall) return "Complete reinstall finished. All application files were replaced; your saves, settings, custom mods and disc images are retained. Prepare your discs again.";
+        if(fullReinstall) return "Complete reinstall finished. Old application versions and extracted files were removed. Your disc images, saves, configurations and custom mods are preserved; distinct older personal files are in recovered-reinstall. Prepare your discs again.";
         return old.containsKey("version") ? "Update installed. Previous engine and pre-update data are retained for rollback." : "Installed. Import your discs, then add Play Game.sh to Steam.";
+        }
       } finally { if(!Files.exists(this.root.resolve(".release-repair-transaction.properties"), LinkOption.NOFOLLOW_LINKS)) deleteOwnedTree(staged); }
     }
   }
@@ -265,7 +285,7 @@ public final class InstallStore {
     if(!Files.isDirectory(this.data(state))) throw new IOException("Installation data folder is missing. Retry installation.");
     for(final String name : new String[]{"Play Game.sh", "Manage Installation.sh", "definitive-manager.jar", "bootstrap-java"}) if(!Files.isRegularFile(this.root.resolve(name), LinkOption.NOFOLLOW_LINKS)) throw new IOException("Launcher file is missing: " + name + ". Retry installation.");
     this.verifyBootstrap();
-    if(!Files.isExecutable(this.root.resolve("Play Game.sh")) || !Files.isExecutable(this.root.resolve("bootstrap-java"))) throw new IOException("This drive does not allow executable launchers. Choose an executable filesystem, then retry installation.");
+    if(!Files.isExecutable(this.root.resolve("Play Game.sh")) || !Files.isExecutable(this.root.resolve("Manage Installation.sh")) || !Files.isExecutable(this.root.resolve("bootstrap-java"))) throw new IOException("This drive does not allow executable launchers. Choose an executable filesystem, then retry installation.");
   }
 
   private void verifyBootstrap() throws IOException { this.verifiedRouterRelease(); }
@@ -298,11 +318,11 @@ public final class InstallStore {
       if(version.isEmpty() || snapshot.isEmpty()) throw new IOException("There is no previous update to restore.");
       final Path release = child(this.root.resolve("releases"), version, "alpha-[a-f0-9]{16}");
       PackageManifest.read(release).verify(release, PackageManifest.hostPlatform());
-      final Path oldData = child(this.root.resolve("snapshots"), snapshot, "snapshot-[a-f0-9-]{36}");
+      final Path oldData = child(this.root.resolve("snapshots"), snapshot, "snapshot(?:2)?-[a-f0-9-]{36}");
       verifyInventory(oldData);
       final String dataId = "data-" + UUID.randomUUID();
       copyTree(oldData, this.root.resolve("data").resolve(dataId));
-      Files.delete(this.root.resolve("data").resolve(dataId).resolve("snapshot-files.properties"));
+      if(snapshotInventory(oldData).startsWith(oldData)) Files.delete(this.root.resolve("data").resolve(dataId).resolve("snapshot-files.properties"));
       current.setProperty("retainedNewerVersion", current.getProperty("version"));
       current.setProperty("retainedNewerData", current.getProperty("data"));
       current.setProperty("version", version);
@@ -320,6 +340,7 @@ public final class InstallStore {
       current.setProperty("releasePublishedAt", current.getProperty("previousReleasePublishedAt", ""));
       current.remove("previousReleasePublishedAt");
       forceTree(this.root.resolve("data").resolve(dataId));
+      CurrentRelease.restore(current);
       current.remove("previousVersion");
       current.remove("previousSnapshot");
       atomicProperties(this.root.resolve("state.properties"), current);
@@ -331,7 +352,7 @@ public final class InstallStore {
     try {
       final Properties state = this.state();
       final Path release = child(this.root.resolve("releases"), state.getProperty("previousVersion", ""), "alpha-[a-f0-9]{16}");
-      final Path snapshot = child(this.root.resolve("snapshots"), state.getProperty("previousSnapshot", ""), "snapshot-[a-f0-9-]{36}");
+      final Path snapshot = child(this.root.resolve("snapshots"), state.getProperty("previousSnapshot", ""), "snapshot(?:2)?-[a-f0-9-]{36}");
       PackageManifest.read(release).verify(release, PackageManifest.hostPlatform()); verifyInventory(snapshot); return true;
     } catch(final IOException | RuntimeException failure) { return false; }
   }
@@ -521,9 +542,17 @@ public final class InstallStore {
       return this.prepareLaunch(state, release, manifest);
     }
   }
+  void prepareCleanWorkspace() throws IOException {
+    final Properties state = this.state();
+    final Path release = child(this.root.resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
+    this.prepareLaunch(state, release, PackageManifest.read(release), false);
+  }
   private Path prepareLaunch(final Properties state, final Path release, final PackageManifest manifest) throws IOException {
+    return this.prepareLaunch(state, release, manifest, true);
+  }
+  private Path prepareLaunch(final Properties state, final Path release, final PackageManifest manifest, final boolean configure) throws IOException {
     final Path data = this.data(state);
-    if(PackageManifest.hostPlatform().equals("linux-x64")) configureFullscreen(data, Boolean.parseBoolean(state.getProperty("fullscreen", "true")));
+    if(configure && PackageManifest.hostPlatform().equals("linux-x64")) configureFullscreen(data, Boolean.parseBoolean(state.getProperty("fullscreen", "true")));
     try(final var entries = Files.walk(data)) {
       if(entries.anyMatch(Files::isSymbolicLink)) throw new IOException("Linked private data is not supported in a managed installation.");
     }
@@ -937,7 +966,7 @@ public final class InstallStore {
       .replace("run_manager() {", "run_manager() {\n  # Java is 64-bit; Steam also exports a 32-bit overlay. Preserve other preload entries.\n  if [[ ${LD_PRELOAD:-} == *ubuntu12_32/gameoverlayrenderer.so* ]]; then\n    LD_PRELOAD=${LD_PRELOAD//ubuntu12_32\\/gameoverlayrenderer.so/ubuntu12_64\\/gameoverlayrenderer.so}\n    export LD_PRELOAD\n  fi")
       .replace("--manage \"$ROOT\"", "@MODE@ \"$ROOT\"")
       .replace("MESSAGE=", "if [[ @MODE@ == --play && ( $CODE == 130 || $CODE == 143 ) ]]; then printf '%s\\n' 'Stopped from Steam.' >> \"$LOG\"; exit 0; fi\nMESSAGE=");
-    final String scriptTemplate = """
+    final String previousBoundedTemplate = """
       #!/bin/bash
       set -euo pipefail
       ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
@@ -980,17 +1009,26 @@ public final class InstallStore {
       else printf '%s\\n' "$MESSAGE" >&2; fi
       exit "$CODE"
       """;
+    final String scriptTemplate;
+    try(final var input = InstallStore.class.getResourceAsStream("managed-launcher-v2.sh")) {
+      if(input == null) throw new IOException("Managed launcher template is unavailable.");
+      scriptTemplate = new String(input.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+    }
     for(final String name : new String[]{"Play Game.sh", "Manage Installation.sh"}) {
       final String scriptText = scriptTemplate.replace("@MODE@", name.equals("Play Game.sh") ? "--play" : "--manage");
       final Path script = this.root.resolve(name);
-      if(!Files.exists(script)) Files.writeString(script, scriptText, StandardOpenOption.CREATE_NEW);
-      else if(Files.size(script) < 16384 && (Files.readString(script).equals(previousScript) || Files.readString(script).equals(oldManagedScript) || Files.readString(script).equals(legacyTemplate.replace("@MODE@", name.equals("Play Game.sh") ? "--play" : "--manage")))) {
+      boolean managed = false;
+      if(!Files.exists(script)) { Files.writeString(script, scriptText, StandardOpenOption.CREATE_NEW); managed = true; }
+      else if(Files.size(script) < 16384 && (Files.readString(script).equals(previousBoundedTemplate.replace("@MODE@", name.equals("Play Game.sh") ? "--play" : "--manage")) || Files.readString(script).equals(previousScript) || Files.readString(script).equals(oldManagedScript) || Files.readString(script).equals(legacyTemplate.replace("@MODE@", name.equals("Play Game.sh") ? "--play" : "--manage")))) {
         final Path next = Files.createTempFile(this.root, ".launcher-", ".tmp");
-        try { Files.writeString(next, scriptText); Files.move(next, script, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING); }
+        try { Files.writeString(next, scriptText); forceFile(next); Files.move(next, script, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING); }
         finally { Files.deleteIfExists(next); }
+        managed = true;
       }
       script.toFile().setExecutable(true, true);
+      if(managed) forceFile(script);
     }
+    forceDirectory(this.root);
   }
 
   private static void replaceFile(final Path source, final Path target) throws IOException {
@@ -1060,8 +1098,9 @@ public final class InstallStore {
     catch(final IllegalArgumentException failure) { throw new IOException("Installation state is damaged.", failure); }
     if(!state.getProperty("version", "").matches("alpha-[a-f0-9]{16}") || !state.getProperty("data", "").matches("data-[a-f0-9-]{36}")) throw new IOException("Installation state is damaged. Recovery is required.");
     for(final String name : new String[]{"previousVersion", "retainedNewerVersion"}) if(!state.getProperty(name, "").isEmpty() && !state.getProperty(name).matches("alpha-[a-f0-9]{16}")) throw new IOException("Invalid retained release reference.");
-    for(final String name : new String[]{"previousSnapshot"}) if(!state.getProperty(name, "").isEmpty() && !state.getProperty(name).matches("snapshot-[a-f0-9-]{36}")) throw new IOException("Invalid snapshot reference.");
+    for(final String name : new String[]{"previousSnapshot"}) if(!state.getProperty(name, "").isEmpty() && !state.getProperty(name).matches("snapshot(?:2)?-[a-f0-9-]{36}")) throw new IOException("Invalid snapshot reference.");
     if(!state.getProperty("retainedNewerData", "").isEmpty() && !state.getProperty("retainedNewerData").matches("data-[a-f0-9-]{36}")) throw new IOException("Invalid retained private data reference.");
+    CurrentRelease.validateState(state);
     return state;
   }
   private void recoverState() throws IOException {
@@ -1179,24 +1218,46 @@ public final class InstallStore {
       for(final Path path : paths.sorted(java.util.Comparator.reverseOrder()).toList()) {
         if(Files.isSymbolicLink(path)) throw new IOException("Cannot synchronize linked installation data.");
         if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) forceDirectory(path);
-        else try(final var channel = FileChannel.open(path, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS)) { channel.force(true); }
+        else try(final var channel = FileChannel.open(path, StandardOpenOption.READ, LinkOption.NOFOLLOW_LINKS)) { channel.force(true); }
       }
     }
     forceDirectory(root.getParent());
   }
 
   static void copyTree(final Path from, final Path to) throws IOException {
-    if(Files.isSymbolicLink(from)) throw new IOException("Linked source data is not supported.");
-    Files.createDirectories(to);
-    try(final var paths = Files.walk(from)) {
-      for(final Path path : paths.toList()) {
-        if(Files.isSymbolicLink(path)) throw new IOException("Linked source data is not supported: " + path);
-        final Path target = to.resolve(from.relativize(path));
-        if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) Files.createDirectories(target);
-        else if(Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) Files.copy(path, target);
-        else throw new IOException("Unsupported source data: " + path);
-      }
+    PackageManifest.checkCancelled();
+    final Path source = from.toAbsolutePath().normalize(), destination = to.toAbsolutePath().normalize();
+    if(destination.startsWith(source)) throw new IOException("Copy destination must be outside the source tree.");
+    for(final Path tree : List.of(source, destination)) {
+      for(Path part = tree; part != null; part = part.getParent()) if(Files.isSymbolicLink(part)) throw new IOException("Linked copy path is not supported: " + part);
     }
+    if(!Files.isDirectory(source, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Source data directory is missing or unsupported.");
+    Files.createDirectories(destination);
+    final boolean copyPermissions = Files.getFileStore(source).supportsFileAttributeView("posix") && Files.getFileStore(destination).supportsFileAttributeView("posix");
+    final byte[] buffer = new byte[1024 * 1024];
+    Files.walkFileTree(source, new java.nio.file.SimpleFileVisitor<>() {
+      @Override public java.nio.file.FileVisitResult preVisitDirectory(final Path directory, final java.nio.file.attribute.BasicFileAttributes attributes) throws IOException {
+        PackageManifest.checkCancelled();
+        final Path target = destination.resolve(source.relativize(directory));
+        if(Files.isSymbolicLink(target)) throw new IOException("Linked copy destination is not supported.");
+        Files.createDirectories(target);
+        return java.nio.file.FileVisitResult.CONTINUE;
+      }
+      @Override public java.nio.file.FileVisitResult visitFile(final Path file, final java.nio.file.attribute.BasicFileAttributes attributes) throws IOException {
+        PackageManifest.checkCancelled();
+        if(!attributes.isRegularFile()) throw new IOException("Unsupported source data: " + file);
+        final Path target = destination.resolve(source.relativize(file));
+        try(final var input = Files.newInputStream(file, LinkOption.NOFOLLOW_LINKS);
+            final var output = Files.newOutputStream(target, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS)) {
+          for(int count; (count = input.read(buffer)) != -1;) { PackageManifest.checkCancelled(); output.write(buffer, 0, count); }
+        }
+        PackageManifest.checkCancelled();
+        if(copyPermissions) {
+          Files.setPosixFilePermissions(target, Files.getPosixFilePermissions(file, LinkOption.NOFOLLOW_LINKS));
+        }
+        return java.nio.file.FileVisitResult.CONTINUE;
+      }
+    });
   }
 
   static void deleteOwnedTree(final Path path) throws IOException {
@@ -1211,6 +1272,7 @@ public final class InstallStore {
     int count = 0;
     try(final var input = new ZipInputStream(Files.newInputStream(archive))) {
       for(java.util.zip.ZipEntry entry; (entry = input.getNextEntry()) != null;) {
+        PackageManifest.checkCancelled();
         final String name = entry.getName();
         progress.phase("Installing " + FileDelivery.module(name), "Unpacking " + name + " · " + count + " files", 70);
         if(++count > 30_000 || !(PackageManifest.allowed(entry.isDirectory() ? name.replaceAll("/$", "") + "/placeholder" : name) || name.equals(PackageManifest.METADATA) || name.equals(PackageManifest.HASHES))) throw new IOException("Unexpected archive path: " + name);
@@ -1222,6 +1284,7 @@ public final class InstallStore {
         try(final var output = Files.newOutputStream(destination, StandardOpenOption.CREATE_NEW)) {
           final byte[] buffer = new byte[1024 * 1024];
           for(int n; (n = input.read(buffer)) != -1;) {
+            PackageManifest.checkCancelled();
             total += n; fileBytes += n;
             progress.report(new InstallProgress.Update("Installing " + FileDelivery.module(name), "Unpacking " + name, 70, 70, 0, 0, name, fileBytes, entry.getSize()));
             if(total > MAX_ARCHIVE_BYTES) throw new IOException("Archive exceeds the package size limit.");
@@ -1237,16 +1300,26 @@ public final class InstallStore {
     try(final var files = Files.walk(root)) {
       for(final Path file : files.filter(Files::isRegularFile).toList()) hashes.setProperty(root.relativize(file).toString(), PackageManifest.sha256(file));
     }
-    atomicProperties(root.resolve("snapshot-files.properties"), hashes);
+    final Path inventory = snapshotInventory(root);
+    if(Files.isSymbolicLink(inventory.getParent())) throw new IOException("Linked snapshot inventory directory.");
+    Files.createDirectories(inventory.getParent());
+    atomicProperties(inventory, hashes);
+  }
+
+  /** Versioned IDs keep new receipts outside owner payloads; legacy snapshots retain their original layout. */
+  private static Path snapshotInventory(final Path root) {
+    return root.getFileName().toString().startsWith("snapshot2-") ? root.getParent().resolve(".inventories").resolve(root.getFileName() + ".properties") : root.resolve("snapshot-files.properties");
   }
 
   private static void verifyInventory(final Path root) throws IOException {
-    final Properties hashes = PackageManifest.readProperties(root.resolve("snapshot-files.properties"));
+    final Path inventory = snapshotInventory(root);
+    if(Files.isSymbolicLink(inventory.getParent())) throw new IOException("Linked snapshot inventory directory.");
+    final Properties hashes = PackageManifest.readProperties(inventory);
     final java.util.Set<String> actual = new java.util.HashSet<>();
     try(final var paths = Files.walk(root)) {
       for(final Path file : paths.toList()) {
         if(Files.isSymbolicLink(file)) throw new IOException("Linked snapshot file.");
-        if(!Files.isRegularFile(file, LinkOption.NOFOLLOW_LINKS) || file.getFileName().toString().equals("snapshot-files.properties")) continue;
+        if(!Files.isRegularFile(file, LinkOption.NOFOLLOW_LINKS) || file.equals(inventory)) continue;
         final String name = root.relativize(file).toString();
         actual.add(name);
         if(!PackageManifest.sha256(file).equals(hashes.getProperty(name))) throw new IOException("Snapshot checksum mismatch; original data has been retained.");

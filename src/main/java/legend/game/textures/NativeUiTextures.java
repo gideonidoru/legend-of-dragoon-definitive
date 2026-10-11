@@ -19,7 +19,10 @@ public final class NativeUiTextures {
   private static final java.util.Map<Texture,Region> RESIDENT = new java.util.IdentityHashMap<>();
   private static long allocated;
   private static long frame;
-  public record Images(Image original, Image enhanced) { }
+  /** Optional index/luminance reference lets authored detail follow a live palette. */
+  public record Images(Image original, Image enhanced, Image paletteDetailReference) {
+    public Images(final Image original, final Image enhanced) { this(original, enhanced, null); }
+  }
   public static synchronized void beginFrame() { retireCleared(); frame++; }
   private static void retireCleared() {
     // Only called with a renderer context, before new uploads. Mod changes can
@@ -43,6 +46,7 @@ public final class NativeUiTextures {
     final long bytes;
     Texture sourceTexture, artworkTexture;
     boolean uploadFailed;
+    boolean paletteDetail;
     long lastUsed = -1;
     Object owner;
     String slot;
@@ -137,6 +141,29 @@ public final class NativeUiTextures {
     }
   }
 
+  /** Source-bound indices and brightness, not a replacement palette or visibility mask. */
+  public static Image paletteDetailReference(final Tim tim, final int palette, final int x, final int y, final int width, final int height) {
+    final Image decoded = decode(tim, palette, x, y, width, height);
+    final int rowBytes = tim.getImageRect().w * 2;
+    final var pixels = tim.getData().slice(tim.getImageOffset(), rowBytes * tim.getImageRect().h);
+    final byte[] reference = new byte[decoded.data.length];
+    for(int row = 0; row < height; row++) for(int col = 0; col < width; col++) {
+      final int p = (row * width + col) * 4, sx = x + col;
+      reference[p] = (byte)(pixels.readUByte((y + row) * rowBytes + sx / 2) >>> ((sx & 1) * 4) & 15);
+      reference[p + 1] = (byte)Math.max(Byte.toUnsignedInt(decoded.data[p]), Math.max(Byte.toUnsignedInt(decoded.data[p + 1]), Byte.toUnsignedInt(decoded.data[p + 2])));
+      reference[p + 3] = decoded.data[p + 3];
+    }
+    return new Image(reference, width, height);
+  }
+
+  public static void validatePaletteDetailReference(final Image original, final Image reference) {
+    if(reference.width != original.width || reference.height != original.height || reference.data.length != original.data.length) throw new IllegalArgumentException("UI palette reference dimensions differ");
+    for(int p = 0; p < reference.data.length; p += 4) {
+      final int luminance = Math.max(Byte.toUnsignedInt(original.data[p]), Math.max(Byte.toUnsignedInt(original.data[p + 1]), Byte.toUnsignedInt(original.data[p + 2])));
+      if(Byte.toUnsignedInt(reference.data[p]) > 15 || Byte.toUnsignedInt(reference.data[p + 1]) != luminance || reference.data[p + 2] != 0 || reference.data[p + 3] != original.data[p + 3]) throw new IllegalArgumentException("UI palette reference differs");
+    }
+  }
+
   /** Earlier owners win. Validating everything precedes any change to the installed selection. */
   public static boolean register(final Binding binding, final Image original, final Image enhanced) {
     validate(original, enhanced);
@@ -167,7 +194,7 @@ public final class NativeUiTextures {
       prepare(region);
       region.lastUsed = frame;
       if(region.artworkTexture == null) return;
-      model.nativeUiArtwork(region.artworkTexture, region.sourceTexture, region.binding.x - pageX * 4, region.binding.y - pageY, region.binding.width, region.binding.height);
+      model.nativeUiArtwork(region.artworkTexture, region.sourceTexture, region.binding.x - pageX * 4, region.binding.y - pageY, region.binding.width, region.binding.height, region.paletteDetail);
       return;
     }
   }
@@ -191,11 +218,13 @@ public final class NativeUiTextures {
       validate(images.original, images.enhanced);
       if(images.original.width != region.binding.width || images.original.height != region.binding.height
         || (long)images.original.data.length + images.enhanced.data.length != region.bytes) throw new IllegalArgumentException("Deferred UI payload differs");
-      original = UiTextures.upload("UI source reference", images.original);
+      if(images.paletteDetailReference != null) validatePaletteDetailReference(images.original, images.paletteDetailReference);
+      original = UiTextures.upload("UI source reference", images.paletteDetailReference == null ? images.original : images.paletteDetailReference);
       final Texture enhanced = UiTextures.upload("UI restored region", images.enhanced);
       original.persistent = enhanced.persistent = true;
       region.sourceTexture = original;
       region.artworkTexture = enhanced;
+      region.paletteDetail = images.paletteDetailReference != null;
       RESIDENT.put(enhanced, region);
       if(region.provider != null) allocated += region.bytes;
     } catch(final RuntimeException failure) {

@@ -56,4 +56,27 @@ final class VideoCacheTest {
     assertThrows(IOException.class, () -> VideoCache.materialize(link.resolve("cache"), digest(), DATA.length, new ByteArrayInputStream(DATA)));
     assertThrows(IOException.class, () -> VideoCache.materialize(actual, "../escape", DATA.length, new ByteArrayInputStream(DATA)));
   }
+  @Test void installedMovieUsesVerifiedManagedArtworkLinkWithoutMaterialization() throws Exception {
+    final Path release = this.root.resolve("release/gfx/fmvhd/videos"); Files.createDirectories(release);
+    final Path movie = release.resolve(digest() + ".mp4"); Files.write(movie, DATA);
+    final Path workspace = this.root.resolve("workspace"); Files.createDirectory(workspace);
+    final Path gfx = workspace.resolve("gfx"); Files.createSymbolicLink(gfx, release.getParent().getParent());
+    assertEquals(movie, VideoCache.installed(gfx, digest(), DATA.length));
+    assertArrayEquals(DATA, Files.readAllBytes(movie));
+    assertFalse(Files.exists(workspace.resolve("cache")));
+  }
+
+  @Test void installedLookupRejectsMissingCorruptAndLinkedDataWithoutWriting() throws Exception {
+    final Path gfx=this.root.resolve("gfx"), videos=gfx.resolve("fmvhd/videos");Files.createDirectories(videos);
+    final Path movie=videos.resolve(digest()+".mp4");
+    assertThrows(IOException.class,()->VideoCache.installed(gfx,digest(),DATA.length));
+    Files.write(movie,new byte[DATA.length]);assertThrows(IOException.class,()->VideoCache.installed(gfx,digest(),DATA.length));
+    Files.delete(movie);final Path outside=this.root.resolve("outside");Files.write(outside,DATA);Files.createSymbolicLink(movie,outside);
+    assertThrows(IOException.class,()->VideoCache.installed(gfx,digest(),DATA.length));assertArrayEquals(DATA,Files.readAllBytes(outside));
+    Files.delete(movie);Files.delete(videos);Files.createSymbolicLink(videos,this.root);
+    assertThrows(IOException.class,()->VideoCache.installed(gfx,digest(),DATA.length));
+    assertThrows(IOException.class,()->VideoCache.installed(gfx,"../escape",DATA.length));
+    assertThrows(IOException.class,()->VideoCache.installed(gfx,digest(),0));
+  }
+
 }

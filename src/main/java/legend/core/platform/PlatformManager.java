@@ -13,12 +13,15 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Consumer;
 
 import static legend.core.GameEngine.CONFIG;
 
 public abstract class PlatformManager {
   private final List<Window> windows = new ArrayList<>();
   private final List<Action> actions = new ArrayList<>();
+  private final List<Consumer<InputAction>> inputActionCancelled = new CopyOnWriteArrayList<>();
   private boolean running;
 
   private final Action input = this.addAction(new Action(this::tickInput, 60));;
@@ -111,6 +114,27 @@ public abstract class PlatformManager {
 
   public void resetActionStates() {
 
+  }
+
+  /** Discard input owned by bindings being replaced. */
+  public void resetActionState(final InputAction action) {
+    this.resetActionStates();
+  }
+
+  /** Cancellation discards unconsumed edges, unlike an ordinary button release. */
+  public Consumer<InputAction> onInputActionCancelled(final Consumer<InputAction> callback) {
+    this.inputActionCancelled.add(callback);
+    return callback;
+  }
+
+  public void removeInputActionCancelled(final Consumer<InputAction> callback) {
+    this.inputActionCancelled.remove(callback);
+  }
+
+  protected void dispatchInputActionCancelled(final InputAction action) {
+    for(final Consumer<InputAction> callback : this.inputActionCancelled) {
+      callback.accept(action);
+    }
   }
 
   /** Called at the end of each game tick to clear one-frame input */

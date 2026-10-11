@@ -20,7 +20,9 @@ public record PackageManifest(Properties metadata, Properties hashes) {
   static final Set<String> ROOT_FILES = Set.of("definitive-manager.jar", "bootstrap-java", "Install.sh", "LICENSE", "CREDITS", "credits.txt", "README.md", "log4j2.xml", "gamecontrollerdb.txt");
 
   public static PackageManifest read(final Path root) throws IOException {
-    final var manifest = new PackageManifest(readProperties(root.resolve(METADATA)), readProperties(root.resolve(HASHES)));
+    final PackageManifest manifest;
+    try { manifest = new PackageManifest(readProperties(root.resolve(METADATA)), readProperties(root.resolve(HASHES))); }
+    catch(final IllegalArgumentException malformed) { throw new IOException("Package properties are malformed. Verify or reinstall this installation.", malformed); }
     if(!"1".equals(manifest.metadata.getProperty("format")) || !"25".equals(manifest.metadata.getProperty("java"))) {
       throw new IOException("This package needs a newer installation manager.");
     }
@@ -68,6 +70,7 @@ public record PackageManifest(Properties metadata, Properties hashes) {
     if(!actual.containsAll(ROOT_FILES) || !actual.contains(this.metadata.getProperty("gameJar"))) throw new IOException("Required package files are missing.");
     if(actual.stream().noneMatch(n -> n.startsWith("libs/") && n.endsWith(".jar")) || actual.stream().noneMatch(n -> n.startsWith("bundled-mods/") && n.endsWith(".jar"))) throw new IOException("Engine dependencies or bundled artwork are missing.");
     if(!identity(this.metadata, this.hashes).equals(this.id())) throw new IOException("Package metadata identity mismatch.");
+    legend.definitive.fmv.FmvPackageAssets.verify(root, this.hashes);
   }
 
   /** Verify the complete executable dependency closure before starting a manager.
@@ -100,16 +103,22 @@ public record PackageManifest(Properties metadata, Properties hashes) {
   static Properties readProperties(final Path path) throws IOException {
     if(Files.isSymbolicLink(path) || !Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Missing file: " + path);
     final Properties properties = new Properties();
-    try(final InputStream stream = Files.newInputStream(path)) { properties.load(stream); }
+    try(final InputStream stream = Files.newInputStream(path, LinkOption.NOFOLLOW_LINKS)) { properties.load(stream); }
     return properties;
   }
 
+  static void checkCancelled() throws java.io.InterruptedIOException {
+    if(Thread.currentThread().isInterrupted()) throw new java.io.InterruptedIOException("Installation operation was interrupted.");
+  }
+
   static String sha256(final Path path) throws IOException {
+    checkCancelled();
     final MessageDigest md = sha();
-    try(final InputStream stream = Files.newInputStream(path)) {
+    try(final InputStream stream = Files.newInputStream(path, LinkOption.NOFOLLOW_LINKS)) {
       final byte[] buffer = new byte[1024 * 1024];
-      for(int count; (count = stream.read(buffer)) != -1;) md.update(buffer, 0, count);
+      for(int count; (count = stream.read(buffer)) != -1;) { checkCancelled(); md.update(buffer, 0, count); }
     }
+    checkCancelled();
     return HexFormat.of().formatHex(md.digest());
   }
 

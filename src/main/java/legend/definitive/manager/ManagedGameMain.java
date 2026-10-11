@@ -25,6 +25,9 @@ public final class ManagedGameMain {
     FileChannel channel = null;
     FileLock lease = null;
     try {
+      // Reject linked ancestors before CREATE can write a lease outside the
+      // installation. The handoff is still revalidated inside the OS lease.
+      GameLease.validateRoot(root);
       channel = FileChannel.open(root.resolve(".game-lock"), StandardOpenOption.CREATE, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS);
       lease = channel.tryLock();
       if(lease == null) throw new java.io.IOException("Another managed game is running.");

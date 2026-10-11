@@ -102,10 +102,8 @@ class InstallStoreTest {
     final Path reinstalledData = store.data(store.state());
     assertNotEquals(nextData, reinstalledData);
     assertEquals(choices, Files.readString(reinstalledData.resolve("definitive-hd-mods.properties")));
-    store.rollback();
-    final Path restoredData = store.data(store.state());
-    assertEquals(choices, Files.readString(restoredData.resolve("definitive-hd-mods.properties")));
-    assertEquals("-Ddefinitive.hdModPreferences=" + restoredData.resolve("definitive-hd-mods.properties"), store.managedModArguments(store.state()).get(1));
+    assertThrows(java.io.IOException.class, store::rollback, "Clean reinstall removes obsolete rollback versions");
+    assertEquals("-Ddefinitive.hdModPreferences=" + reinstalledData.resolve("definitive-hd-mods.properties"), store.managedModArguments(store.state()).get(1));
   }
 
   @Test void managedModulePreferencesRejectLinksAndDirectories() throws Exception {
@@ -329,7 +327,7 @@ class InstallStoreTest {
 
   @Test void fmvHdRemainsAvailableWithOriginalBackgrounds() throws Exception {
     final Path pack = this.pack("fmv-release", PackageManifest.hostPlatform());
-    Files.writeString(pack.resolve("bundled-mods/FMVHD-v0.1.0.jar"), "cinematics");
+    new legend.definitive.fmv.FmvSplitFixture().jar(pack, true, "cinematics");
     Files.delete(pack.resolve(PackageManifest.METADATA));
     Files.delete(pack.resolve(PackageManifest.HASHES));
     ManagerMain.makeManifest(pack, PackageManifest.hostPlatform(), "fixture");

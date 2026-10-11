@@ -46,7 +46,7 @@ public final class AudioThread implements Runnable {
 
   private final int nanosPerTick;
   private long audioContext;
-  private long audioDevice;
+  private volatile long audioDevice;
   private final boolean stereo;
   private final int voiceCount;
   private InterpolationPrecision interpolationPrecision;
@@ -57,7 +57,8 @@ public final class AudioThread implements Runnable {
   private FileData pendingXa;
   private final List<AudioSource> sources = new ArrayList<>();
 
-  private boolean running;
+  private volatile boolean running;
+  private boolean shutdownRequested;
   private boolean paused;
 
   private ALCapabilities alCapabilities;
@@ -193,46 +194,104 @@ public final class AudioThread implements Runnable {
 
   public void destroy() {
     this.scheduler.shutdown();
+    Throwable failure = null;
 
     synchronized(this) {
+      this.shutdownRequested = true;
       this.pendingXa = null;
 
       if(!this.running && this.audioDevice != 0) {
-        this.destroyInternal();
-        this.xaPlayer.unloadOpusFile();
+        this.destroyAndUnload();
         return;
       }
 
       this.running = false;
-      this.xaPlayer.unloadOpusFile();
-      this.notify();
+      try {
+        this.xaPlayer.unloadOpusFile();
+      } catch(final Throwable thrown) {
+        failure = thrown;
+      } finally {
+        // A decoder failure must still wake the worker to retire its native resources.
+        this.notify();
+      }
     }
 
     while(this.audioDevice != 0) {
       DebugHelper.sleep(1);
     }
+    throwCleanupFailure(failure);
   }
 
   private void destroyInternal() {
+    Throwable failure = null;
     for(final AudioSource source : this.sources) {
-      synchronized(source) {
-        if(source.isInitialized()) {
-          source.destroy();
+      try {
+        synchronized(source) {
+          if(source.isInitialized()) {
+            source.destroy();
+          }
         }
+      } catch(final Throwable thrown) {
+        failure = appendCleanupFailure(failure, thrown);
       }
     }
 
     if(this.audioContext != 0) {
-      alcDestroyContext(this.audioContext);
-      this.audioContext = 0;
+      try {
+        alcDestroyContext(this.audioContext);
+      } catch(final Throwable thrown) {
+        failure = appendCleanupFailure(failure, thrown);
+      } finally {
+        this.audioContext = 0;
+      }
     }
 
     if(this.audioDevice != 0) {
-      alcCloseDevice(this.audioDevice);
-      this.audioDevice = 0;
-
-      memFree(this.tmp);
+      try {
+        alcCloseDevice(this.audioDevice);
+      } catch(final Throwable thrown) {
+        failure = appendCleanupFailure(failure, thrown);
+      }
     }
+
+    try {
+      if(this.tmp != null) memFree(this.tmp);
+    } catch(final Throwable thrown) {
+      failure = appendCleanupFailure(failure, thrown);
+    } finally {
+      this.tmp = null;
+      // Publish retirement only after all native cleanup attempts and buffer retirement.
+      this.audioDevice = 0;
+    }
+    throwCleanupFailure(failure);
+  }
+
+  private void destroyAndUnload() {
+    Throwable failure = null;
+    try {
+      this.destroyInternal();
+    } catch(final Throwable thrown) {
+      failure = thrown;
+    }
+    this.pendingXa = null;
+    try {
+      this.xaPlayer.unloadOpusFile();
+    } catch(final Throwable thrown) {
+      failure = appendCleanupFailure(failure, thrown);
+    }
+    throwCleanupFailure(failure);
+  }
+
+  private static Throwable appendCleanupFailure(final Throwable first, final Throwable next) {
+    if(first == null) return next;
+    if(first != next) first.addSuppressed(next);
+    return first;
+  }
+
+  private static void throwCleanupFailure(final Throwable failure) {
+    if(failure instanceof Error error) throw error;
+    if(failure instanceof RuntimeException exception) throw exception;
+    if(failure != null) throw new IllegalStateException("Audio cleanup failed", failure);
   }
 
   private void openDevice() {
@@ -284,7 +343,10 @@ public final class AudioThread implements Runnable {
 
   @Override
   public void run() {
-    this.running = true;
+    synchronized(this) {
+      // The platform can finish closing before this worker receives its first turn.
+      this.running = !this.shutdownRequested;
+    }
 
     while(this.running) {
       final long time = System.nanoTime();
@@ -292,7 +354,7 @@ public final class AudioThread implements Runnable {
       boolean canBuffer = false;
 
       synchronized(this) {
-        while(this.paused && !this.deviceChanged) {
+        while(this.running && this.paused && !this.deviceChanged) {
           try {
             this.wait();
           } catch(final InterruptedException ignored) { }
@@ -360,17 +422,15 @@ public final class AudioThread implements Runnable {
     }
 
     synchronized(this) {
-      this.destroyInternal();
-      this.pendingXa = null;
-      this.xaPlayer.unloadOpusFile();
+      this.destroyAndUnload();
     }
   }
 
   public void stop() {
-    this.paused = false;
-    this.running = false;
-
     synchronized(this) {
+      this.shutdownRequested = true;
+      this.paused = false;
+      this.running = false;
       this.pendingXa = null;
       this.notify();
     }
@@ -378,9 +438,8 @@ public final class AudioThread implements Runnable {
 
   public void loadBackgroundMusic(final BackgroundMusic backgroundMusic) {
     synchronized(this) {
-      if(this.sequencer.isInitialized()) {
-        this.sequencer.loadBackgroundMusic(backgroundMusic);
-      }
+      // Logical music state must survive unavailable output; these commands do not use OpenAL.
+      this.sequencer.loadBackgroundMusic(backgroundMusic);
     }
   }
 
@@ -468,9 +527,7 @@ public final class AudioThread implements Runnable {
     LOGGER.info(AUDIO_THREAD_MARKER, "Starting sequence");
 
     synchronized(this) {
-      if(this.sequencer.isInitialized()) {
-        this.sequencer.startSequence();
-      }
+      this.sequencer.startSequence();
     }
   }
 
@@ -478,9 +535,7 @@ public final class AudioThread implements Runnable {
     LOGGER.info(AUDIO_THREAD_MARKER, "Stopping sequence");
 
     synchronized(this) {
-      if(this.sequencer.isInitialized()) {
-        this.sequencer.stopSequence();
-      }
+      this.sequencer.stopSequence();
     }
   }
 

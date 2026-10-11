@@ -4,12 +4,11 @@ package legend.definitive.materials;
 import com.google.gson.Strictness;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
+import legend.definitive.artwork.ArtworkResources;
 import legend.definitive.textures.TexturePilot;
 import legend.definitive.textures.TimImage;
+import legend.game.textures.Image;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.ByteBuffer;
@@ -42,17 +41,13 @@ public final class MaterialAtlas {
   private final String modelHash, timHash, atlasHash;
   private final long checkedTexels;
 
-  private MaterialAtlas(final SourceMaterials.Layout layout, final int scale, final BufferedImage image, final String modelHash, final String timHash, final String atlasHash) {
+  private MaterialAtlas(final SourceMaterials.Layout layout, final int scale, final Image image, final String modelHash, final String timHash, final String atlasHash) {
     this.width = layout.width(); this.height = layout.height(); this.scale = scale; this.regions = List.copyOf(layout.regions());
     this.modelHash = modelHash; this.timHash = timHash; this.atlasHash = atlasHash;
     this.checkedTexels = this.regions.stream().mapToLong(region -> (long)region.width * region.height).sum();
     // LWJGL passes a native address to glTexImage2D; heap buffers are unsafe here.
     final ByteBuffer bytes = ByteBuffer.allocateDirect(this.width * this.height * 4);
-    final int[] row = new int[this.width];
-    for(int y = 0; y < this.height; y++) {
-      image.getRGB(0, y, this.width, 1, row, 0, this.width);
-      for(final int pixel : row) bytes.put((byte)(pixel >>> 16)).put((byte)(pixel >>> 8)).put((byte)pixel).put((byte)(pixel >>> 24));
-    }
+    bytes.put(image.data);
     bytes.flip(); this.rgba = bytes.asReadOnlyBuffer();
   }
   public int width() { return this.width; }
@@ -106,15 +101,14 @@ public final class MaterialAtlas {
     final String atlasHash = TexturePilot.sha256(png);
     final ByteBuffer header = ByteBuffer.wrap(png).order(ByteOrder.BIG_ENDIAN);
     if(png.length < 33 || header.getLong(0) != 0x89504e470d0a1a0aL || header.getInt(8) != 13 || header.getInt(12) != 0x49484452 || header.getInt(16) != layout.width() || header.getInt(20) != layout.height() || png[24] != 8 || png[25] != 6 || !atlasHash.equals(manifest.get("atlasEngineSha256"))) throw bad("Requires the matching bounded 8-bit RGBA atlas PNG.");
-    final BufferedImage image = ImageIO.read(new ByteArrayInputStream(png));
-    if(image == null || image.getWidth() != layout.width() || image.getHeight() != layout.height()) throw bad("Invalid atlas PNG.");
+    final Image image = ArtworkResources.image(png, layout.width(), layout.height());
     for(final Region region : layout.regions()) {
       final TimImage source = TimImage.read(tim, region.palette);
       for(int y = 0; y < region.height; y++) {
         final int sy = Math.clamp(region.top + y / scale, 0, source.height() - 1);
         for(int x = 0; x < region.width; x++) {
           final int sx = Math.clamp(region.left + x / scale, 0, source.width() - 1);
-          final int expected = source.pixels()[sy * source.width() + sx], actual = image.getRGB(region.x + x, region.y + y);
+          final int expected = source.pixels()[sy * source.width() + sx], actual = argb(image, region.x + x, region.y + y);
           if(expected >>> 24 != actual >>> 24 || (expected == 0) != (actual == 0) || (expected & 0xffffff) == 0 && (actual & 0xffffff) != 0) throw bad("STP, discard coverage or visible original black changed.");
           if(("nearest".equals(algorithm) || preserved.contains(region.palette)) && expected != actual) throw bad("Pixels changed in an original or preserved material.");
         }
@@ -122,14 +116,17 @@ public final class MaterialAtlas {
     }
     // Unmapped packing gaps cannot carry hidden content into a future native experiment.
     final boolean[] occupied = new boolean[layout.width()];
-    final int[] row = new int[layout.width()];
     for(int y = 0; y < layout.height(); y++) {
       Arrays.fill(occupied, false);
       for(final Region region : layout.regions()) if(y >= region.y && y < region.y + region.height) Arrays.fill(occupied, region.x, region.x + region.width, true);
-      image.getRGB(0, y, layout.width(), 1, row, 0, layout.width());
-      for(int x = 0; x < row.length; x++) if(!occupied[x] && row[x] != 0) throw bad("Unmapped atlas padding must remain all-zero.");
+      for(int x = 0; x < layout.width(); x++) if(!occupied[x] && argb(image, x, y) != 0) throw bad("Unmapped atlas padding must remain all-zero.");
     }
     return new MaterialAtlas(layout, scale, image, modelHash, timHash, atlasHash);
+  }
+
+  private static int argb(final Image image, final int x, final int y) {
+    final int offset = (y * image.width + x) * 4;
+    return image.data[offset + 3] << 24 | (image.data[offset] & 255) << 16 | (image.data[offset + 1] & 255) << 8 | image.data[offset + 2] & 255;
   }
 
   static byte[] readBounded(final Path path, final int limit) throws IOException {

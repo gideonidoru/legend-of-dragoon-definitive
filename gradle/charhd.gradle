@@ -54,6 +54,20 @@ tasks.register('charHdReconstructionProbe', JavaExec) {
   doFirst {
     workingDir.mkdirs()
     args providers.gradleProperty('charFiles').get(), providers.gradleProperty('charReport').get()
+    if (providers.gradleProperty('charFieldModel').isPresent()) args providers.gradleProperty('charFieldModel').get()
+  }
+}
+
+tasks.register('charHdHeadTransitionProbe', JavaExec) {
+  description = 'Owner-input field/battle head cache lifecycle check; no game window.'
+  dependsOn 'charhdTestClasses', 'modelshdClasses'
+  classpath = sourceSets.charhdTest.runtimeClasspath + sourceSets.modelshd.output
+  mainClass = 'charhd.DartHeadTransitionProbe'
+  jvmArgs '-Djava.awt.headless=true', '-Xmx2g'
+  workingDir = layout.buildDirectory.dir('charhd-probe-home').get().asFile
+  doFirst {
+    workingDir.mkdirs()
+    args providers.gradleProperty('charFiles').get(), providers.gradleProperty('charReport').get()
   }
 }
 
