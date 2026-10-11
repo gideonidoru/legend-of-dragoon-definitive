@@ -85,7 +85,7 @@ final class CleanReinstall {
           for(final Path path : bounded) {
             final String name = source.relativize(path).toString().replace('\\', '/');
             if(PackageManifest.ROOT_FILES.contains(name) || name.matches("lod-game-.*\\.jar")
-              || name.matches("bundled-mods/[^/]+\\.(jar|zip)") || name.matches("libs/.*\\.(jar|so|dylib|dll)")) known.add(name);
+              || name.startsWith("bundled-mods/") && bundledArchive(path.getFileName().toString())) known.add(name);
           }
         }
       }
@@ -111,12 +111,15 @@ final class CleanReinstall {
         if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) continue;
         if(!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Unsupported old application entry: " + path);
         final boolean image = relative.matches("(?i).*\\.(iso|cue|chd|img|mdf)") || !first.equals("files") && relative.matches("(?i).*\\.bin");
-        final boolean generated = workspace && (Set.of("files", "gfx", "patches", "lang", "libs").contains(first)
+        final boolean generated = workspace && (relative.matches("files/(?:SECT|STR|XA|OVL)/.*") || Set.of("files/version", "files/.gitignore").contains(relative)
           || Set.of("gamecontrollerdb.txt", "log4j2.xml", "launcher.log").contains(relative));
-        final boolean appArchive = !workspace && (relative.matches("libs/.*\\.(jar|so|dylib|dll)") || relative.matches("bundled-mods/[^/]+\\.(jar|zip)"));
+        final boolean appArchive = !workspace && first.equals("bundled-mods") && bundledArchive(path.getFileName().toString());
         if(image || !generated && !appArchive && !known.contains(relative)) preserveTree(root, path, staged, active);
       }
     }
+  }
+  private static boolean bundledArchive(final String name) {
+    return name.matches("(?i)(?:(?:EnvHD|CharHD|UIHD|FxHD|FMVHD|ModelsHD|Skurfa)(?:[-v0-9.]*))\\.jar") || name.matches("(?i)Env[1-4]HD(?:[-v0-9.]*)\\.zip");
   }
   private static boolean application(final String name) {
     return name.matches("(?i)(?:Definitive-Installer|Legend-of-Dragoon-Definitive-(?:linux-x64|macos-arm64)|Definitive-Contents-(?:linux-x64|macos-arm64))\\.zip")
@@ -126,7 +129,7 @@ final class CleanReinstall {
       || name.equals(PackageManifest.METADATA) || name.equals(PackageManifest.HASHES) || name.equals(FileDelivery.SIZES)
       || name.matches("lod-game-.*\\.jar") || name.equals("files") || name.equals("steam-artwork") || name.endsWith(".log")
       || name.matches("(?:release-recovery|disc-extraction-recovery|state-recovery)-.*")
-      || name.startsWith(".package-") || name.startsWith(".files-") || name.startsWith(".contents-")
+      || name.matches("\\.update-[0-9]+\\.zip") || name.startsWith(".package-") || name.startsWith(".files-") || name.startsWith(".contents-")
       || name.startsWith(".source-build-") || name.startsWith(".bootstrap-") || name.startsWith(".java-path-") || name.startsWith(".state-")
       || name.equals(".disc-transaction.properties") || name.equals(".release-repair-transaction.properties");
   }

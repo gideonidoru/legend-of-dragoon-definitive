@@ -28,6 +28,9 @@ class CleanReinstallTest {
     Files.writeString(damagedRelease.resolve("backup.iso"), "release disc");
     Files.createDirectories(oldWorkspace.resolve("owner-folder")); Files.writeString(oldWorkspace.resolve("owner-folder/note.txt"), "workspace note");
     Files.writeString(oldWorkspace.resolve("backup.iso"), "workspace disc");
+    Files.writeString(oldWorkspace.resolve("files/owner-note.txt"), "extraction-adjacent note");
+    Files.createDirectories(oldWorkspace.resolve("files/SECT/DRGN0.BIN/1")); Files.writeString(oldWorkspace.resolve("files/SECT/DRGN0.BIN/1/0"), "old extracted data");
+    Files.writeString(damagedRelease.resolve("bundled-mods/MyCustomMod.jar"), "owner custom mod");
     Files.writeString(current.resolve("saves/owner.txt"), "current save");
     Files.writeString(current.resolve("config.conf"), "current config");
     Files.writeString(current.resolve("mods/owner.jar"), "custom mod");
@@ -62,6 +65,9 @@ class CleanReinstallTest {
     assertEquals("release disc", Files.readString(data.resolve("recovered-reinstall/releases/" + before.getProperty("version") + "/backup.iso")));
     assertEquals("workspace note", Files.readString(data.resolve("recovered-reinstall/workspaces/" + oldWorkspace.getFileName() + "/owner-folder/note.txt")));
     assertEquals("workspace disc", Files.readString(data.resolve("recovered-reinstall/workspaces/" + oldWorkspace.getFileName() + "/backup.iso")));
+    assertEquals("extraction-adjacent note", Files.readString(data.resolve("recovered-reinstall/workspaces/" + oldWorkspace.getFileName() + "/files/owner-note.txt")));
+    assertFalse(Files.exists(data.resolve("recovered-reinstall/workspaces/" + oldWorkspace.getFileName() + "/files/SECT/DRGN0.BIN/1/0")));
+    assertEquals("owner custom mod", Files.readString(data.resolve("recovered-reinstall/releases/" + before.getProperty("version") + "/bundled-mods/MyCustomMod.jar")));
     assertEquals("another disc",Files.readString(data.resolve("recovered-reinstall/loose.iso")));
     assertEquals("personal note",Files.readString(data.resolve("recovered-reinstall/owner-note.txt")));
     assertEquals("legacy mod",Files.readString(data.resolve("recovered-reinstall/mods/custom.jar")));
@@ -153,7 +159,7 @@ class CleanReinstallTest {
     var store = new InstallStore(temporary.resolve("metadata-"+mode)); var pack = pack("metadata-pack-"+mode); store.install(pack);
     var release = store.root().resolve("releases").resolve(store.state().getProperty("version"));
     Files.writeString(release.resolve("config.conf"),"stray config"); Files.writeString(release.resolve("owner.iso"),"disc");
-    Files.writeString(release.resolve("libs/obsolete.jar"), "old library");
+    Files.writeString(release.resolve("libs/dependency.jar"), "old library");
     if(mode.equals("missing")) Files.delete(release.resolve(PackageManifest.METADATA));
     if(mode.equals("corrupt")) Files.writeString(release.resolve(PackageManifest.HASHES),"damaged inventory");
     Path partial = null;
@@ -162,7 +168,6 @@ class CleanReinstallTest {
     assertEquals("stray config",Files.readString(data.resolve("recovered-reinstall/releases/"+release.getFileName()+"/config.conf")));
     assertEquals("disc",Files.readString(data.resolve("recovered-reinstall/releases/"+release.getFileName()+"/owner.iso")));
     assertFalse(Files.exists(data.resolve("recovered-reinstall/releases/"+release.getFileName()+"/libs/dependency.jar")));
-    assertFalse(Files.exists(data.resolve("recovered-reinstall/releases/"+release.getFileName()+"/libs/obsolete.jar")));
     assertFalse(Files.exists(data.resolve("recovered-reinstall/releases/"+release.getFileName()+"/bundled-mods/Skurfa.jar")));
     if(partial!=null)assertEquals("partial config",Files.readString(data.resolve("recovered-reinstall/releases/partial-old/config.conf")));
   }
@@ -176,6 +181,20 @@ class CleanReinstallTest {
       if(mode.equals("incomplete"))Files.delete(target.resolve("saves/owner.txt"));else Files.writeString(target.resolve("saves/owner.txt"),"incorrect");
     }));
     assertEquals(before,store.state());assertEquals("original",Files.readString(active.resolve("saves/owner.txt")));
+  }
+
+  @Test void archiveRouteDoesNotPreserveCurrentOrInterruptedUpdateArchives() throws Exception {
+    var store = new InstallStore(temporary.resolve("archive")); var pack = pack("archive-pack"); store.install(pack);
+    Files.writeString(store.data(store.state()).resolve("saves/owner.txt"),"save"); Files.writeString(store.root().resolve("isos/owner.iso"),"disc");
+    var archive = Files.createTempFile(store.root(),".update-",".zip");
+    try(var zip = new java.util.zip.ZipOutputStream(Files.newOutputStream(archive));var paths=Files.walk(pack)) {
+      for(var path:paths.filter(Files::isRegularFile).toList()) {zip.putNextEntry(new java.util.zip.ZipEntry(pack.relativize(path).toString()));Files.copy(path,zip);zip.closeEntry();}
+    }
+    var stale=store.root().resolve(".update-123.zip");Files.writeString(stale,"interrupted old application archive");
+    store.install(archive,"",null,InstallProgress.NONE,true);store.verifyInstalled();var data=store.data(store.state());
+    assertFalse(Files.exists(archive));assertFalse(Files.exists(stale));
+    assertFalse(Files.exists(data.resolve("recovered-reinstall").resolve(archive.getFileName())));assertFalse(Files.exists(data.resolve("recovered-reinstall/.update-123.zip")));
+    assertEquals("save",Files.readString(data.resolve("saves/owner.txt")));assertEquals("disc",Files.readString(store.root().resolve("isos/owner.iso")));
   }
 
 }
