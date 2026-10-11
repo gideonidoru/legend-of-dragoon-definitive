@@ -22,7 +22,9 @@ permissions:
   actions: read
 
 concurrency:
-  group: build-${{ github.workflow }}-${{ github.ref }}
+  # Each explicit package verification retains its exact source while main advances.
+  # Ordinary development checks still cancel superseded checks for the same ref.
+  group: build-${{ github.workflow }}-${{ github.event_name == 'workflow_dispatch' && github.run_id || github.ref }}
   cancel-in-progress: true
 
 jobs:

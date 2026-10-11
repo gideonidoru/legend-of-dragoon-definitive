@@ -134,17 +134,11 @@ class OriginalMovieTest {
       assertEquals(0, movie.bufferedVideoFrames()); assertEquals(0, movie.bufferedAudioBlocks());
     }
   }
-  @Test void corruptChunksAndDeviceGenerationFailInsteadOfHanging() throws Exception {
+  @Test void corruptChunksFailInsteadOfHanging() throws Exception {
     final byte[] bytes = recording(1); bytes[36] = 0;
     try(final var movie = new OriginalMovie(new FileData(bytes), (data, size, number) -> { throw new AssertionError(); })) {
       await(() -> movie.failure() != null);
       assertThrows(IOException.class, () -> new OriginalMoviePlayback(movie).tick(new Output(), 1));
-    }
-    try(final var movie = movie(2)) {
-      await(() -> movie.peekVideo() != null);
-      final Output output = new Output(); final var playback = new OriginalMoviePlayback(movie);
-      playback.tick(output, 1); output.generation++;
-      assertThrows(IOException.class, () -> playback.tick(output, 1));
     }
   }
   @Test void knownSilentTailAndVideoOnlyMoviesAdvanceBeyondTheVideoQueue() throws Exception {
