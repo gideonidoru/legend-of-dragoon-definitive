@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "99361a54898d3b2500aba65b5166026b18d35e75989d86d249183c66ffe58995",
+    "battle-presentation-artwork-v1.json": "7639a540001e9a4784d73143835b3d2abbbc63128bd9eb045e2e728e111b88be",
     "battle-presentation-reviews/2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274"
   },
   "counts": {
@@ -19,10 +19,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 406,
+    "newBespokeCandidates": 414,
     "newlySelectedBespokeMasters": 35,
-    "baselineMastersStillNeedingPresentationReview": 100,
-    "pendingCandidateReviews": 371,
+    "baselineMastersStillNeedingPresentationReview": 92,
+    "pendingCandidateReviews": 379,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -92,7 +92,10 @@
         4096,
         992
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "2d9f72bf6112737d0e44b4fe8ebe537341fb7ef67534ca7f8a2947e0c3f6fcca",
+        "d21c83cd340e7ae73d581c1a52e67da08ac1f0e32c8e60cecd3f0bdeec19aa5f"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -463,6 +466,7 @@
         1056
       ],
       "authoredNewPresentationMasters": [
+        "14b82b20eebceac3f8ff7f6bb7c42d061dd124f394bd140969a0c54b6a0755d8",
         "199e9db947434c5df75d7c2ab56656e3b32e98ae9be6d7621141fa9cfefcc3dd",
         "9b8925e3d123e5a27f54166968a24e0327633141b9d3b0bc45225ea4d58870c3",
         "b889ce74f7fb4f0c114d20b68d5c81a0e0f7023adc2377c1f6d3e419aca1c4c5"
@@ -554,7 +558,9 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "8d91aca041e4fc8ad19e7ec54f1830c0ec836094d7987a6f295b3c638acb895b"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -711,7 +717,9 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "6f2b0efb4191047ef5e7caf235ff7946da4261f762457e0618ef0db07d651183"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -753,7 +761,9 @@
         4096,
         320
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "435825b8cdaebc1d3ac0e8596c01de45cf5f1d447dac8743199490eea418331a"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1427,6 +1437,7 @@
         384
       ],
       "authoredNewPresentationMasters": [
+        "042ec82a283c744b3060315d4c41791101b5b8b8ba0d0dadf56b9e037e92cd8b",
         "a4bc567e5887865bd9e9e70a3adc5c67336eab306e26635be381bceb8889b993",
         "db596ef08ebf304c8ca576fb069302301afc42909f3ffef77926ab89358d76ec"
       ],
@@ -1469,6 +1480,7 @@
         960
       ],
       "authoredNewPresentationMasters": [
+        "24a48481d56e978e4ba66f18388dc558486d53327a417681619643718aa5acce",
         "48beb03e967e691a0904d90462d6e2ab55bd8af6e5096c75bfd2ecd3b5ea91fc",
         "64f6001081475111e9867b3ee6a1258944a7bc6b738ca60cf221559c6a5c5967",
         "744b4e4cad6f18eb5e8e07dbf92193fd39af306299793a1d37f138b521fc934d",
@@ -2016,7 +2028,9 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "8d91aca041e4fc8ad19e7ec54f1830c0ec836094d7987a6f295b3c638acb895b"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     }
@@ -2238,7 +2252,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {2: [0, 1, 2, 8]}. Source family: Giganto Home: wooden machinery, wheels, rough masonry and red surface accents. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2269,7 +2283,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {2: [8]}. Source family: Giganto Home: wooden machinery, wheels, rough masonry and red surface accents. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4754,7 +4768,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {21: [0, 1, 2, 3, 5, 7]}. Source family: green stone, gates, panels, pillars and decorative markings.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5334,7 +5348,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {25: [0], 95: [0]}. Source family: pink rocky ground; pink rocky ground.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6856,7 +6870,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {31: [0, 1]}. Source family: worn timber surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7042,7 +7056,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {35: [0]}. Source family: brown branch/root silhouette.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13227,7 +13241,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {64: [3]}. Source family: muted blue organic knots and root-like surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13537,7 +13551,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {66: [0]}. Source family: Moon: dark rock, brown ground, green vegetation and tangled organic surfaces. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
