@@ -13,6 +13,7 @@ import importlib.util
 import json
 import math
 import os
+import secrets
 import struct
 from pathlib import Path
 
@@ -424,14 +425,60 @@ def discover(files, worklist):
     return result, differential_cases
 
 
-def write_new(path, value):
-    # Never overwrite a reviewed ledger, symlink or source. New checkpoints are
-    # explicitly named by the caller and written only after all discovery passes.
-    with path.open('x') as output:
-        output.write(json.dumps(value, indent=2) + '\n')
+def write_new(path, value, before_publish=None):
+    """Advertise complete metadata atomically, without replacing any history.
+
+    A failed write, flush, fsync or stream close leaves no final checkpoint. The
+    exclusive temporary is owned by this invocation; a no-clobber hard link
+    publishes it only after the entire file is durable and closed. Directory
+    descriptors reject linked parents and keep cleanup bound to that directory.
+    """
+    path = Path(path).absolute()
+    if '..' in path.parts:
+        raise ValueError('Ledger path must not contain parent traversal')
+    data = (json.dumps(value, indent=2) + '\n').encode()
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    directory = os.open(path.anchor, flags)
+    temporary, identity = None, None
+    try:
+        for component in path.parts[1:-1]:
+            try:
+                child = os.open(component, flags, dir_fd=directory)
+            except OSError as error:
+                raise ValueError('Ledger parent must be an existing non-symlink directory') from error
+            os.close(directory)
+            directory = child
+        name = '.envhd-family-ledger-' + secrets.token_hex(16)
+        descriptor = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+                             0o644, dir_fd=directory)
+        temporary = name
+        identity = os.fstat(descriptor)
+        try:
+            stream = os.fdopen(descriptor, 'wb')
+        except Exception:
+            os.close(descriptor)
+            raise
+        with stream as output:
+            if output.write(data) != len(data):
+                raise OSError('Short ledger write')
+            output.flush()
+            os.fsync(output.fileno())
+        if before_publish is not None:
+            before_publish()
+        os.link(temporary, path.name, src_dir_fd=directory, dst_dir_fd=directory,
+                follow_symlinks=False)
+    finally:
+        if temporary is not None:
+            try:
+                current = os.stat(temporary, dir_fd=directory, follow_symlinks=False)
+                if (current.st_dev, current.st_ino) == (identity.st_dev, identity.st_ino):
+                    os.unlink(temporary, dir_fd=directory)
+            except FileNotFoundError:
+                pass
+        os.close(directory)
 
 
-def publish_metadata(result, output, details):
+def publish_metadata(result, output, details, before_publish=None):
     """Keep full hash schedules versioned in bounded per-stage metadata shards.
 
     These shards contain no original words, sequence payloads or image pixels.
@@ -473,7 +520,7 @@ def publish_metadata(result, output, details):
                 identity = os.fstat(artifact.fileno())
                 created.append((details/name, identity.st_dev, identity.st_ino))
                 artifact.write(data)
-        write_new(output, primary)
+        write_new(output, primary, before_publish=before_publish)
     except Exception:
         # Only files created exclusively by this invocation are removed. A
         # concurrent writer cannot be adopted or overwritten by recovery.
@@ -492,6 +539,13 @@ def publish_metadata(result, output, details):
     return primary
 
 
+def verify_native_cases(cases, java_home):
+    verify_spec = importlib.util.spec_from_file_location('native_replay', ROOT/'scripts/verify-envhd-battle-native-replay.py')
+    verify = importlib.util.module_from_spec(verify_spec)
+    verify_spec.loader.exec_module(verify)
+    return verify.verify(cases, java_home)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--files', type=Path, required=True)
@@ -502,19 +556,22 @@ def main():
     args = parser.parse_args()
     if args.output.resolve().is_relative_to(args.files.resolve()) or (args.details_dir and args.details_dir.resolve().is_relative_to(args.files.resolve())):
         raise ValueError('Do not write into original extraction')
-    worklist = json.loads(args.worklist.read_text())
+    worklist_bytes = battle.terrain.bounded_read(args.worklist, 16 * 1024 * 1024)
+    worklist_sha = digest(worklist_bytes)
+    worklist = json.loads(worklist_bytes)
     result, cases = discover(args.files, worklist)
-    verify_spec = importlib.util.spec_from_file_location('native_replay', ROOT/'scripts/verify-envhd-battle-native-replay.py')
-    verify = importlib.util.module_from_spec(verify_spec)
-    verify_spec.loader.exec_module(verify)
-    result['cpuDifferentialVerification'] = verify.verify(cases, args.java_home)
-    result['sourceWorklistFileSha256'] = digest(args.worklist.read_bytes())
+    result['cpuDifferentialVerification'] = verify_native_cases(cases, args.java_home)
+    def recheck_worklist():
+        if battle.terrain.bounded_read(args.worklist, 16 * 1024 * 1024) != worklist_bytes:
+            raise ValueError('Source worklist changed during discovery; no checkpoint published')
+    recheck_worklist()
+    result['sourceWorklistFileSha256'] = worklist_sha
     result['discoveryScriptSha256'] = digest(Path(__file__).read_bytes())
     result['nativeReplayVerifierSha256'] = digest((ROOT/'scripts/verify-envhd-battle-native-replay.py').read_bytes())
     if args.details_dir:
-        publish_metadata(result, args.output, args.details_dir)
+        publish_metadata(result, args.output, args.details_dir, before_publish=recheck_worklist)
     else:
-        write_new(args.output, result)
+        write_new(args.output, result, before_publish=recheck_worklist)
     print(json.dumps(result['summary'], indent=2))
 
 

@@ -86,7 +86,7 @@ source reads. The Python ordered-copy replay also checks the optimized row-rotat
 model on every invocation. This runs headlessly without initializing the game,
 GPU renderer, desktop window or complete encounter scripts.
 
-Fourteen behavioral tests cover duplicate/missing consumer accounting without
+Twenty-one behavioral tests cover duplicate/missing consumer accounting without
 reading originals, initial waits/directions, transients,
 zero duration, zero-row copies, malformed/budgeted sequences, STP/black/partial-word
 sampling, dynamic padding with constant visible samples, missing unused palette
@@ -95,6 +95,19 @@ forward overlapping copies, unknown reads, checkpoint preservation, metadata
 round trips and multiple slots sharing scratch. The source-method differential is
 also wired into the existing hosted synthetic-fixture gate; a local pass does not
 claim a hosted pass.
+
+The independent review of checkpoint `c98f54cb3` identified two publication
+failures: an interrupted direct write could advertise a partial primary ledger,
+and rereading a changed worklist for its final byte hash could bind new bytes to
+old parsed semantics. The corrected publisher closes/fsyncs an owned exclusive
+temporary before a no-clobber atomic link, and removes only owned temporary/shard
+files on failure. Input parsing and the raw byte hash use the same captured
+snapshot; it is rechecked after differential verification and immediately before
+the final publication link. Fault-injection tests cover a disk-full failure after
+16 bytes, stream-close failure, successful same-path retry, concurrent foreign
+outputs, temporary collisions, linked parents and worklist mutation at both
+verification and publication seams. The original checkpoint remains in Git
+history; no runtime/resource/hold state changes accompany these corrections.
 
 The readable ledger points to 67 deterministic compressed JSON metadata shards
 under `integrations/envhd/production/battle-stage-family-details/`. Together they
