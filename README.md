@@ -84,7 +84,7 @@ The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, 
 
 Skurfa's HD backgrounds preserve the game's distinctive painted setting. EnvHD extends that presentation with battle panoramas, location artwork and the parchment world map. The full remaster goal also covers terrain, battle surfaces, missing field scenes and environmental props, with the original foreground placement and occlusion preserved.
 
-The [integrated EnvHD expansion](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/17) extends restoration to world-map terrain, battle surfaces and **2,723 additional field images**, including backgrounds and foreground layers. Four automatically installed field packs—**Env1HD through Env4HD**—share one EnvHD switch. Layer placement and visibility stay tied to the original scenes, and Skurfa’s existing artwork is preserved. This expansion is included in the current combined release; animated, held and unreviewed surfaces retain the original artwork.
+The [integrated EnvHD expansion](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/28) extends restoration to world-map terrain, battle surfaces and **4,892 selected field images**, including backgrounds and foreground layers. Four automatically installed field packs—**Env1HD through Env4HD**—share one EnvHD switch. Layer placement and visibility stay tied to the original scenes, and Skurfa’s existing artwork is preserved. All 5,162 generated field images have individual review records; 270 sources still need bespoke repair. Selected development artwork, broader animation/prop coverage and native gameplay quality remain under development. This expansion is included in the current combined release.
 
 ### Magic with sharper detail
 
