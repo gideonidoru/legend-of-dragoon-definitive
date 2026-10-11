@@ -30,7 +30,7 @@ def verify(package):
             with jar.open(name) as stream:
                 if jar.getinfo(name).file_size!=size or digest(stream)!=sha:raise ValueError('EnvHD JAR bytes differ: '+name)
     for part,names in expected_parts.items():
-        path=package/f'bundled-mods/EnvHD-Fields-v0.1.0-part-{part}.zip'
+        path=package/f'bundled-mods/Env{part+1}HD-v0.1.0.zip'
         if path.stat().st_size>=2*1024**3:raise ValueError('EnvHD resource part exceeds download limit')
         with zipfile.ZipFile(path) as archive:
             entries=[n for n in archive.namelist() if not n.endswith('/')]

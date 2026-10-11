@@ -7,7 +7,7 @@ import tempfile
 import unittest
 import zipfile
 from unittest import mock
-from package_validation import ROOT, file_delivery_assets
+from package_validation import ROOT, BOOTSTRAP, file_delivery_assets
 
 spec = importlib.util.spec_from_file_location('assembler', Path(__file__).with_name('assemble-file-delivery.py'))
 assembler = importlib.util.module_from_spec(spec)
@@ -45,8 +45,44 @@ class FileDeliveryTests(unittest.TestCase):
         with self.assertRaises(ValueError):verify_package(self.package,'linux-x64','a'*40,'fixture')
         verify_package(self.package,'linux-x64','a'*40,'fixture',allow_file_delivery=True)
         self.assertEqual(2,len(file_delivery_assets(self.package,contents)))
+        with zipfile.ZipFile(self.package) as archive:
+            self.assertEqual(BOOTSTRAP|{'libs/library.jar','definitive-package.properties','definitive-files.properties','definitive-sizes.properties'},set(archive.namelist()))
+            for name in BOOTSTRAP|{'libs/library.jar'}:self.assertEqual(self.payload[name],archive.read(name))
+            self.assertNotIn('lod-game-fixture.jar',archive.namelist())
         assembler.assemble(self.package,self.output,thin_release=True,archive_limit=0)
         next((self.output/'files').iterdir()).write_bytes(b'corrupt')
+        with self.assertRaises(ValueError):assembler.assemble(self.package,self.output,thin_release=True,archive_limit=0)
+
+    def test_metadata_only_or_missing_dependency_online_package_is_rejected(self):
+        assembler.assemble(self.package,self.output,thin_release=True,archive_limit=0)
+        from package_validation import verify_package
+        with zipfile.ZipFile(self.package) as source: documents={name:source.read(name) for name in source.namelist()}
+        for removed in (BOOTSTRAP|{'libs/library.jar'}, {'libs/library.jar'}):
+            broken=self.root/'broken.zip'
+            with zipfile.ZipFile(broken,'w') as target:
+                for name,data in documents.items():
+                    if name not in removed:target.writestr(name,data)
+            with self.assertRaises(ValueError):verify_package(broken,'linux-x64','a'*40,'fixture',allow_file_delivery=True)
+
+    def test_named_environment_packs_match_compatibility_blobs_and_reject_corrupt_alias(self):
+        from package_validation import properties
+        with zipfile.ZipFile(self.package) as source:documents={name:source.read(name) for name in source.namelist()}
+        data=b'custom environment pack';name='bundled-mods/Env1HD-v0.1.0.zip';digest=hashlib.sha256(data).hexdigest()
+        documents[name]=data
+        hashes=properties(documents['definitive-files.properties']);hashes[name]=digest
+        metadata=properties(documents['definitive-package.properties'])
+        canonical=''.join(k+'='+metadata[k]+'\n' for k in sorted(metadata) if k!='id')+''.join(k+'='+hashes[k]+'\n' for k in sorted(hashes))
+        metadata['id']='alpha-'+hashlib.sha256(canonical.encode()).hexdigest()[:16]
+        documents['definitive-package.properties']=''.join(k+'='+v+'\n' for k,v in metadata.items()).encode()
+        documents['definitive-files.properties']=''.join(assembler.property_key(k)+'='+v+'\n' for k,v in hashes.items()).encode()
+        with zipfile.ZipFile(self.package,'w') as archive:
+            for name,data in documents.items():archive.writestr(name,data)
+        contents=assembler.assemble(self.package,self.output,thin_release=True,archive_limit=0)
+        alias=self.output/'Env1HD-v0.1.0.zip';blob=self.output/'files'/('file-'+digest)
+        self.assertEqual(alias.read_bytes(),blob.read_bytes())
+        assets=file_delivery_assets(self.package,contents)
+        self.assertEqual(assets[alias.name],assets[blob.name])
+        alias.write_bytes(b'corrupt')
         with self.assertRaises(ValueError):assembler.assemble(self.package,self.output,thin_release=True,archive_limit=0)
 
     def test_corrupt_first_extraction_keeps_complete_archive(self):

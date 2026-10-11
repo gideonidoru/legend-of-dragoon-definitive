@@ -26,6 +26,7 @@ for scenario in ('cache-success', 'cache-corrupt', 'cache-missing', 'cache-linke
             metadata = {'format': '1', 'java': '25', 'sourceRevision': source, 'releaseTag': tag,
                         'platform': platform, 'gameJar': 'lod-game-fixture.jar'}
             payload = {n: b'original synthetic package fixture' for n in ROOT | {'lod-game-fixture.jar', 'libs/library.jar', 'bundled-mods/art.jar'}}
+            if scenario.startswith('file-delivery'):payload['bundled-mods/Env1HD-v0.1.0.zip']=b'custom environment pack'
             if scenario.startswith('file-delivery-many-assets'): payload.update({f'gfx/item-{i}.txt': ('unique-'+str(i)).encode() for i in range(120)})
             hashes = {n: hashlib.sha256(b).hexdigest() for n, b in payload.items()}
             canonical = ''.join(k + '=' + metadata[k] + '\n' for k in sorted(metadata))
@@ -56,7 +57,7 @@ for scenario in ('cache-success', 'cache-corrupt', 'cache-missing', 'cache-linke
                                              (2, 'delivery-macos-15', ('Legend-of-Dragoon-Definitive-macos-arm64.zip',))):
             if scenario.startswith('file-delivery'):
                 platform='linux-x64' if id==1 else 'macos-arm64'
-                selected=tuple(selected)+(f'Definitive-Contents-{platform}.zip',)+tuple(p.name for p in assets.glob('file-*'))
+                selected=tuple(selected)+(f'Definitive-Contents-{platform}.zip',)+tuple(p.name for p in assets.glob('file-*'))+tuple(p.name for p in assets.glob('Env[1-4]HD-*.zip'))
             path = root / f'artifact-{id}.zip'
             with zipfile.ZipFile(path, 'w') as artifact:
                 if scenario == 'ci-source-input-omitted': artifact.writestr('distributions/FMVHD-v0.1.0-videos.zip', b'approved synthetic source input')

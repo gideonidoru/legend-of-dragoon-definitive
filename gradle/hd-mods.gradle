@@ -31,7 +31,7 @@
 // Resource parts are owned by the single EnvHD mod and installed without toggles.
 def envhdParts = (0..3).collect { part ->
   tasks.register("envhdFieldsPart${part}", Zip) {
-    archiveFileName = "EnvHD-Fields-v0.1.0-part-${part}.zip"
+    archiveFileName = "Env${part + 1}HD-v0.1.0.zip"
     destinationDirectory = layout.buildDirectory.dir('libs/mods')
     preserveFileTimestamps = false
     reproducibleFileOrder = true

@@ -32,7 +32,7 @@ allocation. Failure falls back to the original layer.
 
 EnvHD is one independently switchable mod (`envhd`) in the game's internal Mods
 menu. Normal packages include its JAR plus four resource-only
-`EnvHD-Fields-v0.1.0-part-N.zip` files. These parts introduce no mod IDs or installer
+`Env1HD-v0.1.0.zip` through `Env4HD-v0.1.0.zip` files. These parts introduce no mod IDs or installer
 choices. They keep each downloadable asset below the release size limit. The
 checksum-addressed file delivery path supports fresh installation, updates,
 repair and complete reinstall without requiring an oversized monolithic download.

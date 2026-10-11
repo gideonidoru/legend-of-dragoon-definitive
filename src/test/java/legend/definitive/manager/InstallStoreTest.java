@@ -63,7 +63,7 @@ class InstallStoreTest {
   @Test void hdModsAreAlwaysBundledAndGameConfigurationSurvivesUpdate() throws Exception {
     final Path packageRoot = this.pack("four-mods", PackageManifest.hostPlatform());
     for(final String name : List.of("EnvHD", "CharHD", "UIHD", "FxHD")) Files.writeString(packageRoot.resolve("bundled-mods/" + name + "-v0.1.0.jar"), name);
-    for(int part = 0; part < 4; part++) Files.writeString(packageRoot.resolve("bundled-mods/EnvHD-Fields-v0.1.0-part-" + part + ".zip"), "field resources");
+    for(int part = 0; part < 4; part++) Files.writeString(packageRoot.resolve("bundled-mods/Env" + (part+1) + "HD-v0.1.0.zip"), "field resources");
     Files.delete(packageRoot.resolve("definitive-package.properties"));
     Files.delete(packageRoot.resolve("definitive-files.properties"));
     ManagerMain.makeManifest(packageRoot, PackageManifest.hostPlatform(), "four-mods");
@@ -73,7 +73,7 @@ class InstallStoreTest {
     Files.writeString(data.resolve("config.conf"), "enabled_mods=lod,envhd,uihd");
     final Path workspace = store.prepareLaunch();
     for(final String name : List.of("EnvHD", "CharHD", "UIHD", "FxHD")) assertTrue(Files.isSymbolicLink(workspace.resolve("mods/" + name + "-v0.1.0.jar")));
-    for(int part = 0; part < 4; part++) assertTrue(Files.isSymbolicLink(workspace.resolve("mods/EnvHD-Fields-v0.1.0-part-" + part + ".zip")));
+    for(int part = 0; part < 4; part++) assertTrue(Files.isSymbolicLink(workspace.resolve("mods/Env" + (part+1) + "HD-v0.1.0.zip")));
     assertFalse(Files.exists(workspace.resolve("mods/Skurfa.jar")));
     store.install(this.pack("later", PackageManifest.hostPlatform()));
     assertEquals("enabled_mods=lod,envhd,uihd", Files.readString(store.data(store.state()).resolve("config.conf")));

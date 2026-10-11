@@ -56,6 +56,9 @@ final class FileDelivery {
     return install(store,candidate,progress,connection,repairing,false);
   }
   static String install(final InstallStore store, final ReleaseUpdates.Candidate candidate, final InstallProgress progress, final ReleaseUpdates.AssetDownload connection, final boolean repairing, final boolean fullReinstall) throws IOException, InterruptedException {
+    return install(store, candidate, progress, connection, repairing, fullReinstall, "");
+  }
+  static String install(final InstallStore store, final ReleaseUpdates.Candidate candidate, final InstallProgress progress, final ReleaseUpdates.AssetDownload connection, final boolean repairing, final boolean fullReinstall, final String expectedIdentity) throws IOException, InterruptedException {
     return store.withOperation(() -> {
       final Properties state = store.state();
       final Path current = state.containsKey("version") ? InstallStore.child(store.root().resolve("releases"), state.getProperty("version"), "alpha-[a-f0-9]{16}") : null;
@@ -66,6 +69,7 @@ final class FileDelivery {
         ReleaseUpdates.download(new ReleaseUpdates.Candidate(candidate.tag(), asset.id(), asset.url(), asset.sha256()), inventory, update -> progress.phase("Checking release inventory", candidate.tag(), 8), connection, 8 * 1024 * 1024);
         if(!PackageManifest.sha256(inventory).equals(asset.sha256())) throw new IOException("Release inventory checksum mismatch. Your current installation is unchanged.");
         final Contents contents = read(inventory, candidate.tag());
+        if(!expectedIdentity.isEmpty() && !expectedIdentity.equals(contents.manifest().id())) throw new IOException("Downloaded inventory differs from the supplied online package. Download the current installer again.");
         if(repairing && !contents.manifest().id().equals(state.getProperty("version"))) throw new IOException("Repair must match the installed release exactly. Use Update for another release.");
         store.requireFileDeliverySpace(contents.bytes(), contents.manifest().id());
         for(final String support : PackageManifest.SUPPORT) Files.createDirectories(staged.resolve(support));

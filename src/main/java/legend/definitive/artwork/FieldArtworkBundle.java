@@ -7,7 +7,7 @@ public final class FieldArtworkBundle {
   private FieldArtworkBundle() { }
   public static String name(final String key) {
     if(!key.matches("[0-9a-f]{64}")) throw new IllegalArgumentException("Invalid field source key");
-    return "EnvHD-Fields-v0.1.0-part-" + Character.digit(key.charAt(0),16)/4 + ".zip";
+    return "Env" + (Character.digit(key.charAt(0),16)/4 + 1) + "HD-v0.1.0.zip";
   }
   public static byte[] read(final Path mods, final String key) throws IOException {
     try(final ZipFile archive = new ZipFile(mods.resolve(name(key)).toFile())) {

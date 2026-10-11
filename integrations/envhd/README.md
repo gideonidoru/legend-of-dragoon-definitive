@@ -10,7 +10,7 @@ native sampling. Gameplay and final bespoke visual acceptance remain pending.
 Skurfa's existing field resources, code and notices are unchanged and protected.
 See the [production ledger](production/full-coverage.json) for exact gaps.
 
-Four resource-only `EnvHD-Fields-v0.1.0-part-N.zip` files accompany the EnvHD JAR.
+Four resource-only `Env1HD-v0.1.0.zip` through `Env4HD-v0.1.0.zip` files accompany the EnvHD JAR.
 They are installed automatically and remain owned by the single `envhd` mod.
 
 Included by the normal Definitive build/installer. Enable or disable `envhd` in the game’s Mods menu. No installer toggle. Requires the matching Definitive engine hooks; unmodified Severed Chains is not supported for this pilot. See [HD mod integration](../../docs/definitive/HD_MODS.md) for coverage, validation and limitations.

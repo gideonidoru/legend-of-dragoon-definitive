@@ -48,6 +48,50 @@ class FileDeliveryTest {
     };
   }
 
+  private Path online(final Path pack, final Map<String, byte[]> served, final ReleaseUpdates.Candidate candidate) throws Exception {
+    final Path root=this.temporary.resolve("online");Files.createDirectory(root);
+    final var manifest=PackageManifest.read(pack);
+    for(final String name : manifest.hashes().stringPropertyNames()) {
+      if(!Set.of("definitive-manager.jar","bootstrap-java","Install.sh","LICENSE","CREDITS").contains(name) && !name.startsWith("libs/")) continue;
+      Files.createDirectories(root.resolve(name).getParent());Files.copy(pack.resolve(name),root.resolve(name));
+    }
+    for(final String name : List.of(PackageManifest.METADATA,PackageManifest.HASHES)) Files.copy(pack.resolve(name),root.resolve(name));
+    try(final var zip=new ZipInputStream(new ByteArrayInputStream(served.get(candidate.contents().url().getPath().substring(candidate.contents().url().getPath().lastIndexOf('/')+1))))) {
+      for(ZipEntry entry;(entry=zip.getNextEntry())!=null;) if(entry.getName().equals(FileDelivery.SIZES)) Files.copy(zip,root.resolve(FileDelivery.SIZES));
+    }
+    return root;
+  }
+  @Test void suppliedOnlinePackageInstallsAndReinstallsEveryPayloadAgainstPublishedInventory() throws Exception {
+    final Path pack=pack();final var store=new InstallStore(this.temporary.resolve("online-install"));
+    final Map<String,byte[]> served=new HashMap<>();final var candidate=contents(pack,served);final Path online=online(pack,served,candidate);
+    assertFalse(Files.exists(online.resolve("lod-game-test.jar")));
+    final List<String> requested=new ArrayList<>();
+    PortableSetup.installOnline(online,store,candidate,InstallProgress.NONE,connection(served,requested),false);
+    final int completeCount=PackageManifest.read(pack).hashes().size()+1;
+    assertEquals(completeCount,requested.size());store.verifyInstalled();
+    final Path before=store.data(store.state());Files.writeString(before.resolve("saves/owner.txt"),"personal");
+    requested.clear();PortableSetup.installOnline(online,store,candidate,InstallProgress.NONE,connection(served,requested),true);
+    assertEquals(completeCount,requested.size());assertNotEquals(before,store.data(store.state()));
+    assertEquals("personal",Files.readString(store.data(store.state()).resolve("saves/owner.txt")));store.verifyInstalled();
+  }
+  @Test void suppliedOnlinePackageRejectsDifferentPublishedIdentityBeforeFetchingPayloads() throws Exception {
+    final Path pack=pack();final var store=new InstallStore(this.temporary.resolve("online-mismatch"));store.install(pack);
+    final byte[] before=Files.readAllBytes(store.root().resolve("state.properties"));
+    final Map<String,byte[]> served=new HashMap<>();final var original=contents(pack,served);final Path online=online(pack,served,original);
+    final Path next=this.temporary.resolve("next");InstallStore.copyTree(pack,next);Files.writeString(next.resolve("lod-game-test.jar"),"changed");refresh(next);
+    final var changed=contents(next,served);final List<String> requested=new ArrayList<>();
+    assertThrows(IOException.class,()->PortableSetup.installOnline(online,store,changed,InstallProgress.NONE,connection(served,requested),false));
+    assertEquals(1,requested.size());assertArrayEquals(before,Files.readAllBytes(store.root().resolve("state.properties")));store.verifyInstalled();
+  }
+  @Test void suppliedOnlinePackageRejectsStaleTagBeforeDownloading() throws Exception {
+    final Path pack=pack();final var store=new InstallStore(this.temporary.resolve("online-stale"));
+    final Map<String,byte[]> served=new HashMap<>();final var candidate=contents(pack,served);final Path online=online(pack,served,candidate);
+    final var newer=new ReleaseUpdates.Candidate("newer",candidate.assetId(),candidate.url(),candidate.sha256(),null,"",candidate.contents());
+    final List<String> requested=new ArrayList<>();
+    assertThrows(IOException.class,()->PortableSetup.installOnline(online,store,newer,InstallProgress.NONE,connection(served,requested),false));
+    assertTrue(requested.isEmpty());assertFalse(store.state().containsKey("version"));
+  }
+
   @Test void reinstallRejectsExternalSourceBeforeDownloading() throws Exception {
     final var store = new InstallStore(this.temporary.toRealPath().resolve("uninstalled"));
     final URI base = URI.create("https://example.com/releases/fixture/");

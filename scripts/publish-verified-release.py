@@ -73,6 +73,7 @@ def verify_ci_artifacts(run_id, source, expected, cache=None):
                     with zipfile.ZipFile(io.BytesIO(data)) as contents:
                         hashes = properties(contents.read('definitive-files.properties'))
                     names |= {'file-' + digest for digest in hashes.values()}
+                    names |= {name.split('/')[-1] for name in hashes if re.fullmatch(r'bundled-mods/Env[1-4]HD-v[0-9.]+\.zip',name)}
                 for name in names:
                     candidates = [e for n, e in entries.items() if n.split('/')[-1] == name and not e.is_dir()]
                     if len(candidates) != 1:

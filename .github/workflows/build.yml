@@ -45,7 +45,7 @@ jobs:
   build:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.runner }}
-    timeout-minutes: 20
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
@@ -153,6 +153,7 @@ jobs:
           path: |
             build/distributions/Legend-of-Dragoon-Definitive-*.zip
             build/distributions/Definitive-Contents-*.zip
+            build/distributions/Env[1-4]HD-*.zip
             build/distributions/files/file-*
             build/distributions/FMVHD-v0.1.0-videos.zip
             build/distributions/Definitive-Installer.zip

@@ -12,7 +12,7 @@ class FieldArtworkBundleTest {
   @Test void sourceKeySelectsOnlyItsFixedResourcePartAndEntry() throws Exception {
     for(int part=0;part<4;part++) {
       final String key=Integer.toHexString(part*4)+"a".repeat(63);
-      assertEquals("EnvHD-Fields-v0.1.0-part-"+part+".zip",FieldArtworkBundle.name(key));
+      assertEquals("Env"+(part+1)+"HD-v0.1.0.zip",FieldArtworkBundle.name(key));
       try(final var zip=new ZipOutputStream(Files.newOutputStream(this.temporary.resolve(FieldArtworkBundle.name(key))))) {
         zip.putNextEntry(new ZipEntry("envhd/fields/"+key+"/image-v1.png"));zip.write(new byte[]{1,2,3});zip.closeEntry();
       }
