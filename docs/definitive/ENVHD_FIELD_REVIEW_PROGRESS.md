@@ -2,14 +2,14 @@
 
 The published combined installer `definitive-alpha-2026-10-11-envhd` contains
 **4,892 selected development field images** from package source `0af4f997`.
-This authoring branch selects **4,918 images**: **4,886 reviewed neural baselines**
-and **thirty-two source-verified painted repairs**. The twenty-six new fields await coordinated
+This authoring branch selects **4,917 images**: **4,886 reviewed neural baselines**
+and **thirty-one source-verified painted repairs**. The twenty-five new fields await coordinated
 publication. Native gameplay and final Skurfa-equivalent quality remain pending.
 
 All **5,162 generated field sources** have been individually compared against
 original pixels and scene placement. The 2,163 additional reviewed neural images
-are now versioned and selected on this branch. Thirty-two original neural holds have
-separately reviewed painted replacements; **244 source images remain held**.
+are now versioned and selected on this branch. Thirty-one original neural holds have
+separately reviewed painted replacements; **245 source images remain held**.
 Three uniform sources and empty/missing native slots retain their original data.
 
 | Field images | Count |
@@ -18,10 +18,10 @@ Three uniform sources and empty/missing native slots retain their original data.
 | Individually compared source images | 5,162 |
 | Reviewed neural development baselines | 4,886 |
 | Original neural repair holds | 276 |
-| Separately reviewed painted replacements | 32 |
-| Remaining held source images | 244 |
+| Separately reviewed painted replacements | 31 |
+| Remaining held source images | 245 |
 | Still awaiting individual source comparison | 0 |
-| Selected on this development branch | 4,918 |
+| Selected on this development branch | 4,917 |
 | Selected in the published installer | 4,892 |
 | Reviewed baselines awaiting candidate publication/selection | 0 |
 
@@ -66,7 +66,7 @@ into the background. Its isolated native slot placement was checked because
 stacking all foreground state variants obscures this object.
 
 The authoring selection accepts `--files <private extracted source directory>`
-and `--painted-manifest integrations/envhd/production/field-bespoke-bedding-upholstery.json`.
+and `--painted-manifest integrations/envhd/production/field-bespoke-bedding-reviewed-selection.json`.
 Omitting both selects only the verified neural candidates. Fresh source census,
 Env-only ownership, usage bindings, original source hashes, generation/output
 hashes, recorded review hashes and exact repaired pixels are checked before
@@ -225,8 +225,9 @@ slots16/17. The complete `field-bespoke-bedding-upholstery.json` preserves all
 previous twenty-four candidate records verbatim and appends these eight.
 Source-e7eb runtime/review/progress controls archive the exact previous
 4,910-field selection. All historical neural review verdicts remain unchanged.
-Current selection is 4,918 (4,886 neural plus 32 painted), with 244 source holds.
-The public source 0af installation still has 4,892; all 26 newer field repairs
+The initial selection was 4,918 (4,886 neural plus 32 painted), with 244 source holds.
+Independent review subsequently withdraws the full bed as described below.
+The public source 0af installation still has 4,892; the 25 selected newer field repairs
 await coordinated publication, with one EnvHD switch and four resource packs.
 
 Original, held neural, repaired target and each isolated native source slot's
@@ -250,7 +251,7 @@ is used for these eight; native gameplay, occlusion and final art acceptance rem
 pending. Custom raw/final PNGs, rejected drafts and full prompt histories are
 versioned; original pixels and comparison boards are not published.
 
-Selected previews and full prompts:
+Candidate previews and full prompts (full Deningrad bed is now held):
 
 - [deningrad blue edge](../../integrations/envhd/production/bespoke-field-candidates/7bdefad38d8855c31c9277bcf9468fc2e058bf2750a6304ec947f3f8a80b5c13/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/7bdefad38d8855c31c9277bcf9468fc2e058bf2750a6304ec947f3f8a80b5c13/generation-prompts.txt).
 - [deningrad muted bed](../../integrations/envhd/production/bespoke-field-candidates/a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/a6436f45e66810640f3a1034c690289b30a50d6787c7f3dc408a38ff4f87b382/generation-prompts.txt).
@@ -260,3 +261,28 @@ Selected previews and full prompts:
 - [bale green bench](../../integrations/envhd/production/bespoke-field-candidates/a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5/generation-prompts.txt).
 - [palace pale bed16](../../integrations/envhd/production/bespoke-field-candidates/e2d0768d6eb22d2ef40f2ae4a2859de3b8d1bbfcd7a61f48b6d2f00bb9ecf214/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/e2d0768d6eb22d2ef40f2ae4a2859de3b8d1bbfcd7a61f48b6d2f00bb9ecf214/generation-prompts.txt).
 - [palace pale bed17](../../integrations/envhd/production/bespoke-field-candidates/f1f892eb7441868656bbd630df9cbb2b40407a2192d4646a6ca481ee6e00501e/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/f1f892eb7441868656bbd630df9cbb2b40407a2192d4646a6ca481ee6e00501e/generation-prompts.txt).
+
+## Independent review: full Deningrad bed held
+
+The complete current `field-bespoke-bedding-reviewed-selection.json` includes
+all twenty-four previous paintings plus seven bedding/upholstery paintings.
+The full Deningrad bed (`afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19`,
+cut 354 foreground slot 4) is an **intent-revision-needed** candidate and is
+excluded from the complete runtime selection. Its original native layer remains
+active. The substantial dark occupied region's intended material/content is
+unresolved; 3,922 extended pixels and maximum squared extension distance 1,402
+establish neither that classification nor visual fidelity. This is an intent gap,
+not a failed alpha check or a demonstrated physical rendering failure.
+
+The original thirty-two-record candidate manifest, raw/final artwork, rejected
+drafts, prompts and reviews remain byte-identical custom history. Archived
+source-260c runtime/review/progress controls preserve the withdrawn 4,918-field
+checkpoint. The current complete selection is **4,917 fields**: **4,886 neural**
+and **31 painted**, leaving **245 field holds plus one terrain hold**.
+All other 4,917 runtime asset records remain exact, including the other seven
+bedding/upholstery repairs; protected Skurfa and the prior 605 selected source
+configurations are unchanged. Recipes and coverage thresholds are unchanged.
+The full bed requires source-context classification or a source-faithful correction
+and independent review before re-selection. Public installation still has 4,892;
+25 selected newer fields await coordinated publication. Native gameplay and final
+art acceptance remain pending.
