@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "0729ff3f4b8f5a4d78c938638a54ac13d8ed8529 plus unanimously cleared Twin Castle cut228 foreground4",
+  "sourceSelectionCheckpoint": "6d5c0d1a671e4c93bbd41d5efd6dd17d6a236b53 plus five independently cleared scenery crops",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "e04a0e6a7859387c0b28db3701a72df4e1aa741d03115a1de4d7ce8099a16827",
-    "field-runtime-artwork.json": "e31ef6ec015d82f70d190faac1d0895065c1d1752f31b54d2be30b0961c87ee4",
+    "full-coverage.json": "a8f79f054d29aa378c383ae1f047e22d5ad28666ac647913b1d6e570001d5fe5",
+    "field-runtime-artwork.json": "fed0bbc3f568cd9d045cbd633a44a866f1eaf88b03b985a3b20223206d336207",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
@@ -38,29 +38,32 @@
     "field-donau-two-selection-readiness.json": "7248e4730cce7f566469380513041dc96b4d4bcdb455864b8332f8996615654a",
     "field-bespoke-twin-fragment-independent-reviewed-selection.json": "b5f037cbdeb5cd4cd1334bcf1f5c26be2d91802eb5c977bb23410c502532c2ef",
     "field-independent-twin-fragment-review.json": "3dd70d954d61e40b83e73eba92caa570a613a7d6732c007f5d967e19cbf47c40",
-    "field-twin-fragment-selection-readiness.json": "6072dcf4c4a052d7287ba366c81931b86410fcf1bd31f008625554d4c887b459"
+    "field-twin-fragment-selection-readiness.json": "6072dcf4c4a052d7287ba366c81931b86410fcf1bd31f008625554d4c887b459",
+    "field-bespoke-scenery-five-independent-reviewed-selection.json": "9e17f93736ca72679c7c4c1f4f3c124712e0f558007b411bb490a29c2744531c",
+    "field-independent-scenery-eight-review.json": "74c221c4c764449f81b410e4f1ec6d544ae1aed8ffa32a1f0e8a51ccafc4da0e",
+    "field-scenery-five-selection-readiness.json": "207b14ef45ce97abe4114ca9e34c4ec2189140e46bab7d7ad4b143dda59eb2e3"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 234,
+  "knownRemainingStaticImages": 229,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4929,
+      "selectedDevelopment": 4934,
       "selectedNeural": 4886,
-      "selectedPainted": 43,
-      "held": 233,
+      "selectedPainted": 48,
+      "held": 228,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 15,
+      "customHeldDraftSourceImages": 14,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Continue233 field holds and source/state/native/final validation. Other authoring and held histories remain on ongoing EnvHD branch; only unanimously cleared Twin fragment imported.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 2,
+      "nextTask": "Continue228 field holds and source/state/native/final checks. Bale corner, Undersea coral and Fueno support need source-faithful correction. Other authoring/held histories remain on ongoing EnvHD branch.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 1,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
@@ -73,14 +76,19 @@
         "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
         "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab",
         "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
-        "b88a83c36c8e7e7e09112c6174606d9498252c7deca051cb4ceef656d0819523",
         "df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b",
         "f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding4929current runtime selections.15unselected draft source keys are a subset of233field holds; all previous candidate/rejected versions retained.",
+      "draftCountMethod": "Unique64-character source-key directories across bespoke-field-candidates and held-field-art-drafts, excluding4934current selections; 14unselected keys in this main snapshot are a subset of228holds. Complete ongoing authoring retained separately at7262233bb.",
       "independentlyReviewedCandidatesRequiringRevision": 2,
-      "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json"
+      "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
+      "independentNewSceneryReview": {
+        "source": "7262233bbffb1419bfda439b138e4bcc75f01591",
+        "clearedSelected": 5,
+        "requiresRevision": 3,
+        "receipt": "field-independent-scenery-eight-review.json"
+      }
     },
     {
       "id": "static-terrain",
@@ -288,6 +296,12 @@
       "selectedNewSourceImages": 1,
       "independentReview": "field-independent-twin-fragment-review.json",
       "reason": "Twin Castle clipped hanging unanimously clear for development; two-panel motif disagreement and three-panel star/fitting revisions excluded. Prior42 selected recipes and4928 runtime records exact. Unfinished authoring remains ongoing."
+    },
+    {
+      "manifest": "field-bespoke-scenery-five-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 5,
+      "independentReview": "field-independent-scenery-eight-review.json",
+      "reason": "Shrine arch and left finial fragment, Moon radial layer, Queen Fury crate and Ulara rim independently clear for development. Three other scoped crops require revision and stay excluded. Prior43/4929 exact."
     }
   ],
   "publication": {
@@ -314,7 +328,7 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 4,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 9,
     "paintedBattleMastersAwaitingCoordinatedPublication": 13,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
