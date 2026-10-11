@@ -179,6 +179,9 @@ jobs:
           python3 scripts/test-file-delivery.py
           python3 scripts/test-release-retention.py
           python3 scripts/test-publication-delta.py
+          python3 scripts/test-current-publication.py
+          python3 scripts/test-current-publication-transaction.py
+          python3 scripts/test-current-retention.py
       - name: Verify native archive fixtures
         run: python3 scripts/verify-disc-archives.py
       - name: Cross-check original material fixtures in Python and Java
