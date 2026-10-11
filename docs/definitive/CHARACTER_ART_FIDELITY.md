@@ -34,3 +34,7 @@ Start with one character and build a reference sheet containing the original ill
 Before another full-body inference or material pass, compare the new design against that sheet. Mark each listed feature matched, mismatched or unresolved. Use aligned close views for motifs and attachments, not just a flattering full-body pose. Lock the design first, then solve topology, joint continuity and native animation. Review the finished result again against the originals at gameplay size and close range before owner approval and main/release promotion.
 
 The first acceptance question is: **Is this the original character design, rendered with more clarity?** Beauty and technical validation follow that requirement.
+
+## Source audit checkpoint
+
+See [Dart original-art audit](DART_ORIGINAL_ART_AUDIT.md) and [reference catalog](../../integrations/charhd/production/party-reconstruction/original-art-reference-catalog.json) for the first collected archive references, exact hashes, observed Dart design differences and remaining source gaps. Eight characters have at least one cached reference; no complete nine-character fidelity acceptance is claimed.
