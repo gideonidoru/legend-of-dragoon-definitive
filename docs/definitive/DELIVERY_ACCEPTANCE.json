@@ -2,9 +2,9 @@
   "schema": 1,
   "date": "2026-10-11",
   "owner": "Orchestrate project workstreams",
-  "developmentSource": "696cea631db511041ed7ab6466f03da355eebb7c",
-  "publicSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
-  "purpose": "Explicit delivery acceptance cases; earlier headless evidence exists, physical completion not inferred. User reports FMVs work on Deck but new rendering blocker remains.",
+  "developmentSource": "6612a533307e5f066bc46e7870d658f8add42752",
+  "publicSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+  "purpose": "Explicit delivery acceptance cases; current public three-pass headless Reinstall evidence is separate from physical case acceptance. Positive reported Deck observations do not finish the full device matrix.",
   "physicalAcceptanceStatus": "pending per case; no complete maintenance/device signoff supplied",
   "cases": [
     {
@@ -317,5 +317,25 @@
   "sourceReceipt": {
     "file": "Delivery-Acceptance-Cases-2026-10-11.json",
     "sha256": "85339b06da300fab6aca4d9961ffe95edfa7f8a74bb830dc2b04ff53f2890c3d"
+  },
+  "historicalDevelopmentSource": "696cea631db511041ed7ab6466f03da355eebb7c",
+  "historicalPublicSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
+  "publicGeneration": 4,
+  "publicBuildRun": 38171282483,
+  "currentPublicEvidence": {
+    "carrier": "https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-current",
+    "verification": "Publication and anonymous downloads PASS. Three consecutive full Reinstall passes using the actual downloaded manager PASS; independent read-only final census rehashed all 574 managed files and 40 preserved owner entries. Synthetic discs, headless; no gameplay, UI or physical Deck acceptance.",
+    "observedDate": "2026-10-11",
+    "source": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+    "generation": 4,
+    "buildRun": 38171282483,
+    "manifestSha256": "df7f95b8d946c4b03476c560e1aa4f26421b3302ab9233a553a9eefcde66195e",
+    "publication": "PASS",
+    "anonymousDownloads": "PASS",
+    "publicMaintenance": "PASS for three full Reinstall passes only",
+    "physicalDeck": false,
+    "harnessSha256": "43fed076fdf825e5436ac9ac6cfa445bdb78983b40511199d6ea124347f99e4a",
+    "downloadedManagerSha256": "12a69dfd434ecc7a033f3f23bf58d6b6847866cd84bb762eec063aa5fcda9711",
+    "scope": "No Repair/Uninstall/Update or physical acceptance inferred from Reinstall evidence."
   }
 }

@@ -275,6 +275,19 @@
     "installerChanged": false,
     "releaseChanged": false,
     "publishedInstaller": {
+      "tag": "definitive-current",
+      "generation": 4,
+      "packageSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+      "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
+      "fieldSelectedMasters": 4925,
+      "paintedFieldReplacements": 39,
+      "paintedBattleReplacements": 34,
+      "nativeArtAccepted": 0,
+      "finalArtAccepted": 0
+    },
+    "selectedFieldImagesAwaitingCoordinatedPublication": 1,
+    "paintedBattleMastersAwaitingCoordinatedPublication": 13,
+    "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
       "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
       "entrypointMetadataSource": "0b8df09ab1aa5cfab8dc3c7051cbc49708be8b64",
@@ -285,9 +298,7 @@
       "paintedBattleReplacements": 0,
       "nativeArtAccepted": 0,
       "finalArtAccepted": 0
-    },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 34,
-    "paintedBattleMastersAwaitingCoordinatedPublication": 12
+    }
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint."
 }
