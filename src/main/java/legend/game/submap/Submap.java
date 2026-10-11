@@ -27,6 +27,17 @@ public abstract class Submap {
   public abstract CompletableFuture<Void> loadEnv();
   public abstract void loadAssets(final Runnable onLoaded);
 
+  /** Preparation completion, including parsing; legacy callback implementations retain their success contract. */
+  public CompletableFuture<Void> loadAssets() {
+    final CompletableFuture<Void> preparation = new CompletableFuture<>();
+    try {
+      this.loadAssets(() -> preparation.complete(null));
+    } catch(final RuntimeException failure) {
+      preparation.completeExceptionally(failure);
+    }
+    return preparation;
+  }
+
   public abstract void loadMusicAndSounds();
   public abstract void startMusic();
 

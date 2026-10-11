@@ -250,6 +250,14 @@ public class RetailSubmap extends Submap {
 
   @Override
   public void loadAssets(final Runnable onLoaded) {
+    this.loadAssets().thenRun(onLoaded).exceptionally(failure -> {
+      LOGGER.error("Failed to prepare submap cut %d assets", this.cut, failure);
+      return null;
+    });
+  }
+
+  @Override
+  public CompletableFuture<Void> loadAssets() {
     LOGGER.info("Loading submap cut %d assets", this.cut);
 
     this.theEnd_800d4bd0 = null;
@@ -279,22 +287,10 @@ public class RetailSubmap extends Submap {
       final CompletableFuture<Void> future = CompletableFuture
         .allOf(assetsFuture, scriptsFuture, texturesFuture)
         .thenAccept(v -> this.prepareSobjs(assets, scripts, textures))
-        .exceptionally(t -> {
-          LOGGER.error("", t);
-          return null;
-        })
       ;
 
       if(cutFileIndex == 0) {
-        future
-          .thenRun(onLoaded)
-          .exceptionally(t -> {
-            LOGGER.error("", t);
-            return null;
-          })
-        ;
-
-        return;
+        return future;
       }
 
       // Load 3D overlay
@@ -330,16 +326,13 @@ public class RetailSubmap extends Submap {
         submapCutMatrix[0] = files.get(1).readMv(0, new MV());
       });
 
-      CompletableFuture
+      return CompletableFuture
         .allOf(overlayFutures)
         .thenAccept(v -> this.prepareMap(submapCutTexture[0], submapCutMatrix[0]))
-        .runAfterBoth(future, onLoaded)
-        .exceptionally(t -> {
-          LOGGER.error("", t);
-          return null;
-        })
-      ;
+        .runAfterBoth(future, () -> { });
     }
+
+    return CompletableFuture.failedFuture(new IllegalStateException("Unsupported asset disc " + drgnIndex.get() + " for submap cut " + this.cut));
   }
 
   @Override
