@@ -36,9 +36,12 @@ final class FmvMigrationTest {
       Files.write(jar,bytes);
     }
     if(defect.equals("truncated")) Files.write(jar,Arrays.copyOf(Files.readAllBytes(jar),100));
-    Files.delete(old.resolve(PackageManifest.METADATA));Files.delete(old.resolve(PackageManifest.HASHES));ManagerMain.makeManifest(old,PackageManifest.hostPlatform(),"fixture");
-    final var store=new InstallStore(this.root.resolve(id+"-install"));store.install(old);
-    final Path current=store.root().resolve("releases/"+store.state().getProperty("version"));
+    Files.delete(old.resolve(PackageManifest.METADATA));Files.delete(old.resolve(PackageManifest.HASHES));
+    // Model an older inventory without asking the hardened installer to activate it.
+    if(List.of("missing","unsafe","duplicate","truncated").contains(defect))
+      assertThrows(IOException.class,()->ManagerMain.makeManifest(old,PackageManifest.hostPlatform(),"fixture"));
+    else ManagerMain.makeManifest(old,PackageManifest.hostPlatform(),"fixture");
+    final Path current=this.root.resolve(PackageManifest.read(old).id());Files.move(old,current);
     final Path target=packages.pack(id+"-next",PackageManifest.hostPlatform());fixture.split(target,"small code");
     Files.delete(target.resolve(PackageManifest.METADATA));Files.delete(target.resolve(PackageManifest.HASHES));ManagerMain.makeManifest(target,PackageManifest.hostPlatform(),"fixture");
     final Path staged=this.root.resolve(id+"-staged");Files.createDirectories(staged.resolve("gfx/fmvhd/videos"));

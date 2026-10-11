@@ -95,7 +95,8 @@ final class FmvSplitDeliveryTest {
     try(final var paths=Files.walk(split.resolve("gfx/fmvhd"))) {
       for(final Path path:paths.sorted(Comparator.reverseOrder()).toList()) Files.delete(path);
     }
-    refresh(split);
+    // The producer rejects this package too, after writing the forged generic inventory.
+    assertThrows(IOException.class,()->refresh(split));
     assertThrows(IOException.class,()->PackageManifest.read(split).verify(split,PackageManifest.hostPlatform()));
     assertThrows(IOException.class,()->store.install(split));
     assertEquals(before,store.state());store.verifyInstalled();

@@ -327,7 +327,7 @@ class InstallStoreTest {
 
   @Test void fmvHdRemainsAvailableWithOriginalBackgrounds() throws Exception {
     final Path pack = this.pack("fmv-release", PackageManifest.hostPlatform());
-    Files.writeString(pack.resolve("bundled-mods/FMVHD-v0.1.0.jar"), "cinematics");
+    new legend.definitive.fmv.FmvSplitFixture().jar(pack, true, "cinematics");
     Files.delete(pack.resolve(PackageManifest.METADATA));
     Files.delete(pack.resolve(PackageManifest.HASHES));
     ManagerMain.makeManifest(pack, PackageManifest.hostPlatform(), "fixture");
