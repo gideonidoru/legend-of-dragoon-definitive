@@ -100,16 +100,22 @@ public record PackageManifest(Properties metadata, Properties hashes) {
   static Properties readProperties(final Path path) throws IOException {
     if(Files.isSymbolicLink(path) || !Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Missing file: " + path);
     final Properties properties = new Properties();
-    try(final InputStream stream = Files.newInputStream(path)) { properties.load(stream); }
+    try(final InputStream stream = Files.newInputStream(path, LinkOption.NOFOLLOW_LINKS)) { properties.load(stream); }
     return properties;
   }
 
+  static void checkCancelled() throws java.io.InterruptedIOException {
+    if(Thread.currentThread().isInterrupted()) throw new java.io.InterruptedIOException("Installation operation was interrupted.");
+  }
+
   static String sha256(final Path path) throws IOException {
+    checkCancelled();
     final MessageDigest md = sha();
-    try(final InputStream stream = Files.newInputStream(path)) {
+    try(final InputStream stream = Files.newInputStream(path, LinkOption.NOFOLLOW_LINKS)) {
       final byte[] buffer = new byte[1024 * 1024];
-      for(int count; (count = stream.read(buffer)) != -1;) md.update(buffer, 0, count);
+      for(int count; (count = stream.read(buffer)) != -1;) { checkCancelled(); md.update(buffer, 0, count); }
     }
+    checkCancelled();
     return HexFormat.of().formatHex(md.digest());
   }
 

@@ -54,4 +54,19 @@ else
   prepare 3>/dev/null >&8 2>&1 || { command -v kdialog >/dev/null && kdialog --error "Setup could not start. See $LOG for details."; exit 1; }
 fi
 IFS= read -r JAVA < "$STAGE/java-path"
-"$JAVA" --enable-native-access=ALL-UNNAMED -cp "$STAGE/installer/definitive-manager.jar:$STAGE/installer/manager-libs/*" legend.definitive.manager.ManagerMain --setup "$STAGE/installer"
+set +e
+"$JAVA" --enable-native-access=ALL-UNNAMED -cp "$STAGE/installer/definitive-manager.jar:$STAGE/installer/manager-libs/*" legend.definitive.manager.ManagerMain --setup "$STAGE/installer" 2>&1 | { head -c 16777216; HEAD_CODE=$?; cat >/dev/null; exit "$HEAD_CODE"; } | tee -a /dev/fd/8
+RESULTS=("${PIPESTATUS[@]}")
+CODE=${RESULTS[0]}
+set -e
+if [[ ${RESULTS[1]} != 0 || ${RESULTS[2]} != 0 ]]; then
+  echo 'Could not save complete installer startup diagnostics.' >&2
+  if [[ $CODE == 0 ]]; then CODE=1; fi
+fi
+if [[ $CODE != 0 ]]; then
+  MESSAGE="Setup could not start (code $CODE). See $LOG for details."
+  printf '%s\n' "$MESSAGE" >&2
+  if command -v zenity >/dev/null; then zenity --error --text="$MESSAGE" || true
+  elif command -v kdialog >/dev/null; then kdialog --error "$MESSAGE" || true; fi
+fi
+exit "$CODE"
