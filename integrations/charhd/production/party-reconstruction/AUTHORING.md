@@ -72,3 +72,7 @@ Use a local extracted game directory and the separate offline authoring environm
 The supported headless build/regression/package command passed on the recorded Mac/Java 25 environment. It packages the existing accepted runtime assets, not these development bodies. The native study uses a separate private installation and test harness; it is not run by normal packaging. No physical Deck body performance or gameplay validation occurred.
 
 No new installer release is published for this authoring iteration. Promotion requires reviewed before/after comparisons, native model/material verification and the existing release gates.
+
+## Original-design v3 party set — October 11, 2026
+
+The [new nine-character set](../../../../docs/definitive/PARTY_ORIGINAL_DESIGN_V3.md) is additional CharHD authoring, separate from the historical head/body fits above. Each `original-design-v3` folder contains source-controlled custom artwork, its exact prompt, an editable static GLB, a 2K base-color atlas and bounded receipts. The [inventory](original-design-v3.json) pins every selected artifact and the unchanged 19 runtime files. The public artwork and mesh boards contain only custom work; original comparison sheets remain outside Git. These sculpts are not rigged, do not replace native actors and are not selected by normal packaging. Existing failed articulation tests remain blockers for full-body delivery.

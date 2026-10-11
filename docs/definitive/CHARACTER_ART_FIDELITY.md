@@ -37,4 +37,4 @@ The first acceptance question is: **Is this the original character design, rende
 
 ## Source audit checkpoint
 
-See [Dart original-art audit](DART_ORIGINAL_ART_AUDIT.md) and [reference catalog](../../integrations/charhd/production/party-reconstruction/original-art-reference-catalog.json) for the first collected archive references, exact hashes, observed Dart design differences and remaining source gaps. Eight characters have at least one cached reference; no complete nine-character fidelity acceptance is claimed.
+See [Dart original-art audit](DART_ORIGINAL_ART_AUDIT.md) and [reference catalog](../../integrations/charhd/production/party-reconstruction/original-art-reference-catalog.json) for the first collected archive references, exact hashes, observed Dart design differences and remaining source gaps. All nine characters now have a located normal-form reference and a new overview comparison. The [October 11 pass](PARTY_ORIGINAL_DESIGN_V3.md) records remaining motif, provenance and native-fit checks; no complete nine-character fidelity acceptance is claimed.

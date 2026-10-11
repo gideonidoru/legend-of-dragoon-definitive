@@ -1,13 +1,13 @@
 {
   "format": 1,
-  "auditDate": "2026-10-10",
-  "status": "partial-source-audit-no-character-accepted",
+  "auditDate": "2026-10-11",
+  "status": "nine-normal-form-references-overview-compared-detail-acceptance-pending",
   "archiveLanding": "https://legendofdragoon.org/resource-archive/",
   "officialMediaFolder": "https://drive.google.com/drive/folders/1s8LQFEb-jRH8sBtnMiuZOOnFGBQuJgdF",
   "conceptFolder": "https://drive.google.com/drive/folders/1su2hzkrAMp0MrZUf2khMOJiIZyTekV7b",
   "promotionalFolder": "https://drive.google.com/drive/folders/10x8cq-tEQOBe8c6P2ZPB1HOWE2J8z47L",
   "originalPixelsInRepository": false,
-  "inventoryLimit": "The public folder response returned the first 50 items for concept and promo folders. Missing items are source gaps in this audit, not proof the archive lacks them.",
+  "inventoryLimit": "All nine normal-form controls used by the new draft are located. This is not a complete inventory of the archive or independently authenticated publication lineage.",
   "references": [
     {
       "name": "Dart1_C.jpg",
@@ -32,7 +32,7 @@
         443,
         555
       ],
-      "visualInspection": "inspected",
+      "visualInspection": "inspected-overview-against-new-artwork",
       "provenanceStatus": "Community archive classifies this reproduction as official concept art or promotional render; original publication and file lineage have not been independently authenticated."
     },
     {
@@ -45,7 +45,7 @@
         396,
         640
       ],
-      "visualInspection": "cached-not-yet-inspected",
+      "visualInspection": "inspected-overview-against-new-artwork",
       "provenanceStatus": "Community archive classifies this reproduction as official concept art or promotional render; original publication and file lineage have not been independently authenticated."
     },
     {
@@ -162,7 +162,7 @@
         2400,
         3200
       ],
-      "visualInspection": "inspected",
+      "visualInspection": "inspected-overview-against-new-artwork",
       "provenanceStatus": "Community archive classifies this reproduction as official concept art or promotional render; original publication and file lineage have not been independently authenticated."
     },
     {
@@ -175,7 +175,7 @@
         2400,
         3200
       ],
-      "visualInspection": "cached-not-yet-inspected",
+      "visualInspection": "inspected-overview-against-new-artwork",
       "provenanceStatus": "Community archive classifies this reproduction as official concept art or promotional render; original publication and file lineage have not been independently authenticated."
     },
     {
@@ -188,7 +188,7 @@
         2400,
         3200
       ],
-      "visualInspection": "cached-not-yet-inspected",
+      "visualInspection": "inspected-overview-against-new-artwork",
       "provenanceStatus": "Community archive classifies this reproduction as official concept art or promotional render; original publication and file lineage have not been independently authenticated."
     },
     {
@@ -201,8 +201,47 @@
         2400,
         3200
       ],
-      "visualInspection": "cached-not-yet-inspected",
+      "visualInspection": "inspected-overview-against-new-artwork",
       "provenanceStatus": "Community archive classifies this reproduction as official concept art or promotional render; original publication and file lineage have not been independently authenticated."
+    },
+    {
+      "name": "Albert1_C.jpg",
+      "sourceGroup": "concept-web-reproduction",
+      "sourceUrl": "https://www.creativeuncut.com/gallery-17/lod-king-albert.html",
+      "imageUrl": "https://www.creativeuncut.com/gallery-17/art/lod-king-albert.jpg",
+      "sha256": "c9a1a2cc5b5b05ca38525fae7232ecf64c358a260a814c7c4cb137031faa778f",
+      "size": [
+        760,
+        960
+      ],
+      "provenanceStatus": "Gallery classifies as official artwork; original publication lineage unresolved",
+      "visualInspection": "inspected-overview-against-new-artwork"
+    },
+    {
+      "name": "Meru1_C-reproduction.jpg",
+      "sourceGroup": "concept-web-reproduction",
+      "sourceUrl": "https://www.pinterest.com/pin/the-legend-of-dragoon-meru-concept-art--91057223709891030/",
+      "imageUrl": "https://i.pinimg.com/564x/50/84/ce/5084ceedae4fb72d6e5475c9984a215c.jpg",
+      "sha256": "8c492cb113fe143f44c1b1ab1ca810b5f8a10304c05a29264ab7bda6ef1e0852",
+      "size": [
+        515,
+        676
+      ],
+      "provenanceStatus": "Search-located reproduction labelled concept art; publication lineage unresolved; corroborate with original game controls before acceptance",
+      "visualInspection": "inspected-overview-against-new-artwork"
+    },
+    {
+      "name": "Miranda1_C.jpg",
+      "archiveFileId": "1q8NZkHsKfuzUSH3CUH_WaKpo9iUBYKm_",
+      "sourceGroup": "concept",
+      "sourceUrl": "https://drive.google.com/file/d/1q8NZkHsKfuzUSH3CUH_WaKpo9iUBYKm_/view",
+      "sha256": "95989cbc0a04dc25ec5630127e96d242c2d0031c3ee05c8acef86ced71a63d28",
+      "size": [
+        280,
+        560
+      ],
+      "visualInspection": "inspected-overview-against-new-artwork",
+      "provenanceStatus": "Reproduction located through a public gallery; original publication/file lineage has not been independently authenticated. Native model and texture corroboration is required."
     }
   ],
   "party": [
@@ -214,7 +253,7 @@
         "Char_Dart_2.png"
       ],
       "designAccepted": false,
-      "auditStatus": "partial-detailed-comparison",
+      "auditStatus": "normal-form-control-located-new-artwork-overview-compared",
       "requiredChecks": [
         "final-design provenance",
         "head and hair",
@@ -227,8 +266,9 @@
         "unseen rear details"
       ],
       "gaps": [
-        "Published rear/side details and original publication provenance unresolved"
-      ]
+        "Original publication lineage and unseen rear/side details unresolved; close motif and native model/texture checks remain pending."
+      ],
+      "selectedNormalFormReference": "Char_Dart_2.png"
     },
     {
       "character": "lavitz",
@@ -237,7 +277,7 @@
         "Char_Lavitz_2.png"
       ],
       "designAccepted": false,
-      "auditStatus": "references-cached-detail-audit-pending",
+      "auditStatus": "normal-form-control-located-new-artwork-overview-compared",
       "requiredChecks": [
         "final-design provenance",
         "head and hair",
@@ -250,8 +290,9 @@
         "unseen rear details"
       ],
       "gaps": [
-        "Published rear/side details and original publication provenance unresolved"
-      ]
+        "Original publication lineage and unseen rear/side details unresolved; close motif and native model/texture checks remain pending."
+      ],
+      "selectedNormalFormReference": "Char_Lavitz_2.png"
     },
     {
       "character": "shana",
@@ -260,7 +301,7 @@
         "Char_Shana_2.png"
       ],
       "designAccepted": false,
-      "auditStatus": "references-cached-detail-audit-pending",
+      "auditStatus": "normal-form-control-located-new-artwork-overview-compared",
       "requiredChecks": [
         "final-design provenance",
         "head and hair",
@@ -273,8 +314,9 @@
         "unseen rear details"
       ],
       "gaps": [
-        "Published rear/side details and original publication provenance unresolved"
-      ]
+        "Original publication lineage and unseen rear/side details unresolved; close motif and native model/texture checks remain pending."
+      ],
+      "selectedNormalFormReference": "Char_Shana_2.png"
     },
     {
       "character": "rose",
@@ -283,7 +325,7 @@
         "Char_Rose_2.png"
       ],
       "designAccepted": false,
-      "auditStatus": "references-cached-detail-audit-pending",
+      "auditStatus": "normal-form-control-located-new-artwork-overview-compared",
       "requiredChecks": [
         "final-design provenance",
         "head and hair",
@@ -296,8 +338,9 @@
         "unseen rear details"
       ],
       "gaps": [
-        "Published rear/side details and original publication provenance unresolved"
-      ]
+        "Original publication lineage and unseen rear/side details unresolved; close motif and native model/texture checks remain pending."
+      ],
+      "selectedNormalFormReference": "Char_Rose_2.png"
     },
     {
       "character": "haschel",
@@ -306,7 +349,7 @@
         "P-Haschel.jpg"
       ],
       "designAccepted": false,
-      "auditStatus": "partial-original-concept-inspection",
+      "auditStatus": "normal-form-control-located-new-artwork-overview-compared",
       "requiredChecks": [
         "final-design provenance",
         "head and hair",
@@ -319,16 +362,18 @@
         "unseen rear details"
       ],
       "gaps": [
-        "Published rear/side details and original publication provenance unresolved"
-      ]
+        "Original publication lineage and unseen rear/side details unresolved; close motif and native model/texture checks remain pending."
+      ],
+      "selectedNormalFormReference": "Haschel1_C.jpg"
     },
     {
       "character": "albert",
       "referenceFiles": [
-        "P-Albert.jpg"
+        "P-Albert.jpg",
+        "Albert1_C.jpg"
       ],
       "designAccepted": false,
-      "auditStatus": "references-cached-detail-audit-pending",
+      "auditStatus": "normal-form-control-located-new-artwork-overview-compared",
       "requiredChecks": [
         "final-design provenance",
         "head and hair",
@@ -341,16 +386,18 @@
         "unseen rear details"
       ],
       "gaps": [
-        "Only 156 x 208 promotional reproduction cached; insufficient for fine ornament reconstruction"
-      ]
+        "Original publication lineage and unseen rear/side details unresolved; close motif and native model/texture checks remain pending."
+      ],
+      "selectedNormalFormReference": "Albert1_C.jpg"
     },
     {
       "character": "meru",
       "referenceFiles": [
-        "P-Meru.jpg"
+        "P-Meru.jpg",
+        "Meru1_C-reproduction.jpg"
       ],
       "designAccepted": false,
-      "auditStatus": "references-cached-detail-audit-pending",
+      "auditStatus": "normal-form-control-located-new-artwork-overview-compared",
       "requiredChecks": [
         "final-design provenance",
         "head and hair",
@@ -363,8 +410,10 @@
         "unseen rear details"
       ],
       "gaps": [
-        "Only 156 x 208 promotional reproduction cached; insufficient for fine ornament reconstruction"
-      ]
+        "Original publication lineage and unseen rear/side details unresolved; close motif and native model/texture checks remain pending.",
+        "The larger concept reproduction is search-located through Pinterest; it is not an independently authenticated canonical source."
+      ],
+      "selectedNormalFormReference": "Meru1_C-reproduction.jpg"
     },
     {
       "character": "kongol",
@@ -373,7 +422,7 @@
         "P-Kongol.jpg"
       ],
       "designAccepted": false,
-      "auditStatus": "references-cached-detail-audit-pending",
+      "auditStatus": "normal-form-control-located-new-artwork-overview-compared",
       "requiredChecks": [
         "final-design provenance",
         "head and hair",
@@ -386,14 +435,17 @@
         "unseen rear details"
       ],
       "gaps": [
-        "Published rear/side details and original publication provenance unresolved"
-      ]
+        "Original publication lineage and unseen rear/side details unresolved; close motif and native model/texture checks remain pending."
+      ],
+      "selectedNormalFormReference": "Kongol1_C.jpg"
     },
     {
       "character": "miranda",
-      "referenceFiles": [],
+      "referenceFiles": [
+        "Miranda1_C.jpg"
+      ],
       "designAccepted": false,
-      "auditStatus": "source-gap",
+      "auditStatus": "normal-form-control-located-new-artwork-overview-compared",
       "requiredChecks": [
         "final-design provenance",
         "head and hair",
@@ -406,8 +458,10 @@
         "unseen rear details"
       ],
       "gaps": [
-        "Normal-form original-art reference not yet located in inspected archive listings"
-      ]
+        "Original publication lineage and unseen rear/side details unresolved; close motif and native model/texture checks remain pending.",
+        "The 280 \u00d7 560 concept reproduction cannot settle fine linework by itself."
+      ],
+      "selectedNormalFormReference": "Miranda1_C.jpg"
     }
   ]
 }

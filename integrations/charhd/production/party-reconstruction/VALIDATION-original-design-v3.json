@@ -1,0 +1,43 @@
+{
+  "format": 1,
+  "date": "2026-10-11",
+  "preAuthoringCommit": "8143a0e26",
+  "environment": {
+    "hardwareModel": "Mac17,14",
+    "architecture": "arm64",
+    "os": "macOS 27.0.1 (26A434)",
+    "java": "Amazon Corretto 25",
+    "authoringPython": "3.12.0",
+    "torch": "2.14.1",
+    "device": "cpu",
+    "networkDisabledDuringInference": true
+  },
+  "commands": [
+    "isolated authoring Python: reconstruct-and-bake.py --tooling <pinned local tooling> --image <individual custom image> --output <new private output> --character <party character> --asset-kind body --triangles 24000",
+    "isolated authoring Python: render-reconstruction.py --mesh <candidate GLB> --output <new inspection directory> --size 384",
+    "isolated authoring Python: scripts/verify-party-authoring.py",
+    "JAVA_HOME=<Corretto 25> GRADLE_USER_HOME=<isolated Gradle cache> ./gradlew charhdJar charHdTests"
+  ],
+  "results": {
+    "inferenceAndBakeJobsPassed": 9,
+    "staticIntegrityPassed": 9,
+    "staticMeshRenderJobsPassed": 9,
+    "charhdBuild": "passed",
+    "charhdTests": {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "tamperedMeshHash": "rejected",
+    "runtimeFilesUnchanged": 19,
+    "staticVisualAcceptance": false,
+    "nativeAnimationValidated": false,
+    "gameplayValidated": false,
+    "physicalDeckValidated": false
+  },
+  "inventorySha256": "980724c2f83586570152802b412749618734526c371183b77a887dd10e426806",
+  "assetVerifierSha256": "fa27f6502d5cd175c3e23cde393b9759a113b6e784793f43882b4647bf796f34",
+  "buildLogSha256": "49fe1e56234acf706ec08581eac7693df6e3bfd05e80f7f45ee639b8cde96659",
+  "scope": "Public CharHD static authoring. Existing native tests pass; new bodies are unrigged and not selected for installation. No original game pixels, native actor dumps or local runtimes are bundled."
+}

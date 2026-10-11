@@ -1,0 +1,472 @@
+{
+  "format": 1,
+  "date": "2026-10-11",
+  "state": "public-charhd-static-authoring-not-native-runtime",
+  "characters": [
+    {
+      "character": "dart",
+      "directory": "dart/original-design-v3",
+      "artwork": "render-v1.png",
+      "mesh": "body-sculpt-v1.glb",
+      "texture": "body-basecolour-v1.png",
+      "sha256": {
+        "artwork-receipt.json": "95fbc6d5be05e8589f0c9cc6aed672bdfeb6f2b43787711abb6e4dad1d303513",
+        "body-basecolour-v1.png": "007f638929388a63f0d5e63e8990642a63ac85911fec2d8741b0c974b6300439",
+        "body-sculpt-v1.glb": "5cef3e667de92c1f4b60d71e8294bb7d80ca3278eb0557a1190aaa9a18791b19",
+        "reconstruction-receipt.json": "511bedcd2cfdfc4dfa113cfe47af44f4fd5ec4cde2ea0de935e54a46151f9b17",
+        "render-v1.png": "4de9ae8c11e545085e21b24dc92b5601b9faa9f823933c5fd61cf688052c5c90",
+        "render-v1.prompt.txt": "602faf3c7e7a5435cbfc1127d3ea83b48120a0a09561fc71573ce19a283b47bd",
+        "sculpt-review.jpg": "5c4369a6496ce7c7309ced8c783ac33af85108c6fa5c101f58c09e3b31acaafb"
+      },
+      "assetIntegrity": {
+        "finitePositionsNormalsUvs": true,
+        "uvWithinUnitSquare": true,
+        "embeddedTextureMatchesSidecar": true,
+        "triangles": 24000,
+        "verticesWithUvSeams": 16227,
+        "positionWeldedBoundaryEdges": 140,
+        "positionWeldedNonManifoldEdges": 4,
+        "positionWeldedWatertight": false,
+        "rigged": false,
+        "scope": "Static asset integrity only; watertightness is not proof of joint continuity or animation."
+      },
+      "excludedComponentTriangles": [
+        8,
+        16
+      ],
+      "ownerCandidateAccepted": false,
+      "runtimeSelected": false,
+      "nativeAnimationValidated": false,
+      "physicalDeckValidated": false,
+      "visualInspection": {
+        "overviewArtworkCompared": true,
+        "staticFrontSideRearInspected": true,
+        "state": "needs-topology-and-rear-surface-work",
+        "nativeArticulation": "not-attempted",
+        "exactMotifAcceptance": false
+      }
+    },
+    {
+      "character": "rose",
+      "directory": "rose/original-design-v3",
+      "artwork": "render-v1.png",
+      "mesh": "body-sculpt-v1.glb",
+      "texture": "body-basecolour-v1.png",
+      "sha256": {
+        "artwork-receipt.json": "c4d5feaf97ce4f3afcc1383ce3c3b487f4bec562f3f2936e1e32701bde765e7c",
+        "body-basecolour-v1.png": "54e23893f176995e7db5c7fc5ec18fd063fff112d8b5846a7ee959ac882fc0cd",
+        "body-sculpt-v1.glb": "65cf565a580b04858aaeec3ce06f23c69bde2c005744833739991d47fec1a46c",
+        "reconstruction-receipt.json": "5d17a2027b3aa51b49ba3c410da48ecaae8b16a0314355202cd642061612d64e",
+        "render-v1.png": "b24357429903e2be026816381e464c8f8cc15f22d7d5f151c1ec0188394f01c9",
+        "render-v1.prompt.txt": "1bbfb4af48d08d629e27c9f3d5364f4067f028d58bca7c208e92c6fea2dce714",
+        "sculpt-review.jpg": "11f73184dcf0cb1beaa3a5de5b5bd7ebcfe0b9f0ef24d84844a85632cc504d5c"
+      },
+      "assetIntegrity": {
+        "finitePositionsNormalsUvs": true,
+        "uvWithinUnitSquare": true,
+        "embeddedTextureMatchesSidecar": true,
+        "triangles": 24000,
+        "verticesWithUvSeams": 16596,
+        "positionWeldedBoundaryEdges": 128,
+        "positionWeldedNonManifoldEdges": 2,
+        "positionWeldedWatertight": false,
+        "rigged": false,
+        "scope": "Static asset integrity only; watertightness is not proof of joint continuity or animation."
+      },
+      "excludedComponentTriangles": [
+        420
+      ],
+      "ownerCandidateAccepted": false,
+      "runtimeSelected": false,
+      "nativeAnimationValidated": false,
+      "physicalDeckValidated": false,
+      "visualInspection": {
+        "overviewArtworkCompared": true,
+        "staticFrontSideRearInspected": true,
+        "state": "needs-topology-and-rear-surface-work",
+        "nativeArticulation": "not-attempted",
+        "exactMotifAcceptance": false
+      }
+    },
+    {
+      "character": "lavitz",
+      "directory": "lavitz/original-design-v3",
+      "artwork": "render-v1.png",
+      "mesh": "body-sculpt-v1.glb",
+      "texture": "body-basecolour-v1.png",
+      "sha256": {
+        "artwork-receipt.json": "e8f99d34b3502df89b47be74ab23e81f6a39ce3a6b6d3dec160467331d5daf7e",
+        "body-basecolour-v1.png": "c746471eea2fabb5a671ec59d3c5cfb8e2b9271750326d4ecb2f0d453ee71413",
+        "body-sculpt-v1.glb": "32e851537f4fbb03a71e3a17b544f1cfc88b3b8e37cd3852f3b3bfbac1179f7a",
+        "reconstruction-receipt.json": "c0f5b5830df8c1a6b15a67af0256fad08a9e24858dfecebde301515756dbe91c",
+        "render-v1.png": "16cb28112b316fbcbbcc7468b2951941332eee0d8dca0bf1deaac371f68bfce0",
+        "render-v1.prompt.txt": "0676aeb4a3d88316af7ee9369491c78bbd45b6f8042754560b50abf9f73d7100",
+        "sculpt-review.jpg": "f0d72c60583fc77eea27552f602b70c7d42265ecaaccda45f1dbeda653be16c4"
+      },
+      "assetIntegrity": {
+        "finitePositionsNormalsUvs": true,
+        "uvWithinUnitSquare": true,
+        "embeddedTextureMatchesSidecar": true,
+        "triangles": 24000,
+        "verticesWithUvSeams": 16075,
+        "positionWeldedBoundaryEdges": 208,
+        "positionWeldedNonManifoldEdges": 3,
+        "positionWeldedWatertight": false,
+        "rigged": false,
+        "scope": "Static asset integrity only; watertightness is not proof of joint continuity or animation."
+      },
+      "excludedComponentTriangles": [
+        8,
+        8,
+        16
+      ],
+      "ownerCandidateAccepted": false,
+      "runtimeSelected": false,
+      "nativeAnimationValidated": false,
+      "physicalDeckValidated": false,
+      "visualInspection": {
+        "overviewArtworkCompared": true,
+        "staticFrontSideRearInspected": true,
+        "state": "needs-topology-and-rear-surface-work",
+        "nativeArticulation": "not-attempted",
+        "exactMotifAcceptance": false
+      }
+    },
+    {
+      "character": "shana",
+      "directory": "shana/original-design-v3",
+      "artwork": "render-v1.png",
+      "mesh": "body-sculpt-v1.glb",
+      "texture": "body-basecolour-v1.png",
+      "sha256": {
+        "artwork-receipt.json": "91e267c3f39613edb0e34b84f1f47aa5e5be086ab2c0d10fd91d352bd82a438f",
+        "body-basecolour-v1.png": "78c294b7e750a6122b3e0154f96bd5384038c39880f95d726e2d2ff34148a631",
+        "body-sculpt-v1.glb": "5822009c9ff475b43f6de55d2f7527f3e4017c485da99008acc0e3a324454f6c",
+        "reconstruction-receipt.json": "af3f11ce586786fa136686cc393503ea3daad1944e1ca52ec5ba60a5a3aba056",
+        "render-v1.png": "0daf095a20fb041535d545fa6381d343cf1c90f9677bbe34a05efe8ed5a92855",
+        "render-v1.prompt.txt": "72fa322a46b7041f4a4f1bf9251a1c681913ab9c6e9602c34ed24e0802c18cb5",
+        "sculpt-review.jpg": "0737fc764ec56e6654c164698b05a64f86a28082edb268045ec546fcdd2812fc"
+      },
+      "assetIntegrity": {
+        "finitePositionsNormalsUvs": true,
+        "uvWithinUnitSquare": true,
+        "embeddedTextureMatchesSidecar": true,
+        "triangles": 24000,
+        "verticesWithUvSeams": 16159,
+        "positionWeldedBoundaryEdges": 84,
+        "positionWeldedNonManifoldEdges": 4,
+        "positionWeldedWatertight": false,
+        "rigged": false,
+        "scope": "Static asset integrity only; watertightness is not proof of joint continuity or animation."
+      },
+      "excludedComponentTriangles": [
+        280,
+        264,
+        8,
+        8,
+        80,
+        8
+      ],
+      "ownerCandidateAccepted": false,
+      "runtimeSelected": false,
+      "nativeAnimationValidated": false,
+      "physicalDeckValidated": false,
+      "visualInspection": {
+        "overviewArtworkCompared": true,
+        "staticFrontSideRearInspected": true,
+        "state": "needs-topology-and-rear-surface-work",
+        "nativeArticulation": "not-attempted",
+        "exactMotifAcceptance": false
+      }
+    },
+    {
+      "character": "haschel",
+      "directory": "haschel/original-design-v3",
+      "artwork": "render-v2.png",
+      "mesh": "body-sculpt-v1.glb",
+      "texture": "body-basecolour-v1.png",
+      "sha256": {
+        "artwork-receipt.json": "a88952c51ce46ec120f6fafd01502071a6b8b03fc80362652a10bc64d1e2824d",
+        "body-basecolour-v1.png": "2e1e50d065b173019daf8d4e292732f8107806e8b4a3a6eb7468bea15cf5924a",
+        "body-sculpt-v1.glb": "4649065985de961b927dbe554002eb9d4db1639184863c798160cfc8d08c8582",
+        "reconstruction-receipt.json": "3473dd7265a867a2e04e5acd7b75167fd414a9f8dd9ac46fbe1ef5915525cbb4",
+        "render-v1.png": "201f9d3139766ea84d8416a20ca57b6bbe63ca12b7031ee0ef57ca8c9b64c871",
+        "render-v1.prompt.txt": "fce3ea8abe3f56219976de6a14c55c675b3a416a41132e9d353120e59d0588d2",
+        "render-v2.png": "7a5069c5249bb38c294824a41771d81bc6211385badd6b19af3b463b766b4343",
+        "render-v2.prompt.txt": "e528bf28c54a2c5c712915a6b4c34be7db9ee4d55eb02af6294251414b7b29f5",
+        "sculpt-review.jpg": "c1bb837c2ace6e55e38f54d53e8667acd774bc33cbd855324d9b0113ed43ecea"
+      },
+      "assetIntegrity": {
+        "finitePositionsNormalsUvs": true,
+        "uvWithinUnitSquare": true,
+        "embeddedTextureMatchesSidecar": true,
+        "triangles": 24000,
+        "verticesWithUvSeams": 15453,
+        "positionWeldedBoundaryEdges": 136,
+        "positionWeldedNonManifoldEdges": 2,
+        "positionWeldedWatertight": false,
+        "rigged": false,
+        "scope": "Static asset integrity only; watertightness is not proof of joint continuity or animation."
+      },
+      "excludedComponentTriangles": [
+        8,
+        8
+      ],
+      "ownerCandidateAccepted": false,
+      "runtimeSelected": false,
+      "nativeAnimationValidated": false,
+      "physicalDeckValidated": false,
+      "visualInspection": {
+        "overviewArtworkCompared": true,
+        "staticFrontSideRearInspected": true,
+        "state": "needs-topology-and-rear-surface-work",
+        "nativeArticulation": "not-attempted",
+        "exactMotifAcceptance": false
+      }
+    },
+    {
+      "character": "albert",
+      "directory": "albert/original-design-v3",
+      "artwork": "render-v1.png",
+      "mesh": "body-sculpt-v1.glb",
+      "texture": "body-basecolour-v1.png",
+      "sha256": {
+        "artwork-receipt.json": "e320e154e059e98f0a075d29456fe49cafa329fd3b7feca9dd7e56f819adc6f4",
+        "body-basecolour-v1.png": "274107b6384e8d4c5bf1417f4d00c95eec5f234047fa1d75b3f71b167688fb71",
+        "body-sculpt-v1.glb": "f79346fdb2fd20131f23cb637276a3d93775c1ef2840fa5829bc50706bbea439",
+        "reconstruction-receipt.json": "4e70bd30ec01cdaeaa415b914fb4f02fa14a6824792083f47e33b94848d081f8",
+        "render-v1.png": "0d32b8ad6baf3bb63cb7ce4c372ac1fd2e85f925c081ee26a1ac771d84c28ebb",
+        "render-v1.prompt.txt": "9729753ab1031eda40930279b5c66f910aa999a2a6588a374ef767d486096f17",
+        "sculpt-review.jpg": "0fde59e6f43e8dad799deb7dce1b7250a922587db6711d13a740535a5c4b3329"
+      },
+      "assetIntegrity": {
+        "finitePositionsNormalsUvs": true,
+        "uvWithinUnitSquare": true,
+        "embeddedTextureMatchesSidecar": true,
+        "triangles": 24000,
+        "verticesWithUvSeams": 16390,
+        "positionWeldedBoundaryEdges": 298,
+        "positionWeldedNonManifoldEdges": 0,
+        "positionWeldedWatertight": false,
+        "rigged": false,
+        "scope": "Static asset integrity only; watertightness is not proof of joint continuity or animation."
+      },
+      "excludedComponentTriangles": [
+        36
+      ],
+      "ownerCandidateAccepted": false,
+      "runtimeSelected": false,
+      "nativeAnimationValidated": false,
+      "physicalDeckValidated": false,
+      "visualInspection": {
+        "overviewArtworkCompared": true,
+        "staticFrontSideRearInspected": true,
+        "state": "needs-topology-and-rear-surface-work",
+        "nativeArticulation": "not-attempted",
+        "exactMotifAcceptance": false
+      }
+    },
+    {
+      "character": "meru",
+      "directory": "meru/original-design-v3",
+      "artwork": "render-v1.png",
+      "mesh": "body-sculpt-v1.glb",
+      "texture": "body-basecolour-v1.png",
+      "sha256": {
+        "artwork-receipt.json": "eb49fa0e6d84c43878e600431e311889f8e3b030dcab520ad2da76fa8f886f73",
+        "body-basecolour-v1.png": "cea86824105e5b6606ad73d637b166890d8d7c6b4c2f58978187f96ffa3e78d8",
+        "body-sculpt-v1.glb": "7b3a0ec665484c5b7839c7da760b0d0251698b1606e0a6da41432ee3133fe095",
+        "reconstruction-receipt.json": "106cf917ff9576d8aa0850d3e74a024135a057535fd41402494b579c4ae590bc",
+        "render-v1.png": "1a0e048b903a25abb2141cd33dcf81acecf6ea839befd64711a4c967cfa89702",
+        "render-v1.prompt.txt": "214ffe3cfc7bb7b8c0ecc7a34dcaf2ab728fe8f8ec64e83be02dc740a875a667",
+        "sculpt-review.jpg": "a5f9ab54981983bef98bf3c43285353ecba7aa7c8d252711c3f43618287118bb"
+      },
+      "assetIntegrity": {
+        "finitePositionsNormalsUvs": true,
+        "uvWithinUnitSquare": true,
+        "embeddedTextureMatchesSidecar": true,
+        "triangles": 24000,
+        "verticesWithUvSeams": 19031,
+        "positionWeldedBoundaryEdges": 276,
+        "positionWeldedNonManifoldEdges": 17,
+        "positionWeldedWatertight": false,
+        "rigged": false,
+        "scope": "Static asset integrity only; watertightness is not proof of joint continuity or animation."
+      },
+      "excludedComponentTriangles": [
+        8,
+        8,
+        8,
+        16,
+        128,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        16,
+        32,
+        8,
+        8,
+        68,
+        108,
+        8,
+        40,
+        8,
+        8,
+        16,
+        24,
+        8,
+        36,
+        64,
+        8
+      ],
+      "ownerCandidateAccepted": false,
+      "runtimeSelected": false,
+      "nativeAnimationValidated": false,
+      "physicalDeckValidated": false,
+      "visualInspection": {
+        "overviewArtworkCompared": true,
+        "staticFrontSideRearInspected": true,
+        "state": "needs-topology-and-rear-surface-work",
+        "nativeArticulation": "not-attempted",
+        "exactMotifAcceptance": false
+      }
+    },
+    {
+      "character": "kongol",
+      "directory": "kongol/original-design-v3",
+      "artwork": "render-v1.png",
+      "mesh": "body-sculpt-v1.glb",
+      "texture": "body-basecolour-v1.png",
+      "sha256": {
+        "artwork-receipt.json": "6addfc9a6e56a707a9610d015274e43729a6caf44b889896cecdd5f15af26a36",
+        "body-basecolour-v1.png": "1bb8c9a9db90598c6a2148773b8738865e80cd6a54b46981ee4a4250a7d464c6",
+        "body-sculpt-v1.glb": "9766e59279ac763a2ef38d369b39911d4b40b65c9849043a127047f1cbadc55d",
+        "reconstruction-receipt.json": "5ab0625ad5bded244570f1f887b27955a6c8f05a3a07e784b12f03759ec4f73f",
+        "render-v1.png": "5374cbed1093bd48fa6f9387395bbd855ec4594c087088b64f15f44ed14c80a8",
+        "render-v1.prompt.txt": "8d22b22d82fa3b729099fbb2a42e9cf9911c1a09cfcd9e5ab64714aad0744eac",
+        "sculpt-review.jpg": "e95898f415ad18f326b88201ac1f2d5defdc4501c7c392d8345ba37f3a86a372"
+      },
+      "assetIntegrity": {
+        "finitePositionsNormalsUvs": true,
+        "uvWithinUnitSquare": true,
+        "embeddedTextureMatchesSidecar": true,
+        "triangles": 24000,
+        "verticesWithUvSeams": 18433,
+        "positionWeldedBoundaryEdges": 304,
+        "positionWeldedNonManifoldEdges": 13,
+        "positionWeldedWatertight": false,
+        "rigged": false,
+        "scope": "Static asset integrity only; watertightness is not proof of joint continuity or animation."
+      },
+      "excludedComponentTriangles": [
+        16,
+        8,
+        8,
+        8,
+        1,
+        1,
+        1,
+        1,
+        8,
+        16,
+        16,
+        8,
+        8,
+        16
+      ],
+      "ownerCandidateAccepted": false,
+      "runtimeSelected": false,
+      "nativeAnimationValidated": false,
+      "physicalDeckValidated": false,
+      "visualInspection": {
+        "overviewArtworkCompared": true,
+        "staticFrontSideRearInspected": true,
+        "state": "needs-topology-and-rear-surface-work",
+        "nativeArticulation": "not-attempted",
+        "exactMotifAcceptance": false
+      }
+    },
+    {
+      "character": "miranda",
+      "directory": "miranda/original-design-v3",
+      "artwork": "render-v1.png",
+      "mesh": "body-sculpt-v1.glb",
+      "texture": "body-basecolour-v1.png",
+      "sha256": {
+        "artwork-receipt.json": "c8436be9d628ab538228276751bc1fcb9193b67f4b680719a8573b0c2cacf30e",
+        "body-basecolour-v1.png": "ef61057d56f74358e609dc170fa2f7192aea5acae7f2b8127d04af98eae38159",
+        "body-sculpt-v1.glb": "b7eae64f20f5ac501236f96fbb5104491920466ca4cb0feb8b7689b206036f8d",
+        "reconstruction-receipt.json": "54a754a32846a0962c215ab8297bb04226713cfaebd2bc6a8090730b3373b370",
+        "render-v1.png": "c3486496c1e792887877335f344aa1a4e024959613ebffe2d6eb99950ce4eaa2",
+        "render-v1.prompt.txt": "3371e8ae03b079a197a1c9287423f6c821f014296fd637993aecadb0354bf719",
+        "sculpt-review.jpg": "2a00292b254a1dbd59074034de3bbb09b61626593c6523562c84e4cec7259987"
+      },
+      "assetIntegrity": {
+        "finitePositionsNormalsUvs": true,
+        "uvWithinUnitSquare": true,
+        "embeddedTextureMatchesSidecar": true,
+        "triangles": 24000,
+        "verticesWithUvSeams": 16252,
+        "positionWeldedBoundaryEdges": 144,
+        "positionWeldedNonManifoldEdges": 2,
+        "positionWeldedWatertight": false,
+        "rigged": false,
+        "scope": "Static asset integrity only; watertightness is not proof of joint continuity or animation."
+      },
+      "excludedComponentTriangles": [
+        24,
+        80,
+        8
+      ],
+      "ownerCandidateAccepted": false,
+      "runtimeSelected": false,
+      "nativeAnimationValidated": false,
+      "physicalDeckValidated": false,
+      "visualInspection": {
+        "overviewArtworkCompared": true,
+        "staticFrontSideRearInspected": true,
+        "state": "needs-topology-and-rear-surface-work",
+        "nativeArticulation": "not-attempted",
+        "exactMotifAcceptance": false
+      }
+    }
+  ],
+  "publication": "Custom artwork, static meshes and textures; no original reference pixels or native actor dumps.",
+  "ownerDirectionApproved": true,
+  "ownerCandidateAccepted": false,
+  "runtimeSelected": false,
+  "nativeAnimationValidated": false,
+  "physicalDeckValidated": false,
+  "runtimeBaseline": {
+    "charhd/characters/characters.json": "7ba83ce1f7d3f9804a8244fd529fae435c71fc3ffccf19bbc90e8b2f18421afd",
+    "charhd/packs/c8b7ebc75104ccc9fe00f38f51a044b90bdf45fff33d41980f520a41754e30be/surfaces.json": "e11de075b08e308634fb6f8548920ced9c43f398c4703a65e73472cc46cc3b6d",
+    "charhd/packs/c8b7ebc75104ccc9fe00f38f51a044b90bdf45fff33d41980f520a41754e30be/atlas-engine-stp.png": "050e926f9870f62d8aca7a6a4562e4a0f06ef7962a156757961e1656e94170a5",
+    "charhd/packs/c8b7ebc75104ccc9fe00f38f51a044b90bdf45fff33d41980f520a41754e30be/manifest.json": "af5562af351d69bca4fef5c5b9fa1b67951c661cc68cf3f2ce3eb5362183942f",
+    "charhd/characters/dart/head-v1.png": "8e75f9c5297bca7981b9be3a77c3210636fa8a80f2304768c109954536fb4f38",
+    "charhd/characters/dart/field-head-uv.json": "51b22bb2ddb871fd839f9e0e9081fceb84870c1987acfdaf2b7775335586304d",
+    "charhd/characters/dart/combat-head-uv.json": "81f800eb317b2ddddf34c15c77dd48eddabc1531d55757966ecc916f9514ca77",
+    "charhd/characters/dart/parts/0ecff5762e6924027b46628a1e8329496bd665c7d9af788fea8c096b1164210b.json": "66b356775fdcfc3fb26fdfcee0de88216c2c1dcb695e928c4ee172fcecd566c1",
+    "charhd/characters/dart/parts/b84e13a11adbd3419e1e4c5b810c8bd797f9dc68af5d41fe3c4736ce5c4f584b.json": "247b3347ace8f9cd856563b2e2429af100bb0e25ef9f0c4e485db56f86d6b8b0",
+    "charhd/characters/dart/parts/36f0a47aacc900caedfb1ed5cf5f7d9d62bb68f1d14e8eb4ee4096413e4027ef.json": "7220d870b2de8dabc312914785f83fae7680120be217222cbbe287ca9c893170",
+    "charhd/characters/dart/parts/0bfd5ffdc6da5b99d770e75f3cab89c86718a541f996250eb362cfb07642f6bb.json": "3a9dd61c03027c847c87a26e95cee95c5a20a5b4c3134c74ff7f891a86fe47e3",
+    "charhd/characters/dart/parts/e53e8b11437f8e1d79c33da810922d1a345c03d5cf44d246e8c41b55a6d69cc4.json": "367c63144a8466ede6a2eb20af3c1525031f8ba2c1c49d7de53fe23d4b3a8307",
+    "charhd/characters/dart/parts/46e140915d78f14d8d247e539619c284d4e5f9186208e9ada3950541e9e40a95.json": "53502a2030b1c3448bce9a1913b33c6aa1a74381bfbf628ebe0bb0fb902ce408",
+    "charhd/characters/dart/parts/9e120e02101b95bf7a0fbeef842f04cdf8a8fb40a589c5a3fb9af29fc02f254b.json": "cb443bd8c1c52253fd4011c7a1930d492230306ef7c07602eb10c2a10f44625d",
+    "charhd/characters/dart/parts/3157669a3a8bc01109e0c78961815b0197e53fb7d6963f8b04cfbdad2c5b2dde.json": "893d9626a424032166480ccb0d047295209412b5988c462ed91d904ddd4f40c4",
+    "charhd/characters/dart/parts/d7a7b6fac6e07ab00f3e88562cf7b88eaeb1af81c67ece97d3e2273cdfcd86dd.json": "0bf2b9417876f5c5856c69418037bd5752a5f140344883058fe9806f9378eb90",
+    "charhd/characters/dart/parts/a7c594169f8cbc4103dbc07bedff5220edb2f8c639338e816e7f9520bd51c621.json": "3cedd39ed83ead08a2ed4350cd5bba17889965ba6fa3f17c60e5b4291eb0fc65",
+    "charhd/characters/dart/parts/6b0946922682357624082cb7c082274d17dce88a9f4e696eb873bf4f2b1a09d6.json": "cdbd172640650fcf9acae8dcd9183ca49220008bd6a329d9794c959c4f9e0f4f",
+    "charhd/characters/dart/parts/b3e059effbc649bcc7c5400a3cc3939d038f784fe4314f1f983679b366d279bb.json": "c978c8c2885ccd6d752054dacb0776239ea058ef87f8e50c24b48d64a4a0681d"
+  },
+  "validation": {
+    "staticAssetIntegrity": "passed-all-nine",
+    "runtimeBaseline": "unchanged-19-files",
+    "meshRenders": "front-side-rear-generated-for-all-nine",
+    "totalTriangles": 216000,
+    "scope": "Integrity and static inspection only. No new native animation or physical Deck validation.",
+    "staticVisualAcceptance": "not-passed; inferred rear surfaces and topology need rework"
+  }
+}
