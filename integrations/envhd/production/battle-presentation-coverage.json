@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "dfcf0e44b9c8baee92f4f24b14c0c0da13a3514441e0f7f2b00a80b77ef73d0a",
+    "battle-presentation-artwork-v1.json": "bedfa35393cba73c515853cc23ced51ab9f96d03a49c05699f64b8fc3b650bfd",
     "battle-presentation-reviews/2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274"
   },
   "counts": {
@@ -19,10 +19,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 246,
+    "newBespokeCandidates": 280,
     "newlySelectedBespokeMasters": 35,
-    "baselineMastersStillNeedingPresentationReview": 260,
-    "pendingCandidateReviews": 211,
+    "baselineMastersStillNeedingPresentationReview": 226,
+    "pendingCandidateReviews": 245,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -1062,7 +1062,19 @@
         4096,
         896
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "08c4fe4619495d65e5a31a16139a95600156b5f26712c780035b53f80facce7b",
+        "32b48a9b7ab6f375300d3ba49fad4dd2d1e5a58f9e5ed92dd6958af5b4916a40",
+        "472735be03d106505f2b2bcf07a542b5bdc38ba64f89b3b6f15e739592a7c0f8",
+        "51d5fa27aff30a42eb8198b96886593035dd18f9d768c36f8669aa17d18cfa2a",
+        "5854f91f5498f59dcbd3caf55679a3926d3b3b546994b19ea4f5cf697745aa5b",
+        "67bffb317fd38467c00092e3c8527fb19207fdb8af6fe095740407264937add0",
+        "7659886e9f7c59688a14ddea14f9de4f1b64592327fefb87e126493f253a9a3d",
+        "a0eaf67f43e314917d4fa8f21a2268297071650432dbe1b06c57213bd67fbc11",
+        "a300d0d2ab8cce9ba48b36aa68fa6a7c9318331930a715d3a40890e76ce89cc0",
+        "cefeb8993000badb1ae2593a56b8d119493a1c7271461c63eb13b09858f9a40b",
+        "fb54293baede39c9957525c3ddc2e507df19dadff810e0439fdcdcf24b72d8e5"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1079,7 +1091,31 @@
         4096,
         832
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "0b60e9bb9a97851da0f57b7c3fa0e16e24ced08551ee058f348f95d5cee7549a",
+        "1a37cea6b849b4ba4ea97055b5ff1fdfdb0f937fe91f558a1cc47a5fc1cb3b9a",
+        "1e0262456d917f044f8e323c4df2cd72559ecb47383eae7e518f0b5a1c81ede5",
+        "33a5318893ca650d0bbc73975d75817a60a5ee3db99992989bdbacadf4751e83",
+        "3464a8ba28f53a341975cd47ae008e30461b87f5e55e0499e6f89e8f393e0061",
+        "47477bd1d84996d8fdbd493acebc9153f2a30cf5535f540c37a0754379e53466",
+        "4a15f4f3fb46fe4f34b667c8d475a37fff428741abe6942defd58e46356ce9bc",
+        "50d69334e921aa615ee23ed45009e8b556368eae5d081ad4d904eb5b10f3f8ea",
+        "6ffecc98629958fea167c80eca50da6f1e67c62fd28cff859a1729f1e1835ebf",
+        "823ebc2497e2085dca8dda6a9472347a4a6099fb52f97c26c659279148f611bc",
+        "87e98e6ff863564e1132eba997e7327cf5c5be064e752c0a05e466ecb1b31a93",
+        "8b2c48fe346877a1e63b3be3ad23fc4ab87c63f6b743dc5a7c555ed99c5bb413",
+        "8b855ec67834e0a854bccaff2c7f80d406a29615f0f8591169d9c5672063b433",
+        "939b8f8dfee4eaaa9adbef240cc89ded6cf97ed45c405080cd7c1ea2bbc2074b",
+        "a1257cd22cb1b695d02178d6a64849a4e99a33abd612b20a76451255a61ccfa6",
+        "a6d20af559751da6ab8f0a688e34081ae0c717a76395606292b1382433c8080a",
+        "b0a9c411ddbf6e9c460204f1c3d90f8c77ebddc163e5d4a38f978bfa338eaa8d",
+        "c82168315f39aef5c80b43ad6b07b22b9d4174a65cda2b55b656f57d0ae796fa",
+        "d17dfe16fdda9c33c0de1d9d47d81829f142c28cbbf0e61985a35df7f7960dcd",
+        "d2e1a1b6fe5f614c56cc0a725e9ab24b95ef7d67951678b58ce03f68877d3d34",
+        "df1e679a9de4dffe47e011aaeede460cfeea86295d4d86062155c533c0719763",
+        "e4fe04bdd76541d11c5634b11229bdf7a5891ed5f44b187be81c8cf98665f3bc",
+        "ec1ca0b69c123548744d65ed18a74a167d2a9d6f982870065d4d72e71596bfbc"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9873,7 +9909,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9904,7 +9940,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9935,7 +9971,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9966,7 +10002,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9997,7 +10033,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10028,7 +10064,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10059,7 +10095,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10090,7 +10126,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10121,7 +10157,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10152,7 +10188,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10183,7 +10219,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {49: [0]}. Source family: Vellweb: weathered light masonry, ruins, arches and stairs. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10214,7 +10250,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10245,7 +10281,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10276,7 +10312,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10307,7 +10343,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10338,7 +10374,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10369,7 +10405,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10400,7 +10436,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10431,7 +10467,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10462,7 +10498,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10493,7 +10529,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10524,7 +10560,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10555,7 +10591,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10586,7 +10622,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10617,7 +10653,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10648,7 +10684,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10679,7 +10715,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10710,7 +10746,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10741,7 +10777,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10772,7 +10808,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10803,7 +10839,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10834,7 +10870,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10865,7 +10901,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -10896,7 +10932,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {50: [0]}. Source family: Vellweb: dark masonry, pilasters, stairs, arches, carved patterns and rough rock. Engine random-encounter location mapping: Vellweb.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
