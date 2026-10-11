@@ -90,6 +90,8 @@ tasks.register('definitiveManifest', JavaExec) {
 
 tasks.register('definitivePackage', Zip) {
   dependsOn definitiveManifest
+  // The complete HD bundle can exceed classic ZIP's 4 GiB archive limit.
+  zip64 = true
   final String targetOs = providers.gradleProperty('os').getOrElse(System.getProperty('os.name').toLowerCase().contains('mac') ? 'macos' : 'linux')
   final String targetArch = providers.gradleProperty('arch').getOrElse(System.getProperty('os.arch'))
   final String platform = (targetOs.startsWith('mac') ? 'macos' : 'linux') + '-' + (targetArch.startsWith('arm') || targetArch.startsWith('aarch64') ? 'arm64' : 'x64')
