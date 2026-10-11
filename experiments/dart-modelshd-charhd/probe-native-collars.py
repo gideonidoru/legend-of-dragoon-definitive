@@ -13,6 +13,7 @@ from pathlib import Path
 
 import numpy as np
 import trimesh
+from scipy.spatial.transform import Rotation
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -21,7 +22,7 @@ JOINTS = {
     'field': ((11, 0, 1, -1., -2.), (12, 1, 1, -1., -2.)),
     # The armored elbow needs a longer span at its sharpest stored bend.
     # These stations are development controls, not accepted costume cut lines.
-    'combat': ((12, 0, 0, 125., 115.), (13, 1, 0, 155., 55.)),
+    'combat': ((12, 0, 0, 125., 115.), (13, 1, 0, 155., 85.)),
 }
 
 
@@ -94,6 +95,27 @@ def pose(key):
     return value
 
 
+def intermediate_pose(first, second, fraction):
+    """Independent short-arc normalized blend, plus linear translation.
+
+    This samples geometry between stored poses. It does not execute the game
+    animator or reproduce its stateful quaternion updates at high refresh rates.
+    """
+    if not np.isfinite(fraction) or not 0 <= fraction <= 1:
+        raise ValueError('Expected a convex interpolation fraction')
+    first, second = collars.rigid_pose(first), collars.rigid_pose(second)
+    a = Rotation.from_matrix(first[:3, :3]).as_quat()
+    b = Rotation.from_matrix(second[:3, :3]).as_quat()
+    if a @ b < 0:
+        b = -b
+    quaternion = (1-fraction)*a + fraction*b
+    quaternion /= np.linalg.norm(quaternion)
+    result = np.eye(4)
+    result[:3, :3] = Rotation.from_quat(quaternion).as_matrix()
+    result[:3, 3] = (1-fraction)*first[:3, 3] + fraction*second[:3, 3]
+    return result
+
+
 def metrics(surface, vertices, first, second, first_ring, second_ring):
     rings = vertices.reshape(surface.stations, surface.ring_size, 3)
     error = max(np.linalg.norm(rings[0] - collars.placed(first_ring, first), axis=1).max(),
@@ -147,7 +169,7 @@ def run(files, output):
                    'localAxis': axis, 'sectionStations': [first_station, second_station],
                    'ringVertices': surface.ring_size, 'longitudinalStations': surface.stations,
                    'triangles': len(surface.faces), 'expectedOpenCollarEdges': surface.ring_size*2,
-                   'sourceDesignDetailAccepted': False, 'samples': [], 'artifacts': []}
+                   'sourceDesignDetailAccepted': False, 'samples': [], 'intermediateSamples': [], 'artifacts': []}
             for animation in animations:
                 animation_data = animation.read_bytes()
                 animation_sha = hashlib.sha256(animation_data).hexdigest()
@@ -173,13 +195,24 @@ def run(files, output):
                             raise ValueError('Custom GLB export changed the authored strip beyond its budget')
                         row['artifacts'].append({'path': str(path.relative_to(output)), 'sha256': digest(path),
                                                  'maximumGlbRoundtripPositionError': float(export_error)})
+                for frame in range(len(keys)-1):
+                    for fraction in (.25, .5, .75):
+                        first = intermediate_pose(pose(keys[frame, first_part]), pose(keys[frame+1, first_part]), fraction)
+                        second = intermediate_pose(pose(keys[frame, second_part]), pose(keys[frame+1, second_part]), fraction)
+                        vertices = surface.deform(first, second)
+                        check = metrics(surface, vertices, first, second, first_ring, second_ring)
+                        row['intermediateSamples'].append({'animation': animation.name, 'animationSha256': animation_sha,
+                                                           'afterStoredKeyframe': frame, 'fraction': fraction, **check})
             row['numericalGatePassed'] = all(sample['maximumCollarError'] <= 1e-8
                                              and sample['maximumRelativeCrossSectionAreaError'] <= 1e-8
                                              and sample['minimumTriangleArea'] > 1e-8
                                              and sample['radiallyReversedTriangles'] == 0
-                                             for sample in row['samples'])
+                                             for sample in row['samples'] + row['intermediateSamples'])
             report['joints'].append(row)
-            print(json.dumps({'joint': joint_name, 'poses': len(row['samples']), 'numericalGatePassed': row['numericalGatePassed']}), flush=True)
+            print(json.dumps({'joint': joint_name, 'storedPoses': len(row['samples']),
+                              'intermediatePoses': len(row['intermediateSamples']), 'numericalGatePassed': row['numericalGatePassed']}), flush=True)
+    report['interpolationScope'] = ('Independent normalized short-arc quaternion blends and linear translation at 0.25, 0.5 and 0.75 '
+                                    'between stored poses. No native animator execution or stateful high-refresh interpolation validation.')
     report['scope'] = ('Authored collar strips driven by selected original stored poses. Endpoint and cross-section checks '
                        'do not prove collision freedom, complete actor continuity, native renderer compatibility or gameplay.')
     (output / 'report.json').write_text(json.dumps(report, indent=2) + '\n')

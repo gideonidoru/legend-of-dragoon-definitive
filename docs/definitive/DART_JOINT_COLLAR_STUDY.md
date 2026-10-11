@@ -24,15 +24,19 @@ The [custom joint surfaces](../../integrations/charhd/production/party-reconstru
 
 The existing offline linear blend collapses a hand-authored circular midpoint to zero radius under a half-turn. A first curved attempt preserved area but still produced inward-facing triangles in sharp native bends. The revised method interpolates rotation along a circular-arc Hermite centerline and normalizes each section to its authored endpoint area interpolation. Both supplied collar positions remain exact. The armored combat elbow needs a longer blend span; source-specific stations are recorded explicitly.
 
+A second check found that the other combat elbow's narrow span passed stored keys but folded in two between-key samples. Moving its forearm collar from local station 55 to 85 resolves those observed failures. The receipt preserves both rejected sample identities and the revised source-specific stations; neither is treated as a finished armor cut line.
+
 - Ten independent authored fixture tests pass, including a half-turn, a 120-degree bend, exact endpoints under distinct frames, common world motion, all three local axes, strip topology, mutation isolation and malformed inputs.
+- Four interpolation fixtures pass, including short-arc rotation, normalized blending rather than spherical interpolation, preserved endpoint frames and invalid-input rejection.
 - Both field elbows pass ten stored idle keyframes each.
 - Both combat elbows pass all 62 stored keyframes across animations 0, 1, 5, 10, 11, 14 and 29: 124 checks total.
-- Across these 144 source-driven samples: zero endpoint position error before export, relative section-area error below `2e-15`, positive triangle areas and zero triangles failing the local radial-facing check.
+- Another 384 independent between-key samples pass at fractions 0.25, 0.5 and 0.75. These use normalized short-arc quaternion blending and linear translation; they do not execute the game animator or reproduce its stateful high-refresh quaternion updates.
+- Across all 528 source-driven geometry samples: zero endpoint position error before export, relative section-area error below `2e-15`, positive triangle areas and zero triangles failing the local radial-facing check.
 - Exported custom GLBs are reloaded and checked for unchanged faces and position error below `1e-4` native units. Floating-point export evidence is separate from exact pre-export collars.
 
 The [matched comparison](../../integrations/charhd/production/party-reconstruction/dart/joint-collar-v1/collar-comparison.jpg) uses the actual custom strip at combat animation 5, stored keyframe 1. Its straight-interpolation control has 53.3% of the endpoint-average area at the middle section; the curved study retains 100.0%. Both use identical posed collars and camera. The control is an offline comparison, **not** a screenshot of released game geometry.
 
-These checks do not establish absence of self-intersections, armor collisions or complete actor gaps. They do not test in-between ticks, native rendering, combat gameplay, other animations or Steam Deck performance. The study has no final skin/armor paint or CharHD material binding. It has not been fitted to the new full-body sculpt.
+These checks do not establish absence of self-intersections, armor collisions or complete actor gaps. They do not test actual animator ticks, stateful high-refresh interpolation, native rendering, combat gameplay, other animations or Steam Deck performance. The study has no final skin/armor paint or CharHD material binding. It has not been fitted to the new full-body sculpt.
 
 ## Reproduce locally
 
@@ -40,6 +44,7 @@ Use the isolated authoring environment with NumPy, scipy, trimesh and Pillow. No
 
 ```sh
 python experiments/dart-modelshd-charhd/test-joint-collar-surface.py
+python experiments/dart-modelshd-charhd/test-collar-probe.py
 python scripts/test-attachment-binding.py
 python scripts/verify-party-authoring.py
 python experiments/dart-modelshd-charhd/probe-native-collars.py \

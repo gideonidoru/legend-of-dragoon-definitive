@@ -2,7 +2,7 @@
   "format": 1,
   "character": "dart",
   "state": "offline-joint-experiment-not-runtime-selected",
-  "toolSha256": "417c80e667f13dfeea67a1fcbc15606d5f96135b5941bd5857f5eeb9754207b9",
+  "toolSha256": "8fa5d03ca9994bf0aa29c6061367d0919ff3b58fee9fdb2b24672473c7d95bed",
   "surfaceToolSha256": "345202ce74e1d5c4c909cf5b12bfb26d0cf9c46b234650d4e3316255fe25eb26",
   "riggedActor": false,
   "newSculptFitted": false,
@@ -118,6 +118,278 @@
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
           "minimumTriangleArea": 0.36677393809373016,
+          "radiallyReversedTriangles": 0
+        }
+      ],
+      "intermediateSamples": [
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 2.220446049250313e-16,
+          "minimumTriangleArea": 0.36677628601492696,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.3667755041798323,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.366774721539283,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.3668067668039288,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.36683952675566533,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 0.3668722179497915,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 0.36696904206767206,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.3670329096401437,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 0.36709644275168296,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36714964121835497,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36713953985580255,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 0.36712933698609174,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36716005105523725,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36720108540078283,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.3672421356492827,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.3672421356492827,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36720108540078283,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36716005105523725,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 0.36712933698609174,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36713953985580255,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36714964121835497,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 0.36709644275168296,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.3670329096401437,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 0.36696904206767206,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 0.3668722179497915,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.36683952675566533,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.3668067668039288,
           "radiallyReversedTriangles": 0
         }
       ],
@@ -238,6 +510,278 @@
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
           "minimumTriangleArea": 0.32825808317691885,
+          "radiallyReversedTriangles": 0
+        }
+      ],
+      "intermediateSamples": [
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 0.3282478183825046,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32825125749911704,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.3282546790975249,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 0.328266812888575,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.3282755480156538,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
+          "minimumTriangleArea": 0.3282842885527588,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.32830183820587117,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 0.32831064727394227,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32831946169326337,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.3283043293149628,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32828035719892057,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32825636511577666,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.3282378896763546,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 0.3282434450935767,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32824901932215855,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32824901932215855,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 0.3282434450935767,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.3282378896763546,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32825636511577666,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32828035719892057,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.3283043293149628,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32831946169326337,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 0.32831064727394227,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.32830183820587117,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
+          "minimumTriangleArea": 0.3282842885527588,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.3282755480156538,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 0.328266812888575,
           "radiallyReversedTriangles": 0
         }
       ],
@@ -829,6 +1373,1658 @@
           "radiallyReversedTriangles": 0
         }
       ],
+      "intermediateSamples": [
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 49.17076283899538,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 48.98806733442598,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 48.80471652092259,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 47.8304872768919,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 47.03897601452838,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 46.22788050595597,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 44.809476803548634,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 44.24842823228279,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 43.685275314465144,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 42.94859638026281,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 42.776605092077055,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 42.604110590328006,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 42.84093116742312,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 43.25014701604923,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 43.658751374923085,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 45.03052286575741,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 45.97329245797428,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 46.86155511745572,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 48.79211510740687,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 49.83310560256958,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 50.8682820134168,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 52.59298934204013,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 53.28998831724291,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 53.98798689106611,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 54.00685912183524,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 53.328126401120805,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 52.650706139748195,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 58.54699720502258,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 57.941046880196566,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 57.48028915064794,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 55.8766321049335,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 55.957136120154416,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 57.485890580564295,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 60.491167131685906,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 60.614811066014184,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 60.81809545176677,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 61.10354557757958,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.09810771958667,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.08329153714572,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 60.481154699344735,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 59.893763173829136,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 59.29807401092618,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 56.11240786374138,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 52.14993423536413,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 48.03001302399862,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 45.413735953828,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 46.878471511268586,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 48.76539958164259,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 46.08251017040629,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 29.19230209996669,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 16.998378837332695,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 21.415850466917973,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 2.220446049250313e-16,
+          "minimumTriangleArea": 39.07083243216663,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 54.851004407036555,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 65.3144619322311,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 65.77145508232513,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 66.24815494774148,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 66.49634850781928,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 66.45433134894914,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 66.42246045543328,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 66.1313521319593,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 65.69022043731853,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 65.27242174027019,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 61.08217628453986,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.0492049002074,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 61.01649894418257,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 61.09940739264485,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.21512018970721,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 61.33118603824424,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 61.57649854070057,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.705174068105414,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.833560070904404,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 62.184976771514144,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 62.40943544884953,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 62.63194541176317,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 63.06243811110239,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 63.271144383450505,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 63.478542207209244,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 63.63881591467926,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 63.59313671640181,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.3322676295501878e-15,
+          "minimumTriangleArea": 63.547562049970225,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 63.49066296189827,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 63.479421226051166,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 63.468369682383795,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 63.27097459937482,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 63.084885845810135,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 62.899273442954375,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 62.62078797863535,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 62.52666748371362,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 62.43182262858631,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 62.209428527411006,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 62.082348429730544,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 61.95505421906023,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 61.778767016769756,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 61.75297523170977,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 61.72664552213087,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 58.63055305662851,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 58.527435983643834,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 58.42441589093163,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 58.035825885241664,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 57.754176058257904,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 57.476609416677796,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 56.94834776421587,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 56.70217938708906,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 56.46477539297034,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 55.96933236618922,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 55.71541713976111,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 55.193872250395366,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 54.274232867217926,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 53.89832778758525,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 53.53454974648924,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 53.238416204507416,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 53.302139793806205,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 53.37416706927047,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 53.5788453232408,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 53.70532294251797,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 53.83403530926476,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 54.26167324143008,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 54.55767492541333,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 54.85299147210139,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 55.94362085991859,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 56.33927725331738,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 56.73630462268571,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 57.55231173977006,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 57.983528059312924,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.3322676295501878e-15,
+          "minimumTriangleArea": 58.42783696057628,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 59.099913812202075,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 59.3341542031689,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 59.587331861671,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 11,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 59.90544990878683,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 11,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 59.96517205024543,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 11,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 60.0382885448324,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 12,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 59.99036015481886,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 12,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 59.86100142765346,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 12,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 59.73666712656449,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 65.00448635517098,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 64.34520505109256,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 63.84846620913412,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 47.67918877212321,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 39.68321678861437,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 44.757913132288664,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 61.43430392934658,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 60.60531885962007,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 60.24551408510955,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 56.31656403192904,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 55.12414489738618,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 56.718373653078324,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.46019479551341,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 62.18291831164464,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 63.22036950076963,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 57.8695222160335,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 58.167884874768916,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 58.5376157588893,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 58.258294343148236,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 57.568717402538155,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 56.91104719192025,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 53.647545358375474,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 50.869721860719324,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 48.09944160039669,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 44.528585575624355,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 43.74271845339914,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 42.957456478100646,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 44.176398888751855,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 46.274179284402074,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 48.31171085450865,
+          "radiallyReversedTriangles": 0
+        }
+      ],
       "numericalGatePassed": true,
       "privateCustomPoseExportCount": 28,
       "publishedArtifact": {
@@ -850,7 +3046,7 @@
       "localAxis": 0,
       "sectionStations": [
         155.0,
-        55.0
+        85.0
       ],
       "ringVertices": 32,
       "longitudinalStations": 9,
@@ -863,8 +3059,8 @@
           "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
           "storedKeyframe": 0,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 20.007544605967766,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 29.191569859741406,
           "radiallyReversedTriangles": 0
         },
         {
@@ -872,8 +3068,8 @@
           "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
           "storedKeyframe": 1,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 19.286206408831525,
+          "maximumRelativeCrossSectionAreaError": 7.771561172376096e-16,
+          "minimumTriangleArea": 28.413557875556815,
           "radiallyReversedTriangles": 0
         },
         {
@@ -882,7 +3078,7 @@
           "storedKeyframe": 2,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 18.509322990530542,
+          "minimumTriangleArea": 27.454609921292445,
           "radiallyReversedTriangles": 0
         },
         {
@@ -891,7 +3087,7 @@
           "storedKeyframe": 3,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 17.855990884152057,
+          "minimumTriangleArea": 26.649359937489997,
           "radiallyReversedTriangles": 0
         },
         {
@@ -900,7 +3096,7 @@
           "storedKeyframe": 4,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 17.855274682382223,
+          "minimumTriangleArea": 26.643094742186243,
           "radiallyReversedTriangles": 0
         },
         {
@@ -908,8 +3104,8 @@
           "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
           "storedKeyframe": 5,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 18.083094274518547,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 26.97272082001882,
           "radiallyReversedTriangles": 0
         },
         {
@@ -917,8 +3113,8 @@
           "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
           "storedKeyframe": 6,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 19.37294016971176,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 28.456641682424483,
           "radiallyReversedTriangles": 0
         },
         {
@@ -926,8 +3122,8 @@
           "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
           "storedKeyframe": 7,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 20.79332024503127,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 30.116165014881254,
           "radiallyReversedTriangles": 0
         },
         {
@@ -935,8 +3131,8 @@
           "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
           "storedKeyframe": 8,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 21.754568646972615,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 31.237949053258912,
           "radiallyReversedTriangles": 0
         },
         {
@@ -944,8 +3140,8 @@
           "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
           "storedKeyframe": 9,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 20.659484513689385,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 29.991513164528946,
           "radiallyReversedTriangles": 0
         },
         {
@@ -953,8 +3149,8 @@
           "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
           "storedKeyframe": 0,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 14.519952499960043,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 22.77801687026671,
           "radiallyReversedTriangles": 0
         },
         {
@@ -962,8 +3158,8 @@
           "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
           "storedKeyframe": 1,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 21.619213977209935,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 31.079931379021247,
           "radiallyReversedTriangles": 0
         },
         {
@@ -971,8 +3167,8 @@
           "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
           "storedKeyframe": 2,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
-          "minimumTriangleArea": 28.46465354765568,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 39.02744985386378,
           "radiallyReversedTriangles": 0
         },
         {
@@ -980,8 +3176,8 @@
           "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
           "storedKeyframe": 3,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 31.321621473582915,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 42.33311393569155,
           "radiallyReversedTriangles": 0
         },
         {
@@ -989,8 +3185,8 @@
           "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
           "storedKeyframe": 4,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
-          "minimumTriangleArea": 32.59214638617312,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 43.628824580721876,
           "radiallyReversedTriangles": 0
         },
         {
@@ -999,7 +3195,7 @@
           "storedKeyframe": 5,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 27.979094389170708,
+          "minimumTriangleArea": 38.40883152714236,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1007,8 +3203,8 @@
           "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
           "storedKeyframe": 6,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 14.829400187224559,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 23.19232707032565,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1016,8 +3212,8 @@
           "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
           "storedKeyframe": 7,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 12.588416059166333,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 20.58931577502754,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1025,8 +3221,8 @@
           "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
           "storedKeyframe": 0,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 14.519952499960043,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 22.77801687026671,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1035,7 +3231,7 @@
           "storedKeyframe": 1,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 4.392693182870955,
+          "minimumTriangleArea": 5.670233090911651,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1043,8 +3239,8 @@
           "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
           "storedKeyframe": 2,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 11.735987537425233,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 19.654135550777443,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1052,8 +3248,8 @@
           "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
           "storedKeyframe": 3,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 13.186984849728788,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 21.290666028910024,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1062,7 +3258,7 @@
           "storedKeyframe": 4,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 12.635709573417904,
+          "minimumTriangleArea": 20.65326474674813,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1070,8 +3266,8 @@
           "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
           "storedKeyframe": 5,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 11.735987537425233,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 19.654135550777443,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1079,8 +3275,8 @@
           "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
           "storedKeyframe": 0,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 1.3322676295501878e-15,
-          "minimumTriangleArea": 27.820140700016808,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 38.23937234172654,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1088,8 +3284,8 @@
           "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
           "storedKeyframe": 1,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 27.4739768724242,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 37.85090907698389,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1097,8 +3293,8 @@
           "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
           "storedKeyframe": 2,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 27.718473676640098,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 38.120527602952954,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1106,8 +3302,8 @@
           "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
           "storedKeyframe": 3,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 28.451911619568516,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 38.9622192514014,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1115,8 +3311,8 @@
           "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
           "storedKeyframe": 4,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 29.136417641049196,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 39.84047818922692,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1124,8 +3320,8 @@
           "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
           "storedKeyframe": 5,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 30.004434920358214,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 40.873990524175966,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1134,7 +3330,7 @@
           "storedKeyframe": 6,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 30.416907938291654,
+          "minimumTriangleArea": 41.27666157981508,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1142,8 +3338,8 @@
           "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
           "storedKeyframe": 7,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 29.762008721508764,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 40.547707524960124,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1152,7 +3348,7 @@
           "storedKeyframe": 8,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 28.908537947993185,
+          "minimumTriangleArea": 39.57466882548754,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1161,7 +3357,7 @@
           "storedKeyframe": 9,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 28.65202241879204,
+          "minimumTriangleArea": 39.20204235617657,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1169,8 +3365,8 @@
           "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
           "storedKeyframe": 10,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 28.175547936379523,
+          "maximumRelativeCrossSectionAreaError": 2.220446049250313e-16,
+          "minimumTriangleArea": 38.63363028155799,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1178,8 +3374,8 @@
           "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
           "storedKeyframe": 11,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 27.697968161259517,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 38.14102540747422,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1187,8 +3383,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 0,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 22.60157059996841,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 32.28013527173609,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1197,7 +3393,7 @@
           "storedKeyframe": 1,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 22.905683846842575,
+          "minimumTriangleArea": 32.59104768775117,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1206,7 +3402,7 @@
           "storedKeyframe": 2,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 23.507538739332304,
+          "minimumTriangleArea": 33.21382665316261,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1214,8 +3410,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 3,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 23.59997184821086,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 33.41435377640058,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1223,8 +3419,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 4,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 24.070484121300485,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 33.99275628289492,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1232,8 +3428,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 5,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 24.680071908756222,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 34.7122375024802,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1241,8 +3437,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 6,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 25.154866840879276,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 35.271800248145894,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1250,8 +3446,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 7,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 25.622932451932808,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 35.81195655701209,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1259,8 +3455,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 8,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
-          "minimumTriangleArea": 26.705528511690503,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 36.99142272979215,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1269,7 +3465,7 @@
           "storedKeyframe": 9,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 26.600230196830854,
+          "minimumTriangleArea": 36.89209151774525,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1277,8 +3473,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 10,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 26.112706088868162,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 36.30423486743229,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1286,8 +3482,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 11,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 25.05619457088956,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 35.09855866104665,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1295,8 +3491,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 12,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
-          "minimumTriangleArea": 24.112319232643156,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 33.97951567033676,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1304,8 +3500,8 @@
           "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
           "storedKeyframe": 13,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 1.3322676295501878e-15,
-          "minimumTriangleArea": 23.447223316480887,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 33.13978428880038,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1314,7 +3510,7 @@
           "storedKeyframe": 0,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 34.20670112895359,
+          "minimumTriangleArea": 44.03588104440624,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1322,8 +3518,8 @@
           "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
           "storedKeyframe": 1,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
-          "minimumTriangleArea": 29.11445066780967,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 39.820073759456626,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1331,8 +3527,8 @@
           "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
           "storedKeyframe": 2,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 26.172687424672507,
+          "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
+          "minimumTriangleArea": 36.33849688966584,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1340,8 +3536,8 @@
           "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
           "storedKeyframe": 3,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
-          "minimumTriangleArea": 25.297022262669532,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 35.35778714381377,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1349,8 +3545,8 @@
           "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
           "storedKeyframe": 4,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 30.721600477051258,
+          "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
+          "minimumTriangleArea": 41.656902314340044,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1358,8 +3554,8 @@
           "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
           "storedKeyframe": 5,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 30.215298630770086,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 41.11821832748779,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1368,7 +3564,7 @@
           "storedKeyframe": 0,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 14.498931575643685,
+          "minimumTriangleArea": 22.798672387909715,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1376,8 +3572,8 @@
           "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
           "storedKeyframe": 1,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 19.15918895425611,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 28.28216970058389,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1386,7 +3582,7 @@
           "storedKeyframe": 2,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 17.456010776532526,
+          "minimumTriangleArea": 26.25366642721677,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1395,7 +3591,7 @@
           "storedKeyframe": 3,
           "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
-          "minimumTriangleArea": 15.49306286179715,
+          "minimumTriangleArea": 24.03069204548637,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1403,8 +3599,8 @@
           "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
           "storedKeyframe": 4,
           "maximumCollarError": 0.0,
-          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
-          "minimumTriangleArea": 13.568583156962815,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 21.686046056019926,
           "radiallyReversedTriangles": 0
         },
         {
@@ -1412,8 +3608,1660 @@
           "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
           "storedKeyframe": 5,
           "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 21.361681242765147,
+          "radiallyReversedTriangles": 0
+        }
+      ],
+      "intermediateSamples": [
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 28.996562664489375,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 28.801882030206393,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 28.607542281186998,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 28.175752318670177,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 27.936637936732883,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 27.696246357345746,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 27.255093752890673,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 27.05437258167624,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 26.852457505955933,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 26.646646532643594,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 26.644701111247997,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
           "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
-          "minimumTriangleArea": 13.158214797892892,
+          "minimumTriangleArea": 26.643518804073608,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 26.726027867171073,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 26.808610667281442,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 26.89084202175975,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 27.34395187791026,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 27.715098838113004,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 28.08603639368086,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 2.220446049250313e-16,
+          "minimumTriangleArea": 28.875944884500775,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 29.29238325469281,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 29.705830479153114,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 30.398461684890083,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
+          "minimumTriangleArea": 30.67954693841331,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 30.95938703890212,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 30.927839721297772,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 30.616727956485867,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 30.304617696449455,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 24.527899901785595,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 26.49586566968764,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 28.68095424393681,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 28.448394760455795,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 29.05686540639602,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 32.70016162252966,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 39.58041369463498,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 40.320668818869436,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 41.244766275421355,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 42.61398951119184,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 42.9370774575831,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 43.26501026533619,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 42.30569162703169,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 7.771561172376096e-16,
+          "minimumTriangleArea": 40.95187522744203,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 39.64753069127764,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 32.008247430583914,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 27.331596001573832,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 24.39123440941829,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 21.867605105499855,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 20.974651828825877,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 20.537361684776087,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 15.475760025183577,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 8.994170013394088,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 4.240591915248044,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 6.31047944350472,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 10.434774140989482,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 7.771561172376096e-16,
+          "minimumTriangleArea": 16.289342093175584,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 20.049743557518916,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 20.454718580488056,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 20.868533297443808,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 21.126744267921378,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 20.96583833518089,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 20.807996154493008,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 20.40156221096016,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 20.151083738183228,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 19.901913027223518,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 38.14158935064695,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 38.04424950242277,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 37.94735526146684,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 37.9146454066014,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 37.980833751972185,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 38.049464497672794,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 38.33092417643611,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 38.54136438560754,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 38.75180898157023,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 39.18318085189859,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 39.40324434668726,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
+          "minimumTriangleArea": 39.62235976058592,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 40.09940496502934,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 40.35798687353334,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 40.616192336159095,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 40.97450675398184,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 41.07512429455798,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 41.175842713549244,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 41.094584975329944,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 40.91239564240367,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 40.730100743771686,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 40.304442507236764,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 40.0611666731452,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 39.8179015033253,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 2.220446049250313e-16,
+          "minimumTriangleArea": 39.479875083742336,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 39.38615992810601,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 39.293542639578455,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 39.060357516594415,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 38.918387373046805,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 38.77614165389671,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 38.50925783998266,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 38.38569360795385,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 38.262946507910044,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 32.35606573026656,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 32.43319586211273,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 32.51152387840411,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 32.743989755680595,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 32.898776600476545,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 33.05539433038693,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 33.26573029037307,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 33.31648851902475,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 33.36604729455527,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 33.562345088841596,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
+          "minimumTriangleArea": 33.70810623827465,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 33.85159120517028,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 34.171995009666134,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 34.351661042465985,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 34.531744965560875,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 34.84744166871128,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 9.992007221626409e-16,
+          "minimumTriangleArea": 34.98580559614516,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 5,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 35.12727619630031,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 35.40294879004743,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 35.536715585266414,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 6,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 35.6730639268846,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 36.10278944768323,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 36.39634136452783,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 7,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 36.692567355209725,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 36.96648640432347,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 36.94163081897587,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 8,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 36.91683833979067,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 36.745006551502506,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 36.59793719106667,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 9,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 36.45098056296965,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 36.00589679403792,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 35.705449177128955,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 10,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 7.771561172376096e-16,
+          "minimumTriangleArea": 35.402974851979664,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 11,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 34.81842862875572,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 11,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 34.53851647758612,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 11,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 34.25886457439833,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 12,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 33.76700373193933,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 12,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 33.556200641702816,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "afterStoredKeyframe": 12,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 33.34712209946684,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 44.04953901631994,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 42.76231575815733,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 41.34858719551619,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 21.451292057628688,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 10.962230896216777,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 16.25867993999337,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 36.09670193390688,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 35.85285625071773,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 35.60659945419852,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 31.79940962940821,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 31.816212488710335,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 35.22737950579316,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 39.76596858404402,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 39.0079349711251,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 39.456099672500045,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 24.175864837853425,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 25.55254205007712,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 0,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 26.9230366700006,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 27.715896553164416,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 27.188064609586757,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 1,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 26.700184823369217,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 25.689299336438474,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 25.13056033632353,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 2,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 24.577631381717403,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 23.44437265312269,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 22.857383446469754,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 3,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 22.270880971540485,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.25,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 21.50853695679306,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 21.395751137787208,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "afterStoredKeyframe": 4,
+          "fraction": 0.75,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 21.34705308326259,
           "radiallyReversedTriangles": 0
         }
       ],
@@ -1421,32 +5269,20 @@
       "privateCustomPoseExportCount": 28,
       "publishedArtifact": {
         "path": "combat-elbow-13-1.glb",
-        "sha256": "f561f4b3000896b23c180d448790dfa8b9bc9eb3ce15dbdeb4bb834dd4cee460",
+        "sha256": "a9d700f79757aa9931477641cf2823a01acd45d1d729d01a6467408fc7c534b4",
         "scope": "Custom open collar strip in one original stored pose; not a complete actor or runtime resource",
-        "maximumGlbRoundtripPositionError": 3.1073767389684226e-05
+        "maximumGlbRoundtripPositionError": 3.0841626215774803e-05
       }
     }
   ],
+  "interpolationScope": "Independent normalized short-arc quaternion blends and linear translation at 0.25, 0.5 and 0.75 between stored poses. No native animator execution or stateful high-refresh interpolation validation.",
   "scope": "Authored collar strips driven by selected original stored poses. Endpoint and cross-section checks do not prove collision freedom, complete actor continuity, native renderer compatibility or gameplay.",
-  "privateProbeReportSha256": "0c91d272a7f81f42f055bdb14822af80dfc34f6738cc38d716b71e0f2a8c9a1a",
-  "sourceBaseCommit": "bd11b68e2e1eca11c692dde32d6c0683a78f6d66",
   "environment": {
     "architecture": "arm64",
     "authoring": "isolated Python 3.12 / NumPy 1.26.4 / scipy 1.17.0 / trimesh 4.0.5",
     "inferenceUsed": false,
     "networkUsed": false
   },
-  "fixtureTests": {
-    "passed": 10,
-    "failed": 0,
-    "source": "experiments/dart-modelshd-charhd/test-joint-collar-surface.py"
-  },
-  "runtimeSelected": false,
-  "ownerMeshAccepted": false,
-  "sourceBoundCostumeCutLinesAccepted": false,
-  "sourceAuditSha256": "9c101adeb735c438998376cc26b20afb658001586906bc7557937b2b4e9e88db",
-  "comparisonReceiptSha256": "8322a8596c7d5a6e47fd9d785fac84a72dd7aa2e2828c13a5c2330d4079d14bf",
-  "promotion": "Draft authoring only. Complete actor topology, costume/material fidelity, grips, collisions, runtime integration, gameplay and Deck validation remain required.",
   "rejectedMethodRegression": {
     "strategy": "Identical fixture suite with only the circular-arc tangent length replaced by chord/2 in a private throwaway copy",
     "expectedFailure": "test_sharp_bend_distributes_sections_without_inward_facing_triangles",
@@ -1459,5 +5295,55 @@
     "command": "./gradlew charhdJar charHdTests",
     "result": "BUILD SUCCESSFUL",
     "scope": "CharHD packaging rebuilt; Java test inputs unchanged and Gradle reused the prior passing test outputs. Python fixtures and native-source offline probes executed freshly."
+  },
+  "runtimeSelected": false,
+  "ownerMeshAccepted": false,
+  "sourceBoundCostumeCutLinesAccepted": false,
+  "sourceAuditSha256": "9c101adeb735c438998376cc26b20afb658001586906bc7557937b2b4e9e88db",
+  "comparisonReceiptSha256": "8322a8596c7d5a6e47fd9d785fac84a72dd7aa2e2828c13a5c2330d4079d14bf",
+  "promotion": "Draft authoring only. Complete actor topology, costume/material fidelity, grips, collisions, runtime integration, gameplay and Deck validation remain required.",
+  "sourceBaseCommit": "d4feec0803ece2b9d38103cec8bdc7e33b6dc393",
+  "privateProbeReportSha256": "c946df879568ac7777adbdcd233ef4467c4e149247c25e2ca8ccf1e6688a9b84",
+  "fixtureTests": {
+    "surfaceTests": 10,
+    "probeInterpolationTests": 4,
+    "failed": 0,
+    "sources": [
+      "experiments/dart-modelshd-charhd/test-joint-collar-surface.py",
+      "experiments/dart-modelshd-charhd/test-collar-probe.py"
+    ]
+  },
+  "rejectedIntermediateSpan": {
+    "privateReportSha256": "edaeedb1c7e99651109a5e9cb71ceaeaf960544217567209f3741ea7b12f5fc5",
+    "joint": "combat-elbow-13-1",
+    "previousSectionStations": [
+      155,
+      55
+    ],
+    "correctedSectionStations": [
+      155,
+      85
+    ],
+    "failingIntermediateSamples": [
+      {
+        "animation": "5",
+        "keyframe": 0,
+        "fraction": 0.75,
+        "maximumCollarError": 0.0,
+        "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+        "minimumTriangleArea": 2.7887124334984414,
+        "radiallyReversedTriangles": 34
+      },
+      {
+        "animation": "14",
+        "keyframe": 1,
+        "fraction": 0.5,
+        "maximumCollarError": 0.0,
+        "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+        "minimumTriangleArea": 0.1730985811789792,
+        "radiallyReversedTriangles": 106
+      }
+    ],
+    "scope": "Old narrow span passed stored keys but failed these two between-key geometry samples."
   }
 }
