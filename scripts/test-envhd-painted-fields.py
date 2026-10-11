@@ -93,6 +93,22 @@ class PaintedFieldTests(unittest.TestCase):
         with mock.patch.object(verify.batch.fields,'render',return_value=(None,[self.source],self.metadata)):
             self.assertEqual(1,len(self.preflight()[0]))
 
+    def registration_fixture(self):
+        points=[[0,0],[2,0],[2,2],[0,2]]
+        painted,operation=verify.registration.register(self.source,Image.open(self.raw_path),points,points)
+        stream=io.BytesIO();painted.save(stream,format='PNG')
+        self.candidate['registration']=dict(operation,algorithmPath='scripts/register-envhd-painted-cutout.py',registeredInputSha256=verify.batch.terrain.digest(stream.getvalue()));self.save()
+
+    def test_recorded_registration_is_reproduced_before_visibility_repair(self):
+        self.registration_fixture();self.assertEqual(1,len(self.preflight()[0]))
+
+    def test_registration_identity_and_parameters_cannot_change_silently(self):
+        self.registration_fixture();self.candidate['registration']['algorithmSha256']='0'*64;self.save()
+        with self.assertRaisesRegex(ValueError,'registration identity'):self.preflight()
+        self.candidate['registration']['algorithmSha256']=verify.REGISTRATION_SHA256
+        self.candidate['registration']['registeredInputSha256']='0'*64;self.save()
+        with self.assertRaisesRegex(ValueError,'recorded source geometry'):self.preflight()
+
     def test_rebound_layout_and_symlinked_artwork_are_rejected(self):
         self.candidate['sourceBindings']=[self.binding|dict(slot=1)];self.save()
         with self.assertRaisesRegex(ValueError,'rebound'):self.preflight()

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Additional individual source/candidate/scene-placement comparisons after the merged development selection. This receipt does not publish or select new pixels and does not change native/final-quality acceptance.",
+  "scope": "Historical individual neural review continuation after source-476; archived receipt paths preserve that baseline. Current expanded branch selection is recorded in field-runtime-artwork.json and is not a published installer or native/final acceptance claim.",
   "selectionBaseCommit": "476c004ca4d4eacce5a763c41b570c479380b5e7",
   "baseReviewReceiptSha256": "6a2d8b54611dceeab0328776e26ad653a82b9fce295a7a1f5f4fbe0d0d2c84f3",
   "baseRuntimeLedgerSha256": "a99d04d724191d82fad0d5b4c3fd489c2d2acdc1670ffd8486be9ee1196dd3b9",
@@ -17,7 +17,7 @@
   "unreviewedImages": 0,
   "generatedImages": 5162,
   "currentRuntimeSelected": 2723,
-  "additionalReviewedDevelopmentImagesAwaitingPublication": 2163,
+  "additionalReviewedDevelopmentImagesAwaitingPublication": 0,
   "additionalImagesReviewed": 2322,
   "additionalBespokeRevisionImages": 159,
   "nativeAccepted": 0,
@@ -20926,5 +20926,11 @@
       "nativeAcceptance": "pending",
       "finalQualityAcceptance": "pending"
     }
-  }
+  },
+  "baseReviewReceiptPath": "field-review-receipt-source-476c004ca.json",
+  "baseRuntimeLedgerPath": "field-runtime-artwork-source-476c004ca.json",
+  "runtimeSelected": 4892,
+  "publishedInstallerRuntimeSelected": 2723,
+  "paintedRuntimeSelected": 6,
+  "remainingHeldSourceImages": 270
 }

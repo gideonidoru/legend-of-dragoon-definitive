@@ -1,79 +1,89 @@
-# EnvHD field review continuation
+# EnvHD field integration candidate
 
-The current Env1HD–Env4HD payload contains **2,723 selected development field
-images**. The additional reviews recorded here do not change those installed
-files or any published release.
+The published maintenance installer contains **2,723 selected development field
+images** from source `476c004ca`. This branch prepares **4,892 selected images**
+for the next coordinated integration: **4,886 reviewed neural baselines** and
+**six source-verified painted repairs**. It does not change main or the public
+download. Native gameplay and final Skurfa-equivalent quality remain pending.
 
-A further **2,322 images** have been individually compared against their original
-pixels and scene placement after that selection. **2,163** are development
-baselines awaiting future candidate publication and packaging; **159** remain
-held for source identity, meaningful motifs, fine structure or material repair.
-
-Including the original review receipt, the complete generated field worklist is:
+All **5,162 generated field sources** have been individually compared against
+original pixels and scene placement. The 2,163 additional reviewed neural images
+are now versioned and selected on this branch. Six original neural holds have
+separately reviewed painted replacements; **270 source images remain held**.
+Three uniform sources and empty/missing native slots retain their original data.
 
 | Field images | Count |
 | --- | ---: |
-| Generated and source-layout repaired | 5,162 |
-| Individually compared | 5,162 |
-| Reviewed development baselines | 4,886 |
-| Bespoke repair holds | 276 |
-| Still awaiting individual review | 0 |
-| Currently selected for installation | 2,723 |
-| Newly reviewed baselines awaiting publication/selection | 2,163 |
+| Generated and source-layout repaired neural baselines | 5,162 |
+| Individually compared source images | 5,162 |
+| Reviewed neural development baselines | 4,886 |
+| Original neural repair holds | 276 |
+| Separately reviewed painted replacements | 6 |
+| Remaining held source images | 270 |
+| Still awaiting individual source comparison | 0 |
+| Selected on this development branch | 4,892 |
+| Selected in the published installer | 2,723 |
+| Reviewed baselines awaiting candidate publication/selection | 0 |
 
-The latest comparisons cover foreground boards 186–379. All foreground comparison boards have been reviewed.
-`integrations/envhd/production/field-review-progress.json` contains the additional
-notes and their exact output hashes, along with the original review and runtime
-ledger identities. Read it alongside `field-review-receipt.json`; the latter
-remains the historical receipt for the already selected payload. Generation and
-repair identities are unchanged. Original game images and comparison boards stay
-in private production storage; this checkpoint publishes only custom review
-metadata.
+Selection covers at least one image in **605 of 612 unowned source configurations**.
+That counter is not complete scene coverage or proven route reachability. Seven
+configurations still have no selected image; native/uniform and remaining held
+sources stay original. Skurfa's 38 owned configurations and protected cut/period
+aliases are reused rather than regenerated.
 
-Repeated Crystal Palace balustrades and Twin Castle embroidered furnishings are
-held together for consistent source-faithful repair. Other holds include painted
-signage, wall pictures, patterned upholstery, small carved fittings, fine organic
-branches, tiny plants, woven seats, bedding, heraldic emblems and ambiguous small fittings.
-Two masked Python detail-restoration trials improved source pattern retention,
-but remain too close to interpolated native detail to establish the requested
-finished quality. They are private trials, and no hold was cleared by them.
+Foreground comparison boards 186–379 completed the continuation review.
+`field-review-progress.json` retains those output-bound notes and identities.
+The exact historical source-476 controls are archived in
+`field-review-receipt-source-476c004ca.json` and
+`field-runtime-artwork-source-476c004ca.json`; their bytes match the recorded
+baseline hashes. `field-review-receipt.json` now holds the complete neural review,
+and `field-runtime-artwork.json` records the expanded selection and both the
+neural and painted review receipt hashes. Original game images and comparison
+boards remain in private production storage.
 
-All native/gameplay and final-quality acceptance counts remain **zero**. These
-source/candidate comparisons do not prove in-game occlusion, scripted state
-changes, reachability, animation or Skurfa-equivalent final painted quality.
-The current runtime, protected Skurfa artwork and download packs are unchanged.
+The six painted candidates in `field-bespoke-foliage.json` cover Donau's
+flower-shop plant and diagonal flower display, two related Evergreen Forest
+fragments, a shrub at Shirley's Shrine, and Lohan's independent purple-blue flower
+variant. Their generated inputs, prompts, repaired outputs and exact hashes are
+versioned under `bespoke-field-candidates`. Only custom artwork is published.
+All six were compared at target texture size and in static scene placement;
+source alpha and visible-black classes are exact. These comparisons do not prove
+runtime depth, scripted state visibility, reachability or final painted quality.
 
-Five source-referenced painted vegetation repair candidates are now versioned in
-`field-bespoke-foliage.json` with their prompts, generated inputs, repaired output
-hashes and a reproducible Python visibility operation. They cover Donau's
-flower-shop plant, two related Evergreen Forest fragments, a shrub at
-Shirley's Shrine and Lohan's independent purple-blue flower variant. All five were compared at the target texture size and in static
-scene assemblies; their original alpha and visible-black classes are exact.
+The initial Donau display paintings left 25.5% and 26.8% of the original footprint
+uncovered. A row-wise geometry trial filled that shape but visibly smeared petals
+and was rejected. A reviewed perspective registration restores the upper bend
+while retaining separate flowers, followed by the original visibility repair.
+Its source/painted control points, registered-input hash and separately pinned
+registration algorithm are recorded with the candidate. The unregistered and
+row-wise variants are not selected.
+
 Near-transparent generated matte colours are excluded before restoring source
-visibility. The published candidate package contains only custom artwork; source
-images and scene assemblies remain private. Explicit selection now verifies fresh
-game sources, ownership, usage bindings, input/output hashes, recorded review hashes
-and exact repaired pixels before building runtime resources. These replacements
-await coordinated selection, packaging and in-game/final painted-quality review. They do
-not change the 276 holds recorded against the historical neural outputs or the
-2,723 installed images.
+visibility. Lohan's opaque RGB painting is converted to RGBA with constant opaque
+alpha only because its source is entirely opaque; its wood background patch and
+purple-blue foreground flowers remain independent of the red arrangement baked
+into the background. Its isolated native slot placement was checked because
+stacking all foreground state variants obscures this object.
 
 The authoring selection accepts `--files <private extracted source directory>`
 and `--painted-manifest integrations/envhd/production/field-bespoke-foliage.json`.
-Omitting both preserves the normal neural selection. These are production-tool
-arguments; players still receive one EnvHD mod with its ordinary internal mod
-manager switch and the existing Env1HD–Env4HD download-pack layout. Switching to
-painted candidates or withdrawing them rebuilds the owned runtime tree atomically
-while preserving immutable candidate history. Runtime ledgers record the exact
-painted review receipt alongside the original neural receipt.
+Omitting both selects only the verified neural candidates. Fresh source census,
+Env-only ownership, usage bindings, original source hashes, generation/output
+hashes, recorded review hashes and exact repaired pixels are checked before
+selection. Painted selection and withdrawal rebuild the owned runtime tree
+atomically while preserving immutable candidate history. A changed painted
+manifest during copying aborts before replacing runtime files.
 
-The Lohan layer is opaque and retains its wooden background patch; generated RGB
-is converted to RGBA with constant opaque alpha only for an entirely opaque source.
-Its purple-blue flowers remain independent of the red arrangement baked into the
-background. Its isolated native slot placement was reviewed because stacking all
-foreground state variants hides this object. No gameplay visibility claim is made.
+These arguments belong to production tools. Players still receive one EnvHD mod
+with the ordinary internal mod-manager switch and the existing Env1HD–Env4HD
+download packs. All selected PNGs, normal package contents and pack sizes must
+pass the coordinated package checks before the public installer is updated.
 
-The additional Donau cut 248 display remains held. Two painted attempts moved its
-upper-left bend and left about one quarter of the native footprint uncovered.
-The source-coverage check rejected both; neither enters the public candidate list
-or runtime selection. This requires a geometry-preserving repair before acceptance.
+Remaining repairs include Crystal Palace balustrades, Twin Castle embroidery,
+painted signage, wall pictures, patterned upholstery, small carved fittings,
+fine organic structures, woven seats, bedding and heraldic emblems. The earlier
+masked cloth/balustrade detail-restoration trials improved pattern retention but
+remained too close to interpolated native detail; those trials cleared no holds.
+All native/gameplay and final-quality acceptance counts remain **zero**. The wider
+EnvHD backlog and unresolved environment prop/animation ownership remain in
+`full-coverage.json`; this field integration is not whole-campaign completion.

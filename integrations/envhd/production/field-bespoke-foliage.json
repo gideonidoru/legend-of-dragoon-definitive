@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Five custom painted EnvHD vegetation repair candidates; candidate-only and not part of any installed runtime or download pack. Explicit source-verified selection is supported; historical neural review holds remain unchanged until selection and packaging.",
+  "scope": "Six custom painted EnvHD vegetation repair candidates; candidate-only and not part of any installed runtime or download pack. Explicit source-verified selection is supported; historical neural review holds remain unchanged until selection and packaging.",
   "sourceSelectionBaseCommit": "476c004ca4d4eacce5a763c41b570c479380b5e7",
   "algorithmPath": "scripts/repair-envhd-painted-cutout.py",
   "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
@@ -9,7 +9,7 @@
     "pillow": "12.3.0",
     "numpy": "2.5.1"
   },
-  "visualReviewedBespokeCandidates": 5,
+  "visualReviewedBespokeCandidates": 6,
   "runtimeSelected": 0,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
@@ -286,6 +286,115 @@
         "layout": "Original, neural candidate and repaired painting compared at 200x120 target size, then at the exact native slot 8 placement on the original background. Other foreground states were omitted because an all-slots assembly obscures this variant. In-game script visibility and depth remain pending.",
         "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
         "outputSha256": "efe49e891b701e0fa97a401cda8e6e3384731e3dbecd181ecb82116a2a6245d6",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 7632,
+      "paintedGapPixelsExtended": 684,
+      "paintedUncoveredSourcePixels": 521,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 100,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "43cf12d2a76b640953c2b725b955ba0025b26c94b81ee01a32a26c79c63271b0",
+      "generatedSha256": "90a593d120c08d042100965d660a264f720da82ee585d8e1239ce236428b6f45",
+      "outputSha256": "4d904a830d0392634ad7b017306480535759145157fdbdd59f91afb7ada9ca2b",
+      "sourceSize": [
+        42,
+        24
+      ],
+      "targetSize": [
+        168,
+        96
+      ],
+      "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/43cf12d2a76b640953c2b725b955ba0025b26c94b81ee01a32a26c79c63271b0/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/43cf12d2a76b640953c2b725b955ba0025b26c94b81ee01a32a26c79c63271b0/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "prompt": "Use case: style-transfer. Asset type: precise RGBA foreground texture for Legend of Dragoon EnvHD. Image 1 is the authoritative edit target and exact canvas/shape/palette blueprint: an enlarged nearest-pixel view of the original 42x24 Donau flower display. Image 2 is only a painting-detail reference from an earlier attempt; its changed geometry and bright lighting must NOT be copied. Repaint image 1 as detailed hand-painted HD game art. Keep the object footprint exactly as image 1: upper bend/peak occurs about one third across the canvas, not one sixth; left end is shallow and cropped, then the pale curved rim and flower cluster slope down right into the rounded pale end. Preserve every original clipped edge, full canvas framing, width/height proportions and original diagonal perspective. Retain the original muted grey-ivory/ochre rim, dark inner planting, dominant blue/purple blossoms, small pale white/pink accents and subdued green leaves. Restore recognizable individual petals and leaves inside those same color regions. Keep the darker original shop lighting, not bright sunlit yellow stone. Do not elongate or widen the planter, move the upper-left bend, add trailing leaves, cast shadows or new objects. Output only the same-shaped upgraded cutout on actual transparent background.",
+      "registration": {
+        "method": "python-painted-cutout-perspective-registration-1",
+        "algorithmSha256": "7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784",
+        "sourceQuad": [
+          [
+            13,
+            0
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            35,
+            23
+          ],
+          [
+            42,
+            17
+          ]
+        ],
+        "paintedQuad": [
+          [
+            6.5,
+            0
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            35,
+            24
+          ],
+          [
+            42,
+            19
+          ]
+        ],
+        "sourceSize": [
+          42,
+          24
+        ],
+        "targetSize": [
+          168,
+          96
+        ],
+        "scale": 4,
+        "resampling": "bicubic",
+        "sourceAlphaApplied": false,
+        "algorithmPath": "scripts/register-envhd-painted-cutout.py",
+        "registeredInputSha256": "b96761a2fb3007a431fa8263b76ad76bd874260b29371c9622ecacdf5da2de49"
+      },
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "d07f62a2914bc240c6c0659ba5926e2070a03c124af72df0c164b3a46a76a35c:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Donau",
+      "representativeCut": 248,
+      "priorCandidateSha256": "e4457014feb94e591a486692901791ae7bf1620978f1a20dc31a073c3df91cb1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "review": {
+        "intent": "Donau cut 248 diagonal pale curved flower-shop display with blue, purple, pink and white flowers and green leaves.",
+        "style": "Separate painted petals and leaves replace the ambiguous neural streaks while retaining an ivory/ochre rim, hollow planted interior and rounded pale right end. Perspective registration restores the source bend without the flower smearing seen in the rejected row-wise trial. Flower grouping is a painted interpretation; full-scene colour harmonization and final quality remain pending.",
+        "layout": "Original, neural and registered painted texture compared at 168x96 target size and at its original native slot placement on the Donau shop background. Source alpha and visible-black classes are exact. The isolated layer comparison does not prove scripted visibility, depth or full gameplay.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "outputSha256": "4d904a830d0392634ad7b017306480535759145157fdbdd59f91afb7ada9ca2b",
         "nativeAcceptance": "pending",
         "finalQualityAcceptance": "pending"
       }

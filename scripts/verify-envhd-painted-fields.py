@@ -19,7 +19,9 @@ def module(name, filename):
 
 batch = module('painted_field_sources', 'batch-envhd-fields.py')
 repair = module('painted_field_repair', 'repair-envhd-painted-cutout.py')
+registration = module('painted_field_registration', 'register-envhd-painted-cutout.py')
 REPAIR_SHA256 = 'f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a'
+REGISTRATION_SHA256 = '7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784'
 METHOD = 'python-painted-cutout-nearest-colour-exact-visibility-1'
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
 ROOT = Path(__file__).resolve().parents[1]
@@ -96,6 +98,19 @@ def preflight(files, manifest_path, root=ROOT):
                 # Opaque generated patches need a constant alpha channel for
                 # the same pinned RGBA repair; the RGB artwork is unchanged.
                 raw = raw.convert('RGBA')
+            if 'registration' in candidate:
+                recorded = candidate['registration']
+                if (not isinstance(recorded, dict) or recorded.get('algorithmPath') != 'scripts/register-envhd-painted-cutout.py'
+                        or recorded.get('algorithmSha256') != REGISTRATION_SHA256
+                        or batch.terrain.digest(Path(registration.__file__).read_bytes()) != REGISTRATION_SHA256):
+                    raise ValueError('Painted field registration identity changed')
+                raw, operation = registration.register(source, raw, recorded.get('sourceQuad'), recorded.get('paintedQuad'))
+                stream = io.BytesIO()
+                raw.save(stream, format='PNG')
+                expected_registration = dict(operation, algorithmPath='scripts/register-envhd-painted-cutout.py',
+                                             registeredInputSha256=batch.terrain.digest(stream.getvalue()))
+                if recorded != expected_registration:
+                    raise ValueError('Painted field registration differs from its recorded source geometry')
             expected, operation = repair.repair(source, raw)
         with Image.open(io.BytesIO(output_data)) as actual:
             if actual.mode != 'RGBA' or not np.array_equal(np.asarray(actual), np.asarray(expected)):
