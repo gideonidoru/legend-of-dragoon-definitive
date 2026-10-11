@@ -466,18 +466,17 @@
     "releaseChanged": false,
     "publishedInstaller": {
       "tag": "definitive-current",
-      "recordedPackageSource": "d7311334",
-      "sourceEvidence": "Main ad1a234d full-coverage.json and ENVHD_FULL_COVERAGE.md snapshot, not a live release query.",
-      "fieldSelectedMasters": 4917,
-      "battleNewSelectedMasters": 518,
-      "battleNewSelectedBindings": 525,
-      "battleTotalSelectedBindings": 549,
-      "paintedBattleReplacements": 12,
+      "generation": 4,
+      "packageSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+      "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
+      "fieldSelectedMasters": 4925,
+      "paintedFieldReplacements": 39,
+      "paintedBattleReplacements": 34,
       "nativeArtAccepted": 0,
       "finalArtAccepted": 0
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 9,
-    "paintedBattleMastersAwaitingCoordinatedPublication": 22,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 1,
+    "paintedBattleMastersAwaitingCoordinatedPublication": 13,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
       "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
@@ -489,7 +488,21 @@
       "paintedBattleReplacements": 0,
       "nativeArtAccepted": 0,
       "finalArtAccepted": 0
-    }
+    },
+    "previousPublishedInstallerSnapshots": [
+      {
+        "tag": "definitive-current",
+        "recordedPackageSource": "d7311334",
+        "sourceEvidence": "Main ad1a234d full-coverage.json and ENVHD_FULL_COVERAGE.md snapshot, not a live release query.",
+        "fieldSelectedMasters": 4917,
+        "battleNewSelectedMasters": 518,
+        "battleNewSelectedBindings": 525,
+        "battleTotalSelectedBindings": 549,
+        "paintedBattleReplacements": 12,
+        "nativeArtAccepted": 0,
+        "finalArtAccepted": 0
+      }
+    ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
   "authoringCheckpoint": "Complete74 candidates:31 independent-pending/3 revisions;3new candidates,5held versions,58unique unselected sources. Runtime4926/40 and237known static backlog unchanged. Source recipes reproduced, no native/final acceptance.",
@@ -501,6 +514,7 @@
     "battlePainted": 47,
     "authoringCandidates": 71,
     "independentlyPending": 28,
-    "holdsClearedByMerge": 0
+    "holdsClearedByMerge": 0,
+    "metadataSourceCommit": "0c18bdb72b43b1777daca8f0f3aa756bb538df43"
   }
 }

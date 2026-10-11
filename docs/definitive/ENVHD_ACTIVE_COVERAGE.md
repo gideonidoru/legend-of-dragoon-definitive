@@ -191,3 +191,8 @@ The [complete74-candidate input](../../integrations/envhd/production/field-bespo
 [Five held versions](../../integrations/envhd/production/field-bespoke-wheel-furnishings-held-drafts.json) preserve earlier material/construction overinterpretation and both Fletz furnishing attempts. Fletz1 fails unchanged coverage. Fletz2 passes structural repair but adds strong scratched/rippled relief and bright support edges; it remains held. The original includes small red marks at the lower-right and lower edge, so these are not an invented red-object finding. Eight generated versions produced seven repaired variants; all original source gates remain unchanged.
 
 Fresh source preflight reproduced all74 candidate recipes. Thirty-one candidates now await independent review; three existing independent revisions remain. Fifty-eight unique unselected custom source keys are a subset of236 field holds. Runtime4,926 fields/40paintings and237 known static remaining images are unchanged. See the [readiness receipt](../../integrations/envhd/production/field-wheel-furnishings-authoring-readiness.json). Original/reference/layout/comparison pixels remain private; this authoring increment is not a runtime or download activation.
+
+
+## Current publication checkpoint
+
+Generation4/source `5d3db5c84174f2936fe7256123a11f6bb640760a` publishes4,925 selected fields/39 painted fields and34 painted battle masters. Accepted main `6612a533307e5f066bc46e7870d658f8add42752` selects4,926/40 and47 respectively; one table and13 Giganto paintings await the next coordinated download. The earlier0af publication receipt remains historical. Native and final artistic acceptance remain separate.
