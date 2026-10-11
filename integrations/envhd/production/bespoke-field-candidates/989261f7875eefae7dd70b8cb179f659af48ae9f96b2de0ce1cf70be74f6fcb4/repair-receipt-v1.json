@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 26816,
+  "paintedGapPixelsExtended": 1496,
+  "paintedUncoveredSourcePixels": 1145,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 50,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    90,
+    46
+  ],
+  "targetSize": [
+    360,
+    184
+  ],
+  "generatedSha256": "820dbba43ca5273fde9025c747f5f831ec25fe839d48d255a0315fd7b814d967",
+  "outputSha256": "960a3e61c51a00b4c2fce59fbf3560d629927f043bb5540581d67edb178adbce",
+  "decodedRgbaSha256": "989261f7875eefae7dd70b8cb179f659af48ae9f96b2de0ce1cf70be74f6fcb4",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/989261f7875eefae7dd70b8cb179f659af48ae9f96b2de0ce1cf70be74f6fcb4/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/989261f7875eefae7dd70b8cb179f659af48ae9f96b2de0ce1cf70be74f6fcb4/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Bale cut71 slot1 long dark green upholstered bench rising diagonally from lower left toward upper right, with warm dark wooden side rails, thin legs and raised end panels. Preserve the existing small warm wooden table and rounded grey/olive vessel at far left. The green seat contains dense, tiny subdued golden-olive geometric flecks/diamond-like weave marks, not featureless green and not ornate floral brocade. Retain the small-motif density and dim green/brown source lighting. Image3 is an exposure-lifted source guide only: do not brighten the final to that exposure. Keep each object angle, silhouette and gap unchanged. Strict canvas: exactly 90:46 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "341db4825f7aff6187e1f2d420497691445d7776ada62dbff539398d81c2be35:-1",
+      "kind": "foreground",
+      "slot": 1,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 71,
+  "representativeLocation": "Bale",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Bale cut71 slot1 long dark-green patterned upholstered bench in warm timber framing beside its small warm table and rounded grey/olive vessel.",
+    "style": "Original, private exposure guide, held neural, output and isolated slot placement compared. Dense small subdued golden-olive geometric marks replace the plain neural seat. Bench crop, table/vessel position and dim room palette remain. Fine motif grouping, thread count, joinery/grain and vessel material are interpretive; no extra furnishing is added.",
+    "layout": "Exact4x canvas [90, 46] to [360, 184]; source alpha and visible-black classes exact. Pinned cutout stage extends 1496 target pixels, uncovered 1145, maximum squared extension distance 50. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "960a3e61c51a00b4c2fce59fbf3560d629927f043bb5540581d67edb178adbce",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 47120,
+  "paintedGapPixelsExtended": 2825,
+  "paintedUncoveredSourcePixels": 2571,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 725,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    92,
+    54
+  ],
+  "targetSize": [
+    368,
+    216
+  ],
+  "generatedSha256": "d1813c9213b18badb65338db95b7f0f20dc5ad0612f8de8afdba5b4ae7ecd71b",
+  "outputSha256": "14aa386473e1233fd249f89c443e76248c84844fefb3ba71c4dfce71322d3116",
+  "decodedRgbaSha256": "ec8b91c3b778e37e0f561c0361a5c06b0f641f123a0119c381257c38f1a1cb7f",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/ec8b91c3b778e37e0f561c0361a5c06b0f641f123a0119c381257c38f1a1cb7f/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/ec8b91c3b778e37e0f561c0361a5c06b0f641f123a0119c381257c38f1a1cb7f/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Bale cut76 slot2 diagonal bed with dark warm wooden head/foot ends and existing thin posts, brown pillow at upper left, pale cream folded sheet band, and rust/brown textured cloth bedcover extending to lower right. The brown cover is softly folded fabric with a dense subtle repeating warm pattern, not parallel wooden planks or heavy rigid ribs. Preserve the original broad folds, subdued rust/brown palette, cream band, oblique camera view and wood posts exactly. Add fine restrained textile fibers and small source-like weave details without invented florals, writing or new objects. Strict canvas: exactly 92:54 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.\n\nRefinement 1:\nEdit the high-definition draft in image2 against source image1 and scene image3. Preserve exact layout, dark wood head/foot ends and posts, brown pillow, cream sheet band, soft cloth folds and subdued rust/brown palette. Remove the prominent large diamond pattern on the brown blanket/pillow. Replace with very fine dense low-contrast warm woven dashes/flecks, with slightly aligned small rows tracing the original textile pattern and fold directions. The cover must read as softly draped woven cloth, with neither large geometric emblems nor rigid wood ribs. Keep the original light direction and all object positions. Output real transparency. Exactly 92:54 canvas aspect.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "33b022d89bc49a38aed135ee84162df2e1cc5742a5b2117ff969b7111d69622d:-1",
+      "kind": "foreground",
+      "slot": 2,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 76,
+  "representativeLocation": "Bale",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Bale cut76 slot2 warm dark wooden bed ends/posts, brown pillow, cream sheet band and rust/brown woven cloth cover.",
+    "style": "Original, held neural, rejected large-diamond draft, corrected output and isolated source slot placement compared. Dense subtle warm woven rows/flecks follow the original cloth direction and replace the neural rigid plank/rib appearance. Prominent diamond emblems were removed. Pillow/cloth folds, precise thread count, post relief and grain are interpretive.",
+    "layout": "Exact4x canvas [92, 54] to [368, 216]; source alpha and visible-black classes exact. Pinned cutout stage extends 2825 target pixels, uncovered 2571, maximum squared extension distance 725. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "14aa386473e1233fd249f89c443e76248c84844fefb3ba71c4dfce71322d3116",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

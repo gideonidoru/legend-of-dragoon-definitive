@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 7328,
+  "paintedGapPixelsExtended": 598,
+  "paintedUncoveredSourcePixels": 462,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 68,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    32,
+    30
+  ],
+  "targetSize": [
+    128,
+    120
+  ],
+  "generatedSha256": "9a62abc75cde82d96be63ed349ec2bd2e4ea04f173713b2df78daead817fb747",
+  "outputSha256": "2768332ba19c9584a3989e62496d9da48efc023ba255e46c1f2a10daaaf6c359",
+  "decodedRgbaSha256": "f1f892eb7441868656bbd630df9cbb2b40407a2192d4646a6ca481ee6e00501e",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/f1f892eb7441868656bbd630df9cbb2b40407a2192d4646a6ca481ee6e00501e/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/f1f892eb7441868656bbd630df9cbb2b40407a2192d4646a6ca481ee6e00501e/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Crystal Palace cut369 slot17 distinct partly cropped pale bed section. Trace this specific source: pale grey/cream diagonally sloping bedding from upper left toward lower right; a large dark grey roughly rectangular underside/inset region at left under the pale upper fold; narrower pale patterned cloth to its right; and the golden-brown curved footboard and thin upright right post at bottom right. Preserve the dark inset as opaque dark grey visible material in exactly its position and area, not transparency and not extra pale bedding. Restore faint dense tiny muted pink/green/blue-grey woven flecks on the pale cloth, consistent with the neighboring bed material. Do not copy the simpler slot16 silhouette, fill the dark region with cloth, widen the bed or invent ornate patterns. Strict canvas: exactly 32:30 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.\n\nRefinement 1:\nEdit the high-definition draft in image2 against original source image1 and scene image3. Keep this slot17 view unchanged, including the large opaque dark-grey left inset under the pale upper cloth fold, the narrower diagonal pale cloth to its right, and the gold footboard and thin right upright post. Remove recognizable leaves and pink flower shapes from the pale cloth. Use faint dense tiny irregular muted pink/green/blue-grey woven flecks/geometric thread marks, consistent with the neighboring pale bed material but following this original view. No plant imagery, ornate emblems, extra cloth over the dark inset, altered crop, padding or added objects. Output real transparency. Exactly 32:30 canvas aspect.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "e1b3176346f070ca8d9ecf851e766d6994ac34f91d4256cd196708b85c5d503b:-1",
+      "kind": "foreground",
+      "slot": 17,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 369,
+  "representativeLocation": "Crystal Palace",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Crystal Palace cut369 slot17 distinct cropped pale patterned bedding with a large opaque dark-grey left inset beneath its upper fold, gold footboard and right upright.",
+    "style": "Original, held neural, rejected floral draft, corrected output and isolated source slot placement compared. Dark left inset stays visible opaque material rather than being filled with pale cloth or discarded. Pale tiny pink/green/blue-grey thread flecks match the neighboring bedding style in this separate source view; recognizable flowers/leaves were removed. Exact inset role, motif count/positions and fold/wood relief remain interpretive.",
+    "layout": "Exact4x canvas [32, 30] to [128, 120]; source alpha and visible-black classes exact. Pinned cutout stage extends 598 target pixels, uncovered 462, maximum squared extension distance 68. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "2768332ba19c9584a3989e62496d9da48efc023ba255e46c1f2a10daaaf6c359",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

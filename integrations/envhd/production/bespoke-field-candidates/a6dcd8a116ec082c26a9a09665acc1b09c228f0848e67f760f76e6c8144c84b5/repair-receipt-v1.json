@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 16640,
+  "paintedGapPixelsExtended": 1651,
+  "paintedUncoveredSourcePixels": 1424,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 100,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    60,
+    40
+  ],
+  "targetSize": [
+    240,
+    160
+  ],
+  "generatedSha256": "81dc9b7fb4c298ee5ebe27c06f17db59d41078001f4ada99b59132a35e527de1",
+  "outputSha256": "19ed40db516901f7fa4eccf5c2350a21e1b01ca75079865641d9e26e40d3b55a",
+  "decodedRgbaSha256": "a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/a6dcd8a116ec082c26a9a09665acc1b09c228f0848e67f760f76e6c8144c84b5/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD independent field foreground texture. Image1 is the authoritative original cutout. Image2 is the original scene for contextual lighting and role only. Repaint image1 as clean high-definition hand-painted game artwork compatible with restrained Skurfa-style HD environments. Bale cut71 slot0 matching dark green upholstered bench seen from the reverse diagonal, upper left to lower right, within its own exact crop. Preserve the warm brown wooden rails, thin legs and curved/raised end supports. Restore dense small subdued golden-olive flecks/diamond-like woven marks on the dark green seat, consistent in material with the other bench but using this source view. Keep original very dim room lighting. Image3 is an exposure-lifted source guide only, not final exposure. Do not add a table, vessel, large floral symbols, thick cushions or upholstery beyond the original footprint. Strict canvas: exactly 60:40 aspect ratio, same source silhouette, crop, perspective, visible footprint, internal planes and negative space. Do not center, rotate, widen, pad or recompose it. Refine continuous hand-painted material detail without copying the low-resolution pixel mosaic. Output only this isolated texture on real transparency, with no background, scene, border, labels, text, logo or comparison board. Exactly one finished texture.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "341db4825f7aff6187e1f2d420497691445d7776ada62dbff539398d81c2be35:-1",
+      "kind": "foreground",
+      "slot": 0,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 71,
+  "representativeLocation": "Bale",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Bale cut71 slot0 matching dark-green patterned upholstered bench in the opposite diagonal view with its own timber rails/end supports and crop.",
+    "style": "Original, private exposure guide, held neural, output and isolated slot placement compared. Small golden-olive woven marks match the related bench material while retaining this distinct source view. Exact motif count/positions and timber relief are interpretive. The unchanged cutout stage removes generated outside-footprint matte/halo and restores exact native alpha/black classes; it does not prove interior registration.",
+    "layout": "Exact4x canvas [60, 40] to [240, 160]; source alpha and visible-black classes exact. Pinned cutout stage extends 1651 target pixels, uncovered 1424, maximum squared extension distance 100. Individual comparisons support broad source proportions and placement; they do not prove interior topology, state visibility, occlusion or gameplay.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "19ed40db516901f7fa4eccf5c2350a21e1b01ca75079865641d9e26e40d3b55a",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}
