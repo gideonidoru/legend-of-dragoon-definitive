@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "6dea202bed0aa561a692542fea3b4f2bac4db1b8 accepted Donau two-image selection; ongoing80 authoring preserved",
+  "sourceSelectionCheckpoint": "85306cbb423f805ee40af50f78936585d070d1f4 accepted single Twin fragment; ongoing83 authoring preserved",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "4e475e39db65d65e7cefa149dd5ba971bd4c62e6c076076615aab30f1af3caee",
-    "field-runtime-artwork.json": "5e81786b0b9816dbe756b20cc5bf4c86ae3e84a95d84055f873f393b2136994f",
+    "full-coverage.json": "d557dec00bd31affb14ba50a2c56e86a7d11716b6d2b80fb813ac32b412e4110",
+    "field-runtime-artwork.json": "e31ef6ec015d82f70d190faac1d0895065c1d1752f31b54d2be30b0961c87ee4",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
@@ -80,28 +80,32 @@
     "field-bespoke-twin-hangings-held-drafts.json": "ff332a6e10efcd3e35facab133738c980fb9f4e44070d4e33a21419cf153f922",
     "field-twin-hangings-authoring-readiness.json": "8aaea4f5092ce2591a5b64daa7adfe384df9bef861e710b59569643eb1cdd18a",
     "field-independent-twin-hangings-review.json": "749c847b637991198fcbf4ddf96ccc7293d4448208f71cd6bc27d8fdec6e7a0a",
-    "field-bespoke-twin-hangings-local-corrections-held-drafts.json": "8a702fc3794bffeda985fc15d91376ab89b4258f0a51f710e03236472fd89831"
+    "field-bespoke-twin-hangings-local-corrections-held-drafts.json": "8a702fc3794bffeda985fc15d91376ab89b4258f0a51f710e03236472fd89831",
+    "field-bespoke-twin-fragment-independent-reviewed-selection.json": "b5f037cbdeb5cd4cd1334bcf1f5c26be2d91802eb5c977bb23410c502532c2ef",
+    "field-independent-twin-fragment-review.json": "3dd70d954d61e40b83e73eba92caa570a613a7d6732c007f5d967e19cbf47c40",
+    "field-twin-fragment-selection-readiness.json": "6072dcf4c4a052d7287ba366c81931b86410fcf1bd31f008625554d4c887b459",
+    "field-twin-authoring-main-forward.json": "541d7dcf9d36753c150bdb29ffb30cad4860a134a6fb277ccf671cb09d559529"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 235,
+  "knownRemainingStaticImages": 234,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4928,
+      "selectedDevelopment": 4929,
       "selectedNeural": 4886,
-      "selectedPainted": 42,
-      "held": 234,
+      "selectedPainted": 43,
+      "held": 233,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 74,
+      "customHeldDraftSourceImages": 73,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Coordinate narrow cleared Twin Castle fragment integration; independently review34 pending candidates; correct6 reviewed revisions plus warm hanging and other held drafts; continue234 field holds and source/state/native/final checks.",
+      "nextTask": "Independent original-reference review of34 pending candidates; source-aligned corrections of6 independent revisions and held motifs/materials; continue233 field holds and source/state/native/final checks.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 34,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
@@ -161,7 +165,6 @@
         "cae03a38ef095431e37c8c02444f3ac0e5601a7633b6b78193c0e37339cbc77f",
         "ccd919a8c336221f7dfda44a20ca0c4ec5e56e53f4f3f761f199c0feb0e799b0",
         "ce7b4bd9cf0135bceb97a0799a11b8430da868ab579941a08fb31d542176a994",
-        "d05996398e40653d0f7e78b2f4f1a849575938fdc30da830cd735c5b40d6b1f2",
         "d46bd57a4ab4715e8191cd0e1fee2a155cc04cb70413844af2510647a87d7229",
         "da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5",
         "da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417",
@@ -179,10 +182,10 @@
         "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4928 runtime selections.74source keys subset234 field holds; repeated versions deduplicated.",
+      "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4929 selections.73 keys subset233 field holds; repeated versions deduplicated. Historical83 candidate and held records retained exact; latest main selection tracked separately.",
       "independentlyReviewedCandidatesRequiringRevision": 6,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
-      "independentlyClearedCandidatesAwaitingIntegration": 1
+      "independentlyClearedCandidatesAwaitingIntegration": 0
     },
     {
       "id": "static-terrain",
@@ -532,6 +535,12 @@
       "heldSourceImages": 5,
       "heldVersions": 5,
       "reason": "Five local corrections do not resolve native mark/material fidelity: four repaired holds and third warm narrow coverage failure. Prior candidate83 and all held histories exact; no guard waived or runtime selected."
+    },
+    {
+      "manifest": "field-bespoke-twin-fragment-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 1,
+      "independentReview": "field-independent-twin-fragment-review.json",
+      "reason": "Twin Castle clipped hanging unanimously clear for development; two-panel motif disagreement and three-panel star/fitting revisions excluded. Prior42 selected recipes and4928 runtime records exact. Unfinished authoring remains ongoing."
     }
   ],
   "publication": {
@@ -558,7 +567,7 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 3,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 4,
     "paintedBattleMastersAwaitingCoordinatedPublication": 13,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
@@ -587,16 +596,16 @@
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "Complete83 recipes exact:34 independent-pending/6 revisions/1 independently cleared unselected.74 unique unselected sources, runtime4928/42 and235 static backlog unchanged. Coordinator review and clean integration pending; no native/final acceptance.",
+  "authoringCheckpoint": "Complete83 historical recipes exact; acceptedmain4929/43 including unanimously cleared Twin fragment. Current34 pending/6 revisions/0 cleared-awaiting-integration;73 unselected custom sources subset233 field holds.234 knownstatic backlog; native/final acceptance pending.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "2f980814b9d03338c7a634d03a1d7e2bf6d444a5",
-    "fieldSelected": 4926,
-    "fieldPainted": 40,
-    "battleNewSelectedMasters": 518,
-    "battlePainted": 47,
-    "authoringCandidates": 71,
-    "independentlyPending": 28,
-    "holdsClearedByMerge": 0,
-    "metadataSourceCommit": "0c18bdb72b43b1777daca8f0f3aa756bb538df43"
+    "sourceCommit": "85306cbb423f805ee40af50f78936585d070d1f4",
+    "fieldSelected": 4929,
+    "fieldPainted": 43,
+    "authoringCandidates": 83,
+    "independentlyPending": 34,
+    "independentlyRevision": 6,
+    "heldSourceKeys": 73,
+    "nativeAccepted": 0,
+    "finalQualityAccepted": 0
   }
 }
