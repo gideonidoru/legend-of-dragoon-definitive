@@ -265,6 +265,7 @@ class CleanReinstallTest {
     for(final String family : List.of("EnvHD", "CharHD", "UIHD", "FxHD", "FMVHD", "ModelsHD", "Skurfa")) {
       Files.writeString(pack.resolve("bundled-mods/" + family + "-v0.1.0.jar"), "fresh " + family);
     }
+    new FmvSplitFixture().jar(pack, true, "legacy synthetic films");
     Files.delete(pack.resolve(PackageManifest.METADATA)); Files.delete(pack.resolve(PackageManifest.HASHES));
     ManagerMain.makeManifest(pack, PackageManifest.hostPlatform(), "seven-family-fixture");
     var store = new InstallStore(temporary.resolve("seven-install")); store.install(pack);
