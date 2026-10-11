@@ -42,3 +42,16 @@ All native/gameplay and final-quality acceptance counts remain **zero**. These
 source/candidate comparisons do not prove in-game occlusion, scripted state
 changes, reachability, animation or Skurfa-equivalent final painted quality.
 The current runtime, protected Skurfa artwork and download packs are unchanged.
+
+Four source-referenced painted foliage repair candidates are now versioned in
+`field-bespoke-foliage.json` with their prompts, generated inputs, repaired output
+hashes and a reproducible Python visibility operation. They cover Donau's
+flower-shop plant, two related Evergreen Forest fragments and a shrub at
+Shirley's Shrine. All four were compared at the target texture size and in static
+scene assemblies; their original alpha and visible-black classes are exact.
+Near-transparent generated matte colours are excluded before restoring source
+visibility. The published candidate package contains only custom artwork; source
+images and scene assemblies remain private. These replacements await importer
+support, selection, packaging and in-game/final painted-quality review. They do
+not change the 276 holds recorded against the historical neural outputs or the
+2,723 installed images.
