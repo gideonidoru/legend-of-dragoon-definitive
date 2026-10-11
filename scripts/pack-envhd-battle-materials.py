@@ -12,6 +12,17 @@ spec=importlib.util.spec_from_file_location('battle_source_tools',ROOT/'scripts/
 spec=importlib.util.spec_from_file_location('battle_painted_tools',ROOT/'scripts/verify-envhd-painted-battle.py');painted_tools=importlib.util.module_from_spec(spec);spec.loader.exec_module(painted_tools)
 spec=importlib.util.spec_from_file_location('battle_presentation_tools',ROOT/'scripts/verify-envhd-battle-presentation.py');presentation_tools=importlib.util.module_from_spec(spec);spec.loader.exec_module(presentation_tools)
 
+def runtime_png_header(data,size,maximum_side):
+    if (not isinstance(size,(list,tuple)) or len(size)!=2
+            or any(type(v) is not int or not 1<=v<=maximum_side for v in size)
+            or len(data)<33 or data[:8]!=b'\x89PNG\r\n\x1a\n'
+            or data[8:16]!=struct.pack('>I',13)+b'IHDR' or data[24:26]!=bytes((8,6))):
+        raise ValueError('Existing battle PNG exceeds its bounded dimensions or format')
+    header_size=struct.unpack_from('>2I',data,16)
+    if tuple(size)!=header_size:raise ValueError('Existing battle PNG header differs from bounded dimensions')
+    return header_size
+
+
 def validate_previous_selection(selection,root):
     """Fail closed on incomplete receipts before source discovery or runtime writes."""
     def invalid():
@@ -51,10 +62,7 @@ def validate_previous_selection(selection,root):
         if manifest!={k:v for k,v in scene.items() if k not in ('stage','hdBindings')}:invalid()
         atlas_data=battle_sources.terrain.bounded_read(folder/'atlas-v1.png',32*1024*1024)
         if battle_sources.terrain.digest(atlas_data)!=scene['atlasSha256']:invalid()
-        if (len(atlas_data)<33 or atlas_data[:8]!=b'\x89PNG\r\n\x1a\n'
-                or atlas_data[8:16]!=struct.pack('>I',13)+b'IHDR' or atlas_data[24:26]!=bytes((8,6))):invalid()
-        header_size=struct.unpack_from('>2I',atlas_data,16)
-        if list(header_size)!=scene['atlasSize']:invalid()
+        header_size=runtime_png_header(atlas_data,scene['atlasSize'],tools.WIDTH)
         with Image.open(io.BytesIO(atlas_data)) as image:
             if image.format!='PNG' or image.mode!='RGBA' or image.size!=header_size:invalid()
             for region in regions:
@@ -110,10 +118,12 @@ def validate_previous_selection(selection,root):
         if digest is not None and battle_sources.terrain.digest(data)!=digest:invalid()
         bounds=presentation_tools.recipe.bounds
         source_size=tuple(records[key]['sourceSize'])
-        bounds.validate_dimensions(source_size,'source')
-        header_size=bounds.validate_png_header(data,'output',source_size)
+        if len(source_size)!=2 or any(type(v) is not int or not 1<=v<=256 for v in source_size):invalid()
+        header_size=runtime_png_header(data,tuple(v*4 for v in source_size),1024)
+        if key in painted_keys or key in presentation_keys:
+            bounds.validate_png_header(data,'output',source_size)
         with Image.open(io.BytesIO(data)) as image:
-            bounds.validate_opened_png(image,header_size,'output',source_size)
+            if image.format!='PNG' or image.mode!='RGBA' or image.size!=header_size:invalid()
             expected[key]=np.array(image)
     if any(not np.array_equal(pixels,expected[key]) for key,pixels in atlas_regions):invalid()
 

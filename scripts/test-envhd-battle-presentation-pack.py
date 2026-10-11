@@ -158,6 +158,14 @@ class PresentationPackTests(unittest.TestCase):
             census.assert_not_called()
         self.assertEqual(before,self.f.runtime_snapshot())
 
+    def test_valid_full_native_page_baseline_uses_bounded_1024_canvas(self):
+        # Existing neural materials may cover a full 256x256 page; bespoke repair
+        # retains its separately pinned one-million-pixel limit.
+        from PIL import Image
+        buffer=io.BytesIO();Image.new('RGBA',(1024,1024)).save(buffer,format='PNG')
+        self.assertEqual((1024,1024),pack.runtime_png_header(buffer.getvalue(),[1024,1024],1024))
+        with self.assertRaises(ValueError):pack.runtime_png_header(buffer.getvalue(),[4096,4096],1024)
+
     def test_valid_repair_preserves_prior_painting_coverage_mapping_and_allocation(self):
         result = self.publish()
         self.assertEqual(result['runtimeSelectedMasters'], 2)
