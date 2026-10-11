@@ -59,13 +59,36 @@ class PresentationPackTests(unittest.TestCase):
     def save(self):
         self.path.write_text(json.dumps(self.manifest))
 
-    def publish(self):
+    def publish(self,omit_presentation=False):
         census = (self.f.scenes, self.f.masters, [])
         with mock.patch.object(pack, 'ROOT', self.f.root), \
                 mock.patch.object(pack.battle_sources, 'census', return_value=census), \
                 mock.patch.object(pack.painted_tools.battle, 'census', return_value=census), \
                 mock.patch.object(pack.presentation_tools.battle, 'census', return_value=census):
-            return pack.publish(self.f.root / 'files', presentation_manifest=self.path)
+            return pack.publish(self.f.root / 'files', presentation_manifest=None if omit_presentation else self.path)
+
+    def test_ordinary_repack_after_presentation_selection_refuses_before_writes(self):
+        self.publish()
+        before = self.f.runtime_snapshot()
+        receipt = self.f.selection.read_bytes()
+        with self.assertRaisesRegex(ValueError, 'requires --presentation-manifest'):
+            self.publish(omit_presentation=True)
+        self.assertEqual(before, self.f.runtime_snapshot())
+        self.assertEqual(receipt, self.f.selection.read_bytes())
+
+    def test_ordinary_repack_before_presentation_preserves_earlier_paintings(self):
+        result = self.publish(omit_presentation=True)
+        self.assertEqual(result['paintedSelectedMasters'], 1)
+        self.assertEqual(result['paintedReviewReceipts'], self.previous['paintedReviewReceipts'])
+        for old, new in zip(self.previous['scenes'], result['scenes']):
+            self.assertEqual(old['atlasSha256'], new['atlasSha256'])
+
+    def test_malformed_previous_selection_is_not_overwritten(self):
+        self.f.selection.write_bytes(b'invalid selection')
+        before = self.f.runtime_snapshot()
+        with self.assertRaises(ValueError):
+            self.publish(omit_presentation=True)
+        self.assertEqual(before, self.f.runtime_snapshot())
 
     def test_valid_repair_preserves_prior_painting_coverage_mapping_and_allocation(self):
         result = self.publish()

@@ -14,7 +14,22 @@ spec=importlib.util.spec_from_file_location('battle_presentation_tools',ROOT/'sc
 
 def publish(files,painted_manifest=None,presentation_manifest=None):
     battle=battle_sources
-    scenes,masters,empty=battle.census(files);production=ROOT/'integrations/envhd/production'
+    production=ROOT/'integrations/envhd/production'
+    painted=None;manifest_checks=[];presentation=None;previous_selection=None
+    selection_path=production/'battle-material-runtime-artwork.json'
+    if selection_path.exists():
+        selection_data=battle.terrain.bounded_read(selection_path,32*1024*1024)
+        previous_selection=json.loads(selection_data)
+        if not isinstance(previous_selection,dict) or previous_selection.get('schema')!=1:
+            raise ValueError('Existing battle selection is invalid; refusing to overwrite it')
+        manifest_checks.append((selection_path,battle.terrain.digest(selection_data)))
+        if previous_selection.get('presentationSourceKeys') and presentation_manifest is None:
+            raise ValueError('Existing bespoke battle presentation requires --presentation-manifest; refusing to restore neural artwork')
+        if painted_manifest is None:
+            painted_manifest=[ROOT/p for p in previous_selection.get('paintedReviewReceipts',{}).values()] or None
+    if presentation_manifest is not None and previous_selection is None:
+        raise ValueError('Existing battle selection required for presentation repairs')
+    scenes,masters,empty=battle.census(files)
     ledger=json.loads((production/'battle-material-artwork.json').read_text())
     if ledger['scenes']!=scenes or ledger['emptyModelSlots']!=empty:raise ValueError('Fresh battle source differs')
     records={a['decodedRgbaSha256']:a for a in ledger['assets']};images={}
@@ -30,14 +45,6 @@ def publish(files,painted_manifest=None,presentation_manifest=None):
         if note['outputSha256']!=tools.terrain.digest(png) or note['verdict']!=a['reviewStatus'] or note['nativeAcceptance']!='pending' or note['finalQualityAcceptance']!='pending':raise ValueError('Review differs')
         if a['reviewStatus']=='visual-reviewed-runtime-pending':images[key]=np.array(Image.open(io.BytesIO(png)))
         elif a['reviewStatus']!='intent-revision-needed':raise ValueError('Unknown review')
-    painted=None;manifest_checks=[];presentation=None;previous_selection=None
-    if presentation_manifest is not None:
-        selection_path=production/'battle-material-runtime-artwork.json'
-        selection_data=battle.terrain.bounded_read(selection_path,32*1024*1024)
-        previous_selection=json.loads(selection_data)
-        manifest_checks.append((selection_path,battle.terrain.digest(selection_data)))
-        if painted_manifest is None:
-            painted_manifest=[ROOT/p for p in previous_selection.get('paintedReviewReceipts',{}).values()] or None
     if painted_manifest is not None:
         paths=list(painted_manifest) if isinstance(painted_manifest,(list,tuple)) else [painted_manifest]
         if not paths:raise ValueError('Explicit painted battle manifest required')
