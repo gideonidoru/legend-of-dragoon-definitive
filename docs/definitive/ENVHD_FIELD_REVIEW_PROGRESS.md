@@ -2,11 +2,11 @@
 
 The current Env1HD–Env4HD payload contains **2,723 selected development field
 images**. The additional reviews recorded here do not change those installed
-files or the release currently being prepared.
+files or any published release.
 
-A further **1,056 images** have been individually compared against their original
-pixels and scene placement after that selection. **973** are development
-baselines awaiting future candidate publication and packaging; **83** remain
+A further **1,344 images** have been individually compared against their original
+pixels and scene placement after that selection. **1,251** are development
+baselines awaiting future candidate publication and packaging; **93** remain
 held for source identity, meaningful motifs, fine structure or material repair.
 
 Including the original review receipt, the complete generated field worklist is:
@@ -14,14 +14,14 @@ Including the original review receipt, the complete generated field worklist is:
 | Field images | Count |
 | --- | ---: |
 | Generated and source-layout repaired | 5,162 |
-| Individually compared | 3,896 |
-| Reviewed development baselines | 3,696 |
-| Bespoke repair holds | 200 |
-| Still awaiting individual review | 1,266 |
+| Individually compared | 4,184 |
+| Reviewed development baselines | 3,974 |
+| Bespoke repair holds | 210 |
+| Still awaiting individual review | 978 |
 | Currently selected for installation | 2,723 |
-| Newly reviewed baselines awaiting publication/selection | 973 |
+| Newly reviewed baselines awaiting publication/selection | 1,251 |
 
-The latest comparisons cover foreground boards 186–273. Board 274 is next.
+The latest comparisons cover foreground boards 186–297. Board 298 is next.
 `integrations/envhd/production/field-review-progress.json` contains the additional
 notes and their exact output hashes, along with the original review and runtime
 ledger identities. Read it alongside `field-review-receipt.json`; the latter
@@ -33,7 +33,7 @@ metadata.
 Repeated Crystal Palace balustrades and Twin Castle embroidered furnishings are
 held together for consistent source-faithful repair. Other holds include painted
 signage, wall pictures, patterned upholstery, small carved fittings, fine organic
-branches and ambiguous tiny objects.
+branches, tiny plants and ambiguous small fittings.
 Two masked Python detail-restoration trials improved source pattern retention,
 but remain too close to interpolated native detail to establish the requested
 finished quality. They are private trials, and no hold was cleared by them.
