@@ -14,7 +14,7 @@ owned. Custom deliverables are public; originals and private diagnostics are not
 | World parchment backdrop | 1 source image | 1 | Gameplay and final quality pending |
 | Static continent terrain | 366 material bindings | 364 bindings / 292 masters | 1 uniform native, 1 wrapped material held; gameplay and final quality pending |
 | Battle floors, walls and scenery | 900 bindings across 89 nonempty stages | 537 bindings (24 pilot + 513 new), 506 new selected masters | 363 native bindings: 12 revision holds, 350 animation/context bindings and 1 incomplete palette |
-| Field backgrounds/foregrounds | 650 source configurations; 5,528 unique visible images | 38 existing Skurfa packs; 2,723 EnvHD images (603 background-bound, 2,120 foreground-bound) | 117 bespoke holds and 2,322 unreviewed foregrounds; 3 uniform sources native; 605 configurations have at least one selected layer, not complete scene coverage; script/route/visual validation pending |
+| Field backgrounds/foregrounds | 650 source configurations; 5,528 unique visible images | 38 existing Skurfa packs; 4,892 EnvHD development images (4,886 neural and six painted) | All 5,162 generated images reviewed; 270 remaining bespoke holds and zero unreviewed images; 3 uniform sources native; 605 configurations have at least one selected layer, not complete scene coverage; script/route/visual validation pending |
 | Field props and scene overlays | Mixed pool: 481 field-object page hashes and 400 overlay page hashes | EnvHD 0 | Complete consumer/ownership/material census first; these are **not** 881 EnvHD jobs |
 | Animated environment surfaces | Exact frame/palette denominator unresolved; eight continent animated parts and 350 held battle bindings known | 0 HD animation families | Water, scrolling surfaces, scenery frames/palettes, mapping and validation |
 
@@ -61,12 +61,21 @@ derived from a backdrop by exact visible-pixel equality. These figures describe
 source work, not completed or installed artwork.
 
 All 5,162 field candidates completed private generation and Python repair; 342
-backgrounds received source-color perimeter guards. Individual review covers
-2,840 images: 2,723 reviewed development baselines and 117 bespoke holds. The
-2,723 selected PNGs and immutable candidate manifests are public. The remaining
-2,322 unreviewed outputs and private original comparisons are not runtime resources.
-Historical generation/repair/review receipts preserve their checkpoint counters;
-`field-runtime-artwork.json` records current selections. All selected fields pass
-independent native source checks; all 72 new battle atlases pass source upload,
+backgrounds received source-color perimeter guards. All 5,162 generated images
+have been individually reviewed: 4,886 neural development baselines and 276
+original neural holds. Six separately reviewed painted replacements clear six
+of those holds for development selection, leaving 270 held sources and zero
+unreviewed images. The current candidate selects 4,892 public custom PNGs; its
+painted inputs, prompts and source-bound repair receipts are also versioned.
+Original comparisons remain private, and held/uniform sources retain native art.
+
+The published maintenance installer remains on the historical source-476 checkpoint
+of 2,723 selected field images until coordinated integration and publication.
+At that checkpoint 2,840 images had been reviewed, 117 were held and 2,322
+awaited review. Those are historical counters, not the current candidate's status.
+Archived generation/repair/review controls preserve their checkpoint counters;
+`field-runtime-artwork.json` records the current 4,892-image selection. Field source
+identities and selected visibility classes are checked independently of visual
+acceptance; all 72 new battle atlases pass source upload,
 palette, STP, black, padding and 36,584 original textured-face UV checks. Native
 scene behavior and final quality remain unaccepted.

@@ -17,8 +17,9 @@
     "field-repair-receipt.json": "b59c2e3e2af128b0b30bd08d9237647fc9cfcb15a60fc8a98f66120d4f5ac221",
     "field-review-receipt.json": "fe78489a9e3cbc60cdfab4bd9dee2d616f43789cf25a56a8cf11e08b62dd53cb",
     "field-artwork.json": "d2e03bf46ac238025063ee8a463371131a3ea85a49dcef0db91fe216a593664d",
-    "field-runtime-artwork.json": "bc66cb386e748c38802b9ebe40e4a23dd7cdb7499e15d1cf07523fc9fac3e070",
-    "battle-material-runtime-artwork.json": "011e5a9206e750b2b4fcfbeb0fb22aa524a97fbee3ca483ea68e09c2bfc941d8"
+    "field-runtime-artwork.json": "34f71f66795fa137b211d82abff6d326a2fda0c63f07fea8303a6561234d4634",
+    "battle-material-runtime-artwork.json": "011e5a9206e750b2b4fcfbeb0fb22aa524a97fbee3ca483ea68e09c2bfc941d8",
+    "field-bespoke-foliage.json": "a5ed3d3c90fbf07ec82a745c5058c766d51b32fbbf53a67301d32e40a639d270"
   },
   "categories": [
     {
@@ -233,5 +234,27 @@
     "runtimeLedgerSha256": "a99d04d724191d82fad0d5b4c3fd489c2d2acdc1670ffd8486be9ee1196dd3b9",
     "selectedFieldImages": 2723
   },
-  "sourceLedgerHashScope": "Current candidate production controls; historical published field controls are recorded separately."
+  "sourceLedgerHashScope": "Current candidate production controls; historical published field controls are recorded separately.",
+  "historicalPaintedRepairControls": {
+    "source": "759bd79b27aa68939104556386b3a3afb22d38f6",
+    "repairAlgorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
+    "paintedManifest": "field-bespoke-foliage-source-759bd79b.json",
+    "paintedManifestSha256": "fd22acf8e97c9c5b9a17dc6a966535f8abec53c3bac7c29336643a930d2bfc8a",
+    "runtimeLedger": "field-runtime-artwork-source-759bd79b.json",
+    "runtimeLedgerSha256": "bc66cb386e748c38802b9ebe40e4a23dd7cdb7499e15d1cf07523fc9fac3e070",
+    "selectedFieldImages": 4892,
+    "selectedPaintedImages": 6,
+    "currentPngBytesUnchanged": true
+  },
+  "historicalBoundedPaintedRepairControls": {
+    "source": "2ec61681fa02369a1714bc01cbb96ead1f0e2779",
+    "repairAlgorithmSha256": "f5b8d43418ff6ceb233601f90ddff099465194bc8b2b473d7391a4fff30a8b0c",
+    "paintedManifest": "field-bespoke-foliage-source-2ec61681.json",
+    "paintedManifestSha256": "7448927d95892f494894afd8b24d55b12854bd16db6b4defd1d263cfbf5a3440",
+    "runtimeLedger": "field-runtime-artwork-source-2ec61681.json",
+    "runtimeLedgerSha256": "fc6b8ba12d1a90e3ccab7ad97ad225e59232686767eaca9a31cdc32df44ad670",
+    "selectedFieldImages": 4892,
+    "selectedPaintedImages": 6,
+    "currentPngBytesUnchanged": true
+  }
 }

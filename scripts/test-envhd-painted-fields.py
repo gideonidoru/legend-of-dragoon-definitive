@@ -21,6 +21,8 @@ def module(name, file):
 
 verify = module('painted_verify_test', 'verify-envhd-painted-fields.py')
 selector = module('painted_selector_test', 'select-envhd-fields.py')
+compressed_png = module('painted_png_bounds_fixture', 'test-envhd-painted-cutout.py').compressed_png
+duplicate_header_png = module('painted_duplicate_header_fixture', 'test-envhd-painted-cutout.py').duplicate_header_png
 
 
 class PaintedFieldTests(unittest.TestCase):
@@ -66,6 +68,50 @@ class PaintedFieldTests(unittest.TestCase):
     def test_changed_png_is_rejected(self):
         Image.new('RGBA',(8,8),(90,10,10,255)).save(self.output_path)
         with self.assertRaisesRegex(ValueError,'artwork bytes'):self.preflight()
+
+    def test_oversized_compressed_rgb_and_rgba_inputs_fail_before_open(self):
+        for mode, colour_type in [('RGB',2),('RGBA',6)]:
+            with self.subTest(mode=mode):
+                data=compressed_png(colour_type=colour_type);self.assertLess(len(data),100000)
+                self.raw_path.write_bytes(data);self.candidate['generatedSha256']=verify.batch.terrain.digest(data);self.candidate['generatedInputMode']=mode;self.save()
+                with mock.patch.object(verify.Image,'open',side_effect=AssertionError('Pixel allocation')):
+                    with self.assertRaisesRegex(ValueError,'bounded painted canvas'):self.preflight()
+
+    def test_wrong_output_dimensions_fail_before_any_input_decode(self):
+        for width,height in [(4096,4096),(12,12)]:
+            with self.subTest(size=(width,height)):
+                data=compressed_png(width,height);self.output_path.write_bytes(data);self.candidate['outputSha256']=verify.batch.terrain.digest(data);self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save()
+                with mock.patch.object(verify.Image,'open',side_effect=AssertionError('Pixel allocation')):
+                    with self.assertRaisesRegex(ValueError,'output dimensions differ'):self.preflight()
+
+    def test_oversized_lazy_source_is_rejected_before_source_pixels(self):
+        with Image.open(io.BytesIO(compressed_png())) as source:
+            self.asset['sourceSize']=list(source.size);self.candidate['sourceSize']=list(source.size);self.save()
+            with mock.patch.object(verify.batch.fields,'render',return_value=(None,[source],self.metadata)),mock.patch.object(source,'load',side_effect=AssertionError('Pixel allocation')):
+                with self.assertRaisesRegex(ValueError,'bounded repair canvas'):self.preflight()
+
+    def test_duplicate_generated_headers_fail_before_conversion_or_resize(self):
+        for mode,colour_type in [('RGB',2),('RGBA',6)]:
+            with self.subTest(mode=mode):
+                data=duplicate_header_png(first=(8,8),colour_type=colour_type);self.raw_path.write_bytes(data);self.candidate['generatedSha256']=verify.batch.terrain.digest(data);self.candidate['generatedInputMode']=mode;self.save()
+                with mock.patch.object(Image.Image,'load',side_effect=AssertionError('Pixel allocation')),mock.patch.object(Image.Image,'convert',side_effect=AssertionError('Pixel conversion')),mock.patch.object(Image.Image,'resize',side_effect=AssertionError('Pixel resize')):
+                    # Source fingerprint uses load even for the already materialized
+                    # synthetic source; isolate that legitimate private-source read.
+                    with mock.patch.object(self.source,'load',return_value=self.source.im):
+                        with self.assertRaisesRegex(ValueError,'bounded painted canvas'):self.preflight()
+
+    def test_duplicate_output_header_fails_before_output_pixels(self):
+        data=duplicate_header_png(first=(8,8));self.output_path.write_bytes(data);self.candidate['outputSha256']=verify.batch.terrain.digest(data);self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save();original_open=Image.open
+        def guarded_open(stream):
+            image=original_open(stream)
+            if image.size==(4096,4096):
+                image.load=mock.Mock(side_effect=AssertionError('Pixel allocation'))
+                image.copy=mock.Mock(side_effect=AssertionError('Pixel copy'))
+                image.convert=mock.Mock(side_effect=AssertionError('Pixel conversion'))
+                image.resize=mock.Mock(side_effect=AssertionError('Pixel resize'))
+            return image
+        with mock.patch.object(verify.Image,'open',side_effect=guarded_open):
+            with self.assertRaisesRegex(ValueError,'output dimensions differ'):self.preflight()
 
     def test_rehashed_wrong_repair_cannot_bypass_exact_pixel_validation(self):
         Image.new('RGBA',(8,8),(90,10,10,255)).save(self.output_path)

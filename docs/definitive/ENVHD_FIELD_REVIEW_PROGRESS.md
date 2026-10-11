@@ -79,6 +79,20 @@ with the ordinary internal mod-manager switch and the existing Env1HD–Env4HD
 download packs. All selected PNGs, normal package contents and pack sizes must
 pass the coordinated package checks before the public installer is updated.
 
+Painted preflight and the repair command inspect PNG headers before decoding
+pixels. Compressed inputs are read with a 32 MiB limit plus one rejection byte;
+the decoded source must fit a one-million-pixel fourfold target, generated input
+is limited to four megapixels and 4096 pixels on either side, and repaired output
+must have the exact fourfold source dimensions. These input bounds leave the six
+reviewed painted outputs unchanged. Their updated repair identity is bound to
+the current manifest and selection; the source-759 painted manifest and runtime
+ledger preserve the prior checkpoint byte-for-byte.
+The decoder's own lazy dimensions, mode and PNG format must also agree with the
+validated header before any copy, conversion, registration or output pixel
+array is allocated. Duplicate-header regressions exercise source, RGB/RGBA
+generated input and repaired output paths. Source-2ec controls retain the first
+bounded-input checkpoint; this correction also leaves every artwork byte unchanged.
+
 Remaining repairs include Crystal Palace balustrades, Twin Castle embroidery,
 painted signage, wall pictures, patterned upholstery, small carved fittings,
 fine organic structures, woven seats, bedding and heraldic emblems. The earlier
