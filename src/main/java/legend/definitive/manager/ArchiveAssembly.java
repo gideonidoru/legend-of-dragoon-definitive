@@ -247,20 +247,28 @@ final class ArchiveAssembly {
       return output.toString(StandardCharsets.US_ASCII);
     }
   }
-  static void saveCache(final Path root, final String identity, final Recipe recipe) throws IOException {
+  static void saveCache(final Path root, final Path personal, final String identity, final Recipe recipe) throws IOException {
     if(recipe == null) return;
+    // Do not recreate a filename that would collide with preserved historical
+    // bytes on the next Reinstall. A missing optional cache still reindexes locally.
+    if(Files.exists(personal.resolve("recovered-reinstall/.archive-assembly/" + identity + ".json"), LinkOption.NOFOLLOW_LINKS)) return;
     final Path directory = root.resolve(".archive-assembly");
     if(Files.isSymbolicLink(directory)) throw new IOException("Archive cache is linked.");
     Files.createDirectories(directory);
     final byte[] bytes = recipe.document();
     final String envelope = ReleaseUpdates.json(Map.of("format", 1L, "package", identity, "recipeSha256", PackageManifest.digest(bytes), "recipe", Base64.getEncoder().encodeToString(bytes)));
     final Path target = InstallStore.child(directory, identity + ".json", "alpha-[a-f0-9]{16}\\.json");
-    if(Files.isSymbolicLink(target)) throw new IOException("Archive cache receipt is linked.");
+    // A basename or even valid-looking JSON is not proof that we own existing bytes.
+    if(Files.exists(target, LinkOption.NOFOLLOW_LINKS)) return;
     final Path temporary = Files.createTempFile(directory, ".receipt-", ".json");
     try {
       Files.writeString(temporary, envelope, StandardCharsets.US_ASCII);
       try(final var channel = FileChannel.open(temporary, StandardOpenOption.WRITE)) { channel.force(true); }
-      Files.move(temporary, target, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+      // Exclusive hard-link publication is atomic and cannot replace a concurrently
+      // created owner file. Unsupported filesystems simply skip this optional cache.
+      try { Files.createLink(target, temporary); }
+      catch(final FileAlreadyExistsException occupied) { return; }
+      InstallStore.forceDirectory(directory);
     } finally { Files.deleteIfExists(temporary); }
   }
   private static String digest(final byte[] bytes, final int offset, final int length) {

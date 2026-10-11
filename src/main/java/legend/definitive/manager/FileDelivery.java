@@ -117,7 +117,7 @@ final class FileDelivery {
         contents.manifest().verify(staged, PackageManifest.hostPlatform());
         if(candidate.revision() != null) candidate.revision().validateMovieManifest(staged);
         final String result = store.install(staged, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall, candidate.revision());
-        try { ArchiveAssembly.saveCache(store.root(), contents.manifest().id(), recipe); }
+        try { ArchiveAssembly.saveCache(store.root(), store.data(store.state()), contents.manifest().id(), recipe); }
         catch(final IOException optionalCache) { progress.phase("Installation complete", "Archive reuse cache will be rebuilt on the next update", 100); }
         return (repairing ? "Repair complete. " : fullReinstall ? "Reinstall complete. " : state.containsKey("version") ? "Update complete. " : "Install complete. ") + fetched + " files downloaded; " + reused + " verified files reused. " + result;
       } finally { Files.deleteIfExists(inventory); InstallStore.deleteOwnedTree(staged); }
