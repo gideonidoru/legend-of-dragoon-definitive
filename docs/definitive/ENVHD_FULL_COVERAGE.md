@@ -25,6 +25,12 @@ No total-image completion percentage is claimed. Each
 row's exact remaining work and intentional exclusions are in the JSON ledger.
 All custom native/final-quality acceptance counts remain zero.
 
+The [battle animation family checkpoint](ENVHD_BATTLE_ANIMATION_FAMILIES.md)
+explains all 350 animation/context bindings' isolated stage-local source cycles,
+including changing padding and initial transients. It selects no artwork and
+clears no hold; complete encounter upload/darkening/presentation contracts remain
+open. Its combined frame-hash counts are not an EnvHD authoring-job denominator.
+
 The authoring branch selects twelve separately reviewed painted battle replacements:
 three Flanvel Tower materials, two stage-30 decorative panels and a stage-38
 static flame-shaped surface, plus a Shirley's Shrine plaque, stage-17 floor

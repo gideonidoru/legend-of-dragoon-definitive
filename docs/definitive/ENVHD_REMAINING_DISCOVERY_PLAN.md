@@ -42,6 +42,15 @@ repairs. EnvHD campaign completion and its complete image denominator remain unk
 
 ## Priority 1: close battle frame and sampling-context families
 
+The [stage-local family checkpoint](ENVHD_BATTLE_ANIMATION_FAMILIES.md) now explains
+all 350 bindings' complete isolated image/control cycles and full source-read
+coverage. Its current-Java-method CPU differential passes all 145 source sequence
+cases. Of 197 padding-only bindings, 190 have changing decoded context and seven
+are constant across the isolated cycle. All holds remain. The remaining Priority 1
+work is encounter script/upload interference, darkening transition/parameter
+provenance, presentation/lifetime and independent acceptance. The seven constant
+contexts are a static-reuse investigation priority; they are not selected images.
+
 Source entry points:
 [batch census](../../scripts/batch-envhd-battle-materials.py), functions
 `references`, `padded_bounds`, `scene` and `census`;

@@ -42,6 +42,16 @@ jobs:
           for fixture in model-material-audit texture-transparency material-islands model-poses uv-footprints material-packing visual-review surface-refinement model-reference attachment-binding modelshd-roster modelshd-world-pass envhd-sky-batch envhd-sky-import envhd-world envhd-ownership envhd-terrain envhd-terrain-pack envhd-battle-materials envhd-painted-battle-motif envhd-painted-battle-circle envhd-painted-battle-material envhd-painted-battle-rectangle envhd-painted-battle envhd-painted-battle-pack envhd-painted-candidate envhd-fields envhd-painted-cutout envhd-painted-registration envhd-painted-fields envhd-painted-opaque-border envhd-install-selection charhd-full-production fxhd-field fxhd-full-production; do
             "$RUNNER_TEMP/definitive-visual-checks/bin/python" "scripts/test-$fixture.py"
           done
+      - name: Set up Java for the EnvHD source-method differential
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '25.0.0+36.0.LTS'
+          overwrite-settings: false
+      - name: Check EnvHD animation families against the current Java methods
+        run: |
+          test -n "$JAVA_HOME"
+          "$RUNNER_TEMP/definitive-visual-checks/bin/python" scripts/test-envhd-battle-families.py
   build:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.runner }}
