@@ -71,7 +71,7 @@ class PaintedRectangleTests(unittest.TestCase):
 
     def test_decoder_bounds_before_allocation_and_source_identity(self):
         with tempfile.TemporaryDirectory() as directory:
-            base = Path(directory)
+            base = Path(directory).resolve()
             source, raw, output = [base / n for n in ['source.png', 'raw.png', 'output.png']]
             self.source().save(source)
             raw.write_bytes(duplicate(first=(16, 16), colour_type=2))
@@ -85,7 +85,7 @@ class PaintedRectangleTests(unittest.TestCase):
                 repair.execute(source, raw, output, 'wrong', PALETTE, [1, 1, 3, 3])
             first, _ = repair.execute(source, raw, output, key, PALETTE, [1, 1, 3, 3])
             before = output.read_bytes()
-            second, _ = repair.execute(source, raw, output, key, PALETTE, [1, 1, 3, 3])
+            second, _ = repair.execute(source, raw, base/'repeat.png', key, PALETTE, [1, 1, 3, 3])
             self.assertEqual(first, second)
             self.assertEqual(before, output.read_bytes())
 

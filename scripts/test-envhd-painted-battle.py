@@ -27,7 +27,7 @@ sha = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
 class PaintedBattleTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name); self.source = source_fixture.BattleMotifTests().source()
+        self.root = Path(self.temp.name).resolve(); self.source = source_fixture.BattleMotifTests().source()
         self.key = verify.battle.terrain.fingerprint(self.source)
         self.binding = dict(stage=44, page=7, clut=15389, parts=[0], sourceCrop=[0,0,4,4], sourceUvOrigin=[0,0])
         self.item = dict(decodedRgbaSha256=self.key, sourceSize=[4,4], image=self.source, bindings=[self.binding])
@@ -50,6 +50,22 @@ class PaintedBattleTests(unittest.TestCase):
     def test_source_bound_recipe_passes_without_establishing_runtime_acceptance(self):
         result = self.preflight(); self.assertEqual(len(result['verified']),1)
         self.assertFalse(result['verified'][0]['candidate']['runtimeSelected'])
+
+    def test_manifest_changed_during_recipe_replay_is_rejected(self):
+        original = verify.repair.repair
+        def mutate(*args, **kwargs):
+            result = original(*args, **kwargs)
+            self.path.write_bytes(self.path.read_bytes() + b' ')
+            return result
+        with mock.patch.object(verify.repair, 'repair', side_effect=mutate):
+            with self.assertRaisesRegex(ValueError, 'manifest changed during preflight'):
+                self.preflight()
+
+    def test_writer_identity_is_part_of_the_pinned_recipe(self):
+        self.manifest['outputWriterSha256'] = 'changed'
+        self.save()
+        with self.assertRaisesRegex(ValueError, 'algorithm identity'):
+            self.preflight()
 
     def test_rehashed_wrong_pixels_cannot_forge_a_valid_repair(self):
         Image.new('RGBA',(16,16),(200,230,220,0)).save(self.output)
@@ -76,7 +92,22 @@ class PaintedBattleTests(unittest.TestCase):
         self.candidate['review']['nativeAcceptance'] = 'pending'; self.candidate['sourceMotifPixels'] += 1; self.save()
         with self.assertRaisesRegex(ValueError,'receipt changed'): self.preflight()
 
+    def fresh_recipe_output(self):
+        previous = self.root
+        self.root = previous/'next-recipe'
+        prod = self.root/'integrations/envhd/production'
+        self.folder = prod/'bespoke-battle-candidates'/self.key
+        self.folder.mkdir(parents=True)
+        self.raw = self.folder/'painted-input-v1.png'
+        self.raw.write_bytes((previous/self.candidate['generatedPath']).read_bytes())
+        self.output = self.folder/'image-v1.png'
+        (self.root/'source.png').write_bytes((previous/'source.png').read_bytes())
+        self.path = prod/'battle-bespoke-motifs.json'
+        self.ledger_path = prod/'battle-material-artwork.json'
+        self.save_ledger()
+
     def circle_recipe(self):
+        self.fresh_recipe_output()
         source_path=self.root/'source.png'
         record,_=verify.circle.execute(source_path,self.raw,self.output,self.key,[148,180,156,0],[1.5,1.5,1],1.4)
         self.candidate.update(record);self.candidate['review']['outputSha256']=record['outputSha256']
@@ -93,6 +124,7 @@ class PaintedBattleTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'source-locked recipe'):self.preflight()
 
     def test_reviewed_material_recipe_keeps_its_geometry_limit_and_rejects_pixel_forgery(self):
+        self.fresh_recipe_output()
         record,_=verify.material.execute(self.root/'source.png',self.raw,self.output,self.key)
         self.candidate.update(record);self.candidate['review']['outputSha256']=record['outputSha256'];self.manifest.update(method=verify.material.METHOD,**verify.MATERIAL_PINS);self.save()
         result=self.preflight();self.assertEqual(result['verified'][0]['candidate']['internalFeatureAlignment'],'individual-source-comparison-required')
@@ -100,6 +132,7 @@ class PaintedBattleTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'source-locked recipe'):self.preflight()
 
     def rectangle_recipe(self):
+        self.fresh_recipe_output()
         record,_=verify.rectangle.execute(self.root/'source.png',self.raw,self.output,self.key,[[148,180,156,0]],[0,0,4,3])
         self.candidate.update(record);self.candidate['review']['outputSha256']=record['outputSha256']
         self.manifest.update(method=verify.rectangle.METHOD,**verify.RECTANGLE_PINS);self.save()

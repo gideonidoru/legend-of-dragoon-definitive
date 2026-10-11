@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "method": "python-reviewed-painted-battle-material-exact-stp-1",
-  "algorithmSha256": "10d96f21c187ac579f19985e8463b6eebe56ccb09ca1c00b0893fc9535db9837",
+  "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
   "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
   "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
   "scope": "Separately reviewed source-traced stage69 dark radial architecture; source history unchanged.",
@@ -30,7 +30,7 @@
       "finalQualityAcceptance": "pending",
       "decodedRgbaSha256": "2a5813a03bdd9fdfca6219e04507a26c01551142438f4246fdce06fd031c9189",
       "method": "python-reviewed-painted-battle-material-exact-stp-1",
-      "algorithmSha256": "10d96f21c187ac579f19985e8463b6eebe56ccb09ca1c00b0893fc9535db9837",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
       "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
       "generatedSha256": "7298666a6fe4650ba417a02fa6158f4085a50ab480ecd10b7c24a40885a2dac2",
@@ -86,7 +86,9 @@
         "outputSha256": "2d22faed459593b6aa65e45c11e2e03306302e6669209040f691b8fc2072e8ab",
         "nativeAcceptance": "pending",
         "finalQualityAcceptance": "pending"
-      }
+      },
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
     }
-  ]
+  ],
+  "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
 }

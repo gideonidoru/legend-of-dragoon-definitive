@@ -38,12 +38,12 @@ class PaintedMaterialTests(unittest.TestCase):
 
     def test_duplicate_headers_reject_before_pixels_and_source_identity_is_required(self):
         with tempfile.TemporaryDirectory() as directory:
-            p=Path(directory);source=p/'source.png';raw=p/'raw.png';output=p/'output.png';self.source().save(source);raw.write_bytes(duplicate(first=(8,8),colour_type=2))
+            p=Path(directory).resolve();source=p/'source.png';raw=p/'raw.png';output=p/'output.png';self.source().save(source);raw.write_bytes(duplicate(first=(8,8),colour_type=2))
             with mock.patch.object(Image.Image,'convert',side_effect=AssertionError('Allocation')):
                 with self.assertRaisesRegex(ValueError,'bounded painted canvas'):repair.execute(source,raw,output,repair.terrain.fingerprint(self.source()))
             Image.new('RGB',(8,8),(190,180,170)).save(raw)
             with self.assertRaisesRegex(ValueError,'identity'):repair.execute(source,raw,output,'wrong')
-            record,_=repair.execute(source,raw,output,repair.terrain.fingerprint(self.source()));before=output.read_bytes();again,_=repair.execute(source,raw,output,repair.terrain.fingerprint(self.source()));self.assertEqual(record,again);self.assertEqual(before,output.read_bytes())
+            record,_=repair.execute(source,raw,output,repair.terrain.fingerprint(self.source()));before=output.read_bytes();again,_=repair.execute(source,raw,p/'repeat.png',repair.terrain.fingerprint(self.source()));self.assertEqual(record,again);self.assertEqual(before,output.read_bytes())
 
 
 if __name__ == '__main__':unittest.main()

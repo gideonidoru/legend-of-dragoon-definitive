@@ -122,7 +122,8 @@ proof of exact interior topology, runtime occlusion, scripted state or final qua
 The generated and repaired custom images, explicit prompts and repair receipts
 are versioned in `bespoke-field-candidates`; original comparisons stay private.
 The Deningrad doorway's new painting still simplifies its carving and remains
-private/unselected. That source hold has not been cleared.
+public versioned custom history and unselected. Original sources, guides and
+comparison boards remain private. That source hold has not been cleared.
 
 Selected custom previews:
 

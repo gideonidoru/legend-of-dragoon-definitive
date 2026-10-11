@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "method": "python-painted-rect-exact-source-palette-marking-1",
-  "algorithmSha256": "aa05883f5fdb923724976de015b9ef1c853b737a1f5d41e65d8f0c890a5d0142",
+  "algorithmSha256": "7a6e4f282f126aec4028f2e321d22e94e077c29d933bd3be8dee1c25c276e57e",
   "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
   "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
   "scope": "Two separately reviewed stage30 decorative panel repairs; existing controls/runtime unchanged.",
@@ -119,7 +119,7 @@
       "finalQualityAcceptance": "pending",
       "decodedRgbaSha256": "8ff9a0b099de09726d145ee493bca5a389610d25214e100e2b5dab20ff7bcbe9",
       "method": "python-painted-rect-exact-source-palette-marking-1",
-      "algorithmSha256": "aa05883f5fdb923724976de015b9ef1c853b737a1f5d41e65d8f0c890a5d0142",
+      "algorithmSha256": "7a6e4f282f126aec4028f2e321d22e94e077c29d933bd3be8dee1c25c276e57e",
       "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
       "generatedSha256": "a99f79a66f66be994e1fa42a37f0ddd32309c53a49c05419505e1fbc6707806f",
@@ -164,7 +164,8 @@
       },
       "blankMaterialPrompt": "Use case: precise-object-edit\nEdit target: the supplied royal red fabric texture. Keep the exact canvas, red cloth panel, left folded fragments, top woven gold/olive trim, bottom adjoining strips, black padding and all feature boundaries unchanged.\nChange ONLY the large central gold embroidered star/crest: remove it entirely, including all arms, center and shadows, and replace that area with matching blank deep-red woven cloth. No marking, embroidery, symbol, outline or extra decoration anywhere in the central panel. Preserve the cloth shading and fine weave. The actual original crest will be restored from its exact native palette geometry by Python afterward.\nOne full opaque flat texture; no margin, text or watermark.",
       "layoutDraftPath": "integrations/envhd/production/bespoke-battle-candidates/8ff9a0b099de09726d145ee493bca5a389610d25214e100e2b5dab20ff7bcbe9/painted-layout-v1.png",
-      "layoutDraftSha256": "a6d2d030f77b71fc3b81da539a510df5008050650d7072cb1284c967a0c5b18d"
+      "layoutDraftSha256": "a6d2d030f77b71fc3b81da539a510df5008050650d7072cb1284c967a0c5b18d",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
     },
     {
       "scale": 4,
@@ -244,7 +245,7 @@
       "finalQualityAcceptance": "pending",
       "decodedRgbaSha256": "7b60ba648187a985ab7249a1be339b5e866bf172fdfb021af08cdc4c94e31d4a",
       "method": "python-painted-rect-exact-source-palette-marking-1",
-      "algorithmSha256": "aa05883f5fdb923724976de015b9ef1c853b737a1f5d41e65d8f0c890a5d0142",
+      "algorithmSha256": "7a6e4f282f126aec4028f2e321d22e94e077c29d933bd3be8dee1c25c276e57e",
       "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
       "generatedSha256": "b81210fd1961ab520e88dc164fa708afe0c3dc2c5cbc7468f40fd290ed013625",
@@ -289,7 +290,9 @@
       },
       "blankMaterialPrompt": "Use case: precise-object-edit\nEdit target: the supplied lavender/purple royal panel texture. Keep the exact canvas, gold side frames, adjoining right/top-right pieces, original black padding and all panel boundaries unchanged.\nChange ONLY the central large lavender square panel: remove every pale marking, constellation line, circle, star and engraving completely. Replace them with one unmarked muted lavender-purple stone/fabric surface with the same broad shading and low-contrast fine grain. Leave no residual symbolic shapes, dots or outlines. The exact original native marking will be restored separately by Python.\nNo extra decoration, no writing, no margin or watermark. Opaque full canvas.",
       "layoutDraftPath": "integrations/envhd/production/bespoke-battle-candidates/7b60ba648187a985ab7249a1be339b5e866bf172fdfb021af08cdc4c94e31d4a/painted-layout-v1.png",
-      "layoutDraftSha256": "96925b3917f77f0726f61792b7b7a893c6684a0029f2986f3fabf604a07175d1"
+      "layoutDraftSha256": "96925b3917f77f0726f61792b7b7a893c6684a0029f2986f3fabf604a07175d1",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
     }
-  ]
+  ],
+  "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
 }

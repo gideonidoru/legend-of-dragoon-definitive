@@ -199,3 +199,35 @@ Next coordinated integration must verify the rebuilt EnvHD JAR/source mapping
 and run the final-source installer gates. This authoring
 selection is not in the current public installation; it does not establish
 native seam, camera, blend, gameplay or Steam Deck visual acceptance.
+
+## Authoring review corrections
+
+All four painted battle producers now use the shared, separately pinned
+`write-envhd-painted-candidate.py` writer. Each invocation requires a fresh
+candidate path, including when the requested pixels would be identical.
+Existing files, output symlinks and linked parents are rejected. The writer
+encodes complete PNG bytes, writes an exclusive hidden temporary through
+non-linked directory descriptors, then publishes it atomically without
+replacing a concurrently created output. Failed publication removes its own
+temporary and leaves reviewed history untouched.
+
+Seven active painted manifests and twelve operation receipts bind the new
+producer and writer hashes. Fresh native source replay produces the exact
+same twelve selected PNG files. Every runtime battle atlas and atlas manifest
+is unchanged; only the selection ledger's seven painted receipt identities
+change. Previous recipe/receipt history remains available at `8f5b4742` in Git.
+The original cutout, registration and terrain recipe pins are unchanged.
+
+Painted battle preflight rereads its bounded manifest before returning. The
+packer retains each path/hash, checks all manifests after verification and
+again immediately before publication. A changed manifest aborts before any
+runtime write. Synthetic regressions exercise mutation during recipe replay,
+across multiple manifests and during atlas assembly, plus duplicate-manifest
+and duplicate-source rejection, preserving previous atlases and their ledger.
+
+The hosted fixture list now includes the opaque-border suite and both new
+publication suites. Locally, 105 tests across twelve relevant suites pass,
+including seven writer tests exercised against all four producers and six
+battle packing tests. These are authoring safeguards and source replay evidence;
+the coordinator still owns independent review, exact-source hosted CI and
+installation publication. Artwork/native acceptance remains pending.

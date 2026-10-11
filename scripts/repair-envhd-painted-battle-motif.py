@@ -24,6 +24,7 @@ def module(name, filename):
 
 bounds = module('battle_painted_bounds', 'repair-envhd-painted-cutout.py')
 terrain = module('battle_painted_stp', 'batch-envhd-terrain.py')
+writer = module('painted_candidate_writer', 'write-envhd-painted-candidate.py')
 METHOD = 'python-painted-material-exact-source-palette-motif-1'
 
 
@@ -99,14 +100,14 @@ def execute(source_path, painted_path, output_path, source_key, motif_rgba, band
             bounds.validate_opened_png(raw, raw_size, 'painted', source_size,
                                        'RGB' if raw_data[25] == 2 else 'RGBA')
             output, preview, record = repair(source, raw, motif_rgba, band_start)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output.save(output_path)
+    output_data = writer.write_candidate(output, output_path)
     record.update(decodedRgbaSha256=source_key, method=METHOD,
                   algorithmSha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                   boundsAlgorithmSha256=hashlib.sha256(Path(bounds.__file__).read_bytes()).hexdigest(),
                   stpAlgorithmSha256=hashlib.sha256(Path(terrain.__file__).read_bytes()).hexdigest(),
+                  outputWriterSha256=hashlib.sha256(Path(writer.__file__).read_bytes()).hexdigest(),
                   generatedSha256=hashlib.sha256(raw_data).hexdigest(),
-                  outputSha256=hashlib.sha256(output_path.read_bytes()).hexdigest())
+                  outputSha256=hashlib.sha256(output_data).hexdigest())
     return record, preview
 
 

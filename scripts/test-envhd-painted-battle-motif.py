@@ -53,7 +53,7 @@ class BattleMotifTests(unittest.TestCase):
 
     def test_duplicate_generated_header_rejected_before_decode(self):
         with tempfile.TemporaryDirectory() as directory:
-            base = Path(directory); source = base/'source.png'; raw = base/'raw.png'; output = base/'output.png'
+            base = Path(directory).resolve(); source = base/'source.png'; raw = base/'raw.png'; output = base/'output.png'
             self.source().save(source); raw.write_bytes(duplicate(first=(16, 16), colour_type=2))
             key = repair.terrain.fingerprint(self.source())
             with mock.patch.object(Image.Image, 'convert', side_effect=AssertionError('Allocation')):
@@ -63,13 +63,13 @@ class BattleMotifTests(unittest.TestCase):
 
     def test_exact_source_identity_and_reproducible_output(self):
         with tempfile.TemporaryDirectory() as directory:
-            base = Path(directory); source = base/'source.png'; raw = base/'raw.png'; output = base/'output.png'
+            base = Path(directory).resolve(); source = base/'source.png'; raw = base/'raw.png'; output = base/'output.png'
             self.source().save(source); Image.new('RGB', (16, 16), (219, 249, 227)).save(raw)
             with self.assertRaisesRegex(ValueError, 'identity'):
                 repair.execute(source, raw, output, 'wrong', COLOUR, 3)
             record, _ = repair.execute(source, raw, output, repair.terrain.fingerprint(self.source()), COLOUR, 3)
             before = output.read_bytes()
-            again, _ = repair.execute(source, raw, output, repair.terrain.fingerprint(self.source()), COLOUR, 3)
+            again, _ = repair.execute(source, raw, base/'repeat.png', repair.terrain.fingerprint(self.source()), COLOUR, 3)
             self.assertEqual(before, output.read_bytes()); self.assertEqual(record, again)
 
 

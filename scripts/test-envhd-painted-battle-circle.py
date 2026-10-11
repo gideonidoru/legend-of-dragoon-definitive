@@ -63,7 +63,7 @@ class CircleRepairTests(unittest.TestCase):
 
     def test_duplicate_source_and_painted_headers_fail_before_allocation(self):
         with tempfile.TemporaryDirectory() as directory:
-            p=Path(directory);source=p/'source.png';raw=p/'raw.png';output=p/'output.png'
+            p=Path(directory).resolve();source=p/'source.png';raw=p/'raw.png';output=p/'output.png'
             raw.write_bytes(duplicate(first=(64,64),colour_type=2));self.source().save(source)
             with mock.patch.object(Image.Image,'convert',side_effect=AssertionError('Allocation')):
                 with self.assertRaisesRegex(ValueError,'bounded painted canvas'):
@@ -76,12 +76,12 @@ class CircleRepairTests(unittest.TestCase):
 
     def test_cli_recipe_reproduces_exact_bytes_and_rejects_source_change(self):
         with tempfile.TemporaryDirectory() as directory:
-            p=Path(directory);source=p/'source.png';raw=p/'raw.png';output=p/'output.png'
+            p=Path(directory).resolve();source=p/'source.png';raw=p/'raw.png';output=p/'output.png'
             self.source().save(source);Image.new('RGB',(64,64),(220,245,230)).save(raw);key=repair.terrain.fingerprint(self.source())
             with self.assertRaisesRegex(ValueError,'identity'):
                 repair.execute(source,raw,output,'wrong',COLOUR,[7.5,7.5,3],4)
             record,_=repair.execute(source,raw,output,key,COLOUR,[7.5,7.5,3],4);before=output.read_bytes()
-            again,_=repair.execute(source,raw,output,key,COLOUR,[7.5,7.5,3],4)
+            again,_=repair.execute(source,raw,p/'repeat.png',key,COLOUR,[7.5,7.5,3],4)
             self.assertEqual(before,output.read_bytes());self.assertEqual(record,again)
 
 
