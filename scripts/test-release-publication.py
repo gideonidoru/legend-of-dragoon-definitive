@@ -13,7 +13,7 @@ from desktop_bootstrap import desktop_entry
 
 repo = Path(__file__).resolve().parents[1]
 source = 'a' * 40
-for scenario in ('legacy-pinned-desktop', 'altered-latest-desktop', 'cache-success', 'cache-corrupt', 'cache-missing', 'cache-linked', 'file-delivery-thin-success', 'success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob', 'file-delivery-many-assets-draft', 'file-delivery-many-assets-omitted-page', 'ci-source-input-omitted'):
+for scenario in ('crlf-checksum-manifest', 'bare-cr-checksum-manifest', 'unicode-checksum-manifest', 'missing-final-lf', 'legacy-pinned-desktop', 'altered-latest-desktop', 'cache-success', 'cache-corrupt', 'cache-missing', 'cache-linked', 'file-delivery-thin-success', 'success', 'lookup-failure', 'build-failure', 'account-mismatch', 'digest-mismatch', 'missing-asset', 'size-mismatch', 'already-public', 'tag-mismatch', 'tag-lookup-failure', 'wrong-workflow', 'missing-build-job', 'annotated-tag', 'draft-temporary-urls', 'wrong-draft-url', 'temporary-public-url', 'ci-bytes-mismatch', 'missing-ci-artifact', 'expired-ci-artifact', 'wrong-artifact-source', 'artifact-digest-mismatch', 'nonzip-installer', 'missing-payload', 'corrupt-payload', 'duplicate-entry', 'traversal-entry', 'linked-entry', 'file-delivery-success', 'file-delivery-ci-mismatch', 'file-delivery-missing-blob', 'file-delivery-many-assets-draft', 'file-delivery-many-assets-omitted-page', 'ci-source-input-omitted'):
     with tempfile.TemporaryDirectory(prefix='definitive-release-fixture-') as directory:
         root = Path(directory); assets = root / 'assets'; assets.mkdir(); tools = root / 'tools'; tools.mkdir()
         with zipfile.ZipFile(assets / 'Definitive-Installer.zip', 'w') as archive:
@@ -73,6 +73,11 @@ for scenario in ('legacy-pinned-desktop', 'altered-latest-desktop', 'cache-succe
         (root / 'artifacts.json').write_text(json.dumps([{'artifacts': artifact_records}]))
         names = sorted(p.name for p in assets.iterdir())
         (assets / 'SHA256SUMS').write_text(''.join(sha(assets / n) + '  ' + n + '\n' for n in names))
+        sums=assets/'SHA256SUMS'
+        if scenario=='crlf-checksum-manifest':sums.write_bytes(sums.read_bytes().replace(b'\n',b'\r\n'))
+        if scenario=='bare-cr-checksum-manifest':sums.write_bytes(sums.read_bytes().replace(b'\n',b'\r'))
+        if scenario=='unicode-checksum-manifest':sums.write_bytes(sums.read_bytes().replace(b'\n','\u2028'.encode('utf-8')))
+        if scenario=='missing-final-lf':sums.write_bytes(sums.read_bytes()[:-1])
         temporary_tag = 'untagged-e8c0b3b8be797c205abe'
         release = {'databaseId':456, 'tagName': tag, 'targetCommitish': source, 'isDraft': scenario not in ('already-public', 'temporary-public-url'), 'url': f'https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/{temporary_tag if scenario in ("draft-temporary-urls", "wrong-draft-url", "temporary-public-url", "file-delivery-many-assets-draft", "file-delivery-many-assets-omitted-page") else tag}', 'assets': []}
         for path in assets.iterdir():

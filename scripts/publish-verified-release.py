@@ -166,8 +166,8 @@ def main():
         with path.open('rb') as stream:digest = hashlib.file_digest(stream, 'sha256').hexdigest()
         if path.stat().st_size > 2 * 1024**3:raise ValueError('Upload exceeds GitHub per-asset limit: '+name)
         expected[name] = (path.stat().st_size, digest)
-    sums = (args.assets_dir / 'SHA256SUMS').read_text().splitlines()
-    if len(sums) != len(names) or set(sums) != {expected[n][1] + '  ' + n for n in names}:
+    sums = ''.join(expected[n][1] + '  ' + n + '\n' for n in sorted(names)).encode('ascii')
+    if (args.assets_dir / 'SHA256SUMS').read_bytes() != sums:
         raise ValueError('SHA256SUMS does not match the complete upload set')
     if has_contents and any(expected[name] != identity for name, identity in blobs.items()): raise ValueError('Per-file blob checksum or size mismatch')
     for platform in ('linux-x64', 'macos-arm64'):
