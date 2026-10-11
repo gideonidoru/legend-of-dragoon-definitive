@@ -156,9 +156,14 @@ public final class InstallStore {
     return this.install(source, releaseAssetId, publishedAt, progress, false);
   }
   String install(final Path source, final String releaseAssetId, final java.time.Instant publishedAt, final InstallProgress progress, final boolean fullReinstall) throws IOException {
+    return this.install(source, releaseAssetId, publishedAt, progress, fullReinstall, null);
+  }
+  String install(final Path source, final String releaseAssetId, final java.time.Instant publishedAt, final InstallProgress progress, final boolean fullReinstall, final ReleaseUpdates.CurrentRevision revision) throws IOException {
     try(final var operation = this.operation()) {
       final Properties active = this.state();
-      if(publishedAt != null && !active.getProperty("releasePublishedAt", "").isEmpty()) {
+      if(revision != null) CurrentRelease.requireAllowed(active, revision);
+      else if(CurrentRelease.generation(active, "acceptedGeneration") > 0) throw new IOException("Choose a verified current build before updating this installation.");
+      if(revision == null && publishedAt != null && !active.getProperty("releasePublishedAt", "").isEmpty()) {
         final java.time.Instant installed;
         try { installed = java.time.Instant.parse(active.getProperty("releasePublishedAt")); }
         catch(final java.time.DateTimeException failure) { throw new IOException("Invalid installed release ordering. No update was activated.", failure); }
@@ -177,6 +182,7 @@ public final class InstallStore {
         progress.phase("Verifying installed files", "Checking the engine, libraries, artwork and license inventory", 82);
         final PackageManifest manifest = PackageManifest.read(staged);
         manifest.verify(staged, PackageManifest.hostPlatform());
+        if(revision != null && (!revision.sourceRevision().equals(manifest.metadata().getProperty("sourceRevision")) || !"definitive-current".equals(manifest.metadata().getProperty("releaseTag")))) throw new IOException("Package does not match the verified current build.");
         forceTree(staged);
         final Properties old = this.state();
         final Path release = this.root.resolve("releases").resolve(manifest.id());
@@ -203,6 +209,7 @@ public final class InstallStore {
           this.writeLaunchers(release);
           old.setProperty("installedReleaseTag", manifest.metadata().getProperty("releaseTag", ""));
           this.verifyInstalled();
+          if(revision != null) CurrentRelease.activate(old, old, revision);
           if(!releaseAssetId.isEmpty()) old.setProperty("releaseAssetId", releaseAssetId); if(publishedAt != null) old.setProperty("releasePublishedAt", publishedAt.toString()); atomicProperties(this.root.resolve("state.properties"), old);
           progress.phase("Installation verified", this.root.toString(), 100);
           return "This version is already installed.";
@@ -243,6 +250,7 @@ public final class InstallStore {
         next.setProperty("previousReleasePublishedAt", old.getProperty("releasePublishedAt", ""));
         if(!releaseAssetId.isEmpty()) next.setProperty("releaseAssetId", releaseAssetId);
         if(publishedAt != null) next.setProperty("releasePublishedAt", publishedAt.toString());
+        CurrentRelease.activate(next, old, revision);
         progress.phase("Creating the launcher", "Writing Play Game.sh and activating the verified version", 95);
         this.writeLaunchers(release);
         forceTree(nextData);
@@ -320,6 +328,7 @@ public final class InstallStore {
       current.setProperty("releasePublishedAt", current.getProperty("previousReleasePublishedAt", ""));
       current.remove("previousReleasePublishedAt");
       forceTree(this.root.resolve("data").resolve(dataId));
+      CurrentRelease.restore(current);
       current.remove("previousVersion");
       current.remove("previousSnapshot");
       atomicProperties(this.root.resolve("state.properties"), current);
@@ -1062,6 +1071,7 @@ public final class InstallStore {
     for(final String name : new String[]{"previousVersion", "retainedNewerVersion"}) if(!state.getProperty(name, "").isEmpty() && !state.getProperty(name).matches("alpha-[a-f0-9]{16}")) throw new IOException("Invalid retained release reference.");
     for(final String name : new String[]{"previousSnapshot"}) if(!state.getProperty(name, "").isEmpty() && !state.getProperty(name).matches("snapshot-[a-f0-9-]{36}")) throw new IOException("Invalid snapshot reference.");
     if(!state.getProperty("retainedNewerData", "").isEmpty() && !state.getProperty("retainedNewerData").matches("data-[a-f0-9-]{36}")) throw new IOException("Invalid retained private data reference.");
+    CurrentRelease.validateState(state);
     return state;
   }
   private void recoverState() throws IOException {

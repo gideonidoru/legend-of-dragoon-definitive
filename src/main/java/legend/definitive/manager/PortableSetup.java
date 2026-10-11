@@ -20,6 +20,10 @@ public final class PortableSetup {
   }
   private static String installSelected(final Path supplied, final InstallStore store, final InstallProgress progress, final boolean fullReinstall) throws IOException, InterruptedException {
     InstallerLog.write("Install target: " + store.root() + "; platform: " + PackageManifest.hostPlatform() + "; Java: " + Runtime.version());
+    if(fullReinstall && CurrentRelease.generation(store.state(), "acceptedGeneration") > 0) {
+      final var candidate = ReleaseUpdates.latest().orElseThrow(() -> new IOException("No verified current build is published. Retry Reinstall when GitHub is available."));
+      return ReleaseUpdates.reinstall(store, candidate, progress);
+    }
     if(supplied != null && Files.isRegularFile(supplied.resolve(PackageManifest.METADATA))) {
       if(Files.exists(supplied.resolve(FileDelivery.SIZES))) {
         progress.phase("Finding your build", "Checking the supplied online package against the published release", 5);
