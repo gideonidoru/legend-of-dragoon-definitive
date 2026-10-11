@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "e54f3324be558f6de7fb5f2b8c700d0cd90aed03 accepted five scenery crops; ongoing83 authoring and new8 held versions preserved",
+  "sourceSelectionCheckpoint": "73295a68f8a4414c7b62ef9fa81ad60f8d3a8013 accepted four palace crops; ongoing83 authoring and all held versions preserved",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "a92e193f8afedae8fbd4509886ee2a6d1150fde3a4b5c6ad42513397f53e8e16",
-    "field-runtime-artwork.json": "fed0bbc3f568cd9d045cbd633a44a866f1eaf88b03b985a3b20223206d336207",
+    "full-coverage.json": "6f6cda9eb4b301cce8562849057f0b23cf4718402d3771bd05fc3d2ab16b7c66",
+    "field-runtime-artwork.json": "329409e16e896ec4bbae12bc581a8b55ff411b859b6fbf0f3e7b62891584777a",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
@@ -90,29 +90,33 @@
     "field-independent-scenery-eight-review.json": "74c221c4c764449f81b410e4f1ec6d544ae1aed8ffa32a1f0e8a51ccafc4da0e",
     "field-scenery-five-selection-readiness.json": "ae20a0ea81c3c47f25c57bee5d813a7bbf4b028b7d3a4ffa3850a61e0fd389f6",
     "field-scenery-authoring-main-forward.json": "438174e2e456bbcf519b54b7fbc076ada3d52bcbef9271e1cdd046cabdbaf526",
-    "field-bespoke-source-feature-three-held-drafts.json": "156d4edaa6835fd0622d7d5a1747ee9a7972a1c86f33bc3dd957d145453cd6ce"
+    "field-bespoke-source-feature-three-held-drafts.json": "156d4edaa6835fd0622d7d5a1747ee9a7972a1c86f33bc3dd957d145453cd6ce",
+    "field-bespoke-palace-four-independent-reviewed-selection.json": "6a7a42680b7b366cc5229d60f48ce4e26d669fb34b5c89d1d9db0bfa8167a262",
+    "field-independent-palace-eight-review.json": "e9294d2041c87fb89f2eefe95a9581f7deef3dc520ed63407dfa57c98cced006",
+    "field-palace-four-selection-readiness.json": "bbab31df3eb7b417ae5421e8e683c5436230192a30db0277a9afd4de3e9b3d32",
+    "field-palace-authoring-main-forward.json": "b3cc9f1989709911cccc1672eb7efd6e21bd4b0b7024b83ec60a7ca2387e6c9e"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 229,
+  "knownRemainingStaticImages": 225,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4934,
+      "selectedDevelopment": 4938,
       "selectedNeural": 4886,
-      "selectedPainted": 48,
-      "held": 228,
+      "selectedPainted": 52,
+      "held": 224,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 76,
+      "customHeldDraftSourceImages": 72,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Independent original-reference review of26 pending candidates; source-aligned correction of9 reviewed revisions and held organic/scenic/motif/material drafts; continue228field holds and state/native/final checks.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 26,
+      "nextTask": "Independent original-reference review of18 pending candidates; source-aligned correction of13 reviewed revisions and held organic/scenic/motif/material drafts; continue224 field holds and state/native/final checks.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 18,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
@@ -154,7 +158,6 @@
         "924d64a4d1c1f2d10a21e567566c95826aa74a9234d9a4c897281ffb48760a54",
         "930124e161d08e127f014c32cd82ecdab139ec4a33861921d158311fe3bf75c5",
         "93c6bbad7b079b3488c3abebbf3e7195568727ad527cc65c7954fcf22caa30ba",
-        "99fe3ae3f675d6fc68f88b15b0432a884fee59c7f04b6be8c9c1c51f02948e81",
         "9b74793a802626789aa46bf4776e968c5af1c3e749fe9033af7dcc1e96dcc66b",
         "9d6ee81a6a9584c4f5d2ae829238be015881ae8235ec43458a27d78969fbb62e",
         "9ff5730dc191a7dd1091844f4505b77d9f0c1f6a8e75336630fc9e8267ff15df",
@@ -168,11 +171,9 @@
         "b525081b77578354e5eaf8dc82b7f83bc1d57ab5849f6c127f7ae4b365a655d2",
         "b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28",
         "be023e0b5599675425e3a0e361a3cf1ae5c57a4c51d10e5d49c0d4d857f830cc",
-        "bef65a35570d58e1698fa959797fc680e72b1cd72af026bfe1dd79c6fe0f3197",
         "cae03a38ef095431e37c8c02444f3ac0e5601a7633b6b78193c0e37339cbc77f",
         "ccd919a8c336221f7dfda44a20ca0c4ec5e56e53f4f3f761f199c0feb0e799b0",
         "ce7b4bd9cf0135bceb97a0799a11b8430da868ab579941a08fb31d542176a994",
-        "d46bd57a4ab4715e8191cd0e1fee2a155cc04cb70413844af2510647a87d7229",
         "da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5",
         "da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417",
         "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
@@ -181,7 +182,6 @@
         "e0f6b532410a42b5ad4701aca0b368b6473d795f25fb94e14021a9ebda37be78",
         "e22a7b2917dc0277ef411a3573333b54e4f6d56662bb68bc472c05a746537116",
         "e6bea3e159ef60b60feb564cc6a70ac9f1278263d30bfacf9258b7a2ea7d662a",
-        "e87bbe9dc68db62ba77591f5d95fbb41db2b59bdee7bb7648d7e0871e0d2413d",
         "ed28e7d93d5636f737f4e2175ea43d33600dda3bde450f0738406d4a035cc7b8",
         "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
         "f32d16052e97853b1dff1762df2bb5195bc9dc90fa8037c8c2d23fe281d41120",
@@ -191,8 +191,8 @@
         "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4934 selections.76keys subset228field holds; repeated versions deduplicated.83historical candidate records and all held records exact; latest main selection tracked separately.",
-      "independentlyReviewedCandidatesRequiringRevision": 9,
+      "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4938 selections.72keys subset224field holds; repeated versions deduplicated.83historical candidate records and all held records preserved; latest main selection tracked separately.",
+      "independentlyReviewedCandidatesRequiringRevision": 13,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
       "independentlyClearedCandidatesAwaitingIntegration": 0,
       "independentNewSceneryReview": {
@@ -200,6 +200,12 @@
         "clearedSelected": 5,
         "requiresRevision": 3,
         "receipt": "field-independent-scenery-eight-review.json"
+      },
+      "independentNewPalaceReview": {
+        "source": "09278d5f020c7163610263db090d6f3b8bc11a53",
+        "clearedSelected": 4,
+        "requiresRevision": 4,
+        "receipt": "field-independent-palace-eight-review.json"
       }
     },
     {
@@ -576,6 +582,12 @@
       "heldSourceImages": 3,
       "heldVersions": 3,
       "reason": "Local source-feature restoration improves mark shapes but leaves visibly soft patches; all three remain held and reuse existing public painting inputs."
+    },
+    {
+      "manifest": "field-bespoke-palace-four-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 4,
+      "independentReview": "field-independent-palace-eight-review.json",
+      "reason": "Crystal Palace two-panel rail, rising rail and baluster/support, plus Twin Castle ornamented rim independently clear for development. Four other scoped crops require revision and stay excluded. Prior48/4934 exact."
     }
   ],
   "publication": {
@@ -602,7 +614,7 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 9,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 13,
     "paintedBattleMastersAwaitingCoordinatedPublication": 13,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
@@ -631,15 +643,15 @@
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "83historical recipes exact; acceptedmain4934/48.26pending/9revisions/0cleared-awaiting-integration;76unselected custom sources within228fields;229knownstatic. Neworganic8held; native/final pending.",
+  "authoringCheckpoint": "83historical recipes preserved; acceptedmain4938/52.18pending/13revisions/0cleared-awaiting-integration;72unselected custom sources within224fields;225knownstatic. Organic8/local-feature3held; native/final pending.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "e54f3324be558f6de7fb5f2b8c700d0cd90aed03",
-    "fieldSelected": 4934,
-    "fieldPainted": 48,
+    "sourceCommit": "73295a68f8a4414c7b62ef9fa81ad60f8d3a8013",
+    "fieldSelected": 4938,
+    "fieldPainted": 52,
     "authoringCandidates": 83,
-    "independentlyPending": 26,
-    "independentlyRevision": 9,
-    "heldSourceKeys": 76,
+    "independentlyPending": 18,
+    "independentlyRevision": 13,
+    "heldSourceKeys": 72,
     "nativeAccepted": 0,
     "finalQualityAccepted": 0
   }

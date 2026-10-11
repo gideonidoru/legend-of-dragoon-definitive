@@ -2,11 +2,11 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **229 images: 228 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **225 images: 224 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,934 development images: 4,886 neural and 48 painted.
+Field selection is 4,938 development images: 4,886 neural and 52 painted.
 
-Current authoring queue:26 candidates await independent review and9 require source-fidelity correction. Five cleared scenery paintings are now integrated. All83 historical recipes and custom/held versions remain preserved;76 unique unselected custom source keys are a subset of228field holds. Eight newly authored organic/scenic sources remain held. Historical receipts retain checkpoint counts. Protected Skurfa art is reused; native gameplay/final quality pending.
+Current authoring queue:18 candidates await independent review and13 require source-fidelity correction. Four cleared palace paintings are now integrated. All83 historical recipes and custom/held versions remain preserved;72 unique unselected custom source keys are a subset of224field holds. Eight organic/scenic sources and three local-feature prototypes remain held. Historical receipts retain checkpoint counts. Protected Skurfa art is reused; native gameplay/final quality pending.
 
 The [recorded generation4 download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8` contains 4,925 field selections/39paintings and34 battle paintings. The historical Donau increment selected4,928 fields/42paintings and retained47 battle paintings: three field paintings and13 battle paintings beyond that recorded snapshot. These are comparisons with the preserved generation4 source ledgers, not a fresh observation of the live carrier. ROOT tracks subsequent coordinated publication and installer verification. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
@@ -288,3 +288,15 @@ Accepted main selects4,934 fields with48 paintings; all83 historical recipes and
 ## Held local source-feature prototypes
 
 [Three local restoration prototypes](../../integrations/envhd/production/field-bespoke-source-feature-three-held-drafts.json) reuse existing public Aglis and Twin Castle paintings. The authoring helper restores original ambiguous marking shapes inside explicit source-coordinate polygons, retaining exact parent cutout pixels outside them. The original aspect/coverage gate, source alpha and visible black remain unchanged; eight focused behavior checks pass. Actual comparisons show soft restored patches and unfinished material transitions, so all three remain held with no runtime selection or new unique image count. Custom outputs and recipes are versioned; original images and comparison diagnostics stay private.
+
+
+## Four independently reviewed palace selections
+
+The [independent eight-crop review](../../integrations/envhd/production/field-independent-palace-eight-review.json) clears the Crystal Palace cut368 panel rail, cut369 rising rail, cut367 baluster/support and Twin Castle cut221 ornamented rim for development selection. The Crystal Palace lower post, curved-edge fitting and descending rail, plus Twin Castle night fittings require correction and remain excluded. Actual original/reference crops and static scene placements were inspected; source integrity and replay passed.
+
+The [complete52-painting selection](../../integrations/envhd/production/field-bespoke-palace-four-independent-reviewed-selection.json) preserves every prior48 recipe exactly. All52 recipes replay from current originals; all4,934 previous runtime records and protected Skurfa cuts remain exact. The [readiness receipt](../../integrations/envhd/production/field-palace-four-selection-readiness.json) binds the four-image change and86 focused checks. Native/scripted state, physical Deck, campaign and final artistic acceptance remain pending. ROOT coordinates the current installer publication; the prior publication ledger is a historical observed snapshot.
+
+
+## Ongoing authoring after palace integration
+
+Accepted main selects4,938 fields with52 paintings; all83 historical recipes and every prior custom/held byte remain preserved. Current queue18 independent-pending/13 reviewed revisions and72 unique unselected custom source keys within224field holds. Organic/scenic and local-feature prototypes remain held separately. Known static remainder225 includes224fields and one terrain repair; animation/props denominators remain unresolved. Native/state/campaign/final acceptance is pending.

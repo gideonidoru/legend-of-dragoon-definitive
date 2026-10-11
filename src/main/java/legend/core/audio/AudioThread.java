@@ -348,6 +348,27 @@ public final class AudioThread implements Runnable {
       this.running = !this.shutdownRequested;
     }
 
+    Throwable failure = null;
+    try {
+      this.runLoop();
+    } catch(final Throwable thrown) {
+      failure = thrown;
+    } finally {
+      synchronized(this) {
+        // Processing failure is a terminal worker exit, just like a requested stop.
+        this.running = false;
+        this.shutdownRequested = true;
+        try {
+          this.destroyAndUnload();
+        } catch(final Throwable thrown) {
+          failure = appendCleanupFailure(failure, thrown);
+        }
+      }
+    }
+    throwCleanupFailure(failure);
+  }
+
+  private void runLoop() {
     while(this.running) {
       final long time = System.nanoTime();
 
@@ -419,10 +440,6 @@ public final class AudioThread implements Runnable {
         final int toSleep = (int)(Math.max(0, this.nanosPerTick - interval) / 1_000_000);
         DebugHelper.sleep(toSleep);
       }
-    }
-
-    synchronized(this) {
-      this.destroyAndUnload();
     }
   }
 
