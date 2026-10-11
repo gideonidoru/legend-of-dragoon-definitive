@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "scope": "Three held versions across two sources: Wingly Forest cut384 dark hanging fitting versions1/2 relief/join drift; Wingly Forest cut386 pale fragment version1 added ornate ridges. Source position clarification disclosed. No gates waived. Original sources/layout/context/comparisons remain private.",
+  "sourceSelectionBaseCommit": "373b34a94a1fe52beb4547b215d451df14557633",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 2,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417",
+      "generatedSha256": "ba0deddbfdd88993120f1954d13567d496a391395463b47f8cabd3fbf8fea262",
+      "generatedSize": [
+        1170,
+        1345
+      ],
+      "sourceSize": [
+        54,
+        62
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "6bb52ed1c9da251be1e65114631b2aad07dbdca5b17c6d95af50e98112c1f6a6:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 384,
+      "representativeLocation": "Wingly Forest",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST original native foreground crop into faithful detailed hand-painted HD game art for Legend of Dragoon EnvHD, with restrained material finish comparable to Skurfa HD. FIRST controls exact full canvas aspect, source silhouette, camera, proportions, native palette/lighting, existing openings, internal divisions and fine source marks. SECOND is whole original scene for usage only; do not paint its other objects in this isolated crop. Output ONLY FIRST fragment with real transparency exactly where original is transparent, exact same framing and cropped ends. No padding, centering, subject scaling, rotation, extra scenery, perspective change, new objects, readable letters, emblems, fictional symbols, coherent invented ornaments or glowing light. Native black recesses stay dark and original gaps stay transparent. Fine continuous subtle material detail, not a pixel-grid mosaic. No label, border, checkerboard or watermark. Preserve unresolved details as source-shaped lowcontrast variation, never turn them into a new recognizable figure. Native54x62 exactly27:31 near-square portrait. Wingly Forest cut384 foreground6: dim green/brown curved organic architectural support at native bottom-right foreground below room fittings. Broad green cropped upper edge across most full width, curved dark left inward contour descends toward a narrow dark lower shaft at right-half; original lower end extends to native bottom crop near center-right. At native upper-right original muted warm brown patch/fitting is part of same fragment; keep its exact position and soft shape. Preserve native asymmetrical left notches, curved stem width, outer right crop, lowdark brown-green vertical regions and all original black recesses. Fine very restrained worn wood/organic architectural texture following source gentle longitudinal shading, but precise carved subject is unresolved: no new face, dragon, skull, clear leaf scroll, vine, flower, leg or limb. No newly deep ridges, added bark chunks, black crack networks, thick raised ornaments or added glowing emerald spots. Match original deep shadow and muted green upper light; SECOND brighter wall/green medallions are context only, do not copy them onto this support.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 32688,
+      "paintedGapPixelsExtended": 2434,
+      "paintedUncoveredSourcePixels": 2216,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 260,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        216,
+        248
+      ],
+      "outputSha256": "fed753fa645ab8490cbd2c4afc67293eec9015730708d388fe3e6e219dddf017",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Wingly Forest cut384 dark fitting versions1/2 pass technical repair but impose newly coherent looping relief/woodgrain and retain a visible upper/right join against the adjoining native-selected fixture. Correction2 reduces large scroll detail without closing original relief registration or whole-fixture finish. Both held. Initial prompt described bottom-right support position imprecisely; source placement shows a lower hanging architectural/organic fitting beneath green illuminated room fixtures. Corrected intent is recorded; no new creature/material identity established. Use constrained internal landmarks/whole-fixture finish before repeating whole-crop generation."
+    },
+    {
+      "decodedRgbaSha256": "80701be87325066059c4a6b4de4cef1bf2ebc129929e8ec01ce84fa45aaa3a2f",
+      "generatedSha256": "a967c50beb618c4f00b1aa35d18420dac4b73020e4129cbc8869055cf8de0bba",
+      "generatedSize": [
+        1490,
+        1055
+      ],
+      "sourceSize": [
+        48,
+        34
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "0ee1037f39f02d33f18a726a5a051126fb5f20fec49ea65723f3c65d52bd8f0c:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 386,
+      "representativeLocation": "Wingly Forest",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST original native foreground crop into faithful detailed hand-painted HD game art for Legend of Dragoon EnvHD, with restrained material finish comparable to Skurfa HD. FIRST controls exact full canvas aspect, source silhouette, camera, proportions, native palette/lighting, existing openings, internal divisions and fine source marks. SECOND is whole original scene for usage only; do not paint its other objects in this isolated crop. Output ONLY FIRST fragment with real transparency exactly where original is transparent, exact same framing and cropped ends. No padding, centering, subject scaling, rotation, extra scenery, perspective change, new objects, readable letters, emblems, fictional symbols, coherent invented ornaments or glowing light. Native black recesses stay dark and original gaps stay transparent. Fine continuous subtle material detail, not a pixel-grid mosaic. No label, border, checkerboard or watermark. Preserve unresolved details as source-shaped lowcontrast variation, never turn them into a new recognizable figure. Native48x34 exactly24:17 landscape. Wingly Forest cut386 foreground2: pale green-gray curved folded/organic architectural ledge fragment in floor foreground. Original upper-left raised pointed/curved projection enters cropped TOP near native x16; central-left dark elongated recessed aperture lies around native x14..20 y7..19. Preserve native top ridge shape and recessed opening. Main pale green curved slab/ledge sweeps diagonally down-right, with native faint diagonal internal fold/crease bands and muted small irregular worn marks. Original second dark recess at far lower-right near native x42..47 y23..32 remains dark, with the pale rim touching native right/bottom crop. Native LEFT edge crops a pale sloped shape around y6..10; keep all asymmetric notches and cropped ends. Do not make a face or eye from either recess, a leaf, a skull, a new stone creature, added beak, sharp engraved glyphs or newly disconnected fragments. Fine quiet pale worn architectural material texture and soft original cool green illumination; no harsh stone cracks, chipped block network, bright specular streak, glow or new seams. Keep source contour/diagonal fold registration and exact dark interior relationships.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 14208,
+      "paintedGapPixelsExtended": 355,
+      "paintedUncoveredSourcePixels": 220,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 13,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        192,
+        136
+      ],
+      "outputSha256": "9ffcd17c3f2ddf69283e9604d4eb2df9d02f957b06653d92d033fe138e37bd6d",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/80701be87325066059c4a6b4de4cef1bf2ebc129929e8ec01ce84fa45aaa3a2f/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/80701be87325066059c4a6b4de4cef1bf2ebc129929e8ec01ce84fa45aaa3a2f/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Wingly Forest cut386 version1 adds repeated outline ridges, concentric framed recess rims and stronger ornamental bevels not established in original. Technical repair passed; visual hold remains. Source-only corrected2 is a separate independently pending candidate."
+    },
+    {
+      "decodedRgbaSha256": "da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417",
+      "generatedSha256": "d3fcf83866a8c3da2fe4dddd5aa599154642cbcecd897da5402b0578ce3135b2",
+      "generatedSize": [
+        1170,
+        1345
+      ],
+      "sourceSize": [
+        54,
+        62
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "6bb52ed1c9da251be1e65114631b2aad07dbdca5b17c6d95af50e98112c1f6a6:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 384,
+      "representativeLocation": "Wingly Forest",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise-object-edit. Edit FIRST original native foreground crop into faithful detailed hand-painted HD game art for Legend of Dragoon EnvHD, with restrained material finish comparable to Skurfa HD. FIRST controls exact full canvas aspect, source silhouette, camera, proportions, native palette/lighting, existing openings, internal divisions and fine source marks. SECOND is whole original scene for usage only; do not paint its other objects in this isolated crop. Output ONLY FIRST fragment with real transparency exactly where original is transparent, exact same framing and cropped ends. No padding, centering, subject scaling, rotation, extra scenery, perspective change, new objects, readable letters, emblems, fictional symbols, coherent invented ornaments or glowing light. Native black recesses stay dark and original gaps stay transparent. Fine continuous subtle material detail, not a pixel-grid mosaic. No label, border, checkerboard or watermark. Preserve unresolved details as source-shaped lowcontrast variation, never turn them into a new recognizable figure. Native54x62 exactly27:31 near-square portrait. Wingly Forest cut384 foreground6: dim green/brown curved organic architectural support at native bottom-right foreground below room fittings. Broad green cropped upper edge across most full width, curved dark left inward contour descends toward a narrow dark lower shaft at right-half; original lower end extends to native bottom crop near center-right. At native upper-right original muted warm brown patch/fitting is part of same fragment; keep its exact position and soft shape. Preserve native asymmetrical left notches, curved stem width, outer right crop, lowdark brown-green vertical regions and all original black recesses. Fine very restrained worn wood/organic architectural texture following source gentle longitudinal shading, but precise carved subject is unresolved: no new face, dragon, skull, clear leaf scroll, vine, flower, leg or limb. No newly deep ridges, added bark chunks, black crack networks, thick raised ornaments or added glowing emerald spots. Match original deep shadow and muted green upper light; SECOND brighter wall/green medallions are context only, do not copy them onto this support. CORRECTION OVERRIDING POSITION AND MATERIAL: The crop is the dark LOWER HANGING ORGANIC/ARCHITECTURAL FITTING directly beneath the green round illuminated room fixture, as demonstrated in SECOND; the earlier bottom-right/shaft shorthand is not a full subject identification. Preserve this observed native fitting without naming a plant/creature/wood species. Native central lower piece has a soft narrow elongated dark recess with faint green showing through and original gentle curved relief, not a large richly carved intertwining-root scroll. Upper crop must match native DIM GREEN/BROWN soft light and tiny partial bands, not newly crisp horizontally braided woodgrain. REMOVE broad raised looping scrolls, heavy woodgrain, rope-like ridges, invented smaller lower hole and deep knot swirls. Keep only native lowcontrast curved shade/relief divisions and a very fine quiet smooth worn-material patina. Source interior opening stays its original thin asymmetric path and width with source dark recess and faint muted green at the same positions. Do not increase contrast, edge shininess or carve coherent leaves. Preserve full-canvas shape and all original cropped edges/contacts. Adjacent larger glowing fixture in SECOND is usage only, never repaint/copy/add its green glowing circular lights to this fragment.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 32688,
+      "paintedGapPixelsExtended": 1881,
+      "paintedUncoveredSourcePixels": 1692,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 200,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        216,
+        248
+      ],
+      "outputSha256": "943edf7de3a5b0459ef6045af4c7cb8f7727d5fc3eb71fb8b83a06e9e0ea9c13",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417/draft-repaired-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Wingly Forest cut384 dark fitting versions1/2 pass technical repair but impose newly coherent looping relief/woodgrain and retain a visible upper/right join against the adjoining native-selected fixture. Correction2 reduces large scroll detail without closing original relief registration or whole-fixture finish. Both held. Initial prompt described bottom-right support position imprecisely; source placement shows a lower hanging architectural/organic fitting beneath green illuminated room fixtures. Corrected intent is recorded; no new creature/material identity established. Use constrained internal landmarks/whole-fixture finish before repeating whole-crop generation."
+    }
+  ]
+}

@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "373b34a94a1fe52beb4547b215d451df14557633",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "4db2aacc1ddc09b647353e82cbe47ede20b049b5745d05de58cf86ad79a4003e",
+    "full-coverage.json": "669c080f9079a1156c7d4d57fcc7fa9aaa4e49fd4209df534f7e2994a39cd969",
     "field-runtime-artwork.json": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
@@ -41,7 +41,9 @@
     "field-bespoke-structural-materials-held-drafts.json": "9894cf8f4100837ce7cd9d49d0349136eb282ed2427aa2f6eb7ff9f4c9d40b6b",
     "battle-sky-existing-custom-reuse.json": "2b6cdb86d2f8523745c045fa211bda86f9907f4195345a578c3776506960245b",
     "field-bespoke-interior-supports-reviewed-selection.json": "3c053dbd8d42726e4878f4a9bd1df5a7eb55097ee6edaa5c3e29c63dc96fb0e3",
-    "field-bespoke-interior-supports-held-drafts.json": "8353026af1811a7e1d17b3bfc922324c546057c12dd48af953b7bb2975abb685"
+    "field-bespoke-interior-supports-held-drafts.json": "8353026af1811a7e1d17b3bfc922324c546057c12dd48af953b7bb2975abb685",
+    "field-bespoke-carved-furnishings-reviewed-selection.json": "9519da7e89c246b6d2d9e3edbe8a12d29a8a6f41cb1402becb4fc1bbebedf369",
+    "field-bespoke-carved-furnishings-held-drafts.json": "34245d3334340c4b9ef12ecd9248015fad1dea7101055ab582aa02153670c5de"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -59,11 +61,11 @@
       "selectedPainted": 39,
       "held": 237,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 43,
+      "customHeldDraftSourceImages": 47,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
-      "nextTask": "Independently review twenty-two pending field candidates; constrain Rouge/Phantom landmarks, Twin Castle motifs/tabletop finish, Bale branching support and Hoax threshold marks; continue 237 field holds and native/final validation.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 22,
+      "nextTask": "Independently review twenty-five pending field candidates; constrain held fine motifs, source landmarks and whole-fixture/tabletop finish joins; continue 237 field holds and native/final validation.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 25,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
@@ -75,6 +77,7 @@
         "7cc8ba928d1ac6f7ef7b9260c62be10c52327bbf5b58e1cb63c2f106a59e335f",
         "7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957",
         "7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827",
+        "80701be87325066059c4a6b4de4cef1bf2ebc129929e8ec01ce84fa45aaa3a2f",
         "82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6",
         "83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5",
         "83fe643a2962f4801576f8ebf15bd41aa63e16575ff2386fd1b8296134c8d5a9",
@@ -86,9 +89,11 @@
         "99fe3ae3f675d6fc68f88b15b0432a884fee59c7f04b6be8c9c1c51f02948e81",
         "9b74793a802626789aa46bf4776e968c5af1c3e749fe9033af7dcc1e96dcc66b",
         "9e38a3f37d0eed732d30954194e28fa0b749949e5d4ef81cc8a85d00b56241e9",
+        "9ff5730dc191a7dd1091844f4505b77d9f0c1f6a8e75336630fc9e8267ff15df",
         "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab",
         "a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f",
         "a7b8dbb17416792c3b8bd899e2ddb2e455a2f8ea51372d8ef500046b08488093",
+        "aa05988943ca081f21a6590703116b1ee20e90eeb8910cf4ba1be2fb8d6c2e2f",
         "ae3d002cd7ad47d37fe78e51a52145ef1afc615596ef2b67e511d4b74abe860a",
         "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
         "b525081b77578354e5eaf8dc82b7f83bc1d57ab5849f6c127f7ae4b365a655d2",
@@ -98,6 +103,7 @@
         "cae03a38ef095431e37c8c02444f3ac0e5601a7633b6b78193c0e37339cbc77f",
         "d46bd57a4ab4715e8191cd0e1fee2a155cc04cb70413844af2510647a87d7229",
         "da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5",
+        "da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417",
         "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
         "de79c94862b3d13299111e7cf480c51a64bec316c49363d75ce2beda0a81bdc9",
         "df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b",
@@ -109,7 +115,7 @@
         "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique 64-character source directories across bespoke-field-candidates and held-field-art-drafts, excluding 4,925 runtime selections. Forty-three source keys remain a subset of 237 field holds; repeated/rejected versions deduplicated.",
+      "draftCountMethod": "Unique 64-character source directories across bespoke-field-candidates and held-field-art-drafts, excluding 4,925 runtime selections. Forty-seven source keys remain a subset of 237 field holds; repeated/rejected versions deduplicated.",
       "independentlyReviewedCandidatesRequiringRevision": 2
     },
     {
@@ -358,6 +364,18 @@
       "heldSourceImages": 4,
       "heldVersions": 5,
       "reason": "Twin Castle chair/table versions 1/2 remain a finish-join hold and introduce one held source. Other three version 1 sources overlap corrected pending candidates. No holds cleared or gates waived."
+    },
+    {
+      "manifest": "field-bespoke-carved-furnishings-reviewed-selection.json",
+      "newUniqueHeldSourceImages": 3,
+      "reason": "Twin Castle red chair, Crystal Palace openwork support and corrected Wingly pale fragment independently pending; all 63 prior/39 selected records exact."
+    },
+    {
+      "manifest": "field-bespoke-carved-furnishings-held-drafts.json",
+      "newUniqueHeldSourceImages": 1,
+      "heldSourceImages": 2,
+      "heldVersions": 3,
+      "reason": "Wingly dark fitting versions 1/2 introduce one held source; source placement corrects initial bottom-right support shorthand to lower hanging fitting beneath illuminated fixtures. Pale version 1 overlaps corrected pending candidate. No holds cleared or gates waived."
     }
   ],
   "publication": {
@@ -380,5 +398,5 @@
     "paintedBattleMastersAwaitingCoordinatedPublication": 12
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "Three additional corrected interior/support candidates and five held versions. Selected runtime and installer unchanged."
+  "authoringCheckpoint": "Three additional furnishing/architectural candidates and three held versions. Selected runtime and installer unchanged by authoring."
 }
