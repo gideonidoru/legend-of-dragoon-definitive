@@ -10,6 +10,8 @@ The [reference catalog](../../integrations/charhd/production/party-reconstructio
 
 All nine original/candidate pairs were inspected at full-body overview. The new set restores the distinct designs below. “Restored” describes visible construction/color relationships; it does not assert pixel-exact ornaments or final acceptance.
 
+The required feature/native-reference audit was not completed before these inference jobs. This is an **out-of-sequence static experiment**, not completion of the fidelity gate. Extending the approved direction across nine characters did not approve exact motifs or waive that gate. Complete the original illustration plus native front/side/rear reference sheet, aligned detail comparisons and matched/mismatched/unresolved feature record before further inference or fitting. The [two-axis review](../../integrations/charhd/production/party-reconstruction/REVIEW-original-design-v3.md) records this process breach and the remaining delivery gaps.
+
 | Character | Visible original design retained | Detail checks still required |
 | --- | --- | --- |
 | Dart | Asymmetric red armor, segmented abdomen, distinctive belt fittings, pointed ochre ankle wraps and ornate sword guard | Guard/belt close views, native skull/pivot fit and rear armor construction |
