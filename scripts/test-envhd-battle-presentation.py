@@ -238,6 +238,7 @@ class CumulativeBattlePresentationAuditTests(unittest.TestCase):
         history['protectedPilotBindings'] = 0
         history_path.write_text(json.dumps(history))
         self.f.publish()
+        self.initial_neural = self.f.runtime_snapshot()
         self.case.path = self.production / 'battle-presentation-artwork-v1.json'
         self.case.manifest.update(sourceArtworkLedgerSha256=verify.battle.terrain.digest(history_path.read_bytes()),
             candidates=candidates[:22], visualReviewedBespokeCandidates=22)
@@ -276,6 +277,31 @@ class CumulativeBattlePresentationAuditTests(unittest.TestCase):
         self.assertEqual(self.f.runtime_snapshot(), self.before)
         self.assertEqual(result['counts']['nativeSceneAccepted'], 0)
         self.assertEqual(result['counts']['finalBeautyAccepted'], 0)
+
+    def test_erasing_all_receipt_fields_or_emptying_selected_keys_rejects_installed_paintings(self):
+        original = json.loads(self.f.selection.read_bytes())
+        for change in ('all-removed', 'empty-keys', 'missing-receipt'):
+            with self.subTest(change=change):
+                selected = copy.deepcopy(original)
+                if change == 'all-removed':
+                    for field in ('presentationSourceKeys', 'presentationSelectedMasters', 'presentationReviewReceipt'):
+                        del selected[field]
+                elif change == 'empty-keys':
+                    selected.update(presentationSourceKeys=[], presentationSelectedMasters=0)
+                    del selected['presentationReviewReceipt']
+                else: del selected['presentationReviewReceipt']
+                self.f.selection.write_text(json.dumps(selected))
+                before = self.f.runtime_snapshot()
+                with self.assertRaises(ValueError): self.audit()
+                self.assertEqual(self.f.runtime_snapshot(), before)
+
+    def test_legitimate_initial_neural_selection_keeps_all_drafts_pending(self):
+        for relative, data in self.initial_neural.items():
+            (self.root / relative).write_bytes(data)
+        result = self.audit()
+        self.assertEqual(result['counts']['newlySelectedBespokeMasters'], 0)
+        self.assertEqual(result['counts']['pendingCandidateReviews'], 23)
+        self.assertEqual(self.f.runtime_snapshot(), self.initial_neural)
 
     def test_selected_prompt_review_and_recipe_cannot_be_silently_rebound(self):
         original = copy.deepcopy(self.case.manifest)

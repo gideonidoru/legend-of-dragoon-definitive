@@ -27,6 +27,8 @@ def validate_selected_review(selected, current, verified, production, snapshots)
     if not keys:
         if 'presentationReviewReceipt' in selected:
             raise ValueError('Battle presentation selection does not match the verified manifest')
+        # An erased presentation receipt cannot make installed paintings look like neural baseline.
+        pack.validate_previous_selection(selected, ROOT)
         return keys
     receipt = selected.get('presentationReviewReceipt')
     if not isinstance(receipt, str) or len(receipt) != 64 or any(c not in '0123456789abcdef' for c in receipt):
