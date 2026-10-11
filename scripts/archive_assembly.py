@@ -542,6 +542,7 @@ def validate_recipe(recipe):
 
 
 def bind_recipe(plan, source_revision, platform, release_tag, asset_ids):
+    _check_plan_inventory(plan)
     if set(asset_ids) != set(plan.sources):
         raise ValueError('Asset binding does not close planned sources')
     return validate_recipe(dict(format=1, sourceRevision=source_revision, platform=platform,
@@ -602,8 +603,14 @@ def load_recipe(data):
         raise ValueError('Malformed recipe JSON') from error
 
 
+def _check_plan_inventory(plan):
+    if set(plan.files) != set(plan.identities):
+        raise ValueError('Plan file set differs from managed inventory')
+
+
 def prove_plan(plan, source_files):
     """Read-only exact concatenation proof; final identity comes from inventory."""
+    _check_plan_inventory(plan)
     if not set(plan.sources) <= set(source_files):
         raise ValueError('Plan source files are missing')
     for sha, size in plan.sources.items():

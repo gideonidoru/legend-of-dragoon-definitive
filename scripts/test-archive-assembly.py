@@ -129,6 +129,24 @@ class ArchiveTests(unittest.TestCase):
         self.assertEqual(first.files, second.files); self.assertEqual(first.sources, third.sources)
         self.assertEqual(set(first.uploads), set(third.uploads))
 
+    def test_proof_and_binding_reject_omitted_managed_target(self):
+        plan=self.plan(targets={'a.bin':self.new,'b.bin':self.new})
+        del plan.files['b.bin']
+        sources={self.old.sha256:self.old,**plan.uploads}
+        with self.assertRaisesRegex(ValueError,'file set differs'):assembly.prove_plan(plan,sources)
+        with self.assertRaisesRegex(ValueError,'file set differs'):
+            assembly.bind_recipe(plan,'a'*40,'linux-x64','definitive-current',
+                                 {sha:str(i+1) for i,sha in enumerate(sorted(plan.sources))})
+
+    def test_proof_and_binding_reject_uninventoried_added_target(self):
+        plan=self.plan(targets={'a.bin':self.new})
+        plan.files['unexpected.bin']=list(plan.files['a.bin'])
+        sources={self.old.sha256:self.old,**plan.uploads}
+        with self.assertRaisesRegex(ValueError,'file set differs'):assembly.prove_plan(plan,sources)
+        with self.assertRaisesRegex(ValueError,'file set differs'):
+            assembly.bind_recipe(plan,'a'*40,'linux-x64','definitive-current',
+                                 {sha:str(i+1) for i,sha in enumerate(sorted(plan.sources))})
+
     def test_changed_source_pin_blocks_all_bundle_output(self):
         bad = assembly.FileIdentity(self.new.path, 'f'*64, self.new.bytes)
         with self.assertRaisesRegex(ValueError, 'SHA-256 differs'):
