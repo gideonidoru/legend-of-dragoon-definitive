@@ -1,5 +1,7 @@
 > Current branch: **Dart AA reconstruction experiment**, gated from main/releases. See [reconstruction/README.md](reconstruction/README.md). Earlier face and rejected hair trials below are retained as history.
 
+The newer [joint-collar study](../../docs/definitive/DART_JOINT_COLLAR_STUDY.md) is an offline authoring experiment on `codex/charhd-party-authoring`. It contains custom source-bound strips and fixture/native-pose checks; it adds no engine hook or runtime selection. The branch descriptions below belong to earlier experiments.
+
 # Dart: ModelsHD + CharHD experiment
 
 Status: **experimental; not approved for main or release**. The user requires explicit approval of matched before/after comparisons before promotion. Keep this work on `experiment/dart-modelshd-charhd`; do not merge, release, change the normal ModelsHD payload index or add this directory to installer tasks. Public custom work remains permitted; publication is distinct from visual acceptance.

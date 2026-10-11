@@ -1,5 +1,7 @@
 # CharHD: original-design party set
 
+The next [Dart articulated-surface checkpoint](DART_JOINT_COLLAR_STUDY.md) records a source-bound elbow construction study, 144 stored-pose checks and a matched custom-geometry comparison. It does not promote or change these nine static sculpts.
+
 October 11, 2026. The owner approved extending the reviewed direction to all nine normal party characters. This checkpoint contains **nine custom artwork candidates, nine editable static body GLBs and nine 2048 × 2048 base-color atlases**. All are public CharHD authoring assets, with exact prompts and bounded provenance/bake receipts. They remain on the draft branch until individual visual acceptance and native animation checks; they are not new installed actor replacements.
 
 ![Nine custom artwork candidates](../../integrations/charhd/production/party-reconstruction/party-original-design-v3-artwork.jpg)

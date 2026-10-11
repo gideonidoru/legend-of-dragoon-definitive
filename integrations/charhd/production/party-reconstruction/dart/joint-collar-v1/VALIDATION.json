@@ -1,0 +1,1463 @@
+{
+  "format": 1,
+  "character": "dart",
+  "state": "offline-joint-experiment-not-runtime-selected",
+  "toolSha256": "417c80e667f13dfeea67a1fcbc15606d5f96135b5941bd5857f5eeb9754207b9",
+  "surfaceToolSha256": "345202ce74e1d5c4c909cf5b12bfb26d0cf9c46b234650d4e3316255fe25eb26",
+  "riggedActor": false,
+  "newSculptFitted": false,
+  "collisionValidated": false,
+  "nativeGameplayValidated": false,
+  "steamDeckValidated": false,
+  "joints": [
+    {
+      "name": "field-elbow-11-0",
+      "form": "field",
+      "source": "SECT/DRGN21.BIN/101/0",
+      "modelSha256": "0e4d55fa11640f416ff5d5ec339ce906bd0d67613f887d902f7dac86945d7cf8",
+      "sourceParts": [
+        11,
+        0
+      ],
+      "localAxis": 1,
+      "sectionStations": [
+        -1.0,
+        -2.0
+      ],
+      "ringVertices": 32,
+      "longitudinalStations": 9,
+      "triangles": 512,
+      "expectedOpenCollarEdges": 64,
+      "sourceDesignDetailAccepted": false,
+      "samples": [
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36677706704412394,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
+          "minimumTriangleArea": 0.36677393809373016,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.3669048403872117,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36715964105113885,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 0.3671190326319724,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36728320178140056,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 6,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 0.3671190326319724,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 7,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 0.36715964105113885,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 8,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.3669048403872117,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 9,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
+          "minimumTriangleArea": 0.36677393809373016,
+          "radiallyReversedTriangles": 0
+        }
+      ],
+      "numericalGatePassed": true,
+      "privateCustomPoseExportCount": 4,
+      "publishedArtifact": {
+        "path": "field-elbow-11-0.glb",
+        "sha256": "986014991bb64bcb3484da3e029ac67b5ff7f08956a4443fc6ffbfac6d2a8ba9",
+        "scope": "Custom open collar strip in one original stored pose; not a complete actor or runtime resource",
+        "maximumGlbRoundtripPositionError": 2.0452796935887028e-06
+      }
+    },
+    {
+      "name": "field-elbow-12-1",
+      "form": "field",
+      "source": "SECT/DRGN21.BIN/101/0",
+      "modelSha256": "0e4d55fa11640f416ff5d5ec339ce906bd0d67613f887d902f7dac86945d7cf8",
+      "sourceParts": [
+        12,
+        1
+      ],
+      "localAxis": 1,
+      "sectionStations": [
+        -1.0,
+        -2.0
+      ],
+      "ringVertices": 32,
+      "longitudinalStations": 9,
+      "triangles": 512,
+      "expectedOpenCollarEdges": 64,
+      "sourceDesignDetailAccepted": false,
+      "samples": [
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 3.3306690738754696e-16,
+          "minimumTriangleArea": 0.3282443617485036,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32825808317691885,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 7.771561172376096e-16,
+          "minimumTriangleArea": 0.32829303449447134,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32832828145839826,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.3282323530710635,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 0.3282546123615133,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 6,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.3282323530710635,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 7,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32832828145839826,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 8,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 7.771561172376096e-16,
+          "minimumTriangleArea": 0.32829303449447134,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "storedKeyframe": 9,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 0.32825808317691885,
+          "radiallyReversedTriangles": 0
+        }
+      ],
+      "numericalGatePassed": true,
+      "privateCustomPoseExportCount": 4,
+      "publishedArtifact": {
+        "path": "field-elbow-12-1.glb",
+        "sha256": "d99d6284ee46d26f2c9098f7e1e20af8eea6e0c70072f8f469a3b3b3a601856a",
+        "scope": "Custom open collar strip in one original stored pose; not a complete actor or runtime resource",
+        "maximumGlbRoundtripPositionError": 1.932379484453783e-06
+      }
+    },
+    {
+      "name": "combat-elbow-12-0",
+      "form": "combat",
+      "source": "characters/dart/models/combat/32",
+      "modelSha256": "c8b7ebc75104ccc9fe00f38f51a044b90bdf45fff33d41980f520a41754e30be",
+      "sourceParts": [
+        12,
+        0
+      ],
+      "localAxis": 0,
+      "sectionStations": [
+        125.0,
+        115.0
+      ],
+      "ringVertices": 32,
+      "longitudinalStations": 9,
+      "triangles": 512,
+      "expectedOpenCollarEdges": 64,
+      "sourceDesignDetailAccepted": false,
+      "samples": [
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 49.352798417564365,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 48.620715083354455,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 45.36835674040383,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 43.12008397610709,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 42.431113366484645,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 44.066734960030644,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 6,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 47.74577859007061,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 7,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 51.89720479573801,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 8,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 54.686776878298154,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 9,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 51.974730300318086,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 59.28721085647412,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 57.173413917485604,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 60.44882365601256,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.09884253701461,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 61.060000809365604,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 58.69436593080963,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 6,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 44.3943870415538,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 7,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 51.0424951219945,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 59.28721085647412,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 5.119822789746454,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 64.87992765822081,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 66.54848801139087,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 66.40075544481276,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 64.87992765822081,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 61.11541054807345,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 60.98406098385801,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.44759177533543,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.95862133833623,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 62.852456648844324,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 63.6845997932479,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 6,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 63.50209176945719,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 7,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 7.771561172376096e-16,
+          "minimumTriangleArea": 63.45751146489368,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 8,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 62.714166141455756,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 9,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 62.33627182368371,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 10,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 61.804012987053646,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 11,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 61.69978589737462,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 58.733752319453295,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 58.32150768650141,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 57.20317669906091,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 56.23623774243847,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 54.662250506772864,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 53.182914325482415,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 6,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 53.454577679591445,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 7,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 53.96500684161179,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 8,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 55.14760273641199,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 9,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 5.551115123125783e-16,
+          "minimumTriangleArea": 57.13458306593365,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 10,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 58.884843186023474,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 11,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 59.85920756341864,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 12,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 60.12470763897484,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 13,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 59.61739154972865,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 65.81685377197266,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 63.521785104214274,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 62.48079390201081,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 60.317075551006916,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 60.80322672541311,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 64.59400895781779,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 57.6421681013823,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 58.9787501235848,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 56.286258702826686,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 45.31465986697046,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 42.17320041778311,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 50.39714041371,
+          "radiallyReversedTriangles": 0
+        }
+      ],
+      "numericalGatePassed": true,
+      "privateCustomPoseExportCount": 28,
+      "publishedArtifact": {
+        "path": "combat-elbow-12-0.glb",
+        "sha256": "4c35f439cb3d01fa7ce000a0077ae4bdba1ccd3c3dec57ff6ccf1dd0e40c6baa",
+        "scope": "Custom open collar strip in one original stored pose; not a complete actor or runtime resource",
+        "maximumGlbRoundtripPositionError": 3.085179869902246e-05
+      }
+    },
+    {
+      "name": "combat-elbow-13-1",
+      "form": "combat",
+      "source": "characters/dart/models/combat/32",
+      "modelSha256": "c8b7ebc75104ccc9fe00f38f51a044b90bdf45fff33d41980f520a41754e30be",
+      "sourceParts": [
+        13,
+        1
+      ],
+      "localAxis": 0,
+      "sectionStations": [
+        155.0,
+        55.0
+      ],
+      "ringVertices": 32,
+      "longitudinalStations": 9,
+      "triangles": 512,
+      "expectedOpenCollarEdges": 64,
+      "sourceDesignDetailAccepted": false,
+      "samples": [
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 20.007544605967766,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 19.286206408831525,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 18.509322990530542,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 17.855990884152057,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 17.855274682382223,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 18.083094274518547,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 6,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 19.37294016971176,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 7,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 20.79332024503127,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 8,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 21.754568646972615,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "0",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "storedKeyframe": 9,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 20.659484513689385,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 14.519952499960043,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 21.619213977209935,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 28.46465354765568,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 31.321621473582915,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 32.59214638617312,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 27.979094389170708,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 6,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 14.829400187224559,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "1",
+          "animationSha256": "09e217d63ca285fee63ffc7f17b7e4503c5e50b90629038fdd96d14e11f42348",
+          "storedKeyframe": 7,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 12.588416059166333,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 14.519952499960043,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 4.392693182870955,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 11.735987537425233,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 13.186984849728788,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 12.635709573417904,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "5",
+          "animationSha256": "6ac46b469bd88326bd4daf0a92523591d9f73ba853f3fca6b879308ddc4e4328",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 11.735987537425233,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.3322676295501878e-15,
+          "minimumTriangleArea": 27.820140700016808,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 27.4739768724242,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 27.718473676640098,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 28.451911619568516,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 29.136417641049196,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 30.004434920358214,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 6,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 30.416907938291654,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 7,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 29.762008721508764,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 8,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 28.908537947993185,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 9,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 28.65202241879204,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 10,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 28.175547936379523,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "10",
+          "animationSha256": "cf01557afe16a4c03485188a44b127e0da987d6592281e95f7ac1c895dcd6591",
+          "storedKeyframe": 11,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 27.697968161259517,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 22.60157059996841,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 22.905683846842575,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 23.507538739332304,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 23.59997184821086,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 24.070484121300485,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 24.680071908756222,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 6,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 25.154866840879276,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 7,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 25.622932451932808,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 8,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 26.705528511690503,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 9,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 26.600230196830854,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 10,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 26.112706088868162,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 11,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 25.05619457088956,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 12,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 8.881784197001252e-16,
+          "minimumTriangleArea": 24.112319232643156,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "11",
+          "animationSha256": "c6dab6c6448215e1198b897b7e86b50ea404d88bbc2c4c2ea4432389bbc34c7e",
+          "storedKeyframe": 13,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.3322676295501878e-15,
+          "minimumTriangleArea": 23.447223316480887,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 34.20670112895359,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 29.11445066780967,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 26.172687424672507,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 25.297022262669532,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 30.721600477051258,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "14",
+          "animationSha256": "440ad62fd319e3680533c9fa99e32f3995737ddee044f07d53119af45e7d0a76",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 30.215298630770086,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 0,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 14.498931575643685,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 1,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 19.15918895425611,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 2,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 17.456010776532526,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 3,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 4.440892098500626e-16,
+          "minimumTriangleArea": 15.49306286179715,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 4,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 6.661338147750939e-16,
+          "minimumTriangleArea": 13.568583156962815,
+          "radiallyReversedTriangles": 0
+        },
+        {
+          "animation": "29",
+          "animationSha256": "ef7a2967e0e89f7b232defb37614a605a24fcdd3a7972169f975440985575fa4",
+          "storedKeyframe": 5,
+          "maximumCollarError": 0.0,
+          "maximumRelativeCrossSectionAreaError": 1.1102230246251565e-15,
+          "minimumTriangleArea": 13.158214797892892,
+          "radiallyReversedTriangles": 0
+        }
+      ],
+      "numericalGatePassed": true,
+      "privateCustomPoseExportCount": 28,
+      "publishedArtifact": {
+        "path": "combat-elbow-13-1.glb",
+        "sha256": "f561f4b3000896b23c180d448790dfa8b9bc9eb3ce15dbdeb4bb834dd4cee460",
+        "scope": "Custom open collar strip in one original stored pose; not a complete actor or runtime resource",
+        "maximumGlbRoundtripPositionError": 3.1073767389684226e-05
+      }
+    }
+  ],
+  "scope": "Authored collar strips driven by selected original stored poses. Endpoint and cross-section checks do not prove collision freedom, complete actor continuity, native renderer compatibility or gameplay.",
+  "privateProbeReportSha256": "0c91d272a7f81f42f055bdb14822af80dfc34f6738cc38d716b71e0f2a8c9a1a",
+  "sourceBaseCommit": "bd11b68e2e1eca11c692dde32d6c0683a78f6d66",
+  "environment": {
+    "architecture": "arm64",
+    "authoring": "isolated Python 3.12 / NumPy 1.26.4 / scipy 1.17.0 / trimesh 4.0.5",
+    "inferenceUsed": false,
+    "networkUsed": false
+  },
+  "fixtureTests": {
+    "passed": 10,
+    "failed": 0,
+    "source": "experiments/dart-modelshd-charhd/test-joint-collar-surface.py"
+  },
+  "runtimeSelected": false,
+  "ownerMeshAccepted": false,
+  "sourceBoundCostumeCutLinesAccepted": false,
+  "sourceAuditSha256": "9c101adeb735c438998376cc26b20afb658001586906bc7557937b2b4e9e88db",
+  "comparisonReceiptSha256": "8322a8596c7d5a6e47fd9d785fac84a72dd7aa2e2828c13a5c2330d4079d14bf",
+  "promotion": "Draft authoring only. Complete actor topology, costume/material fidelity, grips, collisions, runtime integration, gameplay and Deck validation remain required.",
+  "rejectedMethodRegression": {
+    "strategy": "Identical fixture suite with only the circular-arc tangent length replaced by chord/2 in a private throwaway copy",
+    "expectedFailure": "test_sharp_bend_distributes_sections_without_inward_facing_triangles",
+    "tests": 10,
+    "failures": 1,
+    "currentTests": 10,
+    "currentFailures": 0
+  },
+  "supportedBuild": {
+    "command": "./gradlew charhdJar charHdTests",
+    "result": "BUILD SUCCESSFUL",
+    "scope": "CharHD packaging rebuilt; Java test inputs unchanged and Gradle reused the prior passing test outputs. Python fixtures and native-source offline probes executed freshly."
+  }
+}
