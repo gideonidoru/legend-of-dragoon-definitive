@@ -127,7 +127,7 @@ final class CleanReinstall {
       || name.matches("(?i)Env[1-4]HD(?:[-v0-9.]*)\\.zip")
       || PackageManifest.ROOT_FILES.contains(name) || PackageManifest.SUPPORT.contains(name)
       || name.equals(PackageManifest.METADATA) || name.equals(PackageManifest.HASHES) || name.equals(FileDelivery.SIZES)
-      || name.matches("lod-game-.*\\.jar") || name.equals("files") || name.equals("steam-artwork") || name.endsWith(".log")
+      || name.matches("lod-game-.*\\.jar") || name.equals("files") || name.equals("steam-artwork") || Set.of("launcher.log", "installer.log", "installer-bootstrap.log", "desktop-bootstrap.log").contains(name)
       || name.matches("(?:release-recovery|disc-extraction-recovery|state-recovery)-.*")
       || name.matches("\\.update-[0-9]+\\.zip") || name.startsWith(".package-") || name.startsWith(".files-") || name.startsWith(".contents-")
       || name.startsWith(".source-build-") || name.startsWith(".bootstrap-") || name.startsWith(".java-path-") || name.startsWith(".state-")
@@ -149,7 +149,8 @@ final class CleanReinstall {
         }
         if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) continue;
         if(!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Unsupported personal data: " + path);
-        if(path.getFileName().toString().equals("snapshot-files.properties")) continue;
+        if(source.getParent().equals(root.resolve("snapshots")) && source.getFileName().toString().matches("snapshot-[a-f0-9-]{36}")
+          && path.equals(source.resolve("snapshot-files.properties"))) continue;
         // Historical identical data already retained as active data needs no duplicate copy.
         if(active != null && Files.isDirectory(source, LinkOption.NOFOLLOW_LINKS)) {
           final Path matching = active.resolve(source.relativize(path));

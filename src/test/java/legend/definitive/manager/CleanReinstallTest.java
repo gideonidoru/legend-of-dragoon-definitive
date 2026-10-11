@@ -41,6 +41,8 @@ class CleanReinstallTest {
     Files.writeString(store.root().resolve("isos/owner.iso"), "private disc");
     Files.writeString(store.root().resolve("loose.iso"), "another disc");
     Files.writeString(store.root().resolve("owner-note.txt"), "personal note");
+    Files.writeString(store.root().resolve("campaign-notes.log"), "owner journal");
+    Files.createDirectories(store.root().resolve("owner-folder")); Files.writeString(store.root().resolve("owner-folder/snapshot-files.properties"), "owner properties");
     Files.createDirectories(store.root().resolve("mods")); Files.writeString(store.root().resolve("mods/custom.jar"), "legacy mod");
     Files.writeString(store.root().resolve("lod-game-obsolete.jar"), "stray old app");
     final List<String> stale = List.of("Definitive-Installer.zip", "Legend-of-Dragoon-Definitive-linux-x64.zip", "Definitive-Contents-macos-arm64.zip", "Env1HD-v0.1.0.zip", "FMVHD-v0.1.0.jar");
@@ -70,6 +72,8 @@ class CleanReinstallTest {
     assertEquals("owner custom mod", Files.readString(data.resolve("recovered-reinstall/releases/" + before.getProperty("version") + "/bundled-mods/MyCustomMod.jar")));
     assertEquals("another disc",Files.readString(data.resolve("recovered-reinstall/loose.iso")));
     assertEquals("personal note",Files.readString(data.resolve("recovered-reinstall/owner-note.txt")));
+    assertEquals("owner journal", Files.readString(data.resolve("recovered-reinstall/campaign-notes.log")));
+    assertEquals("owner properties", Files.readString(data.resolve("recovered-reinstall/owner-folder/snapshot-files.properties")));
     assertEquals("legacy mod",Files.readString(data.resolve("recovered-reinstall/mods/custom.jar")));
     for(String name:List.of("releases","data","workspaces")) try(var paths=Files.list(store.root().resolve(name))) { assertEquals(1,paths.count(),name); }
     try(var paths=Files.list(store.root().resolve("snapshots"))) {assertEquals(0,paths.count());}
