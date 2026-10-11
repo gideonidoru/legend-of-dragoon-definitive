@@ -1,0 +1,16 @@
+[
+  {
+    "path": "integrations/envhd/production/battle-presentation-candidates/7ff3b88400ca78fc35e383a6d5106609be89f2adb849a15bc4d7d694ea5444db/rejected-input-1.png",
+    "sha256": "81b37c55f6c98f82da02ed25cb4697f2a41c1acfb6da3402327b2fd26f6ba7dc",
+    "prompt": "Edit the FIRST current source-bound battle texture atlas. The SECOND original is authoritative for every shape, fragment, count, value and lighting. Output ONLY the identical flat UV canvas at EXACT aspect ratio 79:80, suggested 1517x1536. Every island, tiny adjoining fragment, silhouette, hole and boundary keeps its identical normalized position. Bespoke painterly AA2026 retro-game material repair: improve continuity and clarity without changing the original aesthetic. Preserve the broad smooth brown cylindrical shaft, original soft vertical tonal bands and two existing dark diagonal collar marks, black side gaps and all adjacent left/top/lower fragments. Fine matte grain only within existing stone, no new cuts, cracks, collar bands or bright spots. No scene render, reframing, perspective, crop, stretching, borders or labels. No invented structural detail or objects. Retain all original black/dim areas and original lighting, opaque output.",
+    "reason": "Canvas aspect failed immutable source79:80 contract; rejected unselected.",
+    "runtimeSelected": false
+  },
+  {
+    "path": "integrations/envhd/production/battle-presentation-candidates/7ff3b88400ca78fc35e383a6d5106609be89f2adb849a15bc4d7d694ea5444db/rejected-input-2.png",
+    "sha256": "90a708ca3901012181ab9d40309e8a7a47635fb922791a6186cc0cc22a64f91c",
+    "prompt": "Edit the FIRST current source-bound battle texture atlas. The SECOND original is authoritative for every shape, fragment, count, value and lighting. Output ONLY the identical flat UV canvas at EXACT aspect ratio 79:80, suggested 1517x1536. Every island, tiny adjoining fragment, silhouette, hole and boundary keeps its identical normalized position. Bespoke painterly AA2026 retro-game material repair: improve continuity and clarity without changing the original aesthetic. Preserve the broad smooth brown cylindrical shaft, original soft vertical tonal bands and two existing dark diagonal collar marks, black side gaps and all adjacent left/top/lower fragments. Fine matte grain only within existing stone, no new cuts, cracks, collar bands or bright spots. No scene render, reframing, perspective, crop, stretching, borders or labels. No invented structural detail or objects. Retain all original black/dim areas and original lighting, opaque output.\nCANVAS CORRECTION: this source canvas is 79 pixels wide and 80 pixels high, a near-square ratio EXACTLY 79:80. Output 1517x1536 pixels or 1264x1280 pixels; do not use an unmodified square output. Preserve all island positions including top/bottom small adjoining fragments. The cylinder is softly shaded with existing soft vertical bands and two dark diagonal collar marks only; no extra directional beams or sharper gouges.",
+    "reason": "Retry still used tall2:3 canvas instead of near-square79:80 source atlas; rejected unselected.",
+    "runtimeSelected": false
+  }
+]

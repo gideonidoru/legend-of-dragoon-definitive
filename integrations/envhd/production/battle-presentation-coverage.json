@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "baaebcda95d0b00f8573c7bfe25836bfc9b83b9bf9c8eb6c6f97837e16b44fd6",
+    "battle-presentation-artwork-v1.json": "89596b8f1fbca2bff58428d22e381630b7da0a4f4734447ab10a9e15b30b5ac2",
     "battle-presentation-reviews/2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274"
   },
   "counts": {
@@ -19,10 +19,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 309,
+    "newBespokeCandidates": 340,
     "newlySelectedBespokeMasters": 35,
-    "baselineMastersStillNeedingPresentationReview": 197,
-    "pendingCandidateReviews": 274,
+    "baselineMastersStillNeedingPresentationReview": 166,
+    "pendingCandidateReviews": 305,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -1281,7 +1281,9 @@
         4096,
         608
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "f7fc87bed762866ed1b9112aed3bc3835a8ec3981a6d1e1e135e1eaf5872c3da"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1299,7 +1301,14 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "30a4104485e66a9ce46dbcdce0fd5bf86c945b77c49213922789b6eddd56c249",
+        "3823dbd6208c124bf492c4f98f9a91da938e299840ed6dab3b5976be746e6767",
+        "68d9928d3a8b5327e9d9edca7421903044d791288026e1a3c92f606de1369fc3",
+        "92de3c5e672c24a80ad030dcd88f44c0f18c8fa8cf017dd4ba1fdb135db9528d",
+        "c83153992f7fb6141b06eb3310402895fc935b17353cb8d0735835b68557bbd7",
+        "e093abdada9817456c42d0c09831ab02e6e188ae766ff9956d7b072e50ff7d29"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1317,7 +1326,13 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "0e816e815ea42d520b2ec6076958347829e0e13e0bb161d58481e874d0767ebd",
+        "1c331f0811e51558666dae7720f07f38235ee36c44cd4a171e7608d971c66d7c",
+        "44a66c4169b1277d76f0d99a2fd1a0a98aad4e988868e98b92d20fb814913abc",
+        "7ff3b88400ca78fc35e383a6d5106609be89f2adb849a15bc4d7d694ea5444db",
+        "b767c7978d7249f179049bf60f018ad0f85b78b109d94111931ce39babff6d00"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1335,7 +1350,14 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "1158800804fe065855a8cdbbceacffcc1e7b9966c8b929a27c94be81a998a410",
+        "1693d194b4a584f47df62b1dbc3d5141d7d918b60807b73a0e638e3dedfc2923",
+        "2ec50381e9b5274035d633b5aa5108b47e2a6acbddffce1234eba4a7177698e4",
+        "34e2a298252b9952c46a39b30253acb2cbeb778f7240d1edfbe551c4a1bedcab",
+        "3d556319a12af66c1e7cdb493f01e99667e6f5c22bcf9261ae1ae5114028cc75",
+        "65ccab21d981e046310a55b0b4c188b148f442f207257ca11b796c5720cbf41b"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1353,7 +1375,21 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "06d12df3fbb30939ec12bed5194c8f3527eb98e90d09bc47d70627c886a40b6a",
+        "0a471449644d63429595b98857c2db04307fa86eeca0c161816ff4dd3db5d325",
+        "14c0fb50112abebad3bcf930e089fb34edd415d3a62e690f1747d74c404557c4",
+        "3544a7fbdd7bb387356420e337d13841f6936bf823b82c82785165e425153029",
+        "39d6a1eb21eb3e5d718ccc906fa3cdeb34b3961b1d61b662d46430946b593521",
+        "41a42eecb28d01b073eb3d3b69699bf0905be07a69b9b8837e40ef442c5d9e2b",
+        "48dc776b91618e2299e852264c942ff27bae3289fcd2eddc2c917afb533fc5ac",
+        "5f0e4297d90550bea2a906005e7ca20f3894027fcb557c652d4812634ab5f366",
+        "6b33ad4bca5019250c7ee8b23ca65b18149bb07040fd7a0cb2b243138cb8b2b2",
+        "e36241b4632ce7fa9bd3e6d5a101d506f9283de08692714dfc46d997f103a428",
+        "eb531bc7463d284496f577a4ba1b2f0d1c681c621a1004565be56b8250d7337a",
+        "eb9cd1f36f261fc731ff261a1f4252727209270ec03d5af63f6a43b6f57b53ad",
+        "f038ad1cb7ca77df2f9c802f4bb5004be30fc439bfcf473a0a7aadeb065ba7e9"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12089,7 +12125,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {58: [0]}. Source family: Moon: bare branches/roots. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12120,7 +12156,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {59: [0]}. Source family: Moon: purple stone, organic orb, pale blue plant forms and woven organic construction. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12151,7 +12187,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {59: [0]}. Source family: Moon: purple stone, organic orb, pale blue plant forms and woven organic construction. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12182,7 +12218,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {59: [0]}. Source family: Moon: purple stone, organic orb, pale blue plant forms and woven organic construction. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12213,7 +12249,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {59: [0]}. Source family: Moon: purple stone, organic orb, pale blue plant forms and woven organic construction. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12244,7 +12280,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {59: [0]}. Source family: Moon: purple stone, organic orb, pale blue plant forms and woven organic construction. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12275,7 +12311,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {59: [0]}. Source family: Moon: purple stone, organic orb, pale blue plant forms and woven organic construction. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12306,7 +12342,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {60: [0]}. Source family: brown architectural columns, cross-shaped construction and trim.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12337,7 +12373,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {60: [0]}. Source family: brown architectural columns, cross-shaped construction and trim.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12368,7 +12404,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {60: [0]}. Source family: brown architectural columns, cross-shaped construction and trim.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12399,7 +12435,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {60: [0]}. Source family: brown architectural columns, cross-shaped construction and trim.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12430,7 +12466,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {60: [0]}. Source family: brown architectural columns, cross-shaped construction and trim.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12461,7 +12497,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {61: [2]}. Source family: Moon: blue/purple columns, stone and green orb surface. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12492,7 +12528,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {61: [2]}. Source family: Moon: blue/purple columns, stone and green orb surface. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12523,7 +12559,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {61: [2]}. Source family: Moon: blue/purple columns, stone and green orb surface. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12554,7 +12590,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {61: [2]}. Source family: Moon: blue/purple columns, stone and green orb surface. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12585,7 +12621,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {61: [2]}. Source family: Moon: blue/purple columns, stone and green orb surface. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12616,7 +12652,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {61: [2]}. Source family: Moon: blue/purple columns, stone and green orb surface. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12647,7 +12683,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12678,7 +12714,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12709,7 +12745,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12740,7 +12776,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12771,7 +12807,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12802,7 +12838,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12833,7 +12869,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12864,7 +12900,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12895,7 +12931,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12926,7 +12962,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12957,7 +12993,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -12988,7 +13024,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13019,7 +13055,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {62: [0]}. Source family: Moon: gold-lit architectural surfaces, carved stone, ribbons, pillars and stairs. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
