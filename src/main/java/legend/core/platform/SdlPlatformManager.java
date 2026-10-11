@@ -266,6 +266,7 @@ public class SdlPlatformManager extends PlatformManager {
   // These are used to disable keyboard input while controller buttons are held. This is a dumb
   // workaround for dumb Steam's Steam Input repeating all controller input as keyboard input.
   private final IntSet ignoredKeys = new IntOpenHashSet();
+  private final IntSet acceptedKeys = new IntOpenHashSet();
   private final LongSet axesHeld = new LongOpenHashSet();
   private final LongSet buttonsHeld = new LongOpenHashSet();
   //
@@ -313,7 +314,7 @@ public class SdlPlatformManager extends PlatformManager {
               break;
             }
           } else */
-            if(ignoreSteamInputMode == IgnoreSteamInputMode.IGNORE_WHEN_GAMEPAD_USED && this.ignoreKeyboardInput(key.down(), key.scancode())) {
+            if(this.ignoreKeyboardInput(key.down(), key.scancode(), ignoreSteamInputMode == IgnoreSteamInputMode.IGNORE_WHEN_GAMEPAD_USED)) {
               if(LOGGER.isInfoEnabled(ACTIONS_MARKER)) {
                 LOGGER.info(ACTIONS_MARKER, "Ignoring key %s", SDL_GetKeyName(key.key()));
               }
@@ -645,6 +646,7 @@ public class SdlPlatformManager extends PlatformManager {
   private void cancelInactiveWindowInput(final Window window) {
     this.pressed.clear();
     this.ignoredKeys.clear();
+    this.acceptedKeys.clear();
     this.axesHeld.clear();
     this.buttonsHeld.clear();
     this.digitalActionInputs.clear();
@@ -757,12 +759,21 @@ public class SdlPlatformManager extends PlatformManager {
   }
 
   /** The production key-event policy, kept independent of SDL polling for state verification. */
-  private boolean ignoreKeyboardInput(final boolean down, final int scancode) {
-    if(!this.buttonsHeld.isEmpty() || !this.axesHeld.isEmpty()) {
-      if(down) this.ignoredKeys.add(scancode);
+  private boolean ignoreKeyboardInput(final boolean down, final int scancode, final boolean suppressControllerDuplicates) {
+    final boolean controllerHeld = !this.buttonsHeld.isEmpty() || !this.axesHeld.isEmpty();
+    if(!down) {
+      final boolean accepted = this.acceptedKeys.remove(scancode);
+      final boolean ignored = this.ignoredKeys.remove(scancode);
+      return !accepted && suppressControllerDuplicates && (ignored || controllerHeld);
+    }
+    if(suppressControllerDuplicates && controllerHeld) {
+      if(!this.acceptedKeys.contains(scancode)) this.ignoredKeys.add(scancode);
       return true;
     }
-    return !down && this.ignoredKeys.remove(scancode);
+    // A new forwarded down owns its next up, even if suppression changes before release.
+    this.acceptedKeys.add(scancode);
+    this.ignoredKeys.remove(scancode);
+    return false;
   }
 
   /** Remove every source for this device before notifying synchronous release listeners. */

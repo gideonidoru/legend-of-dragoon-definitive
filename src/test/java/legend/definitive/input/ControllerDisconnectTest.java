@@ -54,6 +54,7 @@ final class ControllerDisconnectTest {
     }
 
     void release(final InputBinding<?> binding, final Integer device) throws Exception {
+      if(device != null) buttons().remove((long)device << 32);
       method("releaseBinding", InputBinding.class, Integer.class, Window.class).invoke(this.platform, binding, device, this.window);
     }
 
@@ -273,8 +274,87 @@ final class ControllerDisconnectTest {
     assertEquals(1, f.released.size());
   }
 
+  /** CTRL-KBD-01: a forwarded keyboard down must receive its up during controller use. */
+  @Test void acceptedKeyboardReleaseIsDeliveredWhileControllerButtonIsHeld() throws Exception {
+    final Fixture f = new Fixture();
+    final InputAction action = InputAction.fixed();
+    final InputBinding<?> keyboard = new InputBinding<>(action, new KeyInputActivation(InputKey.A));
+    assertFalse(ignoreKey(f, true, 4));
+    f.press(keyboard, null);
+    f.platform.clearPressed();
+    f.press(binding(InputAction.fixed()), 7);
+    if(!ignoreKey(f, false, 4)) f.release(keyboard, null);
+    assertFalse(f.platform.isActionHeld(action));
+    assertFalse(f.platform.isActionRepeat(action));
+  }
+
+  /** CTRL-KBD-02: a suppressed repeat must not replace the accepted down's release owner. */
+  @Test void acceptedKeyboardReleaseSurvivesSuppressedRepeatWhileControllerAxisIsHeld() throws Exception {
+    final Fixture f = new Fixture();
+    final InputAction action = InputAction.fixed();
+    final InputBinding<?> keyboard = new InputBinding<>(action, new KeyInputActivation(InputKey.A));
+    assertFalse(ignoreKey(f, true, 4));
+    f.press(keyboard, null);
+    f.platform.clearPressed();
+    f.axis(InputAction.fixed(), 7, .5f);
+    assertTrue(ignoreKey(f, true, 4));
+    if(!ignoreKey(f, false, 4)) f.release(keyboard, null);
+    assertFalse(f.platform.isActionHeld(action));
+    assertFalse(f.platform.isActionRepeat(action));
+  }
+
+  /** CTRL-KBD-03: changing the workaround mode must preserve a forwarded key pair. */
+  @Test void enablingSuppressionWhileAKeyIsHeldDoesNotSwallowItsRelease() throws Exception {
+    final Fixture f = new Fixture();
+    final InputAction action = InputAction.fixed();
+    final InputBinding<?> keyboard = new InputBinding<>(action, new KeyInputActivation(InputKey.A));
+    assertFalse(ignoreKey(f, true, 4, false));
+    f.press(keyboard, null);
+    f.platform.clearPressed();
+    f.press(binding(InputAction.fixed()), 7);
+    if(!ignoreKey(f, false, 4, true)) f.release(keyboard, null);
+    assertFalse(f.platform.isActionHeld(action));
+    assertFalse(f.platform.isActionRepeat(action));
+  }
+
+  /** CTRL-KBD-04: a fresh accepted down replaces an older suppressed-down marker. */
+  @Test void newKeyboardTapAfterOrdinaryControllerReleaseDoesNotInheritSuppression() throws Exception {
+    final Fixture f = new Fixture();
+    final InputBinding<?> controller = binding(InputAction.fixed());
+    f.press(controller, 7);
+    assertTrue(ignoreKey(f, true, 4));
+    f.release(controller, 7);
+    final InputAction action = InputAction.fixed();
+    final InputBinding<?> keyboard = new InputBinding<>(action, new KeyInputActivation(InputKey.A));
+    assertFalse(ignoreKey(f, true, 4));
+    f.press(keyboard, null);
+    assertFalse(ignoreKey(f, false, 4));
+    f.release(keyboard, null);
+    assertFalse(f.platform.isActionHeld(action));
+    assertTrue(f.platform.isActionPressed(action), "Ordinary completed tap is preserved");
+    f.platform.clearPressed();
+    assertFalse(f.platform.isActionRepeat(action));
+  }
+
+  /** CTRL-KBD-05: focus cancellation discards pairing from the previous input owner. */
+  @Test void focusCancellationClearsAcceptedKeyboardPairing() throws Exception {
+    final Fixture f = new Fixture();
+    final InputAction action = InputAction.fixed();
+    assertFalse(ignoreKey(f, true, 4));
+    f.press(new InputBinding<>(action, new KeyInputActivation(InputKey.A)), null);
+    method("cancelInactiveWindowInput", Window.class).invoke(f.platform, f.window);
+    assertFalse(f.platform.isActionHeld(action));
+    assertFalse(f.platform.isActionPressed(action));
+    f.press(binding(InputAction.fixed()), 7);
+    assertTrue(ignoreKey(f, false, 4), "A key from the old focus owner is not paired after cancellation");
+  }
+
   private static boolean ignoreKey(final Fixture fixture, final boolean down, final int scancode) throws Exception {
-    return (boolean)method("ignoreKeyboardInput", boolean.class, int.class).invoke(fixture.platform, down, scancode);
+    return ignoreKey(fixture, down, scancode, true);
+  }
+
+  private static boolean ignoreKey(final Fixture fixture, final boolean down, final int scancode, final boolean suppress) throws Exception {
+    return (boolean)method("ignoreKeyboardInput", boolean.class, int.class, boolean.class).invoke(fixture.platform, down, scancode, suppress);
   }
 
 }

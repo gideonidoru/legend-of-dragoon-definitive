@@ -33,3 +33,17 @@ reconnection. Device acceptance must still include disconnect while navigating a
 prompt, reconnect, simultaneous keyboard/controller input, and separate native-gamepad
 and keyboard-emulation Steam Input layouts. The recovery does not identify virtual
 keyboard sources or promise suppression of every Steam Input duplicate.
+
+## Keyboard release cases
+
+CTRL-KBD-01: a keyboard down forwarded before controller use must receive its up while
+controller buttons or axes are held. CTRL-KBD-02: suppressed repeat downs must not replace
+that accepted pair. CTRL-KBD-03: enabling the workaround during a held key preserves its
+release. CTRL-KBD-04: a new accepted down replaces an older suppressed-down marker after
+ordinary controller release. CTRL-KBD-05: focus cancellation clears accepted-key pairing
+along with other window-owned input.
+
+The SDL branch invokes the tested policy for both workaround modes. Pairing describes
+forwarded logical scancodes, not authenticated physical keyboards: this workaround cannot
+distinguish every Steam Input virtual event from a real key with the same scancode. Physical
+ordering and mixed-device behavior remain device acceptance, not headless certification.
