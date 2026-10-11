@@ -145,6 +145,44 @@ class BattlePresentationTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'aspect ratio'):
                 self.preflight()
 
+    def canvas_candidate(self):
+        Image.new('RGB', (256, 256), (40, 80, 100)).save(self.raw)
+        self.output.unlink()
+        record, _ = verify.canvas_recipe.execute(self.root / 'source.png', self.raw, self.output, self.key)
+        self.candidate.update(record)
+        self.candidate['review']['outputSha256'] = record['outputSha256']
+        self.save()
+
+    def test_versioned_canvas_candidate_replays_with_unchanged_v1_manifest_pins(self):
+        self.canvas_candidate()
+        result = self.preflight()
+        self.assertEqual(result['verified'][0]['image'].shape, (16, 16, 4))
+        self.assertEqual(self.manifest['method'], verify.recipe.METHOD)
+        self.assertEqual(self.manifest['algorithmSha256'], verify.PINS['algorithmSha256'])
+
+    def test_canvas_candidate_cannot_rebind_the_preregistered_rectangle(self):
+        self.canvas_candidate()
+        self.candidate['sourceCanvasRect'][0] += 1
+        self.save()
+        with self.assertRaisesRegex(ValueError, 'operation receipt changed'):
+            self.preflight()
+
+    def test_canvas_wrong_shape_is_rejected_before_recipe_replay(self):
+        self.canvas_candidate()
+        Image.new('RGB', (256, 255), 'green').save(self.raw)
+        self.candidate['generatedSha256'] = verify.battle.terrain.digest(self.raw.read_bytes())
+        self.save()
+        with mock.patch.object(verify.canvas_recipe, 'repair', side_effect=AssertionError('Must reject before crop')):
+            with self.assertRaisesRegex(ValueError, 'exactly square'):
+                self.preflight()
+
+    def test_canvas_recipe_pins_cannot_be_forged(self):
+        self.canvas_candidate()
+        self.candidate['algorithmSha256'] = '0' * 64
+        self.save()
+        with self.assertRaisesRegex(ValueError, 'operation receipt changed'):
+            self.preflight()
+
 
 class BattlePresentationAuditTests(unittest.TestCase):
     def setUp(self):

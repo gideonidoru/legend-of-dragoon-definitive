@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "4b25f4ab99ad92f4da67694a34233d874a00fccfcc30d9c8bbfec8f7e67c3aea",
+    "battle-presentation-artwork-v1.json": "99361a54898d3b2500aba65b5166026b18d35e75989d86d249183c66ffe58995",
     "battle-presentation-reviews/2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274"
   },
   "counts": {
@@ -19,10 +19,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 381,
+    "newBespokeCandidates": 406,
     "newlySelectedBespokeMasters": 35,
-    "baselineMastersStillNeedingPresentationReview": 125,
-    "pendingCandidateReviews": 346,
+    "baselineMastersStillNeedingPresentationReview": 100,
+    "pendingCandidateReviews": 371,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -1559,7 +1559,23 @@
         4096,
         708
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "32aed5426ccc64f04ffa8e5b7845806ddebd6d11a7d0ff10f3b12783a4105a13",
+        "341f566d50c566eb9575158808e970ed89f109d965830effd3d0e83a1acf94e3",
+        "3f2f7ca9fa6f00e7746bf7e5191367cbf45b3066feaba93a9764ad4e5bc56342",
+        "4b82357824b7803fc636f4ae13dce7a8addea43f155e90012737d46a5a7fe4f5",
+        "4cbb77c63f3061f50b01259bacef0972cf5298011cece5ffe3b99f53953fbbdc",
+        "75d09f52ae00a07f9b965f3a3d29ee8c2ebd0ac4f824ad2c900914fc0d2c18fe",
+        "800c005f2e9735a6f1cfc4b7e89eddf5bfd9d667bed85324dad18f49e4f59e5a",
+        "8f44992594b3fd701ef19526a643956b2df6dd9543e003e0d14870f9c533d56e",
+        "9d10eac116f1b58acc230aaff5f6a3615edcacbf25155991540281a454ecd200",
+        "c2ee8b46e004d0730454a22c370dccdf0471e13a6769a55e1c5b0229393f00c6",
+        "c7ce0f09f30f30cf437f0be3ba1384765086a97ee423130aa62d307114f8f7a2",
+        "e68b20cf5d497f69b8159261d0b58901e2a48c7fecd3804823118f04174fe896",
+        "ed79a54eda2a4698100cc0cef879afb75c834cc36e3f08979441ec0037667bac",
+        "fab607c7121f65d1ae8c76c5624e417f67d15dc2606f97ea31cb5964a1638e71",
+        "febcd0d2b435c739dbfed55766e8ea56deb77cde022244801bac9a6f0709cc93"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1577,7 +1593,13 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "608e09d8c38d4a8a4e6add8aa0d2d42e7fcbd4f87d8ba0fddb67d8d47f9d932d",
+        "68113c1030b75023f6b64e99dd8310d8e3b2a64d2565af9e4a41baa04970a690",
+        "6f766037e26289139251e3c7a96f52a46bd490e52ecb7a8f22c7835ad6498b14",
+        "ba0596bd2b05b8e94ddb4160bc41decebf4a3e407a4e4c1e5d4e5ee272d6b074",
+        "f0decd7368bdadce698586e7e110652f51129b2b0e79e1bba84e7c5f820bc15d"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1706,7 +1728,13 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "263c480dd9541d83076fd57abbfdebb20b4879021efe36ff2fcdf233c3466396",
+        "4893d914888fb18bc40c5379b4c113796a388a620daa33d2c96ac9406e390279",
+        "4d15c9d6a1478a074575b04dfb165d7ee1404a7b252cca4d74daf47c8a96960d",
+        "acdb1dbb8b38d38114bcd4d172054370bb5c7dc713f9c67fb8f248ed1238a787",
+        "fd4708ad08e61bd24f5c026240c6727e95f2c9ffde368205fc5d38504e88d0d8"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1723,7 +1751,11 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "263c480dd9541d83076fd57abbfdebb20b4879021efe36ff2fcdf233c3466396",
+        "4d15c9d6a1478a074575b04dfb165d7ee1404a7b252cca4d74daf47c8a96960d",
+        "acdb1dbb8b38d38114bcd4d172054370bb5c7dc713f9c67fb8f248ed1238a787"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14466,7 +14498,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14497,7 +14529,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14528,7 +14560,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14559,7 +14591,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14590,7 +14622,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14621,7 +14653,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14652,7 +14684,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14683,7 +14715,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14714,7 +14746,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14745,7 +14777,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14776,7 +14808,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14807,7 +14839,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14838,7 +14870,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14869,7 +14901,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14900,7 +14932,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {69: [0]}. Source family: blue/purple architecture, ribbons, green lights, skeletal columns and circular ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14962,7 +14994,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {70: [2]}. Source family: grey stone, ribbed forms, skull relief and softly shaded architectural surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -14993,7 +15025,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {70: [1]}. Source family: grey stone, ribbed forms, skull relief and softly shaded architectural surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -15024,7 +15056,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {70: [2]}. Source family: grey stone, ribbed forms, skull relief and softly shaded architectural surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -15055,7 +15087,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {70: [1]}. Source family: grey stone, ribbed forms, skull relief and softly shaded architectural surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -15086,7 +15118,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {70: [1]}. Source family: grey stone, ribbed forms, skull relief and softly shaded architectural surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -15135,7 +15167,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {79: [1], 80: [0]}. Source family: Moon: tangled organic surfaces, pale ground, foliage and cold rock; Moon: tangled organic surfaces, pale ground, foliage and cold rock. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -15184,7 +15216,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {79: [0], 80: [0]}. Source family: Moon: tangled organic surfaces, pale ground, foliage and cold rock; Moon: tangled organic surfaces, pale ground, foliage and cold rock. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -15215,7 +15247,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {79: [0]}. Source family: Moon: tangled organic surfaces, pale ground, foliage and cold rock. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -15246,7 +15278,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {79: [0]}. Source family: Moon: tangled organic surfaces, pale ground, foliage and cold rock. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -15295,7 +15327,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {79: [0], 80: [0]}. Source family: Moon: tangled organic surfaces, pale ground, foliage and cold rock; Moon: tangled organic surfaces, pale ground, foliage and cold rock. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },

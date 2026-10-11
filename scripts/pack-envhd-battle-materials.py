@@ -120,8 +120,13 @@ def validate_previous_selection(selection,root):
         source_size=tuple(records[key]['sourceSize'])
         if len(source_size)!=2 or any(type(v) is not int or not 1<=v<=256 for v in source_size):invalid()
         header_size=runtime_png_header(data,tuple(v*4 for v in source_size),1024)
-        if key in painted_keys or key in presentation_keys:
+        if key in painted_keys:
             bounds.validate_png_header(data,'output',source_size)
+        elif key in presentation_keys:
+            # Installed images are bounded to an exact 4x native page. Authoring
+            # recipes are checked separately against their immutable per-record
+            # pins; v2 admits the full 256x256 page without changing v1 bounds.
+            presentation_tools.canvas_recipe.bounds.validate_png_header(data,'output',source_size)
         with Image.open(io.BytesIO(data)) as image:
             if image.format!='PNG' or image.mode!='RGBA' or image.size!=header_size:invalid()
             expected[key]=np.array(image)
