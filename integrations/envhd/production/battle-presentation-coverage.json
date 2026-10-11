@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "5653b80e34b7bde5f8891b02f401a51cb90106d857ccbb92eecdf6bc31652039"
+    "battle-presentation-artwork-v1.json": "b5a318a3c1ace28b9158206d4a40a7ba1565e3ef5291095e9186293e8fabc59f"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,10 +18,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 41,
+    "newBespokeCandidates": 55,
     "newlySelectedBespokeMasters": 0,
-    "baselineMastersStillNeedingPresentationReview": 465,
-    "pendingCandidateReviews": 41,
+    "baselineMastersStillNeedingPresentationReview": 451,
+    "pendingCandidateReviews": 55,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -757,7 +757,22 @@
         4096,
         968
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "0e36156a50ad2db5f2e6a6ba845880277d69d6ef331fbe8e90a4ec1958f9988a",
+        "292786ab6dfa34676999a25e6344b164ea30ca7b79088fda2b13bf58143de424",
+        "334e399e2166c4ac9fba3d5ea3afe2f983bc2cfd9fc47e1b2a933a7dd2283a1a",
+        "3880bf6a9db60ecea2bc725ebd9fd11f9015eab223a7cc46113ad70690abe175",
+        "561f0ece3fa3e92904a3c08d5e1ae42f0f41f4c8fbe2c6dd811e67522e6d4358",
+        "59b36974ce5da2c737bcf22e8fec5921972a9e3f88a326ba0db065c80f91258e",
+        "7b171eb8cdaba610afeea7daffe5a7cdd4b0957347f3102850230817c1409848",
+        "9aef5cea9abf8c9f8102161ccd6e98f5175b12bbfa0f090b04a8cbc7e3a2711a",
+        "b9629a0411000ce888f8609eeaf117e5ef46041cffb59c683350030ed63adce1",
+        "bcffa763b5ff8baf92b855610929743d5d4bcaafb88f92e375fd101ce39fc5e4",
+        "bdd034f5d3df83679296b6553d19690c9ecb4545d6f5cb79ee9ba8fbb0fd3e39",
+        "c4ac55249ba768ba19eb995df86cf278c823f7e50d5e488fc93d5b2a91a40b10",
+        "d2b61cac7f814f974b2420b547fcd8b53be3810b5392807b2194231b3dda90ff",
+        "f4b606c7535de71a95443737e0f68bea9dc9c7b07115d85b3a83bf6c9ae59a68"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7586,7 +7601,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7679,7 +7694,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7741,7 +7756,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7772,7 +7787,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7803,7 +7818,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7834,7 +7849,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7865,7 +7880,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7896,7 +7911,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7927,7 +7942,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7958,7 +7973,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7989,7 +8004,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8020,7 +8035,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8051,7 +8066,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8082,7 +8097,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
