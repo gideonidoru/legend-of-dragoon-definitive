@@ -4,7 +4,6 @@ package legend.definitive.manager;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipFile;
 
 /** Extracts only potential images into owned staging; never executes or installs archive extras. */
@@ -19,10 +18,15 @@ public final class DiscSources {
     return importSelected(store, selected, progress, false);
   }
   static String importSelected(final InstallStore store, final List<Path> selected, final InstallProgress progress, final boolean replaceDifferent) throws IOException, InterruptedException {
+    PackageManifest.checkCancelled();
+    return store.withOperation(() -> importLocked(store, selected, progress, replaceDifferent));
+  }
+  private static String importLocked(final InstallStore store, final List<Path> selected, final InstallProgress progress, final boolean replaceDifferent) throws IOException, InterruptedException {
     final Path stage = Files.createTempDirectory(store.root(), ".disc-sources-");
     try {
       final List<Path> images = new ArrayList<>();
       for(final Path source : selected) {
+        PackageManifest.checkCancelled();
         progress.phase("Reading selected files", source.getFileName().toString(), 5);
         if(!Files.isRegularFile(source, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Choose disc images or ZIP, RAR and 7z archives.");
         final String name = source.getFileName().toString().toLowerCase(Locale.ROOT);
@@ -46,6 +50,7 @@ public final class DiscSources {
     try(final var zip = new ZipFile(source.toFile())) {
       final var entries = zip.entries(); int count = 0, candidates = 0; long expanded = 0;
       while(entries.hasMoreElements()) {
+        PackageManifest.checkCancelled();
         final var entry = entries.nextElement();
         if(++count > 30000) throw new IOException("Archive contains too many entries.");
         safeMember(entry.getName());
@@ -56,12 +61,14 @@ public final class DiscSources {
         try(final var input = zip.getInputStream(entry); final var output = Files.newOutputStream(extracted, StandardOpenOption.CREATE_NEW)) {
           final byte[] buffer = new byte[1024 * 1024]; long total = 0; final var crc = new java.util.zip.CRC32();
           for(int n; (n = input.read(buffer)) != -1;) {
+            PackageManifest.checkCancelled();
             if((total += n) > LIMIT) throw new IOException("Disc archive exceeds its size limit.");
             output.write(buffer, 0, n); crc.update(buffer, 0, n);
             progress.bytes("Unpacking " + Path.of(entry.getName()).getFileName(), 10, 20, total, entry.getSize());
           }
           if(total != entry.getSize() || crc.getValue() != entry.getCrc()) throw new IOException("Disc archive checksum or size mismatch.");
         }
+        PackageManifest.checkCancelled();
         // Other games and utilities with .bin extensions are not copied into the installation.
         try { DiscImporter.inspect(extracted); images.add(extracted); }
         catch(final IOException ignored) { Files.delete(extracted); }
@@ -105,16 +112,12 @@ public final class DiscSources {
   }
 
   private static void run(final List<String> command, final Path output, final Path errors, final long limit, final int seconds, final InstallProgress progress, final String phase, final long total) throws IOException, InterruptedException {
-    final Process process = new ProcessBuilder(command).redirectOutput(output.toFile()).redirectError(errors.toFile()).start();
-    process.getOutputStream().close();
-    final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(seconds);
-    try {
-      while(!process.waitFor(100, TimeUnit.MILLISECONDS)) {
-        progress.bytes(phase, 10, 20, Files.size(output), total);
-        if(Files.size(output) > limit || Files.size(errors) > 1024 * 1024 || System.nanoTime() > deadline) throw new IOException("Archive extraction exceeded its time or size limit.");
-      }
-      if(process.exitValue() != 0) throw new IOException("Cannot read this archive. Check that it is complete and unencrypted, or select the raw disc images.");
-      if(Files.size(output) > limit) throw new IOException("Archive output exceeded its size limit.");
-    } finally { if(process.isAlive()) { process.destroyForcibly(); process.waitFor(); } }
+    try(final var running = ProcessRunner.startBinary(new ProcessBuilder(command), output, errors, limit)) {
+      final int code = running.await(java.time.Duration.ofSeconds(seconds), () -> {
+        try { progress.bytes(phase, 10, 20, Files.size(output), total); }
+        catch(final IOException failure) { throw new java.io.UncheckedIOException(failure); }
+      });
+      if(code != 0) throw new IOException("Cannot read this archive. Check that it is complete and unencrypted, or select the raw disc images.");
+    } catch(final java.io.UncheckedIOException failure) { throw failure.getCause(); }
   }
 }

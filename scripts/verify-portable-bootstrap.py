@@ -77,7 +77,10 @@ else:raise AssertionError(sys.argv)
         else:
             assert result.returncode != 0 and not (root / 'result').exists(), 'Failure started the manager'
             if failure == 'mktemp': assert 'fixture temporary storage failure' in result.stderr
-            elif failure == 'java': assert 'fixture Java startup failure' in result.stderr
+            elif failure == 'java':
+                assert 'fixture Java startup failure' in result.stdout
+                assert 'fixture Java startup failure' in (root / 'cache/installer-bootstrap.log').read_text()
+                assert (root / 'error').exists(), 'Java startup failure must have a visible error screen'
             else:
                 assert (root / 'error').exists(), 'Bootstrap failure had no error screen'
                 log = (root / 'cache/installer-bootstrap.log').read_text()

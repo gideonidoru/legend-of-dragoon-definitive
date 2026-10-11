@@ -28,12 +28,15 @@ tasks.register('fmvHdAssets') {
         commandLine 'curl', '--fail', '--location', '--proto', '=https', '--proto-redir', '=https', '--connect-timeout', '20', '--max-time', '1800', '--retry', '2', '--output', target.absolutePath, url
         ignoreExitValue = true
       }.result.get() }
-      final def result = fetch(metadata.getProperty('url'))
-      if(result.exitValue != 0) {
-        final String migration = metadata.getProperty('migrationUrl', '')
-        if(migration.isEmpty()) result.assertNormalExitValue()
-        else fetch(migration).assertNormalExitValue()
+      def result = null
+      for(final String key : ['url', 'migrationUrl', 'migrationUrl2']) {
+        final String url = metadata.getProperty(key, '')
+        if(url.isEmpty()) continue
+        result = fetch(url)
+        if(result.exitValue == 0) break
       }
+      if(result == null) throw new GradleException('FMVHD source URL is missing')
+      result.assertNormalExitValue()
     }
     final def digest = java.security.MessageDigest.getInstance('SHA-256')
     target.withInputStream { input ->

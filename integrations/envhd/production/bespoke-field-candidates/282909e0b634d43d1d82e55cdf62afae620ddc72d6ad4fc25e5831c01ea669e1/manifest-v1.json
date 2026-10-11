@@ -1,0 +1,62 @@
+{
+  "decodedRgbaSha256": "282909e0b634d43d1d82e55cdf62afae620ddc72d6ad4fc25e5831c01ea669e1",
+  "generatedSha256": "556931072051596096c3a9d4f52c1f1e6a05af13888c0ed5acddebd910f4d160",
+  "generatedSize": [
+    1774,
+    887
+  ],
+  "sourceSize": [
+    20,
+    10
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "fb9c3264300bfc8b7df87d11074e9734fdcca61a32389ead8d11c86c8b90fbea:-1",
+      "kind": "foreground",
+      "slot": 8,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 339,
+  "representativeLocation": "Evergreen Frst",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 1,
+  "prompt": "Use case: precise-object-edit. Asset: source-faithful HD game foreground texture. Reference1 is the authoritative original nearest-neighbor zoom; reference2 is the COMPLETE original game scene for usage and lighting; reference3 is Skurfa painterly surface finish only, not geometry or color. Repaint reference1 alone, preserving the exact full source canvas, crop, object placement and broad source color/motif arrangement. Evergreen Forest cut339 tiny20x10 isolated dark olive-green conifer foliage fragment at286,30. Complete source scene places it within a fir canopy. Retain the source broad yellow-olive patches on the left and upper edge, darker cool olive interior/right, tiny muted brown patch and exact jagged cropped silhouette. Add restrained fine clustered conifer needle texture supported by the surrounding canopy; no broadleaf frond, standalone tree, stem relocation, rocks, grass strip or straight artificial bands. Canvas20:10, requested1280x640. Match restrained detailed painterly HD finish while retaining reference1 palette/lighting. True transparent alpha only outside native occupied silhouette; never add empty padding, shift or center the object, zoom/crop differently, complete missing parts, or include other scenery. Pixelated source blocks define the broad design, not large square tessellation. No words, logo, watermark or border.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 1904,
+  "paintedGapPixelsExtended": 168,
+  "paintedUncoveredSourcePixels": 94,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 16,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    80,
+    40
+  ],
+  "outputSha256": "8a2d3d7103152586b5333300c5f59c04bc0547a042ce9ab36830f1532d7da5af",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/282909e0b634d43d1d82e55cdf62afae620ddc72d6ad4fc25e5831c01ea669e1/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/282909e0b634d43d1d82e55cdf62afae620ddc72d6ad4fc25e5831c01ea669e1/image-v1.png",
+  "review": {
+    "intent": "Evergreen Forest cut339 foreground8: complete original scene locates the tiny20x10 dark olive fragment within the conifer canopy at286,30. Preserve original light/dark olive groups and cropped silhouette; original and held neural comparison inspected.",
+    "style": "Fine restrained foliage detail replaces an artificial flat neural plane. Conifer needle clusters are an interpretation supported by the surrounding fir canopy, not a claim of exact original needle geometry. Native and current EnvHD static composites checked; independent review and final Skurfa finish pending.",
+    "layout": "Exact20x10 native crop restored at80x40 with original alpha/visible black. Placement held fixed; no completed tree, changed crop or artificial horizontal bands. Small gap extension remains recorded; native state/occlusion/gameplay unverified.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "8a2d3d7103152586b5333300c5f59c04bc0547a042ce9ab36830f1532d7da5af",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

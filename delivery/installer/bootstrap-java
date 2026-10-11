@@ -3,6 +3,7 @@
 set -euo pipefail
 umask 077
 ROOT="${1:?Choose a runtime storage directory}"
+[[ ! -L "$ROOT" ]] || { echo 'Choose a real runtime storage directory.' >&2; exit 1; }
 is_java25() { "$1" -XshowSettings:properties -version 2>&1 | grep -q 'java.specification.version = 25$'; }
 if [[ "${DEFINITIVE_MANAGED_JAVA:-0}" != 1 && -n "${JAVA_HOME:-}" && -x "$JAVA_HOME/bin/java" ]] && is_java25 "$JAVA_HOME/bin/java"; then printf '%s\n' "$JAVA_HOME/bin/java"; exit 0; fi
 # Reviewed upstream release: https://github.com/corretto/corretto-25/releases/tag/25.0.4.10.1
@@ -26,8 +27,9 @@ is_verified_legacy_java() {
   settings=$("$1" -XshowSettings:properties -version 2>&1) || return 1
   grep -q 'java.specification.version = 25$' <<< "$settings" && grep -Eq 'java.vendor.version = Corretto-25\.[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' <<< "$settings"
 }
-if [[ "${DEFINITIVE_MANAGED_JAVA:-0}" != 1 && -f "$ROOT/.java-path" && ! -L "$ROOT/.java-path" ]]; then
-  IFS= read -r RECORDED < "$ROOT/.java-path"
+if [[ "${DEFINITIVE_MANAGED_JAVA:-0}" != 1 && -f "$ROOT/.java-path" && ! -L "$ROOT/.java-path" && $(wc -c < "$ROOT/.java-path") -le 4096 ]]; then
+  RECORDED=''
+  IFS= read -r RECORDED < "$ROOT/.java-path" || true
   # Portable setup stores its reviewed runtime outside the game folder. Reuse
   # that receipt offline, including the verified compatible legacy cache.
   if [[ -x "$RECORDED" ]] && { is_pinned_java "$RECORDED" || is_verified_legacy_java "$RECORDED" || { [[ "$RECORDED" != */runtime-jdk*/* ]] && is_java25 "$RECORDED"; }; }; then

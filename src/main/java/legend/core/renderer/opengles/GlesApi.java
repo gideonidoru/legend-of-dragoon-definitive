@@ -258,6 +258,8 @@ public class GlesApi implements RenderApi {
 
     if(depth) {
       mask |= GL_DEPTH_BUFFER_BIT;
+      // glClear respects the write mask inherited from the previous translucent pass.
+      glDepthMask(true);
     }
 
     if(stencil) {
@@ -265,6 +267,10 @@ public class GlesApi implements RenderApi {
     }
 
     glClear(mask);
+
+    if(depth && this.translucency != null) {
+      glDepthMask(false);
+    }
   }
 
   @Override

@@ -5,10 +5,11 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
+    "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "07396415337fa3ac2f0e4f4eeeea5355a0f9de753fc5ebd90f9d9be0b13def9f"
+    "battle-presentation-artwork-v1.json": "07396415337fa3ac2f0e4f4eeeea5355a0f9de753fc5ebd90f9d9be0b13def9f",
+    "battle-presentation-reviews/93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817.json": "93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -19,9 +20,9 @@
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
     "newBespokeCandidates": 130,
-    "newlySelectedBespokeMasters": 0,
+    "newlySelectedBespokeMasters": 22,
     "baselineMastersStillNeedingPresentationReview": 376,
-    "pendingCandidateReviews": 130,
+    "pendingCandidateReviews": 108,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -1731,7 +1732,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {1: [0]}. Source family: Forest: mossy ground, tree trunks, leaf branches and bushes. Engine random-encounter location mapping: Forest.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1762,7 +1763,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {1: [0]}. Source family: Forest: mossy ground, tree trunks, leaf branches and bushes. Engine random-encounter location mapping: Forest.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1793,7 +1794,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {1: [0]}. Source family: Forest: mossy ground, tree trunks, leaf branches and bushes. Engine random-encounter location mapping: Forest.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1824,7 +1825,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {1: [0]}. Source family: Forest: mossy ground, tree trunks, leaf branches and bushes. Engine random-encounter location mapping: Forest.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1855,7 +1856,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {1: [0]}. Source family: Forest: mossy ground, tree trunks, leaf branches and bushes. Engine random-encounter location mapping: Forest.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1886,7 +1887,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {1: [0]}. Source family: Forest: mossy ground, tree trunks, leaf branches and bushes. Engine random-encounter location mapping: Forest.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4842,7 +4843,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {23: [3]}. Source family: Barrens: dry rocky ground and grass silhouettes. Engine random-encounter location mapping: Barrens.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4874,7 +4875,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {23: [0, 2]}. Source family: Barrens: dry rocky ground and grass silhouettes. Engine random-encounter location mapping: Barrens.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4905,7 +4906,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {23: [1]}. Source family: Barrens: dry rocky ground and grass silhouettes. Engine random-encounter location mapping: Barrens.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6755,7 +6756,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6786,7 +6787,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6817,7 +6818,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6848,7 +6849,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6879,7 +6880,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6910,7 +6911,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6941,7 +6942,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6972,7 +6973,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7003,7 +7004,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7034,7 +7035,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7065,7 +7066,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7096,7 +7097,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7127,7 +7128,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },

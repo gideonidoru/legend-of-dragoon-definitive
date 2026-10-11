@@ -102,10 +102,8 @@ class InstallStoreTest {
     final Path reinstalledData = store.data(store.state());
     assertNotEquals(nextData, reinstalledData);
     assertEquals(choices, Files.readString(reinstalledData.resolve("definitive-hd-mods.properties")));
-    store.rollback();
-    final Path restoredData = store.data(store.state());
-    assertEquals(choices, Files.readString(restoredData.resolve("definitive-hd-mods.properties")));
-    assertEquals("-Ddefinitive.hdModPreferences=" + restoredData.resolve("definitive-hd-mods.properties"), store.managedModArguments(store.state()).get(1));
+    assertThrows(java.io.IOException.class, store::rollback, "Clean reinstall removes obsolete rollback versions");
+    assertEquals("-Ddefinitive.hdModPreferences=" + reinstalledData.resolve("definitive-hd-mods.properties"), store.managedModArguments(store.state()).get(1));
   }
 
   @Test void managedModulePreferencesRejectLinksAndDirectories() throws Exception {

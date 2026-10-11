@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "scope": "Owner-requested reviewed neural and source-verified painted development installation; Skurfa and remaining held/unreviewed sources remain native",
-  "runtimeSelected": 4918,
+  "runtimeSelected": 4925,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
   "protectedCuts": [
@@ -78906,9 +78906,121 @@
           "canDeriveFromBackground": false
         }
       ]
+    },
+    {
+      "decodedRgbaSha256": "73b25780b6df62143f5f3f489706004112114f04e7ab4d4fa58cf7fa4d5293cf",
+      "outputSha256": "54dc3e936773bb443acebb82030f966365f8628cd317784edd0c03d9e8fd31d5",
+      "sourceSize": [
+        30,
+        22
+      ],
+      "bindings": [
+        {
+          "renderKey": "377f5ed8f66dfba324cf418870ff59c9907a2fb5f91c46b4b56febfe78aefeca:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "417db5229525bfb64b3dfbd767ff8cb7313b262305577cefd05c38951baf6477",
+      "outputSha256": "0da4251f6ca8ec1ddc0e1017bedfabc753c694a45df3518ed1813a526f92e1a0",
+      "sourceSize": [
+        110,
+        148
+      ],
+      "bindings": [
+        {
+          "renderKey": "3afb3efaa7e337ba72ac95342b4d48c5ac3c96ac0fbe984cf4ad0abda75cb680:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "5fc04ff6f16aa8e1bc7eff701095983ba1d5a5a1c32a7f5c935b1e6337036b89",
+      "outputSha256": "73a534997b82401b256f6f481218c184e1b3c3fd83373c9052e93e23aa6bd47e",
+      "sourceSize": [
+        22,
+        20
+      ],
+      "bindings": [
+        {
+          "renderKey": "ab52591d3af2f4497d9117056d653d5c3773efbd69ca6028b3c54c38a1c37c72:-1",
+          "kind": "foreground",
+          "slot": 10,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "282909e0b634d43d1d82e55cdf62afae620ddc72d6ad4fc25e5831c01ea669e1",
+      "outputSha256": "8a2d3d7103152586b5333300c5f59c04bc0547a042ce9ab36830f1532d7da5af",
+      "sourceSize": [
+        20,
+        10
+      ],
+      "bindings": [
+        {
+          "renderKey": "fb9c3264300bfc8b7df87d11074e9734fdcca61a32389ead8d11c86c8b90fbea:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "49247bd98311d7e0cad111ac3af416aea54a2bc1feeb3b277040ab69980c3779",
+      "outputSha256": "474a69c5b20cdde89f04d460bce1ba67954766ed2ab1edae5477f4914d2bd347",
+      "sourceSize": [
+        22,
+        14
+      ],
+      "bindings": [
+        {
+          "renderKey": "f7a55816ac038e8232431207f9d3f408249c2ac42a5a03588b712c4f1f686b9d:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "6ff4ccdc87601d4544fc501efe6aa6bd52ae80030bd10a80b1c51bc0085f1088",
+      "outputSha256": "c8bda1b11acf6bf724e5a7138496adc71a63cfaa3efbe0bc107ecadb9c3d0d18",
+      "sourceSize": [
+        26,
+        44
+      ],
+      "bindings": [
+        {
+          "renderKey": "6e5e691c9684b860f6cf6b2a43759eceeaa23e60e324a315570b245bb0103958:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d",
+      "outputSha256": "7963f66383ccb6e4b9824196791b2ac4915080fdaf59446e4ef4e73317e6fd9b",
+      "sourceSize": [
+        68,
+        64
+      ],
+      "bindings": [
+        {
+          "renderKey": "4464eaf2e684c00494b7d269dcc9b3426cbcbc01b1d743f13d8874f3431fd66a:-1",
+          "kind": "foreground",
+          "slot": 10,
+          "canDeriveFromBackground": false
+        }
+      ]
     }
   ],
   "reviewReceiptSha256": "f2845bdff322c04b8496a0eff151389da53594de54446ec25dfb0d42cab9ea51",
-  "paintedReviewReceiptSha256": "bbd204020a76bab277e470eba885e768c1a967d9b54233cda1606f6a4fd629c5",
-  "paintedRuntimeSelected": 32
+  "paintedReviewReceiptSha256": "8b63f5db27d7c91c8a44b48b37eadcd8fb76bbea9a0236ffbc8aba889767677a",
+  "paintedRuntimeSelected": 39
 }

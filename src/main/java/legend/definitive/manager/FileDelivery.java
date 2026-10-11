@@ -61,6 +61,8 @@ final class FileDelivery {
   static String install(final InstallStore store, final ReleaseUpdates.Candidate candidate, final InstallProgress progress, final ReleaseUpdates.AssetDownload connection, final boolean repairing, final boolean fullReinstall, final String expectedIdentity) throws IOException, InterruptedException {
     return store.withOperation(() -> {
       final Properties state = store.state();
+      if(candidate.revision() != null) { ReleaseUpdates.validateContents(candidate); CurrentRelease.requireAllowed(state, candidate.revision()); }
+      else if(CurrentRelease.generation(state, "acceptedGeneration") > 0) throw new IOException("Choose a verified current build before updating this installation.");
       final Path current = state.containsKey("version") ? InstallStore.child(store.root().resolve("releases"), state.getProperty("version"), "alpha-[a-f0-9]{16}") : null;
       final Path inventory = Files.createTempFile(store.root(), ".contents-", ".zip");
       final Path staged = Files.createTempDirectory(store.root(), ".files-");
@@ -68,9 +70,11 @@ final class FileDelivery {
         final var asset = candidate.contents();
         ReleaseUpdates.download(new ReleaseUpdates.Candidate(candidate.tag(), asset.id(), asset.url(), asset.sha256()), inventory, update -> progress.phase("Checking release inventory", candidate.tag(), 8), connection, 8 * 1024 * 1024);
         if(!PackageManifest.sha256(inventory).equals(asset.sha256())) throw new IOException("Release inventory checksum mismatch. Your current installation is unchanged.");
+        if(candidate.revision() != null && Files.size(inventory) != candidate.revision().contentsBytes()) throw new IOException("Current build inventory size mismatch.");
         final Contents contents = read(inventory, candidate.tag());
+        if(candidate.revision() != null && !candidate.revision().sourceRevision().equals(contents.manifest().metadata().getProperty("sourceRevision"))) throw new IOException("Current build inventory source mismatch.");
         if(!expectedIdentity.isEmpty() && !expectedIdentity.equals(contents.manifest().id())) throw new IOException("Downloaded inventory differs from the supplied online package. Download the current installer again.");
-        if(repairing && !contents.manifest().id().equals(state.getProperty("version"))) throw new IOException("Repair must match the installed release exactly. Use Update for another release.");
+        if(repairing && candidate.revision() == null && !contents.manifest().id().equals(state.getProperty("version"))) throw new IOException("Repair must match the installed release exactly. Use Update for another release.");
         store.requireFileDeliverySpace(contents.bytes(), contents.manifest().id());
         for(final String support : PackageManifest.SUPPORT) Files.createDirectories(staged.resolve(support));
         for(final String name : List.of(PackageManifest.METADATA, PackageManifest.HASHES)) Files.write(staged.resolve(name), contents.documents().get(name));
@@ -99,7 +103,7 @@ final class FileDelivery {
           progress.report(new InstallProgress.Update("File verified", module(name) + " · " + name, 10, 60, completed, contents.bytes(), name, size, size));
         }
         contents.manifest().verify(staged, PackageManifest.hostPlatform());
-        final String result = store.install(staged, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall);
+        final String result = store.install(staged, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall, candidate.revision());
         return (repairing ? "Repair complete. " : fullReinstall ? "Reinstall complete. " : state.containsKey("version") ? "Update complete. " : "Install complete. ") + fetched + " files downloaded; " + reused + " verified files reused. " + result;
       } finally { Files.deleteIfExists(inventory); InstallStore.deleteOwnedTree(staged); }
     });

@@ -1,6 +1,6 @@
 # Definitive release retention
 
-The owner requested on 2026-10-10 that only the current published release be retained. Do not publish a new downloadable release for every code iteration. Build and test normally; publish when a new download is requested or a release is ready.
+The owner requested on 2026-10-10 that only the current published release be retained. On 2026-10-11 the owner clarified there are no older clients to support. Use one persistent `definitive-current` carrier release. Its canonical committed body manifest identifies each exact source/build/generation; the carrier tag is a locator, not the source version. Do not publish a new downloadable release for every code iteration. Build and test normally; publish when a new download is requested or a release is ready.
 
 After the replacement passes exact-source CI and the complete publication gate, remove superseded GitHub releases and their downloadable assets. Preserve Git source history and attribution. Keep required checksum-pinned build inputs (including FMVHD video resources) in the current release; clean builds and the current installer fallback must not require deleted historical releases.
 
@@ -8,4 +8,6 @@ Large CI delivery artifacts are retained only for explicit release builds, for o
 
 Refresh `delivery/Install-Definitive.sh` and `delivery/Install-Definitive.desktop` together from the verified release outputs before pruning. The stable Desktop shortcut resolves the latest script and published SHA256SUMS on every launch; the fetched script pins its matching release tag and portable ZIP checksum. A saved current Desktop shortcut must not retain a historical tag/hash. Recording that entrypoint update does not require another published release.
 
-Use `scripts/prune-release-history.py` with the verified complete upload inventory after publication. It refuses an unpublished replacement, wrong source/build/inventory or a newer concurrent public release. It preserves active drafts and their source builds. Never prune first and verify later.
+Use `scripts/publish-current-release.py` after exact-source CI. It reruns source-bound staging, reuses matching immutable server asset IDs, uploads only missing files, verifies the entire closure, and commits the current manifest last. Do not run multiple independent carrier publishers from different chats. Source FMVs use `source-fmvhd-<sha>.zip`; package file blobs use `file-<sha>`. Do not publish duplicate named EnvHD ZIP aliases. Fixed small bootstrap aliases are updated only when their bytes change.
+
+Use `scripts/prune-current-assets.py` with the newly verified complete publication receipt after public installer/runtime verification. It refuses a changed current revision, missing references or metadata mismatches, protects unknown assets and newer staged files, and removes only recognized obsolete files. Preserve active drafts and their source builds. The older per-release publisher and retention scripts are legacy fixture controls, not the current publication flow. Never prune first and verify later.

@@ -73,7 +73,7 @@ class FileDeliveryTest {
     final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("repair-forbidden")); store.install(original); final var before = store.state();
     final List<URI> requested = new ArrayList<>();
     assertThrows(IOException.class, () -> ReleaseUpdates.repair(store, InstallProgress.NONE, request -> { requested.add(request.uri()); return new Response(request, InputStream.nullInputStream(), HttpHeaders.of(Map.of(), (key, value) -> true), 403); }));
-    assertEquals(1, requested.size()); assertTrue(requested.getFirst().getPath().contains("/tags/")); assertEquals(before, store.state()); store.verifyInstalled();
+    assertEquals(1, requested.size()); assertEquals("/repos/gideonidoru/legend-of-dragoon-definitive/releases", requested.getFirst().getPath()); assertEquals(before, store.state()); store.verifyInstalled();
   }
   @Test void retiredRepairRejectsCurrentReleaseOlderThanVerifiedInstalledDate() throws Exception {
     final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("repair-downgrade")); store.install(original);
@@ -201,7 +201,7 @@ class FileDeliveryTest {
     final Path pack = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack); final Properties before = store.state();
     Files.writeString(store.data(before).resolve("saves/owner.txt"), "save"); final Path workspace = store.prepareLaunch(); Files.writeString(workspace.resolve("files/version"), "5");
     assertTrue(store.install(pack, "", null, InstallProgress.NONE, true).contains("Complete reinstall")); assertNotEquals(before.getProperty("data"), store.state().getProperty("data")); assertEquals("save", Files.readString(store.data(store.state()).resolve("saves/owner.txt"))); assertFalse(store.discsPrepared()); store.verifyInstalled();
-    try(final var files = Files.list(store.root())) { assertTrue(files.anyMatch(path -> path.getFileName().toString().startsWith("release-recovery-"))); }
+    try(final var files = Files.list(store.root())) { assertFalse(files.anyMatch(path -> path.getFileName().toString().startsWith("release-recovery-"))); }
   }
   @Test void repairCannotSilentlyUpgradeToAnotherPackageIdentity() throws Exception {
     final Path pack = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack);

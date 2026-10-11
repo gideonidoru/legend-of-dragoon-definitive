@@ -1,0 +1,55 @@
+{
+  "decodedRgbaSha256": "6ff4ccdc87601d4544fc501efe6aa6bd52ae80030bd10a80b1c51bc0085f1088",
+  "generatedSha256": "5e9828db63a362befbfae2c824f64984c3d19f25dbdaa04f6ad8e835c3aa3501",
+  "generatedSize": [
+    965,
+    1630
+  ],
+  "sourceSize": [
+    26,
+    44
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "6e5e691c9684b860f6cf6b2a43759eceeaa23e60e324a315570b245bb0103958:-1",
+      "kind": "foreground",
+      "slot": 3,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 70,
+  "representativeLocation": "Bale",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 1,
+  "prompt": "Use case: precise-object-edit. Asset: source-faithful HD game foreground texture. Reference1 is the authoritative original nearest-neighbor zoom; reference2 is the COMPLETE original game scene for usage and lighting; reference3 is Skurfa painterly surface finish only, not geometry or color. Repaint reference1 alone, preserving the exact full source canvas, crop, object placement and broad source color/motif arrangement. Bale cut70 small26x44 upright brown architectural fitting on the right street facade at279,94. Preserve the exact cropped upper/main dark ornamented panel, existing raised mottled brown relief, thin bright warm lower ledge projecting left and narrow long dark support descending below it. Source is an attached wall fitting, not a banner, writing surface, new statue or completed freestanding object. Do not identify tiny unclear relief as faces, heraldry or text; preserve source light/dark groups without inventing a specific emblem. Fine restrained worn brown material texture; original warm street illumination and deep right shadow. Canvas26:44, requested832x1408. Match restrained detailed painterly HD finish while retaining reference1 palette/lighting. True transparent alpha only outside native occupied silhouette; never add empty padding, shift or center the object, zoom/crop differently, complete missing parts, or include other scenery. Pixelated source blocks define the broad design, not large square tessellation. No words, logo, watermark or border.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 11888,
+  "paintedGapPixelsExtended": 317,
+  "paintedUncoveredSourcePixels": 176,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 25,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    104,
+    176
+  ],
+  "outputSha256": "bd921c8856c3bfcbcf187e709a5323ace9fde7d88b45724c6d1fd9212534b7ce",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/held-field-art-drafts/6ff4ccdc87601d4544fc501efe6aa6bd52ae80030bd10a80b1c51bc0085f1088/draft-input-v1.png",
+  "verdict": "source-fidelity-revision-needed",
+  "reason": "Version1 invents an identifiable central leaf/floral relief unsupported by original native strokes. Rejected by author; corrected version2 separately pending independent review.",
+  "outputPath": "integrations/envhd/production/held-field-art-drafts/6ff4ccdc87601d4544fc501efe6aa6bd52ae80030bd10a80b1c51bc0085f1088/repaired-draft-v1.png"
+}
