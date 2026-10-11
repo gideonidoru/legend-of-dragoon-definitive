@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "scope": "Three held versions across two sources: both exterior balcony gold-inset paintings and superseded night balcony version1. Technical footprint repairs passed but source detail holds remain. Source references/layout/context/comparisons stay private.",
+  "sourceSelectionBaseCommit": "373b34a94a1fe52beb4547b215d451df14557633",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 2,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "de79c94862b3d13299111e7cf480c51a64bec316c49363d75ce2beda0a81bdc9",
+      "generatedSha256": "1487ddbed302b2889c7be23ebdd16bb63a3615a28ba1fe1c618cba693b6dbfec",
+      "generatedSize": [
+        1974,
+        797
+      ],
+      "sourceSize": [
+        198,
+        80
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1bd22399cd5c4c0ccd6627f348a1b52730de3781d1254640539abbe67f5f76d3:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 663,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Asset: source-faithful hand-painted HD foreground fragment for Legend of Dragoon EnvHD. Edit FIRST reference, preserving its exact viewpoint, camera, canvas aspect, framing, silhouette, all internal landmark positions, object counts, lighting and native palette. SECOND is original complete scene for context only; output only FIRST isolated fragment, never the full scene. Restore fine understated game-painting material texture and faithful original decorative detail to complement the existing HD background mod. Do not redesign the architecture. Real transparent background, exact source crop with subject reaching the same image edges: no padding, centering, margin, subject scaling, reframing, rotation or perspective shift. Retain every original opening and dark recess. No new written symbols, new ornaments, extra joints, block courses, repeated pattern rows, lamps, shine, bloom, outlines, labels, checkerboard or watermark. Native198x80,99:40 wide landscape. Twin Castle exterior curved pale-stone balcony front. At extreme upper-left, narrow pale edge rises vertically out of crop and curves down into the long gently bowed horizontal edge, then turns slightly upward toward cropped right edge. Retain FOUR small pale round inset accents along the purple/turquoise horizontal decorative stripe at the original positions. Far-left end has dark blue oval/recessed panel with small clustered pale-gold marks; reproduce their source arrangement without changing them into a recognizable new emblem, text or flower. Maintain original multiple separate narrow nested pale stone bands, dark blue gaps, blue-purple central stripe with turquoise fine lines, original stone joint positions and exact curvature. Subtle cool weathered cream stone grain, soft blue-violet inset, no new masonry courses, extra circular dots or exaggerated seams. Entire long rail must span crop width; no trimming the upper-left tip, no straightening or thickening bands.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 115328,
+      "paintedGapPixelsExtended": 2201,
+      "paintedUncoveredSourcePixels": 1618,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 306,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        792,
+        320
+      ],
+      "outputSha256": "16f2a7e3956d88bc1b615aed3638556f367fcfbae2b49f679643783269c9d49f",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/de79c94862b3d13299111e7cf480c51a64bec316c49363d75ce2beda0a81bdc9/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/de79c94862b3d13299111e7cf480c51a64bec316c49363d75ce2beda0a81bdc9/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Exterior balcony left inset retains an invented central four-petal gold emblem and tidy ring of marks, not established by original small irregular marks. Version2 correction failed to remove it. Technical footprint passes do not clear the semantic hold. The version1 prompt miscounted pale stripe insets as four; fresh enlarged source crop confirms five, also present in both paintings."
+    },
+    {
+      "decodedRgbaSha256": "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
+      "generatedSha256": "f845d57a154631bd578bf51dbcd1de7aa015eb734224ead2f52ff856b0c5139b",
+      "generatedSize": [
+        1473,
+        1068
+      ],
+      "sourceSize": [
+        102,
+        74
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "111e8b8d3783750c4de5226fb39ec4a7640ec8e53960331654b2f01f1185b675:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 222,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Asset: source-faithful hand-painted HD foreground fragment for Legend of Dragoon EnvHD. Edit FIRST reference, preserving its exact viewpoint, camera, canvas aspect, framing, silhouette, all internal landmark positions, object counts, lighting and native palette. SECOND is original complete scene for context only; output only FIRST isolated fragment, never the full scene. Restore fine understated game-painting material texture and faithful original decorative detail to complement the existing HD background mod. Do not redesign the architecture. Real transparent background, exact source crop with subject reaching the same image edges: no padding, centering, margin, subject scaling, reframing, rotation or perspective shift. Retain every original opening and dark recess. No new written symbols, new ornaments, extra joints, block courses, repeated pattern rows, lamps, shine, bloom, outlines, labels, checkerboard or watermark. Native102x74,51:37 landscape. Twin Castle NIGHT interior lower-left curved balcony face, a fixed architectural edge, not a freestanding wooden plank. Low brown/ochre cap starts near left at midheight, rises gently then more sharply to upper-right canvas corner; dark curved face below descends to lower-left canvas corner and rises to cropped right edge. Preserve every small cool green/blue round fitting along the cap at exact FIRST positions. Keep original very dim warm brown/olive face with faint fine gold/ochre mottled decorative marks and lowcontrast vertical structure. Restore those marks conservatively with the same positions/density; no new bold scrolls, symbols, letters, block courses or panel seams. Retain native near-black lower edge and night shadows; do not relight to daytime, make rich bright wood grain, add illuminated skulls or create a new carved motif. Output remains dark to blend in SECOND night scene.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 43056,
+      "paintedGapPixelsExtended": 3115,
+      "paintedUncoveredSourcePixels": 2860,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 136,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        408,
+        296
+      ],
+      "outputSha256": "52a1b21a6664174ac6ba3c097d11bf5e1e9600df1ed8eb35414fdc2fe57626b3",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Night balcony version1 invents bold repeated gold stems/fleur-de-lis-like motifs and stronger gold cap/fittings. Corrected version2 removes coherent motifs and is a separate pending candidate; this version remains held."
+    },
+    {
+      "decodedRgbaSha256": "de79c94862b3d13299111e7cf480c51a64bec316c49363d75ce2beda0a81bdc9",
+      "generatedSha256": "addc43690f4631e4609f2b4d5247deee5930a3edc4cf398cf3635bd86ab05127",
+      "generatedSize": [
+        1975,
+        796
+      ],
+      "sourceSize": [
+        198,
+        80
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1bd22399cd5c4c0ccd6627f348a1b52730de3781d1254640539abbe67f5f76d3:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 663,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise-object-edit. Asset: source-faithful hand-painted HD foreground fragment for Legend of Dragoon EnvHD. Edit FIRST reference, preserving its exact viewpoint, camera, canvas aspect, framing, silhouette, all internal landmark positions, object counts, lighting and native palette. SECOND is original complete scene for context only; output only FIRST isolated fragment, never the full scene. Restore fine understated game-painting material texture and faithful original decorative detail to complement the existing HD background mod. Do not redesign the architecture. Real transparent background, exact source crop with subject reaching the same image edges: no padding, centering, margin, subject scaling, reframing, rotation or perspective shift. Retain every original opening and dark recess. No new written symbols, new ornaments, extra joints, block courses, repeated pattern rows, lamps, shine, bloom, outlines, labels, checkerboard or watermark. Native198x80,99:40 wide landscape. Twin Castle exterior curved pale-stone balcony front. At extreme upper-left, narrow pale edge rises vertically out of crop and curves down into the long gently bowed horizontal edge, then turns slightly upward toward cropped right edge. Retain FIVE small pale round inset accents along the purple/turquoise horizontal decorative stripe at the original positions. Far-left end has dark blue oval/recessed panel with small clustered pale-gold marks; reproduce their source arrangement without changing them into a recognizable new emblem, text or flower. Maintain original multiple separate narrow nested pale stone bands, dark blue gaps, blue-purple central stripe with turquoise fine lines, original stone joint positions and exact curvature. Subtle cool weathered cream stone grain, soft blue-violet inset, no new masonry courses, extra circular dots or exaggerated seams. Entire long rail must span crop width; no trimming the upper-left tip, no straightening or thickening bands. Correction: THIRD is previous painting for material finish ONLY. FIRST source remains authoritative. Previous painting invented a recognizable small four-petal gold flower in the left dark oval. REMOVE that invented central flower and the tidy ring of similar leaf-shaped dots. Reproduce only FIRST small irregular pale-gold patch shapes and varied angled short marks in their exact native arrangement; no new coherent emblem. Preserve five native pale stripe insets including the far-right one, no added insets. Keep original stone seams and restrained weathering, no large cracks or added blocks.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 115328,
+      "paintedGapPixelsExtended": 1694,
+      "paintedUncoveredSourcePixels": 1299,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 313,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        792,
+        320
+      ],
+      "outputSha256": "5ed387523700ce29eb4b0a2ae3a3df8971010e4bd4ee8812a7b967a82f3c410d",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/de79c94862b3d13299111e7cf480c51a64bec316c49363d75ce2beda0a81bdc9/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/de79c94862b3d13299111e7cf480c51a64bec316c49363d75ce2beda0a81bdc9/draft-repaired-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Exterior balcony left inset retains an invented central four-petal gold emblem and tidy ring of marks, not established by original small irregular marks. Version2 correction failed to remove it. Technical footprint passes do not clear the semantic hold. The version1 prompt miscounted pale stripe insets as four; fresh enlarged source crop confirms five, also present in both paintings."
+    }
+  ]
+}
