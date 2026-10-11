@@ -2,6 +2,8 @@
 
 Dart's accepted head is already selected by normal CharHD. This directory now also contains eight development head fits and nine initial costume/body/weapon studies. These custom assets are public authoring work. They are not additional runtime selections, owner visual acceptance or a downloadable release.
 
+The owner's latest correction is that the studies are close but do not exactly honor the original game art. Original references now control the design; generated images serve only as finish experiments. Every new candidate requires the [character art fidelity check](../../../../docs/definitive/CHARACTER_ART_FIDELITY.md), independently of its construction and animation checks. Haschel's incorrectly specified trouser color and Meru's altered motif layouts are recorded examples of drift. Previous generated prompts are preserved as historical evidence, not corrected silently or reused as canonical descriptions.
+
 ## Head proportions
 
 The first fit used the complete hair bounding box. Shana's braid pulled her face down into her collar; Albert's field and battle bodies also needed separate sizing. The revised fit measures crown to chin, excludes hair ornaments and long hair from skull height, and aligns the central front face surface rather than the centre of rear hair volume. Uniform scale preserves the authored facial shape. The existing native head pivot and stored poses remain in use.

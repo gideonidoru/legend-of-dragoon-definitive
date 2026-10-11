@@ -267,5 +267,43 @@
       "headOwnerAccepted": false,
       "physicalDeckValidated": false
     }
-  ]
+  ],
+  "artFidelity": {
+    "status": "not-accepted-reference-audit-required",
+    "ownerFeedbackDate": "2026-10-10",
+    "ownerFeedback": "none of them really honor the original game art. Theyre all close but not exact",
+    "designAuthority": "Original character illustrations and original game model/texture references",
+    "generatedStudies": "Visual finish experiments only; not canonical design sources",
+    "knownFindings": [
+      "Haschel body prompt specifies incorrect reddish-brown trousers against purple original in-game reference",
+      "Meru illustrated texture studies redraw decorative motif shapes and line spacing"
+    ],
+    "runtimeSelection": "No changes to existing accepted assets",
+    "inspectedReferences": [
+      {
+        "study": "haschel-material-study",
+        "sourceModelSha256": "285ec5c257b9a94b6fc27d902be5135f3b377f19c020a085771049b61576e885",
+        "sourceTimSha256": "0dc9340a7c081b18ced9890325cd5171aa5b402c302581f38245931bf858d6a9",
+        "sourceAnimationSha256": "e830fb9283bf6eeda25e23300ac55e1db9e691b6f4903af68c0a8d9f378c74c8",
+        "comparedView": "Keyframe 0 \u00b7 camera 0\u00b0",
+        "scope": "Inspected original/candidate preview. Original pixels remain outside Git."
+      },
+      {
+        "study": "meru-material-study",
+        "sourceModelSha256": "84341ec030afdb03d69cb08114acf34edcb3438f386cb580bf6503a331ab4691",
+        "sourceTimSha256": "601a01d5149a7fa083b32d977b290a361344daa4c0393b757d06f52e9e7814cc",
+        "sourceAnimationSha256": "d80895d1a81684693882a634bac6561abb9db55ba1b8e343e86bd15721982721",
+        "comparedView": "Keyframe 0 \u00b7 camera 0\u00b0",
+        "scope": "Inspected original/candidate preview. Original pixels remain outside Git."
+      },
+      {
+        "study": "meru-surface-study",
+        "sourceModelSha256": "84341ec030afdb03d69cb08114acf34edcb3438f386cb580bf6503a331ab4691",
+        "sourceTimSha256": "601a01d5149a7fa083b32d977b290a361344daa4c0393b757d06f52e9e7814cc",
+        "sourceAnimationSha256": "d80895d1a81684693882a634bac6561abb9db55ba1b8e343e86bd15721982721",
+        "comparedView": "Keyframe 0 \u00b7 Camera 0\u00b0",
+        "scope": "Inspected original/candidate preview. Original pixels remain outside Git."
+      }
+    ]
+  }
 }
