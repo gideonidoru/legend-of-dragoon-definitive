@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "6612a533307e5f066bc46e7870d658f8add42752 plus independent-pending authoring at f7d53afd9",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "cfba43d0b5fa298a7f9a37f7068c21bf5e065a61da58113cfb710d8689583877",
+    "full-coverage.json": "1eeee3ab9ea04157b277cc7a81145e266e256fa5ff3b85022a7516860ada7712",
     "field-runtime-artwork.json": "b4c0dc3f07c089c9fe727be0fd19e457b255ccc16b63db4f3cc40a313125b257",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
@@ -65,7 +65,10 @@
     "field-bespoke-wheel-furnishings-reviewed-selection.json": "93a2b2882a69219a2596875b2acc0701d00e0d63870fdaa976b783fce2e75e95",
     "field-bespoke-wheel-furnishings-held-drafts.json": "109fd905b5ce0081004194e6535fb48e40cc63b55088cbc4ce89e74e3641bd87",
     "field-wheel-furnishings-authoring-readiness.json": "123cb11f483bd854d44a1c606f4ab31686e23cb739801534afe62940a10a101b",
-    "publication-source-5d3db5c8-generation4-snapshot.json": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f"
+    "publication-source-5d3db5c8-generation4-snapshot.json": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f",
+    "field-bespoke-tableware-reviewed-selection.json": "201ccf6fe03db8b005b4950e9821b18fe8eebd92bfdae9ca36a2cd472a9f3650",
+    "field-bespoke-tableware-held-drafts.json": "b44b162c3ad83eac9641a4dacc113e3fddfc8fcdc53d5b273a3e0734cb6576f1",
+    "field-tableware-authoring-readiness.json": "155662c7939e5847f0ad941fb6e30927f4a7ad19f87ae4dfd2559c1e7121c9c3"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -83,18 +86,23 @@
       "selectedPainted": 40,
       "held": 236,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 58,
+      "customHeldDraftSourceImages": 64,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Independent original-reference review of31 pending candidates; correct Fletz relief/highlights, continue236 field holds and source state/native/final checks.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 31,
+      "nextTask": "Independent original-reference review of34 pending candidates; correct source outline of separated Indels furnishing components, Fueno/Bale contrast/material and Fletz relief/highlights; continue236 field holds and source state/native/final checks.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 34,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
         "2ce59703db78a4ad83f8b4828e2c5d265e9b441c96a93991333cbd576adcc12d",
         "3fb018e1b7a7ad35c728ee5ecce588e012b70af301a470f89664804949491ed0",
+        "42a945eedd9dbcf3a55c15facfbf1f975209ac42bf94150360379935d3ffbc98",
+        "4bd51eba14de1496e5d55996992fbe6d031841e9f31087697319336c4dc21796",
         "52195fc64e021bc14b78d4cf1c10b81f2207b26bd0072cd50ce1a7572c60f2f4",
         "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+        "66c780d5d756368b2558714d35236014a1b15e18ec70098854dd62b08cb3f943",
+        "66ce8f14cdce7e5aa0b763cb76e1765592237eba73dbd86fab97abe41bdfa1a2",
+        "6c348a68d190c40bb47a3b5b3b0a0051849a80eaf03b2bb0070dad83775f06c1",
         "6ca24f005553c031d0d27b507ad335ce95fec5d7a9443a2854fd1a23fd0639e1",
         "745736c6a0d1c9a694b2295793ff1e4573a9861c9f999995ce85fdbecafd3d90",
         "7cc8ba928d1ac6f7ef7b9260c62be10c52327bbf5b58e1cb63c2f106a59e335f",
@@ -115,6 +123,7 @@
         "8c03049a6e5993f19813f7d3606c0d6736d85fe575c3ef0fa3629eb80f8b5e4e",
         "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
         "8f9db059c123cfcd782f2cccaa83a3e331c36712985d12dcd32d443328ba8866",
+        "924d64a4d1c1f2d10a21e567566c95826aa74a9234d9a4c897281ffb48760a54",
         "99fe3ae3f675d6fc68f88b15b0432a884fee59c7f04b6be8c9c1c51f02948e81",
         "9b74793a802626789aa46bf4776e968c5af1c3e749fe9033af7dcc1e96dcc66b",
         "9d6ee81a6a9584c4f5d2ae829238be015881ae8235ec43458a27d78969fbb62e",
@@ -148,7 +157,7 @@
         "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4926 runtime selections.58source keys subset236 field holds; repeated versions deduplicated.",
+      "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4926 runtime selections.64source keys subset236 field holds; repeated versions deduplicated.",
       "independentlyReviewedCandidatesRequiringRevision": 3,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json"
     },
@@ -459,6 +468,13 @@
       "heldSourceImages": 4,
       "heldVersions": 5,
       "reason": "Three corrected2 recipes separately independent-pending; prior1s overinterpret construction/grain, Fletz1 fails coverage and Fletz2 remains surface/material-fidelity held. Source lower/right red marks retained; no gate waived."
+    },
+    {
+      "manifest": "field-bespoke-tableware-held-drafts.json",
+      "newUniqueHeldSourceImages": 4,
+      "heldSourceImages": 4,
+      "heldVersions": 7,
+      "reason": "Indels1/2 and Bale1 fail unchanged coverage; Fueno1/2, Lohan1 and Bale2 overinterpret contrast/material or small item/construction details. Lohan2 separately independent-pending. No gate waived."
     }
   ],
   "publication": {
@@ -514,7 +530,7 @@
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "Complete74 candidates:31 independent-pending/3 revisions;3new candidates,5held versions,58unique unselected sources. Runtime4926/40 and237known static backlog unchanged. Source recipes reproduced, no native/final acceptance.",
+  "authoringCheckpoint": "Complete77 candidates:34 independent-pending/3 revisions;3new candidates,7held versions,64unique unselected sources. Runtime4926/40 and237known static backlog unchanged. Source recipes reproduced, no native/final acceptance.",
   "acceptedMainIntegrated": {
     "sourceCommit": "2f980814b9d03338c7a634d03a1d7e2bf6d444a5",
     "fieldSelected": 4926,

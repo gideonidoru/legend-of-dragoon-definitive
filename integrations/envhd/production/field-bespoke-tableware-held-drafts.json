@@ -1,0 +1,356 @@
+{
+  "schema": 1,
+  "scope": "Seven held versions across four source keys:4 structural repairs and3 coverage failures. No runtime selection or acceptance. Prior held history unchanged.",
+  "sourceSelectionBaseCommit": "79aed1c19849c8f7bc86398895e38c9112f345d9",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 4,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "42a945eedd9dbcf3a55c15facfbf1f975209ac42bf94150360379935d3ffbc98",
+      "generatedSha256": "1b541dc000d56d09b741e1b4159a6b0ec922f3ffdfefc1dd3e1c3e7ec4011890",
+      "generatedSize": [
+        1297,
+        1212
+      ],
+      "sourceSize": [
+        62,
+        58
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "dfb4f67182b208a4e9c5973f703f704a40de7304692cc4523fc33d2209f43e19:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 92,
+      "representativeLocation": "Indels Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise source-bound environment texture restoration. Image1 is the authoritative original game crop enlarged by nearest-neighbour only. Image2 is the original all-layer static scene for lighting and usage context, not an edit target or a guaranteed gameplay state. Image3 is the original occupied-pixel footprint in CYAN on black; it defines geometry and gaps only, never final colour. Repaint image1 as restrained fine hand-painted HD game artwork compatible with Skurfa environments. Keep the complete original canvas registration, occupied solid widths, crop contacts, perspective, internal landmarks, broad colour and light. Preserve ambiguous original features as the same visible shapes and patch locations instead of assigning new identities. Continuous fine shading must not become coarse scratches, cracks, strong relief, shiny rims, newly defined joints or regular motifs. Indels Castle cut92 foreground4, strict62:58 full canvas. Three separated furnishing masses: a long warm wood bench/plank fragment diagonally across the upper-left/top; a large round reddish-brown tabletop in the lower half with its small stool fragment projecting at the left; and a small separate orange-brown oval stool top at upper-right of that table. Retain the strong source pale diagonal bench light along its lower-left side, darker brown upper edge, cropped bench ends and original irregular surface patches. On the round table retain a small pale tan slanted rectangular patch near its upper-right rim and the irregular tiny pale green/beige angular cluster near the lower-left/front rim. Exact identity of that cluster is unresolved: do not invent fruit, food, flowers, a platter, books, weapons or new legs. Preserve its native fine dark/pale divisions and warm reflected light, not a new branching symbol. Preserve the large transparent gap between upper bench and lower tabletop, all source stool locations and clipped contacts. Do not render the whole room or fill transparent gaps. Output exactly one isolated upgraded original texture on real transparency. Do not centre, rotate, pad, crop, enlarge any object, repaint cyan/black guide backgrounds, draw another scene, or include labels, text, watermark, border or comparison sheet.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/42a945eedd9dbcf3a55c15facfbf1f975209ac42bf94150360379935d3ffbc98/draft-input-v1.png",
+      "verdict": "source-coverage-revision-needed",
+      "reason": "Original outline coverage fails; no repaired output."
+    },
+    {
+      "decodedRgbaSha256": "66c780d5d756368b2558714d35236014a1b15e18ec70098854dd62b08cb3f943",
+      "generatedSha256": "04ab11520badb5fb4f0e1e065f40bb73e2c4932d4cbf847ca5a77769c883a3e3",
+      "generatedSize": [
+        1254,
+        1254
+      ],
+      "sourceSize": [
+        24,
+        24
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "457509c6abe094a6598ec856570d0786ef00adc58f8b85fbcae3d04cdbc6abf5:-1",
+          "kind": "foreground",
+          "slot": 7,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 312,
+      "representativeLocation": "Fueno",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise source-bound environment texture restoration. Image1 is the authoritative original game crop enlarged by nearest-neighbour only. Image2 is the original all-layer static scene for lighting and usage context, not an edit target or a guaranteed gameplay state. Image3 is the original occupied-pixel footprint in CYAN on black; it defines geometry and gaps only, never final colour. Repaint image1 as restrained fine hand-painted HD game artwork compatible with Skurfa environments. Keep the complete original canvas registration, occupied solid widths, crop contacts, perspective, internal landmarks, broad colour and light. Preserve ambiguous original features as the same visible shapes and patch locations instead of assigning new identities. Continuous fine shading must not become coarse scratches, cracks, strong relief, shiny rims, newly defined joints or regular motifs. Fueno cut312 foreground7, strict24:24 full canvas. Tiny dim round stool/table-like furnishing in a warm inn scene. Keep the irregular dark oval top with its ORIGINAL scattered small muted rust-orange, teal-blue and olive-green surface patch distribution. Do not make a plain brown top or invent food, a dish, checked cloth, a floral design, label or coherent emblem. It is strongly dim: retain subtle source contrast, no spotlight or bright new varnish. Below the top preserve the exact narrow dark reddish-brown vertical supports and crosspieces, including each small open window, long slanting left lower foot, upright center/lower foot and thin right side projection. Retain original solid widths and negative spaces from the guide; do not replace this with a regular new four-legged stool or draw room floor/shadow beyond the crop. Output exactly one isolated upgraded original texture on real transparency. Do not centre, rotate, pad, crop, enlarge any object, repaint cyan/black guide backgrounds, draw another scene, or include labels, text, watermark, border or comparison sheet.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 4080,
+      "paintedGapPixelsExtended": 37,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 1,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        96,
+        96
+      ],
+      "outputSha256": "9e10d23d4d22ba3b169cd26f31643a058d50050810c85573d7f3eb4bb4088b6c",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/66c780d5d756368b2558714d35236014a1b15e18ec70098854dd62b08cb3f943/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/66c780d5d756368b2558714d35236014a1b15e18ec70098854dd62b08cb3f943/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Coarse colored leg speckles and block-like supports exceed the original dim stool."
+    },
+    {
+      "decodedRgbaSha256": "66ce8f14cdce7e5aa0b763cb76e1765592237eba73dbd86fab97abe41bdfa1a2",
+      "generatedSha256": "9a1dc412d95e2265203dceb5b0e7f0688df16d0b6b5bd7459e92d74597abff87",
+      "generatedSize": [
+        1347,
+        1167
+      ],
+      "sourceSize": [
+        30,
+        26
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "6b0ff27d856c8828c82704f92f278c9c3a694766432b8f5c23fa0e02beb98930:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 146,
+      "representativeLocation": "Lohan",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise source-bound environment texture restoration. Image1 is the authoritative original game crop enlarged by nearest-neighbour only. Image2 is the original all-layer static scene for lighting and usage context, not an edit target or a guaranteed gameplay state. Image3 is the original occupied-pixel footprint in CYAN on black; it defines geometry and gaps only, never final colour. Repaint image1 as restrained fine hand-painted HD game artwork compatible with Skurfa environments. Keep the complete original canvas registration, occupied solid widths, crop contacts, perspective, internal landmarks, broad colour and light. Preserve ambiguous original features as the same visible shapes and patch locations instead of assigning new identities. Continuous fine shading must not become coarse scratches, cracks, strong relief, shiny rims, newly defined joints or regular motifs. Lohan cut146 foreground5, strict30:26 full canvas. Small dark red-brown table-like furnishing with sloping reddish oval top, dark brown legs/supports and a few tiny central pale/yellow upright shapes. Preserve the source brighter warm ochre small top-center mark, slim brown upright divider behind it, two unequal pale beige shapes lower/right of the center and their intervening dark gaps. Their exact object identity is unresolved: do not redesign them as a teapot, cup set, food, candlesticks or flowers; preserve just the actual tiny forms and coloured patches. Keep the original very dark lower supports, left leg diagonal down-left and longer right nearly upright leg with its clipped right projection, original bench-like front edge and all guide windows. Warm muted red surface with fine continuous shading, no deep wood grooves, extra dishes, new rails or bright polished edges. Output exactly one isolated upgraded original texture on real transparency. Do not centre, rotate, pad, crop, enlarge any object, repaint cyan/black guide backgrounds, draw another scene, or include labels, text, watermark, border or comparison sheet.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 5936,
+      "paintedGapPixelsExtended": 578,
+      "paintedUncoveredSourcePixels": 460,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 32,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        120,
+        104
+      ],
+      "outputSha256": "08dc4451576c62688bb1c933e7e123f2a164588bc809cd932dc84294c327bf84",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/66ce8f14cdce7e5aa0b763cb76e1765592237eba73dbd86fab97abe41bdfa1a2/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/66ce8f14cdce7e5aa0b763cb76e1765592237eba73dbd86fab97abe41bdfa1a2/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Deep grain, newly defined joints and cuboid pale objects overinterpret the tiny original."
+    },
+    {
+      "decodedRgbaSha256": "924d64a4d1c1f2d10a21e567566c95826aa74a9234d9a4c897281ffb48760a54",
+      "generatedSha256": "bc199bfd067cbd9eb0283ffaee35417e387fa4a030a0fb4849597856174a86b8",
+      "generatedSize": [
+        1341,
+        1173
+      ],
+      "sourceSize": [
+        16,
+        14
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "a090fd86f885a766485cd9a49455c2bf24f11943a7289b397a09c77e6bca7c48:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 58,
+      "representativeLocation": "Bale",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise source-bound environment texture restoration. Image1 is the authoritative original game crop enlarged by nearest-neighbour only. Image2 is the original all-layer static scene for lighting and usage context, not an edit target or a guaranteed gameplay state. Image3 is the original occupied-pixel footprint in CYAN on black; it defines geometry and gaps only, never final colour. Repaint image1 as restrained fine hand-painted HD game artwork compatible with Skurfa environments. Keep the complete original canvas registration, occupied solid widths, crop contacts, perspective, internal landmarks, broad colour and light. Preserve ambiguous original features as the same visible shapes and patch locations instead of assigning new identities. Continuous fine shading must not become coarse scratches, cracks, strong relief, shiny rims, newly defined joints or regular motifs. Bale cut58 foreground6, strict16:14 full canvas. Tiny warm ochre/gold-brown branching fitting on a low broad orange-brown rounded base in the town square. Keep the irregular upright near the center, left slanting arm, tall thin upper-right stem/arm, separate small pale gray-green patch just right of the center and the exact native openings. The orange-brown base has uneven source lengths and little warm highlights, not a newly polished metal platform. Exact fixture/material identity is unresolved; do not build a new crane, windlass, pulley, handle, rope, bucket, person, tree, jewellery or sign. Preserve the original particular branching shapes, solid widths and source warm daylight with restrained fine shading. No new mechanical joints or bright gold metallic edges; no scene or floor. Output exactly one isolated upgraded original texture on real transparency. Do not centre, rotate, pad, crop, enlarge any object, repaint cyan/black guide backgrounds, draw another scene, or include labels, text, watermark, border or comparison sheet.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/924d64a4d1c1f2d10a21e567566c95826aa74a9234d9a4c897281ffb48760a54/draft-input-v1.png",
+      "verdict": "source-coverage-revision-needed",
+      "reason": "Original outline coverage fails; no repaired output. Coarse gilded relief also exceeds the source."
+    },
+    {
+      "decodedRgbaSha256": "42a945eedd9dbcf3a55c15facfbf1f975209ac42bf94150360379935d3ffbc98",
+      "generatedSha256": "454bc82e87bbb7d59a49de98f19200f1b9926acf048a066b751adcdd04da2526",
+      "generatedSize": [
+        1297,
+        1212
+      ],
+      "sourceSize": [
+        62,
+        58
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "dfb4f67182b208a4e9c5973f703f704a40de7304692cc4523fc33d2209f43e19:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 92,
+      "representativeLocation": "Indels Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise source-bound environment texture restoration. Image1 is the authoritative original game crop enlarged by nearest-neighbour only. Image2 is the original all-layer static scene for lighting and usage context, not an edit target or a guaranteed gameplay state. Image3 is the original occupied-pixel footprint in CYAN on black; it defines geometry and gaps only, never final colour. Repaint image1 as restrained fine hand-painted HD game artwork compatible with Skurfa environments. Keep the complete original canvas registration, occupied solid widths, crop contacts, perspective, internal landmarks, broad colour and light. Preserve ambiguous original features as the same visible shapes and patch locations instead of assigning new identities. Continuous fine shading must not become coarse scratches, cracks, strong relief, shiny rims, newly defined joints or regular motifs. Indels Castle cut92 foreground4, strict62:58 full canvas. Three separated furnishing masses: a long warm wood bench/plank fragment diagonally across the upper-left/top; a large round reddish-brown tabletop in the lower half with its small stool fragment projecting at the left; and a small separate orange-brown oval stool top at upper-right of that table. Retain the strong source pale diagonal bench light along its lower-left side, darker brown upper edge, cropped bench ends and original irregular surface patches. On the round table retain a small pale tan slanted rectangular patch near its upper-right rim and the irregular tiny pale green/beige angular cluster near the lower-left/front rim. Exact identity of that cluster is unresolved: do not invent fruit, food, flowers, a platter, books, weapons or new legs. Preserve its native fine dark/pale divisions and warm reflected light, not a new branching symbol. Preserve the large transparent gap between upper bench and lower tabletop, all source stool locations and clipped contacts. Do not render the whole room or fill transparent gaps. Output exactly one isolated upgraded original texture on real transparency. Do not centre, rotate, pad, crop, enlarge any object, repaint cyan/black guide backgrounds, draw another scene, or include labels, text, watermark, border or comparison sheet. SOURCE-ONLY COVERAGE CORRECTION: the previous painting narrowed and shifted the furnishing footprints, leaving original solid material missing. Image4 shows native occupied areas missing from that attempt in RED for diagnosis, not final colour. Correct from originalimage1 and cyanimage3 only. The lower round table MUST start at the original higher top edge and extend into the original left/front boundaries; do not center it lower or round it into a neater circle. Preserve the original irregular broad low/front table extent and the attached left stool mass. The small separate upper-right stool and upper-left bench must retain their EXACT source coordinates and occupied widths. Fill only the full native occupied shape with appropriate original material; original gaps remain empty. Upper bench light is diffuse and construction indistinct: no new corner cap, raised plank groove, regularly outlined boards, added bench legs or severe gouges. Keep the round table deep subdued brown, original pale front-left cluster geometry and slanted top-right patch; no new plate or paper-sheet identity.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/42a945eedd9dbcf3a55c15facfbf1f975209ac42bf94150360379935d3ffbc98/draft-input-v2.png",
+      "verdict": "source-coverage-revision-needed",
+      "reason": "Second full-crop attempt still fails original outline coverage. Next correction must address separated source components; no gate waiver."
+    },
+    {
+      "decodedRgbaSha256": "66c780d5d756368b2558714d35236014a1b15e18ec70098854dd62b08cb3f943",
+      "generatedSha256": "f772354dfee4e9e2c72dfccdd0b77f6baa7527f2094cc9011939fd6fa082307b",
+      "generatedSize": [
+        1254,
+        1254
+      ],
+      "sourceSize": [
+        24,
+        24
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "457509c6abe094a6598ec856570d0786ef00adc58f8b85fbcae3d04cdbc6abf5:-1",
+          "kind": "foreground",
+          "slot": 7,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 312,
+      "representativeLocation": "Fueno",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise source-bound environment texture restoration. Image1 is the authoritative original game crop enlarged by nearest-neighbour only. Image2 is the original all-layer static scene for lighting and usage context, not an edit target or a guaranteed gameplay state. Image3 is the original occupied-pixel footprint in CYAN on black; it defines geometry and gaps only, never final colour. Repaint image1 as restrained fine hand-painted HD game artwork compatible with Skurfa environments. Keep the complete original canvas registration, occupied solid widths, crop contacts, perspective, internal landmarks, broad colour and light. Preserve ambiguous original features as the same visible shapes and patch locations instead of assigning new identities. Continuous fine shading must not become coarse scratches, cracks, strong relief, shiny rims, newly defined joints or regular motifs. Fueno cut312 foreground7, strict24:24 full canvas. Tiny dim round stool/table-like furnishing in a warm inn scene. Keep the irregular dark oval top with its ORIGINAL scattered small muted rust-orange, teal-blue and olive-green surface patch distribution. Do not make a plain brown top or invent food, a dish, checked cloth, a floral design, label or coherent emblem. It is strongly dim: retain subtle source contrast, no spotlight or bright new varnish. Below the top preserve the exact narrow dark reddish-brown vertical supports and crosspieces, including each small open window, long slanting left lower foot, upright center/lower foot and thin right side projection. Retain original solid widths and negative spaces from the guide; do not replace this with a regular new four-legged stool or draw room floor/shadow beyond the crop. Output exactly one isolated upgraded original texture on real transparency. Do not centre, rotate, pad, crop, enlarge any object, repaint cyan/black guide backgrounds, draw another scene, or include labels, text, watermark, border or comparison sheet. SOURCE-ONLY MATERIAL CORRECTION: prior attempt spread teal-blue/rust speckling over the entire structure and made strongly edged brick-like blocks on thin supports. Do not copy it. Fine original coloured mottling belongs chiefly to the dark TOP; the thin lower supports remain near-black warm reddish/olive brown with quieter shadows and few subdued existing patches. Keep exact original top patch distribution rather than increasing orange/blue saturation or edge contrast. Use soft continuous low-contrast shading on source-thick supports, no newly defined block joints, masonry, rivets, pronounced frame/foot bevels or regular construction. Keep native openings and slanted feet exact.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 4080,
+      "paintedGapPixelsExtended": 147,
+      "paintedUncoveredSourcePixels": 24,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 5,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        96,
+        96
+      ],
+      "outputSha256": "1bbcb519def3a7e742a1860dc7af2eeac5b007b180c23eda45ea4ddb9ff80880",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/66c780d5d756368b2558714d35236014a1b15e18ec70098854dd62b08cb3f943/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/66c780d5d756368b2558714d35236014a1b15e18ec70098854dd62b08cb3f943/draft-repaired-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Second correction still makes the originally dim diffuse tabletop too bright and densely orange-speckled. Legs and support edges remain overdefined; source shading/material revision needed."
+    },
+    {
+      "decodedRgbaSha256": "924d64a4d1c1f2d10a21e567566c95826aa74a9234d9a4c897281ffb48760a54",
+      "generatedSha256": "a101cf935f880b5ded12fe550e5260c5e187bf0f630ba68c302f26f8f9e92719",
+      "generatedSize": [
+        1341,
+        1173
+      ],
+      "sourceSize": [
+        16,
+        14
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "a090fd86f885a766485cd9a49455c2bf24f11943a7289b397a09c77e6bca7c48:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 58,
+      "representativeLocation": "Bale",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise source-bound environment texture restoration. Image1 is the authoritative original game crop enlarged by nearest-neighbour only. Image2 is the original all-layer static scene for lighting and usage context, not an edit target or a guaranteed gameplay state. Image3 is the original occupied-pixel footprint in CYAN on black; it defines geometry and gaps only, never final colour. Repaint image1 as restrained fine hand-painted HD game artwork compatible with Skurfa environments. Keep the complete original canvas registration, occupied solid widths, crop contacts, perspective, internal landmarks, broad colour and light. Preserve ambiguous original features as the same visible shapes and patch locations instead of assigning new identities. Continuous fine shading must not become coarse scratches, cracks, strong relief, shiny rims, newly defined joints or regular motifs. Bale cut58 foreground6, strict16:14 full canvas. Tiny warm ochre/gold-brown branching fitting on a low broad orange-brown rounded base in the town square. Keep the irregular upright near the center, left slanting arm, tall thin upper-right stem/arm, separate small pale gray-green patch just right of the center and the exact native openings. The orange-brown base has uneven source lengths and little warm highlights, not a newly polished metal platform. Exact fixture/material identity is unresolved; do not build a new crane, windlass, pulley, handle, rope, bucket, person, tree, jewellery or sign. Preserve the original particular branching shapes, solid widths and source warm daylight with restrained fine shading. No new mechanical joints or bright gold metallic edges; no scene or floor. Output exactly one isolated upgraded original texture on real transparency. Do not centre, rotate, pad, crop, enlarge any object, repaint cyan/black guide backgrounds, draw another scene, or include labels, text, watermark, border or comparison sheet. SOURCE-ONLY COVERAGE/MATERIAL CORRECTION: prior attempt turned source into strongly relieved shiny gold fixture and moved/thinned branching solid regions, failing native coverage. Image4 is a red missing-source-material diagnostic only. Start from originalimage1/cyanimage3; trace exact original widths and edge contacts of every small arm, central upright, lower base and each original black hole. Do not regularize or shift branches/openings into a new fixture. Original base is low flat warm orange/brown with dark lower edge, not raised tiered gilded plinth. Native upper arms are mostly dim olive-brown/ochre with particular pale gray-green spot near right-center, not bright golden metal. Fine matte smooth shading only; no corrosion/crackle, deep relief, extra mechanical joints or carving.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 1664,
+      "paintedGapPixelsExtended": 205,
+      "paintedUncoveredSourcePixels": 96,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 25,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        64,
+        56
+      ],
+      "outputSha256": "346090dac5d63a0d9f7a6da89aa7ae5dcf67a8f2e4968acc16d2bdb8da2a14a1",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/924d64a4d1c1f2d10a21e567566c95826aa74a9234d9a4c897281ffb48760a54/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/924d64a4d1c1f2d10a21e567566c95826aa74a9234d9a4c897281ffb48760a54/draft-repaired-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Second correction passes outline coverage but still imposes coarse bright gold-like highlights and highly defined branches on the soft original. Exact object/material identity unresolved; not promoted."
+    }
+  ]
+}
