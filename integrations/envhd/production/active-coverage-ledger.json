@@ -13,7 +13,8 @@
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
     "field-bespoke-natural-rock-held-drafts.json": "b4ecadac7d27c436d3a0ab6f8f1c157402775461e2fbb80afc4ef48bd5ae4d23",
     "field-bespoke-textiles-reviewed-selection.json": "0b9c7bd2093443980d141c038041af51e1779ce9db37d74a64452578f2983b66",
-    "field-bespoke-textile-held-drafts.json": "3fb7c93730ddc60595d6c386f227d77bfdc0f044072eaec772c2022b64102e3b"
+    "field-bespoke-textile-held-drafts.json": "3fb7c93730ddc60595d6c386f227d77bfdc0f044072eaec772c2022b64102e3b",
+    "world-water-source-audit.json": "b9339bbf59cb3518e32766ca4f5f52d69d08ce490ae30e4dc4bdef246a6bdb0b"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -87,7 +88,15 @@
       "totalKnownParts": 8,
       "imageJobDenominator": null,
       "selectedHdFamilies": 0,
-      "nextTask": "Prove common plus continent upload state, animated part material/UV/CLUT consumers, float timing and all reachable states before authoring."
+      "nextTask": "Use one shared water source for eight continent parts; close copy/padding/state/presentation and shared Queen Fury wake ownership, then author palette-live detail and integrate behind EnvHD independently of FxHD.",
+      "partialSourceContract": {
+        "ledger": "world-water-source-audit.json",
+        "knownSharedWaterTimSources": 1,
+        "part0Faces": 296,
+        "all8OrderedBankImageAndPaletteInitializationsProved": true,
+        "fixedMode1FloatControllerPeriod": 16512,
+        "fullStateAndSharedConsumerContractClosed": false
+      }
     },
     {
       "id": "environment-props-and-overlays",
