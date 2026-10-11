@@ -52,7 +52,13 @@ class CandidateTests(unittest.TestCase):
         result, receipt = macro.refine(Image.fromarray(source), Image.fromarray(pixels))
         means = np.asarray(result)[:,:,:3].reshape(8,4,8,4,3).mean(axis=(1,3))
         self.assertLessEqual(np.abs(means-source[:,:,:3]).max(), 0.5)
-        self.assertGreater(np.asarray(result)[:,:,:3].std(axis=(0,1)).max(), 0)
+        # The source already varies between rows; whole-image variance cannot
+        # prove the recipe kept any generated detail. Inspect a uniform source
+        # cell, then compare against the same source with a flat painting.
+        cell = np.asarray(result)[8:12,8:12,:3]
+        self.assertGreater(np.ptp(cell,axis=(0,1)).max(), 0)
+        flat_result,_ = macro.refine(Image.fromarray(source), self.paint)
+        self.assertFalse(np.array_equal(np.asarray(result),np.asarray(flat_result)))
         self.assertLessEqual(receipt['maximumNativeCellMeanChannelDrift'], 0.5)
 
     def test_alpha_black_and_hidden_rgb_are_exact(self):
