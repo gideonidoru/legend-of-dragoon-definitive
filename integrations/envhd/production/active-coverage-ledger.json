@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "6612a533307e5f066bc46e7870d658f8add42752 plus independent-pending authoring at f7d53afd9",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "84dc7895fb219aa75e7a209c80a7ab3824084645f91a6de2e555cf8c5b6eee7d",
+    "full-coverage.json": "3c638ec017bcdff1bbcf901029af281c08c1cd9e8fd13cc09427e4d968c599f8",
     "field-runtime-artwork.json": "b4c0dc3f07c089c9fe727be0fd19e457b255ccc16b63db4f3cc40a313125b257",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
@@ -64,7 +64,8 @@
     "field-independent-table-review.json": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a",
     "field-bespoke-wheel-furnishings-reviewed-selection.json": "93a2b2882a69219a2596875b2acc0701d00e0d63870fdaa976b783fce2e75e95",
     "field-bespoke-wheel-furnishings-held-drafts.json": "109fd905b5ce0081004194e6535fb48e40cc63b55088cbc4ce89e74e3641bd87",
-    "field-wheel-furnishings-authoring-readiness.json": "123cb11f483bd854d44a1c606f4ab31686e23cb739801534afe62940a10a101b"
+    "field-wheel-furnishings-authoring-readiness.json": "123cb11f483bd854d44a1c606f4ab31686e23cb739801534afe62940a10a101b",
+    "publication-source-5d3db5c8-generation4-snapshot.json": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -84,7 +85,7 @@
       "unreviewed": 0,
       "customHeldDraftSourceImages": 58,
       "draftsAreSubsetOfHolds": true,
-      "publishedInstallerSelected": 4917,
+      "publishedInstallerSelected": 4925,
       "nextTask": "Independent original-reference review of31 pending candidates; correct Fletz relief/highlights, continue236 field holds and source state/native/final checks.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 31,
       "customHeldDraftSourceKeys": [
@@ -149,7 +150,7 @@
       ],
       "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4926 runtime selections.58source keys subset236 field holds; repeated versions deduplicated.",
       "independentlyReviewedCandidatesRequiringRevision": 3,
-      "publishedInstallerSnapshotEvidence": "Main ad1a234d full-coverage.json records d7311334; not a fresh live release query."
+      "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json"
     },
     {
       "id": "static-terrain",
@@ -468,12 +469,21 @@
       "tag": "definitive-current",
       "generation": 4,
       "packageSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
-      "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
+      "buildRun": 38171282483,
+      "snapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
+      "snapshotEvidenceSha256": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f",
+      "countEvidence": "Exact source ledgers at observed canonical manifest source; not fresh owner package-byte or device QA.",
       "fieldSelectedMasters": 4925,
       "paintedFieldReplacements": 39,
+      "fieldHolds": 237,
+      "battleNewSelectedMasters": 518,
+      "battleNewSelectedBindings": 525,
+      "battleTotalSelectedBindings": 549,
       "paintedBattleReplacements": 34,
       "nativeArtAccepted": 0,
-      "finalArtAccepted": 0
+      "finalArtAccepted": 0,
+      "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
+      "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
     "selectedFieldImagesAwaitingCoordinatedPublication": 1,
     "paintedBattleMastersAwaitingCoordinatedPublication": 13,
@@ -501,13 +511,24 @@
         "paintedBattleReplacements": 12,
         "nativeArtAccepted": 0,
         "finalArtAccepted": 0
+      },
+      {
+        "tag": "definitive-current",
+        "generation": 4,
+        "packageSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+        "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
+        "fieldSelectedMasters": 4925,
+        "paintedFieldReplacements": 39,
+        "paintedBattleReplacements": 34,
+        "nativeArtAccepted": 0,
+        "finalArtAccepted": 0
       }
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
   "authoringCheckpoint": "Complete74 candidates:31 independent-pending/3 revisions;3new candidates,5held versions,58unique unselected sources. Runtime4926/40 and237known static backlog unchanged. Source recipes reproduced, no native/final acceptance.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "6612a533307e5f066bc46e7870d658f8add42752",
+    "sourceCommit": "ad758d95b04d24b560a0ee000310b89891f63615",
     "fieldSelected": 4926,
     "fieldPainted": 40,
     "battleNewSelectedMasters": 518,

@@ -65,7 +65,8 @@
     "field-independent-table-review.json": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a",
     "field-bespoke-wheel-furnishings-reviewed-selection.json": "93a2b2882a69219a2596875b2acc0701d00e0d63870fdaa976b783fce2e75e95",
     "field-bespoke-wheel-furnishings-held-drafts.json": "109fd905b5ce0081004194e6535fb48e40cc63b55088cbc4ce89e74e3641bd87",
-    "field-wheel-furnishings-authoring-readiness.json": "123cb11f483bd854d44a1c606f4ab31686e23cb739801534afe62940a10a101b"
+    "field-wheel-furnishings-authoring-readiness.json": "123cb11f483bd854d44a1c606f4ab31686e23cb739801534afe62940a10a101b",
+    "publication-source-5d3db5c8-generation4-snapshot.json": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f"
   },
   "categories": [
     {
@@ -238,7 +239,7 @@
       "neuralReviewedDevelopmentMasters": 4886,
       "neuralBespokeRevisionMasters": 276,
       "paintedReviewReceipt": "field-bespoke-table-independent-reviewed-selection.json",
-      "publishedInstallerSelectedMasters": 4917,
+      "publishedInstallerSelectedMasters": 4925,
       "envhdHeldPaintedCandidateMasters": 1,
       "unselectedCustomDraftSourceMasters": 58,
       "heldPaintedCandidateMastersMeaning": "The existing envhdHeldPaintedCandidateMasters1 is the explicitly held full Deningrad bed from the legacy selection manifest; all current unselected draft sources counted separately."
@@ -341,15 +342,37 @@
     "presentationManifest": "battle-presentation-artwork-v1.json"
   },
   "publishedInstaller": {
-    "tag": "definitive-alpha-2026-10-11-envhd",
-    "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
-    "entrypointMetadataSource": "0b8df09ab1aa5cfab8dc3c7051cbc49708be8b64",
-    "fieldSelectedMasters": 4892,
-    "battleNewSelectedMasters": 506,
-    "battleNewSelectedBindings": 513,
-    "battleTotalSelectedBindings": 537,
-    "paintedBattleReplacements": 0,
+    "tag": "definitive-current",
+    "generation": 4,
+    "packageSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+    "buildRun": 38171282483,
+    "snapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
+    "snapshotEvidenceSha256": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f",
+    "countEvidence": "Exact source ledgers at observed canonical manifest source; not fresh owner package-byte or device QA.",
+    "fieldSelectedMasters": 4925,
+    "paintedFieldReplacements": 39,
+    "fieldHolds": 237,
+    "battleNewSelectedMasters": 518,
+    "battleNewSelectedBindings": 525,
+    "battleTotalSelectedBindings": 549,
+    "paintedBattleReplacements": 34,
     "nativeArtAccepted": 0,
-    "finalArtAccepted": 0
-  }
+    "finalArtAccepted": 0,
+    "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
+    "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
+  },
+  "previousPublishedInstallerSnapshots": [
+    {
+      "tag": "definitive-alpha-2026-10-11-envhd",
+      "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
+      "entrypointMetadataSource": "0b8df09ab1aa5cfab8dc3c7051cbc49708be8b64",
+      "fieldSelectedMasters": 4892,
+      "battleNewSelectedMasters": 506,
+      "battleNewSelectedBindings": 513,
+      "battleTotalSelectedBindings": 537,
+      "paintedBattleReplacements": 0,
+      "nativeArtAccepted": 0,
+      "finalArtAccepted": 0
+    }
+  ]
 }
