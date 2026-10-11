@@ -25,6 +25,12 @@ No total-image completion percentage is claimed. Each
 row's exact remaining work and intentional exclusions are in the JSON ledger.
 All custom native/final-quality acceptance counts remain zero.
 
+The [battle animation family checkpoint](ENVHD_BATTLE_ANIMATION_FAMILIES.md)
+explains all 350 animation/context bindings' isolated stage-local source cycles,
+including changing padding and initial transients. It selects no artwork and
+clears no hold; complete encounter upload/darkening/presentation contracts remain
+open. Its combined frame-hash counts are not an EnvHD authoring-job denominator.
+
 The authoring branch selects twelve separately reviewed painted battle replacements:
 three Flanvel Tower materials, two stage-30 decorative panels and a stage-38
 static flame-shaped surface, plus a Shirley's Shrine plaque, stage-17 floor
@@ -138,3 +144,9 @@ that hold, preserving all 32 original candidate records in the unchanged bedding
 manifest. Runtime resources exclude the full bed and use its native source layer;
 all other 4,917 records remain exact. Current selection is 4,917 (4,886 neural plus 31
 painted), with 245 field holds plus one terrain hold. No recipes or thresholds change.
+
+The prop/animation raw-page figures above are historical discovery snapshots,
+not complete EnvHD material/image counts. See the [remaining discovery plan](ENVHD_REMAINING_DISCOVERY_PLAN.md)
+for fresh battle dependency checks, current prop route/raw-page counts, unresolved
+aliases and source-located workstreams with acceptance conditions. Current selected
+artwork and its source-ledger controls remain unchanged by that discovery work.
