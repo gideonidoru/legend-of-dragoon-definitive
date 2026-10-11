@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "6612a533307e5f066bc46e7870d658f8add42752 plus independent-pending authoring at f7d53afd9",
+  "sourceSelectionCheckpoint": "6dea202bed0aa561a692542fea3b4f2bac4db1b8 accepted Donau two-image selection; ongoing80 authoring preserved",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "58617a55dd59cf47034a932bff993104abcc1b936193d81ea132698f43f44bb8",
-    "field-runtime-artwork.json": "b4c0dc3f07c089c9fe727be0fd19e457b255ccc16b63db4f3cc40a313125b257",
+    "full-coverage.json": "26ad02573d9590df9677eaeb9a3883af12326d1d1b79265955714e5a0c23ebb4",
+    "field-runtime-artwork.json": "5e81786b0b9816dbe756b20cc5bf4c86ae3e84a95d84055f873f393b2136994f",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
@@ -71,29 +71,33 @@
     "field-tableware-authoring-readiness.json": "155662c7939e5847f0ad941fb6e30927f4a7ad19f87ae4dfd2559c1e7121c9c3",
     "field-bespoke-donau-architecture-reviewed-selection.json": "c1037ec6e8afef7c9ffa7ea1a1d3be38ae98add92d4d8e3c30ecb36ebfb0bf88",
     "field-bespoke-donau-architecture-held-drafts.json": "2635e6f50821c65da290245b5d449fa9d1a6045c59ef95f9cd52e0c3b6a6a812",
-    "field-donau-architecture-authoring-readiness.json": "8a26c08d3d558416d7eae2749c414bccd5aa728fe767ea827124e3359dc68042"
+    "field-donau-architecture-authoring-readiness.json": "8a26c08d3d558416d7eae2749c414bccd5aa728fe767ea827124e3359dc68042",
+    "field-bespoke-donau-two-independent-reviewed-selection.json": "f7f5ab51e5afbe13c566300a863bfb25019575810368fe72d7d3f00264c295b5",
+    "field-independent-donau-two-review.json": "0018f0828106bada7ac8caa41dae15f1387e3a5b29fa89f03f9ddba32f48a6b9",
+    "field-donau-two-selection-readiness.json": "7248e4730cce7f566469380513041dc96b4d4bcdb455864b8332f8996615654a",
+    "field-donau-authoring-main-forward.json": "a7c15122d70c773b74e24b6c5a5eda2805e0e17e628c4c366d4a97219739ed2b"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 237,
+  "knownRemainingStaticImages": 235,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4926,
+      "selectedDevelopment": 4928,
       "selectedNeural": 4886,
-      "selectedPainted": 40,
-      "held": 236,
+      "selectedPainted": 42,
+      "held": 234,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 70,
+      "customHeldDraftSourceImages": 68,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Independent original-reference review of37 pending candidates; correct Donau loop motifs/relief/clipped window, Indels separated source components, Fueno/Bale contrast/material and Fletz relief; continue236 field holds and source state/native/final checks.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 37,
+      "nextTask": "Independent original-reference review of34 pending candidates; revise Donau tablet and held motifs/windows/material details; continue234 field holds plus source/state/native/final checks.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 34,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
@@ -108,7 +112,6 @@
         "6c348a68d190c40bb47a3b5b3b0a0051849a80eaf03b2bb0070dad83775f06c1",
         "6ca24f005553c031d0d27b507ad335ce95fec5d7a9443a2854fd1a23fd0639e1",
         "745736c6a0d1c9a694b2295793ff1e4573a9861c9f999995ce85fdbecafd3d90",
-        "7478cfa11edc1e38fc2efdb15fa933aac1674ac4ef8df19b685f4a4b796f9b38",
         "7cc8ba928d1ac6f7ef7b9260c62be10c52327bbf5b58e1cb63c2f106a59e335f",
         "7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957",
         "7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827",
@@ -157,7 +160,6 @@
         "e22a7b2917dc0277ef411a3573333b54e4f6d56662bb68bc472c05a746537116",
         "e6bea3e159ef60b60feb564cc6a70ac9f1278263d30bfacf9258b7a2ea7d662a",
         "e87bbe9dc68db62ba77591f5d95fbb41db2b59bdee7bb7648d7e0871e0d2413d",
-        "eaa444e4fbf2f33ab180d560338249e836b4d897f4332c98be0be8c871b3d261",
         "ed28e7d93d5636f737f4e2175ea43d33600dda3bde450f0738406d4a035cc7b8",
         "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
         "f49c19350faa7b6d8baff4e376061ce1d7b80965648b2ef797c2d276a0e86d2a",
@@ -166,8 +168,8 @@
         "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4926 runtime selections.70source keys subset236 field holds; repeated versions deduplicated.",
-      "independentlyReviewedCandidatesRequiringRevision": 3,
+      "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4928 runtime selections.68source keys subset234 field holds; repeated versions deduplicated. Complete80 historical candidate records remain unchanged; two Donau selections and tablet revision update the current queue separately.",
+      "independentlyReviewedCandidatesRequiringRevision": 4,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json"
     },
     {
@@ -491,6 +493,18 @@
       "heldSourceImages": 6,
       "heldVersions": 9,
       "reason": "Six first versions held: hall1 fails source86:84 aspect, other1s overinterpret relief/motifs/window/material. Three corrected2s remain source-fidelity held. Hall/tablet/larger exterior2 separately independent-pending. No guard waived."
+    },
+    {
+      "manifest": "field-bespoke-table-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 1,
+      "independentReview": "field-independent-table-review.json",
+      "reason": "Crystal Palace table clear for development; prior39 painting and4925 runtime records exact. No unrelated drafts added."
+    },
+    {
+      "manifest": "field-bespoke-donau-two-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 2,
+      "independentReview": "field-independent-donau-two-review.json",
+      "reason": "Donau column/arch and larger exterior wall clear for development; tablet excluded. Prior40 selected recipes and4926 runtime records exact. Unfinished authoring remains on ongoing branch."
     }
   ],
   "publication": {
@@ -517,7 +531,7 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 1,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 3,
     "paintedBattleMastersAwaitingCoordinatedPublication": 13,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",

@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "sourceReviewCommit": "b6f0a764f551bdfd0cf4bffd83a2bc83488cad5c",
+  "sourceManifest": "Historical source-bound b6f0:field-bespoke-donau-architecture-reviewed-selection.json (authoring and held histories remain on ongoing branch)",
+  "sourceManifestSha256": "c1037ec6e8afef7c9ffa7ea1a1d3be38ae98add92d4d8e3c30ecb36ebfb0bf88",
+  "reviewer": "Independent ROOT coordinator Spec/original-fidelity and Standards/source-integrity reviews",
+  "reviewerThreadId": "01a12671-4c0a-7c30-bfe5-ba87b8d1496f",
+  "scope": "Only the two independently cleared Donau column/arch and larger exterior wall; tablet explicitly excluded for material revision.",
+  "independentReportsSha256": {
+    "spec": "bfb4fc8cb496b97eead0a30ab912ce7714720d3299250c495cc3e5d6bfffe834",
+    "standards": "314de392c2301f3285555bffeb36aa16d0dba613cf7b7ed9a2b644d2c44fcd3a"
+  },
+  "sourceChecksReported": [
+    "Exact source RGBA identities, owners/bindings and fourfold alpha/visible-black footprints",
+    "Pinned custom candidate input/output bytes and dimensions",
+    "Original crops and static context/placement visual comparisons"
+  ],
+  "individualDispositions": [
+    {
+      "decodedRgbaSha256": "7478cfa11edc1e38fc2efdb15fa933aac1674ac4ef8df19b685f4a4b796f9b38",
+      "outputSha256": "bbd3318430dcef8d7a129c22f2fc6aa2f0471680bbd28100845d10a465b055ca",
+      "generatedSha256": "2d79553d115ee7ab9b4b9e9914ea96335ad4abc984b4b3fff5fe862e9799fa5c",
+      "disposition": "clear-development-intent",
+      "reason": "Original arch/open center, lower crosspiece, column silhouette, high orange patch, unequal pale central marks, divided lower band and foot inset remain in their source positions. Purple/teal crosspiece flecks remain sparse. Surface detail is an enhancement; no new dominant motif or construction identified.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "decodedRgbaSha256": "eaa444e4fbf2f33ab180d560338249e836b4d897f4332c98be0be8c871b3d261",
+      "outputSha256": "542ced9cf1ddf8dd3bb1b08497b1974336d42c008b88eaa8cca78e2e8ddf8830",
+      "generatedSha256": "1206aab979d677534a4ca0dbf0c4cf11e8b0d4757ad00376a0666005b00f143a",
+      "disposition": "clear-development-intent",
+      "reason": "Clipped upper-left dark opening and pale surround, convex dark olive wall, ochre right edge and sparse warm/green patches remain source anchored. No additional aperture, coherent invented emblem or silhouette change identified. Fine surface texture is interpretive and does not establish scene-wide material acceptance.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "excludedTabletSourceKey": "be023e0b5599675425e3a0e361a3cf1ae5c57a4c51d10e5d49c0d4d857f830cc",
+  "excludedTabletReason": "Reduce repeated pit/chip relief and support mottling; preserve the original shallow low-contrast interior distribution and quiet stone shading, then repeat this source/placement comparison. Keep held until that narrow revision is independently reviewed.",
+  "limits": "Development selection only; native/GPU/scripted depth/state, physical Deck, campaign, final-beauty and neighboring layer finish remain pending. Root narrow reports did not replay all80 authoring recipes."
+}

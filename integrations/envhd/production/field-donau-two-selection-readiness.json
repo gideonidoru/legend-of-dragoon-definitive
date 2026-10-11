@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "scope": "Clean main-forward increment selecting only two independently cleared Donau paintings; prior40 candidate and4926 runtime records exact.",
+  "integrationBaseCommit": "bcb612f5ad0c3df5cfbe5b08593596ecae20d062",
+  "authoringSourceCommit": "b6f0a764f551bdfd0cf4bffd83a2bc83488cad5c",
+  "selectionManifest": "field-bespoke-donau-two-independent-reviewed-selection.json",
+  "selectionManifestSha256": "f7f5ab51e5afbe13c566300a863bfb25019575810368fe72d7d3f00264c295b5",
+  "independentReview": "field-independent-donau-two-review.json",
+  "independentReviewSha256": "0018f0828106bada7ac8caa41dae15f1387e3a5b29fa89f03f9ddba32f48a6b9",
+  "fieldRuntimeSha256": "5e81786b0b9816dbe756b20cc5bf4c86ae3e84a95d84055f873f393b2136994f",
+  "currentSourcePreflightCandidates": 42,
+  "priorSelectedCandidateRecordsExact": 40,
+  "priorRuntimeAssetRecordsExact": 4926,
+  "onlyAddedSourceKeys": [
+    "7478cfa11edc1e38fc2efdb15fa933aac1674ac4ef8df19b685f4a4b796f9b38",
+    "eaa444e4fbf2f33ab180d560338249e836b4d897f4332c98be0be8c871b3d261"
+  ],
+  "protectedCutsExact": true,
+  "selectedFields": 4928,
+  "selectedPaintings": 42,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 234,
+  "knownRemainingStaticImages": 235,
+  "tests": [
+    {
+      "script": "scripts/test-envhd-painted-fields.py",
+      "passed": 32
+    },
+    {
+      "script": "scripts/test-envhd-install-selection.py",
+      "passed": 3
+    },
+    {
+      "script": "scripts/test-archive-assembly.py",
+      "passed": 39
+    },
+    {
+      "script": "scripts/test-envhd-battle-presentation-pack.py",
+      "passed": 12
+    }
+  ],
+  "freshPackageVerified": true,
+  "tabletExcluded": true,
+  "unfinishedAuthoringPreservedOnOngoingBranch": true,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "packageVerifiedSourceCommit": "83dc5e199ff7ff9a63bfd2fd657d05bb8e35aa16",
+  "build": "PASS: Java25/Gradle9.1 frozen committed source; EnvHD JAR and all four field packs.",
+  "packageVerification": {
+    "scope": "EnvHD normal-package resource subset; full installer/public-carrier closure remains coordinator-owned",
+    "selectedFields": 4928,
+    "jarResources": 5314,
+    "parts": 4,
+    "oneModSwitch": true,
+    "allSelectedResourceNamesSizesAndBytesExact": true,
+    "files": [
+      {
+        "name": "EnvHD-v0.1.0.jar",
+        "size": 278282663,
+        "sha256": "7fc6f3363d7dce16cbc5c16988261d878b59a521ce2eb05fa751369877fd005c",
+        "exactToPriorAcceptedPackage": false
+      },
+      {
+        "name": "Env1HD-v0.1.0.zip",
+        "size": 552595435,
+        "sha256": "eb4d0119eacfa81c98982a9780bffca4ae56b28aedb5d182227774bd09bc5205",
+        "exactToPriorAcceptedPackage": true
+      },
+      {
+        "name": "Env2HD-v0.1.0.zip",
+        "size": 573665312,
+        "sha256": "a74a0b6246996eb1e158fabb339a32f864bd0c8ea096fef63df387133b4c0ae8",
+        "exactToPriorAcceptedPackage": false
+      },
+      {
+        "name": "Env3HD-v0.1.0.zip",
+        "size": 570092317,
+        "sha256": "2092c3660151873efdf44098e0bd00427b5389e7681fb9fb71950fe51952a24b",
+        "exactToPriorAcceptedPackage": true
+      },
+      {
+        "name": "Env4HD-v0.1.0.zip",
+        "size": 673010347,
+        "sha256": "6c1dfcddd2488df6c353d3cd556511d7321afb91600a0ac35e8ef2bf14c8ff16",
+        "exactToPriorAcceptedPackage": false
+      }
+    ],
+    "onlyEnv2AndEnv4FieldPacksChanged": true,
+    "battleResourcesExactToAcceptedMain": true
+  },
+  "evidenceLogSha256": {
+    "envhd-donau-main-preflight.log": "7f541f4877b149d626686e7ad067c0059e251e25487e55ea9dc8956837cfc458",
+    "envhd-donau-main-build.log": "3d2bd91f289e631284dbb224ab6fd167918e31d29f5e7ec715521bd2aa8b2a5e",
+    "envhd-donau-main-package-verification.log": "23cb3a42d39e6a7904c075ad5e1423a6165566018f3b26935911b63f1ff8072e",
+    "envhd-donau-main-forward-build.log": "ae0b71baa21bbd14fc8167d68ef1a716dcc7101b6d8174129c98fbe255246b4a",
+    "envhd-donau-main-forward-package-verification.log": "23cb3a42d39e6a7904c075ad5e1423a6165566018f3b26935911b63f1ff8072e"
+  },
+  "previousPackageVerifiedSourceCommit": "84ca7e6d2362ca7f304447c79686ad6695bfec41",
+  "acceptedMainForwardBase": "0754e2a0604d3587d2c94a9a5510c1b8f09e0b31",
+  "reviewedIntegrationSource": "727bf4f1416b76690a497e1f6915b8f885649472",
+  "reviewedDonauBinaryDiffExactAfterMainForward": true,
+  "allFivePackageArtifactsExactAfterMainForward": true,
+  "independentIntegrationReviews": {
+    "standards": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedIntegration": "727bf4f1416b76690a497e1f6915b8f885649472",
+      "reportSha256": "082f96fde4b29b560a53ab0b549187d2ed9fe056071cc70b029e0a5705bc339c",
+      "reviewer": "/root/hd_standards_review"
+    },
+    "spec": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedIntegration": "727bf4f1416b76690a497e1f6915b8f885649472",
+      "reportSha256": "724722d6d72a558e22d6ab5afee3caa2b9f1e88346b06a9fe829ea5a4194e737",
+      "reviewer": "/root/hd_spec_review"
+    }
+  },
+  "independentFreshOriginalSourceReplay": 42,
+  "independentFreshPackageReplay": true
+}

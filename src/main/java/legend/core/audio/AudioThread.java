@@ -57,7 +57,8 @@ public final class AudioThread implements Runnable {
   private FileData pendingXa;
   private final List<AudioSource> sources = new ArrayList<>();
 
-  private boolean running;
+  private volatile boolean running;
+  private boolean shutdownRequested;
   private boolean paused;
 
   private ALCapabilities alCapabilities;
@@ -195,6 +196,7 @@ public final class AudioThread implements Runnable {
     this.scheduler.shutdown();
 
     synchronized(this) {
+      this.shutdownRequested = true;
       this.pendingXa = null;
 
       if(!this.running && this.audioDevice != 0) {
@@ -284,7 +286,10 @@ public final class AudioThread implements Runnable {
 
   @Override
   public void run() {
-    this.running = true;
+    synchronized(this) {
+      // The platform can finish closing before this worker receives its first turn.
+      this.running = !this.shutdownRequested;
+    }
 
     while(this.running) {
       final long time = System.nanoTime();
@@ -367,10 +372,10 @@ public final class AudioThread implements Runnable {
   }
 
   public void stop() {
-    this.paused = false;
-    this.running = false;
-
     synchronized(this) {
+      this.shutdownRequested = true;
+      this.paused = false;
+      this.running = false;
       this.pendingXa = null;
       this.notify();
     }
