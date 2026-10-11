@@ -1,0 +1,404 @@
+{
+  "schema": 1,
+  "scope": "Unselected EnvHD custom-art history. Three source-owned static foreground jobs remain within the 245 field holds. No original game pixels, source references, diagnostic contexts or comparison boards are published. The experimental mean-anchored recipe does not qualify artwork for runtime selection.",
+  "sourceSelectionBaseCommit": "32f5db9ffd3859bb1436020a4897556c8622721e",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827",
+      "representativeLocation": "Undersea Cavern",
+      "representativeCut": 305,
+      "sourceSize": [
+        44,
+        44
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "c90c422113981fd55d0ca5331f4e52a3bb6fca124b7b6d0479d9ca341dc8010b:-1",
+          "kind": "foreground",
+          "slot": 7,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit\nAsset type: EnvHD source-bound foreground cutout, Undersea Cavern cut 305, native 44 by 44 texels; replacement detail for the SAME formation.\nInput images: Image 1 is the edit target, a nearest-neighbor enlargement of the exact native foreground layer. Image 2 is supporting native location context ONLY; do not paint or include the scene, bright green missing-layer markers, water, plants or neighboring objects.\nPrimary request: Faithfully restore this same pale gray-green layered cave formation with smooth but subtly mottled weathered surface detail at HD resolution. Keep the original fold/ledge arrangement: the tall tapered upper/back section, the broad rounded lower-left ledge, the smaller rounded right ledge, their exact relative sizes and diagonal relationships, and the dark lower base. Follow the actual native light/shadow patches and local color variations. Preserve the central dark crease that separates the folds. Surface detail should be restrained fine mineral/coral-like mottling consistent with the image, not new relief shapes.\nComposition/framing: EXACT square source canvas, same bounding rectangle and object placement, no extra margins, no zoom, no crop, no perspective change. Output 1024 by 1024 PNG. Preserve all opaque/transparent shape components and existing occupied dark shadow planes. Transparent background outside the source object only.\nStyle/medium: detailed handcrafted painterly late-1990s fantasy pre-rendered environment, softly modeled surfaces matching the original scene, fine texture without changing the low-contrast gray/sage palette or light direction.\nConstraints: Source identity and silhouette are mandatory. Preserve every source fold boundary, ledge outline and dark recess in place; the pixelated source is a geometric/material constraint, not a loose inspiration. Do not reinterpret the layer as a new shell, sculpture, creature, mushroom, furniture or a different object. Do not add ridges, extra lobes, holes, new marks, decorations, text or repeating carved motifs. Do not fill the background or add a cast shadow outside the existing source footprint. Preserve source-edge colors for seamless placement. Only resolve existing details and add fine source-consistent surface texture.\nAvoid: scene redraws, green markers, border, gloss, photoreal photography, sharpened contour halos, exaggerated contrast, generic smooth featureless surfaces, new geometry or designs.\n",
+      "files": {
+        "draft-input-v1.png": {
+          "path": "integrations/envhd/production/held-field-art-drafts/7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827/draft-input-v1.png",
+          "sha256": "b74d0c5e28919b0373c33029f20bd5ca40863666bc7b0bfd18831772c38a51a7",
+          "size": [
+            1254,
+            1254
+          ],
+          "mode": "RGBA"
+        },
+        "repaired-draft-v1.png": {
+          "path": "integrations/envhd/production/held-field-art-drafts/7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827/repaired-draft-v1.png",
+          "sha256": "658302448ad7b0210188042ba6a950da1a9d0f97389580e041818dae67a0cd15",
+          "size": [
+            176,
+            176
+          ],
+          "mode": "RGBA"
+        },
+        "source-macro-draft-v1.png": {
+          "path": "integrations/envhd/production/held-field-art-drafts/7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827/source-macro-draft-v1.png",
+          "sha256": "5d66edd52f0298f5c256572f5b34e58e709d8e70dae6d6bb3799e4c9f73addc8",
+          "size": [
+            176,
+            176
+          ],
+          "mode": "RGBA"
+        }
+      },
+      "cutoutReceipt": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 16128,
+        "paintedGapPixelsExtended": 905,
+        "paintedUncoveredSourcePixels": 759,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 65,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false,
+        "decodedRgbaSha256": "7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827",
+        "generatedSha256": "b74d0c5e28919b0373c33029f20bd5ca40863666bc7b0bfd18831772c38a51a7",
+        "outputSha256": "658302448ad7b0210188042ba6a950da1a9d0f97389580e041818dae67a0cd15",
+        "sourceSize": [
+          44,
+          44
+        ],
+        "targetSize": [
+          176,
+          176
+        ],
+        "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "runtimeSelected": false
+      },
+      "sourceMacroReceipt": {
+        "method": "python-painted-native-cell-mean-detail-1",
+        "scale": 4,
+        "cutoutOperation": {
+          "scale": 4,
+          "sourceVisiblePixelsAtTargetScale": 16128,
+          "paintedGapPixelsExtended": 905,
+          "paintedUncoveredSourcePixels": 759,
+          "minimumPaintedCoverageAlpha": 16,
+          "minimumPaintedAnchorAlpha": 128,
+          "maximumExtensionSquaredTargetPixels": 65,
+          "sourceAlphaExact": true,
+          "visibleBlackExact": true,
+          "edgeAveraging": false
+        },
+        "gaussianDetailRadiusTargetPixels": 4,
+        "maximumPaintedDetailChannelDelta": 6.0,
+        "maximumNativeCellMeanChannelDrift": 0.25,
+        "maximumAllowedNativeCellMeanChannelDrift": 0.5,
+        "broadPaintedColorAndReliefDiscarded": true,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "runtimeSelected": false,
+        "decodedRgbaSha256": "7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827",
+        "sourceFileSha256": "baf844d71d3344ee2d23ba468b9e13f0176ecafa1dd84efd2cd9b4147875fc2b",
+        "generatedSha256": "b74d0c5e28919b0373c33029f20bd5ca40863666bc7b0bfd18831772c38a51a7",
+        "outputSha256": "5d66edd52f0298f5c256572f5b34e58e709d8e70dae6d6bb3799e4c9f73addc8",
+        "sourceSize": [
+          44,
+          44
+        ],
+        "targetSize": [
+          176,
+          176
+        ],
+        "algorithmSha256": "59b13d4370fd6163777c84bb7e2f86c21d1199dc10d4a6311fb22bf1db880cd3",
+        "dependencySha256": {
+          "repair-envhd-painted-cutout.py": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+          "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+        }
+      },
+      "verdict": "intent-and-quality-revision-needed",
+      "review": {
+        "rawPainting": "Broad relief and rock grain stronger than native forms; no selection.",
+        "sourceMacroRefinement": "Native per-pixel color means and silhouette preserved, but still too soft and pixelated for HD selection. Fine generated texture is only a candidate.",
+        "privateOriginalsAndContextPublished": false
+      }
+    },
+    {
+      "decodedRgbaSha256": "83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5",
+      "representativeLocation": "Undersea Cavern",
+      "representativeCut": 304,
+      "sourceSize": [
+        44,
+        64
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "c694efc05208d48559dc669bfa5d417cd65ae8e884e472eb4a387e44b7524240:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit\nAsset type: EnvHD foreground texture, Undersea Cavern cut 304. Native canvas 44 by 64 texels.\nInput images: Image 1 is the exact native layer enlarged with nearest-neighbor pixels and is the edit target. Image 2 is isolated native location context only; never include the surrounding scene or fluorescent green missing-layer markers.\nPrimary request: Restore only the source's existing dark gray-green weathered cave face and its irregular shallow rounded depressions. Follow each actual source patch, crease and depression position, including the clipped top/left surface, the sloped widening right side and tapering lower point. Resolve fine mottled stone detail between these source features, preserving the original irregular uneven pattern. Do not turn the depressions into new sculpted tiers, symmetrical holes, a mask, a creature or a new ornamental design.\nComposition/framing: EXACT 44:64 source aspect ratio (11:16), same full source canvas and bounding box. Output 1056 by 1536 transparent PNG. Keep native clipped edges exactly at top and left; same object scale, position and silhouette. No new margin, framing, crop, zoom or perspective.\nStyle/medium: faithful handcrafted painterly fantasy environment at 4x detail, restrained soft surface modeling matching the native location. Preserve the native dark desaturated charcoal/sage/gray palette and muted diffuse lighting. Shadows must stay as dark and low-contrast as the reference; do not brighten the layer, deepen new cavities or introduce light outlines. Fine mineral mottling must be subtle rather than photographic noisy grain.\nConstraints: Retain all occupied dark planes and every existing fold/depression grouping in place. Transparent background only outside the original footprint. Keep smooth transitions and source-edge colors for neighboring cave surfaces. Add detail only within already demonstrated source material; no extra ridges, lobes, sockets, hanging objects, organisms, inscriptions, ornaments, scratches forming symbols or repeated motifs. Preserve irregular source recesses instead of smoothing them into a featureless blob. No scene, no text, no watermark, no border, no cast shadow beyond the native silhouette.\n",
+      "files": {
+        "draft-input-v1.png": {
+          "path": "integrations/envhd/production/held-field-art-drafts/83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5/draft-input-v1.png",
+          "sha256": "97ca025b8facec5e40d5bd61ca1d1e6f82c16af0981f9e7e8926f897308f6ba5",
+          "size": [
+            1040,
+            1512
+          ],
+          "mode": "RGBA"
+        },
+        "repaired-draft-v1.png": {
+          "path": "integrations/envhd/production/held-field-art-drafts/83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5/repaired-draft-v1.png",
+          "sha256": "6017a39f785117b44392f807fc045c0facd1a9854694d1357e5305c9d1600623",
+          "size": [
+            176,
+            256
+          ],
+          "mode": "RGBA"
+        },
+        "source-macro-draft-v1.png": {
+          "path": "integrations/envhd/production/held-field-art-drafts/83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5/source-macro-draft-v1.png",
+          "sha256": "8d9ee8460d3293996f3b2754c6ac6552e5264339d59d889bc7838f67da74d5f8",
+          "size": [
+            176,
+            256
+          ],
+          "mode": "RGBA"
+        }
+      },
+      "cutoutReceipt": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 31776,
+        "paintedGapPixelsExtended": 832,
+        "paintedUncoveredSourcePixels": 473,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 101,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false,
+        "decodedRgbaSha256": "83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5",
+        "generatedSha256": "97ca025b8facec5e40d5bd61ca1d1e6f82c16af0981f9e7e8926f897308f6ba5",
+        "outputSha256": "6017a39f785117b44392f807fc045c0facd1a9854694d1357e5305c9d1600623",
+        "sourceSize": [
+          44,
+          64
+        ],
+        "targetSize": [
+          176,
+          256
+        ],
+        "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "runtimeSelected": false
+      },
+      "sourceMacroReceipt": {
+        "method": "python-painted-native-cell-mean-detail-1",
+        "scale": 4,
+        "cutoutOperation": {
+          "scale": 4,
+          "sourceVisiblePixelsAtTargetScale": 31776,
+          "paintedGapPixelsExtended": 832,
+          "paintedUncoveredSourcePixels": 473,
+          "minimumPaintedCoverageAlpha": 16,
+          "minimumPaintedAnchorAlpha": 128,
+          "maximumExtensionSquaredTargetPixels": 101,
+          "sourceAlphaExact": true,
+          "visibleBlackExact": true,
+          "edgeAveraging": false
+        },
+        "gaussianDetailRadiusTargetPixels": 4,
+        "maximumPaintedDetailChannelDelta": 6.0,
+        "maximumNativeCellMeanChannelDrift": 0.375,
+        "maximumAllowedNativeCellMeanChannelDrift": 0.5,
+        "broadPaintedColorAndReliefDiscarded": true,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "runtimeSelected": false,
+        "decodedRgbaSha256": "83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5",
+        "sourceFileSha256": "94fce2a6e07b6b599b6112e9f4759e3efb75c2392e7e9b5db4fcdad7b7fba0c0",
+        "generatedSha256": "97ca025b8facec5e40d5bd61ca1d1e6f82c16af0981f9e7e8926f897308f6ba5",
+        "outputSha256": "8d9ee8460d3293996f3b2754c6ac6552e5264339d59d889bc7838f67da74d5f8",
+        "sourceSize": [
+          44,
+          64
+        ],
+        "targetSize": [
+          176,
+          256
+        ],
+        "algorithmSha256": "59b13d4370fd6163777c84bb7e2f86c21d1199dc10d4a6311fb22bf1db880cd3",
+        "dependencySha256": {
+          "repair-envhd-painted-cutout.py": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+          "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+        }
+      },
+      "verdict": "intent-and-quality-revision-needed",
+      "review": {
+        "rawPainting": "Broad relief and rock grain stronger than native forms; no selection.",
+        "sourceMacroRefinement": "Native per-pixel color means and silhouette preserved, but still too soft and pixelated for HD selection. Fine generated texture is only a candidate.",
+        "privateOriginalsAndContextPublished": false
+      }
+    },
+    {
+      "decodedRgbaSha256": "82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6",
+      "representativeLocation": "Vol. Villude",
+      "representativeCut": 118,
+      "sourceSize": [
+        30,
+        32
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "e743890444cb7444d7c551908485f432f852f764a6a59a2467db7b3aff5188dc:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit\nAsset type: EnvHD source-bound static foreground layer, Volcano Villude cut 118, native 30 by 32 texels.\nInput images: Image 1 is the native foreground layer enlarged with nearest-neighbor pixels and is the edit target. Image 2 is location context only; do not include the environment, lava, bridges or fluorescent green missing-layer markers.\nPrimary request: Faithfully restore the same compact red-brown volcanic rock formation with restrained matte weathered stone detail. Keep the broad rounded lower-left face, the narrow upward/right taper, the same small raised upper edge/lip, existing dark folded creases, and exact patch boundaries indicated by the native reference. Recover subtle granular stone texture and shallow source-defined creases without adding a new ridge system or changing the shape.\nComposition/framing: EXACT original 30:32 canvas aspect (15:16), same object scale/position and full source bounding rectangle. Output 1440 by 1536 transparent PNG, no margin, zoom, crop, perspective shift or moved contour. Retain existing edge clipping at the top/right.\nStyle/medium: detailed but subdued handcrafted painterly pre-rendered fantasy environment, matching the native late-1990s scene. Preserve the original muted rust/red/earth-brown palette, diffuse warm firelight and dark lower-side shadows. Do not introduce glowing cracks, vivid orange highlights or glossy smooth material. Surface grain must be delicate and low contrast, not dense photographic noise.\nConstraints: Source material and every demonstrated fold/shadow boundary are mandatory. Do not redesign as a shell, pottery, mushroom, creature or new sculptural object. Keep occupied dark planes within the native silhouette. Transparent only outside the native object. No new holes, tiers, spikes, protrusions, pores forming a repeated pattern, inscriptions or ornaments. No lava, flame, scene background, text, watermarks, border or extra cast shadow. Add fine detail to the demonstrated source surfaces while preserving their broad native lighting and colors.\n",
+      "files": {
+        "draft-input-v1.png": {
+          "path": "integrations/envhd/production/held-field-art-drafts/82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6/draft-input-v1.png",
+          "sha256": "1300b3512198125bd095f378eddb940049fa736af225ce1d7bd444db838c3323",
+          "size": [
+            1214,
+            1295
+          ],
+          "mode": "RGBA"
+        },
+        "repaired-draft-v1.png": {
+          "path": "integrations/envhd/production/held-field-art-drafts/82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6/repaired-draft-v1.png",
+          "sha256": "5b95f2cb7c27caf67357b52b5c4233ef915e105f0abe048239736792159e1b4e",
+          "size": [
+            120,
+            128
+          ],
+          "mode": "RGBA"
+        },
+        "source-macro-draft-v1.png": {
+          "path": "integrations/envhd/production/held-field-art-drafts/82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6/source-macro-draft-v1.png",
+          "sha256": "823ab77aff82647d7dd63a26e52076942f6db563d14753410ce6b4e9f43d5c0a",
+          "size": [
+            120,
+            128
+          ],
+          "mode": "RGBA"
+        }
+      },
+      "cutoutReceipt": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 9856,
+        "paintedGapPixelsExtended": 135,
+        "paintedUncoveredSourcePixels": 44,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 5,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false,
+        "decodedRgbaSha256": "82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6",
+        "generatedSha256": "1300b3512198125bd095f378eddb940049fa736af225ce1d7bd444db838c3323",
+        "outputSha256": "5b95f2cb7c27caf67357b52b5c4233ef915e105f0abe048239736792159e1b4e",
+        "sourceSize": [
+          30,
+          32
+        ],
+        "targetSize": [
+          120,
+          128
+        ],
+        "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "runtimeSelected": false
+      },
+      "sourceMacroReceipt": {
+        "method": "python-painted-native-cell-mean-detail-1",
+        "scale": 4,
+        "cutoutOperation": {
+          "scale": 4,
+          "sourceVisiblePixelsAtTargetScale": 9856,
+          "paintedGapPixelsExtended": 135,
+          "paintedUncoveredSourcePixels": 44,
+          "minimumPaintedCoverageAlpha": 16,
+          "minimumPaintedAnchorAlpha": 128,
+          "maximumExtensionSquaredTargetPixels": 5,
+          "sourceAlphaExact": true,
+          "visibleBlackExact": true,
+          "edgeAveraging": false
+        },
+        "gaussianDetailRadiusTargetPixels": 4,
+        "maximumPaintedDetailChannelDelta": 6.0,
+        "maximumNativeCellMeanChannelDrift": 0.25,
+        "maximumAllowedNativeCellMeanChannelDrift": 0.5,
+        "broadPaintedColorAndReliefDiscarded": true,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "runtimeSelected": false,
+        "decodedRgbaSha256": "82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6",
+        "sourceFileSha256": "b8ca3ff278767680854204322aeeddf85714ef1a606c2d80acf7ace44820c752",
+        "generatedSha256": "1300b3512198125bd095f378eddb940049fa736af225ce1d7bd444db838c3323",
+        "outputSha256": "823ab77aff82647d7dd63a26e52076942f6db563d14753410ce6b4e9f43d5c0a",
+        "sourceSize": [
+          30,
+          32
+        ],
+        "targetSize": [
+          120,
+          128
+        ],
+        "algorithmSha256": "59b13d4370fd6163777c84bb7e2f86c21d1199dc10d4a6311fb22bf1db880cd3",
+        "dependencySha256": {
+          "repair-envhd-painted-cutout.py": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+          "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+        }
+      },
+      "verdict": "intent-and-quality-revision-needed",
+      "review": {
+        "rawPainting": "Broad relief and rock grain stronger than native forms; no selection.",
+        "sourceMacroRefinement": "Native per-pixel color means and silhouette preserved, but still too soft and pixelated for HD selection. Fine generated texture is only a candidate.",
+        "privateOriginalsAndContextPublished": false
+      }
+    }
+  ]
+}

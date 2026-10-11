@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
+  "sourceSelectionCheckpoint": "32f5db9ffd3859bb1436020a4897556c8622721e",
+  "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
+  "sourceControls": {
+    "full-coverage.json": "3b3e4bfdf74d308843238751bf1c809433f5b764c641ad5527594f791c441f22",
+    "field-runtime-artwork.json": "46b419b4afe4be41aa6c703be93cf273085a167e54a2b534e30c5960808afc3e",
+    "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
+    "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
+    "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
+    "field-bespoke-bedding-reviewed-selection.json": "6af60fa9447818366fda841ff1b9b362d84ad6a9a4aac2f2384a53725f75b123",
+    "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
+    "field-bespoke-natural-rock-held-drafts.json": "53b174a2a8ab49c3b491a8f6ea3e0693c9aaab9a7c70e216aa534d67eff7f1c4"
+  },
+  "wholeCampaignImageDenominator": null,
+  "goalComplete": false,
+  "nativeAcceptedCustomImages": 0,
+  "finalQualityAcceptedCustomImages": 0,
+  "knownRemainingStaticImages": 246,
+  "knownRemainingBattleMaterialBindings": 351,
+  "categories": [
+    {
+      "id": "field-images",
+      "unit": "unique nonuniform EnvHD-owned decoded images",
+      "totalKnown": 5162,
+      "selectedDevelopment": 4917,
+      "selectedNeural": 4886,
+      "selectedPainted": 31,
+      "held": 245,
+      "unreviewed": 0,
+      "customHeldDraftSourceImages": 6,
+      "draftsAreSubsetOfHolds": true,
+      "publishedInstallerSelected": 4892,
+      "nextTask": "Repair held art with original forms and material intent; independently review before selection; validate all scene states and protected Skurfa routes."
+    },
+    {
+      "id": "static-terrain",
+      "unit": "native material bindings",
+      "totalKnown": 366,
+      "selectedDevelopmentBindings": 364,
+      "selectedDevelopmentMasters": 292,
+      "intentionalNativeUniformBindings": 1,
+      "held": 1,
+      "nextTask": "Resolve Tiberoa wrapped native UVs without guessing or changing geometry."
+    },
+    {
+      "id": "battle-materials",
+      "unit": "native material bindings",
+      "totalKnown": 900,
+      "selectedDevelopmentBindings": 549,
+      "heldAnimationOrContextBindings": 350,
+      "heldIncompletePaletteBindings": 1,
+      "isolatedStageCyclesExplained": 350,
+      "fullEncounterContractsClosed": 0,
+      "selectedAnimationFamilies": 0,
+      "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette."
+    },
+    {
+      "id": "battle-panoramas",
+      "unit": "nonuniform image masters",
+      "totalKnown": 70,
+      "selectedDevelopment": 70,
+      "heldStaticSources": 0,
+      "nextTask": "Native camera, seams, blend and final art quality validation."
+    },
+    {
+      "id": "world-location-landscapes",
+      "unit": "source image masters",
+      "totalKnown": 38,
+      "selectedDevelopment": 38,
+      "nextTask": "Native popup, fade and alias validation; final quality."
+    },
+    {
+      "id": "world-parchment-backdrop",
+      "unit": "source image masters",
+      "totalKnown": 1,
+      "selectedDevelopment": 1,
+      "nextTask": "Native render paths, brightness and blend validation."
+    },
+    {
+      "id": "animated-world-scenery",
+      "unit": "animated continent parts; not image jobs",
+      "totalKnownParts": 8,
+      "imageJobDenominator": null,
+      "selectedHdFamilies": 0,
+      "nextTask": "Prove common plus continent upload state, animated part material/UV/CLUT consumers, float timing and all reachable states before authoring."
+    },
+    {
+      "id": "environment-props-and-overlays",
+      "unit": "owned consumer material image jobs",
+      "totalKnown": null,
+      "confirmedEnvhdOwnedMaterials": 0,
+      "selectedDevelopment": 0,
+      "nextTask": "Receive source-bound ownership/material census; deduplicate only confirmed environment-owned crops, author and integrate them.",
+      "receivedMaterialCheckpoint": {
+        "sourceCommit": "14d7aca56b3b8f8b88a7c16f6e76c7e636324c07",
+        "inventorySha256": "e07fa2c228aea7cd887a45b543cccc551cd9e8f1efe4f2caddb2a98d769cb792",
+        "all18InventoryFilesHashVerified": true,
+        "materialConsumerBindings": 135279,
+        "consumerContexts": 7664,
+        "unresolvedOwnershipContexts": 7652,
+        "sourceProvedCharhdContexts": 12,
+        "repeatedInspectionGroups": 5984,
+        "repeatedGroupsAreNotImageJobs": true,
+        "imageEnvelopeHolds": 20,
+        "paletteEnvelopeHolds": 73,
+        "originalCheckpointFilesPublished": false,
+        "fullControllerAliasInheritanceContractsClosed": false
+      }
+    }
+  ],
+  "skurfa": {
+    "protectedConfigurations": 38,
+    "protectedCutPeriodMappings": 87,
+    "regenerateProtectedArt": false,
+    "nativeIntegrationAcceptance": "pending"
+  },
+  "customDraftHistory": [
+    {
+      "manifest": "field-bespoke-bedding-reviewed-selection.json",
+      "heldSourceImages": 1,
+      "reason": "Deningrad occupied plane intent unresolved"
+    },
+    {
+      "manifest": "field-bespoke-stone-ground-held-drafts.json",
+      "heldSourceImages": 2,
+      "reason": "Moss canvas and door source markings unresolved"
+    },
+    {
+      "manifest": "field-bespoke-natural-rock-held-drafts.json",
+      "heldSourceImages": 3,
+      "reason": "Raw relief too strong; mean-anchored refinement too soft"
+    }
+  ],
+  "publication": {
+    "runtimeSelectionChanged": false,
+    "installerChanged": false,
+    "releaseChanged": false,
+    "publishedInstaller": {
+      "tag": "definitive-alpha-2026-10-11-envhd",
+      "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
+      "entrypointMetadataSource": "0b8df09ab1aa5cfab8dc3c7051cbc49708be8b64",
+      "fieldSelectedMasters": 4892,
+      "battleNewSelectedMasters": 506,
+      "battleNewSelectedBindings": 513,
+      "battleTotalSelectedBindings": 537,
+      "paintedBattleReplacements": 0,
+      "nativeArtAccepted": 0,
+      "finalArtAccepted": 0
+    },
+    "selectedFieldImagesAwaitingCoordinatedPublication": 25,
+    "paintedBattleMastersAwaitingCoordinatedPublication": 12
+  },
+  "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint."
+}
