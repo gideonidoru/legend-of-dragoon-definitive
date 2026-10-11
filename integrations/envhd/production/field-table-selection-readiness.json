@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "scope": "Clean table-only increment from accepted main; prior4925/39 exact. Unrelated candidate sets, Tiberoa, drafts and workflow edits excluded.",
+  "integrationBaseCommit": "ef0f5838652f81e3bc5c1fe2e53d37a526243bbf",
+  "selectionManifest": "field-bespoke-table-independent-reviewed-selection.json",
+  "selectionManifestSha256": "addfc9dbc087ed058af2029cee7347b044161e97252a62939fa51a959a5d2db6",
+  "independentReview": "field-independent-table-review.json",
+  "independentReviewSha256": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a",
+  "fieldRuntimeSha256": "b4c0dc3f07c089c9fe727be0fd19e457b255ccc16b63db4f3cc40a313125b257",
+  "currentSourcePreflightCandidates": 40,
+  "priorSelectedCandidateRecordsExact": 39,
+  "priorRuntimeAssetRecordsExact": 4925,
+  "onlyAddedSourceKey": "304a735a241c9a78c78ad01e429d15d81bb29529a8b3881fbd5598a98713e754",
+  "protectedCutsExact": true,
+  "selectedFields": 4926,
+  "selectedPaintings": 40,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 236,
+  "knownRemainingStaticImages": 237,
+  "tests": [
+    {
+      "script": "scripts/test-envhd-painted-fields.py",
+      "passed": 32
+    },
+    {
+      "script": "scripts/test-envhd-install-selection.py",
+      "passed": 3
+    },
+    {
+      "script": "scripts/test-archive-assembly.py",
+      "passed": 39
+    }
+  ],
+  "freshPackageVerified": true,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "independentlyReviewedTableHeadPreserved": "5b0f1c7077473e655c311b2032ec94f4a562f875",
+  "previousReadinessSha256": "e25da585cd11037de4b035d59a59eaff4a0757b9246bc84415139f56c863864b",
+  "frozenTableRecipeAndRuntimeBytesExact": true,
+  "combinedBattleRuntimeExactToAcceptedMain": true,
+  "combinedBattleSelectedPaintings": 47,
+  "combinedBattlePresentationPaintings": 35,
+  "combinedBattleNeuralMasters": 471,
+  "packageVerifiedSourceCommit": "5df67441a8efa77cd8999f61613789e9d370e23d",
+  "build": "Combined ef0+frozen5b source built successfully; exact clean committed source fallback pin.",
+  "frozen5bIndependentSpecAndStandardsClearReportedByRoot": true,
+  "combinedFocusedChecks": [
+    {
+      "script": "scripts/test-envhd-install-selection.py",
+      "passed": 3
+    },
+    {
+      "script": "scripts/test-envhd-battle-presentation-pack.py",
+      "passed": 12
+    }
+  ],
+  "packageVerification": {
+    "selectedFields": 4926,
+    "jarResources": 5312,
+    "parts": 4,
+    "oneModSwitch": true,
+    "allSelectedResourceNamesSizesAndBytesExact": true,
+    "files": [
+      {
+        "name": "Env1HD-v0.1.0.zip",
+        "size": 552595435,
+        "sha256": "eb4d0119eacfa81c98982a9780bffca4ae56b28aedb5d182227774bd09bc5205",
+        "exactToFrozen5b": true
+      },
+      {
+        "name": "Env2HD-v0.1.0.zip",
+        "size": 573556667,
+        "sha256": "f8796a15188f2a1ab5354c04019fdbef8ea9df5d3512fcc28af32765fe176718",
+        "exactToFrozen5b": true
+      },
+      {
+        "name": "Env3HD-v0.1.0.zip",
+        "size": 570092317,
+        "sha256": "2092c3660151873efdf44098e0bd00427b5389e7681fb9fb71950fe51952a24b",
+        "exactToFrozen5b": true
+      },
+      {
+        "name": "Env4HD-v0.1.0.zip",
+        "size": 672957319,
+        "sha256": "a457915e652f8382e85dad5c4a785a02f5ca2e44a2ec776f0c048c71e41f85ed",
+        "exactToFrozen5b": true
+      },
+      {
+        "name": "EnvHD-v0.1.0.jar",
+        "size": 278281354,
+        "sha256": "10b6de3ad138c8a76fc8be5875bdedb3853fb462b040d403390257e5b02f9713",
+        "exactToFrozen5b": false
+      }
+    ],
+    "fieldPacksExactToFrozen5b": true,
+    "onlyAcceptedMainBattleResourcesChanged": true,
+    "changedJarResourcesExactToAcceptedMain": true,
+    "changedJarResourceNames": [
+      "envhd/battle-materials/d8680f87d3017eb31939da0227a20314ab871a9f1089db190845da1451eb322c/atlas-v1.png",
+      "envhd/battle-materials/d8680f87d3017eb31939da0227a20314ab871a9f1089db190845da1451eb322c/manifest.json"
+    ]
+  }
+}
