@@ -64,3 +64,5 @@ The public checkpoint contains four custom strip GLBs, a custom-only comparison 
 2. Establish a texture-independent geometry binding with source-face material lineage. Test CharHD, alternate character textures, ModelsHD on/off and faithful fallback before selecting resources.
 3. Fit corrected field and battle bodies separately, including rear plates and distinct boots; preserve the accepted head and original weapon anchors.
 4. Compare the complete result with original controls in representative native animations, including interpolated ticks. Then extend the method to the other eight characters and request owner approval for promotion.
+
+The [complete-arm follow-up](DART_COMPLETE_ARM_STUDY.md) now joins the surrounding field/battle surfaces at welded cut vertices. Its mechanical checks pass, but full-actor clay review fails the finish gate: bulky elbow shapes and coarse retained surfaces need deliberate art reconstruction. It is not a finished arm or runtime selection.
