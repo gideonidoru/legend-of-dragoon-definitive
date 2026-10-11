@@ -378,9 +378,8 @@ public final class AudioThread implements Runnable {
 
   public void loadBackgroundMusic(final BackgroundMusic backgroundMusic) {
     synchronized(this) {
-      if(this.sequencer.isInitialized()) {
-        this.sequencer.loadBackgroundMusic(backgroundMusic);
-      }
+      // Logical music state must survive unavailable output; these commands do not use OpenAL.
+      this.sequencer.loadBackgroundMusic(backgroundMusic);
     }
   }
 
@@ -468,9 +467,7 @@ public final class AudioThread implements Runnable {
     LOGGER.info(AUDIO_THREAD_MARKER, "Starting sequence");
 
     synchronized(this) {
-      if(this.sequencer.isInitialized()) {
-        this.sequencer.startSequence();
-      }
+      this.sequencer.startSequence();
     }
   }
 
@@ -478,9 +475,7 @@ public final class AudioThread implements Runnable {
     LOGGER.info(AUDIO_THREAD_MARKER, "Stopping sequence");
 
     synchronized(this) {
-      if(this.sequencer.isInitialized()) {
-        this.sequencer.stopSequence();
-      }
+      this.sequencer.stopSequence();
     }
   }
 
