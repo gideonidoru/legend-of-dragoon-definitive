@@ -1,0 +1,284 @@
+{
+  "schema": 1,
+  "sourceCommit": "3440d95a8c92fb66547e1035bc0a7f039ae34ac2",
+  "sourceLedger": "battle-skies.json",
+  "sourceLedgerSha256": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
+  "scope": "Existing stage-bound battle panorama ownership and selected custom reuse. No new sky painting or runtime changes.",
+  "importantUsageDistinction": "battle-skies.json fieldUsage and worldMapUsage identify configured random-encounter routes that select a battle panorama. They do not mean a field background, world terrain, location thumbnail or parchment image shares these pixels. Deduplicate panorama source/header aliases using decodedRgbaSha256 and generationMasterSourceSha256; preserve sourceMcqSha256 header placement per alias.",
+  "sourceVariants": 74,
+  "uniqueDecodedArtwork": 71,
+  "selectedNonuniformMasters": 70,
+  "selectedVariantRecords": 73,
+  "selectedMethodRecordCounts": {
+    "real-esrgan-x4plus-periodic-python-border-repair": 39,
+    "built-in-imagegen": 7,
+    "python-border-repair": 5,
+    "real-esrgan-x4plus-periodic-preserved-source-edges": 22
+  },
+  "customPanoramaRecords": [
+    {
+      "sourceMcqSha256": "a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6",
+      "decodedRgbaSha256": "17e12093491e8d7bbc39d445c831fbc1a7c472115ef8ab5a978da62c7f5b8895",
+      "generationMasterSourceSha256": "a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6",
+      "stages": [
+        1
+      ],
+      "output": "integrations/envhd/production/candidates/a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/17e12093491e8d7bbc39d445c831fbc1a7c472115ef8ab5a978da62c7f5b8895/image-v2.png",
+      "method": "built-in-imagegen",
+      "outputSha256": "98c9bac70f33dad221821c279fc1b33f1b43d2db13c48e8e3bfcbfec11f99f91",
+      "candidateManifest": "integrations/envhd/production/candidates/a25915a4f6c04f2367b1d63a6fb9a5e6be25b1a5507a591415c37766dbf3f2a6/manifest-v2.json",
+      "fieldEncounterCuts": [
+        5,
+        6,
+        7,
+        624,
+        625
+      ],
+      "worldMapEncounterPathIndexes": []
+    },
+    {
+      "sourceMcqSha256": "9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc",
+      "decodedRgbaSha256": "dfe127af7183428858539db8599630c3ed4c91ca2ea54a6b75a606f768414c07",
+      "generationMasterSourceSha256": "9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc",
+      "stages": [
+        2
+      ],
+      "output": "integrations/envhd/production/candidates/9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/dfe127af7183428858539db8599630c3ed4c91ca2ea54a6b75a606f768414c07/image-v2.png",
+      "method": "python-border-repair",
+      "outputSha256": "65e82e5100be73cf7891a93a72f4bb56a6c9b8ed7da1ed48b4a2bac665e5f6a9",
+      "candidateManifest": "integrations/envhd/production/candidates/9ad4cbc28504db36d680cae450bd81ab046b9c28069aff819af74b11352e4cdc/manifest-v2.json",
+      "fieldEncounterCuts": [
+        262
+      ],
+      "worldMapEncounterPathIndexes": []
+    },
+    {
+      "sourceMcqSha256": "2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c",
+      "decodedRgbaSha256": "040967f180bd059a8a514445c3c6a73ff926aace72d99a2e256c0fb2f5ab1657",
+      "generationMasterSourceSha256": "2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c",
+      "stages": [
+        6
+      ],
+      "output": "integrations/envhd/production/candidates/2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c/image-v4.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/040967f180bd059a8a514445c3c6a73ff926aace72d99a2e256c0fb2f5ab1657/image-v4.png",
+      "method": "python-border-repair",
+      "outputSha256": "277552625b838b42a15f0c34173aca0a21bd5369e087bbc7b9b69343948fe6c8",
+      "candidateManifest": "integrations/envhd/production/candidates/2ba5a59ea96af19cb2a04654b4a459da5c6e3c0b6e38233266579de5117a963c/manifest-v4.json",
+      "fieldEncounterCuts": [
+        38,
+        39,
+        40,
+        42,
+        43,
+        44
+      ],
+      "worldMapEncounterPathIndexes": [
+        5,
+        6,
+        16
+      ]
+    },
+    {
+      "sourceMcqSha256": "6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a",
+      "decodedRgbaSha256": "c9a1899f210fe593308bb905eab012b5d68d399b0872a749f5a90d0e861d8e56",
+      "generationMasterSourceSha256": "6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a",
+      "stages": [
+        9
+      ],
+      "output": "integrations/envhd/production/candidates/6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a/image-v1.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/c9a1899f210fe593308bb905eab012b5d68d399b0872a749f5a90d0e861d8e56/image-v1.png",
+      "method": "built-in-imagegen",
+      "outputSha256": "6103673fcbfd3499d3aeb61e7c5717c9212887015bd71e4789351794c5cc2f23",
+      "candidateManifest": "integrations/envhd/production/candidates/6f2ec66a7f94b5e1bbc57da569195dac8c97047084dc6675563c7105badc6e6a/manifest-v1.json",
+      "fieldEncounterCuts": [],
+      "worldMapEncounterPathIndexes": []
+    },
+    {
+      "sourceMcqSha256": "ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1",
+      "decodedRgbaSha256": "374399087fdf349761b9e7b75a5a18a922228b3fb292378a79094ade33f08000",
+      "generationMasterSourceSha256": "ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1",
+      "stages": [
+        15
+      ],
+      "output": "integrations/envhd/production/candidates/ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1/image-v1.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/374399087fdf349761b9e7b75a5a18a922228b3fb292378a79094ade33f08000/image-v1.png",
+      "method": "built-in-imagegen",
+      "outputSha256": "717146aa262c3ae7808e8b2e3b63621d60ad66dbfd9ff0f2eb607f19aacd8486",
+      "candidateManifest": "integrations/envhd/production/candidates/ca4da3c48ebd11bba777b05d6f9af4414656192f25b37dcc5b212190a2c577a1/manifest-v1.json",
+      "fieldEncounterCuts": [
+        153,
+        154,
+        155,
+        156,
+        157,
+        159,
+        160
+      ],
+      "worldMapEncounterPathIndexes": []
+    },
+    {
+      "sourceMcqSha256": "1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188",
+      "decodedRgbaSha256": "cd94c27a98319e7b9825e389f74ab460d16ef8be04b63e19a36f27fc1d270101",
+      "generationMasterSourceSha256": "1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188",
+      "stages": [
+        26
+      ],
+      "output": "integrations/envhd/production/candidates/1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188/image-v1.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/cd94c27a98319e7b9825e389f74ab460d16ef8be04b63e19a36f27fc1d270101/image-v1.png",
+      "method": "built-in-imagegen",
+      "outputSha256": "54ea44cf4b17914d71c524e42a5fc1e337afbcc741ec708270cc5339856d6ab2",
+      "candidateManifest": "integrations/envhd/production/candidates/1abb6bf98b95526b252f6a7009609b41fd440f456bb3206a50d8ed63c58dd188/manifest-v1.json",
+      "fieldEncounterCuts": [
+        252,
+        253,
+        254,
+        255,
+        256,
+        257
+      ],
+      "worldMapEncounterPathIndexes": []
+    },
+    {
+      "sourceMcqSha256": "d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19",
+      "decodedRgbaSha256": "ebc07eeca6c52be43c266dfec7722573487ddb7a404cdb0b6719de49e05f8170",
+      "generationMasterSourceSha256": "d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19",
+      "stages": [
+        29
+      ],
+      "output": "integrations/envhd/production/candidates/d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19/image-v1.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/ebc07eeca6c52be43c266dfec7722573487ddb7a404cdb0b6719de49e05f8170/image-v1.png",
+      "method": "built-in-imagegen",
+      "outputSha256": "c827d049dc6c6a6a43a678c3b92a438867d44224fe55fda11c129d7bd0640f02",
+      "candidateManifest": "integrations/envhd/production/candidates/d874be140f79231c42171c2384d0614ea094a3bae20fe7e0c5e4f9f1edecce19/manifest-v1.json",
+      "fieldEncounterCuts": [
+        265
+      ],
+      "worldMapEncounterPathIndexes": []
+    },
+    {
+      "sourceMcqSha256": "0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728",
+      "decodedRgbaSha256": "21c0e744184c1b160b310332b70f964611e23750100b3f41df476a881694688d",
+      "generationMasterSourceSha256": "0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728",
+      "stages": [
+        39
+      ],
+      "output": "integrations/envhd/production/candidates/0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728/image-v1.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/21c0e744184c1b160b310332b70f964611e23750100b3f41df476a881694688d/image-v1.png",
+      "method": "built-in-imagegen",
+      "outputSha256": "7794b9b7713ab078730602527874dea278c81ea123dc21b2b0edcf870926ba55",
+      "candidateManifest": "integrations/envhd/production/candidates/0e87d3206291ab203d0bac878b938ac6442965bf30907dbe5fcd29f9571d2728/manifest-v1.json",
+      "fieldEncounterCuts": [
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        420,
+        421,
+        422,
+        424,
+        425,
+        426,
+        427
+      ],
+      "worldMapEncounterPathIndexes": []
+    },
+    {
+      "sourceMcqSha256": "788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc",
+      "decodedRgbaSha256": "29e1dd34ca283d1a66a5420931fdbcd149a21bfbac5bfc3c78330d21d1804c7f",
+      "generationMasterSourceSha256": "788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc",
+      "stages": [
+        50
+      ],
+      "output": "integrations/envhd/production/candidates/788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/29e1dd34ca283d1a66a5420931fdbcd149a21bfbac5bfc3c78330d21d1804c7f/image-v2.png",
+      "method": "python-border-repair",
+      "outputSha256": "bb9a85aa266b25e85142d4d9ff8a4b9e2c25b865da0a52820c3fc48cedaecd87",
+      "candidateManifest": "integrations/envhd/production/candidates/788f3d0d4dece192d4e673da8f131786d5ebf49ec78fe047bb5853e61b521dcc/manifest-v2.json",
+      "fieldEncounterCuts": [
+        493,
+        494,
+        495,
+        497
+      ],
+      "worldMapEncounterPathIndexes": []
+    },
+    {
+      "sourceMcqSha256": "386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073",
+      "decodedRgbaSha256": "99b42dc1126262727759a48a0ac40fccaf14801da8f96d72b139964789ad9072",
+      "generationMasterSourceSha256": "386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073",
+      "stages": [
+        87
+      ],
+      "output": "integrations/envhd/production/candidates/386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073/image-v1.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/99b42dc1126262727759a48a0ac40fccaf14801da8f96d72b139964789ad9072/image-v1.png",
+      "method": "built-in-imagegen",
+      "outputSha256": "30bc2c30874ed4163547464c0708c5ff0b1a5e597a354904ce5c425bc6e5ef22",
+      "candidateManifest": "integrations/envhd/production/candidates/386a88c88889535b52c3783d43c70d8c8b0e59f9532a0cc78504fea428222073/manifest-v1.json",
+      "fieldEncounterCuts": [],
+      "worldMapEncounterPathIndexes": [
+        7,
+        12,
+        13,
+        14,
+        24,
+        29,
+        30,
+        34,
+        35,
+        36,
+        43
+      ]
+    },
+    {
+      "sourceMcqSha256": "cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1",
+      "decodedRgbaSha256": "37561e937cd3622a8274e8be7b4ae39ec4498e823366896a0d227ca55b89da0e",
+      "generationMasterSourceSha256": "cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1",
+      "stages": [
+        88
+      ],
+      "output": "integrations/envhd/production/candidates/cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1/image-v2.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/37561e937cd3622a8274e8be7b4ae39ec4498e823366896a0d227ca55b89da0e/image-v2.png",
+      "method": "python-border-repair",
+      "outputSha256": "5822df80cc8e9508c8dbc80d2aac99d3fda504430ae44d6a09091b2d195fa115",
+      "candidateManifest": "integrations/envhd/production/candidates/cc9ad072042a33f3b76e181096ab4028412ce4a51ed20e20b3a187556f5502c1/manifest-v2.json",
+      "fieldEncounterCuts": [],
+      "worldMapEncounterPathIndexes": [
+        31,
+        32,
+        33,
+        48
+      ]
+    },
+    {
+      "sourceMcqSha256": "119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c",
+      "decodedRgbaSha256": "26675e0696cbce91b395b9f881f79e2d3c8a98683a276db5e4334adb106d4fcf",
+      "generationMasterSourceSha256": "119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c",
+      "stages": [
+        89
+      ],
+      "output": "integrations/envhd/production/candidates/119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c/image-v3.png",
+      "runtimeOutput": "integrations/envhd/runtime-assets/envhd/sky-images/26675e0696cbce91b395b9f881f79e2d3c8a98683a276db5e4334adb106d4fcf/image-v3.png",
+      "method": "python-border-repair",
+      "outputSha256": "42d6d5468ed69320517f3a453a22e81cd8d8450d739da8ccd674b98578e0a30d",
+      "candidateManifest": "integrations/envhd/production/candidates/119d2cce54fa66131cb4b6f3197b9b4ff03b3e62998c3e9fd697bba31bd5fa6c/manifest-v3.json",
+      "fieldEncounterCuts": [],
+      "worldMapEncounterPathIndexes": [
+        25,
+        26,
+        27,
+        28,
+        46,
+        47
+      ]
+    }
+  ],
+  "existingNeuralBaselinesAreNotFinalBespokeQuality": true,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "protectedSkurfaArtChanged": false,
+  "originalPixelsExcluded": true
+}

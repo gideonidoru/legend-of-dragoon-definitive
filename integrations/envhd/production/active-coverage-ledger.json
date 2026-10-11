@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "373b34a94a1fe52beb4547b215d451df14557633",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "d7d384d694973483d85ace1f719a20f2a701e65c55bcf8770f23c8eac4dff986",
+    "full-coverage.json": "ba606d064b0dddb4a901eb9bdc1686522afe7033b7766a96134867954a5a97af",
     "field-runtime-artwork.json": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
@@ -36,7 +36,10 @@
     "field-bespoke-scenic-materials-held-drafts.json": "9341d555f30b5a18c8b78ab9ee0908d512e1eaa81ca3a6b7cfffbf5bceda850b",
     "field-bespoke-palace-railings-reviewed-selection.json": "b5e096e5f3eb3c9bd677d37a6db9338dc4ab25967e26e4cb48e994d2fadb3ab5",
     "field-bespoke-castle-curves-reviewed-selection.json": "91adab146d4f317440736d36ebf2b264a59d189ab217844f5603f3fe5167ce63",
-    "field-bespoke-castle-curves-held-drafts.json": "f10056e96c7b10ad1cd6bff23d094bd2799bcc4f39c29c8cdeba4a96529ae264"
+    "field-bespoke-castle-curves-held-drafts.json": "f10056e96c7b10ad1cd6bff23d094bd2799bcc4f39c29c8cdeba4a96529ae264",
+    "field-bespoke-structural-materials-reviewed-selection.json": "3ba1dca2a5d07d47dea6c9c336848754f9c456ff985d984ca3b99a26062ff404",
+    "field-bespoke-structural-materials-held-drafts.json": "9894cf8f4100837ce7cd9d49d0349136eb282ed2427aa2f6eb7ff9f4c9d40b6b",
+    "battle-sky-existing-custom-reuse.json": "2b6cdb86d2f8523745c045fa211bda86f9907f4195345a578c3776506960245b"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -54,18 +57,20 @@
       "selectedPainted": 39,
       "held": 237,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 35,
+      "customHeldDraftSourceImages": 39,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
-      "nextTask": "Independently review seventeen pending field candidates; constrain Rouge/Phantom landmarks and Twin Castle exterior gold inset; continue the 237 field holds and native/final validation.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 17,
+      "nextTask": "Independently review nineteen pending field candidates; constrain Rouge/Phantom landmarks, Twin Castle gold inset, Bale branching support and Hoax threshold marks; continue 237 field holds and native/final validation.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 19,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
         "3fb018e1b7a7ad35c728ee5ecce588e012b70af301a470f89664804949491ed0",
+        "52195fc64e021bc14b78d4cf1c10b81f2207b26bd0072cd50ce1a7572c60f2f4",
         "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
         "6ca24f005553c031d0d27b507ad335ce95fec5d7a9443a2854fd1a23fd0639e1",
         "745736c6a0d1c9a694b2295793ff1e4573a9861c9f999995ce85fdbecafd3d90",
+        "7cc8ba928d1ac6f7ef7b9260c62be10c52327bbf5b58e1cb63c2f106a59e335f",
         "7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957",
         "7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827",
         "82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6",
@@ -83,6 +88,8 @@
         "a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f",
         "a7b8dbb17416792c3b8bd899e2ddb2e455a2f8ea51372d8ef500046b08488093",
         "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
+        "b525081b77578354e5eaf8dc82b7f83bc1d57ab5849f6c127f7ae4b365a655d2",
+        "b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28",
         "b88a83c36c8e7e7e09112c6174606d9498252c7deca051cb4ceef656d0819523",
         "bef65a35570d58e1698fa959797fc680e72b1cd72af026bfe1dd79c6fe0f3197",
         "d46bd57a4ab4715e8191cd0e1fee2a155cc04cb70413844af2510647a87d7229",
@@ -96,7 +103,7 @@
         "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique 64-character source directories across bespoke-field-candidates and held-field-art-drafts, excluding 4,925 runtime selections. Thirty-five source keys remain a subset of 237 field holds; repeated/rejected versions deduplicated.",
+      "draftCountMethod": "Unique 64-character source directories across bespoke-field-candidates and held-field-art-drafts, excluding 4,925 runtime selections. Thirty-nine source keys remain a subset of 237 field holds; repeated/rejected versions deduplicated.",
       "independentlyReviewedCandidatesRequiringRevision": 2
     },
     {
@@ -321,6 +328,18 @@
       "newUniqueHeldSourceImages": 1,
       "heldSourceImages": 2,
       "reason": "Exterior balcony versions 1/2 retain invented gold inset and introduce one held source. Night version1 overlaps corrected version2 pending candidate. Four total new unique source keys; no selections added."
+    },
+    {
+      "manifest": "field-bespoke-structural-materials-reviewed-selection.json",
+      "newUniqueHeldSourceImages": 2,
+      "reason": "Queen Fury cupboard panel and Black Castle green face version 3 independently pending; all 58 prior/39 selected records exact."
+    },
+    {
+      "manifest": "field-bespoke-structural-materials-held-drafts.json",
+      "newUniqueHeldSourceImages": 2,
+      "heldSourceImages": 3,
+      "heldVersions": 4,
+      "reason": "Bale footprint failure and Hoax marking drift introduce two held sources. Black Castle versions 1/2 overlap pending version 3. No holds cleared or gates waived."
     }
   ],
   "publication": {
@@ -343,5 +362,5 @@
     "paintedBattleMastersAwaitingCoordinatedPublication": 12
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "Three additional castle architectural candidates and three held versions. Current selected runtime and installer unchanged."
+  "authoringCheckpoint": "Two additional structural-material candidates and four held versions; public existing sky reuse audit. Selected runtime and installer unchanged."
 }

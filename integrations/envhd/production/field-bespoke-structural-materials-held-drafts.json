@@ -1,0 +1,220 @@
+{
+  "schema": 1,
+  "scope": "Four held versions across three sources: Bale footprint failure, Hoax unresolved detail and Black Castle relief drift versions1/2. No source gates waived; original sources/layout/context/comparisons remain private.",
+  "sourceSelectionBaseCommit": "373b34a94a1fe52beb4547b215d451df14557633",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 3,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "7cc8ba928d1ac6f7ef7b9260c62be10c52327bbf5b58e1cb63c2f106a59e335f",
+      "generatedSha256": "d453f44abdeedc4052a42d3251fc7fd8e7ab0939a3a0bc893452e6bf4abf5038",
+      "generatedSize": [
+        1167,
+        1348
+      ],
+      "sourceSize": [
+        90,
+        104
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "0645ebb41055eac23ce4dc587752a70be49e5478668152357519335e19ef137c:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 67,
+      "representativeLocation": "Bale",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST native reference into source-faithful detailed hand-painted HD foreground art for Legend of Dragoon EnvHD. FIRST controls exact original crop, silhouette, camera, proportions, lighting, native palette, internal shapes, openings and fine source marks. SECOND is full original scene to understand usage only. THIRD is existing Skurfa HD art for restrained detailed material finish ONLY; do not copy its scene, palette, light, objects or layout. Output ONLY FIRST isolated fragment on real transparency, with the exact same full-canvas aspect and subject framing. Keep all cropped ends reaching the same edges. No padding, centering, rotation, new surrounding scenery, perspective change, subject scaling, new objects, lettering, emblems or ornate redesign. Original gaps remain transparent and original dark recesses remain dark. Subtle continuous material detail; no pixel grid mosaic, labels, border, checkerboard, watermark, new lamps or added glow. Native90x104,45:52 portrait. Bale tree/root-built interior fragment: large very dark brown bent branching support enters top-right cropped edge, crosses left toward center, then thin crooked branch descends diagonally to left edge around midheight, bends inward at lower-left and reaches bottom-left crop. Preserve this EXACT thin angular branch path and thickness, not a round arch. Thick source right root/support curves downward into a low pale gray-brown curled foot with DARK hollow at mid-right. Center-lower dark warm reddish-brown cylindrical vessel/support with dark oval top remains in its original position and proportions; behind it narrow brown vertical supporting stem with original small pale collar reaches the larger branching support. Keep transparent gaps between all branches, stem and vessel. Very fine subdued brown wood/root grain on dark source supports, warm worn surface on cylindrical section, muted gray-brown irregular lower foot. Do not add roots, vines, rope, new bark ridges, foliage, eyes, animal forms, arms, new carved ornament or alter any branch joints. Interior is dim: retain original darkness and soft warm illumination, not brightly orange as THIRD.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/7cc8ba928d1ac6f7ef7b9260c62be10c52327bbf5b58e1cb63c2f106a59e335f/draft-input-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Bale branching support misses too much source-visible footprint; unchanged technical coverage gate rejects it. Generated coarse bark and newly distinct lower stair forms also need source-context correction. No repaired output or hold clearance; use a more constrained fragment/landmark method before repeating the whole crop."
+    },
+    {
+      "decodedRgbaSha256": "b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28",
+      "generatedSha256": "9c249670d1c0e7ee1febc9b8a6e2124794d5dcc6593e4c7cbaba0b7dd32ac440",
+      "generatedSize": [
+        1102,
+        1427
+      ],
+      "sourceSize": [
+        68,
+        88
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "2b30ed6792a5e41f18eed30ed2fa5b24a26c80234a38c576af91863dff86da65:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 192,
+      "representativeLocation": "Black Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST native reference into source-faithful detailed hand-painted HD foreground art for Legend of Dragoon EnvHD. FIRST controls exact original crop, silhouette, camera, proportions, lighting, native palette, internal shapes, openings and fine source marks. SECOND is full original scene to understand usage only. THIRD is existing Skurfa HD art for restrained detailed material finish ONLY; do not copy its scene, palette, light, objects or layout. Output ONLY FIRST isolated fragment on real transparency, with the exact same full-canvas aspect and subject framing. Keep all cropped ends reaching the same edges. No padding, centering, rotation, new surrounding scenery, perspective change, subject scaling, new objects, lettering, emblems or ornate redesign. Original gaps remain transparent and original dark recesses remain dark. Subtle continuous material detail; no pixel grid mosaic, labels, border, checkerboard, watermark, new lamps or added glow. Native68x88,17:22 portrait. Black Castle lower scene foreground is a bright GREEN vertical architectural/scenery surface below three existing green illuminated stone-like cap shapes. Preserve exact broad upper stem, widening flared lower shoulders, low horizontal base, cropped lower edge and all original outlines/apertures. THREE upper cap pieces stay at native positions, widths and slanted edges, with their native dark seams. Green main face has source fine irregular vertical streaks and variegated dark green mottled patches, with original central shadow/value gradient. Reproduce these source directions and patch placement with fine restrained material texture; precise finish/material is not established, so do not reinterpret as wooden boards, a waterfall, curtain, new brick wall or readable carved diagram. No new panel grooves, planks, glyphs, vines, cracks, flowing drops, glowing aura or extra architecture. Keep native strongly green illumination and all subtle surface irregularities, never flatten to plain green or transfer warm brown from THIRD. Existing green cap and faint low horizontal band boundaries remain, no extra blocks.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 65376,
+      "paintedGapPixelsExtended": 703,
+      "paintedUncoveredSourcePixels": 404,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 20,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        272,
+        352
+      ],
+      "outputSha256": "d1bca34efb93950f09c6a8d7de865786284ada91ef605294583b6b300a15da36",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Black Castle versions1/2 turn subtle native green variegation into heavy leafy/lichen-like deposits and repeated ribs, with brighter surface contrast. Version2 correction did not remove the invented material identity. Both remain held; source-only version3 is a separate independently pending candidate."
+    },
+    {
+      "decodedRgbaSha256": "52195fc64e021bc14b78d4cf1c10b81f2207b26bd0072cd50ce1a7572c60f2f4",
+      "generatedSha256": "24aef5fe132457851a498e2a5f4403cddb46c6f6c7252ad10a18e92da2d51d4b",
+      "generatedSize": [
+        902,
+        1744
+      ],
+      "sourceSize": [
+        30,
+        58
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "a9ab9440f56a513854f7b750439746fa7d3e97e90097028f231aed86d52ac12a:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 626,
+      "representativeLocation": "Town of Hoax",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST native reference into source-faithful detailed hand-painted HD foreground art for Legend of Dragoon EnvHD. FIRST controls exact original crop, silhouette, camera, proportions, lighting, native palette, internal shapes, openings and fine source marks. SECOND is full original scene to understand usage only. THIRD is existing Skurfa HD art for restrained detailed material finish ONLY; do not copy its scene, palette, light, objects or layout. Output ONLY FIRST isolated fragment on real transparency, with the exact same full-canvas aspect and subject framing. Keep all cropped ends reaching the same edges. No padding, centering, rotation, new surrounding scenery, perspective change, subject scaling, new objects, lettering, emblems or ornate redesign. Original gaps remain transparent and original dark recesses remain dark. Subtle continuous material detail; no pixel grid mosaic, labels, border, checkerboard, watermark, new lamps or added glow. Native30x58,15:29 portrait. Hoax exterior/interior threshold fragment: warm dark brown vertical timber door or gate upper half, rounded/asymmetric cropped top, original dark iron diagonal upper brace sloping down-right, dark right fitting, and pale narrow diagonal ledge crossing mid-lower section. Lower pale gray/tan irregular slab has small native scattered dark and ochre curved patches/lines. Preserve these EXACT native distributions and larger irregular shapes only; their identity as fracture or decoration is unresolved. Do not turn them into a coherent new knot, tangled ornate filigree, dragon, lettering or bold engraved emblem. Fine subdued wood grain in existing vertical timber sections and very subtle worn pale texture below. Native pale ledge remains same width, slope and shape; original rectangular crop at lower-left, irregular lower-right transparency and right dark sliver stay unchanged. No new gate bars, studs, added plank seams, extra stone block courses, huge black cracks, new structural details or added relief. Match original warm lowcontrast illumination.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 25312,
+      "paintedGapPixelsExtended": 1354,
+      "paintedUncoveredSourcePixels": 1213,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 369,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        120,
+        232
+      ],
+      "outputSha256": "b51211991929f6a28a4de9888521a91f334d6953d35478073a2d06c47c58f661",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/52195fc64e021bc14b78d4cf1c10b81f2207b26bd0072cd50ce1a7572c60f2f4/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/52195fc64e021bc14b78d4cf1c10b81f2207b26bd0072cd50ce1a7572c60f2f4/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Hoax lower slab source marks remain semantically unresolved and the painting redraws them as newly bold irregular motifs. Added gate-stud/construction detail and exact source marking topology need correction. Technical footprint repair passed but does not clear this visual hold."
+    },
+    {
+      "decodedRgbaSha256": "b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28",
+      "generatedSha256": "993d1d5408922e4313cf731dedf3b49f81f5ae14756f7f2bd5b95fc5025833ca",
+      "generatedSize": [
+        1102,
+        1427
+      ],
+      "sourceSize": [
+        68,
+        88
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "2b30ed6792a5e41f18eed30ed2fa5b24a26c80234a38c576af91863dff86da65:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 192,
+      "representativeLocation": "Black Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise-object-edit. Edit FIRST native reference into source-faithful detailed hand-painted HD foreground art for Legend of Dragoon EnvHD. FIRST controls exact original crop, silhouette, camera, proportions, lighting, native palette, internal shapes, openings and fine source marks. SECOND is full original scene to understand usage only. THIRD is existing Skurfa HD art for restrained detailed material finish ONLY; do not copy its scene, palette, light, objects or layout. Output ONLY FIRST isolated fragment on real transparency, with the exact same full-canvas aspect and subject framing. Keep all cropped ends reaching the same edges. No padding, centering, rotation, new surrounding scenery, perspective change, subject scaling, new objects, lettering, emblems or ornate redesign. Original gaps remain transparent and original dark recesses remain dark. Subtle continuous material detail; no pixel grid mosaic, labels, border, checkerboard, watermark, new lamps or added glow. Native68x88,17:22 portrait. Black Castle lower scene foreground is a bright GREEN vertical architectural/scenery surface below three existing green illuminated stone-like cap shapes. Preserve exact broad upper stem, widening flared lower shoulders, low horizontal base, cropped lower edge and all original outlines/apertures. THREE upper cap pieces stay at native positions, widths and slanted edges, with their native dark seams. Green main face has source fine irregular vertical streaks and variegated dark green mottled patches, with original central shadow/value gradient. Reproduce these source directions and patch placement with fine restrained material texture; precise finish/material is not established, so do not reinterpret as wooden boards, a waterfall, curtain, new brick wall or readable carved diagram. No new panel grooves, planks, glyphs, vines, cracks, flowing drops, glowing aura or extra architecture. Keep native strongly green illumination and all subtle surface irregularities, never flatten to plain green or transfer warm brown from THIRD. Existing green cap and faint low horizontal band boundaries remain, no extra blocks. Targeted correction: FOURTH is rejected version1 for occupied silhouette ONLY. It adds thick leafy/lichen-like high-relief deposits and shiny bright speckles, falsely suggesting hanging moss or liquid. REMOVE these new leafy/stalactite clumps and repeated dark ribs. FIRST native green surface has much flatter diffuse vertical lowcontrast patches, not a mass of moss. Restore fine quiet green surface variation with subdued shallow wear in original source locations, source brightness and dark strokes. Green illumination stays at original level; no added emission. Three top caps remain subtly textured with original modest shadows, do not turn caps into heavily eroded blocks. Main and lower faces must stay flat as in FIRST, faint existing vertical streaks only, not curtains, wood planks, cliff relief or flowing water.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 65376,
+      "paintedGapPixelsExtended": 1389,
+      "paintedUncoveredSourcePixels": 1009,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 41,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        272,
+        352
+      ],
+      "outputSha256": "b9ce299b7a77e559adfed9c3d146b70f9bfe43cbeeb1ca42e74984863c3c943b",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28/draft-repaired-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Black Castle versions1/2 turn subtle native green variegation into heavy leafy/lichen-like deposits and repeated ribs, with brighter surface contrast. Version2 correction did not remove the invented material identity. Both remain held; source-only version3 is a separate independently pending candidate."
+    }
+  ]
+}
