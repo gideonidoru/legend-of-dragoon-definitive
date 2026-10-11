@@ -10,6 +10,55 @@ ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('battle_presentation_audit', ROOT / 'scripts/verify-envhd-battle-presentation.py')
 verify = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(verify)
+spec = importlib.util.spec_from_file_location('battle_presentation_selection', ROOT / 'scripts/pack-envhd-battle-materials.py')
+pack = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(pack)
+
+
+def validate_selected_review(selected, current, verified, production, snapshots):
+    """Bind installed paintings to their immutable review, allowing new pending drafts."""
+    keys = selected.get('presentationSourceKeys', [])
+    candidates = {c['candidate']['decodedRgbaSha256']: c['candidate'] for c in verified['verified']}
+    if (not isinstance(keys, list) or any(not isinstance(k, str) for k in keys)
+            or len(set(keys)) != len(keys) or not set(keys).issubset(candidates)
+            or type(selected.get('presentationSelectedMasters', 0)) is not int
+            or selected.get('presentationSelectedMasters', 0) != len(keys)):
+        raise ValueError('Battle presentation selection does not match the verified manifest')
+    if not keys:
+        if 'presentationReviewReceipt' in selected:
+            raise ValueError('Battle presentation selection does not match the verified manifest')
+        # An erased presentation receipt cannot make installed paintings look like neural baseline.
+        pack.validate_previous_selection(selected, ROOT)
+        return keys
+    receipt = selected.get('presentationReviewReceipt')
+    if not isinstance(receipt, str) or len(receipt) != 64 or any(c not in '0123456789abcdef' for c in receipt):
+        raise ValueError('Battle presentation selection does not match the verified manifest')
+    reviewed = current
+    if receipt != verified['manifestSha256']:
+        name = f'battle-presentation-reviews/{receipt}.json'
+        try:
+            data = verify.battle.terrain.bounded_read(production / name, 32 * 1024 * 1024)
+            if verify.battle.terrain.digest(data) != receipt:
+                raise ValueError('Historical review receipt changed')
+            reviewed = json.loads(data)
+            snapshots[name] = data
+        except (OSError, ValueError) as error:
+            raise ValueError('Battle presentation selection does not match its immutable review receipt') from error
+    if (not isinstance(reviewed, dict) or not isinstance(reviewed.get('candidates'), list)
+            or reviewed.get('visualReviewedBespokeCandidates') != len(keys)):
+        raise ValueError('Battle presentation selected review is incomplete')
+    records = reviewed['candidates']
+    if (any(not isinstance(c, dict) or not isinstance(c.get('decodedRgbaSha256'), str) for c in records)
+            or len(records) != len(keys)
+            or {c['decodedRgbaSha256'] for c in records} != set(keys)):
+        raise ValueError('Battle presentation selected review keys changed')
+    # Compare complete records: prompts, review verdicts, bindings and pinned recipe all remain protected.
+    metadata = lambda m: {k: v for k, v in m.items() if k not in ('candidates', 'visualReviewedBespokeCandidates')}
+    if metadata(reviewed) != metadata(current) or any(c != candidates[c['decodedRgbaSha256']] for c in records):
+        raise ValueError('Battle presentation selected review changed')
+    # Reuse the publisher's read-only bounded validation of installed atlas regions and candidate pixels.
+    pack.validate_previous_selection(selected, ROOT)
+    return keys
 
 
 def audit(files):
@@ -25,15 +74,10 @@ def audit(files):
     scenes, masters, empty = verify.battle.census(files)
     if history['scenes'] != scenes or history['emptyModelSlots'] != empty:
         raise ValueError('Battle presentation census changed')
-    verified = verify.preflight(files, production / 'battle-presentation-artwork-v1.json')
+    verified = verify.preflight(files, production / 'battle-presentation-artwork-v1.json', ROOT)
     candidates = {c['candidate']['decodedRgbaSha256'] for c in verified['verified']}
-    presentation_keys = selected.get('presentationSourceKeys', [])
-    if (not isinstance(presentation_keys, list) or any(not isinstance(k, str) for k in presentation_keys)
-            or len(set(presentation_keys)) != len(presentation_keys)
-            or not set(presentation_keys).issubset(candidates)
-            or selected.get('presentationSelectedMasters', 0) != len(presentation_keys)
-            or (presentation_keys and selected.get('presentationReviewReceipt') != verified['manifestSha256'])):
-        raise ValueError('Battle presentation selection does not match the verified manifest')
+    presentation_keys = validate_selected_review(selected, inputs['battle-presentation-artwork-v1.json'],
+                                                 verified, production, snapshots)
     stages = []
     for scene in scenes:
         atlas = next((s for s in selected['scenes'] if s['modelSha256'] == scene['modelSha256']), None)
