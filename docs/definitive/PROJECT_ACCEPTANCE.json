@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "date": "2026-10-11",
-  "sourceCheckpoint": "5e4987edc47e8a94562713ddef0ee26c066008e2",
-  "publicSource": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+  "sourceCheckpoint": "6612a533307e5f066bc46e7870d658f8add42752",
+  "publicSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
   "publicTag": "definitive-current",
-  "mainFields": 4925,
+  "mainFields": 4926,
   "publicFields": 4925,
-  "mainFieldHolds": 237,
+  "mainFieldHolds": 236,
   "publicFieldHolds": 237,
   "wholeGameAssetDenominatorKnown": false,
   "ratingsSource": {
@@ -54,7 +54,7 @@
       "readinessSnapshot": 8,
       "status": "pending",
       "prerequisites": [],
-      "checkpointEvidence": "All seven mods plus four EnvHD packs; checksum repair and full reinstall verified. Reviewed audit 697 / production 0afd preservation corrections accepted on main; owner 533 and pre-Dart combined 536 headless suites passed with 10 existing optional skips. Exact-source publication/device gates pending. New generation 3 actual-public headless clean Reinstall FAIL: same-content recovered personal filename collision; independent safety/correction gates pending.",
+      "checkpointEvidence": "All seven mods plus four EnvHD packs; checksum repair and full reinstall verified. Reviewed audit 697 / production 0afd preservation corrections accepted on main; owner 533 and pre-Dart combined 536 headless suites passed with 10 existing optional skips. Exact-source publication/device gates pending. New generation 3 actual-public headless clean Reinstall FAIL: same-content recovered personal filename collision; independent safety/correction gates pending. Generation4/source5d publishes PR47 recovery correction; actual downloaded-manager three full Reinstall passes and independent final owner/managed SHA census PASS (synthetic discs, headless only). Historical generation3 failure retained.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "Real Deck fresh/install/repair/reinstall/uninstall on internal and SD storage; offline and interruption checks.",
       "documents": [
@@ -1304,7 +1304,7 @@
       "report": "Repeated clean Reinstall stops on same-content personal recovery-name collision",
       "owner": "ROOT",
       "support": "MODS",
-      "status": "active public maintenance blocker",
+      "status": "corrected engineering; actual-public three Reinstall passes PASS; physical maintenance pending",
       "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
       "generation": 3,
       "evidenceType": "actual public headless maintenance with synthetic discs; no gameplay/UI/physical Deck",
@@ -1318,12 +1318,25 @@
       },
       "scope": "Actual fixture has identical bytes, not distinct inputs. Owner regression gates must cover identical, distinct and file/directory conflicts separately.",
       "safetyStatus": "PASS for exact managed bytes and preserved active saves/settings/owner metadata/root and recovered notes/synthetic discs; no activation committed. Full clean Reinstall remains FAIL.",
-      "correctionStatus": "Manager owner reproducing/fixing; independent reviews and main integration pending",
-      "heldActions": [
-        "GC",
-        "movie seeding"
-      ],
-      "safetyLimits": "Fixture contains an intentionally inserted stray personal release/config.conf predating the attempt; full install inventory/launch is not accepted by this safety-only check."
+      "correctionStatus": "PR47 merged and published at generation4/source5d; same-content dedup, distinct-content and file/directory conflicts verified across three actual downloaded-manager Reinstalls",
+      "heldActions": [],
+      "safetyLimits": "Fixture contains an intentionally inserted stray personal release/config.conf predating the attempt; full install inventory/launch is not accepted by this safety-only check.",
+      "currentPublicEvidence": {
+        "carrier": "https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-current",
+        "verification": "Publication and anonymous downloads PASS. Three consecutive full Reinstall passes using the actual downloaded manager PASS; independent read-only final census rehashed all 574 managed files and 40 preserved owner entries. Synthetic discs, headless; no gameplay, UI or physical Deck acceptance.",
+        "observedDate": "2026-10-11",
+        "source": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+        "generation": 4,
+        "buildRun": 38171282483,
+        "manifestSha256": "df7f95b8d946c4b03476c560e1aa4f26421b3302ab9233a553a9eefcde66195e",
+        "publication": "PASS",
+        "anonymousDownloads": "PASS",
+        "publicMaintenance": "PASS for three full Reinstall passes only",
+        "physicalDeck": false,
+        "harnessSha256": "43fed076fdf825e5436ac9ac6cfa445bdb78983b40511199d6ea124347f99e4a",
+        "downloadedManagerSha256": "12a69dfd434ecc7a033f3f23bf58d6b6847866cd84bb762eec063aa5fcda9711",
+        "scope": "No Repair/Uninstall/Update or physical acceptance inferred from Reinstall evidence."
+      }
     }
   ],
   "deliveryCasesRef": "docs/definitive/DELIVERY_ACCEPTANCE.json",
@@ -1474,9 +1487,9 @@
     "unknownOwnership": "Unresolved families remain unresolved; no automatic exemption.",
     "completionClaim": "A narrower human-approved release scope must be named as such; it does not finish deferred original full-remaster goals."
   },
-  "mainSource": "5e4987edc47e8a94562713ddef0ee26c066008e2",
-  "publicGeneration": 3,
-  "publicBuildRun": 38167244350,
+  "mainSource": "6612a533307e5f066bc46e7870d658f8add42752",
+  "publicGeneration": 4,
+  "publicBuildRun": 38171282483,
   "inventoryCheckpoints": {
     "historicalPublic": {
       "source": "0af4f997e27f49783180cb2ff1c5a04012467289",
@@ -1485,13 +1498,13 @@
       "fieldHolds": 270
     },
     "public": {
-      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "source": "5d3db5c84174f2936fe7256123a11f6bb640760a",
       "fields": 4925,
       "paintedFields": 39,
       "fieldHolds": 237,
       "terrainHolds": 1,
       "paintedBattleMasters": 34,
-      "generation": 3,
+      "generation": 4,
       "published": true
     },
     "candidate": {
@@ -1524,14 +1537,14 @@
       "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4"
     },
     "main": {
-      "source": "5e4987edc47e8a94562713ddef0ee26c066008e2",
-      "fields": 4925,
-      "paintedFields": 39,
-      "fieldHolds": 237,
+      "source": "6612a533307e5f066bc46e7870d658f8add42752",
+      "fields": 4926,
+      "paintedFields": 40,
+      "fieldHolds": 236,
       "terrainHolds": 1,
       "runtimePaintedSelectedMasters": 12,
-      "presentationSelectedMasters": 22,
-      "totalPaintedBattleMasters": 34,
+      "presentationSelectedMasters": 35,
+      "totalPaintedBattleMasters": 47,
       "published": false,
       "nativeAcceptedFields": 0,
       "finalQualityAcceptedFields": 0,
@@ -1560,46 +1573,48 @@
       "finalQualityAcceptedFields": 0,
       "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4",
       "mainMerged": true
+    },
+    "historicalGeneration3": {
+      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "fields": 4925,
+      "paintedFields": 39,
+      "fieldHolds": 237,
+      "terrainHolds": 1,
+      "paintedBattleMasters": 34,
+      "generation": 3,
+      "published": true
+    },
+    "historicalMainBeforeIncrementalMerges": {
+      "source": "5e4987edc47e8a94562713ddef0ee26c066008e2",
+      "fields": 4925,
+      "paintedFields": 39,
+      "fieldHolds": 237,
+      "terrainHolds": 1,
+      "runtimePaintedSelectedMasters": 12,
+      "presentationSelectedMasters": 22,
+      "totalPaintedBattleMasters": 34,
+      "published": false,
+      "nativeAcceptedFields": 0,
+      "finalQualityAcceptedFields": 0,
+      "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4",
+      "mainMerged": true
     }
   },
   "publicEvidence": {
     "carrier": "https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-current",
-    "verification": "Durable publication-result and anonymous public-download-check both PASS for generation 3 exact ad1 source. Actual public headless clean Reinstall FAILS on a same-content repeated recovery-name collision; fixture success and physical acceptance are not claimed.",
+    "verification": "Publication and anonymous downloads PASS. Three consecutive full Reinstall passes using the actual downloaded manager PASS; independent read-only final census rehashed all 574 managed files and 40 preserved owner entries. Synthetic discs, headless; no gameplay, UI or physical Deck acceptance.",
     "observedDate": "2026-10-11",
-    "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
-    "generation": 3,
-    "buildRun": 38167244350,
-    "manifestSha256": "9ca10f6c08b1b780b8c16bc9f41d6d55f27971be493afa3bd179c3a47dfe9ce8",
+    "source": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+    "generation": 4,
+    "buildRun": 38171282483,
+    "manifestSha256": "df7f95b8d946c4b03476c560e1aa4f26421b3302ab9233a553a9eefcde66195e",
     "publication": "PASS",
     "anonymousDownloads": "PASS",
-    "publicMaintenance": "FAIL",
+    "publicMaintenance": "PASS for three full Reinstall passes only",
     "physicalDeck": false,
-    "maintenanceFailure": {
-      "id": "B04",
-      "report": "Repeated clean Reinstall stops on same-content personal recovery-name collision",
-      "owner": "ROOT",
-      "support": "MODS",
-      "status": "active public maintenance blocker",
-      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
-      "generation": 3,
-      "evidenceType": "actual public headless maintenance with synthetic discs; no gameplay/UI/physical Deck",
-      "exception": "FileAlreadyExistsException",
-      "sourceLocation": "CleanReinstall.java:216 (preserveTree)",
-      "collision": "Existing recovered-reinstall/campaign-notes.log conflicts while preserving root campaign-notes.log",
-      "verifiedInputIdentity": {
-        "bytes": 23,
-        "sha256": "07552b9ee8267b9358bd9c522d9e7b43658300a510b39979e1c5cc1acec2a659",
-        "matchingCopies": 4
-      },
-      "scope": "Actual fixture has identical bytes, not distinct inputs. Owner regression gates must cover identical, distinct and file/directory conflicts separately.",
-      "safetyStatus": "PASS for exact managed bytes and preserved active saves/settings/owner metadata/root and recovered notes/synthetic discs; no activation committed. Full clean Reinstall remains FAIL.",
-      "correctionStatus": "Manager owner reproducing/fixing; independent reviews and main integration pending",
-      "heldActions": [
-        "GC",
-        "movie seeding"
-      ],
-      "safetyLimits": "Fixture contains an intentionally inserted stray personal release/config.conf predating the attempt; full install inventory/launch is not accepted by this safety-only check."
-    }
+    "harnessSha256": "43fed076fdf825e5436ac9ac6cfa445bdb78983b40511199d6ea124347f99e4a",
+    "downloadedManagerSha256": "12a69dfd434ecc7a033f3f23bf58d6b6847866cd84bb762eec063aa5fcda9711",
+    "scope": "No Repair/Uninstall/Update or physical acceptance inferred from Reinstall evidence."
   },
   "positiveDeviceObservations": [
     {
@@ -1663,6 +1678,10 @@
     {
       "source": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
       "scope": "PR 43 standalone archive planner/prover plus CI wiring integrated; 39 independent controls clear. Full publisher/GC archive assembly inactive; public remains generation 3 ad1."
+    },
+    {
+      "source": "5e4987edc47e8a94562713ddef0ee26c066008e2",
+      "meaning": "Previous acceptance metadata checkpoint before generation4 and incremental merges47\u201354"
     }
   ],
   "historicalLedgerSource": "b4f2efb15c05cad4a9f2997454d9a71142151b6a",
@@ -1764,8 +1783,8 @@
       "domain": "A06",
       "owner": "ENV",
       "issue": "Remaining field/terrain and animated/state artwork plus final scene acceptance",
-      "status": "Main has 237 held fields and one terrain hold; partial rock/cushion/bedding authoring accepted in source does not finish required coverage.",
-      "source": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+      "status": "Main has236 held field images and one terrain hold;40 painted fields and47 painted battle masters selected. Full content and native/final acceptance remain open.",
+      "source": "6612a533307e5f066bc46e7870d658f8add42752",
       "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4"
     },
     {
@@ -1779,8 +1798,8 @@
       "domain": "A01",
       "owner": "ROOT",
       "issue": "Repeated clean Reinstall recovery collision and physical maintenance acceptance",
-      "status": "Generation 3 publication/downloads PASS, but actual public clean Reinstall FAIL on identical recovery/root personal bytes. Reproduction, correction, independent review, main integration and public revalidation pending; physical gates remain pending.",
-      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88"
+      "status": "Generation4 three actual downloaded-manager full Reinstall passes PASS; physical fresh/install/repair/reinstall/uninstall and interruption acceptance remain pending.",
+      "source": "5d3db5c84174f2936fe7256123a11f6bb640760a"
     }
   ],
   "installerKnownGaps": [
@@ -1789,27 +1808,28 @@
       "issue": "Legacy snapshot metadata-looking personal bytes were lost by basename-only exclusion",
       "sourceWithConfirmedFailure": "f8a582932316c8b0339684553619f9954d2ec804",
       "implementedCorrectionSource": "0afd9c30a164e52f0d2162b02feb69b906ca67a4",
-      "status": "Earlier legacy snapshot exclusion closed and shipped; separate new recovery collision blocks actual public maintenance; physical acceptance pending",
-      "requiredClosure": "Correct and independently review/integrate/revalidate the new repeated-Reinstall recovery collision; verify failed-stage safety separately and retain physical acceptance gates.",
+      "status": "Engineering corrections shipped; generation4 three actual-public full Reinstall passes PASS; physical maintenance acceptance pending",
+      "requiredClosure": "Retain historical failure and failed-stage safety evidence; complete outstanding physical maintenance cases.",
       "engineeringReviewClosure": "Standards and Spec clear per independent root review",
       "integrationCheckpoint": "ad1a234d94b4397df681c7fd196581cf3a303a88"
     },
     {
       "issue": "Repeated clean Reinstall stops on same-content personal recovery-name collision",
       "sourceWithConfirmedFailure": "ad1a234d94b4397df681c7fd196581cf3a303a88",
-      "status": "Open public maintenance blocker; correction/reviews/integration pending",
+      "status": "Engineering corrections shipped; generation4 three actual-public full Reinstall passes PASS; physical maintenance acceptance pending",
       "sourceLocation": "CleanReinstall.java:216 (preserveTree)",
       "actualFixtureBytes": 23,
       "actualFixtureSha256": "07552b9ee8267b9358bd9c522d9e7b43658300a510b39979e1c5cc1acec2a659",
       "actualFixtureSameContent": true,
-      "distinctInputCoverage": "Owner tests separate; not established by this actual-public fixture",
-      "requiredClosure": "Independent source reviews and main integration, repeat actual public maintenance PASS, failed-stage safety proof; preserve original/history and personal bytes.",
-      "gcAndMovieSeeding": "HELD"
+      "distinctInputCoverage": "Original23B and distinct47B note versions, repeated dedup and file/directory collisions preserved across actual-public three-pass fixture",
+      "requiredClosure": "Retain historical failure and failed-stage safety evidence; complete outstanding physical maintenance cases.",
+      "gcAndMovieSeeding": "Actual-maintenance prerequisite cleared; retention independently audited by root",
+      "implementedCorrectionSource": "5d3db5c84174f2936fe7256123a11f6bb640760a"
     }
   ],
   "candidateVerification": {
     "source": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
-    "status": "PR 42 reviewed FMV client and PR 43 standalone archive planner integrated on main; not published",
+    "status": "FMV client and recovery correction published in generation4; standalone archive planner integrated but full archive publisher inactive; later reviewed increments merged and awaiting next publication",
     "priorCombinedSource": "b09250ab9a25697169f50ca52739c7f79066cc1e",
     "priorCombinedDelivery": {
       "found": 536,
@@ -1839,10 +1859,10 @@
     "finalCandidateCharHdJar": "pass",
     "historicalVerificationSource": "57f4dcf26ceb25ea0907760da87a0e967a837159",
     "nextDownloadGate": {
-      "run": 38167244350,
-      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
-      "status": "Publication and anonymous exact-source downloads PASS; actual public clean Reinstall FAIL",
-      "acceptanceBoundary": "Verified generation 3 pointer/packages do not close maintenance. GC and movie seeding held; failed-stage safety check pending, no PASS claim."
+      "source": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+      "run": 38171282483,
+      "status": "Publication, anonymous downloads and actual downloaded-manager three full Reinstall passes PASS",
+      "acceptanceBoundary": "Synthetic headless Reinstall evidence; physical cases remain pending"
     },
     "currentMainVerification": {
       "source": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
@@ -1857,6 +1877,32 @@
       "archiveHelperSource": "7f9562068af8d94e8822fde2dd93cf4c0f8c1c6e",
       "archiveControlsPassed": 39,
       "archivePublicationActive": false
+    },
+    "currentMainIncrementalStatus": {
+      "source": "6612a533307e5f066bc46e7870d658f8add42752",
+      "mainMerged": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ],
+      "laterNotYetPublished": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        54
+      ],
+      "archivePublicationActive": false,
+      "remainingPublicationDifference": {
+        "paintedFields": 1,
+        "paintedBattleMasters": 13
+      }
     }
   },
   "dartFieldHeadBindings": {
@@ -1877,7 +1923,7 @@
     "published": true,
     "publishedSource": "ad1a234d94b4397df681c7fd196581cf3a303a88"
   },
-  "remoteMainCheckpoint": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+  "remoteMainCheckpoint": "6612a533307e5f066bc46e7870d658f8add42752",
   "battlePresentationAudit": {
     "source": "29480f78a97298b8ad0325e57313933515678beb",
     "integrationSource": "3c20a4f72a5e5db99b42530fffed807c32383edd",
@@ -1893,8 +1939,8 @@
     "publishedSource": "ad1a234d94b4397df681c7fd196581cf3a303a88"
   },
   "integrationPolicy": "Human-approved spiral: merge each completed, source-bound and independently reviewed increment while its owner continues unfinished work. Whole-mod completion and publication are separate gates. Preserve required content, subjective ratings and physical/campaign criteria; publish only exact accepted source after verified pointer/download closure.",
-  "mainPaintedFields": 39,
-  "mainPaintedBattleMasters": 34,
+  "mainPaintedFields": 40,
+  "mainPaintedBattleMasters": 47,
   "branchConsolidation": {
     "main": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
     "result": "Completed proven ref retirements; active authoring retained",
@@ -2163,5 +2209,58 @@
     },
     "limits": "Audio shutdown correction integrated in source; input/loading/audio-FMV-route fixes still tracked separately. No blanket domain or physical acceptance."
   },
-  "caseInventoryHistoryPolicy": "All 65 original case definitions, results and dimensions retained. Historical references to 245 public holds mean generation 2; generation 3 has 237 still held and eight newly selected fields still require final scene acceptance."
+  "caseInventoryHistoryPolicy": "All 65 original case definitions, results and dimensions retained. Historical references to 245 public holds mean generation 2; generation 3 has 237 still held and eight newly selected fields still require final scene acceptance.",
+  "publicEvidenceHistory": [
+    {
+      "carrier": "https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-current",
+      "verification": "Durable publication-result and anonymous public-download-check both PASS for generation 3 exact ad1 source. Actual public headless clean Reinstall FAILS on a same-content repeated recovery-name collision; fixture success and physical acceptance are not claimed.",
+      "observedDate": "2026-10-11",
+      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "generation": 3,
+      "buildRun": 38167244350,
+      "manifestSha256": "9ca10f6c08b1b780b8c16bc9f41d6d55f27971be493afa3bd179c3a47dfe9ce8",
+      "publication": "PASS",
+      "anonymousDownloads": "PASS",
+      "publicMaintenance": "FAIL",
+      "physicalDeck": false,
+      "maintenanceFailure": {
+        "id": "B04",
+        "report": "Repeated clean Reinstall stops on same-content personal recovery-name collision",
+        "owner": "ROOT",
+        "support": "MODS",
+        "status": "active public maintenance blocker",
+        "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+        "generation": 3,
+        "evidenceType": "actual public headless maintenance with synthetic discs; no gameplay/UI/physical Deck",
+        "exception": "FileAlreadyExistsException",
+        "sourceLocation": "CleanReinstall.java:216 (preserveTree)",
+        "collision": "Existing recovered-reinstall/campaign-notes.log conflicts while preserving root campaign-notes.log",
+        "verifiedInputIdentity": {
+          "bytes": 23,
+          "sha256": "07552b9ee8267b9358bd9c522d9e7b43658300a510b39979e1c5cc1acec2a659",
+          "matchingCopies": 4
+        },
+        "scope": "Actual fixture has identical bytes, not distinct inputs. Owner regression gates must cover identical, distinct and file/directory conflicts separately.",
+        "safetyStatus": "PASS for exact managed bytes and preserved active saves/settings/owner metadata/root and recovered notes/synthetic discs; no activation committed. Full clean Reinstall remains FAIL.",
+        "correctionStatus": "Manager owner reproducing/fixing; independent reviews and main integration pending",
+        "heldActions": [
+          "GC",
+          "movie seeding"
+        ],
+        "safetyLimits": "Fixture contains an intentionally inserted stray personal release/config.conf predating the attempt; full install inventory/launch is not accepted by this safety-only check."
+      }
+    }
+  ],
+  "incrementalDelivery": {
+    "mainSource": "6612a533307e5f066bc46e7870d658f8add42752",
+    "publishedSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+    "mergedNotYetPublished": [
+      "input correction PR49",
+      "music intent PR50",
+      "13 Giganto paintings PR51",
+      "loader foundation PR52",
+      "table artwork PR54"
+    ],
+    "policy": "Publish coherent reviewed increments without waiting whole mods; physical and full-content goals remain open."
+  }
 }
