@@ -208,6 +208,60 @@ class PaintedFieldTests(unittest.TestCase):
         self.candidate['generatedSha256']=verify.batch.terrain.digest(self.raw_path.read_bytes());self.candidate['generatedInputMode']='RGB';self.save()
         with self.assertRaisesRegex(ValueError,'RGBA output'):self.preflight()
 
+    def surround_fixture(self):
+        old_key=self.key;self.source=Image.new('RGBA',(24,24),(70,80,90,255))
+        self.key=verify.batch.terrain.fingerprint(self.source);folder=self.raw_path.parent.with_name(self.key)
+        self.raw_path.parent.rename(folder);self.raw_path=folder/'painted-input-v1.png';self.output_path=folder/'image-v1.png'
+        self.asset.update(decodedRgbaSha256=self.key,sourceSize=[24,24]);self.candidate.update(decodedRgbaSha256=self.key,sourceSize=[24,24])
+        self.metadata['canvasRect'][:]=[0,0,24,24];self.metadata['foregrounds'][0]['canvasPlacement'][:]=[0,0,24,24]
+        for key in ['generatedPath','outputPath']:self.candidate[key]=self.candidate[key].replace(old_key,self.key)
+        patch=mock.patch.object(verify.batch.fields,'render',return_value=(None,[self.source],self.metadata));patch.start();self.addCleanup(patch.stop)
+        raw=Image.new('RGB',(96,96),(100,110,120));raw.save(self.raw_path)
+        prepared,operation=verify.surround.restore_surround(self.source,raw.convert('RGBA'),[[[5,5],[18,5],[18,18],[5,18]]],2)
+        stream=io.BytesIO();prepared.save(stream,format='PNG')
+        self.candidate['sourceSurroundRestore']=dict(operation,algorithmPath='scripts/repair-envhd-painted-surround.py',algorithmSha256=verify.SURROUND_SHA256,restoredInputSha256=verify.batch.terrain.digest(stream.getvalue()))
+        output,repair_operation=verify.repair.repair(self.source,prepared);output.save(self.output_path)
+        self.candidate.update(repair_operation,generatedInputMode='RGB',targetSize=[96,96],generatedSha256=verify.batch.terrain.digest(self.raw_path.read_bytes()),outputSha256=verify.batch.terrain.digest(self.output_path.read_bytes()))
+        self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save()
+
+    def test_recorded_surround_replays_opaque_rgb_original_and_unchanged_visibility_recipe(self):
+        self.surround_fixture();before=self.raw_path.read_bytes()
+        self.assertEqual(1,len(self.preflight()[0]));self.assertEqual(before,self.raw_path.read_bytes())
+        with Image.open(self.output_path) as image:
+            self.assertTrue(np.all(np.asarray(image)[:4]==[70,80,90,255]))
+
+    def test_surround_identity_intermediate_and_geometry_changes_are_rejected(self):
+        self.surround_fixture();record=self.candidate['sourceSurroundRestore'];original=copy.deepcopy(record)
+        for key,value,message in [('algorithmSha256','0'*64,'surround identity'),('restoredInputSha256','0'*64,'recorded source geometry'),('sourceFeaturePolygons',[[[6,5],[18,5],[18,18],[6,18]]],'recorded source geometry'),('originalBorderRgbRecoverable',False,'recorded source geometry')]:
+            with self.subTest(key=key):
+                record.clear();record.update(copy.deepcopy(original));record[key]=value;self.save()
+                with self.assertRaisesRegex(ValueError,message):self.preflight()
+
+    def test_surround_cannot_be_combined_with_another_authoring_operation(self):
+        self.surround_fixture()
+        for key in ['registration','opaqueBorderRepair','sourceCanvasNormalization']:
+            with self.subTest(key=key):
+                self.candidate[key]={};self.save()
+                with self.assertRaisesRegex(ValueError,'surround identity or exclusive'):self.preflight()
+                del self.candidate[key]
+
+    def test_surround_cannot_fill_missing_generated_opaque_pixels(self):
+        self.surround_fixture()
+        with Image.open(self.raw_path) as image:raw=image.convert('RGBA')
+        raw.putpixel((0,0),(100,110,120,0));raw.save(self.raw_path)
+        self.candidate.update(generatedInputMode='RGBA',generatedSha256=verify.batch.terrain.digest(self.raw_path.read_bytes()));self.save()
+        with self.assertRaisesRegex(ValueError,'opaque generated'):self.preflight()
+
+    def test_surround_bounds_oversized_png_before_decoder(self):
+        self.surround_fixture();data=compressed_png();self.raw_path.write_bytes(data)
+        self.candidate.update(generatedInputMode='RGBA',generatedSha256=verify.batch.terrain.digest(data));self.save()
+        with mock.patch.object(verify.Image,'open',side_effect=AssertionError('Pixel allocation')):
+            with self.assertRaisesRegex(ValueError,'bounded painted canvas'):self.preflight()
+
+    def test_unrecorded_surround_output_cannot_bypass_exact_pixel_replay(self):
+        self.surround_fixture();del self.candidate['sourceSurroundRestore'];self.save()
+        with self.assertRaisesRegex(ValueError,'exact recorded repair'):self.preflight()
+
     def test_rebound_layout_and_symlinked_artwork_are_rejected(self):
         self.candidate['sourceBindings']=[self.binding|dict(slot=1)];self.save()
         with self.assertRaisesRegex(ValueError,'rebound'):self.preflight()

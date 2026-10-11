@@ -1,0 +1,194 @@
+{
+  "decodedRgbaSha256": "1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d",
+  "generatedSha256": "ba8c8304fa3ce60b6a002779fc10074be47bd8c11fae1fa7eff42b69df61eda0",
+  "generatedSize": [
+    1293,
+    1216
+  ],
+  "sourceSize": [
+    68,
+    64
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "4464eaf2e684c00494b7d269dcc9b3426cbcbc01b1d743f13d8874f3431fd66a:-1",
+      "kind": "foreground",
+      "slot": 10,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 331,
+  "representativeLocation": "Furni",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGB",
+  "generationVersion": 3,
+  "prompt": "Use case: precise-object-edit. Asset: FULLY OPAQUE rectangular game texture68:64canvas, requested1360x1280. Reference1 authoritative original nearest-neighbor source crop, including its surrounding cream/gray building surface. Every pixel of reference1 is opaque; original has NO transparent silhouette and no empty canvas area. Reference2 COMPLETE native Furni scene for exact lighting. Reference3 prior draft corrects muted shading but wrongly deletes corner and surround pixels; retain its wood detail only. Produce a FULLY OPAQUE image filling every corner, restoring all surrounding wall/background surface from reference1. No transparency, cutout, isolated door, alpha fade or empty corner anywhere. Match source1 broad colors and shadows throughout all four border edges, dark cool gray-green upper/right corner, muted smooth cream-gray stone lower/left rim; no bright detailed new stone slab or rectangular patch. Within existing door area, follow reference1 perimeter, center seam and original two upper sweeping inset curves, middle curls and lower sweeping shapes with fine restrained wood grain. No redesign/symmetry completion/new ornament. Original68x64 exact crop and source perspective; do not enlarge or recenter the door, add padding, new background content, words, logo or watermark. Output one entirely opaque rectangular source-faithful HD crop.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 69632,
+  "paintedGapPixelsExtended": 0,
+  "paintedUncoveredSourcePixels": 0,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 0,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    272,
+    256
+  ],
+  "outputSha256": "7963f66383ccb6e4b9824196791b2ac4915080fdaf59446e4ef4e73317e6fd9b",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d/image-v1.png",
+  "sourceSurroundRestore": {
+    "method": "python-painted-opaque-source-surround-preserve-1",
+    "sourceSize": [
+      68,
+      64
+    ],
+    "generatedSize": [
+      1293,
+      1216
+    ],
+    "targetSize": [
+      272,
+      256
+    ],
+    "scale": 4,
+    "sourceFeaturePolygons": [
+      [
+        [
+          29,
+          4
+        ],
+        [
+          39,
+          5
+        ],
+        [
+          46,
+          8
+        ],
+        [
+          53,
+          12
+        ],
+        [
+          57,
+          18
+        ],
+        [
+          60,
+          25
+        ],
+        [
+          61,
+          36
+        ],
+        [
+          61,
+          46
+        ],
+        [
+          57,
+          56
+        ],
+        [
+          48,
+          59
+        ],
+        [
+          18,
+          60
+        ],
+        [
+          10,
+          58
+        ],
+        [
+          6,
+          53
+        ],
+        [
+          3,
+          42
+        ],
+        [
+          3,
+          30
+        ],
+        [
+          7,
+          20
+        ],
+        [
+          13,
+          12
+        ],
+        [
+          20,
+          7
+        ]
+      ],
+      [
+        [
+          63,
+          29
+        ],
+        [
+          65,
+          29
+        ],
+        [
+          66,
+          35
+        ],
+        [
+          65,
+          46
+        ],
+        [
+          63,
+          46
+        ]
+      ]
+    ],
+    "featherNativePixels": 2,
+    "featureCoverageFraction": 0.6379538143382353,
+    "generatedDetailTargetPixels": 44422,
+    "pureGeneratedTargetPixels": 37477,
+    "sourceSurroundTargetPixels": 25210,
+    "exactSourceBorderTargetPixels": 4160,
+    "exactSourceBorderNativePixels": 1,
+    "sourceSurroundResampling": "lanczos",
+    "sourceBorderResampling": "nearest",
+    "featherMetric": "inward-chebyshev",
+    "sourceAlphaApplied": false,
+    "originalBorderRgbRecoverable": true,
+    "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+    "algorithmPath": "scripts/repair-envhd-painted-surround.py",
+    "algorithmSha256": "11017bae4bf16c21bdd6e923b36dc46dae63a023ed0c8d0a26dfe70da1e3d767",
+    "restoredInputSha256": "7963f66383ccb6e4b9824196791b2ac4915080fdaf59446e4ef4e73317e6fd9b"
+  },
+  "candidateVersion": 1,
+  "review": {
+    "intent": "Furni cut331 foreground10: rounded carved double wooden door within the original opaque cream/gray building surround. Full source and current EnvHD static placement compared. Source perimeter/seam and broad upper/middle/lower inset curve groups guide generated version3; fine carving/tooling interpretation remains pending independent review.",
+    "style": "Painted wood detail retained inside explicitly reviewed door/hardware polygons. Source wall colours interpolated outside those features, with exact nearest-source outer native-pixel border. This removes the separately held version3 bright/nonmatching surround in the static composite. Original RGB border values remain recoverable; raw source/reference files remain private. Source surround remains interpolated native art rather than newly painted fine wall texture; final whole-scene finish remains pending.",
+    "layout": "Exact68x64 source restored at272x256. Feature polygons and2nativepixel inward feather explicitly recorded; original fully opaque visibility/black repair unchanged. Outer native-pixel RGB band retained, interior generated detail preserved. Static frame continuity improved; native geometry/state/depth/occlusion and final art acceptance unverified.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "7963f66383ccb6e4b9824196791b2ac4915080fdaf59446e4ef4e73317e6fd9b",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

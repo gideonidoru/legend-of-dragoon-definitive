@@ -22,7 +22,8 @@
     "field-bespoke-canvas-fit-reviewed-selection.json": "af0906f578b502217a6d7e800b6a9553029bad8375290aeac41b244d259e3bd1",
     "field-bespoke-forest-fittings-reviewed-selection.json": "005b74c0851cfb7ac58811ec05188cb9f663d88017307c305bba3d26fd94c1a3",
     "field-bespoke-forest-door-fittings-held-drafts.json": "59a3910ca0eb358211562ea1627a4cf7e1faf6566e731d858d1e9460dc563c55",
-    "field-bespoke-architecture.json": "57221f4ec9db7762d97f7a8849413572cd8e9116662836c083f73bf6c0bd3b35"
+    "field-bespoke-architecture.json": "57221f4ec9db7762d97f7a8849413572cd8e9116662836c083f73bf6c0bd3b35",
+    "field-bespoke-source-surround-reviewed-selection.json": "091359b3ce4781814cc67913c42a793c423d2ff9b68e247636defeb2466ec02b"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -43,8 +44,8 @@
       "customHeldDraftSourceImages": 18,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
-      "nextTask": "Independently review8pending source-bound candidates; resolve opaque Furni surround transition, continue Twin Castle and remaining244field holds. Static composites expose further neighboring texture/edge finish work; native/final quality acceptance still pending.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 8,
+      "nextTask": "Independently review9pending source-bound field candidates, including Furni source-surround repair; continue remaining244field holds and native/whole-scene finish acceptance.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 9,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
         "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
@@ -228,6 +229,12 @@
       "manifest": "field-bespoke-architecture.json",
       "heldSourceImages": 1,
       "reason": "Older held Deningrad doorway05376f9a retained byte-exact; included now in complete deduplicated draft census. Does not change244field holds or runtime coverage."
+    },
+    {
+      "manifest": "field-bespoke-source-surround-reviewed-selection.json",
+      "newHeldSourceImages": 0,
+      "duplicatesHeldDraftSource": true,
+      "reason": "Existing Furni generated3 with separately pinned/replayed source-surround restoration now author-reviewed. Source wall interpolated and native border RGB recoverable; old failed/held versions preserved. Runtime/native/final selection pending."
     }
   ],
   "publication": {
