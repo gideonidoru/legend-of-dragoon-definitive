@@ -89,7 +89,7 @@ def validate_previous_selection(selection,root):
         presentation_keys=set(sources)
     ledger=json.loads(battle_sources.terrain.bounded_read(root/'integrations/envhd/production/battle-material-artwork.json',32*1024*1024))
     records={a['decodedRgbaSha256']:a for a in ledger['assets']}
-    if not keys.issubset(records) or {k for k in keys if records[k]['reviewStatus']=='intent-revision-needed'}!=painted_keys:invalid()
+    if not keys.issubset(records) or any(records[k]['reviewStatus']!='intent-revision-needed' for k in painted_keys):invalid()
     expected={}
     for key in keys:
         if key in painted_candidates:
@@ -97,7 +97,10 @@ def validate_previous_selection(selection,root):
         elif key in presentation_keys:
             path=root/'integrations/envhd/production/battle-presentation-candidates'/key/'image-v1.png';digest=None
         else:
-            if records[key]['reviewStatus']!='visual-reviewed-runtime-pending':invalid()
+            # A newly held neural source may intentionally return to native.
+            # Its prior selected pixels must still match the exact neural baseline;
+            # erased painting/presentation receipts cannot use this exception.
+            if records[key]['reviewStatus'] not in ('visual-reviewed-runtime-pending','intent-revision-needed'):invalid()
             path=root/'integrations/envhd/production/battle-material-candidates'/key/'image-v1.png';digest=records[key]['outputSha256']
         data=battle_sources.terrain.bounded_read(path,32*1024*1024)
         if digest is not None and battle_sources.terrain.digest(data)!=digest:invalid()
