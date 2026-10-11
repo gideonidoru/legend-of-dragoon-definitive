@@ -90,6 +90,30 @@ class PresentationPackTests(unittest.TestCase):
             self.publish(omit_presentation=True)
         self.assertEqual(before, self.f.runtime_snapshot())
 
+    def test_parseable_partial_wrong_type_and_inconsistent_receipts_fail_before_census(self):
+        self.publish()
+        valid=json.loads(self.f.selection.read_text())
+        controls=[dict(schema=1)]
+        for field,value in [('scenes',{}),('runtimeSelectedMasters',True),('runtimeSelectedBindings',0),
+            ('paintedSelectedMasters',0),('paintedReviewReceipts',{}),('presentationSelectedMasters',True),
+            ('presentationSourceKeys',[]),('presentationReviewReceipt','bad')]:
+            malformed=copy.deepcopy(valid);malformed[field]=value;controls.append(malformed)
+        for field in ('paintedReviewReceipts','presentationSourceKeys','nativeAccepted','scenes'):
+            malformed=copy.deepcopy(valid);del malformed[field];controls.append(malformed)
+        malformed=copy.deepcopy(valid)
+        receipt=next(iter(malformed['paintedReviewReceipts'].values()))
+        malformed['paintedReviewReceipts']={'0'*64:receipt};controls.append(malformed)
+        malformed=copy.deepcopy(valid);del malformed['paintedReviewReceipts'];del malformed['paintedSelectedMasters'];controls.append(malformed)
+        for sources in ([self.key,self.key], ['0'*64]):
+            malformed=copy.deepcopy(valid);malformed['presentationSourceKeys']=sources;malformed['presentationSelectedMasters']=len(sources);controls.append(malformed)
+        for selection in controls:
+            with self.subTest(selection=selection):
+                self.f.selection.write_text(json.dumps(selection));before=self.f.runtime_snapshot()
+                with mock.patch.object(pack,'ROOT',self.f.root), mock.patch.object(pack.battle_sources,'census') as census:
+                    with self.assertRaises(ValueError):pack.publish(self.f.root/'files')
+                    census.assert_not_called()
+                self.assertEqual(before,self.f.runtime_snapshot())
+
     def test_valid_repair_preserves_prior_painting_coverage_mapping_and_allocation(self):
         result = self.publish()
         self.assertEqual(result['runtimeSelectedMasters'], 2)
@@ -106,16 +130,18 @@ class PresentationPackTests(unittest.TestCase):
         self.previous['scenes'][-1]['atlasSize'][1] += 4
         self.f.selection.write_text(json.dumps(self.previous))
         before = self.f.runtime_snapshot()
-        with self.assertRaisesRegex(ValueError, 'atlas allocation'):
+        with self.assertRaisesRegex(ValueError, 'incomplete or inconsistent'):
             self.publish()
         self.assertEqual(before, self.f.runtime_snapshot())
 
     def test_cumulative_selection_cannot_drop_prior_bespoke_source(self):
-        self.previous['presentationSourceKeys'] = ['earlier-source']
-        self.f.selection.write_text(json.dumps(self.previous))
+        self.publish()
+        original=pack.presentation_tools.preflight
+        def missing(*args):
+            result=original(*args);result['verified']=[];return result
         before = self.f.runtime_snapshot()
-        with self.assertRaisesRegex(ValueError, 'earlier bespoke'):
-            self.publish()
+        with mock.patch.object(pack.presentation_tools,'preflight',side_effect=missing):
+            with self.assertRaisesRegex(ValueError,'earlier bespoke'):self.publish()
         self.assertEqual(before, self.f.runtime_snapshot())
 
     def test_manifest_change_during_atlas_assembly_aborts_before_writing_runtime(self):

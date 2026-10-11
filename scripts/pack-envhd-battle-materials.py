@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Select reviewed static battle surfaces; hold animations, pilots and revision candidates native."""
-import argparse,importlib.util,io,json
+import argparse,importlib.util,io,json,re
 from pathlib import Path
 import numpy as np
 from PIL import Image
@@ -12,6 +12,74 @@ spec=importlib.util.spec_from_file_location('battle_source_tools',ROOT/'scripts/
 spec=importlib.util.spec_from_file_location('battle_painted_tools',ROOT/'scripts/verify-envhd-painted-battle.py');painted_tools=importlib.util.module_from_spec(spec);spec.loader.exec_module(painted_tools)
 spec=importlib.util.spec_from_file_location('battle_presentation_tools',ROOT/'scripts/verify-envhd-battle-presentation.py');presentation_tools=importlib.util.module_from_spec(spec);spec.loader.exec_module(presentation_tools)
 
+def validate_previous_selection(selection,root):
+    """Fail closed on incomplete receipts before source discovery or runtime writes."""
+    def invalid():
+        raise ValueError('Existing battle selection is incomplete or inconsistent; refusing to overwrite it')
+    def count(value):return type(value) is int and value>=0
+    def sha(value):return isinstance(value,str) and re.fullmatch('[0-9a-f]{64}',value) is not None
+    def vector(value,n):return isinstance(value,list) and len(value)==n and all(type(v) is int for v in value)
+    if not isinstance(selection,dict) or type(selection.get('schema')) is not int or selection['schema']!=1:invalid()
+    for key in ('runtimeSelectedMasters','runtimeSelectedBindings','nativeAccepted','finalQualityAccepted'):
+        if not count(selection.get(key)):invalid()
+    if selection['nativeAccepted'] or selection['finalQualityAccepted']:invalid()
+    scenes=selection.get('scenes')
+    if not isinstance(scenes,list) or not isinstance(selection.get('scope'),str) or not selection['scope']:invalid()
+    models=set();stages=set();keys=set();bindings=0
+    for scene in scenes:
+        if not isinstance(scene,dict) or type(scene.get('stage')) is not int or scene['stage'] in stages:invalid()
+        if not isinstance(scene.get('modelSha256'),str) or not scene['modelSha256']:invalid()
+        if not isinstance(scene.get('timSha256'),str) or not scene['timSha256']:invalid()
+        if scene.get('schema')!=1 or scene.get('pipeline')!='envhd-static-battle-atlas-1' or scene.get('scale')!=4 or not sha(scene.get('atlasSha256')):invalid()
+        if not vector(scene.get('atlasSize'),2) or min(scene['atlasSize'])<=0:invalid()
+        regions=scene.get('regions')
+        if not isinstance(regions,list) or not regions or type(scene.get('hdBindings')) is not int or scene['hdBindings']!=len(regions):invalid()
+        region_ids=set()
+        for region in regions:
+            if not isinstance(region,dict) or not sha(region.get('decodedRgbaSha256')):invalid()
+            if any(type(region.get(k)) is not int for k in ('page','clut')):invalid()
+            for k,n in (('sourceCrop',4),('sourceUvOrigin',2),('sourceSize',2),('atlasRect',4)):
+                if not vector(region.get(k),n):invalid()
+            w,h=region['sourceSize'];x,y,rw,rh=region['atlasRect'];aw,ah=scene['atlasSize']
+            if w<=0 or h<=0 or (rw,rh)!=(w*4,h*4) or x<32 or y<32 or x+rw+32>aw or y+rh+32>ah:invalid()
+            identity=(region['page'],region['clut'],tuple(region['sourceCrop']))
+            if identity in region_ids:invalid()
+            region_ids.add(identity);keys.add(region['decodedRgbaSha256'])
+        models.add(scene['modelSha256']);stages.add(scene['stage']);bindings+=len(regions)
+        folder=root/'integrations/envhd/runtime-assets/envhd/battle-materials'/scene['modelSha256']
+        manifest=json.loads(battle_sources.terrain.bounded_read(folder/'manifest.json',32*1024*1024))
+        if manifest!={k:v for k,v in scene.items() if k not in ('stage','hdBindings')}:invalid()
+        if battle_sources.terrain.digest(battle_sources.terrain.bounded_read(folder/'atlas-v1.png',32*1024*1024))!=scene['atlasSha256']:invalid()
+    if selection['runtimeSelectedMasters']!=len(keys) or selection['runtimeSelectedBindings']!=bindings:invalid()
+    painted_keys=set()
+    painting_fields=('paintedSelectedMasters','paintedReviewReceipts')
+    if not all(k in selection for k in painting_fields):invalid()
+    if any(k in selection for k in painting_fields):
+        if not all(k in selection for k in painting_fields) or not count(selection['paintedSelectedMasters']):invalid()
+        receipts=selection['paintedReviewReceipts']
+        if not isinstance(receipts,dict) or bool(receipts)!=bool(selection['paintedSelectedMasters']):invalid()
+        painted_keys=set();paths=set()
+        for digest,relative in receipts.items():
+            if not sha(digest) or not isinstance(relative,str) or relative in paths:invalid()
+            path=battle_sources.staging_path(root,relative)
+            data=battle_sources.terrain.bounded_read(path,32*1024*1024)
+            if battle_sources.terrain.digest(data)!=digest:invalid()
+            receipt=json.loads(data);candidates=receipt.get('candidates') if isinstance(receipt,dict) else None
+            if not isinstance(candidates,list) or not candidates:invalid()
+            for candidate in candidates:
+                key=candidate.get('decodedRgbaSha256') if isinstance(candidate,dict) else None
+                if not sha(key) or key not in keys or key in painted_keys:invalid()
+                painted_keys.add(key)
+            paths.add(relative)
+        if len(painted_keys)!=selection['paintedSelectedMasters']:invalid()
+    presentation_fields=('presentationSelectedMasters','presentationSourceKeys','presentationReviewReceipt')
+    if any(k in selection for k in presentation_fields):
+        if not all(k in selection for k in presentation_fields):invalid()
+        sources=selection['presentationSourceKeys']
+        if not isinstance(sources,list) or not sources or any(not sha(k) for k in sources) or len(set(sources))!=len(sources):invalid()
+        if type(selection['presentationSelectedMasters']) is not int or selection['presentationSelectedMasters']!=len(sources) or not set(sources).issubset(keys) or not sha(selection['presentationReviewReceipt']):invalid()
+        if set(sources)&painted_keys:invalid()
+
 def publish(files,painted_manifest=None,presentation_manifest=None):
     battle=battle_sources
     production=ROOT/'integrations/envhd/production'
@@ -20,8 +88,7 @@ def publish(files,painted_manifest=None,presentation_manifest=None):
     if selection_path.exists():
         selection_data=battle.terrain.bounded_read(selection_path,32*1024*1024)
         previous_selection=json.loads(selection_data)
-        if not isinstance(previous_selection,dict) or previous_selection.get('schema')!=1:
-            raise ValueError('Existing battle selection is invalid; refusing to overwrite it')
+        validate_previous_selection(previous_selection,ROOT)
         manifest_checks.append((selection_path,battle.terrain.digest(selection_data)))
         if previous_selection.get('presentationSourceKeys') and presentation_manifest is None:
             raise ValueError('Existing bespoke battle presentation requires --presentation-manifest; refusing to restore neural artwork')
@@ -85,7 +152,7 @@ def publish(files,painted_manifest=None,presentation_manifest=None):
         manifest=dict(schema=1,pipeline='envhd-static-battle-atlas-1',modelSha256=scene['modelSha256'],timSha256=scene['timSha256'],scale=4,atlasSize=size,atlasSha256=tools.terrain.digest(png),regions=regions)
         folder=ROOT/'integrations/envhd/runtime-assets/envhd/battle-materials'/scene['modelSha256'];writes[folder/'atlas-v1.png']=png;writes[folder/'manifest.json']=tools.publication.json_bytes(manifest)
         inventory.append(dict(stage=scene['stage'],hdBindings=len(regions),**manifest));keys.update(selected)
-    selection=dict(schema=1,runtimeSelectedMasters=len(keys),runtimeSelectedBindings=sum(s['hdBindings'] for s in inventory),nativeAccepted=0,finalQualityAccepted=0,scenes=inventory,scope='Reviewed static development surfaces only; pilots, animation and revision holds retain their original sampling')
+    selection=dict(schema=1,paintedSelectedMasters=0,paintedReviewReceipts={},runtimeSelectedMasters=len(keys),runtimeSelectedBindings=sum(s['hdBindings'] for s in inventory),nativeAccepted=0,finalQualityAccepted=0,scenes=inventory,scope='Reviewed static development surfaces only; pilots, animation and revision holds retain their original sampling')
     if painted is not None:
         selection.update(paintedSelectedMasters=len(painted['verified']),paintedReviewReceipts=painted['receipts'],scope='Reviewed neural static surfaces plus separately source-verified painted repairs; pilots, animation and remaining revision holds retain original sampling')
     if presentation is not None:

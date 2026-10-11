@@ -41,7 +41,7 @@ class PaintedBattlePackTests(unittest.TestCase):
         (self.runtime/'previous/manifest.json').write_bytes(b'previous manifest')
         self.selection = self.production/'battle-material-runtime-artwork.json'
         self.selection.write_text(json.dumps(dict(schema=1, runtimeSelectedMasters=0,
-            runtimeSelectedBindings=0, scenes=[], scope='Previous synthetic runtime selection')))
+            runtimeSelectedBindings=0, paintedSelectedMasters=0, paintedReviewReceipts={}, nativeAccepted=0, finalQualityAccepted=0, scenes=[], scope='Previous synthetic runtime selection')))
         self.before = self.runtime_snapshot()
 
     def runtime_snapshot(self):
