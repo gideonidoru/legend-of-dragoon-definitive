@@ -1,0 +1,23 @@
+{
+  "selectedMaterialSha256": "8e75f9c5297bca7981b9be3a77c3210636fa8a80f2304768c109954536fb4f38",
+  "selectionRecord": "integrations/charhd/production/party-reconstruction/DART_PROMOTION.md",
+  "referenceCommit": "29c33e32926f0aaf3d465044a532dd77ce38d2c9",
+  "figures": [
+    {
+      "file": "dart-head-reconstruction.jpg",
+      "sha256": "3cf4d52b6097cd84f59045ebaac2c7a10c4da92803139efa7a2ebc5a7c783c05",
+      "scope": "Matched studio geometry/UV inspection",
+      "baseline": "Earlier Definitive preferred face pass plus CharHD body; not untouched original game",
+      "after": "Reconstructed Dart head and hair with the subsequently selected 2K material",
+      "pixelEdits": false
+    },
+    {
+      "file": "dart-reconstruction-native.jpg",
+      "sha256": "71e98e6cbd69ec06873f09c323ae0f97dce8cde846cb5cd59bfe33d36455972d",
+      "scope": "Native Mac renderer inspection with enlarged actor; not normal gameplay or Steam Deck capture",
+      "baseline": "Earlier Definitive preferred face pass plus CharHD body; not untouched original game",
+      "after": "Reconstructed Dart head and hair with the subsequently selected 2K material",
+      "pixelEdits": false
+    }
+  ]
+}

@@ -17,3 +17,11 @@ Dart's after image uses the exact authored armor-v1 atlas selected by the develo
 Before assembly, every pose image was checked against its inspection manifest, and each after atlas was checked against the corresponding public custom atlas. `texture-comparisons.json` records the figure, custom atlas, model/texture/animation source identities, renderer identity, keyframes and pose-render hashes. It contains no machine paths or private commands. Only the finished presentation figures and sanitized provenance are added here; original extracted assets, texture controls and private diagnostic boards remain separate.
 
 Original designs and artwork belong to their respective rights holders. Custom texture artwork retains the CharHD notices and project asset policy. The figures are illustrative comparisons, not a claim of finished whole-game coverage or gameplay performance.
+
+## Dart reconstruction showcase
+
+`dart-head-reconstruction.jpg` is the unchanged finished 35-degree combat studio comparison from the accepted Dart reference study. The baseline is the earlier Definitive preferred face pass, not an untouched original head. The after view shows the actual reconstructed head geometry and painted material later selected for CharHD 0.3.0. It is a studio inspection, not a gameplay screenshot.
+
+`dart-reconstruction-native.jpg` is the unchanged paired Mac renderer inspection from the same study. Both sides use the same enlarged actor inspection pose, camera, body artwork and environment. It is not normal gameplay framing or a Steam Deck capture. The candidate was captured through the historical experimental adapter; the subsequent normal CharHD promotion retained the exact selected custom geometry and material. The image does not establish current engine visuals or device performance.
+
+The selected 2K material hash matches the public runtime `head-v1.png` and the historical experiment inventory. The promotion record selects the exact reference assets at `29c33e32926f0aaf3d465044a532dd77ce38d2c9`; historical experimental labels in those figures predate acceptance. `character-showcase.json` records finished-figure hashes, material identity and comparison scope without private paths or diagnostic logs. No image retouching, generated replacement pixels or additional sharpening was applied.

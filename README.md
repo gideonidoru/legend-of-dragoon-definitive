@@ -18,11 +18,67 @@ Built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-C
 
 > **Development alpha.** The installer downloads the latest published release. Some features shown below are in the newer source and are being prepared for the next release, including SMAA, expanded character/interface/effect artwork, independent engine clocks and the latest audio, mod-selection and recovery improvements. The remaster is unfinished; physical Steam Deck gameplay and performance validation remain ongoing. [Check the included features before downloading](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
 
+## The heroes you remember. In greater detail.
+
+Dart’s crimson armor. Meru’s patterned hammer. The faces, hair and costumes that make the party unmistakable. Definitive brings those details into focus with smoother geometry, restored texture artwork and individually reconstructed character features.
+
+### Dart · Rebuilt face. Sculpted hair. Painted detail.
+
+![Dart head comparison: earlier Definitive face and hair on the left, accepted CharHD reconstruction on the right](docs/definitive/images/comparisons/dart-head-reconstruction.jpg)
+
+*Earlier Definitive model → accepted CharHD reconstruction. Matched studio view of the actual geometry and materials; the left side already includes earlier face artwork.*
+
+Dart’s reconstructed head combines modeled facial features, sculpted hair locks and a **2048 × 2048 painted material**. Custom body shapes and authored armor artwork complete the current presentation, while the original animation hierarchy and attachment points remain intact. The head, geometry and material activate together through **CharHD**.
+
+<details>
+<summary><strong>See the reconstruction in the native game renderer</strong></summary>
+
+![Dart in a matching battle inspection before and after head reconstruction, with the same armor and environment](docs/definitive/images/comparisons/dart-reconstruction-native.jpg)
+
+*Matched Mac renderer inspection with an enlarged actor. The body artwork and environment are unchanged between views. This is an inspection pose, not a Steam Deck gameplay capture.*
+
+</details>
+
+### HD textures · Detail you can see
+
+Armor paneling, cloth patterns and weapon ornamentation deserve the same attention as silhouettes. These comparisons keep the original geometry, camera and lighting fixed so the artwork changes are visible on their own.
+
+<table>
+<tr><th>Dart · Authored armor</th><th>Meru · Texture restoration study</th></tr>
+<tr>
+<td width="50%"><img src="docs/definitive/images/comparisons/dart-textures-before-after.png" alt="Dart original textures beside authored crimson armor in two matching poses" /></td>
+<td width="50%"><img src="docs/definitive/images/comparisons/meru-textures-before-after.png" alt="Meru original textures beside a 4x restoration candidate in two matching poses" /></td>
+</tr>
+<tr>
+<td>Crimson armor panels and painted costume detail. Selected development artwork on original geometry.</td>
+<td>Hammer motifs and clothing patterns at 4× resolution. A preview candidate, currently not enabled in the installed mod.</td>
+</tr>
+</table>
+
+### A foundation across the party
+
+**ModelsHD** refines eligible surfaces across all nine party field models and all 19 party battle forms, including Dragoon forms. It also reaches supported enemies, NPCs and scenery. **CharHD** supplies the separate character artwork and accepted bespoke reconstructions. Broader smoothing and individually rebuilt characters are distinct layers of the remaster.
+
+The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, Meru, Kongol and Miranda**: faces and hair, costume panels, hands and grips, boots and weapons, guided by the original illustrations and in-game designs. Dart’s head is the first accepted reconstruction; his complete body and the remaining party reconstructions are unfinished. Dragoon-form reconstruction is a later adaptation pass.
+
+<details>
+<summary><strong>Compare the geometry · Dart and Meru</strong></summary>
+
+<table>
+<tr><th>Dart</th><th>Meru</th></tr>
+<tr>
+<td width="50%"><img src="docs/definitive/images/comparisons/dart-before-after.png" alt="Dart original geometry and ModelsHD 0.3 smoothing, textured and untextured" /></td>
+<td width="50%"><img src="docs/definitive/images/comparisons/meru-before-after.png" alt="Meru original geometry and ModelsHD 0.3 smoothing, textured and untextured" /></td>
+</tr>
+</table>
+
+*Matched offline previews from ModelsHD 0.3. Untextured views reveal the geometry changes. The broader 0.4 pass uses more conservative smoothing; these images show the earlier treatment.*
+
+</details>
+
+[Character reconstruction](docs/definitive/PARTY_RECONSTRUCTION.md) · [Model coverage](docs/definitive/MODELS_HD_WORLD_PASS.md) · [Comparison details](docs/definitive/images/comparisons/README.md).
+
 ## More detail. The same unmistakable world.
-
-### Characters with smoother shapes and richer detail
-
-ModelsHD refines angular surfaces on supported party, enemy, NPC and scenery models while retaining their original animations. CharHD restores painted detail on armor, clothing and weapons. Dart’s reconstructed head and sculpted hair pair with a 2K painted material and custom body shapes, activated together through CharHD. ModelsHD remains available for the wider roster. The character-remaster goal covers faces, costumes, hands, boots and weapons across all nine party members, guided by the original illustrations and in-game designs. Dart’s reconstruction is the first accepted example; the remaining party reconstructions are unfinished. [Character reconstruction](docs/definitive/PARTY_RECONSTRUCTION.md).
 
 ### Painted environments, restored for a modern screen
 
@@ -37,36 +93,6 @@ FxHD restores effect textures across Dragoon spells and transformations, item ma
 ### A crisp interface, from portraits to battle prompts
 
 UIHD restores all nine party portraits, menus, dialogue borders, save-card artwork, world-map markers, chapter cards and credits. Combat cues retain their original size and timing, so clearer artwork supports the precision Additions demand. Smooth fonts remain available in Graphics settings.
-
-## See the difference
-
-Matched pose, camera and lighting make the changes easy to compare. The smoothing images change geometry; the texture images keep the original geometry and change the artwork.
-
-### Dart · Model smoothing
-
-![Dart before and after ModelsHD 0.3, with matching textured and untextured views](docs/definitive/images/comparisons/dart-before-after.png)
-
-*ModelsHD 0.3 geometry comparison. Untextured views reveal the surface changes.*
-
-### Dart · Texture restoration
-
-![Dart texture before and after: original artwork and authored armor v1 on identical geometry in two matching poses](docs/definitive/images/comparisons/dart-textures-before-after.png)
-
-*Authored crimson armor on unchanged original geometry. Selected development artwork.*
-
-### Meru · Model smoothing
-
-![Meru before and after ModelsHD 0.3, with matching textured and untextured views](docs/definitive/images/comparisons/meru-before-after.png)
-
-*ModelsHD 0.3 geometry comparison, retaining Meru's recognizable silhouette.*
-
-### Meru · Texture restoration
-
-![Meru texture before and after: original artwork and 4x restoration candidate on identical geometry in two matching poses](docs/definitive/images/comparisons/meru-textures-before-after.png)
-
-*4× restoration of the hammer motifs and clothing patterns. Preview candidate; not enabled in the installed mod.*
-
-These are offline previews, not Steam Deck gameplay captures. The geometry images depict ModelsHD 0.3; the broader 0.4 pass uses a more conservative smoothing treatment. [Comparison details](docs/definitive/images/comparisons/README.md).
 
 ## Technical presentation
 
@@ -85,6 +111,8 @@ Definitive extends Severed Chains' shared rendering, texture-loading, audio and 
 | **HD filtering and sharpening** | Mipmaps, supported anisotropic filtering up to 4×, and bounded contrast-adaptive sharpening. Palette textures, transparency masks and unpadded interface sheets retain their required sampling. |
 
 ### High-resolution artwork, original animation
+
+**Character geometry and materials.** Dart’s accepted head uses **5,748 triangles** and a **2K material**, integrated through twelve selected field/battle part packs with custom body geometry. Exact source identities bind each replacement to the correct model. Geometry and material are accepted together; original CPU geometry, animation hierarchy and script-facing indices remain unchanged. Disabling CharHD restores the selected ModelsHD or original presentation. [Character integration](integrations/charhd/production/party-reconstruction/DART_PROMOTION.md).
 
 **Palette-live effects.** FxHD's shared indexed detail path resolves restored colors from the current palette. Texture writes, copies and scrolling retain native animation and transparency. One persistent **16 MiB GPU companion** serves the effect system, with no GPU texture allocation per particle.
 
