@@ -22,11 +22,15 @@ Touch targets are 48–60 pixels; the file picker has 54-pixel rows, tap selecti
 
 ## Repair, Reinstall and Update
 
-**Repair / reinstall** opens maintenance. Repair checks SHA256 for every managed file in the installed release, downloads only missing/different files, and preserves prepared extraction and personal data. Healthy Repair only retrieves the small verified inventory. Reinstall downloads and replaces the complete application and creates fresh workspace/preparation state while retaining saves, settings, custom mods and imported discs. Update copies unchanged checksum-verified files, downloads changed/new files and excludes removed files from its new active version. Previous local versions remain available for Restore.
+**Repair / reinstall** opens maintenance. Repair checks SHA256 for every managed file and downloads only missing or changed files while preserving prepared extraction and personal data. Healthy Repair only retrieves the small verified inventory.
+
+**Reinstall** downloads and verifies the complete current application, then removes old application versions, workspaces, preparation data, installers and duplicate bundled HD mods. It preserves disc images, saves and configurations. Distinct historical or stray personal files are kept in `recovered-reinstall` under the fresh private data folder; active settings remain authoritative. Valid unrelated custom mods stay active, while unreadable custom archives are preserved inactive so they cannot block maintenance. The result is one fresh application version and workspace, with no old-version Restore option. [Preservation and interrupted-cleanup behavior](CLEAN_REINSTALL.md).
+
+**Update** copies unchanged checksum-verified files, downloads changed or new files, and excludes removed files from its new active version. Previous local versions remain available for Restore until a clean Reinstall.
 
 Normal downloads include FxHD, EnvHD, CharHD, ModelsHD, FMVHD, UIHD and Skurfa. The matching modules are linked into the engine workspace. Configure EnvHD, CharHD, FxHD, UIHD and FMVHD in the game's Mods menu; the existing installer artwork preference controls Skurfa/ModelsHD.
 
-Only the current hosted release is retained. When an installed release has been removed (HTTP 404), Repair in the current standalone installer selectively retrieves the verified current release and refreshes the installed launcher. A new version may require fresh preparation; personal data and the previous prepared workspace are retained. Other network/permission failures do not silently change the installed version. Git source history and player-owned local Restore data are retained. Required checksum-pinned FMV build input is carried in the current release. [Delivery format and hosted retention](FILE_DELIVERY.md).
+Only the current hosted release is retained. Repair in the current standalone installer uses the verified current-release inventory and selectively refreshes the installation and launcher. A new version may require fresh preparation; personal data and the previous prepared workspace are retained. Network or permission failures do not silently change the installed version. Git source history remains available; ordinary Update retains local Restore data, while clean Reinstall removes old application versions after preserving personal files. Required checksum-pinned FMV build input is carried in the current release. [Delivery format and hosted retention](FILE_DELIVERY.md).
 
 ## Disc support and space
 
