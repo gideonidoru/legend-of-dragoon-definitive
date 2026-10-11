@@ -2,9 +2,9 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **238 images: 237 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **237 images: 236 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,925 development images: 4,886 neural and 39 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. The last recorded installer snapshot at source0af has 4,892 field selections; another 33 fields and 12 painted battle replacements await coordinated publication. Later release publication is managed separately. All protected Skurfa work is reused.
+Field selection is 4,926 development images: 4,886 neural and 40 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. The last recorded installer snapshot at source0af has 4,892 field selections; another 34 fields and 12 painted battle replacements await coordinated publication. Later release publication is managed separately. All protected Skurfa work is reused.
 
 ## Held natural-rock drafts
 
@@ -60,3 +60,10 @@ The [complete39-painting selection input](../../integrations/envhd/production/fi
 Rouge lattice openings cut misaligned generated connectors into fragments, and Phantom Ship canvas-fit moves an internal lower band and pale weathering groups. Both remain unselected until source landmarks are repaired and independently reviewed. New Bale corner and Shrine arch candidates remain independently pending. Current unselected draft sources are15 unique source keys within237field holds; histories and repeated versions are deduplicated by source identity.
 
 Selection preserves all4,918 earlier asset records and every Skurfa protected cut. Fresh current-source replay, complete selected-field CPU audit and five-part package byte checks are required before the coordinator integrates this source. This is not native/script/GPU/Steam Deck or final Skurfa-equivalent finish acceptance. No separate release was published.
+
+
+## Crystal Palace table development selection
+
+[Independent original-reference review](../../integrations/envhd/production/field-independent-table-review.json) clears cut369 foreground14 for development use. The original oval tabletop framing, two pale dishes, small central angular form, cropped chair fragments and restrained warm lighting are retained. Fine wood and ceramic detail remains interpretive; native/device/final art acceptance is pending.
+
+The [complete40-painting input](../../integrations/envhd/production/field-bespoke-table-independent-reviewed-selection.json) preserves main's prior39 candidate records exactly. Fresh original-source preflight reproduced all40 recipes. Runtime selection retains all4925 prior records and every protected Skurfa cut, adding only the table. The [readiness receipt](../../integrations/envhd/production/field-table-selection-readiness.json) records the source bindings and focused checks. This branch contains only the table's custom generated/repaired pixels, prompt-bearing recipe, review and selection metadata and coverage updates. Unrelated authoring, Tiberoa, pending drafts, verifier support and workflow changes are excluded. Normal one-switch/four-pack integration is verified separately; public release publication remains the coordinator's responsibility.

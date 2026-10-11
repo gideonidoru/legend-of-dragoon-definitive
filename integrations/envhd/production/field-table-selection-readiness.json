@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "scope": "Clean table-only increment from accepted main; prior4925/39 exact. Unrelated candidate sets, Tiberoa, drafts and workflow edits excluded.",
+  "integrationBaseCommit": "d31efa9c890742f7908fb58027f5ae4c0a3a621f",
+  "selectionManifest": "field-bespoke-table-independent-reviewed-selection.json",
+  "selectionManifestSha256": "addfc9dbc087ed058af2029cee7347b044161e97252a62939fa51a959a5d2db6",
+  "independentReview": "field-independent-table-review.json",
+  "independentReviewSha256": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a",
+  "fieldRuntimeSha256": "b4c0dc3f07c089c9fe727be0fd19e457b255ccc16b63db4f3cc40a313125b257",
+  "currentSourcePreflightCandidates": 40,
+  "priorSelectedCandidateRecordsExact": 39,
+  "priorRuntimeAssetRecordsExact": 4925,
+  "onlyAddedSourceKey": "304a735a241c9a78c78ad01e429d15d81bb29529a8b3881fbd5598a98713e754",
+  "protectedCutsExact": true,
+  "selectedFields": 4926,
+  "selectedPaintings": 40,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 236,
+  "knownRemainingStaticImages": 237,
+  "tests": [
+    {
+      "script": "scripts/test-envhd-painted-fields.py",
+      "passed": 32
+    },
+    {
+      "script": "scripts/test-envhd-install-selection.py",
+      "passed": 3
+    },
+    {
+      "script": "scripts/test-archive-assembly.py",
+      "passed": 39
+    }
+  ],
+  "freshPackageVerified": false,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true
+}
