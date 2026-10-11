@@ -9,6 +9,9 @@ The recovery contract is:
 - Track held buttons by SDL device instance and physical button, so duplicate events
   cannot inflate a global count and removing one device cannot clear another device.
 - Track digital action sources by binding and device. Keyboard bindings remain independent.
+- When removal leaves no held controller button or axis, clear remembered suppressed
+  keyboard downs before release callbacks so a later real key-up is accepted. Preserve
+  that suppression while another controller still has a held button or axis.
 - Remove the disconnected device's digital and axis sources before synchronous release
   callbacks. Cancel its still-owned unconsumed presses and repeats when no other source owns the action.
 - Preserve another controller, keyboard binding, or axis that still owns the same action.

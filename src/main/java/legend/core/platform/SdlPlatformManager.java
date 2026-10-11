@@ -313,28 +313,11 @@ public class SdlPlatformManager extends PlatformManager {
               break;
             }
           } else */
-            if(ignoreSteamInputMode == IgnoreSteamInputMode.IGNORE_WHEN_GAMEPAD_USED) {
-              // Ignore keys if gamepad buttons are held. Workaround for Steam Input.
-              if(!this.buttonsHeld.isEmpty() || !this.axesHeld.isEmpty()) {
-                if(this.event.type() == SDL_EVENT_KEY_DOWN) {
-                  if(LOGGER.isInfoEnabled(ACTIONS_MARKER)) {
-                    LOGGER.info(ACTIONS_MARKER, "Ignoring key %s", SDL_GetKeyName(key.key()));
-                  }
-
-                  this.ignoredKeys.add(key.scancode());
-                }
-
-                break;
+            if(ignoreSteamInputMode == IgnoreSteamInputMode.IGNORE_WHEN_GAMEPAD_USED && this.ignoreKeyboardInput(key.down(), key.scancode())) {
+              if(LOGGER.isInfoEnabled(ACTIONS_MARKER)) {
+                LOGGER.info(ACTIONS_MARKER, "Ignoring key %s", SDL_GetKeyName(key.key()));
               }
-
-              if(this.event.type() == SDL_EVENT_KEY_UP && this.ignoredKeys.contains(key.scancode())) {
-                if(LOGGER.isInfoEnabled(ACTIONS_MARKER)) {
-                  LOGGER.info(ACTIONS_MARKER, "Removing ignored key %s", SDL_GetKeyName(key.key()));
-                }
-
-                this.ignoredKeys.remove(key.scancode());
-                break;
-              }
+              break;
             }
 
             final SdlWindow window = this.getWindow(this.event);
@@ -773,10 +756,20 @@ public class SdlPlatformManager extends PlatformManager {
     }
   }
 
+  /** The production key-event policy, kept independent of SDL polling for state verification. */
+  private boolean ignoreKeyboardInput(final boolean down, final int scancode) {
+    if(!this.buttonsHeld.isEmpty() || !this.axesHeld.isEmpty()) {
+      if(down) this.ignoredKeys.add(scancode);
+      return true;
+    }
+    return !down && this.ignoredKeys.remove(scancode);
+  }
+
   /** Remove every source for this device before notifying synchronous release listeners. */
   private void removeGamepadInputs(final int gamepadId, final Window window) {
     this.buttonsHeld.removeIf(input -> axisInputGamepadId(input) == gamepadId);
     this.axesHeld.removeIf(input -> axisInputGamepadId(input) == gamepadId);
+    if(this.buttonsHeld.isEmpty() && this.axesHeld.isEmpty()) this.ignoredKeys.clear();
     final Set<InputAction> affected = new HashSet<>();
     this.digitalActionInputs.entrySet().removeIf(entry -> {
       if(entry.getValue().removeIf(input -> input.gamepadId != null && input.gamepadId == gamepadId)) affected.add(entry.getKey());

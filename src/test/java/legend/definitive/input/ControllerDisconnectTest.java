@@ -62,6 +62,11 @@ final class ControllerDisconnectTest {
     }
 
     void axis(final InputAction action, final int device, final float value) throws Exception {
+      final var field = SdlPlatformManager.class.getDeclaredField("axesHeld");
+      field.setAccessible(true);
+      final LongSet held = (LongSet)field.get(this.platform);
+      if(value != 0.0f) held.add((long)device << 32);
+      else held.remove((long)device << 32);
       method("updateAxisAction", InputAction.class, long.class, float.class, int.class, int.class, int.class)
         .invoke(this.platform, action, (long)device << 32, value, device, 0, 20000);
     }
@@ -212,6 +217,64 @@ final class ControllerDisconnectTest {
       f.disconnect(7);
       f.disconnect(8);
     }
+  }
+
+  @Test void disconnectClearsIgnoredKeyBeforeARealKeyboardTap() throws Exception {
+    final Fixture f = new Fixture();
+    final InputAction action = InputAction.fixed();
+    final InputBinding<?> keyboard = new InputBinding<>(action, new KeyInputActivation(InputKey.A));
+    f.press(binding(InputAction.fixed()), 7);
+    assertTrue(ignoreKey(f, true, 4), "Virtual key down is suppressed while controller owns input");
+    f.disconnect(7);
+    assertFalse(ignoreKey(f, true, 4));
+    f.press(keyboard, null);
+    if(!ignoreKey(f, false, 4)) f.release(keyboard, null);
+    assertFalse(f.platform.isActionHeld(action), "Stale virtual down must not swallow a real key up");
+    f.platform.clearPressed();
+    assertFalse(f.platform.isActionRepeat(action));
+  }
+
+  @Test void disconnectRetainsIgnoredKeySuppressionWhileAnotherControllerIsHeld() throws Exception {
+    final Fixture f = new Fixture();
+    f.press(binding(InputAction.fixed()), 7);
+    f.press(binding(InputAction.fixed()), 8);
+    assertTrue(ignoreKey(f, true, 4));
+    f.disconnect(7);
+    assertTrue(ignoreKey(f, true, 4));
+    assertTrue(ignoreKey(f, false, 4));
+    f.disconnect(8);
+    assertFalse(ignoreKey(f, true, 4));
+    assertFalse(ignoreKey(f, false, 4));
+  }
+
+  @Test void disconnectPreservesSuppressionOwnedByAnotherControllersAxis() throws Exception {
+    final Fixture f = new Fixture();
+    f.press(binding(InputAction.fixed()), 7);
+    f.axis(InputAction.fixed(), 8, .5f);
+    assertTrue(ignoreKey(f, true, 4));
+    f.disconnect(7);
+    assertTrue(ignoreKey(f, false, 4));
+    f.disconnect(8);
+    assertFalse(ignoreKey(f, true, 4));
+    assertFalse(ignoreKey(f, false, 4));
+  }
+
+  @Test void releaseCallbacksObserveIgnoredKeyCleanupAlreadyComplete() throws Exception {
+    final Fixture f = new Fixture();
+    f.press(binding(InputAction.fixed()), 7);
+    assertTrue(ignoreKey(f, true, 4));
+    f.window.events().onInputActionReleased((window, action) -> {
+      try {
+        assertFalse(ignoreKey(f, true, 4));
+        assertFalse(ignoreKey(f, false, 4));
+      } catch(final Exception e) { throw new AssertionError(e); }
+    });
+    f.disconnect(7);
+    assertEquals(1, f.released.size());
+  }
+
+  private static boolean ignoreKey(final Fixture fixture, final boolean down, final int scancode) throws Exception {
+    return (boolean)method("ignoreKeyboardInput", boolean.class, int.class).invoke(fixture.platform, down, scancode);
   }
 
 }
