@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Unselected EnvHD custom-art history. Three source-owned static foreground jobs remain within the 245 field holds. No original game pixels, source references, diagnostic contexts or comparison boards are published. The experimental mean-anchored recipe does not qualify artwork for runtime selection.",
+  "scope": "Unselected EnvHD custom derivative-art history. Three source-owned static foreground jobs remain within the245 field holds. Original input/reference/context files and comparison boards are separate and not added. The source-mean custom variants retain recoverable native RGBA values: averaging and rounding each4x4cell reconstructs the native image. These approved custom derivative textures do not qualify for runtime selection.",
   "sourceSelectionBaseCommit": "32f5db9ffd3859bb1436020a4897556c8622721e",
   "runtimeSelected": 0,
   "nativeAccepted": 0,
@@ -129,6 +129,11 @@
         "dependencySha256": {
           "repair-envhd-painted-cutout.py": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
           "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+        },
+        "sourceRgbaRecoverability": {
+          "reconstructedDecodedRgbaSha256": "7ec638e8392c94a8c40a583d1549612f4aa34b33cabed3721db7135b2c55f827",
+          "reconstructionMatchesNativeSourceIdentity": true,
+          "originalSourceInputFilePublished": false
         }
       },
       "verdict": "intent-and-quality-revision-needed",
@@ -260,6 +265,11 @@
         "dependencySha256": {
           "repair-envhd-painted-cutout.py": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
           "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+        },
+        "sourceRgbaRecoverability": {
+          "reconstructedDecodedRgbaSha256": "83577e6b4a7d0d84bcc94a5a7990fe30304f93681fc5ae0f2798f9b2916048d5",
+          "reconstructionMatchesNativeSourceIdentity": true,
+          "originalSourceInputFilePublished": false
         }
       },
       "verdict": "intent-and-quality-revision-needed",
@@ -391,6 +401,11 @@
         "dependencySha256": {
           "repair-envhd-painted-cutout.py": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
           "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+        },
+        "sourceRgbaRecoverability": {
+          "reconstructedDecodedRgbaSha256": "82e81731abd653f3f708e50c96390ea16c1204ea2be3350bf5c29dbbca2bb8f6",
+          "reconstructionMatchesNativeSourceIdentity": true,
+          "originalSourceInputFilePublished": false
         }
       },
       "verdict": "intent-and-quality-revision-needed",
@@ -400,5 +415,12 @@
         "privateOriginalsAndContextPublished": false
       }
     }
-  ]
+  ],
+  "sourceMeanDerivativeDisclosure": {
+    "customDerivativeTexturesPublished": true,
+    "originalInputAndContextFilesAdded": false,
+    "sourceRgbaRecoverableByAveraging": true,
+    "reconstruction": "Average each4x4 output cell per RGBA channel and round to nearest integer; hash little-endian native width/height plus recovered RGBA bytes.",
+    "publicationAuthorization": "Approved custom HD texture derivatives; recoverable source values are disclosed, not a new selection or quality acceptance."
+  }
 }
