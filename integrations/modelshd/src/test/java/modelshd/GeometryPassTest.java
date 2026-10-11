@@ -107,7 +107,7 @@ class GeometryPassTest {
     var region=new legend.definitive.materials.MaterialAtlas.Region(63,0,0,64,32,64,16,128,64);
     var layout=layoutConstructor.newInstance(64,32,256,128,java.util.List.of(region));
     var atlasConstructor=legend.definitive.materials.MaterialAtlas.class.getDeclaredConstructors()[0];atlasConstructor.setAccessible(true);
-    var atlas=(legend.definitive.materials.MaterialAtlas)atlasConstructor.newInstance(layout,2,new java.awt.image.BufferedImage(256,128,java.awt.image.BufferedImage.TYPE_INT_ARGB),"fixture","fixture","fixture");
+    var atlas=(legend.definitive.materials.MaterialAtlas)atlasConstructor.newInstance(layout,2,new legend.game.textures.Image(new byte[256*128*4],256,128),"fixture","fixture","fixture");
     var materials=new legend.definitive.artwork.MaterialUv(atlas,4);
     var listener=new Listener(pass(source,payload(source),false),overrides);GameEngine.EVENTS.register(listener);
     var refined=TmdObjLoader.fromObjTable("EnvHD refined",source,0,256,128,materials);
