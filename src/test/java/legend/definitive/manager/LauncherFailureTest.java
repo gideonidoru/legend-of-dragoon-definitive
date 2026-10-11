@@ -125,4 +125,17 @@ class LauncherFailureTest {
     assertEquals("#!/bin/bash\n# owner launcher\nexit 0\n",Files.readString(store.root().resolve("Manage Installation.sh")));
   }
 
+  @Test void reinstallPreservesReadOnlyExecutableCustomLauncher() throws Exception {
+    final var store = store(); final Path script = store.root().resolve("Play Game.sh");
+    final String custom = "#!/bin/bash\n# owner read-only launcher\nexit 0\n";
+    Files.writeString(script, custom);
+    final var permissions = java.nio.file.attribute.PosixFilePermissions.fromString("r-xr-xr-x");
+    Files.setPosixFilePermissions(script, permissions);
+    try {
+      store.install(temporary.resolve("fixture")); store.verifyInstalled();
+      assertEquals(custom, Files.readString(script));
+      assertEquals(permissions, Files.getPosixFilePermissions(script));
+    } finally { Files.setPosixFilePermissions(script, java.nio.file.attribute.PosixFilePermissions.fromString("rwxr-xr-x")); }
+  }
+
 }

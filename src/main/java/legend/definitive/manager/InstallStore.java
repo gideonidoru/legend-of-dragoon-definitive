@@ -1017,14 +1017,16 @@ public final class InstallStore {
     for(final String name : new String[]{"Play Game.sh", "Manage Installation.sh"}) {
       final String scriptText = scriptTemplate.replace("@MODE@", name.equals("Play Game.sh") ? "--play" : "--manage");
       final Path script = this.root.resolve(name);
-      if(!Files.exists(script)) Files.writeString(script, scriptText, StandardOpenOption.CREATE_NEW);
+      boolean managed = false;
+      if(!Files.exists(script)) { Files.writeString(script, scriptText, StandardOpenOption.CREATE_NEW); managed = true; }
       else if(Files.size(script) < 16384 && (Files.readString(script).equals(previousBoundedTemplate.replace("@MODE@", name.equals("Play Game.sh") ? "--play" : "--manage")) || Files.readString(script).equals(previousScript) || Files.readString(script).equals(oldManagedScript) || Files.readString(script).equals(legacyTemplate.replace("@MODE@", name.equals("Play Game.sh") ? "--play" : "--manage")))) {
         final Path next = Files.createTempFile(this.root, ".launcher-", ".tmp");
         try { Files.writeString(next, scriptText); forceFile(next); Files.move(next, script, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING); }
         finally { Files.deleteIfExists(next); }
+        managed = true;
       }
       script.toFile().setExecutable(true, true);
-      forceFile(script);
+      if(managed) forceFile(script);
     }
     forceDirectory(this.root);
   }
