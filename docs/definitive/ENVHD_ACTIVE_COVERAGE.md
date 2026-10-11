@@ -6,6 +6,12 @@ Current static work remaining is **238 images: 237 field images and one terrain 
 
 Field selection is 4,925 development images: 4,886 neural and 39 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. Main's recorded installer snapshot at source `d7311334` has 4,917 field selections and 12 battle paintings, while the accepted source selection has eight additional field paintings and 22 additional battle paintings. This is a repository-recorded snapshot, not a fresh download query; coordinated publication is managed separately. The current authoring input has 27 independently pending candidates plus two source-fidelity revisions. All protected Skurfa work is reused.
 
+The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) adds one separate
+64x128 terrain painting and a source-bound contiguous-upload mapping proposal.
+Both artwork and mapping await independent review; this candidate is a subset of
+the existing terrain hold. The 27 field candidates and 238 static holds are
+unchanged. No installed artwork or engine mapping changes at this checkpoint.
+
 ## Held natural-rock drafts
 
 [Three generated foreground drafts](../../integrations/envhd/production/field-bespoke-natural-rock-held-drafts.json) cover two Undersea Cavern formations and one Volcano Villude rock. Their raw paintings exaggerate rock relief and grain. The original pinned cutout recipe preserves canvas, source alpha and visible black, but those checks cannot establish source intent or quality.

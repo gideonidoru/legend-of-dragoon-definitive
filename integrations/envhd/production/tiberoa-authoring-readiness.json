@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "kind": "Tiberoa pending authoring checkpoint",
+  "parentCommit": "8407709ebf9ace3effe4bfdc619c0e4180097e47",
+  "pendingTerrainCandidateImages": 1,
+  "terrainHoldCleared": false,
+  "knownRemainingStaticImages": 238,
+  "fieldHolds": 237,
+  "fieldIndependentPending": 27,
+  "tests": {
+    "focusedSyntheticChecks": 14,
+    "existingTerrainChecks": 17,
+    "currentSourceScalarPixels": 512,
+    "currentSourceFacePackets": 3
+  },
+  "sourceControls": {
+    "tiberoa-cross-page-source-contract.json": "99bae0322b0fac8b9063410586396511a5964a354c0ef769a93f4a9aeab9f00d",
+    "tiberoa-stairs-context-audit.json": "175f46fd2483ee32f43b806e54361324a4faf91c24eb4535973bd34a3f61d8c1",
+    "tiberoa-stairs-pending-artwork.json": "bef0beabf7a3f9925163e16b27a40c540288ca2a699c3f467274fbb52e9339d5"
+  },
+  "repairReproducedOutputSha256": "d2a4bab653322dc832aac552217bf93bcde490caabfbf6d08ce413a609fd98fd",
+  "priorFieldAuthoringFilesExact": 371,
+  "priorFieldAuthoringPngsExact": 259,
+  "runtimeAndFieldCandidateControlsPreserved": {
+    "field-runtime-artwork.json": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
+    "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
+    "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
+    "field-bespoke-small-furnishings-reviewed-selection.json": "aa797a92cc22bb62127a6aa6a0999818d0a833cf8d4627ea2eed5ddf8062b06a"
+  },
+  "recipePins": {
+    "scripts/audit-envhd-tiberoa-source.py": "b5867b7a015f815b1d5da6bb205e813c1f507960024d7258d723e993cf1ecdf6",
+    "scripts/repair-envhd-tiberoa-candidate.py": "94fcd486e78c3fa533efc6990b97f5690dd36391427f75444f6a4dfd58af1ed1",
+    "scripts/test-envhd-tiberoa-source.py": "5039fc9a7151c27075ed4ddd9e080a140dc55ef6975c409b6c6133310876caec",
+    "scripts/batch-envhd-terrain.py": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751"
+  },
+  "sourceModelAndFullOrderedBankPinned": true,
+  "stpAndDiscardExact": true,
+  "originalSourcePixelsPublic": false,
+  "privateComparisonPixelsPublic": false,
+  "engineOrInstallerChanged": false,
+  "nativeAccepted": false,
+  "finalQualityAccepted": false,
+  "goalComplete": false,
+  "nextTask": "Independent mapping/artwork review; if accepted, explicit original-corner integration compatible with ModelsHD and legacy atlases; otherwise retain native hold",
+  "environment": {
+    "python": "3.12.0",
+    "pillow": "12.3.0",
+    "numpy": "2.5.1"
+  }
+}

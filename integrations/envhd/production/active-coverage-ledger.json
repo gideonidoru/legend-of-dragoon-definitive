@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "373b34a94a1fe52beb4547b215d451df14557633",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "300f4db6b3ea3de19b450e13de942d8330d44470f975e10c292fe34386df85a0",
+    "full-coverage.json": "abe3d4240621f2f35d10628436c7853fb97e0742e9921e03375a9cdc825a2518",
     "field-runtime-artwork.json": "498190c85e9cf1d210a1ba8b356ec27a550eb6d4bc560ba4bb866210a9ccb4d9",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
@@ -48,7 +48,11 @@
     "field-accepted-main-integration.json": "8fcbda28fda91ec1a7db2bff3f39195e831d1137eb3e69494d718a32a2e7ce69",
     "field-bespoke-small-furnishings-reviewed-selection.json": "aa797a92cc22bb62127a6aa6a0999818d0a833cf8d4627ea2eed5ddf8062b06a",
     "field-bespoke-small-furnishings-held-drafts.json": "2dcdc533083a076dddb8fd3b8ccc5ae2de8b0a4e35a34a1b0ce12694122867ad",
-    "field-small-furnishings-authoring-readiness.json": "8c69be427e2d8633d45619eb12c292a3f268027cef6a4491f943ecf34e8c89de"
+    "field-small-furnishings-authoring-readiness.json": "8c69be427e2d8633d45619eb12c292a3f268027cef6a4491f943ecf34e8c89de",
+    "tiberoa-cross-page-source-contract.json": "99bae0322b0fac8b9063410586396511a5964a354c0ef769a93f4a9aeab9f00d",
+    "tiberoa-stairs-context-audit.json": "175f46fd2483ee32f43b806e54361324a4faf91c24eb4535973bd34a3f61d8c1",
+    "tiberoa-stairs-pending-artwork.json": "bef0beabf7a3f9925163e16b27a40c540288ca2a699c3f467274fbb52e9339d5",
+    "tiberoa-authoring-readiness.json": "853be72084766cb9c0b439ae4fc8edcfeb0b26df7b29cb789d82230244563d29"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -136,7 +140,9 @@
       "selectedDevelopmentMasters": 292,
       "intentionalNativeUniformBindings": 1,
       "held": 1,
-      "nextTask": "Resolve Tiberoa wrapped native UVs without guessing or changing geometry."
+      "nextTask": "Independent mapping/artwork review; if accepted, explicit original-corner integration compatible with ModelsHD and legacy atlases; otherwise retain native hold",
+      "pendingCustomCandidateImages": 1,
+      "pendingArtworkAndMappingContract": "tiberoa-stairs-pending-artwork.json"
     },
     {
       "id": "battle-materials",
@@ -436,7 +442,7 @@
     }
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "Two additional small furnishing candidates and five held versions; 68 complete candidates with 27 independently pending. Accepted main and runtime/install selections preserved.",
+  "authoringCheckpoint": "One source-bound Tiberoa stair candidate with explicit pending cross-page mapping proposal; 27 field candidates remain independently pending, 238 static holds unchanged. Runtime and install selections preserved.",
   "acceptedMainIntegrated": {
     "sourceCommit": "ad1a234d94b4397df681c7fd196581cf3a303a88",
     "fieldSelected": 4925,

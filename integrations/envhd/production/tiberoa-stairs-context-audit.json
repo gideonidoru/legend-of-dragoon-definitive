@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "candidateOutputSha256": "d2a4bab653322dc832aac552217bf93bcde490caabfbf6d08ce413a609fd98fd",
+  "sourceModelSha256": "3abcfbf7683c7805690fd0ba44f7e15b49a39862a2465b1c59acc184a4905cc3",
+  "sourceBankSha256": "8c2d844dc9f6ce295514a087ed9d0e996ef456c4172223bca58211a44b1178bc",
+  "parts": 17,
+  "faces": 1751,
+  "heldPart": 10,
+  "heldFaceIndices": [
+    73,
+    89,
+    109
+  ],
+  "images": [
+    {
+      "yaw": 0,
+      "comparison": "Literal unsigned, current shader",
+      "heldVisiblePixels": 6891,
+      "sampling": {
+        "samples": 739904,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 0,
+      "comparison": "Contiguous HD candidate / pending",
+      "heldVisiblePixels": 6891,
+      "sampling": {
+        "samples": 739904,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 0,
+      "comparison": "Held faces highlighted",
+      "heldVisiblePixels": 6891,
+      "sampling": {
+        "samples": 739904,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 90,
+      "comparison": "Literal unsigned, current shader",
+      "heldVisiblePixels": 36,
+      "sampling": {
+        "samples": 452553,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 90,
+      "comparison": "Contiguous HD candidate / pending",
+      "heldVisiblePixels": 36,
+      "sampling": {
+        "samples": 452553,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 90,
+      "comparison": "Held faces highlighted",
+      "heldVisiblePixels": 36,
+      "sampling": {
+        "samples": 452553,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 180,
+      "comparison": "Literal unsigned, current shader",
+      "heldVisiblePixels": 3916,
+      "sampling": {
+        "samples": 755332,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 180,
+      "comparison": "Contiguous HD candidate / pending",
+      "heldVisiblePixels": 3916,
+      "sampling": {
+        "samples": 755332,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 180,
+      "comparison": "Held faces highlighted",
+      "heldVisiblePixels": 3916,
+      "sampling": {
+        "samples": 755332,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 270,
+      "comparison": "Literal unsigned, current shader",
+      "heldVisiblePixels": 1944,
+      "sampling": {
+        "samples": 458086,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 270,
+      "comparison": "Contiguous HD candidate / pending",
+      "heldVisiblePixels": 1944,
+      "sampling": {
+        "samples": 458086,
+        "unwrittenSampleCount": 0
+      }
+    },
+    {
+      "yaw": 270,
+      "comparison": "Held faces highlighted",
+      "heldVisiblePixels": 1944,
+      "sampling": {
+        "samples": 458086,
+        "unwrittenSampleCount": 0
+      }
+    }
+  ],
+  "scriptSha256": "317f4eaa99318715f740e90044e2f785d5e3081ed71ae6e78deb571beb0745d4",
+  "sourcePins": {
+    "scripts/batch-envhd-terrain.py": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+    "src/main/java/legend/game/tmd/TmdObjLoader.java": "41d3f862211b34284812b1a2db255403175107484a5e584a0b3562beb4a3f513",
+    "src/main/java/legend/game/wmap/WMap.java": "f5bc024e045d4a29b8a234ee9f474dcb138b1779291659d94e14a44cb2dbc7bc",
+    "gfx/shaders/tmd.fsh": "1876d38d45c6b1b9fbc04acff3c97ec0c5fcfe2320ec9e3e0860f5fadefbbea6"
+  },
+  "limitations": [
+    "Private CPU orthographic reference, not native game rendering or a Deck result",
+    "Original per-face palettes and unlit colors; no native normal lighting, translucency/backface/PSX clipping or perspective",
+    "Static original poses; animated bobbing/water and gameplay state not reproduced",
+    "Contiguous HD candidate / pending maps low unsigned endpoint7 to263 for the three held faces only; not a runtime selection"
+  ],
+  "runtimeSelected": false,
+  "nativeAccepted": false,
+  "finalAccepted": false,
+  "originalReferencePixelsPublic": false,
+  "privateComparisonImagesPublic": false,
+  "sourceContract": "tiberoa-cross-page-source-contract.json",
+  "review": "Author inspected all four source-model CPU views; stair mapping and adjoining light require independent review"
+}

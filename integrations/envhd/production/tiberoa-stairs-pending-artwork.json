@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "scope": "One candidate inside the existing terrain hold; excluded from runtime/install manifests",
+  "assets": [
+    {
+      "decodedRgbaSha256": "49c191eef91902b838176314071fcbd91001d8ec3cbe1c1210dc6697c693fe41",
+      "sourceSize": [
+        16,
+        32
+      ],
+      "targetSize": [
+        64,
+        128
+      ],
+      "generationVersion": 1,
+      "publicationVersion": 1,
+      "generatedInputFile": "bespoke-terrain-candidates/49c191eef91902b838176314071fcbd91001d8ec3cbe1c1210dc6697c693fe41/painted-input-v1.png",
+      "generatedInputSha256": "5f589e23ad436956f0eeb3e4ed8cc55ede26bb2b85e3b1af8877a6a377ff8217",
+      "imageFile": "bespoke-terrain-candidates/49c191eef91902b838176314071fcbd91001d8ec3cbe1c1210dc6697c693fe41/image-v1.png",
+      "outputSha256": "d2a4bab653322dc832aac552217bf93bcde490caabfbf6d08ce413a609fd98fd",
+      "previewFile": "bespoke-terrain-candidates/49c191eef91902b838176314071fcbd91001d8ec3cbe1c1210dc6697c693fe41/preview-v1.png",
+      "previewSha256": "c57a03aa61ff181c4c5ac1ab3bdda30bd021f0d8b2ce3288f797a4a831e58a1a",
+      "promptFile": "bespoke-terrain-candidates/49c191eef91902b838176314071fcbd91001d8ec3cbe1c1210dc6697c693fe41/prompt-v1.txt",
+      "promptSha256": "cf16cd5c71cee160956c48b04a792f0679c4041989b883cee3e7a634b3490cca",
+      "generationTool": "built-in image_gen",
+      "transparentBackground": false,
+      "sourceContract": "tiberoa-cross-page-source-contract.json",
+      "sourceContractSha256": "99bae0322b0fac8b9063410586396511a5964a354c0ef769a93f4a9aeab9f00d",
+      "repair": {
+        "rawSize": [
+          887,
+          1774
+        ],
+        "rawSha256": "5f589e23ad436956f0eeb3e4ed8cc55ede26bb2b85e3b1af8877a6a377ff8217",
+        "targetSize": [
+          64,
+          128
+        ],
+        "scale": 4,
+        "sourceStpExact": true,
+        "sourceDiscardAndVisibleBlackExact": true,
+        "edgeAveraging": false,
+        "method": "built-in-imagegen-source-referenced-lanczos-4x-pinned-stp-repair",
+        "runtimeSelected": false,
+        "nativeAccepted": false,
+        "finalAccepted": false,
+        "outputSha256": "d2a4bab653322dc832aac552217bf93bcde490caabfbf6d08ce413a609fd98fd",
+        "decodedRgbaSha256": "49c191eef91902b838176314071fcbd91001d8ec3cbe1c1210dc6697c693fe41",
+        "modelSha256": "3abcfbf7683c7805690fd0ba44f7e15b49a39862a2465b1c59acc184a4905cc3",
+        "bankSha256": "8c2d844dc9f6ce295514a087ed9d0e996ef456c4172223bca58211a44b1178bc",
+        "recipeSha256": "94fcd486e78c3fa533efc6990b97f5690dd36391427f75444f6a4dfd58af1ed1",
+        "auditScriptSha256": "b5867b7a015f815b1d5da6bb205e813c1f507960024d7258d723e993cf1ecdf6",
+        "decoderSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751"
+      },
+      "recipeFile": "scripts/repair-envhd-tiberoa-candidate.py",
+      "sourceRole": "Static source-model part10 faces73,89,109: town stair entrances",
+      "reviewStatus": "author-reviewed-pending-independent-art-and-mapping-review",
+      "runtimeSelected": false,
+      "nativeAccepted": false,
+      "finalQualityAccepted": false,
+      "authorReview": {
+        "sourceOriginalAndFourMappingViewsInspected": true,
+        "rawAndRepairedInspected": true,
+        "fourCandidateContextViewsInspected": true,
+        "sourceHighlightNativeRows": [
+          2,
+          6,
+          11,
+          16,
+          21,
+          27
+        ],
+        "candidateHighlightNativeRows": [
+          2,
+          6,
+          11,
+          16,
+          21,
+          27
+        ],
+        "intent": "Flat stair treads/riser bands in pale gray-green stone; six uneven source bands retained",
+        "style": "Restrained stone grain; fine grain and slightly darker highlights against adjoining native masonry require independent review",
+        "layout": "Source-bound full16x32 rectangle and proposed native corners, not a painting of the unrelated248-pixel strip",
+        "limitations": "Private CPU source-model comparison, not native lighting, hardware-intent, gameplay or Deck acceptance"
+      },
+      "styleReferenceUse": "Skurfa visual fidelity goal; no Skurfa file replaced",
+      "ownerAuthorization": "Public custom assets, batch image generation and Python repair authorized"
+    }
+  ]
+}
