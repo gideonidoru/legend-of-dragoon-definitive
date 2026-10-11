@@ -1,0 +1,259 @@
+{
+  "status": "custom-authoring-review-owner-approval-pending",
+  "nativeGameValidation": false,
+  "steamDeckValidation": false,
+  "publication": "public custom assets; no original source pixels, disc data, saves or runtimes",
+  "viewerDependencies": {
+    "three": "0.170.0",
+    "license": "MIT",
+    "origin": "https://github.com/mrdoob/three.js/tree/r170"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1160,
+      "sha256": "51a35215dbf539718c836185919b3c63e11a00eb62c89fa5f188ed203de54572"
+    },
+    {
+      "path": "artwork-receipt.json",
+      "bytes": 561,
+      "sha256": "7b2338c157cc7ac75af11d9dabfa9261846dc77f407023952b94eff78320dc33"
+    },
+    {
+      "path": "authoring-skin.npz",
+      "bytes": 945055,
+      "sha256": "d49b117f3c4dcfbf457e2a0e9788abfe83dee01c40ddde745918457d2ec9a9e5"
+    },
+    {
+      "path": "body-basecolour.png",
+      "bytes": 1974229,
+      "sha256": "e076489d6df5f0cf858c570f04a3619ac2c4441617dce765002b736977f0eb4d"
+    },
+    {
+      "path": "body-paint-prompt.txt",
+      "bytes": 1560,
+      "sha256": "45b468302ae39228ebb36bf79b9c17b6e8220596b5956ed417c5165d9e1009d5"
+    },
+    {
+      "path": "body-paint.png",
+      "bytes": 1386614,
+      "sha256": "07115678a67c7ad101a40576a8d1fa19ce65e92defbdbed618294f52da2c6197"
+    },
+    {
+      "path": "body-rest-source.glb",
+      "bytes": 2950668,
+      "sha256": "823eb73e393879c2f057c35e64fd71d5af92011c13cc12f3bbdf10b82d00df6a"
+    },
+    {
+      "path": "build-receipt.json",
+      "bytes": 2109,
+      "sha256": "d713b29b7ee1cd2135ea1429fda8df15b9be3fb0798f1730ec082ee9c9851c04"
+    },
+    {
+      "path": "modeling-source-prompt.txt",
+      "bytes": 1361,
+      "sha256": "89babbcc17ec1a2f7bd3cd4b9ad697ea555fcb27987636dfb2f37fe1f2d885e4"
+    },
+    {
+      "path": "modeling-source.png",
+      "bytes": 1907525,
+      "sha256": "f2ebc62950bb56177f5efdeb9695cbd87c76c561141ebf51cc5fe9c758e9b442"
+    },
+    {
+      "path": "paint-receipt.json",
+      "bytes": 735,
+      "sha256": "9ba6f1717c3545a510695de6176e0b8bb45ce9744310c370a2827d23eb5c50fa"
+    },
+    {
+      "path": "viewer/ASSET_POLICY.md",
+      "bytes": 1649,
+      "sha256": "0b6b352e00a90eddabb4edccde76a7c03fd9e0094d3a827445cca07cfbe5ff59"
+    },
+    {
+      "path": "viewer/CONSTRUCTION.md",
+      "bytes": 6253,
+      "sha256": "28af085b77460580bd4ccc212c3f90d1d1a422d62163e5483a4bbc502b40796f"
+    },
+    {
+      "path": "viewer/PROJECT-LICENSE.txt",
+      "bytes": 34523,
+      "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef"
+    },
+    {
+      "path": "viewer/README.txt",
+      "bytes": 1400,
+      "sha256": "8b567a178c14dd7d38c9eab54b80bdb585341b01d2df8cabc00c7e2ca55f00f2"
+    },
+    {
+      "path": "viewer/TRIPOSR-LICENSE.txt",
+      "bytes": 1080,
+      "sha256": "ade0a66629bdd7e01e46b3296b3851cff0fd27989bca53da470ad6e96ed620fb"
+    },
+    {
+      "path": "viewer/before.glb",
+      "bytes": 2504164,
+      "sha256": "ba46258df7563e5f8f9bb2ff1ba0038840b50c1ea42185910e4e5aa0828c01c8"
+    },
+    {
+      "path": "viewer/guard.glb",
+      "bytes": 5047676,
+      "sha256": "8cc3b497a5a88aa33e4096915d782e13ad9405ec8708833408b7bec25b469162"
+    },
+    {
+      "path": "viewer/index.html",
+      "bytes": 3153,
+      "sha256": "f9afa5b20b6039492f49ea4d26e627650856637fe301136895769e76680f9f4b"
+    },
+    {
+      "path": "viewer/neutral.glb",
+      "bytes": 5032324,
+      "sha256": "e9ac7c3effd398e7779b6060a79888adc72692e1a5691ef4bf371184df28e891"
+    },
+    {
+      "path": "viewer/ready.glb",
+      "bytes": 5047680,
+      "sha256": "f4137337c6ffad2fc5dcdb6b9593ba6e5f07c8f9f09890bcaf5db230199c8d5a"
+    },
+    {
+      "path": "viewer/relaxed.glb",
+      "bytes": 5052256,
+      "sha256": "9e2cdded9393e0045d224907031a2009821cc8ac385b01b3edd84e58dc960750"
+    },
+    {
+      "path": "viewer/review/body-before-after.png",
+      "bytes": 346034,
+      "sha256": "88434cd5dae0cb15997e4a78d7ef83c93165e847581b8d0694bb56030c941311"
+    },
+    {
+      "path": "viewer/review/browser-qa.json",
+      "bytes": 689,
+      "sha256": "2a389bf8a68b7abb11a17bdd3f751a73eb46fd88e2a4f4568945a254c651eea1"
+    },
+    {
+      "path": "viewer/review/clay-viewer.png",
+      "bytes": 195761,
+      "sha256": "4d6294f1b28ee9fc1515fff8e8ec1bfd9311e38fd87cd3375003535b85be25a0"
+    },
+    {
+      "path": "viewer/review/desktop-viewer.png",
+      "bytes": 256489,
+      "sha256": "a0f0a48a3e1915c5ff90b2054a49b90287bdd399f0dd70581c3d36d1f68b895d"
+    },
+    {
+      "path": "viewer/review/guard-quarter.png",
+      "bytes": 209519,
+      "sha256": "383cac9face53172f4b30cea2ae12489e232918bdab5a884f808f7f2a1649bfc"
+    },
+    {
+      "path": "viewer/review/neck-before-after.png",
+      "bytes": 441510,
+      "sha256": "432b9bf8a9b31cbb71faa85dcaf6002a8dfb3562ebba2f5aa33422e4f9098ca6"
+    },
+    {
+      "path": "viewer/review/neck-profile-before-after.png",
+      "bytes": 320201,
+      "sha256": "fb6973b77099d51f5c1c24102219351b5047133d55947b078c46488a9bc1550a"
+    },
+    {
+      "path": "viewer/review/neutral-front.png",
+      "bytes": 346359,
+      "sha256": "3d8730d7b2ef1180fe949e11f86818bb2ded9d38e4900365ab6c1291c0fe62d7"
+    },
+    {
+      "path": "viewer/review/neutral-rear.png",
+      "bytes": 290099,
+      "sha256": "df27f2c5ec68bdc4ec0359e9599cef1490645579fb99d4de783ad025aa06ee4f"
+    },
+    {
+      "path": "viewer/review/neutral-side.png",
+      "bytes": 214985,
+      "sha256": "11a053160afcdd26774efacc77ca3749cb806fd0072aded642a49e2e93faab60"
+    },
+    {
+      "path": "viewer/review/ready-quarter.png",
+      "bytes": 220330,
+      "sha256": "1327bc39e02a4cfa5a62659ea7b0c313d5f110b656768466ee74879de583339e"
+    },
+    {
+      "path": "viewer/review/relaxed-quarter.png",
+      "bytes": 264497,
+      "sha256": "9da3b6d637d945129ec306607fc4b7cb019788f8e007d396ec4a7617f4229f3a"
+    },
+    {
+      "path": "viewer/review/stride-quarter.png",
+      "bytes": 250334,
+      "sha256": "f9c7b228dc39434ebe76abb2d0532332d5caff3d5b12329487a6e2cd6ee6f51f"
+    },
+    {
+      "path": "viewer/review/touch-viewer.png",
+      "bytes": 98346,
+      "sha256": "b8265d200e72b7cb0149e17bc134bc691fc72e61044d1ec0b2522404b61f38b0"
+    },
+    {
+      "path": "viewer/stride.glb",
+      "bytes": 5052284,
+      "sha256": "eaa013e0ac04f1bb56279409fce5e06f7179d245146787de0be949f97c88b4d0"
+    },
+    {
+      "path": "viewer/vendor/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+    },
+    {
+      "path": "viewer/vendor/controls/OrbitControls.js",
+      "bytes": 32134,
+      "sha256": "80efaadea4f8a636a65fb0bd08bfef62f3d93a0bb94e2e7500f23176c5c07f4e"
+    },
+    {
+      "path": "viewer/vendor/loaders/GLTFLoader.js",
+      "bytes": 110273,
+      "sha256": "45139faddd5aaf48ed2d62203d976e5cbd703db1a592de40527f9f6cf58abd44"
+    },
+    {
+      "path": "viewer/vendor/three.module.min.js",
+      "bytes": 691648,
+      "sha256": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7"
+    },
+    {
+      "path": "viewer/vendor/utils/BufferGeometryUtils.js",
+      "bytes": 31768,
+      "sha256": "c25b7930e570e9ec56173cd3b866ec8d2e10016630db3937efb439daf1cedbf6"
+    },
+    {
+      "path": "viewer/viewer.js",
+      "bytes": 6107,
+      "sha256": "127990b10a7138cb733f012f66d91b98b97caab87185b08d13808ee4cd9d75e5"
+    },
+    {
+      "path": "volume-receipt.json",
+      "bytes": 2529,
+      "sha256": "c9485ec8da6e642596b41b1eb28b6722d49be807afc92a3f209eaec213883779"
+    }
+  ],
+  "tools": [
+    {
+      "path": "experiments/dart-modelshd-charhd/build-complete-dart.py",
+      "sha256": "b6bcc5b8f636997d94bc5e8c4f18fa3e2072bb917b8c0df1250d9e95b1c849ea"
+    },
+    {
+      "path": "experiments/dart-modelshd-charhd/continuous-rig.py",
+      "sha256": "07f9973a6dc2e1fce987a8c01e246105c8b3c25b26b943f555df03de7c4668a1"
+    },
+    {
+      "path": "experiments/dart-modelshd-charhd/reconstruction/bake-material-views.py",
+      "sha256": "84de3faf1f9990879c455ee20d5f98589b24402c87ddb59967337d497786ca86"
+    },
+    {
+      "path": "experiments/dart-modelshd-charhd/check-dart-review.cjs",
+      "sha256": "46bd6447d4cdbfde95b44ca920feeedf76233d1ddb47f161bf5eacff6f689efb"
+    },
+    {
+      "path": "experiments/dart-modelshd-charhd/verify-complete-dart.py",
+      "sha256": "a5353778fb885da32a289cdb96843798c045718b59a936b4534534ce0a8df5c7"
+    },
+    {
+      "path": "experiments/dart-modelshd-charhd/assemble-dart-review.py",
+      "sha256": "ff21fd4e3cce5d0716d28fbd77032947bcf7b123bfd9bcff09afed70a2bf6fb6"
+    }
+  ]
+}

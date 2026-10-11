@@ -22,3 +22,6 @@ Custom Definitive fan assets: preserve project and original game attribution.
 Three.js 0.170.0: MIT; see vendor/THREE-LICENSE.txt.
 Project source: https://github.com/gideonidoru/legend-of-dragoon-definitive
 Construction: docs/definitive/DART_COMPLETE_MODEL_REVIEW.md on authoring branch.
+
+Portable-package notices: PROJECT-LICENSE.txt, ASSET_POLICY.md and
+TRIPOSR-LICENSE.txt. CONSTRUCTION.md records the authoring process and limits.
