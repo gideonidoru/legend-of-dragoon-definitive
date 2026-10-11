@@ -113,6 +113,11 @@ public abstract class PlatformManager {
 
   }
 
+  /** Discard input owned by bindings being replaced. */
+  public void resetActionState(final InputAction action) {
+    this.resetActionStates();
+  }
+
   /** Called at the end of each game tick to clear one-frame input */
   public void clearPressed() {
 

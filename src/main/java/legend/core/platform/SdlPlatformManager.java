@@ -255,6 +255,14 @@ public class SdlPlatformManager extends PlatformManager {
     this.clearActionStates = true;
   }
 
+  @Override
+  public void resetActionState(final InputAction action) {
+    this.digitalActionInputs.remove(action);
+    this.axisActionStates.remove(action);
+    this.getInputActionState(action).cancel();
+    this.pressed.remove(action);
+  }
+
   // These are used to disable keyboard input while controller buttons are held. This is a dumb
   // workaround for dumb Steam's Steam Input repeating all controller input as keyboard input.
   private final IntSet ignoredKeys = new IntOpenHashSet();

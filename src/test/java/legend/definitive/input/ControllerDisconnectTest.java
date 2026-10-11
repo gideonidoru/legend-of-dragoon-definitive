@@ -9,6 +9,7 @@ import legend.core.platform.Window;
 import legend.core.platform.input.ButtonInputActivation;
 import legend.core.platform.input.InputAction;
 import legend.core.platform.input.InputBinding;
+import legend.core.platform.input.InputBindings;
 import legend.core.platform.input.InputButton;
 import legend.core.platform.input.InputKey;
 import legend.core.platform.input.KeyInputActivation;
@@ -36,11 +37,16 @@ final class ControllerDisconnectTest {
   }
 
   private static final class Fixture {
-    final SdlPlatformManager platform = new SdlPlatformManager();
+    final SdlPlatformManager platform;
     final Window window = new NoopWindow(new NoopPlatformManager(), 640, 480);
     final List<InputAction> released = new ArrayList<>();
 
-    Fixture() { this.window.events().onInputActionReleased((window, action) -> this.released.add(action)); }
+    Fixture() { this(new SdlPlatformManager()); }
+
+    Fixture(final SdlPlatformManager platform) {
+      this.platform = platform;
+      this.window.events().onInputActionReleased((window, action) -> this.released.add(action));
+    }
 
     void press(final InputBinding<?> binding, final Integer device) throws Exception {
       method("pressBinding", InputBinding.class, Integer.class, Window.class).invoke(this.platform, binding, device, this.window);
@@ -161,4 +167,51 @@ final class ControllerDisconnectTest {
     f.platform.clearPressed();
     assertFalse(f.platform.isActionRepeat(action));
   }
+  @Test void completedTapSurvivesSubsequentDisconnectBeforeConsumption() throws Exception {
+    final Fixture f = new Fixture();
+    final InputAction action = InputAction.fixed();
+    final InputBinding<?> binding = binding(action);
+    f.press(binding, 7);
+    f.release(binding, 7);
+    f.disconnect(7);
+    assertFalse(f.platform.isActionHeld(action));
+    assertTrue(f.platform.isActionPressed(action));
+    assertTrue(f.platform.isActionRepeat(action));
+    assertEquals(List.of(action), f.released);
+    f.platform.clearPressed();
+    assertFalse(f.platform.isActionRepeat(action));
+  }
+
+  @Test void bindingReplacementCancelsOldOwnershipWithoutCancellingUnrelatedActions() throws Exception {
+    final Fixture f = new Fixture((SdlPlatformManager)GameEngine.PLATFORM);
+    final InputAction action = InputAction.fixed(), unrelated = InputAction.fixed();
+    final ButtonInputActivation activation = new ButtonInputActivation(InputButton.A);
+    final var other = binding(unrelated);
+    try {
+      InputBindings.overwriteBindings(action, List.of(activation));
+      final var original = InputBindings.getBindings(ButtonInputActivation.class).stream()
+        .filter(binding -> binding.action == action).findFirst().orElseThrow();
+      f.press(original, 7);
+      f.press(other, 8);
+      InputBindings.overwriteBindings(action, List.of(activation));
+      assertFalse(f.platform.isActionHeld(action));
+      assertFalse(f.platform.isActionPressed(action));
+      assertFalse(f.platform.isActionRepeat(action));
+      assertTrue(f.platform.isActionHeld(unrelated));
+      final var replacement = InputBindings.getBindings(ButtonInputActivation.class).stream()
+        .filter(binding -> binding.action == action).findFirst().orElseThrow();
+      assertNotSame(original, replacement);
+      f.release(replacement, 7);
+      assertFalse(f.platform.isActionHeld(action));
+      f.press(replacement, 7);
+      assertTrue(f.platform.isActionPressed(action));
+      f.release(replacement, 7);
+      assertFalse(f.platform.isActionHeld(action));
+    } finally {
+      InputBindings.overwriteBindings(action, List.of());
+      f.disconnect(7);
+      f.disconnect(8);
+    }
+  }
+
 }
