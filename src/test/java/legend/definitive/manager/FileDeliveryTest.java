@@ -209,4 +209,20 @@ class FileDeliveryTest {
     final Map<String, byte[]> served = new HashMap<>(); final var candidate = contents(next, served); final List<String> requested = new ArrayList<>();
     assertThrows(IOException.class, () -> FileDelivery.install(store, candidate, InstallProgress.NONE, connection(served, requested), true)); assertEquals(1, requested.size()); store.verifyInstalled();
   }
+  @Test void initialFmvSplitImportsAllMoviesFromVerifiedInstalledJarWithoutDownloads() throws Exception {
+    final var films = new legend.definitive.fmv.FmvSplitFixture();
+    final Path old = pack(); films.jar(old, true, "legacy-code"); refresh(old);
+    final var store = new InstallStore(this.temporary.resolve("fmv-install")); store.install(old);
+    final var before = store.state(); final Path active = store.root().resolve("releases").resolve(before.getProperty("version"));
+    Files.writeString(store.data(before).resolve("saves/owner.txt"), "preserved save");
+    final String pinnedJar = PackageManifest.sha256(active.resolve("bundled-mods/FMVHD-v0.1.0.jar"));
+    final Path next = this.temporary.resolve("split"); InstallStore.copyTree(old, next); films.split(next, "small-code"); refresh(next);
+    final Map<String, byte[]> served = new HashMap<>(); final var candidate = contents(next, served); final List<String> requested = new ArrayList<>();
+    FileDelivery.install(store, candidate, InstallProgress.NONE, connection(served, requested), false);
+    for(final byte[] video : films.movies.values()) assertFalse(requested.contains("file-" + legend.definitive.fmv.FmvSplitFixture.sha(video)), "Unchanged legacy movie must be imported locally");
+    assertEquals(pinnedJar, PackageManifest.sha256(active.resolve("bundled-mods/FMVHD-v0.1.0.jar")));
+    store.verifyInstalled(); assertEquals("preserved save", Files.readString(store.data(store.state()).resolve("saves/owner.txt")));
+    assertEquals("preserved save", Files.readString(store.data(before).resolve("saves/owner.txt")));
+  }
+
 }

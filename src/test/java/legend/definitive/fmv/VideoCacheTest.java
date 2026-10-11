@@ -56,4 +56,14 @@ final class VideoCacheTest {
     assertThrows(IOException.class, () -> VideoCache.materialize(link.resolve("cache"), digest(), DATA.length, new ByteArrayInputStream(DATA)));
     assertThrows(IOException.class, () -> VideoCache.materialize(actual, "../escape", DATA.length, new ByteArrayInputStream(DATA)));
   }
+  @Test void installedMovieUsesVerifiedManagedArtworkLinkWithoutMaterialization() throws Exception {
+    final Path release = this.root.resolve("release/gfx/fmvhd/videos"); Files.createDirectories(release);
+    final Path movie = release.resolve(digest() + ".mp4"); Files.write(movie, DATA);
+    final Path workspace = this.root.resolve("workspace"); Files.createDirectory(workspace);
+    final Path gfx = workspace.resolve("gfx"); Files.createSymbolicLink(gfx, release.getParent().getParent());
+    assertEquals(movie, VideoCache.installed(gfx, digest(), DATA.length));
+    assertArrayEquals(DATA, Files.readAllBytes(movie));
+    assertFalse(Files.exists(workspace.resolve("cache")));
+  }
+
 }
