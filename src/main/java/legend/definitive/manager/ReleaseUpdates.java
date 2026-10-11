@@ -253,6 +253,13 @@ public final class ReleaseUpdates {
   static String repair(final InstallStore store, final InstallProgress progress, final AssetDownload connection) throws IOException, InterruptedException {
     return store.withMaintenance(progress, () -> {
       final var state = store.state();
+      final String currentReleases = new MetadataCache().fetch(true, connection);
+      if(CurrentRelease.present(currentReleases)) {
+        final Candidate candidate = CurrentRelease.select(currentReleases, PackageManifest.hostPlatform(), state, true).orElseThrow(() -> new IOException("No verified current build is available for repair."));
+        validateContents(candidate);
+        return FileDelivery.install(store, candidate, progress, connection, true);
+      }
+      if(CurrentRelease.generation(state, "acceptedGeneration") > 0) throw new IOException("The verified current build is unavailable for repair. Retry when GitHub is available.");
       final Path current = InstallStore.child(store.root().resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
       final String tag = state.getProperty("installedReleaseTag", "").isEmpty() ? PackageManifest.read(current).metadata().getProperty("releaseTag", "") : state.getProperty("installedReleaseTag");
       if(!tag.matches("[A-Za-z0-9._-]+")) throw new IOException("Installed release has no published repair identity. Choose Reinstall.");
@@ -267,7 +274,6 @@ public final class ReleaseUpdates {
         }
       }
       if(json == null) {
-        final String currentReleases = new MetadataCache().fetch(true, connection);
         final Instant installed = parseDate(state.getProperty("releasePublishedAt", ""));
         final Candidate currentCandidate = (installed == null ? select(currentReleases, PackageManifest.hostPlatform(), "", "") : select(currentReleases, PackageManifest.hostPlatform(), state.getProperty("releaseAssetId", ""), tag, installed)).orElseThrow(() -> new IOException("No compatible current release is available for repair."));
         if(currentCandidate.contents() == null) throw new IOException("The current release has no verified repair inventory.");

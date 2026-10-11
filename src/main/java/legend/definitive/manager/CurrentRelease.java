@@ -83,7 +83,8 @@ final class CurrentRelease {
     final Map<?, ?> installer = object(pointer.get("installer")), entry = object(pointer.get("entry"));
     matchAsset(carrier, installer, "installer-" + text(installer, "sha256") + ".zip", true);
     matchAsset(carrier, entry, "entry-" + text(entry, "sha256") + ".sh", true);
-    matchAsset(carrier, object(pointer.get("fmvSource")), "FMVHD-v0.1.0-videos.zip", true);
+    final Map<?, ?> fmvSource = object(pointer.get("fmvSource"));
+    matchAsset(carrier, fmvSource, "source-fmvhd-" + text(fmvSource, "sha256") + ".zip", true);
     final Map<?, ?> pack = object(selected.get("package")), contents = object(selected.get("contents"));
     final Map<?, ?> packAsset = matchAsset(carrier, pack, text(pack, "name"), true), contentsAsset = matchAsset(carrier, contents, text(contents, "name"), true);
     final var revision = new ReleaseUpdates.CurrentRevision(number(pointer, "generation", MAX_NUMBER), text(pointer, "sourceRevision"), digest, Long.toString(number(pointer, "buildRun", MAX_NUMBER)), number(pack, "bytes", 2L*1024*1024*1024), number(contents, "bytes", 8L*1024*1024));
@@ -159,7 +160,7 @@ final class CurrentRelease {
       if(generation(state, prefix + "Generation") == 0 || !state.getProperty(prefix + "SourceRevision", "").matches("[a-f0-9]{40}")
         || !state.getProperty(prefix + "ManifestSha256", "").matches("[a-f0-9]{64}") || !identifier(state.getProperty(prefix + "BuildRun", ""))) throw new IOException("Installed current build identity is incomplete.");
     }
-    if(generation(state, "currentGeneration") > generation(state, "acceptedGeneration")) throw new IOException("Installed current build ordering is inconsistent.");
+    if(generation(state, "currentGeneration") > generation(state, "acceptedGeneration") || generation(state, "previousCurrentGeneration") > generation(state, "acceptedGeneration")) throw new IOException("Installed current build ordering is inconsistent.");
   }
   static void activate(final Properties next, final Properties old, final ReleaseUpdates.CurrentRevision revision) throws IOException {
     if(next != old) for(final String field : FIELDS) {

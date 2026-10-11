@@ -57,7 +57,7 @@ class CurrentReleaseTest {
       this.pointer.put("platforms",platforms);
       this.pointer.put("installer",descriptor("installer-",".zip","installer".getBytes()));
       this.pointer.put("entry",descriptor("entry-",".sh","entry".getBytes()));
-      this.pointer.put("fmvSource",descriptor("FMVHD-v0.1.0-videos.zip","","fmv".getBytes()));
+      this.pointer.put("fmvSource",descriptor("source-fmvhd-",".zip","fmv".getBytes()));
       this.release.putAll(Map.of("id",9L,"tag_name","definitive-current","draft",false,"published_at","2026-10-10T00:00:00Z","assets",this.assets));
       publish();
     }
@@ -79,7 +79,7 @@ class CurrentReleaseTest {
     ReleaseUpdates.AssetDownload connection(final List<String> requests) {
       return request -> {
         requests.add(request.uri().toString());
-        final byte[] data = request.uri().getHost().equals("api.github.com") ? ReleaseUpdates.json(this.release).getBytes() : this.served.get(request.uri().getPath().substring(request.uri().getPath().lastIndexOf('/')+1));
+        final byte[] data = request.uri().getHost().equals("api.github.com") ? (request.uri().getPath().contains("/tags/") ? ReleaseUpdates.json(this.release) : this.json).getBytes() : this.served.get(request.uri().getPath().substring(request.uri().getPath().lastIndexOf('/')+1));
         if(data == null) throw new IOException("Unexpected request: "+request.uri());
         return new Response(request,new ByteArrayInputStream(data),HttpHeaders.of(Map.of("Content-Length",List.of(Integer.toString(data.length))),(k,v)->true));
       };
@@ -180,6 +180,36 @@ class CurrentReleaseTest {
     for(final String bad : List.of("", "DEFINITIVE_CURRENT_V2\n{}\nEND_DEFINITIVE_CURRENT_V2\n", CurrentRelease.HEADER+"{}", CurrentRelease.HEADER+"{}"+CurrentRelease.END+CurrentRelease.HEADER+"{}"+CurrentRelease.END)) {
       build.release.put("body",bad); build.json="["+ReleaseUpdates.json(build.release)+"]"; assertThrows(IOException.class,build::candidate);
     }
+  }
+
+  @Test void retainedLegacyReleaseDoesNotPreventRepairToLatestPersistentBuild() throws Exception {
+    final Build first = new Build("legacy",1,"a".repeat(40),"one"), next = new Build("latest",2,"b".repeat(40),"two");
+    final var metadata = PackageManifest.readProperties(first.pack.resolve(PackageManifest.METADATA)); metadata.setProperty("releaseTag","retained-legacy");
+    metadata.setProperty("id",PackageManifest.identity(metadata,PackageManifest.read(first.pack).hashes())); InstallStore.atomicProperties(first.pack.resolve(PackageManifest.METADATA),metadata);
+    final var store = new InstallStore(this.temporary.resolve("installed")); store.install(first.pack);
+    final var state = store.state(); state.setProperty("installedReleaseTag","retained-legacy"); InstallStore.atomicProperties(store.root().resolve("state.properties"),state);
+    Files.writeString(store.data(state).resolve("saves/owner.txt"),"personal"); store.setPreferences(false,true,false);
+    final List<String> requests = new ArrayList<>();
+    ReleaseUpdates.repair(store,InstallProgress.NONE,request -> {
+      if(request.uri().getPath().contains("/tags/")) {
+        requests.add(request.uri().toString());
+        return new Response(request,new ByteArrayInputStream("{\"draft\":false,\"tag_name\":\"retained-legacy\",\"assets\":[]}".getBytes()),HttpHeaders.of(Map.of(),(k,v)->true));
+      }
+      return next.connection(requests).send(request);
+    });
+    assertTrue(requests.stream().noneMatch(url -> url.contains("/tags/")), "A retained legacy release returning HTTP 200 must not be preferred");
+    assertEquals("2",store.state().getProperty("currentGeneration")); assertEquals("personal",Files.readString(store.data(store.state()).resolve("saves/owner.txt")));
+    assertEquals("original",store.state().getProperty("artwork")); assertEquals(1,requests.stream().filter(url->url.contains("/file-")).count());store.verifyInstalled();
+  }
+  @Test void invalidPreviousGenerationCannotChangeReferencesDuringRestore() throws Exception {
+    final Build first = new Build("one",1,"a".repeat(40),"one"), next = new Build("two",2,"b".repeat(40),"two");
+    final var store = new InstallStore(this.temporary.resolve("installed"));
+    ReleaseUpdates.install(store,first.candidate(),InstallProgress.NONE,first.connection(new ArrayList<>())); ReleaseUpdates.install(store,next.candidate(),InstallProgress.NONE,next.connection(new ArrayList<>()));
+    final var state = store.state(); state.setProperty("previousCurrentGeneration","3"); InstallStore.atomicProperties(store.root().resolve("state.properties"),state);
+    // Without a usable last-good receipt, invalid ordering must fail before Restore.
+    Files.delete(store.root().resolve(".state-last-good.properties"));
+    final byte[] before = Files.readAllBytes(store.root().resolve("state.properties"));
+    assertThrows(IOException.class,store::rollback); assertArrayEquals(before,Files.readAllBytes(store.root().resolve("state.properties")));
   }
 
 }
