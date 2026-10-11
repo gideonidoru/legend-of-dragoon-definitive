@@ -270,7 +270,7 @@ class CurrentReleaseTest {
     assertThrows(IOException.class, () -> new ReleaseUpdates.MetadataCache().fetch(true, build.connection(new ArrayList<>())));
   }
   @org.junit.jupiter.params.ParameterizedTest
-  @org.junit.jupiter.params.provider.ValueSource(strings = {"id", "size", "digest", "state", "url", "duplicate", "budget"})
+  @org.junit.jupiter.params.provider.ValueSource(strings = {"id", "duplicate", "budget"})
   void formatTwoRejectsUnboundTransitiveCarrierSources(final String defect) throws Exception {
     final var build = new Build("catalog-invalid", 2, "a".repeat(40), "engine"); formatTwo(build);
     final byte[] bytes = "retained prior archive".getBytes(); build.descriptor("file-" + PackageManifest.digest(bytes), "", bytes);
@@ -285,6 +285,23 @@ class CurrentReleaseTest {
       case "budget" -> { for(int i = 0; i < 1000; i++) build.assets.add(new TreeMap<>(Map.of("name", "unrelated-" + i, "id", 10000L + i))); }
     }
     build.publish(); assertThrows(IOException.class, build::candidate);
+  }
+
+  @org.junit.jupiter.params.ParameterizedTest
+  @org.junit.jupiter.params.provider.ValueSource(strings = {"size", "digest", "state", "url"})
+  void unrelatedUnverifiedUploadCannotHideCommittedCurrentBuild(final String defect) throws Exception {
+    final var build = new Build("staged", 2, "a".repeat(40), "engine"); formatTwo(build);
+    final byte[] bytes = "unrelated pending upload".getBytes(); build.descriptor("file-" + PackageManifest.digest(bytes), "", bytes);
+    final var asset = build.assets.getLast();
+    switch(defect) {
+      case "size" -> asset.put("size", 2L * 1024 * 1024 * 1024);
+      case "digest" -> asset.remove("digest");
+      case "state" -> asset.put("state", "new");
+      case "url" -> asset.put("browser_download_url", "https://example.com/file-" + PackageManifest.digest(bytes));
+    }
+    build.publish(); assertFalse(build.candidate().revision().sources().containsKey(PackageManifest.digest(bytes)));
+    final var compact = new ReleaseUpdates.MetadataCache().fetch(true, build.connection(new ArrayList<>()));
+    assertTrue(CurrentRelease.select(compact, PackageManifest.hostPlatform(), new Properties(), true).isPresent());
   }
 
   @Test void formatTwoRejectsMissingExtraOversizedAndCarrierMismatchedSources() throws Exception {

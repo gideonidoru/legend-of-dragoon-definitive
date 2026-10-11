@@ -137,14 +137,18 @@ final class CurrentRelease {
     if(!(carrier.get("assets") instanceof List<?> assets) || assets.size() > 1000) throw new IOException("Current carrier exceeds its asset limit.");
     validateCarrierIds(assets);
     final Map<String, ReleaseUpdates.SourceAsset> sources = new HashMap<>();
+    final Set<String> names = new HashSet<>();
     for(final Object value : assets) {
       final var asset = object(value);
       final String id = String.valueOf(asset.get("id"));
       if(!(asset.get("name") instanceof String name) || !name.matches("file-[a-f0-9]{64}")) continue;
       final String sha = name.substring(5);
+      if(!names.add(name)) throw new IOException("Duplicate current source object.");
       if(!(asset.get("size") instanceof Long size) || size < 0 || size >= 2L * 1024 * 1024 * 1024
         || !"uploaded".equals(asset.get("state")) || !("sha256:" + sha).equals(asset.get("digest"))
-        || !text(asset, "browser_download_url").equals(ROOT + "definitive-current/" + name)) throw new IOException("Current source lacks verified release metadata.");
+        || !(ROOT + "definitive-current/" + name).equals(asset.get("browser_download_url"))) continue;
+      // An unrelated in-flight upload must not hide the committed build.
+      // Missing referenced sources still fail recipe binding before staging.
       if(sources.put(sha, new ReleaseUpdates.SourceAsset(id, URI.create(text(asset, "browser_download_url")), size)) != null) throw new IOException("Duplicate current source object.");
     }
     return Map.copyOf(sources);

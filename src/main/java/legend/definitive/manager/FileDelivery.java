@@ -79,7 +79,7 @@ final class FileDelivery {
         store.requireFileDeliverySpace(contents.bytes(), contents.manifest().id());
         final var recipe = candidate.revision() == null ? null : ArchiveAssembly.fetch(candidate.revision(), contents, store.root(), connection);
         final var assembler = recipe == null ? null : new ArchiveAssembly(recipe, current, fullReinstall ? null : ArchiveAssembly.cache(store.root(), current), connection);
-        final Properties previousHashes = previousHashes(current);
+        final Properties previousHashes = fullReinstall ? null : previousHashes(current);
         for(final String support : PackageManifest.SUPPORT) Files.createDirectories(staged.resolve(support));
         for(final String name : List.of(PackageManifest.METADATA, PackageManifest.HASHES)) Files.write(staged.resolve(name), contents.documents().get(name));
         long completed = 0; int fetched = 0, reused = 0;
@@ -127,7 +127,7 @@ final class FileDelivery {
     if(current == null) return null;
     try { return PackageManifest.read(current).hashes(); }
     catch(final java.io.InterruptedIOException cancelled) { throw cancelled; }
-    catch(final IOException unavailable) { return null; }
+    catch(final IOException | IllegalArgumentException unavailable) { return null; }
   }
   private static boolean reusable(final Path prior, final Path release, final long size, final String digest) throws IOException {
     if(prior == null) return false;

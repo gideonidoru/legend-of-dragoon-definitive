@@ -75,13 +75,21 @@ class AssemblyDeliveryTest {
     fixture.install(false);assertEquals(229,fixture.transferred);final var cached=ArchiveAssembly.cache(fixture.store.root(),fixture.active());assertNotNull(cached);
     final var first=cached.files().get(NAME).getFirst();final byte[] damaged=Files.readAllBytes(fixture.active().resolve(NAME));damaged[31]^=1;Files.write(fixture.active().resolve(NAME),damaged);
     fixture.transferred=0;fixture.ranges.clear();fixture.install(false);assertEquals(first.bytes(),fixture.transferred);assertEquals(1,fixture.ranges.size());
-    Files.writeString(fixture.store.root().resolve(".archive-assembly/obsolete.json"),"old");fixture.transferred=0;fixture.ranges.clear();fixture.install(true);assertEquals(resource("new.zip").length,fixture.transferred);
-    assertFalse(Files.exists(fixture.store.root().resolve(".archive-assembly/obsolete.json")));assertEquals("keep",Files.readString(fixture.store.data(fixture.store.state()).resolve("saves/owner")));
+    Files.writeString(fixture.store.root().resolve(".archive-assembly/obsolete.json"),"old");Files.writeString(fixture.store.root().resolve(".assembly-owner.json"),"owner notes");fixture.transferred=0;fixture.ranges.clear();fixture.install(true);assertEquals(resource("new.zip").length,fixture.transferred);
+    assertFalse(Files.exists(fixture.store.root().resolve(".archive-assembly/obsolete.json")));assertEquals("owner notes",Files.readString(fixture.store.data(fixture.store.state()).resolve("recovered-reinstall/.assembly-owner.json")));assertEquals("keep",Files.readString(fixture.store.data(fixture.store.state()).resolve("saves/owner")));
   }
   @Test void badPartialDownloadLeavesActiveVersionFloorAndPersonalFilesUnchanged() throws Exception {
     final var fixture=new Fixture();fixture.store.install(fixture.old);final var state=fixture.store.state();Files.writeString(fixture.store.data(state).resolve("saves/owner"),"keep");
     assertThrows(IOException.class,()->FileDelivery.install(fixture.store,fixture.candidate,InstallProgress.NONE,fixture.transport(true),false,false));assertEquals(state,fixture.store.state());fixture.store.verifyInstalled();assertEquals("keep",Files.readString(fixture.store.data(state).resolve("saves/owner")));
     try(final var paths=Files.list(fixture.store.root())){assertTrue(paths.noneMatch(path->path.getFileName().toString().startsWith(".assembly-")||path.getFileName().toString().startsWith(".files-")));}
+  }
+  @org.junit.jupiter.params.ParameterizedTest
+  @org.junit.jupiter.params.provider.ValueSource(booleans = {false, true})
+  void malformedOldInventoryCannotPreventRepairOrFullReinstall(final boolean reinstall) throws Exception {
+    final var fixture = new Fixture(); fixture.store.install(fixture.old);
+    Files.writeString(fixture.active().resolve(PackageManifest.HASHES), "invalid=\\uGGGG\n");
+    fixture.install(reinstall);
+    assertEquals("2", fixture.store.state().getProperty("acceptedGeneration"));
   }
   @Test void corruptAndLinkedCachesAreOptionalAndNeverReplaceOwnerFiles() throws Exception {
     final var fixture=new Fixture();fixture.store.install(fixture.old);fixture.install(false);final Path cache=fixture.store.root().resolve(".archive-assembly/"+fixture.store.state().getProperty("version")+".json");Files.writeString(cache,"invalid");assertNull(ArchiveAssembly.cache(fixture.store.root(),fixture.active()));

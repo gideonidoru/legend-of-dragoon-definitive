@@ -20,7 +20,9 @@ public record PackageManifest(Properties metadata, Properties hashes) {
   static final Set<String> ROOT_FILES = Set.of("definitive-manager.jar", "bootstrap-java", "Install.sh", "LICENSE", "CREDITS", "credits.txt", "README.md", "log4j2.xml", "gamecontrollerdb.txt");
 
   public static PackageManifest read(final Path root) throws IOException {
-    final var manifest = new PackageManifest(readProperties(root.resolve(METADATA)), readProperties(root.resolve(HASHES)));
+    final PackageManifest manifest;
+    try { manifest = new PackageManifest(readProperties(root.resolve(METADATA)), readProperties(root.resolve(HASHES))); }
+    catch(final IllegalArgumentException malformed) { throw new IOException("Package properties are malformed. Verify or reinstall this installation.", malformed); }
     if(!"1".equals(manifest.metadata.getProperty("format")) || !"25".equals(manifest.metadata.getProperty("java"))) {
       throw new IOException("This package needs a newer installation manager.");
     }
