@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "89596b8f1fbca2bff58428d22e381630b7da0a4f4734447ab10a9e15b30b5ac2",
+    "battle-presentation-artwork-v1.json": "6cd7d9023e3b5f0c7fdf1e41e109b2b72cc99ec3769721908180b5b8eaa29a16",
     "battle-presentation-reviews/2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274"
   },
   "counts": {
@@ -19,10 +19,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 340,
+    "newBespokeCandidates": 361,
     "newlySelectedBespokeMasters": 35,
-    "baselineMastersStillNeedingPresentationReview": 166,
-    "pendingCandidateReviews": 305,
+    "baselineMastersStillNeedingPresentationReview": 145,
+    "pendingCandidateReviews": 326,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -1406,7 +1406,9 @@
         4096,
         340
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "ac2101e242bf9cd2a009164287e73cf35bcff4e38a02f6a264d2610b2e9de30f"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1424,7 +1426,10 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "a4bc567e5887865bd9e9e70a3adc5c67336eab306e26635be381bceb8889b993",
+        "db596ef08ebf304c8ca576fb069302301afc42909f3ffef77926ab89358d76ec"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1442,7 +1447,11 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "062dcd5459dc7ac718b343f24645da5ca53e8547007d8eae6c5d4a68c2d89a3b",
+        "7cf5d4ecb61b1abab9af9140a073ffdefa28e686a54f6b14c7dc66e99b52955c",
+        "b89f97ad1431f9d5ea61bc78e72795e2c45430066dc4614cfd5670536920827f"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1459,7 +1468,13 @@
         4096,
         960
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "48beb03e967e691a0904d90462d6e2ab55bd8af6e5096c75bfd2ecd3b5ea91fc",
+        "64f6001081475111e9867b3ee6a1258944a7bc6b738ca60cf221559c6a5c5967",
+        "744b4e4cad6f18eb5e8e07dbf92193fd39af306299793a1d37f138b521fc934d",
+        "91d80c4461003f3927a058880aee0b1003b8faaedf16ac3270c11534e7be3cd2",
+        "ae5c9de1501b7fc30b95d355065798839ab42cfa4dd464455c4a0bf146395df6"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1477,7 +1492,16 @@
         4096,
         960
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "3ad7ae43b6dc46b1a4fb94ec0d856a23339ba4d075d9f752fdf2a23080b21fa8",
+        "3b2cc245343d6faf1b5c2f20843b8b3a22bb20d1bd219b1e0dc4ae284bb1e7cb",
+        "60ffb1fa54ff4a30a016dd432706624ca23e37ec8cd92a456c4b0e4049d7a309",
+        "87e375529cc972a46387bf4fa52fa3bf20b2a888388681d1a43bdfbae74699d6",
+        "8b823aef87ffef9f0093d0bdbd41a51cfdcd5bba2e788d39ec31d8a9a69acad2",
+        "ad4343cd9024b7ad581b65fa14ee8576cc279b8d629130cbe797ee2f6d7fd8c7",
+        "afe95737fdc7e61e3d5621e4ac14ce8a8103de0daee052abc1adc12a068281da",
+        "b37020e560566696dc5a656817c703bb0bb70a70ac20301c56bceb88fc9f3cb0"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1495,7 +1519,10 @@
         4096,
         832
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "3842f491ccaebec2151eeb0c6c3eab1a0375b5b49792a59d239a79e9faceb45f",
+        "8240bec6c56fbd325cad07a27d35d5d9c281b3f0dae38add2f18fa447e18fc8f"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13086,7 +13113,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {63: [0]}. Source family: Moon: pale cream surface gradient. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13117,7 +13144,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {64: [3]}. Source family: muted blue organic knots and root-like surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13179,7 +13206,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {64: [3]}. Source family: muted blue organic knots and root-like surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13210,7 +13237,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {65: [0]}. Source family: red rock and branching/root silhouettes.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13241,7 +13268,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {65: [0]}. Source family: red rock and branching/root silhouettes.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13272,7 +13299,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {65: [0]}. Source family: red rock and branching/root silhouettes.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13303,7 +13330,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {66: [0]}. Source family: Moon: dark rock, brown ground, green vegetation and tangled organic surfaces. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13334,7 +13361,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {66: [0]}. Source family: Moon: dark rock, brown ground, green vegetation and tangled organic surfaces. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13365,7 +13392,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {66: [0]}. Source family: Moon: dark rock, brown ground, green vegetation and tangled organic surfaces. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13396,7 +13423,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {66: [0]}. Source family: Moon: dark rock, brown ground, green vegetation and tangled organic surfaces. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13427,7 +13454,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {66: [0]}. Source family: Moon: dark rock, brown ground, green vegetation and tangled organic surfaces. Engine random-encounter location mapping: Moon.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13489,7 +13516,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {67: [0]}. Source family: Zenebatos: sandstone, stairs, carved trim and grey relief. Engine random-encounter location mapping: Zenebatos.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13520,7 +13547,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {67: [0]}. Source family: Zenebatos: sandstone, stairs, carved trim and grey relief. Engine random-encounter location mapping: Zenebatos.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13551,7 +13578,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {67: [0]}. Source family: Zenebatos: sandstone, stairs, carved trim and grey relief. Engine random-encounter location mapping: Zenebatos.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13582,7 +13609,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {67: [0]}. Source family: Zenebatos: sandstone, stairs, carved trim and grey relief. Engine random-encounter location mapping: Zenebatos.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13613,7 +13640,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {67: [0]}. Source family: Zenebatos: sandstone, stairs, carved trim and grey relief. Engine random-encounter location mapping: Zenebatos.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13644,7 +13671,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {67: [0]}. Source family: Zenebatos: sandstone, stairs, carved trim and grey relief. Engine random-encounter location mapping: Zenebatos.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13675,7 +13702,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {67: [0]}. Source family: Zenebatos: sandstone, stairs, carved trim and grey relief. Engine random-encounter location mapping: Zenebatos.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13706,7 +13733,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {67: [0]}. Source family: Zenebatos: sandstone, stairs, carved trim and grey relief. Engine random-encounter location mapping: Zenebatos.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13737,7 +13764,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {68: [0]}. Source family: grey architectural surfaces, skeletal/metallic columns, gates and stone panels.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -13768,7 +13795,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {68: [0]}. Source family: grey architectural surfaces, skeletal/metallic columns, gates and stone panels.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
