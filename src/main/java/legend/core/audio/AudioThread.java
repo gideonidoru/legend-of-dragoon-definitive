@@ -46,7 +46,7 @@ public final class AudioThread implements Runnable {
 
   private final int nanosPerTick;
   private long audioContext;
-  private long audioDevice;
+  private volatile long audioDevice;
   private final boolean stereo;
   private final int voiceCount;
   private InterpolationPrecision interpolationPrecision;
@@ -200,8 +200,7 @@ public final class AudioThread implements Runnable {
       this.pendingXa = null;
 
       if(!this.running && this.audioDevice != 0) {
-        this.destroyInternal();
-        this.xaPlayer.unloadOpusFile();
+        this.destroyAndUnload();
         return;
       }
 
@@ -216,25 +215,75 @@ public final class AudioThread implements Runnable {
   }
 
   private void destroyInternal() {
+    Throwable failure = null;
     for(final AudioSource source : this.sources) {
-      synchronized(source) {
-        if(source.isInitialized()) {
-          source.destroy();
+      try {
+        synchronized(source) {
+          if(source.isInitialized()) {
+            source.destroy();
+          }
         }
+      } catch(final Throwable thrown) {
+        failure = appendCleanupFailure(failure, thrown);
       }
     }
 
     if(this.audioContext != 0) {
-      alcDestroyContext(this.audioContext);
-      this.audioContext = 0;
+      try {
+        alcDestroyContext(this.audioContext);
+      } catch(final Throwable thrown) {
+        failure = appendCleanupFailure(failure, thrown);
+      } finally {
+        this.audioContext = 0;
+      }
     }
 
     if(this.audioDevice != 0) {
-      alcCloseDevice(this.audioDevice);
-      this.audioDevice = 0;
-
-      memFree(this.tmp);
+      try {
+        alcCloseDevice(this.audioDevice);
+      } catch(final Throwable thrown) {
+        failure = appendCleanupFailure(failure, thrown);
+      }
     }
+
+    try {
+      if(this.tmp != null) memFree(this.tmp);
+    } catch(final Throwable thrown) {
+      failure = appendCleanupFailure(failure, thrown);
+    } finally {
+      this.tmp = null;
+      // Publish retirement only after all native cleanup attempts and buffer retirement.
+      this.audioDevice = 0;
+    }
+    throwCleanupFailure(failure);
+  }
+
+  private void destroyAndUnload() {
+    Throwable failure = null;
+    try {
+      this.destroyInternal();
+    } catch(final Throwable thrown) {
+      failure = thrown;
+    }
+    this.pendingXa = null;
+    try {
+      this.xaPlayer.unloadOpusFile();
+    } catch(final Throwable thrown) {
+      failure = appendCleanupFailure(failure, thrown);
+    }
+    throwCleanupFailure(failure);
+  }
+
+  private static Throwable appendCleanupFailure(final Throwable first, final Throwable next) {
+    if(first == null) return next;
+    if(first != next) first.addSuppressed(next);
+    return first;
+  }
+
+  private static void throwCleanupFailure(final Throwable failure) {
+    if(failure instanceof Error error) throw error;
+    if(failure instanceof RuntimeException exception) throw exception;
+    if(failure != null) throw new IllegalStateException("Audio cleanup failed", failure);
   }
 
   private void openDevice() {
@@ -365,9 +414,7 @@ public final class AudioThread implements Runnable {
     }
 
     synchronized(this) {
-      this.destroyInternal();
-      this.pendingXa = null;
-      this.xaPlayer.unloadOpusFile();
+      this.destroyAndUnload();
     }
   }
 
