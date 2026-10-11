@@ -27,6 +27,80 @@ class CleanReinstallTest {
     store.install(pack, "", null, InstallProgress.NONE, true); store.verifyInstalled();
     assertEquals("owner receipt notes", Files.readString(store.data(store.state()).resolve(name)));
   }
+  @org.junit.jupiter.params.ParameterizedTest
+  @org.junit.jupiter.params.provider.ValueSource(strings = {"campaign-notes.log", "snapshot-files.properties", ".reinstall-preserved.properties"})
+  void repeatedReinstallPreservesDistinctRootNotesAndIdenticalDuplicates(String name) throws Exception {
+    var store = new InstallStore(temporary.resolve("repeat-notes")); var pack = pack("repeat-notes-pack");store.install(pack);
+    Files.writeString(store.data(store.state()).resolve("saves/owner.txt"), "save remains");
+    for(int generation=1;generation<=3;generation++) {
+      Files.writeString(store.root().resolve(name), "owner version " + generation);
+      store.install(pack, "", null, InstallProgress.NONE, true);store.verifyInstalled();
+      final Path data=store.data(store.state());
+      for(int expected=1;expected<=generation;expected++) {
+        final String namespace=expected==1 ? "recovered-reinstall" : "recovered-reinstall-"+expected;
+        assertEquals("owner version "+expected,Files.readString(data.resolve(namespace).resolve(name)));
+      }
+      assertEquals("save remains",Files.readString(data.resolve("saves/owner.txt")));
+    }
+    Files.writeString(store.root().resolve(name), "owner version 2");
+    store.install(pack, "", null, InstallProgress.NONE, true);store.verifyInstalled();
+    assertFalse(Files.exists(store.data(store.state()).resolve("recovered-reinstall-4")));
+    assertFalse(Files.exists(store.root().resolve(name)));
+  }
+  @Test void repeatedIdenticalRootRecoveryUsesExistingVerifiedCopy() throws Exception {
+    var store=new InstallStore(temporary.resolve("identical-notes"));var pack=pack("identical-pack");store.install(pack);
+    for(int attempt=0;attempt<3;attempt++) {
+      Files.writeString(store.root().resolve("campaign-notes.log"),"personal campaign notes");
+      store.install(pack,"",null,InstallProgress.NONE,true);store.verifyInstalled();
+      assertEquals("personal campaign notes",Files.readString(store.data(store.state()).resolve("recovered-reinstall/campaign-notes.log")));
+      assertFalse(Files.exists(store.data(store.state()).resolve("recovered-reinstall-2")));
+    }
+  }
+  @Test void recoveryFileAndDirectoryCollisionsPreserveOwnerReservedNamespaces() throws Exception {
+    for(final boolean blockedRoot:List.of(false,true)) {
+      var store=new InstallStore(temporary.resolve("blocked-"+blockedRoot));var pack=pack("blocked-pack-"+blockedRoot);store.install(pack);
+      final Path active=store.data(store.state());
+      final Path blocker=active.resolve(blockedRoot ? "recovered-reinstall" : "recovered-reinstall/notes");
+      Files.createDirectories(blocker.getParent());Files.writeString(blocker,"owner blocking file");
+      Files.createDirectories(active.resolve("recovered-reinstall-2/notes"));
+      Files.writeString(active.resolve("recovered-reinstall-2/notes/snapshot-files.properties"),"owner reserved namespace");
+      Files.createDirectories(store.root().resolve("notes"));
+      Files.writeString(store.root().resolve("notes/snapshot-files.properties"),"new nested owner notes");
+      store.install(pack,"",null,InstallProgress.NONE,true);store.verifyInstalled();
+      final Path data=store.data(store.state());
+      assertEquals("owner blocking file",Files.readString(data.resolve(active.relativize(blocker))));
+      assertEquals("owner reserved namespace",Files.readString(data.resolve("recovered-reinstall-2/notes/snapshot-files.properties")));
+      assertEquals("new nested owner notes",Files.readString(data.resolve("recovered-reinstall-3/notes/snapshot-files.properties")));
+      store.install(pack,"",null,InstallProgress.NONE,true);store.verifyInstalled();
+      assertEquals("new nested owner notes",Files.readString(store.data(store.state()).resolve("recovered-reinstall-3/notes/snapshot-files.properties")));
+    }
+  }
+  @Test void existingRecoveryDirectoryAndNewOwnerFileBothSurvive() throws Exception {
+    var store=new InstallStore(temporary.resolve("directory-collision"));var pack=pack("directory-collision-pack");store.install(pack);
+    final Path recovered=store.data(store.state()).resolve("recovered-reinstall/notes");Files.createDirectories(recovered);
+    Files.writeString(recovered.resolve("owner.txt"),"old directory notes");
+    Files.writeString(store.root().resolve("notes"),"new owner file");
+    store.install(pack,"",null,InstallProgress.NONE,true);store.verifyInstalled();
+    final Path data=store.data(store.state());
+    assertEquals("old directory notes",Files.readString(data.resolve("recovered-reinstall/notes/owner.txt")));
+    assertEquals("new owner file",Files.readString(data.resolve("recovered-reinstall-2/notes")));
+  }
+  @Test void interruptedCleanupRetainsBothRecoveryVersionsAndResumesWithReceipt() throws Exception {
+    var store=new InstallStore(temporary.resolve("collision-resume"));var pack=pack("collision-resume-pack");store.install(pack);
+    Files.writeString(store.root().resolve("campaign-notes.log"),"earlier notes");
+    store.install(pack,"",null,InstallProgress.NONE,true);
+    Files.writeString(store.root().resolve("campaign-notes.log"),"new notes");
+    assertThrows(java.io.InterruptedIOException.class,()->store.install(pack,"",null,update->{
+      if(update.phase().equals("Cleaning old installation files"))Thread.currentThread().interrupt();
+    },true));
+    Thread.interrupted();assertTrue(Files.exists(store.root().resolve(CleanReinstall.JOURNAL)));
+    var reopened=new InstallStore(store.root());reopened.verifyInstalled();
+    final Path data=reopened.data(reopened.state());
+    assertEquals("earlier notes",Files.readString(data.resolve("recovered-reinstall/campaign-notes.log")));
+    assertEquals("new notes",Files.readString(data.resolve("recovered-reinstall-2/campaign-notes.log")));
+    assertFalse(Files.exists(store.root().resolve(CleanReinstall.JOURNAL)));
+    assertFalse(Files.exists(store.root().resolve("campaign-notes.log")));
+  }
   @Test void interruptedLegacyReceiptJournalStillRecovers() throws Exception {
     var store = new InstallStore(temporary.resolve("legacy-receipt")); var pack = pack("legacy-receipt-pack"); store.install(pack);
     Files.writeString(store.data(store.state()).resolve("saves/owner.txt"), "legacy save");
