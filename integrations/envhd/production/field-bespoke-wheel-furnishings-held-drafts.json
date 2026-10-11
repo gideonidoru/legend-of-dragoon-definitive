@@ -1,0 +1,276 @@
+{
+  "schema": 1,
+  "scope": "Five held generated versions across four source keys;4 structural repairs,1 coverage failure. No acceptance or runtime selection. Prior held manifests unchanged.",
+  "sourceSelectionBaseCommit": "1751b4cf44d323bd97b384ca21d6b39a012d454e",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 4,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "8f9db059c123cfcd782f2cccaa83a3e331c36712985d12dcd32d443328ba8866",
+      "generatedSha256": "ccd3d108266785cb5f7b598d984869a11cc32591e4307d26d605e1813b0df9a0",
+      "generatedSize": [
+        1459,
+        1078
+      ],
+      "sourceSize": [
+        46,
+        34
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "2729034499314e73adaafbcd9fca1f8f1bedf7e129eaf317e3eb71842ee2ed05:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 636,
+      "representativeLocation": "Lohan",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "generationVersion": 1,
+      "prompt": "Use case: precise source-bound texture restoration. Repaint the authoritative original game crop in image1 as restrained, detailed hand-painted HD game artwork compatible with Skurfa HD backgrounds. Image2 is original scene context only, not an edit target. Preserve exact original camera, full canvas registration, source silhouette, crop contacts, negative spaces, all internal landmark positions, proportions, broad colors and light. Add continuous fine shading instead of enlarged pixel blocks, without redesigning the source. Lohan cut636 foreground4: opaque46x34 warm orange-brown wall crop containing a dark circular wheel-like fitting. Retain the original slightly offset warm orange central hub, asymmetrical radial/cross-bar arrangement and dark wedges, pale small upper-left inner patch, dark thick lower-left rim and broad soft shadow extending onto the wall at right/below. Do not impose newly evenly spaced spokes, extra bolts, a new central metal cap, gears, ropes or text. Keep the original dark brown-green wheel details against the warm softly mottled wall. No new shiny iron highlights or exaggerated wood cracks. The native drawing is indistinct: preserve its visible irregular divisions rather than assigning a different mechanism. Entire46:34 rectangular crop must stay occupied and opaque, including all surrounding original wall; do not isolate the wheel, remove the wall, recenter, enlarge, pad or change the crop. Output only this opaque texture crop. No text, watermark, labels, comparison sheet, border, extra scene or unrelated objects.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 25024,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        184,
+        136
+      ],
+      "outputSha256": "c4ef9386a6d98343264f28ce64460f1bbdddf54b38241b2440a6bbb87fe4d7e7",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/8f9db059c123cfcd782f2cccaa83a3e331c36712985d12dcd32d443328ba8866/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/8f9db059c123cfcd782f2cccaa83a3e331c36712985d12dcd32d443328ba8866/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version1 invents a regular eight-spoke construction, enlarged domed hub, thick bright rim and coarse cracked wall texture. Version2 is separately author-reviewed and independently pending."
+    },
+    {
+      "decodedRgbaSha256": "a2ef10ffa4712d71a8cd05cf664fefa3f59b9d004eee24c0fa8107e8a14a81e3",
+      "generatedSha256": "3364d824640e282e201687c82514ae7a41dab54d49dd5e07de0a3185ae7079d4",
+      "generatedSize": [
+        1072,
+        1467
+      ],
+      "sourceSize": [
+        38,
+        52
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "2729034499314e73adaafbcd9fca1f8f1bedf7e129eaf317e3eb71842ee2ed05:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 636,
+      "representativeLocation": "Lohan",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "generationVersion": 1,
+      "prompt": "Use case: precise source-bound texture restoration. Repaint the authoritative original game crop in image1 as restrained, detailed hand-painted HD game artwork compatible with Skurfa HD backgrounds. Image2 is original scene context only, not an edit target. Preserve exact original camera, full canvas registration, source silhouette, crop contacts, negative spaces, all internal landmark positions, proportions, broad colors and light. Add continuous fine shading instead of enlarged pixel blocks, without redesigning the source. Lohan cut636 foreground5: opaque38x52 crop with a paired group of red hanging padded-looking forms in the upper-middle against warm brown upper wall and dark horizontal wooden bands below. Preserve the two unequal red lobed shapes, dark gap/inside protrusions between them, their irregular pale cream highlights/patches, dark lower edges, narrow olive-brown suspension strips reaching the top, and the original board/band levels and brown shadows. Their exact object/material identity is not established: reproduce the visible source forms; do not turn them into lamps, lanterns, bright glowing bulbs, fruit or add symbols, labels, stitching, straps or regular white checker patterns not present in the original. Preserve the uneven diffuse pale patches within the existing red shapes, with source-red warmth and subdued dark brown background. Keep the complete opaque38:52 crop and all object positions/edge contacts exactly. Output only the entire opaque texture patch; no centering, recomposition, padding or transparency. No text, watermark, labels, comparison sheet, border, extra scene or unrelated objects.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 31616,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        152,
+        208
+      ],
+      "outputSha256": "ec6436f25da5d66441ceb99242a1e91f3a088e8c36c8c217c251397e27cf52c6",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/a2ef10ffa4712d71a8cd05cf664fefa3f59b9d004eee24c0fa8107e8a14a81e3/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/a2ef10ffa4712d71a8cd05cf664fefa3f59b9d004eee24c0fa8107e8a14a81e3/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version1 overmodels glove-like forms and scattered cream wear patches and adds coarse gouged wall/wood texture. Object identity remains unresolved. Version2 is separately author-reviewed and independently pending."
+    },
+    {
+      "decodedRgbaSha256": "8462d7a2aafb4c8e944575f6c37c7821e02b9d88dd3c7da4e8b55e292a3e4315",
+      "generatedSha256": "0db382ec2a19c4840821a659992b5164fba05a14e5066308edfce2bcdf75dab0",
+      "generatedSize": [
+        1161,
+        1355
+      ],
+      "sourceSize": [
+        24,
+        28
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "f4a5e340ea39e1979e6b3d1cadb3091fb7212b8ad8e8508d0f7b711bb378708f:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 370,
+      "representativeLocation": "Crystal Palace",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise source-bound texture restoration. Repaint the authoritative original game crop in image1 as restrained, detailed hand-painted HD game artwork compatible with Skurfa HD backgrounds. Image2 is original scene context only, not an edit target. Preserve exact original camera, full canvas registration, source silhouette, crop contacts, negative spaces, all internal landmark positions, proportions, broad colors and light. Add continuous fine shading instead of enlarged pixel blocks, without redesigning the source. Crystal Palace cut370 foreground6: isolated24x28 small tabletop vessel/container group. Retain the broad pale green-gray left container with its short narrower junction/stacked lower part, the narrow tall gray-green central form with tiny pale/tan top, the rounded purple upright vessel clipped at the right, dark brown-green curved front/lower object or tabletop edge, small pale side patches near the bottom, and exact gaps between objects. The complete scene places this small group on the left/front pale dining table. Do not draw the whole table or invent additional dishes, glass stems, handles, flowers, fruit, polished silver rims or new coherent emblems. Preserve the original diffuse green-purple shadows and gentle pale highlights; fine surface shading is interpretive and must remain restrained. Image3 is a cyan occupied-pixel silhouette guide only: preserve its full occupied outline and black negative spaces, never paint cyan or include the guide. Strict24:28 full-canvas aspect, original scales/positions and crop contacts. Output only the isolated upgraded crop with true transparency. No text, watermark, labels, comparison sheet, border, extra scene or unrelated objects.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 7136,
+      "paintedGapPixelsExtended": 177,
+      "paintedUncoveredSourcePixels": 102,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 20,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        96,
+        112
+      ],
+      "outputSha256": "92db0de7546e1b79ae4c5bbe54cfc81d190e2020a72e65876b047c6fb4597cdd",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/8462d7a2aafb4c8e944575f6c37c7821e02b9d88dd3c7da4e8b55e292a3e4315/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/8462d7a2aafb4c8e944575f6c37c7821e02b9d88dd3c7da4e8b55e292a3e4315/draft-repaired-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version1 imposes coarse material grain and raised neck/rim collars beyond the indistinct native forms. Version2 is separately author-reviewed and independently pending."
+    },
+    {
+      "decodedRgbaSha256": "85a96a2ffc8a461d62131131d053af88cbcf7a14c767eeaf8c8b240cfa9f918c",
+      "generatedSha256": "0392eac4c010114d277af09dd4114cdc4337f304f4bdc0ddb1a85292e1841395",
+      "generatedSize": [
+        1430,
+        1100
+      ],
+      "sourceSize": [
+        52,
+        40
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "77d59934beadb2192c6f0f528ddfaec6783ed8752493746535a04ede25cb13be:-1",
+          "kind": "foreground",
+          "slot": 7,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 208,
+      "representativeLocation": "Fletz",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise source-bound texture restoration. Repaint the authoritative original game crop in image1 as restrained, detailed hand-painted HD game artwork compatible with Skurfa HD backgrounds. Image2 is original scene context only, not an edit target. Preserve exact original camera, full canvas registration, source silhouette, crop contacts, negative spaces, all internal landmark positions, proportions, broad colors and light. Add continuous fine shading instead of enlarged pixel blocks, without redesigning the source. Fletz cut208 foreground7: isolated52x40 ornate olive-green furnishing with a broad inclined solid back/upper body at upper-right, narrow horizontal upper-left rail with existing small vertical slats, curved central seat-like body, thin pale olive curled supports extending left and right, irregular diagonal lower supports and curved lower rail, and a single small red curved accent clipped near lower-right. Keep the original distinct rail/slat counts and placements, open spaces, asymmetrical curls, lower support crossings and muted green-brown shading. Exact material identity is unresolved: do not redesign it into a modern chair, add wooden spindles, upholstered seams, regular metalwork, extra curled arms, deep carved motifs or a new red object. Retain source thinness and dark gentle patina with subtle continuous shading. Image3 is a cyan occupied-pixel silhouette guide only: fill the original silhouette and preserve all black openings, never paint cyan or include the mask. Strict52:40 full-canvas aspect with original scale/camera/crop contacts and transparency. Output only the isolated upgraded texture. No text, watermark, labels, comparison sheet, border, extra scene or unrelated objects.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/85a96a2ffc8a461d62131131d053af88cbcf7a14c767eeaf8c8b240cfa9f918c/draft-input-v1.png",
+      "verdict": "source-coverage-revision-needed",
+      "reason": "Version1 fails unchanged original-source painted coverage; no repaired output exists. Retained solely as a held generated draft."
+    },
+    {
+      "decodedRgbaSha256": "85a96a2ffc8a461d62131131d053af88cbcf7a14c767eeaf8c8b240cfa9f918c",
+      "generatedSha256": "95a16ad8dc4f710ab75addaadea87bd14c918a7a874a5caff2d2e53405037c62",
+      "generatedSize": [
+        1430,
+        1100
+      ],
+      "sourceSize": [
+        52,
+        40
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "77d59934beadb2192c6f0f528ddfaec6783ed8752493746535a04ede25cb13be:-1",
+          "kind": "foreground",
+          "slot": 7,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 208,
+      "representativeLocation": "Fletz",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise source-bound texture restoration. Repaint the authoritative original game crop in image1 as restrained, detailed hand-painted HD game artwork compatible with Skurfa HD backgrounds. Image2 is original scene context only, not an edit target. Preserve exact original camera, full canvas registration, source silhouette, crop contacts, negative spaces, all internal landmark positions, proportions, broad colors and light. Add continuous fine shading instead of enlarged pixel blocks, without redesigning the source. Fletz cut208 foreground7: isolated52x40 ornate olive-green furnishing with a broad inclined solid back/upper body at upper-right, narrow horizontal upper-left rail with existing small vertical slats, curved central seat-like body, thin pale olive curled supports extending left and right, irregular diagonal lower supports and curved lower rail, and a single small red curved accent clipped near lower-right. Keep the original distinct rail/slat counts and placements, open spaces, asymmetrical curls, lower support crossings and muted green-brown shading. Exact material identity is unresolved: do not redesign it into a modern chair, add wooden spindles, upholstered seams, regular metalwork, extra curled arms, deep carved motifs or a new red object. Retain source thinness and dark gentle patina with subtle continuous shading. Image3 is a cyan occupied-pixel silhouette guide only: fill the original silhouette and preserve all black openings, never paint cyan or include the mask. Strict52:40 full-canvas aspect with original scale/camera/crop contacts and transparency. Output only the isolated upgraded texture. No text, watermark, labels, comparison sheet, border, extra scene or unrelated objects. SOURCE-ONLY COVERAGE CORRECTION: the previous attempt turned this into a cleaner thin-rod rocking chair and omitted too much source-visible lower support/rail/seat material, failing the unchanged source-footprint check. Do not copy it. The cyan occupancy guide defines the required original solid width of EACH curled rail, lower crossed support, upper small strut and broad irregular central/upper body. Keep the source comparatively thicker uneven supports and seat footprint; do not thin them, shift crossings or enlarge openings to make a nicer chair. Trace all original edge contacts and black internal openings, and use restrained matte olive-green shading. Do not assign a new furniture type or add coherent new construction. Preserve the small clipped red lower-right mark exactly.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 15520,
+      "paintedGapPixelsExtended": 2032,
+      "paintedUncoveredSourcePixels": 1396,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 29,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        208,
+        160
+      ],
+      "outputSha256": "08d1e37952391f174e8b173760c01d8cbe603f862bb28840f7e2ee2651fb73ce",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/85a96a2ffc8a461d62131131d053af88cbcf7a14c767eeaf8c8b240cfa9f918c/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/85a96a2ffc8a461d62131131d053af88cbcf7a14c767eeaf8c8b240cfa9f918c/draft-repaired-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Version2 passes unchanged coverage but imposes strong scratched/rippled metallic or stone-like surface relief and bright support edges on the softly shaded original olive furnishing. Source includes red marks at lower-right and lower-edge: these are not an invented-object finding. Material, highlight grouping, support widths/crossings and adjacent finish require correction/review. Not promoted."
+    }
+  ]
+}
