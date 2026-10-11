@@ -1,0 +1,62 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 24512,
+  "paintedGapPixelsExtended": 1120,
+  "paintedUncoveredSourcePixels": 673,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 41,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "decodedRgbaSha256": "fc277e19a8fe83aca3ebf38815bc09484bb67863f329bc936ce0aef5a001fb5a",
+  "generatedSha256": "2d9611d943d1350eaabd0f3616aa71482a70971c6db2ea1036d382acc4f7c12f",
+  "outputSha256": "6342664be1f6e20cabb00b4e47efc8bde58f8844cc478231a1eac05dbbebee9e",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceSize": [
+    60,
+    38
+  ],
+  "targetSize": [
+    240,
+    152
+  ],
+  "generatedSize": [
+    1576,
+    998
+  ],
+  "generatedInputMode": "RGBA",
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "generatedBy": "builtin-imagegen",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "a0b3aef49f70d081da5f68840af6badab105444bdde2521c821bdb4ae725b22e:-1",
+      "kind": "foreground",
+      "slot": 3,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 249,
+  "representativeLocation": "Donau",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/fc277e19a8fe83aca3ebf38815bc09484bb67863f329bc936ce0aef5a001fb5a/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/fc277e19a8fe83aca3ebf38815bc09484bb67863f329bc936ce0aef5a001fb5a/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: one independent EnvHD foreground texture for Legend of Dragoon Definitive. Image1 is the authoritative original isolated source. Image2 is original Donau tavern context for material, placement and light only. Image3 is Skurfa HD detail/style reference only; do not copy objects, palette or lighting from it. Repaint image1 as a source-faithful detailed HD game texture. Preserve the exact 60:38 full-canvas aspect ratio, perspective, occupied outline and all existing planes. These are two compact brown upholstered furnishing/cushion surfaces with subtly irregular red and ochre woven speckles, separated by the original dark diagonal gap. Preserve the LEFT larger angled cushion, RIGHT smaller angled cushion, their dim brown-to-olive highlights, scattered tiny red/gold stitch or speckle positions and the low green-brown occupied support at the lower-left. Resolve fine fabric weave and soft edge seams without inventing a regular diamond pattern, flower, crest, letters, tufted buttons, large motif or carpentry. The original scattered design must remain small and low-contrast, not erased to blank brown or replaced with new symbols. Keep source light direction, broad colors and dark exposure; do not make a product photo or brighter/new chair. Exact original placement and sizes, no reframing, recentering, padding, crop, rotation, added shadow or missing occupied planes. Modern cohesive prerendered fantasy-game detail matching the care of Skurfa, with restrained surface texture. Output ONE isolated full-canvas texture, real transparency only outside the source occupied silhouette, no background/scene/comparison/labels. Requested 1440x912 pixels (exact 60:38 canvas).\n",
+  "styleReferencePath": "integrations/skurfa/runtime-assets/scbackgroundhd/cut31/background.png",
+  "styleReferenceSha256": "d25692cff87dd458ee5830b7762fc9ab1d7f608332b5a3a85b157503830dcb5a",
+  "review": {
+    "intent": "Donau cut249 tavern furnishing: preserve two angled brown upholstered surfaces, scattered muted red/ochre woven marks, dark diagonal separation and green-brown support. Original, rejected neural and painted repair compared; painting restores the colored surface detail lost by neural smoothing.",
+    "style": "Detailed dark brown weave and restrained small colored stitches, matching the surface finish of the supplied Skurfa reference without copying cave objects or lighting. Author-reviewed development candidate; independent detail/quality review remains pending.",
+    "layout": "Original perspective, left/right size relationship and broad shaded planes retained. Exact source canvas, alpha and visible-black classes verified separately; small source-visible edge gaps extended by the unchanged cutout recipe. Native state, occlusion and final quality remain pending.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "6342664be1f6e20cabb00b4e47efc8bde58f8844cc478231a1eac05dbbebee9e",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

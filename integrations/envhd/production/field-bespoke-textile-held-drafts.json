@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "scope": "Unselected Twin Castle cropped-bed custom candidate. Canvas/visibility passes do not clear embroidery topology. No private sources/context/diagnostic boards published.",
+  "sourceSelectionBaseCommit": "440a062b3069d10e8e21d562b7c4b6ca10d29ff8",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 44976,
+      "paintedGapPixelsExtended": 1458,
+      "paintedUncoveredSourcePixels": 1237,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 50,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "decodedRgbaSha256": "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589",
+      "generatedSha256": "95cdf10144d819d0fccd48a36ee4147db5f2ba2e8fe6090f47419e92a0977489",
+      "outputSha256": "7f08830ffd7be2c86805e366d5ec75a1403fa4170ac9e092547147c44266d492",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceSize": [
+        54,
+        98
+      ],
+      "targetSize": [
+        216,
+        392
+      ],
+      "generatedSize": [
+        931,
+        1690
+      ],
+      "generatedInputMode": "RGBA",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "5c496b3f2ce267fcf9cf5c0a5be6ba5be3e59ec7ec5e8d0b24ded99c2d667dbb:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 226,
+      "representativeLocation": "Twin Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589/repaired-draft-v1.png",
+      "prompt": "Use case: precise-object-edit. Asset: one independent EnvHD foreground crop for Legend of Dragoon Definitive. Image1 is authoritative isolated source, image2 original Twin Castle bedroom context, image3 Skurfa HD surface-detail reference only. Repaint image1 into a detailed modern prerendered game texture while preserving the EXACT 54:98 full-canvas aspect, source layout and occupied silhouette. This is ONLY the existing narrow LEFT portion of a royal bed, cropped at the right canvas edge; do not complete the bed, recenter it, widen it or add a new object. Preserve pale green ivory rolled headboard at upper-right, dark navy blue fabric on the sloping left-to-right bed surface, muted pale gold embroidery and green-gray pleated lower skirt. Preserve the original pale gold embroidery topology at exactly its source positions: cropped large angular central border at the right edge, separate smaller curls/geometric hooks on left and upper fabric and tiny gold accents. Trace image1's actual motifs, using image2 to clarify their relation on the complete bed; do not borrow arbitrary motifs from another bed, invent stars, letters, flowers or simplified new squiggles. Improve weave, gentle stitched edge relief and smooth material surfaces while keeping original line widths, negative spaces, perspective, shadow gradients and dim green/navy/gold palette. Do not make bright shiny gold, oversized white embroidery, photographic cloth folds, cracks or new trim. The cyan regions in image2 are private layer placeholders, not scene content: never paint them. Image3 supplies level of texture finish only, not cave objects, warm light or colors. Output ONE isolated source-shaped crop, true transparency outside its occupied outline, all original source planes filled, no background/scene/labels/borders. Requested 864x1568 pixels (exact 54:98).\n",
+      "verdict": "intent-revision-needed",
+      "reason": "Fine embroidery better resolved, but upper source loops are regularized into circular nodes and some crop-edge stitch positions may differ. Resolve actual ornament topology before selection."
+    }
+  ]
+}
