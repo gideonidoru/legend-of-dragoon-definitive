@@ -14,6 +14,8 @@ import importlib.util
 import json
 import subprocess
 import tempfile
+import os
+import stat
 from current_publication import (REPO, TAG, PLATFORMS, canonical, digest, body,
     parse_body, index_assets, check_asset, check_references, descriptor, closure)
 
@@ -23,6 +25,23 @@ def load_stager():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def publication_lock():
+    """One local carrier writer regardless of checkout or staging directory."""
+    directory=Path(tempfile.gettempdir())/('definitive-current-publisher-'+str(os.getuid()))
+    directory.mkdir(mode=0o700,exist_ok=True)
+    info=directory.lstat()
+    if not stat.S_ISDIR(info.st_mode) or info.st_uid!=os.getuid() or stat.S_IMODE(info.st_mode)!=0o700:
+        raise ValueError('Unsafe publisher lock directory')
+    descriptor=os.open(directory/'carrier.lock',os.O_RDWR|os.O_CREAT|os.O_NOFOLLOW,0o600)
+    info=os.fstat(descriptor)
+    if not stat.S_ISREG(info.st_mode) or info.st_uid!=os.getuid():
+        os.close(descriptor);raise ValueError('Unsafe publisher lock file')
+    stream=os.fdopen(descriptor,'a')
+    try:fcntl.flock(stream,fcntl.LOCK_EX|fcntl.LOCK_NB)
+    except BaseException:stream.close();raise
+    return stream
 
 
 def snapshot(release):
@@ -195,8 +214,7 @@ def main():
     parser.add_argument('--output',type=Path,required=True);parser.add_argument('--initialize-release-id',type=int)
     args=parser.parse_args()
     args.output.mkdir(parents=True,exist_ok=True)
-    with (args.output/'publisher.lock').open('a') as lock:
-        fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+    with publication_lock():
         subprocess.run(['python3',str(Path(__file__).with_name('stage-current-publication.py')),
                         '--source-sha',args.source_sha,'--run',str(args.run),'--output',str(args.output)],check=True)
         inputs=json.loads((args.output/'publication-inputs.json').read_text())

@@ -4,6 +4,7 @@ from pathlib import Path
 import importlib.util
 import copy
 import unittest
+import hashlib
 
 def module(name,file):
     spec=importlib.util.spec_from_file_location(name,Path(__file__).with_name(file))
@@ -46,8 +47,22 @@ class Retention(unittest.TestCase):
     def test_incomplete_bootstrap_or_unknown_candidate_chronology_stops(self):
         del self.aliases['SHA256SUMS']
         with self.assertRaises(ValueError):self.plan()
-        self.setUp();candidate=self.add('file-'+'e'*64);del candidate['created_at']
+    def test_unknown_candidate_chronology_stops(self):
+        candidate=self.add('file-'+'e'*64);del candidate['created_at']
         with self.assertRaises(ValueError):self.plan()
+    def test_staged_equal_newer_manifests_protect_older_reused_files(self):
+        for generation in (1,2):
+            other=copy.deepcopy(self.manifest);other.update(generation=generation,sourceRevision='c'*40)
+            data=gc.canonical(other);sha=hashlib.sha256(data).hexdigest()
+            asset=fixtures.asset('manifest-'+sha+'.json',sha,size=len(data),id=99)
+            asset['created_at']='2026-10-09T12:00:00Z'
+            with self.assertRaises(ValueError):gc.audit_manifests(self.manifest,[asset],lambda _:data)
+    def test_older_manifest_audit_binds_actual_bytes_before_cleanup(self):
+        old=copy.deepcopy(self.manifest);self.manifest['generation']=2
+        data=gc.canonical(old);sha=hashlib.sha256(data).hexdigest()
+        asset=fixtures.asset('manifest-'+sha+'.json',sha,size=len(data),id=99)
+        gc.audit_manifests(self.manifest,[asset],lambda _:data)
+        with self.assertRaises(ValueError):gc.audit_manifests(self.manifest,[asset],lambda _:data+b'changed')
 
 
 if __name__=='__main__':unittest.main()

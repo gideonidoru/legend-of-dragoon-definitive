@@ -42,6 +42,19 @@ def remote_name(record):
     return reuse
 
 
+def reused_asset(record, current, release):
+    name=remote_name(record)
+    asset=current.get(name)
+    # An interrupted initial migration can already have renamed this exact ID.
+    # The old, source-bound CI receipt remains replayable without downloading media.
+    if asset is None and record['name']=='FMVHD-v0.1.0-videos.zip':
+        name=descriptor_name('fmvSource',record['sha256']);asset=current.get(name)
+    checked=check_asset(asset or {},name,record['size'],record['sha256'],release['tag_name'])
+    if str(release['id'])!=str(record.get('releaseId')) or str(checked['id'])!=str(record.get('assetId')):
+        raise ValueError('Reused asset/release ID changed')
+    return checked
+
+
 def materialize(record, dest, current, tag):
     """Only small descriptors/bootstrap need a local copy for archive validation."""
     if dest.exists():
@@ -121,11 +134,7 @@ def main():
                     if target.is_symlink() or (target.stat().st_size,digest(target))!=(record['size'],record['sha256']):raise ValueError('CI upload bytes differ from receipt')
                     actual_uploaded[name]=(record['size'],record['sha256'])
                 elif record['disposition']=='reuse':
-                    if str(latest['id'])!=str(record.get('releaseId')):raise ValueError('Reused release identity changed')
-                    reuse_name=remote_name(record)
-                    asset=current.get(reuse_name,{})
-                    check_asset(asset,reuse_name,record['size'],record['sha256'],latest['tag_name'])
-                    if str(asset['id'])!=str(record.get('assetId')):raise ValueError('Reused asset ID changed')
+                    reused_asset(record,current,latest)
                 elif record['disposition']!='linux' or platform!='macos-arm64':
                     raise ValueError('Invalid delta disposition')
         print('Verified source-bound delta:',platform,flush=True)
@@ -178,7 +187,7 @@ def main():
     if (staged/source_name).exists() and not (staged/immutable).exists():os.link(staged/source_name,staged/immutable)
     required[immutable]=dict(bytes=record['size'],sha256=record['sha256'],**({'path':immutable} if (staged/immutable).exists() else {}))
     descriptor_inputs['fmvSource']=immutable
-    source_asset=current.get(remote_name(record))
+    source_asset=reused_asset(record,current,latest) if record['disposition']=='reuse' else current.get(remote_name(record))
     source_rename=None
     if source_asset is not None and source_asset['name']!=immutable:
         source_rename=dict(id=source_asset['id'],oldName=source_asset['name'],name=immutable,bytes=record['size'],sha256=record['sha256'])

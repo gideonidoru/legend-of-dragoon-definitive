@@ -11,8 +11,9 @@ import hashlib
 import importlib.util
 import json
 import re
+import subprocess
 from datetime import datetime
-from current_publication import TAG, REPO, PLATFORMS, canonical, parse_body, check_references, index_assets, check_asset, closure
+from current_publication import TAG, REPO, PLATFORMS, canonical, parse_body, check_references, index_assets, check_asset, closure, validate_manifest, unique_object
 
 ALIASES={'Install-Definitive.desktop','Install-Definitive.sh','Definitive-Installer.zip','SHA256SUMS',
          'Legend-of-Dragoon-Definitive-linux-x64.zip','Legend-of-Dragoon-Definitive-macos-arm64.zip',
@@ -42,6 +43,23 @@ def plan(manifest, assets, required, aliases):
     return dict(manifestSha256=sha,kept=sorted(keep),protected=sorted(protected),remove=remove)
 
 
+def audit_manifests(manifest, assets, fetch):
+    current_sha=hashlib.sha256(canonical(manifest)).hexdigest()
+    for asset in assets:
+        match=re.fullmatch(r'manifest-([a-f0-9]{64})\.json',asset['name'])
+        if not match or match[1]==current_sha:continue
+        if type(asset.get('size')) is not int or not 1<=asset['size']<=8192:
+            raise ValueError('Staged manifest is not bounded; cleanup stopped')
+        check_asset(asset,asset['name'],asset['size'],match[1])
+        data=fetch(asset)
+        if len(data)!=asset['size'] or hashlib.sha256(data).hexdigest()!=match[1]:
+            raise ValueError('Staged manifest bytes differ from its hash')
+        candidate=json.loads(data,object_pairs_hook=unique_object);validate_manifest(candidate,manifest['releaseId'])
+        if canonical(candidate)!=data:raise ValueError('Staged manifest is not canonical')
+        if candidate['generation']>=manifest['generation']:
+            raise ValueError('An equal or newer staged manifest protects its referenced files; cleanup stopped')
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--publication',type=Path,required=True);parser.add_argument('--execute',action='store_true')
@@ -55,11 +73,27 @@ def main():
     module=importlib.util.spec_from_file_location('publisher',Path(__file__).with_name('publish-current-release.py'))
     publisher=importlib.util.module_from_spec(module);module.loader.exec_module(publisher)
     server=publisher.GitHub(int(proof['manifest']['releaseId']))
+    stager=publisher.load_stager()
+    keep_run=stager.verify_run(proof['manifest']['buildRun'],proof['manifest']['sourceRevision'])
+    def protect_work():
+        releases=[r for page in stager.paged(f'repos/{REPO}/releases?per_page=100') for r in page]
+        if any(r.get('draft') for r in releases):
+            raise ValueError('Active draft references require a complete audit before asset cleanup')
+        runs=[run for page in stager.paged(f'repos/{REPO}/actions/workflows/build.yml/runs?event=workflow_dispatch&per_page=100') for run in page['workflow_runs']]
+        for run in runs:
+            if run['id']==keep_run['id']:continue
+            if time(run['created_at'])>=time(keep_run['created_at']):
+                raise ValueError('A newer candidate build requires reference auditing before cleanup')
     def verify():
+        protect_work()
         latest=server.api(f'repos/{REPO}/releases/latest');current=server.release()
         if latest['id']!=server.id or current['tag_name']!=TAG or current.get('draft') or current.get('prerelease') or parse_body(current.get('body') or '',server.id)!=proof['manifest']:
             raise ValueError('The verified current revision changed; cleanup stopped')
-        return plan(proof['manifest'],server.assets(),proof['closure'],proof['aliases'])
+        assets=server.assets()
+        def fetch(asset):
+            return subprocess.check_output(['curl','--fail','--location','--proto','=https','--proto-redir','=https','--connect-timeout','20','--max-time','60','--max-filesize','8192','--silent','--show-error',asset['browser_download_url']])
+        audit_manifests(proof['manifest'],assets,fetch)
+        return plan(proof['manifest'],assets,proof['closure'],proof['aliases'])
     initial=verify();deleted=[]
     if args.execute:
         for asset in initial['remove']:
@@ -74,4 +108,4 @@ def main():
 
 if __name__=='__main__':
     try:main()
-    except (ValueError,KeyError,OSError) as error:raise SystemExit('Retention stopped: '+str(error))
+    except (ValueError,KeyError,OSError,subprocess.SubprocessError) as error:raise SystemExit('Retention stopped: '+str(error))

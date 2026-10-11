@@ -118,6 +118,10 @@ class Transaction(unittest.TestCase):
         movie=next(n for n in self.inputs['immutable'] if n.startswith('file-'));del self.server.files[movie]
         with self.assertRaises(ValueError):self.run_publish()
         self.assertFalse(any(e[0]=='commit' for e in self.server.events))
+    def test_local_lock_is_shared_across_different_staging_directories(self):
+        with publisher.publication_lock():
+            with self.assertRaises(BlockingIOError):publisher.publication_lock()
+        with publisher.publication_lock():pass
 
 
 if __name__=='__main__':unittest.main()
