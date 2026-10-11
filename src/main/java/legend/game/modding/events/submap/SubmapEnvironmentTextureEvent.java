@@ -13,6 +13,9 @@ public class SubmapEnvironmentTextureEvent extends InGameEvent<SMap> implements 
   public Texture background;
   public legend.definitive.rendering.EnvironmentLight lighting;
   public final Texture[] foregrounds;
+  /** Optional cropped artwork quads in native canvas coordinates; slot order stays authoritative. */
+  public final legend.core.gpu.Rect4i[] foregroundRects;
+  public java.util.function.Supplier<legend.definitive.artwork.FieldImages.Source> nativeImages;
 
   public SubmapEnvironmentTextureEvent(final SMap engineState, final GameState52c gameState, final Submap submap, final int disk, final int submapCut, final int foregroundCount) {
     super(engineState, gameState);
@@ -20,6 +23,7 @@ public class SubmapEnvironmentTextureEvent extends InGameEvent<SMap> implements 
     this.disk = disk;
     this.submapCut = submapCut;
     this.foregrounds = new Texture[foregroundCount];
+    this.foregroundRects = new legend.core.gpu.Rect4i[foregroundCount];
     this.lighting = legend.definitive.rendering.EnvironmentLight.loadOptional(disk, submapCut);
   }
 

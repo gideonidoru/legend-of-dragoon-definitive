@@ -85,7 +85,7 @@ def verify_review(note,record):
         raise ValueError('Field review differs from candidate output or exceeds candidate acceptance')
 
 
-def publish(files,staging,legacy_staging,review_file,repaired_staging=None):
+def publish(files,staging,legacy_staging,review_file,repaired_staging=None,reviewed_subset=False):
     for path in (staging,legacy_staging)+((repaired_staging,) if repaired_staging is not None else ()):
         battle.private_destination(files,path)
         if path.is_symlink() or path.resolve().is_relative_to(ROOT):
@@ -105,7 +105,12 @@ def publish(files,staging,legacy_staging,review_file,repaired_staging=None):
     reviews=batch.read_control(review_file)
     if not isinstance(reviews,dict) or set(reviews)!={'reviews'}:
         raise ValueError('Invalid field review controls')
-    notes=reviews['reviews'];verify_complete_records(masters,original_records,notes)
+    notes=reviews['reviews']
+    if reviewed_subset:
+        keys={m['decodedRgbaSha256'] for m in masters}
+        if not notes or not set(notes)<=keys: raise ValueError('Invalid reviewed subset')
+        verify_complete_records(masters,original_records,{key:None for key in keys})
+    else: verify_complete_records(masters,original_records,notes)
     original_by_key={r['decodedRgbaSha256']:r for r in original_records}
     if repaired_staging is not None:
         repair_plan=batch.read_control(battle.staging_path(repaired_staging,'repair-plan.json'))
@@ -119,12 +124,18 @@ def publish(files,staging,legacy_staging,review_file,repaired_staging=None):
         if repair_plan!=expected_repair_plan:
             raise ValueError('Field repair source or algorithm history differs')
         records=batch.read_control(battle.staging_path(repaired_staging,'candidates.json'))
-        verify_complete_records(masters,records,notes)
+        verify_complete_records(masters,records,{key:None for key in by_key} if reviewed_subset else notes)
+    if reviewed_subset:
+        final_records={r['decodedRgbaSha256']:r for r in records}
+        for key,note in notes.items(): verify_review(note,final_records[key])
+        if not any(n['verdict']=='visual-reviewed-runtime-pending' for n in notes.values()): raise ValueError('No reviewed development images')
     production=ROOT/'integrations/envhd/production'
     assets=[];copies=[]
     # Bounded per-image validation avoids loading gigabytes of PNGs at once.
     for record in records:
-        key=record['decodedRgbaSha256'];item=by_key[key];note=notes[key]
+        key=record['decodedRgbaSha256']
+        if reviewed_subset and (key not in notes or notes[key]['verdict']!='visual-reviewed-runtime-pending'): continue
+        item=by_key[key];note=notes[key]
         original_record=original_by_key[key]
         original_data=terrain.bounded_read(battle.staging_path(staging,key+'.png'),32*1024*1024)
         batch.validate(item,original_record,original_data)
@@ -173,7 +184,7 @@ def publish(files,staging,legacy_staging,review_file,repaired_staging=None):
                 sourceConfigurations=report['sourceConfigurations'],
                 visualReviewed=sum(a['reviewStatus']=='visual-reviewed-runtime-pending' for a in assets),
                 revisionsNeeded=sum(a['reviewStatus']=='intent-revision-needed' for a in assets),
-                scope='Complete candidate history only; field runtime adapter and installed selections remain pending')
+                scope='Reviewed development subset; held and unreviewed candidates remain native' if reviewed_subset else 'Complete candidate history only; field runtime adapter and installed selections remain pending')
     ledger_path=battle.staging_path(ROOT,'integrations/envhd/production/field-artwork.json')
     ledger_bytes=publication.json_bytes(ledger)
     for source,target,manifest,data,expected_hash in copies:
@@ -191,5 +202,6 @@ if __name__=='__main__':
     for name in ('files','staging','legacy-staging','reviews'):
         parser.add_argument('--'+name,type=Path,required=True)
     parser.add_argument('--repaired-staging',type=Path,help='Complete exact source-perimeter repair batch; reviews must name its final output hashes')
+    parser.add_argument('--reviewed-subset',action='store_true',help='Publish only explicitly reviewed development baselines; owner requested installation 2026-10-10')
     args=parser.parse_args()
-    print('Versioned custom field candidates:',publish(args.files,args.staging,args.legacy_staging,args.reviews,args.repaired_staging))
+    print('Versioned custom field candidates:',publish(args.files,args.staging,args.legacy_staging,args.reviews,args.repaired_staging,args.reviewed_subset))

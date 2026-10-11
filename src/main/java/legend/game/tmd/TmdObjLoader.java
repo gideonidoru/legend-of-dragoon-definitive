@@ -106,7 +106,8 @@ public final class TmdObjLoader {
     if(appearance != geometry) {
       try {
         final MeshObj result = fromObjTableRaw(name, appearance, specialFlags, textureWidth, textureHeight, materials);
-        objTable.refinedObj = result;
+        if(materials == null) objTable.refinedObj = result;
+        else result.surfaceMaterial = appearance.surfaceMaterialLike(objTable);
         return result;
       } catch(final RuntimeException failure) {
         LogManager.getLogger().warn("Optional appearance allocation retained geometry {}: {}", name, failure.getMessage());

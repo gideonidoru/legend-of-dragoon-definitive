@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "pipeline": "envhd-static-battle-atlas-1",
+  "modelSha256": "5eb487cd1886555ec0be98e51012e9135b5eee7faa7056e29eee8c17b27777ff",
+  "timSha256": "8b59039a0b5f1dfe83935d7b8b316e4f833051b3dd33d7d95b42b82fe8a3bb32",
+  "scale": 4,
+  "atlasSize": [
+    4096,
+    384
+  ],
+  "atlasSha256": "3edeb67c178d43e6cad365b0f062f832e6beb80189190028d19311df7df0e458",
+  "regions": [
+    {
+      "page": 7,
+      "clut": 15644,
+      "sourceCrop": [
+        184,
+        56,
+        256,
+        104
+      ],
+      "sourceUvOrigin": [
+        184,
+        56
+      ],
+      "sourceSize": [
+        72,
+        48
+      ],
+      "decodedRgbaSha256": "db596ef08ebf304c8ca576fb069302301afc42909f3ffef77926ab89358d76ec",
+      "atlasRect": [
+        1120,
+        32,
+        288,
+        192
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 15708,
+      "sourceCrop": [
+        0,
+        88,
+        256,
+        168
+      ],
+      "sourceUvOrigin": [
+        0,
+        88
+      ],
+      "sourceSize": [
+        256,
+        80
+      ],
+      "decodedRgbaSha256": "042ec82a283c744b3060315d4c41791101b5b8b8ba0d0dadf56b9e037e92cd8b",
+      "atlasRect": [
+        32,
+        32,
+        1024,
+        320
+      ]
+    },
+    {
+      "page": 7,
+      "clut": 15772,
+      "sourceCrop": [
+        56,
+        120,
+        88,
+        152
+      ],
+      "sourceUvOrigin": [
+        56,
+        120
+      ],
+      "sourceSize": [
+        32,
+        32
+      ],
+      "decodedRgbaSha256": "a4bc567e5887865bd9e9e70a3adc5c67336eab306e26635be381bceb8889b993",
+      "atlasRect": [
+        1472,
+        32,
+        128,
+        128
+      ]
+    }
+  ]
+}

@@ -67,13 +67,14 @@ binding held. Animated ocean part zero retains its native texture/CLUT animation
 covering 364 HD material bindings in the default development installation. The
 uniform-color exemption and wrapped binding remain native. Native scene inspection
 and final visual acceptance are still pending. Candidate history lives under
-`terrain-candidates`; this development increment is separate from the frozen release.
+`terrain-candidates`; these are selected development resources for the owner-requested default installation.
 See `docs/definitive/ENVHD_TERRAIN_PRODUCTION.md` for the source and integration gates.
 
 `battle-material-artwork.json` records 518 new static battle-material candidates
 for 525 bindings, with 506 reviewed development baselines and twelve bespoke
 revision flags. Their immutable custom images/manifests live in
-`battle-material-candidates`; no new battle runtime selection is made. The fresh
+`battle-material-candidates`; `battle-material-runtime-artwork.json` selects 506 masters
+through 72 static stage atlases covering 513 new bindings. Revision holds retain native sampling. The fresh
 900-binding census protects 24 existing pilot bindings and holds 351 animation or
 incomplete-palette dependencies. See `docs/definitive/ENVHD_BATTLE_MATERIAL_PRODUCTION.md`.
 
@@ -90,3 +91,12 @@ withdrawing the exact selected image removes its bindings and unreferenced runti
 copy while preserving the public candidate. A failed local publication rolls back
 the touched files. Run `scripts/test-envhd-sky-import.py` for synthetic regression
 fixtures; they use no retail artwork or game window.
+
+`field-artwork.json` publishes 2,723 reviewed development outputs and immutable
+source/output/review manifests under `field-candidates`. The reviewed-subset import
+still validates the complete private census and pinned repair/generation histories;
+it excludes 117 held and 2,322 unreviewed images. `field-runtime-artwork.json`
+selects 603 background-bound and 2,120 foreground-bound images. Selection replaces
+its complete owned runtime tree atomically, so withdrawn candidates cannot execute.
+Original foreground slots and cropped placement remain independent. The four
+resource-only field ZIPs are installed with the single EnvHD mod.

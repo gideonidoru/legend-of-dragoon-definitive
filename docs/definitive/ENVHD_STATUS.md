@@ -1,153 +1,75 @@
 # EnvHD integration status
 
-This thread owns EnvHD only. CharHD, UIHD and FxHD production is handled separately.
-Custom artwork and code are public and included by the existing default bundle
-build. Keep installer releases consolidated through the delivery thread; do not
-publish a new download for each asset/code iteration.
+This thread owns EnvHD only. The owner requested publication to main and the normal
+installation on October 10, 2026. Custom code and selected development artwork are
+public and versioned. CharHD, UIHD, FxHD and ModelsHD remain separately owned.
 
-EnvHD is not complete. See `ENVHD_FULL_COVERAGE.md` and the source-bound
-`integrations/envhd/production/full-coverage.json` for all categories, selected
-versus candidate counts, unresolved denominators and exact remaining work.
+EnvHD is incomplete. The controlling worklist is
+`integrations/envhd/production/full-coverage.json`; generation, runtime selection,
+native gameplay acceptance and final visual quality remain separate states.
 
-## Selected development artwork
+## Selected for the default installation
 
-- 70 distinct battle panoramas cover 73 source/header variants. One uniform-black
-  source is deliberately exempt. The public panorama history has 123 revisions.
-- 38 source-bound location landscapes and one parchment world-map backdrop now
-  have reviewed 4x neural baselines. Their public source/provenance/review ledger
-  is `integrations/envhd/production/world-artwork.json`.
-- The pre-existing battle-material pilot covers 24 material regions on stages 0/6.
-- Native gameplay/Steam Deck visual acceptance remains pending. Neural smoothing
-  does not establish final Skurfa-equivalent bespoke detail.
+- 70 battle panorama masters cover 73 source/header variants. One uniform-black
+  source remains native; immutable custom history contains 123 revisions.
+- 38 world location landscapes and one parchment backdrop retain their original
+  placement, fades, brightness and blending.
+- Eight static continent atlases select 292 reviewed masters for 364 material
+  bindings. One uniform source and one wrapped Tiberoa binding remain native.
+- New static battle atlases select 506 reviewed masters for 513 bindings across
+  72 stage sources. Together with the original stage 0/6 pilot, 537 of 900 material
+  bindings have selections. Twelve revision holds, 350 animation/context bindings
+  and one incomplete-palette binding retain native sampling.
+- 2,723 reviewed field images are selected independently: 603 background-bound
+  and 2,120 foreground-bound masters. They reach 605 source configurations with at
+  least one selected image, which does **not** mean complete scene coverage.
+  Empty/missing slots, held and unreviewed images keep their native content.
 
-The world backdrop retains original placement, three rendering paths, brightness
-and additive blending. Location images retain the 120x90 popup display, source
-palette/visibility and fades. Optional replacements honor prior mods; invalid
-artwork falls back to original. Text, controls, characters and effects are not
-part of these replacements. Both normal and abrupt world teardown release artwork.
-Retail placeholders (Forest of Winglies' inherited `dummy` image and map-thumbnail
-aliases) remain truthful source baselines, rather than invented canonical vistas.
+Field foregrounds keep their script slot, placement, movement, visibility,
+translucency and depth. No backdrop is copied into foreground masks. Each optional
+image is matched to decoded native pixels and a pinned output checksum before
+allocation. Failure falls back to the original layer.
+
+EnvHD is one independently switchable mod (`envhd`) in the game's internal Mods
+menu. Normal packages include its JAR plus four resource-only
+`EnvHD-Fields-v0.1.0-part-N.zip` files. These parts introduce no mod IDs or installer
+choices. They keep each downloadable asset below the release size limit. The
+checksum-addressed file delivery path supports fresh installation, updates,
+repair and complete reinstall without requiring an oversized monolithic download.
 
 ## Skurfa protection
 
-Existing Skurfa artwork, code, notices and pinned resource bytes remain unchanged.
-The ownership ledger protects 38 packs and 87 source-identical cut/period mappings.
-Reuse those resources; produce only unowned gaps. No field background listener or
-new field artwork has been added by the panorama/world extension yet.
+Skurfa's code, artwork and notices remain unchanged. The ownership ledger protects
+38 packs, 363 unique source images and 87 source-identical cut/period mappings;
+its existing adapter has 43 bindings. A conservative 44-cut runtime exclusion
+keeps EnvHD from superseding its scenes regardless of listener order. None of the
+605 selected EnvHD configurations intersects that cut set. Protected aliases are
+reuse work, not permission to redraw or rebrand upstream art.
 
-## Verification and remaining work
+## Validation and remaining work
 
-Independent Python/Java decoders agree on all 74 battle and 39 world sources.
-Seventeen batch, eight sky-import, eleven world and five ownership regression tests
-pass. On the combined main baseline `3472edf1e23b27fd06da1b81580e05985bf57d1e`,
-the Java delivery suite has 278 passes, seven skips, no failures. Run the audio
-regressions with their silent driver (`ALSOFT_DRIVERS=null`); an earlier run without
-that driver failed the unrelated audio-clock regression.
-Full original-source checks and packaged-byte validation accompany each final batch.
-No game window or visible desktop app was launched.
+Independent Java/native CPU decoding agrees with all 650 field configurations,
+5,528 unique visible images and 5,560 visible bindings. All 2,723 selected PNGs
+pass source dimensions, visibility, visible-black and output-checksum checks.
+All 72 new battle atlases pass source upload/CLUT/STP/black/padding validation and
+UV checks against 36,584 original textured faces. The battle decoder reproduces
+image-then-palette upload order, including overlapping rectangles.
 
-The ready asset source is `766f926a52655fdde5c4dab0cdeac86dad816146`.
-Integration preserves the combined build's ModelsHD 0.4 geometry hooks, renderer,
-UI scaling and delivery code. The popup conflict keeps `queueUiOrthoModel` together
-with the optional EnvHD thumbnail texture. No other mod's production folders change.
-The staged EnvHD JAR contains 225 byte-matching runtime files: 109 panorama/world
-PNGs plus the two pre-existing material-pilot atlas PNGs. Its SHA-256 is
-`557d9da1eb1408d0e9cac6520ef4c52c978f074e50696387a89e6367177a49b7`.
-All 406 Skurfa runtime files match the pinned upstream source. This is integration
-evidence; the delivery thread publishes the single consolidated installation.
+Synthetic regressions cover withdrawn selection removal, atomic field rollback,
+empty/clipped foreground slots, mixed native/HD ownership, split bundle loading,
+fresh file delivery, save-preserving reinstall and failed publication checks.
+Packaging and exact-source hosted release checks remain the delivery gate; these
+headless checks are not native gameplay or Steam Deck visual acceptance.
 
-The terrain batch remains independent on `codex/envhd-terrain` (draft PR #10),
-outside the frozen imminent combined release scope. Its reviewed
-pipeline source is `90a2dc037`. It generated 293 unique candidates for
-365 of 366 static material bindings across eight regions. Their custom PNGs and
-source-bound reviews are now versioned in `integrations/envhd/production/terrain-candidates`
-and `terrain-artwork.json`; original decodes and diagnostics remain private. One uniform-color
-candidate should retain native artwork, and one wrapped Tiberoa material remains
-held. Eight bounded, padded runtime atlases now select the 292 reviewed masters
-for 364 static bindings. Their selection ledger is `terrain-runtime-artwork.json`.
-Seventeen candidate/import and ten packing/selection regressions pass. Independent
-Java decoding agrees with all 293 source identities and validates all eight atlases.
-Ten Java regressions check source/mapping/callback and optional mesh behavior; the
-real continent mesh probe builds all 67 optional parts with the existing geometry
-hook and source-owned native exceptions. See `ENVHD_TERRAIN_PRODUCTION.md` for limits:
-native visual acceptance and final Skurfa-equivalent quality remain pending.
+All 5,162 unowned nonuniform field images were generated and repaired privately.
+Individual reviews cover 2,840 images; 117 need bespoke repair and 2,322 foregrounds
+still require review. Only the 2,723 reviewed development outputs are selected and
+published as field candidates. Immutable generation/repair/review receipts are
+historical checkpoints and retain their original zero-selection counters; current
+selection is controlled by `field-runtime-artwork.json` and
+`battle-material-runtime-artwork.json`.
 
-The next battle-material batch now versions 518 candidates for 525 static bindings:
-506 reviewed development baselines and twelve bespoke revision flags. No new battle
-runtime selection changes. The fresh 900-binding census protects 24 existing pilot
-bindings and holds 350 animated/animation-adjacent bindings plus one incomplete
-8-bit palette. See `ENVHD_BATTLE_MATERIAL_PRODUCTION.md` for source/review evidence
-and the pending atlas integration.
-
-Next production categories remain battle-material runtime integration and animated
-surfaces, unowned field scenes and environmental props. The field census has 612
-unowned configurations before visual deduplication/empty-layer filtering; shared
-sources and Skurfa aliases must stay deduplicated. Full EnvHD completion is not
-claimed by these baseline batches. Improve bespoke materials and inspect
-native scene behavior before claiming final visual acceptance.
-
-The field census is now decoded and independently checked by native Java CPU
-decoders: 650 configurations, 5,528 unique visible images, 124 empty slots and
-seven native missing-texture slots. The public `field-source-worklist.json` tracks
-every image/scene identity. Of 5,165 unowned visible images, three uniform sources
-remain native and 5,162 require restoration. Runtime selections are still zero.
-The complete private batch preserves each foreground independently; it does not
-flatten movable, hideable or alternate layers into the background.
-
-Field production source `75f924ac4` produced 724 complete private candidates before
-a checkpoint. The directory batch reuses those validated outputs with their exact
-origin-plan/source/output hashes, then restores the remaining complete worklist
-with backgrounds first. Eight real samples are pixel-identical between per-image
-and persistent-directory inference; the eight-sample directory run took 1.83
-seconds. Twenty-five synthetic fixtures now cover complete alias/render guards,
-pinned predecessor identity, altered reused-output rejection, fixed chunk identity
-across interruption, full-worklist/review publication, immutable revisions and
-interrupted imports. Both independent review axes accepted these safeguards.
-All outputs remain review candidates; none are new runtime selections.
-
-The field importer requires every candidate and every individual review before
-publishing a complete ledger. It independently compares the fresh source census
-with both actual generation histories, including byte-identical reused outputs.
-It processes PNGs individually rather than retaining gigabytes in memory.
-Immutable candidate files are written first and the complete ledger last; an
-interruption can leave resumable candidate files but cannot establish coverage.
-Source intent, style, layout and exact output identity are recorded separately
-from native gameplay and final quality, which remain pending.
-
-Initial field comparison boards expose colored placeholder areas beneath native
-foregrounds. Neural output around those edges requires source-bound repair and
-foreground composition review before selection. Preserve source layers and
-script state; do not turn those placeholders into invented scenery or flatten
-all foregrounds into the backdrop. The comparison boards and original pixels
-remain private diagnostics.
-
-The complete directory generation pass finished all 5,162 images. Every candidate
-record and PNG output hash is verified in `field-generation-receipt.json`; this
-public metadata receipt contains no original or generated pixels and claims zero
-runtime selections or acceptance. Generated PNGs total approximately 2.5 GB.
-
-Source `d75bc6385` implements a separate Python source-color perimeter repair.
-Frequent exact native green/cyan/yellow/magenta regions in background-bound images
-and their one-pixel source perimeter are retained exactly at 4x; neural pixels
-elsewhere remain unchanged. The operation adds no hidden scenery, averaging or
-foreground flattening. Its complete input history is checked before output,
-drifting controls and overlapping input/output paths reject, and each repaired
-candidate retains the original neural record as its input provenance. Independent
-review accepted the repair and all regression fixtures. Repairs and their final
-output hashes must receive individual visual review before publication.
-
-Source `cf492c377` extends the repair to frequent exact red/blue regions while
-retaining explicit validation of the historical four-color operation. All 5,162
-images completed the second pass; 342 backgrounds received source-bound guards.
-Three red-placeholder variants changed from the first pass and were re-reviewed.
-Repair records must match their batch's pinned algorithm, including on resume and
-publication. Both revision identities are preserved in the publication registry.
-
-The public `field-repair-receipt.json` records every validated repaired output hash
-and its neural input hash. `field-review-receipt.json` records individual intent,
-style and layout notes for all 608 backgrounds and the first 2,232 foregrounds.
-Of these 2,840 comparisons, 2,723 are reviewed development baselines and one hundred seventeen images
-need bespoke work on source identity, shape, signage or fine detail. The remaining 2,322 foreground comparisons,
-runtime integration and native/final acceptance are pending. These receipts
-contain metadata only; no complete candidate publication or installed field
-coverage is claimed. All 71 field/battle/terrain/ownership Python tests pass.
+Field props/overlays still need consumer ownership classification. Environment
+animation needs complete frame/palette families. Wrapped terrain, held motifs,
+source reachability, script states, native rendering and final Skurfa-equivalent
+quality remain open. All native/final-quality acceptance counts remain zero.

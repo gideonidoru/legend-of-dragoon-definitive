@@ -6,6 +6,7 @@ from pathlib import Path
 import tempfile
 import unittest
 import zipfile
+from unittest import mock
 from package_validation import ROOT, file_delivery_assets
 
 spec = importlib.util.spec_from_file_location('assembler', Path(__file__).with_name('assemble-file-delivery.py'))
@@ -38,6 +39,27 @@ class FileDeliveryTests(unittest.TestCase):
             data = (self.output/'files'/name).read_bytes()
             self.assertEqual((len(data),hashlib.sha256(data).hexdigest()), (size,digest))
         assembler.assemble(self.package, self.output)
+    def test_file_only_release_still_requires_every_verified_blob_and_matching_inventory(self):
+        contents=assembler.assemble(self.package,self.output,thin_release=True,archive_limit=0)
+        from package_validation import verify_package
+        with self.assertRaises(ValueError):verify_package(self.package,'linux-x64','a'*40,'fixture')
+        verify_package(self.package,'linux-x64','a'*40,'fixture',allow_file_delivery=True)
+        self.assertEqual(2,len(file_delivery_assets(self.package,contents)))
+        assembler.assemble(self.package,self.output,thin_release=True,archive_limit=0)
+        next((self.output/'files').iterdir()).write_bytes(b'corrupt')
+        with self.assertRaises(ValueError):assembler.assemble(self.package,self.output,thin_release=True,archive_limit=0)
+
+    def test_corrupt_first_extraction_keeps_complete_archive(self):
+        original = self.package.read_bytes()
+        real_copy = assembler.shutil.copyfileobj
+        def corrupt_copy(source, destination, length):
+            data = source.read()
+            destination.write(bytes([data[0] ^ 1]) + data[1:])
+        with mock.patch.object(assembler.shutil, 'copyfileobj', side_effect=corrupt_copy):
+            with self.assertRaises(ValueError):
+                assembler.assemble(self.package, self.output, thin_release=True, archive_limit=0)
+        self.assertEqual(original, self.package.read_bytes())
+
     def test_corrupt_existing_blob_fails_closed(self):
         assembler.assemble(self.package,self.output)
         blob = next((self.output/'files').iterdir()); blob.write_bytes(b'wrong')

@@ -268,7 +268,7 @@ tasks.named('portableInstaller') { into('manager-libs') { from configurations.ma
 // Per-file downloads are emitted from the same verified archive, without recompression.
 tasks.register('definitiveFileDelivery', Exec) {
   dependsOn definitivePackage
-  doFirst { commandLine 'python3', 'scripts/assemble-file-delivery.py', '--package', tasks.definitivePackage.archiveFile.get().asFile.absolutePath, '--output', layout.buildDirectory.dir('distributions').get().asFile.absolutePath }
+  doFirst { commandLine 'python3', 'scripts/assemble-file-delivery.py', '--thin-release', '--package', tasks.definitivePackage.archiveFile.get().asFile.absolutePath, '--output', layout.buildDirectory.dir('distributions').get().asFile.absolutePath }
 }
 
 // Explicit private field census check using actual native CPU decoders; no renderer.
@@ -279,5 +279,16 @@ tasks.register('fieldSourceAudit', JavaExec) {
   jvmArgs '-Xmx2g', '-Djava.awt.headless=true'
   doFirst {
     args providers.gradleProperty('fieldSourceRoot').get(), providers.gradleProperty('fieldCensus').get()
+    if(providers.gradleProperty('fieldRuntime').isPresent()) args providers.gradleProperty('fieldRuntime').get()
+  }
+}
+
+tasks.register('battleMaterialSourceAudit', JavaExec) {
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'legend.definitive.artwork.BattleMaterialSourceAudit'
+  jvmArgs '-Xmx2g', '-Djava.awt.headless=true'
+  doFirst {
+    args providers.gradleProperty('battleSourceRoot').get(), file('integrations/envhd/runtime-assets/envhd').absolutePath, file('integrations/envhd/production/battle-material-runtime-artwork.json').absolutePath
   }
 }

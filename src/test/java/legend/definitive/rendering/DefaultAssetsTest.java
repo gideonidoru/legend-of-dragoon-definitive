@@ -82,6 +82,12 @@ class DefaultAssetsTest {
     assertThrows(IllegalArgumentException.class,()->NativeEnvironmentImages.decode(new NativeEnvironmentImages.Tile[33]));
     assertThrows(IllegalArgumentException.class,()->NativeEnvironmentImages.decode(new NativeEnvironmentImages.Tile[] {new NativeEnvironmentImages.Tile(source,0,0,99,99,false)}));
   }
+  @Test void nativeEmptyAndClippedEmptyForegroundSlotsRetainTheirIndices() {
+    final Tim source=tim();
+    final var result=NativeEnvironmentImages.decode(new NativeEnvironmentImages.Tile[]{new NativeEnvironmentImages.Tile(source,0,0,0,2,true),new NativeEnvironmentImages.Tile(source,4,2,1,1,true),new NativeEnvironmentImages.Tile(source,0,0,1,1,true)});
+    assertNull(result[0]);assertNull(result[1]);assertNotNull(result[2]);
+    assertThrows(IllegalArgumentException.class,()->NativeEnvironmentImages.decode(new NativeEnvironmentImages.Tile[]{new NativeEnvironmentImages.Tile(source,5,2,1,1,true)}));
+  }
   @Test void artworkHintsHonorAliasesAndRetainedMemoryBudget() {
     assertTrue(DefaultBackgroundPrewarming.resources(1,15).getFirst().contains("cut37/"));
     assertTrue(DefaultBackgroundPrewarming.resources(1,56).getFirst().contains("cut14/"));

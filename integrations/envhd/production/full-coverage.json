@@ -15,7 +15,10 @@
     "world-artwork.json": "958abf47591e6d4d3e9d1c48a1db843e4662bc0c7f521868b3a684ab30f9e5b7",
     "field-source-worklist.json": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
     "field-repair-receipt.json": "6acbbcbafd10e4a808629a8164f2e57323cbb6dfef7264ca7d40c62767eb62d3",
-    "field-review-receipt.json": "6a2d8b54611dceeab0328776e26ad653a82b9fce295a7a1f5f4fbe0d0d2c84f3"
+    "field-review-receipt.json": "6a2d8b54611dceeab0328776e26ad653a82b9fce295a7a1f5f4fbe0d0d2c84f3",
+    "field-artwork.json": "015b85f1412bed2acfe07244338c3f271e6bb4caf6cbfc941e51ce215f175041",
+    "field-runtime-artwork.json": "a99d04d724191d82fad0d5b4c3fd489c2d2acdc1670ffd8486be9ee1196dd3b9",
+    "battle-material-runtime-artwork.json": "011e5a9206e750b2b4fcfbeb0fb22aa524a97fbee3ca483ea68e09c2bfc941d8"
   },
   "categories": [
     {
@@ -71,7 +74,7 @@
       "intentionalNativeUniformBindings": 1,
       "heldWrappedBindings": 1,
       "uncoveredBindings": 1,
-      "adapter": "Eight source-bound atlases implemented on terrain draft PR 10; not proof of delivery in current consolidated release.",
+      "adapter": "Eight source-bound static atlases selected for the default EnvHD installation; native gameplay and final quality pending.",
       "ledger": "terrain-runtime-artwork.json",
       "remaining": [
         "Repair wrapped Tiberoa material with source-faithful tiled UV handling.",
@@ -89,8 +92,8 @@
       "generatedNewMasters": 518,
       "reviewedNewDevelopmentMasters": 506,
       "bespokeRevisionMasters": 12,
-      "newSelectedBindings": 0,
-      "uncoveredBindings": 876,
+      "newSelectedBindings": 513,
+      "uncoveredBindings": 363,
       "heldAnimationAndContextBindings": 350,
       "heldIncompletePaletteBindings": 1,
       "censusStatuses": {
@@ -99,15 +102,17 @@
         "held-native-texture-animation": 350,
         "protected-existing-pilot": 24
       },
-      "adapter": "Existing stages 0/6 pilot only. New mixed HD/native atlas integration pending.",
+      "adapter": "Source-bound mixed HD/native atlases select reviewed static crops; native animation and counterattack darkening remain original.",
       "ledger": "battle-material-artwork.json",
       "remaining": [
-        "Select and map eligible material candidates without changing original animation or geometry.",
         "Repair twelve output-bound carved/emblem/motif candidates.",
         "Restore animated textures, palettes and adjacent sampling context.",
         "Resolve stage 67 incomplete 8-bit palette from actual gameplay upload state.",
         "Native battle/camera/counterattack/lifetime validation and final quality."
-      ]
+      ],
+      "newSelectedMasters": 506,
+      "totalSelectedBindings": 537,
+      "runtimeLedger": "battle-material-runtime-artwork.json"
     },
     {
       "id": "field-backgrounds-and-foregrounds",
@@ -122,18 +127,16 @@
       "skurfaExistingDiskCutAdapterBindings": 43,
       "envhdUnownedConfigurations": 612,
       "envhdGeneratedMasters": 5162,
-      "envhdSelectedConfigurations": 0,
-      "uncoveredEnvhdConfigurations": 612,
+      "envhdSelectedConfigurations": 605,
+      "uncoveredEnvhdConfigurations": 7,
       "emptyForegroundSlots": 123,
       "uniqueVisibleUnownedPixelImages": 5165,
-      "adapter": "Existing Skurfa 43 disk/cut bindings. EnvHD gap/alias source-bound listener not implemented. Protected source aliases are a reuse worklist, not 87 proven runtime replacements.",
+      "adapter": "Source-bound independent background/foreground selection with per-slot cropped placement and protected Skurfa cuts; missing/held/unreviewed layers remain native.",
       "ledger": "field-ownership.json",
       "remaining": [
-        "Review the remaining 2322 independent foreground candidates and resolve one hundred seventeen source-identity, shape, signage or fine-detail holds before complete candidate publication; retain three uniform native sources and script-indexed empty/missing slots.",
+        "Review 2322 remaining foreground candidates and resolve 117 source-identity, shape, signage or fine-detail holds. Three uniform sources and empty/missing native slots remain original.",
         "Validate script reachability and all movable/hidden/translucent/alternate foreground-state families; exact pixel deduplication is complete for the decoded available source configurations.",
         "Reuse all 38 Skurfa packs and audit every protected alias; never regenerate them.",
-        "Restore all 612 unowned configurations, preserving movable/hidden/translucent/alternate foregrounds separately.",
-        "Implement source-bound load/cache/teardown and foreground mapping.",
         "Validate every cut/period/renderable source route, script states, occlusion and native gameplay."
       ],
       "uniqueVisibleSourceImages": 5528,
@@ -145,9 +148,9 @@
       "nativeMissingTextureSlots": 7,
       "pixelSourceLedger": "field-source-worklist.json",
       "independentNativePixelAgreement": "650/650 configurations and 5528/5528 unique decodes",
-      "envhdPublishedCandidateMasters": 0,
+      "envhdPublishedCandidateMasters": 2723,
       "generationReceipt": "field-generation-receipt.json",
-      "generationStage": "Complete private generation and Python repair batch; individual review partially complete, publication and runtime integration pending.",
+      "generationStage": "Complete private generation and repair; reviewed development subset selected for owner-requested installation.",
       "envhdRepairedMasters": 5162,
       "sourceGuardedBackgroundMasters": 342,
       "individuallyComparedMasters": 2840,
@@ -157,7 +160,10 @@
       "backgroundMastersCompared": 608,
       "foregroundMastersCompared": 2232,
       "repairReceipt": "field-repair-receipt.json",
-      "reviewReceipt": "field-review-receipt.json"
+      "reviewReceipt": "field-review-receipt.json",
+      "selectedConfigurationsMeaning": "At least one reviewed image selected; not complete scene coverage or proven route reachability",
+      "envhdSelectedMasters": 2723,
+      "runtimeLedger": "field-runtime-artwork.json"
     },
     {
       "id": "field-environment-props-and-scene-overlays",
@@ -211,5 +217,5 @@
     "All source-bound runtime adapters and default-install package checks pass.",
     "Native gameplay and Steam Deck visual acceptance plus final Skurfa-equivalent quality review."
   ],
-  "publication": "Custom candidates are public Git history. No standalone or partial EnvHD download; installable changes remain subject to the consolidated release gate."
+  "publication": "Owner-requested consolidated default installation includes only reviewed development selections. Public immutable candidate history is separate from runtime selection. Exact-source release validation remains required; EnvHD campaign and final quality completion are not claimed."
 }

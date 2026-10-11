@@ -12,9 +12,9 @@ owned. Custom deliverables are public; originals and private diagnostics are not
 | Battle panoramas | 74 source/header variants, 70 nonuniform masters | 73 bindings / 70 masters | Uniform black intentionally native; gameplay and final quality pending |
 | Location landscapes | 38 source images | 38 | Gameplay and final quality pending |
 | World parchment backdrop | 1 source image | 1 | Gameplay and final quality pending |
-| Static continent terrain | 366 material bindings | 364 / 292 masters on terrain draft | 1 uniform native, 1 wrapped material held; gameplay and final quality pending |
-| Battle floors, walls and scenery | 900 bindings across 89 nonempty stages | 24 existing pilot bindings | 876 uncovered; 518 new candidates cover 525 static bindings but **zero new selections**; 12 masters need repair; 350 animation/context bindings and 1 incomplete palette held |
-| Field backgrounds/foregrounds | 650 source configurations; 5,528 unique visible images | 38 existing Skurfa packs; EnvHD gaps 0 | All 5,162 nonuniform unowned images generated and repaired privately; 608 backgrounds and 2,232 foregrounds compared, one hundred seventeen bespoke holds; remaining review and integration pending; three uniform sources native; 612 configurations, protected aliases, foreground states and validation |
+| Static continent terrain | 366 material bindings | 364 bindings / 292 masters | 1 uniform native, 1 wrapped material held; gameplay and final quality pending |
+| Battle floors, walls and scenery | 900 bindings across 89 nonempty stages | 537 bindings (24 pilot + 513 new), 506 new selected masters | 363 native bindings: 12 revision holds, 350 animation/context bindings and 1 incomplete palette |
+| Field backgrounds/foregrounds | 650 source configurations; 5,528 unique visible images | 38 existing Skurfa packs; 2,723 EnvHD images (603 background-bound, 2,120 foreground-bound) | 117 bespoke holds and 2,322 unreviewed foregrounds; 3 uniform sources native; 605 configurations have at least one selected layer, not complete scene coverage; script/route/visual validation pending |
 | Field props and scene overlays | Mixed pool: 481 field-object page hashes and 400 overlay page hashes | EnvHD 0 | Complete consumer/ownership/material census first; these are **not** 881 EnvHD jobs |
 | Animated environment surfaces | Exact frame/palette denominator unresolved; eight continent animated parts and 350 held battle bindings known | 0 HD animation families | Water, scrolling surfaces, scenery frames/palettes, mapping and validation |
 
@@ -40,11 +40,11 @@ slots, movable/hideable layers, translucency and alternate frames. A single
 composited master copied into every mask would bake hidden/moving foregrounds into
 the backdrop. Preserve each source layer's content and state when restoring them.
 
-The selected panorama/world assets are on the prior integrated development
-baseline. Static terrain remains on draft PR 10, and the new battle material
-history is an independent draft increment stacked above it. These branch results
-are not proof that the current consolidated downloadable installer includes them.
-No partial or standalone EnvHD release is produced by these checkpoints.
+The owner-requested default installation selects the reviewed development subset
+under one EnvHD mod. Four field resource ZIPs accompany its JAR without new mod
+IDs or installer toggles. Exact-source package/publication checks control delivery.
+Skurfa's pinned resources and notices remain unchanged. A 44-cut exclusion protects
+its scenes regardless of listener order; no selected EnvHD configuration overlaps.
 
 Complete delivery requires accounting for every source, finishing all adapters,
 reviewing each selected output, passing package/source checks, and validating
@@ -60,14 +60,13 @@ three are uniform and 5,162 require pictorial restoration. No foreground can be
 derived from a backdrop by exact visible-pixel equality. These figures describe
 source work, not completed or installed artwork.
 
-The full field generation pass now produced all 5,162 unique candidates. The
-public `field-generation-receipt.json` binds every candidate to its output hash,
-dimensions and recorded generator identity; all PNG byte hashes were freshly
-verified. It contains metadata only. The 2.5 GB of generated artwork remains in
-private staging until the complete individual review and publication gate passes.
-The complete Python repair pass now guards source-colored boundaries on 342
-backgrounds. Its public repair receipt verifies all 5,162 repaired candidates.
-Individual source/candidate comparison notes cover 608 backgrounds and 2,232
-foregrounds: 2,723 development baselines and one hundred seventeen source-identity, shape, signage or fine-detail holds. The other
-2,322 foreground reviews, foreground state handling and runtime delivery remain
-open. Generation and repair completion are not field restoration completion.
+All 5,162 field candidates completed private generation and Python repair; 342
+backgrounds received source-color perimeter guards. Individual review covers
+2,840 images: 2,723 reviewed development baselines and 117 bespoke holds. The
+2,723 selected PNGs and immutable candidate manifests are public. The remaining
+2,322 unreviewed outputs and private original comparisons are not runtime resources.
+Historical generation/repair/review receipts preserve their checkpoint counters;
+`field-runtime-artwork.json` records current selections. All selected fields pass
+independent native source checks; all 72 new battle atlases pass source upload,
+palette, STP, black, padding and 36,584 original textured-face UV checks. Native
+scene behavior and final quality remain unaccepted.

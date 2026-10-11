@@ -116,7 +116,7 @@ public final class WorldTerrainAtlas implements TextureUv {
     return new WorldTerrainAtlas(image, source, regions);
   }
   private static boolean black(final byte[] data, final int p) { return (data[p] | data[p + 1] | data[p + 2]) == 0; }
-  private static Object json(final byte[] bytes) throws IOException {
+  static Object json(final byte[] bytes) throws IOException {
     try(final JsonReader reader = new JsonReader(new StringReader(new String(bytes, StandardCharsets.UTF_8)))) {
       reader.setStrictness(Strictness.STRICT); reader.setNestingLimit(16);
       final Object value = value(reader, new int[]{4096});
@@ -138,12 +138,12 @@ public final class WorldTerrainAtlas implements TextureUv {
       default -> throw bad("Unsupported world manifest value");
     }
   }
-  @SuppressWarnings("unchecked") private static Map<String, Object> object(final Object value) throws IOException {
+  @SuppressWarnings("unchecked") static Map<String, Object> object(final Object value) throws IOException {
     if(!(value instanceof Map<?, ?>)) throw bad("Expected world manifest object"); return (Map<String, Object>)value;
   }
-  private static List<?> array(final Object value) throws IOException { if(!(value instanceof List<?> list)) throw bad("Expected world manifest array"); return list; }
-  private static String string(final Object value) throws IOException { if(!(value instanceof String text)) throw bad("Expected world manifest string"); return text; }
-  private static int integer(final Object value) throws IOException { if(!(value instanceof Long number) || number < Integer.MIN_VALUE || number > Integer.MAX_VALUE) throw bad("World manifest integer outside bounds"); return number.intValue(); }
-  private static List<Integer> integers(final Object value) throws IOException { final List<Integer> result = new ArrayList<>(); for(final Object item : array(value)) result.add(integer(item)); return result; }
+  static List<?> array(final Object value) throws IOException { if(!(value instanceof List<?> list)) throw bad("Expected world manifest array"); return list; }
+  static String string(final Object value) throws IOException { if(!(value instanceof String text)) throw bad("Expected world manifest string"); return text; }
+  static int integer(final Object value) throws IOException { if(!(value instanceof Long number) || number < Integer.MIN_VALUE || number > Integer.MAX_VALUE) throw bad("World manifest integer outside bounds"); return number.intValue(); }
+  static List<Integer> integers(final Object value) throws IOException { final List<Integer> result = new ArrayList<>(); for(final Object item : array(value)) result.add(integer(item)); return result; }
   private static IOException bad(final String message) { return new IOException(message); }
 }

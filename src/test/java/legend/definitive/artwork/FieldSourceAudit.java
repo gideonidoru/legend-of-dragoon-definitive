@@ -67,12 +67,13 @@ public final class FieldSourceAudit {
     return false;
   }
   public static void main(final String[] args) throws Exception {
-    if(args.length!=2) throw new IllegalArgumentException("Requires private extraction and private census");
+    if(args.length!=2 && args.length!=3) throw new IllegalArgumentException("Requires private extraction and private census");
     final Path files=Path.of(args[0]);
     final var report=JsonParser.parseString(new String(bounded(Path.of(args[1]),32*1024*1024),java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
     if(!hash(bounded(files.resolve("SUBMAP/NEWROOT.RDT"),1024*1024)).equals(report.get("newRootSha256").getAsString())) throw new IllegalStateException("NEWROOT changed");
     final var unique=new HashSet<String>();
     int scenes=0,visible=0,empty=0,missing=0;
+    final var selected=new HashSet<String>();
     for(final var value:report.getAsJsonArray("renders")) {
       final var expected=value.getAsJsonObject();final var route=expected.getAsJsonObject("representative");
       final int cut=route.get("cut").getAsInt();
@@ -105,6 +106,11 @@ public final class FieldSourceAudit {
         if(i<env.backgroundTextureCount_15) for(int y=0;y<region.h;y++) System.arraycopy(pixels,y*region.w,background,(rects[i].y-canvas.y+y)*canvas.w+rects[i].x-canvas.x,region.w);
         else {layers.add(pixels);sizes.add(region);}
       }
+      final var tiles=new legend.definitive.rendering.NativeEnvironmentImages.Tile[tims.length];final int[][] placements=new int[tims.length][];
+      for(int i=0;i<tims.length;i++) if(tims[i]!=null) {
+        final var slot=env.environments_18[i];tiles[i]=new legend.definitive.rendering.NativeEnvironmentImages.Tile(tims[i],slot.vramPos_08.x,slot.vramPos_08.y,slot.vramPos_08.w,slot.vramPos_08.h,i>=env.backgroundTextureCount_15);placements[i]=new int[]{rects[i].x,rects[i].y};
+      }
+      final var runtimeSource=FieldImages.compose(canvas,env.backgroundTextureCount_15,legend.definitive.rendering.NativeEnvironmentImages.decode(tiles),placements);
       final var records=expected.getAsJsonArray("images");
       for(int i=0;i<records.size();i++) {
         final var record=records.get(i).getAsJsonObject();final int[] pixels=i==0?background:layers.get(i-1);
@@ -116,11 +122,25 @@ public final class FieldSourceAudit {
         final int w=i==0?canvas.w:sizes.get(i-1).w, h=i==0?canvas.h:sizes.get(i-1).h;
         final String actual=fingerprint(w,h,pixels);
         if(!actual.equals(record.get("decodedRgbaSha256").getAsString())) throw new IllegalStateException("Native field pixel identity differs at cut "+cut+" slot "+(i-1));
+        final var runtimeImage=i==0?runtimeSource.background():runtimeSource.foregrounds()[i-1].image();
+        if(!FieldImages.fingerprint(runtimeImage).equals(actual)) throw new IllegalStateException("Runtime adapter source identity differs");
+        if(i>0) {
+          final var placement=runtimeSource.foregrounds()[i-1].placement();
+          if(placement.x!=rects[env.backgroundTextureCount_15+i-1].x || placement.y!=rects[env.backgroundTextureCount_15+i-1].y) throw new IllegalStateException("Runtime foreground moved");
+        }
+        if(args.length==3 && selected.add(actual)) {
+          final Path folder=Path.of(args[2]).resolve("fields/"+actual);
+          if(Files.exists(folder.resolve("manifest.properties"))) {
+            final var meta=new java.util.Properties();meta.load(new java.io.ByteArrayInputStream(bounded(folder.resolve("manifest.properties"),65536)));
+            FieldImages.read(meta,bounded(folder.resolve("image-v1.png"),32*1024*1024),runtimeImage);
+          } else selected.remove(actual);
+        }
         unique.add(actual);visible++;
       }
       scenes++;
     }
     if(unique.size()!=report.get("uniqueVisibleImages").getAsInt() || empty!=report.get("emptySlots").getAsInt() || missing!=report.get("missingNativeTextureSlots").getAsInt()) throw new IllegalStateException("Field denominator differs");
+    if(args.length==3) System.out.println("Selected runtime field images verified: "+selected.size());
     System.out.println("Independent native field agreement: "+scenes+" render configurations, "+visible+" visible image bindings, "+unique.size()+" unique decodes; "+empty+" empty / "+missing+" missing native slots. Visual/native acceptance pending.");
   }
 }

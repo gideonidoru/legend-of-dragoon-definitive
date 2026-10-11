@@ -25,7 +25,7 @@ public final class WorldTerrainSource {
     }
   }
   public record Scene(String modelHash, String bankHash, int parts, List<Material> materials) { }
-  private record Rect(int x, int y, int w, int h, short[] words) { }
+  record Rect(int x, int y, int w, int h, short[] words) { }
   private record Tim(int bpp, Rect image) { }
   private static final class References {
     final TreeSet<Integer> parts = new TreeSet<>();
@@ -105,7 +105,7 @@ public final class WorldTerrainSource {
     } catch(final IndexOutOfBoundsException | NoSuchAlgorithmException failure) { throw new IOException("Invalid world source", failure); }
   }
 
-  private static Rect block(final ByteBuffer bytes, final int offset) throws IOException {
+  static Rect block(final ByteBuffer bytes, final int offset) throws IOException {
     if(offset < 8 || (long)offset + 12 > bytes.limit()) throw bad("Truncated TIM block");
     final int size = bytes.getInt(offset), x = Short.toUnsignedInt(bytes.getShort(offset + 4)), y = Short.toUnsignedInt(bytes.getShort(offset + 6));
     final int w = Short.toUnsignedInt(bytes.getShort(offset + 8)), h = Short.toUnsignedInt(bytes.getShort(offset + 10));
@@ -114,7 +114,7 @@ public final class WorldTerrainSource {
     for(int i = 0; i < words.length; i++) words[i] = bytes.getShort(offset + 12 + i * 2);
     return new Rect(x, y, w, h, words);
   }
-  private static void upload(final Rect rect, final short[] vram, final boolean[] written) {
+  static void upload(final Rect rect, final short[] vram, final boolean[] written) {
     for(int y = 0; y < rect.h; y++) for(int x = 0; x < rect.w; x++) {
       final int p = (rect.y + y) * 1024 + rect.x + x; vram[p] = rect.words[y * rect.w + x]; written[p] = true;
     }

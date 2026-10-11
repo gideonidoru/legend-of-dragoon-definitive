@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "pipeline": "envhd-static-battle-atlas-1",
+  "modelSha256": "4fb4f66a68092f4a4d03097f4f6c1ea867adb3292edee0bc444e6237c3b69bbf",
+  "timSha256": "5c92fd5c7c5f26ef1e55d446a64d496935d6e71a3732d8ed91bc3496f7f1c0f2",
+  "scale": 4,
+  "atlasSize": [
+    4096,
+    608
+  ],
+  "atlasSha256": "b9ef623ab9f57173dff6442f78625b396542f4c8a0537ab2e732a4b1e06e9029",
+  "regions": [
+    {
+      "page": 7,
+      "clut": 15388,
+      "sourceCrop": [
+        0,
+        0,
+        136,
+        136
+      ],
+      "sourceUvOrigin": [
+        0,
+        0
+      ],
+      "sourceSize": [
+        136,
+        136
+      ],
+      "decodedRgbaSha256": "f7fc87bed762866ed1b9112aed3bc3835a8ec3981a6d1e1e135e1eaf5872c3da",
+      "atlasRect": [
+        32,
+        32,
+        544,
+        544
+      ]
+    }
+  ]
+}

@@ -53,6 +53,9 @@ final class FileDelivery {
   }
 
   static String install(final InstallStore store, final ReleaseUpdates.Candidate candidate, final InstallProgress progress, final ReleaseUpdates.AssetDownload connection, final boolean repairing) throws IOException, InterruptedException {
+    return install(store,candidate,progress,connection,repairing,false);
+  }
+  static String install(final InstallStore store, final ReleaseUpdates.Candidate candidate, final InstallProgress progress, final ReleaseUpdates.AssetDownload connection, final boolean repairing, final boolean fullReinstall) throws IOException, InterruptedException {
     return store.withOperation(() -> {
       final Properties state = store.state();
       final Path current = state.containsKey("version") ? InstallStore.child(store.root().resolve("releases"), state.getProperty("version"), "alpha-[a-f0-9]{16}") : null;
@@ -92,8 +95,8 @@ final class FileDelivery {
           progress.report(new InstallProgress.Update("File verified", module(name) + " · " + name, 10, 60, completed, contents.bytes(), name, size, size));
         }
         contents.manifest().verify(staged, PackageManifest.hostPlatform());
-        final String result = store.install(staged, candidate.assetId(), candidate.publishedAt(), progress);
-        return (repairing ? "Repair complete. " : "Update complete. ") + fetched + " files downloaded; " + reused + " verified files reused. " + result;
+        final String result = store.install(staged, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall);
+        return (repairing ? "Repair complete. " : fullReinstall ? "Reinstall complete. " : state.containsKey("version") ? "Update complete. " : "Install complete. ") + fetched + " files downloaded; " + reused + " verified files reused. " + result;
       } finally { Files.deleteIfExists(inventory); InstallStore.deleteOwnedTree(staged); }
     });
   }
