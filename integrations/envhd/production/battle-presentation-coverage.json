@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817"
+    "battle-presentation-artwork-v1.json": "5653b80e34b7bde5f8891b02f401a51cb90106d857ccbb92eecdf6bc31652039"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,10 +18,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 22,
+    "newBespokeCandidates": 41,
     "newlySelectedBespokeMasters": 0,
-    "baselineMastersStillNeedingPresentationReview": 484,
-    "pendingCandidateReviews": 22,
+    "baselineMastersStillNeedingPresentationReview": 465,
+    "pendingCandidateReviews": 41,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -503,7 +503,21 @@
         4096,
         704
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "0936afd3e819fae331e01a8682654c88ea2828858741ad29f6d49dea75b41489",
+        "0fe1c4673884e8500b65032a483c2f4d68004a035eb3379636daef265cf17677",
+        "11df45d8d5b6d73c50daf6e878191f33fb919dd878df46e866a4bf0c7d3d5c2d",
+        "385f1296eae0292ec5e8a4dad4fa8a213b7c1054c1cffc05677fee2c0e69f4f2",
+        "4191df72b3f3f45741bc6957fccb6d2c87afeb23de50e286dc79020548c45a53",
+        "41a7e43f9bdcf0352a7c27a345b1edf5fc89047503583cb9e775751a90cdbaa1",
+        "445c4fe1c82e8ff9e4d18288723b90af1625f867e8f9af73ddf4a8acf607e1ea",
+        "91c606a5e3653794c6455507a8150689182e39c3333b7234e2ddf9f034166993",
+        "a0e1185e68a32b25dbdccd9bf84498f590742e20d8ce3f92de125a42205f3e9d",
+        "cf85418d3047b56eeff7ce594d1041ed3714b7a133b0b075d6ccd14b67ad0b12",
+        "d4a7c9acaddf1edc609c4d1b575d30e8c5d3ed24f0f287fb34a0c25566a7884b",
+        "e227112f83975f90ada35463a46fa849909a5fd33d3641e3beff0935ed06618b",
+        "f90290f794d01a589057dc38026ad7daddfe54968c3a23a91e9d7256dea39379"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -938,7 +952,14 @@
         4096,
         608
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "56e1c11209e746747b2c4dbf02cf042f74f0fadc1e7959a34e686fa5a0f4f6cf",
+        "80018ed4d317fb6bd7b8378b38fedea1db4177d55c3042de09944f100f7e4a6e",
+        "bb235a95a3d483f75bbc866ac9c2d4ce7dce79c5ec6c77be36e51a6a9d51f966",
+        "cd4e4ce9bbcb86e1d839f62a82bf5525e8f195cc4fe69a1520c103101885ec18",
+        "ce10d35d8effcbea7d24d569b222bd72dd1954132be0e7882fe83f84c64d49ea",
+        "e2fe0b3788b3ad62255fd97a25686c46db4e85a955c38c944472bd81b292c6bf"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4986,7 +5007,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5017,7 +5038,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5048,7 +5069,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5079,7 +5100,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5110,7 +5131,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5141,7 +5162,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5172,7 +5193,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5203,7 +5224,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5234,7 +5255,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5265,7 +5286,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5296,7 +5317,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5327,7 +5348,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5358,7 +5379,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -11576,7 +11597,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {56: [0]}. Source family: Divine Tree: braided roots, bark and organic knots. Engine random-encounter location mapping: Divine Tree.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -11607,7 +11628,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {56: [0]}. Source family: Divine Tree: braided roots, bark and organic knots. Engine random-encounter location mapping: Divine Tree.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -11638,7 +11659,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {56: [0]}. Source family: Divine Tree: braided roots, bark and organic knots. Engine random-encounter location mapping: Divine Tree.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -11669,7 +11690,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {56: [0]}. Source family: Divine Tree: braided roots, bark and organic knots. Engine random-encounter location mapping: Divine Tree.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -11700,7 +11721,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {56: [0]}. Source family: Divine Tree: braided roots, bark and organic knots. Engine random-encounter location mapping: Divine Tree.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -11731,7 +11752,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {56: [0]}. Source family: Divine Tree: braided roots, bark and organic knots. Engine random-encounter location mapping: Divine Tree.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
