@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "7be4488e85884870a501d52ba22a28f779542ff7",
+  "sourceSelectionCheckpoint": "6612a533307e5f066bc46e7870d658f8add42752 plus independent-pending authoring at f7d53afd9",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "7764889e9ab1b841cc02578dc7c09d263ca1e22d03fb0b7b67df8c5fa77b08f0",
-    "field-runtime-artwork.json": "085c1fe77c2cfd6299e415f583c845f4edda283507817b964ff1a588a20679dd",
+    "full-coverage.json": "ca8377e5bfc04689f9e6a50e16d82c9f06dc495a8a8925d96e2ee825f0d3fcce",
+    "field-runtime-artwork.json": "b4c0dc3f07c089c9fe727be0fd19e457b255ccc16b63db4f3cc40a313125b257",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
-    "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
+    "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "field-bespoke-bedding-reviewed-selection.json": "6af60fa9447818366fda841ff1b9b362d84ad6a9a4aac2f2384a53725f75b123",
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
@@ -44,7 +44,7 @@
     "field-bespoke-interior-supports-held-drafts.json": "8353026af1811a7e1d17b3bfc922324c546057c12dd48af953b7bb2975abb685",
     "field-bespoke-carved-furnishings-reviewed-selection.json": "9519da7e89c246b6d2d9e3edbe8a12d29a8a6f41cb1402becb4fc1bbebedf369",
     "field-bespoke-carved-furnishings-held-drafts.json": "34245d3334340c4b9ef12ecd9248015fad1dea7101055ab582aa02153670c5de",
-    "battle-presentation-artwork-v1.json": "93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817",
+    "battle-presentation-artwork-v1.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274",
     "field-accepted-main-integration.json": "8fcbda28fda91ec1a7db2bff3f39195e831d1137eb3e69494d718a32a2e7ce69",
     "field-bespoke-small-furnishings-reviewed-selection.json": "aa797a92cc22bb62127a6aa6a0999818d0a833cf8d4627ea2eed5ddf8062b06a",
     "field-bespoke-small-furnishings-held-drafts.json": "2dcdc533083a076dddb8fd3b8ccc5ae2de8b0a4e35a34a1b0ce12694122867ad",
@@ -53,14 +53,15 @@
     "tiberoa-stairs-context-audit.json": "175f46fd2483ee32f43b806e54361324a4faf91c24eb4535973bd34a3f61d8c1",
     "tiberoa-stairs-pending-artwork.json": "bef0beabf7a3f9925163e16b27a40c540288ca2a699c3f467274fbb52e9339d5",
     "tiberoa-authoring-readiness.json": "853be72084766cb9c0b439ae4fc8edcfeb0b26df7b29cb789d82230244563d29",
-    "field-bespoke-table-independent-reviewed-selection.json": "1a1f4d4ea682eb43b7bf0a1e8563e2646a35c556f1031d3a1d7b82ec73ea4000",
+    "field-bespoke-table-independent-reviewed-selection.json": "addfc9dbc087ed058af2029cee7347b044161e97252a62939fa51a959a5d2db6",
     "field-independent-small-furnishings-review.json": "911a16d9940aeb815aa69f83f6bd359b3ac4d0d52cae062027c585a1752e3cc3",
-    "field-table-selection-readiness.json": "39a48c1c0ea2464799fd115865239b07a43f3ea90ab22ab7734730b3496eef3e",
+    "field-table-selection-readiness.json": "0c46044a0b825c381066bbe0407210a4bc4d126d6da0b030aebc0e34954ed811",
     "field-bespoke-stone-fittings-reviewed-selection.json": "f132478ea18ab077f26824669aff7c97acef0a8edcccd596c6fd0e4df9a043ff",
     "field-bespoke-stone-fittings-held-drafts.json": "11d2668adc44f2b397d6c22ac78f0a6756ebef1f62a1d4d6c242eda481fa8471",
     "field-stone-fittings-authoring-readiness.json": "b5d3c19f76266c73b5f3dafa5b377f50aee159cc98e2ebd325cf9279598a0817",
     "field-bespoke-rgb-wall-reviewed-selection.json": "5d45c89f6f048967c23a4f3477f39a788d27b44fd451ea429950951e47d07cd0",
-    "field-rgb-wall-authoring-readiness.json": "ba6684a203b115de1dfaeaa2c0b3ae35efa5c901579b0cdb9505c024d593f3de"
+    "field-rgb-wall-authoring-readiness.json": "ba6684a203b115de1dfaeaa2c0b3ae35efa5c901579b0cdb9505c024d593f3de",
+    "field-independent-table-review.json": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -166,10 +167,10 @@
       "fullEncounterContractsClosed": 0,
       "selectedAnimationFamilies": 0,
       "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette.",
-      "selectedPaintedMasters": 34,
+      "selectedPaintedMasters": 47,
       "previouslySelectedPaintedMasters": 12,
-      "newPresentationSelectedMasters": 22,
-      "selectedNeuralMasters": 484
+      "newPresentationSelectedMasters": 35,
+      "selectedNeuralMasters": 471
     },
     {
       "id": "battle-panoramas",
@@ -479,13 +480,13 @@
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
   "authoringCheckpoint": "Existing Shrine wall3 now passes explicit bounded RGB-container repack preflight;71 complete candidates,28 pending,3 revisions. Previous held history exact. Runtime4926/40 and237 known static holds unchanged.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "ad1a234d94b4397df681c7fd196581cf3a303a88",
-    "fieldSelected": 4925,
-    "fieldPainted": 39,
+    "sourceCommit": "6612a533307e5f066bc46e7870d658f8add42752",
+    "fieldSelected": 4926,
+    "fieldPainted": 40,
     "battleNewSelectedMasters": 518,
-    "battlePainted": 34,
-    "authoringCandidates": 66,
-    "independentlyPending": 25,
+    "battlePainted": 47,
+    "authoringCandidates": 71,
+    "independentlyPending": 28,
     "holdsClearedByMerge": 0
   }
 }

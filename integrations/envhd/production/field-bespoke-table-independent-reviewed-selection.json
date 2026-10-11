@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "scope": "Complete40 independently development-cleared paintings: prior39 exact plus one Crystal Palace table. Counter source-fidelity correction and later authoring remain separate; no native/final acceptance.",
-  "sourceSelectionBaseCommit": "7be4488e85884870a501d52ba22a28f779542ff7",
+  "scope": "Complete40 independently development-cleared paintings: current-main39 exact plus one Crystal Palace table. Remaining authoring is separate; native/device/final pending.",
+  "sourceSelectionBaseCommit": "d31efa9c890742f7908fb58027f5ae4c0a3a621f",
   "algorithmPath": "scripts/repair-envhd-painted-cutout.py",
   "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
   "environment": {
@@ -2521,18 +2521,19 @@
       "reason": "See prioritized visual finding.",
       "nativeAcceptance": "pending",
       "finalQualityAcceptance": "pending"
-    },
+    }
+  ],
+  "independentNewCandidateReview": [
     {
-      "decodedRgbaSha256": "ed28e7d93d5636f737f4e2175ea43d33600dda3bde450f0738406d4a035cc7b8",
-      "outputSha256": "330640c6695a913b13d21b55ec18a3be0c217eb0b6fa1ac2a5b1545232a44df8",
-      "verdict": "intent-revision-needed",
-      "runtimeSelected": false,
-      "reason": "Far-end countertop materially brighter/warmer and granular gold against original dark green-shadowed region; orange goods become conspicuous round forms with heavier contrast rather than original subdued irregular grouping/dark gaps. Correct lighting/grouping independently while preserving crop/thin frame/inset placement; do not invent goods/material identity.",
+      "decodedRgbaSha256": "304a735a241c9a78c78ad01e429d15d81bb29529a8b3881fbd5598a98713e754",
+      "outputSha256": "ca808d7d835c868ac9cc72d82776cf292d1afb5574388ed455778e55b8e922bf",
+      "generatedSha256": "b0fbd79866e7a320806ecf1f618120603cad3034acb7926992518c1fb279bed1",
+      "disposition": "clear-development-intent",
+      "reason": "Two pale dishes, central small angular form and chair fragments, original oval/tabletop framing and warm restrained scene lighting retained. Fine grain/ceramic detail remains interpretive.",
       "nativeAcceptance": "pending",
       "finalQualityAcceptance": "pending"
     }
   ],
-  "independentNewCandidateReview": "one-table-clear-counter-revision",
-  "independentReviewReceiptPath": "integrations/envhd/production/field-independent-small-furnishings-review.json",
-  "independentReviewReceiptSha256": "911a16d9940aeb815aa69f83f6bd359b3ac4d0d52cae062027c585a1752e3cc3"
+  "independentReviewReceiptPath": "integrations/envhd/production/field-independent-table-review.json",
+  "independentReviewReceiptSha256": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a"
 }

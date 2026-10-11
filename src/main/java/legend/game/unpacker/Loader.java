@@ -1,7 +1,9 @@
 package legend.game.unpacker;
 
-import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import legend.core.Async;
 import legend.core.DebugHelper;
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +18,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import java.util.stream.StreamSupport;
 
@@ -56,28 +60,14 @@ public final class Loader {
     final StackWalker.StackFrame frame = DebugHelper.getCallerFrame();
     LOGGER.info("Queueing file %s (total queued: %d) from %s.%s(%s:%d)", path, total, frame.getClassName(), frame.getMethodName(), frame.getFileName(), frame.getLineNumber());
 
-    return Async
-      .run(() -> loadFileSync(path))
-      .exceptionally(t -> onFileLoadingException(t, path.toString()))
-      .whenComplete((result, exception) -> {
-        final int remaining = LOADING_COUNT.decrementAndGet();
-        LOGGER.info("File %s loaded (remaining queued: %d)", path, remaining);
-      })
-    ;
+    return trackLoad(schedule(() -> loadFileSync(path)), 1, "File", path.toString());
   }
 
   public static CompletableFuture<FileData> loadFile(final String name) {
     final int total = LOADING_COUNT.incrementAndGet();
     LOGGER.info("Queueing file %s (total queued: %d)", name, total);
 
-    return Async
-      .run(() -> loadFileSync(name))
-      .exceptionally(t -> onFileLoadingException(t, name))
-      .whenComplete((result, exception) -> {
-        final int remaining = LOADING_COUNT.decrementAndGet();
-        LOGGER.info("File %s loaded (remaining queued: %d)", name, remaining);
-      })
-    ;
+    return trackLoad(schedule(() -> loadFileSync(name)), 1, "File", name);
   }
 
   public static CompletableFuture<List<FileData>> loadFiles(final String... files) {
@@ -88,17 +78,10 @@ public final class Loader {
     final CompletableFuture<FileData>[] futures = new CompletableFuture[files.length];
     for(int i = 0; i < files.length; i++) {
       final int finalI = i;
-      futures[i] = Async.run(() -> data[finalI] = loadFileSync(files[finalI]));
+      futures[i] = schedule(() -> data[finalI] = loadFileSync(files[finalI]));
     }
 
-    return CompletableFuture.allOf(futures)
-      .thenApply(v -> List.of(data))
-      .exceptionally(t -> onFileLoadingException(t, Arrays.toString(files)))
-      .whenComplete((result, exception) -> {
-        final int remaining = LOADING_COUNT.updateAndGet(i -> i - files.length);
-        LOGGER.info("Files %s loaded (remaining queued: %d)", Arrays.toString(files), remaining);
-      })
-    ;
+    return trackLoad(CompletableFuture.allOf(futures).thenApply(v -> List.of(data)), files.length, "Files", Arrays.toString(files));
   }
 
   public static CompletableFuture<List<FileData>> loadFiles(final Path... files) {
@@ -109,31 +92,17 @@ public final class Loader {
     final CompletableFuture<FileData>[] futures = new CompletableFuture[files.length];
     for(int i = 0; i < files.length; i++) {
       final int finalI = i;
-      futures[i] = Async.run(() -> data[finalI] = loadFileSync(files[finalI]));
+      futures[i] = schedule(() -> data[finalI] = loadFileSync(files[finalI]));
     }
 
-    return CompletableFuture.allOf(futures)
-      .thenApply(v -> List.of(data))
-      .exceptionally(t -> onFileLoadingException(t, Arrays.toString(files)))
-      .whenComplete((result, exception) -> {
-        final int remaining = LOADING_COUNT.updateAndGet(i -> i - files.length);
-        LOGGER.info("Files %s loaded (remaining queued: %d)", Arrays.toString(files), remaining);
-      })
-    ;
+    return trackLoad(CompletableFuture.allOf(futures).thenApply(v -> List.of(data)), files.length, "Files", Arrays.toString(files));
   }
 
   public static CompletableFuture<List<FileData>> loadDirectory(final String name) {
     final int total = LOADING_COUNT.incrementAndGet();
     LOGGER.info("Queueing directory %s (total queued: %d)", name, total);
 
-    return Async
-      .run(() -> loadDirectorySync(name))
-      .exceptionally(t -> onFileLoadingException(t, name))
-      .whenComplete((result, exception) -> {
-        final int remaining = LOADING_COUNT.decrementAndGet();
-        LOGGER.info("Directory %s loaded (remaining queued: %d)", name, remaining);
-      })
-    ;
+    return trackLoad(schedule(() -> loadDirectorySync(name)), 1, "Directory", name);
   }
 
   public static CompletableFuture<List<FileData>> loadDirectory(final Path dir) {
@@ -142,18 +111,31 @@ public final class Loader {
     final StackWalker.StackFrame frame = DebugHelper.getCallerFrame();
     LOGGER.info("Queueing directory %s (total queued: %d) from %s.%s(%s:%d)", dir, total, frame.getClassName(), frame.getMethodName(), frame.getFileName(), frame.getLineNumber());
 
-    return Async.run(() -> loadDirectorySync(dir))
-      .exceptionally(t -> onFileLoadingException(t, dir.toString()))
-      .whenComplete((result, exception) -> {
-        final int remaining = LOADING_COUNT.decrementAndGet();
-        LOGGER.info("Directory %s loaded (remaining queued: %d)", dir, remaining);
-      })
-    ;
+    return trackLoad(schedule(() -> loadDirectorySync(dir)), 1, "Directory", dir.toString());
   }
 
-  private static <T> T onFileLoadingException(final Throwable t, final String path) {
-    LOGGER.error("Failed to load " + path, t);
-    return null;
+  private static <T> CompletableFuture<T> schedule(final Supplier<T> operation) {
+    try {
+      return Async.run(operation);
+    } catch(final RejectedExecutionException failure) {
+      return CompletableFuture.failedFuture(failure);
+    }
+  }
+
+  private static <T> CompletableFuture<T> trackLoad(final CompletableFuture<T> work, final int count, final String kind, final String path) {
+    final var completion = new CompletableFuture<T>();
+    // Keep bookkeeping on the actual work, independent of consumer cancellation.
+    work.whenComplete((result, failure) -> {
+      final int remaining = LOADING_COUNT.addAndGet(-count);
+      if(failure == null) {
+        LOGGER.info("%s %s loaded (remaining queued: %d)", kind, path, remaining);
+        completion.complete(result);
+      } else {
+        LOGGER.error(kind + " " + path + " failed (remaining queued: " + remaining + ')', failure);
+        completion.completeExceptionally(failure);
+      }
+    });
+    return completion;
   }
 
   public static List<FileData> loadDirectorySync(final String name) {
@@ -167,17 +149,21 @@ public final class Loader {
 
     if(Files.exists(mrg)) {
       try(final BufferedReader reader = Files.newBufferedReader(mrg)) {
-        final Int2IntMap fileMap = new Int2IntArrayMap();
-        final Int2IntMap virtualSizeMap = new Int2IntArrayMap();
+        final Int2IntMap fileMap = new Int2IntOpenHashMap();
+        final Int2IntMap virtualSizeMap = new Int2IntOpenHashMap();
 
         reader.lines().forEach(line -> {
           final String[] parts = MRG_ENTRY.split(line);
 
           if(parts.length != 3) {
-            throw new RuntimeException("Invalid MRG entry! " + line);
+            throw new RuntimeException("Invalid MRG entry in " + dir + ": " + line);
           }
 
           final int virtual = Integer.parseInt(parts[0]);
+          final int size = Integer.parseInt(parts[2]);
+          if(virtual < 0 || size < 0 || fileMap.containsKey(virtual)) {
+            throw new RuntimeException("Invalid or duplicate MRG entry in " + dir + ": " + line);
+          }
 
           // Indicates no file
           if(parts[1].isBlank()) {
@@ -187,61 +173,52 @@ public final class Loader {
           }
 
           final int real = Integer.parseInt(parts[1]);
+          if(real < -1) throw new RuntimeException("Invalid MRG target in " + dir + ": " + line);
           fileMap.put(virtual, real);
-          virtualSizeMap.put(virtual, Integer.parseInt(parts[2]));
+          virtualSizeMap.put(virtual, size);
         });
 
-        final List<FileData> files = new ArrayList<>();
+        final List<FileData> files = new ArrayList<>(Arrays.asList(new FileData[fileMap.size()]));
+        final Int2IntMap resolved = new Int2IntOpenHashMap();
+        final var directories = new IntOpenHashSet();
+        for(int index = 0; index < fileMap.size(); index++) {
+          if(!fileMap.containsKey(index)) throw new RuntimeException("Non-contiguous MRG indices in " + dir);
+        }
 
         // Add real files
-        for(final var entry : fileMap.int2IntEntrySet()) {
-          final int virtual = entry.getIntKey();
-          final int real = entry.getIntValue();
-
-          // No file
-          if(real == -1) {
-            files.add(null);
-            continue;
-          }
+        for(int index = 0; index < fileMap.size(); index++) {
+          if(fileMap.get(index) != index) continue;
 
           try {
-            final Path file = dir.resolve(String.valueOf(real));
+            final Path file = dir.resolve(String.valueOf(index));
             if(Files.isRegularFile(file)) {
-              if(virtual == real) {
-                files.add(new FileData(Files.readAllBytes(file)));
-              } else {
-                files.add(null);
-              }
+              files.set(index, new FileData(Files.readAllBytes(file)));
             } else if(Files.isDirectory(file)) {
-              files.add(new FileData(new byte[0]));
+              files.set(index, new FileData(new byte[0]));
+              directories.add(index);
+            } else {
+              throw new IOException("Missing MRG file " + file);
             }
+            resolved.put(index, index);
           } catch(final IOException e) {
             throw new RuntimeException("Failed to load directory " + dir, e);
           }
         }
 
         // Add virtual files
-        for(final var entry : fileMap.int2IntEntrySet()) {
-          final int virtual = entry.getIntKey();
-          int real = entry.getIntValue();
-
-          if(virtual == real || real == -1) {
-            continue;
-          }
-
-          // Resolve to the realest file
-          while(fileMap.get(real) != real) {
-            real = fileMap.get(real);
-          }
-
-          final Path file = dir.resolve(String.valueOf(real));
-          if(Files.isRegularFile(file)) {
+        for(int virtual = 0; virtual < fileMap.size(); virtual++) {
+          if(fileMap.get(virtual) == virtual || fileMap.get(virtual) == -1) continue;
+          final int real = resolveMrgAlias(virtual, fileMap, resolved, dir);
+          if(!directories.contains(real)) {
             files.set(virtual, FileData.virtual(files.get(real), virtualSizeMap.get(virtual), real));
+          } else {
+            // Directory entries and their aliases retain the legacy empty placeholder.
+            files.set(virtual, new FileData(new byte[0]));
           }
         }
 
         return files;
-      } catch(final IOException e) {
+      } catch(final IOException | NumberFormatException e) {
         throw new RuntimeException("Failed to load directory " + dir, e);
       }
     }
@@ -274,6 +251,24 @@ public final class Loader {
     } catch(final IOException e) {
       throw new RuntimeException("Failed to load directory " + dir, e);
     }
+  }
+
+  private static int resolveMrgAlias(final int virtual, final Int2IntMap fileMap, final Int2IntMap resolved, final Path dir) {
+    if(resolved.containsKey(virtual)) return resolved.get(virtual);
+    final var path = new IntArrayList();
+    final var visited = new IntOpenHashSet();
+    int real = virtual;
+    while(!resolved.containsKey(real)) {
+      if(!fileMap.containsKey(real) || fileMap.get(real) == -1) {
+        throw new RuntimeException("Missing MRG alias target " + real + " for entry " + virtual + " in " + dir);
+      }
+      if(!visited.add(real)) throw new RuntimeException("Cyclic MRG alias for entry " + virtual + " in " + dir);
+      path.add(real);
+      real = fileMap.get(real);
+    }
+    final int root = resolved.get(real);
+    for(final int index : path) resolved.put(index, root);
+    return root;
   }
 
   public static int getLoadingFileCount() {
