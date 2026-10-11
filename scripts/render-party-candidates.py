@@ -12,7 +12,7 @@ spec=importlib.util.spec_from_file_location('party_study',ROOT/'experiments/dart
 study=importlib.util.module_from_spec(spec);spec.loader.exec_module(study)
 materials=study.poses.materials
 packed_coordinates=study.poses.packed_coordinates
-def render(parts, positions, tim, candidate, bounds, size=(640,640), material_map=None, normal_faces=None, detail_parts=None, diagnostics=None):
+def render(parts, positions, tim, candidate, bounds, size=(640,640), material_map=None, normal_faces=None, detail_parts=None, diagnostics=None, detail_cutouts=()):
     width, height, cw, ch, colors, indices = materials.texture(tim)
     palette = np.array(colors, dtype=np.uint16)
     packed = np.frombuffer(indices[:width * height // 2], dtype=np.uint8)
@@ -57,6 +57,9 @@ def render(parts, positions, tim, candidate, bounds, size=(640,640), material_ma
                         ux = np.clip((uv[..., 0]*texture.width).astype(int),0,texture.width-1)
                         vy = np.clip((uv[..., 1]*texture.height).astype(int),0,texture.height-1)
                         tex_rgb = pixels[vy,ux,:3]
+                        if part_index in detail_cutouts:
+                            if pixels.shape[-1] != 4:raise ValueError('Cutout detail requires RGBA')
+                            valid &= pixels[vy,ux,3] >= 128
                     elif candidate_pixels is None:
                         # Original colors follow each polygon's own CLUT, not a flattened atlas.
                         ux = np.clip(uv[..., 0].astype(int), 0, width-1)
@@ -88,11 +91,16 @@ def render(parts, positions, tim, candidate, bounds, size=(640,640), material_ma
         diagnostics.update(owners=owners, faces=face_owners, depth=zbuffer, scale=fit, center=center)
     return Image.fromarray(np.dstack((canvas, coverage)))
 
-def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,35,90,180),last_pose=True,previous=None,focus='actor'):
+def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,35,90,180),last_pose=True,previous=None,focus='actor',auxiliaries=None):
     if output.exists() or output.resolve().is_relative_to(ROOT):raise ValueError('Use new private output')
     audit=json.loads((ROOT/'integrations/charhd/production/party-reconstruction/source-audit.json').read_text())
     actor=next(a for a in audit['characters'] if a['character']==character)
     fit=json.loads((candidate/'fit-receipt.json').read_text())
+    auxiliary_rows=[]
+    if auxiliaries:
+        auxiliary_rows=json.loads((auxiliaries/'candidate-manifest.json').read_text())['parts']
+        check_spec=importlib.util.spec_from_file_location('resource_check',ROOT/'scripts/stage-party-head-preview.py')
+        resource_check=importlib.util.module_from_spec(check_spec);check_spec.loader.exec_module(resource_check)
     output.mkdir(parents=True); reports=[]
     font=ImageFont.truetype('/System/Library/Fonts/Supplemental/Arial.ttf',20)
     for record in actor['models']:
@@ -105,6 +113,25 @@ def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,
         row=next(f for f in fit['forms'] if f['form']==form);h=row['sourcePartIndex']
         after[h]=json.loads((candidate/'parts'/(ids[h]+'.json')).read_text())['parts'][0]
         uv=np.asarray(json.loads((candidate/(form+'-head-uv.json')).read_text())['uvs'])
+        extras={};cutouts=set()
+        for extra in auxiliary_rows:
+            if extra['character']!=character or extra['form']!=form:continue
+            index=extra['sourcePartIndex']
+            if index<0 or index>=len(ids) or index==h or index in extras or ids[index]!=extra['sourceGeometrySha256']:
+                raise ValueError('Auxiliary identity/part differs')
+            pack=json.loads(resource_check.checked(auxiliaries,extra,'pack'))
+            binding=json.loads(resource_check.checked(auxiliaries,extra,'uv'))
+            if len(pack['parts'])!=1 or pack['sourceGeometrySha256']!=ids[index] or binding['sourceGeometrySha256']!=ids[index] or binding['geometrySha256']!=extra['geometrySha256'] or binding['textureSha256']!=extra['textureSha256']:
+                raise ValueError('Auxiliary geometry/paint binding differs')
+            mode=extra.get('alphaMode','opaque')
+            if mode not in ('opaque','cutout') or mode!=binding.get('alphaMode','opaque'):
+                raise ValueError('Auxiliary alpha mode differs')
+            import io
+            texture_extra=Image.open(io.BytesIO(resource_check.checked(auxiliaries,extra,'texture'))).convert('RGBA' if mode=='cutout' else 'RGB')
+            if texture_extra.size!=(extra['width'],extra['height']):raise ValueError('Auxiliary texture dimensions differ')
+            after[index]=pack['parts'][0]
+            extras[index]=(np.asarray(binding['uvs']),texture_extra)
+            if mode=='cutout':cutouts.add(index)
         if previous:
             previous_fit=json.loads((previous/'fit-receipt.json').read_text())
             previous_head=next(f for f in previous_fit['forms'] if f['form']==form)['sourcePartIndex']
@@ -113,6 +140,9 @@ def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,
         meshbefore=[study.unpack(p,source) for p,source in zip(before,old)]
         meshafter=[study.unpack(p,source) for p,source in zip(after,old)]
         meshafter[h]=(np.asarray(after[h]['vertices']),[(face['vertices'],uv[face['vertices']],0,np.full((3,3),127.5)) for face in after[h]['faces']])
+        for index,(coordinates,_) in extras.items():
+            part=after[index]
+            meshafter[index]=(np.asarray(part['vertices']),[(face['vertices'],coordinates[face['vertices']],0,np.full((len(face['vertices']),3),127.5)) for face in part['faces']])
         texture=Image.open(candidate/'head-basecolour.png').convert('RGB')
         previous_texture=None
         if previous:
@@ -154,10 +184,10 @@ def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,
                     bounds=(heads[:,0].min(),heads[:,0].max(),heads[:,1].min(),heads[:,1].max())
             board=Image.new('RGB',(1200,970),(26,30,34));draw=ImageDraw.Draw(board)
             for i,(meshes,positions) in enumerate([(meshbefore,pbefore),(meshafter,pafter)]):
-                details={h:texture} if i else ({h:previous_texture} if previous else None)
-                image=render(meshes,positions,tim,None,bounds,size=(600,880),normal_faces=ns[i],detail_parts=details)
+                details={h:texture,**{index:value[1] for index,value in extras.items()}} if i else ({h:previous_texture} if previous else None)
+                image=render(meshes,positions,tim,None,bounds,size=(600,880),normal_faces=ns[i],detail_parts=details,detail_cutouts=cutouts if i else ())
                 base=Image.new('RGB',image.size,(26,30,34));base.paste(image,mask=image.getchannel('A'))
-                label=('Before: previous head fit' if previous else 'Before: ModelsHD / source texture') if i==0 else 'After: fitted head candidate'
+                label=('Before: previous head fit' if previous else 'Before: ModelsHD / source texture') if i==0 else ('After: head + animated hair draft' if extras else 'After: fitted head candidate')
                 board.paste(base,(i*600,44));draw.text((i*600+24,12),label,font=font,fill='#e5e1da')
             draw.text((24,934),f'{character.title()} / {form} / frame {frame} / {angle}° — offline native part pose; not gameplay',font=font,fill='#acb1b8')
             filename=f'{form}-{frame}-{angle}-comparison.png';board.save(output/filename)
@@ -165,4 +195,4 @@ def compare(files,character,candidate,output,forms=('field','combat'),angles=(0,
     (output/'manifest.json').write_text(json.dumps({'character':character,'scope':'Offline orthographic native-part geometry/UV inspection only; not gameplay or Steam Deck','images':reports},indent=2)+'\n')
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--files',type=Path,required=True);p.add_argument('--character',required=True);p.add_argument('--candidate',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--form',choices=['field','combat']);p.add_argument('--angles',type=float,nargs='+',default=[0,35,90,180]);p.add_argument('--no-last-pose',action='store_true');p.add_argument('--previous',type=Path);p.add_argument('--focus',choices=['actor','head'],default='actor');a=p.parse_args();compare(a.files,a.character,a.candidate,a.output,(a.form,) if a.form else ('field','combat'),a.angles,not a.no_last_pose,a.previous,a.focus)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--files',type=Path,required=True);p.add_argument('--character',required=True);p.add_argument('--candidate',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--form',choices=['field','combat']);p.add_argument('--angles',type=float,nargs='+',default=[0,35,90,180]);p.add_argument('--no-last-pose',action='store_true');p.add_argument('--previous',type=Path);p.add_argument('--focus',choices=['actor','head'],default='actor');p.add_argument('--auxiliaries',type=Path,help='Explicit source-bound development hair resources');a=p.parse_args();compare(a.files,a.character,a.candidate,a.output,(a.form,) if a.form else ('field','combat'),a.angles,not a.no_last_pose,a.previous,a.focus,a.auxiliaries)

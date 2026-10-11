@@ -84,6 +84,9 @@ recovered; the corresponding paint receipt records this provenance gap.
 
 No native gameplay, broad third-party mod or physical Steam Deck validation is
 claimed. See the [artistic audit](../../../../../docs/definitive/PARTY_HEADS_ARTISTIC_AUDIT.md).
+The [face registration checkpoint](../../../../../docs/definitive/CHARHD_FACE_REGISTRATION_AUDIT.md)
+records the remaining anatomy defects. Optional [animated hair development](../hair-program-v1/README.md)
+preserves Rose/Meru native motion and remains outside normal runtime selection.
 Custom deliverables are public under the project asset policy; preserve AGPL v3,
 original character attribution and the existing TripoSR MIT/provenance notices.
 No discs, original data, saves, credentials, model weights or local runtimes ship.

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 /** Explicit owner-input construction probe. Development resources never enter normal packaging. */
 public final class PartyCandidateSourceProbe {
@@ -40,6 +41,7 @@ public final class PartyCandidateSourceProbe {
     final var field = GameEngine.class.getDeclaredField("EVENT_ACCESS");
     field.setAccessible(true); final var access = (EventManager.Access)field.get(null);
     final var audit = JsonParser.parseString(Files.readString(root.resolve("source-audit.json"))).getAsJsonObject();
+    final var manifest = JsonParser.parseString(Files.readString(root.resolve("candidate-manifest.json"))).getAsJsonObject();
     final var rows = new ArrayList<Map<String, Object>>();
     try {
       for(final var actorValue : audit.getAsJsonArray("characters")) {
@@ -57,6 +59,19 @@ public final class PartyCandidateSourceProbe {
             if(form.equals(record.get("form").getAsString())) head = record.get("sourcePartIndex").getAsInt();
           }
           if(head < 0) throw new AssertionError("Missing candidate head");
+          final var expectedParts = new HashMap<Integer, com.google.gson.JsonObject>();
+          int heads = 0;
+          for(final var candidateValue : manifest.getAsJsonArray("parts")) {
+            final var entry = candidateValue.getAsJsonObject();
+            if(!name.equals(entry.get("character").getAsString()) || !form.equals(entry.get("form").getAsString())) continue;
+            final String role = entry.has("role") ? entry.get("role").getAsString() : "head";
+            final int index;
+            if(role.equals("head")) { index = head; heads++; }
+            else if(role.equals("auxiliary-hair")) { index = entry.get("sourcePartIndex").getAsInt(); }
+            else throw new AssertionError("Unknown candidate role");
+            if(expectedParts.put(index, entry) != null) throw new AssertionError("Duplicate painted part");
+          }
+          if(heads != 1) throw new AssertionError("Require exactly one head per actor/form");
           for(final String route : List.of("indexed", "rgba", "mapped")) for(final boolean models : new boolean[]{false, true}) for(final boolean chars : new boolean[]{false, true}) {
             access.reset(); access.initialize(GameEngine.MODS);
             final var modelMod = models ? Class.forName("modelshd.ModelsHdMod").getConstructor().newInstance() : null;
@@ -75,7 +90,18 @@ public final class PartyCandidateSourceProbe {
                 TmdObjLoader.fromObjTable("candidate", table, 0, route.equals("rgba") ? 256 : 0, route.equals("rgba") ? 256 : 0);
               if(object.faceDetailTexture() != null) {
                 textures++;
-                if(index != head || object.faceDetailTexture().width != 2048) throw new AssertionError("Wrong painted part");
+                final var expected = expectedParts.get(index);
+                if(expected == null || object.faceDetailTexture().width != expected.get("width").getAsInt() || object.faceDetailTexture().height != expected.get("height").getAsInt()) throw new AssertionError("Wrong painted part/size");
+                final boolean cutout = expected.has("alphaMode") && expected.get("alphaMode").getAsString().equals("cutout");
+                for(final var mesh : object.meshes) {
+                  final float[] values = mesh.vertices();
+                  for(int vertex = 0; vertex < values.length; vertex += TmdObjLoader.VERTEX_SIZE) {
+                    final int flags = (int)values[vertex + TmdObjLoader.VERTEX_SIZE - 1];
+                    if((flags & TmdObjLoader.FACE_DETAIL_FLAG) == 0 || ((flags & TmdObjLoader.FACE_DETAIL_CUTOUT_FLAG) != 0) != cutout) throw new AssertionError("Wrong detail/cutout flags");
+                    // Native coloured hair must not tint a custom diffuse atlas.
+                    for(int colour = 11; colour < 15; colour++) if(values[vertex + colour] != 1.0f) throw new AssertionError("Original vertex colour modulates detail paint");
+                  }
+                }
               }
               for(final var mesh : object.meshes) {
                 for(final float value : mesh.vertices()) if(!Float.isFinite(value)) throw new AssertionError("Nonfinite candidate vertex");
@@ -84,8 +110,8 @@ public final class PartyCandidateSourceProbe {
               if(!Arrays.equals(positions, table.vert_top_00) || !Arrays.deepEquals(packets, Arrays.stream(table.primitives_10).flatMap(p -> Arrays.stream(p.data())).toArray(byte[][]::new))) throw new AssertionError("Source tables changed");
               object.delete();
             }
-            if(textures != (chars ? 1 : 0)) throw new AssertionError(name + " " + form + " did not bind one head");
-            rows.add(Map.of("character", name, "form", form, "route", route, "modelsHd", models, "charHd", chars, "headPart", head, "textures", textures, "vertices", vertices));
+            if(textures != (chars ? expectedParts.size() : 0)) throw new AssertionError(name + " " + form + " painted-part count differs");
+            rows.add(Map.of("character", name, "form", form, "route", route, "modelsHd", models, "charHd", chars, "headPart", head, "paintedParts", expectedParts.keySet().stream().sorted().toList(), "textures", textures, "vertices", vertices));
             java.lang.ref.Reference.reachabilityFence(modelMod); java.lang.ref.Reference.reachabilityFence(candidateMod);
             Obj.deleteObjects(); legend.core.renderer.Texture.deleteTextures();
           }
