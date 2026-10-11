@@ -14,6 +14,35 @@ allprojects {
           args tasks.uihdJar.archiveFile.get().asFile.absolutePath
         }
       }
+      tasks.register('uihdFieldMarkerProbe', JavaExec) {
+        dependsOn 'testClasses', 'uihdJar'
+        // ModManager discovers bundled engine locale resources relative to its JAR.
+        classpath = files(tasks.named('jar').flatMap { it.archiveFile }) + sourceSets.test.output + configurations.testRuntimeClasspath
+        mainClass = 'legend.definitive.artwork.UiHdFieldMarkerProbe'
+        jvmArgs '-Djava.awt.headless=true', '--add-opens=java.base/java.util=ALL-UNNAMED'
+        doFirst {
+          def fixture = providers.gradleProperty('uihdSourceFixture').orNull
+          if(!fixture) throw new GradleException('Supply -PuihdSourceFixture with a private fixture containing files and gfx.')
+          workingDir fixture
+          args tasks.uihdJar.archiveFile.get().asFile.parentFile.absolutePath,
+            new File(fixture, 'preferences').absolutePath,
+            new File(fixture, 'files/SUBMAP').absolutePath,
+            providers.gradleProperty('uihdMarkerEnabled').getOrElse('true')
+        }
+      }
+      tasks.register('nativeUiPaletteDetailProbe', JavaExec) {
+        dependsOn 'testClasses'
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'legend.definitive.artwork.NativeUiPaletteDetailProbe'
+        jvmArgs '-Djava.awt.headless=true', '--enable-native-access=ALL-UNNAMED'
+        doFirst {
+          def context = providers.gradleProperty('uiPaletteContextPath').orNull
+          def report = providers.gradleProperty('uiPaletteReportPath').orNull
+          if(!context || !report) throw new GradleException('Supply -PuiPaletteContextPath and -PuiPaletteReportPath.')
+          args context, report
+          if(providers.gradleProperty('uiPaletteInjectCleanupFailure').isPresent()) args '--inject-cleanup-failure'
+        }
+      }
     }
   }
 }

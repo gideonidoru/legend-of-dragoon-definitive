@@ -169,6 +169,11 @@ public final class UiHdMod {
   @EventListener
   public void nativeTexture(final NativeUiTextureEvent event) {
     NativeUiTextures.beginSelection(this, event.slot);
+    final boolean playerMarker = event.id.equals("indicator_big_arrow") && event.imageX == 960 && event.imageY == 352 && event.clutX == 976 && event.clutY == 472;
+    if(playerMarker) {
+      NativeUiTextures.beginSelection(this, event.slot + ":encounter-low");
+      NativeUiTextures.beginSelection(this, event.slot + ":encounter-medium");
+    }
     final byte[] source = event.source();
     final var tim = event.tim();
     for(final JSONObject entry : this.assets) {
@@ -185,6 +190,17 @@ public final class UiHdMod {
           try { return new NativeUiTextures.Images(NativeUiTextures.decode(tim,palette,x,y,w,h),candidate(entry)); }
           catch(final IOException failure) { throw new java.io.UncheckedIOException(failure); }
         });
+        if(playerMarker && palette == 0) {
+          // The player shares the door atlas's two encounter CLUT rows, not its pixels.
+          // Keep the same source-bound 4x animation and let the live palette own hue.
+          for(int encounter = 0; encounter < 2; encounter++) {
+            final var encounterBinding = new NativeUiTextures.Binding(binding.x(), binding.y(), 992, 272 + encounter, w, h);
+            NativeUiTextures.registerDeferred(this, event.slot + (encounter == 0 ? ":encounter-low" : ":encounter-medium"), encounterBinding, bytes, () -> {
+              try { return new NativeUiTextures.Images(NativeUiTextures.decode(tim,palette,x,y,w,h), candidate(entry), NativeUiTextures.paletteDetailReference(tim,palette,x,y,w,h)); }
+              catch(final IOException failure) { throw new java.io.UncheckedIOException(failure); }
+            });
+          }
+        }
       } catch(final Exception failure) {
         LOGGER.warn("UIHD retained original {}: {}", entry.getString("id"), failure.getMessage());
       }

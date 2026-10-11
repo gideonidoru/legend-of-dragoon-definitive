@@ -3,10 +3,12 @@ package legend.core.renderer;
 public class ShaderOptionsStandard extends ShaderOptionsBase {
   private ShaderUniformInt uiArtwork;
   private ShaderUniformVec4 uiArtworkBounds;
+  private ShaderUniformInt uiPaletteDetail;
 
   public void uiArtworkUniforms(final Shader<?> shader) {
     this.uiArtwork = shader.uniformInt("uiArtworkEnabled");
     this.uiArtworkBounds = shader.uniformVec4("uiArtworkBounds");
+    this.uiPaletteDetail = shader.uniformInt("uiPaletteDetailEnabled");
     shader.use();
     shader.uniformInt("uiArtworkTex").set(2);
     shader.uniformInt("uiSourceTex").set(3);
@@ -17,6 +19,10 @@ public class ShaderOptionsStandard extends ShaderOptionsBase {
       this.uiArtwork.set(enabled ? 1 : 0);
       if(enabled) this.uiArtworkBounds.set(bounds);
     }
+  }
+
+  public void uiPaletteDetail(final boolean enabled) {
+    if(this.uiPaletteDetail != null) this.uiPaletteDetail.set(enabled ? 1 : 0);
   }
 
   private final ShaderUniformFloat translucency;

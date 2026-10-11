@@ -47,6 +47,7 @@ uniform bool hdTexture;
 uniform bool effectArtworkEnabled;
 uniform usampler2D effectDetailTex;
 uniform bool uiArtworkEnabled;
+uniform bool uiPaletteDetailEnabled;
 uniform vec4 uiArtworkBounds;
 uniform sampler2D uiArtworkTex;
 uniform sampler2D uiSourceTex;
@@ -93,11 +94,13 @@ void main() {
   // Textured
   if(textured) {
     vec4 texColour;
+    int nativeIndex = -1;
     if(vertBpp == 0 || vertBpp == 1) {
       // Calculate CLUT index
       ivec2 uv = ivec2(vertTpage.x + (vertUv.x + uvOffset.x) * widthMultiplier, vertTpage.y + vertUv.y + uvOffset.y);
       ivec4 indexVec = ivec4(texelFetch(tex15, uv, 0));
       int p = (indexVec.r >> ((int(vertTpage.x + vertUv.x) & widthMask) << indexShift)) & indexMask;
+      nativeIndex = p;
 
       // Pull actual pixel colour from CLUT
       uint pixel = texelFetch(tex15, ivec2(vertClut.x + p, vertClut.y), 0).r;
@@ -136,11 +139,17 @@ void main() {
         ivec2 pixel = ivec2(local);
         vec4 source = texelFetch(uiSourceTex, pixel, 0);
         bool visible = texColour.a != 0.0 || any(notEqual(texColour.rgb, vec3(0.0)));
-        bool unchanged = all(lessThanEqual(abs(texColour.rgb - source.rgb), vec3(1.0 / 255.0 + 0.000001)))
+        bool unchanged = !uiPaletteDetailEnabled && all(lessThanEqual(abs(texColour.rgb - source.rgb), vec3(1.0 / 255.0 + 0.000001)))
           && (texColour.a != 0.0) == (source.a != 0.0);
-        if(visible && unchanged) {
+        bool indexedDetail = uiPaletteDetailEnabled && nativeIndex == int(round(source.r * 255.0)) && source.g > 0.0;
+        if(visible && (unchanged || indexedDetail)) {
           vec3 restored = texture(uiArtworkTex, local / uiArtworkBounds.zw).rgb;
-          if(any(notEqual(restored, vec3(0.0)))) texColour.rgb = restored;
+          if(indexedDetail) {
+            // Reuse the authored marker's shading while the live encounter CLUT owns hue,
+            // black/discard and STP. An overwritten index cannot borrow old detail.
+            float brightness = max(restored.r, max(restored.g, restored.b));
+            texColour.rgb = clamp(texColour.rgb * clamp(brightness / source.g, 0.0, 2.0), 0.0, 1.0);
+          } else if(any(notEqual(restored, vec3(0.0)))) texColour.rgb = restored;
         }
       }
     }
