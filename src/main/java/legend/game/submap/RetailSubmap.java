@@ -250,7 +250,7 @@ public class RetailSubmap extends Submap {
 
   @Override
   public void loadAssets(final Runnable onLoaded) {
-    this.loadAssets().thenRun(onLoaded).exceptionally(failure -> {
+    this.prepareAssets().thenRun(onLoaded).exceptionally(failure -> {
       LOGGER.error("Failed to prepare submap cut %d assets", this.cut, failure);
       return null;
     });
@@ -258,6 +258,20 @@ public class RetailSubmap extends Submap {
 
   @Override
   public CompletableFuture<Void> loadAssets() {
+    // Existing derived mods may customize only the callback entrypoint. Keep that dispatch,
+    // including overrides which delegate to super.loadAssets(callback), without recursion.
+    try {
+      if(this.getClass().getMethod("loadAssets", Runnable.class).getDeclaringClass() != RetailSubmap.class) {
+        return super.loadAssets();
+      }
+    } catch(final NoSuchMethodException failure) {
+      throw new IllegalStateException("Missing submap asset callback contract", failure);
+    }
+
+    return this.prepareAssets();
+  }
+
+  private CompletableFuture<Void> prepareAssets() {
     LOGGER.info("Loading submap cut %d assets", this.cut);
 
     this.theEnd_800d4bd0 = null;

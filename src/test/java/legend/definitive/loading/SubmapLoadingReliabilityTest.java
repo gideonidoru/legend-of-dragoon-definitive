@@ -43,7 +43,7 @@ final class SubmapLoadingReliabilityTest {
     "staleEngineCompletionIsIgnored", "supersededLoadInSameSceneIsIgnored",
     "malformedRetailAssetsNeverInvokeSuccess", "retailFutureRetainsReadAndOverlayFailures",
     "legacySubmapBridgeRetainsCallbacksAndSynchronousFailures", "supersededSuccessIsIgnored",
-    "staleFailureIsIgnored", "destroyedSceneCompletionIsIgnored", "synchronousPreparationFailureReachesRenderer"})
+    "staleFailureIsIgnored", "destroyedSceneCompletionIsIgnored", "synchronousPreparationFailureReachesRenderer", "legacyRetailOverrideStillDispatches", "legacyRetailDelegationDoesNotRecurse"})
   void actualSceneContract(final String scenario) throws Exception {
     final Path root = Files.createDirectory(this.temporary.resolve(scenario));
     final Path output = this.temporary.resolve(scenario + ".log");
@@ -343,6 +343,36 @@ final class SubmapLoadingReliabilityTest {
     final SMap scene = scene(); final ControlledSubmap submap = new ControlledSubmap(scene);
     submap.submissionFailure = new IllegalArgumentException("preparation submission rejected"); startAssets(scene, submap);
     failsOnRenderer("assets"); assertEquals(SubmapMediaState.WAIT_FOR_SOBJ_ASSETS_AND_SCRIPTS_6, media(scene));
+  }
+
+  private static final class LegacyRetailSubmap extends RetailSubmap {
+    Runnable completion;
+    LegacyRetailSubmap(final SMap scene) { super(scene, 0, root(), new Vector2f(), new CollisionGeometry(scene)); }
+    @Override public void loadAssets(final Runnable completion) { this.completion = completion; }
+  }
+
+  private void legacyRetailOverrideStillDispatches() throws Exception {
+    final SMap scene = scene(); final LegacyRetailSubmap mod = new LegacyRetailSubmap(scene); startAssets(scene, mod);
+    assertNotNull(mod.completion, "The new future entrypoint must retain existing RetailSubmap callback overrides");
+    mod.completion.run(); rendererTasks();
+    assertEquals(SubmapMediaState.FINALIZE_SUBMAP_LOADING_7, media(scene));
+  }
+
+  private static final class DelegatingRetailSubmap extends RetailSubmap {
+    boolean legacyCalled;
+    DelegatingRetailSubmap(final SMap scene) { super(scene, 0, root(), new Vector2f(), new CollisionGeometry(scene)); }
+    @Override public void loadAssets(final Runnable completion) {
+      this.legacyCalled = true; super.loadAssets(completion);
+    }
+  }
+
+  private void legacyRetailDelegationDoesNotRecurse() throws Exception {
+    this.folder("SECT/DRGN21.BIN/5/textures"); this.folder("SECT/DRGN21.BIN/6");
+    this.file("SECT/DRGN21.BIN/6/0", new byte[4]); this.file("SECT/DRGN21.BIN/6/1", new byte[4]);
+    final SMap scene = scene(); final DelegatingRetailSubmap mod = new DelegatingRetailSubmap(scene); startAssets(scene, mod);
+    settleLoader(); assertTrue(mod.legacyCalled); assertNotNull(mod.script);
+    assertEquals(SubmapMediaState.WAIT_FOR_SOBJ_ASSETS_AND_SCRIPTS_6, media(scene));
+    rendererTasks(); assertEquals(SubmapMediaState.FINALIZE_SUBMAP_LOADING_7, media(scene));
   }
 
 }
