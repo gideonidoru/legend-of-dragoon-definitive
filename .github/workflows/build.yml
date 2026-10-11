@@ -180,6 +180,7 @@ jobs:
           python3 scripts/test-release-retention.py
           python3 scripts/test-publication-delta.py
           python3 scripts/test-current-publication.py
+          python3 scripts/test-current-staging.py
           python3 scripts/test-current-publication-transaction.py
           python3 scripts/test-current-retention.py
       - name: Verify native archive fixtures
