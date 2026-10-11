@@ -15,9 +15,11 @@ publisher=importlib.util.module_from_spec(spec);spec.loader.exec_module(publishe
 class Server:
     def __init__(self):
         self.record=dict(id=77,tag_name='previous-test',body='Previous complete download',draft=False,prerelease=False)
-        self.files={};self.events=[];self.fail=None;self.next_id=100
+        self.files={};self.events=[];self.fail=None;self.next_id=100;self.inventory_reads=0
     def release(self):return copy.deepcopy(self.record)
-    def assets(self):return copy.deepcopy(list(self.files.values()))
+    def assets(self):
+        self.inventory_reads+=1
+        return copy.deepcopy(list(self.files.values()))
     def add(self,name,data):
         self.next_id+=1
         self.files[name]=dict(id=self.next_id,name=name,size=len(data),digest='sha256:'+hashlib.sha256(data).hexdigest(),state='uploaded',browser_download_url=f'https://github.com/{REPO}/releases/download/{self.record["tag_name"]}/{name}')
@@ -116,6 +118,30 @@ class Transaction(unittest.TestCase):
         self.assertFalse(any(e[0]=='commit' for e in self.server.events))
     def test_missing_reused_file_never_advances_manifest(self):
         movie=next(n for n in self.inputs['immutable'] if n.startswith('file-'));del self.server.files[movie]
+        with self.assertRaises(ValueError):self.run_publish()
+        self.assertFalse(any(e[0]=='commit' for e in self.server.events))
+    def test_reuse_inventory_reads_do_not_scale_with_unchanged_files(self):
+        for number in range(550):
+            data=('unchanged '+str(number)).encode()
+            self.payload('file-'+hashlib.sha256(data).hexdigest(),data,existing=True)
+        self.run_publish()
+        self.assertLess(self.server.inventory_reads,25)
+    def test_reused_file_removed_during_alias_upload_prevents_commit(self):
+        movie=next(n for n in self.inputs['immutable'] if n.startswith('file-'))
+        upload=self.server.upload
+        def remove(path):
+            upload(path)
+            if path.name=='SHA256SUMS':del self.server.files[movie]
+        self.server.upload=remove
+        with self.assertRaises(ValueError):self.run_publish()
+        self.assertFalse(any(e[0]=='commit' for e in self.server.events))
+    def test_reused_file_changed_during_alias_upload_prevents_commit(self):
+        movie=next(n for n in self.inputs['immutable'] if n.startswith('file-'))
+        upload=self.server.upload
+        def corrupt(path):
+            upload(path)
+            if path.name=='SHA256SUMS':self.server.files[movie]['digest']='sha256:'+'f'*64
+        self.server.upload=corrupt
         with self.assertRaises(ValueError):self.run_publish()
         self.assertFalse(any(e[0]=='commit' for e in self.server.events))
     def test_local_lock_is_shared_across_different_staging_directories(self):
