@@ -78,7 +78,14 @@ class FileDeliveryTest {
     final Path pack=pack();final InstallStore store=new InstallStore(this.temporary.resolve("reinstall-files"));store.install(pack);
     final Path before=store.data(store.state());Files.writeString(before.resolve("saves/owner.txt"),"personal");
     final Map<String,byte[]> served=new HashMap<>();final var candidate=contents(pack,served);
-    FileDelivery.install(store,candidate,InstallProgress.NONE,connection(served,new ArrayList<>()),false,true);
+    final List<String> requested=new ArrayList<>();
+    FileDelivery.install(store,candidate,InstallProgress.NONE,connection(served,requested),false,true);
+    final var hashes=PackageManifest.read(pack).hashes();
+    assertEquals(hashes.size()+1,requested.size(),"Full Reinstall fetches the inventory and every payload, including healthy files");
+    final Map<String,Long> counts=new HashMap<>();
+    requested.forEach(name->counts.merge(name,1L,Long::sum));
+    for(final String digest : new HashSet<>(hashes.values().stream().map(Object::toString).toList()))
+      assertEquals(hashes.values().stream().filter(digest::equals).count(),counts.get("file-"+digest));
     assertNotEquals(before,store.data(store.state()));assertEquals("personal",Files.readString(store.data(store.state()).resolve("saves/owner.txt")));store.verifyInstalled();
   }
   @Test void repairDownloadsOnlyCorruptOrMissingFilesAndKeepsDataAndExtraction() throws Exception {

@@ -78,7 +78,7 @@ final class FileDelivery {
           final Path target = staged.resolve(name); Files.createDirectories(target.getParent());
           final Path prior = current == null ? null : current.resolve(name);
           final long base = completed;
-          if(reusable(prior, current, size, digest)) {
+          if(!fullReinstall && reusable(prior, current, size, digest)) {
             progress.report(new InstallProgress.Update("Reusing verified files", module(name) + " · " + name, 10, 60, completed, contents.bytes(), name, 0, size));
             try(final var input = Files.newInputStream(prior, LinkOption.NOFOLLOW_LINKS); final var output = Files.newOutputStream(target, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
               DownloadBody.copy(input, output, size, Duration.ofMinutes(15), bytes -> progress.report(new InstallProgress.Update("Reusing verified files", module(name) + " · " + name, 10, 60, base + bytes, contents.bytes(), name, bytes, size)));
