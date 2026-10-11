@@ -26,6 +26,10 @@ The required feature/native-reference audit was not completed before these infer
 
 Shana's old “pale dress” description was incorrect for the selected normal-form CG reference. Historical generated files/prompts remain preserved as evidence; they are not canonical inputs.
 
+After freezing the authoring checkpoint, the original field and battle sources were hash-verified and rendered at three camera angles for every character: **18 original forms and 54 original reference views**. The private sheets were inspected; the [public native-reference audit](../../integrations/charhd/production/party-reconstruction/NATIVE-REFERENCE-AUDIT-original-design-v3.json) includes only hashes, observations and matched/mismatched/unresolved feature records. This is source inspection, not testing the new models in the game.
+
+The controls expose important form distinctions: Shana's field model has a rear braid, Albert's field model has a long rear hair strand, and Dart's field ankle wraps differ from his battle boot cuffs. Those details must survive the replacement; the CG-facing artwork cannot prove their absence. The new static bodies do not yet preserve all of them. Haschel's original front tunic/neckline also constrains the face of the body not visible in his back-facing concept art. Exact motifs, close attachment checks and registered source/candidate detail comparisons remain unfinished; no character design is locked by this audit. The later inspection does not retroactively cure the inference sequencing breach.
+
 ## Actual mesh inspection
 
 Each character folder under [party reconstruction](../../integrations/charhd/production/party-reconstruction/AUTHORING.md) has an `original-design-v3` directory containing:
