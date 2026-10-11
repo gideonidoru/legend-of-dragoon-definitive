@@ -79,8 +79,8 @@ unreviewed images. The current candidate selects 4,892 public custom PNGs; its
 painted inputs, prompts and source-bound repair receipts are also versioned.
 Original comparisons remain private, and held/uniform sources retain native art.
 
-The published maintenance installer remains on the historical source-476 checkpoint
-of 2,723 selected field images until coordinated integration and publication.
+The current combined installer includes all 4,892 selected development field images.
+The previous maintenance installer used the historical source-476 checkpoint of 2,723.
 At that checkpoint 2,840 images had been reviewed, 117 were held and 2,322
 awaited review. Those are historical counters, not the current candidate's status.
 Archived generation/repair/review controls preserve their checkpoint counters;
