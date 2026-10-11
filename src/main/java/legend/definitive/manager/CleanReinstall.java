@@ -183,6 +183,7 @@ final class CleanReinstall {
       || name.matches("(?:release-recovery|disc-extraction-recovery|state-recovery)-.*")
       || name.matches("\\.update-[0-9]+\\.zip") || name.startsWith(".package-") || name.startsWith(".files-") || name.startsWith(".contents-")
       || name.startsWith(".source-build-") || name.startsWith(".bootstrap-") || name.startsWith(".java-path-") || name.startsWith(".state-")
+      || name.equals(".archive-assembly") || name.startsWith(".assembly-")
       || name.equals(".disc-transaction.properties") || name.equals(".release-repair-transaction.properties");
   }
   private static boolean runtimeRoot(final Path root, final String name) {

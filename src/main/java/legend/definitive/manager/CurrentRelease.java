@@ -49,6 +49,10 @@ final class CurrentRelease {
     if(exact.isEmpty() || exact.length() > MAX_MANIFEST_BYTES || exact.chars().anyMatch(c -> c > 127)) throw new IOException("Invalid current manifest size or encoding.");
     return exact;
   }
+  static boolean usesAssembly(final String body) throws IOException {
+    if(!body.contains("DEFINITIVE_CURRENT_")) return false;
+    return object(new ReleaseUpdates.Json(manifestText(body)).read()).get("format") instanceof Long format && format == 2;
+  }
   static Set<String> referencedNames(final String body) throws IOException {
     final String exact = manifestText(body);
     final var pointer = object(new ReleaseUpdates.Json(exact).read());
@@ -113,13 +117,37 @@ final class CurrentRelease {
     }
     final Map<?, ?> pack = object(selected.get("package")), contents = object(selected.get("contents"));
     final Map<?, ?> packAsset = matchAsset(carrier, pack, text(pack, "name"), true), contentsAsset = matchAsset(carrier, contents, text(contents, "name"), true);
-    final var revision = new ReleaseUpdates.CurrentRevision(number(pointer, "generation", MAX_NUMBER), text(pointer, "sourceRevision"), digest, Long.toString(number(pointer, "buildRun", MAX_NUMBER)), number(pack, "bytes", 2L*1024*1024*1024), number(contents, "bytes", 8L*1024*1024), movieSources, assembly);
+    final var revision = new ReleaseUpdates.CurrentRevision(number(pointer, "generation", MAX_NUMBER), text(pointer, "sourceRevision"), digest, Long.toString(number(pointer, "buildRun", MAX_NUMBER)), number(pack, "bytes", 2L*1024*1024*1024), number(contents, "bytes", 8L*1024*1024), movieSources, assembly, format == 2 ? sourceCatalog(carrier) : Map.of());
     validate(revision);
     final Instant published;
     try { final String date = text(pointer, "publishedAt"); if(!date.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z")) throw new IOException("Current build date must use UTC."); published = Instant.parse(date); } catch(final java.time.DateTimeException failure) { throw new IOException("Invalid current build publication date.", failure); }
     final String body = text(carrier, "body"), notes = body.substring(body.indexOf(END) + END.length());
     return new ReleaseUpdates.Candidate(tag, text(packAsset, "id"), URI.create(text(packAsset, "browser_download_url")), text(pack, "sha256"), published, notes,
       new ReleaseUpdates.ContentsAsset(text(contentsAsset, "id"), URI.create(text(contentsAsset, "browser_download_url")), text(contents, "sha256")), revision);
+  }
+  static void validateCarrierIds(final List<?> assets) throws IOException {
+    if(assets.size() > 1000) throw new IOException("Current carrier exceeds its asset limit.");
+    final Set<String> ids = new HashSet<>();
+    for(final Object value : assets) {
+      final String id = String.valueOf(object(value).get("id"));
+      if(!identifier(id) || !ids.add(id)) throw new IOException("Duplicate or invalid current asset ID.");
+    }
+  }
+  private static Map<String, ReleaseUpdates.SourceAsset> sourceCatalog(final Map<?, ?> carrier) throws IOException {
+    if(!(carrier.get("assets") instanceof List<?> assets) || assets.size() > 1000) throw new IOException("Current carrier exceeds its asset limit.");
+    validateCarrierIds(assets);
+    final Map<String, ReleaseUpdates.SourceAsset> sources = new HashMap<>();
+    for(final Object value : assets) {
+      final var asset = object(value);
+      final String id = String.valueOf(asset.get("id"));
+      if(!(asset.get("name") instanceof String name) || !name.matches("file-[a-f0-9]{64}")) continue;
+      final String sha = name.substring(5);
+      if(!(asset.get("size") instanceof Long size) || size < 0 || size >= 2L * 1024 * 1024 * 1024
+        || !"uploaded".equals(asset.get("state")) || !("sha256:" + sha).equals(asset.get("digest"))
+        || !text(asset, "browser_download_url").equals(ROOT + "definitive-current/" + name)) throw new IOException("Current source lacks verified release metadata.");
+      if(sources.put(sha, new ReleaseUpdates.SourceAsset(id, URI.create(text(asset, "browser_download_url")), size)) != null) throw new IOException("Duplicate current source object.");
+    }
+    return Map.copyOf(sources);
   }
   private static Map<?, ?> matchAsset(final Map<?, ?> carrier, final Map<?, ?> descriptor, final String expectedName, final boolean requireId) throws IOException {
     if(requireId) fields(descriptor, "name", "id", "sha256", "bytes");

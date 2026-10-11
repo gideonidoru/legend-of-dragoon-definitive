@@ -254,6 +254,39 @@ class CurrentReleaseTest {
     sizes.setProperty(sizes.stringPropertyNames().iterator().next(), "999");
     assertThrows(IOException.class, () -> candidate.revision().validateMovieContents(hashes, sizes));
   }
+  @Test void formatTwoCompactionRetainsTransitiveSourcesAndRejectsCarrierIdRebinding() throws Exception {
+    final var build = new Build("catalog", 2, "a".repeat(40), "engine"); formatTwo(build);
+    final byte[] bytes = "retained prior archive".getBytes();
+    final var descriptor = build.descriptor("file-" + PackageManifest.digest(bytes), "", bytes);
+    // Empty ordinary managed files are valid carrier objects, although recipe sources must be positive.
+    build.descriptor("file-" + PackageManifest.digest(new byte[0]), "", new byte[0]); build.publish();
+    final var requests = new ArrayList<String>(); final var compact = new ReleaseUpdates.MetadataCache().fetch(true, build.connection(requests));
+    final var candidate = CurrentRelease.select(compact, PackageManifest.hostPlatform(), new Properties(), true).orElseThrow();
+    assertEquals(19, candidate.revision().sources().size());
+    assertEquals(descriptor.get("id"), candidate.revision().sources().get(PackageManifest.digest(bytes)).id());
+    assertThrows(UnsupportedOperationException.class, () -> candidate.revision().sources().clear());
+    build.assets.add(new TreeMap<>(Map.of("name", "unrelated-note", "id", Long.parseLong((String)descriptor.get("id")), "size", 1L))); build.publish();
+    assertThrows(IOException.class, build::candidate);
+    assertThrows(IOException.class, () -> new ReleaseUpdates.MetadataCache().fetch(true, build.connection(new ArrayList<>())));
+  }
+  @org.junit.jupiter.params.ParameterizedTest
+  @org.junit.jupiter.params.provider.ValueSource(strings = {"id", "size", "digest", "state", "url", "duplicate", "budget"})
+  void formatTwoRejectsUnboundTransitiveCarrierSources(final String defect) throws Exception {
+    final var build = new Build("catalog-invalid", 2, "a".repeat(40), "engine"); formatTwo(build);
+    final byte[] bytes = "retained prior archive".getBytes(); build.descriptor("file-" + PackageManifest.digest(bytes), "", bytes);
+    final var asset = build.assets.getLast();
+    switch(defect) {
+      case "id" -> asset.put("id", 0L);
+      case "size" -> asset.put("size", 2L * 1024 * 1024 * 1024);
+      case "digest" -> asset.put("digest", "sha256:" + "b".repeat(64));
+      case "state" -> asset.put("state", "new");
+      case "url" -> asset.put("browser_download_url", "https://example.com/file-" + PackageManifest.digest(bytes));
+      case "duplicate" -> { final var duplicate = new TreeMap<>(asset); duplicate.put("id", 888L); build.assets.add(duplicate); }
+      case "budget" -> { for(int i = 0; i < 1000; i++) build.assets.add(new TreeMap<>(Map.of("name", "unrelated-" + i, "id", 10000L + i))); }
+    }
+    build.publish(); assertThrows(IOException.class, build::candidate);
+  }
+
   @Test void formatTwoRejectsMissingExtraOversizedAndCarrierMismatchedSources() throws Exception {
     var build = new Build("split-invalid", 2, "a".repeat(40), "engine"); formatTwo(build);
     var sources = (Map<String,Object>)build.pointer.get("fmvSources"); var saved = sources.remove("OPENH"); build.publish(); assertThrows(IOException.class, build::candidate);
