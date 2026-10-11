@@ -104,5 +104,25 @@
     "envhd-scenery-five-preflight.log": "a73ba2dfd9ba6a6e7ad717715f1a46bca911dee75faac6fa833153879203d047",
     "envhd-scenery-five-build.log": "8491317032fc92fc976476f4188e1aab6e834f41647da165c3ea080d24d77766",
     "envhd-scenery-five-package-verification.log": "b3d92dd73b4d839d7296c85f4174dc135dc6aebe55b76fca224da72096441e62"
-  }
+  },
+  "independentIntegrationReviews": {
+    "spec": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedSource": "3d618680fdbf2b57bd5aba2ee5fdd007ac6dc55a",
+      "reviewedMetadata": "6125f91c8a496e780f8633a92d3e227b5b422aa8",
+      "reportSha256": "60bda5309d2b7d8c8884a2a5c8eff8fad29561f405e48375ed0d7c45674bae73",
+      "reviewer": "/root/hd_spec_review"
+    },
+    "standards": {
+      "result": "CLEAR",
+      "findings": 0,
+      "reviewedSource": "3d618680fdbf2b57bd5aba2ee5fdd007ac6dc55a",
+      "reviewedMetadata": "6125f91c8a496e780f8633a92d3e227b5b422aa8",
+      "reportSha256": "711c058360127e05d53702758b94f88ad320f9f25777d87277aca75363d0e813",
+      "reviewer": "/root/hd_standards_review"
+    }
+  },
+  "independentFreshOriginalSourceReplay": 48,
+  "independentFreshPackageReplay": true
 }
