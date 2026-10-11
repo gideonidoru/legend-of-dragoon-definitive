@@ -73,7 +73,7 @@ class FileDeliveryTest {
     final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("repair-forbidden")); store.install(original); final var before = store.state();
     final List<URI> requested = new ArrayList<>();
     assertThrows(IOException.class, () -> ReleaseUpdates.repair(store, InstallProgress.NONE, request -> { requested.add(request.uri()); return new Response(request, InputStream.nullInputStream(), HttpHeaders.of(Map.of(), (key, value) -> true), 403); }));
-    assertEquals(1, requested.size()); assertTrue(requested.getFirst().getPath().contains("/tags/")); assertEquals(before, store.state()); store.verifyInstalled();
+    assertEquals(1, requested.size()); assertEquals("/repos/gideonidoru/legend-of-dragoon-definitive/releases", requested.getFirst().getPath()); assertEquals(before, store.state()); store.verifyInstalled();
   }
   @Test void retiredRepairRejectsCurrentReleaseOlderThanVerifiedInstalledDate() throws Exception {
     final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("repair-downgrade")); store.install(original);

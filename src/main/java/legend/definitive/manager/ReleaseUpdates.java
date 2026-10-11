@@ -17,7 +17,9 @@ public final class ReleaseUpdates {
   private static final String REPO = "gideonidoru/legend-of-dragoon-definitive";
   private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).followRedirects(HttpClient.Redirect.NORMAL).build();
   public record ContentsAsset(String id, URI url, String sha256) { }
-  public record Candidate(String tag, String assetId, URI url, String sha256, Instant publishedAt, String releaseNotes, ContentsAsset contents) {
+  public record CurrentRevision(long generation, String sourceRevision, String manifestSha256, String buildRun, long packageBytes, long contentsBytes) { }
+  public record Candidate(String tag, String assetId, URI url, String sha256, Instant publishedAt, String releaseNotes, ContentsAsset contents, CurrentRevision revision) {
+    public Candidate(final String tag, final String assetId, final URI url, final String sha256, final Instant publishedAt, final String releaseNotes, final ContentsAsset contents) { this(tag, assetId, url, sha256, publishedAt, releaseNotes, contents, null); }
     public Candidate(final String tag, final String assetId, final URI url, final String sha256, final Instant publishedAt, final String releaseNotes) { this(tag, assetId, url, sha256, publishedAt, releaseNotes, null); }
     public Candidate(final String tag, final String assetId, final URI url, final String sha256) { this(tag, assetId, url, sha256, null, ""); }
   }
@@ -30,12 +32,14 @@ public final class ReleaseUpdates {
   public static Optional<Candidate> check(final InstallStore store, final boolean force) throws IOException, InterruptedException {
     final String json = CACHE.fetch(force, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()));
     final var state = store.state();
+    if(CurrentRelease.present(json)) return CurrentRelease.select(json, PackageManifest.hostPlatform(), state, false);
+    if(CurrentRelease.generation(state, "acceptedGeneration") > 0) throw new IOException("The verified current build is unavailable. Retry the update check; your installed game remains available offline.");
     final Path release = InstallStore.child(store.root().resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
     final var metadata = PackageManifest.read(release).metadata();
     final Instant installedDate = parseDate(state.getProperty("releasePublishedAt", ""));
     return select(json, PackageManifest.hostPlatform(), state.getProperty("releaseAssetId", ""), metadata.getProperty("releaseTag", ""), installedDate);
   }
-  public static Optional<Candidate> latest() throws IOException, InterruptedException { return select(CACHE.fetch(false, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream())), PackageManifest.hostPlatform(), "", ""); }
+  public static Optional<Candidate> latest() throws IOException, InterruptedException { return select(CACHE.fetch(true, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream())), PackageManifest.hostPlatform(), "", ""); }
   private static Instant parseDate(final String date) throws IOException {
     if(date.isEmpty()) return null;
     try { return Instant.parse(date); } catch(final DateTimeParseException failure) { throw new IOException("Installed release date is invalid. Verify or reinstall this installation before updating.", failure); }
@@ -44,6 +48,7 @@ public final class ReleaseUpdates {
     return select(json, platform, installedId, installedTag, null);
   }
   static Optional<Candidate> select(final String json, final String platform, final String installedId, final String installedTag, final Instant knownInstalledDate) throws IOException {
+    if(CurrentRelease.present(json)) return CurrentRelease.select(json, platform, new Properties(), true);
     final Object parsed = new Json(json).read();
     if(!(parsed instanceof List<?> releases)) throw new IOException("Unexpected update response.");
     DatedAsset newest = null; boolean ambiguous = false; Instant installedDate = knownInstalledDate;
@@ -160,25 +165,31 @@ public final class ReleaseUpdates {
     for(final Object item : releases) {
       if(!(item instanceof Map<?, ?> release)) throw new IOException("Invalid release summary.");
       final var summary = new LinkedHashMap<String, Object>();
-      for(final String field : List.of("draft", "tag_name", "published_at", "body")) {
+      for(final String field : List.of("id", "draft", "tag_name", "published_at", "body")) {
         final Object value = release.get(field);
+        if(value instanceof String text && field.equals("body") && text.contains("DEFINITIVE_CURRENT_V1") && text.length() > 12000) throw new IOException("Current release body is oversized.");
         summary.put(field, value instanceof String text && field.equals("body") ? text.substring(0, Math.min(12000, text.length())) : value);
       }
+      final Set<String> currentNames = release.get("body") instanceof String releaseBody && releaseBody.contains("DEFINITIVE_CURRENT_") ? CurrentRelease.referencedNames(releaseBody) : Set.of();
       final var packages = new ArrayList<Object>();
       if(release.get("assets") instanceof List<?> assets) for(final Object assetValue : assets) {
-        if(assetValue instanceof Map<?, ?> asset && asset.get("name") instanceof String name && (name.matches("Legend-of-Dragoon-Definitive-(?:linux|macos)-(?:x64|arm64)\\.zip") || name.matches("Definitive-Contents-(?:linux|macos)-(?:x64|arm64)\\.zip"))) {
-          final var selected = new LinkedHashMap<String, Object>();
-          for(final String field : List.of("name", "id", "digest", "browser_download_url")) selected.put(field, asset.get(field));
-          packages.add(selected);
-        }
+        if(!(assetValue instanceof Map<?, ?> asset) || !(asset.get("name") instanceof String name)) continue;
+        final boolean relevant = currentNames.isEmpty()
+          ? name.matches("Legend-of-Dragoon-Definitive-(?:linux|macos)-(?:x64|arm64)\\.zip") || name.matches("Definitive-Contents-(?:linux|macos)-(?:x64|arm64)\\.zip")
+          : currentNames.contains(name);
+        if(!relevant) continue;
+        final var selected = new LinkedHashMap<String, Object>();
+        for(final String field : List.of("name", "id", "digest", "browser_download_url", "state", "size")) selected.put(field, asset.get(field));
+        packages.add(selected);
       }
       summary.put("assets", packages); compact.add(summary);
     }
     return json(compact);
   }
-  private static String json(final Object value) throws IOException {
+  static String json(final Object value) throws IOException {
     if(value == null) return "null";
     if(value instanceof Boolean bool) return bool.toString();
+    if(value instanceof Long number) return number.toString();
     if(value instanceof String text) {
       final var out = new StringBuilder("\"");
       for(int i = 0; i < text.length(); i++) {
@@ -225,6 +236,14 @@ public final class ReleaseUpdates {
     return installArchive(store, candidate, progress, connection, false);
   }
   static void validateContents(final Candidate candidate) throws IOException {
+    if(candidate.revision() != null) {
+      CurrentRelease.validate(candidate.revision());
+      final String base = "https://github.com/" + REPO + "/releases/download/definitive-current/";
+      if(!candidate.tag().equals("definitive-current") || !candidate.sha256().matches("[a-f0-9]{64}") || !candidate.contents().sha256().matches("[a-f0-9]{64}")
+        || !candidate.url().toString().equals(base + "package-" + PackageManifest.hostPlatform() + "-" + candidate.sha256() + ".zip")
+        || !candidate.contents().url().toString().equals(base + "contents-" + PackageManifest.hostPlatform() + "-" + candidate.contents().sha256() + ".zip")) throw new IOException("Invalid current build download source.");
+      return;
+    }
     if(!candidate.url().toString().startsWith("https://github.com/" + REPO + "/releases/download/") || !candidate.sha256().matches("[a-f0-9]{64}")) throw new IOException("Invalid release source.");
     if(!candidate.tag().matches("[A-Za-z0-9._-]+") || !candidate.contents().sha256().matches("[a-f0-9]{64}") || !candidate.contents().url().equals(candidate.url().resolve("Definitive-Contents-" + PackageManifest.hostPlatform() + ".zip"))) throw new IOException("Invalid release inventory source.");
   }
@@ -234,6 +253,13 @@ public final class ReleaseUpdates {
   static String repair(final InstallStore store, final InstallProgress progress, final AssetDownload connection) throws IOException, InterruptedException {
     return store.withMaintenance(progress, () -> {
       final var state = store.state();
+      final String currentReleases = new MetadataCache().fetch(true, connection);
+      if(CurrentRelease.present(currentReleases)) {
+        final Candidate candidate = CurrentRelease.select(currentReleases, PackageManifest.hostPlatform(), state, true).orElseThrow(() -> new IOException("No verified current build is available for repair."));
+        validateContents(candidate);
+        return FileDelivery.install(store, candidate, progress, connection, true);
+      }
+      if(CurrentRelease.generation(state, "acceptedGeneration") > 0) throw new IOException("The verified current build is unavailable for repair. Retry when GitHub is available.");
       final Path current = InstallStore.child(store.root().resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
       final String tag = state.getProperty("installedReleaseTag", "").isEmpty() ? PackageManifest.read(current).metadata().getProperty("releaseTag", "") : state.getProperty("installedReleaseTag");
       if(!tag.matches("[A-Za-z0-9._-]+")) throw new IOException("Installed release has no published repair identity. Choose Reinstall.");
@@ -248,7 +274,6 @@ public final class ReleaseUpdates {
         }
       }
       if(json == null) {
-        final String currentReleases = new MetadataCache().fetch(true, connection);
         final Instant installed = parseDate(state.getProperty("releasePublishedAt", ""));
         final Candidate currentCandidate = (installed == null ? select(currentReleases, PackageManifest.hostPlatform(), "", "") : select(currentReleases, PackageManifest.hostPlatform(), state.getProperty("releaseAssetId", ""), tag, installed)).orElseThrow(() -> new IOException("No compatible current release is available for repair."));
         if(currentCandidate.contents() == null) throw new IOException("The current release has no verified repair inventory.");
@@ -257,6 +282,10 @@ public final class ReleaseUpdates {
         return "Repair complete using the current release. " + FileDelivery.install(store, currentCandidate, progress, connection, false);
       }
       final Candidate candidate = select(json, PackageManifest.hostPlatform(), "", "").orElseThrow(() -> new IOException("No compatible repair files are published."));
+      if(candidate.revision() != null) {
+        validateContents(candidate);
+        return FileDelivery.install(store, candidate, progress, connection, true);
+      }
       if(!tag.equals(candidate.tag()) || candidate.contents() == null) throw new IOException("This older release has no selective repair inventory. Choose a complete Reinstall.");
       validateContents(candidate);
       return FileDelivery.install(store, candidate, progress, connection, true);
@@ -279,7 +308,7 @@ public final class ReleaseUpdates {
       download(candidate, download, progress, connection);
       progress.phase("Checking download", "Verifying the GitHub SHA256 checksum", 60);
       if(!PackageManifest.sha256(download).equals(candidate.sha256())) throw new IOException("Update checksum mismatch. Your current installation is unchanged.");
-      return store.install(download, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall);
+      return store.install(download, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall, candidate.revision());
     } finally { Files.deleteIfExists(download); }
   }
   /** Resume only the unique owned staging file, with a strong entity validator and whole-file digest. */
@@ -341,7 +370,7 @@ public final class ReleaseUpdates {
   private static final class InvalidDownload extends IOException { InvalidDownload(final String message) { super(message); } }
 
   /** Bounded JSON reader for GitHub metadata; no executable expressions or external dependencies. */
-  private static final class Json {
+  static final class Json {
     private final String source; private int position; private int count;
     Json(final String source) { this.source = source; }
     Object read() throws IOException { final Object value = value(0); white(); if(this.position != this.source.length()) throw bad(); return value; }
@@ -358,7 +387,7 @@ public final class ReleaseUpdates {
       if(c == '[') { final List<Object> list = new ArrayList<>(); white(); if(peek(']')) return list; do { list.add(value(depth + 1)); white(); if(peek(']')) return list; } while(peek(',')); throw bad(); }
       final int start = this.position - 1; while(this.position < this.source.length() && ",]} \n\r\t".indexOf(this.source.charAt(this.position)) < 0) this.position++;
       final String token = this.source.substring(start, this.position);
-      return switch(token) { case "true" -> true; case "false" -> false; case "null" -> null; default -> { if(!token.matches("-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?")) throw bad(); yield token; } };
+      return switch(token) { case "true" -> true; case "false" -> false; case "null" -> null; default -> { if(!token.matches("-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?")) throw bad(); if(token.matches("-?(0|[1-9][0-9]*)")) { try { yield Long.valueOf(token); } catch(final NumberFormatException failure) { throw bad(); } } yield token; } };
     }
     private boolean peek(final char c) { if(this.position < this.source.length() && this.source.charAt(this.position) == c) { this.position++; return true; } return false; }
     private String string() throws IOException {

@@ -19,6 +19,7 @@ env:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: build-${{ github.workflow }}-${{ github.ref }}
@@ -113,6 +114,35 @@ jobs:
       - name: Assemble reviewed portable entry points
         if: runner.os == 'Linux'
         run: python3 scripts/assemble-installer.py --output-dir build/distributions --tag "$RELEASE_TAG"
+      - name: Bind complete publication inventory and stage only missing assets
+        if: github.event_name == 'workflow_dispatch' && inputs.releaseTag != ''
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ runner.os }}" = Linux ]; then
+            PLATFORM=linux-x64
+            HANDOFF=()
+          else
+            PLATFORM=macos-arm64
+            HANDOFF=(--linux-download-dir "$RUNNER_TEMP/publication-linux-receipt" --wait-seconds 900)
+          fi
+          python3 scripts/prepare-publication-delta.py \
+            --distributions build/distributions --output-dir build/publication-delta \
+            --receipt "build/publication-receipts/publication-$PLATFORM.json" \
+            --platform "$PLATFORM" --source-sha "$(git rev-parse HEAD)" \
+            --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --repository "$GITHUB_REPOSITORY" --tag "$RELEASE_TAG" "${HANDOFF[@]}"
+      - name: Hand off small same-run Linux publication receipt
+        if: runner.os == 'Linux' && github.event_name == 'workflow_dispatch' && inputs.releaseTag != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: publication-linux-x64-receipt-${{ github.run_attempt }}
+          path: build/publication-receipts/publication-linux-x64.json
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+          overwrite: true
       - name: Check streamed FMV playback and delivery without a window
         if: runner.os == 'Linux'
         run: |
@@ -148,6 +178,11 @@ jobs:
           python3 scripts/test-release-publication.py
           python3 scripts/test-file-delivery.py
           python3 scripts/test-release-retention.py
+          python3 scripts/test-publication-delta.py
+          python3 scripts/test-current-publication.py
+          python3 scripts/test-current-staging.py
+          python3 scripts/test-current-publication-transaction.py
+          python3 scripts/test-current-retention.py
       - name: Verify native archive fixtures
         run: python3 scripts/verify-disc-archives.py
       - name: Cross-check original material fixtures in Python and Java
@@ -155,28 +190,33 @@ jobs:
           python3 -m venv "$RUNNER_TEMP/definitive-material-checks"
           "$RUNNER_TEMP/definitive-material-checks/bin/python" -m pip install -r scripts/requirements-visual.txt
           ./gradlew --no-daemon --console=plain materialAtlasInterop -PvisualPython="$RUNNER_TEMP/definitive-material-checks/bin/python" ${{ matrix.args }}
-      - name: Retain build packages and verification reports
+      - name: Recheck source-bound delta after all verification
+        if: github.event_name == 'workflow_dispatch' && inputs.releaseTag != ''
+        shell: bash
+        run: |
+          if [ "${{ runner.os }}" = Linux ]; then PLATFORM=linux-x64; else PLATFORM=macos-arm64; fi
+          python3 scripts/prepare-publication-delta.py --verify-staged \
+            --distributions build/distributions --output-dir build/publication-delta \
+            --receipt "build/publication-receipts/publication-$PLATFORM.json" \
+            --platform "$PLATFORM" --source-sha "$(git rev-parse HEAD)" \
+            --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --repository "$GITHUB_REPOSITORY" --tag "$RELEASE_TAG"
+      - name: Retain missing publication payloads and verification reports
         if: always() && github.event_name == 'workflow_dispatch' && inputs.releaseTag != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: delivery-${{ matrix.runner }}
           path: |
-            build/distributions/Legend-of-Dragoon-Definitive-*.zip
-            build/distributions/Definitive-Contents-*.zip
-            build/distributions/Env[1-4]HD-*.zip
-            build/distributions/files/file-*
-            build/distributions/FMVHD-v0.1.0-videos.zip
-            build/distributions/Definitive-Installer.zip
-            build/distributions/Install-Definitive.*
+            build/publication-receipts/publication-*.json
+            build/publication-delta/uploads/*
             build/reports/tests/deliveryTest/**
             build/reports/tests/charHdTests/**
             build/reports/tests/managerWindowTest/**
             build/reports/installer-*.png
             build/reports/focused-*.png
             build/reports/native-shader/**
-            build/modelshd/ModelsHD-*.jar
-            build/modelshd/ModelsHD-*.zip
             build/reports/tests/modelsHdTests/**
           if-no-files-found: error
           retention-days: 1
           compression-level: 0
+          overwrite: true
