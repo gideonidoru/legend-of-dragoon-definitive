@@ -16,7 +16,7 @@ Reconstructed characters. Restored HD artwork. Enhanced lighting and cinematics.
 
 Built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains), Definitive adds an integrated presentation and installation experience: custom model and texture upgrades, restored interface and effect artwork, enhanced films, lighting improvements, campaign presets, and a launcher for updates and recovery. The story, recognizable character designs, original music and Addition-based combat remain central to the experience.
 
-> **Available in the current download:** all seven HD modules, Dart’s reconstructed head, expanded environment artwork, SMAA, enhanced films and the audio, timing and recovery improvements described below. This is a development alpha; character and environment restoration are unfinished, and physical Steam Deck gameplay and performance validation remain ongoing. [Release details](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
+> **Development alpha.** Character and environment restoration are unfinished, and physical Steam Deck gameplay and performance validation remain ongoing.
 
 ## See the difference in-engine
 
@@ -28,7 +28,7 @@ Sharper artwork across the scene. A reconstructed Dart. Smoother surfaces, clean
 
 ![Matched battle view with all Definitive visual enhancements disabled on the left and enabled on the right](docs/definitive/images/comparisons/battle-visuals-off-on.jpg)
 
-*Visual enhancements off → Definitive visuals on. Same 1280 × 800 output, camera and character pose. Captured in the native Mac renderer with the published installer’s engine and artwork, at normal actor scale.*
+*Visual enhancements off → Definitive visuals on. Same 1280 × 800 output, camera and character pose. Captured in the native Mac renderer at normal actor scale.*
 
 <details>
 <summary><strong>Take a closer look · Dart, materials and the battle interface</strong></summary>
@@ -74,7 +74,7 @@ Armor paneling, cloth patterns and weapon ornamentation deserve the same attenti
 </tr>
 <tr>
 <td>Crimson armor panels and painted costume detail. Selected development artwork on original geometry.</td>
-<td>Hammer motifs and clothing patterns at 4× resolution. A preview candidate, currently not enabled in the installed mod.</td>
+<td>Hammer motifs and clothing patterns at 4× resolution. A texture restoration study.</td>
 </tr>
 </table>
 
@@ -82,7 +82,7 @@ Armor paneling, cloth patterns and weapon ornamentation deserve the same attenti
 
 **ModelsHD** refines eligible surfaces across all nine party field models and all 19 party battle forms, including Dragoon forms. It also reaches supported enemies, NPCs and scenery. **CharHD** supplies the separate character artwork and Dart’s accepted head reconstruction. Broader smoothing and individually rebuilt characters are distinct layers of the remaster.
 
-The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, Meru, Kongol and Miranda**: faces and hair, costume panels, hands and grips, boots and weapons, guided by the original illustrations and in-game designs. Dart’s reconstructed head is available now; his complete body and the remaining party reconstructions are unfinished. Dragoon-form reconstruction is a later adaptation pass.
+The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, Meru, Kongol and Miranda**: faces and hair, costume panels, hands and grips, boots and weapons, guided by the original illustrations and in-game designs. Dart’s head is reconstructed; his complete body and the remaining party reconstructions are unfinished. Dragoon-form reconstruction is a later adaptation pass.
 
 <details>
 <summary><strong>Compare the geometry · Dart and Meru</strong></summary>
@@ -105,11 +105,11 @@ The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, 
 
 ### Painted environments, restored for a modern screen
 
-Explore painted towns, forests and interiors with **4,892 restored field images**, covering backgrounds and foreground layers. Skurfa’s HD backgrounds retain their own artwork and attribution; EnvHD expands the world around them with additional field art, battle panoramas, location landscapes and the parchment map. World-map terrain and selected battle floors, walls and scenery also receive restored textures.
+Explore painted towns, forests and interiors with **4,917 restored field images**, covering backgrounds and foreground layers. Skurfa’s HD backgrounds retain their own artwork and attribution; EnvHD expands the world around them with additional field art, battle panoramas, location landscapes and the parchment map. World-map terrain and selected battle floors, walls and scenery also receive restored textures.
 
 Foregrounds retain their original placement, visibility and depth. The installer supplies **Env1HD through Env4HD** as four resource packs under one EnvHD switch, with no separate pack setup.
 
-Hand-painted repairs restore bedding, upholstery, woodwork, foliage and architectural motifs. The repository selects **4,917 field images**, including **31 painted replacements**, plus repairs for twelve battle motifs. The additional 25 field selections and battle repairs await the next installer release. Held surfaces retain original artwork; animated environments and props remain unfinished. [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
+Hand-painted repairs restore bedding, upholstery, woodwork, foliage and architectural motifs. The restoration includes **31 painted replacements** and repairs for twelve battle motifs. Held surfaces retain original artwork; animated environments and props remain unfinished. [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 ### Magic with sharper detail
 
@@ -165,7 +165,7 @@ Choose artwork modules individually in the game's **Mods** menu. Installed HD mo
 | **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Remastered field backgrounds and foreground layers. |
 | **[ModelsHD](integrations/modelshd/README.md)** | Refined character, enemy, NPC and scenery geometry. |
 | **[CharHD](integrations/charhd/README.md)** | Dart’s reconstructed head, restored character textures and authored costume detail. |
-| **[EnvHD](docs/definitive/ENVHD_FULL_COVERAGE.md)** | 4,892 field images, battle panoramas, world-map artwork, terrain and selected battle materials. |
+| **[EnvHD](docs/definitive/ENVHD_FULL_COVERAGE.md)** | 4,917 field images, battle panoramas, world-map artwork, terrain and selected battle materials. |
 | **[UIHD](docs/definitive/UIHD_PRODUCTION.md)** | Portraits, menus, interface artwork and combat cues. |
 | **[FxHD](integrations/fxhd/README.md)** | Spell, attack, transformation and animated effect textures. |
 | **[FMVHD](integrations/fmvhd/README.md)** | Enhanced versions of all 18 cinematics. |
@@ -196,7 +196,7 @@ Definitive extends Severed Chains' shared rendering, texture-loading, audio and 
 
 **Protected interface rendering.** UIHD keeps native clipping, logical coordinates, animation offsets and transparency while displaying larger artwork. Native palette variants load on demand within a **32 MiB source/restoration GPU budget**. Current-frame pages remain pinned; unused pages can be evicted, including while paused. Changed or invalid sources fall back to original artwork.
 
-**Source-bound environments.** Field replacements match decoded source pixels and a pinned artwork checksum before allocation. Separate foreground layers retain their script slots, movement, translucency and depth. Painted-image inputs have bounded dimensions and decode checks before pixel allocation; invalid or mismatched artwork falls back to the original layer. The published selection includes 4,892 field images from 5,162 individually reviewed candidates, with 270 held sources, twelve battle-motif holds and one terrain hold still requiring repair. [Full environment scope](docs/definitive/ENVHD_FULL_COVERAGE.md).
+**Source-bound environments.** Field replacements match decoded source pixels and a pinned artwork checksum before allocation. Separate foreground layers retain their script slots, movement, translucency and depth. Painted-image inputs have bounded dimensions and decode checks before pixel allocation; invalid or mismatched artwork falls back to the original layer. The selection includes 4,917 field images from 5,162 individually reviewed candidates. Held sources retain their original artwork. [Full environment scope](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 **Bounded loading.** A shared **64 MiB decoded-artwork cache** reuses image data. Low-priority workers prepare native field backgrounds and eligible HD images during loading; GPU work stays on the renderer thread. Scene changes cancel obsolete preparation. These are component budgets, not a total game-memory or Steam Deck performance guarantee.
 
@@ -216,9 +216,7 @@ Failed shader reloads retain the working program. Texture uploads select the cor
 
 Native character uploads and deferred texture retirement retain renderer-thread ownership, including cancellation and failed uploads.
 
-**Depth-buffer resets.** The next release restores depth writes before clearing the depth buffer in both OpenGL and OpenGL ES. This prevents a previous draw’s disabled depth-write state from blocking the reset and carrying stale depth into later rendering. [Technical validation](docs/definitive/DEPTH_CLEAR_REGRESSION.md).
-
-Stationary viewport scaling and camera-clipping fixes remain under review, alongside controller reconnection and effect-texture ownership. They are not included in the current download or confirmed on Steam Deck. [Validation scope](docs/definitive/PROJECT_ACCEPTANCE.md).
+**Depth-buffer resets.** The engine restores depth writes before clearing the depth buffer in both OpenGL and OpenGL ES. This prevents a previous draw’s disabled depth-write state from blocking the reset and carrying stale depth into later rendering. [Technical validation](docs/definitive/DEPTH_CLEAR_REGRESSION.md).
 
 Presentation controls live in **Graphics**, independently of campaign presets. The pipeline uses conventional rendering with assets prepared before installation. Whole-campaign visual review and physical Steam Deck frame-time, memory and power measurements remain ongoing.
 
