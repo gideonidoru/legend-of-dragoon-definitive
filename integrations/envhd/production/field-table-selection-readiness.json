@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "scope": "Clean table-only increment from accepted main; prior4925/39 exact. Unrelated candidate sets, Tiberoa, drafts and workflow edits excluded.",
-  "integrationBaseCommit": "d31efa9c890742f7908fb58027f5ae4c0a3a621f",
+  "integrationBaseCommit": "ef0f5838652f81e3bc5c1fe2e53d37a526243bbf",
   "selectionManifest": "field-bespoke-table-independent-reviewed-selection.json",
   "selectionManifestSha256": "addfc9dbc087ed058af2029cee7347b044161e97252a62939fa51a959a5d2db6",
   "independentReview": "field-independent-table-review.json",
@@ -31,7 +31,7 @@
       "passed": 39
     }
   ],
-  "freshPackageVerified": true,
+  "freshPackageVerified": false,
   "skurfaRegenerated": false,
   "engineChanged": false,
   "installerUiChanged": false,
@@ -40,40 +40,11 @@
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
   "originalSourcesReferencesAndComparisonsExcluded": true,
-  "packageVerifiedSourceCommit": "76f4292db144360355bbd4882da1b690ebe6fcd4",
-  "build": "EnvHD JAR and all four field parts built successfully from clean committed source; fallback source pin exact.",
-  "packageVerification": {
-    "selectedFields": 4926,
-    "jarResources": 5312,
-    "parts": 4,
-    "oneModSwitch": true,
-    "allSelectedResourceNamesSizesAndBytesExact": true,
-    "files": [
-      {
-        "name": "Env1HD-v0.1.0.zip",
-        "size": 552595435,
-        "sha256": "eb4d0119eacfa81c98982a9780bffca4ae56b28aedb5d182227774bd09bc5205"
-      },
-      {
-        "name": "Env2HD-v0.1.0.zip",
-        "size": 573556667,
-        "sha256": "f8796a15188f2a1ab5354c04019fdbef8ea9df5d3512fcc28af32765fe176718"
-      },
-      {
-        "name": "Env3HD-v0.1.0.zip",
-        "size": 570092317,
-        "sha256": "2092c3660151873efdf44098e0bd00427b5389e7681fb9fb71950fe51952a24b"
-      },
-      {
-        "name": "Env4HD-v0.1.0.zip",
-        "size": 672957319,
-        "sha256": "a457915e652f8382e85dad5c4a785a02f5ca2e44a2ec776f0c048c71e41f85ed"
-      },
-      {
-        "name": "EnvHD-v0.1.0.jar",
-        "size": 277913862,
-        "sha256": "4343402bdea3de25d4b5df56e83798ac6e2e3607ccb5c243032dc92ca1689ff2"
-      }
-    ]
-  }
+  "independentlyReviewedTableHeadPreserved": "5b0f1c7077473e655c311b2032ec94f4a562f875",
+  "previousReadinessSha256": "e25da585cd11037de4b035d59a59eaff4a0757b9246bc84415139f56c863864b",
+  "frozenTableRecipeAndRuntimeBytesExact": true,
+  "combinedBattleRuntimeExactToAcceptedMain": true,
+  "combinedBattleSelectedPaintings": 47,
+  "combinedBattlePresentationPaintings": 35,
+  "combinedBattleNeuralMasters": 471
 }

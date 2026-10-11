@@ -18,7 +18,7 @@
     "field-review-receipt.json": "f2845bdff322c04b8496a0eff151389da53594de54446ec25dfb0d42cab9ea51",
     "field-artwork.json": "d2e03bf46ac238025063ee8a463371131a3ea85a49dcef0db91fe216a593664d",
     "field-runtime-artwork.json": "b4c0dc3f07c089c9fe727be0fd19e457b255ccc16b63db4f3cc40a313125b257",
-    "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
+    "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "field-bespoke-foliage.json": "a5ed3d3c90fbf07ec82a745c5058c766d51b32fbbf53a67301d32e40a639d270",
     "battle-bespoke-motifs.json": "96fd0ca29e85e4fc4e3a96c4bb3e87b05f5874365bfcd57d9af9a04920512053",
     "battle-bespoke-lattice.json": "26d084cabd72414ad3569389936d383e41e6e799c40f563c0850dc659d00b2ef",
@@ -35,10 +35,10 @@
     "field-bespoke-textiles-reviewed-selection.json": "bbd204020a76bab277e470eba885e768c1a967d9b54233cda1606f6a4fd629c5",
     "field-bespoke-seven-independent-reviewed-selection.json": "8b63f5db27d7c91c8a44b48b37eadcd8fb76bbea9a0236ffbc8aba889767677a",
     "field-independent-nine-review.json": "bf2f2aacf93c4893b8861a7fb1e87b57525ed4fbdbf8f44b5c01925fc03f42f4",
-    "battle-presentation-artwork-v1.json": "93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817",
+    "battle-presentation-artwork-v1.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274",
     "field-bespoke-table-independent-reviewed-selection.json": "addfc9dbc087ed058af2029cee7347b044161e97252a62939fa51a959a5d2db6",
     "field-independent-table-review.json": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a",
-    "field-table-selection-readiness.json": "e25da585cd11037de4b035d59a59eaff4a0757b9246bc84415139f56c863864b"
+    "field-table-selection-readiness.json": "41212a5d8c231490bde48165653b34ee75eddd2aa518aee95c5acec18ac43dee"
   },
   "categories": [
     {
@@ -148,9 +148,9 @@
       "publishedInstallerSelectedMasters": 518,
       "publishedInstallerTotalSelectedBindings": 549,
       "previouslySelectedPaintedMasters": 12,
-      "newPresentationSelectedMasters": 22,
-      "totalPaintedSelectedMasters": 34,
-      "currentlySelectedNeuralMasters": 484,
+      "newPresentationSelectedMasters": 35,
+      "totalPaintedSelectedMasters": 47,
+      "currentlySelectedNeuralMasters": 471,
       "presentationManifest": "battle-presentation-artwork-v1.json"
     },
     {
@@ -301,14 +301,14 @@
   "paintedBattleSelection": {
     "originalRuntimeLedger": "battle-material-runtime-artwork-source-0af4f997.json",
     "originalRuntimeLedgerSha256": "011e5a9206e750b2b4fcfbeb0fb22aa524a97fbee3ca483ea68e09c2bfc941d8",
-    "selectedCustomReplacements": 34,
-    "selectionScope": "Coordinated source candidate selects 34 painted battle masters. Published definitive-current generation2 source d7311334 includes the prior12; the additional22 require exact-source build and publication.",
+    "selectedCustomReplacements": 47,
+    "selectionScope": "Combined accepted ef0 source has35 independently reviewed presentation paintings plus12 prior painted masters. Recorded d731 installer snapshot includes prior12; live publication unchanged by this table-forward metadata update.",
     "nativeAccepted": 0,
     "finalQualityAccepted": 0,
     "priorAuthoringRuntimeLedger": "battle-material-runtime-artwork-source-a6a0b62f.json",
     "priorAuthoringRuntimeLedgerSha256": "1ca6fc7ade340e70e61055ce5694332d387304e737cb860cdc7e4aadd77693a5",
     "previouslySelectedCustomReplacements": 12,
-    "newPresentationSelectedMasters": 22,
+    "newPresentationSelectedMasters": 35,
     "presentationManifest": "battle-presentation-artwork-v1.json"
   },
   "publishedInstaller": {

@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "d31efa9c890742f7908fb58027f5ae4c0a3a621f plus independently cleared Crystal Palace table",
+  "sourceSelectionCheckpoint": "ef0f5838652f81e3bc5c1fe2e53d37a526243bbf plus the independently reviewed frozen5b Crystal Palace table",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "726d42c758cd61d064b1ac152f14f669e16911a5715d00856ecd4ea6030d55f9",
+    "full-coverage.json": "00f01ea1c7417c652198cdb2c943f3b85cb85300ed2ea9b743f69888ef121f42",
     "field-runtime-artwork.json": "b4c0dc3f07c089c9fe727be0fd19e457b255ccc16b63db4f3cc40a313125b257",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
-    "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
+    "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "field-bespoke-bedding-reviewed-selection.json": "6af60fa9447818366fda841ff1b9b362d84ad6a9a4aac2f2384a53725f75b123",
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
@@ -30,7 +30,8 @@
     "field-independent-nine-review.json": "bf2f2aacf93c4893b8861a7fb1e87b57525ed4fbdbf8f44b5c01925fc03f42f4",
     "field-bespoke-table-independent-reviewed-selection.json": "addfc9dbc087ed058af2029cee7347b044161e97252a62939fa51a959a5d2db6",
     "field-independent-table-review.json": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a",
-    "field-table-selection-readiness.json": "e25da585cd11037de4b035d59a59eaff4a0757b9246bc84415139f56c863864b"
+    "field-table-selection-readiness.json": "41212a5d8c231490bde48165653b34ee75eddd2aa518aee95c5acec18ac43dee",
+    "battle-presentation-artwork-v1.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -93,7 +94,11 @@
       "isolatedStageCyclesExplained": 350,
       "fullEncounterContractsClosed": 0,
       "selectedAnimationFamilies": 0,
-      "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette."
+      "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette.",
+      "selectedPaintedMasters": 47,
+      "previouslySelectedPaintedMasters": 12,
+      "newPresentationSelectedMasters": 35,
+      "selectedNeuralMasters": 471
     },
     {
       "id": "battle-panoramas",
