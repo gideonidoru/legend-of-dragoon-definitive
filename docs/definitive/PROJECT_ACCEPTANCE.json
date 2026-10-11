@@ -932,5 +932,44 @@
     "runtimeSelectionChanged": false,
     "discoveryComplete": false
   },
-  "qualificationPlanPolicy": "Shared workload and scenario counts are proposed qualification procedures for controlling source scope, not new promised features or executed evidence. Owners can refine workloads with rationale and exact receipts; neither fixture success nor arbitrary case counts alone establish 10/10."
+  "qualificationPlanPolicy": "Shared workload and scenario counts are proposed qualification procedures for controlling source scope, not new promised features or executed evidence. Owners can refine workloads with rationale and exact receipts; neither fixture success nor arbitrary case counts alone establish 10/10.",
+  "engineeringDefectEvidence": [
+    {
+      "id": "ENG-D01",
+      "owner": "RENDER",
+      "supportOwner": "MEDIA",
+      "defect": "Depth clear respects stale disabled depth-write state",
+      "evidence": "Owner independently reproduced on windowless native M5 Max / OpenGL 4.1: seeded depth 0.25 remains instead of clearing to 1.0 when depth writes are disabled; restoring writes before clear removes it.",
+      "sourcePointers": [
+        "src/main/java/legend/core/renderer/opengl/GlApi.java",
+        "src/main/java/legend/core/renderer/opengles/GlesApi.java"
+      ],
+      "fixStatus": "assigned isolated API correction/regression; unmerged at this evidence checkpoint",
+      "symptomStatus": "Not established cause of ordinary Deck flicker; coordinator notes no current production addBatch caller and ordinary rendering ends opaque.",
+      "immutableFixSource": null,
+      "attachedTestReceipts": [],
+      "affectedCases": [
+        "A12.01",
+        "A12.02"
+      ],
+      "requiredClosure": "Pin fix source, reproduce failing-before/passing-after native depth-clear test including GlApi/GlesApi contract, then test intended production transitions and physical symptoms."
+    },
+    {
+      "id": "ENG-D02",
+      "owner": "MEDIA",
+      "supportOwner": "RENDER",
+      "defect": "Old PlayStation whole-face clipping threshold rejects still-visible textured faces under modern camera",
+      "evidence": "Diagnosis owner independently reproduced on published engine in field and battle rendering when a face corner crosses the legacy clipping threshold.",
+      "fixStatus": "assigned shader/camera correction and symptom regression; unmerged at this evidence checkpoint",
+      "symptomStatus": "Strong match to disappearing ground/props during attacks and camera flips; not yet confirmed by physical Deck before/after. Stationary corruption and sluggish battle setup remain distinct open symptoms.",
+      "immutableFixSource": null,
+      "attachedTestReceipts": [],
+      "affectedCases": [
+        "A12.01",
+        "A12.02",
+        "A03.03"
+      ],
+      "requiredClosure": "Pin exact shader/camera fix and failing-before/passing-after face-visibility scenes; exercise field/battle attacks and camera flips, original/all-mod routes, plus physical missing-texture reproduction."
+    }
+  ]
 }

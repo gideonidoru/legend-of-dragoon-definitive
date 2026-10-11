@@ -26,6 +26,17 @@ The source reports used here are `Project-Progress-Ratings-2026-10-11.json`, `En
 
 The owner directly reported in the MEDIA chat: **“the FMV are working correctly”**, then separately reported the rendering problems above. This is positive physical playback feedback for the observed scenes, not a signed all-18-film, device-routing or suspend matrix. An older MEDIA final response still says physical playback is unverified; retain both timestamps/scopes rather than discarding the newer owner observation. Root's coordination report supplied the Deck context; the device/build details still need attachment to the case record. No cause is confirmed here. The photo attached to that report is private and is not exported into this document.
 
+### Reproduced engineering defects under investigation
+
+Owner evidence was read directly from the existing RENDER and MEDIA chats. These are two separate defects, not two interchangeable explanations for all three symptoms. Exact immutable fix sources and retained test receipts are still pending; neither is merged or physically accepted at this evidence checkpoint.
+
+| ID | Owner | Reproduced evidence | Remaining proof |
+| --- | --- | --- | --- |
+| ENG-D01 | RENDER, MEDIA support | Windowless native M5 Max/OpenGL 4.1 depth-clear probe: disabled depth writes retain seeded 0.25 instead of clearing to 1.0; restoring writes before clear removes stale depth | Isolated GlApi/GlesApi correction and failing-before/passing-after regression, exact source receipt and production-transition checks. No confirmed connection to Deck flicker; coordinator notes no current production addBatch caller and ordinary rendering ends opaque |
+| ENG-D02 | MEDIA, RENDER support | Published field and battle rendering rejects a whole textured face when a corner crosses an old PlayStation clipping threshold although it remains visible under the modern camera | Exact shader/camera correction, retained face-visibility symptom regression, repeated attacks/camera flips and physical Deck before/after. Strong match for disappearing ground/props, not physical closure |
+
+B01 stationary corruption and B03 sluggish/flickering battle setup remain open independently. Existing GPU texture-retirement/UI-atlas/shader-state fixtures did not reproduce the reported corruption and do not clear it. Update A12 and related A03 cases only when source, native regression and symptom evidence arrive; do not describe the public download as fixed.
+
 ## Owners and handoffs
 
 | Key | Accountable existing chat | Responsibility |
