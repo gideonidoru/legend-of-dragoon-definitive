@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "date": "2026-10-11",
-  "sourceCheckpoint": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+  "sourceCheckpoint": "5e4987edc47e8a94562713ddef0ee26c066008e2",
   "publicSource": "ad1a234d94b4397df681c7fd196581cf3a303a88",
   "publicTag": "definitive-current",
   "mainFields": 4925,
@@ -1474,7 +1474,7 @@
     "unknownOwnership": "Unresolved families remain unresolved; no automatic exemption.",
     "completionClaim": "A narrower human-approved release scope must be named as such; it does not finish deferred original full-remaster goals."
   },
-  "mainSource": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+  "mainSource": "5e4987edc47e8a94562713ddef0ee26c066008e2",
   "publicGeneration": 3,
   "publicBuildRun": 38167244350,
   "inventoryCheckpoints": {
@@ -1524,7 +1524,7 @@
       "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4"
     },
     "main": {
-      "source": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+      "source": "5e4987edc47e8a94562713ddef0ee26c066008e2",
       "fields": 4925,
       "paintedFields": 39,
       "fieldHolds": 237,
@@ -2128,8 +2128,8 @@
       "audio/FMV route resets"
     ],
     "newAudioCheckpoint": {
-      "review": "independently reviewed ready per coordinator",
-      "mainMerged": false,
+      "review": "Independently reviewed source correction retained byte-exact in integration and merged through PR44",
+      "mainMerged": true,
       "published": false,
       "source": "416bb8b003e72db0d7f7692cb96b9caf106c2dcc",
       "baselineFailures": 1,
@@ -2143,9 +2143,25 @@
       "charTestsPassed": 13,
       "standardsFindings": 0,
       "specFindings": 0,
-      "physicalDeckAcceptance": false
+      "physicalDeckAcceptance": false,
+      "pullRequest": 44,
+      "mainMergeSource": "5e4987edc47e8a94562713ddef0ee26c066008e2",
+      "integratedSource": "1ab32e98ee1ea2e03fe21d63c13f6df2bb26bfe4",
+      "combinedVerification": {
+        "delivery": {
+          "tests": 603,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 10
+        },
+        "charHdTests": 13,
+        "modelsHdTests": 32,
+        "headlessPresentation": "PASS",
+        "source": "1ab32e98ee1ea2e03fe21d63c13f6df2bb26bfe4",
+        "evidence": "Reviewed source-bound owner receipt; physical Deck acceptance remains open."
+      }
     },
-    "limits": "No source closure or integration claimed for the active audit; no blanket domain or physical acceptance."
+    "limits": "Audio shutdown correction integrated in source; input/loading/audio-FMV-route fixes still tracked separately. No blanket domain or physical acceptance."
   },
   "caseInventoryHistoryPolicy": "All 65 original case definitions, results and dimensions retained. Historical references to 245 public holds mean generation 2; generation 3 has 237 still held and eight newly selected fields still require final scene acceptance."
 }
