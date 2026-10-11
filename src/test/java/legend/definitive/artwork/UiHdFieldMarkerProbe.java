@@ -26,13 +26,17 @@ public class UiHdFieldMarkerProbe {
       }
     }
   }
-  static void checkAll(final MapIndicator marker, final RenderBatch batch, final java.lang.reflect.Method use, final int expected, final String name) throws Exception {
+  static int countAll(final MapIndicator marker, final RenderBatch batch, final java.lang.reflect.Method use) throws Exception {
     int count=0;
     for(var palette:new int[][]{{992,272},{992,273},{976,472}})for(int frame=0;frame<12;frame++) {
       batch.orthoPool.reset();marker.renderPlayerIndicator(20,20,38,1,1,1,palette[0],palette[1],frame*16,96);
       var queued=batch.orthoPool.get(0);use.invoke(queued);
       if((boolean)field(queued,QueuedModelStandard.class,"uiArtwork"))count++;
     }
+    return count;
+  }
+  static void checkAll(final MapIndicator marker, final RenderBatch batch, final java.lang.reflect.Method use, final int expected, final String name) throws Exception {
+    int count=countAll(marker,batch,use);
     if(count!=expected)throw new AssertionError(name+" expected "+expected+" enhanced frames, got "+count);
     System.out.println(name+": "+count+"/36 enhanced");
   }
@@ -71,7 +75,18 @@ public class UiHdFieldMarkerProbe {
       final Tim invalid=new Tim(new FileData(changed));GameEngine.GPU.uploadEffectTim(invalid);NativeUiTextureEvent.uploaded("indicator_big_arrow",invalid);
       checkAll(marker,batch,use,0,"changed-source-retires-all-player-palettes");
       load.invoke(map,2);checkAll(marker,batch,use,36,"valid-source-restored");
+      final Tim canonical=new Tim(new FileData(Files.readAllBytes(legend.game.unpacker.Loader.resolve("SUBMAP/big_arrow.tim"))));
+      NativeUiTextureEvent.post(new NativeUiTextureEvent("indicator_big_arrow",canonical,896,352,976,472));
+      final int movedImage=countAll(marker,batch,use);System.out.println("MOVED_IMAGE_HD_FRAMES "+movedImage);
+      load.invoke(map,2);checkAll(marker,batch,use,36,"after-moved-image-reload");
+      NativeUiTextureEvent.post(new NativeUiTextureEvent("indicator_big_arrow",canonical,960,352,960,472));
+      final int movedClut=countAll(marker,batch,use);System.out.println("MOVED_CLUT_HD_FRAMES "+movedClut);
+      load.invoke(map,2);checkAll(marker,batch,use,36,"after-moved-CLUT-reload");
+      NativeUiTextureEvent.post(new NativeUiTextureEvent("indicator_alert","indicator_big_arrow",canonical,960,352,976,472,1));
+      checkAll(marker,batch,use,0,"changed-family-retires-old-player-bindings");
+      load.invoke(map,2);checkAll(marker,batch,use,36,"after-changed-family-reload");
       checkNative();
+      if(movedImage!=0 || movedClut!=0)throw new AssertionError("Moved marker metadata retains old player selections");
       if(NativeUiTextures.allocatedBytes()!=residentBytes || NativeUiTextures.selectionCount()!=6)throw new AssertionError("Reload grows marker residency");
       System.out.println("PLAYER_RESIDENT_BYTES "+residentBytes);
     }

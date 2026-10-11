@@ -169,11 +169,11 @@ public final class UiHdMod {
   @EventListener
   public void nativeTexture(final NativeUiTextureEvent event) {
     NativeUiTextures.beginSelection(this, event.slot);
+    // A reused upload slot retires its derived palettes even when new metadata
+    // no longer qualifies as the player marker (or names a different family).
+    NativeUiTextures.beginSelection(this, event.slot + ":encounter-low");
+    NativeUiTextures.beginSelection(this, event.slot + ":encounter-medium");
     final boolean playerMarker = event.id.equals("indicator_big_arrow") && event.imageX == 960 && event.imageY == 352 && event.clutX == 976 && event.clutY == 472;
-    if(playerMarker) {
-      NativeUiTextures.beginSelection(this, event.slot + ":encounter-low");
-      NativeUiTextures.beginSelection(this, event.slot + ":encounter-medium");
-    }
     final byte[] source = event.source();
     final var tim = event.tim();
     for(final JSONObject entry : this.assets) {
