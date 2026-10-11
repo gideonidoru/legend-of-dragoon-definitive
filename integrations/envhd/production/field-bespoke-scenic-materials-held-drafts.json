@@ -1,0 +1,260 @@
+{
+  "schema": 1,
+  "scope": "Five held custom versions across four sources. Original references, source layout/context, diagnostics and comparison images remain private. No runtime changes or source gates waived.",
+  "sourceSelectionBaseCommit": "373b34a94a1fe52beb4547b215d451df14557633",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 4,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "8c03049a6e5993f19813f7d3606c0d6736d85fe575c3ef0fa3629eb80f8b5e4e",
+      "generatedSha256": "3e03aa11239ad4bbd25691f2238929725a25f141d8f3feb031a3d8aee42d569f",
+      "generatedSize": [
+        1134,
+        1387
+      ],
+      "sourceSize": [
+        18,
+        22
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "c90c422113981fd55d0ca5331f4e52a3bb6fca124b7b6d0479d9ca341dc8010b:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 305,
+      "representativeLocation": "Undersea Cavern",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST reference into a faithful HD foreground texture for Legend of Dragoon EnvHD. FIRST is authoritative for exact crop, silhouette, source palette, illumination, material regions and every internal shape. SECOND is original complete scene for context only. THIRD is existing Skurfa HD finish reference only: use restrained detailed hand-painted material finish, never transfer its scene, palette or lighting. Output only the FIRST fragment on real transparency, with exactly its canvas aspect, edge crops, proportions, perspective and placement. Do not center, rotate, reframe, pad, stretch, change visibility gaps, move or invent objects. Keep original black recesses dark. Preserve source light/contrast; no showcase glow. Add fine continuous material detail, not an enlarged pixel mosaic. No text, labels, watermark, checkerboard, comparison board or new lettering/emblems. Native18x22,9:11 portrait. Undersea Cavern coral/environment growth: delicate DARK muted purple branching coral with very subdued grey-green and pale lavender tips. Preserve every branch, fork, source aperture and crossing. Broad left branching cluster and taller thin right prongs, horizontal/diagonal joins and low irregular spreading base stay in exactly their original positions. No new tendrils, spirals, tree roots, wire, rope, creature, eyes, hands, bones or metal. Smooth slender organic surfaces with extremely subtle underwater mineral texture; no thick bark relief and no bright highlights. Do not thicken or simplify fine branches. Follow FIRST occupied shape exactly including branches touching top, left and bottom edges. The native scene confirms a small upright purple coral cluster beside pale cavern platforms; output that cluster only.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/8c03049a6e5993f19813f7d3606c0d6736d85fe575c3ef0fa3629eb80f8b5e4e/draft-input-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Undersea purple coral misses too much original branch footprint. Unchanged coverage gate rejects the painting; no repaired output or hold clearance."
+    },
+    {
+      "decodedRgbaSha256": "9e38a3f37d0eed732d30954194e28fa0b749949e5d4ef81cc8a85d00b56241e9",
+      "generatedSha256": "f4796ccf3e2854c0dfc415701bda99c80af798bce89bc480b81632e9dc9f2116",
+      "generatedSize": [
+        1721,
+        914
+      ],
+      "sourceSize": [
+        94,
+        50
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "187db4d1dafc7fd02cb5cbcddff1bf1589c4006cfe47d150fe2ceb9b37146196:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 514,
+      "representativeLocation": "Ulara",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST reference into a faithful HD foreground texture for Legend of Dragoon EnvHD. FIRST is authoritative for exact crop, silhouette, source palette, illumination, material regions and every internal shape. SECOND is original complete scene for context only. THIRD is existing Skurfa HD finish reference only: use restrained detailed hand-painted material finish, never transfer its scene, palette or lighting. Output only the FIRST fragment on real transparency, with exactly its canvas aspect, edge crops, proportions, perspective and placement. Do not center, rotate, reframe, pad, stretch, change visibility gaps, move or invent objects. Keep original black recesses dark. Preserve source light/contrast; no showcase glow. Add fine continuous material detail, not an enlarged pixel mosaic. No text, labels, watermark, checkerboard, comparison board or new lettering/emblems. Native94x50,47:25 landscape. Ulara foreground fragment is a curved pale stone rim around a round platform, NOT a complete circle or freestanding arch. Preserve asymmetric open U-shaped inner edge: cropped taller left wall, low semicircular middle, shorter cropped rising right. Large interior hole stays transparent and bottom/left/right crop boundaries unchanged. Pale grey/cream top rim has original muted ochre worn segments; lower wall stays very dark cool blue-grey/purple with subtle irregular surface relief and faint original markings. Left vertical face has diffuse pale grey/tan patches. Refine fine natural stone grain and low-relief wear in those exact source locations; no new block seams, added rim thickness, engraved symbols, cracks, ornaments, rail posts, extra openings or new steps. Preserve subdued diffuse daylight and original value separation. Do not invent decorative rows or legible pattern from mottling.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 34512,
+      "paintedGapPixelsExtended": 792,
+      "paintedUncoveredSourcePixels": 644,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 37,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        376,
+        200
+      ],
+      "outputSha256": "63bf556511b219d7e7ad343852189aa5c6aa5cda7e40395c4352e999f24c4494",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/9e38a3f37d0eed732d30954194e28fa0b749949e5d4ef81cc8a85d00b56241e9/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/9e38a3f37d0eed732d30954194e28fa0b749949e5d4ef81cc8a85d00b56241e9/repaired-draft-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Ulara version1 introduces strong block courses and broad dark joints absent from the source. Technical cutout passes but structural/material fidelity fails. Corrected version2 is independently pending, not selected."
+    },
+    {
+      "decodedRgbaSha256": "a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f",
+      "generatedSha256": "7e6d492b7314ed78f4ff18b2eb173d2b2f83722449f7aa788526cdb8d9e637de",
+      "generatedSize": [
+        925,
+        1701
+      ],
+      "sourceSize": [
+        50,
+        92
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "af6ffd2fe470a39996173584a4197ebc6cd43a514e23aad2442b807660fceeb3:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 314,
+      "representativeLocation": "Fueno",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST reference into a faithful HD foreground texture for Legend of Dragoon EnvHD. FIRST is authoritative for exact crop, silhouette, source palette, illumination, material regions and every internal shape. SECOND is original complete scene for context only. THIRD is existing Skurfa HD finish reference only: use restrained detailed hand-painted material finish, never transfer its scene, palette or lighting. Output only the FIRST fragment on real transparency, with exactly its canvas aspect, edge crops, proportions, perspective and placement. Do not center, rotate, reframe, pad, stretch, change visibility gaps, move or invent objects. Keep original black recesses dark. Preserve source light/contrast; no showcase glow. Add fine continuous material detail, not an enlarged pixel mosaic. No text, labels, watermark, checkerboard, comparison board or new lettering/emblems. Native50x92,25:46 portrait. Fueno interior source fragment is a dark warm olive/brown curved wall/support at right with lower ledge or stepped support. Its upper-left cropped edge curves inward to a long thin vertical inner edge and the source-visible lower-left mass spreads along a stepped diagonal edge. Keep that exact footprint and the large transparent left region. Restore the original faint low-contrast incised or worn irregular curving surface marks, presently flattened by the neural baseline, using FIRST source positions and sizes; material remains subdued dark warm brown, not pale masonry or ornate gold. Right vertical face stays distinct from darker lower broad support. No new identifiable glyphs, repeating carved designs, raised emblems, exposed joints, stacked block courses, props, extra molding or bright edges. Very subtle rough surface finish with restrained flowing wear matching the surrounding original interior. Preserve source perspective and dark room illumination.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 42384,
+      "paintedGapPixelsExtended": 1914,
+      "paintedUncoveredSourcePixels": 1690,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 52,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        200,
+        368
+      ],
+      "outputSha256": "2d9e552c467d2435a3da947a7230e0eecb2bc8a0d9ca643ac92b52660524a444",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f/repaired-draft-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Fueno version1 adds bold raised polygonal bands and rugged rock-block ledge texture beyond the faint source relief. Technical cutout passes but material/motif fidelity fails. Corrected version2 remains independently pending."
+    },
+    {
+      "decodedRgbaSha256": "9b74793a802626789aa46bf4776e968c5af1c3e749fe9033af7dcc1e96dcc66b",
+      "generatedSha256": "bda4cb6c84031e7361ae563006506d664c5f89f90011a3aa19f7778be2695c74",
+      "generatedSize": [
+        1560,
+        1008
+      ],
+      "sourceSize": [
+        34,
+        22
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "e82ba6697ed7b8028fea0ba17d5f519a3f585497c54d9bdc2cc953799eda77f9:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 102,
+      "representativeLocation": "Town of Hoax",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Edit FIRST reference into a faithful HD foreground texture for Legend of Dragoon EnvHD. FIRST is authoritative for exact crop, silhouette, source palette, illumination, material regions and every internal shape. SECOND is original complete scene for context only. THIRD is existing Skurfa HD finish reference only: use restrained detailed hand-painted material finish, never transfer its scene, palette or lighting. Output only the FIRST fragment on real transparency, with exactly its canvas aspect, edge crops, proportions, perspective and placement. Do not center, rotate, reframe, pad, stretch, change visibility gaps, move or invent objects. Keep original black recesses dark. Preserve source light/contrast; no showcase glow. Add fine continuous material detail, not an enlarged pixel mosaic. No text, labels, watermark, checkerboard, comparison board or new lettering/emblems. Native34x22,17:11 landscape. Town of Hoax cut102 source is a small dark elongated brown structural/furnishing fragment beside the interior floor. Exact named object is uncertain: DO NOT infer a barrel, chest, treasure box, bed, bag, bundled logs, limbs or new legs. Repaint only the visible source surface regions. Upper-left rounded brown mass connects to a longer oblique dark warm brown right/lower section; several narrow dark vertical divisions and restrained rust-red/tan marks near center must stay exactly placed. Preserve asymmetric silhouette, slope and original occlusion gaps. Fine worn matte brown/olive material texture only, with original red-brown accents; no added handles, straps, hinges, contents, bolts, clear new planks, distinct ornament, writing or bright highlights. Keep source-observed internal boundaries and dark areas, do not homogenize all regions into one smooth mass. Output isolated fragment on original transparency, no surrounding scene.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 6608,
+      "paintedGapPixelsExtended": 380,
+      "paintedUncoveredSourcePixels": 293,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 25,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        136,
+        88
+      ],
+      "outputSha256": "79ec8c6705cafeaa5cf1d3d72d219a7b2cf93c75a7f27d1b1049a7b6e995f9ae",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/9b74793a802626789aa46bf4776e968c5af1c3e749fe9033af7dcc1e96dcc66b/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/9b74793a802626789aa46bf4776e968c5af1c3e749fe9033af7dcc1e96dcc66b/repaired-draft-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Town of Hoax fragment identity remains uncertain. Painting invents coarse masonry/block construction instead of preserving ambiguous source surface divisions. Technical cutout passes but semantic/material fidelity is not accepted."
+    },
+    {
+      "decodedRgbaSha256": "8c03049a6e5993f19813f7d3606c0d6736d85fe575c3ef0fa3629eb80f8b5e4e",
+      "generatedSha256": "dc3c3091c0b895d3d7e4bfd85bff11b1f15d9fec88adce912871a2be964b7165",
+      "generatedSize": [
+        1134,
+        1387
+      ],
+      "sourceSize": [
+        18,
+        22
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "c90c422113981fd55d0ca5331f4e52a3bb6fca124b7b6d0479d9ca341dc8010b:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 305,
+      "representativeLocation": "Undersea Cavern",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise-object-edit. Correct the EnvHD purple coral draft in SECOND image against authoritative FIRST original. THIRD is a diagnostic source image with RED indicating occupied original branch surface MISSING from draft. FOURTH is complete native scene for context. Restore every missing red area as the appropriate ORIGINAL muted dark purple coral surface; never paint diagnostic red. FIRST source18x22 occupies EXACT9:11 canvas. Preserve ORIGINAL silhouette, source-bound branch topology, cropped tips, crossings, pale-grey/purple region positions and every internal aperture. The prior draft made branches too slender and re-centered several junctions, omitting almost29% source-visible area. Expand/reposition each branch locally to fully occupy FIRST silhouette, particularly left edge upper branch, source upper-left fork, upper central cluster, source rightmost tip at y1..4, mid-left connections, source center crossing at y9..12 and spreading lower branches. Keep topmost right fork at FIRST original position and original lower-left/bottom crops. Use softer dark muted violet with subdued grey-green tips, fine subtle coral grain; remove large pockmark holes and high-contrast stone-like relief. Preserve exactly source dark interior holes, do not invent additional pores, new branches or slim tree limbs. Output one corrected coral fragment only on real transparency,9:11 original crop, no padding/reframing/labels/diagnostic marks/background. Native scene confirms coral scenery, not an animal or actor.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/8c03049a6e5993f19813f7d3606c0d6736d85fe575c3ef0fa3629eb80f8b5e4e/draft-input-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Undersea coral correction2 remains below unchanged coverage requirement even with explicit missing-footprint guide. No repaired output; branch topology/material scale still needs source-constrained authoring. Do not repeat the same full-crop generation or waive the gate."
+    }
+  ]
+}
