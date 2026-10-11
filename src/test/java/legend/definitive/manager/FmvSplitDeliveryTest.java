@@ -96,7 +96,7 @@ final class FmvSplitDeliveryTest {
       for(final Path path:paths.sorted(Comparator.reverseOrder()).toList()) Files.delete(path);
     }
     refresh(split);
-    assertThrows(IOException.class,()->PackageManifest.read(split).verify(split));
+    assertThrows(IOException.class,()->PackageManifest.read(split).verify(split,PackageManifest.hostPlatform()));
     assertThrows(IOException.class,()->store.install(split));
     assertEquals(before,store.state());store.verifyInstalled();
     assertEquals("keep",Files.readString(store.data(before).resolve("saves/owner")));
