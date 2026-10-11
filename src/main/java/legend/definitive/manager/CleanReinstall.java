@@ -209,17 +209,37 @@ final class CleanReinstall {
           if(Files.isRegularFile(matching, LinkOption.NOFOLLOW_LINKS) && !Files.isSymbolicLink(matching)
             && Files.size(path) == Files.size(matching) && PackageManifest.sha256(path).equals(PackageManifest.sha256(matching))) continue;
         }
-        final Path target = staged.resolve("recovered-reinstall").resolve(root.relativize(path));
-        Files.createDirectories(target.getParent());
         final long size = Files.size(path);
+        final String digest = PackageManifest.sha256(path);
+        final Path target = preservationTarget(staged, root.relativize(path), size, digest);
+        if(target == null) continue; // An identical, independently verified staged copy already survives cleanup.
+        Files.createDirectories(target.getParent());
         if(Files.getFileStore(staged).getUsableSpace() < size + 1024L * 1024 * 1024) throw new IOException("Not enough space to preserve all older personal files before clean reinstall.");
         try(final var input = Files.newInputStream(path, LinkOption.NOFOLLOW_LINKS); final var output = Files.newOutputStream(target, StandardOpenOption.CREATE_NEW)) {
           final byte[] buffer = new byte[65536];
           for(int count; (count = input.read(buffer)) != -1;) { checkCancelled(); output.write(buffer, 0, count); }
         }
-        if(Files.size(path) != Files.size(target) || !PackageManifest.sha256(path).equals(PackageManifest.sha256(target))) throw new IOException("Personal data preservation verification failed.");
+        if(Files.size(path) != size || Files.size(target) != size || !digest.equals(PackageManifest.sha256(path)) || !digest.equals(PackageManifest.sha256(target))) throw new IOException("Personal data preservation verification failed.");
       }
     }
+  }
+  private static Path preservationTarget(final Path staged, final Path relative, final long size, final String digest) throws IOException {
+    // Keep the existing recovered tree intact. A numbered sibling retains the
+    // original relative path without claiming ownership of any reserved-looking name.
+    for(int generation = 1; generation <= 10000; generation++) {
+      checkCancelled();
+      final String name = generation == 1 ? "recovered-reinstall" : "recovered-reinstall-" + generation;
+      final Path target = staged.resolve(name).resolve(relative);
+      boolean blocked = false;
+      for(Path parent = target.getParent(); parent != null && !parent.equals(staged); parent = parent.getParent()) {
+        if(Files.exists(parent, LinkOption.NOFOLLOW_LINKS) && (Files.isSymbolicLink(parent) || !Files.isDirectory(parent, LinkOption.NOFOLLOW_LINKS))) { blocked = true; break; }
+      }
+      if(blocked) continue;
+      if(!Files.exists(target, LinkOption.NOFOLLOW_LINKS)) return target;
+      if(!Files.isSymbolicLink(target) && Files.isRegularFile(target, LinkOption.NOFOLLOW_LINKS)
+        && Files.size(target) == size && digest.equals(PackageManifest.sha256(target))) return null;
+    }
+    throw new IOException("Personal recovery paths are occupied; no existing personal bytes were replaced.");
   }
   private static void excludeBundledDuplicates(final Path data) throws IOException {
     final List<String> identities = List.of("envhd/EnvHdMod.class", "charhd/CharHdMod.class", "uihd/UiHdMod.class",

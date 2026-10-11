@@ -304,6 +304,12 @@ class StorageHardeningTest {
     final var manifest = new Manifest(); manifest.getMainAttributes().putValue("Manifest-Version", "1.0"); manifest.getMainAttributes().putValue("Main-Class", ManagerMain.class.getName());
     try(final var jar = new JarOutputStream(Files.newOutputStream(pack.resolve("definitive-manager.jar")), manifest); final var paths = Files.walk(output.resolve("legend/definitive/manager"))) {
       for(final Path path : paths.filter(p -> p.toString().endsWith(".class")).toList()) { jar.putNextEntry(new JarEntry(output.relativize(path).toString())); jar.write(Files.readAllBytes(path)); jar.closeEntry(); }
+      // The production manager includes the strict shared external movie inventory helpers.
+      try(final var movieClasses = Files.walk(output.resolve("legend/definitive/fmv"))) {
+        for(final Path path : movieClasses.filter(p -> p.getFileName().toString().matches("Fmv(?:AssetManifest|PackageAssets).*\\.class")).toList()) {
+          jar.putNextEntry(new JarEntry(output.relativize(path).toString())); jar.write(Files.readAllBytes(path)); jar.closeEntry();
+        }
+      }
       jar.putNextEntry(new JarEntry("legend/definitive/manager/managed-log4j2.xml"));
       try(final var resource = InstallStore.class.getResourceAsStream("managed-log4j2.xml")) { assertNotNull(resource); resource.transferTo(jar); } jar.closeEntry();
     }

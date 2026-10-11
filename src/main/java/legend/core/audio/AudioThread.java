@@ -292,7 +292,7 @@ public final class AudioThread implements Runnable {
       boolean canBuffer = false;
 
       synchronized(this) {
-        while(this.paused && !this.deviceChanged) {
+        while(this.running && this.paused && !this.deviceChanged) {
           try {
             this.wait();
           } catch(final InterruptedException ignored) { }

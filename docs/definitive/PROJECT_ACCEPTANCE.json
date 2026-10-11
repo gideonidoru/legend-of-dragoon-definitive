@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "date": "2026-10-11",
-  "sourceCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
-  "publicSource": "d73113341610af56f27a1c68e7f5172d157b62c0",
+  "sourceCheckpoint": "5e4987edc47e8a94562713ddef0ee26c066008e2",
+  "publicSource": "ad1a234d94b4397df681c7fd196581cf3a303a88",
   "publicTag": "definitive-current",
-  "mainFields": 4917,
-  "publicFields": 4917,
-  "mainFieldHolds": 245,
-  "publicFieldHolds": 245,
+  "mainFields": 4925,
+  "publicFields": 4925,
+  "mainFieldHolds": 237,
+  "publicFieldHolds": 237,
   "wholeGameAssetDenominatorKnown": false,
   "ratingsSource": {
     "name": "Project-Progress-Ratings-2026-10-11.json",
@@ -54,7 +54,7 @@
       "readinessSnapshot": 8,
       "status": "pending",
       "prerequisites": [],
-      "checkpointEvidence": "All seven mods plus four EnvHD packs; checksum repair and full reinstall verified. Reviewed audit 697 / production 0afd preservation corrections integrated into candidate; owner 533 and pre-Dart combined 536 headless suites passed with 10 existing optional skips. Final CI/main/publication/device gates pending.",
+      "checkpointEvidence": "All seven mods plus four EnvHD packs; checksum repair and full reinstall verified. Reviewed audit 697 / production 0afd preservation corrections accepted on main; owner 533 and pre-Dart combined 536 headless suites passed with 10 existing optional skips. Exact-source publication/device gates pending. New generation 3 actual-public headless clean Reinstall FAIL: same-content recovered personal filename collision; independent safety/correction gates pending.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "Real Deck fresh/install/repair/reinstall/uninstall on internal and SD storage; offline and interruption checks.",
       "documents": [
@@ -409,9 +409,9 @@
         "B01",
         "B02"
       ],
-      "checkpointEvidence": "Public: 4,917 fields, 31 painted, 245 held; candidate: 4,925 fields, 39 painted, 237 held; 34 battle paintings (12 runtime plus 22 presentation). Runtime and final scene acceptance pending.",
+      "checkpointEvidence": "Generation 3 public and current main: 4,925 fields, 39 painted, 237 held; 34 battle paintings (12 runtime plus 22 presentation). Runtime and final scene acceptance pending.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
-      "remainingAtSnapshot": "237 candidate field holds (245 public), one terrain hold, 350 battle animation/context bindings, one palette gap, world animation, props/overlays and final scene acceptance, including newly selected fields.",
+      "remainingAtSnapshot": "237 field holds, one terrain hold, 350 battle animation/context bindings, one palette gap, world animation, props/overlays and final scene acceptance, including newly selected fields.",
       "documents": [
         "docs/definitive/ENVHD_FULL_COVERAGE.md",
         "docs/definitive/ENVHD_TERRAIN_PRODUCTION.md",
@@ -614,7 +614,7 @@
         "A12",
         "P01"
       ],
-      "checkpointEvidence": "Accepted Dart head installed; four exact field source variants bound in reviewed 9bb candidate using unchanged accepted artwork/geometry. 96 route/mod checks and 64 CPU/cache cycles plus 13 CharHD / 32 ModelsHD tests passed. Nine new artwork/body studies remain separate; physical transitions pending.",
+      "checkpointEvidence": "Accepted Dart head installed; four exact field source variants bound in reviewed 9bb source accepted on main using unchanged accepted artwork/geometry. 96 route/mod checks and 64 CPU/cache cycles plus 13 CharHD / 32 ModelsHD tests passed. Nine new artwork/body studies remain separate; physical transitions pending.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "Accept/rig/integrate nine full characters and forms;hair,hands,feet,costumes,weapons;NPC/enemy/boss inventory;69unbound routes,33source failures,22format cases,103animation/extra holds.",
       "documents": [
@@ -768,7 +768,7 @@
         "P01",
         "INV01"
       ],
-      "checkpointEvidence": "738outputs;9portraits;player menu and99post-battle extra bindings verified. UI 1ccd stale-marker correction accepted in candidate source, not public; 38 native draws / 15 focused tests and source-invalidation controls retained.",
+      "checkpointEvidence": "738outputs;9portraits;player menu and99post-battle extra bindings verified. UI 1ccd stale-marker correction accepted in main source, not public; 38 native draws / 15 focused tests and source-invalidation controls retained.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "All-screen handheld appearance/legibility,portrait atlas GPU output,save-card variants and physical memory/performance.",
       "documents": [
@@ -1298,6 +1298,32 @@
       "owner": "MEDIA",
       "support": "RENDER",
       "status": "active"
+    },
+    {
+      "id": "B04",
+      "report": "Repeated clean Reinstall stops on same-content personal recovery-name collision",
+      "owner": "ROOT",
+      "support": "MODS",
+      "status": "active public maintenance blocker",
+      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "generation": 3,
+      "evidenceType": "actual public headless maintenance with synthetic discs; no gameplay/UI/physical Deck",
+      "exception": "FileAlreadyExistsException",
+      "sourceLocation": "CleanReinstall.java:216 (preserveTree)",
+      "collision": "Existing recovered-reinstall/campaign-notes.log conflicts while preserving root campaign-notes.log",
+      "verifiedInputIdentity": {
+        "bytes": 23,
+        "sha256": "07552b9ee8267b9358bd9c522d9e7b43658300a510b39979e1c5cc1acec2a659",
+        "matchingCopies": 4
+      },
+      "scope": "Actual fixture has identical bytes, not distinct inputs. Owner regression gates must cover identical, distinct and file/directory conflicts separately.",
+      "safetyStatus": "PASS for exact managed bytes and preserved active saves/settings/owner metadata/root and recovered notes/synthetic discs; no activation committed. Full clean Reinstall remains FAIL.",
+      "correctionStatus": "Manager owner reproducing/fixing; independent reviews and main integration pending",
+      "heldActions": [
+        "GC",
+        "movie seeding"
+      ],
+      "safetyLimits": "Fixture contains an intentionally inserted stray personal release/config.conf predating the attempt; full install inventory/launch is not accepted by this safety-only check."
     }
   ],
   "deliveryCasesRef": "docs/definitive/DELIVERY_ACCEPTANCE.json",
@@ -1448,9 +1474,9 @@
     "unknownOwnership": "Unresolved families remain unresolved; no automatic exemption.",
     "completionClaim": "A narrower human-approved release scope must be named as such; it does not finish deferred original full-remaster goals."
   },
-  "mainSource": "adf864be75153774455cd9bebc7561335d297b80",
-  "publicGeneration": 2,
-  "publicBuildRun": 38159212003,
+  "mainSource": "5e4987edc47e8a94562713ddef0ee26c066008e2",
+  "publicGeneration": 3,
+  "publicBuildRun": 38167244350,
   "inventoryCheckpoints": {
     "historicalPublic": {
       "source": "0af4f997e27f49783180cb2ff1c5a04012467289",
@@ -1459,14 +1485,31 @@
       "fieldHolds": 270
     },
     "public": {
-      "source": "d73113341610af56f27a1c68e7f5172d157b62c0",
-      "fields": 4917,
-      "paintedFields": 31,
-      "fieldHolds": 245,
+      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "fields": 4925,
+      "paintedFields": 39,
+      "fieldHolds": 237,
       "terrainHolds": 1,
-      "paintedBattleMasters": 12
+      "paintedBattleMasters": 34,
+      "generation": 3,
+      "published": true
     },
     "candidate": {
+      "source": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+      "fields": 4925,
+      "paintedFields": 39,
+      "fieldHolds": 237,
+      "terrainHolds": 1,
+      "runtimePaintedSelectedMasters": 12,
+      "presentationSelectedMasters": 22,
+      "totalPaintedBattleMasters": 34,
+      "published": false,
+      "nativeAcceptedFields": 0,
+      "finalQualityAcceptedFields": 0,
+      "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4",
+      "mainMerged": true
+    },
+    "historicalPremerge": {
       "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
       "fields": 4925,
       "paintedFields": 39,
@@ -1479,12 +1522,84 @@
       "nativeAcceptedFields": 0,
       "finalQualityAcceptedFields": 0,
       "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4"
+    },
+    "main": {
+      "source": "5e4987edc47e8a94562713ddef0ee26c066008e2",
+      "fields": 4925,
+      "paintedFields": 39,
+      "fieldHolds": 237,
+      "terrainHolds": 1,
+      "runtimePaintedSelectedMasters": 12,
+      "presentationSelectedMasters": 22,
+      "totalPaintedBattleMasters": 34,
+      "published": false,
+      "nativeAcceptedFields": 0,
+      "finalQualityAcceptedFields": 0,
+      "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4",
+      "mainMerged": true
+    },
+    "historicalGeneration2": {
+      "source": "d73113341610af56f27a1c68e7f5172d157b62c0",
+      "fields": 4917,
+      "paintedFields": 31,
+      "fieldHolds": 245,
+      "terrainHolds": 1,
+      "paintedBattleMasters": 12
+    },
+    "historicalAcceptedAd1": {
+      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "fields": 4925,
+      "paintedFields": 39,
+      "fieldHolds": 237,
+      "terrainHolds": 1,
+      "runtimePaintedSelectedMasters": 12,
+      "presentationSelectedMasters": 22,
+      "totalPaintedBattleMasters": 34,
+      "published": true,
+      "nativeAcceptedFields": 0,
+      "finalQualityAcceptedFields": 0,
+      "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4",
+      "mainMerged": true
     }
   },
   "publicEvidence": {
     "carrier": "https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-current",
-    "verification": "Fresh read of current carrier verifies generation/source/build-run binding; ROOT reports anonymous actual downloads and exact package checks passed.",
-    "observedDate": "2026-10-11"
+    "verification": "Durable publication-result and anonymous public-download-check both PASS for generation 3 exact ad1 source. Actual public headless clean Reinstall FAILS on a same-content repeated recovery-name collision; fixture success and physical acceptance are not claimed.",
+    "observedDate": "2026-10-11",
+    "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+    "generation": 3,
+    "buildRun": 38167244350,
+    "manifestSha256": "9ca10f6c08b1b780b8c16bc9f41d6d55f27971be493afa3bd179c3a47dfe9ce8",
+    "publication": "PASS",
+    "anonymousDownloads": "PASS",
+    "publicMaintenance": "FAIL",
+    "physicalDeck": false,
+    "maintenanceFailure": {
+      "id": "B04",
+      "report": "Repeated clean Reinstall stops on same-content personal recovery-name collision",
+      "owner": "ROOT",
+      "support": "MODS",
+      "status": "active public maintenance blocker",
+      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "generation": 3,
+      "evidenceType": "actual public headless maintenance with synthetic discs; no gameplay/UI/physical Deck",
+      "exception": "FileAlreadyExistsException",
+      "sourceLocation": "CleanReinstall.java:216 (preserveTree)",
+      "collision": "Existing recovered-reinstall/campaign-notes.log conflicts while preserving root campaign-notes.log",
+      "verifiedInputIdentity": {
+        "bytes": 23,
+        "sha256": "07552b9ee8267b9358bd9c522d9e7b43658300a510b39979e1c5cc1acec2a659",
+        "matchingCopies": 4
+      },
+      "scope": "Actual fixture has identical bytes, not distinct inputs. Owner regression gates must cover identical, distinct and file/directory conflicts separately.",
+      "safetyStatus": "PASS for exact managed bytes and preserved active saves/settings/owner metadata/root and recovered notes/synthetic discs; no activation committed. Full clean Reinstall remains FAIL.",
+      "correctionStatus": "Manager owner reproducing/fixing; independent reviews and main integration pending",
+      "heldActions": [
+        "GC",
+        "movie seeding"
+      ],
+      "safetyLimits": "Fixture contains an intentionally inserted stray personal release/config.conf predating the attempt; full install inventory/launch is not accepted by this safety-only check."
+    }
   },
   "positiveDeviceObservations": [
     {
@@ -1528,6 +1643,26 @@
     {
       "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
       "scope": "Dart four exact source-bound field head variants integrated; existing accepted artwork/geometry unchanged. ROOT 57f CharHD 13 tests newly passed and JAR built; ModelsHD 32 up to date from passing b092. Final CI, main merge and publication pending."
+    },
+    {
+      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "scope": "PR 41 reviewed increments accepted on main; UI 1ccd already incorporated via PR 40. Public remains generation 2 d731 pending exact-source run 38167244350/download closure."
+    },
+    {
+      "source": "0d4bfd118a5a4e87905bd6c724b9c71abd1b0843",
+      "scope": "Historical main checkpoint after PR 40 UI marker integration, before PR 41 consolidated increments."
+    },
+    {
+      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "scope": "Generation 3 published from exact run 38167244350; current pointer and anonymous package downloads PASS; actual public headless Update/Reinstall running."
+    },
+    {
+      "source": "8f4d52cd82a602c4b8e94bb5e93321d723e7d735",
+      "scope": "PR 42 reviewed split FMV client integrated; 645 delivery cases, 637 passed and 8 skips per root; not yet public. Completed split branch retired with original graph/detached files preserved."
+    },
+    {
+      "source": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+      "scope": "PR 43 standalone archive planner/prover plus CI wiring integrated; 39 independent controls clear. Full publisher/GC archive assembly inactive; public remains generation 3 ad1."
     }
   ],
   "historicalLedgerSource": "b4f2efb15c05cad4a9f2997454d9a71142151b6a",
@@ -1541,8 +1676,8 @@
   },
   "uiMarkerCorrection": {
     "source": "1ccd1fc831fac6e67eb73ce5d0ec19c69150c8d2",
-    "integrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
-    "status": "accepted engineering source merged on main through PR40; not yet public",
+    "integrationCheckpoint": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+    "status": "Independently reviewed source correction accepted on main and published in generation 3 ad1; physical acceptance remains pending",
     "nativeDraws": 38,
     "focusedTestsPassed": 15,
     "oldSource": "54fa07d2fb6aaf1a4974b1c913befbb874713f73",
@@ -1553,26 +1688,29 @@
     "mainMerge": "0d4bfd118a5a4e87905bd6c724b9c71abd1b0843",
     "pullRequest": 40,
     "remoteBranchRetired": true,
-    "localBranchRetired": true
+    "localBranchRetired": true,
+    "mainMerged": true,
+    "published": true,
+    "publishedSource": "ad1a234d94b4397df681c7fd196581cf3a303a88"
   },
   "installerAuditReview": {
     "pullRequest": 39,
-    "state": "Standards and Spec clear at frozen 697 / production 0afd; integrated in reviewed candidate, main merge and publication pending",
+    "state": "Standards and Spec clear; incorporated through PR 41 and published in generation 3 ad1",
     "findings": [
       {
         "priority": 1,
         "issue": "Personal-root receipt placement",
-        "status": "closed in source by independently reviewed 0afd correction; integrated into candidate, not public"
+        "status": "Closed in source by independently reviewed 0afd correction; published in generation 3 ad1; actual public maintenance and physical acceptance pending"
       },
       {
         "priority": 2,
         "issue": "Snapshot receipt/payload filename collision",
-        "status": "closed in source by independently reviewed 0afd correction; integrated into candidate, not public"
+        "status": "Closed in source by independently reviewed 0afd correction; published in generation 3 ad1; actual public maintenance and physical acceptance pending"
       },
       {
         "priority": 1,
         "issue": "Legacy snapshot-root snapshot-files.properties skipped by basename during Reinstall; old folder subsequently deleted",
-        "status": "closed in source by independently reviewed 0afd correction; integrated into candidate, not public",
+        "status": "Closed in source by independently reviewed 0afd correction; published in generation 3 ad1; actual public maintenance and physical acceptance pending",
         "correctiveSource": "0afd9c30a164e52f0d2162b02feb69b906ca67a4",
         "ownerControls": "Three parameterized failing-before/passing-after cases: ordinary owner notes, malformed receipt-like bytes and incomplete receipt-like bytes; reported by owner, not rerun in this documentation update."
       }
@@ -1580,18 +1718,18 @@
     "collisionCorrectionSource": "865dfc1920866cf59cdc9d7987af9454b00b771a",
     "correctiveSource": "0afd9c30a164e52f0d2162b02feb69b906ca67a4",
     "finalDocumentationSource": "69736473ca4bba7e0a3bce971b6a46e694554ce5",
-    "merged": false,
-    "published": false,
+    "merged": true,
+    "published": true,
     "priorCorrectiveSource": "f8a582932316c8b0339684553619f9954d2ec804",
     "remotePullRequestHead": "69736473ca4bba7e0a3bce971b6a46e694554ce5",
     "frozenReviewedHead": "69736473ca4bba7e0a3bce971b6a46e694554ce5",
     "integrationSource": "b09250ab9a25697169f50ca52739c7f79066cc1e",
-    "currentIntegrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+    "currentIntegrationCheckpoint": "ad1a234d94b4397df681c7fd196581cf3a303a88",
     "integratedIntoCandidate": true,
-    "mainMerged": false,
+    "mainMerged": true,
     "standards": "clear per independent root review",
     "spec": "clear per independent root review",
-    "reviewBoundary": "Engineering source closure only; final combined CI, main/publication and physical acceptance remain pending.",
+    "reviewBoundary": "Earlier engineering source defects and anonymous publication/download checks remain closed. A new repeated-Reinstall recovery-name collision blocks actual public maintenance; failed-stage safety remains under independent check, not yet PASS.",
     "readOnlyPreservationStatus": "Read-only custom-launcher and personal-file Update/Reinstall defects closed in reviewed production 0afd; device acceptance remains pending.",
     "verification": {
       "ownerDelivery": {
@@ -1617,15 +1755,17 @@
       "combinedPreDartModelsTestsPassed": 32,
       "combinedPreDartCharTestsPassed": 12,
       "evidenceScope": "Recorded owner/root headless results, not newly rerun by this metadata reconciliation."
-    }
+    },
+    "mergedViaPullRequest": 41,
+    "publishedSource": "ad1a234d94b4397df681c7fd196581cf3a303a88"
   },
   "pendingWork": [
     {
       "domain": "A06",
       "owner": "ENV",
       "issue": "Remaining field/terrain and animated/state artwork plus final scene acceptance",
-      "status": "Candidate has 237 held fields and one terrain hold; partial rock/cushion/bedding authoring accepted in source does not finish required coverage.",
-      "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+      "status": "Main has 237 held fields and one terrain hold; partial rock/cushion/bedding authoring accepted in source does not finish required coverage.",
+      "source": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
       "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4"
     },
     {
@@ -1638,9 +1778,9 @@
     {
       "domain": "A01",
       "owner": "ROOT",
-      "issue": "Final integrated installer CI, main/public delivery and physical maintenance acceptance",
-      "status": "Reviewed preservation defects closed in source and integrated; final combined candidate CI/main merge/publication and device gates pending.",
-      "source": "57f4dcf26ceb25ea0907760da87a0e967a837159"
+      "issue": "Repeated clean Reinstall recovery collision and physical maintenance acceptance",
+      "status": "Generation 3 publication/downloads PASS, but actual public clean Reinstall FAIL on identical recovery/root personal bytes. Reproduction, correction, independent review, main integration and public revalidation pending; physical gates remain pending.",
+      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88"
     }
   ],
   "installerKnownGaps": [
@@ -1649,15 +1789,27 @@
       "issue": "Legacy snapshot metadata-looking personal bytes were lost by basename-only exclusion",
       "sourceWithConfirmedFailure": "f8a582932316c8b0339684553619f9954d2ec804",
       "implementedCorrectionSource": "0afd9c30a164e52f0d2162b02feb69b906ca67a4",
-      "status": "closed in source at reviewed 0afd; integrated into candidate; publication and physical acceptance pending",
-      "requiredClosure": "Final exact-source combined CI, main merge, verified publication and physical acceptance; source-defect closure already verified.",
+      "status": "Earlier legacy snapshot exclusion closed and shipped; separate new recovery collision blocks actual public maintenance; physical acceptance pending",
+      "requiredClosure": "Correct and independently review/integrate/revalidate the new repeated-Reinstall recovery collision; verify failed-stage safety separately and retain physical acceptance gates.",
       "engineeringReviewClosure": "Standards and Spec clear per independent root review",
-      "integrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159"
+      "integrationCheckpoint": "ad1a234d94b4397df681c7fd196581cf3a303a88"
+    },
+    {
+      "issue": "Repeated clean Reinstall stops on same-content personal recovery-name collision",
+      "sourceWithConfirmedFailure": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "status": "Open public maintenance blocker; correction/reviews/integration pending",
+      "sourceLocation": "CleanReinstall.java:216 (preserveTree)",
+      "actualFixtureBytes": 23,
+      "actualFixtureSha256": "07552b9ee8267b9358bd9c522d9e7b43658300a510b39979e1c5cc1acec2a659",
+      "actualFixtureSameContent": true,
+      "distinctInputCoverage": "Owner tests separate; not established by this actual-public fixture",
+      "requiredClosure": "Independent source reviews and main integration, repeat actual public maintenance PASS, failed-stage safety proof; preserve original/history and personal bytes.",
+      "gcAndMovieSeeding": "HELD"
     }
   ],
   "candidateVerification": {
-    "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
-    "status": "Final candidate CharHD tests and JAR pass; exact final CI/main merge/publication pending",
+    "source": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+    "status": "PR 42 reviewed FMV client and PR 43 standalone archive planner integrated on main; not published",
     "priorCombinedSource": "b09250ab9a25697169f50ca52739c7f79066cc1e",
     "priorCombinedDelivery": {
       "found": 536,
@@ -1669,7 +1821,7 @@
     "priorCombinedModelsPassed": 32,
     "priorCombinedCharPassed": 12,
     "requiredFinalCharTests": 13,
-    "mainMerged": false,
+    "mainMerged": true,
     "published": false,
     "limits": "Headless source/component results do not pass device or campaign cases.",
     "finalCandidateCharTests": {
@@ -1684,12 +1836,33 @@
       "failed": 0,
       "execution": "Up-to-date result from passing b092 run; not rerun at 57f"
     },
-    "finalCandidateCharHdJar": "pass"
+    "finalCandidateCharHdJar": "pass",
+    "historicalVerificationSource": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+    "nextDownloadGate": {
+      "run": 38167244350,
+      "source": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+      "status": "Publication and anonymous exact-source downloads PASS; actual public clean Reinstall FAIL",
+      "acceptanceBoundary": "Verified generation 3 pointer/packages do not close maintenance. GC and movie seeding held; failed-stage safety check pending, no PASS claim."
+    },
+    "currentMainVerification": {
+      "source": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+      "fmvClientSource": "8f4d52cd82a602c4b8e94bb5e93321d723e7d735",
+      "fmvClientDelivery": {
+        "found": 645,
+        "passed": 637,
+        "skipped": 8,
+        "failed": 0,
+        "evidenceScope": "Recorded independent root receipt relayed by coordinator; not newly rerun in this metadata edit"
+      },
+      "archiveHelperSource": "7f9562068af8d94e8822fde2dd93cf4c0f8c1c6e",
+      "archiveControlsPassed": 39,
+      "archivePublicationActive": false
+    }
   },
   "dartFieldHeadBindings": {
     "source": "9bb30ecb86262c50838b67427b72e0db59205f8e",
-    "integrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
-    "status": "independently reviewed source binding correction; integrated, not public",
+    "integrationCheckpoint": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+    "status": "Independently reviewed source correction accepted on main and published in generation 3 ad1; physical acceptance remains pending",
     "inventoriedExactVariants": 4,
     "inventoriedReferences": 1086,
     "actualSourceRouteModChecksPassed": 96,
@@ -1699,18 +1872,296 @@
     "existingAcceptedTextureGeometryUvsFitUnchanged": true,
     "newArtworkPromoted": false,
     "evidenceDocument": "docs/definitive/DART_FIELD_HEAD_BINDINGS.md",
-    "limits": "Inventoried routes/source and CPU/cache checks only; no actual game-state transition/GPU/Deck/final visual/full-campaign acceptance."
+    "limits": "Inventoried routes/source and CPU/cache checks only; no actual game-state transition/GPU/Deck/final visual/full-campaign acceptance.",
+    "mainMerged": true,
+    "published": true,
+    "publishedSource": "ad1a234d94b4397df681c7fd196581cf3a303a88"
   },
-  "remoteMainCheckpoint": "0d4bfd118a5a4e87905bd6c724b9c71abd1b0843",
+  "remoteMainCheckpoint": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
   "battlePresentationAudit": {
     "source": "29480f78a97298b8ad0325e57313933515678beb",
     "integrationSource": "3c20a4f72a5e5db99b42530fffed807c32383edd",
     "standards": "clear",
     "spec": "clear",
     "focusedIndependentTests": 41,
-    "status": "Installed selected pixels and immutable review are validated when drafts accumulate; coherent receipt erasure rejects. Actual initial baseline and selected22 plus pending1 pass.",
+    "status": "Installed selected pixels and immutable review are validated when drafts accumulate; coherent receipt erasure rejects. Actual initial baseline and selected 22 plus pending 1 pass.",
     "runtimeSelectionUnchanged": true,
-    "nativeAcceptance": false
+    "nativeAcceptance": false,
+    "mainSource": "ad1a234d94b4397df681c7fd196581cf3a303a88",
+    "mainMerged": true,
+    "published": true,
+    "publishedSource": "ad1a234d94b4397df681c7fd196581cf3a303a88"
   },
-  "integrationPolicy": "Land each completed, source-bound and independently reviewed increment into main while owners continue later work on their branches. Whole-mod or whole-campaign completion is not a prerequisite for a safe increment. Required HD content and final/device acceptance remain tracked; publication verifies the exact accepted source."
+  "integrationPolicy": "Human-approved spiral: merge each completed, source-bound and independently reviewed increment while its owner continues unfinished work. Whole-mod completion and publication are separate gates. Preserve required content, subjective ratings and physical/campaign criteria; publish only exact accepted source after verified pointer/download closure.",
+  "mainPaintedFields": 39,
+  "mainPaintedBattleMasters": 34,
+  "branchConsolidation": {
+    "main": "e5a0344b648c2d0ccefd78a51990417efb070f8a",
+    "result": "Completed proven ref retirements; active authoring retained",
+    "completedActions": [
+      {
+        "branch": "codex/installer-launcher-audit",
+        "head": "69736473ca4bba7e0a3bce971b6a46e694554ce5",
+        "remoteRetired": true,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "completed-main-increments-retirement.json"
+        ],
+        "filesPreserved": true
+      },
+      {
+        "branch": "codex/field-head-selection",
+        "head": "9bb30ecb86262c50838b67427b72e0db59205f8e",
+        "remoteRetired": true,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "completed-main-increments-retirement.json"
+        ],
+        "filesPreserved": true
+      },
+      {
+        "branch": "codex/battle-selector-cleared",
+        "head": "3f127a55a664109a971062b336eba902d5e86eee",
+        "remoteRetired": true,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "completed-main-increments-retirement.json"
+        ],
+        "filesPreserved": true
+      },
+      {
+        "branch": "codex/battle-audit-cumulative",
+        "head": "29480f78a97298b8ad0325e57313933515678beb",
+        "remoteRetired": true,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "completed-main-increments-retirement.json"
+        ],
+        "filesPreserved": true
+      },
+      {
+        "branch": "codex/acceptance-status-update",
+        "head": "b4f2efb15c05cad4a9f2997454d9a71142151b6a",
+        "remoteRetired": true,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "completed-main-increments-retirement.json"
+        ],
+        "filesPreserved": true
+      },
+      {
+        "branch": "codex/reviewed-current-integration",
+        "head": "fc422bf166bad07d95bbcd87baf8ed36a10adc27",
+        "remoteRetired": true,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "completed-main-increments-retirement.json",
+          "additional-completed-local-retirement.json"
+        ],
+        "filesPreserved": true
+      },
+      {
+        "branch": "default-asset-rendering",
+        "head": "c28178755095ba2725e1c84f097a2d9c886fdad1",
+        "remoteRetired": false,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "additional-completed-local-retirement.json"
+        ],
+        "filesPreserved": true
+      },
+      {
+        "branch": "codex/engine-fixed-step",
+        "head": "8944a435f59be73722977d047b5254fe87779b2a",
+        "remoteRetired": false,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "additional-completed-local-retirement.json"
+        ],
+        "filesPreserved": true,
+        "originalGraphPreserved": true
+      },
+      {
+        "branch": "codex/readme-engine-comparisons",
+        "head": "77705b4cfeca6b6203834e511dcc08194abf8c2e",
+        "remoteRetired": false,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "readme-completed-local-retirement.json"
+        ],
+        "filesPreserved": true
+      },
+      {
+        "branch": "codex/uihd-whole-game",
+        "head": "ac1c1f7753557247a78867824794e765a5b236b9",
+        "remoteRetired": false,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "uihd-whole-game-local-retirement.json"
+        ],
+        "filesPreserved": true,
+        "originalGraphPreserved": true
+      },
+      {
+        "branch": "codex/uihd-field-marker",
+        "head": "1ccd1fc831fac6e67eb73ce5d0ec19c69150c8d2",
+        "remoteRetired": true,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "uihd-marker-main-retirement.json"
+        ],
+        "filesPreserved": true
+      },
+      {
+        "branch": "codex/fmvhd-split-data",
+        "head": "7b455624f3fe525f5fa56b89f4e492a2b39e79cd",
+        "remoteRetired": true,
+        "localRetired": true,
+        "sourceReceiptNames": [
+          "fmv-completed-branch-retirement.json"
+        ],
+        "filesPreserved": true,
+        "originalGraphPreserved": true
+      }
+    ],
+    "sanitizedActionReceiptDigests": {
+      "completed-main-increments-retirement.json": "c06c3378d3a4e07cad88ebc856a9c71224a792e4cc0b501262ec7a08177e5633",
+      "additional-completed-local-retirement.json": "48cb5a391144df51e69d971700c7de8b6473fb26dd0402b3c3be89afc1467a7e",
+      "readme-completed-local-retirement.json": "922df0122a094d3db1b8390a90298df1354adddd0cd18b77ebb6767ef0337c5e",
+      "uihd-whole-game-local-retirement.json": "2d750b18cb9713baa4e1c9ad9bd76492f11972fa1258ecca8e2d06fb77c9ab7b",
+      "uihd-marker-main-retirement.json": "f94d21b6934c8056a5faccc28e849dc7ecac9a4bacceb56c3a42e540ab0a7ab6",
+      "fmv-completed-branch-retirement.json": "442b9ea10f6c8cde852ee4dc1f80db485f2719f7227276c3e326f49e68d1b0cf"
+    },
+    "preservation": "Detached checkouts, private/ignored files and needed source graph preserved; verified bundles retain historical patch-equivalent graph. No active draft retirement implied.",
+    "acceptanceBoundary": "Ref retirement is source housekeeping, not whole-mod, visual/device or publication acceptance."
+  },
+  "activeAuthoringCheckpoints": [
+    {
+      "branch": "codex/envhd-bespoke-repairs",
+      "source": "5fd1a9e3c8583716ce11fa0e8a41fbe7618d1909",
+      "authoringCandidates": 66,
+      "selectedFieldPaintings": 39,
+      "selectedFieldImages": 4925,
+      "remainingIndependentReviewCandidates": 25,
+      "reviewedRevisionCandidatesHeld": 2,
+      "runtimePromotionChanged": false,
+      "nativeAccepted": false,
+      "finalBeautyAccepted": false
+    },
+    {
+      "branch": "codex/battle-presentation",
+      "source": "01106369086ed75f0c7ca11a02aba78666a4d1a5",
+      "authoringCandidates": 130,
+      "newSelectedPaintings": 22,
+      "pendingCandidates": 108,
+      "mainCumulativePaintings": 34,
+      "runtimePromotionChanged": false,
+      "nativeAccepted": false,
+      "finalBeautyAccepted": false
+    },
+    {
+      "branch": "codex/charhd-party-authoring",
+      "source": "513b4716f6a0156bc389c263def34b24cf6392e8",
+      "dirtyOwnerWork": true,
+      "status": "Active unfinished character/body/rigging drafts preserved; no new artwork accepted by Dart binding integration."
+    },
+    {
+      "branch": "codex/fmv-current-manifest",
+      "reviewedCacheCheckpoint": "0f7c7a3a08a77f421ab05b7f3f72447e00ad19e9",
+      "observedLaterOwnerHead": "8f4d52cd82a602c4b8e94bb5e93321d723e7d735",
+      "cacheComponentSpec": "clear per independent review relayed by ROOT",
+      "cacheSpecFocusedControls": 33,
+      "cacheComponentStandards": "clear per independent review relayed by ROOT",
+      "cacheStandardsControlBatches": [
+        58,
+        27
+      ],
+      "remaining": "Ongoing publisher/GC archive-assembly integration remains active; public format1 remains in use. Whole-film/runtime/device and future publication acceptance stay separate.",
+      "mainMerged": true,
+      "published": false,
+      "additionalBlockingFinding": {
+        "priority": 2,
+        "source": "1ad0a37d38e7d2af09f28b4cd8b4b8e6a90d89bc",
+        "issue": "Earlier-ancestor symlink permits foreign write",
+        "status": "Closed by independently replayed bb9 ancestor checks before mkdir/promotion; integrated in reviewed 8f source",
+        "correctiveSource": "bb9a122809996e120247eb26b3fec6841c8818d0",
+        "focusedControlsPassed": 10
+      },
+      "integratedSource": "8f4d52cd82a602c4b8e94bb5e93321d723e7d735",
+      "pullRequest": 42
+    }
+  ],
+  "futureToolingCheckpoint": {
+    "source": "7f9562068af8d94e8822fde2dd93cf4c0f8c1c6e",
+    "scope": "Standalone bounded archive planner/prover and CI controls, merged through PR 43",
+    "headlessControlsPassed": 39,
+    "acceptedMainIntegrated": true,
+    "publisherClientIntegrated": false,
+    "published": false,
+    "evidenceBoundary": "Independent Spec and Standards clear for standalone planner/prover; complete publisher/GC archive assembly is not active; no end-to-end public archive-delta delivery or device acceptance.",
+    "historicalStandaloneSource": "5f90651b6e9f7b638cf1b23c847147e0899164e5",
+    "historicalControlsPassed": 35,
+    "pullRequest": 43,
+    "ciWiringSource": "95b3c7f9d2a0afdca02c2e7c753532df4ae87c36"
+  },
+  "publicPaintedFields": 39,
+  "publicPaintedBattleMasters": 34,
+  "fmvClientIntegration": {
+    "source": "8f4d52cd82a602c4b8e94bb5e93321d723e7d735",
+    "pullRequest": 42,
+    "mainMerge": "3594409a91079ba198ad118eac3581a5e998dea8",
+    "mainMerged": true,
+    "published": false,
+    "delivery": {
+      "found": 645,
+      "passed": 637,
+      "skipped": 8,
+      "failed": 0
+    },
+    "limits": "Headless source integration only; public release remains ad1, whole-film/device acceptance not established."
+  },
+  "pendingEngineeringAudit": {
+    "status": "Active independent engine audit; owners correcting separately",
+    "issues": [
+      "input cancellation",
+      "loader failure and cycles",
+      "audio/FMV route resets"
+    ],
+    "newAudioCheckpoint": {
+      "review": "Independently reviewed source correction retained byte-exact in integration and merged through PR44",
+      "mainMerged": true,
+      "published": false,
+      "source": "416bb8b003e72db0d7f7692cb96b9caf106c2dcc",
+      "baselineFailures": 1,
+      "focusedTestsPassed": 19,
+      "delivery": {
+        "found": 539,
+        "passed": 529,
+        "skipped": 10,
+        "failed": 0
+      },
+      "charTestsPassed": 13,
+      "standardsFindings": 0,
+      "specFindings": 0,
+      "physicalDeckAcceptance": false,
+      "pullRequest": 44,
+      "mainMergeSource": "5e4987edc47e8a94562713ddef0ee26c066008e2",
+      "integratedSource": "1ab32e98ee1ea2e03fe21d63c13f6df2bb26bfe4",
+      "combinedVerification": {
+        "delivery": {
+          "tests": 603,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 10
+        },
+        "charHdTests": 13,
+        "modelsHdTests": 32,
+        "headlessPresentation": "PASS",
+        "source": "1ab32e98ee1ea2e03fe21d63c13f6df2bb26bfe4",
+        "evidence": "Reviewed source-bound owner receipt; physical Deck acceptance remains open."
+      }
+    },
+    "limits": "Audio shutdown correction integrated in source; input/loading/audio-FMV-route fixes still tracked separately. No blanket domain or physical acceptance."
+  },
+  "caseInventoryHistoryPolicy": "All 65 original case definitions, results and dimensions retained. Historical references to 245 public holds mean generation 2; generation 3 has 237 still held and eight newly selected fields still require final scene acceptance."
 }
