@@ -1,0 +1,458 @@
+{
+  "schema": 1,
+  "scope": "Eight untouched organic/scenic sources authored in one built-in batch; seven structurally repaired outputs remain held for material/motif review or correction, one unchanged coverage failure retains raw input only. No candidate/runtime selections added; prior83 recipes preserved.",
+  "sourceSelectionBaseCommit": "7262233bbffb1419bfda439b138e4bcc75f01591",
+  "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+  "originalReviewReceiptSha256": "f2845bdff322c04b8496a0eff151389da53594de54446ec25dfb0d42cab9ea51",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 8,
+  "newUniqueSourceImages": 8,
+  "generatedVersions": 8,
+  "repairedVersions": 7,
+  "coverageFailures": 1,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "626f0e6b422a2ee050de53078ebaaa2fda94a47df0fddf03d3e08981af63fbb1",
+      "generatedSha256": "5a1d3100d18afd68c6882e4f98ab1147cdcbae64c3529175e23ce090ab2750ff",
+      "generatedSize": [
+        1082,
+        1454
+      ],
+      "sourceSize": [
+        70,
+        94
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "fd651ceaaee6454c27f3e5ed02de8ffbc0cc0a850d80f6bca20d047b65dd4025:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 324,
+      "representativeLocation": "Prison Island",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Faithful restoration of original pre-rendered Legend of Dragoon environment texture into restrained detailed hand-painted HD art compatible with Skurfa. Image1 is the authoritative native crop enlarged only by nearest-neighbor; every original form, landmark, pattern, dark/light field and perspective controls the result. Image2 is original complete room lighting/material context, not a whole-scene output target or guaranteed gameplay state. Prison Island dark blue-green organic ribbed/root-like wall fragment next to the lower-left path. Preserve the upper-right rounded dark recessed form, the larger central-right recess, the partial low-right recess and the brown/purple segmented protrusion at middle-left. Keep each particular native diagonal rib and broad fold direction, dark recessed centers and sparse pale gray-violet highlights. These are environmental forms of unresolved identity, never an animal head, face, teeth, skull or new spiral carving. Thin upper blue ridges and the clipped bottom forms stay in place. Tiny restrained grain may enhance surfaces; do not turn native broad smooth recesses into swirled ridges. Exact full-canvas aspect 70:94, Prison Island cut324 foreground4. Preserve original occupied widths, group spacing, orientation, color distribution, clipping and internal gaps; no recenter, rotation, redesign or new object interpretation. Output one isolated source layer on genuine transparency, retaining every native thin edge/contact and no backdrop. Add only very fine quiet painted surface detail where source supports it. Sparse uncertain fine source detail must remain unresolved rather than become a new legible motif. No text, logo, labels, comparison sheet, watermark, border, padding, complete room, new cast shadows or dramatically brighter lighting.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 87600,
+      "paintedGapPixelsExtended": 1335,
+      "paintedUncoveredSourcePixels": 1123,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 121,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        280,
+        376
+      ],
+      "outputSha256": "404be0f289cf0d864314b567e10cb9d4591d7008cf7077de3e9259e6deee1e45",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/626f0e6b422a2ee050de53078ebaaa2fda94a47df0fddf03d3e08981af63fbb1/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/626f0e6b422a2ee050de53078ebaaa2fda94a47df0fddf03d3e08981af63fbb1/draft-repaired-v1.png",
+      "verdict": "source-fidelity-review-or-revision-needed",
+      "reason": "Rounded dim blue-green rib/root surfaces become sharp highly textured ridges and recess rims. Reduce relief and brightness to retain source soft round forms and native dark exposure.",
+      "visualEvidenceViewed": "Actual native4x source and generated raw; all seven repaired source/output comparisons inspected. Static placement diagnostics prepared privately; no native gameplay inspection."
+    },
+    {
+      "decodedRgbaSha256": "7d18dd00f9bd56826e53f0bba64d811a53b8499dfa03874ec7da023e111f4349",
+      "generatedSha256": "5cb4903506073e47879ef906ee78fccc79cc159ce667dab494af89849af68fab",
+      "generatedSize": [
+        1338,
+        1176
+      ],
+      "sourceSize": [
+        82,
+        72
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "c92330efca83309fb898be4648a17f03ac397907924f6c5ab39c34f692b21337:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 600,
+      "representativeLocation": "Moon",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGB",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Faithful restoration of original pre-rendered Legend of Dragoon environment texture into restrained detailed hand-painted HD art compatible with Skurfa. Image1 is the authoritative native crop enlarged only by nearest-neighbor; every original form, landmark, pattern, dark/light field and perspective controls the result. Image2 is original complete room lighting/material context, not a whole-scene output target or guaranteed gameplay state. Moon green/teal organic radial formation embedded in a wall, viewed on its exact oblique source angle. Preserve the center at its actual slightly left-of-center position, the irregular small pale diffuse highlight grouping and the exact native broad radial strands. The center is a quiet unresolved diffuse cluster, not a bright flower, star, portal, opening or set of newly distinct tendrils. Keep the individual wide curves and darker grooves leading toward the source crop edges. The existing dark brown patch in the upper-left is occupied source and must stay, not become transparency. No glowing center, extra fissures, high-contrast new threadlike branches or symmetric petal arrangement. Exact full-canvas aspect 82:72, Moon cut600 foreground1. Preserve original occupied widths, group spacing, orientation, color distribution, clipping and internal gaps; no recenter, rotation, redesign or new object interpretation. Output a complete opaque texture matching the full original occupied source canvas; no transparent holes. Add only very fine quiet painted surface detail where source supports it. Sparse uncertain fine source detail must remain unresolved rather than become a new legible motif. No text, logo, labels, comparison sheet, watermark, border, padding, complete room, new cast shadows or dramatically brighter lighting.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 94464,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        328,
+        288
+      ],
+      "outputSha256": "6d9a48d4b17dbdff2487427e74a13f8c50b6d8413ed924ae364d29eb7137c056",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/7d18dd00f9bd56826e53f0bba64d811a53b8499dfa03874ec7da023e111f4349/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/7d18dd00f9bd56826e53f0bba64d811a53b8499dfa03874ec7da023e111f4349/draft-repaired-v1.png",
+      "verdict": "source-fidelity-review-or-revision-needed",
+      "reason": "Soft broad teal radial strands become jagged leaf/rock-like pieces with an overdefined bright central cluster. Restore broad source bands and diffuse center before independent review.",
+      "visualEvidenceViewed": "Actual native4x source and generated raw; all seven repaired source/output comparisons inspected. Static placement diagnostics prepared privately; no native gameplay inspection."
+    },
+    {
+      "decodedRgbaSha256": "930124e161d08e127f014c32cd82ecdab139ec4a33861921d158311fe3bf75c5",
+      "generatedSha256": "774b48803dbc227ce3d4e39edf94cf9a16c15056920548cc905374d4fb22052a",
+      "generatedSize": [
+        2034,
+        773
+      ],
+      "sourceSize": [
+        100,
+        38
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "95965d1125b026644ac57935cf3fe0d530365e4f6d5b1571060001f86f97c9ae:-1",
+          "kind": "foreground",
+          "slot": 11,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 615,
+      "representativeLocation": "Moon",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Faithful restoration of original pre-rendered Legend of Dragoon environment texture into restrained detailed hand-painted HD art compatible with Skurfa. Image1 is the authoritative native crop enlarged only by nearest-neighbor; every original form, landmark, pattern, dark/light field and perspective controls the result. Image2 is original complete room lighting/material context, not a whole-scene output target or guaranteed gameplay state. Moon dark narrow organic/rock/root strip with specific crossing curved ridges, rising to the cropped upper-right and gently irregular along the upper edge. Keep the native three broad zones of diagonal/curved ridging and their intersecting subtle olive/gray/violet lines. Match the dark values and do not brighten into a glowing vine. Fine rough material is restrained. No decorative knot, new rope twist, wood planks, large new cracks, geometric runes, animals or new fine rib crossings. Preserve full horizontal100:38 canvas, native clipped bottom/right/left contacts, source profile and all empty space above it. Exact full-canvas aspect 100:38, Moon cut615 foreground11. Preserve original occupied widths, group spacing, orientation, color distribution, clipping and internal gaps; no recenter, rotation, redesign or new object interpretation. Output one isolated source layer on genuine transparency, retaining every native thin edge/contact and no backdrop. Add only very fine quiet painted surface detail where source supports it. Sparse uncertain fine source detail must remain unresolved rather than become a new legible motif. No text, logo, labels, comparison sheet, watermark, border, padding, complete room, new cast shadows or dramatically brighter lighting.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 47008,
+      "paintedGapPixelsExtended": 3180,
+      "paintedUncoveredSourcePixels": 2901,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 148,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        400,
+        152
+      ],
+      "outputSha256": "7f8218a495452e2c476c3df4981d7d510079dd620d7f9607adbd2e704962297c",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/930124e161d08e127f014c32cd82ecdab139ec4a33861921d158311fe3bf75c5/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/930124e161d08e127f014c32cd82ecdab139ec4a33861921d158311fe3bf75c5/draft-repaired-v1.png",
+      "verdict": "source-fidelity-review-or-revision-needed",
+      "reason": "Very dark organic strip becomes sharply defined rock plates and olive ridges. Reduce foreground plate seams and bright line contrast; retain source intersecting low-relief curves.",
+      "visualEvidenceViewed": "Actual native4x source and generated raw; all seven repaired source/output comparisons inspected. Static placement diagnostics prepared privately; no native gameplay inspection."
+    },
+    {
+      "decodedRgbaSha256": "a8b3d4919642e0c982522322730ae602f3f33b5ec4ac1e38f6449aa2f8f4c390",
+      "generatedSha256": "e007f66f59b93e1a185858b69f84dbcbab72ea99eb9e0a54949d89afe2330f91",
+      "generatedSize": [
+        1526,
+        1030
+      ],
+      "sourceSize": [
+        80,
+        54
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "d3fa436aae44525bada330dba7966325f091097bad03cbedc15c3c235e9e0886:-1",
+          "kind": "foreground",
+          "slot": 10,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 730,
+      "representativeLocation": "Moon",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Faithful restoration of original pre-rendered Legend of Dragoon environment texture into restrained detailed hand-painted HD art compatible with Skurfa. Image1 is the authoritative native crop enlarged only by nearest-neighbor; every original form, landmark, pattern, dark/light field and perspective controls the result. Image2 is original complete room lighting/material context, not a whole-scene output target or guaranteed gameplay state. Moon cut730 foreground10: three separated pale gray patterned plane fragments in the EXACT native positions and crop: broad angled piece near upper-middle, small clipped plane at upper-right and larger irregular angled piece at lower-left. These are thin pre-rendered scene surface fragments, not a new complete object. Preserve pale/dark source patch distribution and soft dense irregular fine speckled/broken texture without outlining the tiny ambiguous marks. No new clear winding letters, repeated curlicues, coherent maze, Celtic knot or high-contrast repeating glyph pattern. No side walls, beveled tile edges, depth extrusion or moved pieces. Source-native edge angles and transparent gaps control geometry. Exact full-canvas aspect 80:54, Moon cut730 foreground10. Preserve original occupied widths, group spacing, orientation, color distribution, clipping and internal gaps; no recenter, rotation, redesign or new object interpretation. Output one isolated source layer on genuine transparency, retaining every native thin edge/contact and no backdrop. Add only very fine quiet painted surface detail where source supports it. Sparse uncertain fine source detail must remain unresolved rather than become a new legible motif. No text, logo, labels, comparison sheet, watermark, border, padding, complete room, new cast shadows or dramatically brighter lighting.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/a8b3d4919642e0c982522322730ae602f3f33b5ec4ac1e38f6449aa2f8f4c390/draft-input-v1.png",
+      "verdict": "painted-coverage-failure-held",
+      "reason": "The generated three-plane output fails unchanged painted coverage. Raw custom input only; no repaired output, runtime selection or gate waiver.",
+      "visualEvidenceViewed": "Actual native4x source and generated raw; all seven repaired source/output comparisons inspected. Static placement diagnostics prepared privately; no native gameplay inspection."
+    },
+    {
+      "decodedRgbaSha256": "e0f6b532410a42b5ad4701aca0b368b6473d795f25fb94e14021a9ebda37be78",
+      "generatedSha256": "aa09c4eadfc435e873abe2a5373fd15ab5ae4be7c68b05bc632fbca5546da4e1",
+      "generatedSize": [
+        1947,
+        808
+      ],
+      "sourceSize": [
+        82,
+        34
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "d3fa436aae44525bada330dba7966325f091097bad03cbedc15c3c235e9e0886:-1",
+          "kind": "foreground",
+          "slot": 11,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 730,
+      "representativeLocation": "Moon",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Faithful restoration of original pre-rendered Legend of Dragoon environment texture into restrained detailed hand-painted HD art compatible with Skurfa. Image1 is the authoritative native crop enlarged only by nearest-neighbor; every original form, landmark, pattern, dark/light field and perspective controls the result. Image2 is original complete room lighting/material context, not a whole-scene output target or guaranteed gameplay state. Moon cut730 foreground11: the separated pale gray surface fragments remain at the exact native positions: narrow angled left fragment, small center-left piece, large lower/center-right angled plane and small clipped upper-right plane. Preserve the PARTICULAR soft gray mottled fine texture and irregular dark/light distribution. No coherent maze, winding symbols, regular organic relief or repeating curly glyphs. Do not outline tiny source marks into new patterns. No complete blocks, added side walls, bevels, cast shadow, padding or reordering; preserve all separate groups and native crop-edge contacts. Exact full-canvas aspect 82:34, Moon cut730 foreground11. Preserve original occupied widths, group spacing, orientation, color distribution, clipping and internal gaps; no recenter, rotation, redesign or new object interpretation. Output one isolated source layer on genuine transparency, retaining every native thin edge/contact and no backdrop. Add only very fine quiet painted surface detail where source supports it. Sparse uncertain fine source detail must remain unresolved rather than become a new legible motif. No text, logo, labels, comparison sheet, watermark, border, padding, complete room, new cast shadows or dramatically brighter lighting.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 17200,
+      "paintedGapPixelsExtended": 761,
+      "paintedUncoveredSourcePixels": 426,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 25,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        328,
+        136
+      ],
+      "outputSha256": "7913f0e6cfd11e4033a63ec5f4db7a1b96dc8a9e4da5c16ca484f448444a75f1",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/e0f6b532410a42b5ad4701aca0b368b6473d795f25fb94e14021a9ebda37be78/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/e0f6b532410a42b5ad4701aca0b368b6473d795f25fb94e14021a9ebda37be78/draft-repaired-v1.png",
+      "verdict": "source-fidelity-review-or-revision-needed",
+      "reason": "Four-plane mottling avoids rejected neural curly motifs, but texture intensity/distribution remains interpretive. Keep unselected for exact-source local pattern and placement review.",
+      "visualEvidenceViewed": "Actual native4x source and generated raw; all seven repaired source/output comparisons inspected. Static placement diagnostics prepared privately; no native gameplay inspection."
+    },
+    {
+      "decodedRgbaSha256": "5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc",
+      "generatedSha256": "8fc6c1d58f3e061864629828034ce908700cabcfd9713061ee2dca4ddc2618b0",
+      "generatedSize": [
+        1274,
+        1235
+      ],
+      "sourceSize": [
+        68,
+        66
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "c7766b79738fa280345932b565ecf0c6af4394ca24fb5574c86f0f409662fe72:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 577,
+      "representativeLocation": "Aglis",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Faithful restoration of original pre-rendered Legend of Dragoon environment texture into restrained detailed hand-painted HD art compatible with Skurfa. Image1 is the authoritative native crop enlarged only by nearest-neighbor; every original form, landmark, pattern, dark/light field and perspective controls the result. Image2 is original complete room lighting/material context, not a whole-scene output target or guaranteed gameplay state. Aglis curved gray-teal ribbed fitting below the round purple pit, with a cropped left/bottom lip and red-lit tip at right. Preserve the broad rounded front cap, fine shallow vertical pale/dark marks through its middle and source subtle stepped/ribbed edges. Keep cool upper-left blue/gray highlights and dark muted green body; the right tip has the particular source dim red/purple lighting. The small pale markings are unresolved short shallow source patches, not crisp U glyphs, letters, script, illuminated runes or decorative crests. Do not convert the fitting into machined metal with added screws, vents, trim rings or ornate plate. Preserve exact convex shape and source widths. Exact full-canvas aspect 68:66, Aglis cut577 foreground3. Preserve original occupied widths, group spacing, orientation, color distribution, clipping and internal gaps; no recenter, rotation, redesign or new object interpretation. Output one isolated source layer on genuine transparency, retaining every native thin edge/contact and no backdrop. Add only very fine quiet painted surface detail where source supports it. Sparse uncertain fine source detail must remain unresolved rather than become a new legible motif. No text, logo, labels, comparison sheet, watermark, border, padding, complete room, new cast shadows or dramatically brighter lighting.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 54848,
+      "paintedGapPixelsExtended": 2591,
+      "paintedUncoveredSourcePixels": 2346,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 181,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        272,
+        264
+      ],
+      "outputSha256": "7beed9a6a43c4a6dc4effcafe86d93095d81200cd44adc69502e041adc826824",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc/draft-repaired-v1.png",
+      "verdict": "source-fidelity-review-or-revision-needed",
+      "reason": "Faint unequal native support marks become explicit raised U-like signs and regular hard rim/rib details. Reduce invented relief and writing-like coherence while retaining source scattered pale patches.",
+      "visualEvidenceViewed": "Actual native4x source and generated raw; all seven repaired source/output comparisons inspected. Static placement diagnostics prepared privately; no native gameplay inspection."
+    },
+    {
+      "decodedRgbaSha256": "54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101",
+      "generatedSha256": "0e16140319970e49f71a9e81bef19f0333bdc2ef9a8be0567cda12e41ab3f1dd",
+      "generatedSize": [
+        1207,
+        1303
+      ],
+      "sourceSize": [
+        76,
+        82
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "95df0a811b8c91b4aaeea710e6ab58f0cfa7cc4607724098e067f5ad55cd5ca2:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 711,
+      "representativeLocation": "Aglis",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Faithful restoration of original pre-rendered Legend of Dragoon environment texture into restrained detailed hand-painted HD art compatible with Skurfa. Image1 is the authoritative native crop enlarged only by nearest-neighbor; every original form, landmark, pattern, dark/light field and perspective controls the result. Image2 is original complete room lighting/material context, not a whole-scene output target or guaranteed gameplay state. Aglis purple ribbed ceiling/structure fragment crossing the upper half, attached to a pale gray-green upright support on lower-right. Preserve broad magenta/violet light patch near upper center-right, the actual curved purple ribs at upper-right, the cropped white/blue sliver at far-left near middle, and exact angled gray support. The support has a few faint uneven pale source strokes around its upper and central area; they stay small and ambiguous, not invented clearer angular script, letters, writing or symbols. Keep line location/length/direction anchored to source, interrupted rather than new connected icons. No new collars, grooves or changes to support width. Purple ribs retain their existing unequal spacing/count and smooth source curvature. Exact full-canvas aspect 76:82, Aglis cut711 foreground1. Preserve original occupied widths, group spacing, orientation, color distribution, clipping and internal gaps; no recenter, rotation, redesign or new object interpretation. Output one isolated source layer on genuine transparency, retaining every native thin edge/contact and no backdrop. Add only very fine quiet painted surface detail where source supports it. Sparse uncertain fine source detail must remain unresolved rather than become a new legible motif. No text, logo, labels, comparison sheet, watermark, border, padding, complete room, new cast shadows or dramatically brighter lighting.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 66112,
+      "paintedGapPixelsExtended": 2403,
+      "paintedUncoveredSourcePixels": 2221,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 2221,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        304,
+        328
+      ],
+      "outputSha256": "231a3d53f17ce04328ed8c0eadb572259af230e650ec16a6cb3faf10014fba4a",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101/draft-repaired-v1.png",
+      "verdict": "source-fidelity-review-or-revision-needed",
+      "reason": "Source smooth purple fitting and faint support marks become cracked stone, an overly sharp light band and legible glyph-like pale strokes. Restore restrained surface and native unequal ambiguous marks.",
+      "visualEvidenceViewed": "Actual native4x source and generated raw; all seven repaired source/output comparisons inspected. Static placement diagnostics prepared privately; no native gameplay inspection."
+    },
+    {
+      "decodedRgbaSha256": "f32d16052e97853b1dff1762df2bb5195bc9dc90fa8037c8c2d23fe281d41120",
+      "generatedSha256": "39dc51c6dfa018fd2ccb13eca4d34a13b58eb6c6814026eedc54b14eba7917ff",
+      "generatedSize": [
+        1275,
+        1233
+      ],
+      "sourceSize": [
+        62,
+        60
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "af36541c2cd5418d005886cda17be396e8306042e6fe800df94c29db13dedb22:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 708,
+      "representativeLocation": "Mayfil",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Faithful restoration of original pre-rendered Legend of Dragoon environment texture into restrained detailed hand-painted HD art compatible with Skurfa. Image1 is the authoritative native crop enlarged only by nearest-neighbor; every original form, landmark, pattern, dark/light field and perspective controls the result. Image2 is original complete room lighting/material context, not a whole-scene output target or guaranteed gameplay state. Mayfil dark green sculpted curved support/buttress fragment: broad green gray upper form with specific small shallow relief/scuffed markings, concave dark right edge and bent sloping lower body. Preserve exact source raised/recessed patches, the dark upper-right oval/arched recess and horizontal division/step across the middle; do not make it a carved face, new creature, statue identity or regular ornamental motif. Retain faint irregular pale gray-green patches and quiet source roughness. The large lower bent/angular form and clipped top/left/bottom contacts keep exact shape. No new cable/rib/glyph pattern, glossy material or added construction. Exact full-canvas aspect 62:60, Mayfil cut708 foreground1. Preserve original occupied widths, group spacing, orientation, color distribution, clipping and internal gaps; no recenter, rotation, redesign or new object interpretation. Output one isolated source layer on genuine transparency, retaining every native thin edge/contact and no backdrop. Add only very fine quiet painted surface detail where source supports it. Sparse uncertain fine source detail must remain unresolved rather than become a new legible motif. No text, logo, labels, comparison sheet, watermark, border, padding, complete room, new cast shadows or dramatically brighter lighting.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 47888,
+      "paintedGapPixelsExtended": 2109,
+      "paintedUncoveredSourcePixels": 1888,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 245,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        248,
+        240
+      ],
+      "outputSha256": "7f7f6c019a3b74ae608063038c3ff6d321700670d4397b0140d4752938a05248",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f32d16052e97853b1dff1762df2bb5195bc9dc90fa8037c8c2d23fe281d41120/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f32d16052e97853b1dff1762df2bb5195bc9dc90fa8037c8c2d23fe281d41120/draft-repaired-v1.png",
+      "verdict": "source-fidelity-review-or-revision-needed",
+      "reason": "Dim curved green support gains prominent high-relief grooves, sharp coarse fractures and bright stone borders. Reduce material contrast and preserve subdued native steps/scuffs without invented carved identity.",
+      "visualEvidenceViewed": "Actual native4x source and generated raw; all seven repaired source/output comparisons inspected. Static placement diagnostics prepared privately; no native gameplay inspection."
+    }
+  ]
+}

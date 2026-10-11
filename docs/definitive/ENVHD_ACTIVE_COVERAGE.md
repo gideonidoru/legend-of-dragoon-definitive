@@ -264,3 +264,10 @@ The [complete43-painting selection](../../integrations/envhd/production/field-be
 ## Ongoing authoring after Twin fragment integration
 
 Accepted main selects 4,929 fields with 43 bespoke paintings. All83 historical candidate records and every earlier custom/held version remain byte-exact on this branch. The current queue is34 independent-pending/6 revisions, with73 unique unselected custom source keys within233 field holds. Historical authoring/review receipts keep their original counts; the one unanimously cleared fragment is tracked by the accepted main selection separately. The remaining233 fields and one terrain repair total234 known static images. Native/state/campaign/final acceptance remains pending.
+
+
+## Held organic and scenery batch
+
+[Eight first-version custom paintings](../../integrations/envhd/production/field-bespoke-organic-scenery-held-drafts.json) cover Prison Island ribs, Moon radial scenery and layered planes, Aglis fittings and a Mayfil support. Seven pass the unchanged pinned cutout geometry/coverage/alpha/black repair; the Moon three-plane source fails coverage and has no repaired output. Material relief, hard ridge contrast and ambiguous pale marks need source-faithful correction or independent review. All eight remain unselected.
+
+Custom inputs, repaired outputs, prompts, hashes and source identities are versioned. Original crops, scene contexts and comparison/placement diagnostics remain private. Complete83 prior recipes and selected4,929 fields stay exact;81 unique unselected custom keys remain a subset of233 field holds. The separate five-cleared scenery main increment proceeds independently.
