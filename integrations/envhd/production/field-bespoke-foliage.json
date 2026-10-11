@@ -3,7 +3,7 @@
   "scope": "Six custom painted EnvHD development repair candidates, selected only through their separately source-verified runtime ledger. Source-759 candidate controls preserve the previous repair identity; stricter input bounds leave all generated and repaired PNG bytes unchanged. Native and final quality acceptance remain pending.",
   "sourceSelectionBaseCommit": "476c004ca4d4eacce5a763c41b570c479380b5e7",
   "algorithmPath": "scripts/repair-envhd-painted-cutout.py",
-  "algorithmSha256": "f5b8d43418ff6ceb233601f90ddff099465194bc8b2b473d7391a4fff30a8b0c",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
   "environment": {
     "python": "3.12.0",
     "pillow": "12.3.0",
@@ -36,7 +36,7 @@
         152,
         144
       ],
-      "algorithmSha256": "f5b8d43418ff6ceb233601f90ddff099465194bc8b2b473d7391a4fff30a8b0c",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
       "nativeAcceptance": "pending",
       "finalQualityAcceptance": "pending",
@@ -91,7 +91,7 @@
         152,
         336
       ],
-      "algorithmSha256": "f5b8d43418ff6ceb233601f90ddff099465194bc8b2b473d7391a4fff30a8b0c",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
       "nativeAcceptance": "pending",
       "finalQualityAcceptance": "pending",
@@ -146,7 +146,7 @@
         120,
         288
       ],
-      "algorithmSha256": "f5b8d43418ff6ceb233601f90ddff099465194bc8b2b473d7391a4fff30a8b0c",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
       "nativeAcceptance": "pending",
       "finalQualityAcceptance": "pending",
@@ -201,7 +201,7 @@
         176,
         184
       ],
-      "algorithmSha256": "f5b8d43418ff6ceb233601f90ddff099465194bc8b2b473d7391a4fff30a8b0c",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
       "nativeAcceptance": "pending",
       "finalQualityAcceptance": "pending",
@@ -256,7 +256,7 @@
         200,
         120
       ],
-      "algorithmSha256": "f5b8d43418ff6ceb233601f90ddff099465194bc8b2b473d7391a4fff30a8b0c",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
       "generatedPath": "integrations/envhd/production/bespoke-field-candidates/455126e71faad27bacd91a505cf193201a6004c80933d686a6e522875d757227/painted-input-v1.png",
       "outputPath": "integrations/envhd/production/bespoke-field-candidates/455126e71faad27bacd91a505cf193201a6004c80933d686a6e522875d757227/image-v1.png",
@@ -312,7 +312,7 @@
         168,
         96
       ],
-      "algorithmSha256": "f5b8d43418ff6ceb233601f90ddff099465194bc8b2b473d7391a4fff30a8b0c",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
       "generatedPath": "integrations/envhd/production/bespoke-field-candidates/43cf12d2a76b640953c2b725b955ba0025b26c94b81ee01a32a26c79c63271b0/painted-input-v1.png",
       "outputPath": "integrations/envhd/production/bespoke-field-candidates/43cf12d2a76b640953c2b725b955ba0025b26c94b81ee01a32a26c79c63271b0/image-v1.png",
@@ -405,6 +405,7 @@
     "maximumTargetPixels": 1000000,
     "maximumGeneratedPixels": 4194304,
     "maximumGeneratedSide": 4096,
-    "outputDimensions": "exactly four times the source; verified before decoding"
+    "outputDimensions": "exactly four times the source; verified before decoding",
+    "decoderHeaderAgreement": "Require lazy decoded PNG format, dimensions and mode to match the validated header before any pixel allocation."
   }
 }

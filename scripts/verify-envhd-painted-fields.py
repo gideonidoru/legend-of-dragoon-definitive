@@ -20,7 +20,7 @@ def module(name, filename):
 batch = module('painted_field_sources', 'batch-envhd-fields.py')
 repair = module('painted_field_repair', 'repair-envhd-painted-cutout.py')
 registration = module('painted_field_registration', 'register-envhd-painted-cutout.py')
-REPAIR_SHA256 = 'f5b8d43418ff6ceb233601f90ddff099465194bc8b2b473d7391a4fff30a8b0c'
+REPAIR_SHA256 = 'd94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a'
 REGISTRATION_SHA256 = '7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784'
 METHOD = 'python-painted-cutout-nearest-colour-exact-visibility-1'
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
@@ -89,9 +89,11 @@ def preflight(files, manifest_path, root=ROOT):
         if (batch.terrain.digest(raw_data) != candidate.get('generatedSha256')
                 or batch.terrain.digest(output_data) != candidate.get('outputSha256')):
             raise ValueError('Painted field artwork bytes changed')
-        repair.validate_png_header(raw_data, 'painted', source.size, allow_rgb=True)
-        repair.validate_png_header(output_data, 'output', source.size)
+        raw_size = repair.validate_png_header(raw_data, 'painted', source.size, allow_rgb=True)
+        output_size = repair.validate_png_header(output_data, 'output', source.size)
         with Image.open(io.BytesIO(raw_data)) as raw:
+            repair.validate_opened_png(raw, raw_size, 'painted', source.size,
+                                      'RGB' if raw_data[25] == 2 else 'RGBA')
             if candidate.get('generatedInputMode', 'RGBA') != raw.mode:
                 raise ValueError('Painted field input colour mode changed')
             if raw.mode == 'RGB':
@@ -115,6 +117,7 @@ def preflight(files, manifest_path, root=ROOT):
                     raise ValueError('Painted field registration differs from its recorded source geometry')
             expected, operation = repair.repair(source, raw)
         with Image.open(io.BytesIO(output_data)) as actual:
+            repair.validate_opened_png(actual, output_size, 'output', source.size)
             if actual.mode != 'RGBA' or actual.size != expected.size or not np.array_equal(np.asarray(actual), np.asarray(expected)):
                 raise ValueError('Painted field differs from its exact recorded repair')
         if any(candidate.get(k) != v for k, v in operation.items()):

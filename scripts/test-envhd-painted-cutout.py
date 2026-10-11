@@ -31,6 +31,13 @@ def compressed_png(width=4096, height=4096, colour_type=6):
     return b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', header) + chunk(b'IDAT', pixels) + chunk(b'IEND', b'')
 
 
+def duplicate_header_png(first=(2,2), second=(4096,4096), colour_type=6, first_colour_type=None):
+    data=compressed_png(*second,colour_type)
+    first_header=struct.pack('>2I5B',*first,8,colour_type if first_colour_type is None else first_colour_type,0,0,0)
+    chunk=struct.pack('>I',13)+b'IHDR'+first_header+struct.pack('>I',zlib.crc32(b'IHDR'+first_header))
+    return data[:8]+chunk+data[8:]
+
+
 class PaintedCutoutTests(unittest.TestCase):
     def source(self):
         return Image.fromarray(np.array([
@@ -127,6 +134,38 @@ class PaintedCutoutTests(unittest.TestCase):
             expected, metrics = repair.repair(source, Image.open(paths[1]))
             with Image.open(paths[2]) as actual:np.testing.assert_array_equal(np.asarray(expected), np.asarray(actual))
             self.assertEqual(metrics, {k:record[k] for k in metrics})
+
+    def test_duplicate_source_header_is_rejected_before_copy_or_load(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            paths=self.execute_inputs(Path(temporary),source_data=duplicate_header_png())
+            with mock.patch.object(Image.Image,'copy',side_effect=AssertionError('Pixel copy')),mock.patch.object(Image.Image,'load',side_effect=AssertionError('Pixel allocation')):
+                with self.assertRaisesRegex(ValueError,'bounded repair canvas'):
+                    repair.execute(*paths,'unused','unused')
+            self.assertFalse(paths[2].exists())
+
+    def test_duplicate_painted_header_is_rejected_before_load_or_resize(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            paths=self.execute_inputs(Path(temporary),painted_data=duplicate_header_png(first=(8,8)))
+            key=repair.digest(struct.pack('<II',*self.source().size)+self.source().tobytes())
+            original_open=Image.open
+            def guarded_open(stream):
+                image=original_open(stream)
+                if image.size==(4096,4096):
+                    image.copy=mock.Mock(side_effect=AssertionError('Pixel copy'))
+                    image.load=mock.Mock(side_effect=AssertionError('Pixel allocation'))
+                    image.resize=mock.Mock(side_effect=AssertionError('Pixel resize'))
+                return image
+            with mock.patch.object(Image,'open',side_effect=guarded_open):
+                with self.assertRaisesRegex(ValueError,'bounded painted canvas'):
+                    repair.execute(*paths,key,repair.digest(paths[1].read_bytes()))
+            self.assertFalse(paths[2].exists())
+
+    def test_decoder_size_and_mode_must_match_first_header_even_below_caps(self):
+        for data in [duplicate_header_png(second=(12,12)), duplicate_header_png(second=(2,2),colour_type=2,first_colour_type=6)]:
+            with Image.open(io.BytesIO(data)) as image:
+                with mock.patch.object(image,'load',side_effect=AssertionError('Pixel allocation')):
+                    with self.assertRaisesRegex(ValueError,'differs from the validated header'):
+                        repair.validate_opened_png(image,(2,2),'painted',(2,2))
 
 
 if __name__ == '__main__':

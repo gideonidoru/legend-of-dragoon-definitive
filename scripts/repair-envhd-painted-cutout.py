@@ -65,6 +65,13 @@ def validate_png_header(data, kind, source_size=None, allow_rgb=False):
     return size
 
 
+def validate_opened_png(image, header_size, kind, source_size=None, expected_mode='RGBA'):
+    """Pillow may process a later IHDR; check its lazy state before decoding."""
+    validate_dimensions(image.size, kind, source_size)
+    if image.format != 'PNG' or image.size != header_size or image.mode != expected_mode:
+        raise ValueError('PNG decoder differs from the validated header')
+
+
 def digest(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -121,10 +128,12 @@ def execute(source_path, painted_path, output_path, source_key, painted_sha256):
     source_data = bounded_read(source_path)
     painted_data = bounded_read(painted_path)
     source_size = validate_png_header(source_data, 'source')
-    validate_png_header(painted_data, 'painted', source_size)
+    painted_size = validate_png_header(painted_data, 'painted', source_size)
     with Image.open(io.BytesIO(source_data)) as image:
+        validate_opened_png(image, source_size, 'source')
         source = image.copy()
     with Image.open(io.BytesIO(painted_data)) as image:
+        validate_opened_png(image, painted_size, 'painted', source.size)
         painted = image.copy()
     if digest(struct.pack('<II', *source.size) + source.tobytes()) != source_key:
         raise ValueError('Decoded source identity changed')

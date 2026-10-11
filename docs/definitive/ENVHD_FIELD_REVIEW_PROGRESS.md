@@ -87,6 +87,11 @@ must have the exact fourfold source dimensions. These input bounds leave the six
 reviewed painted outputs unchanged. Their updated repair identity is bound to
 the current manifest and selection; the source-759 painted manifest and runtime
 ledger preserve the prior checkpoint byte-for-byte.
+The decoder's own lazy dimensions, mode and PNG format must also agree with the
+validated header before any copy, conversion, registration or output pixel
+array is allocated. Duplicate-header regressions exercise source, RGB/RGBA
+generated input and repaired output paths. Source-2ec controls retain the first
+bounded-input checkpoint; this correction also leaves every artwork byte unchanged.
 
 Remaining repairs include Crystal Palace balustrades, Twin Castle embroidery,
 painted signage, wall pictures, patterned upholstery, small carved fittings,
