@@ -1,10 +1,10 @@
 # Legend of Dragoon: Definitive
 
-**A classic RPG. A new home on Steam Deck.**
+**Rediscover Endiness. Built for Steam Deck.**
 
 ## [⬇ Download the Steam Deck installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop)
 
-HD artwork. Smoother models. Enhanced cinematics. One guided installation.
+Reconstructed characters. Restored HD artwork. Enhanced lighting and cinematics. One guided installation.
 
 [Release notes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest) · [Portable installer ZIP](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Definitive-Installer.zip) · [Installation help](docs/definitive/INSTALLER.md)
 
@@ -12,11 +12,34 @@ HD artwork. Smoother models. Enhanced cinematics. One guided installation.
 
 [Support Definitive on Ko-fi](https://ko-fi.com/gideonidoru).
 
-**Legend of Dragoon: Definitive** is a Steam Deck-focused edition of *The Legend of Dragoon*, combining a native game port with curated HD mods, enhanced rendering and optional gameplay conveniences. Bring your four US game-disc images; the installer handles the engine, Java, mods and game preparation.
+**Legend of Dragoon: Definitive** is a Steam Deck-focused edition of *The Legend of Dragoon*, combining Severed Chains’ native game port with an integrated visual remaster, enhanced rendering and optional gameplay conveniences. Bring your four US game-disc images; the installer handles the engine, Java, mods and game preparation.
 
 Built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains), Definitive adds an integrated presentation and installation experience: custom model and texture upgrades, restored interface and effect artwork, enhanced films, lighting improvements, campaign presets, and a launcher for updates and recovery. The story, recognizable character designs, original music and Addition-based combat remain central to the experience.
 
-> **Available in the current download:** all seven HD modules, Dart’s accepted reconstruction, expanded environment artwork, SMAA, enhanced films and the audio, timing and recovery improvements described below. This is a development alpha; character and environment restoration are unfinished, and physical Steam Deck gameplay and performance validation remain ongoing. [Release details](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
+> **Available in the current download:** all seven HD modules, Dart’s reconstructed head, expanded environment artwork, SMAA, enhanced films and the audio, timing and recovery improvements described below. This is a development alpha; character and environment restoration are unfinished, and physical Steam Deck gameplay and performance validation remain ongoing. [Release details](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
+
+## See the difference in-engine
+
+Sharper artwork across the scene. A reconstructed Dart. Smoother surfaces, cleaner edges and a clearer battle interface. These matched views show the visual layers working together in the actual game renderer.
+
+![Matched forest field scene with Definitive visual enhancements disabled on the left and enabled on the right](docs/definitive/images/comparisons/field-visuals-off-on.jpg)
+
+*Forest cliff · Original visuals → Definitive visuals. Matched 1280 × 800 field captures with the same camera, actor positions and layered scenery.*
+
+![Matched battle view with all Definitive visual enhancements disabled on the left and enabled on the right](docs/definitive/images/comparisons/battle-visuals-off-on.jpg)
+
+*Visual enhancements off → Definitive visuals on. Same 1280 × 800 output, camera and character pose. Captured in the native Mac renderer with the published installer’s engine and artwork, at normal actor scale.*
+
+<details>
+<summary><strong>Take a closer look · Dart, materials and the battle interface</strong></summary>
+
+![Closer matched in-engine view of Dart and the battle interface with visual enhancements disabled and enabled](docs/definitive/images/comparisons/battle-detail-off-on.jpg)
+
+*The same battle from a closer camera, with identical framing on both sides. This shows the combined character, environment, interface and rendering treatment.*
+
+</details>
+
+The baseline disables all seven HD modules and Definitive’s visual rendering options; the enhanced view enables them. Audio and cinematics cannot be demonstrated in these stills. These are controlled renderer comparisons, with character animation held for matching poses, rather than Steam Deck gameplay or performance measurements. [Capture settings and provenance](docs/definitive/images/comparisons/README.md#matched-in-engine-visual-comparisons).
 
 ## The heroes you remember. In greater detail.
 
@@ -59,7 +82,7 @@ Armor paneling, cloth patterns and weapon ornamentation deserve the same attenti
 
 **ModelsHD** refines eligible surfaces across all nine party field models and all 19 party battle forms, including Dragoon forms. It also reaches supported enemies, NPCs and scenery. **CharHD** supplies the separate character artwork and Dart’s accepted head reconstruction. Broader smoothing and individually rebuilt characters are distinct layers of the remaster.
 
-The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, Meru, Kongol and Miranda**: faces and hair, costume panels, hands and grips, boots and weapons, guided by the original illustrations and in-game designs. Dart’s head is the first accepted reconstruction; his complete body and the remaining party reconstructions are unfinished. Dragoon-form reconstruction is a later adaptation pass.
+The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, Meru, Kongol and Miranda**: faces and hair, costume panels, hands and grips, boots and weapons, guided by the original illustrations and in-game designs. Dart’s reconstructed head is available now; his complete body and the remaining party reconstructions are unfinished. Dragoon-form reconstruction is a later adaptation pass.
 
 <details>
 <summary><strong>Compare the geometry · Dart and Meru</strong></summary>
@@ -84,11 +107,13 @@ The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, 
 
 Explore painted towns, forests and interiors with **4,892 restored field images**, covering backgrounds and foreground layers. Skurfa’s HD backgrounds retain their own artwork and attribution; EnvHD expands the world around them with additional field art, battle panoramas, location landscapes and the parchment map. World-map terrain and selected battle floors, walls and scenery also receive restored textures.
 
-Foregrounds keep their original placement, visibility and depth, so scenery remains part of the scene rather than being flattened into a single picture. The installer automatically supplies **Env1HD through Env4HD** as four resource packs under one EnvHD switch—there is no separate pack setup. Remaining held surfaces use original artwork; animated environments and props are still being developed. [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
+Foregrounds retain their original placement, visibility and depth. The installer supplies **Env1HD through Env4HD** as four resource packs under one EnvHD switch, with no separate pack setup.
+
+Hand-painted repairs restore bedding, upholstery, woodwork, foliage and architectural motifs. The repository selects **4,917 field images**, including **31 painted replacements**, plus repairs for twelve battle motifs. The additional 25 field selections and battle repairs await the next installer release. Held surfaces retain original artwork; animated environments and props remain unfinished. [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 ### Magic with sharper detail
 
-FxHD supplies **2,160 unique 2× detail maps** across the audited effect-texture catalog, covering Dragoon spells and transformations, item magic, enemy and boss attacks, battle cutscenes, animated save points, world-map atmosphere and title flames. Its full texture catalog follows the original animated palettes, scrolling, transparency and blending, keeping each effect's movement and timing intact.
+FxHD supplies **2,160 unique 2× detail maps** across the audited effect-texture catalog. Coverage includes Dragoon spells and transformations, item magic, enemy and boss attacks, battle cutscenes, animated save points, world-map atmosphere and title flames. Its full texture catalog follows the original animated palettes, scrolling, transparency and blending, keeping the native palette-driven animation path. Coverage describes the texture catalog; complete in-game effect review remains ongoing.
 
 ### A crisp interface, from portraits to battle prompts
 
@@ -139,7 +164,7 @@ Choose artwork modules individually in the game's **Mods** menu. Installed HD mo
 | --- | --- |
 | **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Remastered field backgrounds and foreground layers. |
 | **[ModelsHD](integrations/modelshd/README.md)** | Refined character, enemy, NPC and scenery geometry. |
-| **[CharHD](integrations/charhd/README.md)** | Reconstructed character models, restored textures and authored costume detail. |
+| **[CharHD](integrations/charhd/README.md)** | Dart’s reconstructed head, restored character textures and authored costume detail. |
 | **[EnvHD](docs/definitive/ENVHD_FULL_COVERAGE.md)** | 4,892 field images, battle panoramas, world-map artwork, terrain and selected battle materials. |
 | **[UIHD](docs/definitive/UIHD_PRODUCTION.md)** | Portraits, menus, interface artwork and combat cues. |
 | **[FxHD](integrations/fxhd/README.md)** | Spell, attack, transformation and animated effect textures. |
@@ -190,6 +215,10 @@ Definitive extends Severed Chains' shared rendering, texture-loading, audio and 
 Failed shader reloads retain the working program. Texture uploads select the correct binding, deleted textures clear cached bindings, and stale artwork callbacks cannot restore an obsolete mod selection. Shared resources have explicit limits and cleanup paths.
 
 Native character uploads and deferred texture retirement retain renderer-thread ownership, including cancellation and failed uploads.
+
+**Depth-buffer resets.** The next release restores depth writes before clearing the depth buffer in both OpenGL and OpenGL ES. This prevents a previous draw’s disabled depth-write state from blocking the reset and carrying stale depth into later rendering. [Technical validation](docs/definitive/DEPTH_CLEAR_REGRESSION.md).
+
+Stationary viewport scaling and camera-clipping fixes remain under review, alongside controller reconnection and effect-texture ownership. They are not included in the current download or confirmed on Steam Deck. [Validation scope](docs/definitive/PROJECT_ACCEPTANCE.md).
 
 Presentation controls live in **Graphics**, independently of campaign presets. The pipeline uses conventional rendering with assets prepared before installation. Whole-campaign visual review and physical Steam Deck frame-time, memory and power measurements remain ongoing.
 

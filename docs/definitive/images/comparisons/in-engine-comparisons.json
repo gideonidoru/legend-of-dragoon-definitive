@@ -1,0 +1,330 @@
+{
+  "format": 1,
+  "capturedDate": "2026-10-11",
+  "platform": "macOS arm64; native SDL/OpenGL game renderer",
+  "engineSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
+  "releaseTag": "definitive-alpha-2026-10-11-envhd",
+  "packageVerification": "Engine and all seven module JARs and four Env resource ZIPs match the published package file manifest.",
+  "modules": {
+    "off": [],
+    "on": [
+      "scbackgroundhd",
+      "modelshd",
+      "charhd",
+      "envhd",
+      "uihd",
+      "fxhd",
+      "fmvhd"
+    ]
+  },
+  "visualSettings": {
+    "hd_texture_filtering": {
+      "off": false,
+      "on": true
+    },
+    "material_lighting": {
+      "off": false,
+      "on": true
+    },
+    "effect_lights": {
+      "off": false,
+      "on": true
+    },
+    "smaa": {
+      "off": false,
+      "on": true
+    },
+    "default_surface_detail": {
+      "off": false,
+      "on": true
+    },
+    "environment_lighting": {
+      "off": false,
+      "on": true
+    },
+    "soft_contact_shadows": {
+      "off": false,
+      "on": true
+    },
+    "scene_matched_lighting": {
+      "off": false,
+      "on": true
+    },
+    "smooth_model_lighting": {
+      "off": false,
+      "on": true
+    },
+    "protect_interface": {
+      "off": false,
+      "on": true
+    },
+    "scene_bloom": {
+      "off": 0,
+      "on": 0.25
+    },
+    "scene_sharpening": {
+      "off": 0,
+      "on": 0.2
+    },
+    "edge_smoothing": {
+      "off": 0,
+      "on": 0.5
+    }
+  },
+  "sharedSettings": {
+    "resolution": "NATIVE",
+    "window": [
+      1280,
+      800
+    ],
+    "gameSpeed": 1,
+    "turnOrderOverlay": false,
+    "audio": "muted for capture",
+    "originalActorScale": [
+      1,
+      1,
+      1
+    ],
+    "DartPosition": {
+      "battle": [
+        2560,
+        0,
+        0
+      ],
+      "field": [
+        215,
+        137,
+        417
+      ]
+    },
+    "DartYawRadians": {
+      "battle": 4.102,
+      "field": 0
+    },
+    "characterKeyframe": 0
+  },
+  "captureMethod": "Read default framebuffer GL_FRONT RGBA on renderer thread; flip rows for PNG storage. Isolated native game sessions using the published engine and artwork. Fresh game state, seeded RNG; battle fixture performs one Guard action before capture. Freeze actor animations and use renderer debug frame advancement to refresh identical camera studies. Field views start from a separate fresh title-to-field fixture, invoke normal title resource cleanup, load cut 5/scene 0, then pause scripts and freeze actor keyframes. All field actor pose and native camera logs match between sessions.",
+  "captureLimitation": "The published engine reproduced a zero-tick viewport shrink in initial paused captures. Final captures advance a simulation step on each presentation; no production shader or renderer correction was applied. This does not establish a fix, normal continuous gameplay, or physical Steam Deck acceptance.",
+  "scope": "All seven HD modules and listed Definitive visual rendering options disabled versus enabled; native engine, resolution and gameplay conveniences held constant. Two battle camera views plus one native field scene. Static images do not demonstrate every asset, spells, films, audio, animation behavior or performance.",
+  "imageProcessing": "Matched frames placed side by side without resizing, cropping, retouching or extra sharpening; separate labels and gutter added. JPEG encoding only.",
+  "runtimeFiles": [
+    {
+      "file": "lod-game-0af4f997e27f49783180cb2ff1c5a04012467289.jar",
+      "sha256": "33009ed625ca54e9581425e29aa612c608d4e548a1c5c2c9dcd7630668f53dc7"
+    },
+    {
+      "file": "bundled-mods/CharHD-v0.3.0.jar",
+      "sha256": "9a3b2ea351eae81ff84fecf55826a04b1bd987479584e8d623f5cce3a1af5ca0"
+    },
+    {
+      "file": "bundled-mods/Env1HD-v0.1.0.zip",
+      "sha256": "56f35210c2bde4d50b85e2acf587e6f3d1ad9b479d98b469d8b7611a48e32547"
+    },
+    {
+      "file": "bundled-mods/Env2HD-v0.1.0.zip",
+      "sha256": "114b7a334973b2aacc8691b35e88e86ac3617a63db90b3335e1d6d00e0575216"
+    },
+    {
+      "file": "bundled-mods/Env3HD-v0.1.0.zip",
+      "sha256": "482234308bd406faafcab89a173444a982f2416738f144ac7d7e091bab441b07"
+    },
+    {
+      "file": "bundled-mods/Env4HD-v0.1.0.zip",
+      "sha256": "6667f28b5355e3e0b046bc4dfd864c342475e0ded8db9ebe79a84c5642ddc60e"
+    },
+    {
+      "file": "bundled-mods/EnvHD-v0.1.0.jar",
+      "sha256": "e43db1253cf0af76f70765e2d0c604e67c05f5c563a3605ecf2299d2ffd85064"
+    },
+    {
+      "file": "bundled-mods/FMVHD-v0.1.0.jar",
+      "sha256": "9c7fff0ec15bccc2ea69d3586847d67c1c069c26782185e177eee643034f3ecc"
+    },
+    {
+      "file": "bundled-mods/FxHD-v1.0.0.jar",
+      "sha256": "ad2a2592b8c540ca6c01a97218ea5b134caa19c85f3752d13ca541d409a4e59d"
+    },
+    {
+      "file": "bundled-mods/ModelsHD-0.4.0.jar",
+      "sha256": "50906df44212a4535787dd23117671c5878484d1d8a71d28c89539e9b54790e6"
+    },
+    {
+      "file": "bundled-mods/Skurfas-HDR-Backgrounds-v1.1.0.jar",
+      "sha256": "139a7da47b51bd0da631ed16e8a0b7f92a0376a37568f6bcb460387b7814b4da"
+    },
+    {
+      "file": "bundled-mods/UIHD-v0.3.0.jar",
+      "sha256": "899dbd57fae70213b5a056e6578912f0310dbe33e99c286d4b9519fa1a44264e"
+    }
+  ],
+  "figures": [
+    {
+      "file": "battle-visuals-off-on.jpg",
+      "sha256": "4a85b7229375f3b8af479266a8300501d50bab485c1dcda192e920c0abed4f75",
+      "dimensions": [
+        2576,
+        906
+      ],
+      "scene": "battle encounter 0, stage 0; Dart and Berserk Mouse",
+      "view": "wide",
+      "viewpoint": [
+        7715,
+        -1488,
+        -2246
+      ],
+      "reference": [
+        1660,
+        -826,
+        58.47
+      ],
+      "inputs": {
+        "off": {
+          "file": "battle-0.png",
+          "sha256": "2facf851e16a83ff76665cd379adfd4f2c92c9b44ed96c6ac55ca6e73ea70313",
+          "dimensions": [
+            1280,
+            800
+          ]
+        },
+        "on": {
+          "file": "battle-0.png",
+          "sha256": "de14f67bd4ef2458f8ec1a129bd816abb7943814acddaa74a3a2f4c097eda0da",
+          "dimensions": [
+            1280,
+            800
+          ]
+        }
+      }
+    },
+    {
+      "file": "battle-detail-off-on.jpg",
+      "sha256": "6c0c7b2ad445ef9bd5604e195a0a20eeba42709702f8fbdd7c18555951da0a55",
+      "dimensions": [
+        2576,
+        906
+      ],
+      "scene": "battle encounter 0, stage 0; Dart and Berserk Mouse",
+      "view": "closer",
+      "viewpoint": [
+        5000,
+        -1400,
+        -1850
+      ],
+      "reference": [
+        2200,
+        -700,
+        58.47
+      ],
+      "inputs": {
+        "off": {
+          "file": "battle-1.png",
+          "sha256": "88bbbeed046f7eecab5abccef7ddcaca23b96266531ee42574f18037298ad947",
+          "dimensions": [
+            1280,
+            800
+          ]
+        },
+        "on": {
+          "file": "battle-1.png",
+          "sha256": "da1fa030dd36f8a1c4b6bfb326e9d9b8bf36ccb79910034fee12e2dc5ce17a0c",
+          "dimensions": [
+            1280,
+            800
+          ]
+        }
+      }
+    },
+    {
+      "file": "field-visuals-off-on.jpg",
+      "sha256": "631c4bb87d6da2b7cccdfb604dafb9e869da791fc36820c3737b1c7041ab769a",
+      "dimensions": [
+        2576,
+        906
+      ],
+      "scene": "Forest cliff; submap cut 5, scene 0",
+      "view": "native field camera",
+      "viewpoint": [
+        117,
+        -242,
+        -435
+      ],
+      "reference": [
+        4,
+        0,
+        181
+      ],
+      "actorPoses": [
+        {
+          "index": 0,
+          "position": [
+            215,
+            137,
+            417
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "index": 1,
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "index": 2,
+          "position": [
+            187,
+            123,
+            249
+          ],
+          "rotation": [
+            0,
+            1.178,
+            0
+          ]
+        },
+        {
+          "index": 3,
+          "position": [
+            -314.2,
+            0,
+            930.5
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "inputs": {
+        "off": {
+          "file": "field.png",
+          "sha256": "af8da60919dfd7a7278bda248983b21c8df558dd4be3d834c694a3ad00edd42f",
+          "dimensions": [
+            1280,
+            800
+          ]
+        },
+        "on": {
+          "file": "field.png",
+          "sha256": "dfb3d4e14b19b641491a9519ee53b53eb49ca482ae3768608001129ea76c3dc9",
+          "dimensions": [
+            1280,
+            800
+          ]
+        }
+      }
+    }
+  ]
+}
