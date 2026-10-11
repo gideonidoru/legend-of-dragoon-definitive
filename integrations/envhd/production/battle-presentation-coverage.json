@@ -8,7 +8,7 @@
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "0953ea9b8511d0123fb7d5f48582f90f61f0fbb4d7dd3af7ac0c2a62eae4e5df"
+    "battle-presentation-artwork-v1.json": "07396415337fa3ac2f0e4f4eeeea5355a0f9de753fc5ebd90f9d9be0b13def9f"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,10 +18,10 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 109,
+    "newBespokeCandidates": 130,
     "newlySelectedBespokeMasters": 0,
-    "baselineMastersStillNeedingPresentationReview": 397,
-    "pendingCandidateReviews": 109,
+    "baselineMastersStillNeedingPresentationReview": 376,
+    "pendingCandidateReviews": 130,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -364,7 +364,19 @@
         4096,
         864
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "1652feeea0b01ffb90a1f1a485e480a06190b6b1dc019c407de4df354a3a9be4",
+        "1910d2c285a5d7199e0426e23daf2d1aaf14ea15554f9c008cf74851597fc6fb",
+        "3c9e3d4719ae22652f52ee2374fa6967d3a81646e631589e7e15945adadb3684",
+        "3ca1434b06343c523d458e2484a6254b0cd412d39e936a20d1ec7efc1b7c27a6",
+        "4c771ed6a4e3a0b3c6d013c4f9da4bb6417863252cf4db13c98948c6a02737d6",
+        "50ad56f6a121d77e4c943ce59359071ee1d99d98cc76ed55b1879b09b240ea62",
+        "7d52fdc23676a9e00f39085f8747d125c4c0e148cb391d1592806c9ef9a36455",
+        "7ef6057f29b75d3a3dc732cfb1dba01c8a72ac380d8aa42f5b88dc7fe67cf0d9",
+        "9789a9ee53b3610cfb0bcfe855be134f6e80ea882a7eef84ffa8d110b9f60703",
+        "c846791a264f7bf41efff9990a11950710b3f973f006517dbeea8d8218863ea2",
+        "e99a4495820f3eedd215ab738a6df150e9a4619127d68df0a019b22f284611ee"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -407,7 +419,18 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "06148916abfb2e97f3e673b13f7fb2b170ed4accc456a43a8574d94dc239a025",
+        "41d134f179997f57cea1ed0ef8746ef9785ceb8de27f4b11918af6463b0ca8e6",
+        "4c41a6d3476d8096342f3ed779a7a56b900d090f9a4bf64b48b81ee92b640d55",
+        "67c8351417215da49ef45858375ac5268f6a33ea51615cefdf8ea228172e7821",
+        "7fc9a259f2f120d432a34d38ab75fb8e8415cf4a2fd83ab6bebbd728ad52884f",
+        "8ca225d62cdd16c24ab98f0e5acac2d11209a64bde24b0f34b82453d67d8b3e0",
+        "afbb74e9c055c5c00327d14e7297850d71da1126ff84b9c2c0d51b55ef157cef",
+        "e93e7a9a26452bacb44a6fd258c3fc52a48175314e95a7ddb0f4d8e110f3b307",
+        "ef223ce7b1fcf1f495666743935740ca6ec34d38f025c750f9c46dd9d63365de",
+        "f2bb695890f6f4ef0af4db8f3d86c508973059282f9907aa984245eacc381405"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3471,7 +3494,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3502,7 +3525,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3533,7 +3556,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3564,7 +3587,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3595,7 +3618,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3626,7 +3649,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3658,7 +3681,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0, 2]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3690,7 +3713,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0, 2]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3722,7 +3745,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0, 2]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3754,7 +3777,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0, 2]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3816,7 +3839,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {15: [0]}. Source family: Shirley Shrine: masonry, ivy, shrine architecture, statuary, rails and carved markings. Engine random-encounter location mapping: Shirley's Shrine.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4033,7 +4056,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4064,7 +4087,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4095,7 +4118,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4157,7 +4180,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4188,7 +4211,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4219,7 +4242,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4250,7 +4273,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4281,7 +4304,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4312,7 +4335,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4343,7 +4366,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-awaiting-independent-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
