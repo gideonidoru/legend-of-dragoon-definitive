@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "654b74c68187d4e440a3dd214d818bd2268f55aedaa74fe11a58f8077ffc821b",
+    "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "93cbb7d28a5dda9bac97a36c77c34c63535a3b6f8d92194751941ead42ee3817"
+    "battle-presentation-artwork-v1.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 22,
-    "newlySelectedBespokeMasters": 22,
-    "baselineMastersStillNeedingPresentationReview": 484,
+    "newBespokeCandidates": 35,
+    "newlySelectedBespokeMasters": 35,
+    "baselineMastersStillNeedingPresentationReview": 471,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -503,7 +503,21 @@
         4096,
         704
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "0936afd3e819fae331e01a8682654c88ea2828858741ad29f6d49dea75b41489",
+        "0fe1c4673884e8500b65032a483c2f4d68004a035eb3379636daef265cf17677",
+        "11df45d8d5b6d73c50daf6e878191f33fb919dd878df46e866a4bf0c7d3d5c2d",
+        "385f1296eae0292ec5e8a4dad4fa8a213b7c1054c1cffc05677fee2c0e69f4f2",
+        "4191df72b3f3f45741bc6957fccb6d2c87afeb23de50e286dc79020548c45a53",
+        "41a7e43f9bdcf0352a7c27a345b1edf5fc89047503583cb9e775751a90cdbaa1",
+        "445c4fe1c82e8ff9e4d18288723b90af1625f867e8f9af73ddf4a8acf607e1ea",
+        "91c606a5e3653794c6455507a8150689182e39c3333b7234e2ddf9f034166993",
+        "a0e1185e68a32b25dbdccd9bf84498f590742e20d8ce3f92de125a42205f3e9d",
+        "cf85418d3047b56eeff7ce594d1041ed3714b7a133b0b075d6ccd14b67ad0b12",
+        "d4a7c9acaddf1edc609c4d1b575d30e8c5d3ed24f0f287fb34a0c25566a7884b",
+        "e227112f83975f90ada35463a46fa849909a5fd33d3641e3beff0935ed06618b",
+        "f90290f794d01a589057dc38026ad7daddfe54968c3a23a91e9d7256dea39379"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4986,7 +5000,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5017,7 +5031,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5048,7 +5062,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5079,7 +5093,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5110,7 +5124,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5141,7 +5155,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5172,7 +5186,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5203,7 +5217,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5234,7 +5248,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5265,7 +5279,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5296,7 +5310,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5327,7 +5341,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5358,7 +5372,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {28: [0]}. Source family: Giganto Home: rough rock, arches, cave openings and carved stone forms. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },

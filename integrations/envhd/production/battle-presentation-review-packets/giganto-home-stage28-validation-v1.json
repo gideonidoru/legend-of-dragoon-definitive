@@ -1,0 +1,37 @@
+{
+  "cumulativePresentationMasters": 35,
+  "newOriginalReferenceClearedMasters": 13,
+  "priorPresentationMastersExact": 22,
+  "otherPaintedMastersExact": 12,
+  "selectedStaticMasters": 518,
+  "bindings": 525,
+  "atlasScenes": 72,
+  "changedAtlasStages": [
+    28
+  ],
+  "unchangedRuntimeFiles": 140,
+  "unrelatedRegionAndGutterPixelsExact": 512,
+  "fullAlphaAndBlackClassesExact": true,
+  "allMappingsAndAllocationDimensionsExact": true,
+  "secondBuildByteIdentical": true,
+  "omittedManifestRejectsWithoutWrites": true,
+  "nativeAcceptance": false,
+  "finalQualityAcceptance": false,
+  "schema": 1,
+  "baseRevision": "d31efa9c890742f7908fb58027f5ae4c0a3a621f",
+  "selectedManifestSha256": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274",
+  "focusedPythonChecksPassed": 78,
+  "javaOriginalSourceAudit": {
+    "atlasStages": 72,
+    "originalTexturedFaces": 36584,
+    "sourcePixelsClutStpBlackPaddingAndUvBounds": "verified-headlessly"
+  },
+  "normalEnvHdJar": {
+    "built": true,
+    "resourceCount": 5311,
+    "allResourceBytesAndInventoryExact": true,
+    "sha256": "9a88de3d4c0126c5f5b44dac29741049c1dbb7f34708f17b2a78326bf6aef4ee"
+  },
+  "validationScope": "Actual-source CPU pack/load and normal EnvHD JAR build/resource wiring; not native scene, shader, complete installer/package, physical Steam Deck or final beauty acceptance.",
+  "mainBaseReconciliation": "Initial full-source proof and Python checks ran before fast-forward; scripts, EnvHD resources and build wiring are unchanged between initial 8955dfa6e base and d31efa9. Java compile/source audit and JAR resource inventory ran against d31efa9."
+}
