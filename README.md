@@ -16,7 +16,7 @@ HD artwork. Smoother models. Enhanced cinematics. One guided installation.
 
 Built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains), Definitive adds an integrated presentation and installation experience: custom model and texture upgrades, restored interface and effect artwork, enhanced films, lighting improvements, campaign presets, and a launcher for updates and recovery. The story, recognizable character designs, original music and Addition-based combat remain central to the experience.
 
-> **Development alpha.** The current installer includes SMAA, the accepted character/interface/effect artwork, expanded EnvHD field packs, independent engine clocks, FMV pacing fixes and the latest Repair/Reinstall/Uninstall recovery. The remaster is unfinished; physical Steam Deck gameplay and performance validation remain ongoing. [Check the included features before downloading](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
+> **Available in the current download:** all seven HD modules, Dart’s accepted reconstruction, expanded environment artwork, SMAA, enhanced films and the audio, timing and recovery improvements described below. This is a development alpha; character and environment restoration are unfinished, and physical Steam Deck gameplay and performance validation remain ongoing. [Release details](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
 
 ## The heroes you remember. In greater detail.
 
@@ -82,17 +82,70 @@ The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, 
 
 ### Painted environments, restored for a modern screen
 
-Skurfa's HD backgrounds preserve the game's distinctive painted setting. EnvHD extends that presentation with battle panoramas, location artwork and the parchment world map. The full remaster goal also covers terrain, battle surfaces, missing field scenes and environmental props, with the original foreground placement and occlusion preserved.
+Explore painted towns, forests and interiors with **4,892 restored field images**, covering backgrounds and foreground layers. Skurfa’s HD backgrounds retain their own artwork and attribution; EnvHD expands the world around them with additional field art, battle panoramas, location landscapes and the parchment map. World-map terrain and selected battle floors, walls and scenery also receive restored textures.
 
-The [integrated EnvHD expansion](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/28) extends restoration to world-map terrain, battle surfaces and **4,892 selected field images**, including backgrounds and foreground layers. Four automatically installed field packs—**Env1HD through Env4HD**—share one EnvHD switch. Layer placement and visibility stay tied to the original scenes, and Skurfa’s existing artwork is preserved. All 5,162 generated field images have individual review records; 270 sources still need bespoke repair. Selected development artwork, broader animation/prop coverage and native gameplay quality remain under development. This expansion is included in the current combined release.
+Foregrounds keep their original placement, visibility and depth, so scenery remains part of the scene rather than being flattened into a single picture. The installer automatically supplies **Env1HD through Env4HD** as four resource packs under one EnvHD switch—there is no separate pack setup. Remaining held surfaces use original artwork; animated environments and props are still being developed. [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 ### Magic with sharper detail
 
-FxHD restores effect textures across Dragoon spells and transformations, item magic, enemy and boss attacks, battle cutscenes, animated save points, world-map atmosphere and title flames. Its full texture catalog follows the original animated palettes, scrolling, transparency and blending, keeping each effect's movement and timing intact.
+FxHD supplies **2,160 unique 2× detail maps** across the audited effect-texture catalog, covering Dragoon spells and transformations, item magic, enemy and boss attacks, battle cutscenes, animated save points, world-map atmosphere and title flames. Its full texture catalog follows the original animated palettes, scrolling, transparency and blending, keeping each effect's movement and timing intact.
 
 ### A crisp interface, from portraits to battle prompts
 
 UIHD restores all nine party portraits, menus, dialogue borders, save-card artwork, world-map markers, chapter cards and credits. Combat cues retain their original size and timing, so clearer artwork supports the precision Additions demand. Smooth fonts remain available in Graphics settings.
+
+## Your campaign. Your preferences.
+
+Start with **Definitive** for saving anywhere, battle autosaves, running by default, faster text, shorter transitions, enemy HP bars and turn-order information. Choose **Faithful** for settings closer to the original game.
+
+Both presets preserve normal Additions and timing windows, default to **1× rewards**, and leave Addition feedback off. Optional settings add equipment filtering and sorting, quantity buying and selling, binding-aware action hints, XP/gold multipliers, and timing feedback. Feedback helps identify Early, Late or Wrong Button results without changing hit windows or damage. Difficulty overhauls are not bundled. [Compare presets](docs/definitive/PRESETS.md) · [Explore the settings](docs/definitive/QOL_SETTINGS.md).
+
+## Ready to play on Steam Deck
+
+1. Enter **Desktop Mode** and [download the installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop).
+2. Open `Install-Definitive.desktop` in **Dolphin**. Allow execution if prompted.
+3. Choose a folder and supply your **four US game-disc images**, or reuse an existing installation's discs. BIN/raw ISO files and ZIP, RAR or 7z containers are supported.
+4. Let setup prepare the game, add the optional Steam shortcut, and launch from Steam or the Definitive launcher.
+
+Keep the downloaded installer: **each launch retrieves and checksum-verifies the latest setup**. Replace an older pinned `.desktop` once; the current saved copy keeps following new releases.
+
+If an older “Manage Installation” or Play shortcut fails before setup opens, download the installer again and select **Repair**, **Reinstall** or **Uninstall** for your existing installation. Repair refreshes the installed launcher when its old hosted release has been retired.
+
+Custom folders and SD cards are supported. Allow roughly **12 GB free for initial setup**, in addition to source discs already present; actual use depends on disc compression, and retained updates need additional room. Setup downloads the engine, artwork, dependencies and Java automatically. An internet connection is required. Game discs are not included, and source images stay untouched.
+
+![Definitive launcher with Play, artwork choices, version restore and Steam library actions](docs/definitive/images/launcher-linux.png)
+
+*Linux launcher preview.*
+
+### Keep playing. Keep your saves.
+
+The launcher offers Play, updates and local version restore; the installer also provides maintenance for an existing installation.
+
+| Action | What it does |
+| --- | --- |
+| **Update** | Installs a newer release, reusing verified unchanged files and downloading changed or new ones. |
+| **Repair** | Replaces missing or damaged files. If the old hosted release has been retired, retrieves the verified current version and refreshes the launcher. |
+| **Reinstall** | Downloads the entire application again and prepares a fresh workspace, retaining saves, settings, custom mods and imported discs. |
+| **Restore** | Returns to a retained local version. |
+| **Uninstall** | Removes managed application/workspace files while retaining personal data. Imported discs stay unless you choose to remove them. |
+
+Repair, Reinstall and Uninstall can recover from stale or damaged launch records, closing this installation’s verified game processes before maintenance. [Installation and recovery guide](docs/definitive/INSTALLER.md).
+
+## One installation. Seven HD modules.
+
+Choose artwork modules individually in the game's **Mods** menu. Installed HD modules also work with existing campaigns without requiring a new game. Your explicit opt-outs are remembered, and cancelling a menu change leaves the previous choices intact. The launcher’s original/HD preference controls Skurfa backgrounds and ModelsHD; the other five modules have their own choices in Mods. [Artwork selection details](docs/definitive/HD_MOD_ACTIVATION.md).
+
+| Module | Enhancement |
+| --- | --- |
+| **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Remastered field backgrounds and foreground layers. |
+| **[ModelsHD](integrations/modelshd/README.md)** | Refined character, enemy, NPC and scenery geometry. |
+| **[CharHD](integrations/charhd/README.md)** | Reconstructed character models, restored textures and authored costume detail. |
+| **[EnvHD](docs/definitive/ENVHD_FULL_COVERAGE.md)** | 4,892 field images, battle panoramas, world-map artwork, terrain and selected battle materials. |
+| **[UIHD](docs/definitive/UIHD_PRODUCTION.md)** | Portraits, menus, interface artwork and combat cues. |
+| **[FxHD](integrations/fxhd/README.md)** | Spell, attack, transformation and animated effect textures. |
+| **[FMVHD](integrations/fmvhd/README.md)** | Enhanced versions of all 18 cinematics. |
+
+The scope is the whole campaign. Character faces and costumes across the party, NPCs and enemies, plus remaining field scenes, terrain, battle materials, props and animated surfaces still need work. Including all seven modules does not mean every asset is finished. [Visual direction](docs/definitive/CHARACTER_REMASTER.md) · [Character coverage](docs/definitive/CHARHD_PRODUCTION.md) · [Environment coverage](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 ## Technical presentation
 
@@ -117,6 +170,8 @@ Definitive extends Severed Chains' shared rendering, texture-loading, audio and 
 **Palette-live effects.** FxHD's shared indexed detail path resolves restored colors from the current palette. Texture writes, copies and scrolling retain native animation and transparency. One persistent **16 MiB GPU companion** serves the effect system, with no GPU texture allocation per particle.
 
 **Protected interface rendering.** UIHD keeps native clipping, logical coordinates, animation offsets and transparency while displaying larger artwork. Native palette variants load on demand within a **32 MiB source/restoration GPU budget**. Current-frame pages remain pinned; unused pages can be evicted, including while paused. Changed or invalid sources fall back to original artwork.
+
+**Source-bound environments.** Field replacements match decoded source pixels and a pinned artwork checksum before allocation. Separate foreground layers retain their script slots, movement, translucency and depth. Painted-image inputs have bounded dimensions and decode checks before pixel allocation; invalid or mismatched artwork falls back to the original layer. The published selection includes 4,892 field images from 5,162 individually reviewed candidates, with 270 held sources, twelve battle-motif holds and one terrain hold still requiring repair. [Full environment scope](docs/definitive/ENVHD_FULL_COVERAGE.md).
 
 **Bounded loading.** A shared **64 MiB decoded-artwork cache** reuses image data. Low-priority workers prepare native field backgrounds and eligible HD images during loading; GPU work stays on the renderer thread. Scene changes cancel obsolete preparation. These are component budgets, not a total game-memory or Steam Deck performance guarantee.
 
@@ -144,50 +199,11 @@ Presentation controls live in **Graphics**, independently of campaign presets. T
 
 **Durable artwork preferences.** Accepted HD choices use an atomic preferences-file replacement followed by file and directory synchronization on Linux and macOS. A failed write keeps the selection screen open so you can retry or cancel.
 
-**Recovery after an interrupted launch.** Repair and Reinstall clear stale launch records and close verified game/launcher processes belonging to that installation before maintenance. Ownership checks distinguish those processes from other applications, and operation locks remain held through verification and activation. Saves, settings, module choices and imported discs are retained; Repair also retains prepared game data.
+**Recovery after an interrupted launch.** Repair, Reinstall and Uninstall recover from stale, missing or corrupt launch records and close verified game/launcher processes belonging to that installation before maintenance. Ownership checks distinguish those processes from other applications, and operation locks remain held through verification and activation. Repair and Reinstall retain saves, settings, module choices and imported discs. Same-release Repair also retains prepared game data; Uninstall retains personal data and imported discs unless disc removal is explicitly selected.
+
+**Verified delivery at larger sizes.** ZIP64 support accommodates the expanded HD package. Checksum-addressed file delivery installs the complete inventory even when a full platform archive exceeds hosting limits. Update and Repair reuse verified matching files; full Reinstall downloads every payload again. Files are checked before activation, and failed transfers cannot activate an incomplete package. When an older hosted version has been retired, Repair can retrieve the verified current release and refresh the installed launcher while retaining personal data and the previous workspace. [Delivery technology](docs/definitive/FILE_DELIVERY.md).
 
 [Rendering technology](docs/definitive/RENDERING_LIGHTING.md) · [Cinematic playback](docs/definitive/CINEMATIC_TIMING.md) · [Audio](docs/definitive/AUDIO_VALIDATION.md) · [Engine pacing](docs/definitive/ENGINE_PACING.md) · [HD module behavior](docs/definitive/HD_MOD_ACTIVATION.md) · [Launch recovery](docs/definitive/MAINTENANCE_GAME_RECOVERY.md).
-
-## Your campaign. Your preferences.
-
-Start with **Definitive** for saving anywhere, battle autosaves, running by default, faster text, shorter transitions, enemy HP bars and turn-order information. Choose **Faithful** for settings closer to the original game.
-
-Both presets preserve normal Additions and timing windows, default to **1× rewards**, and leave Addition feedback off. Optional settings add equipment filtering and sorting, quantity buying and selling, binding-aware action hints, XP/gold multipliers, and timing feedback. Feedback helps identify Early, Late or Wrong Button results without changing hit windows or damage. Difficulty overhauls are not bundled. [Compare presets](docs/definitive/PRESETS.md) · [Explore the settings](docs/definitive/QOL_SETTINGS.md).
-
-## Ready to play on Steam Deck
-
-1. Enter **Desktop Mode** and [download the installer](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest/download/Install-Definitive.desktop).
-2. Open `Install-Definitive.desktop` in **Dolphin**. Allow execution if prompted.
-3. Choose a folder and supply your **four US game-disc images**, or reuse an existing installation's discs. BIN/raw ISO files and ZIP, RAR or 7z containers are supported.
-4. Let setup prepare the game, add the optional Steam shortcut, and launch from Steam or the Definitive launcher.
-
-The current `.desktop` checks and fetches the latest installer every time it runs. Replace an older pinned `.desktop` once; the new saved copy stays current.
-
-If an older “Manage Installation” or Play shortcut fails before setup opens, download the installer again and select **Repair**, **Reinstall** or **Uninstall** for your existing installation. Repair refreshes the installed launcher when its old hosted release has been retired.
-
-Custom folders and SD cards are supported. Allow space for the game package, Java, your discs and prepared game data; the larger environment expansion also needs additional room for its four field packs. Check the release notes for the package you are installing. Game discs are not included, and source images stay untouched.
-
-![Definitive launcher with Play, artwork choices, version restore and Steam library actions](docs/definitive/images/launcher-linux.png)
-
-*Linux launcher preview.*
-
-The launcher brings **Play, Update, Repair and Restore** together. Update reuses unchanged files; Repair retrieves missing or changed application files. Reinstall replaces the application while keeping saves, settings, custom mods and imported discs. The latest recovery improvements handle stale or interrupted launches automatically, closing this installation’s verified game processes when Repair or Reinstall needs to proceed. [Installation and recovery guide](docs/definitive/INSTALLER.md).
-
-## One installation. Seven HD modules.
-
-Choose artwork modules individually in the game's **Mods** menu. In the newer source, installed HD modules also work with existing campaigns without requiring a new game. Your explicit opt-outs are remembered, and cancelling a menu change leaves the previous choices intact. The launcher’s original/HD preference controls Skurfa backgrounds and ModelsHD; the other five modules have their own choices in Mods. [Artwork selection details](docs/definitive/HD_MOD_ACTIVATION.md).
-
-| Module | Enhancement |
-| --- | --- |
-| **[Skurfa's HDR Backgrounds](https://github.com/IntiArtHub/skurfas-upscaled-hdr-backgrounds)** | Remastered field backgrounds and foreground layers. |
-| **[ModelsHD](integrations/modelshd/README.md)** | Refined character, enemy, NPC and scenery geometry. |
-| **[CharHD](integrations/charhd/README.md)** | Reconstructed character models, restored textures and authored costume detail. |
-| **[EnvHD](docs/definitive/ENVHD_STATUS.md)** | Battle panoramas, world-map artwork and environment restoration. |
-| **[UIHD](docs/definitive/UIHD_PRODUCTION.md)** | Portraits, menus, interface artwork and combat cues. |
-| **[FxHD](integrations/fxhd/README.md)** | Spell, attack, transformation and animated effect textures. |
-| **[FMVHD](integrations/fmvhd/README.md)** | Enhanced versions of all 18 cinematics. |
-
-The scope is the whole campaign. Character faces and costumes across the party, NPCs and enemies, plus remaining field scenes, terrain, battle materials, props and animated surfaces still need work. Including all seven modules does not mean every asset is finished. [Visual direction](docs/definitive/CHARACTER_REMASTER.md) · [Character coverage](docs/definitive/CHARHD_PRODUCTION.md) · [Environment coverage](docs/definitive/ENVHD_STATUS.md).
 
 ## Built with the community
 
