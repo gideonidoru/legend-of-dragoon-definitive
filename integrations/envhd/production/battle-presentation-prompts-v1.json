@@ -26,5 +26,180 @@
   {
     "key": "114d541b2fac25c512a0a077f18f3ba1d90dc8feb188cd7f8ec461531a51c295",
     "prompt": "Use case: style-transfer. Asset type: source-bound hand-painted HD battle texture crop for Legend of Dragoon: Definitive, gorgeous AA-quality retro presentation matching the enhanced field scenery. Input is the edit target, an exact nearest-neighbour enlargement of the original crop. Preserve all original broad forms, placement, palette, brightness, silhouette, cutout gaps, source padding and material scale. Improve readable painterly fine detail without redesigning. No added objects, ornament, text, symbols, flowers, creatures, glow, rim lights or strong cast shadows. Keep pure black voids black and fixed. Output a full opaque RGB texture; engine alpha/STP will be restored from the source. No border or framing; exact canvas aspect. Forest stage1: native64x64 square crop. One rounded deciduous tree sits in the central-right area on black, with a narrow moss-brown trunk and small original root-base at bottom. Preserve the exact original canopy silhouette, trunk position, green/olive color masses and uneven light patches. Paint softly defined small leaves inside the existing canopy, modest dappled light, no new branches, flowers or roots. The leftmost8sourcepixels and top8pixels are adjoining mottled-green strips; keep those source-padding strips in their original layout, do not expand canopy into them. Requested1024x1024 square."
+  },
+  {
+    "key": "70e83d7076294296b8b2ab71ca203266a2638326344f6a4632690372353302ff",
+    "prompt": "Use case: style-transfer. Asset type: exact source-bound 4x battle environment texture for Legend of Dragoon: Definitive. Input is the edit target, a nearest-neighbour enlargement of original texture. Match the gorgeous painterly material clarity of the bespoke enhanced field screens and a polished AA retro game. Preserve exact canvas, broad colour masses, source material scale, illumination, feature positions and black gaps; increase fine readable detail without redesigning, sharpened pixel edges, noisy photoreal micrograin or excessive relief. No new objects, ornaments, text, borders, camera perspective, dramatic lights or shadows. Full opaque RGB painting, black voids remain black; engine STP/transparency will be restored from original source. Barrens stage23 native256x136, exact32:17 landscape output2048x1088. Preserve the entire texture atlas layout: upper left half a dense pale warm-gray rounded gravel patch, upper right half a ridged dry brown rock/dirt patch, lower left quarter a second ridged patch, lower middle/right a sparse strip of tall pale straw grass silhouetted against pure black. All straight region boundaries and individual blade positions must remain exactly at source coordinates. Improve subtle mineral grains, small gravel definition and dry stone fibres without creating larger paving stones, fractures or grass clumps. Pure black strip between top and bottom and under the blades remains fixed. Match a softly painted rocky Barrens environment; neutral diffuse illumination.",
+    "references": [
+      {
+        "role": "original-layout-and-material",
+        "decodedRgbaSha256": "70e83d7076294296b8b2ab71ca203266a2638326344f6a4632690372353302ff"
+      }
+    ]
+  },
+  {
+    "key": "39e2679d7da2bd39e99b7b36321dec73f2ad8c1feffcdb6dd20627c469294e8b",
+    "prompt": "Use case: style-transfer. Asset type: exact source-bound 4x battle environment texture for Legend of Dragoon: Definitive. Input is the edit target, a nearest-neighbour enlargement of original texture. Match the gorgeous painterly material clarity of the bespoke enhanced field screens and a polished AA retro game. Preserve exact canvas, broad colour masses, source material scale, illumination, feature positions and black gaps; increase fine readable detail without redesigning, sharpened pixel edges, noisy photoreal micrograin or excessive relief. No new objects, ornaments, text, borders, camera perspective, dramatic lights or shadows. Full opaque RGB painting, black voids remain black; engine STP/transparency will be restored from original source. Barrens stage23 native200x64 crop, exact25:8 wide landscape output2000x640. It is a sparse row of long olive-green grass blades, with tall groups near left, a low sparse middle, and a taller group at right. Keep every blade tip, inclination, length, tuft spacing and black gap exactly fixed. Refine each existing blade with gentle painterly fibre and muted olive highlights without adding blades, extra grass, flowers or rocks. Top8nativepixels and left8pixels contain adjoining flat rocky/padding texture; preserve these strips rather than enlarging the grass into them. Full frame remains opaque and all black background remains pure black. No wind redesign or new foliage silhouettes.",
+    "references": [
+      {
+        "role": "original-layout-and-material",
+        "decodedRgbaSha256": "39e2679d7da2bd39e99b7b36321dec73f2ad8c1feffcdb6dd20627c469294e8b"
+      }
+    ]
+  },
+  {
+    "key": "c55241aa70e43eb816f147f011c41f0cb4847874d39903b562138f3ba9aad6d8",
+    "prompt": "Use case: style-transfer. Repaint Image1 into a clean, exquisitely hand-painted HD battle texture, using Image2 ONLY for the quality of small natural fibres and continuous paint strokes, never its objects or layout. Image1 is the exact texture edit target; original colour masses, entire texture layout and black gaps must remain fixed. Completely replace smeared or square pixel mosaic inside the materials with smooth continuous fine moss, bark or conifer-needle forms appropriate to the material. Do NOT preserve individual square pixels or nearest-neighbour block steps as interior detail; pixel art and square/checkerboard brush marks are forbidden. Keep low source contrast and palette, flat diffuse light, no strong shadows or exaggerated relief. Full opaque RGB, exact aspect and all black source voids kept black. No new objects, border, lettering, flowers, dramatic light, roots or region changes. Evergreen Forest stage36 native72x72 square crop output1024x1024. Preserve three bands: dark olive vertical hanging/rootlike strokes in upper quarter, broad gray-green moss/earth mottling through middle, then dark hanging/rootlike olive streaks at bottom. Fine low-contrast moss fibres on the ground region and fine worn brown-green fibres on the side bands, with exactly the same boundaries and subdued grey-olive light. Rightmost8nativepixels carry neighboring foliage/padding and bottom8pixels contain black gaps and small native fragments. Preserve those neighbors precisely. Do not reinterpret as tree wall, fence, brickwork or boulders.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "c55241aa70e43eb816f147f011c41f0cb4847874d39903b562138f3ba9aad6d8"
+      },
+      {
+        "role": "painterly-finish-only",
+        "path": "integrations/envhd/production/battle-presentation-candidates/0e295b4a54f9a55d7bb4e940ca004d26b84d6ae3b7ce813f172838b905588a7a/painted-input-v1.png"
+      }
+    ]
+  },
+  {
+    "key": "7990afc9c64ffe59d0221157cc84ad0bca2d86dd1c611b7dc3a3b1e19fd6ae84",
+    "prompt": "Use case: style-transfer. Repaint Image1 into a clean, exquisitely hand-painted HD battle texture, using Image2 ONLY for the quality of small natural fibres and continuous paint strokes, never its objects or layout. Image1 is the exact texture edit target; original colour masses, entire texture layout and black gaps must remain fixed. Completely replace smeared or square pixel mosaic inside the materials with smooth continuous fine moss, bark or conifer-needle forms appropriate to the material. Do NOT preserve individual square pixels or nearest-neighbour block steps as interior detail; pixel art and square/checkerboard brush marks are forbidden. Keep low source contrast and palette, flat diffuse light, no strong shadows or exaggerated relief. Full opaque RGB, exact aspect and all black source voids kept black. No new objects, border, lettering, flowers, dramatic light, roots or region changes. Evergreen Forest stage36 native80x72 crop exact10:9 landscape output1280x1152. Main upper half is mottled desaturated sage/gray-green mossy ground with irregular broad patches, lower half a green-brown fine vertically streaked bank side. Retain exact transition near nativey32. Add tiny moss fibres and softly painted fine woody/hanging rootlike strands only inside the original regions, restrained contrast and no macro-relief. Left and right8nativepixels contain adjoining dark/foliage texture, bottom8rows contain original black void and small fragments. Keep source padding fixed and keep black pure. No extra stones, tree trunks or decorative plants.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "7990afc9c64ffe59d0221157cc84ad0bca2d86dd1c611b7dc3a3b1e19fd6ae84"
+      },
+      {
+        "role": "painterly-finish-only",
+        "path": "integrations/envhd/production/battle-presentation-candidates/0e295b4a54f9a55d7bb4e940ca004d26b84d6ae3b7ce813f172838b905588a7a/painted-input-v1.png"
+      }
+    ]
+  },
+  {
+    "key": "d2d63a28eb4d9b42f41443602dad59d2c6e645ef2ef7623e84aec4e57095eb88",
+    "prompt": "Use case: style-transfer. Repaint Image1 into a clean, exquisitely hand-painted HD battle texture, using Image2 ONLY for the quality of small natural fibres and continuous paint strokes, never its objects or layout. Image1 is the exact texture edit target; original colour masses, entire texture layout and black gaps must remain fixed. Completely replace smeared or square pixel mosaic inside the materials with smooth continuous fine moss, bark or conifer-needle forms appropriate to the material. Do NOT preserve individual square pixels or nearest-neighbour block steps as interior detail; pixel art and square/checkerboard brush marks are forbidden. Keep low source contrast and palette, flat diffuse light, no strong shadows or exaggerated relief. Full opaque RGB, exact aspect and all black source voids kept black. No new objects, border, lettering, flowers, dramatic light, roots or region changes. Evergreen Forest stage36 native72x80 exact9:10 portrait output1152x1280. A single conifer/pine tree on black, same central placement, layered wide green-gray downward boughs and thick short dark olive-brown trunk. Preserve all original tier positions, branch-tip silhouette, uneven highlights and trunk dimensions; refine small fine needles ONLY inside existing green masses. Keep the subdued grey-olive canopy rather than bright saturated green. No added branches, fallen snow, cones, flowers, glow, extra trunk roots or forest backdrop. Top8nativepixels contain flat brown-gray adjoining padding, right8pixels and bottom8pixels adjoining foliage texture; preserve these rectangular edge strips precisely. Black gaps around each original bough stay pure black.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "d2d63a28eb4d9b42f41443602dad59d2c6e645ef2ef7623e84aec4e57095eb88"
+      },
+      {
+        "role": "painterly-finish-only",
+        "path": "integrations/envhd/production/battle-presentation-candidates/0e295b4a54f9a55d7bb4e940ca004d26b84d6ae3b7ce813f172838b905588a7a/painted-input-v1.png"
+      }
+    ]
+  },
+  {
+    "key": "98d2dbe478f3726c4a3bc37347366a2a822873e7e2c6af142ef6d39846c721ff",
+    "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native80x80 square, output1024x1024. The central64x64 texture is a dark gray-green vertically streaked hanging/root-bank material with tan-brown fibrous strokes increasing toward lower edge. Refine fine natural hanging moss/root fibres along the ORIGINAL bands, same top-to-bottom colour transition; avoid adding thick new roots or a tree trunk. Top/left/right/bottom8pixel neighbor strips, original left black rectangle and all dark voids must remain fixed. No rocks, stones, foliage tufts outside native material or dramatic light.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "98d2dbe478f3726c4a3bc37347366a2a822873e7e2c6af142ef6d39846c721ff"
+      }
+    ]
+  },
+  {
+    "key": "12a41e41beeee98fea7938530a1c6a7a7dff22f3c85a39a2245bb6aa553d5918",
+    "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native72x80 exact9:10 portrait, output1152x1280. Dense desaturated dark evergreen moss/leaf surface with softly mottled broad values, no separate large leaves. Replace noisy pebbly neural pattern with quiet fine intertwined moss fibres and small painted leaf flecks. Keep original darker lower-left and subtle diagonal value distribution. Top8rows and left/right/bottom neighbors include dark/rootlike fragments; preserve edge layout and every black gap. No newly prominent roots or boulders.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "12a41e41beeee98fea7938530a1c6a7a7dff22f3c85a39a2245bb6aa553d5918"
+      }
+    ]
+  },
+  {
+    "key": "d6fe134b2482e7727d21e29133618fcad5fe589e6e8385b6082b58ecee3699ca",
+    "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native80x80 square, output1024x1024. Central region has dark olive hanging fibre band at top, gray-green mottled ground through middle, hanging fibre band below. A soft pale original white-green glow rises from the BOTTOM CENTER as a roughly jagged flame-like gradient over the lower fibres. Keep the glow's exact original location, shape, brightness and gradual falloff; no new light or rays. Paint material fibres sharply only outside the glow and soften them progressively beneath it. Preserve all8pixel neighbor strips and leftblackrectangle. Do not add flowers, flames, smoke or light bloom beyond source.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "d6fe134b2482e7727d21e29133618fcad5fe589e6e8385b6082b58ecee3699ca"
+      }
+    ]
+  },
+  {
+    "key": "186a487ad3b07c4d3114be7f75a8640ab8b764c5330f0ecf9709f06699ddadd5",
+    "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native80x80 square, output1024x1024. Central region is a dark desaturated moss/root bank with tan downward fibres near lower portion. Across its TOP EDGE is the original shallow scalloped pale white-green glow strip, same shape and downward falloff. Preserve the glow exactly, no rays or expanded light. Paint fine continuous hanging fibres within original dark bands, no thick new vines. Preserve all source neighboring strips/fragments and pure black lower-left gap. Palette olive-gray and muted brown only.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "186a487ad3b07c4d3114be7f75a8640ab8b764c5330f0ecf9709f06699ddadd5"
+      }
+    ]
+  },
+  {
+    "key": "349878fc99b08dcd6067a9fd4d0703634cbabee1fed623dbbc92791d1903d6f6",
+    "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native72x80 exact9:10 portrait, output1152x1280. Central surface is dense fine dark gray-green moss/foliage, with the original shallow white-green scalloped glow band along TOP EDGE. Keep broad colour masses and precise original glow location, brightness and falloff. Refine material with small continuous painterly moss fibres and tiny subdued leaf flecks, not grainy pebbles, reptile scales or uniform noise. Preserve adjoining8pixel edge strips and all black gaps. Do not add or enlarge glow effects.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "349878fc99b08dcd6067a9fd4d0703634cbabee1fed623dbbc92791d1903d6f6"
+      }
+    ]
+  },
+  {
+    "key": "8d9e0fc9b6599fff89ce86980d2a7e32fb3fe072d54e741128d0c7cb3a959b3b",
+    "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native72x48 exact3:2 landscape, output1536x1024. Main region is warm dark-brown tree bark with near-vertical long grain bands and dark uneven fissures, black void above and below and a small protruding narrow trunk-texture fragment centered along top. Preserve all broad band positions, crop/silhouette and black gaps. Paint fine dry wood fibres and small bark lamellae only, no moss, leaves, roots, new knots or thick new cracks. Original right8pixel neighbor strip and clipped texture edges remain fixed. Soft diffuse light and subdued warm brown.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "8d9e0fc9b6599fff89ce86980d2a7e32fb3fe072d54e741128d0c7cb3a959b3b"
+      }
+    ]
+  },
+  {
+    "key": "4d5480968ed5ba1141689adc36c2ddcf21b5855dae743f634d15e01973cc96ed",
+    "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native80x48 exact5:3 landscape, output1600x960. Central bank/trunk surface contains long dark vertical streaks with muted brown wood above and green moss staining near its BOTTOM. Preserve exact large streak directions and brown-to-green gradient. Add fine painterly bark fibres and very small subdued moss threads only in EXISTING green regions, no new hanging foliage or thick roots. Keep source top/left/right neighbor fragments and black gaps fixed, including pale-green original top corners. No trees, fence, symbols or cast shadows.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "4d5480968ed5ba1141689adc36c2ddcf21b5855dae743f634d15e01973cc96ed"
+      }
+    ]
+  },
+  {
+    "key": "76d18e38b160c7cb2d86fbe7024c4e21e96d6d1811229468d9c9de4e0f47cb55",
+    "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native80x48 exact5:3 landscape, output1600x960. A single hanging conifer branch/bough segment fills upper-middle, scalloped dark sage-green mass with many thin radial dangling needle tips pointing down into black. Preserve the exact asymmetric bough location, original highlight bands, all tip endpoints and black gaps. Paint tiny continuous pine needles within the existing leaf masses, no added boughs or new long stems. Keep top and left8pixel neighbor strips/fragments, lower black void and original broad muted green palette; do not turn it into a round fern disk.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "76d18e38b160c7cb2d86fbe7024c4e21e96d6d1811229468d9c9de4e0f47cb55"
+      }
+    ]
+  },
+  {
+    "key": "bd31bd02b9e863e47cdae7372d32e01d3a1393b0168e57bca509c258fe6a1ffd",
+    "prompt": "Use case: style-transfer. Edit only the existing muted olive-brown tree bark texture shown. Redraw the blurred original bark with crisp fine hand-painted wood fibres, thin longitudinal bark fissures and irregular small worn bark lamellae. The material is DRY BARK, NOT moss or leafy vegetation. No moss tufts, no leaves, no greenery added, no roots, no new knots, no carved marks. Preserve original muted olive-brown palette, exact broad diagonal near-vertical dark/light groove positions, soft flat light and shallow relief. Replace smeared detail with beautiful continuous bark painting, no square mosaic or pixel art. Exact80:72 crop; preserve left/right/bottom neighboring strips and pure black gaps in their original positions. Main source64x64 interior only is bark; do not merge the neighbors into it. Full opaque RGB painting, no scene framing, no shadows or border. Requested1280x1152 exact10:9 landscape.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "bd31bd02b9e863e47cdae7372d32e01d3a1393b0168e57bca509c258fe6a1ffd"
+      }
+    ]
+  },
+  {
+    "key": "bac21eb9acbc83e328e83ec0392b0bdc6958fb2f64f2fc2f9e33355d1d626d41",
+    "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native256x136 exact32:17 full atlas output2048x1088. Maintain every region boundary: upper-left sparse olive hanging stem/ground patch, upper middle dense olive moss/foliage, upper-right conifer bough shape over black, lower-left larger conifer bough/trunk fragment over black, lower-right another olive moss/foliage patch, bottom8nativepixels original adjoining fragments. Paint fine continuous moss strands, subtle soil fibre and fine pine needles within original masses, preserving exact silhouettes and black gaps. Do not turn stem marks into lettering, leaf field into cobblestones or bough pieces into additional trees. Preserve the exact asymmetric native tile arrangement and original varied olive green values. Critical source correction: the large dark-green shapes at UPPER RIGHT and LOWER LEFT are ONLY CONIFER CANOPY/BOUGH FRAGMENTS. There are NO VISIBLE TREE TRUNKS anywhere in these two shapes. Do not add brown vertical trunks, branching forks or separate new trees. Dark gray-brown bands across these canopy fragments are dark shaded needles, never wood or bark. Keep those bands filled with dark soft needles and sparse original olive highlight streaks in exactly their original positions. The upper-right shape is one clipped bough mass; lower-left is one connected clipped bough mass, not three trees. Every region's original boundary is mandatory.",
+    "references": [
+      {
+        "role": "layout-source",
+        "type": "existing-neural-candidate",
+        "decodedRgbaSha256": "bac21eb9acbc83e328e83ec0392b0bdc6958fb2f64f2fc2f9e33355d1d626d41"
+      }
+    ]
   }
 ]

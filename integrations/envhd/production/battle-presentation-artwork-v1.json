@@ -11,7 +11,7 @@
   "runtimeSelected": 0,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "visualReviewedBespokeCandidates": 7,
+  "visualReviewedBespokeCandidates": 22,
   "candidates": [
     {
       "scale": 4,
@@ -450,6 +450,1067 @@
         "layout": "Original, current neural and exact4x candidate compared. Source crop/aspect, neighboring strips/fragments and broad features retained; native STP/discard/visible-black restored exactly. The recipe does not prove internal motif topology or final camera/seam quality.",
         "verdict": "visual-reviewed-runtime-pending",
         "outputSha256": "9a5df5d70d5b29284558aa6333c9f941fc0c662edfc5687188bc68dba514513e",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        256,
+        136
+      ],
+      "targetSize": [
+        1024,
+        544
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "70e83d7076294296b8b2ab71ca203266a2638326344f6a4632690372353302ff",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "7916c3fc015eb30a3b634c5f54b178205821f9849d0f9b8128d204bb9b1a2def",
+      "outputSha256": "ce16f7e58ffb28f0329ca4afe2222a850a5ab3e62abcb672360bd75215d387c9",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 23,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            0,
+            2
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            256,
+            136
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "00d8710d28162f21cab07c6e5df96cd000aba89036c8c31f6aed778e088a83cb",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/70e83d7076294296b8b2ab71ca203266a2638326344f6a4632690372353302ff/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/70e83d7076294296b8b2ab71ca203266a2638326344f6a4632690372353302ff/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: exact source-bound 4x battle environment texture for Legend of Dragoon: Definitive. Input is the edit target, a nearest-neighbour enlargement of original texture. Match the gorgeous painterly material clarity of the bespoke enhanced field screens and a polished AA retro game. Preserve exact canvas, broad colour masses, source material scale, illumination, feature positions and black gaps; increase fine readable detail without redesigning, sharpened pixel edges, noisy photoreal micrograin or excessive relief. No new objects, ornaments, text, borders, camera perspective, dramatic lights or shadows. Full opaque RGB painting, black voids remain black; engine STP/transparency will be restored from original source. Barrens stage23 native256x136, exact32:17 landscape output2048x1088. Preserve the entire texture atlas layout: upper left half a dense pale warm-gray rounded gravel patch, upper right half a ridged dry brown rock/dirt patch, lower left quarter a second ridged patch, lower middle/right a sparse strip of tall pale straw grass silhouetted against pure black. All straight region boundaries and individual blade positions must remain exactly at source coordinates. Improve subtle mineral grains, small gravel definition and dry stone fibres without creating larger paving stones, fractures or grass clumps. Pure black strip between top and bottom and under the blades remains fixed. Match a softly painted rocky Barrens environment; neutral diffuse illumination.",
+      "references": [
+        {
+          "role": "original-layout-and-material",
+          "decodedRgbaSha256": "70e83d7076294296b8b2ab71ca203266a2638326344f6a4632690372353302ff"
+        }
+      ],
+      "review": {
+        "intent": "Barrens gravel, dry rock and pale straw grass atlas; keep every separate texture region and individual original blade silhouette. Static battle model surface; source geometry uses stage/parts {23: [0, 2]}. Source family: Barrens: dry rocky ground and grass silhouettes. Engine random-encounter location mapping: Barrens.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Complete 256x136 atlas, fixed quadrant boundaries and original black grass gaps; no recentering or region redesign. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "ce16f7e58ffb28f0329ca4afe2222a850a5ab3e62abcb672360bd75215d387c9",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        200,
+        64
+      ],
+      "targetSize": [
+        800,
+        256
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "39e2679d7da2bd39e99b7b36321dec73f2ad8c1feffcdb6dd20627c469294e8b",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "ab2748ecbc72727d0c3d3e9d7614c0388645fe360051e169534afd353c4ca6f4",
+      "outputSha256": "5b8fcc4fe2092bf671d32e6d7a138f27ae0997f478cd58422e743d2eb53eaf8b",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 23,
+          "page": 7,
+          "clut": 15516,
+          "parts": [
+            1
+          ],
+          "sourceCrop": [
+            56,
+            56,
+            256,
+            120
+          ],
+          "sourceUvOrigin": [
+            56,
+            56
+          ]
+        }
+      ],
+      "priorCandidateSha256": "729cdc1de70084fc9ad481fd1404177a58a1ebfe3af2d0dba236885009081611",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/39e2679d7da2bd39e99b7b36321dec73f2ad8c1feffcdb6dd20627c469294e8b/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/39e2679d7da2bd39e99b7b36321dec73f2ad8c1feffcdb6dd20627c469294e8b/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: exact source-bound 4x battle environment texture for Legend of Dragoon: Definitive. Input is the edit target, a nearest-neighbour enlargement of original texture. Match the gorgeous painterly material clarity of the bespoke enhanced field screens and a polished AA retro game. Preserve exact canvas, broad colour masses, source material scale, illumination, feature positions and black gaps; increase fine readable detail without redesigning, sharpened pixel edges, noisy photoreal micrograin or excessive relief. No new objects, ornaments, text, borders, camera perspective, dramatic lights or shadows. Full opaque RGB painting, black voids remain black; engine STP/transparency will be restored from original source. Barrens stage23 native200x64 crop, exact25:8 wide landscape output2000x640. It is a sparse row of long olive-green grass blades, with tall groups near left, a low sparse middle, and a taller group at right. Keep every blade tip, inclination, length, tuft spacing and black gap exactly fixed. Refine each existing blade with gentle painterly fibre and muted olive highlights without adding blades, extra grass, flowers or rocks. Top8nativepixels and left8pixels contain adjoining flat rocky/padding texture; preserve these strips rather than enlarging the grass into them. Full frame remains opaque and all black background remains pure black. No wind redesign or new foliage silhouettes.",
+      "references": [
+        {
+          "role": "original-layout-and-material",
+          "decodedRgbaSha256": "39e2679d7da2bd39e99b7b36321dec73f2ad8c1feffcdb6dd20627c469294e8b"
+        }
+      ],
+      "review": {
+        "intent": "Barrens olive grass billboard, same blade placement and subdued source palette. Static battle model surface; source geometry uses stage/parts {23: [1]}. Source family: Barrens: dry rocky ground and grass silhouettes. Engine random-encounter location mapping: Barrens.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "200x64 aspect and original top/left padding strips, all silhouette endpoints and black gaps retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "5b8fcc4fe2092bf671d32e6d7a138f27ae0997f478cd58422e743d2eb53eaf8b",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        72,
+        72
+      ],
+      "targetSize": [
+        288,
+        288
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "c55241aa70e43eb816f147f011c41f0cb4847874d39903b562138f3ba9aad6d8",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "32d720afcf507530bc5d5d71a5a7bac3fbec141b1f324f504491a1e0cd19f5d9",
+      "outputSha256": "ac0672c083eb03e77ed8d5435816f61cb6386b45e031243afdaafbc1cb95461c",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 15388,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            72,
+            72
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "6d3764794d5daa752ae607be758c50f389d47cbf660070b00d79a90a82b56d95",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/c55241aa70e43eb816f147f011c41f0cb4847874d39903b562138f3ba9aad6d8/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/c55241aa70e43eb816f147f011c41f0cb4847874d39903b562138f3ba9aad6d8/image-v1.png",
+      "prompt": "Use case: style-transfer. Repaint Image1 into a clean, exquisitely hand-painted HD battle texture, using Image2 ONLY for the quality of small natural fibres and continuous paint strokes, never its objects or layout. Image1 is the exact texture edit target; original colour masses, entire texture layout and black gaps must remain fixed. Completely replace smeared or square pixel mosaic inside the materials with smooth continuous fine moss, bark or conifer-needle forms appropriate to the material. Do NOT preserve individual square pixels or nearest-neighbour block steps as interior detail; pixel art and square/checkerboard brush marks are forbidden. Keep low source contrast and palette, flat diffuse light, no strong shadows or exaggerated relief. Full opaque RGB, exact aspect and all black source voids kept black. No new objects, border, lettering, flowers, dramatic light, roots or region changes. Evergreen Forest stage36 native72x72 square crop output1024x1024. Preserve three bands: dark olive vertical hanging/rootlike strokes in upper quarter, broad gray-green moss/earth mottling through middle, then dark hanging/rootlike olive streaks at bottom. Fine low-contrast moss fibres on the ground region and fine worn brown-green fibres on the side bands, with exactly the same boundaries and subdued grey-olive light. Rightmost8nativepixels carry neighboring foliage/padding and bottom8pixels contain black gaps and small native fragments. Preserve those neighbors precisely. Do not reinterpret as tree wall, fence, brickwork or boulders.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "c55241aa70e43eb816f147f011c41f0cb4847874d39903b562138f3ba9aad6d8"
+        },
+        {
+          "role": "painterly-finish-only",
+          "path": "integrations/envhd/production/battle-presentation-candidates/0e295b4a54f9a55d7bb4e940ca004d26b84d6ae3b7ce813f172838b905588a7a/painted-input-v1.png"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen ground and side bands, gray-green moss and hanging fibre detail matched to original placement. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "72x72 canvas; original three material bands, right padding and bottom black fragments retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "ac0672c083eb03e77ed8d5435816f61cb6386b45e031243afdaafbc1cb95461c",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        72
+      ],
+      "targetSize": [
+        320,
+        288
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "7990afc9c64ffe59d0221157cc84ad0bca2d86dd1c611b7dc3a3b1e19fd6ae84",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "417c0708874e22156559ff2084178e9895cad11419e333a79bfb5ee70b48eca5",
+      "outputSha256": "e4a267afb49553e437f6cc2a36026f5c1ce231758e405dfa515e7fd134d4afb6",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            0,
+            136,
+            72
+          ],
+          "sourceUvOrigin": [
+            56,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "1dfe5e76842a59c5d7a3b4f05b501e08b38201d29b84e31bcbd322754af3cbf5",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/7990afc9c64ffe59d0221157cc84ad0bca2d86dd1c611b7dc3a3b1e19fd6ae84/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/7990afc9c64ffe59d0221157cc84ad0bca2d86dd1c611b7dc3a3b1e19fd6ae84/image-v1.png",
+      "prompt": "Use case: style-transfer. Repaint Image1 into a clean, exquisitely hand-painted HD battle texture, using Image2 ONLY for the quality of small natural fibres and continuous paint strokes, never its objects or layout. Image1 is the exact texture edit target; original colour masses, entire texture layout and black gaps must remain fixed. Completely replace smeared or square pixel mosaic inside the materials with smooth continuous fine moss, bark or conifer-needle forms appropriate to the material. Do NOT preserve individual square pixels or nearest-neighbour block steps as interior detail; pixel art and square/checkerboard brush marks are forbidden. Keep low source contrast and palette, flat diffuse light, no strong shadows or exaggerated relief. Full opaque RGB, exact aspect and all black source voids kept black. No new objects, border, lettering, flowers, dramatic light, roots or region changes. Evergreen Forest stage36 native80x72 crop exact10:9 landscape output1280x1152. Main upper half is mottled desaturated sage/gray-green mossy ground with irregular broad patches, lower half a green-brown fine vertically streaked bank side. Retain exact transition near nativey32. Add tiny moss fibres and softly painted fine woody/hanging rootlike strands only inside the original regions, restrained contrast and no macro-relief. Left and right8nativepixels contain adjoining dark/foliage texture, bottom8rows contain original black void and small fragments. Keep source padding fixed and keep black pure. No extra stones, tree trunks or decorative plants.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "7990afc9c64ffe59d0221157cc84ad0bca2d86dd1c611b7dc3a3b1e19fd6ae84"
+        },
+        {
+          "role": "painterly-finish-only",
+          "path": "integrations/envhd/production/battle-presentation-candidates/0e295b4a54f9a55d7bb4e940ca004d26b84d6ae3b7ce813f172838b905588a7a/painted-input-v1.png"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen mottled gray-green moss and vertically streaked bank side, no new geometry. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "80x72 exact crop, ground-to-side transition and adjoining left/right/bottom fragments fixed. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "e4a267afb49553e437f6cc2a36026f5c1ce231758e405dfa515e7fd134d4afb6",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        72,
+        80
+      ],
+      "targetSize": [
+        288,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "d2d63a28eb4d9b42f41443602dad59d2c6e645ef2ef7623e84aec4e57095eb88",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "c50114b517a4556420064a390d0d7907bca5adce41b7d6a12caeeef7fb7fb847",
+      "outputSha256": "1bcce3c945617e0fbc6ece49ef54922c9434b23b03570de79c498712c2f238d7",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 15772,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            120,
+            72,
+            200
+          ],
+          "sourceUvOrigin": [
+            0,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "198f4296306d4e783d039ebd21dca138aade364c4664810ba3e5093cf1dd15ae",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/d2d63a28eb4d9b42f41443602dad59d2c6e645ef2ef7623e84aec4e57095eb88/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/d2d63a28eb4d9b42f41443602dad59d2c6e645ef2ef7623e84aec4e57095eb88/image-v1.png",
+      "prompt": "Use case: style-transfer. Repaint Image1 into a clean, exquisitely hand-painted HD battle texture, using Image2 ONLY for the quality of small natural fibres and continuous paint strokes, never its objects or layout. Image1 is the exact texture edit target; original colour masses, entire texture layout and black gaps must remain fixed. Completely replace smeared or square pixel mosaic inside the materials with smooth continuous fine moss, bark or conifer-needle forms appropriate to the material. Do NOT preserve individual square pixels or nearest-neighbour block steps as interior detail; pixel art and square/checkerboard brush marks are forbidden. Keep low source contrast and palette, flat diffuse light, no strong shadows or exaggerated relief. Full opaque RGB, exact aspect and all black source voids kept black. No new objects, border, lettering, flowers, dramatic light, roots or region changes. Evergreen Forest stage36 native72x80 exact9:10 portrait output1152x1280. A single conifer/pine tree on black, same central placement, layered wide green-gray downward boughs and thick short dark olive-brown trunk. Preserve all original tier positions, branch-tip silhouette, uneven highlights and trunk dimensions; refine small fine needles ONLY inside existing green masses. Keep the subdued grey-olive canopy rather than bright saturated green. No added branches, fallen snow, cones, flowers, glow, extra trunk roots or forest backdrop. Top8nativepixels contain flat brown-gray adjoining padding, right8pixels and bottom8pixels adjoining foliage texture; preserve these rectangular edge strips precisely. Black gaps around each original bough stay pure black.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "d2d63a28eb4d9b42f41443602dad59d2c6e645ef2ef7623e84aec4e57095eb88"
+        },
+        {
+          "role": "painterly-finish-only",
+          "path": "integrations/envhd/production/battle-presentation-candidates/0e295b4a54f9a55d7bb4e940ca004d26b84d6ae3b7ce813f172838b905588a7a/painted-input-v1.png"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen single conifer billboard with softly defined needles and original tier silhouette. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "72x80 crop, tree/trunk dimensions, individual bough silhouettes and edge strips fixed. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "1bcce3c945617e0fbc6ece49ef54922c9434b23b03570de79c498712c2f238d7",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        80
+      ],
+      "targetSize": [
+        320,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "98d2dbe478f3726c4a3bc37347366a2a822873e7e2c6af142ef6d39846c721ff",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "277929f587fe4459aaa7c69aed395b77623971487b4cae0d6441a7e82f516a46",
+      "outputSha256": "571098937cf4123c1682c3bed1d9945cfd4d60f71501c1562db51569da6ee4f2",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 15644,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            56,
+            200,
+            136
+          ],
+          "sourceUvOrigin": [
+            120,
+            56
+          ]
+        }
+      ],
+      "priorCandidateSha256": "d64e0978912701853ee9253a9a171f4cf08d8c82141246b56f6edefda0414c8a",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/98d2dbe478f3726c4a3bc37347366a2a822873e7e2c6af142ef6d39846c721ff/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/98d2dbe478f3726c4a3bc37347366a2a822873e7e2c6af142ef6d39846c721ff/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native80x80 square, output1024x1024. The central64x64 texture is a dark gray-green vertically streaked hanging/root-bank material with tan-brown fibrous strokes increasing toward lower edge. Refine fine natural hanging moss/root fibres along the ORIGINAL bands, same top-to-bottom colour transition; avoid adding thick new roots or a tree trunk. Top/left/right/bottom8pixel neighbor strips, original left black rectangle and all dark voids must remain fixed. No rocks, stones, foliage tufts outside native material or dramatic light.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "98d2dbe478f3726c4a3bc37347366a2a822873e7e2c6af142ef6d39846c721ff"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen Forest dark hanging fibre and root-bank surface. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Exact source crop, broad material bands, neighboring fragments and all source-defined voids retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "571098937cf4123c1682c3bed1d9945cfd4d60f71501c1562db51569da6ee4f2",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        72,
+        80
+      ],
+      "targetSize": [
+        288,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "12a41e41beeee98fea7938530a1c6a7a7dff22f3c85a39a2245bb6aa553d5918",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "4a8d7404bac5f2959ba80dfe9e33c1f58bf5ccafa3f266bfa1932e2ce3e7eddd",
+      "outputSha256": "230469cb6b839fa0057fed4446e16c83f26511419405aa5df4362b91dc78b8d0",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 15708,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            56,
+            256,
+            136
+          ],
+          "sourceUvOrigin": [
+            184,
+            56
+          ]
+        }
+      ],
+      "priorCandidateSha256": "c5b485ba074491c1c2d15861cd10a3b2a3bb4af149e0e90aae16269e3a4e20db",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/12a41e41beeee98fea7938530a1c6a7a7dff22f3c85a39a2245bb6aa553d5918/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/12a41e41beeee98fea7938530a1c6a7a7dff22f3c85a39a2245bb6aa553d5918/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native72x80 exact9:10 portrait, output1152x1280. Dense desaturated dark evergreen moss/leaf surface with softly mottled broad values, no separate large leaves. Replace noisy pebbly neural pattern with quiet fine intertwined moss fibres and small painted leaf flecks. Keep original darker lower-left and subtle diagonal value distribution. Top8rows and left/right/bottom neighbors include dark/rootlike fragments; preserve edge layout and every black gap. No newly prominent roots or boulders.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "12a41e41beeee98fea7938530a1c6a7a7dff22f3c85a39a2245bb6aa553d5918"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen Forest dense subdued moss surface. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Exact source crop, broad material bands, neighboring fragments and all source-defined voids retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "230469cb6b839fa0057fed4446e16c83f26511419405aa5df4362b91dc78b8d0",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        80
+      ],
+      "targetSize": [
+        320,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "d6fe134b2482e7727d21e29133618fcad5fe589e6e8385b6082b58ecee3699ca",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "e316665853d9e4a4478f68718b739d52a92535fde0b9d7227abf9b99b206a7e9",
+      "outputSha256": "1e81c123475896edc4004e289412dd754cb133ab302f61ba6a752157ffa2d0c2",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 15836,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            120,
+            136,
+            200
+          ],
+          "sourceUvOrigin": [
+            56,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "46c1b445a58720c37b18c3e72c50697c82b434d979c404551ef0d85fcd4a505c",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/d6fe134b2482e7727d21e29133618fcad5fe589e6e8385b6082b58ecee3699ca/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/d6fe134b2482e7727d21e29133618fcad5fe589e6e8385b6082b58ecee3699ca/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native80x80 square, output1024x1024. Central region has dark olive hanging fibre band at top, gray-green mottled ground through middle, hanging fibre band below. A soft pale original white-green glow rises from the BOTTOM CENTER as a roughly jagged flame-like gradient over the lower fibres. Keep the glow's exact original location, shape, brightness and gradual falloff; no new light or rays. Paint material fibres sharply only outside the glow and soften them progressively beneath it. Preserve all8pixel neighbor strips and leftblackrectangle. Do not add flowers, flames, smoke or light bloom beyond source.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "d6fe134b2482e7727d21e29133618fcad5fe589e6e8385b6082b58ecee3699ca"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen Forest bank with original bottom glow. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Exact source crop, broad material bands, neighboring fragments and all source-defined voids retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "1e81c123475896edc4004e289412dd754cb133ab302f61ba6a752157ffa2d0c2",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        80
+      ],
+      "targetSize": [
+        320,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "186a487ad3b07c4d3114be7f75a8640ab8b764c5330f0ecf9709f06699ddadd5",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "9002e453e63e91ca0c79ba3527467f65f1ecfca34c23e94ed79908e5f5df872f",
+      "outputSha256": "b12fc48c8b52733d351308cff9afe5e8dad25141488af5c3867ae2ed8425b2d8",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 15900,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            120,
+            200,
+            200
+          ],
+          "sourceUvOrigin": [
+            120,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "dd3c816d985b79faac9b834d3f6fd990acff029077f828f8066267a37a97fae5",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/186a487ad3b07c4d3114be7f75a8640ab8b764c5330f0ecf9709f06699ddadd5/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/186a487ad3b07c4d3114be7f75a8640ab8b764c5330f0ecf9709f06699ddadd5/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native80x80 square, output1024x1024. Central region is a dark desaturated moss/root bank with tan downward fibres near lower portion. Across its TOP EDGE is the original shallow scalloped pale white-green glow strip, same shape and downward falloff. Preserve the glow exactly, no rays or expanded light. Paint fine continuous hanging fibres within original dark bands, no thick new vines. Preserve all source neighboring strips/fragments and pure black lower-left gap. Palette olive-gray and muted brown only.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "186a487ad3b07c4d3114be7f75a8640ab8b764c5330f0ecf9709f06699ddadd5"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen Forest hanging bank with original top glow. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Exact source crop, broad material bands, neighboring fragments and all source-defined voids retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "b12fc48c8b52733d351308cff9afe5e8dad25141488af5c3867ae2ed8425b2d8",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        72,
+        80
+      ],
+      "targetSize": [
+        288,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "349878fc99b08dcd6067a9fd4d0703634cbabee1fed623dbbc92791d1903d6f6",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "a896c9a1015f441e22631920fc3cb60cbe631b8f685273181c51d4722d2f045b",
+      "outputSha256": "c3debe0b7ce311e471845980b2369ced1f3758ff8dec98f91e9113032891e5c5",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 15964,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            120,
+            256,
+            200
+          ],
+          "sourceUvOrigin": [
+            184,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "4b3dc4bc9f290ac63c3327ec01a60ef5b280f31d58066101e171f2816f81f784",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/349878fc99b08dcd6067a9fd4d0703634cbabee1fed623dbbc92791d1903d6f6/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/349878fc99b08dcd6067a9fd4d0703634cbabee1fed623dbbc92791d1903d6f6/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native72x80 exact9:10 portrait, output1152x1280. Central surface is dense fine dark gray-green moss/foliage, with the original shallow white-green scalloped glow band along TOP EDGE. Keep broad colour masses and precise original glow location, brightness and falloff. Refine material with small continuous painterly moss fibres and tiny subdued leaf flecks, not grainy pebbles, reptile scales or uniform noise. Preserve adjoining8pixel edge strips and all black gaps. Do not add or enlarge glow effects.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "349878fc99b08dcd6067a9fd4d0703634cbabee1fed623dbbc92791d1903d6f6"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen Forest moss with original top glow. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Exact source crop, broad material bands, neighboring fragments and all source-defined voids retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "c3debe0b7ce311e471845980b2369ced1f3758ff8dec98f91e9113032891e5c5",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        72,
+        48
+      ],
+      "targetSize": [
+        288,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "8d9e0fc9b6599fff89ce86980d2a7e32fb3fe072d54e741128d0c7cb3a959b3b",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "918531a3c7290bc26ced40a00454a8ed9e22428f8a1253914a4d5be7fef1150f",
+      "outputSha256": "bfb94725025805209007ef20110f472b45dd1990a686d7e4fa59149912157a55",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 16028,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            184,
+            72,
+            232
+          ],
+          "sourceUvOrigin": [
+            0,
+            184
+          ]
+        }
+      ],
+      "priorCandidateSha256": "48bd5a072369440a15d5ee959216cd1e94cb4358da2aa0f79978ab99fb6d50b4",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/8d9e0fc9b6599fff89ce86980d2a7e32fb3fe072d54e741128d0c7cb3a959b3b/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/8d9e0fc9b6599fff89ce86980d2a7e32fb3fe072d54e741128d0c7cb3a959b3b/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native72x48 exact3:2 landscape, output1536x1024. Main region is warm dark-brown tree bark with near-vertical long grain bands and dark uneven fissures, black void above and below and a small protruding narrow trunk-texture fragment centered along top. Preserve all broad band positions, crop/silhouette and black gaps. Paint fine dry wood fibres and small bark lamellae only, no moss, leaves, roots, new knots or thick new cracks. Original right8pixel neighbor strip and clipped texture edges remain fixed. Soft diffuse light and subdued warm brown.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "8d9e0fc9b6599fff89ce86980d2a7e32fb3fe072d54e741128d0c7cb3a959b3b"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen Forest warm dry bark. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Exact source crop, broad material bands, neighboring fragments and all source-defined voids retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "bfb94725025805209007ef20110f472b45dd1990a686d7e4fa59149912157a55",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        48
+      ],
+      "targetSize": [
+        320,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "4d5480968ed5ba1141689adc36c2ddcf21b5855dae743f634d15e01973cc96ed",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "430c1b84f0d2e34a4bc5e104bf43374eabe52f6585c1efa97cdcc5927b174c25",
+      "outputSha256": "2afa10b71283004458c92d5049fe1baa43b9829a72d6bfcfd2a01c75c61841f0",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 16092,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            184,
+            136,
+            232
+          ],
+          "sourceUvOrigin": [
+            56,
+            184
+          ]
+        }
+      ],
+      "priorCandidateSha256": "7835bcafd563f715e6be8e4c8681b2e9ff79a9baf6c706aa3f8d897148570905",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/4d5480968ed5ba1141689adc36c2ddcf21b5855dae743f634d15e01973cc96ed/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/4d5480968ed5ba1141689adc36c2ddcf21b5855dae743f634d15e01973cc96ed/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native80x48 exact5:3 landscape, output1600x960. Central bank/trunk surface contains long dark vertical streaks with muted brown wood above and green moss staining near its BOTTOM. Preserve exact large streak directions and brown-to-green gradient. Add fine painterly bark fibres and very small subdued moss threads only in EXISTING green regions, no new hanging foliage or thick roots. Keep source top/left/right neighbor fragments and black gaps fixed, including pale-green original top corners. No trees, fence, symbols or cast shadows.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "4d5480968ed5ba1141689adc36c2ddcf21b5855dae743f634d15e01973cc96ed"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen Forest wood with existing green staining. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Exact source crop, broad material bands, neighboring fragments and all source-defined voids retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "2afa10b71283004458c92d5049fe1baa43b9829a72d6bfcfd2a01c75c61841f0",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        48
+      ],
+      "targetSize": [
+        320,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "76d18e38b160c7cb2d86fbe7024c4e21e96d6d1811229468d9c9de4e0f47cb55",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "a17b242dcf520f3f42bacdf29e27f8b56963b84a95774adeb83df54df039d804",
+      "outputSha256": "2d796ad724e3f6c567473033c3068bc188a756d9642be443c2abbbfc6931602f",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 16156,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            184,
+            200,
+            232
+          ],
+          "sourceUvOrigin": [
+            120,
+            184
+          ]
+        }
+      ],
+      "priorCandidateSha256": "f7983e6ae4ebf37c26817b87f7bbdafb8dce2249e9847a18f21f49a8d1010cc6",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/76d18e38b160c7cb2d86fbe7024c4e21e96d6d1811229468d9c9de4e0f47cb55/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/76d18e38b160c7cb2d86fbe7024c4e21e96d6d1811229468d9c9de4e0f47cb55/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native80x48 exact5:3 landscape, output1600x960. A single hanging conifer branch/bough segment fills upper-middle, scalloped dark sage-green mass with many thin radial dangling needle tips pointing down into black. Preserve the exact asymmetric bough location, original highlight bands, all tip endpoints and black gaps. Paint tiny continuous pine needles within the existing leaf masses, no added boughs or new long stems. Keep top and left8pixel neighbor strips/fragments, lower black void and original broad muted green palette; do not turn it into a round fern disk.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "76d18e38b160c7cb2d86fbe7024c4e21e96d6d1811229468d9c9de4e0f47cb55"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen Forest hanging conifer bough. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Exact source crop, broad material bands, neighboring fragments and all source-defined voids retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "2d796ad724e3f6c567473033c3068bc188a756d9642be443c2abbbfc6931602f",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        72
+      ],
+      "targetSize": [
+        320,
+        288
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "bd31bd02b9e863e47cdae7372d32e01d3a1393b0168e57bca509c258fe6a1ffd",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "c237c10d285a2c3dd9e97f02de01a3976291b5a28d2f8d1c35d725eb7355f328",
+      "outputSha256": "bc780108365419298eade2c48463148743e22cbc96d5f24c7f667ab869e6e713",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 15516,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            0,
+            200,
+            72
+          ],
+          "sourceUvOrigin": [
+            120,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "bda12c6384d8adeaaf1cf0312b5dabcc68e35fa9072c578c2e9a29542b3a97ed",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/bd31bd02b9e863e47cdae7372d32e01d3a1393b0168e57bca509c258fe6a1ffd/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/bd31bd02b9e863e47cdae7372d32e01d3a1393b0168e57bca509c258fe6a1ffd/image-v1.png",
+      "prompt": "Use case: style-transfer. Edit only the existing muted olive-brown tree bark texture shown. Redraw the blurred original bark with crisp fine hand-painted wood fibres, thin longitudinal bark fissures and irregular small worn bark lamellae. The material is DRY BARK, NOT moss or leafy vegetation. No moss tufts, no leaves, no greenery added, no roots, no new knots, no carved marks. Preserve original muted olive-brown palette, exact broad diagonal near-vertical dark/light groove positions, soft flat light and shallow relief. Replace smeared detail with beautiful continuous bark painting, no square mosaic or pixel art. Exact80:72 crop; preserve left/right/bottom neighboring strips and pure black gaps in their original positions. Main source64x64 interior only is bark; do not merge the neighbors into it. Full opaque RGB painting, no scene framing, no shadows or border. Requested1280x1152 exact10:9 landscape.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "bd31bd02b9e863e47cdae7372d32e01d3a1393b0168e57bca509c258fe6a1ffd"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen muted olive-brown tree bark, source groove orientation preserved. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "80x72 crop, main bark region fixed and source padding fragments/black gaps preserved. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "bc780108365419298eade2c48463148743e22cbc96d5f24c7f667ab869e6e713",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        256,
+        136
+      ],
+      "targetSize": [
+        1024,
+        544
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "bac21eb9acbc83e328e83ec0392b0bdc6958fb2f64f2fc2f9e33355d1d626d41",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "f6aa4798e4d86091aaff3a3b8e054570fe67c12f2b2c5c3209931f1acb44eab9",
+      "outputSha256": "e1c8fcdd50d7a1219ee62174a63acd6aa5dd89339a9fd7f303ff05381a6b14b4",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 36,
+          "page": 7,
+          "clut": 15580,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            256,
+            136
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "fb6d3aa39377bb002770b3cad272404fa47b2b097adb5fb602d77b54e43c0472",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/bac21eb9acbc83e328e83ec0392b0bdc6958fb2f64f2fc2f9e33355d1d626d41/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/bac21eb9acbc83e328e83ec0392b0bdc6958fb2f64f2fc2f9e33355d1d626d41/image-v1.png",
+      "prompt": "Use case: style-transfer. Asset type: high-quality source-bound 4x HD battle material for Legend of Dragoon: Definitive. Edit the attached texture, using its entire canvas as exact layout authority. Repaint blurry material into exquisite continuous small hand-painted fibres, leaf or needle detail appropriate to each material, matching bespoke HD field backgrounds while retaining the retro design. No square pixel mosaic, blocky brush marks, smeared blur, photoreal grain, added objects, ornament, writing, framing, dramatic lights or strong relief. Preserve original palette, restrained contrast and flat diffuse illumination, original broad feature positions/scale and exact black voids. Opaque RGB output; native STP restored separately. Native256x136 exact32:17 full atlas output2048x1088. Maintain every region boundary: upper-left sparse olive hanging stem/ground patch, upper middle dense olive moss/foliage, upper-right conifer bough shape over black, lower-left larger conifer bough/trunk fragment over black, lower-right another olive moss/foliage patch, bottom8nativepixels original adjoining fragments. Paint fine continuous moss strands, subtle soil fibre and fine pine needles within original masses, preserving exact silhouettes and black gaps. Do not turn stem marks into lettering, leaf field into cobblestones or bough pieces into additional trees. Preserve the exact asymmetric native tile arrangement and original varied olive green values. Critical source correction: the large dark-green shapes at UPPER RIGHT and LOWER LEFT are ONLY CONIFER CANOPY/BOUGH FRAGMENTS. There are NO VISIBLE TREE TRUNKS anywhere in these two shapes. Do not add brown vertical trunks, branching forks or separate new trees. Dark gray-brown bands across these canopy fragments are dark shaded needles, never wood or bark. Keep those bands filled with dark soft needles and sparse original olive highlight streaks in exactly their original positions. The upper-right shape is one clipped bough mass; lower-left is one connected clipped bough mass, not three trees. Every region's original boundary is mandatory.",
+      "references": [
+        {
+          "role": "layout-source",
+          "type": "existing-neural-candidate",
+          "decodedRgbaSha256": "bac21eb9acbc83e328e83ec0392b0bdc6958fb2f64f2fc2f9e33355d1d626d41"
+        }
+      ],
+      "review": {
+        "intent": "Evergreen Forest mixed foliage/conifer material atlas. Static battle model surface; source geometry uses stage/parts {36: [0]}. Source family: Evergreen Forest: mossy ground, tree bark, conifers, foliage, hanging vegetation and source glow accents. Engine random-encounter location mapping: Evergreen Frst.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Exact source crop, broad material bands, neighboring fragments and all source-defined voids retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "e1c8fcdd50d7a1219ee62174a63acd6aa5dd89339a9fd7f303ff05381a6b14b4",
         "nativeAcceptance": "pending",
         "finalQualityAcceptance": "pending"
       }
