@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "e54f3324be558f6de7fb5f2b8c700d0cd90aed03 accepted five scenery crops; ongoing83 authoring and new8 held versions preserved",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "6c7cfcdf7b2e7e676d2f71f8d49881bcb14df95a13d0f957bd81e3c35d142bf3",
+    "full-coverage.json": "a92e193f8afedae8fbd4509886ee2a6d1150fde3a4b5c6ad42513397f53e8e16",
     "field-runtime-artwork.json": "fed0bbc3f568cd9d045cbd633a44a866f1eaf88b03b985a3b20223206d336207",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
@@ -89,7 +89,8 @@
     "field-bespoke-scenery-five-independent-reviewed-selection.json": "9e17f93736ca72679c7c4c1f4f3c124712e0f558007b411bb490a29c2744531c",
     "field-independent-scenery-eight-review.json": "74c221c4c764449f81b410e4f1ec6d544ae1aed8ffa32a1f0e8a51ccafc4da0e",
     "field-scenery-five-selection-readiness.json": "ae20a0ea81c3c47f25c57bee5d813a7bbf4b028b7d3a4ffa3850a61e0fd389f6",
-    "field-scenery-authoring-main-forward.json": "438174e2e456bbcf519b54b7fbc076ada3d52bcbef9271e1cdd046cabdbaf526"
+    "field-scenery-authoring-main-forward.json": "438174e2e456bbcf519b54b7fbc076ada3d52bcbef9271e1cdd046cabdbaf526",
+    "field-bespoke-source-feature-three-held-drafts.json": "156d4edaa6835fd0622d7d5a1747ee9a7972a1c86f33bc3dd957d145453cd6ce"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -568,6 +569,13 @@
       "selectedNewSourceImages": 5,
       "independentReview": "field-independent-scenery-eight-review.json",
       "reason": "Shrine arch and left finial fragment, Moon radial layer, Queen Fury crate and Ulara rim independently clear for development. Three other scoped crops require revision and stay excluded. Prior43/4929 exact."
+    },
+    {
+      "manifest": "field-bespoke-source-feature-three-held-drafts.json",
+      "newUniqueHeldSourceImages": 0,
+      "heldSourceImages": 3,
+      "heldVersions": 3,
+      "reason": "Local source-feature restoration improves mark shapes but leaves visibly soft patches; all three remain held and reuse existing public painting inputs."
     }
   ],
   "publication": {

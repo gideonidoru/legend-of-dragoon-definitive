@@ -283,3 +283,8 @@ The [complete48-painting selection](../../integrations/envhd/production/field-be
 ## Ongoing authoring after scenery integration
 
 Accepted main selects4,934 fields with48 paintings; all83 historical recipes and every prior custom/held byte remain exact. Current queue26 independent-pending/9 reviewed revisions and76 unique unselected custom source keys within228field holds. Eight newly authored organic/scenic versions remain held separately. Known static remainder229 includes228fields and one terrain repair; animation/props denominators remain unresolved. Native/state/campaign/final acceptance is pending.
+
+
+## Held local source-feature prototypes
+
+[Three local restoration prototypes](../../integrations/envhd/production/field-bespoke-source-feature-three-held-drafts.json) reuse existing public Aglis and Twin Castle paintings. The authoring helper restores original ambiguous marking shapes inside explicit source-coordinate polygons, retaining exact parent cutout pixels outside them. The original aspect/coverage gate, source alpha and visible black remain unchanged; eight focused behavior checks pass. Actual comparisons show soft restored patches and unfinished material transitions, so all three remain held with no runtime selection or new unique image count. Custom outputs and recipes are versioned; original images and comparison diagnostics stay private.

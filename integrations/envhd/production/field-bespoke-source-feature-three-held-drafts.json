@@ -1,0 +1,562 @@
+{
+  "schema": 1,
+  "scope": "Three local source-feature authoring prototypes remain held. Source shapes improve but restoration patches are visibly soft; no independent visual clearance or runtime selection.",
+  "authoringSourceCommit": "09278d5f020c7163610263db090d6f3b8bc11a53",
+  "method": "python-painted-source-feature-detail-1",
+  "algorithmSha256": "47b3ec6b568c76155808ad2eef164a6dc880be8a4be1be9ae9f57f16639a4333",
+  "testScriptSha256": "b46829315155a972bae31febf100cc1827f71de55f8f6a49d0ef105dd1a3e501",
+  "focusedBehaviorTestsPassed": 8,
+  "testLogSha256": "74202dc09a3347400de94f86db7081b0c92ff6270bca74570c143aa53888e576",
+  "newUniqueSourceImages": 0,
+  "heldSourceImages": 3,
+  "heldVersions": 3,
+  "holdsCleared": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "method": "python-painted-source-feature-detail-1",
+      "scale": 4,
+      "sourceSize": [
+        68,
+        66
+      ],
+      "targetSize": [
+        272,
+        264
+      ],
+      "sourceFeaturePolygons": [
+        [
+          [
+            20,
+            24
+          ],
+          [
+            56,
+            24
+          ],
+          [
+            56,
+            54
+          ],
+          [
+            20,
+            54
+          ]
+        ]
+      ],
+      "featherNativePixels": 2,
+      "featherMetric": "inward-chebyshev",
+      "featureCoverageFraction": 0.24433210784313725,
+      "restoredTargetPixels": 17545,
+      "fullyRestoredTargetPixels": 14017,
+      "blackRoundingCorrections": 0,
+      "outsideFeaturePixelsExact": true,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "cutoutOperation": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 54848,
+        "paintedGapPixelsExtended": 2591,
+        "paintedUncoveredSourcePixels": 2346,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 181,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "sourceDetailOperation": {
+        "method": "python-painted-native-cell-mean-detail-1",
+        "scale": 4,
+        "cutoutOperation": {
+          "scale": 4,
+          "sourceVisiblePixelsAtTargetScale": 54848,
+          "paintedGapPixelsExtended": 2591,
+          "paintedUncoveredSourcePixels": 2346,
+          "minimumPaintedCoverageAlpha": 16,
+          "minimumPaintedAnchorAlpha": 128,
+          "maximumExtensionSquaredTargetPixels": 181,
+          "sourceAlphaExact": true,
+          "visibleBlackExact": true,
+          "edgeAveraging": false
+        },
+        "gaussianDetailRadiusTargetPixels": 4,
+        "maximumPaintedDetailChannelDelta": 6.0,
+        "maximumNativeCellMeanChannelDrift": 0.375,
+        "maximumAllowedNativeCellMeanChannelDrift": 0.5,
+        "broadPaintedColorAndReliefDiscarded": true,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "runtimeSelected": false
+      },
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc",
+      "sourceFileSha256": "23f7eff1484fbfcbe1fe255d0a2872800cb64aaa44433a3ca6c23008896678b0",
+      "generatedSha256": "8fc6c1d58f3e061864629828034ce908700cabcfd9713061ee2dca4ddc2618b0",
+      "outputSha256": "7e82a11b26cdc4c2c4230651b8a14aea86bc7b58aeaf6deb78d568307df321d3",
+      "algorithmSha256": "47b3ec6b568c76155808ad2eef164a6dc880be8a4be1be9ae9f57f16639a4333",
+      "dependencySha256": {
+        "repair-envhd-painted-macro-detail.py": "59b13d4370fd6163777c84bb7e2f86c21d1199dc10d4a6311fb22bf1db880cd3",
+        "repair-envhd-painted-surround.py": "11017bae4bf16c21bdd6e923b36dc46dae63a023ed0c8d0a26dfe70da1e3d767",
+        "repair-envhd-painted-cutout.py": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "c7766b79738fa280345932b565ecf0c6af4394ca24fb5574c86f0f409662fe72:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "45fa10eebb226185dce25abd910c9f2bc64eabe026a7c7c0883159a371b20cea",
+          "size": 492
+        },
+        {
+          "index": 1,
+          "sha256": "fc46c99c8d0d15a7a329ecda873141f656a75eba14fab99f0237f14ca7849989",
+          "size": 1620
+        },
+        {
+          "index": 2,
+          "sha256": "1303e6719ff925a70746d1bae518ce75559bdf3a3191ba8b6610440ec9307ff8",
+          "size": 1212
+        },
+        {
+          "index": 3,
+          "sha256": "87ebf004b188cff36e7e49513a5722f025b836c3fcb33f8e29eef777cf0d5fa8",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "0004bcb9f70fc50db80714feb278c3ad0be502d4e3ae54023c9c83680a13ece9",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "9f4552bdf527959a45a11d2dc8e0cc65aa3bbc981f88919f74a153e3c3386b03",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "c4fec52a852b2c55b352759fd34c66971334f7d6f7cae32773270c41ec7615b3",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "1aa5a84bce905fa84723c2d3dd4a5c06a94f03fdbc88cfc7940910ef4b3c9070",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "a0e0b6caf41ace55fc434f2c65fc78b415e99c8198416d2feff10e133e279f7f",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "130d0d2052744937ca5e739174347c1aff9fdc292b868a661eac450c72ba6018",
+          "size": 66080
+        }
+      ],
+      "representativeCut": 577,
+      "representativeLocation": "Aglis",
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "sourceFilesFreshlyVerified": true,
+      "parentHeldManifest": "field-bespoke-organic-scenery-held-drafts.json",
+      "parentGeneratedPath": "integrations/envhd/production/held-field-art-drafts/5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc/draft-input-v1.png",
+      "parentOutputPath": "integrations/envhd/production/held-field-art-drafts/5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc/draft-repaired-v1.png",
+      "parentOutputSha256": "7beed9a6a43c4a6dc4effcafe86d93095d81200cd44adc69502e041adc826824",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc/draft-feature-detail-v1.png",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc/draft-input-v1.png",
+      "verdict": "held-material-and-blend-revision-needed",
+      "reason": "Source unequal pale patches replace coherent U-like markings, but the restored area is visibly soft and its boundary does not fully remove raised edge remnants. Parent stone relief/material still requires correction.",
+      "visualEvidenceViewed": "Actual original, parent painting and local-restoration comparison inspected; no native gameplay inspection."
+    },
+    {
+      "method": "python-painted-source-feature-detail-1",
+      "scale": 4,
+      "sourceSize": [
+        76,
+        82
+      ],
+      "targetSize": [
+        304,
+        328
+      ],
+      "sourceFeaturePolygons": [
+        [
+          [
+            47,
+            38
+          ],
+          [
+            74,
+            40
+          ],
+          [
+            74,
+            71
+          ],
+          [
+            45,
+            72
+          ]
+        ]
+      ],
+      "featherNativePixels": 2,
+      "featherMetric": "inward-chebyshev",
+      "featureCoverageFraction": 0.14745466944801028,
+      "restoredTargetPixels": 14703,
+      "fullyRestoredTargetPixels": 11375,
+      "blackRoundingCorrections": 0,
+      "outsideFeaturePixelsExact": true,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "cutoutOperation": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 66112,
+        "paintedGapPixelsExtended": 2403,
+        "paintedUncoveredSourcePixels": 2221,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 2221,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "sourceDetailOperation": {
+        "method": "python-painted-native-cell-mean-detail-1",
+        "scale": 4,
+        "cutoutOperation": {
+          "scale": 4,
+          "sourceVisiblePixelsAtTargetScale": 66112,
+          "paintedGapPixelsExtended": 2403,
+          "paintedUncoveredSourcePixels": 2221,
+          "minimumPaintedCoverageAlpha": 16,
+          "minimumPaintedAnchorAlpha": 128,
+          "maximumExtensionSquaredTargetPixels": 2221,
+          "sourceAlphaExact": true,
+          "visibleBlackExact": true,
+          "edgeAveraging": false
+        },
+        "gaussianDetailRadiusTargetPixels": 4,
+        "maximumPaintedDetailChannelDelta": 6.0,
+        "maximumNativeCellMeanChannelDrift": 0.3125,
+        "maximumAllowedNativeCellMeanChannelDrift": 0.5,
+        "broadPaintedColorAndReliefDiscarded": true,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "runtimeSelected": false
+      },
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101",
+      "sourceFileSha256": "18e00a9bf4e6cce5531b1c2895c6e3d09bd27092a076bca0f4f51aa629e36516",
+      "generatedSha256": "0e16140319970e49f71a9e81bef19f0333bdc2ef9a8be0567cda12e41ab3f1dd",
+      "outputSha256": "35202ef501bdfa27a7b5c0587f9b41d9258b047db02c5472eab6e9473f7f8022",
+      "algorithmSha256": "47b3ec6b568c76155808ad2eef164a6dc880be8a4be1be9ae9f57f16639a4333",
+      "dependencySha256": {
+        "repair-envhd-painted-macro-detail.py": "59b13d4370fd6163777c84bb7e2f86c21d1199dc10d4a6311fb22bf1db880cd3",
+        "repair-envhd-painted-surround.py": "11017bae4bf16c21bdd6e923b36dc46dae63a023ed0c8d0a26dfe70da1e3d767",
+        "repair-envhd-painted-cutout.py": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "95df0a811b8c91b4aaeea710e6ab58f0cfa7cc4607724098e067f5ad55cd5ca2:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "1c00cee4fecd59469d715379c50f6c31307b67100a49a44e6cd96c6d8206d516",
+          "size": 204
+        },
+        {
+          "index": 1,
+          "sha256": "9b14915a0f7cf6334c26d5b7b15398e515cbf069bad3a65a3a312c1890e9bcb6",
+          "size": 1368
+        },
+        {
+          "index": 2,
+          "sha256": "328ec43a7bbfaca7a6fef585fa57d19056b42465c2afe56974eee770812b3061",
+          "size": 1072
+        },
+        {
+          "index": 3,
+          "sha256": "24daebfa46343943cfaaea6422aeb1ed55d494729188831af3efbd71ed23d913",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "398974afdf78c85bf33e0b34d1bed2db6be05d61d5993ecd6807198052fd23df",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "fed86acb5d1a278845b972daca73bb9ba460a3806180ac792c12ba3416a0928d",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "3b7c9db4b037ba3c8522b8f9777bef0629c76d0bfc4cbcde319f26b3d9da2ee7",
+          "size": 66080
+        }
+      ],
+      "representativeCut": 711,
+      "representativeLocation": "Aglis",
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "sourceFilesFreshlyVerified": true,
+      "parentHeldManifest": "field-bespoke-organic-scenery-held-drafts.json",
+      "parentGeneratedPath": "integrations/envhd/production/held-field-art-drafts/54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101/draft-input-v1.png",
+      "parentOutputPath": "integrations/envhd/production/held-field-art-drafts/54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101/draft-repaired-v1.png",
+      "parentOutputSha256": "231a3d53f17ce04328ed8c0eadb572259af230e650ec16a6cb3faf10014fba4a",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101/draft-feature-detail-v1.png",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101/draft-input-v1.png",
+      "verdict": "held-material-and-blend-revision-needed",
+      "reason": "Original unequal pale stick positions are restored, but the support patch is visibly soft against the parent cracked purple surface and bright light band. Material and transition remain unresolved.",
+      "visualEvidenceViewed": "Actual original, parent painting and local-restoration comparison inspected; no native gameplay inspection."
+    },
+    {
+      "method": "python-painted-source-feature-detail-1",
+      "scale": 4,
+      "sourceSize": [
+        162,
+        256
+      ],
+      "targetSize": [
+        648,
+        1024
+      ],
+      "sourceFeaturePolygons": [
+        [
+          [
+            23,
+            46
+          ],
+          [
+            51,
+            45
+          ],
+          [
+            51,
+            65
+          ],
+          [
+            23,
+            64
+          ]
+        ],
+        [
+          [
+            45,
+            126
+          ],
+          [
+            77,
+            125
+          ],
+          [
+            77,
+            144
+          ],
+          [
+            45,
+            144
+          ]
+        ],
+        [
+          [
+            65,
+            230
+          ],
+          [
+            107,
+            226
+          ],
+          [
+            107,
+            247
+          ],
+          [
+            65,
+            248
+          ]
+        ]
+      ],
+      "featherNativePixels": 2,
+      "featherMetric": "inward-chebyshev",
+      "featureCoverageFraction": 0.047313548900462965,
+      "restoredTargetPixels": 31395,
+      "fullyRestoredTargetPixels": 22839,
+      "blackRoundingCorrections": 0,
+      "outsideFeaturePixelsExact": true,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "cutoutOperation": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 330880,
+        "paintedGapPixelsExtended": 6984,
+        "paintedUncoveredSourcePixels": 5007,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 121,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "sourceDetailOperation": {
+        "method": "python-painted-native-cell-mean-detail-1",
+        "scale": 4,
+        "cutoutOperation": {
+          "scale": 4,
+          "sourceVisiblePixelsAtTargetScale": 330880,
+          "paintedGapPixelsExtended": 6984,
+          "paintedUncoveredSourcePixels": 5007,
+          "minimumPaintedCoverageAlpha": 16,
+          "minimumPaintedAnchorAlpha": 128,
+          "maximumExtensionSquaredTargetPixels": 121,
+          "sourceAlphaExact": true,
+          "visibleBlackExact": true,
+          "edgeAveraging": false
+        },
+        "gaussianDetailRadiusTargetPixels": 4,
+        "maximumPaintedDetailChannelDelta": 6.0,
+        "maximumNativeCellMeanChannelDrift": 0.4375,
+        "maximumAllowedNativeCellMeanChannelDrift": 0.5,
+        "broadPaintedColorAndReliefDiscarded": true,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "runtimeSelected": false
+      },
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283",
+      "sourceFileSha256": "d2f5604a240fc8e6f07581f95962155ad5ff4582b2c3f0ac2fc6cd1915a3f931",
+      "generatedSha256": "f45c45c4a11f7effaea84ce70d4e714639b1da916159e8de0d30b76f738918cd",
+      "outputSha256": "f4453b6dababf6f7cf84637c549c93702889e8584479b93a784e322b620df165",
+      "algorithmSha256": "47b3ec6b568c76155808ad2eef164a6dc880be8a4be1be9ae9f57f16639a4333",
+      "dependencySha256": {
+        "repair-envhd-painted-macro-detail.py": "59b13d4370fd6163777c84bb7e2f86c21d1199dc10d4a6311fb22bf1db880cd3",
+        "repair-envhd-painted-surround.py": "11017bae4bf16c21bdd6e923b36dc46dae63a023ed0c8d0a26dfe70da1e3d767",
+        "repair-envhd-painted-cutout.py": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1185d641e3cb7d4645bffd9e0d387bbfe3e625432970a2a7300ca1b25eef4e60:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "0ad49278f61583fb6b25c37a49a4d5565e8ce6f308914955086b5e5e37c51cad",
+          "size": 672
+        },
+        {
+          "index": 1,
+          "sha256": "bb80215d2c46569ba12cafa0787b73cdc52a278e334b240a930ffb013d367437",
+          "size": 3060
+        },
+        {
+          "index": 2,
+          "sha256": "55ed327bb2ade535d3c0c454f25cd2fcc932696f76130f3f2c562885974655b2",
+          "size": 2156
+        },
+        {
+          "index": 3,
+          "sha256": "e1bb0ca7ec13b309fe98f41820328996dde200f4ec63352e322b00cdf770ffb0",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "74c5567024adca406faf442b81fbb57487014dc3bffe20cd94f1bf8184fbb2f9",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "3e10207d01cf85ad54ef7662d8dd4279f71a01838f062f7c5cd90b9d0d783207",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "bf0d964b0bf31d850fcbd4e082ffb15afd57f8fa9968839bd65e4cc6a3ecd36c",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "d0d6272b1d17a1711bd588de63295f517236f3cb75ee65e66e34095c0d773c30",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "36869e2e49a714bf57f1aeafde88f6172f73fcc5c2e4a18dcb83e02c3e30e16e",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "db0d9e049fecdd1879a6f0007dd24d57740d2e8835f969119001aa0906439be0",
+          "size": 33312
+        },
+        {
+          "index": 10,
+          "sha256": "3f72f05ac306c7f7abfad47e932cb5f3fad22e8d8677144b088857196b92b8bc",
+          "size": 33312
+        },
+        {
+          "index": 11,
+          "sha256": "db9483ee7391bb0c641d33a847a424cee42299ffa6b61ae0451b72deefcad32b",
+          "size": 66080
+        },
+        {
+          "index": 12,
+          "sha256": "120cbac06f986b23c548133a8b4b8372995e20e4ec6f07ed840582984e42cec7",
+          "size": 66080
+        }
+      ],
+      "representativeCut": 228,
+      "representativeLocation": "Twin Castle",
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "sourceFilesFreshlyVerified": true,
+      "parentHeldManifest": "field-bespoke-twin-hangings-local-corrections-held-drafts.json",
+      "parentGeneratedPath": "integrations/envhd/production/held-field-art-drafts/44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283/draft-input-v3.png",
+      "parentOutputPath": "integrations/envhd/production/held-field-art-drafts/44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283/draft-repaired-v3.png",
+      "parentOutputSha256": "5257e1dcc264eaa8ece057a092ec676d263a6128f112c59f5f3a3399513b2efe",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283/draft-feature-detail-v1.png",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283/draft-input-v3.png",
+      "verdict": "held-material-and-blend-revision-needed",
+      "reason": "Original irregular cloth marks replace repeated six-ray stars, but soft restored patches interrupt the surrounding dense weave. Bottom bands and ornate fitting still need source-fidelity correction.",
+      "visualEvidenceViewed": "Actual original, parent painting and local-restoration comparison inspected; no native gameplay inspection."
+    }
+  ]
+}
