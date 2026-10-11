@@ -16,17 +16,19 @@ HD artwork. Smoother models. Enhanced cinematics. One guided installation.
 
 Built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains), Definitive adds an integrated presentation and installation experience: custom model and texture upgrades, restored interface and effect artwork, enhanced films, lighting improvements, campaign presets, and a launcher for updates and recovery. The story, recognizable character designs, original music and Addition-based combat remain central to the experience.
 
-> **Alpha availability:** The current download contains the all-HD repair release. This feature tour also includes upcoming installer additions: broader model smoothing, Dart’s reconstructed head and hair, full UIHD and FxHD artwork, SMAA, independent engine clocks, audio and playback fixes, and expanded convenience settings. The remaster is unfinished, and Steam Deck gameplay/performance testing is ongoing. [See what your download includes](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
+> **Development alpha.** The installer downloads the latest published release. Some features shown below are in the newer source and are being prepared for the next release, including SMAA, expanded character/interface/effect artwork, independent engine clocks and the latest audio, mod-selection and recovery improvements. The remaster is unfinished; physical Steam Deck gameplay and performance validation remain ongoing. [Check the included features before downloading](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
 
 ## More detail. The same unmistakable world.
 
 ### Characters with smoother shapes and richer detail
 
-ModelsHD refines angular surfaces on supported party, enemy, NPC and scenery models while retaining their original animations. CharHD restores painted detail on armor, clothing and weapons. Dart’s reconstructed head and sculpted hair pair with a 2K painted material and custom body shapes, activated together through CharHD. ModelsHD remains available for the wider roster. The complete bespoke character work extends to faces, costumes, hands, boots and weapons across all nine party members. [Character reconstruction](docs/definitive/PARTY_RECONSTRUCTION.md).
+ModelsHD refines angular surfaces on supported party, enemy, NPC and scenery models while retaining their original animations. CharHD restores painted detail on armor, clothing and weapons. Dart’s reconstructed head and sculpted hair pair with a 2K painted material and custom body shapes, activated together through CharHD. ModelsHD remains available for the wider roster. The character-remaster goal covers faces, costumes, hands, boots and weapons across all nine party members, guided by the original illustrations and in-game designs. Dart’s reconstruction is the first accepted example; the remaining party reconstructions are unfinished. [Character reconstruction](docs/definitive/PARTY_RECONSTRUCTION.md).
 
 ### Painted environments, restored for a modern screen
 
 Skurfa's HD backgrounds preserve the game's distinctive painted setting. EnvHD extends that presentation with battle panoramas, location artwork and the parchment world map. The full remaster goal also covers terrain, battle surfaces, missing field scenes and environmental props, with the original foreground placement and occlusion preserved.
+
+The [next EnvHD expansion](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/17) extends restoration to world-map terrain, battle surfaces and **2,723 additional field images**, including backgrounds and foreground layers. Four automatically installed field packs—**Env1HD through Env4HD**—share one EnvHD switch. Layer placement and visibility stay tied to the original scenes, and Skurfa’s existing artwork is preserved. This expansion is awaiting merge and release; animated, held and unreviewed surfaces retain the original artwork.
 
 ### Magic with sharper detail
 
@@ -94,7 +96,9 @@ Definitive extends Severed Chains' shared rendering, texture-loading, audio and 
 
 **All 18 enhanced films** use bounded streaming at 1280×768, retaining the original 15 fps motion and soundtrack. Enhanced and original video follow actually played audio; original-video fallback preserves its native 15 fps cadence. Cinematic presentation bypasses gameplay frame skipping and restores normal gameplay settings afterward. Cancellation and original-video fallback remain available.
 
-**PCM audio preservation** avoids an additional lossy encode after decoding prerecorded XA clips. Queue handling preserves clip endings and does not count unplayed buffers during empty starts or underruns. Playback recovery resumes from the played position, retaining the original score, voices and effects.
+**PCM audio preservation** avoids an additional lossy encode after decoding prerecorded XA clips, retaining the original score, voices and effects. Queue handling preserves clip endings and counts only audio that actually played, including empty starts, underruns and output disconnections.
+
+**Reliable output selection.** The default audio setting follows the operating system’s default output. Explicit device choices remain supported; unavailable or failed outputs trigger a bounded search for a working alternative without rewriting your saved preference. A lost audio device cannot fast-forward a cinematic by crediting its abandoned queue. Enhanced game films fall back to original playback when the output generation changes; original films and the launch video stop safely.
 
 **Independent engine clocks** separate gameplay simulation from presentation. Monotonic fixed steps advance scripts, model animation and gameplay at the selected game speed, with bounded catch-up after a stall. Hardware/minigame timers and sample-driven audio keep their own rates. Movie exits restore input, display and pause state independently; skip prompts follow movie time. Addition windows remain unchanged.
 
@@ -106,7 +110,15 @@ Native character uploads and deferred texture retirement retain renderer-thread 
 
 Presentation controls live in **Graphics**, independently of campaign presets. The pipeline uses conventional rendering with assets prepared before installation. Whole-campaign visual review and physical Steam Deck frame-time, memory and power measurements remain ongoing.
 
-[Rendering technology](docs/definitive/RENDERING_LIGHTING.md) · [Cinematic playback](docs/definitive/CINEMATIC_TIMING.md) · [Audio](docs/definitive/AUDIO_VALIDATION.md) · [Engine pacing](docs/definitive/ENGINE_PACING.md).
+### Installation, save compatibility and recovery
+
+**HD support for existing campaigns.** The managed launcher activates installed HD modules even when a campaign predates them. Visual defaults leave existing save bytes untouched. Explicit module opt-outs persist, custom gameplay-mod selections remain intact, and changes in the Mods menu take effect only when accepted. New-campaign choices are saved when you start the game.
+
+**Durable artwork preferences.** Accepted HD choices use an atomic preferences-file replacement followed by file and directory synchronization on Linux and macOS. A failed write keeps the selection screen open so you can retry or cancel.
+
+**Recovery after an interrupted launch.** Repair and Reinstall clear stale launch records and close verified game/launcher processes belonging to that installation before maintenance. Ownership checks distinguish those processes from other applications, and operation locks remain held through verification and activation. Saves, settings, module choices and imported discs are retained; Repair also retains prepared game data.
+
+[Rendering technology](docs/definitive/RENDERING_LIGHTING.md) · [Cinematic playback](docs/definitive/CINEMATIC_TIMING.md) · [Audio](docs/definitive/AUDIO_VALIDATION.md) · [Engine pacing](docs/definitive/ENGINE_PACING.md) · [HD module behavior](docs/definitive/HD_MOD_ACTIVATION.md) · [Launch recovery](docs/definitive/MAINTENANCE_GAME_RECOVERY.md).
 
 ## Your campaign. Your preferences.
 
@@ -121,17 +133,17 @@ Both presets preserve normal Additions and timing windows, default to **1× rewa
 3. Choose a folder and supply your **four US game-disc images**, or reuse an existing installation's discs. BIN/raw ISO files and ZIP, RAR or 7z containers are supported.
 4. Let setup prepare the game, add the optional Steam shortcut, and launch from Steam or the Definitive launcher.
 
-Custom folders and SD cards are supported. Allow space for the roughly **1.7 GB game package**, Java, your discs and prepared game data. Game discs are not included, and source images stay untouched.
+Custom folders and SD cards are supported. Allow space for the game package, Java, your discs and prepared game data; the larger environment expansion also needs additional room for its four field packs. Check the release notes for the package you are installing. Game discs are not included, and source images stay untouched.
 
 ![Definitive launcher with Play, artwork choices, version restore and Steam library actions](docs/definitive/images/launcher-linux.png)
 
 *Linux launcher preview.*
 
-The launcher brings **Play, Update, Repair and Restore** together. Update reuses unchanged files; Repair retrieves missing or changed application files. Reinstall replaces the application while keeping saves, settings, custom mods and imported discs. [Installation and recovery guide](docs/definitive/INSTALLER.md).
+The launcher brings **Play, Update, Repair and Restore** together. Update reuses unchanged files; Repair retrieves missing or changed application files. Reinstall replaces the application while keeping saves, settings, custom mods and imported discs. The latest recovery improvements handle stale or interrupted launches automatically, closing this installation’s verified game processes when Repair or Reinstall needs to proceed. [Installation and recovery guide](docs/definitive/INSTALLER.md).
 
 ## One installation. Seven HD modules.
 
-Choose artwork modules individually in the game's **Mods** menu. The launcher also offers an original/HD artwork preference. Existing campaigns may prompt you to enable newly installed mods.
+Choose artwork modules individually in the game's **Mods** menu. In the newer source, installed HD modules also work with existing campaigns without requiring a new game. Your explicit opt-outs are remembered, and cancelling a menu change leaves the previous choices intact. The launcher’s original/HD preference controls Skurfa backgrounds and ModelsHD; the other five modules have their own choices in Mods. [Artwork selection details](docs/definitive/HD_MOD_ACTIVATION.md).
 
 | Module | Enhancement |
 | --- | --- |
