@@ -16,7 +16,7 @@
         "reconstruction-receipt.json": "511bedcd2cfdfc4dfa113cfe47af44f4fd5ec4cde2ea0de935e54a46151f9b17",
         "render-v1.png": "4de9ae8c11e545085e21b24dc92b5601b9faa9f823933c5fd61cf688052c5c90",
         "render-v1.prompt.txt": "602faf3c7e7a5435cbfc1127d3ea83b48120a0a09561fc71573ce19a283b47bd",
-        "sculpt-review.jpg": "5c4369a6496ce7c7309ced8c783ac33af85108c6fa5c101f58c09e3b31acaafb"
+        "sculpt-review.jpg": "79038e3e938c5328f66a2ab3df5c62b689f9e436d7952caa8742f8024aaf369d"
       },
       "assetIntegrity": {
         "finitePositionsNormalsUvs": true,
@@ -43,7 +43,22 @@
         "staticFrontSideRearInspected": true,
         "state": "needs-topology-and-rear-surface-work",
         "nativeArticulation": "not-attempted",
-        "exactMotifAcceptance": false
+        "exactMotifAcceptance": false,
+        "defects": [
+          "Inferred rear hair/armor need original controls",
+          "Calf/boot surfaces are swollen in quarter-turn view",
+          "Sword/grip and all joints are unarticulated"
+        ],
+        "cameraConvention": "0 degrees is the inferred source-facing view; for Haschel it shows his back. Native anatomical views require original actor controls."
+      },
+      "acceptance": {
+        "fieldFit": false,
+        "battleFit": false,
+        "jointContinuity": false,
+        "weaponGrip": false,
+        "nativeAnimation": false,
+        "ownerFinalVisual": false,
+        "physicalDeck": false
       }
     },
     {
@@ -59,7 +74,7 @@
         "reconstruction-receipt.json": "5d17a2027b3aa51b49ba3c410da48ecaae8b16a0314355202cd642061612d64e",
         "render-v1.png": "b24357429903e2be026816381e464c8f8cc15f22d7d5f151c1ec0188394f01c9",
         "render-v1.prompt.txt": "1bbfb4af48d08d629e27c9f3d5364f4067f028d58bca7c208e92c6fea2dce714",
-        "sculpt-review.jpg": "11f73184dcf0cb1beaa3a5de5b5bd7ebcfe0b9f0ef24d84844a85632cc504d5c"
+        "sculpt-review.jpg": "df40c9f794695799b2a753491bdd942ed0449b1740ddd2dbeeeee39a4a951c57"
       },
       "assetIntegrity": {
         "finitePositionsNormalsUvs": true,
@@ -85,7 +100,21 @@
         "staticFrontSideRearInspected": true,
         "state": "needs-topology-and-rear-surface-work",
         "nativeArticulation": "not-attempted",
-        "exactMotifAcceptance": false
+        "exactMotifAcceptance": false,
+        "defects": [
+          "Rear hair collapses into thick rounded strips with smeared paint",
+          "Opposite-view cloth and glove/sword contact need rebuilding"
+        ],
+        "cameraConvention": "0 degrees is the inferred source-facing view; for Haschel it shows his back. Native anatomical views require original actor controls."
+      },
+      "acceptance": {
+        "fieldFit": false,
+        "battleFit": false,
+        "jointContinuity": false,
+        "weaponGrip": false,
+        "nativeAnimation": false,
+        "ownerFinalVisual": false,
+        "physicalDeck": false
       }
     },
     {
@@ -101,7 +130,7 @@
         "reconstruction-receipt.json": "c0f5b5830df8c1a6b15a67af0256fad08a9e24858dfecebde301515756dbe91c",
         "render-v1.png": "16cb28112b316fbcbbcc7468b2951941332eee0d8dca0bf1deaac371f68bfce0",
         "render-v1.prompt.txt": "0676aeb4a3d88316af7ee9369491c78bbd45b6f8042754560b50abf9f73d7100",
-        "sculpt-review.jpg": "f0d72c60583fc77eea27552f602b70c7d42265ecaaccda45f1dbeda653be16c4"
+        "sculpt-review.jpg": "118fe52dec5266f3955b253f5729a6b7a040866892386173368e6ae6cec0f7e9"
       },
       "assetIntegrity": {
         "finitePositionsNormalsUvs": true,
@@ -129,7 +158,21 @@
         "staticFrontSideRearInspected": true,
         "state": "needs-topology-and-rear-surface-work",
         "nativeArticulation": "not-attempted",
-        "exactMotifAcceptance": false
+        "exactMotifAcceptance": false,
+        "defects": [
+          "Rear armor and trouser folds lack defined construction",
+          "Lance/hand contact and segmented plate joints remain unrigged"
+        ],
+        "cameraConvention": "0 degrees is the inferred source-facing view; for Haschel it shows his back. Native anatomical views require original actor controls."
+      },
+      "acceptance": {
+        "fieldFit": false,
+        "battleFit": false,
+        "jointContinuity": false,
+        "weaponGrip": false,
+        "nativeAnimation": false,
+        "ownerFinalVisual": false,
+        "physicalDeck": false
       }
     },
     {
@@ -145,7 +188,7 @@
         "reconstruction-receipt.json": "af3f11ce586786fa136686cc393503ea3daad1944e1ca52ec5ba60a5a3aba056",
         "render-v1.png": "0daf095a20fb041535d545fa6381d343cf1c90f9677bbe34a05efe8ed5a92855",
         "render-v1.prompt.txt": "72fa322a46b7041f4a4f1bf9251a1c681913ab9c6e9602c34ed24e0802c18cb5",
-        "sculpt-review.jpg": "0737fc764ec56e6654c164698b05a64f86a28082edb268045ec546fcdd2812fc"
+        "sculpt-review.jpg": "ce244408ed491df410c82bdb13b11405740457300868441f3b15c96d7e5705de"
       },
       "assetIntegrity": {
         "finitePositionsNormalsUvs": true,
@@ -176,7 +219,21 @@
         "staticFrontSideRearInspected": true,
         "state": "needs-topology-and-rear-surface-work",
         "nativeArticulation": "not-attempted",
-        "exactMotifAcceptance": false
+        "exactMotifAcceptance": false,
+        "defects": [
+          "Arrows/quiver and shoulder rear details become fused blobs",
+          "Bowstring is not preserved; bow/hand contacts need explicit geometry"
+        ],
+        "cameraConvention": "0 degrees is the inferred source-facing view; for Haschel it shows his back. Native anatomical views require original actor controls."
+      },
+      "acceptance": {
+        "fieldFit": false,
+        "battleFit": false,
+        "jointContinuity": false,
+        "weaponGrip": false,
+        "nativeAnimation": false,
+        "ownerFinalVisual": false,
+        "physicalDeck": false
       }
     },
     {
@@ -194,7 +251,7 @@
         "render-v1.prompt.txt": "fce3ea8abe3f56219976de6a14c55c675b3a416a41132e9d353120e59d0588d2",
         "render-v2.png": "7a5069c5249bb38c294824a41771d81bc6211385badd6b19af3b463b766b4343",
         "render-v2.prompt.txt": "e528bf28c54a2c5c712915a6b4c34be7db9ee4d55eb02af6294251414b7b29f5",
-        "sculpt-review.jpg": "c1bb837c2ace6e55e38f54d53e8667acd774bc33cbd855324d9b0113ed43ecea"
+        "sculpt-review.jpg": "13f946817988abba0ccab835a371bee6beb41922d68aa1fe71f4bec0dce19661"
       },
       "assetIntegrity": {
         "finitePositionsNormalsUvs": true,
@@ -221,7 +278,22 @@
         "staticFrontSideRearInspected": true,
         "state": "needs-topology-and-rear-surface-work",
         "nativeArticulation": "not-attempted",
-        "exactMotifAcceptance": false
+        "exactMotifAcceptance": false,
+        "defects": [
+          "Reference-facing image shows the back, not anatomical front",
+          "Unseen chest/arm cloth volumes are lumpy and smeared",
+          "Fists and elbow/shoulder articulation require authored surfaces"
+        ],
+        "cameraConvention": "0 degrees is the inferred source-facing view; for Haschel it shows his back. Native anatomical views require original actor controls."
+      },
+      "acceptance": {
+        "fieldFit": false,
+        "battleFit": false,
+        "jointContinuity": false,
+        "weaponGrip": false,
+        "nativeAnimation": false,
+        "ownerFinalVisual": false,
+        "physicalDeck": false
       }
     },
     {
@@ -237,7 +309,7 @@
         "reconstruction-receipt.json": "4e70bd30ec01cdaeaa415b914fb4f02fa14a6824792083f47e33b94848d081f8",
         "render-v1.png": "0d32b8ad6baf3bb63cb7ce4c372ac1fd2e85f925c081ee26a1ac771d84c28ebb",
         "render-v1.prompt.txt": "9729753ab1031eda40930279b5c66f910aa999a2a6588a374ef767d486096f17",
-        "sculpt-review.jpg": "0fde59e6f43e8dad799deb7dce1b7250a922587db6711d13a740535a5c4b3329"
+        "sculpt-review.jpg": "d77cfd6f94663ebaf81eb2ecde21305e54b28080014047d1e00ac8ec4b7c3bb1"
       },
       "assetIntegrity": {
         "finitePositionsNormalsUvs": true,
@@ -263,7 +335,22 @@
         "staticFrontSideRearInspected": true,
         "state": "needs-topology-and-rear-surface-work",
         "nativeArticulation": "not-attempted",
-        "exactMotifAcceptance": false
+        "exactMotifAcceptance": false,
+        "defects": [
+          "Cloak hides unverified body and limb surfaces",
+          "Hair and cloak borders need thickness/attachment reconstruction",
+          "Spear grip and cloak animation are unvalidated"
+        ],
+        "cameraConvention": "0 degrees is the inferred source-facing view; for Haschel it shows his back. Native anatomical views require original actor controls."
+      },
+      "acceptance": {
+        "fieldFit": false,
+        "battleFit": false,
+        "jointContinuity": false,
+        "weaponGrip": false,
+        "nativeAnimation": false,
+        "ownerFinalVisual": false,
+        "physicalDeck": false
       }
     },
     {
@@ -279,7 +366,7 @@
         "reconstruction-receipt.json": "106cf917ff9576d8aa0850d3e74a024135a057535fd41402494b579c4ae590bc",
         "render-v1.png": "1a0e048b903a25abb2141cd33dcf81acecf6ea839befd64711a4c967cfa89702",
         "render-v1.prompt.txt": "214ffe3cfc7bb7b8c0ecc7a34dcaf2ab728fe8f8ec64e83be02dc740a875a667",
-        "sculpt-review.jpg": "a5f9ab54981983bef98bf3c43285353ecba7aa7c8d252711c3f43618287118bb"
+        "sculpt-review.jpg": "6193ba3d652b85b6fcd13e7358752995ab8e135a7a75c7195b4ef5e76704e4b1"
       },
       "assetIntegrity": {
         "finitePositionsNormalsUvs": true,
@@ -331,7 +418,22 @@
         "staticFrontSideRearInspected": true,
         "state": "needs-topology-and-rear-surface-work",
         "nativeArticulation": "not-attempted",
-        "exactMotifAcceptance": false
+        "exactMotifAcceptance": false,
+        "defects": [
+          "Rear costume panels and ponytail become inflated rounded strips",
+          "Hammer/ribbons and finger contacts need separation",
+          "Exact motif topology and layout remain unaccepted"
+        ],
+        "cameraConvention": "0 degrees is the inferred source-facing view; for Haschel it shows his back. Native anatomical views require original actor controls."
+      },
+      "acceptance": {
+        "fieldFit": false,
+        "battleFit": false,
+        "jointContinuity": false,
+        "weaponGrip": false,
+        "nativeAnimation": false,
+        "ownerFinalVisual": false,
+        "physicalDeck": false
       }
     },
     {
@@ -347,7 +449,7 @@
         "reconstruction-receipt.json": "5ab0625ad5bded244570f1f887b27955a6c8f05a3a07e784b12f03759ec4f73f",
         "render-v1.png": "5374cbed1093bd48fa6f9387395bbd855ec4594c087088b64f15f44ed14c80a8",
         "render-v1.prompt.txt": "8d22b22d82fa3b729099fbb2a42e9cf9911c1a09cfcd9e5ab64714aad0744eac",
-        "sculpt-review.jpg": "e95898f415ad18f326b88201ac1f2d5defdc4501c7c392d8345ba37f3a86a372"
+        "sculpt-review.jpg": "42129ef21380f26eec24c03975180b48d05eee4fc2932c429e10c9273627cc8a"
       },
       "assetIntegrity": {
         "finitePositionsNormalsUvs": true,
@@ -386,7 +488,22 @@
         "staticFrontSideRearInspected": true,
         "state": "needs-topology-and-rear-surface-work",
         "nativeArticulation": "not-attempted",
-        "exactMotifAcceptance": false
+        "exactMotifAcceptance": false,
+        "defects": [
+          "Rear musculature becomes swollen lobes",
+          "Spikes and hair/fur form fused masses in quarter-turn/opposite views",
+          "Axe grip and tiny discarded components require a coverage audit"
+        ],
+        "cameraConvention": "0 degrees is the inferred source-facing view; for Haschel it shows his back. Native anatomical views require original actor controls."
+      },
+      "acceptance": {
+        "fieldFit": false,
+        "battleFit": false,
+        "jointContinuity": false,
+        "weaponGrip": false,
+        "nativeAnimation": false,
+        "ownerFinalVisual": false,
+        "physicalDeck": false
       }
     },
     {
@@ -402,7 +519,7 @@
         "reconstruction-receipt.json": "54a754a32846a0962c215ab8297bb04226713cfaebd2bc6a8090730b3373b370",
         "render-v1.png": "c3486496c1e792887877335f344aa1a4e024959613ebffe2d6eb99950ce4eaa2",
         "render-v1.prompt.txt": "3371e8ae03b079a197a1c9287423f6c821f014296fd637993aecadb0354bf719",
-        "sculpt-review.jpg": "2a00292b254a1dbd59074034de3bbb09b61626593c6523562c84e4cec7259987"
+        "sculpt-review.jpg": "8f52ef4bdd788ef4a07523472ec8e7215cf178b38654088dfc23f3d706c76a25"
       },
       "assetIntegrity": {
         "finitePositionsNormalsUvs": true,
@@ -430,7 +547,22 @@
         "staticFrontSideRearInspected": true,
         "state": "needs-topology-and-rear-surface-work",
         "nativeArticulation": "not-attempted",
-        "exactMotifAcceptance": false
+        "exactMotifAcceptance": false,
+        "defects": [
+          "Rear hair and skirt folds smear into rounded strips",
+          "Bow/string construction and hand contact remain incomplete",
+          "Head/body proportion and native pose fit require controls"
+        ],
+        "cameraConvention": "0 degrees is the inferred source-facing view; for Haschel it shows his back. Native anatomical views require original actor controls."
+      },
+      "acceptance": {
+        "fieldFit": false,
+        "battleFit": false,
+        "jointContinuity": false,
+        "weaponGrip": false,
+        "nativeAnimation": false,
+        "ownerFinalVisual": false,
+        "physicalDeck": false
       }
     }
   ],
@@ -464,7 +596,7 @@
   "validation": {
     "staticAssetIntegrity": "passed-all-nine",
     "runtimeBaseline": "unchanged-19-files",
-    "meshRenders": "front-side-rear-generated-for-all-nine",
+    "meshRenders": "source-facing, quarter-turn and opposite camera views inspected for all nine",
     "totalTriangles": 216000,
     "scope": "Integrity and static inspection only. No new native animation or physical Deck validation.",
     "staticVisualAcceptance": "not-passed; inferred rear surfaces and topology need rework"
