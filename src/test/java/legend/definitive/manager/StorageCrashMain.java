@@ -19,6 +19,13 @@ public final class StorageCrashMain {
       }, args[0].equals("replace-discs"));
       case "play" -> System.exit(new InstallStore(root).play());
       case "pending" -> { try(final var operation = new InstallStore(root).lock()) { GameLease.begin(root); Runtime.getRuntime().halt(93); } }
+      case "normal-game-exit" -> {
+        final String token = GameLease.begin(root);
+        try(final var channel = java.nio.channels.FileChannel.open(root.resolve(".game-lock"), java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.WRITE); final var lease = channel.lock()) {
+          GameLease.recordRunning(root, token);
+        }
+        // Ordinary exit without a surviving launcher to clean its receipts.
+      }
       case "lease-failure" -> {
         System.setProperty("definitive.installRoot", root.toString()); System.setProperty("definitive.launchToken", GameLease.begin(root));
         try { ManagedGameMain.main(new String[0]); } catch(final java.io.IOException expected) { System.exit(96); } catch(final Throwable failure) { throw new RuntimeException(failure); }

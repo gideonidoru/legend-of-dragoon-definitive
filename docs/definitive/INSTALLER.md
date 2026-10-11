@@ -2,6 +2,8 @@
 
 Latest delivery recovery: [Deck installation discovery, maintenance, discs, shared input and direct Steam launch](DECK_RECOVERY.md).
 
+Repair and Reinstall automatically close this installation’s verified managed game, clear stale launch state and hold the game lease throughout maintenance. [Launch recovery and ownership checks](MAINTENANCE_GAME_RECOVERY.md).
+
 The [delivery reliability repair](DELIVERY_RELIABILITY.md) records the reported Deck failure, confirmed fixes, diagnostics and remaining device checks.
 
 ## Steam Deck Desktop Mode
