@@ -225,7 +225,7 @@ public final class ReleaseUpdates {
     if(!candidate.tag().matches("[A-Za-z0-9._-]+") || !candidate.contents().sha256().matches("[a-f0-9]{64}") || !candidate.contents().url().equals(candidate.url().resolve("Definitive-Contents-" + PackageManifest.hostPlatform() + ".zip"))) throw new IOException("Invalid release inventory source.");
   }
   public static String repair(final InstallStore store, final InstallProgress progress) throws IOException, InterruptedException {
-    return store.withOperation(() -> {
+    return store.withMaintenance(progress, () -> {
       final var state = store.state();
       final Path current = InstallStore.child(store.root().resolve("releases"), state.getProperty("version", ""), "alpha-[a-f0-9]{16}");
       final String tag = state.getProperty("installedReleaseTag", "").isEmpty() ? PackageManifest.read(current).metadata().getProperty("releaseTag", "") : state.getProperty("installedReleaseTag");
@@ -244,7 +244,7 @@ public final class ReleaseUpdates {
     });
   }
   public static String reinstall(final InstallStore store, final Candidate candidate, final InstallProgress progress) throws IOException, InterruptedException {
-    return installArchive(store, candidate, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()), true);
+    return store.withMaintenance(progress, () -> installArchive(store, candidate, progress, request -> HTTP.send(request, HttpResponse.BodyHandlers.ofInputStream()), true));
   }
   static String installArchive(final InstallStore store, final Candidate candidate, final InstallProgress progress, final AssetDownload connection, final boolean fullReinstall) throws IOException, InterruptedException {
     if(!candidate.url().toString().startsWith("https://github.com/" + REPO + "/releases/download/") || !candidate.sha256().matches("[a-f0-9]{64}")) throw new IOException("Invalid release source.");
