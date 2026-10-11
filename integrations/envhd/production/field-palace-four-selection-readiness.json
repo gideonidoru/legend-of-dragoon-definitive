@@ -1,12 +1,12 @@
 {
   "schema": 1,
-  "scope": "Clean main-forward increment selecting four independently cleared scenery crops; prior48 recipes and4929 runtime records exact.",
+  "scope": "Clean main-forward increment selecting four independently cleared scenery crops; prior 48 recipes and 4934 runtime records exact.",
   "integrationBaseCommit": "291191bc4a47e70c44178e6b394d9d02ec364579",
   "authoringSourceCommit": "09278d5f020c7163610263db090d6f3b8bc11a53",
   "selectionManifest": "field-bespoke-palace-four-independent-reviewed-selection.json",
   "selectionManifestSha256": "6a7a42680b7b366cc5229d60f48ce4e26d669fb34b5c89d1d9db0bfa8167a262",
   "independentReview": "field-independent-palace-eight-review.json",
-  "independentReviewSha256": "1bdf5b506865f005b9a4151133cb09da446a94a173f335fd3b98f6cfbb98e35c",
+  "independentReviewSha256": "e9294d2041c87fb89f2eefe95a9581f7deef3dc520ed63407dfa57c98cced006",
   "fieldRuntimeSha256": "329409e16e896ec4bbae12bc581a8b55ff411b859b6fbf0f3e7b62891584777a",
   "currentSourcePreflightCandidates": 52,
   "currentSourcePreflightLogSha256": "6aaba02301e5a49bb38fbae6f194a21bd0e9e87a77969736499469fc19c0203e",
@@ -42,7 +42,7 @@
       "passed": 12
     }
   ],
-  "freshPackageVerified": false,
+  "freshPackageVerified": true,
   "fourRevisionCandidatesExcluded": true,
   "unfinishedAuthoringPreservedOnOngoingBranch": true,
   "skurfaRegenerated": false,
@@ -52,5 +52,56 @@
   "publicReleasePublished": false,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "originalSourcesReferencesAndComparisonsExcluded": true
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "packageVerifiedSourceCommit": "57768e602bc0f0dd4234aa0e3061a5558d493b5b",
+  "build": "PASS: frozen committed source 57768e60; Java 25/Gradle 9.1 EnvHD JAR and four field packs.",
+  "packageVerification": {
+    "scope": "EnvHD normal-package resource subset; full installer/public-carrier closure coordinator-owned.",
+    "selectedFields": 4938,
+    "jarResources": 5324,
+    "parts": 4,
+    "oneModSwitch": true,
+    "allSelectedResourceNamesSizesAndBytesExact": true,
+    "unchangedParts": [
+      1,
+      2
+    ],
+    "files": [
+      {
+        "name": "EnvHD-v0.1.0.jar",
+        "bytes": 278289212,
+        "sha256": "6fdf0e52e5cc7831a0204c0601947a15dc906e6fce1333163e4c335510149d2a",
+        "exactToPriorAcceptedPackage": false
+      },
+      {
+        "name": "Env1HD-v0.1.0.zip",
+        "bytes": 552630727,
+        "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8",
+        "exactToPriorAcceptedPackage": true
+      },
+      {
+        "name": "Env2HD-v0.1.0.zip",
+        "bytes": 573665312,
+        "sha256": "a74a0b6246996eb1e158fabb339a32f864bd0c8ea096fef63df387133b4c0ae8",
+        "exactToPriorAcceptedPackage": true
+      },
+      {
+        "name": "Env3HD-v0.1.0.zip",
+        "bytes": 571420762,
+        "sha256": "5627fb8c0c5a5bb9ea63ade7279f8dc7854a298ebd8e5bb31c422c7be36ea35b",
+        "exactToPriorAcceptedPackage": false
+      },
+      {
+        "name": "Env4HD-v0.1.0.zip",
+        "bytes": 673440320,
+        "sha256": "9e574e831572092197d26816554fb53f237c0be70ebcecbfd98ed17ffbbdccfd",
+        "exactToPriorAcceptedPackage": false
+      }
+    ]
+  },
+  "evidenceLogSha256": {
+    "envhd-palace-four-preflight.log": "6aaba02301e5a49bb38fbae6f194a21bd0e9e87a77969736499469fc19c0203e",
+    "envhd-palace-four-build.log": "abfa2c8b80ded4eade8eeddd13f4532ebe76a7ba5efc67c3e8efa94f1309828a",
+    "envhd-palace-four-package-verification.log": "5947d60f3603f2639eed37c9fd832e0d921fbc1ac5729fde2296ff3b97347af0"
+  }
 }
