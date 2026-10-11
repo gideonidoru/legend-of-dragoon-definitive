@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "scope": "Owner-requested reviewed neural and source-verified painted development installation; Skurfa and remaining held/unreviewed sources remain native",
-  "runtimeSelected": 4892,
+  "runtimeSelected": 4894,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
   "protectedCuts": [
@@ -78490,9 +78490,41 @@
           "canDeriveFromBackground": false
         }
       ]
+    },
+    {
+      "decodedRgbaSha256": "0b1ee202a8c1144471e0281f0af94b918ed5e9930d2d0ea4e36584afb33da3b8",
+      "outputSha256": "779f64c8e510b7c171cbcf56a3b3be1a8a92f4ca4ee3cfff49463835571bebbb",
+      "sourceSize": [
+        44,
+        38
+      ],
+      "bindings": [
+        {
+          "renderKey": "6597329e92442b8aacb4b54265b3922b2803dacf7d248b3fb7a2a1ee340e9f8b:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "1a0aa3ab88ff20d2522b48dacb4fca3128561980fbad7d1379bcb8d16dc2a00a",
+      "outputSha256": "cf0ed3141b0ab24bf07c31faf1dbd35e7323418f2a35fbaabc6d688ee0f80b8b",
+      "sourceSize": [
+        22,
+        32
+      ],
+      "bindings": [
+        {
+          "renderKey": "174fadd79604d00fc4a7d5ab81303d9887b034c7e5a71ef5f9f1c4312348fc05:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ]
     }
   ],
-  "reviewReceiptSha256": "fe78489a9e3cbc60cdfab4bd9dee2d616f43789cf25a56a8cf11e08b62dd53cb",
-  "paintedReviewReceiptSha256": "a5ed3d3c90fbf07ec82a745c5058c766d51b32fbbf53a67301d32e40a639d270",
-  "paintedRuntimeSelected": 6
+  "reviewReceiptSha256": "5d033e70b86daaa40dbebcab7c5ed1fe2fb8f6de691d473a25c23d2a73ea58b1",
+  "paintedReviewReceiptSha256": "a44a23b6b1e9e54835c2f0bae45e28b6186c1be136a2ecb7273489dc390a7802",
+  "paintedRuntimeSelected": 8
 }

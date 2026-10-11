@@ -1,15 +1,15 @@
 # EnvHD field integration candidate
 
-The published maintenance installer contains **2,723 selected development field
-images** from source `476c004ca`. This branch prepares **4,892 selected images**
-for the next coordinated integration: **4,886 reviewed neural baselines** and
-**six source-verified painted repairs**. It does not change main or the public
-download. Native gameplay and final Skurfa-equivalent quality remain pending.
+The published combined installer `definitive-alpha-2026-10-11-envhd` contains
+**4,892 selected development field images** from package source `0af4f997`.
+This authoring branch selects **4,894 images**: **4,886 reviewed neural baselines**
+and **eight source-verified painted repairs**. The two new fittings await coordinated
+integration. Native gameplay and final Skurfa-equivalent quality remain pending.
 
 All **5,162 generated field sources** have been individually compared against
 original pixels and scene placement. The 2,163 additional reviewed neural images
-are now versioned and selected on this branch. Six original neural holds have
-separately reviewed painted replacements; **270 source images remain held**.
+are now versioned and selected on this branch. Eight original neural holds have
+separately reviewed painted replacements; **268 source images remain held**.
 Three uniform sources and empty/missing native slots retain their original data.
 
 | Field images | Count |
@@ -18,11 +18,11 @@ Three uniform sources and empty/missing native slots retain their original data.
 | Individually compared source images | 5,162 |
 | Reviewed neural development baselines | 4,886 |
 | Original neural repair holds | 276 |
-| Separately reviewed painted replacements | 6 |
-| Remaining held source images | 270 |
+| Separately reviewed painted replacements | 8 |
+| Remaining held source images | 268 |
 | Still awaiting individual source comparison | 0 |
-| Selected on this development branch | 4,892 |
-| Selected in the published installer | 2,723 |
+| Selected on this development branch | 4,894 |
+| Selected in the published installer | 4,892 |
 | Reviewed baselines awaiting candidate publication/selection | 0 |
 
 Selection covers at least one image in **605 of 612 unowned source configurations**.
@@ -66,7 +66,7 @@ into the background. Its isolated native slot placement was checked because
 stacking all foreground state variants obscures this object.
 
 The authoring selection accepts `--files <private extracted source directory>`
-and `--painted-manifest integrations/envhd/production/field-bespoke-foliage.json`.
+and `--painted-manifest integrations/envhd/production/field-bespoke-fittings.json`.
 Omitting both selects only the verified neural candidates. Fresh source census,
 Env-only ownership, usage bindings, original source hashes, generation/output
 hashes, recorded review hashes and exact repaired pixels are checked before
@@ -101,3 +101,33 @@ remained too close to interpolated native detail; those trials cleared no holds.
 All native/gameplay and final-quality acceptance counts remain **zero**. The wider
 EnvHD backlog and unresolved environment prop/animation ownership remain in
 `full-coverage.json`; this field integration is not whole-campaign completion.
+
+The two new fittings use the existing pinned cutout repair, with no decoder,
+engine, installer or algorithm changes. The complete eight-record selection
+manifest preserves all six earlier candidate records verbatim. The original
+neural review receipt retains its 276 historical hold verdicts; 268 is the current
+remaining-source count after eight painted replacements.
+
+Queen Fury cut 282 slot 0 is a shadowed wooden barrel/furnishing with a warm engraved
+elliptical lid. Its first painting invented a central circle and was rejected.
+The selected correction follows the source central arched form and surrounding
+bands, without assigning text or emblem meaning. Kazas cut 181 slot 6 is a stationary
+three-vessel copper workshop fixture with a pale neck tip and separate dark mouths.
+Both were compared against original and rejected neural images at their exact
+176x152 and 88x128 target sizes, then at the isolated source slot's scene placement.
+Internal relief/pitting is interpretive; categorical alpha/black checks are not
+proof of exact interior topology, runtime occlusion, scripted state or final quality.
+
+The generated and repaired custom images, explicit prompts and repair receipts
+are versioned in `bespoke-field-candidates`; original comparisons stay private.
+The Deningrad doorway's new painting still simplifies its carving and remains
+private/unselected. That source hold has not been cleared.
+
+Selected custom previews:
+
+- [Queen Fury wooden furnishing](../../integrations/envhd/production/bespoke-field-candidates/0b1ee202a8c1144471e0281f0af94b918ed5e9930d2d0ea4e36584afb33da3b8/image-v1.png) and [prompts](../../integrations/envhd/production/bespoke-field-candidates/0b1ee202a8c1144471e0281f0af94b918ed5e9930d2d0ea4e36584afb33da3b8/generation-prompts.txt).
+- [Kazas copper fixture](../../integrations/envhd/production/bespoke-field-candidates/1a0aa3ab88ff20d2522b48dacb4fca3128561980fbad7d1379bcb8d16dc2a00a/image-v1.png) and [prompt](../../integrations/envhd/production/bespoke-field-candidates/1a0aa3ab88ff20d2522b48dacb4fca3128561980fbad7d1379bcb8d16dc2a00a/generation-prompts.txt).
+
+The built-in image tool generated both paintings; Python used the existing
+pinned fourfold cutout repair. No original game image or private comparison is
+included in these public custom-asset paths.

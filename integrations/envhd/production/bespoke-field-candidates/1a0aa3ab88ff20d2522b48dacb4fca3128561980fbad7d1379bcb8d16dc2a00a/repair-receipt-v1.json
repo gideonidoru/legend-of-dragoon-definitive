@@ -1,0 +1,55 @@
+{
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 5568,
+  "paintedGapPixelsExtended": 449,
+  "paintedUncoveredSourcePixels": 344,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 41,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "sourceSize": [
+    22,
+    32
+  ],
+  "targetSize": [
+    88,
+    128
+  ],
+  "decodedRgbaSha256": "1a0aa3ab88ff20d2522b48dacb4fca3128561980fbad7d1379bcb8d16dc2a00a",
+  "outputSha256": "cf0ed3141b0ab24bf07c31faf1dbd35e7323418f2a35fbaabc6d688ee0f80b8b",
+  "generatedSha256": "67cc88c0b896dda1ecdbb358fb2f2b45070ef9ed27dd4e2a4dcc568d3571c3c9",
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/1a0aa3ab88ff20d2522b48dacb4fca3128561980fbad7d1379bcb8d16dc2a00a/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/1a0aa3ab88ff20d2522b48dacb4fca3128561980fbad7d1379bcb8d16dc2a00a/image-v1.png",
+  "prompt": "Use case: precise-object-edit. Asset: Legend of Dragoon EnvHD foreground fitting in Kazas cut 181 slot 6. Image 1 is the authoritative original cutout, canvas aspect exactly 22:32; image 2 is the dim wooden workshop scene for context only. Repaint the exact visible copper/brass vessel cluster: three rounded warm rusty copper bodies close together at the bottom, the taller central pear-shaped body with its narrow upward neck and pale metal tip near the top. Keep the source outlines, overlapping arrangement, dark circular openings, warm highlight on the upper right central body and lower left/right vessel proportions. Follow visible original contours; do not invent additional pipes, valves, handles, flame, smoke, labels, treasure or characters. Add fine restrained hammered copper texture and warm hand-painted highlights, consistent with a dim rustic game interior and existing HD painted backgrounds. Preserve exact framing, 22:32 aspect, position and negative space, no added padding. Output one isolated texture cutout on actual transparency, no backdrop or border. Source intent is a stationary workshop fixture, not an animated effect.",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "174fadd79604d00fc4a7d5ab81303d9887b034c7e5a71ef5f9f1c4312348fc05:-1",
+      "kind": "foreground",
+      "slot": 6,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 181,
+  "representativeLocation": "Kazas",
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "runtimeSelected": false,
+  "review": {
+    "intent": "Kazas cut181 independent foreground workshop fixture: three closely overlapping rounded copper vessels with taller central body, narrow neck and pale upper metal tip; the dark mouth positions and source silhouettes remain separate. Stationary fitting, not animated fire.",
+    "style": "Original, rejected neural and repaired painting compared at88x128 and original slot placement. Warm hammered copper highlights, dark round mouths and the central pale neck preserve source material cues, resolving the smeared neural bodies. Fine pitting and rim detail are interpretive and await final painted-quality review.",
+    "layout": "Source alpha and visible-black classes exact at4x; canvas[22, 32] and independent foreground slot preserved. Pinned nearest-colour repair extends 449 target pixels into small source-visible painting gaps; maximum squared extension distance 41. Individual comparison checks broad object proportions and crop; categorical proof does not establish interior motif alignment, runtime depth or scripted state visibility.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "cf0ed3141b0ab24bf07c31faf1dbd35e7323418f2a35fbaabc6d688ee0f80b8b",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}
