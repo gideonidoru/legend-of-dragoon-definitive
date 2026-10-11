@@ -1,0 +1,54 @@
+{
+  "decodedRgbaSha256": "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589",
+  "generatedSha256": "92d119ef6f238e1c9a28ac54aba149c26c06b12232d000ecb715e75684000efa",
+  "generatedSize": [
+    931,
+    1689
+  ],
+  "sourceSize": [
+    54,
+    98
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "5c496b3f2ce267fcf9cf5c0a5be6ba5be3e59ec7ec5e8d0b24ded99c2d667dbb:-1",
+      "kind": "foreground",
+      "slot": 3,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 226,
+  "representativeLocation": "Twin Castle",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 3,
+  "prompt": "Precise targeted correction of existing generated EnvHD bed crop. Image1 is the current detailed painting to edit; image2 authoritative original54x98 isolated source; image3 original room for actual motif positions; image4 Skurfa finish only. Keep image1 complete geometry, silhouette, perspective, headboard, cloth weave, pleated green skirt, navy/gold colors and cropped central star unchanged. Correct ONLY the remaining two closed donut rings in the uppermost gold decorative border below the headboard. Their centers are approximately at 75percentwidth36percentheight and80percentwidth32percentheight. Replace each hollow circular junction with the small OPEN curled hook of the source border, like the existing open curls at the lower corners. The original outer border is a continuous thin angular meander with open curls; no closed hollow circles at its junctions. Preserve each junction position and connection directions; do not add symbols or move the border. Keep solid small source accent dots elsewhere. Do not change existing crescent ornaments or central cropped star. No new border, no oversized shiny gold. Preserve exact54:98 full-canvas aspect,864x1568. True transparent background and original occupied silhouette. One isolated crop; no labels, annotation, scene or watermark.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 44976,
+  "paintedGapPixelsExtended": 1237,
+  "paintedUncoveredSourcePixels": 1005,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 50,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    216,
+    392
+  ],
+  "outputSha256": "d5753802b5b6e76a3d99345707b062b5c4423645126ef5d9464c2293c0200f18",
+  "generatedPath": "integrations/envhd/production/held-field-art-drafts/fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589/draft-input-v3.png",
+  "outputPath": "integrations/envhd/production/held-field-art-drafts/fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589/repaired-draft-v3.png",
+  "verdict": "intent-revision-needed",
+  "reason": "One upper ring remains and upholstery/skirt gains additional embossed-looking microtexture; corrective attempt not cleared for selection."
+}

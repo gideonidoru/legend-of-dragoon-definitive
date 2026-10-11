@@ -1,0 +1,61 @@
+{
+  "decodedRgbaSha256": "73b25780b6df62143f5f3f489706004112114f04e7ab4d4fa58cf7fa4d5293cf",
+  "generatedSha256": "c96374b4120ef937f286310e8488dd0508d75f9faa3ab2d458d4ad70f2219794",
+  "generatedSize": [
+    1464,
+    1075
+  ],
+  "sourceSize": [
+    30,
+    22
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "377f5ed8f66dfba324cf418870ff59c9907a2fb5f91c46b4b56febfe78aefeca:-1",
+      "kind": "foreground",
+      "slot": 2,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 206,
+  "representativeLocation": "Fletz",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 2,
+  "prompt": "Precise source-faithful object edit for EnvHD game art. Reference1 is authoritative 30x22 Fletz bedding crop, reference2 original room placement, reference3 rejected painted attempt, reference4 Skurfa material finish only. Repaint the exact source1 crop with fine cloth texture. The prior attempt3 incorrectly turns the source's diffuse low-contrast gray-green flecks into bright outlined curlicues that look like decorative writing. Restore only the ACTUAL native pattern: irregular soft interwoven gray-green mottles and dark spots on deeply shadowed blue textile. Keep the same broad patches, their relative positions and native low contrast; do NOT invent outlines, scrolls, looping gold shapes, letters, runes or a new trim border. Restrained detailed woven fabric, dim navy/gray-green palette, original diagonal strip silhouette and source perspective. No added bed parts, reframe, padding or recentering. Exactly30:22 full-canvas aspect,1440x1056, true transparent background outside the original footprint; every native occupied region filled. Cyan room regions are missing-layer placeholders and must never be painted. Only restore the existing dark bedding fragment; no scene, labels, borders, watermark.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 5216,
+  "paintedGapPixelsExtended": 390,
+  "paintedUncoveredSourcePixels": 309,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 25,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    120,
+    88
+  ],
+  "outputSha256": "54dc3e936773bb443acebb82030f966365f8628cd317784edd0c03d9e8fd31d5",
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/73b25780b6df62143f5f3f489706004112114f04e7ab4d4fa58cf7fa4d5293cf/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/73b25780b6df62143f5f3f489706004112114f04e7ab4d4fa58cf7fa4d5293cf/image-v1.png",
+  "review": {
+    "intent": "Fletz cut206 narrow dark navy/gray-green patterned textile edge on bedroom furnishing. Original isolated crop and complete native room placement compared; cloth restored without the held neural pale writing-like strokes.",
+    "style": "Fine navy weave and irregular muted gray-green mottles retain shadowed textile material. Version1 outlined scrolls rejected; version2 softens those into scattered woven patches. Small motif boundaries remain interpreted; exact stitch/final Skurfa quality unaccepted.",
+    "layout": "Native30x22 full-canvas fragment retained at120x88, source alpha and visible black exact. Diagonal silhouette and original scene placement checked on private source/candidate comparisons. Native state/depth/occlusion pending.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "54dc3e936773bb443acebb82030f966365f8628cd317784edd0c03d9e8fd31d5",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

@@ -13,9 +13,10 @@
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
     "field-bespoke-natural-rock-held-drafts.json": "b4ecadac7d27c436d3a0ab6f8f1c157402775461e2fbb80afc4ef48bd5ae4d23",
     "field-bespoke-textiles-reviewed-selection.json": "bbd204020a76bab277e470eba885e768c1a967d9b54233cda1606f6a4fd629c5",
-    "field-bespoke-textile-held-drafts.json": "3fb7c93730ddc60595d6c386f227d77bfdc0f044072eaec772c2022b64102e3b",
+    "field-bespoke-textile-held-drafts.json": "6499f66c10b757816ba7d1f6a4efd23ba9716b439516e5b07b446a2e314e61da",
     "world-water-source-audit.json": "b9339bbf59cb3518e32766ca4f5f52d69d08ce490ae30e4dc4bdef246a6bdb0b",
-    "world-water-candidate-artwork.json": "dd766f4a7d04dfd4b3b97bf9b5ac15e0e71bcb9700a0c31723484f0c61147748"
+    "world-water-candidate-artwork.json": "dd766f4a7d04dfd4b3b97bf9b5ac15e0e71bcb9700a0c31723484f0c61147748",
+    "field-bespoke-textile-detail-reviewed-selection.json": "44fd1d2dbab5807500cfc82186a2414aa2f8bb33026b90d72a3e01802d262adb"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -33,11 +34,11 @@
       "selectedPainted": 32,
       "held": 244,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 7,
+      "customHeldDraftSourceImages": 9,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
-      "nextTask": "Correct Twin Castle embroidery topology; continue244 held fields and native state/Skurfa routes.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 0
+      "nextTask": "Independently review softened Fletz bedding-edge candidate; continue Twin Castle embroidery/cloth/support correction and244 held fields; complete native state/Skurfa routes.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 1
     },
     {
       "id": "static-terrain",
@@ -158,12 +159,19 @@
     },
     {
       "manifest": "field-bespoke-textile-held-drafts.json",
-      "heldSourceImages": 1,
-      "reason": "Twin Castle embroidery topology needs correction"
+      "heldSourceImages": 3,
+      "reason": "Twin Castle embroidery/cloth/support overinterpretation and rejected Fletz version1; later Fletz version2 awaits independent review. Unique draft sources are deduplicated across manifests.",
+      "newUniqueHeldSourceImages": 2
+    },
+    {
+      "manifest": "field-bespoke-textile-detail-reviewed-selection.json",
+      "newHeldSourceImages": 1,
+      "duplicatesHeldDraftSource": true,
+      "reason": "Fletz version2 author-reviewed candidate awaiting independent review; not selected."
     }
   ],
   "publication": {
-    "runtimeSelectionChanged": true,
+    "runtimeSelectionChanged": false,
     "installerChanged": false,
     "releaseChanged": false,
     "publishedInstaller": {

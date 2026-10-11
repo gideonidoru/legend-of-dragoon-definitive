@@ -1,0 +1,54 @@
+{
+  "decodedRgbaSha256": "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589",
+  "generatedSha256": "37c8ac7efdffe7875db5687874e139e3a9d3f1b5d9673ada8a6dacf4529bb8e9",
+  "generatedSize": [
+    931,
+    1689
+  ],
+  "sourceSize": [
+    54,
+    98
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "5c496b3f2ce267fcf9cf5c0a5be6ba5be3e59ec7ec5e8d0b24ded99c2d667dbb:-1",
+      "kind": "foreground",
+      "slot": 3,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 226,
+  "representativeLocation": "Twin Castle",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 2,
+  "prompt": "Correct the Twin Castle royal bed embroidery using native reference1 and complete bed placement in reference2. The old draft reference3 incorrectly converted the outer decorative line junctions into closed donut rings. Replace only that mistaken motif interpretation: trace the actual angular meandering outer border with its irregular curled hooks and small solid accents. Open source curls must remain open, never closed circles at every bend. Preserve the cropped central angular star border on the right; no completed bed or new stars, letters, symbols or floral decorations. Preserve source ivory-green rolled headboard at upper right, dim navy fabric and green-gray pleated lower skirt. Keep the source border comparatively thin, muted pale cream/gold, avoid chunky metallic embroidery or high-contrast shiny trim. Maintain the original dark source color masses, gentle broad folds, exact perspective and all left/right crop boundaries. Requested full-canvas aspect54:98,864x1568. Use case: precise-object-edit. One isolated foreground cutout for Legend of Dragoon Definitive EnvHD. Reference1 is authoritative native crop; reference2 is original scene context; final reference is Skurfa surface finish only, never its objects or palette. Preserve exact original full-canvas aspect, occupied silhouette, crop edges, object geometry, light/shadow, motif topology and positions. Add restrained detailed painterly surface texture compatible with modern prerendered game art. Do not complete cropped objects or recenter them. Cyan context regions are missing-layer placeholders and must never be painted. True transparency outside existing source silhouette; fully fill every original visible plane; no scene background, text, watermark or border.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 44976,
+  "paintedGapPixelsExtended": 1246,
+  "paintedUncoveredSourcePixels": 1012,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 50,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    216,
+    392
+  ],
+  "outputSha256": "ec59304c71123bbc47f8fd2304208b2f27f3515266441a06a499a4db3de447d3",
+  "generatedPath": "integrations/envhd/production/held-field-art-drafts/fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589/draft-input-v2.png",
+  "outputPath": "integrations/envhd/production/held-field-art-drafts/fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589/repaired-draft-v2.png",
+  "verdict": "intent-revision-needed",
+  "reason": "Lower and right upper loops improved, but one upper junction remains a closed ring; review full embroidery topology before selection."
+}
