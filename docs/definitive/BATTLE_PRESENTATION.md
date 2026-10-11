@@ -1,0 +1,23 @@
+# Battle presentation quality pass
+
+The goal is the same beautiful, source-faithful painterly finish as the enhanced field screens, across every battle environment. Battle backgrounds, floors, walls, vegetation and architecture belong to EnvHD. This is not another mod. Character, model, FX and HUD work retain their existing ownership.
+
+The field workflow is now applied to battle materials: inspect original material and placement, preserve the generated painting and exact prompt, reproduce the repaired 4x pixels from the source, compare original/current/repaired artwork at game texture size, obtain independent review and select the approved artwork. Battle repair preserves native STP and black/discard classes; a coloured alpha-zero texel can be visible. Field cutout alpha cannot be substituted for that contract.
+
+## Whole-game accounting
+
+[The battle presentation ledger](../../integrations/envhd/production/battle-presentation-coverage.json) accounts for all 89 nonempty model stages, their 900 material bindings and all 518 eligible static source images. The 39 empty model slots are separate. Current development selection contains 525 new static bindings plus 24 pilot bindings, including 12 earlier painted masters. Most other static materials are neural development baselines, not final artistic acceptance. The backdrop census contains 74 source variants and 71 unique decoded panoramas; these are a separate image category.
+
+There are 350 animated/context bindings and one incomplete-palette binding still native. The stage-cycle replay does not establish every external script upload, palette/darkening transition or presented animation phase. Their complete image-job denominator is unknown; they must not be called 351 static image jobs or silently omitted from battle coverage. The new work does not clear those holds.
+
+Seven new source-guided paintings cover all six static Forest materials and the Barrens gravel surface. Their raw inputs, prompts, deterministic receipts and 4x previews live in [battle-presentation-candidates](../../integrations/envhd/production/battle-presentation-candidates); [the manifest](../../integrations/envhd/production/battle-presentation-artwork-v1.json) binds their complete original page/CLUT/crop usage and previous neural output. They are author-reviewed candidates awaiting independent review, unselected. Another 499 static neural masters require presentation review beyond these seven candidates. The 12 earlier painted masters and all panoramas also need scene-level comparison to the quality target. No claim of whole-game beauty acceptance accompanies this authoring checkpoint.
+
+## Rendering and performance
+
+The new selection option `--presentation-manifest` upgrades existing static neural materials using the existing atlas and renderer. It replays source/recipe/pixel checks, preserves earlier painted receipts automatically, rejects omitted prior presentation repairs and validates all existing geometry/source/UV mappings, selected binding counts and atlas dimensions before publication. The intended runtime cost is the same texture allocation, filtering and draw structure; decoded artist input sizes are not runtime texture sizes. This assertion is about preserved atlas footprints, not measured Deck frame time or total process memory.
+
+Existing HD atlas filtering, its duplicated gutter and mip limit, scene-authored live lighting, neutral material micro-surface maps and first-visit prewarming remain the rendering foundation. Paintings use restrained baked material detail; they must not add conflicting directional lights or imply that colour is a height/metallic map. No new rendering pass, texture slot or driver query is introduced by this static artwork selection.
+
+Preflight rejects source/hash/owner rebinding, replacing a held or previously painted source, malformed canvases, forged acceptance, altered recipe pins, rehashed wrong pixels and changing metadata. Selection rejects dropping prior artwork or changing atlas allocations before writing runtime resources. Synthetic regressions run in the existing hosted fixture job. Private source replays, test results and independent art review remain distinct from real shader readback, native scene seams, attack-camera stability and physical Steam Deck validation.
+
+The remaining pass includes each static material family and panorama, then source/state-safe animation treatment; matching floors and backgrounds under authored lighting; camera distance, seams and repeated patterns; and packaged loading, residency and frame-time verification. The ledger records these as unfinished, rather than using selected-image counts as a quality score.
