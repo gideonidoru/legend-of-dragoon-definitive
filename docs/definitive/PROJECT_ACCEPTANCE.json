@@ -1542,14 +1542,18 @@
   "uiMarkerCorrection": {
     "source": "1ccd1fc831fac6e67eb73ce5d0ec19c69150c8d2",
     "integrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
-    "status": "accepted source; candidate integration, not public",
+    "status": "accepted engineering source merged on main through PR40; not yet public",
     "nativeDraws": 38,
     "focusedTestsPassed": 15,
     "oldSource": "54fa07d2fb6aaf1a4974b1c913befbb874713f73",
     "oldStaleHdFramesPerChangedImageClutFamily": 24,
     "correctedStaleHdFramesPerChangedImageClutFamily": 0,
     "evidence": "Windowless GL/CGL teardown and real-destroy injected-failure controls; actual-input invalidation/reload and bounded residency; renderer/UI source blobs matched reviewed source.",
-    "limits": "No GLES, physical Deck, all-campaign or final appearance acceptance."
+    "limits": "No GLES, physical Deck, all-campaign or final appearance acceptance.",
+    "mainMerge": "0d4bfd118a5a4e87905bd6c724b9c71abd1b0843",
+    "pullRequest": 40,
+    "remoteBranchRetired": true,
+    "localBranchRetired": true
   },
   "installerAuditReview": {
     "pullRequest": 39,
@@ -1696,5 +1700,17 @@
     "newArtworkPromoted": false,
     "evidenceDocument": "docs/definitive/DART_FIELD_HEAD_BINDINGS.md",
     "limits": "Inventoried routes/source and CPU/cache checks only; no actual game-state transition/GPU/Deck/final visual/full-campaign acceptance."
-  }
+  },
+  "remoteMainCheckpoint": "0d4bfd118a5a4e87905bd6c724b9c71abd1b0843",
+  "battlePresentationAudit": {
+    "source": "29480f78a97298b8ad0325e57313933515678beb",
+    "integrationSource": "3c20a4f72a5e5db99b42530fffed807c32383edd",
+    "standards": "clear",
+    "spec": "clear",
+    "focusedIndependentTests": 41,
+    "status": "Installed selected pixels and immutable review are validated when drafts accumulate; coherent receipt erasure rejects. Actual initial baseline and selected22 plus pending1 pass.",
+    "runtimeSelectionUnchanged": true,
+    "nativeAcceptance": false
+  },
+  "integrationPolicy": "Land each completed, source-bound and independently reviewed increment into main while owners continue later work on their branches. Whole-mod or whole-campaign completion is not a prerequisite for a safe increment. Required HD content and final/device acceptance remain tracked; publication verifies the exact accepted source."
 }
