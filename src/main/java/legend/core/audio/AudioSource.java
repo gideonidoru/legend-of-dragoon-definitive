@@ -32,6 +32,11 @@ import static org.lwjgl.openal.AL10.alSourceStop;
 import static org.lwjgl.openal.AL10.alSourcei;
 import static org.lwjgl.openal.AL10.alSourceUnqueueBuffers;
 import static org.lwjgl.openal.AL11.AL_SEC_OFFSET;
+import static org.lwjgl.openal.ALC10.alcGetContextsDevice;
+import static org.lwjgl.openal.ALC10.alcGetCurrentContext;
+import static org.lwjgl.openal.ALC10.alcGetInteger;
+import static org.lwjgl.openal.ALC10.alcIsExtensionPresent;
+import static org.lwjgl.openal.EXTDisconnect.ALC_CONNECTED;
 import static org.lwjgl.system.MemoryUtil.memFree;
 
 public abstract class AudioSource {
@@ -39,6 +44,9 @@ public abstract class AudioSource {
   private final int[] allocatedBuffers;
   private int bufferIndex;
   private int sourceId;
+  private long outputDevice;
+  private boolean disconnectSupported;
+  private boolean outputLost;
 
   private boolean active;
   private boolean playbackPaused;
@@ -59,6 +67,9 @@ public abstract class AudioSource {
 
   protected void init() {
     this.generation++;
+    this.outputDevice = alcGetContextsDevice(alcGetCurrentContext());
+    this.disconnectSupported = this.outputDevice != 0 && alcIsExtensionPresent(this.outputDevice, "ALC_EXT_disconnect");
+    this.outputLost = false;
     this.sourceId = alGenSources();
     this.tmp = MemoryUtil.memAllocInt(1);
 
@@ -83,6 +94,8 @@ public abstract class AudioSource {
     Arrays.fill(this.buffers, 0);
     Arrays.fill(this.allocatedBuffers, 0);
     this.sourceId = 0;
+    this.outputDevice = 0;
+    this.disconnectSupported = false;
     this.tmp = null;
 
     this.playTime = 0.0f;
@@ -95,39 +108,58 @@ public abstract class AudioSource {
     }
   }
 
-  public int generation() { synchronized(this) { return this.generation; } }
-  public boolean outputAvailable() { synchronized(this) { return this.isInitialized(); } }
+  /** Native device loss is permanent for that handle; do not consult the audio owner under this monitor. */
+  protected boolean isOutputConnected() {
+    return !this.disconnectSupported || alcGetInteger(this.outputDevice, ALC_CONNECTED) != 0;
+  }
+
+  private boolean checkOutputConnection() {
+    if(!this.isInitialized() || this.outputLost) return false;
+    if(!this.isOutputConnected()) {
+      this.outputLost = true;
+      this.generation++;
+      return false;
+    }
+    return true;
+  }
+
+  public int generation() { synchronized(this) { this.checkOutputConnection(); return this.generation; } }
+  public boolean outputAvailable() { synchronized(this) { return this.checkOutputConnection(); } }
 
   /** Number of free OpenAL buffers. Streaming callers leave one free so the audio tick can start playback. */
   public int availableBuffers() {
-    synchronized(this) { return this.isInitialized() ? this.bufferIndex + 1 : 0; }
+    synchronized(this) { return this.checkOutputConnection() ? this.bufferIndex + 1 : 0; }
   }
 
   public boolean canBuffer() {
-    if(!this.active || !this.isInitialized()) {
-      return false;
+    synchronized(this) {
+      return this.active && this.checkOutputConnection() && this.bufferIndex >= 0;
     }
-
-    return this.bufferIndex >= 0;
   }
 
   protected void handleProcessedBuffers() {
-    if(this.isInitialized() && this.bufferIndex < this.buffers.length - 1) {
-      alGetSourcei(this.sourceId, AL_BUFFERS_PROCESSED, this.tmp);
-      final int processedBufferCount = this.tmp.get(0);
+    synchronized(this) {
+      if(this.checkOutputConnection() && this.bufferIndex < this.buffers.length - 1) {
+        alGetSourcei(this.sourceId, AL_BUFFERS_PROCESSED, this.tmp);
+        final int processedBufferCount = this.tmp.get(0);
+        double retiredSeconds = 0;
 
-      for(int buffer = 0; buffer < processedBufferCount; buffer++) {
-        final int unqueuedBufferId = alSourceUnqueueBuffers(this.sourceId);
+        for(int buffer = 0; buffer < processedBufferCount; buffer++) {
+          final int unqueuedBufferId = alSourceUnqueueBuffers(this.sourceId);
 
-        final int sizeBytes = alGetBufferi(unqueuedBufferId, AL_SIZE);
-        final int channels = alGetBufferi(unqueuedBufferId, AL_CHANNELS);
-        final int frequency = alGetBufferi(unqueuedBufferId, AL_FREQUENCY);
-        if(channels > 0 && frequency > 0) {
-          final int bits = alGetBufferi(unqueuedBufferId, AL_BITS);
-          this.playTime += (double)sizeBytes / ((bits / 8.0) * channels * frequency);
+          final int sizeBytes = alGetBufferi(unqueuedBufferId, AL_SIZE);
+          final int channels = alGetBufferi(unqueuedBufferId, AL_CHANNELS);
+          final int frequency = alGetBufferi(unqueuedBufferId, AL_FREQUENCY);
+          if(channels > 0 && frequency > 0) {
+            final int bits = alGetBufferi(unqueuedBufferId, AL_BITS);
+            retiredSeconds += (double)sizeBytes / ((bits / 8.0) * channels * frequency);
+          }
+
+          this.buffers[++this.bufferIndex] = unqueuedBufferId;
         }
-
-        this.buffers[++this.bufferIndex] = unqueuedBufferId;
+        // Disconnect marks the entire remaining queue processed without playing it. Only
+        // commit a sampled retirement while its native connection is still valid.
+        if(this.checkOutputConnection()) this.playTime += retiredSeconds;
       }
     }
   }
@@ -146,28 +178,28 @@ public abstract class AudioSource {
 
   private void queueOutput(final java.util.function.IntConsumer upload) {
     synchronized(this) {
-      if(!this.isInitialized()) return;
+      if(!this.checkOutputConnection()) return;
       final boolean resume = alGetSourcei(this.sourceId, AL_SOURCE_STATE) == AL_PLAYING;
       // The Java monitor does not stop the native mixer. Preserve its sample position
       // during this bounded refill, so it cannot enter STOPPED between retirement and append.
       if(resume) alSourcePause(this.sourceId);
       try {
         this.handleProcessedBuffers();
-        if(this.bufferIndex < 0) return;
+        if(!this.checkOutputConnection() || this.bufferIndex < 0) return;
         // Buffers appended to STOPPED are considered processed despite never playing.
         if(alGetSourcei(this.sourceId, AL_BUFFERS_QUEUED) == 0) alSourceRewind(this.sourceId);
         final int bufferId = this.buffers[this.bufferIndex--];
         upload.accept(bufferId);
         alSourceQueueBuffers(this.sourceId, bufferId);
       } finally {
-        if(resume && alGetSourcei(this.sourceId, AL_BUFFERS_QUEUED) > 0) alSourcePlay(this.sourceId);
+        if(resume && this.checkOutputConnection() && alGetSourcei(this.sourceId, AL_BUFFERS_QUEUED) > 0) alSourcePlay(this.sourceId);
       }
     }
   }
 
   protected void play() {
     synchronized(this) {
-      if(!this.isInitialized() || this.playbackPaused) return;
+      if(!this.checkOutputConnection() || this.playbackPaused) return;
       final int state = alGetSourcei(this.sourceId, AL_SOURCE_STATE);
       if(state == AL_PLAYING) return;
       // EOF may happen after the caller's retirement query; never restart that old tail.
@@ -226,7 +258,9 @@ public abstract class AudioSource {
   public double getPlaybackPositionSeconds() {
     synchronized(this) {
       this.handleProcessedBuffers();
+      if(!this.checkOutputConnection()) return this.playTime;
       final float offset = this.getPosition();
+      if(!this.checkOutputConnection()) return this.playTime;
       // Playback can reach EOF after the first processed-buffer query. At STOPPED,
       // OpenAL resets the offset; retire that final tail before reporting its clock.
       if(this.isInitialized() && alGetSourcei(this.sourceId, AL_SOURCE_STATE) == AL_STOPPED) {
@@ -239,14 +273,14 @@ public abstract class AudioSource {
 
   public boolean hasQueuedOutput() {
     synchronized(this) {
-      return this.isInitialized() && alGetSourcei(this.sourceId, AL_BUFFERS_QUEUED) > 0;
+      return this.checkOutputConnection() && alGetSourcei(this.sourceId, AL_BUFFERS_QUEUED) > 0;
     }
   }
 
   /** NOTE: this method will return the play time of the current buffer, so if you're using more than one buffer it's likely not going to return what you expect */
   public float getPosition() {
     synchronized(this) {
-      if(!this.isInitialized()) {
+      if(!this.checkOutputConnection()) {
         return 0.0f;
       }
 

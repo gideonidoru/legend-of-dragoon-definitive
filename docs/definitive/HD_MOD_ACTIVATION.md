@@ -65,6 +65,6 @@ The probe checks all-seven legacy activation, the five-module original profile,
 custom gameplay selection, durable opt-outs, staged preview without writes,
 unmanaged loading and the raw required-core-only save-conversion boot.
 
-The loader probe passed with the seven actual module JARs from the `617b221f8`
-source build. These checks establish activation and headless loading, not visual,
+The loader probe passed with the seven actual module JARs from the `f5d6907f9`
+source build, including CharHD 0.3; the earlier `617b221f8` probe remains a historical checkpoint. These checks establish activation and headless loading, not visual,
 gameplay, physical Steam Deck performance or long-term stability acceptance.

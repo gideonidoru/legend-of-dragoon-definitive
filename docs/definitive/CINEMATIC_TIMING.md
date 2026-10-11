@@ -37,3 +37,39 @@ An isolated native loopback probe reproduced the same empty-source startup again
 Full-length candidate playback then exercised all 18 films through `StreamingMovie`, `MoviePlayback`, `GenericSource` and actual OpenAL loopback mixing at 60 Hz. All 31,184 enhanced frames became due and were polled, each film produced nonzero decoded mixer output, and every decoder/video/audio queue completed, including both endings. The movie clock never led mixed samples; the maximum absolute difference, at silent tails, was 16.001 ms of lag. Container durations totaled 2,079.256665 seconds, including normal audio tail offsets.
 
 These full-length checks advance an injected monotonic clock from the actual native mixer's sample count so that silent tails can be checked without waiting the total film duration in wall time. They establish full-pack timing and completion, not human visual inspection or physical Steam Deck playback. The diagnostic fixtures and logs remain local and contain no exported original movie content.
+
+## Device-loss boundary
+
+The final adversarial audit found another way queued audio can look processed.
+[ALC_EXT_disconnect](https://javadoc.lwjgl.org/org/lwjgl/openal/EXTDisconnect.html)
+forces playing sources to STOPPED and marks queued buffers processed when output
+is lost. The audio owner already polls that connection and rebuilds its context,
+but a renderer position query can occur before the owner observes the loss.
+A native loopback reproducer mixed only 10 ms, forced the documented stopped-queue
+transition, and observed a 320 ms clock: 310 ms of unplayed audio was credited.
+
+Each source now binds its device and disconnect capability at initialization.
+Retirement stages its duration and checks the native connection before sampling
+and before crediting it; position sampling also refuses lost-device offsets.
+Loss invalidates the generation exactly once without losing native allocation
+ownership or the active flag needed by the audio owner's reinitialization. No
+source-to-audio-owner callback is introduced, preserving lock order. The existing
+movie recovery policy rejects a changed output generation: enhanced game FMV
+falls back to original playback, while original movies and the launch video stop
+safely. It does not rebase a new output clock onto abandoned queued samples.
+
+Permanent native tests exercise five loss boundaries for each of byte, signed-16
+and float PCM: before position sampling, during the connection snapshot, during
+offset sampling, worker retirement and refill. They inject the real OpenAL
+stopped-queue behavior together with its connection status, without disconnecting
+user hardware. Another native test verifies the enhanced movie rejects the lost
+generation. These tests fail before the guard and pass afterward. A separate
+actual AudioThread null-backend probe plays audio before rebuilding its native
+device/context and verifies the old movie rejects that generation, then checks
+source/buffer removal and complete shutdown with no OpenAL errors.
+
+The whole 18-film full-length native mixer probe was repeated after this guard:
+all frames, nonzero decoded audio, endings and queues completed with no clock
+lead. Physical audio unplugging, Steam Deck suspend/resume and visual/audio
+acceptance remain device checks; these results are not a permanent guarantee
+against every future driver or code change.
