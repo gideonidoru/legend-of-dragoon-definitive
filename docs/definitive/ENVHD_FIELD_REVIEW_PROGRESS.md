@@ -43,15 +43,37 @@ source/candidate comparisons do not prove in-game occlusion, scripted state
 changes, reachability, animation or Skurfa-equivalent final painted quality.
 The current runtime, protected Skurfa artwork and download packs are unchanged.
 
-Four source-referenced painted foliage repair candidates are now versioned in
+Five source-referenced painted vegetation repair candidates are now versioned in
 `field-bespoke-foliage.json` with their prompts, generated inputs, repaired output
 hashes and a reproducible Python visibility operation. They cover Donau's
-flower-shop plant, two related Evergreen Forest fragments and a shrub at
-Shirley's Shrine. All four were compared at the target texture size and in static
+flower-shop plant, two related Evergreen Forest fragments, a shrub at
+Shirley's Shrine and Lohan's independent purple-blue flower variant. All five were compared at the target texture size and in static
 scene assemblies; their original alpha and visible-black classes are exact.
 Near-transparent generated matte colours are excluded before restoring source
 visibility. The published candidate package contains only custom artwork; source
-images and scene assemblies remain private. These replacements await importer
-support, selection, packaging and in-game/final painted-quality review. They do
+images and scene assemblies remain private. Explicit selection now verifies fresh
+game sources, ownership, usage bindings, input/output hashes, recorded review hashes
+and exact repaired pixels before building runtime resources. These replacements
+await coordinated selection, packaging and in-game/final painted-quality review. They do
 not change the 276 holds recorded against the historical neural outputs or the
 2,723 installed images.
+
+The authoring selection accepts `--files <private extracted source directory>`
+and `--painted-manifest integrations/envhd/production/field-bespoke-foliage.json`.
+Omitting both preserves the normal neural selection. These are production-tool
+arguments; players still receive one EnvHD mod with its ordinary internal mod
+manager switch and the existing Env1HD–Env4HD download-pack layout. Switching to
+painted candidates or withdrawing them rebuilds the owned runtime tree atomically
+while preserving immutable candidate history. Runtime ledgers record the exact
+painted review receipt alongside the original neural receipt.
+
+The Lohan layer is opaque and retains its wooden background patch; generated RGB
+is converted to RGBA with constant opaque alpha only for an entirely opaque source.
+Its purple-blue flowers remain independent of the red arrangement baked into the
+background. Its isolated native slot placement was reviewed because stacking all
+foreground state variants hides this object. No gameplay visibility claim is made.
+
+The additional Donau cut 248 display remains held. Two painted attempts moved its
+upper-left bend and left about one quarter of the native footprint uncovered.
+The source-coverage check rejected both; neither enters the public candidate list
+or runtime selection. This requires a geometry-preserving repair before acceptance.
