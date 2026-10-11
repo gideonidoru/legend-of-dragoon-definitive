@@ -221,4 +221,40 @@ class CleanReinstallTest {
     assertFalse(Files.exists(backup));assertFalse(Files.exists(preserved.resolve("SECT/DRGN0.BIN/1/0")));store.verifyInstalled();
   }
 
+  @Test void fullBundledInstallQuarantinesUninspectableOwnerModAndRemainsUsable() throws Exception {
+    var pack = pack("seven-families");
+    for(final String family : List.of("EnvHD", "CharHD", "UIHD", "FxHD", "FMVHD", "ModelsHD", "Skurfa")) {
+      Files.writeString(pack.resolve("bundled-mods/" + family + "-v0.1.0.jar"), "fresh " + family);
+    }
+    Files.delete(pack.resolve(PackageManifest.METADATA)); Files.delete(pack.resolve(PackageManifest.HASHES));
+    ManagerMain.makeManifest(pack, PackageManifest.hostPlatform(), "seven-family-fixture");
+    var store = new InstallStore(temporary.resolve("seven-install")); store.install(pack);
+    var old = store.data(store.state());
+    final byte[] uncertain = new byte[64]; uncertain[0] = 0x50; uncertain[1] = 0x4b; uncertain[2] = 3; uncertain[3] = 4;
+    Files.write(old.resolve("mods/uncertain.jar"), uncertain);
+    for(final String name : List.of("custom.jar", "renamed.jar")) {
+      try(var zip = new java.util.zip.ZipOutputStream(Files.newOutputStream(old.resolve("mods/" + name)))) {
+        zip.putNextEntry(new java.util.zip.ZipEntry(name.equals("custom.jar") ? "owner/CustomMod.class" : "fxhd/FxHdMod.class"));
+        zip.write(new byte[]{1, 2, 3}); zip.closeEntry();
+      }
+    }
+    final byte[] custom = Files.readAllBytes(old.resolve("mods/custom.jar"));
+    store.install(pack, "", null, InstallProgress.NONE, true);
+    var fresh = store.data(store.state());
+    assertFalse(Files.exists(fresh.resolve("mods/uncertain.jar"))); assertFalse(Files.exists(fresh.resolve("mods/renamed.jar")));
+    try(var paths = Files.walk(fresh.resolve("recovered-reinstall/inactive-mods"))) {
+      var preserved = paths.filter(Files::isRegularFile).toList(); assertEquals(1, preserved.size()); assertArrayEquals(uncertain, Files.readAllBytes(preserved.getFirst()));
+    }
+    assertArrayEquals(custom, Files.readAllBytes(fresh.resolve("mods/custom.jar")));
+    assertFalse(Files.exists(store.root().resolve(CleanReinstall.JOURNAL))); assertFalse(Files.exists(old));
+    var reopened = new InstallStore(store.root()); reopened.verifyInstalled();
+    var workspace = reopened.prepareLaunch();
+    assertArrayEquals(custom, Files.readAllBytes(workspace.resolve("mods/custom.jar")));
+    assertFalse(Files.exists(workspace.resolve("mods/uncertain.jar"))); assertFalse(Files.exists(workspace.resolve("mods/renamed.jar")));
+    try(var paths = Files.list(workspace.resolve("mods"))) { assertEquals(9, paths.count()); }
+    try(var paths = Files.list(store.root().resolve("releases"))) { assertEquals(1, paths.count()); }
+    try(var paths = Files.list(store.root().resolve("data"))) { assertEquals(1, paths.count()); }
+    try(var paths = Files.list(store.root().resolve("workspaces"))) { assertEquals(1, paths.count()); }
+  }
+
 }

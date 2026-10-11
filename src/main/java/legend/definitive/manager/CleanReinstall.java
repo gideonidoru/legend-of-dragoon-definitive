@@ -225,7 +225,14 @@ final class CleanReinstall {
         boolean duplicate = bundledArchive(name);
         if(!duplicate && name.endsWith(".jar")) {
           try { for(final String identity : identities) if(ModArchiveIdentity.containsClass(mod, identity)) { duplicate = true; break; } }
-          catch(final IOException unknown) { /* An unreadable identity never authorizes deleting an unknown owner's mod. */ }
+          catch(final IOException unknown) {
+            // Keep uncertain owner bytes inactive so strict launch-time identity checks cannot block the fresh install.
+            if(mod.getParent().equals(data.resolve("mods"))) {
+              final Path inactive = data.resolve("recovered-reinstall/inactive-mods").resolve(UUID.randomUUID().toString());
+              Files.createDirectories(inactive);
+              Files.move(mod, inactive.resolve(name));
+            }
+          }
         }
         if(duplicate) Files.delete(mod); // Only a staged copy; original remains until activation and cleanup.
       }
