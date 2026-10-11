@@ -604,6 +604,17 @@ public class SMap extends EngineState<SMap> {
     this.createNewSave();
   }
 
+  private static int getInputMask(final InputAction action) {
+    if(action == INPUT_ACTION_GENERAL_MOVE_UP.get()) return 0x1000;
+    if(action == INPUT_ACTION_GENERAL_MOVE_RIGHT.get()) return 0x2000;
+    if(action == INPUT_ACTION_GENERAL_MOVE_DOWN.get()) return 0x4000;
+    if(action == INPUT_ACTION_GENERAL_MOVE_LEFT.get()) return 0x8000;
+    if(action == INPUT_ACTION_GENERAL_RUN.get()) return 0x40;
+    if(action == INPUT_ACTION_SMAP_INTERACT.get()) return 0x20;
+    if(action == INPUT_ACTION_SMAP_SNOWFIELD_WARP.get()) return 0x800;
+    return 0;
+  }
+
   @Override
   public void inputActionPressed(final InputAction action, final boolean repeat) {
     super.inputActionPressed(action, repeat);
@@ -612,101 +623,25 @@ public class SMap extends EngineState<SMap> {
       this.createNewSave();
     }
 
-    if(action == INPUT_ACTION_GENERAL_MOVE_UP.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x1000;
-      }
-
-      this.inputRepeat |= 0x1000;
-      this.inputHeld |= 0x1000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_RIGHT.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x2000;
-      }
-
-      this.inputRepeat |= 0x2000;
-      this.inputHeld |= 0x2000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_DOWN.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x4000;
-      }
-
-      this.inputRepeat |= 0x4000;
-      this.inputHeld |= 0x4000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_LEFT.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x8000;
-      }
-
-      this.inputRepeat |= 0x8000;
-      this.inputHeld |= 0x8000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_RUN.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x40;
-      }
-
-      this.inputRepeat |= 0x40;
-      this.inputHeld |= 0x40;
-    }
-
-    if(action == INPUT_ACTION_SMAP_INTERACT.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x20;
-      }
-
-      this.inputRepeat |= 0x20;
-      this.inputHeld |= 0x20;
-    }
-
-    if(action == INPUT_ACTION_SMAP_SNOWFIELD_WARP.get()) {
-      if(!repeat) {
-        this.inputPressed |= 0x800;
-      }
-
-      this.inputRepeat |= 0x800;
-      this.inputHeld |= 0x800;
-    }
+    final int mask = getInputMask(action);
+    if(!repeat) this.inputPressed |= mask;
+    this.inputRepeat |= mask;
+    this.inputHeld |= mask;
   }
 
   @Override
   public void inputActionReleased(final InputAction action) {
     super.inputActionReleased(action);
+    this.inputHeld &= ~getInputMask(action);
+  }
 
-    if(action == INPUT_ACTION_GENERAL_MOVE_UP.get()) {
-      this.inputHeld &= ~0x1000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_RIGHT.get()) {
-      this.inputHeld &= ~0x2000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_DOWN.get()) {
-      this.inputHeld &= ~0x4000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_MOVE_LEFT.get()) {
-      this.inputHeld &= ~0x8000;
-    }
-
-    if(action == INPUT_ACTION_GENERAL_RUN.get()) {
-      this.inputHeld &= ~0x40;
-    }
-
-    if(action == INPUT_ACTION_SMAP_INTERACT.get()) {
-      this.inputHeld &= ~0x20;
-    }
-
-    if(action == INPUT_ACTION_SMAP_SNOWFIELD_WARP.get()) {
-      this.inputHeld &= ~0x800;
-    }
+  @Override
+  public void inputActionCancelled(final InputAction action) {
+    super.inputActionCancelled(action);
+    final int mask = ~getInputMask(action);
+    this.inputPressed &= mask;
+    this.inputRepeat &= mask;
+    this.inputHeld &= mask;
   }
 
   private int getRunInput(final int input) {

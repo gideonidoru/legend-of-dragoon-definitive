@@ -252,15 +252,20 @@ public class SdlPlatformManager extends PlatformManager {
 
   @Override
   public void resetActionStates() {
-    this.clearActionStates = true;
+    synchronized(INPUT_LOCK) {
+      this.clearActionStates = true;
+    }
   }
 
   @Override
   public void resetActionState(final InputAction action) {
-    this.digitalActionInputs.remove(action);
-    this.axisActionStates.remove(action);
-    this.getInputActionState(action).cancel();
-    this.pressed.remove(action);
+    synchronized(INPUT_LOCK) {
+      this.digitalActionInputs.remove(action);
+      this.axisActionStates.remove(action);
+      this.getInputActionState(action).cancel();
+      this.pressed.remove(action);
+      this.dispatchInputActionCancelled(action);
+    }
   }
 
   // These are used to disable keyboard input while controller buttons are held. This is a dumb
@@ -287,6 +292,9 @@ public class SdlPlatformManager extends PlatformManager {
           case SDL_EVENT_WINDOW_FOCUS_LOST -> {
             final SdlWindow window = this.getWindow(this.event);
             window.hasFocus = false;
+            if(window == this.lastActiveWindow && !CONFIG.getConfig(RECEIVE_INPUT_ON_INACTIVE_WINDOW_CONFIG.get())) {
+              this.cancelInactiveWindowInput(window);
+            }
             window.events().onFocus(false);
           }
 
@@ -634,16 +642,21 @@ public class SdlPlatformManager extends PlatformManager {
       }
     }
 
-    if(this.clearActionStates) {
-      this.clearActionStates = false;
-      this.actionStates.clear();
-      this.axisActionStates.clear();
-      this.digitalActionInputs.clear();
+    this.applyPendingActionReset();
+  }
+
+  private void applyPendingActionReset() {
+    synchronized(INPUT_LOCK) {
+      if(this.clearActionStates) {
+        this.clearActionStates = false;
+        this.cancelAllActionStates(true);
+      }
     }
   }
 
-  /** Cancel all focus-owned state before either synchronous release notification. */
-  private void cancelInactiveWindowInput(final Window window) {
+  /** Clear every owner before notifying consumers, including already released pending taps. */
+  private void cancelAllActionStates(final boolean discardStates) {
+    final List<InputAction> cancelled = new ArrayList<>(this.actionStates.keySet());
     this.pressed.clear();
     this.ignoredKeys.clear();
     this.acceptedKeys.clear();
@@ -651,11 +664,22 @@ public class SdlPlatformManager extends PlatformManager {
     this.buttonsHeld.clear();
     this.digitalActionInputs.clear();
     this.axisActionStates.clear();
+    for(final InputActionState state : this.actionStates.values()) {
+      state.cancel();
+    }
+    if(discardStates) this.actionStates.clear();
+    for(final InputAction action : cancelled) {
+      this.dispatchInputActionCancelled(action);
+    }
+  }
+
+  /** Cancellation reaches gameplay masks before the existing release notifications. */
+  private void cancelInactiveWindowInput(final Window window) {
     final List<InputAction> released = new ArrayList<>();
     for(final var entry : this.actionStates.entrySet()) {
       if(entry.getValue().isHeld()) released.add(entry.getKey());
-      entry.getValue().cancel();
     }
+    this.cancelAllActionStates(false);
     for(final InputAction action : released) {
       LOGGER.info(ACTIONS_MARKER, "Triggering release input action %s", action);
       window.events().onInputActionReleased(action);
@@ -791,6 +815,7 @@ public class SdlPlatformManager extends PlatformManager {
       return entry.getValue().isEmpty();
     });
     final List<InputAction> released = new ArrayList<>();
+    final List<InputAction> cancelled = new ArrayList<>();
     for(final InputAction action : affected) {
       final InputActionState state = this.getInputActionState(action);
       final AxisInputState axes = this.axisActionStates.get(action);
@@ -801,7 +826,11 @@ public class SdlPlatformManager extends PlatformManager {
         if(state.isHeld()) released.add(action);
         state.cancel();
         this.pressed.remove(action);
+        cancelled.add(action);
       }
+    }
+    for(final InputAction action : cancelled) {
+      this.dispatchInputActionCancelled(action);
     }
     for(final InputAction action : released) {
       if(window != null) window.events().onInputActionReleased(action);
