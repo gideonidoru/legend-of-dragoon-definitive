@@ -29,5 +29,17 @@
   ],
   "alphaPreserved": true,
   "edit": "Framing attempt; complete feet inspected. Requested margin is not fully achieved; do not claim a measured six-percent border.",
-  "previousImage": "render-v1.png"
+  "previousImage": "render-v1.png",
+  "editInputs": [
+    {
+      "kind": "custom-artwork",
+      "image": "render-v1.png",
+      "sha256": "201f9d3139766ea84d8416a20ca57b6bbe63ca12b7031ee0ef57ca8c9b64c871"
+    },
+    {
+      "kind": "original-design-reference",
+      "name": "Haschel1_C.jpg",
+      "sha256": "1d795fd900955a0ed8afe8036e34398caa8112bfacae912d3cc53e7c2f4a6b16"
+    }
+  ]
 }
