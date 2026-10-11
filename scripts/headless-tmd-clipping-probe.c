@@ -1,6 +1,6 @@
 // TMD camera-clipping regression, AGPL v3; see LICENSE.
 // clang -framework OpenGL scripts/headless-tmd-clipping-probe.c -o /tmp/tmd-clipping-probe
-// /tmp/tmd-clipping-probe gfx/shaders [unchanged-reference-shader-directory]
+// /tmp/tmd-clipping-probe gfx/shaders [unchanged-reference-shader-directory] [--inject-cleanup-failure] [--inject-native-close-failure]
 // Uses actual shipping shaders in a windowless macOS CGL context.
 #define main legacy_probe_main
 #include "headless-rendering-probe.c"
@@ -46,10 +46,16 @@ static void clearTargets(void) {
 }
 static int coverage(const unsigned char *pixels) {int n=0;for(int i=3;i<W*H*4;i+=4)if(pixels[i])n++;return n;}
 int main(int argc,char **argv) {
- require(argc==2 || argc==3,"usage: tmd-clipping-probe shader-directory [reference-shader-directory]");
+ require(argc>=2,"usage: tmd-clipping-probe shader-directory [reference-shader-directory] [--inject-cleanup-failure] [--inject-native-close-failure]");
+ const char *reference=NULL;int injectGlFailure=0,injectNativeFailure=0;
+ for(int i=2;i<argc;i++) {
+  if(!strcmp(argv[i],"--inject-cleanup-failure"))injectGlFailure=1;
+  else if(!strcmp(argv[i],"--inject-native-close-failure"))injectNativeFailure=1;
+  else {require(argv[i][0]!='-'&&reference==NULL,"unknown option or duplicate reference directory");reference=argv[i];}
+ }
  CGLPixelFormatAttribute attributes[]={kCGLPFAOpenGLProfile,(CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core,kCGLPFAAccelerated,(CGLPixelFormatAttribute)0};
  CGLPixelFormatObj format;GLint count;require(CGLChoosePixelFormat(attributes,&format,&count)==kCGLNoError&&count>0,"offscreen format");
- CGLContextObj context;require(CGLCreateContext(format,NULL,&context)==kCGLNoError,"offscreen context");CGLDestroyPixelFormat(format);CGLSetCurrentContext(context);
+ CGLContextObj context;require(CGLCreateContext(format,NULL,&context)==kCGLNoError,"offscreen context");require(CGLDestroyPixelFormat(format)==kCGLNoError,"destroy pixel format");require(CGLSetCurrentContext(context)==kCGLNoError,"make context current");
  printf("GPU %s / %s\n",glGetString(GL_RENDERER),glGetString(GL_VERSION));
  GLuint fbo;glGenFramebuffers(1,&fbo);glBindFramebuffer(GL_FRAMEBUFFER,fbo);
  GLuint colour=texture(4,W,H,GL_RGBA8,GL_RGBA,NULL),emission=texture(2,W,H,GL_RGBA8,GL_RGBA,NULL),mask=texture(3,W,H,GL_R8,GL_RED,NULL);
@@ -58,7 +64,7 @@ int main(int argc,char **argv) {
  GLuint vao,vbo;glGenVertexArrays(1,&vao);glBindVertexArray(vao);glGenBuffers(1,&vbo);glBindBuffer(GL_ARRAY_BUFFER,vbo);int sizes[]={4,3,2,1,1,4,1},offset=0;
  for(int i=0;i<7;i++){glEnableVertexAttribArray(i);glVertexAttribPointer(i,sizes[i],GL_FLOAT,GL_FALSE,64,(void*)(long)(offset*4));offset+=sizes[i];}
  glViewport(0,0,W,H);glDisable(GL_CULL_FACE);glDisable(GL_DEPTH_TEST);
- unsigned char opaque[]={255,80,40,0,255,80,40,0,255,80,40,0,255,80,40,0};texture(0,2,2,GL_RGBA8,GL_RGBA,opaque);
+ unsigned char opaque[]={255,80,40,0,255,80,40,0,255,80,40,0,255,80,40,0};GLuint albedo=texture(0,2,2,GL_RGBA8,GL_RGBA,opaque);
  // Native indexed data: red CLUT entry 1 and a 32x32 page of index 1.
  unsigned *words=calloc(1024*512,sizeof(unsigned));require(words!=NULL,"VRAM allocation");words[1]=0x1f;
  for(int y=256;y<288;y++)for(int x=256;x<264;x++)words[y*1024+x]=0x1111;
@@ -71,7 +77,7 @@ int main(int argc,char **argv) {
  for(int pipe=0;pipe<2;pipe++) {
   char vertex[64],fragment[64];snprintf(vertex,sizeof vertex,"%s.vsh",pipelines[pipe]);snprintf(fragment,sizeof fragment,"%s.fsh",pipelines[pipe]);
   GLuint programs[2]={program(argv[1],vertex,"tmd.gsh",fragment),0};
-  if(argc==3)programs[1]=program(argv[2],vertex,"tmd.gsh",fragment);
+  if(reference)programs[1]=program(reference,vertex,"tmd.gsh",fragment);
   for(int mode=0;mode<3;mode++)for(int indexed=0;indexed<2;indexed++)for(int state=0;state<6;state++) {
    float v[96];quad(v,state==3?22:6,1);
    for(int i=0;i<6;i++) {
@@ -79,7 +85,7 @@ int main(int argc,char **argv) {
     if(indexed){v[i*16+7]*=31;v[i*16+8]*=31;}
     v[i*16+2]=state==0?1.5f:state==1?(i==0?.75f:1.5f):state==2?.75f:state==3?(i==1?.75f:1.5f):state==4?(i==0?.05f:1.5f):.05f;
    }
-   for(int version=0;version<(argc==3?2:1);version++) {
+   for(int version=0;version<(reference?2:1);version++) {
     GLuint p=programs[version];float lights[4096]={0};uniforms(p,lights);
     integer(p,"effectDetailTex",1);integer(p,"usePs1Depth",0);integer(p,"uiLayer",0);integer(p,"modernLighting",0);
     float transforms[32]={0};for(int i=0;i<4;i++)transforms[i*5]=1;
@@ -93,15 +99,28 @@ int main(int argc,char **argv) {
     clearTargets();draw(p,1,v);readTarget(0,version?b:a);
    }
    int visible=coverage(a),expected=mode==1?state==0:!(mode==2&&state==5);
-   int parityRequired=argc==3&&(state==0||mode==1||(mode==2&&state==5));
+   int parityRequired=reference!=NULL&&(state==0||mode==1||(mode==2&&state==5));
    int parity=!parityRequired||memcmp(a,b,sizeof a)==0;
    int pass=(visible>0)==expected&&parity;cases++;if(!pass)failed++;
    printf("RESULT pipeline=%s mode=%d source=%s state=%s coverage=%d expectedVisible=%d referenceParity=%s verdict=%s\n",pipelines[pipe],mode,indexed?"indexed4":"HD-RGB",states[state],visible,expected,parityRequired?(parity?"PASS":"FAIL"):"not-required",pass?"PASS":"FAIL");
   }
   glDeleteProgram(programs[0]);if(programs[1])glDeleteProgram(programs[1]);
  }
- printf("SUMMARY cases=%d failed=%d\n",cases,failed);
+ // Deliberately enqueue an actual driver error before resource retirement. Every
+ // deletion and both CGL close operations still run before the final verdict.
+ if(injectGlFailure)glEnable((GLenum)-1);
+ glUseProgram(0);glBindFramebuffer(GL_FRAMEBUFFER,0);
+ glDeleteTextures(1,&albedo);
  glDeleteBuffers(1,&vbo);glDeleteVertexArrays(1,&vao);glDeleteTextures(1,&vram);glDeleteTextures(1,&colour);glDeleteTextures(1,&emission);glDeleteTextures(1,&mask);glDeleteFramebuffers(1,&fbo);
  glDeleteBuffers(6,uniformBuffers);
- CGLSetCurrentContext(NULL);CGLDestroyContext(context);return failed?1:0;
+ int glErrors=0;GLenum error;
+ while((error=glGetError())!=GL_NO_ERROR){fprintf(stderr,"CLEANUP GLerror=%u\n",error);if(++glErrors==32)break;}
+ CGLError unbind=CGLSetCurrentContext(NULL);
+ CGLError destroy=CGLDestroyContext(context);
+ // Inject the reported result only after real destruction; never leak a context.
+ if(injectNativeFailure&&destroy==kCGLNoError)destroy=kCGLBadContext;
+ int cleanupFailed=glErrors!=0||unbind!=kCGLNoError||destroy!=kCGLNoError;
+ int passed=cases==72&&!failed&&!cleanupFailed;
+ printf("SUMMARY cases=%d failed=%d GLerrors=%d CGLunbind=%d CGLdestroy=%d cleanupFailed=%d verdict=%s\n",cases,failed,glErrors,unbind,destroy,cleanupFailed,passed?"PASS":"FAIL");
+ return passed?0:1;
 }

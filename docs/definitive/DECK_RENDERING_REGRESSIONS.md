@@ -126,3 +126,36 @@ All 190 embedded EnvHD PNGs (345641472 pixels across battle atlases, skies and w
 artwork) are additionally byte-identical to the previous decoder's RGBA output. Full cold battle entry—including
 mesh construction, first GPU upload and scripted transition—still needs physical
 Deck profiling and visual acceptance.
+
+## Native probe verdicts include cleanup
+
+Both viewport and camera-clipping probes emit their final summary only after
+resource retirement, a bounded GL error drain, and validation of both CGL context
+unbind and destruction statuses. A rendering exception or any cleanup failure
+produces `verdict=FAIL` and a nonzero process exit. Independent cleanup actions
+continue after an earlier action throws. The clipping probe explicitly retires its
+RGB albedo texture as well as its other allocations. NativeRendererProbe retains
+its existing void JNI close signature; the helper now throws when either native
+close status fails, and its normal renderer acceptance run still passes.
+
+Recompile `scripts/headless-renderer-context.c` before running the viewport probe:
+the updated probe requires its own JNI close entrypoint. The opt-in negative
+controls are:
+
+- `-PviewportInjectCleanupFailure`: an exception before resource cleanup, proving
+  that subsequent resource retirement and native shutdown still execute.
+- `-PviewportInjectGlCleanupFailure`: a real invalid GL enum recorded by the driver
+  during cleanup.
+- `-PviewportInjectNativeCloseFailure`: reports a failed destruction status after
+  the actual context has been destroyed, without leaking or double-closing it.
+- The C camera probe accepts `--inject-cleanup-failure` (real GL error before
+  deletion) and `--inject-native-close-failure` (reported destruction failure).
+
+Each control must fail even when every rendering comparison passes; combined
+controls must preserve all failures. The corrected viewport run passes 36 cases,
+2880 presentations, 648 copies and 960 nonempty extra-batch draws with zero GL or
+cleanup errors and both native close statuses zero. All 72 camera cases and
+required reference comparisons pass through teardown. The updated probes still
+reject the actual published renderer/shaders for the original defects, with
+successful teardown. These reporting changes do not modify production rendering,
+image loading or playback behavior.

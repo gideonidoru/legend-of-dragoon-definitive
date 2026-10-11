@@ -18,7 +18,9 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static org.lwjgl.opengl.GL11C.*;
@@ -27,6 +29,20 @@ import static org.lwjgl.opengl.GL30C.*;
 
 /** Runs the real draw listener with unequal scene/output sizes; never creates a window. */
 public final class NativeViewportReplayProbe {
+  private static native long closeContext(long context, boolean injectFailure);
+  @FunctionalInterface private interface CleanupStep { void run() throws Throwable; }
+  private record Cleanup(String name, CleanupStep step) { }
+
+  private static void cleanup(final Cleanup action, final List<Throwable> failures) {
+    try {
+      action.step.run();
+      System.out.println("CLEANUP step=" + action.name + " verdict=PASS");
+    } catch(final Throwable failure) {
+      failures.add(new AssertionError("Cleanup failed: " + action.name, failure));
+      System.out.println("CLEANUP step=" + action.name + " verdict=FAIL cause=" + failure);
+    }
+  }
+
   private static final int WIDTH = 1280, HEIGHT = 800;
 
   private static final class OffscreenApi extends GlApi {
@@ -90,12 +106,22 @@ public final class NativeViewportReplayProbe {
     if(args.length == 2 && !transitions) throw new IllegalArgumentException("Unknown probe mode");
     System.load(args[0]);
     final var open = NativeRendererProbe.class.getDeclaredMethod("open");
-    final var close = NativeRendererProbe.class.getDeclaredMethod("close", long.class);
-    open.setAccessible(true); close.setAccessible(true);
+    open.setAccessible(true);
     final long context = (long)open.invoke(null);
     if(context == 0) throw new AssertionError("Windowless context unavailable");
+    final List<Cleanup> actions = new ArrayList<>();
+    final List<Throwable> cleanupFailures = new ArrayList<>();
+    final boolean injectStepFailure = Boolean.getBoolean("viewportInjectCleanupFailure");
+    final boolean injectGlFailure = Boolean.getBoolean("viewportInjectGlCleanupFailure");
+    final boolean injectNativeFailure = Boolean.getBoolean("viewportInjectNativeCloseFailure");
+    Throwable executionFailure = null;
+    String measurements = "renderIncomplete=true";
+    boolean capabilities = false;
+    int glErrors = 0;
+    long unbindStatus = -1, destroyStatus = -1;
     try {
       GL.createCapabilities();
+      capabilities = true;
       final RenderEngine renderer = GameEngine.RENDERER;
       System.out.println("GPU " + glGetString(GL_RENDERER) + " / " + glGetString(GL_VERSION));
       System.out.println("ENGINE " + RenderEngine.class.getProtectionDomain().getCodeSource().getLocation());
@@ -104,22 +130,29 @@ public final class NativeViewportReplayProbe {
       final HeadlessWindow window = new HeadlessWindow(api);
       final var init = RenderEngine.class.getDeclaredMethod("init", Window.class);
       init.setAccessible(true); init.invoke(renderer, window);
+      actions.add(new Cleanup("renderer", renderer::delete));
       final Texture output = Texture.create("Offscreen presentation", builder -> builder.size(WIDTH, HEIGHT));
       output.persistent = true;
+      actions.add(new Cleanup("outputTexture", output::deleteOwnedCacheEntry));
       final FrameBuffer outputBuffer = FrameBuffer.create("Offscreen presentation", builder -> builder.attachment(FrameBufferAttachmentType.COLOUR, output));
+      actions.add(new Cleanup("outputFramebuffer", outputBuffer::delete));
       outputBuffer.bind();
       api.output = glGetInteger(GL_FRAMEBUFFER_BINDING);
       GameEngine.GPU.vramTexture15 = api.makeTexture(BufferUtils.createIntBuffer(1024 * 512), "Synthetic VRAM", 1024, 512,
         TextureInternalFormat.R_32_UINT, TextureDataFormat.RED_INT, TextureDataType.UINT, false, false, false, false);
       GameEngine.GPU.vramTexture15.persistent = true;
+      final Texture vram = GameEngine.GPU.vramTexture15;
+      actions.add(new Cleanup("syntheticVram", vram::deleteOwnedCacheEntry));
       final Obj quad = new QuadBuilder("Stationary placement markers").monochrome(1).size(12, 12).build();
       quad.persistent = true;
+      actions.add(new Cleanup("markers", quad::delete));
       final Texture copySource = Texture.create("Non-square texture-copy source", builder -> {
         final ByteBuffer data = BufferUtils.createByteBuffer(96 * 40 * 4);
         for(int y = 0; y < 40; y++) for(int x = 0; x < 96; x++) data.put((byte)x).put((byte)y).put((byte)(x + y)).put((byte)255);
         data.flip(); builder.data(data, 96, 40);
       });
       copySource.persistent = true;
+      actions.add(new Cleanup("copySource", copySource::deleteOwnedCacheEntry));
       final byte[] copyReference = pixels(copySource);
       final RenderBatch extraBatch = transitions ? renderer.addBatch() : null;
       api.extraBatch = extraBatch;
@@ -196,9 +229,39 @@ public final class NativeViewportReplayProbe {
       if(reused == 0) throw new AssertionError("No retained simulation frames exercised");
       if(transitions && api.nonemptyExtraBatchDraws != 960) throw new AssertionError("Expected 960 real nonempty extra-batch renders, got " + api.nonemptyExtraBatchDraws);
       if(transitions && copiedWithoutTick[0] == 0) throw new AssertionError("No zero-tick presentation after a texture-copy transition");
-      System.out.println("SUMMARY extraBatchDraws=" + api.nonemptyExtraBatchDraws + " copies=" + copies[0] + " zeroTickCopies=" + copiedWithoutTick[0] + " cases=" + cases + " presentations=" + presentations + " zeroStepPresentations=" + reused + " GLerrors=0 verdict=PASS");
-      renderer.delete();
-      outputBuffer.delete(); output.delete(); copySource.delete();
-    } finally { close.invoke(null, context); }
+      measurements = "extraBatchDraws=" + api.nonemptyExtraBatchDraws + " copies=" + copies[0] + " zeroTickCopies=" + copiedWithoutTick[0] + " cases=" + cases + " presentations=" + presentations + " zeroStepPresentations=" + reused;
+    } catch(final Throwable failure) {
+      executionFailure = failure;
+    } finally {
+      if(injectStepFailure) cleanup(new Cleanup("injectedStep", () -> { throw new IllegalStateException("Deliberate cleanup-step failure"); }), cleanupFailures);
+      for(int i = actions.size() - 1; i >= 0; i--) cleanup(actions.get(i), cleanupFailures);
+      if(capabilities) {
+        cleanup(new Cleanup("retiredObjects", Obj::deleteObjects), cleanupFailures);
+        cleanup(new Cleanup("retiredTextures", Texture::deleteTextures), cleanupFailures);
+        if(injectGlFailure) cleanup(new Cleanup("injectedGlError", () -> glEnable(-1)), cleanupFailures);
+        try {
+          int error;
+          while((error = glGetError()) != GL_NO_ERROR) {
+            glErrors++;
+            cleanupFailures.add(new AssertionError("GL cleanup error: " + error));
+            if(glErrors == 32) { cleanupFailures.add(new AssertionError("GL error drain exceeded bound")); break; }
+          }
+        } catch(final Throwable failure) { cleanupFailures.add(failure); }
+      }
+      try {
+        final long statuses = closeContext(context, injectNativeFailure);
+        unbindStatus = statuses >>> 32; destroyStatus = statuses & 0xffffffffL;
+        if(statuses != 0) cleanupFailures.add(new AssertionError("CGL cleanup failed: unbind=" + unbindStatus + " destroy=" + destroyStatus));
+      } catch(final Throwable failure) { cleanupFailures.add(failure); }
+      cleanup(new Cleanup("clearCapabilities", () -> GL.setCapabilities(null)), cleanupFailures);
+    }
+    final boolean passed = executionFailure == null && cleanupFailures.isEmpty();
+    System.out.println("SUMMARY " + measurements + " GLerrors=" + glErrors + " cleanupFailures=" + cleanupFailures.size()
+      + " CGLunbind=" + unbindStatus + " CGLdestroy=" + destroyStatus + " verdict=" + (passed ? "PASS" : "FAIL"));
+    if(!passed) {
+      final AssertionError failure = new AssertionError("Viewport probe failed after validated cleanup", executionFailure);
+      for(final Throwable cleanupFailure : cleanupFailures) failure.addSuppressed(cleanupFailure);
+      throw failure;
+    }
   }
 }

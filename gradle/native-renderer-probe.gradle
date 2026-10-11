@@ -25,6 +25,9 @@ allprojects {
           if (!contextPath) throw new GradleException('Supply -PrendererContextPath with the compiled windowless JNI library.')
           args contextPath
           if (providers.gradleProperty('viewportTransitions').isPresent()) args 'transitions'
+          ['viewportInjectCleanupFailure', 'viewportInjectGlCleanupFailure', 'viewportInjectNativeCloseFailure'].each { flag ->
+            if (providers.gradleProperty(flag).isPresent()) systemProperty flag, 'true'
+          }
         }
       }
       tasks.register('assetStreamingProbe', JavaExec) {
