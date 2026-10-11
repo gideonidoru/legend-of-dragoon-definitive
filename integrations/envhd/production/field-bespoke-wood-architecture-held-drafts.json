@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "scope": "Two unselected custom Phantom Ship column versions rejected by exact source canvas aspect gate. Generated PNGs/prompts/history retained; no repaired output exists; original references/context remain private.",
+  "sourceSelectionBaseCommit": "b012a2167868d477dfcd53bfbbde0250f44900fc",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 1,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+      "generatedSha256": "eac33602fd0058a20e5358de15a1c114713adbb6875a88b2ed3ae929d96ed395",
+      "generatedSize": [
+        1209,
+        1300
+      ],
+      "sourceSize": [
+        36,
+        62
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1fee3f003f01bba4d60081f78eb5273934fc2f3eaa60a939e62aa18924021c82:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 291,
+      "representativeLocation": "Phantom Ship",
+      "generatedBy": "builtin-imagegen",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. One source-shaped EnvHD foreground game-art crop for Legend of Dragoon Definitive. Image1 authoritative native isolated source, image2 original game scene context, image3 Skurfa level of painterly surface finish only. Restore the Phantom Ship column crop. Keep the exact dark vertical center recess, narrow muted green-gray right face, dusky blue left face with the existing scattered irregular pale worn marks, thin horizontal lower band and stepped/flared base. These pale marks are worn surface detail, not writing: trace their actual source shape and position without new glyphs, people or heraldic ornament. Retain the original architectural material appearance and damp muted blue-green lighting; add fine restrained aged surface texture, not an exaggerated new wood/stone/crack pattern. Preserve all fluting/boundaries, source depth shading and crop edges; no additional ship scenery. Preserve original source canvas aspect 36:62, geometry, silhouette, positions, broad colors, shadows, negative spaces and crop borders. Requested 576x992 full canvas. True transparency outside original occupied source outline; fully paint all existing visible planes. Green/cyan image2 regions are private missing-layer placeholders and must never be included. One isolated crop only; no text, labels, scene/background, border, watermark, extra objects, recentering or completion of cropped forms.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted cutout changed the source canvas aspect ratio",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612/draft-input-v1.png",
+      "verdict": "canvas-revision-needed",
+      "reason": "Generated canvas aspect differs from native36:62. Strict original cutout gate rejects it before repair; no output created or selected. Regenerate or design explicitly source-bound registration without weakening existing gates."
+    },
+    {
+      "decodedRgbaSha256": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+      "generatedSha256": "a305f5bf82b8dbf0ea40e1538036d9c95577b2d5169039fc7cda9deffca183b6",
+      "generatedSize": [
+        1040,
+        1512
+      ],
+      "sourceSize": [
+        36,
+        62
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1fee3f003f01bba4d60081f78eb5273934fc2f3eaa60a939e62aa18924021c82:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 291,
+      "representativeLocation": "Phantom Ship",
+      "generatedBy": "builtin-imagegen",
+      "generationVersion": 2,
+      "prompt": "Precise source-faithful game texture edit. Output an explicitly NARROW PORTRAIT CANVAS, exactly36:62 width:height aspect ratio, requested864x1488. Reference1 is authoritative original36x62 column crop and defines the entire canvas including every crop edge. Reference2 gives original Phantom Ship scene placement; reference3 Skurfa painterly finish only. Repaint only reference1, at the identical full-canvas layout. No extra transparent side padding, no recentering, no square canvas, no completing unseen column sides or top. The source column fills the narrow crop width with blue worn left face, dark center groove and muted green right face; its top extends to the top canvas edge and its cropped stepped base stays at the source bottom edge. Retain exact width proportions, narrow right-face steps, thin horizontal lower band, fluted grooves and negative spaces. Trace native pale weathered surface spots from source1 at their exact positions, not new writing, people, symbols or heraldry. Fine restrained aged painterly surface finish in original dark blue/green-gray lighting. Do not add rough cracks or exaggerated stone/wood grain. Original36:62 canvas repeated:864x1488 with true alpha only outside source silhouette. Green scene placeholders are not content. One crop, no borders, words, watermark or additional scene.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted cutout changed the source canvas aspect ratio",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612/draft-input-v2.png",
+      "verdict": "canvas-revision-needed",
+      "reason": "Generated canvas aspect differs from native36:62. Strict original cutout gate rejects it before repair; no output created or selected. Regenerate or design explicitly source-bound registration without weakening existing gates."
+    }
+  ]
+}

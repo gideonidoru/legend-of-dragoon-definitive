@@ -1,0 +1,63 @@
+{
+  "decodedRgbaSha256": "b88a83c36c8e7e7e09112c6174606d9498252c7deca051cb4ceef656d0819523",
+  "generatedSha256": "0aeb70273d76faf9cf7b9f46d49be20e2289e414b7d4630e37cab47bbaf3970e",
+  "generatedSize": [
+    1065,
+    1477
+  ],
+  "sourceSize": [
+    88,
+    122
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "72873167c7f9f8cf872df57727c9a7caf64bc4658cb31facd8f23ed76502db38:-1",
+      "kind": "foreground",
+      "slot": 0,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 162,
+  "representativeLocation": "Shirley's Shrine",
+  "generatedBy": "builtin-imagegen",
+  "generatedInputMode": "RGBA",
+  "generationVersion": 1,
+  "prompt": "Edit the FIRST reference image into ONE faithful high-definition game foreground texture fragment. The FIRST image controls composition, colors, crop, silhouette, proportions and shading; the SECOND image is the complete original scene for context only; the THIRD image is existing Skurfa HD art for the restrained painted surface finish only. Do not copy the third image's lighting, palette, geometry or imagery. Maintain the exact first-image canvas aspect ratio, its framing and all feature locations; do not add padding, complete missing objects, rotate, recenter or change camera. Smooth material detail with delicate highlights, natural worn edges and painted realism suitable for Legend of Dragoon pre-rendered field backgrounds. Preserve broad original values and local hue. No interface, text, letters, new glyphs, characters, logos or invented symbolic ornament. Output the texture fragment only, not the whole scene, not a comparison board. Native crop is 88 wide by 122 high (44:61 portrait). This is the right/top part of a ruined cool grey stone bridge arch in Shirley's Shrine, with moss-green leafy branches over the upper/right side. Preserve the large transparent arch opening to the lower-left, exact stepped/worn pale stones along its inner edge, broad grey upper arch slab and narrow curved pale upright support descending at lower center-right. The upper left has pale worn diagonal and curved sculpted marks: preserve their existing number, grouping and placement without turning them into readable lettering, a face or a named emblem. Keep the slender brown branch lines and mottled olive/yellow-green foliage cluster positions, do not grow a whole tree or fill the arch hole. Keep original diffuse daylight and dark recess on the lower-right. Transparent background exactly for original missing regions.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 124768,
+  "paintedGapPixelsExtended": 1704,
+  "paintedUncoveredSourcePixels": 1423,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 145,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    352,
+    488
+  ],
+  "outputSha256": "94b880d8f5ee0d334d2e91e39d9db84f4e13e744aa6f7c24a7e69fec675aaf95",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/bespoke-field-candidates/b88a83c36c8e7e7e09112c6174606d9498252c7deca051cb4ceef656d0819523/painted-input-v1.png",
+  "outputPath": "integrations/envhd/production/bespoke-field-candidates/b88a83c36c8e7e7e09112c6174606d9498252c7deca051cb4ceef656d0819523/image-v1.png",
+  "review": {
+    "intent": "Shirley's Shrine cut162 foreground0: grey ruined bridge arch, pale worn curved/diagonal relief on upper-left, exact arch opening/stepped inner stone edge and pale lower curved support, olive-green foliage across upper/right. Complete original scene fixes bridge and foliage context; marks are not interpreted as text, face or a named emblem.",
+    "style": "Restrained cool-grey stone wear and small green foliage detail replace artificial neural planes. Existing pale mark groups and broad light/shadow divisions compared to original. Individual leaf shapes, stone fissures and fine relief are interpretations requiring independent source/art review; no exact botanical or glyph identity claim.",
+    "layout": "Exact352x488 source4x crop, original alpha/visible black and scene placement restored. Original/native and current EnvHD static composites inspected. Top/right transitions into selected neighboring stone/foliage still need coordinated finish review; static composition is not native layering/camera or final art acceptance.",
+    "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+    "outputSha256": "94b880d8f5ee0d334d2e91e39d9db84f4e13e744aa6f7c24a7e69fec675aaf95",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending"
+  }
+}

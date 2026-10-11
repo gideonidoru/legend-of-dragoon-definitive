@@ -1,0 +1,55 @@
+{
+  "decodedRgbaSha256": "1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d",
+  "generatedSha256": "2a7d9e827bbe1457db54884232cbff0fda88c87d4274e766a0db447131b9e0c9",
+  "generatedSize": [
+    1293,
+    1216
+  ],
+  "sourceSize": [
+    68,
+    64
+  ],
+  "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+  "sourceOwners": [
+    "envhd"
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "4464eaf2e684c00494b7d269dcc9b3426cbcbc01b1d743f13d8874f3431fd66a:-1",
+      "kind": "foreground",
+      "slot": 10,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "representativeCut": 331,
+  "representativeLocation": "Furni",
+  "generatedBy": "builtin-imagegen",
+  "generationVersion": 1,
+  "prompt": "Use case: precise-object-edit. Asset: source-faithful HD game foreground texture. Reference1 is the authoritative original nearest-neighbor zoom; reference2 is the COMPLETE original game scene for usage and lighting; reference3 is Skurfa painterly surface finish only, not geometry or color. Repaint reference1 alone, preserving the exact full source canvas, crop, object placement and broad source color/motif arrangement. Furni cut331 rounded brown double wooden door in a cream architectural surround,68x64 nativecrop. Preserve the perimeter, center seam, both existing shallow curved inset decorative divisions, small dark hardware, broad warm brown shading and cropped cream surround exactly where present. Trace the native left/right curved carved outlines without inventing a new crest, leaf scroll, symbol or extra carving. Add fine restrained aged wood grain and shallow tooling inside existing shapes. Complete source scene shows this is a fitted door on the lower stone building, not a free-standing shield or circular sign. Canvas68:64, requested1360x1280. Match restrained detailed painterly HD finish while retaining reference1 palette/lighting. True transparent alpha only outside native occupied silhouette; never add empty padding, shift or center the object, zoom/crop differently, complete missing parts, or include other scenery. Pixelated source blocks define the broad design, not large square tessellation. No words, logo, watermark or border.",
+  "sourceFilesFreshlyVerified": true,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "scale": 4,
+  "sourceVisiblePixelsAtTargetScale": 69632,
+  "paintedGapPixelsExtended": 0,
+  "paintedUncoveredSourcePixels": 0,
+  "minimumPaintedCoverageAlpha": 16,
+  "minimumPaintedAnchorAlpha": 128,
+  "maximumExtensionSquaredTargetPixels": 0,
+  "sourceAlphaExact": true,
+  "visibleBlackExact": true,
+  "edgeAveraging": false,
+  "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+  "targetSize": [
+    272,
+    256
+  ],
+  "outputSha256": "3c156027aab994d740ee9220390b80edac0808fabaf6d1d42e478243c2464dfd",
+  "repairPassed": true,
+  "generatedPath": "integrations/envhd/production/held-field-art-drafts/1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d/draft-input-v1.png",
+  "verdict": "source-fidelity-revision-needed",
+  "reason": "Furni source68x64 crop has an opaque nonuniform architectural surround. Version1/3 retain a visible rectangular surround transition in static placement; source-edge colour closer in3 but not a proved seamless repair. Version2 instead loses original opaque surround and fails the original coverage gate.",
+  "outputPath": "integrations/envhd/production/held-field-art-drafts/1f6fbb4840e3824044f64e6c94811e973b645428fd6491716876262d48da399d/repaired-draft-v1.png"
+}

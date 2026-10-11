@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "date": "2026-10-11",
-  "sourceCheckpoint": "696cea631db511041ed7ab6466f03da355eebb7c",
-  "publicSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
-  "publicTag": "definitive-alpha-2026-10-11-envhd",
+  "sourceCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+  "publicSource": "d73113341610af56f27a1c68e7f5172d157b62c0",
+  "publicTag": "definitive-current",
   "mainFields": 4917,
-  "publicFields": 4892,
+  "publicFields": 4917,
   "mainFieldHolds": 245,
-  "publicFieldHolds": 270,
+  "publicFieldHolds": 245,
   "wholeGameAssetDenominatorKnown": false,
   "ratingsSource": {
     "name": "Project-Progress-Ratings-2026-10-11.json",
@@ -54,7 +54,7 @@
       "readinessSnapshot": 8,
       "status": "pending",
       "prerequisites": [],
-      "checkpointEvidence": "All seven mods plus four EnvHD packs; checksum repair and full reinstall verified.",
+      "checkpointEvidence": "All seven mods plus four EnvHD packs; checksum repair and full reinstall verified. Reviewed audit 697 / production 0afd preservation corrections integrated into candidate; owner 533 and pre-Dart combined 536 headless suites passed with 10 existing optional skips. Final CI/main/publication/device gates pending.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "Real Deck fresh/install/repair/reinstall/uninstall on internal and SD storage; offline and interruption checks.",
       "documents": [
@@ -409,9 +409,9 @@
         "B01",
         "B02"
       ],
-      "checkpointEvidence": "Main4917 fields,31painted; static battle/terrain/panorama integration is verified.",
+      "checkpointEvidence": "Public: 4,917 fields, 31 painted, 245 held; candidate: 4,925 fields, 39 painted, 237 held; 34 battle paintings (12 runtime plus 22 presentation). Runtime and final scene acceptance pending.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
-      "remainingAtSnapshot": "245field holds,1terrain hold,350battle animation/context bindings,1palette gap,world animation,props/overlays and final scene acceptance.",
+      "remainingAtSnapshot": "237 candidate field holds (245 public), one terrain hold, 350 battle animation/context bindings, one palette gap, world animation, props/overlays and final scene acceptance, including newly selected fields.",
       "documents": [
         "docs/definitive/ENVHD_FULL_COVERAGE.md",
         "docs/definitive/ENVHD_TERRAIN_PRODUCTION.md",
@@ -432,7 +432,7 @@
         },
         {
           "id": "A06.02",
-          "requirement": "Complete and accept the required HD artwork for 245 field holds and one terrain hold; safe native fallback leaves those content requirements open. Any removal from finished release scope requires direct explicit HUMAN approval recorded for each affected case/family. Classify 350 battle animation/context bindings plus one palette gap and all world animation families against controlling source scope.",
+          "requirement": "Complete and accept the required HD artwork for the 245 public field holds (237 still held in the candidate; eight newly selected fields still require final scene acceptance) and one terrain hold; safe native fallback leaves those content requirements open. Any removal from finished release scope requires direct explicit HUMAN approval recorded for each affected case/family. Classify 350 battle animation/context bindings plus one palette gap and all world animation families against controlling source scope.",
           "status": "not-run",
           "evidence": [],
           "acceptanceDimensions": {
@@ -614,7 +614,7 @@
         "A12",
         "P01"
       ],
-      "checkpointEvidence": "Accepted Dart head installed; live owner reports9new artwork candidates and is reviewing meshes.",
+      "checkpointEvidence": "Accepted Dart head installed; four exact field source variants bound in reviewed 9bb candidate using unchanged accepted artwork/geometry. 96 route/mod checks and 64 CPU/cache cycles plus 13 CharHD / 32 ModelsHD tests passed. Nine new artwork/body studies remain separate; physical transitions pending.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "Accept/rig/integrate nine full characters and forms;hair,hands,feet,costumes,weapons;NPC/enemy/boss inventory;69unbound routes,33source failures,22format cases,103animation/extra holds.",
       "documents": [
@@ -768,7 +768,7 @@
         "P01",
         "INV01"
       ],
-      "checkpointEvidence": "738outputs;9portraits;player menu and99post-battle extra bindings verified.",
+      "checkpointEvidence": "738outputs;9portraits;player menu and99post-battle extra bindings verified. UI 1ccd stale-marker correction accepted in candidate source, not public; 38 native draws / 15 focused tests and source-invalidation controls retained.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "All-screen handheld appearance/legibility,portrait atlas GPU output,save-card variants and physical memory/performance.",
       "documents": [
@@ -839,7 +839,7 @@
         "B03",
         "P02"
       ],
-      "checkpointEvidence": "Whole-game lighting/shadows/materials/SMAA/bloom/filtering with native fixture evidence.",
+      "checkpointEvidence": "Whole-game lighting/shadows/materials/SMAA/bloom/filtering with native fixture evidence. Depth/viewport/projection corrections accepted engineering and shipped in public d731; human reports flickering gone in observed Deck session; broader symptom acceptance pending.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "Coherent actual-scene visual approval,per-scene materials,Deck GPU cost and final defaults.",
       "documents": [
@@ -978,7 +978,7 @@
         "A11",
         "A13"
       ],
-      "checkpointEvidence": "Keyboard/controller/accessibility paths and held-input/hotplug behavior have component coverage.",
+      "checkpointEvidence": "Controller disconnect/remap ownership fix e21414233d30ae65853ca14a64de8ce73e95327f shipped in public d731; headless held/repeat/suppression/surviving-input regressions retained.",
       "evidenceScope": "Historical source/component/native/public-package evidence and owner reports; acceptance cases below are not passed by this inventory.",
       "remainingAtSnapshot": "Complete controller-only walkthrough,Steam Input on/off,reconnect/glyphs,handheld readability and screen-reader acceptance.",
       "documents": [
@@ -1276,11 +1276,14 @@
       "report": "Stationary ordinary-gameplay rendering flicker",
       "owner": "MEDIA",
       "support": "RENDER",
-      "status": "active",
+      "status": "observed-improved; broader acceptance pending",
       "directOwnerObservation": "the flicker looked more like the original renderer was at like 50% anchored to the bottom left then it was scaling to the full screen.",
       "observationSource": "Direct human message in ROOT chat, read during this checkpoint",
       "context": "Ordinary gameplay, no recent movie; corrupted image keeps changing while stationary.",
-      "diagnosticStatus": "MEDIA and RENDER are investigating viewport/framebuffer/internal-output scaling and pass state alongside separate clipping/depth defects. This observation establishes neither two renderers nor a viewport root cause; no source integration or fix acceptance."
+      "diagnosticStatus": "Viewport/projection/depth fixes accepted engineering and shipped; latest Deck observation is positive session evidence, not isolated causality or full scene/device/campaign acceptance.",
+      "latestDirectHumanObservation": "good news! the engine flickering problem is gone!",
+      "latestObservationSource": "Direct human ROOT report, relayed by coordinator on 2026-10-11",
+      "reportedBuildContext": "d73113341610af56f27a1c68e7f5172d157b62c0"
     },
     {
       "id": "B02",
@@ -1328,14 +1331,18 @@
     "runtimeSelectionChanged": false,
     "discoveryComplete": false,
     "correctedSource": "036d7cfedef528a8993cfb20666800d370065ecc",
-    "verificationBoundary": "Coordinator independently closed these two defects; docs audit verified GitHub PR head/status, not rerun tests.",
+    "verificationBoundary": "Both specific defects closed by coordinator independent review; fresh GitHub read verifies PR31 merge; historical hosted results retained, not rerun by this reconciliation.",
     "correctedInventory": "350 records / 67 shards equal c98f except generator pin per coordinator",
     "integration": {
       "pullRequest": 31,
-      "state": "open; three hosted gates in progress at observation",
+      "state": "merged",
+      "mergeSource": "ee4d58201e416f83b31ffab91aea8c8d78159b70",
+      "candidateSource": "036d7cfedef528a8993cfb20666800d370065ecc",
       "run": 38143229506,
-      "merged": false,
-      "published": false
+      "hostedGates": "Linux/Mac/synthetic SUCCESS independently checked via GitHub",
+      "merged": true,
+      "published": true,
+      "publicSource": "d73113341610af56f27a1c68e7f5172d157b62c0"
     }
   },
   "qualificationPlanPolicy": "Shared workload and scenario counts are proposed qualification procedures for controlling source scope, not new promised features or executed evidence. Owners can refine workloads with rationale and exact receipts; neither fixture success nor arbitrary case counts alone establish 10/10.",
@@ -1350,15 +1357,21 @@
         "src/main/java/legend/core/renderer/opengl/GlApi.java",
         "src/main/java/legend/core/renderer/opengles/GlesApi.java"
       ],
-      "fixStatus": "assigned isolated API correction/regression; unmerged at this evidence checkpoint",
+      "fixStatus": "accepted engineering; integrated and shipped in public d731",
       "symptomStatus": "Not established cause of ordinary Deck flicker; coordinator notes no current production addBatch caller and ordinary rendering ends opaque.",
-      "immutableFixSource": null,
-      "attachedTestReceipts": [],
+      "immutableFixSource": "bcee65e743923431ceafd0e6919f7a428d93fcec",
+      "attachedTestReceipts": [
+        {
+          "evidenceType": "retained headless/native regression and teardown/error controls",
+          "scope": "Engineering contract only; not full physical Deck/campaign acceptance."
+        }
+      ],
       "affectedCases": [
         "A12.01",
         "A12.02"
       ],
-      "requiredClosure": "Pin fix source, reproduce failing-before/passing-after native depth-clear test including GlApi/GlesApi contract, then test intended production transitions and physical symptoms."
+      "requiredClosure": "Complete actual scene, original/all-mod, physical Deck and campaign symptom acceptance; preserve engineering/device evidence scopes.",
+      "publicSource": "d73113341610af56f27a1c68e7f5172d157b62c0"
     },
     {
       "id": "ENG-D02",
@@ -1366,16 +1379,55 @@
       "supportOwner": "RENDER",
       "defect": "Old PlayStation whole-face clipping threshold rejects still-visible textured faces under modern camera",
       "evidence": "Diagnosis owner independently reproduced on published engine in field and battle rendering when a face corner crosses the legacy clipping threshold.",
-      "fixStatus": "assigned shader/camera correction and symptom regression; unmerged at this evidence checkpoint",
-      "symptomStatus": "Strong match to disappearing ground/props during attacks and camera flips; not yet confirmed by physical Deck before/after. Stationary corruption and sluggish battle setup remain distinct open symptoms.",
-      "immutableFixSource": null,
-      "attachedTestReceipts": [],
+      "fixStatus": "accepted engineering; integrated and shipped in public d731",
+      "symptomStatus": "Strong match to missing props/ground; dedicated physical attack/camera before/after acceptance remains pending. Latest flicker improvement does not close entry pacing.",
+      "immutableFixSource": "a0a4c5e54851cd22866e186145724a2b8b489879",
+      "attachedTestReceipts": [
+        {
+          "evidenceType": "retained headless/native regression and teardown/error controls",
+          "scope": "Engineering contract only; not full physical Deck/campaign acceptance."
+        }
+      ],
       "affectedCases": [
         "A12.01",
         "A12.02",
         "A03.03"
       ],
-      "requiredClosure": "Pin exact shader/camera fix and failing-before/passing-after face-visibility scenes; exercise field/battle attacks and camera flips, original/all-mod routes, plus physical missing-texture reproduction."
+      "requiredClosure": "Complete actual scene, original/all-mod, physical Deck and campaign symptom acceptance; preserve engineering/device evidence scopes.",
+      "publicSource": "d73113341610af56f27a1c68e7f5172d157b62c0",
+      "cleanupCorrectionSource": "08f4179b97552de8b24ba80c9cc5bc516d4867eb"
+    },
+    {
+      "id": "ENG-D03",
+      "owner": "MEDIA",
+      "supportOwner": "RENDER",
+      "defect": "Internal/output viewport sizing across presentation and rendering passes",
+      "evidence": "Per-scene viewport reset verified with windowless viewport/copy/transition and post-cleanup failure controls.",
+      "immutableFixSource": "a0a4c5e54851cd22866e186145724a2b8b489879",
+      "attachedTestReceipts": [],
+      "fixStatus": "accepted engineering; integrated and shipped in public d731",
+      "symptomStatus": "Latest direct human ROOT report: good news! the engine flickering problem is gone! Positive observed Deck session evidence; complete scene/device/campaign and pacing criteria pending.",
+      "affectedCases": [
+        "A12.01",
+        "A12.02",
+        "A03.03"
+      ],
+      "cleanupCorrectionSource": "08f4179b97552de8b24ba80c9cc5bc516d4867eb",
+      "publicSource": "d73113341610af56f27a1c68e7f5172d157b62c0"
+    },
+    {
+      "id": "ENG-I01",
+      "owner": "MODS",
+      "defect": "Disconnected/remapped controller leaves owned held/repeat/suppression state",
+      "immutableFixSource": "e21414233d30ae65853ca14a64de8ce73e95327f",
+      "fixStatus": "accepted engineering; integrated and shipped in public d731",
+      "publicSource": "d73113341610af56f27a1c68e7f5172d157b62c0",
+      "evidence": "Headless ownership, held/repeat/suppression, remap/tap and surviving-input regressions retained.",
+      "affectedCases": [
+        "A14.01",
+        "A14.02"
+      ],
+      "requiredClosure": "Physical controller-only, Steam Input on/off, reconnect/remap and accessibility route acceptance."
     }
   ],
   "scopeControl": {
@@ -1395,5 +1447,270 @@
     "existingNativeProcedural": "A consumer already deliberately native/procedural under controlling source scope can pass its native/procedural contract with source and runtime evidence. That classification is not newly withholding required HD work and must not be guessed from the presence of a fallback.",
     "unknownOwnership": "Unresolved families remain unresolved; no automatic exemption.",
     "completionClaim": "A narrower human-approved release scope must be named as such; it does not finish deferred original full-remaster goals."
-  }
+  },
+  "mainSource": "adf864be75153774455cd9bebc7561335d297b80",
+  "publicGeneration": 2,
+  "publicBuildRun": 38159212003,
+  "inventoryCheckpoints": {
+    "historicalPublic": {
+      "source": "0af4f997e27f49783180cb2ff1c5a04012467289",
+      "fields": 4892,
+      "paintedFields": 6,
+      "fieldHolds": 270
+    },
+    "public": {
+      "source": "d73113341610af56f27a1c68e7f5172d157b62c0",
+      "fields": 4917,
+      "paintedFields": 31,
+      "fieldHolds": 245,
+      "terrainHolds": 1,
+      "paintedBattleMasters": 12
+    },
+    "candidate": {
+      "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+      "fields": 4925,
+      "paintedFields": 39,
+      "fieldHolds": 237,
+      "terrainHolds": 1,
+      "runtimePaintedSelectedMasters": 12,
+      "presentationSelectedMasters": 22,
+      "totalPaintedBattleMasters": 34,
+      "published": false,
+      "nativeAcceptedFields": 0,
+      "finalQualityAcceptedFields": 0,
+      "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4"
+    }
+  },
+  "publicEvidence": {
+    "carrier": "https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-current",
+    "verification": "Fresh read of current carrier verifies generation/source/build-run binding; ROOT reports anonymous actual downloads and exact package checks passed.",
+    "observedDate": "2026-10-11"
+  },
+  "positiveDeviceObservations": [
+    {
+      "report": "good news! the engine flickering problem is gone!",
+      "platform": "Steam Deck",
+      "sourceContext": "d73113341610af56f27a1c68e7f5172d157b62c0",
+      "evidenceType": "direct human observation relayed by ROOT",
+      "scope": "Observed session only; exact device/settings/scene receipt, broader campaign/device routing and final beauty remain pending."
+    },
+    {
+      "report": "the FMV are working correctly",
+      "evidenceType": "Earlier direct human MEDIA observation",
+      "scope": "Observed scenes only; all-18-film, routing and suspend acceptance remain pending."
+    }
+  ],
+  "sourceCheckpointHistory": [
+    {
+      "source": "696cea631db511041ed7ab6466f03da355eebb7c",
+      "scope": "17-domain baseline plus PR30 static content; prior acceptance document checkpoint"
+    },
+    {
+      "source": "7a8f16155894e53886ff3832a1c5860389ab8c8f",
+      "scope": "PR31 stage-local ledger and PR32 acceptance docs merged; no new download or artwork selection"
+    },
+    {
+      "source": "d73113341610af56f27a1c68e7f5172d157b62c0",
+      "scope": "Generation2 current public source; renderer/input fixes and clean Reinstall shipped; public field inventory 4,917 / 31 / 245."
+    },
+    {
+      "source": "adf864be75153774455cd9bebc7561335d297b80",
+      "scope": "Remote main baseline with current installer entrypoints."
+    },
+    {
+      "source": "37737dfecb5abaae24d16d09294fb3e2c2336cc4",
+      "scope": "Reviewed integration candidate; fields 4,925 / 39 / 237, 22 additional battle paintings, UI 1ccd source accepted; not yet public."
+    },
+    {
+      "source": "b09250ab9a25697169f50ca52739c7f79066cc1e",
+      "scope": "Reviewed installer audit 697 / production 0afd integrated; combined 536 delivery cases, 526 passed and 10 optional skips, plus 32 ModelsHD and 12 CharHD passed; not public."
+    },
+    {
+      "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+      "scope": "Dart four exact source-bound field head variants integrated; existing accepted artwork/geometry unchanged. ROOT 57f CharHD 13 tests newly passed and JAR built; ModelsHD 32 up to date from passing b092. Final CI, main merge and publication pending."
+    }
+  ],
+  "historicalLedgerSource": "b4f2efb15c05cad4a9f2997454d9a71142151b6a",
+  "documentationIntegration": {
+    "pullRequest": 32,
+    "reviewedSource": "2f12f53d3a3b53365d3e356dec923d48eaed9362",
+    "mergeSource": "7a8f16155894e53886ff3832a1c5860389ab8c8f",
+    "scope": "three reviewed documents; no runtime/asset/entrypoint change",
+    "merged": true,
+    "publishedSource": "d73113341610af56f27a1c68e7f5172d157b62c0"
+  },
+  "uiMarkerCorrection": {
+    "source": "1ccd1fc831fac6e67eb73ce5d0ec19c69150c8d2",
+    "integrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+    "status": "accepted engineering source merged on main through PR40; not yet public",
+    "nativeDraws": 38,
+    "focusedTestsPassed": 15,
+    "oldSource": "54fa07d2fb6aaf1a4974b1c913befbb874713f73",
+    "oldStaleHdFramesPerChangedImageClutFamily": 24,
+    "correctedStaleHdFramesPerChangedImageClutFamily": 0,
+    "evidence": "Windowless GL/CGL teardown and real-destroy injected-failure controls; actual-input invalidation/reload and bounded residency; renderer/UI source blobs matched reviewed source.",
+    "limits": "No GLES, physical Deck, all-campaign or final appearance acceptance.",
+    "mainMerge": "0d4bfd118a5a4e87905bd6c724b9c71abd1b0843",
+    "pullRequest": 40,
+    "remoteBranchRetired": true,
+    "localBranchRetired": true
+  },
+  "installerAuditReview": {
+    "pullRequest": 39,
+    "state": "Standards and Spec clear at frozen 697 / production 0afd; integrated in reviewed candidate, main merge and publication pending",
+    "findings": [
+      {
+        "priority": 1,
+        "issue": "Personal-root receipt placement",
+        "status": "closed in source by independently reviewed 0afd correction; integrated into candidate, not public"
+      },
+      {
+        "priority": 2,
+        "issue": "Snapshot receipt/payload filename collision",
+        "status": "closed in source by independently reviewed 0afd correction; integrated into candidate, not public"
+      },
+      {
+        "priority": 1,
+        "issue": "Legacy snapshot-root snapshot-files.properties skipped by basename during Reinstall; old folder subsequently deleted",
+        "status": "closed in source by independently reviewed 0afd correction; integrated into candidate, not public",
+        "correctiveSource": "0afd9c30a164e52f0d2162b02feb69b906ca67a4",
+        "ownerControls": "Three parameterized failing-before/passing-after cases: ordinary owner notes, malformed receipt-like bytes and incomplete receipt-like bytes; reported by owner, not rerun in this documentation update."
+      }
+    ],
+    "collisionCorrectionSource": "865dfc1920866cf59cdc9d7987af9454b00b771a",
+    "correctiveSource": "0afd9c30a164e52f0d2162b02feb69b906ca67a4",
+    "finalDocumentationSource": "69736473ca4bba7e0a3bce971b6a46e694554ce5",
+    "merged": false,
+    "published": false,
+    "priorCorrectiveSource": "f8a582932316c8b0339684553619f9954d2ec804",
+    "remotePullRequestHead": "69736473ca4bba7e0a3bce971b6a46e694554ce5",
+    "frozenReviewedHead": "69736473ca4bba7e0a3bce971b6a46e694554ce5",
+    "integrationSource": "b09250ab9a25697169f50ca52739c7f79066cc1e",
+    "currentIntegrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+    "integratedIntoCandidate": true,
+    "mainMerged": false,
+    "standards": "clear per independent root review",
+    "spec": "clear per independent root review",
+    "reviewBoundary": "Engineering source closure only; final combined CI, main/publication and physical acceptance remain pending.",
+    "readOnlyPreservationStatus": "Read-only custom-launcher and personal-file Update/Reinstall defects closed in reviewed production 0afd; device acceptance remains pending.",
+    "verification": {
+      "ownerDelivery": {
+        "found": 533,
+        "passed": 523,
+        "skipped": 10,
+        "failed": 0,
+        "errors": 0,
+        "skipScope": "existing optional tests"
+      },
+      "independentRootCorrectiveControls": [
+        20,
+        36
+      ],
+      "combinedPreDartSource": "b09250ab9a25697169f50ca52739c7f79066cc1e",
+      "combinedPreDartDelivery": {
+        "found": 536,
+        "passed": 526,
+        "skipped": 10,
+        "failed": 0,
+        "errors": 0
+      },
+      "combinedPreDartModelsTestsPassed": 32,
+      "combinedPreDartCharTestsPassed": 12,
+      "evidenceScope": "Recorded owner/root headless results, not newly rerun by this metadata reconciliation."
+    }
+  },
+  "pendingWork": [
+    {
+      "domain": "A06",
+      "owner": "ENV",
+      "issue": "Remaining field/terrain and animated/state artwork plus final scene acceptance",
+      "status": "Candidate has 237 held fields and one terrain hold; partial rock/cushion/bedding authoring accepted in source does not finish required coverage.",
+      "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+      "historicalArtCoverageSource": "37737dfecb5abaae24d16d09294fb3e2c2336cc4"
+    },
+    {
+      "domain": "A09",
+      "owner": "CHAR",
+      "issue": "Revised elbow curve samples and body fitting/collision work",
+      "status": "isolated geometry study; full-body moving topology/fidelity/physical acceptance pending",
+      "source": "264f8645784de50a2d6aa399f2d8118272043727 is last coordinator-confirmed draft reference, not asserted as source of later study"
+    },
+    {
+      "domain": "A01",
+      "owner": "ROOT",
+      "issue": "Final integrated installer CI, main/public delivery and physical maintenance acceptance",
+      "status": "Reviewed preservation defects closed in source and integrated; final combined candidate CI/main merge/publication and device gates pending.",
+      "source": "57f4dcf26ceb25ea0907760da87a0e967a837159"
+    }
+  ],
+  "installerKnownGaps": [
+    {
+      "priority": 1,
+      "issue": "Legacy snapshot metadata-looking personal bytes were lost by basename-only exclusion",
+      "sourceWithConfirmedFailure": "f8a582932316c8b0339684553619f9954d2ec804",
+      "implementedCorrectionSource": "0afd9c30a164e52f0d2162b02feb69b906ca67a4",
+      "status": "closed in source at reviewed 0afd; integrated into candidate; publication and physical acceptance pending",
+      "requiredClosure": "Final exact-source combined CI, main merge, verified publication and physical acceptance; source-defect closure already verified.",
+      "engineeringReviewClosure": "Standards and Spec clear per independent root review",
+      "integrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159"
+    }
+  ],
+  "candidateVerification": {
+    "source": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+    "status": "Final candidate CharHD tests and JAR pass; exact final CI/main merge/publication pending",
+    "priorCombinedSource": "b09250ab9a25697169f50ca52739c7f79066cc1e",
+    "priorCombinedDelivery": {
+      "found": 536,
+      "passed": 526,
+      "skipped": 10,
+      "failed": 0,
+      "errors": 0
+    },
+    "priorCombinedModelsPassed": 32,
+    "priorCombinedCharPassed": 12,
+    "requiredFinalCharTests": 13,
+    "mainMerged": false,
+    "published": false,
+    "limits": "Headless source/component results do not pass device or campaign cases.",
+    "finalCandidateCharTests": {
+      "passed": 13,
+      "skipped": 0,
+      "failed": 0,
+      "execution": "Newly executed at exact 57f source by ROOT"
+    },
+    "finalCandidateModelsTests": {
+      "passed": 32,
+      "skipped": 0,
+      "failed": 0,
+      "execution": "Up-to-date result from passing b092 run; not rerun at 57f"
+    },
+    "finalCandidateCharHdJar": "pass"
+  },
+  "dartFieldHeadBindings": {
+    "source": "9bb30ecb86262c50838b67427b72e0db59205f8e",
+    "integrationCheckpoint": "57f4dcf26ceb25ea0907760da87a0e967a837159",
+    "status": "independently reviewed source binding correction; integrated, not public",
+    "inventoriedExactVariants": 4,
+    "inventoriedReferences": 1086,
+    "actualSourceRouteModChecksPassed": 96,
+    "cpuCacheLifecycleCyclesPassed": 64,
+    "componentCharTestsPassed": 13,
+    "componentModelsTestsPassed": 32,
+    "existingAcceptedTextureGeometryUvsFitUnchanged": true,
+    "newArtworkPromoted": false,
+    "evidenceDocument": "docs/definitive/DART_FIELD_HEAD_BINDINGS.md",
+    "limits": "Inventoried routes/source and CPU/cache checks only; no actual game-state transition/GPU/Deck/final visual/full-campaign acceptance."
+  },
+  "remoteMainCheckpoint": "0d4bfd118a5a4e87905bd6c724b9c71abd1b0843",
+  "battlePresentationAudit": {
+    "source": "29480f78a97298b8ad0325e57313933515678beb",
+    "integrationSource": "3c20a4f72a5e5db99b42530fffed807c32383edd",
+    "standards": "clear",
+    "spec": "clear",
+    "focusedIndependentTests": 41,
+    "status": "Installed selected pixels and immutable review are validated when drafts accumulate; coherent receipt erasure rejects. Actual initial baseline and selected22 plus pending1 pass.",
+    "runtimeSelectionUnchanged": true,
+    "nativeAcceptance": false
+  },
+  "integrationPolicy": "Land each completed, source-bound and independently reviewed increment into main while owners continue later work on their branches. Whole-mod or whole-campaign completion is not a prerequisite for a safe increment. Required HD content and final/device acceptance remain tracked; publication verifies the exact accepted source."
 }
