@@ -1,0 +1,41 @@
+{
+  "state": "experimental-not-accepted",
+  "method": "registered visible profile hair and ears; immutable frontal facial paint",
+  "inputs": {
+    "head-textured.glb": "e3877810ed3324497d7444e07f3991435dd9a7480c524c5f972c9ef8967a4f84",
+    "head-basecolour.png": "abf15d426b229b2d1d8a9c0b36a758a104b9af06f5b408373485bd8ad6982452",
+    "head-paint-profile-v1.png": "865041edd2ea41c89cc3223183a00d14709242ebce88cec34d919f447dd49ede",
+    "ear-controls.json": "6483516622889f8b3b19b28014e4c23ff7a39cb3069f93185c20ccdf63d69261"
+  },
+  "bakerSha256": "841d01d64249f917dcd90c075c18d0ff058fdf78d6ec143e6fb390ddcb49a37a",
+  "lockedFrontalFaceTexels": 492701,
+  "lockedFrontalFaceTexelsChanged": 0,
+  "protectedFeatures": [
+    "left-eye",
+    "right-eye",
+    "nose",
+    "mouth",
+    "chin"
+  ],
+  "profileFacialFeatureLayers": 0,
+  "views": [
+    {
+      "angle": 90,
+      "paintedTexels": 59626,
+      "hairTexels": 0,
+      "earTexels": 59626,
+      "minimumWarpDeterminant": 0.7274638110326319,
+      "anchorResidualPixels": 7.963152328398962e-13
+    },
+    {
+      "angle": -90,
+      "paintedTexels": 59569,
+      "hairTexels": 0,
+      "earTexels": 59569,
+      "minimumWarpDeterminant": 0.7262564301318596,
+      "anchorResidualPixels": 1.048140854583481e-12
+    }
+  ],
+  "triangles": 12032,
+  "accepted": false
+}

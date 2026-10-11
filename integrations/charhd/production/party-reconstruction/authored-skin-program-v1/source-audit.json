@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "scope": "Haschel field/battle source identity metadata for the authored skin CPU probe; no original geometry or texture payloads.",
+  "characters": [
+    {
+      "character": "haschel",
+      "status": "source-audited-pending-art",
+      "models": [
+        {
+          "form": "field",
+          "source": "SECT/DRGN21.BIN/548/132",
+          "sourceSha256": "329e7b5dc45c842d036a26d906bdea5958c602d17aa2fe32fbc8b081f3e299e4",
+          "sourceGeometrySha256": "1f8c77153a2bec70f6696b8e10bfef094af417d2ad949365221cf55a1a22531c",
+          "animationSha256": "8dccd5c83fd11ab07b7b4b260beb9ec6cc48f394b9c101a2e08df746f786c94d"
+        },
+        {
+          "form": "combat",
+          "source": "characters/haschel/models/combat/32",
+          "sourceSha256": "285ec5c257b9a94b6fc27d902be5135f3b377f19c020a085771049b61576e885",
+          "sourceGeometrySha256": "50a56313fee6e8242631364cc498ee2ae188e84ce797653c32d7d2918dcd165a",
+          "animationSha256": "e830fb9283bf6eeda25e23300ac55e1db9e691b6f4903af68c0a8d9f378c74c8"
+        }
+      ]
+    }
+  ]
+}
