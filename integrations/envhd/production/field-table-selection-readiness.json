@@ -31,7 +31,7 @@
       "passed": 39
     }
   ],
-  "freshPackageVerified": false,
+  "freshPackageVerified": true,
   "skurfaRegenerated": false,
   "engineChanged": false,
   "installerUiChanged": false,
@@ -39,5 +39,41 @@
   "publicReleasePublished": false,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "originalSourcesReferencesAndComparisonsExcluded": true
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "packageVerifiedSourceCommit": "76f4292db144360355bbd4882da1b690ebe6fcd4",
+  "build": "EnvHD JAR and all four field parts built successfully from clean committed source; fallback source pin exact.",
+  "packageVerification": {
+    "selectedFields": 4926,
+    "jarResources": 5312,
+    "parts": 4,
+    "oneModSwitch": true,
+    "allSelectedResourceNamesSizesAndBytesExact": true,
+    "files": [
+      {
+        "name": "Env1HD-v0.1.0.zip",
+        "size": 552595435,
+        "sha256": "eb4d0119eacfa81c98982a9780bffca4ae56b28aedb5d182227774bd09bc5205"
+      },
+      {
+        "name": "Env2HD-v0.1.0.zip",
+        "size": 573556667,
+        "sha256": "f8796a15188f2a1ab5354c04019fdbef8ea9df5d3512fcc28af32765fe176718"
+      },
+      {
+        "name": "Env3HD-v0.1.0.zip",
+        "size": 570092317,
+        "sha256": "2092c3660151873efdf44098e0bd00427b5389e7681fb9fb71950fe51952a24b"
+      },
+      {
+        "name": "Env4HD-v0.1.0.zip",
+        "size": 672957319,
+        "sha256": "a457915e652f8382e85dad5c4a785a02f5ca2e44a2ec776f0c048c71e41f85ed"
+      },
+      {
+        "name": "EnvHD-v0.1.0.jar",
+        "size": 277913862,
+        "sha256": "4343402bdea3de25d4b5df56e83798ac6e2e3607ccb5c243032dc92ca1689ff2"
+      }
+    ]
+  }
 }
