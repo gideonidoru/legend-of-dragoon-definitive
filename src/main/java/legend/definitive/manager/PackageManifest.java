@@ -68,6 +68,7 @@ public record PackageManifest(Properties metadata, Properties hashes) {
     if(!actual.containsAll(ROOT_FILES) || !actual.contains(this.metadata.getProperty("gameJar"))) throw new IOException("Required package files are missing.");
     if(actual.stream().noneMatch(n -> n.startsWith("libs/") && n.endsWith(".jar")) || actual.stream().noneMatch(n -> n.startsWith("bundled-mods/") && n.endsWith(".jar"))) throw new IOException("Engine dependencies or bundled artwork are missing.");
     if(!identity(this.metadata, this.hashes).equals(this.id())) throw new IOException("Package metadata identity mismatch.");
+    legend.definitive.fmv.FmvPackageAssets.verify(root, this.hashes);
   }
 
   /** Verify the complete executable dependency closure before starting a manager.

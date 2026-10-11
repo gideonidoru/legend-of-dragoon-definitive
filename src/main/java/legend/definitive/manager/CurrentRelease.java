@@ -56,22 +56,31 @@ final class CurrentRelease {
     final var platforms = object(pointer.get("platforms"));
     for(final String platform : List.of("linux-x64", "macos-arm64")) {
       final var spec = object(platforms.get(platform));
-      for(final String kind : List.of("package", "contents")) names.add(text(object(spec.get(kind)), "name"));
+      for(final String kind : List.of("package", "contents", "assembly")) if(spec.containsKey(kind)) names.add(text(object(spec.get(kind)), "name"));
     }
-    for(final String kind : List.of("installer", "fmvSource", "entry")) names.add(text(object(pointer.get(kind)), "name"));
+    for(final String kind : List.of("installer", "entry")) names.add(text(object(pointer.get(kind)), "name"));
+    if(pointer.get("format") instanceof Long format && format == 2) {
+      for(final Object source : object(pointer.get("fmvSources")).values()) names.add(text(object(source), "name"));
+    } else names.add(text(object(pointer.get("fmvSource")), "name"));
     return names;
   }
   private static ReleaseUpdates.Candidate parse(final String exact, final String digest, final Map<?, ?> carrier, final String platform) throws IOException {
     final Map<?, ?> pointer = object(new ReleaseUpdates.Json(exact).read());
     if(!ReleaseUpdates.json(canonical(pointer)).equals(exact)) throw new IOException("Current manifest is not canonical JSON.");
-    fields(pointer, "format", "generation", "sourceRevision", "buildRun", "releaseTag", "releaseId", "publishedAt", "platforms", "installer", "fmvSource", "entry");
-    if(number(pointer, "format", 1) != 1) throw new IOException("Unsupported current manifest format.");
+    final long format = number(pointer, "format", 2);
+    fields(pointer, "format", "generation", "sourceRevision", "buildRun", "releaseTag", "releaseId", "publishedAt", "platforms", "installer", format == 2 ? "fmvSources" : "fmvSource", "entry");
     final String tag = text(carrier, "tag_name");
     if(!tag.equals("definitive-current") || !tag.equals(text(pointer, "releaseTag")) || !identifier(text(pointer, "releaseId")) || !text(pointer, "releaseId").equals(String.valueOf(carrier.get("id")))) throw new IOException("Current manifest carrier mismatch.");
     final Map<?, ?> platforms = object(pointer.get("platforms")); fields(platforms, "linux-x64", "macos-arm64");
     Map<?, ?> selected = null;
     for(final String target : List.of("linux-x64", "macos-arm64")) {
-      final Map<?, ?> spec = object(platforms.get(target)); fields(spec, "package", "contents");
+      final Map<?, ?> spec = object(platforms.get(target));
+      if(format == 2) fields(spec, "package", "contents", "assembly"); else fields(spec, "package", "contents");
+      if(format == 2) {
+        final var assembly = object(spec.get("assembly"));
+        matchAsset(carrier, assembly, "assembly-" + target + "-" + text(assembly, "sha256") + ".json", true);
+        number(assembly, "bytes", 16L * 1024 * 1024);
+      }
       for(final String kind : List.of("package", "contents")) {
         final Map<?, ?> descriptor = object(spec.get(kind));
         matchAsset(carrier, descriptor, kind + "-" + target + "-" + text(descriptor, "sha256") + ".zip", true);
@@ -83,11 +92,28 @@ final class CurrentRelease {
     final Map<?, ?> installer = object(pointer.get("installer")), entry = object(pointer.get("entry"));
     matchAsset(carrier, installer, "installer-" + text(installer, "sha256") + ".zip", true);
     matchAsset(carrier, entry, "entry-" + text(entry, "sha256") + ".sh", true);
-    final Map<?, ?> fmvSource = object(pointer.get("fmvSource"));
-    matchAsset(carrier, fmvSource, "source-fmvhd-" + text(fmvSource, "sha256") + ".zip", true);
+    final Map<String, ReleaseUpdates.MovieSource> movieSources = new HashMap<>();
+    if(format == 2) {
+      final var sources = object(pointer.get("fmvSources"));
+      if(!sources.keySet().equals(Set.copyOf(legend.definitive.fmv.FmvAssetManifest.NAMES))) throw new IOException("Current movie source set is incomplete.");
+      for(final String name : legend.definitive.fmv.FmvAssetManifest.NAMES) {
+        final var source = object(sources.get(name));
+        matchAsset(carrier, source, "file-" + text(source, "sha256"), true);
+        movieSources.put(name, new ReleaseUpdates.MovieSource(text(source, "sha256"), number(source, "bytes", 512L * 1024 * 1024)));
+      }
+    } else {
+      final Map<?, ?> fmvSource = object(pointer.get("fmvSource"));
+      matchAsset(carrier, fmvSource, "source-fmvhd-" + text(fmvSource, "sha256") + ".zip", true);
+    }
+    ReleaseUpdates.AssemblyAsset assembly = null;
+    if(format == 2) {
+      final var descriptor = object(selected.get("assembly"));
+      final var asset = matchAsset(carrier, descriptor, text(descriptor, "name"), true);
+      assembly = new ReleaseUpdates.AssemblyAsset(text(asset, "id"), URI.create(text(asset, "browser_download_url")), text(descriptor, "sha256"), number(descriptor, "bytes", 16L * 1024 * 1024));
+    }
     final Map<?, ?> pack = object(selected.get("package")), contents = object(selected.get("contents"));
     final Map<?, ?> packAsset = matchAsset(carrier, pack, text(pack, "name"), true), contentsAsset = matchAsset(carrier, contents, text(contents, "name"), true);
-    final var revision = new ReleaseUpdates.CurrentRevision(number(pointer, "generation", MAX_NUMBER), text(pointer, "sourceRevision"), digest, Long.toString(number(pointer, "buildRun", MAX_NUMBER)), number(pack, "bytes", 2L*1024*1024*1024), number(contents, "bytes", 8L*1024*1024));
+    final var revision = new ReleaseUpdates.CurrentRevision(number(pointer, "generation", MAX_NUMBER), text(pointer, "sourceRevision"), digest, Long.toString(number(pointer, "buildRun", MAX_NUMBER)), number(pack, "bytes", 2L*1024*1024*1024), number(contents, "bytes", 8L*1024*1024), movieSources, assembly);
     validate(revision);
     final Instant published;
     try { final String date = text(pointer, "publishedAt"); if(!date.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z")) throw new IOException("Current build date must use UTC."); published = Instant.parse(date); } catch(final java.time.DateTimeException failure) { throw new IOException("Invalid current build publication date.", failure); }
@@ -133,6 +159,12 @@ final class CurrentRelease {
       || !revision.manifestSha256().matches("[a-f0-9]{64}") || !revision.buildRun().matches("[1-9][0-9]{0,15}") || Long.parseLong(revision.buildRun()) > MAX_NUMBER
       || revision.packageBytes() <= 0 || revision.packageBytes() > 2L * 1024 * 1024 * 1024
       || revision.contentsBytes() <= 0 || revision.contentsBytes() > 8L * 1024 * 1024) throw new IOException("Invalid current build identity.");
+    if(!revision.movieSources().isEmpty() && !revision.movieSources().keySet().equals(Set.copyOf(legend.definitive.fmv.FmvAssetManifest.NAMES))) throw new IOException("Invalid current movie source set.");
+    for(final var source : revision.movieSources().values()) if(!source.sha256().matches("[a-f0-9]{64}") || source.bytes() <= 0 || source.bytes() > 512L * 1024 * 1024) throw new IOException("Invalid current movie source identity.");
+    final var assembly = revision.assembly();
+    if(assembly != null && (revision.movieSources().isEmpty() || !identifier(assembly.id()) || !assembly.sha256().matches("[a-f0-9]{64}") || assembly.bytes() <= 0 || assembly.bytes() > 16L * 1024 * 1024
+      || !assembly.url().toString().equals(ROOT + "definitive-current/assembly-" + PackageManifest.hostPlatform() + "-" + assembly.sha256() + ".json"))) throw new IOException("Invalid current archive assembly identity.");
+
   }
   static void requireAllowed(final Properties state, final ReleaseUpdates.CurrentRevision revision) throws IOException {
     validate(revision);

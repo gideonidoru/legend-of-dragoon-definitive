@@ -72,6 +72,7 @@ final class FileDelivery {
         if(!PackageManifest.sha256(inventory).equals(asset.sha256())) throw new IOException("Release inventory checksum mismatch. Your current installation is unchanged.");
         if(candidate.revision() != null && Files.size(inventory) != candidate.revision().contentsBytes()) throw new IOException("Current build inventory size mismatch.");
         final Contents contents = read(inventory, candidate.tag());
+        if(candidate.revision() != null) candidate.revision().validateMovieContents(contents.manifest().hashes(), contents.sizes());
         if(candidate.revision() != null && !candidate.revision().sourceRevision().equals(contents.manifest().metadata().getProperty("sourceRevision"))) throw new IOException("Current build inventory source mismatch.");
         if(!expectedIdentity.isEmpty() && !expectedIdentity.equals(contents.manifest().id())) throw new IOException("Downloaded inventory differs from the supplied online package. Download the current installer again.");
         if(repairing && candidate.revision() == null && !contents.manifest().id().equals(state.getProperty("version"))) throw new IOException("Repair must match the installed release exactly. Use Update for another release.");
@@ -108,6 +109,7 @@ final class FileDelivery {
           }
         }
         contents.manifest().verify(staged, PackageManifest.hostPlatform());
+        if(candidate.revision() != null) candidate.revision().validateMovieManifest(staged);
         final String result = store.install(staged, candidate.assetId(), candidate.publishedAt(), progress, fullReinstall, candidate.revision());
         return (repairing ? "Repair complete. " : fullReinstall ? "Reinstall complete. " : state.containsKey("version") ? "Update complete. " : "Install complete. ") + fetched + " files downloaded; " + reused + " verified files reused. " + result;
       } finally { Files.deleteIfExists(inventory); InstallStore.deleteOwnedTree(staged); }

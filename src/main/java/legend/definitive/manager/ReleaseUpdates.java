@@ -17,7 +17,42 @@ public final class ReleaseUpdates {
   private static final String REPO = "gideonidoru/legend-of-dragoon-definitive";
   private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).followRedirects(HttpClient.Redirect.NORMAL).build();
   public record ContentsAsset(String id, URI url, String sha256) { }
-  public record CurrentRevision(long generation, String sourceRevision, String manifestSha256, String buildRun, long packageBytes, long contentsBytes) { }
+  public record MovieSource(String sha256, long bytes) { }
+  public record AssemblyAsset(String id, URI url, String sha256, long bytes) { }
+  public record CurrentRevision(long generation, String sourceRevision, String manifestSha256, String buildRun, long packageBytes, long contentsBytes,
+                                Map<String, MovieSource> movieSources, AssemblyAsset assembly) {
+    public CurrentRevision { movieSources = Map.copyOf(movieSources); }
+    public CurrentRevision(final long generation, final String sourceRevision, final String manifestSha256, final String buildRun, final long packageBytes, final long contentsBytes) {
+      this(generation, sourceRevision, manifestSha256, buildRun, packageBytes, contentsBytes, Map.of(), null);
+    }
+    void validateMovieManifest(final Path staged) throws IOException {
+      if(this.movieSources.isEmpty()) return;
+      final legend.definitive.fmv.FmvAssetManifest assets;
+      try(final var input = Files.newInputStream(staged.resolve(legend.definitive.fmv.FmvAssetManifest.FILE), LinkOption.NOFOLLOW_LINKS)) {
+        assets = legend.definitive.fmv.FmvAssetManifest.read(input);
+      }
+      for(final var entry : this.movieSources.entrySet()) {
+        final var film = assets.films().get(entry.getKey());
+        if(film == null || !entry.getValue().sha256().equals(film.source().sha256()) || entry.getValue().bytes() != film.source().bytes()) throw new IOException("Current movie name and approved manifest disagree.");
+      }
+    }
+    void validateMovieContents(final Properties hashes, final Properties sizes) throws IOException {
+      if(this.movieSources.isEmpty()) return;
+      if(!this.movieSources.keySet().equals(Set.copyOf(legend.definitive.fmv.FmvAssetManifest.NAMES))) throw new IOException("Current build movie source set is incomplete.");
+      final Set<String> expected = new HashSet<>();
+      for(final MovieSource source : this.movieSources.values()) {
+        if(!source.sha256().matches("[a-f0-9]{64}") || source.bytes() <= 0 || source.bytes() > 512L * 1024 * 1024) throw new IOException("Invalid current movie source.");
+        final String path = legend.definitive.fmv.FmvAssetManifest.ROOT + "videos/" + source.sha256() + ".mp4";
+        expected.add(path);
+        if(!source.sha256().equals(hashes.getProperty(path)) || !Long.toString(source.bytes()).equals(sizes.getProperty(path))) throw new IOException("Current movie source and package disagree.");
+      }
+      final String root = legend.definitive.fmv.FmvAssetManifest.ROOT;
+      expected.addAll(Set.of(legend.definitive.fmv.FmvAssetManifest.FILE, root + "provenance.json", root + "NOTICE.txt"));
+      final Set<String> actual = new HashSet<>();
+      for(final String name : hashes.stringPropertyNames()) if(name.startsWith(root)) actual.add(name);
+      if(!actual.equals(expected)) throw new IOException("Current movie package closure is incomplete or unexpected.");
+    }
+  }
   public record Candidate(String tag, String assetId, URI url, String sha256, Instant publishedAt, String releaseNotes, ContentsAsset contents, CurrentRevision revision) {
     public Candidate(final String tag, final String assetId, final URI url, final String sha256, final Instant publishedAt, final String releaseNotes, final ContentsAsset contents) { this(tag, assetId, url, sha256, publishedAt, releaseNotes, contents, null); }
     public Candidate(final String tag, final String assetId, final URI url, final String sha256, final Instant publishedAt, final String releaseNotes) { this(tag, assetId, url, sha256, publishedAt, releaseNotes, null); }
