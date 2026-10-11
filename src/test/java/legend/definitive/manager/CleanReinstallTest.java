@@ -208,4 +208,17 @@ class CleanReinstallTest {
     assertEquals("save",Files.readString(data.resolve("saves/owner.txt")));assertEquals("disc",Files.readString(store.root().resolve("isos/owner.iso")));
   }
 
+  @Test void invalidatedExtractionBackupKeepsUnknownPersonalFiles() throws Exception {
+    var store = new InstallStore(temporary.resolve("extraction-backup")); var pack = pack("extraction-backup-pack"); store.install(pack);
+    var workspace = store.prepareLaunch(); Files.writeString(workspace.resolve("files/version"),"5");
+    Files.writeString(workspace.resolve("files/owner-note.txt"),"backup note"); Files.writeString(workspace.resolve("files/config.conf"),"backup config");
+    Files.writeString(workspace.resolve("files/owner.iso"),"backup disc");
+    Files.createDirectories(workspace.resolve("files/SECT/DRGN0.BIN/1")); Files.writeString(workspace.resolve("files/SECT/DRGN0.BIN/1/0"),"generated data");
+    store.invalidatePreparedDiscs();
+    Path backup;try(var paths=Files.list(store.root())){backup=paths.filter(path->path.getFileName().toString().startsWith("disc-extraction-recovery-")).findFirst().orElseThrow();}
+    store.install(pack,"",null,InstallProgress.NONE,true);var data=store.data(store.state());var preserved=data.resolve("recovered-reinstall").resolve(backup.getFileName());
+    assertEquals("backup note",Files.readString(preserved.resolve("owner-note.txt")));assertEquals("backup config",Files.readString(preserved.resolve("config.conf")));assertEquals("backup disc",Files.readString(preserved.resolve("owner.iso")));
+    assertFalse(Files.exists(backup));assertFalse(Files.exists(preserved.resolve("SECT/DRGN0.BIN/1/0")));store.verifyInstalled();
+  }
+
 }

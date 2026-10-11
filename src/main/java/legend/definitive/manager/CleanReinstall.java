@@ -49,6 +49,8 @@ final class CleanReinstall {
             preserveFlatDirectory(root, entry, preserved, active, next);
           } else if(PRIVATE.contains(name)) {
             preserveTree(root, entry, preserved, active);
+          } else if(name.startsWith("disc-extraction-recovery-")) {
+            preserveExtraction(root, entry, preserved, active);
           } else if(name.startsWith("release-recovery-")) {
             preserveApplication(root, entry, preserved, active, false, next);
           } else if(!application(name) && !runtimeRoot(root, name)) {
@@ -66,6 +68,21 @@ final class CleanReinstall {
     } catch(final IOException | RuntimeException failure) {
       try { result.close(); } catch(final IOException cleanup) { failure.addSuppressed(cleanup); }
       throw failure;
+    }
+  }
+  private static void preserveExtraction(final Path root, final Path source, final Path staged, final Path active) throws IOException {
+    if(Files.isSymbolicLink(source)) throw new IOException("Linked extraction backup prevents personal-data census.");
+    try(final var paths = Files.walk(source)) {
+      final var bounded = paths.limit(100001).toList();
+      if(bounded.size() > 100000) throw new IOException("Extraction backup census exceeds its safe bound.");
+      for(final Path path : bounded) {
+        checkCancelled();
+        if(Files.isSymbolicLink(path)) throw new IOException("Linked personal extraction backup entry.");
+        if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) continue;
+        if(!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Unsupported extraction backup entry.");
+        final String name = source.relativize(path).toString().replace('\\', '/');
+        if(name.matches("(?i).*\\.(iso|cue|chd|img|mdf)") || !generatedExtraction("files/" + name)) preserveTree(root, path, staged, active);
+      }
     }
   }
   private static void preserveFlatDirectory(final Path root, final Path source, final Path staged, final Path active, final PackageManifest next) throws IOException {
