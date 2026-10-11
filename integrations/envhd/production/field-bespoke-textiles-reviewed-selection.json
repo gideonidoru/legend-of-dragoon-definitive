@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Complete author-reviewed painted development candidate set: preserve31 reviewed selections and add one Donau patterned furnishing. New candidate is not runtime selected; independent review/native/final quality remain pending. The full Deningrad bed hold is retained; original31-record manifest and current4917selection remain unchanged.",
+  "scope": "Complete independently reviewed painted development candidate set: preserve31 selections and add Donau patterned furnishing. Source preflight is required before runtime selection. Deningrad occupied-plane and other held candidates remain held; native and final acceptance pending.",
   "sourceSelectionBaseCommit": "440a062b3069d10e8e21d562b7c4b6ca10d29ff8",
   "algorithmPath": "scripts/repair-envhd-painted-cutout.py",
   "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
@@ -1876,5 +1876,14 @@
       "finalQualityAcceptance": "pending"
     }
   ],
-  "independentNewCandidateReview": "pending"
+  "independentNewCandidateReview": "clear-development-candidate-only",
+  "independentReview": {
+    "source": "9185b7459f149e53da3b6c845356384d001d90ec",
+    "candidateSha256": "6342664be1f6e20cabb00b4e47efc8bde58f8844cc478231a1eac05dbbebee9e",
+    "review": "Root viewed original/held-neural/painted comparison, original tavern context and exact cutout output. Development material/silhouette review clear: paired brown angled surfaces, muted red/ochre marks, dark separation and green support retained. No new emblem/floral motif apparent. Fine stitch positions and interpreted seams are not source-exact claims. Exact alpha boundaries retain native pixel stair steps.",
+    "verdict": "independent-development-candidate-review-clear",
+    "nativeAcceptance": "pending",
+    "finalQualityAcceptance": "pending",
+    "placementOcclusionVisibility": "pending actual runtime/state review"
+  }
 }

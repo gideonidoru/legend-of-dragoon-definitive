@@ -1,18 +1,18 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "32f5db9ffd3859bb1436020a4897556c8622721e",
+  "sourceSelectionCheckpoint": "1306cbb46de94f478a8fe1d04db05b46cb99fd3a plus independently reviewed Donau selection",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "3b3e4bfdf74d308843238751bf1c809433f5b764c641ad5527594f791c441f22",
-    "field-runtime-artwork.json": "46b419b4afe4be41aa6c703be93cf273085a167e54a2b534e30c5960808afc3e",
+    "full-coverage.json": "00cb729167609e6b8bed7f0450ac12c56252cfbfd2f43cb23c18809198d5dc72",
+    "field-runtime-artwork.json": "93f6a2760b631383b1c2adfecbbf79026b3b93aff5517428bde436d10f18df27",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "359d9beee7d0b0961012f14b2f5529ab92f1bafcb5caa3c6f45c102973ffb881",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "field-bespoke-bedding-reviewed-selection.json": "6af60fa9447818366fda841ff1b9b362d84ad6a9a4aac2f2384a53725f75b123",
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
     "field-bespoke-natural-rock-held-drafts.json": "b4ecadac7d27c436d3a0ab6f8f1c157402775461e2fbb80afc4ef48bd5ae4d23",
-    "field-bespoke-textiles-reviewed-selection.json": "0b9c7bd2093443980d141c038041af51e1779ce9db37d74a64452578f2983b66",
+    "field-bespoke-textiles-reviewed-selection.json": "bbd204020a76bab277e470eba885e768c1a967d9b54233cda1606f6a4fd629c5",
     "field-bespoke-textile-held-drafts.json": "3fb7c93730ddc60595d6c386f227d77bfdc0f044072eaec772c2022b64102e3b",
     "world-water-source-audit.json": "b9339bbf59cb3518e32766ca4f5f52d69d08ce490ae30e4dc4bdef246a6bdb0b",
     "world-water-candidate-artwork.json": "dd766f4a7d04dfd4b3b97bf9b5ac15e0e71bcb9700a0c31723484f0c61147748"
@@ -21,23 +21,23 @@
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 246,
+  "knownRemainingStaticImages": 245,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4917,
+      "selectedDevelopment": 4918,
       "selectedNeural": 4886,
-      "selectedPainted": 31,
-      "held": 245,
+      "selectedPainted": 32,
+      "held": 244,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 8,
+      "customHeldDraftSourceImages": 7,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
-      "nextTask": "Independently review Donau patterned furnishing, select only if intent/style checks pass; correct Twin Castle embroidery topology; continue held fields and complete native state/Skurfa routes.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 1
+      "nextTask": "Correct Twin Castle embroidery topology; continue244 held fields and native state/Skurfa routes.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 0
     },
     {
       "id": "static-terrain",
@@ -152,8 +152,9 @@
     },
     {
       "manifest": "field-bespoke-textiles-reviewed-selection.json",
-      "newHeldSourceImages": 1,
-      "reason": "Donau author-reviewed candidate awaiting independent review, no selection yet"
+      "newHeldSourceImages": 0,
+      "reason": "Donau independently development-reviewed and source-preflighted; selected. Native and final acceptance pending.",
+      "selectedNewSourceImages": 1
     },
     {
       "manifest": "field-bespoke-textile-held-drafts.json",
@@ -162,7 +163,7 @@
     }
   ],
   "publication": {
-    "runtimeSelectionChanged": false,
+    "runtimeSelectionChanged": true,
     "installerChanged": false,
     "releaseChanged": false,
     "publishedInstaller": {
@@ -177,7 +178,7 @@
       "nativeArtAccepted": 0,
       "finalArtAccepted": 0
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 25,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 26,
     "paintedBattleMastersAwaitingCoordinatedPublication": 12
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint."

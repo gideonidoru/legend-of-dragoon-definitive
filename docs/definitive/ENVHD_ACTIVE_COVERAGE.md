@@ -2,9 +2,9 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **246 images: 245 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **245 images: 244 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection remains 4,917 development images: 4,886 neural and 31 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. The published installer has 4,892 field selections; another 25 fields and 12 painted battle replacements await coordinated publication. All protected Skurfa work is reused.
+Field selection is 4,918 development images: 4,886 neural and 32 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. The published installer has 4,892 field selections; another 26 fields and 12 painted battle replacements await coordinated publication. All protected Skurfa work is reused.
 
 ## Held natural-rock drafts
 
@@ -18,9 +18,9 @@ Nine behavioral checks cover broad recoloring, invented relief, native visibilit
 
 ## Textile candidates
 
-[The complete 32-painting author-reviewed candidate set](../../integrations/envhd/production/field-bespoke-textiles-reviewed-selection.json) preserves the existing 31-painting selection and adds Donau cut 249's two patterned furnishing surfaces. The new painting restores dark brown weave and muted red/ochre marks erased by the neural baseline. It retains the original left/right proportions, dark separation and green-brown support. Independent review remains pending; the current runtime selection and remaining counts are unchanged.
+[The complete 32-painting author-reviewed candidate set](../../integrations/envhd/production/field-bespoke-textiles-reviewed-selection.json) preserves the existing 31-painting selection and adds Donau cut 249's two patterned furnishing surfaces. The new painting restores dark brown weave and muted red/ochre marks erased by the neural baseline. It retains the original left/right proportions, dark separation and green-brown support. Independent development review is clear. Fresh source preflight reproduced all 32 paintings, then selection added only Donau while preserving all 4,917 prior assets and every protected Skurfa cut. Native and final quality acceptance remain pending.
 
-[Twin Castle cut 226's cropped embroidered bed](../../integrations/envhd/production/field-bespoke-textile-held-drafts.json) now has a detailed painting, but the upper embroidery loops have been regularized into circular nodes. The source pattern needs correction before selection. Both candidates pass the unchanged cutout canvas/coverage/alpha/black gates. Only custom generated artwork, repaired variants, prompts and hash-bound metadata are versioned; original game references and comparison boards remain private. Eight known custom-draft source images remain a subset of the 245 held field images.
+[Twin Castle cut 226's cropped embroidered bed](../../integrations/envhd/production/field-bespoke-textile-held-drafts.json) now has a detailed painting, but the upper embroidery loops have been regularized into circular nodes. The source pattern needs correction before selection. Both candidates pass the unchanged cutout canvas/coverage/alpha/black gates. Only custom generated artwork, repaired variants, prompts and hash-bound metadata are versioned; original game references and comparison boards remain private. Seven known custom-draft source images remain a subset of the 244 held field images.
 
 ## Animated world water source
 
