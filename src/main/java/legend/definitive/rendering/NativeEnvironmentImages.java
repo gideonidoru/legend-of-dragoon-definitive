@@ -27,7 +27,7 @@ public final class NativeEnvironmentImages {
       WORKER.execute(() -> {
         if(result.isCancelled()) return;
         try { result.complete(decode(tiles)); }
-        catch(final RuntimeException failure) { result.completeExceptionally(failure); }
+        catch(final Throwable failure) { result.completeExceptionally(failure); }
       });
     } catch(final java.util.concurrent.RejectedExecutionException full) { result.complete(null); }
     return result;
