@@ -16,7 +16,7 @@ HD artwork. Smoother models. Enhanced cinematics. One guided installation.
 
 Built on [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains), Definitive adds an integrated presentation and installation experience: custom model and texture upgrades, restored interface and effect artwork, enhanced films, lighting improvements, campaign presets, and a launcher for updates and recovery. The story, recognizable character designs, original music and Addition-based combat remain central to the experience.
 
-> **Development alpha.** The installer downloads the latest published release. Some features shown below are in the newer source and are being prepared for the next release, including SMAA, expanded character/interface/effect artwork, independent engine clocks and the latest audio, mod-selection and recovery improvements. The remaster is unfinished; physical Steam Deck gameplay and performance validation remain ongoing. [Check the included features before downloading](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
+> **Development alpha.** The current installer includes SMAA, the accepted character/interface/effect artwork, expanded EnvHD field packs, independent engine clocks, FMV pacing fixes and the latest Repair/Reinstall/Uninstall recovery. The remaster is unfinished; physical Steam Deck gameplay and performance validation remain ongoing. [Check the included features before downloading](https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/latest).
 
 ## The heroes you remember. In greater detail.
 
@@ -84,7 +84,7 @@ The bespoke character goal covers **Dart, Rose, Lavitz, Shana, Haschel, Albert, 
 
 Skurfa's HD backgrounds preserve the game's distinctive painted setting. EnvHD extends that presentation with battle panoramas, location artwork and the parchment world map. The full remaster goal also covers terrain, battle surfaces, missing field scenes and environmental props, with the original foreground placement and occlusion preserved.
 
-The [next EnvHD expansion](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/17) extends restoration to world-map terrain, battle surfaces and **2,723 additional field images**, including backgrounds and foreground layers. Four automatically installed field packs—**Env1HD through Env4HD**—share one EnvHD switch. Layer placement and visibility stay tied to the original scenes, and Skurfa’s existing artwork is preserved. This expansion is awaiting merge and release; animated, held and unreviewed surfaces retain the original artwork.
+The [integrated EnvHD expansion](https://github.com/gideonidoru/legend-of-dragoon-definitive/pull/17) extends restoration to world-map terrain, battle surfaces and **2,723 additional field images**, including backgrounds and foreground layers. Four automatically installed field packs—**Env1HD through Env4HD**—share one EnvHD switch. Layer placement and visibility stay tied to the original scenes, and Skurfa’s existing artwork is preserved. This expansion is included in the current combined release; animated, held and unreviewed surfaces retain the original artwork.
 
 ### Magic with sharper detail
 
@@ -160,6 +160,10 @@ Both presets preserve normal Additions and timing windows, default to **1× rewa
 2. Open `Install-Definitive.desktop` in **Dolphin**. Allow execution if prompted.
 3. Choose a folder and supply your **four US game-disc images**, or reuse an existing installation's discs. BIN/raw ISO files and ZIP, RAR or 7z containers are supported.
 4. Let setup prepare the game, add the optional Steam shortcut, and launch from Steam or the Definitive launcher.
+
+The current `.desktop` checks and fetches the latest installer every time it runs. Replace an older pinned `.desktop` once; the new saved copy stays current.
+
+If an older “Manage Installation” or Play shortcut fails before setup opens, download the installer again and select **Repair**, **Reinstall** or **Uninstall** for your existing installation. Repair refreshes the installed launcher when its old hosted release has been retired.
 
 Custom folders and SD cards are supported. Allow space for the game package, Java, your discs and prepared game data; the larger environment expansion also needs additional room for its four field packs. Check the release notes for the package you are installing. Game discs are not included, and source images stay untouched.
 
