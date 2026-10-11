@@ -6,7 +6,7 @@ Scope: bootstrap scripts and runtime selection; download discovery/resume/body l
 
 Source findings being corrected:
 
-- Restore verification skips every file named `snapshot-files.properties`, including personal files below a subdirectory, while snapshot creation inventories them. This prevents legitimate updates/Restore.
+- Snapshot verification excluded personal nested files named `snapshot-files.properties`; the generated root receipt also overwrote a copied owner root file with that name and blocked Update. New `snapshot2-UUID` payloads keep every owner filename; receipts reside in `snapshots/.inventories` outside payloads. Legacy snapshots remain restorable and missing new receipts fail closed.
 - Package hashing, copying and unpacking do not consistently observe interruption; large work can continue after cancellation. Tree copying also accepts linked destination parents.
 - Download continuation validates range headers without bounding the body to the advertised range when Content-Length is absent. Unexpected content encoding is not rejected before copying.
 - Installer construction performs disc inspection and potentially journal recovery on Swing's interface thread.
@@ -17,6 +17,8 @@ Source findings being corrected:
 - Portable installer Java startup failures are printed transiently after the progress window closes, without being saved in the bootstrap log or producing the normal error screen. Persist bounded startup output while preserving process and logging failure status.
 - A download stream-close failure can replace an interruption with a retryable IOException. Preserve the original cancellation, attach cleanup errors, restore interrupt status and never retry a reader that did not stop.
 - Unsupported launcher arguments silently open the interface. Reject malformed commands before filesystem discovery or UI startup and provide explicit help.
+- Clean Reinstall overwrites arbitrary active-data-root `.reinstall-preserved.properties` with a generated receipt, excluding the original from verification and deleting its last copy during successful cleanup. New format-2 journal receipts live outside personal payloads with exclusive creation and exact checksum binding; legacy format-1 recovery excludes only its positively bound generated receipt. Unbound old files are preserved as personal data.
+- Tree synchronization requires write access to otherwise legitimate read-only personal files. Synchronize through read channels, preserving owner bytes and permissions.
 
 Acceptance: targeted regressions for each behavior, full existing delivery/ModelsHD/CharHD checks and package builds, real bootstrap stand-ins with no network/UI, independent Standards and Spec review against the frozen baseline. Record limitations and unresolved observations candidly; do not claim a numerical quality score from source checks alone. Publication and main integration remain with the project orchestrator after the prior release.
 
@@ -28,10 +30,10 @@ The existing immutable package activation, complete hashes, accepted-generation 
 
 ## Completed patch verification
 
-Reviewed production source: `75abd1185a3435db11f5e52503248131bfee5730`. The audit branch also inherits main's verified current installer identifiers and publication follow-up through `adf864be7`; those released identifiers are preserved.
+Reviewed production source: `f8a582932316c8b0339684553619f9954d2ec804`. The audit branch also inherits main's verified current installer identifiers and publication follow-up through `adf864be7`; those released identifiers are preserved.
 
-The final headless delivery suite has 522 cases: 512 passed, 10 existing optional skips, zero failures/errors. ModelsHD (32) and CharHD (12) pass; engine, Skurfa and manager JAR builds pass. Twenty-two new regressions cover the corrected paths. The packaged manager contains the exact new managed-launcher resource. Shell syntax checks, seven isolated portable startup/failure scenarios, four offline runtime recovery controls and eight real-script lock/forced-termination controls pass.
+The final headless delivery suite has 530 cases: 520 passed, 10 existing optional skips, zero failures/errors. ModelsHD (32) and CharHD (12) pass; engine, Skurfa and manager JAR builds pass. Thirty new regressions cover the corrected paths. The packaged manager contains the exact new managed-launcher resource. Shell syntax checks, seven isolated portable startup/failure scenarios, four offline runtime recovery controls and eight real-script lock/forced-termination controls pass.
 
-Independent Spec review is clear. Standards review found one new preservation regression: synchronizing unchanged custom launchers opened read-only executable owner scripts for writing. A regression reproduced AccessDeniedException; the correction synchronizes installer-created/replaced scripts only and verifies preserved custom bytes/permissions. Independent closure review is clear. These reviews inspected source; suite results are separately recorded evidence.
+Independent Standards and Spec closure reviews are clear. The review process reproduced and corrected the read-only custom-launcher regression, the root snapshot receipt collision and the clean-Reinstall receipt collision. Preservation controls cover root/nested filenames, retained newer notes, repeat Reinstall, failed activation followed by retry, interrupted cleanup, legacy snapshots/journals, missing/tampered receipts and linked receipt directories. Read-only personal-file Update/Reinstall has red/green proof. Reviews inspected source; suite results are separately recorded evidence.
 
-Local checkpoint: `/Users/markmurray/Downloads/Definitive-Delivery-Review-2026-10-10/Installer-Launcher-Audit`. Includes pinned source/hash inventory, incremental Git bundle, regression failures, final checks and both review reports. Publication is a separate orchestrator decision; this patch did not delay the already public clean-Reinstall release.
+Final local checkpoint: `/Users/markmurray/Downloads/Definitive-Delivery-Review-2026-10-10/Installer-Launcher-Audit-f8a58293`. Includes pinned source/hash inventory, incremental Git bundle, regression failures, final checks and both review reports. It supersedes the initial pre-namespace checkpoint. Publication is a separate orchestrator decision; this patch did not delay the already public clean-Reinstall release.
