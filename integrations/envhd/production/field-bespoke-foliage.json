@@ -1,0 +1,234 @@
+{
+  "schema": 1,
+  "scope": "Four custom painted EnvHD field repair candidates; candidate-only and not part of any runtime selection or download pack. Historical neural review holds remain unchanged until publication/selection supports this provenance.",
+  "sourceSelectionBaseCommit": "476c004ca4d4eacce5a763c41b570c479380b5e7",
+  "algorithmPath": "scripts/repair-envhd-painted-cutout.py",
+  "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
+  "environment": {
+    "python": "3.12.0",
+    "pillow": "12.3.0",
+    "numpy": "2.5.1"
+  },
+  "visualReviewedBespokeCandidates": 4,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 13008,
+      "paintedGapPixelsExtended": 1435,
+      "paintedUncoveredSourcePixels": 1192,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 265,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "153b6e55f8d202237062cd9913875bdfb3db03b6569c5d800d897e13864f2d17",
+      "generatedSha256": "989d7d447a5dd003f499dbf0585b8a87323d5107149c82e45ea1a393c61b17ac",
+      "outputSha256": "f19cda3093b9f86b0867178e0043e6df07886e8f74248190a164f3d75f0c7bd4",
+      "sourceSize": [
+        38,
+        36
+      ],
+      "targetSize": [
+        152,
+        144
+      ],
+      "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/153b6e55f8d202237062cd9913875bdfb3db03b6569c5d800d897e13864f2d17/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/153b6e55f8d202237062cd9913875bdfb3db03b6569c5d800d897e13864f2d17/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer. Asset type: one isolated prerendered environment foreground texture for Legend of Dragoon: Definitive EnvHD. Edit target: the attached 38x36 original RGBA cutout, a low-light potted flowering plant in Donau's flower-shop interior. Repaint only the visible pixels into polished detailed hand-painted HD game art while faithfully preserving the original object, irregular outline, footprint, camera angle, proportions, lighting and colors. This is a round squat brown terracotta pot below a dense clustered mound of dark green leaves with many small rusty-red/orange blossoms. Clearly paint separate leaves and small blossom clusters, retaining their original red/green distribution. Keep the plant dark to match the indoor game scene, not a bright product photograph. Keep the pot rim and base at precisely the same locations relative to the canvas. Preserve the original full canvas framing and transparent background; do not center, enlarge, crop, rotate, relight or add extra foliage beyond the source outline. Avoid invented boards/planks, shiny stone, broad smooth slabs, text, labels, extra objects, shadow outside the original object or checkerboard. Produce only the upgraded texture with true transparency.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "8be61413b2742692d4d207f16030d7e48e59b02574c591d1e74b9be04d3c1520:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Donau",
+      "representativeCut": 243,
+      "priorCandidateSha256": "e681db7eb6eaf78b62c68a3e55220e1e689accca05efd2e2f37c1e4f9dd64fdf",
+      "review": {
+        "intent": "Donau cut 243 foreground potted flowering plant at the flower-shop entrance.",
+        "style": "Rusty red blossoms and dark green leaves are recognizable again, replacing the prior brown plank-like mass. The terracotta pot remains beneath the original foliage footprint. Fine blossom grouping is a painted interpretation of the low-resolution source.",
+        "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 32832,
+      "paintedGapPixelsExtended": 3335,
+      "paintedUncoveredSourcePixels": 2452,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 433,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "2d63dba80ef018b0a05fda895e1d2d81e28cf41d10a23aa41befb2fbd4368eb5",
+      "generatedSha256": "63967b5bb0f0753da8b309cc91cded4d0744a6df0273d623fc0102f75af10c22",
+      "outputSha256": "3b144832b672d7e6c8b0417bc75830e2313cf68a91147ae52c96abc7f6b68fbd",
+      "sourceSize": [
+        38,
+        84
+      ],
+      "targetSize": [
+        152,
+        336
+      ],
+      "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/2d63dba80ef018b0a05fda895e1d2d81e28cf41d10a23aa41befb2fbd4368eb5/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/2d63dba80ef018b0a05fda895e1d2d81e28cf41d10a23aa41befb2fbd4368eb5/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer. Asset type: one isolated foreground environment texture for Legend of Dragoon Definitive EnvHD. Edit target: attached original RGBA game texture. Repaint the visible pixels as detailed polished hand-painted HD game art while faithfully keeping source camera angle, exact canvas composition, crop boundaries, object outline, palette, proportions and lighting. This is a 38x84 narrow, tall crop of dark green evergreen foliage at the left foreground of a forest path. Its left edge is a straight cropped canvas boundary; its right edge slopes diagonally and has irregular small branch tips. It is a cropped part of foliage, not a complete centered tree. The source shows mottled leaf/needle clusters and darker brown woody patches throughout its interior. Preserve clusters in their original locations, make fine leaves recognizable and naturally irregular. No smooth broad slabs, sculpted folds, rock cracks, new branches, added objects, text, shadows or background. Do not rotate, center, enlarge, relight or complete the cropped shape; keep all clipped source edges clipped exactly. Output only the upgraded cropped texture on true transparent background.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "f7a55816ac038e8232431207f9d3f408249c2ac42a5a03588b712c4f1f686b9d:-1",
+          "kind": "foreground",
+          "slot": 10,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Evergreen Frst",
+      "representativeCut": 340,
+      "priorCandidateSha256": "075a72ff3b0db265a30c55cb31562898d368b0fc3ddbbd1294c0dc4f8fb2c580",
+      "review": {
+        "intent": "Evergreen Forest cut 340 tall foreground evergreen foliage fragment.",
+        "style": "Separated dark green needle clusters replace the broad olive slab. Cropped left edge, diagonal silhouette and native branch-tip footprint remain unchanged. The painted interior has new detailed branch arrangement and awaits full-scene quality matching.",
+        "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 20816,
+      "paintedGapPixelsExtended": 1154,
+      "paintedUncoveredSourcePixels": 817,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 73,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "6c9f7a1ff67d83b5d584f0f1ac6b6d88d4dd0fb14a44cb9f6eadb8d64d056ccb",
+      "generatedSha256": "9966799e6dc21c6e49c8196802a9a209ae8d05cd1c0aa88ec0ed70ec4f8f0076",
+      "outputSha256": "e0423281a9eab716a29b23be5e8d17c4bd939df9c1481bc427582818f87194cf",
+      "sourceSize": [
+        30,
+        72
+      ],
+      "targetSize": [
+        120,
+        288
+      ],
+      "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/6c9f7a1ff67d83b5d584f0f1ac6b6d88d4dd0fb14a44cb9f6eadb8d64d056ccb/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/6c9f7a1ff67d83b5d584f0f1ac6b6d88d4dd0fb14a44cb9f6eadb8d64d056ccb/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer. Asset type: one isolated foreground environment texture for Legend of Dragoon Definitive EnvHD. Edit target: attached original RGBA game texture. Repaint the visible pixels as detailed polished hand-painted HD game art while faithfully keeping source camera angle, exact canvas composition, crop boundaries, object outline, palette, proportions and lighting. This is a 30x72 narrow cropped strip of dark green evergreen foliage at the left foreground of the SAME forest path as the other evergreen asset. Left boundary is cut straight at the canvas, right silhouette slopes and has stepped little branch tips, bottom narrows. Paint the source mottled leafy/needle surface with subtly visible brown woody patches. It must look consistent with other dark moss-green woodland foliage, not a centered whole tree. Preserve clusters in their original locations, make fine leaves recognizable and naturally irregular. No smooth broad slabs, sculpted folds, rock cracks, new branches, added objects, text, shadows or background. Do not rotate, center, enlarge, relight or complete the cropped shape; keep all clipped source edges clipped exactly. Output only the upgraded cropped texture on true transparent background.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "f7a55816ac038e8232431207f9d3f408249c2ac42a5a03588b712c4f1f686b9d:-1",
+          "kind": "foreground",
+          "slot": 7,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Evergreen Frst",
+      "representativeCut": 340,
+      "priorCandidateSha256": "33fee3effefab0fabd95e91f88f0c7131f03662227569dbd19e7a6bbabfd88d0",
+      "review": {
+        "intent": "Evergreen Forest cut 340 related narrow foreground evergreen foliage fragment.",
+        "style": "Dark green conifer needles and brown woody recesses remain consistent with the related repaint. The native clipped outline and bottom narrowing are preserved. New painted branch detail still needs coordinated scene quality review.",
+        "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 22208,
+      "paintedGapPixelsExtended": 1394,
+      "paintedUncoveredSourcePixels": 1130,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 113,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "a98e7fd00230229a4aa03062fa996fc1c9d5133e9654ec10f00b8b762a835228",
+      "generatedSha256": "705c682c05f20fbef53af0ab880afd8ad91c236a2f851f5086f996dbbd3e96de",
+      "outputSha256": "90aded554612c65e197fa14ed5153b9564a0e9c3a90717dad203f9212b9ae4bd",
+      "sourceSize": [
+        44,
+        46
+      ],
+      "targetSize": [
+        176,
+        184
+      ],
+      "algorithmSha256": "f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/a98e7fd00230229a4aa03062fa996fc1c9d5133e9654ec10f00b8b762a835228/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/a98e7fd00230229a4aa03062fa996fc1c9d5133e9654ec10f00b8b762a835228/image-v1.png",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer. Asset type: one isolated foreground environment texture for Legend of Dragoon Definitive EnvHD. Edit target: attached original RGBA game texture. Repaint the visible pixels as detailed polished hand-painted HD game art while faithfully keeping source camera angle, exact canvas composition, crop boundaries, object outline, palette, proportions and lighting. This is a 44x46 cropped pale olive-green shrub at Shirleys Shrine in muted daylight. The left side cuts straight at the canvas; upper and right outline are irregular leaves, bottom roughly horizontal. Its native surface is many small leaf clusters with lighter yellow-green tips and deeper olive gaps. It is living leafy foliage, not cracked stone or a rock. Preserve clusters in their original locations, make fine leaves recognizable and naturally irregular. No smooth broad slabs, sculpted folds, rock cracks, new branches, added objects, text, shadows or background. Do not rotate, center, enlarge, relight or complete the cropped shape; keep all clipped source edges clipped exactly. Output only the upgraded cropped texture on true transparent background.",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "ef0301c5db99911169872b3b8e7ed278be0aa3512740b689dcb5f77a4773aeba:-1",
+          "kind": "foreground",
+          "slot": 10,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeLocation": "Shirley's Shrine",
+      "representativeCut": 155,
+      "priorCandidateSha256": "0986f5d98ea3a35a05f76fad658c169c87537131ff6a6fe924b565b7c1051147",
+      "review": {
+        "intent": "Shirley's Shrine cut 155 small pale olive shrub.",
+        "style": "Individual yellow-green leaves replace the cracked-stone appearance. Source silhouette and palette remain identifiable. Leaf size and directional lighting require full-scene painted-quality matching before final acceptance.",
+        "layout": "Original, prior neural upscale, painted cutout and static full-scene assemblies compared. Exact source alpha and visible-black classes verified; static assembly does not prove runtime depth or scripted state changes.",
+        "verdict": "visual-reviewed-bespoke-candidate-runtime-pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    }
+  ]
+}
