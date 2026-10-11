@@ -38,4 +38,26 @@ final class FmvPackageAssetsTest {
     Files.write(this.root.resolve("gfx/fmvhd/NOTICE.txt"),fixture.notice);fixture.jar(this.root,true,"giant legacy code");
     assertThrows(IOException.class,()->FmvPackageAssets.verify(this.root,inventory()));
   }
+  @Test void allExternalDataRemovedStillRejectsSplitModule() throws Exception {
+    final var fixture = new FmvSplitFixture(); fixture.split(this.root, "small code");
+    try(final var paths = Files.walk(this.root.resolve("gfx/fmvhd"))) {
+      for(final Path path : paths.sorted(java.util.Comparator.reverseOrder()).toList()) Files.delete(path);
+    }
+    assertThrows(IOException.class, () -> FmvPackageAssets.verify(this.root, inventory()));
+  }
+  @Test void genuineEmbeddedLegacyAndNoMovieModuleRemainValid() throws Exception {
+    FmvPackageAssets.verify(this.root, inventory());
+    final var fixture = new FmvSplitFixture(); fixture.jar(this.root, true, "genuine legacy");
+    FmvPackageAssets.verify(this.root, inventory());
+    try(final var source = new java.util.zip.ZipFile(this.root.resolve("bundled-mods/FMVHD-v0.1.0.jar").toFile());
+        final var output = new java.util.zip.ZipOutputStream(Files.newOutputStream(this.root.resolve("missing.jar")))) {
+      final var items = source.entries();
+      while(items.hasMoreElements()) {
+        final var item = items.nextElement(); if(item.getName().equals("fmvhd/videos/OPENH.mp4")) continue;
+        output.putNextEntry(new java.util.zip.ZipEntry(item.getName())); try(final var input = source.getInputStream(item)) { input.transferTo(output); } output.closeEntry();
+      }
+    }
+    Files.move(this.root.resolve("missing.jar"), this.root.resolve("bundled-mods/FMVHD-v0.1.0.jar"), StandardCopyOption.REPLACE_EXISTING);
+    assertThrows(IOException.class, () -> FmvPackageAssets.verify(this.root, inventory()));
+  }
 }

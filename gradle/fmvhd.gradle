@@ -9,19 +9,41 @@ sourceSets {
 sourceSets.test.compileClasspath += sourceSets.fmvhd.output
 sourceSets.test.runtimeClasspath += sourceSets.fmvhd.output
 
-// Source and runtime share these exact immutable per-film objects. The historical
-// ZIP is accepted only as an explicitly supplied local bootstrap, never emitted.
+// Runtime uses immutable per-film objects; format-1 publication still requires its pinned source ZIP.
+// Temporary format-1 build/export bridge. Never embed this source ZIP in the small code JAR.
+tasks.register('fmvHdLegacySource') {
+  final def local = providers.gradleProperty('fmvHdAssets')
+  inputs.files('integrations/fmvhd/release.properties', 'integrations/fmvhd/src/main/resources/fmvhd/assets.properties', 'scripts/retain-fmvhd-source.py', 'scripts/package_validation.py')
+  inputs.property('localAssets', local.getOrElse(''))
+  if(local.isPresent() && file(local.get()).isFile()) inputs.file(file(local.get()))
+  outputs.file(layout.buildDirectory.file('fmvhd/videos.zip'))
+  outputs.upToDateWhen { false } // Recheck immutable cached bytes before reuse/export.
+  doLast {
+    if(local.isPresent() && !file(local.get()).isFile() && !file(local.get()).isDirectory()) throw new GradleException('FMV source path does not exist: ' + local.get())
+    final def command = ['python3', 'scripts/retain-fmvhd-source.py', '--lock', 'integrations/fmvhd/release.properties', '--manifest', 'integrations/fmvhd/src/main/resources/fmvhd/assets.properties', '--output', layout.buildDirectory.file('fmvhd/videos.zip').get().asFile.absolutePath]
+    if(local.isPresent() && file(local.get()).isFile()) command.addAll(['--local', file(local.get()).absolutePath])
+    final def execution = providers.exec { commandLine command }
+    final def result = execution.result.get()
+    logger.lifecycle(execution.standardOutput.asText.get())
+    if(result.exitValue != 0) throw new GradleException(execution.standardError.asText.get())
+    result.assertNormalExitValue()
+  }
+}
+
 tasks.register('fmvHdAssets') {
   final def local = providers.gradleProperty('fmvHdAssets')
+  if(!local.isPresent() || !file(local.get()).isDirectory()) dependsOn tasks.named('fmvHdLegacySource')
+  inputs.file('integrations/fmvhd/release.properties')
   inputs.files(fileTree('integrations/fmvhd/src/main/resources/fmvhd'))
   inputs.file('scripts/stage-fmvhd-assets.py')
   inputs.file('scripts/package_validation.py')
   inputs.property('localAssets', local.getOrElse(''))
-  if(local.isPresent()) inputs.files(file(local.get()))
+  if(local.isPresent() && file(local.get()).isDirectory()) inputs.files(file(local.get()))
+  else inputs.file(tasks.named('fmvHdLegacySource').map { it.outputs.files.singleFile })
   outputs.dir(layout.buildDirectory.dir('fmvhd/assets'))
   doLast {
     final def command = ['python3', 'scripts/stage-fmvhd-assets.py', '--manifest', 'integrations/fmvhd/src/main/resources/fmvhd/assets.properties', '--output', layout.buildDirectory.dir('fmvhd/assets').get().asFile.absolutePath]
-    if(local.isPresent()) command.addAll(['--local', file(local.get()).absolutePath])
+    command.addAll(['--local', local.isPresent() && file(local.get()).isDirectory() ? file(local.get()).absolutePath : layout.buildDirectory.file('fmvhd/videos.zip').get().asFile.absolutePath])
     final def execution = providers.exec { commandLine command }
     final def result = execution.result.get()
     logger.lifecycle(execution.standardOutput.asText.get())
@@ -53,6 +75,14 @@ tasks.named('stageDefinitivePackage') {
   dependsOn tasks.named('fmvHdAssets')
   into('gfx/fmvhd') { from layout.buildDirectory.dir('fmvhd/assets') }
 }
+
+tasks.register('fmvHdSourceBundle', Copy) {
+  dependsOn tasks.named('fmvHdLegacySource')
+  from layout.buildDirectory.file('fmvhd/videos.zip')
+  into layout.buildDirectory.dir('distributions')
+  rename { 'FMVHD-v0.1.0-videos.zip' }
+}
+tasks.named('definitiveFileDelivery') { dependsOn tasks.named('fmvHdSourceBundle') }
 
 tasks.register('originalMovieSourceProbe', JavaExec) {
   dependsOn testClasses

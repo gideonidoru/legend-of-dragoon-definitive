@@ -88,6 +88,19 @@ final class FmvSplitDeliveryTest {
     final var reinstall=delivery(split);apply(store,reinstall,false,true);assertEquals(18,movieRequests(reinstall,movies));
     assertEquals("preserve me",Files.readString(store.data(store.state()).resolve("saves/owner")));
   }
+  @Test void erasedExternalMovieTreeCannotActivateEvenWithRegeneratedInventory() throws Exception {
+    final Path old=pack("old");final var store=new InstallStore(this.root.resolve("install"));store.install(old);
+    final var before=store.state();Files.writeString(store.data(before).resolve("saves/owner"),"keep");
+    final Path split=pack("split");new FmvSplitFixture().split(split,"small code");
+    try(final var paths=Files.walk(split.resolve("gfx/fmvhd"))) {
+      for(final Path path:paths.sorted(Comparator.reverseOrder()).toList()) Files.delete(path);
+    }
+    refresh(split);
+    assertThrows(IOException.class,()->PackageManifest.read(split).verify(split));
+    assertThrows(IOException.class,()->store.install(split));
+    assertEquals(before,store.state());store.verifyInstalled();
+    assertEquals("keep",Files.readString(store.data(before).resolve("saves/owner")));
+  }
   @Test void invalidLegacyJarPinFallsBackToEighteenVerifiedObjects() throws Exception {
     final var movies=new FmvSplitFixture();final Path old=pack("old");movies.jar(old,true,"legacy");refresh(old);
     final var store=new InstallStore(this.root.resolve("install"));store.install(old);
