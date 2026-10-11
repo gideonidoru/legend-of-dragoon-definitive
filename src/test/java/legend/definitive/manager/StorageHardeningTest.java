@@ -46,6 +46,27 @@ class StorageHardeningTest {
     for(final Path path : inputs) command.add(path.toString());
     return new ProcessBuilder(command).redirectErrorStream(true).redirectOutput(this.temporary.resolve(mode + "-child.log").toFile()).start();
   }
+  @Test void gameChildRejectsLinkedRootBeforeCreatingExternalLease() throws Exception {
+    final Path external = this.temporary.resolve("external-root"); Files.createDirectories(external);
+    Files.writeString(external.resolve("owner.conf"), "preserve external owner bytes");
+    final Path linked = this.temporary.resolve("linked-game"); Files.createSymbolicLink(linked, external);
+    this.verifyRejectedLinkedGame(linked, external);
+  }
+  @Test void gameChildRejectsLinkedAncestorBeforeCreatingExternalLease() throws Exception {
+    final Path external = this.temporary.resolve("external-parent"); Files.createDirectories(external.resolve("installation"));
+    Files.writeString(external.resolve("installation/owner.conf"), "preserve external owner bytes");
+    final Path linked = this.temporary.resolve("linked-parent"); Files.createSymbolicLink(linked, external);
+    this.verifyRejectedLinkedGame(linked.resolve("installation"), external.resolve("installation"));
+  }
+  private void verifyRejectedLinkedGame(final Path root, final Path external) throws Exception {
+    final Process child = start("linked-game-root", root, List.of());
+    try {
+      assertTrue(child.waitFor(10, TimeUnit.SECONDS)); assertEquals(97, child.exitValue(), Files.readString(this.temporary.resolve("linked-game-root-child.log")));
+      assertTrue(Files.readString(this.temporary.resolve("linked-game-root-child.log")).contains("Linked game installation."));
+      assertEquals("preserve external owner bytes", Files.readString(external.resolve("owner.conf")));
+      try(final var entries = Files.list(external)) { assertEquals(Set.of("owner.conf"), entries.map(path -> path.getFileName().toString()).collect(java.util.stream.Collectors.toSet()), "Rejected game must not create an external lease or receipt"); }
+    } finally { if(child.isAlive()) { child.destroyForcibly(); assertTrue(child.waitFor(10, TimeUnit.SECONDS)); } }
+  }
   @Test void preparationRejectsLinkedOutputBeforeStartingAndKeepsExternalBytes() throws Exception {
     final var store = install("linked-log"); DiscImporter.importDiscs(store, discs("log-"));
     final Path external = this.temporary.resolve("protected-save"); Files.writeString(external, "preserve owner bytes");

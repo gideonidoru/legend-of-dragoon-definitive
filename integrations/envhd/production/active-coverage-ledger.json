@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "6612a533307e5f066bc46e7870d658f8add42752 plus independent-pending authoring at f7d53afd9",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "3c638ec017bcdff1bbcf901029af281c08c1cd9e8fd13cc09427e4d968c599f8",
+    "full-coverage.json": "cfba43d0b5fa298a7f9a37f7068c21bf5e065a61da58113cfb710d8689583877",
     "field-runtime-artwork.json": "b4c0dc3f07c089c9fe727be0fd19e457b255ccc16b63db4f3cc40a313125b257",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
@@ -502,18 +502,6 @@
     "previousPublishedInstallerSnapshots": [
       {
         "tag": "definitive-current",
-        "recordedPackageSource": "d7311334",
-        "sourceEvidence": "Main ad1a234d full-coverage.json and ENVHD_FULL_COVERAGE.md snapshot, not a live release query.",
-        "fieldSelectedMasters": 4917,
-        "battleNewSelectedMasters": 518,
-        "battleNewSelectedBindings": 525,
-        "battleTotalSelectedBindings": 549,
-        "paintedBattleReplacements": 12,
-        "nativeArtAccepted": 0,
-        "finalArtAccepted": 0
-      },
-      {
-        "tag": "definitive-current",
         "generation": 4,
         "packageSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
         "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
@@ -528,7 +516,7 @@
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
   "authoringCheckpoint": "Complete74 candidates:31 independent-pending/3 revisions;3new candidates,5held versions,58unique unselected sources. Runtime4926/40 and237known static backlog unchanged. Source recipes reproduced, no native/final acceptance.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "ad758d95b04d24b560a0ee000310b89891f63615",
+    "sourceCommit": "2f980814b9d03338c7a634d03a1d7e2bf6d444a5",
     "fieldSelected": 4926,
     "fieldPainted": 40,
     "battleNewSelectedMasters": 518,
