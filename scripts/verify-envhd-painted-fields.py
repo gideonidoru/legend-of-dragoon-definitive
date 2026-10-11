@@ -20,7 +20,7 @@ def module(name, filename):
 batch = module('painted_field_sources', 'batch-envhd-fields.py')
 repair = module('painted_field_repair', 'repair-envhd-painted-cutout.py')
 registration = module('painted_field_registration', 'register-envhd-painted-cutout.py')
-REPAIR_SHA256 = 'f99e27c27f3a5eeac6d18d38fc0ea998ed82f91a467c794feb869414dc01c73a'
+REPAIR_SHA256 = 'f5b8d43418ff6ceb233601f90ddff099465194bc8b2b473d7391a4fff30a8b0c'
 REGISTRATION_SHA256 = '7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784'
 METHOD = 'python-painted-cutout-nearest-colour-exact-visibility-1'
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
@@ -71,7 +71,10 @@ def preflight(files, manifest_path, root=ROOT):
                 raise ValueError('Field layout changed after census')
             rendered[binding['renderKey']] = layers
         source = rendered[binding['renderKey']][binding['slot']]
-        if source is None or batch.terrain.fingerprint(source) != key:
+        if source is None:
+            raise ValueError('Painted field decoded source identity changed')
+        repair.validate_dimensions(source.size, 'source')
+        if batch.terrain.fingerprint(source) != key:
             raise ValueError('Painted field decoded source identity changed')
         if (candidate.get('representativeCut') != route['cut']
                 or candidate.get('representativeLocation') != route['location']):
@@ -86,9 +89,8 @@ def preflight(files, manifest_path, root=ROOT):
         if (batch.terrain.digest(raw_data) != candidate.get('generatedSha256')
                 or batch.terrain.digest(output_data) != candidate.get('outputSha256')):
             raise ValueError('Painted field artwork bytes changed')
-        for data, types in ((raw_data, (2, 6)), (output_data, (6,))):
-            if len(data) < 33 or data[:8] != b'\x89PNG\r\n\x1a\n' or data[24] != 8 or data[25] not in types:
-                raise ValueError('Painted field artwork must be bounded 8-bit PNG with RGBA output')
+        repair.validate_png_header(raw_data, 'painted', source.size, allow_rgb=True)
+        repair.validate_png_header(output_data, 'output', source.size)
         with Image.open(io.BytesIO(raw_data)) as raw:
             if candidate.get('generatedInputMode', 'RGBA') != raw.mode:
                 raise ValueError('Painted field input colour mode changed')
@@ -113,7 +115,7 @@ def preflight(files, manifest_path, root=ROOT):
                     raise ValueError('Painted field registration differs from its recorded source geometry')
             expected, operation = repair.repair(source, raw)
         with Image.open(io.BytesIO(output_data)) as actual:
-            if actual.mode != 'RGBA' or not np.array_equal(np.asarray(actual), np.asarray(expected)):
+            if actual.mode != 'RGBA' or actual.size != expected.size or not np.array_equal(np.asarray(actual), np.asarray(expected)):
                 raise ValueError('Painted field differs from its exact recorded repair')
         if any(candidate.get(k) != v for k, v in operation.items()):
             raise ValueError('Painted field repair measurements changed')

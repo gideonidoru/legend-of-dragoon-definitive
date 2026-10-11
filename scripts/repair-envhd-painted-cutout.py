@@ -14,6 +14,56 @@ import struct
 import numpy as np
 from PIL import Image
 
+MAX_IMAGE_BYTES = 32 * 1024 * 1024
+MAX_TARGET_PIXELS = 1_000_000
+MAX_PAINTED_PIXELS = 4 * 1024 * 1024
+MAX_PAINTED_SIDE = 4096
+
+
+def bounded_read(path):
+    with path.open('rb') as stream:
+        data = stream.read(MAX_IMAGE_BYTES + 1)
+    if len(data) > MAX_IMAGE_BYTES:
+        raise ValueError('Input image exceeds the bounded payload')
+    return data
+
+
+def validate_dimensions(size, kind, source_size=None):
+    """Check lazy image dimensions before allocating any decoded pixels.
+
+    Source restoration is at most one million target pixels. Generated input
+    is at most four megapixels and 4096 pixels on either side. Output must be
+    exactly the source's fourfold canvas, not merely below a size ceiling.
+    """
+    if len(size) != 2 or any(type(n) is not int or n <= 0 for n in size):
+        raise ValueError('Invalid painted image dimensions')
+    w, h = size
+    if kind == 'source':
+        if w * h * 16 > MAX_TARGET_PIXELS:
+            raise ValueError('Source image exceeds the bounded repair canvas')
+    elif kind == 'painted':
+        if w * h > MAX_PAINTED_PIXELS or max(size) > MAX_PAINTED_SIDE:
+            raise ValueError('Generated image exceeds the bounded painted canvas')
+        if source_size is not None and abs((w / h) / (source_size[0] / source_size[1]) - 1) > 0.01:
+            raise ValueError('Painted cutout changed the source canvas aspect ratio')
+    elif kind == 'output':
+        if source_size is None or list(size) != [n * 4 for n in source_size]:
+            raise ValueError('Painted output dimensions differ from the exact source canvas')
+        validate_dimensions(source_size, 'source')
+    else:
+        raise ValueError('Unknown painted image role')
+
+
+def validate_png_header(data, kind, source_size=None, allow_rgb=False):
+    types = (2, 6) if allow_rgb else (6,)
+    if (len(data) < 33 or data[:8] != b'\x89PNG\r\n\x1a\n'
+            or data[8:12] != struct.pack('>I', 13) or data[12:16] != b'IHDR'
+            or data[24] != 8 or data[25] not in types):
+        raise ValueError('Painted artwork requires 8-bit PNG with RGBA output')
+    size = struct.unpack_from('>2I', data, 16)
+    validate_dimensions(size, kind, source_size)
+    return size
+
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
@@ -22,10 +72,8 @@ def digest(data):
 def repair(source, painted):
     if source.mode != 'RGBA' or painted.mode != 'RGBA':
         raise ValueError('Source and painted cutout must be RGBA')
-    if source.width * source.height * 16 > 1_000_000:
-        raise ValueError('Painted cutout exceeds the bounded repair canvas')
-    if abs((painted.width / painted.height) / (source.width / source.height) - 1) > 0.01:
-        raise ValueError('Painted cutout changed the source canvas aspect ratio')
+    validate_dimensions(source.size, 'source')
+    validate_dimensions(painted.size, 'painted', source.size)
     native = np.repeat(np.repeat(np.asarray(source), 4, axis=0), 4, axis=1)
     pixels = np.asarray(painted.resize((source.width * 4, source.height * 4), Image.Resampling.LANCZOS)).copy()
     visible = native[:, :, 3] > 0
@@ -70,10 +118,10 @@ def repair(source, painted):
 
 
 def execute(source_path, painted_path, output_path, source_key, painted_sha256):
-    source_data = source_path.read_bytes()
-    painted_data = painted_path.read_bytes()
-    if len(source_data) > 32 * 1024 * 1024 or len(painted_data) > 32 * 1024 * 1024:
-        raise ValueError('Input image exceeds the bounded payload')
+    source_data = bounded_read(source_path)
+    painted_data = bounded_read(painted_path)
+    source_size = validate_png_header(source_data, 'source')
+    validate_png_header(painted_data, 'painted', source_size)
     with Image.open(io.BytesIO(source_data)) as image:
         source = image.copy()
     with Image.open(io.BytesIO(painted_data)) as image:
