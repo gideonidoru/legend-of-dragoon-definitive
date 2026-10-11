@@ -1,0 +1,338 @@
+{
+  "schema": 1,
+  "scope": "Six rejected custom versions across four sources. Original references, source layout/context and comparison boards remain private. No gates waived and no runtime changes.",
+  "sourceSelectionBaseCommit": "373b34a94a1fe52beb4547b215d451df14557633",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "holdsCleared": 0,
+  "uniqueHeldDraftSourceImages": 4,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "877e9c3a907d346bbd50a41cb79ce4f801f207f86e3f5ecdf24c9f2a6d09badd",
+      "generatedSha256": "e46907614d55a090bd2deae404fa0e8fcce9a19566b39389ac62287811be0cb2",
+      "generatedSize": [
+        1164,
+        1351
+      ],
+      "sourceSize": [
+        50,
+        58
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "7b085a9ecc496e5099d771c4f09146b9321f6bb4beae857fb20986ec5748155b:-1",
+          "kind": "foreground",
+          "slot": 10,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 196,
+      "representativeLocation": "Black Castle",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Restore FIRST original isolated game layer with modern restrained painted surface detail, maintaining its exact canvas aspect, camera, framing, all crop edges, every occupied source shape and negative gap, palette and illumination. SECOND complete original scene is usage context only. THIRD Skurfa HD is reference for fine painted surface finish only, never copied/repainted; do not transfer its scene, warm palette or light. Output FIRST entire layer only. True transparency where source is transparent; preserve occupied source planes. No text, glyphs, symbols, new objects, completed missing parts, new structural seams, border, watermarks, surrounding scene or changed composition. Native50x58 portrait25:29. This Black Castle environment crop is a twisted hanging dark organic branch/root support, with short tapering offshoots and rough folded fibrous surfaces under subdued purple/pink/orange light from original room. It is scenery, not a creature or winged object. Trace exactly each native long thin right/left/lower offshoot and its attachment, middle dark teal left fold, pale mauve central/lower ridge and small warm upper-right patches. Keep their original direction, crop boundaries and gaps. Add delicate fibrous bark surface inside existing forms, preserving soft dark grey/green violet shadows and pale pink highlights. Do not turn the irregular forms into wings, fingers, skeletal limbs, hanging faces, teeth, claws, cables or new branches. No oversized spikes, flowing drapery or sharper glowing magenta outlines.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairPassed": false,
+      "repairFailure": "Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/877e9c3a907d346bbd50a41cb79ce4f801f207f86e3f5ecdf24c9f2a6d09badd/draft-input-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Black Castle rootwork painting misses too much source-visible material. Unchanged coverage gate rejects it; no repaired output or runtime selection."
+    },
+    {
+      "decodedRgbaSha256": "8672f8df1037e8923d56b9e9e523c672d4b0d3dbeebff918ad0f6c8d50491662",
+      "generatedSha256": "35c1a861dce97082b55e2ea932ab777d8e350e5a9d60d6e4fad081a9ade847f5",
+      "generatedSize": [
+        1426,
+        1103
+      ],
+      "sourceSize": [
+        62,
+        48
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "34e3cda39869ef1e08a1921d28d8a11abb8143867e67427ec6d671fd4fb4956d:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "representativeCut": 309,
+      "representativeLocation": "Fueno",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 1,
+      "prompt": "Use case: precise-object-edit. Restore FIRST original isolated game layer with modern restrained painted surface detail, maintaining its exact canvas aspect, camera, framing, all crop edges, every occupied source shape and negative gap, palette and illumination. SECOND complete original scene is usage context only. THIRD Skurfa HD is reference for fine painted surface finish only, never copied/repainted; do not transfer its scene, warm palette or light. Output FIRST entire layer only. True transparency where source is transparent; preserve occupied source planes. No text, glyphs, symbols, new objects, completed missing parts, new structural seams, border, watermarks, surrounding scene or changed composition. Native62x48 landscape31:24. Fueno architectural rooftop/terrace fragment: pale warm grey/cream stone or plaster ledges with several cropped short squat posts, thin pale connecting edge/rail strips around irregular dark/transparent openings, small lower-left bluish inset and orange-tan wall fragment, and large cropped curved brown tower edge on the right. Use complete original coastal settlement context to retain plaster/stone material, not wood, roof shingles or carved motif. Trace every source narrow connecting strip and opening with EXACT existing geometry, including lower strips and tiny protrusions, without inventing additional pillars or steps. Add subtle worn sandy plaster and quiet masonry surface variation only where original joints are visible. Keep rounded right brown plane continuous and its source shading unchanged. No new pronounced block courses, inscriptions, fancy rail designs, extra door/window, bright white roof highlights or completed buildings.",
+      "sourceFilesFreshlyVerified": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 29344,
+      "paintedGapPixelsExtended": 2624,
+      "paintedUncoveredSourcePixels": 2231,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 122,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        248,
+        192
+      ],
+      "outputSha256": "cbd5cbc4c1c9573705be68c7a99e2f62def5ee83f33f590c759d4030faecc8ac",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/8672f8df1037e8923d56b9e9e523c672d4b0d3dbeebff918ad0f6c8d50491662/draft-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/8672f8df1037e8923d56b9e9e523c672d4b0d3dbeebff918ad0f6c8d50491662/repaired-draft-v1.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Fueno stonework adds strong block courses and post relief, brightens the terraces beyond the source, and overdefines the cropped tower rim. Cutout repair passes but material/construction fidelity and source joints are not accepted."
+    },
+    {
+      "decodedRgbaSha256": "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
+      "sourceSize": [
+        76,
+        86
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "5e1227fc5079d4e6427a467283bf867043d183ce54eaeb684ddf2fd4ea61e01e:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "representativeCut": 567,
+      "representativeLocation": "Rouge",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "f23d403fee3e51140298572c04e49503cf869167e695c5e39ceffc4d1b2f3a4f",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 2,
+      "prompt": "Use case: precise-object-edit. FIRST original Rouge foreground fragment is the edit target. Restore it into restrained modern painted HD detail WITHOUT changing any structural line or opening. SECOND is exact native visibility mask: WHITE is occupied material, BLACK is transparency/negative space; trace its geometry exactly, do not output the mask. THIRD full original room explains placement. FOURTH Skurfa HD is only finish reference, not scene/light/palette. Output FIRST entire native76x86 canvas aspect38:43 at identical framing with genuine transparency at each source hole. Warm wooden lattice railing rises from lower-left to upper-right with identical interlocking crooked rectangular cells and thin short connecting crossbars. Every existing short connector around the openings and beside thick central dark support MUST stay connected and at its original native position. Do not replace the native irregular grid with a newly even/decorative grid. No bar relocation or additional holes: mask trace is mandatory. Trace each native bar and opening precisely from FIRST and SECOND, paint subtle timber grain inside that geometry. Preserve the two dark thick upright supports and orange diagonal lower plank/curved barrel fragments at identical positions and cropping. Native lattice cells are small stepped/interlocking loops, not random branches or long new decorative spindles. Keep soft orange-brown source illumination and dark shadows; subtle weathered wood detail only, no high contrast glowing edges or heavy new knots. No recoloring, recentering, completed railing, new barrel, extra beams, text, symbols, labels, border or surrounding room. All materials must align BEFORE alpha restoration; a beautiful alternate fence is unacceptable.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "generatedSize": [
+        1179,
+        1334
+      ],
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 66128,
+      "paintedGapPixelsExtended": 7127,
+      "paintedUncoveredSourcePixels": 5905,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 82,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        304,
+        344
+      ],
+      "outputSha256": "1391f37542f7a3795d36ea587e25f074a75b9cff8e8dd2945c8435dbcacf9e11",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a/draft-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a/repaired-draft-v2.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Rouge correction still misaligns native lattice bars/openings. Exact source alpha cuts shifted connectors into fragments despite technical repair passing. Independent P2 remains open; further full-crop generation is insufficient."
+    },
+    {
+      "decodedRgbaSha256": "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
+      "sourceSize": [
+        76,
+        86
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "5e1227fc5079d4e6427a467283bf867043d183ce54eaeb684ddf2fd4ea61e01e:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "representativeCut": 567,
+      "representativeLocation": "Rouge",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "0dd713f3a5ac0ddab946687866f6d7271e4ecc9ac11e375cdbf5635c4b8e53e8",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 3,
+      "prompt": "Use case: precise-object-edit. Faithful texture restoration of FIRST image. KEEP THE ORIGINAL STRUCTURE ALMOST LITERALLY: exact framing76:86, every opening, every tiny orange patch and connecting strip at the same position. SECOND white/black stencil fixes occupied material versus transparent gaps exactly. THIRD is original scene for context only. Output first crop with its transparent gaps. This is NOT a request to redesign/reconstruct a neat fence: leave the unusual crooked stepped narrow strips, soft dark supports and brown lower curved/plank patches exactly arranged as FIRST. Add only delicate paint texture and restrained timber grain in existing orange/brown surfaces; retain source low contrast, dim highlights, dark divisions and soft irregular edges. Keep the exact thickness and location of each short horizontal/diagonal connector, especially rows between the two sloping rails and left of central thick support. Do not introduce high contrast outlines or put black shadows across occupied narrow wood connections. The form must remain the SAME convoluted original lattice, not a newly engineered regular fence. Preserve all original opaque source patches even where detail is ambiguous; no new joints, braces, spindles, holes, extra bars, regularized motifs, bright grain, text, symbols or scene. Soft sophisticated detailed game painting, no oversharp relief. Trace original geometry rather than infer alternate carpentry.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "generatedSize": [
+        1179,
+        1334
+      ],
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 66128,
+      "paintedGapPixelsExtended": 5108,
+      "paintedUncoveredSourcePixels": 3893,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 65,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "targetSize": [
+        304,
+        344
+      ],
+      "outputSha256": "c9de9059402d17ccc4c36faa2363dc76c19b26a5f51760acc3013ac7e57dc0e6",
+      "repairPassed": true,
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a/draft-input-v3.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a/repaired-draft-v3.png",
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Rouge correction still misaligns native lattice bars/openings. Exact source alpha cuts shifted connectors into fragments despite technical repair passing. Independent P2 remains open; further full-crop generation is insufficient."
+    },
+    {
+      "decodedRgbaSha256": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+      "sourceSize": [
+        36,
+        62
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1fee3f003f01bba4d60081f78eb5273934fc2f3eaa60a939e62aa18924021c82:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "representativeCut": 291,
+      "representativeLocation": "Phantom Ship",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "174c60ec3d5668ed725975d2755274cf5ef3b4ed714aca9c82806f0e0ba99526",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 3,
+      "prompt": "Use case: precise-object-edit. FIRST is an authoritative original Phantom Ship foreground column crop placed in transparent authoring padding. Edit ONLY FIRST to a faithful restrained modern painted HD texture. Preserve exact FIRST 3:4 authoring canvas,1080x1440: source36x62 sits at native origin[9,5] in54x72; visible crop bounds x180..900,y100..1340 in first reference. Keep margins transparent, do not zoom, recenter, widen, move the fragment or complete missing sides/top/base. SECOND complete original ship scene is context only; THIRD Skurfa is surface finish only, no palette/light/imagery transfer. Blue worn left surface, very dark center groove near native cropx22-25, muted green right stepped molding. TWO critical landmarks: (1) narrow lower left horizontal/slightly diagonal band stays at SOURCE native y40-42, from left edge to aboutx21, ending at dark groove. In padded reference this is y900..960. Never move it down to sourcey43-45, never change its slope or extend across dark groove. (2) left pale wear is several faint separated irregular small patches at exact source locations, with original dim gaps; do not join them into a long bright crack/stripe, inscription or invented glyph. Retain every small source vertical color division, slender flutes and green right-face tier/stepped edges. Fine soft aged timber/molding grain and subtle flaking blue/green finish inside existing shapes only. No prominent new cracks, symbols, faces, new rectangular panels, enlarged band, ornament or brighter highlights. Preserve low blue-green original exposure and broad diffuse mottling. Entire fragment with true alpha outside source silhouette; all canvas padding remains empty. No scene, black filled background, checkerboard, labels, watermark or added objects.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "generatedSize": [
+        1086,
+        1448
+      ],
+      "repairPassed": false,
+      "failure": "Padded generated silhouette differs from source placement",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612/draft-input-v3.png",
+      "attemptedSourceAuthoringCrop": {
+        "algorithmPath": "scripts/crop-envhd-painted-authoring-canvas.py",
+        "algorithmSha256": "939125d63c15725d6c91637eb981ccbf8c667b5b13c52061d5a91345c3ba7676",
+        "sourceCanvasSize": [
+          54,
+          72
+        ],
+        "sourceOriginNative": [
+          9,
+          5
+        ],
+        "expectedCropRectAtTargetScale": [
+          36,
+          20,
+          180,
+          268
+        ],
+        "sourceAlphaApplied": false,
+        "sourceRgbApplied": false,
+        "passed": false
+      },
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Phantom correction fails the unchanged 0.97 source silhouette IoU gate on explicit padded authoring crop. Internal pale weathering/band landmarks also remain displaced. No successful crop or repair output; independent P2 remains open."
+    },
+    {
+      "decodedRgbaSha256": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+      "sourceSize": [
+        36,
+        62
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1fee3f003f01bba4d60081f78eb5273934fc2f3eaa60a939e62aa18924021c82:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "representativeCut": 291,
+      "representativeLocation": "Phantom Ship",
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "candidateWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "08ceb41d35465986f5df7d227a79cbb9a6e312091161828760a3b48263eb8463",
+      "generatedBy": "builtin-imagegen",
+      "generatedInputMode": "RGBA",
+      "generationVersion": 4,
+      "prompt": "Use case: precise-object-edit. Paint finer surface texture over FIRST ORIGINAL texture with its geometry and color groups unchanged. SECOND exact stencil is binding: white occupied source remains occupied, black empty must stay truly transparent. THIRD full Phantom Ship room is context only. FIRST entire canvas1080x1440 aspect3:4 must stay unchanged, including margins. Source36x62 at[9,5] in54x72 canvas, top edgey100, leftedgex180 and exact stepped right outline: upper0..30native rows width29 (rightx760), rows39..41 width32(rightx820), row45width31(rightx800), row50width32, row55width34(rightx860), lastwidth35..36(rightx880..900). Do not shrink occupied source outline or round its steps. Preserve the lower LEFT crossband at native sourcey40..42, padded pixel y900..960, same slight diagonal slope and endpoint near sourcex21. No band at source43..45. Preserve original lowcontrast blue left face, narrow dark center groove, subdued greenright, and their existing divisions exactly. IMPORTANT pale left weathering is faint blue-grey diffuse separated source patches, never white/highcontrast flaking paint or long connected crack stripe. Trace FIRST individual pale patches and surrounding dark gaps at their original positions and strength. Do not combine, enlarge, brighten or replace them with detailed scratches. Add restrained narrow subtle timber/molding surface grain inside source color groups only, smooth painterly restoration appropriate to worn ship architecture. No new horizontal panel divisions on green right face, deep cracks, symbols, letters, pitting, texture relief, ornate trim, or completed base/top. Output isolated firstimage with exact transparent margin mask, no background, scene, labels or watermark.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "generatedSize": [
+        1086,
+        1448
+      ],
+      "repairPassed": false,
+      "failure": "Padded generated silhouette differs from source placement",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612/draft-input-v4.png",
+      "attemptedSourceAuthoringCrop": {
+        "algorithmPath": "scripts/crop-envhd-painted-authoring-canvas.py",
+        "algorithmSha256": "939125d63c15725d6c91637eb981ccbf8c667b5b13c52061d5a91345c3ba7676",
+        "sourceCanvasSize": [
+          54,
+          72
+        ],
+        "sourceOriginNative": [
+          9,
+          5
+        ],
+        "expectedCropRectAtTargetScale": [
+          36,
+          20,
+          180,
+          268
+        ],
+        "sourceAlphaApplied": false,
+        "sourceRgbApplied": false,
+        "passed": false
+      },
+      "verdict": "source-fidelity-revision-needed",
+      "reason": "Phantom correction fails the unchanged 0.97 source silhouette IoU gate on explicit padded authoring crop. Internal pale weathering/band landmarks also remain displaced. No successful crop or repair output; independent P2 remains open."
+    }
+  ]
+}
