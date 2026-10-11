@@ -9,9 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /** Runs the real audio worker in its unavailable-output wait, without opening an audio device. */
 final class AudioShutdownTest {
@@ -24,13 +26,21 @@ final class AudioShutdownTest {
   private static final class Fixture implements AutoCloseable {
     private final AudioThread audio = new AudioThread(true, 24, InterpolationPrecision.Double, PitchResolution.Quadruple, EffectsOverTimeGranularity.Double);
     private final Thread worker = new Thread(this.audio, "audio-shutdown-regression");
+    private final AtomicReference<Throwable> workerFailure = new AtomicReference<>();
 
     Fixture() throws Exception {
+      this(true);
+    }
+
+    Fixture(final boolean startWorker) throws Exception {
       // init() normally constructs this source even when all output devices fail.
       field("xaPlayer").set(this.audio, new XaPlayer(1.0f));
       field("paused").setBoolean(this.audio, true);
       this.worker.setDaemon(true);
-      this.worker.start();
+      this.worker.setUncaughtExceptionHandler((thread, failure) -> this.workerFailure.set(failure));
+      if(startWorker) {
+        this.worker.start();
+      }
     }
 
     void awaitPaused() throws Exception {
@@ -44,6 +54,7 @@ final class AudioShutdownTest {
     void assertTerminated() throws Exception {
       this.worker.join(2_000);
       assertFalse(this.worker.isAlive(), "Shutdown must release the paused worker without the gameplay close handler calling stop()");
+      assertNull(this.workerFailure.get(), "The stopped worker must finish without accessing unavailable native output");
     }
 
     @Override public void close() throws Exception {
@@ -51,6 +62,27 @@ final class AudioShutdownTest {
       this.audio.destroy();
       this.worker.join(2_000);
       assertFalse(this.worker.isAlive(), "Regression fixture must not leak a worker");
+    }
+  }
+
+  @Test void destroyBeforeFirstWorkerTurnCannotRestartAudio() throws Exception {
+    for(int iteration = 0; iteration < 20; iteration++) {
+      try(final Fixture fixture = new Fixture(false)) {
+        fixture.audio.destroy();
+        fixture.worker.start();
+        fixture.assertTerminated();
+        fixture.audio.destroy();
+      }
+    }
+  }
+
+  @Test void stopBeforeFirstWorkerTurnCannotRestartAudio() throws Exception {
+    for(int iteration = 0; iteration < 20; iteration++) {
+      try(final Fixture fixture = new Fixture(false)) {
+        fixture.audio.stop();
+        fixture.worker.start();
+        fixture.assertTerminated();
+      }
     }
   }
 
