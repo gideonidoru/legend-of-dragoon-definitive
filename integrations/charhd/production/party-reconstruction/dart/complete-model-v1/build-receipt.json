@@ -1,0 +1,68 @@
+{
+  "status": "complete-actor-review-candidate-not-runtime-selected",
+  "nativeAnimation": false,
+  "skinning": "dual-quaternion, authoring only",
+  "alternateTextureCompatibility": "not yet bound; accepted runtime is unchanged",
+  "head": "accepted public CharHD field head, fitted into authored body without modifying selected bytes",
+  "headTopMetres": 1.7430566823482514,
+  "bodyTriangles": 26581,
+  "headTriangles": 5748,
+  "bones": [
+    "hips",
+    "spine",
+    "chest",
+    "right_upperarm",
+    "right_forearm",
+    "right_hand",
+    "right_thigh",
+    "right_shin",
+    "right_boot",
+    "left_upperarm",
+    "left_forearm",
+    "left_hand",
+    "left_thigh",
+    "left_shin",
+    "left_boot"
+  ],
+  "poses": [
+    {
+      "pose": "neutral",
+      "file": "neutral.glb",
+      "sha256": "e9ac7c3effd398e7779b6060a79888adc72692e1a5691ef4bf371184df28e891",
+      "triangles": 32329,
+      "nativeAnimation": false
+    },
+    {
+      "pose": "relaxed",
+      "file": "relaxed.glb",
+      "sha256": "9e2cdded9393e0045d224907031a2009821cc8ac385b01b3edd84e58dc960750",
+      "triangles": 32827,
+      "nativeAnimation": false
+    },
+    {
+      "pose": "ready",
+      "file": "ready.glb",
+      "sha256": "f4137337c6ffad2fc5dcdb6b9593ba6e5f07c8f9f09890bcaf5db230199c8d5a",
+      "triangles": 32827,
+      "nativeAnimation": false
+    },
+    {
+      "pose": "guard",
+      "file": "guard.glb",
+      "sha256": "8cc3b497a5a88aa33e4096915d782e13ad9405ec8708833408b7bec25b469162",
+      "triangles": 32827,
+      "nativeAnimation": false
+    },
+    {
+      "pose": "stride",
+      "file": "stride.glb",
+      "sha256": "eaa013e0ac04f1bb56279409fce5e06f7179d245146787de0be949f97c88b4d0",
+      "triangles": 32827,
+      "nativeAnimation": false
+    }
+  ],
+  "inputSha256": "823eb73e393879c2f057c35e64fd71d5af92011c13cc12f3bbdf10b82d00df6a",
+  "earlierSculptSha256": "5cef3e667de92c1f4b60d71e8294bb7d80ca3278eb0557a1190aaa9a18791b19",
+  "builderSha256": "b6bcc5b8f636997d94bc5e8c4f18fa3e2072bb917b8c0df1250d9e95b1c849ea",
+  "skinningSha256": "07f9973a6dc2e1fce987a8c01e246105c8b3c25b26b943f555df03de7c4668a1"
+}

@@ -8,6 +8,8 @@ The complete bespoke body remains unfinished. Armor/clothing, hands, boots and w
 
 The [original-design party set](../../docs/definitive/PARTY_ORIGINAL_DESIGN_V3.md) now provides new custom artwork, editable static meshes and 2K textures for Dart, Rose, Lavitz, Shana, Haschel, Albert, Meru, Kongol and Miranda. These are public CharHD authoring candidates with front/side/rear comparisons. Exact detail checks, rear surfaces and native articulation remain unfinished; they do not replace the selected game actors or enter the normal installer yet.
 
+Dart now also has a [complete actor review](../../docs/definitive/DART_COMPLETE_MODEL_REVIEW.md): a continuous body, accepted CharHD head, separate sword, five authored poses and an offline 3D inspection viewer. This remains an owner-review experiment; native game articulation and alternate-texture binding are pending.
+
 The existing source-bound battle atlas adapter retains the Dart armor development pilot. Another 678 restoration candidates remain under art review; their publication does not select them for runtime delivery. The field texture adapter remains available. This is not a claim of complete bespoke character, field/NPC/enemy artwork, animation or Steam Deck validation.
 
 CharHD is included by the normal Definitive build and package. It requires this matching engine's geometry/appearance hooks; unmodified Severed Chains and older Definitive binaries are not supported. Unknown source geometry, other geometry owners, existing appearance replacements and native vertex-index consumers keep their established route. Invalid custom resources retain existing models. Disabling CharHD restores the original or selected ModelsHD presentation.

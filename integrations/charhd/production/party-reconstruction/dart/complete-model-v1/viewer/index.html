@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dart · CharHD studio</title>
+<style>
+:root{color-scheme:dark;font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#ece9e5;background:#121417}*{box-sizing:border-box}body{margin:0}header{position:absolute;z-index:2;top:28px;left:32px;pointer-events:none}h1{font-size:32px;letter-spacing:-1.2px;font-weight:550;margin:6px 0}p{color:#a8a5a2;line-height:1.5;margin:4px 0}.eyebrow{font-size:11px;letter-spacing:2px;color:#b8a27b;text-transform:uppercase}canvas{display:block;width:100vw;height:100vh;touch-action:none}.controls{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);max-width:calc(100vw - 32px);padding:14px;background:#22252adf;border:1px solid #ffffff18;border-radius:18px;backdrop-filter:blur(24px);display:flex;gap:8px;flex-wrap:wrap;justify-content:center}button,select,a.download{font:inherit;border:1px solid #ffffff20;color:#eae7e2;background:#303339;border-radius:9px;padding:11px 15px;cursor:pointer;min-height:44px}button[aria-pressed=true]{background:#dac7a4;color:#1b1c1e}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #e4cfa6;outline-offset:3px}a.download{text-decoration:none}.note{position:absolute;right:28px;top:30px;text-align:right;max-width:280px;font-size:12px;color:#aaa;line-height:1.6}.status{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#272b31;padding:18px;border-radius:12px}.error{color:#ffb0a5}#stats{position:absolute;bottom:110px;left:32px;font-size:12px;color:#999;pointer-events:none}@media(max-width:700px){header{top:16px;left:20px}h1{font-size:26px}.note{top:110px;left:20px;text-align:left;max-width:220px}.controls{bottom:12px;width:calc(100vw - 24px);gap:6px;padding:10px}button,select,a.download{padding:10px;font-size:13px}#stats{bottom:148px;left:20px}}
+</style>
+<header><div class="eyebrow">Definitive · Character studio</div><h1>Dart, in three dimensions.</h1><p>Drag to rotate. Scroll or pinch to zoom.</p></header>
+<div class="note">Full actor review candidate<br>Authored poses · no native gameplay claim<br>Your installed CharHD is unchanged.</div>
+<div id="status" class="status" role="status">Loading Dart…</div><div id="stats"></div>
+<nav class="controls" aria-label="Model inspection">
+<select id="pose" aria-label="Pose"><option value="ready">Ready</option><option value="neutral">Neutral</option><option value="relaxed">Relaxed</option><option value="guard">Guard</option><option value="stride">Stride</option><option value="before">Earlier static sculpt</option></select>
+<button id="colour" aria-pressed="true">Materials</button><button id="clay" aria-pressed="false">Clay</button><button id="wire" aria-pressed="false">Wireframe</button><button id="turn" aria-pressed="false">Rotate</button><button id="reset">Reset view</button><a class="download" id="download" href="ready.glb" download>Download model</a>
+</nav>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+<script type="module" src="./viewer.js"></script></html>
