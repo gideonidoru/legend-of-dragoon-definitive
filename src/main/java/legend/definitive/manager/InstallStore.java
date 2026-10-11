@@ -71,22 +71,24 @@ public final class InstallStore {
 
   public Operation lock() throws IOException {
     final HeldOperation existing = this.held.get();
-    if(existing != null) { if(!existing.reentrant) throw new IOException("Close the game or other installation operation first."); existing.depth++; return new Operation(existing); }
+    if(existing != null) { if(!existing.reentrant) throw new GameLease.Busy("Close the game or other installation operation first."); existing.depth++; return new Operation(existing); }
     this.checkOwnedPaths();
     final FileChannel channel = FileChannel.open(this.root.resolve(".operation-lock"), StandardOpenOption.CREATE, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS);
     final FileLock lock;
     try { lock = channel.tryLock(); }
-    catch(final java.nio.channels.OverlappingFileLockException e) { channel.close(); throw new IOException("Close the game or other installation operation first."); }
-    if(lock == null) { channel.close(); throw new IOException("Close the game or other installation operation first."); }
+    catch(final java.nio.channels.OverlappingFileLockException e) { channel.close(); throw new GameLease.Busy("Close the game or other installation operation first."); }
+    if(lock == null) { channel.close(); throw new GameLease.Busy("Close the game or other installation operation first."); }
     final HeldOperation owned = new HeldOperation(channel, lock); this.held.set(owned);
     try {
-      GameLease.checkIdle(this.root);
+      owned.gameLease = GameLease.checkIdle(this.root);
       this.recoverReleaseRepair();
       this.recoverState();
       this.recoverDiscs();
       this.recoverBootstrap();
       return new Operation(owned);
     } catch(final IOException | RuntimeException failure) {
+      try { if(owned.gameLease != null) owned.gameLease.close(); }
+      catch(final IOException cleanup) { failure.addSuppressed(cleanup); }
       try { lock.release(); } finally { channel.close(); this.held.remove(); }
       throw failure;
     }
@@ -97,7 +99,7 @@ public final class InstallStore {
   }
 
   private static final class HeldOperation {
-    final FileChannel channel; final FileLock lock; int depth = 1; boolean reentrant;
+    final FileChannel channel; final FileLock lock; GameLease.IdleLease gameLease; int depth = 1; boolean reentrant;
     HeldOperation(final FileChannel channel, final FileLock lock) { this.channel = channel; this.lock = lock; }
   }
   public final class Operation implements AutoCloseable {
@@ -105,16 +107,36 @@ public final class InstallStore {
     private Operation(final HeldOperation operation) { this.operation = operation; }
     public FileChannel channel() { return this.operation.channel; }
     public FileLock lock() { return this.operation.lock; }
+    void allowGameLaunch() throws IOException {
+      if(this.operation.gameLease != null) { this.operation.gameLease.close(); this.operation.gameLease = null; }
+    }
     @Override public void close() throws IOException {
       if(this.closed) return;
       if(held.get() != this.operation) throw new IOException("Installation operation closed from the wrong thread.");
       this.closed = true;
-      if(--this.operation.depth == 0) try { this.operation.lock.release(); } finally { this.operation.channel.close(); held.remove(); }
+      if(--this.operation.depth == 0) {
+        try { if(this.operation.gameLease != null) this.operation.gameLease.close(); }
+        finally { try { this.operation.lock.release(); } finally { this.operation.channel.close(); held.remove(); } }
+      }
     }
   }
   @FunctionalInterface public interface Work<T> { T run() throws IOException, InterruptedException; }
   public <T> T withOperation(final Work<T> work) throws IOException, InterruptedException {
     try(final var operation = this.operation()) { return work.run(); }
+  }
+  public <T> T withMaintenance(final InstallProgress progress, final Work<T> work) throws IOException, InterruptedException {
+    this.checkOwnedPaths();
+    final long deadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(8);
+    while(true) {
+      GameLease.stopForMaintenance(this.root, progress);
+      final Operation operation;
+      try { operation = this.operation(); }
+      catch(final GameLease.Busy busy) {
+        if(System.nanoTime() >= deadline) throw busy;
+        Thread.sleep(50); continue;
+      }
+      try(operation) { return work.run(); }
+    }
   }
 
   public String install(final Path source) throws IOException { return this.install(source, ""); }
@@ -818,6 +840,7 @@ public final class InstallStore {
       final Path log = workspace.resolve("launcher.log");
       DiagnosticLogs.checked(log);
       this.verifiedRouterRelease();
+      operation.allowGameLaunch();
       final String token = GameLease.begin(this.root);
       try {
         command.add("-Ddefinitive.installRoot=" + this.root);

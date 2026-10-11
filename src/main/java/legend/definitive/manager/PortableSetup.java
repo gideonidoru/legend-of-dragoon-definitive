@@ -15,6 +15,10 @@ public final class PortableSetup {
     return install(supplied, store, progress, false);
   }
   static String install(final Path supplied, final InstallStore store, final InstallProgress progress, final boolean fullReinstall) throws IOException, InterruptedException {
+    if(fullReinstall) return store.withMaintenance(progress, () -> installSelected(supplied, store, progress, true));
+    return installSelected(supplied, store, progress, false);
+  }
+  private static String installSelected(final Path supplied, final InstallStore store, final InstallProgress progress, final boolean fullReinstall) throws IOException, InterruptedException {
     InstallerLog.write("Install target: " + store.root() + "; platform: " + PackageManifest.hostPlatform() + "; Java: " + Runtime.version());
     if(supplied != null && Files.isRegularFile(supplied.resolve(PackageManifest.METADATA))) return store.install(supplied, "", null, progress, fullReinstall);
     progress.phase("Checking available space", store.root().toString(), 2);
