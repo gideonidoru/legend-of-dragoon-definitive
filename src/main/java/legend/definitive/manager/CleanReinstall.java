@@ -15,7 +15,11 @@ final class CleanReinstall {
   private static final Set<String> PRIVATE = Set.of("saves", "savedata", "config", "mods", "texture-packs", "config.conf", "config.dcnf", "definitive-hd-mods.properties");
   private CleanReinstall() { }
   record Prepared(Path staged, String dataId) implements AutoCloseable {
-    @Override public void close() throws IOException { InstallStore.deleteOwnedTree(this.staged); }
+    @Override public void close() throws IOException {
+      InstallStore.deleteOwnedTree(this.staged);
+      // A committed or interrupted journal still needs the receipt to prove cleanup safe.
+      if(!Files.exists(this.staged.getParent().resolve(JOURNAL), LinkOption.NOFOLLOW_LINKS)) Files.deleteIfExists(receipt(this.staged.getParent(), this.dataId));
+    }
   }
   @FunctionalInterface interface PersonalCopier { void copy(Path source, Path destination) throws IOException; }
   static Prepared prepare(final InstallStore store, final Properties old, final PackageManifest next) throws IOException { return prepare(store, old, next, InstallStore::copyTree); }
@@ -24,6 +28,9 @@ final class CleanReinstall {
     final Path root = store.root();
     final Path preserved = Files.createTempDirectory(root, ".reinstall-data-");
     final Prepared result = new Prepared(preserved, "data-" + UUID.randomUUID());
+    final Path receiptFile = receipt(root, result.dataId());
+    try { Files.createFile(receiptFile); }
+    catch(final IOException failure) { InstallStore.deleteOwnedTree(preserved); throw failure; }
     try {
       final Path active = old.containsKey("data") ? store.data(old) : null;
       if(active != null) {
@@ -36,7 +43,7 @@ final class CleanReinstall {
         for(final Path entry : entries.sorted().toList()) {
           checkCancelled();
           final String name = entry.getFileName().toString();
-          if(entry.equals(preserved) || KEEP.contains(name) && !Set.of("data", "snapshots", "workspaces", "releases").contains(name)) continue;
+          if(entry.equals(preserved) || entry.equals(receiptFile) || KEEP.contains(name) && !Set.of("data", "snapshots", "workspaces", "releases").contains(name)) continue;
           if(name.equals("data") || name.equals("snapshots")) {
             try(final var generations = Files.list(entry)) {
               for(final Path generation : generations.sorted().toList()) if(!generation.equals(active)) preserveTree(root, generation, preserved, active);
@@ -61,8 +68,8 @@ final class CleanReinstall {
       }
       excludeBundledDuplicates(preserved);
       final Properties receipt = inventory(preserved);
-      InstallStore.atomicProperties(preserved.resolve(RECEIPT), receipt);
-      verify(preserved);
+      InstallStore.atomicProperties(receiptFile, receipt);
+      verify(preserved, receiptFile);
       InstallStore.forceTree(preserved);
       return result;
     } catch(final IOException | RuntimeException failure) {
@@ -238,23 +245,27 @@ final class CleanReinstall {
       }
     }
   }
-  private static Properties inventory(final Path data) throws IOException {
+  private static Properties inventory(final Path data) throws IOException { return inventory(data, null); }
+  private static Properties inventory(final Path data, final Path generatedReceipt) throws IOException {
     final Properties hashes = new Properties();
     try(final var paths = Files.walk(data)) {
       for(final Path path : paths.toList()) {
         if(Files.isSymbolicLink(path)) throw new IOException("Linked preservation data.");
-        if(Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS) && !path.equals(data.resolve(RECEIPT))) hashes.setProperty(data.relativize(path).toString(), Files.size(path) + ":" + PackageManifest.sha256(path));
+        if(Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS) && !path.equals(generatedReceipt)) hashes.setProperty(data.relativize(path).toString(), Files.size(path) + ":" + PackageManifest.sha256(path));
       }
     }
     return hashes;
   }
-  private static void verify(final Path data) throws IOException {
-    if(!inventory(data).equals(PackageManifest.readProperties(data.resolve(RECEIPT)))) throw new IOException("Preserved personal data differs from its verified receipt. Cleanup stopped.");
+  private static Path receipt(final Path root, final String dataId) throws IOException {
+    return InstallStore.child(root, ".reinstall-receipt-" + dataId + ".properties", "\\.reinstall-receipt-data-[a-f0-9-]{36}\\.properties");
+  }
+  private static void verify(final Path data, final Path generatedReceipt) throws IOException {
+    if(!inventory(data, generatedReceipt).equals(PackageManifest.readProperties(generatedReceipt))) throw new IOException("Preserved personal data differs from its verified receipt. Cleanup stopped.");
   }
   static void journal(final Path root, final Properties next) throws IOException {
-    final Properties journal = new Properties(); journal.setProperty("format", "1");
+    final Properties journal = new Properties(); journal.setProperty("format", "2");
     journal.setProperty("version", next.getProperty("version")); journal.setProperty("data", next.getProperty("data"));
-    journal.setProperty("receiptSha256", PackageManifest.sha256(root.resolve("data").resolve(next.getProperty("data")).resolve(RECEIPT)));
+    journal.setProperty("receiptSha256", PackageManifest.sha256(receipt(root, next.getProperty("data"))));
     InstallStore.atomicProperties(root.resolve(JOURNAL), journal);
   }
   static void recover(final InstallStore store, final InstallProgress progress) throws IOException {
@@ -262,17 +273,19 @@ final class CleanReinstall {
     if(!Files.exists(file, LinkOption.NOFOLLOW_LINKS)) return;
     if(Files.isSymbolicLink(file) || Files.size(file) > 65536) throw new IOException("Invalid clean reinstall journal.");
     final Properties journal = PackageManifest.readProperties(file);
-    if(!journal.stringPropertyNames().equals(Set.of("format", "version", "data", "receiptSha256")) || !"1".equals(journal.getProperty("format"))) throw new IOException("Invalid clean reinstall journal.");
+    if(!journal.stringPropertyNames().equals(Set.of("format", "version", "data", "receiptSha256")) || !Set.of("1", "2").contains(journal.getProperty("format"))) throw new IOException("Invalid clean reinstall journal.");
     final Path release = InstallStore.child(root.resolve("releases"), journal.getProperty("version", ""), "alpha-[a-f0-9]{16}");
     final Path data = InstallStore.child(root.resolve("data"), journal.getProperty("data", ""), "data-[a-f0-9-]{36}");
+    final boolean legacy = "1".equals(journal.getProperty("format"));
+    final Path generatedReceipt = legacy ? data.resolve(RECEIPT) : receipt(root, journal.getProperty("data"));
     final Properties state = store.state();
     if(!journal.getProperty("version").equals(state.getProperty("version")) || !journal.getProperty("data").equals(state.getProperty("data"))) {
       // Activation did not commit. Original private data remains authoritative.
       Files.delete(file); InstallStore.forceDirectory(root); return;
     }
     PackageManifest.read(release).verify(release, PackageManifest.hostPlatform());
-    if(!PackageManifest.sha256(data.resolve(RECEIPT)).equals(journal.getProperty("receiptSha256"))) throw new IOException("Preservation receipt changed. Cleanup stopped.");
-    verify(data);
+    if(!PackageManifest.sha256(generatedReceipt).equals(journal.getProperty("receiptSha256"))) throw new IOException("Preservation receipt changed. Cleanup stopped.");
+    verify(data, generatedReceipt);
     InstallStore.atomicProperties(root.resolve(".state-last-good.properties"), state);
     progress.phase("Cleaning old installation files", "The replacement and preserved personal files are verified", 97);
     checkCancelled();
@@ -285,13 +298,14 @@ final class CleanReinstall {
       InstallStore.forceDirectory(root.resolve(container));
     }
     try(final var entries = Files.list(root)) {
-      for(final Path path : entries.toList()) if(!KEEP.contains(path.getFileName().toString()) && !runtimeRoot(root, path.getFileName().toString())) {
+      for(final Path path : entries.toList()) if(!path.equals(generatedReceipt) && !KEEP.contains(path.getFileName().toString()) && !runtimeRoot(root, path.getFileName().toString())) {
         checkCancelled(); InstallStore.deleteOwnedTree(path);
       }
     }
     InstallStore.forceDirectory(root);
     store.prepareCleanWorkspace();
     Files.delete(file); InstallStore.forceDirectory(root);
+    if(!legacy) { Files.deleteIfExists(generatedReceipt); InstallStore.forceDirectory(root); }
   }
   private static void checkCancelled() throws IOException {
     if(Thread.currentThread().isInterrupted()) throw new java.io.InterruptedIOException("Clean reinstall cancelled. Personal files remain preserved.");

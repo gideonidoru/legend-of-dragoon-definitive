@@ -9,6 +9,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CleanReinstallTest {
   @TempDir Path temporary;
+  @Test void ownerRootReceiptFilenameSurvivesCompleteReinstallAndRepeat() throws Exception {
+    var store = new InstallStore(temporary.resolve("owner-receipt")); var pack = pack("owner-receipt-pack"); store.install(pack);
+    final String name = ".reinstall-preserved.properties";
+    Files.writeString(store.data(store.state()).resolve(name), "owner receipt notes");
+    store.install(pack, "", null, InstallProgress.NONE, true); store.verifyInstalled();
+    assertEquals("owner receipt notes", Files.readString(store.data(store.state()).resolve(name)));
+    store.install(pack, "", null, InstallProgress.NONE, true); store.verifyInstalled();
+    assertEquals("owner receipt notes", Files.readString(store.data(store.state()).resolve(name)));
+  }
+  @Test void interruptedLegacyReceiptJournalStillRecovers() throws Exception {
+    var store = new InstallStore(temporary.resolve("legacy-receipt")); var pack = pack("legacy-receipt-pack"); store.install(pack);
+    Files.writeString(store.data(store.state()).resolve("saves/owner.txt"), "legacy save");
+    assertThrows(java.io.InterruptedIOException.class, () -> store.install(pack, "", null, update -> {
+      if(update.phase().equals("Cleaning old installation files")) Thread.currentThread().interrupt();
+    }, true));
+    Thread.interrupted();
+    var journal = PackageManifest.readProperties(store.root().resolve(CleanReinstall.JOURNAL));
+    final Path data = store.root().resolve("data").resolve(journal.getProperty("data"));
+    Files.move(store.root().resolve(".reinstall-receipt-" + journal.getProperty("data") + ".properties"), data.resolve(".reinstall-preserved.properties"));
+    journal.setProperty("format", "1"); InstallStore.atomicProperties(store.root().resolve(CleanReinstall.JOURNAL), journal);
+    final var recovered = new InstallStore(store.root()); recovered.verifyInstalled();
+    assertFalse(Files.exists(store.root().resolve(CleanReinstall.JOURNAL)));
+    assertEquals("legacy save", Files.readString(recovered.data(recovered.state()).resolve("saves/owner.txt")));
+  }
   @org.junit.jupiter.api.BeforeEach void realTemporary() throws Exception { temporary = temporary.toRealPath(); }
   private Path pack(String name) throws Exception {
     var fixture = new InstallStoreTest(); fixture.temporary = temporary.toRealPath();
@@ -113,12 +137,14 @@ class CleanReinstallTest {
   @Test void interruptedCleanupResumesUnderOperationLock() throws Exception {
     var store=new InstallStore(temporary.resolve("resume"));var pack=pack("resume-pack");store.install(pack);
     Files.writeString(store.data(store.state()).resolve("saves/owner.txt"),"save");
+    Files.writeString(store.data(store.state()).resolve(".reinstall-preserved.properties"),"owner receipt notes");
     Files.writeString(store.root().resolve("lod-game-old.jar"),"old app");
     assertThrows(java.io.InterruptedIOException.class,()->store.install(pack,"",null,update->{if(update.phase().equals("Cleaning old installation files"))Thread.currentThread().interrupt();},true));
     Thread.interrupted();assertTrue(Files.exists(store.root().resolve(CleanReinstall.JOURNAL)));
     var resumed=new InstallStore(store.root());resumed.verifyInstalled();
     assertFalse(Files.exists(resumed.root().resolve(CleanReinstall.JOURNAL)));assertFalse(Files.exists(resumed.root().resolve("lod-game-old.jar")));
     assertEquals("save",Files.readString(resumed.data(resumed.state()).resolve("saves/owner.txt")));
+    assertEquals("owner receipt notes",Files.readString(resumed.data(resumed.state()).resolve(".reinstall-preserved.properties")));
   }
   @Test void gameLeaseBlocksCleanReinstallBeforeAnyPreservationOrDeletion() throws Exception {
     var store = new InstallStore(temporary.resolve("busy")); var pack = pack("busy-pack"); store.install(pack);
@@ -132,12 +158,16 @@ class CleanReinstallTest {
   @Test void bootstrapFailureKeepsOriginalPrivateDataAndDoesNotRunCleanup() throws Exception {
     var root = temporary.resolve("bootstrap"); var original = new InstallStore(root); var pack = pack("bootstrap-pack"); original.install(pack);
     var before = original.state(); var data = original.data(before); Files.writeString(data.resolve("saves/owner.txt"), "original save");
+    Files.writeString(data.resolve(".reinstall-preserved.properties"), "owner receipt notes");
     Files.writeString(root.resolve("lod-game-old.jar"), "old app");
     var next = pack("bootstrap-next");
     var failing = new InstallStore(root, (staged,target) -> { throw new IOException("Injected launcher write failure"); });
     assertThrows(IOException.class, () -> failing.install(next,"",null,InstallProgress.NONE,true));
     assertEquals(before, original.state()); assertEquals("original save",Files.readString(data.resolve("saves/owner.txt")));
     assertTrue(Files.exists(root.resolve("lod-game-old.jar"))); assertFalse(Files.exists(root.resolve(CleanReinstall.JOURNAL)));
+    assertEquals("owner receipt notes", Files.readString(data.resolve(".reinstall-preserved.properties")));
+    original.install(next, "", null, InstallProgress.NONE, true); original.verifyInstalled();
+    assertEquals("owner receipt notes", Files.readString(original.data(original.state()).resolve(".reinstall-preserved.properties")));
   }
   @Test void damagedPreservationReceiptPreventsResumedDeletion() throws Exception {
     var store = new InstallStore(temporary.resolve("receipt")); var pack = pack("receipt-pack"); store.install(pack);

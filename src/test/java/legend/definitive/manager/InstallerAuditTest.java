@@ -9,6 +9,16 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Isolated files only; no desktop, game or network. */
 class InstallerAuditTest {
   @TempDir Path temporary;
+  @Test void updateAndCleanReinstallPreserveReadOnlyPersonalFile() throws Exception {
+    temporary = temporary.toRealPath(); final var fixture = new InstallStoreTest(); fixture.temporary = temporary;
+    final var store = new InstallStore(temporary.resolve("installed")); store.install(fixture.pack("old", PackageManifest.hostPlatform()));
+    final Path note = store.data(store.state()).resolve("config/owner.txt"); Files.writeString(note, "read-only owner notes");
+    final var permissions = java.nio.file.attribute.PosixFilePermissions.fromString("r--r--r--"); Files.setPosixFilePermissions(note, permissions);
+    final Path next = fixture.pack("new", PackageManifest.hostPlatform()); store.install(next);
+    store.install(next, "", null, InstallProgress.NONE, true); store.verifyInstalled();
+    final Path preserved = store.data(store.state()).resolve("config/owner.txt");
+    assertEquals("read-only owner notes", Files.readString(preserved)); assertEquals(permissions, Files.getPosixFilePermissions(preserved));
+  }
   @Test void updateAndRestorePreserveOwnerSnapshotFilenameAtDataRoot() throws Exception {
     temporary = temporary.toRealPath();
     final var fixture = new InstallStoreTest(); fixture.temporary = temporary;

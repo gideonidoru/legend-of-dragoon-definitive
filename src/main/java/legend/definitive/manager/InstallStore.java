@@ -1218,7 +1218,7 @@ public final class InstallStore {
       for(final Path path : paths.sorted(java.util.Comparator.reverseOrder()).toList()) {
         if(Files.isSymbolicLink(path)) throw new IOException("Cannot synchronize linked installation data.");
         if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) forceDirectory(path);
-        else try(final var channel = FileChannel.open(path, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS)) { channel.force(true); }
+        else try(final var channel = FileChannel.open(path, StandardOpenOption.READ, LinkOption.NOFOLLOW_LINKS)) { channel.force(true); }
       }
     }
     forceDirectory(root.getParent());
