@@ -25,17 +25,22 @@ PINS = {
     'boundsAlgorithmSha256': 'd94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a',
     'stpAlgorithmSha256': '2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751',
 }
+circle = module('painted_battle_circle', 'repair-envhd-painted-battle-circle.py')
+CIRCLE_PINS = dict(PINS, algorithmSha256='bc65c6067baf17e996cd908b36a30b7544c8c1160e2a2865878a14d4f6305484')
+RECIPES = {repair.METHOD: (repair, PINS), circle.METHOD: (circle, CIRCLE_PINS)}
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
 
 
 def preflight(files, manifest_path, root=ROOT):
     data = battle.terrain.bounded_read(manifest_path, 32 * 1024 * 1024)
     manifest = json.loads(data)
-    if (manifest.get('schema') != 1 or manifest.get('method') != repair.METHOD
+    recipe_pair = RECIPES.get(manifest.get('method'))
+    if (manifest.get('schema') != 1 or recipe_pair is None
             or any(manifest.get(k) != 0 for k in ('runtimeSelected', 'nativeAccepted', 'finalQualityAccepted'))):
         raise ValueError('Painted battle acceptance/recipe changed')
-    for name, script in [('algorithmSha256', repair.__file__), ('boundsAlgorithmSha256', repair.bounds.__file__), ('stpAlgorithmSha256', repair.terrain.__file__)]:
-        if manifest.get(name) != PINS[name] or battle.terrain.digest(Path(script).read_bytes()) != PINS[name]:
+    recipe, pins = recipe_pair
+    for name, script in [('algorithmSha256', recipe.__file__), ('boundsAlgorithmSha256', recipe.bounds.__file__), ('stpAlgorithmSha256', recipe.terrain.__file__)]:
+        if manifest.get(name) != pins[name] or battle.terrain.digest(Path(script).read_bytes()) != pins[name]:
             raise ValueError('Painted battle algorithm identity changed')
     candidates = manifest.get('candidates')
     if (not isinstance(candidates, list) or not candidates or not all(isinstance(c, dict) for c in candidates)
@@ -67,7 +72,7 @@ def preflight(files, manifest_path, root=ROOT):
                 or note['verdict'] != 'visual-reviewed-runtime-pending'
                 or note['nativeAcceptance'] != 'pending' or note['finalQualityAcceptance'] != 'pending'
                 or note['outputSha256'] != candidate.get('outputSha256')
-                or candidate.get('method') != repair.METHOD
+                or candidate.get('method') != recipe.METHOD
                 or candidate.get('runtimeSelected') is not False):
             raise ValueError('Painted battle explicit review changed')
         prefix = f'integrations/envhd/production/bespoke-battle-candidates/{key}/'
@@ -83,12 +88,15 @@ def preflight(files, manifest_path, root=ROOT):
             repair.bounds.validate_opened_png(raw, raw_size, 'painted', source.size, 'RGB' if raw_data[25] == 2 else 'RGBA')
             if candidate.get('generatedInputMode') != raw.mode:
                 raise ValueError('Painted battle input mode changed')
-            expected, _, metrics = repair.repair(source, raw, candidate.get('motifRgba'), candidate.get('lowerBandStart'))
+            if recipe.METHOD == repair.METHOD:
+                expected, _, metrics = recipe.repair(source, raw, candidate.get('motifRgba'), candidate.get('lowerBandStart'))
+            else:
+                expected, _, metrics = recipe.repair(source, raw, candidate.get('motifRgba'), candidate.get('sourceMaskCircle'), candidate.get('lightingRadius'))
         with Image.open(io.BytesIO(output_data)) as output:
             repair.bounds.validate_opened_png(output, output_size, 'output', source.size)
             if not np.array_equal(np.asarray(output), np.asarray(expected)):
                 raise ValueError('Painted battle output differs from its source-locked recipe')
-        if any(candidate.get(k) != v for k, v in metrics.items()) or any(candidate.get(k) != v for k, v in PINS.items()):
+        if any(candidate.get(k) != v for k, v in metrics.items()) or any(candidate.get(k) != v for k, v in pins.items()):
             raise ValueError('Painted battle operation receipt changed')
         verified.append(dict(candidate=candidate, image=np.asarray(expected).copy()))
     return dict(manifestSha256=battle.terrain.digest(data), verified=verified)

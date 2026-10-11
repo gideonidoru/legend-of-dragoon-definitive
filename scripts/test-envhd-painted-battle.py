@@ -76,5 +76,21 @@ class PaintedBattleTests(unittest.TestCase):
         self.candidate['review']['nativeAcceptance'] = 'pending'; self.candidate['sourceMotifPixels'] += 1; self.save()
         with self.assertRaisesRegex(ValueError,'receipt changed'): self.preflight()
 
+    def circle_recipe(self):
+        source_path=self.root/'source.png'
+        record,_=verify.circle.execute(source_path,self.raw,self.output,self.key,[148,180,156,0],[1.5,1.5,1],1.4)
+        self.candidate.update(record);self.candidate['review']['outputSha256']=record['outputSha256']
+        self.manifest.update(method=verify.circle.METHOD,**verify.CIRCLE_PINS);self.save()
+
+    def test_circle_recipe_has_its_own_immutable_pin_and_geometry_receipt(self):
+        self.circle_recipe();result=self.preflight();self.assertEqual(len(result['verified']),1)
+        self.candidate['sourceMaskCircle']=[1.5,1.5,0.5];self.save()
+        with self.assertRaisesRegex(ValueError,'lattice/background'):self.preflight()
+
+    def test_circle_recipe_rejects_rehashed_wrong_pixels(self):
+        self.circle_recipe();Image.new('RGBA',(16,16),(200,230,220,0)).save(self.output)
+        self.candidate['outputSha256']=self.candidate['review']['outputSha256']=sha(self.output);self.save()
+        with self.assertRaisesRegex(ValueError,'source-locked recipe'):self.preflight()
+
 
 if __name__ == '__main__': unittest.main()

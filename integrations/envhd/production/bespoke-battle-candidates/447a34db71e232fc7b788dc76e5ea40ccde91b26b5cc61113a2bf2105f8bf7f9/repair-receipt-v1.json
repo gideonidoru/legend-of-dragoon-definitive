@@ -1,0 +1,51 @@
+{
+  "scale": 4,
+  "sourceSize": [
+    64,
+    56
+  ],
+  "targetSize": [
+    256,
+    224
+  ],
+  "motifRgba": [
+    [
+      131,
+      156,
+      139,
+      0
+    ],
+    [
+      148,
+      172,
+      148,
+      0
+    ]
+  ],
+  "sourceMaskCircle": [
+    31.5,
+    23.5,
+    13
+  ],
+  "lightingRadius": 15,
+  "sourceMotifPixels": 187,
+  "sourceMotifPalettePixels": [
+    59,
+    128
+  ],
+  "motifSilhouetteExact": true,
+  "sourceStpExact": true,
+  "discardAndVisibleBlackExact": true,
+  "bevelInsideSourceMask": true,
+  "edgeAveraging": false,
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "decodedRgbaSha256": "447a34db71e232fc7b788dc76e5ea40ccde91b26b5cc61113a2bf2105f8bf7f9",
+  "method": "python-painted-circle-exact-source-palette-lattice-1",
+  "algorithmSha256": "bc65c6067baf17e996cd908b36a30b7544c8c1160e2a2865878a14d4f6305484",
+  "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+  "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+  "generatedSha256": "7db099a102b6b82797b0c4b019aca59e23751536e1a7445bc0a4e3c9cc645ca4",
+  "outputSha256": "216009e9e2704b618ce5da8f989d39610f8ecfde49e20dafad73cf3defb0675e"
+}
