@@ -69,6 +69,43 @@ class DeltaTests(unittest.TestCase):
             receipt = delta.plan(self.ctx, self.expected, self.files, self.remote('Install-Definitive.sh', data))
             self.assertEqual(expected, next(a for a in receipt['assets'] if a['name'] == 'Install-Definitive.sh')['disposition'])
 
+    def test_canonical_fmv_reuse_binds_server_identity_without_upload(self):
+        name=delta.FMV_SOURCE;sha=digest(self.data);canonical='source-fmvhd-'+sha+'.zip'
+        metadata=self.remote(canonical)
+        metadata['assets'].append(dict(self.remote(name)['assets'][0],id=99))
+        receipt=delta.plan(self.ctx,{name:(len(self.data),sha)},[],metadata)
+        self.assertEqual([],receipt['uploadPaths'])
+        self.assertEqual([dict(name=name,size=len(self.data),sha256=sha,disposition='reuse',assetId=88,releaseId=7,reuseName=canonical)],receipt['assets'])
+        delta.verify_linux(receipt,self.ctx)
+
+    def test_initial_fmv_fixed_name_migration_retains_id_without_upload(self):
+        name=delta.FMV_SOURCE;sha=digest(self.data)
+        receipt=delta.plan(self.ctx,{name:(len(self.data),sha)},[],self.remote(name))
+        self.assertEqual([],receipt['uploadPaths'])
+        self.assertEqual([dict(name=name,size=len(self.data),sha256=sha,disposition='reuse',assetId=88,releaseId=7)],receipt['assets'])
+        delta.verify_linux(receipt,self.ctx)
+        fresh=delta.plan(self.ctx,{name:(len(self.data),sha)},[],self.empty)
+        self.assertEqual(['uploads/'+name],fresh['uploadPaths'])
+
+    def test_corrupt_canonical_fmv_cannot_fall_back_to_identical_fixed_name(self):
+        name=delta.FMV_SOURCE;sha=digest(self.data);canonical='source-fmvhd-'+sha+'.zip'
+        for changes in (dict(size=1),dict(digest=None),dict(digest='sha256:'+'b'*64),dict(state='starter')):
+            metadata=self.remote(canonical,**changes)
+            metadata['assets'].append(dict(self.remote(name)['assets'][0],id=99))
+            with self.subTest(changes=changes),self.assertRaisesRegex(ValueError,'immutable blob'):delta.plan(self.ctx,{name:(len(self.data),sha)},[],metadata)
+
+    def test_reuse_name_is_only_allowed_for_exact_canonical_reused_fmv(self):
+        name=delta.FMV_SOURCE;sha=digest(self.data);canonical='source-fmvhd-'+sha+'.zip'
+        receipt=delta.plan(self.ctx,{name:(len(self.data),sha)},[],self.remote(canonical))
+        for changes in (dict(name=self.blob),dict(disposition='upload'),dict(reuseName=name),dict(reuseName='source-fmvhd-'+'b'*64+'.zip'),dict(reuseName=None)):
+            altered=json.loads(json.dumps(receipt));altered['assets'][0].update(changes)
+            with self.subTest(changes=changes),self.assertRaises(ValueError):delta.verify_linux(altered,self.ctx)
+        stage=self.root/'stage';out=self.root/'receipt.json';delta.stage(receipt,{},stage,out)
+        expected={name:(len(self.data),sha)}
+        delta.verify_staged(receipt,self.ctx,expected,[],stage)
+        receipt['assets'][0]['reuseName']=name
+        with self.assertRaisesRegex(ValueError,'canonical FMV'):delta.verify_staged(receipt,self.ctx,expected,[],stage)
+
     def test_current_reference_is_closed_and_duplicate_names_rejected(self):
         for metadata in ({}, dict(release=None, assets=[{}]), dict(release={}, assets=[])):
             with self.subTest(metadata=metadata), self.assertRaises(ValueError):delta.current_assets(metadata)

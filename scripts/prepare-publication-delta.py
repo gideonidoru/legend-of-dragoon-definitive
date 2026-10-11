@@ -23,6 +23,7 @@ MAX_METADATA = 4 * 1024**2
 MAX_ASSETS = 1000
 MAX_ASSET_BYTES = 2 * 1024**3
 PLATFORMS = ('linux-x64', 'macos-arm64')
+FMV_SOURCE = 'FMVHD-v0.1.0-videos.zip'
 SOURCE = re.compile(r'[a-f0-9]{40}')
 SHA = re.compile(r'[a-f0-9]{64}')
 REPOSITORY = re.compile(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+')
@@ -122,7 +123,7 @@ def collect(distributions, ctx):
             paths[name] = path
         verify_installer(paths['Definitive-Installer.zip'])
         if 'bundled-mods/FMVHD-v0.1.0.jar' in hashes:
-            path = distributions / 'FMVHD-v0.1.0-videos.zip'
+            path = distributions / FMV_SOURCE
             expected[path.name] = identity(path)
             lock = properties((Path(__file__).resolve().parents[1] / 'integrations/fmvhd/release.properties').read_bytes())
             if expected[path.name][1] != lock.get('sha256'):
@@ -131,6 +132,13 @@ def collect(distributions, ctx):
     if len(expected) > MAX_ASSETS:
         raise ValueError('Full publication inventory exceeds asset bound')
     return expected, files, paths
+
+
+def validate_reuse_name(asset):
+    if 'reuseName' in asset and (asset.get('name') != FMV_SOURCE
+            or asset.get('disposition') != 'reuse'
+            or asset['reuseName'] != 'source-fmvhd-' + asset['sha256'] + '.zip'):
+        raise ValueError('Only exact canonical FMV reuse names are permitted')
 
 
 def verify_linux(receipt, ctx):
@@ -154,6 +162,7 @@ def verify_linux(receipt, ctx):
         if asset['disposition'] == 'reuse' and (type(asset.get('assetId')) is not int or asset['assetId'] < 1
                 or type(asset.get('releaseId')) is not int or asset['releaseId'] < 1):
             raise ValueError('Linux reuse lacks remote identity')
+        validate_reuse_name(asset)
         assets[asset['name']] = asset
     files = {}
     for item in receipt['files']:
@@ -184,11 +193,16 @@ def plan(ctx, expected, files, current, linux=None):
     assets = []
     for name, (size, digest) in sorted(expected.items()):
         asset = dict(name=name, size=size, sha256=digest)
-        remote = existing.get(name)
+        reuse_name = name
+        if name == FMV_SOURCE:
+            canonical = 'source-fmvhd-' + digest + '.zip'
+            if canonical in existing:
+                reuse_name = canonical
+        remote = existing.get(reuse_name)
         if remote is not None:
             exact = remote.get('state') == 'uploaded' and remote.get('digest') == 'sha256:' + digest and remote['size'] == size
-            if name.startswith('file-') and not exact:
-                raise ValueError('Current immutable blob identity is corrupt: ' + name)
+            if (name.startswith('file-') or reuse_name != name) and not exact:
+                raise ValueError('Current immutable blob identity is corrupt: ' + reuse_name)
         else:
             exact = False
         assigned = linux_assets.get(name)
@@ -198,6 +212,8 @@ def plan(ctx, expected, files, current, linux=None):
             asset['disposition'] = 'linux'
         elif exact:
             asset.update(disposition='reuse', assetId=remote['id'], releaseId=release['id'])
+            if reuse_name != name:
+                asset['reuseName'] = reuse_name
         else:
             asset['disposition'] = 'upload'
         assets.append(asset)
@@ -263,6 +279,7 @@ def verify_staged(receipt, ctx, expected, files, output):
         name = asset.get('name')
         if name not in expected or name in actual or asset.get('disposition') not in ('upload', 'reuse', 'linux'):
             raise ValueError('Invalid staged inventory')
+        validate_reuse_name(asset)
         actual[name] = asset.get('size'), asset.get('sha256')
         if asset['disposition'] == 'upload':
             uploads.add(name)
