@@ -169,6 +169,7 @@ final class CleanReinstall {
     verify(data);
     InstallStore.atomicProperties(root.resolve(".state-last-good.properties"), state);
     progress.phase("Cleaning old installation files", "The replacement and preserved personal files are verified", 97);
+    checkCancelled();
     for(final String container : List.of("releases", "data", "snapshots", "workspaces")) {
       try(final var entries = Files.list(root.resolve(container))) {
         for(final Path path : entries.toList()) if(!path.equals(release) && !path.equals(data)) {
