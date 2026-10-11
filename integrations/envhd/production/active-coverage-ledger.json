@@ -14,7 +14,8 @@
     "field-bespoke-natural-rock-held-drafts.json": "b4ecadac7d27c436d3a0ab6f8f1c157402775461e2fbb80afc4ef48bd5ae4d23",
     "field-bespoke-textiles-reviewed-selection.json": "0b9c7bd2093443980d141c038041af51e1779ce9db37d74a64452578f2983b66",
     "field-bespoke-textile-held-drafts.json": "3fb7c93730ddc60595d6c386f227d77bfdc0f044072eaec772c2022b64102e3b",
-    "world-water-source-audit.json": "b9339bbf59cb3518e32766ca4f5f52d69d08ce490ae30e4dc4bdef246a6bdb0b"
+    "world-water-source-audit.json": "b9339bbf59cb3518e32766ca4f5f52d69d08ce490ae30e4dc4bdef246a6bdb0b",
+    "world-water-candidate-artwork.json": "dd766f4a7d04dfd4b3b97bf9b5ac15e0e71bcb9700a0c31723484f0c61147748"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -88,7 +89,7 @@
       "totalKnownParts": 8,
       "imageJobDenominator": null,
       "selectedHdFamilies": 0,
-      "nextTask": "Use one shared water source for eight continent parts; close copy/padding/state/presentation and shared Queen Fury wake ownership, then author palette-live detail and integrate behind EnvHD independently of FxHD.",
+      "nextTask": "Review shared4xwater candidate, close consumer-specific state/padding/source lifecycle, integrate EnvHDterrain independently of FxHDwake via reviewed4xrenderer support; retain native/final holds.",
       "partialSourceContract": {
         "ledger": "world-water-source-audit.json",
         "knownSharedWaterTimSources": 1,
@@ -96,7 +97,12 @@
         "all8OrderedBankImageAndPaletteInitializationsProved": true,
         "fixedMode1FloatControllerPeriod": 16512,
         "fullStateAndSharedConsumerContractClosed": false
-      }
+      },
+      "authorReviewedCandidateFamilies": 1,
+      "candidateLedger": "world-water-candidate-artwork.json",
+      "candidateScale": 4,
+      "currentRuntimeSupportsCandidateScale": false,
+      "customPalettePreviews": 8
     },
     {
       "id": "environment-props-and-overlays",

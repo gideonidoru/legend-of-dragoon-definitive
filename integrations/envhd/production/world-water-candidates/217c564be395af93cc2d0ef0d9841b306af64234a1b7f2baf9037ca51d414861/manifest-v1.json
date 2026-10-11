@@ -1,0 +1,332 @@
+{
+  "schema": 1,
+  "method": "envhd-water-all-eight-palettes-local-index-mixture-4x-v1",
+  "sourceTimSha256": "217c564be395af93cc2d0ef0d9841b306af64234a1b7f2baf9037ca51d414861",
+  "decodedIndexedPaletteSha256": "258abfd68d3dfaed7f61dd36a9dc522360f6a0a5b8edc3f7a22f3dff724daef9",
+  "sourceAuditSha256": "b9339bbf59cb3518e32766ca4f5f52d69d08ce490ae30e4dc4bdef246a6bdb0b",
+  "producerSha256": "9622c0d36f2b7bb0e71627051acf4d9ff9f7f412c75f2ed7492e9178ed1e0422",
+  "inferenceProducerSha256": "4046fa4f918f37ec25004632c8c867619688cacb95e1bdbc5a7e88aaadff4f0b",
+  "tools": {
+    "engine": "c1c35d92079085de96b9d547fd7e4464bc8a2e9ccf28d7b8c712d72ade91b7cc",
+    "weights": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+    "parameters": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+  },
+  "inferences": [
+    {
+      "row": 0,
+      "inputSha256": "12fdc02ba603c004a9b271fcb44e7d5012f086f78b9d4405e66acd94308a351b",
+      "inferenceSha256": "fb74d346f78f6339489787614a59f157b1cad71448cde487674f6ad833c76b9b"
+    },
+    {
+      "row": 1,
+      "inputSha256": "9ad6ef4e32cb0d1b016f77e6f08e1a429eead1eb057f4110e42c1166f768c663",
+      "inferenceSha256": "3e3d91fc84f14c24f04d88961cb6fb570095914910416aa5a3a5bddc15123d08"
+    },
+    {
+      "row": 2,
+      "inputSha256": "b1abf38d61c8ba80be3a7c0765ddad22adebdd9885e4f35bcbeb2a9b00677894",
+      "inferenceSha256": "77359268c0524cb3e9217c4cd7db6e880276bb6a715599167abbf6c745f5eb28"
+    },
+    {
+      "row": 3,
+      "inputSha256": "d28aceed650d231646272e991f00763d9f0c00f5e73c8bb07a4bc1ce3d16bd7b",
+      "inferenceSha256": "1617d41071e66962207db28dc29fa927ea3bfb0f103ab34777045658f4ee02fb"
+    },
+    {
+      "row": 4,
+      "inputSha256": "e2d376026c528b60965ca9ef7dcf1c967f3528891f68f110b12663426c40bf7a",
+      "inferenceSha256": "3312707414bfb1c47531aa6d855442c5ee844677620d4ca377df749bf6e63769"
+    },
+    {
+      "row": 5,
+      "inputSha256": "d93f1c962d925af4db50127b28e25f711442cd495b0c1d3e63d58d4ba5e63bb5",
+      "inferenceSha256": "a5b5542e8fb94f22b3eb6c16b291022618b1e4b70fe8d9edde699b26be9a2934"
+    },
+    {
+      "row": 6,
+      "inputSha256": "bb1bdd54d9d3f48a41b2531741718cc76af7d355fd8b6977c1f6e33f2aaf0d80",
+      "inferenceSha256": "704812deca8ec364eedadc495d8a1d6db27bae338670e8990400db8942215b81"
+    },
+    {
+      "row": 7,
+      "inputSha256": "68ba3e89117941de4c525814b45eaadef709ac7a9f56d05029416d7290bfcca5",
+      "inferenceSha256": "a61562b30a7a7681b6ab20e179aa89b5df0c6f5b29f0212b991b73f296988fd0"
+    }
+  ],
+  "sourceSize": [
+    64,
+    64
+  ],
+  "targetSize": [
+    256,
+    256
+  ],
+  "scale": 4,
+  "maximumSecondaryMix": 0.5,
+  "secondaryIndexDomain": "wrapped 3x3 native texel neighborhood",
+  "primaryIndicesExact": true,
+  "originalIndicesRecoverableFromPrimaryChannel": true,
+  "originalInputAndPaletteFilesAdded": false,
+  "paletteFit": "One coefficient field jointly fitted against all eight palette targets",
+  "inferenceContext": "16 native pixels of toroidal padding per edge",
+  "changedSubtexels": 63264,
+  "totalSubtexels": 65536,
+  "encodedOutputSha256": "cdca6a16c8cb13e17fce894490c566023f6a00ed86266c7b7c9ab3c255263a24",
+  "previews": [
+    {
+      "row": 0,
+      "clutY": 485,
+      "name": "palette-row-0-custom-preview-v1.png",
+      "outputSha256": "e7ba8ad92a1dbecce4f88ea961559edf42cee09b6a50562c1aa20c60ae608577",
+      "path": "integrations/envhd/production/world-water-candidates/217c564be395af93cc2d0ef0d9841b306af64234a1b7f2baf9037ca51d414861/palette-row-0-custom-preview-v1.png"
+    },
+    {
+      "row": 1,
+      "clutY": 486,
+      "name": "palette-row-1-custom-preview-v1.png",
+      "outputSha256": "f6fb4c263b44e8652464a3cac40457fd208e24f0f49f27c1a28ad88e2cb76b63",
+      "path": "integrations/envhd/production/world-water-candidates/217c564be395af93cc2d0ef0d9841b306af64234a1b7f2baf9037ca51d414861/palette-row-1-custom-preview-v1.png"
+    },
+    {
+      "row": 2,
+      "clutY": 487,
+      "name": "palette-row-2-custom-preview-v1.png",
+      "outputSha256": "91d83d85342e534ce649999b07cbf64dc9d2b8e0468230b47968b8684c8c386c",
+      "path": "integrations/envhd/production/world-water-candidates/217c564be395af93cc2d0ef0d9841b306af64234a1b7f2baf9037ca51d414861/palette-row-2-custom-preview-v1.png"
+    },
+    {
+      "row": 3,
+      "clutY": 488,
+      "name": "palette-row-3-custom-preview-v1.png",
+      "outputSha256": "a583dae65811f3bc5db798c8108717d1241b4013e490b4ede5e2c92f4f5ee17b",
+      "path": "integrations/envhd/production/world-water-candidates/217c564be395af93cc2d0ef0d9841b306af64234a1b7f2baf9037ca51d414861/palette-row-3-custom-preview-v1.png"
+    },
+    {
+      "row": 4,
+      "clutY": 489,
+      "name": "palette-row-4-custom-preview-v1.png",
+      "outputSha256": "5e77982646e01b20246c13856f060a122362a5c1d29575166ae504b36e09860c",
+      "path": "integrations/envhd/production/world-water-candidates/217c564be395af93cc2d0ef0d9841b306af64234a1b7f2baf9037ca51d414861/palette-row-4-custom-preview-v1.png"
+    },
+    {
+      "row": 5,
+      "clutY": 490,
+      "name": "palette-row-5-custom-preview-v1.png",
+      "outputSha256": "91a705c3e22b56fb8ef2c18bd0be939911833c0f5ad2f2cd4603de7aaec21258",
+      "path": "integrations/envhd/production/world-water-candidates/217c564be395af93cc2d0ef0d9841b306af64234a1b7f2baf9037ca51d414861/palette-row-5-custom-preview-v1.png"
+    },
+    {
+      "row": 6,
+      "clutY": 491,
+      "name": "palette-row-6-custom-preview-v1.png",
+      "outputSha256": "852778e09037f71aa1e9e318a5a22df80f62a6581695c34309b33ce4ab4700ff",
+      "path": "integrations/envhd/production/world-water-candidates/217c564be395af93cc2d0ef0d9841b306af64234a1b7f2baf9037ca51d414861/palette-row-6-custom-preview-v1.png"
+    },
+    {
+      "row": 7,
+      "clutY": 492,
+      "name": "palette-row-7-custom-preview-v1.png",
+      "outputSha256": "4b028fa687da70ca9d391201f4d5e1647c8bb0d6a7e91cd99835c1d0d883603d",
+      "path": "integrations/envhd/production/world-water-candidates/217c564be395af93cc2d0ef0d9841b306af64234a1b7f2baf9037ca51d414861/palette-row-7-custom-preview-v1.png"
+    }
+  ],
+  "previewInterpretation": "Opaque RGB custom diagnostics; not runtime STP/alpha interpretation",
+  "dependencySha256": {
+    "fxhd-full-production.py": "00cfda242d947377c6854e3f3a4c1f5ef03e0ac450e3cda1af0234b80dd330ab",
+    "batch-envhd-terrain.py": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+    "repair-envhd-painted-cutout.py": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+    "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+    "discover-envhd-battle-families.py": "1bafab8f3a6462d88fe7b03923fef8ce736cd074697a94dc3ebdfe29c0c71359"
+  },
+  "runtimeSelected": false,
+  "currentIndexedRuntimeSupportsThis4xResource": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "holdsCleared": 0,
+  "remaining": "Independent style, periodic borders, live state/consumer ownership and reviewed 4x renderer support",
+  "encodedOutputPath": "integrations/envhd/production/world-water-candidates/217c564be395af93cc2d0ef0d9841b306af64234a1b7f2baf9037ca51d414861/indexed-detail-4x-v1.png",
+  "scope": "Custom derivative candidate history only. Native source indices are exactly recoverable from the primary channel; original TIM, palette inputs and inference-reference files are not added. Four-times-size coefficient texture requires a reviewed 4x runtime consumer adapter; current shared2x companion cannot load it.",
+  "sourceSelectionCheckpoint": "f51a0e41bc6fd1b5dfcde56f2782a626ca4cc300",
+  "authorReview": {
+    "intent": "One shared64x64 green-teal caustic water tile used by eight continent part-zero surfaces; retain source caustic topology, scrolling and all eight native palette profiles.",
+    "style": "All eight source/4x-neural/shared-coefficient rows compared. Small ripple highlights are clearer and more connected than the pixelated source, with native primary index contribution at least half. Development-quality candidate; independent border/style and final Skurfa-quality/native rendering review pending.",
+    "layout": "Exact256x256 candidate, source primary index repeated4x, local secondary index neighborhoods wrapped during authoring only; no native UV clamp, runtime wrap or geometrical change.",
+    "verdict": "author-reviewed-development-candidate-runtime-pending"
+  },
+  "generation": "Pinned local batch neural upscaler plus deterministic Python all-palette fitting",
+  "sourceMaterialFamilies": 1,
+  "continentPartBindings": 8,
+  "runtimeRendererSupport": "pending coordinated 4x consumer-local storage and independent EnvHD/FxHD switches",
+  "protectedSkurfaArtModified": false,
+  "nativePaletteClasses": {
+    "sourceIndexZeroRgbVisiblePerRow": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "zeroRgbSourceIndicesPerRow": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "stpSourceIndicesPerRow": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "rgbBlackClassesEqualAcrossAllRows": true,
+    "stpClassesEqualAcrossAllRows": true,
+    "previewAlphaIsNotRuntimeStp": true
+  }
+}
