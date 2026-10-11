@@ -58,6 +58,10 @@ rejection after a cache hit. Replaying those final fixtures with the unchanged
 baseline `MaterialAtlas` class produces two cache-contract failures and two passing
 controls; corrected source passes all four. The focused material/artwork/stage set
 contains 28 passing cases, including existing negative source/coverage controls.
+The existing ModelsHD refined/fallback material-UV fixture now supplies the new
+owned RGBA representation to the private constructor; its geometry and UV
+assertions are unchanged. Independent review identified the previous reflective
+argument-type mismatch, which was reproduced by running that actual fixture.
 
 The same complete 73-atlas CPU probe was rerun after the correction. All 73 complete
 RGBA fingerprints match the baseline, and decoded bytes return to zero after each
