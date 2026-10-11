@@ -16,7 +16,9 @@
     "field-bespoke-textile-held-drafts.json": "6499f66c10b757816ba7d1f6a4efd23ba9716b439516e5b07b446a2e314e61da",
     "world-water-source-audit.json": "b9339bbf59cb3518e32766ca4f5f52d69d08ce490ae30e4dc4bdef246a6bdb0b",
     "world-water-candidate-artwork.json": "dd766f4a7d04dfd4b3b97bf9b5ac15e0e71bcb9700a0c31723484f0c61147748",
-    "field-bespoke-textile-detail-reviewed-selection.json": "44fd1d2dbab5807500cfc82186a2414aa2f8bb33026b90d72a3e01802d262adb"
+    "field-bespoke-textile-detail-reviewed-selection.json": "44fd1d2dbab5807500cfc82186a2414aa2f8bb33026b90d72a3e01802d262adb",
+    "field-bespoke-wood-architecture-reviewed-selection.json": "2dbd7deb027c3c9b3cac84bb0528ff3df2593ecb91f72206714450b4b91d0557",
+    "field-bespoke-wood-architecture-held-drafts.json": "1095e8b9710961310ecfcbca92f117501546b801dddb5f4eb81524233010b71d"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -34,11 +36,11 @@
       "selectedPainted": 32,
       "held": 244,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 9,
+      "customHeldDraftSourceImages": 13,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4892,
-      "nextTask": "Independently review softened Fletz bedding-edge candidate; continue Twin Castle embroidery/cloth/support correction and244 held fields; complete native state/Skurfa routes.",
-      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 1
+      "nextTask": "Independently review pending Fletz/Rouge/Deningrad partition/Indels relief; regenerate Phantom Ship column with native canvas; continue Twin Castle corrections and all244 held fields.",
+      "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 4
     },
     {
       "id": "static-terrain",
@@ -168,6 +170,17 @@
       "newHeldSourceImages": 1,
       "duplicatesHeldDraftSource": true,
       "reason": "Fletz version2 author-reviewed candidate awaiting independent review; not selected."
+    },
+    {
+      "manifest": "field-bespoke-wood-architecture-reviewed-selection.json",
+      "newHeldSourceImages": 3,
+      "includesPriorPendingFletz": true,
+      "reason": "Three new architectural candidates pending independent review; prior32+Fletz records exact."
+    },
+    {
+      "manifest": "field-bespoke-wood-architecture-held-drafts.json",
+      "heldSourceImages": 1,
+      "reason": "Two column canvas-aspect failures; no repaired output."
     }
   ],
   "publication": {
