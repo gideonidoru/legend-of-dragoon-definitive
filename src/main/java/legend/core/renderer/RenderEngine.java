@@ -847,6 +847,9 @@ public class RenderEngine {
           this.battleTmdShaderOptions.battleColour(battle._800c6930.colour_00);
         }
 
+        // Presentation passes use the window viewport. Retained simulation draws
+        // must restore the scene viewport even when no gameplay tick ran.
+        this.setSceneViewport();
         this.renderBuffers[this.renderBufferIndex].bind();
 
         if(this.frameSkipIndex == 0) {
@@ -1497,7 +1500,7 @@ public class RenderEngine {
     return this.mainBatch.queueOrthoModel(obj, transforms, type);
   }
 
-  private void pre() {
+  private void setSceneViewport() {
     if(this.mainBatch.renderMode == EngineState.RenderMode.LEGACY && CONFIG.getConfig(LEGACY_WIDESCREEN_MODE_CONFIG.get()) == SubmapWidescreenMode.FORCED_4_3) {
       final float expectedAspect = (float)this.mainBatch.nativeWidth / this.mainBatch.nativeHeight;
       final int expectedHeight = this.renderHeight;
@@ -1508,6 +1511,10 @@ public class RenderEngine {
     } else {
       this.api.viewport(0, 0, this.renderWidth, this.renderHeight);
     }
+  }
+
+  private void pre() {
+    this.setSceneViewport();
 
     // Update global transforms (default to 3D)
     this.setProjectionMode(ProjectionMode._3D);

@@ -72,17 +72,21 @@ uniform int usePs1Depth;
 void emit(int, float);
 
 void main() {
-  // If any vertex is too close to the camera, cull the whole face
-  if(zfar >= vs_out[0].viewspaceZ * 2.0) {
-    return;
-  }
+  // Preserve GTE whole-face rejection only for PS1 projection. Modern and
+  // orthographic projection use homogeneous GPU clipping of visible portions.
+  if(projectionMode == 1.0) {
+    // If any vertex is too close to the camera, cull the whole face
+    if(zfar >= vs_out[0].viewspaceZ * 2.0) {
+      return;
+    }
 
-  if(zfar >= vs_out[2].viewspaceZ * 2.0) {
-    return;
-  }
+    if(zfar >= vs_out[2].viewspaceZ * 2.0) {
+      return;
+    }
 
-  if(zfar >= vs_out[4].viewspaceZ * 2.0) {
-    return;
+    if(zfar >= vs_out[4].viewspaceZ * 2.0) {
+      return;
+    }
   }
 
   float avgDepth = gl_in[0].gl_Position.z + gl_in[2].gl_Position.z + gl_in[4].gl_Position.z;
@@ -90,7 +94,7 @@ void main() {
 
   // Quad, check adjacent vertex
   if((vs_out[0].vertFlags & 0x10) != 0) {
-    if(zfar >= vs_out[1].viewspaceZ * 2.0) {
+    if(projectionMode == 1.0 && zfar >= vs_out[1].viewspaceZ * 2.0) {
       return;
     }
 

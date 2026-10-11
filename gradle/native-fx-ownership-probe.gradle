@@ -1,0 +1,19 @@
+// Opt-in windowless native ownership regression; never launched by ordinary tests.
+allprojects {
+  afterEvaluate {
+    if (project == rootProject) {
+      tasks.register('nativeFxOwnershipProbe', JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'legend.definitive.effects.NativeFxOwnershipProbe'
+        jvmArgs '-Djava.awt.headless=true', '--enable-native-access=ALL-UNNAMED'
+        doFirst {
+          def contextPath = providers.gradleProperty('fxOwnershipContextPath').orNull
+          def reportPath = providers.gradleProperty('fxOwnershipReportPath').orNull
+          if (!contextPath || !reportPath) throw new GradleException('Supply -PfxOwnershipContextPath and -PfxOwnershipReportPath.')
+          args contextPath, reportPath
+        }
+      }
+    }
+  }
+}
