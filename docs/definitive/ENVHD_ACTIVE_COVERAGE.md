@@ -226,9 +226,9 @@ The [complete42-painting input](../../integrations/envhd/production/field-bespok
 The EnvHD JAR and four field packs built successfully from frozen committed source. Strict packaging verification matched all4928 selected field images and5314 JAR resources by name, size and SHA256. Env1HD and Env3HD are byte-identical to the prior accepted package; Env2HD and Env4HD each contain one additional painting. Battle runtime resources remain exact to accepted main. The package receipt records all five output hashes. This verifies the EnvHD subset, with full installer/carrier closure owned by ROOT.
 
 
-## Ongoing authoring after Donau integration
+## Historical Donau integration authoring checkpoint
 
-Accepted main selects4,928 fields/42paintings. The complete80 historical candidate records and all held-version histories remain byte-exact on this ongoing branch. The current independent queue has34 pending candidates and4 revisions after the two Donau selections and tablet material disposition;68 unique unselected custom source keys remain within234 field holds. Historical authoring receipts keep their original checkpoint counts. The separate Twin Castle batch remains private until its recipes and review dispositions are ready.
+At that checkpoint, accepted main selected4,928 fields/42paintings. The complete80 historical candidate records and all held-version histories were retained byte-exact on this ongoing branch. The independent queue then had34 pending candidates and4 revisions after the two Donau selections and tablet material disposition;68 unique unselected custom source keys were within234 field holds. Historical authoring receipts keep their original checkpoint counts. The separate Twin Castle batch was private then; the following checkpoint records its public custom candidates and current queue counts.
 
 
 ## Twin Castle cool-light hangings
