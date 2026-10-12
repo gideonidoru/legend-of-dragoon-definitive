@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "d5b3f9f76141e31b032e8a7d7a9e1c693ef843cd plus one independently cleared registered balcony",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "1618f0e7da87fd43abc142771011da3cd031b19d1526c72af87858ddc5fdb687",
+    "full-coverage.json": "f10793c55960e3c4027a2a820372680d68d18f358d207c6693bcfed7ccedce15",
     "field-runtime-artwork.json": "d7c92594e78c49b6a29d792f441851f437abe620d9a0a4e5b4c8d9af8b4c317f",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
@@ -113,8 +113,9 @@
     "field-independent-balcony-registration-review.json": "a4494f7cab21ea646baecb5d77ab45b38f1951082ed929f18637a0a45dd22caa",
     "field-balcony-selection-readiness.json": "837e4d748244cc48b0bfa3ea13c5e013cf3b2e9e0e5c1fa5b11841bed87bba84",
     "field-balcony-authoring-main-forward.json": "74c30713142b74ecc17167cf79b8600216522ed98ab9aaa1afb91c94f30023e2",
-    "field-post-components-authoring-readiness.json": "7296e5b545719ffe55bbc71b058ad7d323d774899f47964c582a295f50fac1fd",
-    "field-bespoke-post-components-reviewed-selection.json": "fa201632f29d9a73f7dc09ee2d6ef53b84f4e5fc335a216b6ef1df91edab156e"
+    "field-post-components-authoring-readiness.json": "4efed0f7290ec6814f867cd052dc3da3db7861c8ef0696063b0e4f07f175a8b6",
+    "field-bespoke-post-components-reviewed-selection.json": "b03a5641e55b69e986881a94a2c2e1403009a330ae746e338234c4dbdaa0560a",
+    "field-independent-post-components-review.json": "9dff31cca8c20a06944966a44243c6705ad6b1e42dc2b5624b14c38930525ba4"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -135,7 +136,7 @@
       "customHeldDraftSourceImages": 52,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Finish11 canonical revision sources and other held prototypes; continue204field holds, one terrain repair and animated/props source/state contracts.",
+      "nextTask": "Integrate cleared Palace post, then10 canonical revision sources and other holds. Continue dynamic/props source ownership/state contracts.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 0,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
@@ -192,7 +193,7 @@
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
       "draftCountMethod": "Unique ongoing unselected source directories excluding4958 acceptedmain selections;52keys subset204field holds. All83historical recipes and repeatedversions preserved.",
-      "independentlyReviewedCandidatesRequiringRevision": 11,
+      "independentlyReviewedCandidatesRequiringRevision": 10,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
       "independentNewSceneryReview": {
         "source": "7262233bbffb1419bfda439b138e4bcc75f01591",
@@ -206,8 +207,8 @@
         "requiresRevision": 4,
         "receipt": "field-independent-palace-eight-review.json"
       },
-      "independentlyClearedCandidatesAwaitingIntegration": 0,
-      "authoringQueueScope": "83 historical canonical source keys:72selected/11revision/0pending. Every oldversion retained on ongoing authoring branch.",
+      "independentlyClearedCandidatesAwaitingIntegration": 1,
+      "authoringQueueScope": "83 historical canonical source keys:72selected/10revision/1cleared-awaiting-integration/0pending; post candidate exact prototype with bounded helper review CLEAR. Runtime remains4958/72.",
       "independentFinalEighteenReview": {
         "source": "bdfecbad260e63eb3eed1a7d6147b8e8703553a4",
         "clearedSelected": 16,
@@ -712,7 +713,7 @@
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "83 historical canonical source keys:72selected/11revision/0pending; allhistorical andheld variants preserved.52unselectedcustomkeys subset204fieldholds,205knownstatic. Postprototypeclear needsselection support;cargo fitting needslocalizedrepair. Native/final pending.",
+  "authoringCheckpoint": "83 historical canonical source keys:72selected/10revision/1cleared-awaiting-integration.52uniqueunselectedcustomkeys subset204fieldholds;205static remains. Currentselectedruntimeunchanged; prospective73postreviewed.",
   "acceptedMainIntegrated": {
     "sourceCommit": "db05497ef74e60579fdead09e47afdeaf16ddeb4",
     "fieldSelected": 4958,

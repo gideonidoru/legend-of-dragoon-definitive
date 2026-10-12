@@ -2,7 +2,7 @@
   "schema": 1,
   "scope": "New helper/code validation pending; no runtime selection. Exact old independent visual CLEAR prototype preserved, with reproducible bounded component recipe.",
   "priorAuthoringCommit": "3c7e5971748a0ed8829565936a8398dc4e24de9f",
-  "sourceReviewCommit": "5365e60974241b64645e5b1be6186c7c7ac4eab8",
+  "sourceReviewCommit": "21a7e40fceb1f139ba43fc0ed3cd5edb0a7e9816",
   "sourceReviewReportSha256": "64e63476d7afa98523bcf864976f42c41abcf2da9e688cf640bbcf251c02056d",
   "sourceKey": "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
   "generatedSha256": "342fa0bca346d5bd342f6453a7f6cc99e1e9296e721bab425e4119e8311beeac",
@@ -168,7 +168,7 @@
   },
   "exactToPriorClearedPrototype": true,
   "selectionManifest": "field-bespoke-post-components-reviewed-selection.json",
-  "selectionManifestSha256": "fa201632f29d9a73f7dc09ee2d6ef53b84f4e5fc335a216b6ef1df91edab156e",
+  "selectionManifestSha256": "b03a5641e55b69e986881a94a2c2e1403009a330ae746e338234c4dbdaa0560a",
   "selectedRuntimeUnchanged": true,
   "selectedFields": 4958,
   "selectedPaintings": 72,
@@ -194,10 +194,31 @@
   "currentSourcePreflightCandidates": 73,
   "currentSourcePreflightLogSha256": "b4b5e47d3bddcb75ee07f1f04029631abb7e1e98106dc6241794a7a7ad034e04",
   "helperAlgorithmSha256": "984dcbc7cefab7249f8c988e40cd4c8cfd73aba0f265bb6c91669eb2b7cd8f14",
-  "helperAndSelectionIndependentReview": "pending",
+  "helperAndSelectionIndependentReview": "CLEAR",
   "compositeGeneratedSize": [
     280,
     456
   ],
-  "generatedSizeMetadataCorrection": "Correct inherited base-input size; input/output pixels and hashes unchanged. Component-specific header/metadata guard and regression fixture added."
+  "generatedSizeMetadataCorrection": "Correct inherited base-input size; input/output pixels and hashes unchanged. Component-specific header/metadata guard and regression fixture added.",
+  "independentReviewReceipt": "field-independent-post-components-review.json",
+  "independentReviewReceiptSha256": "9dff31cca8c20a06944966a44243c6705ad6b1e42dc2b5624b14c38930525ba4",
+  "independentReviews": {
+    "spec": {
+      "sourceCommit": "21a7e40fceb1f139ba43fc0ed3cd5edb0a7e9816",
+      "result": "CLEAR",
+      "findings": 0,
+      "reportSha256": "fa18a3bfee8c4064615083b857aaa9e76d0d360e44864248a4c2c73b7f9e682d"
+    },
+    "standards": {
+      "sourceCommit": "21a7e40fceb1f139ba43fc0ed3cd5edb0a7e9816",
+      "result": "CLEAR",
+      "findings": 0,
+      "reportSha256": "18c1a943a4343c328e4dd402904f410549c4eccfdd13ad0f64bbac2dd6879802"
+    }
+  },
+  "sourcePreflightManifestSha256": "fa201632f29d9a73f7dc09ee2d6ef53b84f4e5fc335a216b6ef1df91edab156e",
+  "sourcePreflightCandidateRecordsExactAfterReviewBinding": 73,
+  "sourcePreflightScope": "Fresh73preflight bound previous manifest fa201632f29d9a73f7dc09ee2d6ef53b84f4e5fc335a216b6ef1df91edab156e at exact21a7. Current manifest adds only independent review receipt metadata; all73candidate records exact. No repeated source decode for metadata-only binding.",
+  "prospectiveKnownStaticRemainingAfterIntegration": 204,
+  "checkedMainIntegrationPending": true
 }
