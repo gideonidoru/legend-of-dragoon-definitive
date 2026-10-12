@@ -1,0 +1,39 @@
+# Required battle scenery completion
+
+The engine reliability audit requires battle scenery preparation to publish only
+to its current battle, and required failures to reach the engine error handler.
+Actual battle caller probes at accepted main
+`291191bc4a47e70c44178e6b394d9d02ec364579` reproduced missing stage/model directories
+and malformed TIM/model files being logged without reaching that handler. A
+successful completion could also upload an old palette and change scene state
+after the current engine had been replaced, while the preloaded owner still
+matched. These are independently reproduced loading defects; they are not a
+confirmed explanation for disappearing scenery during attacks on Steam Deck.
+
+The existing paired model/texture preparation and next-frame texture-animation
+delay remain. Both success and failure now check the current engine, stage load
+generation and preloaded scene owner on the render thread. An active required
+failure is queued to that owner and throws an error identifying its DRGN0 stage
+directory with the original read or parser cause. Obsolete failures and successes
+cannot affect a replaced engine, preloaded owner, superseding load or deallocated
+stage. Optional EnvHD artwork retains its existing native fallback. The change
+does not repair damaged assets or add automatic return-to-title recovery.
+
+`BattleStageLoadingReliabilityTest` runs eleven bounded isolated JVM cases with
+synthetic files, the actual Battle caller, Loader, native TIM/model parsers and
+production render callback. Its unchanged-main replay fails five cases and passes
+six controls. Forwarding failures alone fixes the four required-load cases; two
+additional cases then show that both successful completion and failure need the
+current-engine guard. The final correction passes all eleven and the existing
+stage/submap completion checks.
+
+The healthy TIM fixture verifies render-owned palette upload and all palette
+backup endpoints; the obsolete-engine fixture verifies that its old palette is
+not uploaded. Valid empty native stage records still complete on the render
+owner. Other controls retain generation, preloaded-owner and deallocated-stage
+rejection. No original game files, native window or audio output are used.
+
+This increment establishes the required stage completion contract. It does not
+qualify full battle entry timing, controller-script preparation, HD/native mesh
+rendering under camera movement, Steam Deck drivers or the reported intermittent
+attack scenery loss. Those remain in the wider engineering and device audit.

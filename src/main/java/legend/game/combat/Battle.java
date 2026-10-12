@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletionException;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.IntStream;
@@ -2711,6 +2713,8 @@ public class Battle extends EngineState<Battle> {
     // GH#1931
     final long generation = ++this.stageLoadGeneration;
     final var owner = battlePreloadedEntities_1f8003f4;
+    final BooleanSupplier currentLoad = () -> legend.game.EngineStates.currentEngineState_8004dd04 == this
+      && this.stageLoadGeneration == generation && battlePreloadedEntities_1f8003f4 == owner;
 
     // Disable texture animations so we don't corrupt the texture of the loading stage due to the old stage model still being loaded...
     if(stage_800bda0c != null) {
@@ -2724,7 +2728,7 @@ public class Battle extends EngineState<Battle> {
       final var textureFiles = loadDrgnDir(0, 2497 + stage);
       final var modelFiles = loadDrgnDir(0, (2497 + stage) + "/0");
       legend.definitive.artwork.StageLoad.apply(modelFiles, textureFiles, RENDERER::addTask,
-        () -> this.stageLoadGeneration == generation && battlePreloadedEntities_1f8003f4 == owner,
+        currentLoad,
         (models, textures) -> {
           if(textures.get(1).hasVirtualSize()) {
             this.loadStageMcq(new McqHeader(textures.get(1)));
@@ -2734,9 +2738,14 @@ public class Battle extends EngineState<Battle> {
             this.loadStageTim(textures.get(2));
           }
           this.loadStageTmdAndAnim("DRGN0/" + (2497 + stage) + "/0", models, originalTim);
-        }).exceptionally(failure -> {
-          LOGGER.error("Battle stage loading failed", failure);
-          return null;
+        }).whenComplete((unused, failure) -> {
+          if(failure != null) {
+            RENDERER.addTask(() -> {
+              if(!currentLoad.getAsBoolean()) return;
+              final Throwable cause = failure instanceof CompletionException && failure.getCause() != null ? failure.getCause() : failure;
+              throw new IllegalStateException("Failed to prepare required battle stage DRGN0/" + (2497 + stage), cause);
+            });
+          }
         });
     });
 
