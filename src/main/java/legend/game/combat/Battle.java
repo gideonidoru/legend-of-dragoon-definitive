@@ -2547,6 +2547,15 @@ public class Battle extends EngineState<Battle> {
   }
 
   private long stageLoadGeneration;
+  private long controllerLoadGeneration;
+
+  private void queueRequiredBattleLoadFailure(final String resource, final BooleanSupplier currentLoad, final Throwable failure) {
+    RENDERER.addTask(() -> {
+      if(!currentLoad.getAsBoolean()) return;
+      final Throwable cause = failure instanceof CompletionException && failure.getCause() != null ? failure.getCause() : failure;
+      throw new IllegalStateException("Failed to prepare required " + resource, cause);
+    });
+  }
 
   private void deleteBattleStageModel() {
     final BattleStage stage = battlePreloadedEntities_1f8003f4.stage_963c;
@@ -2598,6 +2607,7 @@ public class Battle extends EngineState<Battle> {
   @Method(0x800c8748L)
   public void FUN_800c8748() {
     this.stageLoadGeneration++;
+    this.controllerLoadGeneration++;
     battlePreloadedEntities_1f8003f4 = null;
     battleState_8006e398 = null;
     this.targetBents_800c71f0 = null;
@@ -2740,11 +2750,7 @@ public class Battle extends EngineState<Battle> {
           this.loadStageTmdAndAnim("DRGN0/" + (2497 + stage) + "/0", models, originalTim);
         }).whenComplete((unused, failure) -> {
           if(failure != null) {
-            RENDERER.addTask(() -> {
-              if(!currentLoad.getAsBoolean()) return;
-              final Throwable cause = failure instanceof CompletionException && failure.getCause() != null ? failure.getCause() : failure;
-              throw new IllegalStateException("Failed to prepare required battle stage DRGN0/" + (2497 + stage), cause);
-            });
+            this.queueRequiredBattleLoadFailure("battle stage DRGN0/" + (2497 + stage), currentLoad, failure);
           }
         });
     });
@@ -9373,7 +9379,17 @@ public class Battle extends EngineState<Battle> {
   private void loadStageDataAndControllerScripts() {
     this.playerBattleScript_800c66fc = new ScriptFile("player_combat_script", Loader.loadFileSync("player_combat_script").getBytes());
 
-    loadDrgnFile(1, "401").thenAccept(this::combatControllerScriptLoaded);
+    final long generation = ++this.controllerLoadGeneration;
+    final var owner = battlePreloadedEntities_1f8003f4;
+    final BooleanSupplier currentLoad = () -> legend.game.EngineStates.currentEngineState_8004dd04 == this
+      && this.controllerLoadGeneration == generation && battlePreloadedEntities_1f8003f4 == owner;
+    loadDrgnFile(1, "401").thenAcceptAsync(file -> {
+      if(currentLoad.getAsBoolean()) this.combatControllerScriptLoaded(file);
+    }, RENDERER::addTask).whenComplete((unused, failure) -> {
+      if(failure != null) {
+        this.queueRequiredBattleLoadFailure("battle controller DRGN1/401", currentLoad, failure);
+      }
+    });
   }
 
   @Method(0x80109170L)

@@ -12,11 +12,13 @@ import legend.game.EngineStateType;
 import legend.game.EngineStateTypeRegistry;
 import legend.game.EngineStates;
 import legend.game.combat.Battle;
+import legend.game.combat.encounters.Encounter;
 import legend.game.modding.coremod.CoreMod;
 import legend.game.saves.ConfigRegistry;
 import legend.game.saves.ConfigRegistryEvent;
 import legend.game.unpacker.Loader;
 import legend.lodmod.LodMod;
+import org.joml.Vector3f;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -28,8 +30,14 @@ import java.nio.ByteOrder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import static legend.game.Scus94491BpeSegment.battlePreloadedEntities_1f8003f4;
+import static legend.game.Scus94491BpeSegment.simpleRand;
+import static legend.game.Scus94491BpeSegment_8004.simpleRandSeed_8004dd44;
+import static legend.game.Graphics.vsyncMode_8007a3b8;
+import static legend.game.Scus94491BpeSegment_800b.battleFlags_800bc960;
+import static legend.game.Scus94491BpeSegment_800b.encounter;
 import static org.junit.jupiter.api.Assertions.*;
 
 /** Actual battle/loader/parser/render callbacks; synthetic files, no native window or audio. */
@@ -40,7 +48,12 @@ final class BattleStageLoadingReliabilityTest {
   @ValueSource(strings = {"missingStageFailsOnRenderer", "missingModelFailsOnRenderer",
     "malformedTimFailsOnRenderer", "malformedModelFailsOnRenderer", "emptyStageWaitsForRenderer",
     "healthyTimWaitsForRenderer", "staleOwnerFailureIsIgnored", "supersededFailureIsIgnored",
-    "destroyedStageFailureIsIgnored", "staleEngineSuccessIsIgnored", "staleEngineFailureIsIgnored"})
+    "destroyedStageFailureIsIgnored", "staleEngineSuccessIsIgnored", "staleEngineFailureIsIgnored",
+    "missingControllerFailsOnRenderer", "malformedControllerFailsOnRenderer", "controllerSuccessWaitsForRenderer",
+    "staleControllerEngineSuccessIsIgnored", "staleControllerOwnerSuccessIsIgnored", "destroyedControllerSuccessIsIgnored",
+    "supersededControllerFailureIsIgnored", "supersededControllerSuccessCannotMaskFailure",
+    "missingPlayerScriptFailsSynchronously", "controllerReadinessAdvancesExistingViewportGate",
+    "staleControllerEngineFailureIsIgnored", "staleControllerOwnerFailureIsIgnored", "destroyedControllerFailureIsIgnored"})
   void actualBattleStageContract(final String scenario) throws Exception {
     final Path root = Files.createDirectory(this.temporary.resolve(scenario));
     final Path output = this.temporary.resolve(scenario + ".log");
@@ -97,7 +110,11 @@ final class BattleStageLoadingReliabilityTest {
   }
 
   private void file(final String name, final byte[] bytes) throws Exception {
-    final Path path = this.temporary.resolve("files/SECT/DRGN0.BIN").resolve(name);
+    this.rootFile("SECT/DRGN0.BIN/" + name, bytes);
+  }
+
+  private void rootFile(final String name, final byte[] bytes) throws Exception {
+    final Path path = this.temporary.resolve("files").resolve(name);
     Files.createDirectories(path.getParent()); Files.write(path, bytes);
   }
 
@@ -223,5 +240,139 @@ final class BattleStageLoadingReliabilityTest {
     final Battle battle = battle(); battle.loadStage(0); rendererTasks(); settleLoader();
     EngineStates.currentEngineState_8004dd04 = new Battle(); rendererTasks();
     assertEquals(true, get(battle, "stageHasModel_800c66b8"));
+  }
+
+  private static void invoke(final Battle battle, final String method) throws Exception {
+    final var call = Battle.class.getDeclaredMethod(method); call.setAccessible(true);
+    try { call.invoke(battle); }
+    catch(final InvocationTargetException failure) {
+      if(failure.getCause() instanceof RuntimeException problem) throw problem;
+      if(failure.getCause() instanceof Error problem) throw problem;
+      throw failure;
+    }
+  }
+
+  private Battle controllerBattle(final boolean healthy) throws Exception {
+    this.rootFile("player_combat_script", new byte[4]);
+    if(healthy) this.rootFile("SECT/DRGN1.BIN/401", new byte[4]);
+    encounter = new Encounter(255, 0, 11, 29, 3, 5, 7, 9, 65535, 255,
+      new Encounter.Monster(0, new Vector3f()));
+    battleFlags_800bc960 = 0; simpleRandSeed_8004dd44 = 0x345;
+    return battle();
+  }
+
+  private static void startController(final Battle battle) throws Exception {
+    invoke(battle, "loadStageDataAndControllerScripts");
+  }
+
+  /** Observe actual worker retirement without closing the executor before a superseding load. */
+  private static void settleWorkers() throws Exception {
+    final var field = Async.class.getDeclaredField("EXECUTOR"); field.setAccessible(true);
+    final ThreadPoolExecutor executor = (ThreadPoolExecutor)field.get(null);
+    final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(5);
+    while(executor.getActiveCount() != 0 || !executor.getQueue().isEmpty() || Loader.getLoadingFileCount() != 0) {
+      assertTrue(System.nanoTime() < deadline, "Actual controller loader/callbacks must retire within five seconds");
+      Thread.sleep(1);
+    }
+  }
+
+  private static void controllerNotPublished() {
+    assertEquals(0, battleFlags_800bc960 & 0x2, "Worker or obsolete completion must not publish battle readiness");
+    assertNull(GameEngine.SCRIPTS.getState(5), "Worker or obsolete completion must not allocate a controller script");
+    assertEquals(0x345, simpleRandSeed_8004dd44, "Worker or obsolete completion must not consume gameplay RNG");
+  }
+
+  private static void controllerFailsOnRenderer() {
+    final IllegalStateException failure = assertThrows(IllegalStateException.class,
+      BattleStageLoadingReliabilityTest::rendererTasks, "Required controller failure must reach the engine instead of hanging entry");
+    assertTrue(failure.getMessage().contains("battle controller"));
+    assertTrue(failure.getMessage().contains("DRGN1/401"));
+    assertNotNull(failure.getCause(), "Original controller read or script failure must be retained");
+    assertEquals(0, battleFlags_800bc960 & 0x2, "Failed preparation must not report the controller ready");
+  }
+
+  private void missingControllerFailsOnRenderer() throws Exception {
+    final Battle battle = this.controllerBattle(false); set(battle, "loadingStage", 4);
+    startController(battle); settleLoader();
+    battleFlags_800bc960 |= 1; invoke(battle, "initializeViewportAndCamera");
+    assertEquals(4, get(battle, "loadingStage"), "Missing controller leaves the real viewport gate waiting");
+    controllerFailsOnRenderer();
+  }
+
+  private void malformedControllerFailsOnRenderer() throws Exception {
+    final Battle battle = this.controllerBattle(false); this.rootFile("SECT/DRGN1.BIN/401", new byte[0]);
+    startController(battle); settleLoader(); controllerFailsOnRenderer();
+  }
+
+  private void controllerSuccessWaitsForRenderer() throws Exception {
+    final Battle battle = this.controllerBattle(true);
+    final int opening = (simpleRand() & 0x8000) == 0 ? encounter.monsterOpeningCamera : encounter.playerOpeningCamera;
+    final int position = simpleRand() & 3, expectedSeed = simpleRandSeed_8004dd44;
+    simpleRandSeed_8004dd44 = 0x345;
+    startController(battle); settleLoader(); controllerNotPublished(); rendererTasks();
+    assertEquals(2, battleFlags_800bc960); assertNotNull(GameEngine.SCRIPTS.getState(5));
+    assertSame(GameEngine.SCRIPTS.getState(5), get(battle, "scriptState_800c674c"));
+    assertEquals(opening + 1, battle.cameraScriptMainTableJumpIndex_800c6748);
+    assertEquals(position, battle.hud.currentCameraPositionIndicesIndex_800c66b0);
+    assertEquals(encounter.cameraPosIndices[position], battle.currentCameraIndex_800c6780);
+    assertEquals(expectedSeed, simpleRandSeed_8004dd44, "Healthy camera selection retains the existing two RNG calls");
+    rendererTasks(); assertEquals(expectedSeed, simpleRandSeed_8004dd44, "Completion must publish only once");
+  }
+
+  private void staleControllerEngineSuccessIsIgnored() throws Exception {
+    final Battle battle = this.controllerBattle(true); startController(battle); settleLoader();
+    EngineStates.currentEngineState_8004dd04 = new Battle(); rendererTasks(); controllerNotPublished();
+  }
+
+  private void staleControllerOwnerSuccessIsIgnored() throws Exception {
+    final Battle battle = this.controllerBattle(true); startController(battle); settleLoader();
+    battle.FUN_800c8624(); rendererTasks(); controllerNotPublished();
+  }
+
+  private void destroyedControllerSuccessIsIgnored() throws Exception {
+    final Battle battle = this.controllerBattle(true); startController(battle); settleLoader();
+    battle.FUN_800c8748(); rendererTasks(); controllerNotPublished(); assertNull(battlePreloadedEntities_1f8003f4);
+  }
+
+  private void supersededControllerFailureIsIgnored() throws Exception {
+    final Battle battle = this.controllerBattle(false); startController(battle); settleWorkers();
+    this.rootFile("SECT/DRGN1.BIN/401", new byte[4]); startController(battle); settleLoader();
+    controllerNotPublished(); rendererTasks();
+    assertEquals(2, battleFlags_800bc960); assertNotNull(GameEngine.SCRIPTS.getState(5));
+  }
+
+  private void supersededControllerSuccessCannotMaskFailure() throws Exception {
+    final Battle battle = this.controllerBattle(true); startController(battle); settleWorkers();
+    Files.delete(this.temporary.resolve("files/SECT/DRGN1.BIN/401")); startController(battle); settleLoader();
+    controllerFailsOnRenderer(); assertEquals(0x345, simpleRandSeed_8004dd44); assertNull(GameEngine.SCRIPTS.getState(5));
+  }
+
+  private void missingPlayerScriptFailsSynchronously() throws Exception {
+    final Battle battle = this.controllerBattle(true); Files.delete(this.temporary.resolve("files/player_combat_script"));
+    final RuntimeException failure = assertThrows(RuntimeException.class, () -> startController(battle));
+    assertTrue(failure.getMessage().contains("player_combat_script")); controllerNotPublished();
+  }
+
+  private void controllerReadinessAdvancesExistingViewportGate() throws Exception {
+    final Battle battle = this.controllerBattle(true); set(battle, "loadingStage", 4);
+    battleFlags_800bc960 = 1; startController(battle); settleLoader(); rendererTasks();
+    invoke(battle, "initializeViewportAndCamera");
+    assertEquals(5, get(battle, "loadingStage")); assertEquals(3, vsyncMode_8007a3b8);
+    assertEquals(0x43, battleFlags_800bc960, "Existing readiness, transition and viewport flags are retained");
+  }
+
+  private void staleControllerEngineFailureIsIgnored() throws Exception {
+    final Battle battle = this.controllerBattle(false); startController(battle); settleLoader();
+    EngineStates.currentEngineState_8004dd04 = new Battle(); rendererTasks(); controllerNotPublished();
+  }
+
+  private void staleControllerOwnerFailureIsIgnored() throws Exception {
+    final Battle battle = this.controllerBattle(false); startController(battle); settleLoader();
+    battle.FUN_800c8624(); rendererTasks(); controllerNotPublished();
+  }
+
+  private void destroyedControllerFailureIsIgnored() throws Exception {
+    final Battle battle = this.controllerBattle(false); startController(battle); settleLoader();
+    battle.FUN_800c8748(); rendererTasks(); controllerNotPublished();
   }
 }

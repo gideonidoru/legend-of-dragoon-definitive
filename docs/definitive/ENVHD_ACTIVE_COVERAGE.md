@@ -2,11 +2,11 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **209 images: 208 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **206 images: 205 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,954 development images: 4,886 neural and 68 painted.
+Field selection is 4,957 development images: 4,886 neural and 71 painted.
 
-Current authoring queue: all 83 historical canonical source keys reviewed: 68 selected, 12 requiring revision and three corrected versions cleared awaiting integration. All prior recipes and images remain preserved. The 56 unique unselected custom source keys are a subset of 208 field holds. Protected Skurfa artwork is reused; native gameplay and final quality remain pending.
+Current authoring queue: all 83 historical canonical source keys reviewed: 71 selected, 12 requiring revision and none awaiting review or integration. All earlier recipes and custom versions remain preserved. The 53 unique unselected custom source keys are a subset of 205 field holds. Skurfa artwork is reused; native gameplay and final quality remain pending.
 
 The [recorded generation4 download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8` contains 4,925 field selections/39paintings and34 battle paintings. The historical Donau increment selected4,928 fields/42paintings and retained47 battle paintings: three field paintings and13 battle paintings beyond that recorded snapshot. These are comparisons with the preserved generation4 source ledgers, not a fresh observation of the live carrier. ROOT tracks subsequent coordinated publication and installer verification. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
@@ -327,3 +327,10 @@ Accepted main selects4,954 fields with68 paintings; all83 historical recipes and
 ## Three corrected wall and rail candidates cleared
 
 The [fresh six-source review](../../integrations/envhd/production/field-independent-precise-six-review.json) clears the flat Shrine wall and two rounded Crystal Palace rail fittings. Cargo braces, palace-post coverage/transfer seams and balcony illumination/details require further repair. The [prospective71-painting selection](../../integrations/envhd/production/field-bespoke-precise-three-independent-reviewed-selection.json) keeps all68 earlier selected recipes exact and uses explicit version2 paths for the three corrected candidates, retaining every original version1 recipe and file. Current runtime remains4,954/68 until the next checked integration. Canonical source queue68selected/12revision/3clear-awaiting-main/0pending. The [mean-exposure balcony prototype](../../integrations/envhd/production/field-bespoke-balcony-exposure-held-draft.json) remains held because average colour matching does not remove the identified fitting and edge defects.
+
+
+## Three corrected wall and rail paintings selected
+
+The [six-source review](../../integrations/envhd/production/field-independent-precise-six-review.json) clears the flat Shrine wall and two Palace rail fittings with the original rounded forms. Cargo lattice, palace-post coverage/transfer seams and balcony fitting/illumination issues remain held. The [complete 71-painting selection](../../integrations/envhd/production/field-bespoke-precise-three-independent-reviewed-selection.json) retains all prior 68 recipes and uses version 2 candidate filenames for the corrections, preserving earlier artwork. Runtime resource names and the single EnvHD switch remain unchanged.
+
+All 71 paintings replay from fresh originals and 90 focused checks pass. The [readiness receipt](../../integrations/envhd/production/field-precise-three-selection-readiness.json) binds this increment; ROOT coordinates installer publication. Protected Skurfa artwork and all 4,954 prior runtime assets remain exact. Native, script-state, Deck, campaign and final artistic acceptance remain pending.
