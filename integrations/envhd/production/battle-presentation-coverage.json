@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
+    "battle-material-runtime-artwork.json": "d06e5e4b92080d1759815f6bea0d676b4919ca055e381507fb3f731010d6531a",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274"
+    "battle-presentation-artwork-v1.json": "b66801d59920f82f0e75d424ffee1aafd7d6d010c8520ce3f155dd9fcd9e8047"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 35,
-    "newlySelectedBespokeMasters": 35,
-    "baselineMastersStillNeedingPresentationReview": 471,
+    "newBespokeCandidates": 38,
+    "newlySelectedBespokeMasters": 38,
+    "baselineMastersStillNeedingPresentationReview": 468,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -588,7 +588,11 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "17778cdbca7a2bb6e9e68a67cd9a4592e065974e7acfe159bd39b467a92815d1",
+        "5a7b472007a7f1a701e390de5d8fac555ca5320809820155f815e078e49ccd5e",
+        "ea80f659c5b213376cfea423d84bab720281c3ffde58002ddd0d4070277a58b7"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6521,7 +6525,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6552,7 +6556,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6583,7 +6587,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {33: [0]}. Source family: Undersea Cavern: pale rock, glowing/open areas and pitted stone. Engine random-encounter location mapping: Undersea Cavern.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
