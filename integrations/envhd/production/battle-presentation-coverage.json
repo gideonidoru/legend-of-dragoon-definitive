@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "ecd503a6eed8ee8981be01215e9a842cdd60422c32a9d4b6b228b881d60df99c",
+    "battle-material-runtime-artwork.json": "88c9f04b84e96aeb49a4709f357e75bb4ca055eec66fc8b3f154c4ad16e4b5c7",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "3477829d4c2df4f5acf73a195fa159b6a32668c3cbf448b701efc909ab254e43"
+    "battle-presentation-artwork-v1.json": "cf941b9332ef804c9a3e0a4e69348199e31e57fd4ed2eaeb3e51af93323cbffb"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 79,
-    "newlySelectedBespokeMasters": 79,
-    "baselineMastersStillNeedingPresentationReview": 427,
+    "newBespokeCandidates": 86,
+    "newlySelectedBespokeMasters": 86,
+    "baselineMastersStillNeedingPresentationReview": 420,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -481,7 +481,9 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "56d56fa966b44f3627b8558ad5a955ad73ec43f88efbd50befca9dd1fb0cd9a2"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -584,7 +586,14 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "0be99ffe472f763533b1b7d2aa84b7757e63bc7b5d3860b6b5994e909a466de9",
+        "24f50d0da3e1d49a971479634427c01afa81cc7ea5931c2558ab3bc50fa28a7c",
+        "368098daea9001149716f387c41f66918bcf757b3a43d8b5beb29e6db751881f",
+        "3f469f59830511e1e7ad2cd166368b0d3e4d600d2b15a7a2aefe1d0e01d199a0",
+        "62077b7d96fd9f22be8c7e3b92d10c2115f54b5603a6b569a5c2d4d670a82875",
+        "87c532fd17ce5120a51f3320938d10cce475004e676e14faeb89161805bcccc7"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4912,7 +4921,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {24: [0]}. Source family: pink radial architectural panel and pale blue surface gradients.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5458,7 +5467,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [0]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5489,7 +5498,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [0]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5521,7 +5530,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [0, 2]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5552,7 +5561,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [2]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5583,7 +5592,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [2]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5614,7 +5623,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [2]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
