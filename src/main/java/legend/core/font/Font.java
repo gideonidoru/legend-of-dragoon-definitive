@@ -104,11 +104,7 @@ public class Font {
         break;
       }
 
-      final Glyph glyph = this.glyphs.get(c);
-
-      if(glyph != null) {
-        width += glyph.w;
-      }
+      width += this.charWidth(c);
     }
 
     return width;
@@ -122,6 +118,7 @@ public class Font {
     for(int index = 0; index < text.length(); index++) {
       if(text.charAt(index) == '\n') {
         currentWidth = 0;
+        continue;
       }
 
       currentWidth += this.charWidth(text.charAt(index));
