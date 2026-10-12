@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "8fb590166db1221d9e6ca3507cc7699ed72cef62ebfa585d36021b1959179c58",
+    "battle-material-runtime-artwork.json": "a9536d3c416cfa660233ecdf32b2a49cacbb50a09a389fa99f759694a74e98ac",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "bb7ac5c2de322fc39d52d1785cfcca9862013874c4d14f5c5fba3a2989d9d7db"
+    "battle-presentation-artwork-v1.json": "a89faf1c565f5508b17f29f758354149107b7525925eff3000bf5e677269807f"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 101,
-    "newlySelectedBespokeMasters": 101,
-    "baselineMastersStillNeedingPresentationReview": 405,
+    "newBespokeCandidates": 107,
+    "newlySelectedBespokeMasters": 107,
+    "baselineMastersStillNeedingPresentationReview": 399,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -804,7 +804,10 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "03e9384e5eb908db993dfb534bdca9077f7c0fd025e4a8f3da51c813c61d657d",
+        "d62c1e2a5b7848577e67e9f8d7b9135467a111d2da968ea452fe4300a6319f2f"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -821,7 +824,12 @@
         4096,
         608
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "1d7ca715b77ae671c66c45fd210a23f855ab33aa5aa903c4fce784d35ca4c60d",
+        "7832408aa9310980344b3cdd465355d2200a0ad3158355c9922863b92e762d0c",
+        "915ea7e602df052c441e50b5435dd93ce09a1d56fe00b2e467f276ebc0d6c390",
+        "ef4a708d86d097e6033fd29c4d3c7dc8e6d08513aaa0b7794ac652cc5414f77a"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7414,7 +7422,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {41: [0]}. Source family: green forest ground/vegetation and pale ground patches.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7445,7 +7453,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {41: [0]}. Source family: green forest ground/vegetation and pale ground patches.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7538,7 +7546,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7569,7 +7577,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7600,7 +7608,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7631,7 +7639,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
