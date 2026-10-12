@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "scope": "Owner-requested reviewed neural and source-verified painted development installation; Skurfa and remaining held/unreviewed sources remain native",
-  "runtimeSelected": 4957,
+  "runtimeSelected": 4958,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
   "protectedCuts": [
@@ -79530,9 +79530,25 @@
           "canDeriveFromBackground": false
         }
       ]
+    },
+    {
+      "decodedRgbaSha256": "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
+      "outputSha256": "71578f9831408ece0eb09e5271bf22725254558e15edd9519605b8216fcaed55",
+      "sourceSize": [
+        102,
+        74
+      ],
+      "bindings": [
+        {
+          "renderKey": "111e8b8d3783750c4de5226fb39ec4a7640ec8e53960331654b2f01f1185b675:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ]
     }
   ],
   "reviewReceiptSha256": "f2845bdff322c04b8496a0eff151389da53594de54446ec25dfb0d42cab9ea51",
-  "paintedReviewReceiptSha256": "53e6d3fc9558d2e02b27610112d06744088a4fc5a89303674bdee3a54fcbea93",
-  "paintedRuntimeSelected": 71
+  "paintedReviewReceiptSha256": "cfca6a47ac0277b0e4963ab5a52debc141a5cd09d30078a4526c9663587f8171",
+  "paintedRuntimeSelected": 72
 }
