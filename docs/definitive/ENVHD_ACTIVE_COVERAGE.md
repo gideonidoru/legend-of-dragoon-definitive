@@ -2,11 +2,11 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **203 images: 202 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **201 images: 200 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,960 development images: 4,886 neural and 74 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
+Field selection is 4,962 development images: 4,886 neural and 76 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
 
-Current authoring queue: all83 historical canonical source keys reviewed:74selected,9requiring revision and none awaiting review. All earlier recipes/custom versions remain preserved. The50 unique unselected custom source keys are a subset of202field holds. Skurfa artwork is reused; native gameplay and final quality remain pending.
+Current authoring queue:83historical canonical source keys reviewed:76selected,7requiring revision. All earlier recipes/custom versions remain preserved on the ongoing authoring branch.48unselectedcustom source keys are a subset of200field holds. Skurfa is reused; native gameplay and final quality remain pending.
 
 The [recorded generation4 download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8` contains 4,925 field selections/39paintings and34 battle paintings. The historical Donau increment selected4,928 fields/42paintings and retained47 battle paintings: three field paintings and13 battle paintings beyond that recorded snapshot. These are comparisons with the preserved generation4 source ledgers, not a fresh observation of the live carrier. ROOT tracks subsequent coordinated publication and installer verification. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
@@ -156,3 +156,12 @@ The [complete74-painting selection](../../integrations/envhd/production/field-be
 ## Accepted Cave battle coverage checkpoint
 
 The [bounded shared checkpoint](../../integrations/envhd/production/battle-cave-shared-coverage-checkpoint.json) records accepted PR100/source153ccaa:53new presentation paintings plus12prior painted masters,65total and453neural masters within518newly owned static battle masters. This metadata update changes no artwork, recipe, runtime selection, package or original-game data. Field selection stays4960/74 and203knownstatic holds (202field+1terrain); dynamic and environment-prop image denominators remain unknown. Historical generation4 publication counters remain explicitly historical. The orchestration thread binds the future combined installer package.
+
+
+## Phantom Ship weathering and Fueno support repairs selected
+
+Independent original-art review clears two faithful development repairs: separated subdued weathering on the Phantom Ship column, preserving its corrected lowerband and alloutsidepixels; and shallow curling marks/quiet ledge planes on the dim Fueno support. Both code axes clear author sourcec3d0ee6f. The complete76recipe selection retains all74previous records; current-source preflight/selection passes once with6wrapper and60main fixtures. The RGB patch wrapper pins the unchanged prior Cargo transfer and bounded RGB conversion, retains original builtin input bytes/prompts and replays an exact composite. No source RGB pixels are copied.
+
+Fields4962/76 leave201knownstatic images:200field+1terrain.48customheldsourcekeys are a subset of200, and7canonical revisions remain. Coral’s failed canvas-aspect trial stays held on the authoring branch. Animated/owned-prop image totals remain unknown. Four download packs share one EnvHD switch; installer publication, native/physical Deck/campaign and final quality acceptance remain pending.
+
+The exact5b8e20cb EnvHD build passes. Its immutable five-file package verifies4962fields,5348JARresources,fourfieldpacks andoneEnvHD modID. EnvHD/Env2/Env3 are rebuilt; Env1/Env4 retain exact previous accepted bytes. Both independent main review axes are CLEAR0. These package/source checks do not assert current installer publication or native/device/final quality.
