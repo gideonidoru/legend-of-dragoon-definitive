@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "95030795e976ef93b4689fb1dcad8bc4f8d5a40882ef182ad055ec0059a398dc",
+    "battle-material-runtime-artwork.json": "7c1323aed6959a534243948712acad61f8347d3ca705e10237dad228ad1bd414",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "249cdcce51be7a1e445029a02bf51efecf1443cd76d16d1e1ed465ab8eeaefb8"
+    "battle-presentation-artwork-v1.json": "a8e32a9d5859942529cdfa3a2a7a4f1f92bb71fd45c58f6ea881bb95794cb4db"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 123,
-    "newlySelectedBespokeMasters": 123,
-    "baselineMastersStillNeedingPresentationReview": 383,
+    "newBespokeCandidates": 167,
+    "newlySelectedBespokeMasters": 167,
+    "baselineMastersStillNeedingPresentationReview": 339,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -883,7 +883,43 @@
         4096,
         800
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "0174a0e8822d38b4f47b13d169bd0612aa497b17876b90fae4e78429ea184cec",
+        "0719a58e380ab899ae8793a322ba1fbf021eed99a21a0fd35432e098adcbed22",
+        "16e7acb4d6b8f607fde368520f066ac88eb61da6fa26380cf6ae9a8b0a4fef87",
+        "1a011a070d862da1d26b89effbecdfefdceeca61ef85eeee3877d113ec3fdd19",
+        "28df59968ff0dea8dac3df5c8ec1e40fe7c5005576c0bcf09265e72e1de14df2",
+        "2d92cfbe60548fa5e7fd908a5593fb4924f3e068a14a6cb35ef2af7ef2866405",
+        "3bbeb61560e98ef63a9261b6f98011408378e396c50139e02909d7088501ff60",
+        "52e28aa9591b60278d4d9727299b58bce33d98f25e2f6679312ed9c253deed22",
+        "57039d6c94f15551273ace2e8dd8592b94ff116cecb128a926cfa8f64d4834a7",
+        "6667881df768dc85f1468c10178115520297cf45a8ecc907e330d60c182b90bb",
+        "72dc4b42ce81acadbe3025fc44389caa05641c93ffc0e318758ebb2b73fdcc96",
+        "732cd8162f152f18c803272c1297777fb688f4835e5921498ce0f59c25e0c637",
+        "7856de832ebaae9409601e9e8943fe40adbc230eb06173925924e0820b556231",
+        "79e3deebebc7f48fa6780d0ed706c93d214a6e80ed99c4989007a8e2c595fea5",
+        "7cd8f0253e43bc692fbb19abfe2938e90437735c0b306440eb2414938ef4a0e3",
+        "7da0a20d510d5c96099f8dbe46425269a1ada9910314803542e2207d4650cbea",
+        "7e9d9efb0cc1daf83bd3b48543528a6135810e96cb1176fff7c3773cf8486f19",
+        "80cba694d8a4cc6ab3c96bddee00b2fb0f88fe45eefd1c471dd343d196e5520c",
+        "812af65c308161b8d2d9bc96f660fcdf60eb375409fab6a8052dc50a150e070e",
+        "81b36bf830daaa01a2cbea082d52b8848d9b258d3dd6a9fe9a43f2060c75e41f",
+        "8bc4f745faeaa766e358e74af8225e5dddcf6958d990f376ad756435dc87cbea",
+        "98d0371932165f24a091da0be0d69f558667ab6a89f99f7496a6e356f41a3f07",
+        "b015a8449747b3151495b4ec478911168865ac96164fb3a5b495e4efbb1a98ea",
+        "b0f14cca283958cf1b9b7759c1f29608f794faa42ad4a88a2085a3be66a2f64c",
+        "b443c81e5b8df73e3ae1ce11b3eb8e07e065f1c91ce7e8c242ea08768b1abc72",
+        "c1ec54d1584862bd9906b55dae0655fed1f97b591beb7cd1785c4fb2c58869ad",
+        "c52bbcec8c59beb70ff21dc3be10ccf5b245b56a840480efc4a02101e83513c7",
+        "cf105769546577cf3b4d57b3bc370fa363a7804d6a230c020c12bdbee0736a50",
+        "d428e642da7672f50f1fae0dd6a013a0c842e1895969d5980e6a3e0a75ce3c8a",
+        "d4d83d5975ee7b2ec58dbba1eca19ff3a82931263f685f96fad6234864a9f0f6",
+        "ddc7283bff1cf217e16d3b2513d7afb5d5aeaeb2f1502a20c5f377b057bca98e",
+        "e2b9fb166032f7ed738a24057cd0d2113cf148016058c7d1d4e0bdfbb794ca80",
+        "e48242f2099c3b215931d43eada5fb9dd311019eca9f62fd14a256f66137b004",
+        "e5b640e0eb72a8c97129cac87207c4bf6cb1991f9aef667fb228ff1313c3b5d3",
+        "fb62a4563ee558e2645463d43b87a5c7611b73b317af67e1da52facc3a512ec8"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -900,7 +936,13 @@
         4096,
         608
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "378cf5375fd44392c7b209305f30dac9f6f1b81acdbf0c9b661b585d71ea7744",
+        "a29d3de29ffed8e438174eb26f33a3ab641ac610ed770dff0f2a9e616a31fb3a",
+        "e0ba06fed0c7bcc3be1bcc72cf7b3ac5189da0d0c33045565bda04907ef5842d",
+        "eb8a03e99cff778c98e3de327d6065ec2636a33cf0524cc091e14dd6ce496af4",
+        "fbabab05450cb330ac15f15e75e793535f4d05a5c264118801750d4256bd7302"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -918,7 +960,12 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "70402d253c3c49f5c449bdf17d6acef45c9acf523606c36da03af97a61a2c971",
+        "b33dbf42aa9ef0ea2515960fa6ead46ca6e079c5d6094d6bae1724eac24541e1",
+        "f7ecadd10c715da1fa96ac033f71e8d2ae52a711b7da3918521356f7ccb7a7a5",
+        "f910b0848bb02a1615c0cc3839e0ae69cc719b0891998cf1897d8265fe6d47f4"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8216,7 +8263,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8278,7 +8325,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8309,7 +8356,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8340,7 +8387,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8371,7 +8418,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8433,7 +8480,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8464,7 +8511,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8526,7 +8573,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8557,7 +8604,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8588,7 +8635,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8650,7 +8697,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8681,7 +8728,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8712,7 +8759,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8743,7 +8790,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8774,7 +8821,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8805,7 +8852,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8836,7 +8883,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8867,7 +8914,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8898,7 +8945,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8929,7 +8976,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8960,7 +9007,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8991,7 +9038,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9022,7 +9069,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9053,7 +9100,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9084,7 +9131,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9115,7 +9162,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9146,7 +9193,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9177,7 +9224,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9208,7 +9255,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9239,7 +9286,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9270,7 +9317,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9301,7 +9348,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9332,7 +9379,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9363,7 +9410,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9394,7 +9441,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9459,7 +9506,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [1, 2, 3]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9490,7 +9537,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [1]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9521,7 +9568,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [1]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9552,7 +9599,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [0]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9585,7 +9632,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {46: [1, 2, 3]}. Source family: Snowfield: bare trees, snow, cold ground and dark branching form. Engine random-encounter location mapping: Snowfield.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9616,7 +9663,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {47: [0]}. Source family: Fort Magrad: icicles, snow, rock and vegetation. Engine random-encounter location mapping: Fort Magrad.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9647,7 +9694,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {47: [0]}. Source family: Fort Magrad: icicles, snow, rock and vegetation. Engine random-encounter location mapping: Fort Magrad.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9678,7 +9725,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {47: [0]}. Source family: Fort Magrad: icicles, snow, rock and vegetation. Engine random-encounter location mapping: Fort Magrad.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -9709,7 +9756,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {47: [0]}. Source family: Fort Magrad: icicles, snow, rock and vegetation. Engine random-encounter location mapping: Fort Magrad.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
