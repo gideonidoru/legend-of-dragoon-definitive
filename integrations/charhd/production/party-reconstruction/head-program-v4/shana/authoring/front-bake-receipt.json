@@ -1,0 +1,19 @@
+{
+  "state": "development-needs-artistic-review",
+  "method": "one registered front facial source; coherent surface colors elsewhere",
+  "inputs": {
+    "head-smoothed.glb": "f07fad0b5270695cf639259faf5c8f8d55ee29a2ca7d7ef859eb54de98524884",
+    "head-6000-basecolour.png": "37bdc594065deb481b60d83dbe6e3cc2b71e0e21dfc37f6a3e1928e6f46f5e8b",
+    "head-paint-four-views-v1.png": "2c173990d4f5e49de3dd732502157795d35eaeac76926ea38785dc68e066a46a",
+    "shana-front-registration-v13.json": "e8d8e137d17df3b9535b0ab53119e90c78f30680e30e2cedcac3eb80521b2933"
+  },
+  "bakerSha256": "5f46d010146bae137d95a12497f1e618218fea6e67096777d108b72d56db22d6",
+  "anchorResidualPixels": 4.1219845343451804e-13,
+  "minimumFacialWarpDeterminant": 0.8567539834219364,
+  "paintedTexels": 464035,
+  "fullyReplacedFacialTexels": 126290,
+  "preventedMisplacedFeatureTexels": 13711,
+  "triangles": 6000,
+  "faceProfilePaintLayers": 0,
+  "accepted": false
+}

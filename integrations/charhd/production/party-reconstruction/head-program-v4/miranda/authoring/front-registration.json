@@ -1,0 +1,216 @@
+{
+  "format": 1,
+  "state": "development-unaccepted",
+  "meshSha256": "18376c246715ac8d0df9668abf4792f0727c2543fea27397395e8e4a360b1908",
+  "baseTextureSha256": "62dbd310f75a88d6373ce98860bc0d7b3f012811833e65a960fb59f9c684ff40",
+  "paintSha256": "9fbcdca17cbc5b0194cf4b7c5ed708455218cd822d2e39c8c0f7ac7adc052cab",
+  "paintRect": [
+    0,
+    0,
+    640,
+    640
+  ],
+  "camera": {
+    "size": 700,
+    "scale": 562.0689655172414,
+    "center": [
+      350,
+      350
+    ]
+  },
+  "faceRegion": {
+    "halfWidth": 0.32,
+    "top": -0.1,
+    "bottom": 0.35,
+    "back": -0.05
+  },
+  "anchors": [
+    {
+      "name": "left-eye",
+      "meshPixel": [
+        293,
+        334
+      ],
+      "paintPixel": [
+        289,
+        330
+      ]
+    },
+    {
+      "name": "right-eye",
+      "meshPixel": [
+        405,
+        334
+      ],
+      "paintPixel": [
+        414,
+        330
+      ]
+    },
+    {
+      "name": "nose",
+      "meshPixel": [
+        350,
+        394
+      ],
+      "paintPixel": [
+        349,
+        394
+      ]
+    },
+    {
+      "name": "mouth",
+      "meshPixel": [
+        350,
+        430
+      ],
+      "paintPixel": [
+        349,
+        443
+      ]
+    },
+    {
+      "name": "chin",
+      "meshPixel": [
+        350,
+        488
+      ],
+      "paintPixel": [
+        349,
+        510
+      ]
+    },
+    {
+      "name": "forehead-or-circlet",
+      "meshPixel": [
+        350,
+        302
+      ],
+      "paintPixel": [
+        350,
+        298
+      ]
+    },
+    {
+      "name": "crown",
+      "meshPixel": [
+        350,
+        104
+      ],
+      "paintPixel": [
+        349,
+        81
+      ]
+    },
+    {
+      "name": "left-ear",
+      "meshPixel": [
+        203,
+        370
+      ],
+      "paintPixel": [
+        202,
+        372
+      ]
+    },
+    {
+      "name": "right-ear",
+      "meshPixel": [
+        503,
+        370
+      ],
+      "paintPixel": [
+        517,
+        369
+      ]
+    },
+    {
+      "name": "frame-0",
+      "meshPixel": [
+        0,
+        0
+      ],
+      "paintPixel": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "frame-1",
+      "meshPixel": [
+        700,
+        0
+      ],
+      "paintPixel": [
+        700,
+        0
+      ]
+    },
+    {
+      "name": "frame-2",
+      "meshPixel": [
+        0,
+        700
+      ],
+      "paintPixel": [
+        0,
+        700
+      ]
+    },
+    {
+      "name": "frame-3",
+      "meshPixel": [
+        700,
+        700
+      ],
+      "paintPixel": [
+        700,
+        700
+      ]
+    }
+  ],
+  "sourceFeatureLimits": [
+    {
+      "name": "left-ear",
+      "paintPixel": [
+        202,
+        372
+      ],
+      "paintRadii": [
+        35,
+        60
+      ],
+      "commonPoint": [
+        -0.26153374233128834,
+        0.035582822085889566,
+        -0.09581664254044323
+      ],
+      "commonRadii": [
+        0.09,
+        0.13,
+        0.11
+      ]
+    },
+    {
+      "name": "right-ear",
+      "paintPixel": [
+        517,
+        369
+      ],
+      "paintRadii": [
+        35,
+        60
+      ],
+      "commonPoint": [
+        0.2722085889570552,
+        0.035582822085889566,
+        -0.12424763634098734
+      ],
+      "commonRadii": [
+        0.09,
+        0.13,
+        0.11
+      ]
+    }
+  ]
+}

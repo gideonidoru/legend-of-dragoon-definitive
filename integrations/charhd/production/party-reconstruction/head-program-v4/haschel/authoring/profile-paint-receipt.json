@@ -1,0 +1,18 @@
+{
+  "format": 1,
+  "state": "experimental-not-accepted",
+  "tool": "image_gen.imagegen",
+  "promptRecovered": true,
+  "prompt": "Edit target: the first image, an orthographic LEFT-FACING PROFILE render of a custom 3D Haschel head. Supporting style/identity reference: second image, the frontal Haschel painted portrait. Repaint the first image as a clean production character texture painting, preserving its exact 700-square composition, pixel silhouette, scale, head angle and ALL geometry landmark positions: crown, eye, nose tip, lip line, chin, the visible ear and hair bottom. Do not turn the head or make a new portrait. Remove the muddled black/skin surface patches around the ear, lower cheek, underside of jaw and moustache; replace with anatomically coherent skin, one firmly attached ear, dark sideburns, and the continuous single moustache from the reference. Hair flows from scalp backwards with crisp layered dark charcoal strands. Red headband sits on the same horizontal surface as the target. Only ONE eye, ONE nose, ONE mouth, ONE jaw; never paste another frontal face or ear over the profile. Skin colour/style matches second image: rich aged tan skin, subtle pores, stern mature warrior, original Legend of Dragoon design. The visible eye stays near x140 y325, nose tip x93 y390, mouth x120 y455, chin x140 y515 and ear center x185 y357, exactly as in first image. The very low strange dark paint under the chin is plain shaded tan underside of jaw, not an additional beard or second mouth. Preserve target shape and recesses, no added neck or shoulders. No text, grid, frame, logos. Transparent background. This is a matched texture-paint input for the same mesh, not standalone concept art.",
+  "referenceRoles": [
+    {
+      "path": "private matched profile render",
+      "role": "edit target"
+    },
+    {
+      "path": "head-paint-frontal-v1.png",
+      "role": "identity and style reference"
+    }
+  ],
+  "purpose": "Profile hair, ear and jaw material input; separate mesh bake and visual acceptance required"
+}

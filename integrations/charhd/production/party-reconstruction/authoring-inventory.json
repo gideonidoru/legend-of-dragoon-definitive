@@ -1,0 +1,320 @@
+{
+  "format": 1,
+  "date": "2026-10-10",
+  "state": "public-development-authoring-not-a-release",
+  "currentRuntimeSelection": "Accepted Dart only; runtime assets unchanged",
+  "headProbe": {
+    "status": "passed",
+    "combinations": 192,
+    "reportSha256": "d54990c794b7d931573b8c23b8819c8aef227cfa6393c0a3d7046ef226e3d9c1",
+    "scope": "Actual Java CPU construction, not gameplay or Deck",
+    "diagnostic": "Empty headless working directory logs missing gfx/fonts/default.json during static initialization; construction assertions pass."
+  },
+  "landmarksSha256": "40b1fe2d885b322d4cceaf3253a73ef7dbd6e8359a839768db5a1da79ebadf92",
+  "characters": [
+    {
+      "character": "dart",
+      "headState": "accepted-runtime-reference",
+      "headFormMeasurements": [],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 16,
+      "combatBodyPartsTargeted": 16,
+      "combatTriangles": 21236,
+      "missingCombatPartIndices": [],
+      "bodyFieldAdaptation": "separate-neutral-field-study-not-validated",
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": true,
+      "physicalDeckValidated": false,
+      "fieldBodyPartsPopulated": 14,
+      "fieldBodyPartsTargeted": 14,
+      "nativeBattleConstructionChecked": true,
+      "nativeAnimationVisualAcceptance": false,
+      "bodyValidation": "dart/BODY-VALIDATION-v2.json"
+    },
+    {
+      "character": "rose",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 9,
+          "scale": 23.80952380952381,
+          "posedBodyToSkullHeightRatio": 5.961687272135898
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 10,
+          "scale": 252.5396825396824,
+          "posedBodyToSkullHeightRatio": 8.23649971805915
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 16,
+      "combatBodyPartsTargeted": 17,
+      "combatTriangles": 21897,
+      "missingCombatPartIndices": [
+        9
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "lavitz",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 18.95701209039869,
+          "posedBodyToSkullHeightRatio": 6.000000000000002
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 8,
+          "scale": 230.89743589743577,
+          "posedBodyToSkullHeightRatio": 6.997739816827214
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 9,
+      "combatBodyPartsTargeted": 15,
+      "combatTriangles": 23197,
+      "missingCombatPartIndices": [
+        1,
+        5,
+        6,
+        7,
+        11,
+        13
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "shana",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 18.547829070205918,
+          "posedBodyToSkullHeightRatio": 5.999999999999999
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 12,
+          "scale": 222.48275862068957,
+          "posedBodyToSkullHeightRatio": 7.880843891547854
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 18,
+      "combatBodyPartsTargeted": 19,
+      "combatTriangles": 21094,
+      "missingCombatPartIndices": [
+        4
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "haschel",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 18.37434988312918,
+          "posedBodyToSkullHeightRatio": 5.900000000000002
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 7,
+          "scale": 257.9220779220778,
+          "posedBodyToSkullHeightRatio": 5.949647532729106
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 13,
+      "combatBodyPartsTargeted": 14,
+      "combatTriangles": 21482,
+      "missingCombatPartIndices": [
+        5
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "albert",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 19.12717420650482,
+          "posedBodyToSkullHeightRatio": 5.999999999999999
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 8,
+          "scale": 218.8079470198676,
+          "posedBodyToSkullHeightRatio": 7.595036319612589
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 19,
+      "combatBodyPartsTargeted": 20,
+      "combatTriangles": 22873,
+      "missingCombatPartIndices": [
+        1
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "meru",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 6,
+          "scale": 22.203389830508467,
+          "posedBodyToSkullHeightRatio": 6.084142850241008
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 8,
+          "scale": 304.57627118644075,
+          "posedBodyToSkullHeightRatio": 6.823224815802447
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 16,
+      "combatBodyPartsTargeted": 16,
+      "combatTriangles": 20535,
+      "missingCombatPartIndices": [],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "kongol",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 29.999999999999982,
+          "posedBodyToSkullHeightRatio": 6.847152546881614
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 7,
+          "scale": 328.125,
+          "posedBodyToSkullHeightRatio": 7.687319529526567
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 17,
+      "combatBodyPartsTargeted": 17,
+      "combatTriangles": 22661,
+      "missingCombatPartIndices": [],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    },
+    {
+      "character": "miranda",
+      "headState": "proportion-reviewed-development-fit",
+      "headFormMeasurements": [
+        {
+          "form": "field",
+          "sourcePartIndex": 7,
+          "scale": 20.000000000000004,
+          "posedBodyToSkullHeightRatio": 6.327321965013649
+        },
+        {
+          "form": "combat",
+          "sourcePartIndex": 11,
+          "scale": 239.29577464788716,
+          "posedBodyToSkullHeightRatio": 8.094761624484997
+        }
+      ],
+      "bodyState": "development-not-runtime-selected",
+      "combatBodyPartsPopulated": 14,
+      "combatBodyPartsTargeted": 18,
+      "combatTriangles": 21994,
+      "missingCombatPartIndices": [
+        4,
+        5,
+        8,
+        10
+      ],
+      "bodyFieldAdaptation": false,
+      "nativeBodyGameplayValidated": false,
+      "headOwnerAccepted": false,
+      "physicalDeckValidated": false
+    }
+  ],
+  "artFidelity": {
+    "status": "not-accepted-reference-audit-required",
+    "ownerFeedbackDate": "2026-10-10",
+    "ownerFeedback": "none of them really honor the original game art. Theyre all close but not exact",
+    "designAuthority": "Original character illustrations and original game model/texture references",
+    "generatedStudies": "Visual finish experiments only; not canonical design sources",
+    "knownFindings": [
+      "Haschel body prompt specifies incorrect reddish-brown trousers against purple original in-game reference",
+      "Meru illustrated texture studies redraw decorative motif shapes and line spacing"
+    ],
+    "runtimeSelection": "No changes to existing accepted assets",
+    "inspectedReferences": [
+      {
+        "study": "haschel-material-study",
+        "sourceModelSha256": "285ec5c257b9a94b6fc27d902be5135f3b377f19c020a085771049b61576e885",
+        "sourceTimSha256": "0dc9340a7c081b18ced9890325cd5171aa5b402c302581f38245931bf858d6a9",
+        "sourceAnimationSha256": "e830fb9283bf6eeda25e23300ac55e1db9e691b6f4903af68c0a8d9f378c74c8",
+        "comparedView": "Keyframe 0 \u00b7 camera 0\u00b0",
+        "scope": "Inspected original/candidate preview. Original pixels remain outside Git."
+      },
+      {
+        "study": "meru-material-study",
+        "sourceModelSha256": "84341ec030afdb03d69cb08114acf34edcb3438f386cb580bf6503a331ab4691",
+        "sourceTimSha256": "601a01d5149a7fa083b32d977b290a361344daa4c0393b757d06f52e9e7814cc",
+        "sourceAnimationSha256": "d80895d1a81684693882a634bac6561abb9db55ba1b8e343e86bd15721982721",
+        "comparedView": "Keyframe 0 \u00b7 camera 0\u00b0",
+        "scope": "Inspected original/candidate preview. Original pixels remain outside Git."
+      },
+      {
+        "study": "meru-surface-study",
+        "sourceModelSha256": "84341ec030afdb03d69cb08114acf34edcb3438f386cb580bf6503a331ab4691",
+        "sourceTimSha256": "601a01d5149a7fa083b32d977b290a361344daa4c0393b757d06f52e9e7814cc",
+        "sourceAnimationSha256": "d80895d1a81684693882a634bac6561abb9db55ba1b8e343e86bd15721982721",
+        "comparedView": "Keyframe 0 \u00b7 Camera 0\u00b0",
+        "scope": "Inspected original/candidate preview. Original pixels remain outside Git."
+      }
+    ]
+  },
+  "originalDesignV3": {
+    "date": "2026-10-11",
+    "inventory": "original-design-v3.json",
+    "characters": 9,
+    "state": "public-static-authoring-native-fit-pending",
+    "ownerDirectionApproved": true,
+    "ownerCandidateAccepted": false,
+    "nativeAnimationValidated": false,
+    "physicalDeckValidated": false,
+    "runtimeSelected": false
+  }
+}

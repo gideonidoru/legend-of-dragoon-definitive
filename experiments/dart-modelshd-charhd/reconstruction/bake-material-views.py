@@ -11,6 +11,7 @@ parser.add_argument('--paint',type=Path,required=True)
 parser.add_argument('--output',type=Path,required=True)
 parser.add_argument('--angles',type=int,nargs='+',default=[0,90,180],help='Paint columns from left to right')
 parser.add_argument('--hair-only',action='store_true',help='Restrict opposite-side cleanup to hair; preserve the established face and bandana')
+parser.add_argument('--all-materials',action='store_true',help='Transfer neutral, dark and skin paint as well as warm hair colors; for registered body sheets')
 a=parser.parse_args();a.output.mkdir(parents=True,exist_ok=False)
 m=next(iter(trimesh.load(a.mesh,force='scene',process=False).geometry.values()))
 v=np.asarray(m.vertices);ns=np.asarray(m.vertex_normals);faces=np.asarray(m.faces);uv=np.asarray(m.visual.uv)
@@ -51,7 +52,12 @@ for column,angle in enumerate(a.angles):
  coords=np.stack((pos[:,1]*(source.shape[0]-1),(pos[:,0]+column)*source.shape[1]/len(a.angles)))
  sampled=np.column_stack([map_coordinates(source[...,c],coords,order=1,mode='nearest') for c in range(3)])
  # Never transfer the neutral studio background across an imperfectly registered silhouette.
- weight*=((sampled.max(1)-sampled.min(1))>18)&(sampled[:,0]>50)&(sampled[:,0]>sampled[:,1]*.98)
+ if a.all_materials:
+  # Registered full-body paint uses #1a1e22 as background. Reject that swatch
+  # without rejecting charcoal trousers, leather or skin as the hair gate does.
+  weight*=np.linalg.norm(sampled-np.array([26,30,34]),axis=1)>8
+ else:
+  weight*=((sampled.max(1)-sampled.min(1))>18)&(sampled[:,0]>50)&(sampled[:,0]>sampled[:,1]*.98)
  colour+=sampled*weight[:,None];sum_weight+=weight
  reports.append({'viewDegrees':angle,'visibleTexels':int(visible.sum()),'weightedTexels':int((weight>.1).sum())})
 pixels=np.array(m.visual.material.baseColorTexture.convert('RGB'))
@@ -70,5 +76,5 @@ m.export(a.output/'head-6000-textured.glb')
 check=next(iter(trimesh.load(a.output/'head-6000-textured.glb',force='scene',process=False).geometry.values()))
 assert np.array_equal(v,check.vertices) and np.array_equal(faces,check.faces) and np.array_equal(uv,check.visual.uv), 'Material bake changed geometry or UVs'
 assert np.allclose(ns,check.vertex_normals,atol=1e-6), 'Material bake changed normals'
-record={'status':'experimental-not-approved','meshSourceSha256':hashlib.sha256(a.mesh.read_bytes()).hexdigest(),'paintSha256':hashlib.sha256(a.paint.read_bytes()).hexdigest(),'geometryUnchanged':True,'coveredTexels':int(covered.sum()),'transferredTexels':int((factor>.5).sum()),'views':reports,'textureSha256':hashlib.sha256((a.output/'head-6000-basecolour.png').read_bytes()).hexdigest()}
+record={'status':'experimental-not-approved','allMaterials':a.all_materials,'meshSourceSha256':hashlib.sha256(a.mesh.read_bytes()).hexdigest(),'paintSha256':hashlib.sha256(a.paint.read_bytes()).hexdigest(),'geometryUnchanged':True,'coveredTexels':int(covered.sum()),'transferredTexels':int((factor>.5).sum()),'views':reports,'textureSha256':hashlib.sha256((a.output/'head-6000-basecolour.png').read_bytes()).hexdigest()}
 (a.output/'manifest.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record))

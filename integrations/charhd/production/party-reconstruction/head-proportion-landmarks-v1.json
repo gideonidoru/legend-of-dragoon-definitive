@@ -1,0 +1,133 @@
+{
+  "format": 1,
+  "state": "development-not-runtime-selected",
+  "coordinates": "Posed inspection frame: native up is -Y, front is -Z. Custom raw coordinates use the documented TripoSR-to-native basis.",
+  "method": "Manually reviewed crown and chin in orthographic mesh views. Exclude braid, bow, crest and horn tips; preserve each source body silhouette. Frontal centre/depth derived from source and custom central face surfaces. Field body-context refinements retain the jaw attachment and use explicit per-character posed body/skull ratios; these are framing controls, not universal human anatomy rules.",
+  "approval": "Proportion study only. Does not certify attachments, animation, gameplay or Deck performance. Accepted Dart runtime assets remain byte-identical.",
+  "characters": {
+    "rose": {
+      "meshInputSha256": "94e7a60174e394c0931641e8193bab2b7ca3730b8804276798bf352f4d71aba1",
+      "rawCrownY": -0.325,
+      "rawChinY": 0.305,
+      "forms": {
+        "field": {
+          "sourceCrownY": -87.5,
+          "sourceChinY": -72.5
+        },
+        "combat": {
+          "sourceCrownY": -1305.0,
+          "sourceChinY": -1145.9
+        }
+      }
+    },
+    "lavitz": {
+      "meshInputSha256": "eddf50823aa3ea4577b11276ba1cdbb9da11c3ca12df13e7a549e2c56b8e713a",
+      "rawCrownY": -0.48,
+      "rawChinY": 0.3,
+      "forms": {
+        "field": {
+          "sourceCrownY": -89.6,
+          "sourceChinY": -73.9,
+          "targetPosedBodyToSkullHeightRatio": 6
+        },
+        "combat": {
+          "sourceCrownY": -1248.8,
+          "sourceChinY": -1068.7
+        }
+      }
+    },
+    "shana": {
+      "meshInputSha256": "52e745f4b8cf940bf5b72ea7f00e74cd8985e24266d4e07979bcde965c7aea64",
+      "rawCrownY": -0.465,
+      "rawChinY": 0.26,
+      "forms": {
+        "field": {
+          "sourceCrownY": -80.7,
+          "sourceChinY": -66.0,
+          "targetPosedBodyToSkullHeightRatio": 6
+        },
+        "combat": {
+          "sourceCrownY": -1268.7,
+          "sourceChinY": -1107.4
+        }
+      }
+    },
+    "haschel": {
+      "meshInputSha256": "c323b57a97fcda92e182fcc19cb3090f74b3b2b28a934ef83baaf44dd7c84f6c",
+      "rawCrownY": -0.46,
+      "rawChinY": 0.31,
+      "forms": {
+        "field": {
+          "sourceCrownY": -83.9,
+          "sourceChinY": -68.2,
+          "targetPosedBodyToSkullHeightRatio": 5.9
+        },
+        "combat": {
+          "sourceCrownY": -1180.6,
+          "sourceChinY": -982.0
+        }
+      }
+    },
+    "albert": {
+      "meshInputSha256": "0080de9270b25fe1f0f2f7ea67ff169baada0aa58be219d8ef37c9b6950adcd2",
+      "rawCrownY": -0.5,
+      "rawChinY": 0.255,
+      "forms": {
+        "field": {
+          "sourceCrownY": -88.6,
+          "sourceChinY": -71.1,
+          "targetPosedBodyToSkullHeightRatio": 6
+        },
+        "combat": {
+          "sourceCrownY": -1254.7,
+          "sourceChinY": -1089.5
+        }
+      }
+    },
+    "meru": {
+      "meshInputSha256": "6d89126f19348307f10335fb36f241d2efca200d1c2d314e1ded95304926d25f",
+      "rawCrownY": -0.3,
+      "rawChinY": 0.29,
+      "forms": {
+        "field": {
+          "sourceCrownY": -78.5,
+          "sourceChinY": -65.4
+        },
+        "combat": {
+          "sourceCrownY": -1227.0,
+          "sourceChinY": -1047.3
+        }
+      }
+    },
+    "kongol": {
+      "meshInputSha256": "d061328b9f3913c1732600b6165277c20d5e2deb98abb481c0f2583a12889cd0",
+      "rawCrownY": -0.34,
+      "rawChinY": 0.3,
+      "forms": {
+        "field": {
+          "sourceCrownY": -130.2,
+          "sourceChinY": -111.0
+        },
+        "combat": {
+          "sourceCrownY": -1610.0,
+          "sourceChinY": -1400.0
+        }
+      }
+    },
+    "miranda": {
+      "meshInputSha256": "6637ad4556554011497755e51a89445b89b67d4809fab3c1ca02b060e6b062fc",
+      "rawCrownY": -0.46,
+      "rawChinY": 0.25,
+      "forms": {
+        "field": {
+          "sourceCrownY": -88.2,
+          "sourceChinY": -74.0
+        },
+        "combat": {
+          "sourceCrownY": -1375.3,
+          "sourceChinY": -1205.4
+        }
+      }
+    }
+  }
+}

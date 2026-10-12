@@ -24,7 +24,7 @@ import java.util.Map;
 /** Source-bound character upgrades. Geometry and its new UV material are one optional replacement. */
 final class ReconstructedCharacters {
   @FunctionalInterface interface Resources { byte[] read(String path, int limit) throws IOException; }
-  private record Detail(String geometry, float[][] uv, ByteBuffer pixels, int width, int height) { }
+  private record Detail(String geometry, float[][] uv, TmdFaceDetail.Image image) { }
   private record Part(String baseline, String geometry, byte[] pack, Detail detail) { }
   private final Map<String, Part> parts;
 
@@ -46,7 +46,7 @@ final class ReconstructedCharacters {
       final var entries = manifest.getAsJsonArray("parts");
       if(entries.isEmpty() || entries.size() > 512) throw new IOException("Invalid character part count");
       final Map<String, Part> parts = new HashMap<>();
-      final Map<String, ByteBuffer> images = new HashMap<>();
+      final Map<String, TmdFaceDetail.Image> images = new HashMap<>();
       for(final var row : entries) {
         final var entry = row.getAsJsonObject();
         final String source = hash(entry, "sourceGeometrySha256"), geometry = hash(entry, "geometrySha256");
@@ -58,6 +58,8 @@ final class ReconstructedCharacters {
             !geometry.equals(hash(uv, "geometrySha256")) || !hash(entry, "textureSha256").equals(hash(uv, "textureSha256")))
             throw new IOException("Character UV binding does not match geometry/material");
           final var rows = uv.getAsJsonArray("uvs");
+          final boolean cutout = alphaMode(entry);
+          if(cutout != alphaMode(uv)) throw new IOException("Character alpha binding does not match material");
           if(rows.isEmpty() || rows.size() > 65535) throw new IOException("Invalid character UV count");
           final float[][] coordinates = new float[rows.size()][2];
           for(int index = 0; index < rows.size(); index++) {
@@ -71,13 +73,13 @@ final class ReconstructedCharacters {
           }
           final int width = TmdGeometryPack.integer(entry.get("width")), height = TmdGeometryPack.integer(entry.get("height"));
           if(width < 1 || height < 1 || width > 2048 || height > 2048) throw new IOException("Character image exceeds pixel budget");
-          final String imageKey = hash(entry, "textureSha256") + ":" + width + ":" + height;
-          ByteBuffer pixels = images.get(imageKey);
-          if(pixels == null) {
-            pixels = pixels(checked(resources, entry, "texture", 8 * 1024 * 1024), width, height);
-            images.put(imageKey, pixels);
+          final String imageKey = hash(entry, "textureSha256") + ":" + width + ":" + height + ":" + cutout;
+          TmdFaceDetail.Image image = images.get(imageKey);
+          if(image == null) {
+            image = new TmdFaceDetail.Image(pixels(checked(resources, entry, "texture", 8 * 1024 * 1024), width, height, cutout), width, height, cutout);
+            images.put(imageKey, image);
           }
-          detail = new Detail(geometry, coordinates, pixels, width, height);
+          detail = new Detail(geometry, coordinates, image);
         }
         if(parts.put(source, new Part(hash(entry, "baselineGeometrySha256"), geometry, pack, detail)) != null)
           throw new IOException("Duplicate character source identity");
@@ -97,7 +99,8 @@ final class ReconstructedCharacters {
     // Only our recorded ModelsHD baseline may hand off its geometry. Other geometry owners keep priority.
     if(event.geometry != event.source && !part.baseline.equals(TmdGeometryPack.identity(new TmdObjTable1c[]{event.geometry}))) return false;
     final var replacement = TmdGeometryPack.read(new ByteArrayInputStream(part.pack), originals)[0];
-    if(!part.geometry.equals(TmdGeometryPack.identity(new TmdObjTable1c[]{replacement}))) throw new IOException("Character geometry binding differs");
+    final String actual = TmdGeometryPack.identity(new TmdObjTable1c[]{replacement});
+    if(!part.geometry.equals(actual)) throw new IOException("Character geometry binding differs: expected " + part.geometry + ", read " + actual);
     final var appearance = part.detail == null ? replacement : paint(replacement, part.detail);
     event.appearance = appearance;
     return true;
@@ -134,7 +137,7 @@ final class ReconstructedCharacters {
     result.sourceFaces(sources, java.util.Arrays.stream(sources).max().orElseThrow() + 1);
     result.faceSurfaces(surfaces);
     result.surfaceMaterial(geometry.surfaceMaterial());
-    result.faceDetail(new TmdFaceDetail(detail.pixels.duplicate(), detail.width, detail.height, uv));
+    result.faceDetail(new TmdFaceDetail(detail.image, uv));
     return result;
   }
 
@@ -161,7 +164,14 @@ final class ReconstructedCharacters {
     return bytes;
   }
 
-  private static ByteBuffer pixels(final byte[] png, final int width, final int height) throws IOException {
+  private static boolean alphaMode(final JsonObject value) throws IOException {
+    if(!value.has("alphaMode")) return false;
+    final String mode = value.get("alphaMode").getAsString();
+    if(!mode.equals("opaque") && !mode.equals("cutout")) throw new IOException("Unsupported character alpha mode");
+    return mode.equals("cutout");
+  }
+
+  private static ByteBuffer pixels(final byte[] png, final int width, final int height, final boolean cutout) throws IOException {
     try(final var input = ImageIO.createImageInputStream(new ByteArrayInputStream(png))) {
       final var readers = ImageIO.getImageReaders(input);
       if(!readers.hasNext()) throw new IOException("Invalid character image");
@@ -174,7 +184,7 @@ final class ReconstructedCharacters {
         final var rgba = ByteBuffer.allocateDirect(width * height * 4);
         for(int y = 0; y < height; y++) for(int x = 0; x < width; x++) {
           final int rgb = image.getRGB(x, y);
-          rgba.put((byte)(rgb >>> 16)).put((byte)(rgb >>> 8)).put((byte)rgb).put((byte)255);
+          rgba.put((byte)(rgb >>> 16)).put((byte)(rgb >>> 8)).put((byte)rgb).put((byte)(cutout ? rgb >>> 24 : 255));
         }
         return rgba.flip().asReadOnlyBuffer();
       } finally { reader.dispose(); }

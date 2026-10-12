@@ -1,0 +1,172 @@
+{
+  "format": 1,
+  "state": "development-unaccepted",
+  "meshSha256": "ec28e630b7e9e6aaa6753779c887dd6513a30e2a3a8db809c4df26e6b9957d32",
+  "baseTextureSha256": "092d9dd1576fdc0804856ac3a3826c1866084a6278124e6de259c142800df11b",
+  "paintSha256": "ff2770a857b46078e90f115ed14ed05ec2405dd69a2af8771ea62de770e8e16d",
+  "paintRect": [
+    0,
+    0,
+    640,
+    640
+  ],
+  "camera": {
+    "size": 700,
+    "scale": 562.0689655172414,
+    "center": [
+      350,
+      350
+    ]
+  },
+  "faceRegion": {
+    "halfWidth": 0.32,
+    "top": -0.1,
+    "bottom": 0.35,
+    "back": -0.05
+  },
+  "anchors": [
+    {
+      "name": "left-eye",
+      "meshPixel": [
+        295,
+        344
+      ],
+      "paintPixel": [
+        273,
+        361
+      ]
+    },
+    {
+      "name": "right-eye",
+      "meshPixel": [
+        406,
+        344
+      ],
+      "paintPixel": [
+        410,
+        361
+      ]
+    },
+    {
+      "name": "nose",
+      "meshPixel": [
+        351,
+        401
+      ],
+      "paintPixel": [
+        339,
+        439
+      ]
+    },
+    {
+      "name": "mouth",
+      "meshPixel": [
+        351,
+        443
+      ],
+      "paintPixel": [
+        339,
+        480
+      ]
+    },
+    {
+      "name": "chin",
+      "meshPixel": [
+        351,
+        515
+      ],
+      "paintPixel": [
+        339,
+        572
+      ]
+    },
+    {
+      "name": "forehead-or-circlet",
+      "meshPixel": [
+        350,
+        263
+      ],
+      "paintPixel": [
+        339,
+        273
+      ]
+    },
+    {
+      "name": "crown",
+      "meshPixel": [
+        350,
+        102
+      ],
+      "paintPixel": [
+        339,
+        75
+      ]
+    },
+    {
+      "name": "left-ear",
+      "meshPixel": [
+        205,
+        370
+      ],
+      "paintPixel": [
+        180,
+        404
+      ]
+    },
+    {
+      "name": "right-ear",
+      "meshPixel": [
+        515,
+        370
+      ],
+      "paintPixel": [
+        527,
+        404
+      ]
+    },
+    {
+      "name": "frame-0",
+      "meshPixel": [
+        0,
+        0
+      ],
+      "paintPixel": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "frame-1",
+      "meshPixel": [
+        700,
+        0
+      ],
+      "paintPixel": [
+        700,
+        0
+      ]
+    },
+    {
+      "name": "frame-2",
+      "meshPixel": [
+        0,
+        700
+      ],
+      "paintPixel": [
+        0,
+        700
+      ]
+    },
+    {
+      "name": "frame-3",
+      "meshPixel": [
+        700,
+        700
+      ],
+      "paintPixel": [
+        700,
+        700
+      ]
+    }
+  ]
+}

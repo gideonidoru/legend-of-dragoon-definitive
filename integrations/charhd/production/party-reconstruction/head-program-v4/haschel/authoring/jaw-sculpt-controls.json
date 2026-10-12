@@ -1,0 +1,25 @@
+{
+  "format": 1,
+  "state": "experimental-not-accepted",
+  "meshSha256": "f9b574d1897ea920c5170d70b4446a9c038185af023fff7fb9986543c26d7092",
+  "iterations": 36,
+  "strength": 0.45,
+  "region": {
+    "top": 0.2,
+    "topFeather": 0.08,
+    "bottom": 0.4,
+    "bottomFeather": 0.04,
+    "back": -0.11,
+    "backFeather": 0.08,
+    "halfWidth": 0.32,
+    "sideFeather": 0.05
+  },
+  "protectedCentralFace": {
+    "halfWidth": 0.1,
+    "sideFeather": 0.04,
+    "back": -0.32,
+    "backFeather": 0.055,
+    "bottom": 0.34,
+    "bottomFeather": 0.04
+  }
+}

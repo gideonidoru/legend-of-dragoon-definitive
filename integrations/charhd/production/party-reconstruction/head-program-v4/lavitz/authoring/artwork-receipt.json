@@ -1,0 +1,11 @@
+{
+  "format": 1,
+  "character": "lavitz",
+  "state": "authoring-input-not-visual-acceptance",
+  "generator": "built-in image_gen",
+  "useCase": "identity-preserve",
+  "sourceReference": "../../lavitz/head-source-v1.png",
+  "image": "head-source-frontal-v1.png",
+  "prompt": "Edit the supplied lavitz character head into a neutral FRONTAL ORTHOGRAPHIC source for 3D reconstruction. Preserve this exact character identity, age, eye shape and eye color, face width and jaw proportions, nose, hairstyle, hair color, ornaments and color palette. We are correcting camera pose, not redesigning the character. Camera directly in front, eyes level and looking forward, exactly zero yaw, pitch or roll. Symmetric facial anatomy, naturally asymmetric hairstyle as supplied. One face, one chin. Isolated HEAD ONLY: no neck column, no shoulder, no body, no skin below the jaw. Long hair and ornaments retain their original shape and full length; do not crop them. Neutral mouth, no exaggerated expression. Preserve refined 2026 AA stylized JRPG painted detail, consistent with original Legend of Dragoon art. Soft flat diffuse light, no rim light. Transparent background, centered square, generous clear margins around all hair and ornaments. No labels, contact sheet or scenery.",
+  "scope": "Neutral source portrait only. This image is not a runtime mesh or in-game verification."
+}

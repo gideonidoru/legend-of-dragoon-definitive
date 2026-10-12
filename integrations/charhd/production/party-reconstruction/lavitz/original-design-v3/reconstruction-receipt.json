@@ -1,0 +1,93 @@
+{
+  "experiment": "charhd-party-original-design-v3",
+  "character": "lavitz",
+  "assetKind": "body",
+  "sourceRevision": "107cefdc244c39106fa830359024f6a2f1c78871",
+  "inputSha256": "16cb28112b316fbcbbcc7468b2951941332eee0d8dca0bf1deaac371f68bfce0",
+  "weightsSha256": "429e2c6b22a0923967459de24d67f05962b235f79cde6b032aa7ed2ffcd970ee",
+  "configSha256": "74ca708ce086bf68e97709ea6b3d91f14717921c04691e84043f0eb8fcc68e62",
+  "dinoConfigSha256": "b87c0270b97db085fd82cf114a761fd0f62ae7914fbd407c752a2260646b689c",
+  "dependencyLockSha256": "1ecc364a00dc00ba2dbade66fcf5e2b0b986e49189583ed42d76716a5770889a",
+  "runnerSha256": "67cefc863cbd191ddfd9c30f1812e7394f7ba98eb4dc9b55adfef07fe968150a",
+  "device": "cpu",
+  "threads": 8,
+  "resolution": 256,
+  "foregroundRatio": 0.85,
+  "networkDisabled": true,
+  "nativeImport": false,
+  "artAccepted": false,
+  "torch": "2.14.1",
+  "python": "3.12.0 (v3.12.0:0fb18b02c8, Oct  2 2023, 09:45:56) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "inferencePixelsSha256": "05a0f63a1f27ba738bd1371442d6212428dddb075672bfd09fd6e35b32f86bbe",
+  "inferenceSize": [
+    1677,
+    1677
+  ],
+  "sourceMeshSha256": "9cd52ee7f562c8775165b5d9ac3085bd199f3fde7ac3874d91d495ba15b408b4",
+  "sourceTriangles": 55132,
+  "mainComponentTriangles": 55100,
+  "excludedComponentTriangles": [
+    8,
+    8,
+    16
+  ],
+  "componentRepair": false,
+  "textureSize": [
+    2048,
+    2048
+  ],
+  "fastSimplification": "0.2.0",
+  "xatlas": "0.0.11",
+  "variants": [
+    {
+      "targetTriangles": 24000,
+      "projectionTransferredTexels": 373945,
+      "projectionVisibleTexels": 620710,
+      "cleanupIterations": 6,
+      "pinnedBoundaryVertices": 207,
+      "maximumCleanupDisplacement": 0.005513094997263932,
+      "p95CleanupDisplacement": 0.0018588245089950894,
+      "triangles": 24000,
+      "verticesWithUvSeams": 16075,
+      "watertightAfterUvSplits": false,
+      "coveredTexels": 1147077,
+      "facesWithoutPixelCenters": 11,
+      "uvCharts": 269,
+      "atlasPackingDimensions": [
+        882,
+        886
+      ],
+      "paddingPixels": 4,
+      "elapsedSeconds": 6.8210137920686975,
+      "meshSha256": "32e851537f4fbb03a71e3a17b544f1cfc88b3b8e37cd3852f3b3bfbac1179f7a",
+      "textureSha256": "c746471eea2fabb5a671ec59d3c5cfb8e2b9271750326d4ecb2f0d453ee71413",
+      "glbBytes": 2652952
+    }
+  ],
+  "stages": {
+    "loadSeconds": 1.3341744999634102,
+    "inferenceSeconds": 4.633179500000551,
+    "extractSeconds": 13.413139250013046
+  },
+  "elapsedSeconds": 27.83203229191713,
+  "peakRssBytes": 5628821504,
+  "pipelineName": "party-aa-head-reconstruction-1",
+  "outputMesh": "body-sculpt-v1.glb",
+  "outputTexture": "body-basecolour-v1.png",
+  "assetIntegrity": {
+    "finitePositionsNormalsUvs": true,
+    "uvWithinUnitSquare": true,
+    "embeddedTextureMatchesSidecar": true,
+    "triangles": 24000,
+    "verticesWithUvSeams": 16075,
+    "positionWeldedBoundaryEdges": 208,
+    "positionWeldedNonManifoldEdges": 3,
+    "positionWeldedWatertight": false,
+    "rigged": false,
+    "scope": "Static asset integrity only; watertightness is not proof of joint continuity or animation."
+  },
+  "nativeRig": false,
+  "ownerCandidateAccepted": false,
+  "runtimeSelected": false,
+  "scope": "Editable static body sculpt; generated unseen surfaces and topology require manual/native reconstruction."
+}

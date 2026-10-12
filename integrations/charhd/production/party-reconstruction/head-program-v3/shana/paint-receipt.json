@@ -1,0 +1,12 @@
+{
+  "format": 1,
+  "character": "shana",
+  "state": "unregistered-authoring-paint-not-accepted",
+  "generator": "built-in image_gen",
+  "useCase": "sketch-to-render",
+  "editTarget": "paint-target-four-views.png",
+  "reference": "head-source-frontal-v1.png",
+  "image": "head-paint-four-views-v1.png",
+  "prompt": "Use case: sketch-to-render. Image 1 is the EDIT TARGET, an exact 2 by 2 orthographic clay render of one shana head mesh. Image 2 is character and color REFERENCE only. Paint image 1 with the reference's refined 2026 AA JRPG details, keeping the EXACT mesh shapes and exact layout. The four equal square panels must remain in place: upper left frontal, upper right profile facing left, lower left profile facing right, lower right BACK OF HEAD with no face. Change ONLY surface color and detail. LOCK camera angles, positions, scale, framing, head widths, jaw height, nose shape/location, eye socket positions, ear locations, hair silhouette and ornaments. Paint one face onto the geometric face, one chin onto the geometric chin. Never add another face on hair or the back. Follow the clay's anatomy even when it differs slightly from the reference portrait. No neck, body, labels, dividers or scenery. Preserve exact character identity, age, eye color, hairstyle, markings, ornament shapes and original colors. Fine hand-painted skin and hair detail with flat diffuse colors, not photorealistic. No cast/rim/specular lighting. Preserve all clear margins and all four head silhouettes. Transparent background.",
+  "scope": "Four view paint needs geometric registration and actual UV-baked mesh inspection. Source plate is not gameplay or visual acceptance."
+}

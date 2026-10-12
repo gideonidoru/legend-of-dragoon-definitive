@@ -1,0 +1,730 @@
+{
+  "scope": "Private original native-model reference sheets; not candidate gameplay or native fitting. No original pixels published.",
+  "characters": [
+    {
+      "character": "dart",
+      "references": [
+        {
+          "form": "field",
+          "source": "SECT/DRGN21.BIN/101/0",
+          "modelSha256": "0e4d55fa11640f416ff5d5ec339ce906bd0d67613f887d902f7dac86945d7cf8",
+          "textureSha256": "477b2c39ad9809524c8e8852af59a1beff219dc536f4b3e8dffd18c21d54c7c3",
+          "animationSha256": "8a5aeb40469e7c82935d4005c8fa7b17bff286b376217c06bf29f1c5bd7db0f0",
+          "parts": 15,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        },
+        {
+          "form": "combat",
+          "source": "characters/dart/models/combat/32",
+          "modelSha256": "c8b7ebc75104ccc9fe00f38f51a044b90bdf45fff33d41980f520a41754e30be",
+          "textureSha256": "1deccd3e23a34ce6f3ebfec1c75db9e110411c03f1b4b90dbe791c413645a928",
+          "animationSha256": "b029309ef928a54a699806dc6f68541a8835524155c19ef1070deed71587ceb6",
+          "parts": 17,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        }
+      ],
+      "imageSha256": "41e55344811248b0c3d380df91d518b74ccc09ab4ed4b66e45e5bf8fc9ea2dde",
+      "designAccepted": false,
+      "scope": "Original source only. Field material preview is not a full native scene renderer.",
+      "originalNativeViewsInspected": true,
+      "observations": [
+        "Original field has pointed lower-leg wraps; original battle uses broad boot cuffs. The CG-based static sculpt must not erase this form distinction.",
+        "Original native rear armor is defined; inferred rear paint and topology require reconstruction."
+      ],
+      "featureChecks": [
+        {
+          "feature": "major costume color relationships",
+          "status": "matched",
+          "scope": "Overview against published artwork and original native controls; not pixel-exact materials."
+        },
+        {
+          "feature": "costume construction and asymmetry",
+          "status": "unresolved",
+          "reason": "Major pieces compared; source-specific attachments and rear construction still require close annotation."
+        },
+        {
+          "feature": "exact decorative motifs",
+          "status": "unresolved",
+          "reason": "Trace source layout in close views; neural approximation is not acceptance."
+        },
+        {
+          "feature": "hair and head/body proportions",
+          "status": "unresolved",
+          "reason": "Source crown/chin and hair attachments have not been fitted to new body geometry."
+        },
+        {
+          "feature": "hands and weapon grip",
+          "status": "unresolved",
+          "reason": "New sculpt is unrigged; native pivots and contacts are not adapted."
+        },
+        {
+          "feature": "boots and form-specific weapon geometry",
+          "status": "unresolved",
+          "reason": "Separate field/battle presentation and thin components need inspection."
+        },
+        {
+          "feature": "rear and joint surfaces",
+          "status": "mismatched",
+          "reason": "Inferred lumpy/smeared/open surfaces are not source-faithful articulated replacements."
+        }
+      ],
+      "designLocked": false
+    },
+    {
+      "character": "rose",
+      "references": [
+        {
+          "form": "field",
+          "source": "SECT/DRGN21.BIN/14/0",
+          "modelSha256": "70a79c1ec042f7f735f05e375bc10c89251596ebd364ebcaabb8fd4ec4880818",
+          "textureSha256": "b41c99fa8e363752c071d4204a537701d9c7c4b4317675cc738e3a9f293a60b3",
+          "animationSha256": "ff9419637ce8f50f522f7eb8080eaee50611a3da961c99bfdf54272486d4db78",
+          "parts": 17,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        },
+        {
+          "form": "combat",
+          "source": "characters/rose/models/combat/32",
+          "modelSha256": "dc75a4fa821271a139bf520ff2bbb296e482a880b7a81b25b6f3f3d98e70325a",
+          "textureSha256": "325547cfffa4717bb783db3917f76cca2487095e55e62a5f54b47f6a5d5f44f7",
+          "animationSha256": "9617d631da4e0916a8148d83504daccec7c966a12a0f4370d7fa2778bbf14a3a",
+          "parts": 19,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        }
+      ],
+      "imageSha256": "5618c238d32ddee23b5de53a11434612930013ff8d7e83ce14ac2fee4fe94fa7",
+      "designAccepted": false,
+      "scope": "Original source only. Field material preview is not a full native scene renderer.",
+      "originalNativeViewsInspected": true,
+      "observations": [
+        "Original field and battle retain long rear hair and asymmetric leg coverage; the new rounded rear hair strips are not acceptable.",
+        "Native battle sword presentation differs from the dark CG illustration; weapon identity and grip must remain source-bound."
+      ],
+      "featureChecks": [
+        {
+          "feature": "major costume color relationships",
+          "status": "matched",
+          "scope": "Overview against published artwork and original native controls; not pixel-exact materials."
+        },
+        {
+          "feature": "costume construction and asymmetry",
+          "status": "unresolved",
+          "reason": "Major pieces compared; source-specific attachments and rear construction still require close annotation."
+        },
+        {
+          "feature": "exact decorative motifs",
+          "status": "unresolved",
+          "reason": "Trace source layout in close views; neural approximation is not acceptance."
+        },
+        {
+          "feature": "hair and head/body proportions",
+          "status": "unresolved",
+          "reason": "Source crown/chin and hair attachments have not been fitted to new body geometry."
+        },
+        {
+          "feature": "hands and weapon grip",
+          "status": "unresolved",
+          "reason": "New sculpt is unrigged; native pivots and contacts are not adapted."
+        },
+        {
+          "feature": "boots and form-specific weapon geometry",
+          "status": "unresolved",
+          "reason": "Separate field/battle presentation and thin components need inspection."
+        },
+        {
+          "feature": "rear and joint surfaces",
+          "status": "mismatched",
+          "reason": "Inferred lumpy/smeared/open surfaces are not source-faithful articulated replacements."
+        }
+      ],
+      "designLocked": false
+    },
+    {
+      "character": "lavitz",
+      "references": [
+        {
+          "form": "field",
+          "source": "SECT/DRGN21.BIN/119/99",
+          "modelSha256": "d92eecc24777812bba9ebe6d0a8a490e84a443bf532cabb8e19dc45371354ae3",
+          "textureSha256": "d59d2c8ae784556fcf743e18388c4c786a8d63b92aade5797ed8610473e7f6d3",
+          "animationSha256": "3e4f913a85e68836bb8fe99a40014f82c8c90becf72846e631c264659184a1c2",
+          "parts": 15,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        },
+        {
+          "form": "combat",
+          "source": "characters/lavitz/models/combat/32",
+          "modelSha256": "c8e63b90f6746fe853d50dcab787b8672643371ca6692d1f2a735d226e8d532e",
+          "textureSha256": "a7b6b7fd483359b9022a85eaf1ad5697b07cb5b6510d063fda7b47c26943b9f3",
+          "animationSha256": "3cc4ff02fa0cae06cc1c25ffd905c7b76fdc2d8c46bb821708f3ac0c254a78d1",
+          "parts": 16,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        }
+      ],
+      "imageSha256": "845dc988e72274ba018a62e370fa9e2f28fe3513ea7915af2b6f865a23298575",
+      "designAccepted": false,
+      "scope": "Original source only. Field material preview is not a full native scene renderer.",
+      "originalNativeViewsInspected": true,
+      "observations": [
+        "Green cloth and silver/brass armor are corroborated by both original native forms.",
+        "The original native rear plate construction must replace guessed rear folds; lance contact follows the battle source."
+      ],
+      "featureChecks": [
+        {
+          "feature": "major costume color relationships",
+          "status": "matched",
+          "scope": "Overview against published artwork and original native controls; not pixel-exact materials."
+        },
+        {
+          "feature": "costume construction and asymmetry",
+          "status": "unresolved",
+          "reason": "Major pieces compared; source-specific attachments and rear construction still require close annotation."
+        },
+        {
+          "feature": "exact decorative motifs",
+          "status": "unresolved",
+          "reason": "Trace source layout in close views; neural approximation is not acceptance."
+        },
+        {
+          "feature": "hair and head/body proportions",
+          "status": "unresolved",
+          "reason": "Source crown/chin and hair attachments have not been fitted to new body geometry."
+        },
+        {
+          "feature": "hands and weapon grip",
+          "status": "unresolved",
+          "reason": "New sculpt is unrigged; native pivots and contacts are not adapted."
+        },
+        {
+          "feature": "boots and form-specific weapon geometry",
+          "status": "unresolved",
+          "reason": "Separate field/battle presentation and thin components need inspection."
+        },
+        {
+          "feature": "rear and joint surfaces",
+          "status": "mismatched",
+          "reason": "Inferred lumpy/smeared/open surfaces are not source-faithful articulated replacements."
+        }
+      ],
+      "designLocked": false
+    },
+    {
+      "character": "shana",
+      "references": [
+        {
+          "form": "field",
+          "source": "SECT/DRGN21.BIN/119/66",
+          "modelSha256": "5b13118217f5285bdadabfdb0135837ae6cd55e65f2a7bcc2bcdd590347548d5",
+          "textureSha256": "34b7d69506e4b25a9aa7d58af04b7afb1717dec549264143631fe0cf2fc46345",
+          "animationSha256": "6f8e07328a7cf672e1482bbe5b641b8cb7c42a4756c188d978db11c8733198b5",
+          "parts": 15,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        },
+        {
+          "form": "combat",
+          "source": "characters/shana/models/combat/32",
+          "modelSha256": "d0d6548673cf0d393dbdb7778529e83903cf722f338147a7bf47a2b7f7419b46",
+          "textureSha256": "88659fe53894a573e94fb1c55fd26198213a4db80c9e4f577b4e6677fac66003",
+          "animationSha256": "32b5102fc04e204d965a71d773337af111d2a7f75d4986c35f8a6878dc0144f4",
+          "parts": 20,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        }
+      ],
+      "imageSha256": "ca589993efdc6b958024121aed384832cd8a78e05051c4751fea5f931772be0f",
+      "designAccepted": false,
+      "scope": "Original source only. Field material preview is not a full native scene renderer.",
+      "originalNativeViewsInspected": true,
+      "observations": [
+        "Original field explicitly has a long rear braid. The CG front image cannot establish its absence. The new bob-only rear sculpt is incomplete for field delivery.",
+        "Native battle has a quiver and separate bow presentation; arrow/string and shoulder fittings need source-specific geometry."
+      ],
+      "featureChecks": [
+        {
+          "feature": "major costume color relationships",
+          "status": "matched",
+          "scope": "Overview against published artwork and original native controls; not pixel-exact materials."
+        },
+        {
+          "feature": "costume construction and asymmetry",
+          "status": "unresolved",
+          "reason": "Major pieces compared; source-specific attachments and rear construction still require close annotation."
+        },
+        {
+          "feature": "exact decorative motifs",
+          "status": "unresolved",
+          "reason": "Trace source layout in close views; neural approximation is not acceptance."
+        },
+        {
+          "feature": "hair and head/body proportions",
+          "status": "mismatched",
+          "reason": "Field hair distinction absent from the CG-based static body."
+        },
+        {
+          "feature": "hands and weapon grip",
+          "status": "unresolved",
+          "reason": "New sculpt is unrigged; native pivots and contacts are not adapted."
+        },
+        {
+          "feature": "boots and form-specific weapon geometry",
+          "status": "unresolved",
+          "reason": "Separate field/battle presentation and thin components need inspection."
+        },
+        {
+          "feature": "rear and joint surfaces",
+          "status": "mismatched",
+          "reason": "Inferred lumpy/smeared/open surfaces are not source-faithful articulated replacements."
+        }
+      ],
+      "designLocked": false
+    },
+    {
+      "character": "haschel",
+      "references": [
+        {
+          "form": "field",
+          "source": "SECT/DRGN21.BIN/548/132",
+          "modelSha256": "329e7b5dc45c842d036a26d906bdea5958c602d17aa2fe32fbc8b081f3e299e4",
+          "textureSha256": "6b3428f520a37ec438ffe0d761aebae3db9bfb8b8c849228d87c870adf2362c2",
+          "animationSha256": "8dccd5c83fd11ab07b7b4b260beb9ec6cc48f394b9c101a2e08df746f786c94d",
+          "parts": 15,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        },
+        {
+          "form": "combat",
+          "source": "characters/haschel/models/combat/32",
+          "modelSha256": "285ec5c257b9a94b6fc27d902be5135f3b377f19c020a085771049b61576e885",
+          "textureSha256": "0dc9340a7c081b18ced9890325cd5171aa5b402c302581f38245931bf858d6a9",
+          "animationSha256": "e830fb9283bf6eeda25e23300ac55e1db9e691b6f4903af68c0a8d9f378c74c8",
+          "parts": 17,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        }
+      ],
+      "imageSha256": "3b01c5c092ab0df4fa46ca0dad0be57314156c3af7e41f127ad1a4413c0d324d",
+      "designAccepted": false,
+      "scope": "Original source only. Field material preview is not a full native scene renderer.",
+      "originalNativeViewsInspected": true,
+      "observations": [
+        "Original field and battle corroborate purple tunic/trousers, red sash and pale scroll details.",
+        "The concept reference shows his back. Inferred opposite-facing chest treatment must follow the original tunic and neckline, not generated metallic lumps."
+      ],
+      "featureChecks": [
+        {
+          "feature": "major costume color relationships",
+          "status": "matched",
+          "scope": "Overview against published artwork and original native controls; not pixel-exact materials."
+        },
+        {
+          "feature": "costume construction and asymmetry",
+          "status": "unresolved",
+          "reason": "Major pieces compared; source-specific attachments and rear construction still require close annotation."
+        },
+        {
+          "feature": "exact decorative motifs",
+          "status": "unresolved",
+          "reason": "Trace source layout in close views; neural approximation is not acceptance."
+        },
+        {
+          "feature": "hair and head/body proportions",
+          "status": "unresolved",
+          "reason": "Source crown/chin and hair attachments have not been fitted to new body geometry."
+        },
+        {
+          "feature": "hands and weapon grip",
+          "status": "unresolved",
+          "reason": "New sculpt is unrigged; native pivots and contacts are not adapted."
+        },
+        {
+          "feature": "boots and form-specific weapon geometry",
+          "status": "unresolved",
+          "reason": "Separate field/battle presentation and thin components need inspection."
+        },
+        {
+          "feature": "rear and joint surfaces",
+          "status": "mismatched",
+          "reason": "Inferred lumpy/smeared/open surfaces are not source-faithful articulated replacements."
+        }
+      ],
+      "designLocked": false
+    },
+    {
+      "character": "albert",
+      "references": [
+        {
+          "form": "field",
+          "source": "SECT/DRGN21.BIN/329/165",
+          "modelSha256": "e3f8c3eb0fe485b94bff2e7c06f628a1202fbcd51aa34610a631d4bd8014a3c5",
+          "textureSha256": "40eaf6f9eba3c94330611619edd7648ddf1b98fef38c341d255eb60c059a5b7a",
+          "animationSha256": "1b1b3d042177e09a4e566e40ee8fd8510dea3207854b63807d9911aa2a0a5666",
+          "parts": 22,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        },
+        {
+          "form": "combat",
+          "source": "characters/albert/models/combat/32",
+          "modelSha256": "4bd848d0cb1aba98371129c07297ee93cdc49ae8790d48420b96acd69844b0ab",
+          "textureSha256": "3935f6580b26fcc665d20750c1fef395d3b1c87f3c8835c6c155dfc72f1ca92e",
+          "animationSha256": "9bf63884c5220ad12b6e768e83f8138fafdf0ab88391c4813e8ea167221fc85a",
+          "parts": 21,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        }
+      ],
+      "imageSha256": "a301f013af1d3818788d7b8c6c67e0aad667bc14e8dbf548cd9b2c1bca422555",
+      "designAccepted": false,
+      "scope": "Original source only. Field material preview is not a full native scene renderer.",
+      "originalNativeViewsInspected": true,
+      "observations": [
+        "Original field has a long rear hair strand/braid; battle uses a shorter rear head shape. Preserve the field attachment rather than applying one CG bob to both.",
+        "Both native forms corroborate the green cloak; surfaces under it and source spear anchors still need reconstruction."
+      ],
+      "featureChecks": [
+        {
+          "feature": "major costume color relationships",
+          "status": "matched",
+          "scope": "Overview against published artwork and original native controls; not pixel-exact materials."
+        },
+        {
+          "feature": "costume construction and asymmetry",
+          "status": "unresolved",
+          "reason": "Major pieces compared; source-specific attachments and rear construction still require close annotation."
+        },
+        {
+          "feature": "exact decorative motifs",
+          "status": "unresolved",
+          "reason": "Trace source layout in close views; neural approximation is not acceptance."
+        },
+        {
+          "feature": "hair and head/body proportions",
+          "status": "mismatched",
+          "reason": "Field hair distinction absent from the CG-based static body."
+        },
+        {
+          "feature": "hands and weapon grip",
+          "status": "unresolved",
+          "reason": "New sculpt is unrigged; native pivots and contacts are not adapted."
+        },
+        {
+          "feature": "boots and form-specific weapon geometry",
+          "status": "unresolved",
+          "reason": "Separate field/battle presentation and thin components need inspection."
+        },
+        {
+          "feature": "rear and joint surfaces",
+          "status": "mismatched",
+          "reason": "Inferred lumpy/smeared/open surfaces are not source-faithful articulated replacements."
+        }
+      ],
+      "designLocked": false
+    },
+    {
+      "character": "meru",
+      "references": [
+        {
+          "form": "field",
+          "source": "SECT/DRGN22.BIN/755/33",
+          "modelSha256": "491286a9afe49f0de73467a567e3b14c480ace34d9dfa4d8eca55facf9eb280a",
+          "textureSha256": "dcb6a20cb7bc6b8e82f9950a8e8002ca6c0f0654f8c100d9a98fb4c05f8dbe1d",
+          "animationSha256": "490f232bfade2c9e15aad39782d549715022060345526a9b44683bacbb55a163",
+          "parts": 27,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        },
+        {
+          "form": "combat",
+          "source": "characters/meru/models/combat/32",
+          "modelSha256": "84341ec030afdb03d69cb08114acf34edcb3438f386cb580bf6503a331ab4691",
+          "textureSha256": "601a01d5149a7fa083b32d977b290a361344daa4c0393b757d06f52e9e7814cc",
+          "animationSha256": "d80895d1a81684693882a634bac6561abb9db55ba1b8e343e86bd15721982721",
+          "parts": 22,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        }
+      ],
+      "imageSha256": "b9aa6ead1616995b0b1d90b09db4dc9e01da5cc5997d4af6b36ebba7a7d9fb87",
+      "designAccepted": false,
+      "scope": "Original source only. Field material preview is not a full native scene renderer.",
+      "originalNativeViewsInspected": true,
+      "observations": [
+        "Both native forms show the large rear bow, separate side costume panels, ponytail and wrapped footwear.",
+        "Native motifs provide a second layout control. Generated curled patterns and rear inflated cloth masses remain unaccepted."
+      ],
+      "featureChecks": [
+        {
+          "feature": "major costume color relationships",
+          "status": "matched",
+          "scope": "Overview against published artwork and original native controls; not pixel-exact materials."
+        },
+        {
+          "feature": "costume construction and asymmetry",
+          "status": "unresolved",
+          "reason": "Major pieces compared; source-specific attachments and rear construction still require close annotation."
+        },
+        {
+          "feature": "exact decorative motifs",
+          "status": "unresolved",
+          "reason": "Trace source layout in close views; neural approximation is not acceptance."
+        },
+        {
+          "feature": "hair and head/body proportions",
+          "status": "unresolved",
+          "reason": "Source crown/chin and hair attachments have not been fitted to new body geometry."
+        },
+        {
+          "feature": "hands and weapon grip",
+          "status": "unresolved",
+          "reason": "New sculpt is unrigged; native pivots and contacts are not adapted."
+        },
+        {
+          "feature": "boots and form-specific weapon geometry",
+          "status": "unresolved",
+          "reason": "Separate field/battle presentation and thin components need inspection."
+        },
+        {
+          "feature": "rear and joint surfaces",
+          "status": "mismatched",
+          "reason": "Inferred lumpy/smeared/open surfaces are not source-faithful articulated replacements."
+        }
+      ],
+      "designLocked": false
+    },
+    {
+      "character": "kongol",
+      "references": [
+        {
+          "form": "field",
+          "source": "SECT/DRGN21.BIN/686/231",
+          "modelSha256": "12f102a7a57999768603a98dbcb69997de1636f0ecbcfa701ce4d3e24d559623",
+          "textureSha256": "f55eb8f5b8b79992f2d7e8f7b7b6bb5533cb4098e670bacd819e76606e4746e0",
+          "animationSha256": "76de490acf9b6c636709ce40c709038b3d07853d83011075f0f905076f3a4536",
+          "parts": 17,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        },
+        {
+          "form": "combat",
+          "source": "characters/kongol/models/combat/32",
+          "modelSha256": "91a721a87b9d2b025932e23303067c25dc65519f59333ca001164a9822e631f5",
+          "textureSha256": "83a3f8c7defed825308a1e90224acb18578a00642830200154dc6e7f655b47c2",
+          "animationSha256": "0e35d66d717ef1081b441ed2af8d9479ec5e887fa7a2844d71585f0aa0983d59",
+          "parts": 18,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        }
+      ],
+      "imageSha256": "db6826ac1c8841c7be9981bb04455d0fb470cd60d4ac88c0185bdebb809d5617",
+      "designAccepted": false,
+      "scope": "Original source only. Field material preview is not a full native scene renderer.",
+      "originalNativeViewsInspected": true,
+      "observations": [
+        "Native forms corroborate the crossed chest/back straps, ochre shoulder armor, sculpted waist and massive build.",
+        "Field and battle crest, face marks, guards and axe need individual source detail checks; the swollen inferred rear muscles/spikes are not a finished surface."
+      ],
+      "featureChecks": [
+        {
+          "feature": "major costume color relationships",
+          "status": "matched",
+          "scope": "Overview against published artwork and original native controls; not pixel-exact materials."
+        },
+        {
+          "feature": "costume construction and asymmetry",
+          "status": "unresolved",
+          "reason": "Major pieces compared; source-specific attachments and rear construction still require close annotation."
+        },
+        {
+          "feature": "exact decorative motifs",
+          "status": "unresolved",
+          "reason": "Trace source layout in close views; neural approximation is not acceptance."
+        },
+        {
+          "feature": "hair and head/body proportions",
+          "status": "unresolved",
+          "reason": "Source crown/chin and hair attachments have not been fitted to new body geometry."
+        },
+        {
+          "feature": "hands and weapon grip",
+          "status": "unresolved",
+          "reason": "New sculpt is unrigged; native pivots and contacts are not adapted."
+        },
+        {
+          "feature": "boots and form-specific weapon geometry",
+          "status": "unresolved",
+          "reason": "Separate field/battle presentation and thin components need inspection."
+        },
+        {
+          "feature": "rear and joint surfaces",
+          "status": "mismatched",
+          "reason": "Inferred lumpy/smeared/open surfaces are not source-faithful articulated replacements."
+        }
+      ],
+      "designLocked": false
+    },
+    {
+      "character": "miranda",
+      "references": [
+        {
+          "form": "field",
+          "source": "SECT/DRGN23.BIN/116/33",
+          "modelSha256": "337ef5a0f6bbd9ab011504f844241c160123b1cf562b8b8001fb2b1ee7691db5",
+          "textureSha256": "01fabd8bbde8691d17c7c494fca38be87cee807e694d5617def66995952bf970",
+          "animationSha256": "0f22005e45cd86bf4f8c451075c5573a30ee4cce96644c722f88b56f8e43a37a",
+          "parts": 15,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        },
+        {
+          "form": "combat",
+          "source": "characters/miranda/models/combat/32",
+          "modelSha256": "7e7a46251b49ea39f2608695ae742957f58fc586e8e5def3181e8c42aeff5bfa",
+          "textureSha256": "bd5452cf74c697be9253b02007f9468a32654b5f19beaa28af71c443ea0696c0",
+          "animationSha256": "fa99701ada55365f8cd11163ef0c3cc2084fd1b9229049c19ee5954421180c3d",
+          "parts": 19,
+          "frame": 0,
+          "cameraDegrees": [
+            0,
+            90,
+            180
+          ]
+        }
+      ],
+      "imageSha256": "12b2aca743f1633c6f0035a357519593bee83cb155f3c39181baeb948b290cb4",
+      "designAccepted": false,
+      "scope": "Original source only. Field material preview is not a full native scene renderer.",
+      "originalNativeViewsInspected": true,
+      "observations": [
+        "Native forms corroborate the circlet, red/gold chest and arm pieces, white sleeves/skirt and brown leg coverings.",
+        "Original battle bow geometry and grip plus field/battle head proportions must guide replacement fits; the static inference does not establish them."
+      ],
+      "featureChecks": [
+        {
+          "feature": "major costume color relationships",
+          "status": "matched",
+          "scope": "Overview against published artwork and original native controls; not pixel-exact materials."
+        },
+        {
+          "feature": "costume construction and asymmetry",
+          "status": "unresolved",
+          "reason": "Major pieces compared; source-specific attachments and rear construction still require close annotation."
+        },
+        {
+          "feature": "exact decorative motifs",
+          "status": "unresolved",
+          "reason": "Trace source layout in close views; neural approximation is not acceptance."
+        },
+        {
+          "feature": "hair and head/body proportions",
+          "status": "unresolved",
+          "reason": "Source crown/chin and hair attachments have not been fitted to new body geometry."
+        },
+        {
+          "feature": "hands and weapon grip",
+          "status": "unresolved",
+          "reason": "New sculpt is unrigged; native pivots and contacts are not adapted."
+        },
+        {
+          "feature": "boots and form-specific weapon geometry",
+          "status": "unresolved",
+          "reason": "Separate field/battle presentation and thin components need inspection."
+        },
+        {
+          "feature": "rear and joint surfaces",
+          "status": "mismatched",
+          "reason": "Inferred lumpy/smeared/open surfaces are not source-faithful articulated replacements."
+        }
+      ],
+      "designLocked": false
+    }
+  ],
+  "format": 1,
+  "date": "2026-10-11",
+  "state": "source-controls-inspected-detail-audit-not-locked",
+  "publication": "Reference identity and inspection metadata only; original actor screenshots remain outside Git.",
+  "authoringCheckpoint": "264f8645784de50a2d6aa399f2d8118272043727",
+  "newNativeModelsTested": false,
+  "ownerCandidateAccepted": false,
+  "physicalDeckValidated": false,
+  "counts": {
+    "characters": 9,
+    "originalForms": 18,
+    "originalCameraViews": 54,
+    "newNativeFitOrGameplayTests": 0
+  }
+}

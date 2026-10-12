@@ -45,6 +45,8 @@ public final class TmdObjLoader {
   public static final int QUAD_FLAG = 0x10;
   /** Supplemental CharHD face color, separate from indexed/RGBA body textures. */
   public static final int FACE_DETAIL_FLAG = 0x20000;
+  /** Explicit authored alpha cutout, independent of native PSX translucency. */
+  public static final int FACE_DETAIL_CUTOUT_FLAG = 0x40000;
 
   public static Obj[] fromTmd(final String name, final Tmd tmd) {
     return fromTmd(name, tmd, 0);
@@ -386,6 +388,7 @@ public final class TmdObjLoader {
             flags |= TEXTURED_FLAG;
           }
           if(detail) flags |= FACE_DETAIL_FLAG;
+          if(detail && objTable.faceDetail().image().cutout) flags |= FACE_DETAIL_CUTOUT_FLAG;
 
           if(coloured) {
             flags |= COLOURED_FLAG;
@@ -426,20 +429,17 @@ public final class TmdObjLoader {
 
       final Mesh[] reversed = new Mesh[meshes.length];
       Arrays.setAll(reversed, i -> meshes[meshes.length - i - 1]);
-      legend.core.renderer.Texture detailTexture = null;
+      legend.core.renderer.SharedFaceTexture.Lease detailTexture = null;
       try {
         if(objTable.faceDetail() != null) {
           final var detail = objTable.faceDetail();
-          detailTexture = legend.core.renderer.Texture.create(name + " face detail", builder -> {
-            builder.data(detail.pixels(), detail.width, detail.height);
-            builder.minFilter(true); builder.magFilter(true); builder.wrapS(false); builder.wrapT(false);
-          });
+          detailTexture = legend.core.renderer.SharedFaceTexture.acquire(name + " face detail", detail.image());
         }
         final var result = new TmdMeshObj(name, reversed, backfaceCulling);
         if(detailTexture != null) result.faceDetailTexture(detailTexture);
         return result;
       } catch(final RuntimeException | Error failure) {
-        if(detailTexture != null) detailTexture.delete();
+        if(detailTexture != null) detailTexture.close();
         throw failure;
       }
     } catch(final RuntimeException | Error failure) {

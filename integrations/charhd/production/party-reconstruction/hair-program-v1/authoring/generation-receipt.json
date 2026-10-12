@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "state": "experimental-not-accepted",
+  "tool": "built-in image_gen",
+  "date": "2026-10-11",
+  "transparentBackground": false,
+  "requests": [
+    {
+      "character": "meru",
+      "prompt": "Use case: stylized-concept. Asset type: square 1024x1024 diffuse texture tile for Meru's animated ponytail in Legend of Dragoon Definitive. Image 1 is a STYLE AND HAIR COLOR REFERENCE ONLY, not an edit target. Generate an edge-to-edge flat hair material swatch with vertical silver ice-blue hair strands, matching the fine painted detail, cool pale blue tone, organic broad locks and soft restrained highlights in the reference hair. This image will wrap on a 3D ponytail, so the whole image is ONLY flowing hair fibers from top edge through bottom edge; no head, face, eyes, skin, ribbons, tips, silhouette, transparent space, border, text, watermark or perspective. Use irregular elegant gently curved lock groupings with many fine strands, softly layered and natural. Even neutral albedo illumination with subtle strand shading, no cast shadow or dramatic glare. Left and right edges should tile horizontally seamlessly. The swatch must resemble the reference's beautifully painted hair, not denim, stripes, plastic, a comb or a barcode. Do not include any facial or anatomical features.",
+      "inputRole": "custom head hair style and colour reference only",
+      "input": "integrations/charhd/production/party-reconstruction/head-program-v4/meru/authoring/head-source-frontal-v1.png",
+      "inputSha256": "688412af42ce5640b15cdda4f598d4074da125d5824ea7407a7ddbe6e1b4db58",
+      "output": "meru-strands-v1.png",
+      "outputSha256": "d4bfdb1c06fc6497dbce8f978501dade9bd8d3d7976e19d5559b3d1f1213d443"
+    },
+    {
+      "character": "rose",
+      "prompt": "Use case: stylized-concept. Asset type: square 1024x1024 diffuse texture tile for Rose's animated long hair and fringe in Legend of Dragoon Definitive. Image 1 is a STYLE AND HAIR COLOR REFERENCE ONLY, not an edit target. Generate an edge-to-edge flat hair material swatch with flowing vertical raven-black hair fibers with deep blue-violet reflections, matching the elegant fine painted detail, darkness and restrained blue highlights in the reference hair. Whole image is ONLY flowing hair strands from top edge through bottom edge; no head, face, eyes, skin, gold ornaments, bangs silhouette, tips, transparency, border, text, watermark or perspective. Use irregular organic broad lock groupings and many delicate strands, softly layered with gentle vertical curves. Even neutral albedo illumination, subdued highlights, no dramatic cast shadows or white glare. Left and right edges tile horizontally seamlessly. It must look like beautifully painted dark hair, not denim, stripes, plastic, a comb or a barcode. Never add facial or anatomical features.",
+      "inputRole": "custom head hair style and colour reference only",
+      "input": "integrations/charhd/production/party-reconstruction/head-program-v4/rose/authoring/head-source-frontal-v1.png",
+      "inputSha256": "1657ab3105412f080274d7db48c0c3ec02fc3b607739510262950c4cc01fdd93",
+      "output": "rose-strands-v1.png",
+      "outputSha256": "7f8ad78e84389891c15ecf1dfb873042005170c1156cc882515d89f917c92de0"
+    }
+  ]
+}

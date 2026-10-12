@@ -1,0 +1,505 @@
+{
+  "format": 1,
+  "state": "experimental-unaccepted",
+  "meshSha256": "d50150831f7c23e93fdafc0cede7909b6701fdd49afe43eccc5eb8c9aa1f05a4",
+  "baseTextureSha256": "7dd1172ebc44de113cae1b2c270ed9178e232b1eb88703174d058c25d1c64ad5",
+  "paintSha256": "865041edd2ea41c89cc3223183a00d14709242ebce88cec34d919f447dd49ede",
+  "frontalFaceLock": {
+    "halfWidth": 0.24,
+    "top": -0.17,
+    "bottom": 0.36,
+    "back": -0.32
+  },
+  "views": [
+    {
+      "angle": 90,
+      "camera": {
+        "size": 700,
+        "scale": 562.0689655172414,
+        "center": [
+          350,
+          350
+        ]
+      },
+      "paintRect": [
+        0,
+        0,
+        1280,
+        1280
+      ],
+      "mirrorPaint": false,
+      "anchors": [
+        {
+          "name": "authored-0",
+          "meshPixel": [
+            292,
+            95
+          ],
+          "paintPixel": [
+            298,
+            94
+          ]
+        },
+        {
+          "name": "authored-1",
+          "meshPixel": [
+            129,
+            248
+          ],
+          "paintPixel": [
+            129,
+            247
+          ]
+        },
+        {
+          "name": "authored-2",
+          "meshPixel": [
+            510,
+            269
+          ],
+          "paintPixel": [
+            480,
+            272
+          ]
+        },
+        {
+          "name": "authored-3",
+          "meshPixel": [
+            145,
+            325
+          ],
+          "paintPixel": [
+            144,
+            324
+          ]
+        },
+        {
+          "name": "authored-4",
+          "meshPixel": [
+            86,
+            390
+          ],
+          "paintPixel": [
+            94,
+            398
+          ]
+        },
+        {
+          "name": "authored-5",
+          "meshPixel": [
+            121,
+            464
+          ],
+          "paintPixel": [
+            115,
+            445
+          ]
+        },
+        {
+          "name": "authored-6",
+          "meshPixel": [
+            135,
+            522
+          ],
+          "paintPixel": [
+            132,
+            521
+          ]
+        },
+        {
+          "name": "authored-7",
+          "meshPixel": [
+            215,
+            355
+          ],
+          "paintPixel": [
+            200,
+            358
+          ]
+        },
+        {
+          "name": "authored-8",
+          "meshPixel": [
+            240,
+            573
+          ],
+          "paintPixel": [
+            253,
+            576
+          ]
+        },
+        {
+          "name": "authored-9",
+          "meshPixel": [
+            578,
+            368
+          ],
+          "paintPixel": [
+            589,
+            367
+          ]
+        },
+        {
+          "name": "authored-10",
+          "meshPixel": [
+            487,
+            535
+          ],
+          "paintPixel": [
+            520,
+            509
+          ]
+        },
+        {
+          "name": "authored-11",
+          "meshPixel": [
+            0,
+            0
+          ],
+          "paintPixel": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "authored-12",
+          "meshPixel": [
+            700,
+            0
+          ],
+          "paintPixel": [
+            700,
+            0
+          ]
+        },
+        {
+          "name": "authored-13",
+          "meshPixel": [
+            0,
+            700
+          ],
+          "paintPixel": [
+            0,
+            700
+          ]
+        },
+        {
+          "name": "authored-14",
+          "meshPixel": [
+            700,
+            700
+          ],
+          "paintPixel": [
+            700,
+            700
+          ]
+        }
+      ],
+      "minimumAnatomicalBack": -0.34,
+      "ear": {
+        "commonPoint": [
+          0.278,
+          0.0393,
+          -0.24
+        ],
+        "commonRadii": [
+          0.075,
+          0.115,
+          0.085
+        ],
+        "paintPixel": [
+          200,
+          358
+        ],
+        "paintRadii": [
+          28,
+          63
+        ],
+        "paintEar": true
+      }
+    },
+    {
+      "angle": -90,
+      "camera": {
+        "size": 700,
+        "scale": 562.0689655172414,
+        "center": [
+          350,
+          350
+        ]
+      },
+      "paintRect": [
+        0,
+        0,
+        1280,
+        1280
+      ],
+      "mirrorPaint": true,
+      "anchors": [
+        {
+          "name": "authored-0",
+          "meshPixel": [
+            408,
+            95
+          ],
+          "paintPixel": [
+            402,
+            94
+          ]
+        },
+        {
+          "name": "authored-1",
+          "meshPixel": [
+            571,
+            248
+          ],
+          "paintPixel": [
+            571,
+            247
+          ]
+        },
+        {
+          "name": "authored-2",
+          "meshPixel": [
+            190,
+            269
+          ],
+          "paintPixel": [
+            220,
+            272
+          ]
+        },
+        {
+          "name": "authored-3",
+          "meshPixel": [
+            555,
+            325
+          ],
+          "paintPixel": [
+            556,
+            324
+          ]
+        },
+        {
+          "name": "authored-4",
+          "meshPixel": [
+            614,
+            390
+          ],
+          "paintPixel": [
+            606,
+            398
+          ]
+        },
+        {
+          "name": "authored-5",
+          "meshPixel": [
+            579,
+            464
+          ],
+          "paintPixel": [
+            585,
+            445
+          ]
+        },
+        {
+          "name": "authored-6",
+          "meshPixel": [
+            565,
+            522
+          ],
+          "paintPixel": [
+            568,
+            521
+          ]
+        },
+        {
+          "name": "authored-7",
+          "meshPixel": [
+            485,
+            355
+          ],
+          "paintPixel": [
+            500,
+            358
+          ]
+        },
+        {
+          "name": "authored-8",
+          "meshPixel": [
+            460,
+            573
+          ],
+          "paintPixel": [
+            447,
+            576
+          ]
+        },
+        {
+          "name": "authored-9",
+          "meshPixel": [
+            122,
+            368
+          ],
+          "paintPixel": [
+            111,
+            367
+          ]
+        },
+        {
+          "name": "authored-10",
+          "meshPixel": [
+            213,
+            535
+          ],
+          "paintPixel": [
+            180,
+            509
+          ]
+        },
+        {
+          "name": "authored-11",
+          "meshPixel": [
+            700,
+            0
+          ],
+          "paintPixel": [
+            700,
+            0
+          ]
+        },
+        {
+          "name": "authored-12",
+          "meshPixel": [
+            0,
+            0
+          ],
+          "paintPixel": [
+            0,
+            0
+          ]
+        },
+        {
+          "name": "authored-13",
+          "meshPixel": [
+            700,
+            700
+          ],
+          "paintPixel": [
+            700,
+            700
+          ]
+        },
+        {
+          "name": "authored-14",
+          "meshPixel": [
+            0,
+            700
+          ],
+          "paintPixel": [
+            0,
+            700
+          ]
+        }
+      ],
+      "minimumAnatomicalBack": -0.34,
+      "ear": {
+        "commonPoint": [
+          -0.278,
+          0.0393,
+          -0.24
+        ],
+        "commonRadii": [
+          0.075,
+          0.115,
+          0.085
+        ],
+        "paintPixel": [
+          500,
+          358
+        ],
+        "paintRadii": [
+          28,
+          63
+        ],
+        "paintEar": true
+      }
+    }
+  ],
+  "hairMaterial": "charcoal",
+  "geometricHair": {
+    "foreheadY": -0.17,
+    "backStart": 0.02,
+    "sideHalfWidth": 0.24,
+    "longHair": true,
+    "chinY": 0.3227
+  },
+  "protectRedBand": true,
+  "featureLocks": [
+    {
+      "name": "left-eye",
+      "commonPoint": [
+        -0.0965,
+        -0.0405,
+        -0.36
+      ],
+      "commonRadii": [
+        0.07,
+        0.035,
+        0.1
+      ]
+    },
+    {
+      "name": "right-eye",
+      "commonPoint": [
+        0.0965,
+        -0.0405,
+        -0.36
+      ],
+      "commonRadii": [
+        0.07,
+        0.035,
+        0.1
+      ]
+    },
+    {
+      "name": "nose",
+      "commonPoint": [
+        0.0009,
+        0.0765,
+        -0.4708
+      ],
+      "commonRadii": [
+        0.08,
+        0.075,
+        0.09
+      ]
+    },
+    {
+      "name": "mouth",
+      "commonPoint": [
+        0.0009,
+        0.2182,
+        -0.429
+      ],
+      "commonRadii": [
+        0.12,
+        0.035,
+        0.08
+      ]
+    },
+    {
+      "name": "chin",
+      "commonPoint": [
+        0.0009,
+        0.3227,
+        -0.4107
+      ],
+      "commonRadii": [
+        0.14,
+        0.04,
+        0.09
+      ]
+    }
+  ]
+}

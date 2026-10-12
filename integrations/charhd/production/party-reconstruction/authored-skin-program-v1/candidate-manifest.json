@@ -1,0 +1,36 @@
+{
+  "format": 1,
+  "state": "development-not-runtime-selected",
+  "parts": [
+    {
+      "character": "haschel",
+      "form": "field",
+      "sourceGeometrySha256": "b0401fb085595e64a28a2a8091689a38090f6e52846ede0ea952fdcf4c1fb0ee",
+      "geometrySha256": "4e72a30684858fb97833fbc9a6756d451aa0771ead77fb725a62f793e77e7d0b",
+      "baselineGeometrySha256": "c79bf7c8f3b082d024b2983018561c126270ab527e2a4730c73317a85b3ddd93",
+      "pack": "haschel/parts/b0401fb085595e64a28a2a8091689a38090f6e52846ede0ea952fdcf4c1fb0ee.json",
+      "packSha256": "58c571956b7435366e8b1eb75b58047b1e8db1148855a90e2146978eaab6a56c",
+      "uv": "haschel/field-head-uv.json",
+      "uvSha256": "a17bda5ce61e3619350118b2c12a3d906b9c9cef5c3dd6bfc5dd69ccf4d75e4f",
+      "texture": "haschel/head-basecolour.png",
+      "textureSha256": "0e388df4ea998998d9631b5f81b916e3346c1fcb5b207d2055722b2f4841e86d",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "character": "haschel",
+      "form": "combat",
+      "sourceGeometrySha256": "8a7ea624aaf5029d672a42245d4923f1a1e028988b1cef4c4748844c89639136",
+      "geometrySha256": "97f3f38605c9f6b33289bfa8df374b671ed3cc009e0d9978c69bd9046575e2fc",
+      "baselineGeometrySha256": "8a7ea624aaf5029d672a42245d4923f1a1e028988b1cef4c4748844c89639136",
+      "pack": "haschel/parts/8a7ea624aaf5029d672a42245d4923f1a1e028988b1cef4c4748844c89639136.json",
+      "packSha256": "0926402b8c81c0db1ce47c4426dcace948f538295bd498586b794070a0e2d5f2",
+      "uv": "haschel/combat-head-uv.json",
+      "uvSha256": "7148060212af8cc29f20334d68627afda2dbc3f860e1e8275f85c69b203e560e",
+      "texture": "haschel/head-basecolour.png",
+      "textureSha256": "0e388df4ea998998d9631b5f81b916e3346c1fcb5b207d2055722b2f4841e86d",
+      "width": 2048,
+      "height": 2048
+    }
+  ]
+}

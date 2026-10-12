@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "scope": "Exact custom part binding and offline silhouette checks only",
+  "parts": [
+    {
+      "character": "rose",
+      "form": "field",
+      "sourcePartIndex": 5,
+      "positionsNormalsWeightsAndPivotPreserved": true,
+      "geometryUvTextureHashesVerified": true
+    },
+    {
+      "character": "rose",
+      "form": "combat",
+      "sourcePartIndex": 7,
+      "positionsNormalsWeightsAndPivotPreserved": true,
+      "geometryUvTextureHashesVerified": true,
+      "fringeSourceSilhouetteJaccard": 0.9958655565553138,
+      "transparentCutoutEmpty": true,
+      "opaqueAlphaIgnored": true,
+      "visibleBlackPreserved": true
+    },
+    {
+      "character": "meru",
+      "form": "field",
+      "sourcePartIndex": 7,
+      "positionsNormalsWeightsAndPivotPreserved": true,
+      "geometryUvTextureHashesVerified": true
+    },
+    {
+      "character": "meru",
+      "form": "field",
+      "sourcePartIndex": 8,
+      "positionsNormalsWeightsAndPivotPreserved": true,
+      "geometryUvTextureHashesVerified": true
+    },
+    {
+      "character": "meru",
+      "form": "field",
+      "sourcePartIndex": 9,
+      "positionsNormalsWeightsAndPivotPreserved": true,
+      "geometryUvTextureHashesVerified": true
+    },
+    {
+      "character": "meru",
+      "form": "combat",
+      "sourcePartIndex": 9,
+      "positionsNormalsWeightsAndPivotPreserved": true,
+      "geometryUvTextureHashesVerified": true
+    },
+    {
+      "character": "meru",
+      "form": "combat",
+      "sourcePartIndex": 10,
+      "positionsNormalsWeightsAndPivotPreserved": true,
+      "geometryUvTextureHashesVerified": true
+    },
+    {
+      "character": "meru",
+      "form": "combat",
+      "sourcePartIndex": 11,
+      "positionsNormalsWeightsAndPivotPreserved": true,
+      "geometryUvTextureHashesVerified": true
+    }
+  ],
+  "nativeGameplay": false,
+  "steamDeck": false
+}
