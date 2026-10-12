@@ -2,6 +2,21 @@
 allprojects {
   afterEvaluate {
     if(project == rootProject) {
+      tasks.register('nativeSpriteFontProbe', JavaExec) {
+        dependsOn testClasses, 'uihdJar'
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'legend.definitive.font.NativeSpriteFontProbe'
+        jvmArgs '-Djava.awt.headless=true', '--enable-native-access=ALL-UNNAMED', '--add-opens=java.base/java.util=ALL-UNNAMED'
+        doFirst {
+          def context = providers.gradleProperty('rendererContextPath').orNull
+          def source = providers.gradleProperty('spriteFontSourceDirectory').orNull
+          def proof = providers.gradleProperty('fontProofDirectory').orNull
+          if(!context || !source || !proof) throw new GradleException('Supply rendererContextPath, spriteFontSourceDirectory and fresh fontProofDirectory.')
+          args context, source, proof, tasks.uihdJar.archiveFile.get().asFile.absolutePath
+          if(providers.gradleProperty('spriteFontNativeOnly').isPresent()) args '--native-only'
+          if(providers.gradleProperty('spriteFontPackaged').isPresent()) args '--packaged'
+        }
+      }
       tasks.register('uihdFontBootProbe', JavaExec) {
         dependsOn testClasses, 'jar', 'uihdJar'
         classpath = files(tasks.named('jar').flatMap { it.archiveFile }) + sourceSets.test.output + configurations.testRuntimeClasspath

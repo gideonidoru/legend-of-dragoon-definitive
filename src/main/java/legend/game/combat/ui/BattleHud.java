@@ -547,17 +547,7 @@ public class BattleHud {
               }
 
               // Numbers
-              this.uiTransforms.transfer.set(displayStats.x_00 + digit.x_02, displayStats.y_02 + digit.y_04, 124.0f);
-              final QueuedModelStandard digitModel = RENDERER.queueUiOrthoModel(this.floatingTextType1Digits, this.uiTransforms, QueuedModelStandard.class)
-                .vertices(digit.digitValue_00 * 4, 4);
-
-              if(this.hudFade < 6) {
-                digit.colour.mul(((byte)(uiTextureElementBrightness_800c71ec[brightnessIndex0] + 0x80) * this.hudFade / 6 - 0x80 & 0xff) / 128.0f, this.colourTemp);
-              } else {
-                digit.colour.mul((uiTextureElementBrightness_800c71ec[brightnessIndex0] & 0xff) / 128.0f, this.colourTemp);
-              }
-
-              digitModel.colour(this.colourTemp);
+              this.queueStatDigit(displayStats, digit, brightnessIndex0);
             }
             //LAB_800f01e0
           }
@@ -838,9 +828,17 @@ public class BattleHud {
     //LAB_800f0f2c
   }
 
-  /**
-   * @param numberIndex which UI element it is, controls positioning
-   */
+  private QueuedModelStandard queueStatDigit(final BattleDisplayStats144 displayStats, final BattleDisplayStatsDigit10 digit, final int brightnessIndex) {
+    this.uiTransforms.transfer.set(displayStats.x_00 + digit.x_02, displayStats.y_02 + digit.y_04, 124.0f);
+    final QueuedModelStandard model = RENDERER.queueUiOrthoModel(this.floatingTextType1Digits, this.uiTransforms, QueuedModelStandard.class)
+      .vertices(digit.digitValue_00 * 4, 4);
+    final float brightness = this.hudFade < 6
+      ? ((byte)(uiTextureElementBrightness_800c71ec[brightnessIndex] + 0x80) * this.hudFade / 6 - 0x80 & 0xff) / 128.0f
+      : (uiTextureElementBrightness_800c71ec[brightnessIndex] & 0xff) / 128.0f;
+    return model.colour(digit.colour.mul(brightness, this.colourTemp));
+  }
+
+  /** @param numberIndex which UI element it is, controls positioning */
   @Method(0x800f1550L)
   public void renderNumber(final int charSlot, final int numberIndex, int value, final int colour) {
     if(this.floatingTextType1Digits == null) {

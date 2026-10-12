@@ -4,11 +4,15 @@ public class ShaderOptionsStandard extends ShaderOptionsBase {
   private ShaderUniformInt uiArtwork;
   private ShaderUniformVec4 uiArtworkBounds;
   private ShaderUniformInt uiPaletteDetail;
+  private ShaderUniformInt spriteFont;
+  private ShaderUniformInt spriteBlend;
 
   public void uiArtworkUniforms(final Shader<?> shader) {
     this.uiArtwork = shader.uniformInt("uiArtworkEnabled");
     this.uiArtworkBounds = shader.uniformVec4("uiArtworkBounds");
     this.uiPaletteDetail = shader.uniformInt("uiPaletteDetailEnabled");
+    this.spriteFont = shader.uniformInt("spriteFontEnabled");
+    this.spriteBlend = shader.uniformInt("spriteFontBlend");
     shader.use();
     shader.uniformInt("uiArtworkTex").set(2);
     shader.uniformInt("uiSourceTex").set(3);
@@ -23,6 +27,14 @@ public class ShaderOptionsStandard extends ShaderOptionsBase {
 
   public void uiPaletteDetail(final boolean enabled) {
     if(this.uiPaletteDetail != null) this.uiPaletteDetail.set(enabled ? 1 : 0);
+  }
+
+  public void spriteFont(final boolean enabled, final Translucency blend, final org.joml.Vector4f bounds) {
+    if(this.spriteFont != null) {
+      this.spriteFont.set(enabled ? 1 : 0);
+      this.spriteBlend.set(blend == null ? 0 : blend.ordinal() + 1);
+      if(enabled) this.uiArtworkBounds.set(bounds);
+    }
   }
 
   private final ShaderUniformFloat translucency;

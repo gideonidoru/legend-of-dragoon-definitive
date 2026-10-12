@@ -18,6 +18,7 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
   private boolean uiArtwork;
   private boolean nativeUiTracked;
   private boolean uiPaletteDetail;
+  private legend.game.textures.NativeSpriteFont.Selection spriteFont;
   private final Vector4f uiArtworkBounds = new Vector4f();
 
   /** Enhance RGB only; indexed VRAM continues to decide visibility and blend mode. */
@@ -75,6 +76,43 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
     return this;
   }
 
+  private void resolveSpriteFont() {
+    if(this.spriteFont != null && (!this.uiLayer || this.getLayers() != 1 || this.textures[0] != null || this.textures[1] != null
+      || this.textures[2] != this.spriteFont.artwork() || this.textures[3] != this.spriteFont.reference())) this.clearSpriteFont();
+    if(!this.uiLayer || this.getLayers() != 1 || this.textures[0] != null || this.textures[1] != null) return;
+    final NativeUiQuad quad = this.obj.nativeUiQuad(this.startVertex, this.vertexCount);
+    final NativeUiQuad source = quad == null ? null : quad.overridden(this);
+    if(this.spriteFont != null && (!this.spriteFont.current() || !this.spriteFont.source().equals(source))) {
+      this.clearSpriteFont();
+    }
+    if(this.spriteFont != null || source == null || this.uiArtwork && !this.nativeUiTracked) return;
+    if(!this.nativeUiTracked && (this.textures[2] != null || this.textures[3] != null)) return;
+    this.spriteFont = legend.game.textures.NativeSpriteFont.select(source);
+    if(this.spriteFont != null) {
+      this.uiArtwork = this.nativeUiTracked = false;
+      this.uiArtworkBounds.set(source.u(), source.v(), source.width(), source.height());
+      this.texture(this.spriteFont.artwork(), 2).texture(this.spriteFont.reference(), 3);
+    }
+  }
+
+  private void clearSpriteFont() {
+    if(this.textures[2] == this.spriteFont.artwork()) this.textures[2] = null;
+    if(this.textures[3] == this.spriteFont.reference()) this.textures[3] = null;
+    this.spriteFont = null;
+  }
+
+  /** Source selection must precede both opaque and translucent pass decisions. */
+  @Override public void useShader(final int modelIndex, final int discardMode) {
+    this.resolveSpriteFont();
+    super.useShader(modelIndex, discardMode);
+  }
+
+  private Translucency spriteBlend() {
+    if(this.hasTranslucencyOverride) return this.translucency;
+    for(final Translucency mode : Translucency.FOR_RENDERING) if(this.obj.shouldRender(mode, 0)) return mode;
+    return null;
+  }
+
   @Override
   void useTexture() {
     final boolean retired = this.nativeUiTracked && this.uiArtwork && !legend.game.textures.NativeUiTextures.touch(this.textures[2]);
@@ -101,20 +139,27 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
     this.uiArtwork = false;
     this.nativeUiTracked = false;
     this.uiPaletteDetail = false;
+    this.spriteFont = null;
   }
 
   @Override
   public boolean hasTranslucency() {
+    this.resolveSpriteFont();
+    if(this.spriteFont != null) return true;
     return super.hasTranslucency() || this.hasTranslucencyOverride;
   }
 
   @Override
   public boolean hasTranslucency(final int index) {
+    this.resolveSpriteFont();
+    if(this.spriteFont != null) return true;
     return super.hasTranslucency(index) || this.hasTranslucencyOverride;
   }
 
   @Override
   public boolean shouldRender(@Nullable final Translucency translucency) {
+    this.resolveSpriteFont();
+    if(this.spriteFont != null) return translucency == null || translucency == Translucency.HALF_B_PLUS_HALF_F || translucency == this.spriteBlend();
     if(this.hasTranslucencyOverride) {
       return this.translucency == translucency;
     }
@@ -124,6 +169,8 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
 
   @Override
   public boolean shouldRender(@Nullable final Translucency translucency, final int layer) {
+    this.resolveSpriteFont();
+    if(this.spriteFont != null) return layer == 0 && (translucency == null || translucency == Translucency.HALF_B_PLUS_HALF_F || translucency == this.spriteBlend());
     if(this.hasTranslucencyOverride) {
       return this.translucency == translucency;
     }
@@ -176,12 +223,13 @@ public class QueuedModelStandard extends QueuedModel<ShaderOptionsStandard, Queu
 
     this.shaderOptions.uiArtwork(this.uiArtwork, this.uiArtworkBounds);
     this.shaderOptions.uiPaletteDetail(this.uiArtwork && this.uiPaletteDetail);
+    this.shaderOptions.spriteFont(this.spriteFont != null, this.spriteBlend(), this.uiArtworkBounds);
     this.shaderOptions.alpha(this.alpha);
     this.shaderOptions.useTextureAlpha(this.useTextureAlpha);
 
-    if(this.hasTranslucencyOverride) {
+    if(this.hasTranslucencyOverride || this.spriteFont != null) {
       // Translucency override
-      this.updateColours(translucency);
+      this.updateColours(this.spriteFont != null && (translucency == null || translucency == Translucency.HALF_B_PLUS_HALF_F) ? this.spriteBlend() : translucency);
       this.obj.render(layer, this.startVertex, this.vertexCount);
       return;
     }

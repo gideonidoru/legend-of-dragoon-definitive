@@ -23,7 +23,7 @@ public final class NativeUiTextures {
   public record Images(Image original, Image enhanced, Image paletteDetailReference) {
     public Images(final Image original, final Image enhanced) { this(original, enhanced, null); }
   }
-  public static synchronized void beginFrame() { retireCleared(); frame++; }
+  public static synchronized void beginFrame() { retireCleared(); frame++; NativeSpriteFont.beginFrame(); }
   private static void retireCleared() {
     // Only called with a renderer context, before new uploads. Mod changes can
     // enqueue retirement from another thread without touching GPU state there.
@@ -243,6 +243,7 @@ public final class NativeUiTextures {
   public static synchronized long allocatedBytes() { return allocated; }
   /** Mod reboots happen outside queued rendering; native fallback remains available throughout. */
   public static synchronized void clear() {
+    NativeSpriteFont.clear();
     for(final Region region : REGIONS) {
       if(region.sourceTexture != null) { region.sourceTexture.delete(); RETIRED.add(region.sourceTexture); }
       if(region.artworkTexture != null) { region.artworkTexture.delete(); RETIRED.add(region.artworkTexture); }

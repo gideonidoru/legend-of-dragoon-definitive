@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /** Registry and storage only: no game assets, engine launch, SDL window or device input. */
 class InventoryContractsTest {
   @BeforeAll static void registry() {
-    CoreMod.registerConfig(new ConfigRegistryEvent((legend.game.saves.ConfigRegistry)GameEngine.REGISTRIES.config));
+    if(!CoreMod.SHADER_ENABLE_CRT_CONFIG.isValid()) CoreMod.registerConfig(new ConfigRegistryEvent((legend.game.saves.ConfigRegistry)GameEngine.REGISTRIES.config));
     CoreMod.registerItems(new ItemRegistryEvent((legend.game.inventory.ItemRegistry)GameEngine.REGISTRIES.items));
   }
 
