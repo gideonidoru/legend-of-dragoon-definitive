@@ -1,0 +1,647 @@
+{
+  "schema": 1,
+  "scope": "Original-source art/layout review of all ten existing stage17 static bespoke candidates. No selection, native or final acceptance.",
+  "authorManifestSha256": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceSize": [
+        72,
+        72
+      ],
+      "targetSize": [
+        288,
+        288
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "e93e7a9a26452bacb44a6fd258c3fc52a48175314e95a7ddb0f4d8e110f3b307",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "87abfe00c3119e652169d2111b572f6756c6d7ed0647f5e1a5a71298b6981a8e",
+      "outputSha256": "0b202c6c03227c43e5046f174f0054597dd59ee724604ce08241e562e62716db",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 15388,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            72,
+            72
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "4232cfcc404b84b9dc4f5aec767f95ab173eff715d2ca4899cbb36338de0f7f5",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/e93e7a9a26452bacb44a6fd258c3fc52a48175314e95a7ddb0f4d8e110f3b307/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/e93e7a9a26452bacb44a6fd258c3fc52a48175314e95a7ddb0f4d8e110f3b307/image-v1.png",
+      "prompt": "Edit the ORIGINAL battle material texture (first image is authoritative) into a beautiful, refined 2026 AA retro game texture; second image is only the CURRENT blurry neural baseline to surpass. Brown courtyard gate architecture and decorative carved post silhouettes. Keep every top finial shape, post, vertical board, horizontal beam, narrow slit, iron hinge and bottom strip exactly where the source places them. Do not reinterpret the ambiguous post tops as new people or invent faces, armor or decorations. Exact full source canvas aspect 72:72 is mandatory; output an opaque RGB/RGBA image with pure black unused background, no padding or cropping. Preserve the original framing, topology, silhouette, feature positions/counts, muted palette and broad lighting. Add restrained high-quality painted material detail at much finer continuous scale, with convincing subtle wear, grain and tactile surfaces. Avoid enlarged pixel blocks, excessive grit, high contrast outlines, repeated noise, photorealistic lighting, changed values, new geometry or fantasy redesign. The source is a flattened UV material atlas; do not stage a scene or add a camera. No text or watermark.",
+      "references": [],
+      "review": {
+        "intent": "Stage-17 courtyard architecture: Brown courtyard gate architecture and decorative carved post silhouettes. Keep every top finial shape, post, vertical board, horizontal beam, narrow slit, iron hinge and bottom strip exactly where the source places them. Do not reinterpret the ambiguous post tops as new people or invent faces, armor or decorations. Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original silhouette, structural feature count, broad value/palette, and all atlas patch locations retained; material microdetail only. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "0b202c6c03227c43e5046f174f0054597dd59ee724604ce08241e562e62716db",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        48
+      ],
+      "targetSize": [
+        192,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "41d134f179997f57cea1ed0ef8746ef9785ceb8de27f4b11918af6463b0ca8e6",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "8b7b0267388be669e7e45bcf47921cf12afdabd18e9b8441d9eeab47a1a0cd04",
+      "outputSha256": "0e0650f3f7fb6042a367ff8a5bd7bdae85f46c1a963af1b27e37cc1d2b5fae21",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 15389,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            168,
+            232,
+            216
+          ],
+          "sourceUvOrigin": [
+            184,
+            168
+          ]
+        }
+      ],
+      "priorCandidateSha256": "beae8dd4a4bb1925b5d7e1bd05d94b0f1729494fc6535b93188f28b8d0bacddd",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/41d134f179997f57cea1ed0ef8746ef9785ceb8de27f4b11918af6463b0ca8e6/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/41d134f179997f57cea1ed0ef8746ef9785ceb8de27f4b11918af6463b0ca8e6/image-v1.png",
+      "prompt": "Edit the ORIGINAL battle material texture (first image is authoritative) into a beautiful, refined 2026 AA retro game texture; second image is only the CURRENT blurry neural baseline to surpass. A tiny atlas of separated brown/gray architecture fragments on black: left cropped frame, top flat dark blocks, lower small pot with the original few pale stems, red rectangular patch, four blue rectangular patches, tiny golden patch, tiny gray ring and bottom curved brown fragment. Keep exact objects, patch positions, sizes and counts. No invented lettering, flowers or props. Exact full source canvas aspect 48:48 is mandatory; output an opaque RGB/RGBA image with pure black unused background, no padding or cropping. Preserve the original framing, topology, silhouette, feature positions/counts, muted palette and broad lighting. Add restrained high-quality painted material detail at much finer continuous scale, with convincing subtle wear, grain and tactile surfaces. Avoid enlarged pixel blocks, excessive grit, high contrast outlines, repeated noise, photorealistic lighting, changed values, new geometry or fantasy redesign. The source is a flattened UV material atlas; do not stage a scene or add a camera. No text or watermark.",
+      "references": [],
+      "review": {
+        "intent": "Stage-17 courtyard architecture: A tiny atlas of separated brown/gray architecture fragments on black: left cropped frame, top flat dark blocks, lower small pot with the original few pale stems, red rectangular patch, four blue rectangular patches, tiny golden patch, tiny gray ring and bottom curved brown fragment. Keep exact objects, patch positions, sizes and counts. No invented lettering, flowers or props. Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original silhouette, structural feature count, broad value/palette, and all atlas patch locations retained; material microdetail only. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "0e0650f3f7fb6042a367ff8a5bd7bdae85f46c1a963af1b27e37cc1d2b5fae21",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        72
+      ],
+      "targetSize": [
+        320,
+        288
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "afbb74e9c055c5c00327d14e7297850d71da1126ff84b9c2c0d51b55ef157cef",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "950bdf1baf3e248b6da64ce2c8436842d6e94e4b1b037db3b4c3f96b0b4df2ca",
+      "outputSha256": "3076bf22202f5344f30799199a24140377aa5b8c195a110f5c3fadd2307b86e2",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            0,
+            136,
+            72
+          ],
+          "sourceUvOrigin": [
+            56,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "dc19d5917142ffec7285cc05900903b8c1078634905f2b3384dc019662d67b7c",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/afbb74e9c055c5c00327d14e7297850d71da1126ff84b9c2c0d51b55ef157cef/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/afbb74e9c055c5c00327d14e7297850d71da1126ff84b9c2c0d51b55ef157cef/image-v1.png",
+      "prompt": "Edit the ORIGINAL battle material texture (first image is authoritative) into a beautiful, refined 2026 AA retro game texture; second image is only the CURRENT blurry neural baseline to surpass. Muted gray stone inset/vault motif with thin brown horizontal and vertical frames. Preserve the exact symmetrical broad curved gray bands and the original sparse central joint lines; do not add cracks, brick grids, additional borders or architectural detail. Keep adjacent lower/left atlas fragments aligned. Exact full source canvas aspect 80:72 is mandatory; output an opaque RGB/RGBA image with pure black unused background, no padding or cropping. Preserve the original framing, topology, silhouette, feature positions/counts, muted palette and broad lighting. Add restrained high-quality painted material detail at much finer continuous scale, with convincing subtle wear, grain and tactile surfaces. Avoid enlarged pixel blocks, excessive grit, high contrast outlines, repeated noise, photorealistic lighting, changed values, new geometry or fantasy redesign. The source is a flattened UV material atlas; do not stage a scene or add a camera. No text or watermark.",
+      "references": [],
+      "review": {
+        "intent": "Stage-17 courtyard architecture: Muted gray stone inset/vault motif with thin brown horizontal and vertical frames. Preserve the exact symmetrical broad curved gray bands and the original sparse central joint lines; do not add cracks, brick grids, additional borders or architectural detail. Keep adjacent lower/left atlas fragments aligned. Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original silhouette, structural feature count, broad value/palette, and all atlas patch locations retained; material microdetail only. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "3076bf22202f5344f30799199a24140377aa5b8c195a110f5c3fadd2307b86e2",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        72,
+        80
+      ],
+      "targetSize": [
+        288,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "8ca225d62cdd16c24ab98f0e5acac2d11209a64bde24b0f34b82453d67d8b3e0",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "f25a5d2efd989e50e25e706ff340fd04a1d922a832d407de77b61fdc2ee0e461",
+      "outputSha256": "7faaa6f87c4cef525612ec59efdee10a6adeb393091dee8b1f3b86b8d0255e47",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 15644,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            56,
+            72,
+            136
+          ],
+          "sourceUvOrigin": [
+            0,
+            56
+          ]
+        }
+      ],
+      "priorCandidateSha256": "e97974ae7c7b50330c737d1e3e53310082e2f59a11b1eda79077b9f970be48f9",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/8ca225d62cdd16c24ab98f0e5acac2d11209a64bde24b0f34b82453d67d8b3e0/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/8ca225d62cdd16c24ab98f0e5acac2d11209a64bde24b0f34b82453d67d8b3e0/image-v1.png",
+      "prompt": "Edit the ORIGINAL battle material texture (first image is authoritative) into a beautiful, refined 2026 AA retro game texture; second image is only the CURRENT blurry neural baseline to surpass. A brown wooden gate: the exact existing vertical plank widths, thin seams, iron hinge plates and small rivets, original narrow stair strip on the right and thin lower rail fragments. Preserve all board/plate/rivet counts and placements; do not add hardware. Exact full source canvas aspect 72:80 is mandatory; output an opaque RGB/RGBA image with pure black unused background, no padding or cropping. Preserve the original framing, topology, silhouette, feature positions/counts, muted palette and broad lighting. Add restrained high-quality painted material detail at much finer continuous scale, with convincing subtle wear, grain and tactile surfaces. Avoid enlarged pixel blocks, excessive grit, high contrast outlines, repeated noise, photorealistic lighting, changed values, new geometry or fantasy redesign. The source is a flattened UV material atlas; do not stage a scene or add a camera. No text or watermark.",
+      "references": [],
+      "review": {
+        "intent": "Stage-17 courtyard architecture: A brown wooden gate: the exact existing vertical plank widths, thin seams, iron hinge plates and small rivets, original narrow stair strip on the right and thin lower rail fragments. Preserve all board/plate/rivet counts and placements; do not add hardware. Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original silhouette, structural feature count, broad value/palette, and all atlas patch locations retained; material microdetail only. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "7faaa6f87c4cef525612ec59efdee10a6adeb393091dee8b1f3b86b8d0255e47",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        80
+      ],
+      "targetSize": [
+        192,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "67c8351417215da49ef45858375ac5268f6a33ea51615cefdf8ea228172e7821",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "486a136115ce3d6b6b899f2b97faab9007bc293763d8e92cf86b3f357f29bc8e",
+      "outputSha256": "bf8f54835d4ff2b771afbe7dc2f97b2d34e3f7b5b2e25265c3e2b5213acdcba1",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 15708,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            56,
+            104,
+            136
+          ],
+          "sourceUvOrigin": [
+            56,
+            56
+          ]
+        }
+      ],
+      "priorCandidateSha256": "7f89f7d0cc6cc2f29eb12422a834ae39d58dc0d11dd4d5bfbc113615a495c393",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/67c8351417215da49ef45858375ac5268f6a33ea51615cefdf8ea228172e7821/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/67c8351417215da49ef45858375ac5268f6a33ea51615cefdf8ea228172e7821/image-v1.png",
+      "prompt": "Edit the ORIGINAL battle material texture (first image is authoritative) into a beautiful, refined 2026 AA retro game texture; second image is only the CURRENT blurry neural baseline to surpass. Brown stone staircase seen from the front: preserve every original tread at its exact vertical position and width, alternating pale tread tops and dark risers, original side wall strips and small neighboring atlas fragments. No added or omitted steps, railings or cracks. Exact full source canvas aspect 48:80 is mandatory; output an opaque RGB/RGBA image with pure black unused background, no padding or cropping. Preserve the original framing, topology, silhouette, feature positions/counts, muted palette and broad lighting. Add restrained high-quality painted material detail at much finer continuous scale, with convincing subtle wear, grain and tactile surfaces. Avoid enlarged pixel blocks, excessive grit, high contrast outlines, repeated noise, photorealistic lighting, changed values, new geometry or fantasy redesign. The source is a flattened UV material atlas; do not stage a scene or add a camera. No text or watermark.",
+      "references": [],
+      "review": {
+        "intent": "Stage-17 courtyard architecture: Brown stone staircase seen from the front: preserve every original tread at its exact vertical position and width, alternating pale tread tops and dark risers, original side wall strips and small neighboring atlas fragments. No added or omitted steps, railings or cracks. Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original silhouette, structural feature count, broad value/palette, and all atlas patch locations retained; material microdetail only. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "bf8f54835d4ff2b771afbe7dc2f97b2d34e3f7b5b2e25265c3e2b5213acdcba1",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        80
+      ],
+      "targetSize": [
+        320,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "f2bb695890f6f4ef0af4db8f3d86c508973059282f9907aa984245eacc381405",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "07b4d6fb04bc1b38ef9136ead487f2906e8edffe09d7fd510ab2d5dc4becf39a",
+      "outputSha256": "6b67839322ba21df80211f5670c6c4a2e487a95b7b4ba45156c90f56b360eae4",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 15772,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            88,
+            56,
+            168,
+            136
+          ],
+          "sourceUvOrigin": [
+            88,
+            56
+          ]
+        }
+      ],
+      "priorCandidateSha256": "43573b99075e4725c500a601d9185146a77bb054e777d60db5bd07d841429d8d",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/f2bb695890f6f4ef0af4db8f3d86c508973059282f9907aa984245eacc381405/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/f2bb695890f6f4ef0af4db8f3d86c508973059282f9907aa984245eacc381405/image-v1.png",
+      "prompt": "Edit the ORIGINAL battle material texture (first image is authoritative) into a beautiful, refined 2026 AA retro game texture; second image is only the CURRENT blurry neural baseline to surpass. Brown courtyard irregular stone wall: keep the exact handful of large rounded stone shapes, dark joint network and broad values, including the very large center/right stone, upper left partial stone and lower pair; preserve adjacent narrow staircase strip at the right. Do not subdivide stones or add mortar joints or chips. Exact full source canvas aspect 80:80 is mandatory; output an opaque RGB/RGBA image with pure black unused background, no padding or cropping. Preserve the original framing, topology, silhouette, feature positions/counts, muted palette and broad lighting. Add restrained high-quality painted material detail at much finer continuous scale, with convincing subtle wear, grain and tactile surfaces. Avoid enlarged pixel blocks, excessive grit, high contrast outlines, repeated noise, photorealistic lighting, changed values, new geometry or fantasy redesign. The source is a flattened UV material atlas; do not stage a scene or add a camera. No text or watermark.",
+      "references": [],
+      "review": {
+        "intent": "Stage-17 courtyard architecture: Brown courtyard irregular stone wall: keep the exact handful of large rounded stone shapes, dark joint network and broad values, including the very large center/right stone, upper left partial stone and lower pair; preserve adjacent narrow staircase strip at the right. Do not subdivide stones or add mortar joints or chips. Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original silhouette, structural feature count, broad value/palette, and all atlas patch locations retained; material microdetail only. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "6b67839322ba21df80211f5670c6c4a2e487a95b7b4ba45156c90f56b360eae4",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        80
+      ],
+      "targetSize": [
+        320,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "4c41a6d3476d8096342f3ed779a7a56b900d090f9a4bf64b48b81ee92b640d55",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "c75b007df71365f4857c97677fb8e9973da4155ec5a0d1fd45f91915bb4fe883",
+      "outputSha256": "1360db8f747e0cf186035d917bf34365da65fbf0fbb626c4ffb9cef44d797a70",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 16028,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            120,
+            136,
+            200
+          ],
+          "sourceUvOrigin": [
+            56,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "c4018a951d09702a61b7ea95c42b55953626b7b15193d37143ad020bd016fca4",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/4c41a6d3476d8096342f3ed779a7a56b900d090f9a4bf64b48b81ee92b640d55/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/4c41a6d3476d8096342f3ed779a7a56b900d090f9a4bf64b48b81ee92b640d55/image-v1.png",
+      "prompt": "Edit the ORIGINAL battle material texture (first image is authoritative) into a beautiful, refined 2026 AA retro game texture; second image is only the CURRENT blurry neural baseline to surpass. Brown architectural doorway frame of two round vertical posts with blue-gray lower sleeves and blue-gray collars, joined by the brown top horizontal beam. Preserve exact post/beam proportions, colors, bands, central black opening, and all small neighboring fragments. No added ornament, metal bands or cracks. Exact full source canvas aspect 80:80 is mandatory; output an opaque RGB/RGBA image with pure black unused background, no padding or cropping. Preserve the original framing, topology, silhouette, feature positions/counts, muted palette and broad lighting. Add restrained high-quality painted material detail at much finer continuous scale, with convincing subtle wear, grain and tactile surfaces. Avoid enlarged pixel blocks, excessive grit, high contrast outlines, repeated noise, photorealistic lighting, changed values, new geometry or fantasy redesign. The source is a flattened UV material atlas; do not stage a scene or add a camera. No text or watermark.",
+      "references": [],
+      "review": {
+        "intent": "Stage-17 courtyard architecture: Brown architectural doorway frame of two round vertical posts with blue-gray lower sleeves and blue-gray collars, joined by the brown top horizontal beam. Preserve exact post/beam proportions, colors, bands, central black opening, and all small neighboring fragments. No added ornament, metal bands or cracks. Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original silhouette, structural feature count, broad value/palette, and all atlas patch locations retained; material microdetail only. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "1360db8f747e0cf186035d917bf34365da65fbf0fbb626c4ffb9cef44d797a70",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        64
+      ],
+      "targetSize": [
+        256,
+        256
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "7fc9a259f2f120d432a34d38ab75fb8e8415cf4a2fd83ab6bebbd728ad52884f",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "0744303178c243a1b7321fd82a006e8aa411f545103850ef02f59b58e17524f3",
+      "outputSha256": "a18d6ffcd75b23a47bd111e04f67b5e5b04a7522af9f7f35dc032f6a384cd9d8",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 16092,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            120,
+            184,
+            184
+          ],
+          "sourceUvOrigin": [
+            120,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "37a8bde324b75a307241cf7de134880475dd767f3aaf6a72b11df211d1543a1e",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/7fc9a259f2f120d432a34d38ab75fb8e8415cf4a2fd83ab6bebbd728ad52884f/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/7fc9a259f2f120d432a34d38ab75fb8e8415cf4a2fd83ab6bebbd728ad52884f/image-v1.png",
+      "prompt": "Edit the ORIGINAL battle material texture (first image is authoritative) into a beautiful, refined 2026 AA retro game texture; second image is only the CURRENT blurry neural baseline to surpass. Muted brown/gray mottled rough stone patch with the exact broad cloudy diagonal relief/value pattern, top broken black cutout/fragments and lower narrow board fragments. Add only delicate continuous stone grain. No masonry grid or new sharp cracks. Exact full source canvas aspect 64:64 is mandatory; output an opaque RGB/RGBA image with pure black unused background, no padding or cropping. Preserve the original framing, topology, silhouette, feature positions/counts, muted palette and broad lighting. Add restrained high-quality painted material detail at much finer continuous scale, with convincing subtle wear, grain and tactile surfaces. Avoid enlarged pixel blocks, excessive grit, high contrast outlines, repeated noise, photorealistic lighting, changed values, new geometry or fantasy redesign. The source is a flattened UV material atlas; do not stage a scene or add a camera. No text or watermark.",
+      "references": [],
+      "review": {
+        "intent": "Stage-17 courtyard architecture: Muted brown/gray mottled rough stone patch with the exact broad cloudy diagonal relief/value pattern, top broken black cutout/fragments and lower narrow board fragments. Add only delicate continuous stone grain. No masonry grid or new sharp cracks. Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original silhouette, structural feature count, broad value/palette, and all atlas patch locations retained; material microdetail only. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "a18d6ffcd75b23a47bd111e04f67b5e5b04a7522af9f7f35dc032f6a384cd9d8",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        64
+      ],
+      "targetSize": [
+        256,
+        256
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "ef223ce7b1fcf1f495666743935740ca6ec34d38f025c750f9c46dd9d63365de",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "8ae86cd9d7b6b8d38ae143b57fb3f029559d95b9a21e70a7302853d7931e101d",
+      "outputSha256": "6eb78422f469a3a4ae11b8297667bf049b9790e8ade219160fea8cb679dda465",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 16284,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            168,
+            184,
+            232
+          ],
+          "sourceUvOrigin": [
+            120,
+            168
+          ]
+        }
+      ],
+      "priorCandidateSha256": "885ec4b562e3ef23a0c50418f4e028f1310dc3a8ec3e224555e049d41e1728e4",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/ef223ce7b1fcf1f495666743935740ca6ec34d38f025c750f9c46dd9d63365de/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/ef223ce7b1fcf1f495666743935740ca6ec34d38f025c750f9c46dd9d63365de/image-v1.png",
+      "prompt": "Edit the ORIGINAL battle material texture (first image is authoritative) into a beautiful, refined 2026 AA retro game texture; second image is only the CURRENT blurry neural baseline to surpass. Brown hanging fabric with precisely four tapering scalloped/tabbed tips and four pale blue-gray twisted cords ending in the same four small weights. Keep the source fabric folds, cord paths, weights, every hole and upper/side architecture fragment exact. No extra tassels, cords, symbols, embroidery or new folds. Exact full source canvas aspect 64:64 is mandatory; output an opaque RGB/RGBA image with pure black unused background, no padding or cropping. Preserve the original framing, topology, silhouette, feature positions/counts, muted palette and broad lighting. Add restrained high-quality painted material detail at much finer continuous scale, with convincing subtle wear, grain and tactile surfaces. Avoid enlarged pixel blocks, excessive grit, high contrast outlines, repeated noise, photorealistic lighting, changed values, new geometry or fantasy redesign. The source is a flattened UV material atlas; do not stage a scene or add a camera. No text or watermark.",
+      "references": [],
+      "review": {
+        "intent": "Stage-17 courtyard architecture: Brown hanging fabric with precisely four tapering scalloped/tabbed tips and four pale blue-gray twisted cords ending in the same four small weights. Keep the source fabric folds, cord paths, weights, every hole and upper/side architecture fragment exact. No extra tassels, cords, symbols, embroidery or new folds. Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original silhouette, structural feature count, broad value/palette, and all atlas patch locations retained; material microdetail only. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "6eb78422f469a3a4ae11b8297667bf049b9790e8ade219160fea8cb679dda465",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        32,
+        48
+      ],
+      "targetSize": [
+        128,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "06148916abfb2e97f3e673b13f7fb2b170ed4accc456a43a8574d94dc239a025",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "7e13ecef12bc484301e905d11212eaafa478cdf76fcb83b12debb9cd654830dd",
+      "outputSha256": "1e0c6376eede7b587c55be26da60ac4b466e009f111d5ad76f0d5d4f54fa0b97",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 17,
+          "page": 7,
+          "clut": 16348,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            168,
+            168,
+            200,
+            216
+          ],
+          "sourceUvOrigin": [
+            168,
+            168
+          ]
+        }
+      ],
+      "priorCandidateSha256": "8ce608aa1c7ce1cf33174e44900da405ca40422f2942ea5da935b47a5bcb119e",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/06148916abfb2e97f3e673b13f7fb2b170ed4accc456a43a8574d94dc239a025/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/06148916abfb2e97f3e673b13f7fb2b170ed4accc456a43a8574d94dc239a025/image-v1.png",
+      "prompt": "Restore the original flattened 32:48 battle material atlas from the attached ORIGINAL reference. Output opaque image exact2:3 aspect. Retain every outer brown-gray frame bevel, dark inner field and all surrounding atlas fragments. CRITICAL: the ORIGINAL CENTER IS A SOFT SMALL ROUNDED OVAL TAN-GRAY VALUE PATCH at about x32-48% and y39-52% of the entire canvas. It is NOT a square inset or rectangular door panel; preserve the soft rounded oval contour and source vertical center position. Do not invent an object, lamp, flame, face, symbol, a room or depth inside it. Paint finer subtle brown stone/wood material grain and delicate natural wear only on existing surfaces; preserve muted palette, flat texture layout, exact original broad values and silhouette. Gorgeous restrained 2026AA painterly retro finish without pixelblocks, repeated grit, extra cracks, redesigned shapes, new lighting, padding, cropping or text. Black unused backdrop, all original faint small architecture fragments and the small right-side cutout preserved. Original reference solely controls structure.",
+      "references": [],
+      "review": {
+        "intent": "Stage-17 courtyard architecture: A narrow brown-gray inset rectangular architectural panel/frame. Preserve exact outer bevels, very dark inner rectangular field, original small central gray/tan highlight and every adjacent left/right fragment; keep the center flat source motif without inventing a lamp, flame, room or perspective depth. Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original silhouette, structural feature count, broad value/palette, and all atlas patch locations retained; material microdetail only. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "1e0c6376eede7b587c55be26da60ac4b466e009f111d5ad76f0d5d4f54fa0b97",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    }
+  ]
+}

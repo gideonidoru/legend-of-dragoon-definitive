@@ -5,11 +5,11 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "026cb84f796456aad9c58860c49db807f0c21381ffe3e5437f9a24f287e55526",
+    "battle-material-runtime-artwork.json": "e499387937c77466a63770866a01e376d5385f136f04c0b1db405077f0a8d0a3",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "battle-presentation-artwork-v1.json": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
-    "battle-presentation-reviews/358947f3db72dda8c7d1dbae74ca5de77ad297047fdee19745a8f1af9d05ee1e.json": "358947f3db72dda8c7d1dbae74ca5de77ad297047fdee19745a8f1af9d05ee1e"
+    "battle-presentation-reviews/f99514b78c7f597afa4f68b218b0f3206b9945fb4068b9b24b902f25055e449f.json": "f99514b78c7f597afa4f68b218b0f3206b9945fb4068b9b24b902f25055e449f"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -20,9 +20,9 @@
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
     "newBespokeCandidates": 506,
-    "newlySelectedBespokeMasters": 44,
+    "newlySelectedBespokeMasters": 53,
     "baselineMastersStillNeedingPresentationReview": 0,
-    "pendingCandidateReviews": 462,
+    "pendingCandidateReviews": 453,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -3600,7 +3600,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {13: [1]}. Source family: Nest of Dragoon: fringed rock, stalks and skeletal/webbed organic construction. Engine random-encounter location mapping: Nest of Dragon.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3631,7 +3631,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {13: [2]}. Source family: Nest of Dragoon: fringed rock, stalks and skeletal/webbed organic construction. Engine random-encounter location mapping: Nest of Dragon.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3712,7 +3712,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [3, 7], 92: [4]}. Source family: grey stone and skeletal/webbed organic construction; Nest of Dragoon: grey stone, webs, roots and shaded architectural gradients. Engine random-encounter location mapping: Nest of Dragon.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3744,7 +3744,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [4, 6]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3775,7 +3775,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [7]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3806,7 +3806,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [0]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3838,7 +3838,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [1, 2]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3869,7 +3869,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [5]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3900,7 +3900,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {14: [5]}. Source family: grey stone and skeletal/webbed organic construction.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
