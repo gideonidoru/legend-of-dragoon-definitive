@@ -24,7 +24,7 @@ Painted towns, forests and interiors carry the atmosphere of *The Legend of Drag
 
 *Forest cliff · Visual enhancements off → on.*
 
-The environment library includes **4,925 field images**, with separate backgrounds and foregrounds, plus battle panoramas, world-map artwork and selected terrain and scenery textures. Hand-painted replacements add detail to woodwork, fabrics, plants and buildings across 39 field paintings and 34 battle paintings. Foreground layers keep their original placement and depth, so your party still moves through the scene as intended.
+The environment library includes **4,938 field images**, with separate backgrounds and foregrounds, plus battle panoramas, world-map artwork and selected terrain and scenery textures. Hand-painted replacements add detail to woodwork, fabrics, plants and buildings across 52 field paintings and 47 painted battle materials. Foreground layers keep their original placement and depth, so your party still moves through the scene as intended.
 
 ![Matched battle view with all Definitive visual enhancements disabled on the left and enabled on the right](docs/definitive/images/comparisons/battle-visuals-off-on.jpg)
 
@@ -111,11 +111,11 @@ Replacements stay tied to the original models and texture sources. Dart’s head
 
 HD content also has explicit resource limits: a shared **64 MiB decoded-artwork cache**, a **16 MiB persistent GPU companion for effects**, and a **32 MiB source/restoration GPU budget for UIHD**. These are component limits, rather than a total game-memory figure. Background workers prepare eligible images during loading, obsolete work is cancelled on scene changes, and GPU uploads and cleanup stay on the renderer thread. Invalid or mismatched replacements fall back to original artwork.
 
-Working shaders survive a failed reload, and obsolete artwork requests cannot overwrite a newer mod selection. Depth-buffer clearing restores depth writes in both OpenGL and OpenGL ES, preventing earlier draw state from leaving stale depth in later rendering.
+Completed frames are presented in the same window tick, avoiding an extra tick of display delay. Mixed HD and original surfaces keep independent texture bindings, so changing the battle camera does not make scenery sample a preceding model’s textures. Working shaders survive a failed reload, and obsolete artwork requests cannot overwrite a newer mod selection. Depth-buffer clearing restores depth writes in both OpenGL and OpenGL ES, preventing earlier draw state from leaving stale depth in later rendering.
 
 ### Sound and timing that stay together
 
-Prerecorded XA audio is preserved as PCM after decoding, avoiding another lossy encode. Playback counts audio that actually reaches the output, protecting clip endings and keeping films synchronized through empty starts and underruns. The default output follows the operating system, with explicit device selection and fallback when an output becomes unavailable.
+Prerecorded XA audio is preserved as PCM after decoding, avoiding another lossy encode. Playback counts audio that actually reaches the output, protecting clip endings and keeping films synchronized through empty starts and underruns. The default output follows the operating system, with explicit device selection and fallback when an output becomes unavailable. Music commands remain queued during an output interruption, and original films can continue through audio-source recreation.
 
 Gameplay runs on independent, monotonic fixed steps, while audio and hardware/minigame timers keep their own rates. Catch-up after a stall is bounded. Films follow played audio, bypass gameplay frame skipping and restore input and presentation state when they end. Losing an audio device cannot fast-forward a film by counting sound that never played. **Addition timing windows remain unchanged.**
 

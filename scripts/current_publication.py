@@ -9,6 +9,8 @@ import hashlib
 import json
 import re
 import zipfile
+import importlib.util
+from archive_assembly import load_recipe, validate_recipe
 from package_validation import properties, file_delivery_assets, verify_package, verify_installer
 
 REPO = 'gideonidoru/legend-of-dragoon-definitive'
@@ -18,6 +20,8 @@ END = '\nEND_DEFINITIVE_CURRENT_V1\n'
 MAX_MANIFEST = 8192
 MAX_NUMBER = 2**53 - 1
 PLATFORMS = ('linux-x64', 'macos-arm64')
+spec = importlib.util.spec_from_file_location('fmv_contract', Path(__file__).with_name('stage-fmvhd-assets.py'))
+fmv_contract = importlib.util.module_from_spec(spec); spec.loader.exec_module(fmv_contract)
 FIELDS = {'format', 'generation', 'sourceRevision', 'buildRun', 'releaseId',
           'releaseTag', 'publishedAt', 'platforms', 'installer', 'entry', 'fmvSource'}
 
@@ -68,6 +72,10 @@ def descriptor_name(kind, sha, platform=None):
         return f'installer-{sha}.zip'
     if kind == 'entry':
         return f'entry-{sha}.sh'
+    if kind == 'assembly' and platform in PLATFORMS:
+        return f'assembly-{platform}-{sha}.json'
+    if kind == 'movie':
+        return 'file-' + sha
     if kind == 'fmvSource':
         return f'source-fmvhd-{sha}.zip'
     raise ValueError('Invalid asset kind/platform')
@@ -85,13 +93,15 @@ def check_descriptor(value, kind, platform=None):
         raise ValueError('Invalid asset descriptor')
     identifier(value['id'])
     number(value['bytes'], 'asset size')
-    limit = 8 * 1024**2 if kind == 'contents' else 2 * 1024**3
+    limit = {'contents':8 * 1024**2, 'assembly':16 * 1024**2, 'movie':512 * 1024**2}.get(kind, 2 * 1024**3)
     if value['bytes'] > limit or value['name'] != descriptor_name(kind, value['sha256'], platform):
         raise ValueError('Unbounded or incorrectly named asset')
 
 
 def validate_manifest(value, release_id=None):
-    if not isinstance(value, dict) or set(value) != FIELDS or type(value['format']) is not int or value['format'] != 1:
+    version = value.get('format') if isinstance(value, dict) else None
+    fields = FIELDS if version == 1 else FIELDS - {'fmvSource'} | {'fmvSources'}
+    if not isinstance(value, dict) or set(value) != fields or type(version) is not int or version not in (1, 2):
         raise ValueError('Unknown/incomplete current manifest schema')
     number(value['generation'], 'generation')
     number(value['buildRun'], 'build run')
@@ -105,12 +115,19 @@ def validate_manifest(value, release_id=None):
         raise ValueError('Both supported platform inventories are required')
     for platform in PLATFORMS:
         records = value['platforms'][platform]
-        if not isinstance(records, dict) or set(records) != {'package', 'contents'}:
+        if not isinstance(records, dict) or set(records) != ({'package', 'contents'} if version == 1 else {'package', 'contents', 'assembly'}):
             raise ValueError('Incomplete platform descriptor')
-        for kind in ('package', 'contents'):
+        for kind in records:
             check_descriptor(records[kind], kind, platform)
-    for kind in ('installer', 'entry', 'fmvSource'):
+    for kind in ('installer', 'entry'):
         check_descriptor(value[kind], kind)
+    if version == 1:
+        check_descriptor(value['fmvSource'], 'fmvSource')
+    else:
+        if not isinstance(value['fmvSources'], dict) or set(value['fmvSources']) != set(fmv_contract.NAMES):
+            raise ValueError('Incomplete film source map')
+        for record in value['fmvSources'].values():
+            check_descriptor(record, 'movie')
     if len(canonical(value)) > MAX_MANIFEST:
         raise ValueError('Current manifest is too large')
     return value
@@ -142,6 +159,7 @@ def body(value, notes=''):
 
 
 def index_assets(assets):
+    if len(assets)>1000:raise ValueError('Current carrier exceeds its asset bound')
     result = {}
     ids = set()
     for asset in assets:
@@ -174,8 +192,7 @@ def check_references(value, assets, tag=TAG):
             check_asset(indexed.get(record['name'], {}), record['name'], record['bytes'], record['sha256'], tag)
             if str(indexed[record['name']]['id']) != record['id']:
                 raise ValueError('Platform asset ID differs')
-    for kind in ('installer', 'entry', 'fmvSource'):
-        record = value[kind]
+    for record in [value['installer'], value['entry']] + ([value['fmvSource']] if value['format'] == 1 else list(value['fmvSources'].values())):
         check_asset(indexed.get(record['name'], {}), record['name'], record['bytes'], record['sha256'], tag)
         if str(indexed[record['name']]['id']) != record['id']:
             raise ValueError('Current asset ID differs')
@@ -197,14 +214,48 @@ def reuse_plan(expected, assets, tag=TAG):
     return reuse, upload
 
 
-def closure(value, packages):
+def closure(value, packages, assemblies=None):
     """All references, including every module/video/Env pack, before deletion."""
     validate_manifest(value)
     required = {}
     for platform in PLATFORMS:
         package, contents = packages[platform]
         verify_package(package, platform, value['sourceRevision'], TAG, allow_file_delivery=True)
-        for name, identity in file_delivery_assets(package, contents, include_env_aliases=False).items():
+        payload = file_delivery_assets(package, contents, include_env_aliases=False)
+        if value['format'] == 2:
+            recipe = assemblies[platform] if assemblies else None
+            if isinstance(recipe, (str, Path)):
+                recipe = load_recipe(Path(recipe).read_bytes())
+            validate_recipe(recipe)
+            record = value['platforms'][platform]['assembly']
+            encoded = canonical(recipe)
+            if (len(encoded), hashlib.sha256(encoded).hexdigest()) != (record['bytes'], record['sha256']):
+                raise ValueError('Recipe descriptor differs from verified bytes')
+            if (recipe['sourceRevision'], recipe['platform'], recipe['releaseTag']) != (value['sourceRevision'], platform, TAG):
+                raise ValueError('Recipe source/platform/carrier differs')
+            with zipfile.ZipFile(contents) as archive:
+                hashes = properties(archive.read('definitive-files.properties'))
+                sizes = properties(archive.read('definitive-sizes.properties'))
+            for path, rows in recipe['files'].items():
+                if path not in hashes or sum(row['bytes'] for row in rows) != int(sizes[path]):
+                    raise ValueError('Recipe file differs from package inventory')
+                payload.pop('file-' + hashes[path], None)
+            # A whole blob may also be used by another, ordinarily delivered path.
+            assembled = set(recipe['files'])
+            for path, sha in hashes.items():
+                if path not in assembled:
+                    payload['file-' + sha] = (int(sizes[path]), sha)
+            for sha, source in recipe['sources'].items():
+                name = 'file-' + sha; identity = (source['bytes'], sha)
+                if name in payload and payload[name] != identity:
+                    raise ValueError('Recipe source identity conflict')
+                payload[name] = identity
+            payload[record['name']] = (record['bytes'], record['sha256'])
+            for film in value['fmvSources'].values():
+                path = 'gfx/fmvhd/videos/' + film['sha256'] + '.mp4'
+                if hashes.get(path) != film['sha256'] or sizes.get(path) != str(film['bytes']) or path in assembled:
+                    raise ValueError('Film source differs from managed movie inventory')
+        for name, identity in payload.items():
             if name in required and required[name] != identity:
                 raise ValueError('Cross-platform payload identity conflict')
             required[name] = identity
@@ -214,10 +265,31 @@ def closure(value, packages):
             if (Path(path).stat().st_size, digest(path)) != (record['bytes'], record['sha256']):
                 raise ValueError('Platform descriptor differs from verified inventory')
             required[record['name']] = (record['bytes'], record['sha256'])
-    for kind in ('installer', 'entry', 'fmvSource'):
-        record = value[kind]
+    for record in [value['installer'], value['entry']] + ([value['fmvSource']] if value['format'] == 1 else list(value['fmvSources'].values())):
         required[record['name']] = (record['bytes'], record['sha256'])
     data = canonical(value)
     sha = hashlib.sha256(data).hexdigest()
     required['manifest-' + sha + '.json'] = (len(data), sha)
     return required
+
+
+def check_assembly_references(value, recipes, assets):
+    """Retain and bind transitive sources to exact immutable carrier IDs."""
+    if value['format'] == 1:
+        return
+    indexed = index_assets(assets)
+    if set(recipes) != set(PLATFORMS):
+        raise ValueError('Both recipe closures required')
+    for platform, recipe in recipes.items():
+        validate_recipe(recipe)
+        record = value['platforms'][platform]['assembly']
+        data = canonical(recipe)
+        if (len(data), hashlib.sha256(data).hexdigest()) != (record['bytes'], record['sha256']):
+            raise ValueError('Recipe bytes differ')
+        if (recipe['sourceRevision'], recipe['platform'], recipe['releaseTag']) != (value['sourceRevision'], platform, TAG):
+            raise ValueError('Recipe binding differs')
+        for sha, source in recipe['sources'].items():
+            name = 'file-' + sha
+            asset = check_asset(indexed.get(name, {}), name, source['bytes'], sha)
+            if str(asset['id']) != source['id']:
+                raise ValueError('Transitive source asset ID differs')

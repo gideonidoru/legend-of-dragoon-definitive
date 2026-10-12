@@ -32,18 +32,22 @@ tasks.register('fmvHdLegacySource') {
 
 tasks.register('fmvHdAssets') {
   final def local = providers.gradleProperty('fmvHdAssets')
-  if(!local.isPresent() || !file(local.get()).isDirectory()) dependsOn tasks.named('fmvHdLegacySource')
+  final def memberDelivery = providers.gradleProperty('currentDeliveryFormat').getOrElse('2') == '2'
+  if(!memberDelivery && (!local.isPresent() || !file(local.get()).isDirectory())) dependsOn tasks.named('fmvHdLegacySource')
+  if(memberDelivery && local.isPresent() && file(local.get()).isFile()) dependsOn tasks.named('fmvHdLegacySource')
   inputs.file('integrations/fmvhd/release.properties')
   inputs.files(fileTree('integrations/fmvhd/src/main/resources/fmvhd'))
-  inputs.file('scripts/stage-fmvhd-assets.py')
+  inputs.files('scripts/stage-fmvhd-assets.py', 'scripts/stage-current-fmvhd-assets.py', 'scripts/member_publication.py', 'scripts/current_publication.py', 'scripts/prepare-publication-delta.py')
   inputs.file('scripts/package_validation.py')
   inputs.property('localAssets', local.getOrElse(''))
   if(local.isPresent() && file(local.get()).isDirectory()) inputs.files(file(local.get()))
-  else inputs.file(tasks.named('fmvHdLegacySource').map { it.outputs.files.singleFile })
+  else if(!memberDelivery || local.isPresent()) inputs.file(tasks.named('fmvHdLegacySource').map { it.outputs.files.singleFile })
+  inputs.property('memberDelivery', memberDelivery)
   outputs.dir(layout.buildDirectory.dir('fmvhd/assets'))
   doLast {
-    final def command = ['python3', 'scripts/stage-fmvhd-assets.py', '--manifest', 'integrations/fmvhd/src/main/resources/fmvhd/assets.properties', '--output', layout.buildDirectory.dir('fmvhd/assets').get().asFile.absolutePath]
-    command.addAll(['--local', local.isPresent() && file(local.get()).isDirectory() ? file(local.get()).absolutePath : layout.buildDirectory.file('fmvhd/videos.zip').get().asFile.absolutePath])
+    final def command = ['python3', memberDelivery && !local.isPresent() ? 'scripts/stage-current-fmvhd-assets.py' : 'scripts/stage-fmvhd-assets.py', '--manifest', 'integrations/fmvhd/src/main/resources/fmvhd/assets.properties', '--output', layout.buildDirectory.dir('fmvhd/assets').get().asFile.absolutePath]
+    if(local.isPresent() && file(local.get()).isDirectory()) command.addAll(['--local', file(local.get()).absolutePath])
+    else if(!memberDelivery || local.isPresent()) command.addAll(['--local', layout.buildDirectory.file('fmvhd/videos.zip').get().asFile.absolutePath])
     final def execution = providers.exec { commandLine command }
     final def result = execution.result.get()
     logger.lifecycle(execution.standardOutput.asText.get())
@@ -82,7 +86,9 @@ tasks.register('fmvHdSourceBundle', Copy) {
   into layout.buildDirectory.dir('distributions')
   rename { 'FMVHD-v0.1.0-videos.zip' }
 }
-tasks.named('definitiveFileDelivery') { dependsOn tasks.named('fmvHdSourceBundle') }
+tasks.named('definitiveFileDelivery') {
+  if(providers.gradleProperty('currentDeliveryFormat').getOrElse('2') != '2') dependsOn tasks.named('fmvHdSourceBundle')
+}
 
 tasks.register('originalMovieSourceProbe', JavaExec) {
   dependsOn testClasses

@@ -52,3 +52,79 @@ Never delete before the replacement is verified.
 These headless controls establish publication and manager behavior. They do not
 establish physical Steam Deck rendering, movie performance, or final artwork
 acceptance.
+
+## Member-level activation
+
+The reviewed Python/Java foundation can be selected for a source-bound release
+build by dispatching `build.yml` with `releaseTag=definitive-current` and
+`deliveryFormat=2`. New release dispatches and current publisher/stager commands
+default to `2` after source adoption; already running format-1 jobs retain their
+pinned source and selection. Explicit `deliveryFormat=1` and
+`--delivery-format 1` remain pre-GC compatibility controls only while the pinned
+aggregate source ZIP is retained. After verified format-2 public acceptance and
+GC remove that ZIP, a clean format-1 build fails closed on the missing pinned
+source; there is no post-GC legacy support or older-client bridge. Ordinary CI
+and local Gradle builds default to split, checksum-pinned per-film staging; an explicit
+`-PcurrentDeliveryFormat=1` retains the aggregate ZIP build/export path. The same
+selection reaches every workflow Gradle invocation. Default film staging binds the 18 logical source contracts to the current
+carrier's fresh uploaded API IDs, hashes, sizes and exact origin, verifies the
+17 physical byte objects, and refuses a changed carrier before promoting its
+owned build output. Both format-1 and format-2 carrier states are supported; a
+format-2 carrier must additionally close its old committed film descriptors
+against the fresh API inventory. Candidate build inputs are independently bound
+to the new Git source contract and fresh immutable IDs, so ROOT can preseed one
+approved changed film while the runtime pointer still names the old revision.
+The build neither uploads sources nor advances that pointer. Its source receipt
+records each candidate film ID/hash/size and the carrier ID. The fresh carrier
+and both old/candidate source bindings are rechecked after every candidate byte
+has been copied, immediately before any existing build-output rename.
+No aggregate source ZIP is needed by a clean format-2 build or included in its publication closure.
+
+The compile/package and package-restaging workflow steps receive the ephemeral
+GitHub job token with repository `contents: read` and `actions: read` permissions
+for bounded carrier metadata reads. CI receives no publication capability. A
+local default film build requires the GitHub CLI with authenticated read access
+(or a read-only `GH_TOKEN` supplied by the caller), alongside the Java build
+toolchain. The metadata helper inherits this read authentication. Credentials are never
+written to receipts or build output; no anonymous local fallback is claimed.
+
+ROOT selects the matching stager/publisher with `--delivery-format 2`; a different
+CI receipt format fails closed. CI member plans are canonical, checksum-bound,
+ID-free `assembly-plan-<platform>-<sha>.json` inputs in the one-day delivery
+artifact. They are never published as runtime recipes. The publisher proves the
+planned concatenation again, binds each source to its fresh exact same-carrier
+asset ID, uploads `assembly-<platform>-<sha>.json`, verifies both platforms' complete
+managed inventories and all 18 logical movie descriptors, then commits the
+format-2 pointer last. Shared enhanced film hashes retain one physical object and
+ID. The source movie contract and the verified managed manifest must agree before
+any publication uploads.
+
+All printable-ASCII ZIP/JAR managed paths of at least 1 MiB use bounded exact raw
+entry spans; smaller archives and non-ASCII paths retain ordinary whole-file
+objects. Changed spans share immutable bundles of at most 16 MiB. Both the target
+whole-file SHA/size and each source span are proved against the build's complete
+inventory. Existing committed format-1 whole archives seed the initial catalog;
+later committed format-2 recipes seed bundle and baseline-source catalogs. Every
+catalog source is checksum/size/ID bound and every candidate range is rehashed.
+Publisher/CI download volume can include complete retained sources to prove the
+catalog. Public upload volume contains only missing bundles and ordinary blobs,
+plus small descriptors/bootstrap files. The publisher reserves its final recipe
+and pointer asset slots before uploads within the total 1,000-asset budget.
+
+Retention reopens both immutable recipes, validates their descriptor/source/
+platform/carrier bindings against the publication receipt, reconstructs the
+package/source closure and checks every transitive source's exact server ID,
+checksum, size, uploaded state and origin. A baseline whole archive remains in
+the current release for as long as any current recipe span references it.
+Missing recipe/source references stop deletion. Unknown assets and newer staged
+files remain protected. Active drafts or newer/active candidate builds still
+require an explicit complete reference audit; this activation does not bypass
+that guard or claim that ongoing candidate builds have been audited.
+
+Local focused tests cover exact-byte mixed-source publication, retry and pointer
+failure behavior, later-generation bundle reuse, corrupt/unbounded plans,
+18-logical/17-physical film sharing and transitive GC. Production acceptance still
+requires independently reviewed exact-source two-platform CI, a serialized ROOT
+publication, anonymous public recipe/source and range verification, and managed
+Update/Repair/Reinstall verification against the actual carrier before cleanup.
+No game, artwork, GPU or physical Steam Deck acceptance is inferred.
