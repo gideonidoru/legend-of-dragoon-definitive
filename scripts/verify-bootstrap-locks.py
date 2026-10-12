@@ -25,7 +25,7 @@ for kind, source_name, lock_name in (
     source = subprocess.check_output(['git', 'show', f'{options.source_ref}:{source_name}'], cwd=repo, text=True) if options.source_ref else (repo / source_name).read_text()
     for scenario in ('whole-group-kill', 'parent-kill', 'legacy-directory', 'linked-lock'):
         with tempfile.TemporaryDirectory(prefix='definitive-lock-fixture-') as directory:
-            root = Path(directory)
+            root = Path(directory).resolve()
             tools = root / 'tools'; tools.mkdir()
             cache = root / 'cache'; cache.mkdir()
             def tool(name, body):

@@ -3,7 +3,19 @@
 set -euo pipefail
 umask 077
 ROOT="${1:?Choose a runtime storage directory}"
-[[ ! -L "$ROOT" ]] || { echo 'Choose a real runtime storage directory.' >&2; exit 1; }
+# Inspect every lexical component, including links before .., before any cache IO.
+require_real_path() {
+  local rest="$1" prefix='' part
+  [[ "$rest" == /* ]] || rest="$PWD/$rest"
+  rest="${rest#/}"
+  while [[ -n "$rest" ]]; do
+    part="${rest%%/*}"
+    if [[ "$rest" == */* ]]; then rest="${rest#*/}"; else rest=''; fi
+    prefix="$prefix/$part"
+    [[ ! -L "$prefix" ]] || { echo 'Choose a real runtime storage directory; parent folders must not be linked.' >&2; return 1; }
+  done
+}
+require_real_path "$ROOT"
 is_java25() { "$1" -XshowSettings:properties -version 2>&1 | grep -q 'java.specification.version = 25$'; }
 if [[ "${DEFINITIVE_MANAGED_JAVA:-0}" != 1 && -n "${JAVA_HOME:-}" && -x "$JAVA_HOME/bin/java" ]] && is_java25 "$JAVA_HOME/bin/java"; then printf '%s\n' "$JAVA_HOME/bin/java"; exit 0; fi
 # Reviewed upstream release: https://github.com/corretto/corretto-25/releases/tag/25.0.4.10.1
