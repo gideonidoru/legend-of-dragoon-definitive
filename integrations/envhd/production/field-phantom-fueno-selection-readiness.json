@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "scope": "Two source-art/code-cleared development repairs selected; all74priorrecipes and4960runtime records exact. Fresh package and independent main review pending.",
+  "integrationBaseCommit": "5d857a672f1f6aef60749ea67a4337d179b75736",
+  "authoringSourceCommit": "c3d0ee6f8136856d6b0ae20800d4e62ef127871a",
+  "selectionManifest": "field-bespoke-phantom-fueno-reviewed-selection.json",
+  "selectionManifestSha256": "8388460d16c4486b5a123b8e04517dfaabe7fae74ac4819db05065e9ecf0ce81",
+  "independentAuthorReview": "field-independent-phantom-fueno76-code-review.json",
+  "independentAuthorReviewSha256": "48a5d21bf62e3269c04b949defbc5a64da2e909954473c1fb8940f52b8bd028e",
+  "fieldRuntimeSha256": "8b187d0d794ed53b416b5f5cab5347d3e8ba34f23e9fafaad36575f92592466c",
+  "currentSourcePreflightCandidates": 76,
+  "currentSourcePreflightLogSha256": "0080c58f360b1c24b6f461aafa35b386a3a8ad7974d4354e2cebc005ef91bb40",
+  "sourcePreflightAndSelectionSinglePass": true,
+  "priorSelectedCandidateRecordsExact": 74,
+  "priorRuntimeAssetRecordsExact": 4960,
+  "onlyAddedSourceKeys": [
+    "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+    "a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f"
+  ],
+  "protectedCutsExact": true,
+  "selectedFields": 4962,
+  "selectedPaintings": 76,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 200,
+  "knownRemainingStaticImages": 201,
+  "tests": {
+    "helper": {
+      "passed": 6,
+      "privateLogSha256": "047c2e497076163be341c340a5ccea3247a1c55461a5c753250c112a0d3932df"
+    },
+    "field": {
+      "passed": 60,
+      "privateLogSha256": "7f9b414049da2b9a47a84877315a1b2bb3ad3fc73bba2d1cef1f290b69db0645"
+    }
+  },
+  "mainVerifierSha256": "6592cf14b6932c7f6862531eb9ab4b49e99b072fe8f3c19570b8477c2d346ac6",
+  "rgbLocalPatchHelperSha256": "d34c70fd79c7d9c0566f6cec8a34f928420f4436bd123f97333385034ffe1cb5",
+  "oldCargoHelperAndRecipesUnchanged": true,
+  "phantomOriginalRgbPixelsExact": true,
+  "phantomPixelsOutsidePatchExact": true,
+  "phantomSourceBox": [
+    0,
+    0,
+    14,
+    39
+  ],
+  "coralAspectFailureStillHeld": true,
+  "freshPackageVerified": false,
+  "authoringBranchPreservesAllHistoricalCustomVersions": true,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesAndPrivatePathsExcluded": true
+}

@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "scope": "Original-art development review only; code/provenance and runtime selection pending.",
+  "sourceKey": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+  "outputSha256": "211dd997eaba75e186677d4d99995a6033b0bfe0bd8d9726d7e479b05294a05d",
+  "privateFullArtReviewSha256": "e64eedb97e850ee24d9d166ade102a3cb983c11dd075f6766e3357889d5b6a0c",
+  "sourceBox": [
+    0,
+    0,
+    14,
+    39
+  ],
+  "result": "CLEAR",
+  "disposition": "clear-development-intent",
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "runtimeSelected": 0,
+  "originalSourcesAndPrivatePathsExcluded": true,
+  "observedReasons": [
+    "The patch restores separated subdued cyan/grey weathering groups with dark blue intervals. The prior large connected near-white zigzag stripe is gone; upper faint marks, middle pale patches and the lower-left light group follow the original spatial arrangement at delivered4x scale.",
+    "Painted grain and small worn-pigment detail fit the dim blue/green original surface without a newly resolved emblem/person/bright stripe or new raised geometry. The complete static room placement has no obvious patch-boundary seam or relit showcase region.",
+    "The lower diagonal band retains the earlier corrected native40\u201342 position and upward-right lean. All pixels outside source[0,0,14,39] are exact to the previous repaired image, preserving the central dark groove, green stepped right face and base."
+  ],
+  "findings": [],
+  "limits": "All eight requested original/guide/scene/prior/new/raw/comparison/placement PNGs actually viewed. Source proof reused and hashes independently checked; no census/source decode/test/build/repair/generation/UI reruns. Static source-intent development clearance only; native/gameplay/Deck/campaign/final beauty unaccepted."
+}
