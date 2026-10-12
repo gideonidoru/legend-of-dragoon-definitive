@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "d06e5e4b92080d1759815f6bea0d676b4919ca055e381507fb3f731010d6531a",
+    "battle-material-runtime-artwork.json": "95af427a1fa3a8b3edc37767f8d3534083ae29ad069ac1c652104e8103d8781d",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "b66801d59920f82f0e75d424ffee1aafd7d6d010c8520ce3f155dd9fcd9e8047"
+    "battle-presentation-artwork-v1.json": "d5db1a80eff1c51598b8fac8d45499bfbd6e7c9ca0c1b6b7c7f2701b74855360"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 38,
-    "newlySelectedBespokeMasters": 38,
-    "baselineMastersStillNeedingPresentationReview": 468,
+    "newBespokeCandidates": 40,
+    "newlySelectedBespokeMasters": 40,
+    "baselineMastersStillNeedingPresentationReview": 466,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -109,7 +109,10 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "204ef93329e77f624abcdda0a09cfb650f97f3bf3046425f9ab78cb6f449556d",
+        "219c29330050e8def8d6c96d9c17bc2ab8ef7a8c0d5061d5ca333a9f3cd1307f"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1876,7 +1879,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {3: [0]}. Source family: dim brown corridor and mottled earth/rock surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1907,7 +1910,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {3: [0]}. Source family: dim brown corridor and mottled earth/rock surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
