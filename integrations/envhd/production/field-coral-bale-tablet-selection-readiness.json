@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Three independently art/source-cleared development repairs selected; all76 prior recipes and4962 runtime records exact. Fresh package and independent main review pending.",
+  "scope": "Three independently art/code/source-reviewed development repairs selected and exact five-file package verified. All76 prior recipes and4962 runtime records exact; coordinated merge/publication and native/device/final acceptance remain separate.",
   "integrationBaseCommit": "9650daf025c91bd8b2c819a3bec8a25dd431e237",
   "authoringSourceCommit": "74c9e9be9078c9461c133bd6f507e0fb3a517f45",
   "selectionManifest": "field-bespoke-coral-bale-tablet-reviewed-selection.json",
@@ -38,7 +38,7 @@
   "paddedCropHelperSha256": "939125d63c15725d6c91637eb981ccbf8c667b5b13c52061d5a91345c3ba7676",
   "originalCutoutHelperUnchanged": true,
   "cropProtocol": "Existing pinned authoring helper ported narrowly; original builtin raw retained, explicit96x64 origin16,23 silhouette/crop receipt replayed before original categorical visibility repair.",
-  "freshPackageVerified": false,
+  "freshPackageVerified": true,
   "authoringBranchPreservesAllHistoricalCustomVersions": true,
   "skurfaRegenerated": false,
   "engineChanged": false,
@@ -47,5 +47,66 @@
   "publicReleasePublished": false,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "originalSourcesAndPrivatePathsExcluded": true
+  "originalSourcesAndPrivatePathsExcluded": true,
+  "testedSourceCommit": "8ccc5cc05b2b2054b717c979472d6dd48d778680",
+  "independentMainReview": {
+    "reviewedSource": "8ccc5cc05b2b2054b717c979472d6dd48d778680",
+    "axes": {
+      "spec": {
+        "result": "CLEAR",
+        "findings": 0,
+        "sourceCommit": "8ccc5cc05b2b2054b717c979472d6dd48d778680",
+        "privateFullReportSha256": "fc398945f34634faa2ff63b2d37ae1094c2de4a218466e4b677c4c0facc1365e"
+      },
+      "standards": {
+        "result": "CLEAR",
+        "findings": 0,
+        "sourceCommit": "8ccc5cc05b2b2054b717c979472d6dd48d778680",
+        "privateFullReportSha256": "80a577eeb83c31e3d452a84d90d04443cd06d7eaf8a39bcc46312d92a1dc144b"
+      }
+    }
+  },
+  "package": {
+    "sourceCommit": "8ccc5cc05b2b2054b717c979472d6dd48d778680",
+    "sourceBindingSha256": "fa64aba71b94d3413d86d6360471343198dfcf33e4c0e3f590b16a30b6d5e161",
+    "files": {
+      "Env1HD-v0.1.0.zip": {
+        "size": 552630727,
+        "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8"
+      },
+      "Env2HD-v0.1.0.zip": {
+        "size": 573837672,
+        "sha256": "52c6ede383e665f6565e4dc972f6c7ca479bb3b12f620fb385e1e0a6a2fa3aa8"
+      },
+      "Env3HD-v0.1.0.zip": {
+        "size": 572251763,
+        "sha256": "38c3b4a9abfd270a99f9f1b0ff94902d2fea8d11b5b101801d4a718bc213a5c9"
+      },
+      "Env4HD-v0.1.0.zip": {
+        "size": 673976617,
+        "sha256": "480d9f1cedb9533f3be26fabf83bd038fc4fdf786f53bfded7e9afb3f6b745d7"
+      },
+      "EnvHD-v0.1.0.jar": {
+        "size": 278860762,
+        "sha256": "271216b6983f1d7c8c32edd99124a0f33bd049df9ab993ea570c9d38e569ff7c"
+      }
+    },
+    "rebuilt": [
+      "EnvHD-v0.1.0.jar",
+      "Env3HD-v0.1.0.zip",
+      "Env4HD-v0.1.0.zip"
+    ],
+    "reusedExactPreviousPacks": [
+      "Env1HD-v0.1.0.zip",
+      "Env2HD-v0.1.0.zip"
+    ],
+    "previousSource": "5b8e20cb55b06a2ca1e28f8f41aceaae9eeee553",
+    "buildLogSha256": "7621d251cb5fad5e6d234a5754d1551981ff075bbc7ccc46b3bd7c0794642eee",
+    "verificationLogSha256": "828df7c95851328a8fc841627f604100298ad587d558ce001f16e6389ea7742c",
+    "verifiedFields": 4965,
+    "verifiedJarResources": 5351,
+    "resourceParts": 4,
+    "modIds": 1,
+    "meaning": "Immutable exact-source package; no combined engine/installer publication or device acceptance asserted."
+  }
 }

@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "9650daf025c91bd8b2c819a3bec8a25dd431e237 plus three independently cleared coral/Bale/tablet v4 repairs",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "38839db689ed5f7ecbcedf06557d41fe7390fef7f635c0356953f9e4e7fed187",
+    "full-coverage.json": "b8ab529f8ae453259652e78e78c251746cccbdf6f369cd87cb2e1ac2c00a6771",
     "field-runtime-artwork.json": "6051096e26d5552aea245d42468badbf2e6e6379f6d904ccdbcfe4e8535ff850",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "e499387937c77466a63770866a01e376d5385f136f04c0b1db405077f0a8d0a3",
@@ -75,7 +75,7 @@
     "field-coral-bale-tablet-v4-independent-art-review.json": "3fb80c2a5b131e1f00e1e3099d0bb05282a5dd52ee83a0d75da0d16e38a7f8f7",
     "field-coral-bale-tablet79-authoring-readiness.json": "ce0a8a90034f01a3da20c8992b7301e8ce02b0ff7890c56729dce501a0fda825",
     "field-independent-coral-bale-tablet79-code-review.json": "8e28aab5388546425eb027e133667d037a80b69b38865e741a7f969de3d31553",
-    "field-coral-bale-tablet-selection-readiness.json": "cf172cf5dea70d47e089709a94122a57f8b1b0fb4b667c156c04429916ff2fd7"
+    "field-coral-bale-tablet-selection-readiness.json": "cd48a482675121c0281f4d5310e58f293b7342ae118f11fd8073dd38ba989218"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -189,6 +189,15 @@
         "source": "2534925f60620d387339ced84c37a9d88eb1a3db",
         "clearedSelected": 1,
         "receipt": "field-independent-cargo-local-patch-review.json"
+      },
+      "coralBaleTabletV4": {
+        "selectedDevelopment": 3,
+        "selectedPaintings": 79,
+        "exactSource79Preflight": true,
+        "independentMainReview": "CLEAR both axes",
+        "packageVerified": true,
+        "packageSource": "8ccc5cc05b2b2054b717c979472d6dd48d778680",
+        "mainMergePending": true
       }
     },
     {
