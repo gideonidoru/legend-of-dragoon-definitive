@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "scope": "One corrected existing balcony painting, registered by the unchanged approved helper. Independent exact-source development review; originals and diagnostic image paths excluded.",
+  "sourceReviewCommit": "414c001f85e446ccdaa86f74e8575a8622ddd6d0",
+  "sourceManifest": "field-bespoke-balcony-registered-held-draft.json",
+  "sourceManifestSha256": "a728ced4fc64df0e22275633dd916e89d47a91b62d6eae1e9c59d553c7568a46",
+  "independentAxes": {
+    "spec": {
+      "reportSha256": "b7fae4d8a9585325bdcabbceb968fc24b2f188f15cd79e31003909bc6ece0138",
+      "sourceCommit": "414c001f85e446ccdaa86f74e8575a8622ddd6d0",
+      "result": "CLEAR",
+      "findings": 0
+    },
+    "standards": {
+      "reportSha256": "b38fddc9aed8da68563ed500bfee0c711f7acf19771a00fa8578b44b2c6d27ed",
+      "sourceCommit": "414c001f85e446ccdaa86f74e8575a8622ddd6d0",
+      "result": "CLEAR",
+      "findings": 0
+    }
+  },
+  "perSource": [
+    {
+      "sourceKey": "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
+      "disposition": "CLEAR",
+      "reason": "Registered top/bottom curve and crop match native source layout without the old vertical upper-edge colour streaks. Seven subdued matte teal marks retain source count and positions; cap is muted brown/gray and front diffuse dark umber-gray, with no gold speckling, jewel glints or socket-like outlines needing a hold. Static scene placement retains original night illumination and nearby architecture. Marks are more readable in HD but remain restrained rounded fittings, without new motif identity.",
+      "generatedSha256": "480911019dbe61ff77d0b883f8a968089e013e5e24261d1d84530a1be7ee6e86",
+      "registeredInputSha256": "a3333b0724b0319035a4be950b82b44df17954bc2b3722bfae590d81edcd03f8",
+      "outputSha256": "71578f9831408ece0eb09e5271bf22725254558e15edd9519605b8216fcaed55",
+      "registration": {
+        "method": "python-painted-cutout-perspective-registration-1",
+        "algorithmSha256": "7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784",
+        "sourceQuad": [
+          [
+            0,
+            40
+          ],
+          [
+            102,
+            0
+          ],
+          [
+            102,
+            22
+          ],
+          [
+            0,
+            74
+          ]
+        ],
+        "paintedQuad": [
+          [
+            0,
+            45.107
+          ],
+          [
+            102,
+            0
+          ],
+          [
+            102,
+            23.835
+          ],
+          [
+            0,
+            74
+          ]
+        ],
+        "sourceSize": [
+          102,
+          74
+        ],
+        "targetSize": [
+          408,
+          296
+        ],
+        "scale": 4,
+        "resampling": "bicubic",
+        "sourceAlphaApplied": false,
+        "algorithmPath": "scripts/register-envhd-painted-cutout.py",
+        "registeredInputSha256": "a3333b0724b0319035a4be950b82b44df17954bc2b3722bfae590d81edcd03f8"
+      },
+      "standaloneRawCoverageStillRejected": true
+    }
+  ],
+  "runtimeSelectedByReview": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0
+}
