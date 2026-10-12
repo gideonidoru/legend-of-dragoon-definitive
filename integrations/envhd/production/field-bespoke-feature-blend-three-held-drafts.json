@@ -1,0 +1,314 @@
+{
+  "schema": 1,
+  "scope": "Three built-in AI refinements of held source-feature prototypes: two structural repairs, one unchanged-aspect failure. All remain unselected, with no new unique source count; no helper/pipeline change.",
+  "authoringSourceCommit": "bdfecbad260e63eb3eed1a7d6147b8e8703553a4",
+  "mode": "builtin-imagegen-edit-batch",
+  "parentFeatureManifest": "field-bespoke-source-feature-three-held-drafts.json",
+  "generatedVersions": 3,
+  "repairedVersions": 2,
+  "aspectFailures": 1,
+  "newUniqueSourceImages": 0,
+  "holdsCleared": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc",
+      "generatedSha256": "d3ceef8eac5dad2e35ace5f7f1f9de00aac1f39b1b74b104e45dcd4b95929e36",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit. Asset type: isolated transparent EnvHD game texture, Aglis cut577 foreground3. Image1 is the existing restored HD cutout edit target. Image2 is the authoritative 68x66 original, controlling structure, faint markings and color. Refine the soft patch in the middle/lower sloping face into coherent, restrained hand-painted HD texture matching the surrounding surface. Preserve the original unequal scattered pale traces; they must stay faint, broken and irregular, never a readable U, letters, glyph, logo or carving. Remove the remaining raised U-like edge where it crosses the patch. Blend the patch without a visible rectangular boundary or pixel grid. Keep fine texture subdued; soften overstated deep cracks and raised outline seams to the original shallow shaded surface. Preserve exactly the native silhouette, overlapping curves/ridges, left openings, internal dark areas, placement, crop, cool dark teal palette and small muted reddish right edge. Do not infer a creature or inscription. Same isolated full-canvas cutout on genuine transparency; no repositioning, cropping, new objects, background, text or relighting. Return only the repaired texture.",
+      "parentFeatureManifest": "field-bespoke-source-feature-three-held-drafts.json",
+      "parentOutputPath": "integrations/envhd/production/held-field-art-drafts/5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc/draft-feature-detail-v1.png",
+      "parentOutputSha256": "7e82a11b26cdc4c2c4230651b8a14aea86bc7b58aeaf6deb78d568307df321d3",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "c7766b79738fa280345932b565ecf0c6af4394ca24fb5574c86f0f409662fe72:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "45fa10eebb226185dce25abd910c9f2bc64eabe026a7c7c0883159a371b20cea",
+          "size": 492
+        },
+        {
+          "index": 1,
+          "sha256": "fc46c99c8d0d15a7a329ecda873141f656a75eba14fab99f0237f14ca7849989",
+          "size": 1620
+        },
+        {
+          "index": 2,
+          "sha256": "1303e6719ff925a70746d1bae518ce75559bdf3a3191ba8b6610440ec9307ff8",
+          "size": 1212
+        },
+        {
+          "index": 3,
+          "sha256": "87ebf004b188cff36e7e49513a5722f025b836c3fcb33f8e29eef777cf0d5fa8",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "0004bcb9f70fc50db80714feb278c3ad0be502d4e3ae54023c9c83680a13ece9",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "9f4552bdf527959a45a11d2dc8e0cc65aa3bbc981f88919f74a153e3c3386b03",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "c4fec52a852b2c55b352759fd34c66971334f7d6f7cae32773270c41ec7615b3",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "1aa5a84bce905fa84723c2d3dd4a5c06a94f03fdbc88cfc7940910ef4b3c9070",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "a0e0b6caf41ace55fc434f2c65fc78b415e99c8198416d2feff10e133e279f7f",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "130d0d2052744937ca5e739174347c1aff9fdc292b868a661eac450c72ba6018",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "Aglis",
+      "representativeCut": 577,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": false,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairError": "ValueError: Painted cutout changed the source canvas aspect ratio",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc/draft-feature-blend-input-v1.png",
+      "verdict": "held-unchanged-aspect-failure",
+      "reason": "Generated square canvas fails unchanged source-aspect guard. Preserve raw custom input only; no output or gate waiver.",
+      "visualEvidenceViewed": "All raw outputs and both repaired source/output comparisons inspected. No native gameplay inspection."
+    },
+    {
+      "decodedRgbaSha256": "54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101",
+      "generatedSha256": "1833e5cfbdc610f12a781b0ba89ecc70234a04e2a87f73bf6a21aa29ad510125",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent EnvHD game texture, Aglis cut711 foreground1. Image1 is the existing restored HD cutout edit target. Image2 is the authoritative 76x82 original, controlling geometry, markings and illumination. Refine the soft lower-right support patch so it has coherent subtle hand-painted HD surface, with no rectangular blur boundary or pixel grid. Keep the original sparse unequal pale marks as soft weathered irregular strokes exactly following Image2, not a legible F, rune, inscription or freshly painted sign. Simplify the heavy crack network on the purple curved upper surface and gray-green lower support to subdued original surface variations; retain original smooth broad purple illumination and dark curved parallel ridges, avoiding jagged rock plates or carved stone identity. Reduce the overly sharp bright purple-white band to the diffuse original light. Preserve silhouette, dimensions and crop, curve/ridge count, dark internal void, lower support width, native dark exposure and cool purple/green-gray colors. Genuine transparency; no new decorations, objects, text, background, cropping, repositioning or relighting. Return only the repaired texture.",
+      "parentFeatureManifest": "field-bespoke-source-feature-three-held-drafts.json",
+      "parentOutputPath": "integrations/envhd/production/held-field-art-drafts/54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101/draft-feature-detail-v1.png",
+      "parentOutputSha256": "35202ef501bdfa27a7b5c0587f9b41d9258b047db02c5472eab6e9473f7f8022",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "95df0a811b8c91b4aaeea710e6ab58f0cfa7cc4607724098e067f5ad55cd5ca2:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "1c00cee4fecd59469d715379c50f6c31307b67100a49a44e6cd96c6d8206d516",
+          "size": 204
+        },
+        {
+          "index": 1,
+          "sha256": "9b14915a0f7cf6334c26d5b7b15398e515cbf069bad3a65a3a312c1890e9bcb6",
+          "size": 1368
+        },
+        {
+          "index": 2,
+          "sha256": "328ec43a7bbfaca7a6fef585fa57d19056b42465c2afe56974eee770812b3061",
+          "size": 1072
+        },
+        {
+          "index": 3,
+          "sha256": "24daebfa46343943cfaaea6422aeb1ed55d494729188831af3efbd71ed23d913",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "398974afdf78c85bf33e0b34d1bed2db6be05d61d5993ecd6807198052fd23df",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "fed86acb5d1a278845b972daca73bb9ba460a3806180ac792c12ba3416a0928d",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "3b7c9db4b037ba3c8522b8f9777bef0629c76d0bfc4cbcde319f26b3d9da2ee7",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "Aglis",
+      "representativeCut": 711,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 66112,
+      "paintedGapPixelsExtended": 2262,
+      "paintedUncoveredSourcePixels": 2079,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 2192,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "outputSha256": "1b774e55fb6790e563562f3c2f6b56c9bcbb7043f517021d545533ff1b5b419a",
+      "sourceSize": [
+        76,
+        82
+      ],
+      "targetSize": [
+        304,
+        328
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101/draft-feature-blend-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101/draft-feature-blend-repaired-v1.png",
+      "verdict": "held-fidelity-review-or-revision-needed",
+      "reason": "Soft rectangular patch is reduced and purple cracking is quieter, but pale support strokes remain very coherent and bright; original mark/exposure fidelity needs independent review or correction.",
+      "visualEvidenceViewed": "All raw outputs and both repaired source/output comparisons inspected. No native gameplay inspection."
+    },
+    {
+      "decodedRgbaSha256": "44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283",
+      "generatedSha256": "52c0cb44e777851cfea0f7ac4c4316af3596aef08617b1a6d6d7c9480db3897f",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent EnvHD texture, Twin Castle cut228 foreground8, three stacked blue hangings and their original green-gray supports. Image1 is the existing HD cutout with soft restored mark patches, the edit target. Image2 is the authoritative 162x256 original, controlling every mark, hanging, band, fitting and proportion. Blend only the restored pale-cloth marking patches into restrained finely painted woven cloth, removing rectangular soft patches and pixel-grid transitions. Preserve the original irregular sparse ochre flecks and unequal positions: do not turn them into symmetric stars, six-ray marks, crosses, heraldry, repeated symbols, letters or a new emblem. Keep the original bottom curved border-band paths/count and plain smooth broad fittings as Image2; avoid adding ornamental flanges, carved filigree or new bracket joints. Preserve the three uneven hangings, blue upper fields, teal lower fields, muted ochre edging, original dark translucent-looking gaps, support angle and exact native cropped silhouette. Coherent polished hand-painted HD game-art finish, subtle weave, original dim cool lighting, no bright product-style lighting. Full original canvas and framing with genuine transparency; no recentering, duplication, added objects, background, text or decorative motifs. Return only this texture.",
+      "parentFeatureManifest": "field-bespoke-source-feature-three-held-drafts.json",
+      "parentOutputPath": "integrations/envhd/production/held-field-art-drafts/44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283/draft-feature-detail-v1.png",
+      "parentOutputSha256": "f4453b6dababf6f7cf84637c549c93702889e8584479b93a784e322b620df165",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1185d641e3cb7d4645bffd9e0d387bbfe3e625432970a2a7300ca1b25eef4e60:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "0ad49278f61583fb6b25c37a49a4d5565e8ce6f308914955086b5e5e37c51cad",
+          "size": 672
+        },
+        {
+          "index": 1,
+          "sha256": "bb80215d2c46569ba12cafa0787b73cdc52a278e334b240a930ffb013d367437",
+          "size": 3060
+        },
+        {
+          "index": 2,
+          "sha256": "55ed327bb2ade535d3c0c454f25cd2fcc932696f76130f3f2c562885974655b2",
+          "size": 2156
+        },
+        {
+          "index": 3,
+          "sha256": "e1bb0ca7ec13b309fe98f41820328996dde200f4ec63352e322b00cdf770ffb0",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "74c5567024adca406faf442b81fbb57487014dc3bffe20cd94f1bf8184fbb2f9",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "3e10207d01cf85ad54ef7662d8dd4279f71a01838f062f7c5cd90b9d0d783207",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "bf0d964b0bf31d850fcbd4e082ffb15afd57f8fa9968839bd65e4cc6a3ecd36c",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "d0d6272b1d17a1711bd588de63295f517236f3cb75ee65e66e34095c0d773c30",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "36869e2e49a714bf57f1aeafde88f6172f73fcc5c2e4a18dcb83e02c3e30e16e",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "db0d9e049fecdd1879a6f0007dd24d57740d2e8835f969119001aa0906439be0",
+          "size": 33312
+        },
+        {
+          "index": 10,
+          "sha256": "3f72f05ac306c7f7abfad47e932cb5f3fad22e8d8677144b088857196b92b8bc",
+          "size": 33312
+        },
+        {
+          "index": 11,
+          "sha256": "db9483ee7391bb0c641d33a847a424cee42299ffa6b61ae0451b72deefcad32b",
+          "size": 66080
+        },
+        {
+          "index": 12,
+          "sha256": "120cbac06f986b23c548133a8b4b8372995e20e4ec6f07ed840582984e42cec7",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "Twin Castle",
+      "representativeCut": 228,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 330880,
+      "paintedGapPixelsExtended": 14304,
+      "paintedUncoveredSourcePixels": 10001,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 144,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "outputSha256": "726d8f78a1d8497cf8888d0205a3feadbd9e1245786f4a195dc2daff87d3b461",
+      "sourceSize": [
+        162,
+        256
+      ],
+      "targetSize": [
+        648,
+        1024
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283/draft-feature-blend-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/44e2e24f2d5cb7e6103125cdeda17df9e4810f91924a6707854360e93223b283/draft-feature-blend-repaired-v1.png",
+      "verdict": "held-fidelity-review-or-revision-needed",
+      "reason": "Soft patches are blended but six-ray symmetrical stars return instead of the original unequal ambiguous flecks. Retain held until markings, bottom-band paths and fitting restraint are source-faithful.",
+      "visualEvidenceViewed": "All raw outputs and both repaired source/output comparisons inspected. No native gameplay inspection."
+    }
+  ]
+}

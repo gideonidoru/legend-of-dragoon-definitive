@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "73295a68f8a4414c7b62ef9fa81ad60f8d3a8013 accepted four palace crops; ongoing83 authoring and all held versions preserved",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "6f6cda9eb4b301cce8562849057f0b23cf4718402d3771bd05fc3d2ab16b7c66",
+    "full-coverage.json": "401db52eb5fd732a378e719f28631f8251965c4cfb49891e5566578bc0432d3a",
     "field-runtime-artwork.json": "329409e16e896ec4bbae12bc581a8b55ff411b859b6fbf0f3e7b62891584777a",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
@@ -94,7 +94,8 @@
     "field-bespoke-palace-four-independent-reviewed-selection.json": "6a7a42680b7b366cc5229d60f48ce4e26d669fb34b5c89d1d9db0bfa8167a262",
     "field-independent-palace-eight-review.json": "e9294d2041c87fb89f2eefe95a9581f7deef3dc520ed63407dfa57c98cced006",
     "field-palace-four-selection-readiness.json": "bbab31df3eb7b417ae5421e8e683c5436230192a30db0277a9afd4de3e9b3d32",
-    "field-palace-authoring-main-forward.json": "b3cc9f1989709911cccc1672eb7efd6e21bd4b0b7024b83ec60a7ca2387e6c9e"
+    "field-palace-authoring-main-forward.json": "b3cc9f1989709911cccc1672eb7efd6e21bd4b0b7024b83ec60a7ca2387e6c9e",
+    "field-bespoke-feature-blend-three-held-drafts.json": "778c177cd02e578fa70f2f5bd9cf3f67a4dac7c21be2042efd08de6a39091e97"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -588,6 +589,13 @@
       "selectedNewSourceImages": 4,
       "independentReview": "field-independent-palace-eight-review.json",
       "reason": "Crystal Palace two-panel rail, rising rail and baluster/support, plus Twin Castle ornamented rim independently clear for development. Four other scoped crops require revision and stay excluded. Prior48/4934 exact."
+    },
+    {
+      "manifest": "field-bespoke-feature-blend-three-held-drafts.json",
+      "newUniqueHeldSourceImages": 0,
+      "heldSourceImages": 3,
+      "heldVersions": 3,
+      "reason": "Source-feature blend refinements held:two structural repairs/one unchanged-aspect failure; native marks and lighting still need source-fidelity review."
     }
   ],
   "publication": {

@@ -300,3 +300,8 @@ The [complete52-painting selection](../../integrations/envhd/production/field-be
 ## Ongoing authoring after palace integration
 
 Accepted main selects4,938 fields with52 paintings; all83 historical recipes and every prior custom/held byte remain preserved. Current queue18 independent-pending/13 reviewed revisions and72 unique unselected custom source keys within224field holds. Organic/scenic and local-feature prototypes remain held separately. Known static remainder225 includes224fields and one terrain repair; animation/props denominators remain unresolved. Native/state/campaign/final acceptance is pending.
+
+
+## Held source-feature blend refinements
+
+[Three built-in edit refinements](../../integrations/envhd/production/field-bespoke-feature-blend-three-held-drafts.json) retain every earlier prototype. Two pass the unchanged cutout repair; one fails the original aspect guard and retains raw custom input only. Aglis support mark/exposure fidelity remains pending; Twin Castle introduces symmetrical stars again and needs correction. All remain held, adding no selected or unique source images. The independently cleared sixteen-image integration proceeds separately. Custom inputs, outputs and prompts are versioned; original crops and diagnostics stay private.
