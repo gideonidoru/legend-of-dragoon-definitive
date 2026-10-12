@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL;
 
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.file.*;
 import java.util.*;
 
@@ -76,6 +77,15 @@ final class UiHdPreparedFontGpuProbe {
     }
     return count;
   }
+  private static boolean insideControlledScissor(final Pixels pixels) {
+    // Production GlApi.scissor maps our 96x48 projection to this 192x96 output.
+    for(int y = 0; y < HEIGHT; y++) for(int x = 0; x < WIDTH; x++) {
+      final int p = (y * WIDTH + x) * 4;
+      final boolean visible = (pixels.colour[p] & 255) != 51 || (pixels.colour[p + 1] & 255) != 51 || (pixels.colour[p + 2] & 255) != 51;
+      if(visible && (x < 20 || x >= 80 || y < 48 || y >= 80)) return false;
+    }
+    return true;
+  }
   private static void save(final Path directory, final String name, final Pixels pixels) throws Exception {
     Files.write(directory.resolve(name + ".rgba"), pixels.colour, StandardOpenOption.CREATE_NEW);
     Files.write(directory.resolve(name + "-emission.rgba"), pixels.emission, StandardOpenOption.CREATE_NEW);
@@ -108,10 +118,15 @@ final class UiHdPreparedFontGpuProbe {
       target = FrameBuffer.create("Prepared glyph output", builder -> {
         builder.attachment(FrameBufferAttachmentType.COLOUR, colour); builder.attachment(FrameBufferAttachmentType.COLOUR, emission); builder.attachment(FrameBufferAttachmentType.DEPTH, depth);
       }); target.bind(); api.output = glGetInteger(GL_FRAMEBUFFER_BINDING);
+      // updateResolution uses ORIGINAL's 240px height; this owned component output is 96px.
+      // Keep the actual clipping API's dimensions equal to the framebuffer and viewport.
+      api.resize(WIDTH, HEIGHT);
       GameEngine.GPU.vramTexture15 = api.makeTexture(org.lwjgl.BufferUtils.createIntBuffer(1024 * 512), "Source-bound font VRAM", 1024, 512,
         TextureInternalFormat.R_32_UINT, TextureDataFormat.RED_INT, TextureDataType.UINT, false, false, false, false); GameEngine.GPU.vramTexture15.persistent = true;
       final var batch = (RenderBatch)field(GameEngine.RENDERER, RenderEngine.class, "mainBatch"); batch.setProjectionSize(WIDTH / 2, HEIGHT / 2); batch.setProjectionDepth(256);
       final var draws = new JSONArray(); final var controls = new JSONArray(); final Set<String> retained = new HashSet<>();
+      report.put("gpuSelectors", draws).put("gpuResourceControls", controls).put("gpuDimensions", new int[]{WIDTH, HEIGHT})
+        .put("gpuApiRenderDimensions", new int[]{WIDTH, HEIGHT}).put("gpuBatchProjectionDimensions", new int[]{WIDTH / 2, HEIGHT / 2});
       for(final String family : glyphs.stream().map(g -> g.source().event().id).distinct().toList()) {
         clear(); final var familyGlyphs = glyphs.stream().filter(g -> g.source().event().id.equals(family)).toList(); final var event = familyGlyphs.getFirst().source().event();
         final int[] original = memory(event); GameEngine.GPU.vramTexture15.data(0, 0, 1024, 512, TextureDataType.UINT, original); invoke(module, listener, event);
@@ -160,12 +175,24 @@ final class UiHdPreparedFontGpuProbe {
           final Pixels baseline = draw(obj, batch, api, target, colour, emission, false, true);
           require(NativeSpriteFont.register(UiHdPreparedFontGpuProbe.class, "synthetic-nearest", one.quad(), one.indices(), nearest(one.indices())), "Synthetic coverage control");
           final Pixels coverage = draw(obj, batch, api, target, colour, emission, true, true);
-          require(foreground(baseline) > 0 && foreground(coverage) > 0, "Controlled blend/scissor/tint oracle must render visible native and coverage pixels");
-          require(Arrays.equals(baseline.colour, coverage.colour) && Arrays.equals(baseline.emission, coverage.emission), "Controlled blend/scissor/tint preserves native RGBA attachments: " + family);
+          // Retain attachments and setup even when a strict visibility/equivalence control fails.
           save(gpuProof, family + "-synthetic-native", baseline); save(gpuProof, family + "-synthetic-coverage", coverage);
-          controls.put(new JSONObject().put("family", family).put("syntheticControlOnly", true).put("diagnosticLivePalette", "index0 transparent; indices1..15 STP green0x83e0")
+          final var memoryBytes = ByteBuffer.allocate(controlledMemory.length * 4).order(ByteOrder.LITTLE_ENDIAN);
+          for(final int word : controlledMemory) memoryBytes.putInt(word);
+          final var control = new JSONObject().put("family", family).put("id", one.entry().getString("id"))
+            .put("quad", one.quad().toString()).put("sourceSha256", hash(one.source().event().source()))
+            .put("controlledVramSha256", hash(memoryBytes.array())).put("clutAddress", clutAddress)
+            .put("syntheticControlOnly", true).put("diagnosticLivePalette", "index0 transparent; indices1..15 STP green0x83e0")
             .put("blend", "HALF_B_PLUS_HALF_F").put("alpha", .5).put("tint", .75).put("scissor", new int[]{10, 8, 30, 16})
-            .put("nativeForegroundPixels", foreground(baseline)).put("coverageForegroundPixels", foreground(coverage)).put("native", pin(baseline)).put("coverage", pin(coverage)));
+            .put("physicalScissor", new int[]{20, 48, 60, 32}).put("transform", new int[]{8, 8, 124})
+            .put("nativeForegroundPixels", foreground(baseline)).put("coverageForegroundPixels", foreground(coverage))
+            .put("nativeInsideScissor", insideControlledScissor(baseline)).put("coverageInsideScissor", insideControlledScissor(coverage))
+            .put("native", pin(baseline)).put("coverage", pin(coverage));
+          controls.put(control);
+          Files.writeString(gpuProof.resolve(family + "-synthetic-control.json"), control.toString(2) + "\n", StandardOpenOption.CREATE_NEW);
+          require(foreground(baseline) > 0 && foreground(coverage) > 0, "Controlled blend/scissor/tint oracle must render visible native and coverage pixels");
+          require(insideControlledScissor(baseline) && insideControlledScissor(coverage), "Visible control pixels must remain inside the actual model scissor");
+          require(Arrays.equals(baseline.colour, coverage.colour) && Arrays.equals(baseline.emission, coverage.emission), "Controlled blend/scissor/tint preserves native RGBA attachments: " + family);
         } finally { clear(); obj.delete(); }
       }
       report.put("gpuSelectors", draws).put("gpuResourceControls", controls).put("gpuUniqueResources", retained.size()).put("gpuDimensions", new int[]{WIDTH, HEIGHT});
