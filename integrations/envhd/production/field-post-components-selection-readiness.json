@@ -41,7 +41,7 @@
   "pixelsOutsideAllowedRegionExact": true,
   "newImageGenerationCalls": 0,
   "originalStandaloneCoverageFailureStillRejected": true,
-  "freshPackageVerified": false,
+  "freshPackageVerified": true,
   "unfinishedAuthoringPreservedOnOngoingBranch": true,
   "skurfaRegenerated": false,
   "engineChanged": false,
@@ -62,5 +62,58 @@
       "battle-presentation-artwork-v1.json": "d5db1a80eff1c51598b8fac8d45499bfbd6e7c9ca0c1b6b7c7f2701b74855360"
     },
     "reason": "Refresh inherited coverage pins/counts after accepted Undersea and corridor battle increments; no battle pixels or runtime changes."
+  },
+  "buildSourceCommit": "a8a098ee2e6ba271603a3e402bb1c215ecc10a12",
+  "buildLogSha256": "d9ef177b17d1387801a28cb19d0ed372bac72f46eb9c8a2653ea8900b429e378",
+  "packageVerificationLogSha256": "ae667defc4bfcb9d14eae36df45ddd2e72bb64c20b5938b6f2c522bc7c1508b4",
+  "packageSourceBindingSha256": "93c3269787e55c55a3da950a1f7140db40a310e9f4b505373d26f38eb4f7b7f2",
+  "packageFiles": {
+    "Env1HD-v0.1.0.zip": {
+      "size": 552630727,
+      "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8"
+    },
+    "Env2HD-v0.1.0.zip": {
+      "size": 573779949,
+      "sha256": "c2219971801eda267e1aefd83f74c8d28f6903b53be28917c291c6c732ab01f2"
+    },
+    "Env3HD-v0.1.0.zip": {
+      "size": 572128550,
+      "sha256": "307a1cb954f5bd88cbac2ff3341d5da2f3ae43537847656f75f4ef0c9d6add69"
+    },
+    "Env4HD-v0.1.0.zip": {
+      "size": 673772504,
+      "sha256": "b81c6cfe6d4e4a342a79d9ac9db7aceaee9cd186a877b6ba6ccf5aa5dc4f4be2"
+    },
+    "EnvHD-v0.1.0.jar": {
+      "size": 278413514,
+      "sha256": "51c807d22375eefb0c15f8cb91b5964dde30ea3bb000eaf42ac7f4b2ec396dca"
+    }
+  },
+  "rebuiltPackageFiles": [
+    "EnvHD-v0.1.0.jar",
+    "Env4HD-v0.1.0.zip"
+  ],
+  "reusedExactPreviousPacks": [
+    "Env1HD-v0.1.0.zip",
+    "Env2HD-v0.1.0.zip",
+    "Env3HD-v0.1.0.zip"
+  ],
+  "packageFieldImages": 4959,
+  "packageJarResources": 5345,
+  "packageFieldParts": 4,
+  "packageModSwitches": 1,
+  "independentMainReviews": {
+    "spec": {
+      "sourceCommit": "a8a098ee2e6ba271603a3e402bb1c215ecc10a12",
+      "reportSha256": "7c4e8ea3cc74935768afcdeccffc232d99e3b64323785ea02c6b1413df5e604f",
+      "result": "CLEAR",
+      "findings": 0
+    },
+    "standards": {
+      "sourceCommit": "a8a098ee2e6ba271603a3e402bb1c215ecc10a12",
+      "reportSha256": "c71d2e46c018897bf0db4925b4c9e48659bb46fcc374217f9ec3822b1bc50541",
+      "result": "CLEAR",
+      "findings": 0
+    }
   }
 }
