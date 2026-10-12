@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Three existing revision sources: Rouge lattice, Phantom Ship column and Bale roof corner. Two unchanged cutout repairs pass structural gates but fresh original-art review is pending. Bale fails coverage and has no repaired output. This records custom drafts only; selection and source job denominator unchanged.",
+  "scope": "Three existing revision sources: Rouge lattice and Phantom Ship column pass structural gates but independent original-art review requires revision. Bale fails coverage and has no repaired output. Custom drafts remain held; selection and source job denominator unchanged.",
   "priorAuthoringCommit": "b72b435c45a7d72095fd40955c62c0b057f970fd",
   "newUniqueSourceImages": 0,
   "newBuiltinImageCalls": 3,
@@ -79,7 +79,7 @@
       "newBuiltinImageCalls": 1,
       "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "repairPassed": true,
-      "disposition": "Independent visual review pending",
+      "disposition": "REVISE",
       "runtimeSelected": false,
       "nativeAccepted": 0,
       "finalQualityAccepted": 0,
@@ -107,7 +107,16 @@
         "visibleBlackExact": true,
         "edgeAveraging": false
       },
-      "independentArtReview": "pending"
+      "independentArtReview": {
+        "result": "REVISE",
+        "privateFullReportSha256": "70f64199be28234e52fc4101692a0b90d702719104001fc7c7747cbbbbb438ef",
+        "observedReasons": [
+          "The dense connecting lattice in the middle/lower-left area immediately left of the main post still breaks into short disconnected rails and thick abrupt terminations around the native openings. The original diagonal connecting runs are more coherent; exact alpha has not made the painted internal joints follow those runs.",
+          "Upper slats and lower bars have irregular angular stub/cap formations and interrupted grain where the cutout removes paint. The static room placement therefore reads as fragmented carved pieces rather than the original connected narrow timber lattice.",
+          "The main post and barrel top/front planes retain their scene role and improve on the earlier draft, but do not close the remaining lattice-fidelity hold."
+        ],
+        "runtimeSelectionCleared": false
+      }
     },
     {
       "key": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
@@ -183,7 +192,7 @@
       "newBuiltinImageCalls": 1,
       "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
       "repairPassed": true,
-      "disposition": "Independent visual review pending",
+      "disposition": "REVISE",
       "runtimeSelected": false,
       "nativeAccepted": 0,
       "finalQualityAccepted": 0,
@@ -211,7 +220,16 @@
         "visibleBlackExact": true,
         "edgeAveraging": false
       },
-      "independentArtReview": "pending"
+      "independentArtReview": {
+        "result": "REVISE",
+        "privateFullReportSha256": "70f64199be28234e52fc4101692a0b90d702719104001fc7c7747cbbbbb438ef",
+        "observedReasons": [
+          "The principal left cross-band is raised toward native rows40\u201342 and its upward-right lean is improved, closing much of the prior placement defect.",
+          "The pale left weathering is still a strongly connected jagged vertical run across much of the upper/middle face. The source uses quieter, separated pale patches with dark blue intervals; delivered4x output and static placement make this run considerably whiter and more conspicuous.",
+          "Reduce contrast and separate the weathering into the native spatial groups. Keep the corrected cross-band position/lean, narrow central dark groove and stepped green right face; avoid new long bright stripes, emblems or new deep geometry."
+        ],
+        "runtimeSelectionCleared": false
+      }
     },
     {
       "key": "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
