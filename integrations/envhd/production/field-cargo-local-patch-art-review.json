@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "scope": "Original-art visual review of Cargo patch/composite/static placement only; helper/code and runtime selection pending.",
+  "result": "CLEAR",
+  "findings": [],
+  "disposition": "clear-development-intent",
+  "sourceKey": "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
+  "outputSha256": "2f9cabfff63f3ebb0af0aae016139984ccb322550d750691df9950165de46da5",
+  "baseGeneratedSha256": "e45902b0bca7be0bb76345a605cf542bdaf349b47837a23cdb84620d05d921f7",
+  "patchGeneratedSha256": "da9198fc1995313a38d5ebcf816f80639aeaac57b7c413747779831868142707",
+  "sourceBox": [
+    83,
+    64,
+    98,
+    80
+  ],
+  "observedReasons": [
+    "The two dark features remain separate irregular patches in the original upper-right and middle-right portions. They are not resolved into repeated slots, stud heads or an open cup/neck.",
+    "The dominant tan/brown mass keeps its source arrangement and softly varied illumination. Surface detail is restrained at delivered4x scale; there is no new lid, lattice construction, bright long rim or named material mechanism.",
+    "The distinct irregular pale lower feature is retained above the darker support. In the all-layer static placement it preserves the light/shape transition beside the adjoining curved gold form rather than flattening both into a brown block.",
+    "The final composite has no visible component-transfer splice at the fitting boundary. The reviewed fine crossing mesh and all pixels outside the source patch remain exact to the previously reviewed repaired base."
+  ],
+  "privateFullArtReviewSha256": "0de3f97078c968fcfd015a7007856f5b5e6884c4b988783b9d2b57490452e077",
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "runtimeSelected": 0,
+  "originalSourcesAndPrivatePathsExcluded": true
+}

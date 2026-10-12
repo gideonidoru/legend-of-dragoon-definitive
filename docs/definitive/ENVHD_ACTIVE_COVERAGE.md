@@ -2,11 +2,11 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **204 images: 203 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **203 images: 202 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,959 development images: 4,886 neural and 73 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
+Field selection is 4,960 development images: 4,886 neural and 74 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
 
-Current authoring queue: all83 historical canonical source keys reviewed:73selected,10requiring revision and none awaiting review. All earlier recipes/custom versions remain preserved. The51 unique unselected custom source keys are a subset of203field holds. Skurfa artwork is reused; native gameplay and final quality remain pending.
+Current authoring queue: all83 historical canonical source keys reviewed:74selected,9requiring revision and none awaiting review. All earlier recipes/custom versions remain preserved. The50 unique unselected custom source keys are a subset of202field holds. Skurfa artwork is reused; native gameplay and final quality remain pending.
 
 The [recorded generation4 download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8` contains 4,925 field selections/39paintings and34 battle paintings. The historical Donau increment selected4,928 fields/42paintings and retained47 battle paintings: three field paintings and13 battle paintings beyond that recorded snapshot. These are comparisons with the preserved generation4 source ledgers, not a fresh observation of the live carrier. ROOT tracks subsequent coordinated publication and installer verification. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
@@ -144,3 +144,10 @@ The received field-material snapshot has135,279 material bindings across7,664 co
 
 
 The [independent inventory review](../../integrations/envhd/production/environment-dynamic-prop-inventory-independent-review.json) clears this metadata checkpoint at source3b199 on both axes. Its4958/72 baseline is historical. Current accepted selection remains4959/73 with204knownstatic images left; this inventory update selects no new images.
+
+
+## Queen Fury cargo fitting correction selected
+
+The [original-art review](../../integrations/envhd/production/field-cargo-local-patch-art-review.json) clears the fitting’s two irregular dark marks, soft tan mass and pale lower feature. The [independent helper/provenance review](../../integrations/envhd/production/field-independent-cargo-local-patch-review.json) clears a source-bound local patch transfer. The earlier reviewed cargo mesh stays exact outside native rectangle[83,64,98,80]. Each builtin base/patch input independently passes unchanged cutout coverage, aspect, alpha and visible-black guards; both inputs and exact prompts are retained with distinct composite provenance. Three reuse trials and a whole-frame aspect failure remain rejected on the public authoring branch.
+
+The [complete74-painting selection](../../integrations/envhd/production/field-bespoke-cargo-local-patch-reviewed-selection.json) preserves all73 prior recipes and4959runtime records. The [readiness receipt](../../integrations/envhd/production/field-cargo-local-patch-selection-readiness.json) binds behavioral checks, fresh source replay and package verification. Inherited battle metadata pins/counts are refreshed to the accepted base’s44presentations plus12paintings; no battle artwork changes. Publication counts in the historical ledger retain their recorded generation4 snapshot and do not claim a fresh download census. One EnvHD switch controls all four packs. Animated/owned-prop image denominators, native/script/GPU, campaign, physical Deck and final artistic acceptance remain pending.
