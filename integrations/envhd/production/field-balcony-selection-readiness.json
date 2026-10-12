@@ -24,7 +24,7 @@
   "knownRemainingStaticImages": 205,
   "unchangedHelperChecksCarriedFrom": "field-precise-three-selection-readiness.json",
   "unchangedHelperReceiptSha256": "db30ca367d8308256f037972232ca1a16384889b24c193dd8167014354e6cfaf",
-  "freshPackageVerified": false,
+  "freshPackageVerified": true,
   "unfinishedAuthoringPreservedOnOngoingBranch": true,
   "skurfaRegenerated": false,
   "engineChanged": false,
@@ -33,5 +33,58 @@
   "publicReleasePublished": false,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "originalSourcesReferencesAndComparisonsExcluded": true
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "buildSourceCommit": "23dd57741d14644e737ee27cd29943fb75bbdce0",
+  "buildLogSha256": "a4e4836ff5f8029f68c5792575871dfff0e94d0f77cbf755cf67c4af11a4bc49",
+  "packageVerificationLogSha256": "7724a04c6eafeb206020b5e438b5b5ea7f6f50d8a80b056cad15b3f96646a717",
+  "packageSourceBindingSha256": "aaa799a0e226a4f2cef8e1a22046ae5932ce5d9e138e80d91b7f7f8f276b5e1b",
+  "packageFiles": {
+    "Env1HD-v0.1.0.zip": {
+      "size": 552630727,
+      "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8"
+    },
+    "Env2HD-v0.1.0.zip": {
+      "size": 573779949,
+      "sha256": "c2219971801eda267e1aefd83f74c8d28f6903b53be28917c291c6c732ab01f2"
+    },
+    "Env3HD-v0.1.0.zip": {
+      "size": 572128550,
+      "sha256": "307a1cb954f5bd88cbac2ff3341d5da2f3ae43537847656f75f4ef0c9d6add69"
+    },
+    "Env4HD-v0.1.0.zip": {
+      "size": 673694774,
+      "sha256": "216170a3ee45a765af13590c2a043871b2033d782e75208905e070f5e10ab892"
+    },
+    "EnvHD-v0.1.0.jar": {
+      "size": 278302289,
+      "sha256": "459d556839f35bd68320d3e7f8dc83d97bebbb553662620615f4d4cf9b593d70"
+    }
+  },
+  "rebuiltPackageFiles": [
+    "EnvHD-v0.1.0.jar",
+    "Env4HD-v0.1.0.zip"
+  ],
+  "reusedExactPreviousPacks": [
+    "Env1HD-v0.1.0.zip",
+    "Env2HD-v0.1.0.zip",
+    "Env3HD-v0.1.0.zip"
+  ],
+  "packageFieldImages": 4958,
+  "packageJarResources": 5344,
+  "packageFieldParts": 4,
+  "packageModSwitches": 1,
+  "independentMainReviews": {
+    "spec": {
+      "sourceCommit": "23dd57741d14644e737ee27cd29943fb75bbdce0",
+      "reportSha256": "329eda9b16c2d68b3dd291473b1ad0e048c9f0ec85cc569e1d5e1e32f2a5d742",
+      "result": "CLEAR",
+      "findings": 0
+    },
+    "standards": {
+      "sourceCommit": "23dd57741d14644e737ee27cd29943fb75bbdce0",
+      "reportSha256": "38a80bda967dd2589ae383f15dd1e3568182bd6870ea7282bce2afdebeb07807",
+      "result": "CLEAR",
+      "findings": 0
+    }
+  }
 }
