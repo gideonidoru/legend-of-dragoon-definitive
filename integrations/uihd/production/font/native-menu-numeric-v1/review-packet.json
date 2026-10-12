@@ -1,0 +1,2731 @@
+{
+  "format": 1,
+  "family": "F09 native menu numeric and separators",
+  "status": "CANDIDATE_NOT_ACCEPTED",
+  "authoredCount": 14,
+  "physicalSourceCells": 14,
+  "cropVariantCount": 15,
+  "acceptedCount": 0,
+  "runtimeAcceptedCount": 0,
+  "sourcePins": {
+    "menuTimSha256": "1908bb355905ab3d2cc1c4746ed57a7ef1c29c71bbe57e908d4a1e0b37fcf1ea",
+    "uiMetadataSha256": "e2d17c807eadef88795fcb7dbb85cc94046b9e3de809d66df569bb3cb4dc0be4"
+  },
+  "attribution": "Original game art remains the authoritative reference. Custom vector reconstruction for Legend of Dragoon: Definitive; unmodified originals and diagnostics remain private.",
+  "sourceCorrection": "Actual UiFile entries0..12 and218 resolve menu TIM6665@0, NOT basic6669. Menu event has15 one-column CLUT rows. Basic48 aliases are unrelated to this numeric source.",
+  "glyphs": [
+    {
+      "path": "digit-0.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 0,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 128,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "digit-0",
+      "advance": 6,
+      "svgSha256": "f59637b5a5e055b7e7c9203321392094420c64228b55494f229fc57ac6040129",
+      "cropSha256": "0a7363050dc779d9b1caa6ae2617e200d5a624475525f431e4eb903c6e7a9a95",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        128,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "c179fed8ef02f35588e9da22109ed6f92679d871ed76bc374133b9b1a2829f58"
+    },
+    {
+      "path": "digit-1.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 1,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 136,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "digit-1",
+      "advance": 6,
+      "svgSha256": "6926d3bf5e7e0bf446531a236fe0ab5aaabd4d5c9f1ddf1a5af6099ce7ac6346",
+      "cropSha256": "4bc11d316443a19d69560db8771d859aef46669f2824073b7db8f853516c3a63",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        136,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "2ae92768f9fac9a258838fe2ea6cc3f54308ffbb5e304cedada829dd65c0ab8a"
+    },
+    {
+      "path": "digit-2.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 2,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 144,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "digit-2",
+      "advance": 6,
+      "svgSha256": "6e5991c4a568b3c08369c72b8f85688f20f5e3f91ac21c872a59c447117b6d4c",
+      "cropSha256": "c4ef717f9d7837ccad6d4f42129c2c6283502e951f04015f23d1545470f34fe0",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        144,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "a11d843ebef1f77d3587b946126b184495e98a84b43ce79e525cad42717718e9"
+    },
+    {
+      "path": "digit-3.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 3,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 152,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "digit-3",
+      "advance": 6,
+      "svgSha256": "26b70288f866ea8296cba49187e61b7088ee09c5e27225a5e034a3c3d15633ee",
+      "cropSha256": "7f2a3b366447c27ba925e595cb8821833f445c41f477a76fdeb58eab42a764fd",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        152,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "f6a0f8adca12659e4f3220a5a825dd6b50674f101600b6b2396f1698baa57b3b"
+    },
+    {
+      "path": "digit-4.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 4,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 160,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "digit-4",
+      "advance": 6,
+      "svgSha256": "5107c657fc9fffd554b39b56bf0b9e906694f1c4fd1b547148e7e93d0bd2e803",
+      "cropSha256": "0e3af8d8acc66676ea40ab08b71d831b40a8c71c041c919d1776afea2907e8b5",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        160,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "7670f145d11e0f7e6e6808b8cfe0e18c5f614556cb0a09b8696b5db017e01900"
+    },
+    {
+      "path": "digit-5.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 5,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 168,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "digit-5",
+      "advance": 6,
+      "svgSha256": "96cf4329acc012adf5e96fa0b2ad07fe4e8ba91aae711c036e063668898448f8",
+      "cropSha256": "b7983e30f1c20002c14a10eb47a73fc7e7c1e2fd8635a010a74658724c54cc52",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        168,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "17accc45f139279a4747960b30726ec9a25896faf81eae6eb88d67db283439d6"
+    },
+    {
+      "path": "digit-6.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 6,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 176,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "digit-6",
+      "advance": 6,
+      "svgSha256": "3c65a40811a516ab7f8f98cb54382bb94a2cf02efe49c297cb0fab6f043a71a6",
+      "cropSha256": "3972562bcb4b3142c0898e1f2d42c9be4dbbc70530a0f55f834767c31df415f6",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        176,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "54579d6501e875bb7ca667db898977dce948a004800dc0dc273dfd3a09f6445a"
+    },
+    {
+      "path": "digit-7.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 7,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 184,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "digit-7",
+      "advance": 6,
+      "svgSha256": "5a836f1137b40c1eab83b7ab7578d6cb8e6eee2406e2979ca66174dab3036000",
+      "cropSha256": "f68ac21c787138954b59439d719013c8f335c79152829a7a5dfd2351364f0dda",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        184,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "decae8b0dcfde5e8147f4bd6a3d67888db9dbebbb9b627cd91b2ae4e7f675ce9"
+    },
+    {
+      "path": "digit-8.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 8,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 192,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "digit-8",
+      "advance": 6,
+      "svgSha256": "1779c3f11ac43c2773af76a820d6692866cb88f1d080e7fe5a16cd317a164081",
+      "cropSha256": "6a925ffa43da7cb651b6c5336a83686cfb7d02c3017f30311e1154ceef55232b",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        192,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "f2bf7780b67817b3eb2ea50a6f1e435e620c1fe1a164cf7b29f4777bc5351900"
+    },
+    {
+      "path": "digit-9.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 9,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 200,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "digit-9",
+      "advance": 6,
+      "svgSha256": "ac7a0760bf3b900ab303d402e9f4320b35ef8b5a24eb29ef89b1d72021c14aeb",
+      "cropSha256": "efc421b9158f7fc3a558e2bc737daaeab70b850c690beb765bfae8a6a4ce729c",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        200,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "13f023425a9aea7fa6d5cac8b7361eacb7e8e8cf2cd96cc0d2352d56a4247987"
+    },
+    {
+      "path": "colon.svg",
+      "designIntent": "Source-exact indexed rectilinear separator, preserving native palette roles",
+      "glyph": 10,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 208,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "colon",
+      "advance": 6,
+      "svgSha256": "f38ed7f1bbc74123d8176a12e8aa5054310a8f886e04021ea5e8443eb1ad510c",
+      "cropSha256": "5ffe695f6c8e237a288f3b7af38d9c0c389ce0493807f771ca1a657cfe0ff21d",
+      "paletteRoles": [
+        1,
+        2,
+        6,
+        7,
+        9,
+        11
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        208,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "7e6142ac50bb7792ec301c2eaf784828663ad60ae943350f18e1a0c7a3f8c5fb"
+    },
+    {
+      "path": "slash.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 11,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 216,
+          "v": 176,
+          "clut": 64617,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "slash",
+      "advance": 6,
+      "svgSha256": "8f008c4ee89e5d162186ed417a80a18179dd1c3475bd84dbaf541862ec073057",
+      "cropSha256": "8aa58f83c66ec537d1e1c2b60a4538896901055c3d55693944777ebc749f1abd",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        216,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "02b5f4687f772606f82e6e71274bcbe9dc1aa6a0c3f3faddb91d273dfbe6b7e0"
+    },
+    {
+      "path": "percent.svg",
+      "designIntent": "Individually reconstructed narrow native menu face with continuous curves and directional upper-left bevel; source width and six-pixel advance retained",
+      "glyph": 12,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 224,
+          "v": 176,
+          "clut": 31849,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "percent",
+      "advance": 6,
+      "svgSha256": "61a1230833a4ceee01d80b8a1255e0378dd5deaf39be6cb01632e66e69bd266b",
+      "cropSha256": "00db2bbfd022a5df9e0807b93214863b1d71b2cf8d0e5efaf76209d7f1256c89",
+      "paletteRoles": [
+        1,
+        7,
+        8,
+        9,
+        13
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        224,
+        176,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "5056124c3525e19414315b683a9f9966a036fd96053cfc8af5b7d5ecbfb89e73"
+    },
+    {
+      "path": "dash.svg",
+      "designIntent": "Source-exact indexed rectilinear separator, preserving native palette roles",
+      "glyph": 218,
+      "metrics": [
+        {
+          "tpage": 4140,
+          "u": 136,
+          "v": 184,
+          "clut": 64553,
+          "x": 0,
+          "width": 8,
+          "y": 0,
+          "height": 8
+        }
+      ],
+      "id": "dash",
+      "advance": 6,
+      "svgSha256": "1b43b0becd36c404bd331369c148e85dd210987b810a001bee57bec48a5726c1",
+      "cropSha256": "2d0ff11dadbd059dc5a2590bcce5d2fe34e603cbd1953b7e45c0635a82fb03c1",
+      "paletteRoles": [
+        1,
+        7,
+        9,
+        11
+      ],
+      "source": {
+        "image": "DRGN0.BIN/6665@0",
+        "metadata": "DRGN0.BIN/6666",
+        "event": "menu",
+        "page": [
+          64,
+          256
+        ],
+        "clut": [
+          144,
+          496
+        ],
+        "clutRows": 15,
+        "paletteTimOffset": 0,
+        "nativePage": [
+          576,
+          256
+        ],
+        "pageRelocation": [
+          -512,
+          0
+        ],
+        "clutRelocation": [
+          -512,
+          0
+        ],
+        "imageSizePixels": [
+          256,
+          192
+        ]
+      },
+      "metricCrop": [
+        136,
+        184,
+        8,
+        8
+      ],
+      "runtimeAliases": {
+        "event": "menu",
+        "palettes": [
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 496
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 497
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 498
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 499
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 500
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 501
+          },
+          {
+            "row": 6,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 502
+          },
+          {
+            "row": 7,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 503
+          },
+          {
+            "row": 8,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 504
+          },
+          {
+            "row": 9,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 505
+          },
+          {
+            "row": 10,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 506
+          },
+          {
+            "row": 11,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 507
+          },
+          {
+            "row": 12,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 508
+          },
+          {
+            "row": 13,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 509
+          },
+          {
+            "row": 14,
+            "column": 0,
+            "clutX": 144,
+            "clutY": 510
+          },
+          {
+            "row": 0,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 496,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 0,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 497,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 1,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "clutX": 176,
+            "clutY": 498,
+            "paletteTimOffset": 66656,
+            "paletteSourceRow": 2,
+            "paletteBinding": "Same menu indexed page with separately uploaded native comparison/HP palette"
+          }
+        ]
+      },
+      "runtimeAliasCount": 18,
+      "metricCropSha256": "fd6b4ebb3c7861396e89994f3d4b16b79e2a82144167ac78663821a83a269cc2"
+    }
+  ],
+  "decimalAlias": {
+    "sourceGlyph": 10,
+    "crop": [
+      208,
+      180,
+      8,
+      4
+    ],
+    "sourceScissor": "Control.renderNumber decimal sets heightCut4 and y+1; Menus retains bottom4 screen rows of full8x8 colon. Keep full-colon metrics/UV and existing scissor, no replacement dot invented.",
+    "advance": 6,
+    "callerYOffset": 1
+  },
+  "usedCluts": {
+    "default": {
+      "native": 31849,
+      "relocated": [
+        144,
+        497
+      ],
+      "row": 1
+    },
+    "renderCharacter": {
+      "native": 31913,
+      "relocated": [
+        144,
+        498
+      ],
+      "row": 2
+    },
+    "statIncrease": {
+      "native": 31851,
+      "relocated": [
+        176,
+        497
+      ],
+      "source": "6665@0x10460 CLUT row1; separately uploaded palette, preserve source role indexes"
+    },
+    "statDecreaseAndLowHp": {
+      "native": 31787,
+      "relocated": [
+        176,
+        496
+      ],
+      "source": "6665@0x10460 CLUT row0 or2 (see relocated y); separately uploaded palette, preserve source role indexes"
+    },
+    "halfHp": {
+      "native": 31915,
+      "relocated": [
+        176,
+        498
+      ],
+      "source": "6665@0x10460 CLUT row0 or2 (see relocated y); separately uploaded palette, preserve source role indexes"
+    }
+  },
+  "scopeLimits": [
+    "Procedural negative-number horizontal line is not dash218 and unchanged.",
+    "Comparison x688 palettes come from6665@0x10460; no false48-basic-alias claim.",
+    "Static headless Java2D comparison only; no runtime/GPU/Deck/art approval.",
+    "Fourteen authored physical glyphs plus one clipped-colon alias; counts are not conflated."
+  ],
+  "paletteAliasCount": 18,
+  "paletteAliasExplanation": "15 actual menu-source palette rows plus three verified separately uploaded comparison/HP rows at native688,496..498; no claim of basic6669 aliases. Only source-preserving roles, not all aliases visually accepted.",
+  "reviewNotes": [
+    "Native numeric source uses warm narrow faces and directional palette detail. Candidate curved face/metallic edge reconstruction may alter tiny counters/stroke weight; independent1x/2x review remains mandatory.",
+    "Colon and dash are exact source-index geometry; decimal remains native scissor alias.",
+    "No UI, GPU, game, Steam Deck, runtime registration, or independent approval performed."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "format": 1,
+  "status": "source-reconstructed-label-family-candidate-review-pending",
+  "authored": 2,
+  "requiredUniqueGlyphs": 2,
+  "artAccepted": 0,
+  "family": "battle_hud_2",
+  "sourceImageSha256": "f2c1e95184598a2db058a078affd4f9e3c9cbea749f90843e1d665b682ca52e4",
+  "sourcePaletteSha256": "b2a7ea197b475dde056a444bc217f3ea102cf2c3243ed9da7b3cc112d3eeffef",
+  "glyphs": [
+    {
+      "id": "battle-hp-mp-sp",
+      "path": "hp-mp-sp.svg",
+      "sha256": "364e79b6f9da7c4778ab5580c718683db5bf5419c0926453fd3c5dc344166254",
+      "crop": [
+        0,
+        32,
+        16,
+        32
+      ],
+      "sourceIndexSha256": "08d2c3dacb590aa2c0acf3c0b171b8f7f70672d4447b802549188ad0eb9844f6",
+      "paletteRows": [
+        12
+      ],
+      "paletteRoles": {
+        "face": 1,
+        "edge": 7,
+        "shadow": 15
+      },
+      "consumer": "BattleHud label composite with HP/MP/SP scissors",
+      "review": "pending"
+    },
+    {
+      "id": "battle-slash",
+      "path": "slash.svg",
+      "sha256": "574c3abcf4b2549fba44bbea39ef36ec210fb6b8eb9d8f421cbf885ad758395d",
+      "crop": [
+        96,
+        32,
+        8,
+        8
+      ],
+      "sourceIndexSha256": "a80e138226d873452ab5a06afb30d0951c3fe609b5d7355185eddd8f1d2786e4",
+      "paletteRows": [
+        12
+      ],
+      "paletteRoles": {
+        "face": 1,
+        "edge": 13,
+        "shadow": 15
+      },
+      "consumer": "BattleHud two slash placements",
+      "review": "pending"
+    }
+  ],
+  "limitations": [
+    "Static source comparison only; production composite clipping and both slash placements require renderer proof.",
+    "No visual acceptance or full-game/Steam Deck claim."
+  ]
+}
