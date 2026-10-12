@@ -2,12 +2,12 @@
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
   "sourceSelectionCheckpoint": "9650daf025c91bd8b2c819a3bec8a25dd431e237 plus three independently cleared coral/Bale/tablet v4 repairs",
-  "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
+  "battleSourceCycleCheckpoint": "3e91f875dbd145c341570fa1e25a7f14cc89e358",
   "sourceControls": {
     "full-coverage.json": "b8ab529f8ae453259652e78e78c251746cccbdf6f369cd87cb2e1ac2c00a6771",
     "field-runtime-artwork.json": "6051096e26d5552aea245d42468badbf2e6e6379f6d904ccdbcfe4e8535ff850",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
-    "battle-material-runtime-artwork.json": "e499387937c77466a63770866a01e376d5385f136f04c0b1db405077f0a8d0a3",
+    "battle-material-runtime-artwork.json": "d6d8d3d892447f4b6eb0211552762842e8f705bc4048f4b1b8c1d322bffc4623",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "field-bespoke-bedding-reviewed-selection.json": "6af60fa9447818366fda841ff1b9b362d84ad6a9a4aac2f2384a53725f75b123",
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
@@ -31,7 +31,7 @@
     "field-bespoke-table-independent-reviewed-selection.json": "addfc9dbc087ed058af2029cee7347b044161e97252a62939fa51a959a5d2db6",
     "field-independent-table-review.json": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a",
     "field-table-selection-readiness.json": "0c46044a0b825c381066bbe0407210a4bc4d126d6da0b030aebc0e34954ed811",
-    "battle-presentation-artwork-v1.json": "f99514b78c7f597afa4f68b218b0f3206b9945fb4068b9b24b902f25055e449f",
+    "battle-presentation-artwork-v1.json": "e23e9967f15353aa88dfdb31c77e569ad7831e56e71a624cfc6207e70a29b8cf",
     "publication-source-5d3db5c8-generation4-snapshot.json": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f",
     "field-bespoke-donau-two-independent-reviewed-selection.json": "f7f5ab51e5afbe13c566300a863bfb25019575810368fe72d7d3f00264c295b5",
     "field-independent-donau-two-review.json": "0018f0828106bada7ac8caa41dae15f1387e3a5b29fa89f03f9ddba32f48a6b9",
@@ -221,10 +221,10 @@
       "fullEncounterContractsClosed": 0,
       "selectedAnimationFamilies": 0,
       "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette.",
-      "selectedPaintedMasters": 65,
+      "selectedPaintedMasters": 128,
       "previouslySelectedPaintedMasters": 12,
-      "newPresentationSelectedMasters": 53,
-      "selectedNeuralMasters": 453
+      "newPresentationSelectedMasters": 116,
+      "selectedNeuralMasters": 390
     },
     {
       "id": "battle-panoramas",
