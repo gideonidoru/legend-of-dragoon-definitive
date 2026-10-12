@@ -2,11 +2,11 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **201 images: 200 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **198 images: 197 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,962 development images: 4,886 neural and 76 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
+Field selection is 4,965 development images: 4,886 neural and 79 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
 
-Current authoring queue:83historical canonical source keys reviewed:76selected,7requiring revision. All earlier recipes/custom versions remain preserved on the ongoing authoring branch.48unselectedcustom source keys are a subset of200field holds. Skurfa is reused; native gameplay and final quality remain pending.
+Current authoring queue: **83 historical source keys:79 selected, four requiring revision.** Every old recipe/custom version remains preserved on the ongoing authoring branch. The45 unselected custom keys are a subset of197 field holds. Skurfa is reused; native gameplay and final quality remain pending.
 
 The [recorded generation4 download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8` contains 4,925 field selections/39paintings and34 battle paintings. The historical Donau increment selected4,928 fields/42paintings and retained47 battle paintings: three field paintings and13 battle paintings beyond that recorded snapshot. These are comparisons with the preserved generation4 source ledgers, not a fresh observation of the live carrier. ROOT tracks subsequent coordinated publication and installer verification. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
@@ -165,3 +165,12 @@ Independent original-art review clears two faithful development repairs: separat
 Fields4962/76 leave201knownstatic images:200field+1terrain.48customheldsourcekeys are a subset of200, and7canonical revisions remain. Coral’s failed canvas-aspect trial stays held on the authoring branch. Animated/owned-prop image totals remain unknown. Four download packs share one EnvHD switch; installer publication, native/physical Deck/campaign and final quality acceptance remain pending.
 
 The exact5b8e20cb EnvHD build passes. Its immutable five-file package verifies4962fields,5348JARresources,fourfieldpacks andoneEnvHD modID. EnvHD/Env2/Env3 are rebuilt; Env1/Env4 retain exact previous accepted bytes. Both independent main review axes are CLEAR0. These package/source checks do not assert current installer publication or native/device/final quality.
+
+
+## Coral rim, Bale corner and Donau tablet v4 selected
+
+Three source-faithful development repairs restore joined coral bands, a quiet olive roof corner and restrained tablet shading. Independent actual-image review and exact source/structural replay clear allthree; both authoring code-review axes clear74c9e9be. All76 previous recipes and4962 runtime records are exact. Complete79 current-source preflight/selection passes once;14 crop behavior and68 main preflight checks pass. The narrowly ported existing padded-crop helper retains original builtin artwork and validates explicit geometry, silhouette and outside leakage before the unchanged visibility repair.
+
+Selection is4965 fields/79 paintings, leaving198 known static images:197 field+one terrain.45 custom held source keys are a subset of197. Four canonical revisions remain, with all83 historical records preserved. Animated/owned-prop image denominators remain unknown. Four download packs share one EnvHD switch. Coordinated installer publication, native/Deck/campaign and final quality acceptance remain pending.
+
+The exact three-repair integration source8ccc5cc0 passes both independent code-review axes and a34-second package build. All4,965 field images and5,351 JAR resources match the five-file immutable package; Env1HD/Env2HD are reused byte-for-byte, while EnvHD/Env3HD/Env4HD are rebuilt. All four packs share one mod ID. This records package readiness, not merged/published/native/Deck/final acceptance.

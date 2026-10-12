@@ -1,0 +1,311 @@
+{
+  "schema": 1,
+  "scope": "Independent original-art development clearance and structural source replay for three existing held keys; original pixels/scene/reference paths excluded.",
+  "authoringSourceAtReferencePreparation": "d046543ec48b71e53f39b4d113ad97676d466386",
+  "sourceProofSha256": "491474d29843b6535f4c4912d53be2e10f69378974d825a1b7b6a06459b739a5",
+  "privateArtReviewSha256": "61778977e5589d5aec02f662e812fb97e77510e50e32a23dd21db3a459a055a2",
+  "privateStructuralReviewSha256": "ef7cf1e36ee6ad4fdbc058baf6f08f5dea5c1b50df4a2f563e2164ac4d4bb6ac",
+  "privateRepairReceiptsSha256": "614e33ee4e84ab32171486119cd2879faf7ed62c84e89e1faa439e2c0b0642ee",
+  "verdict": "CLEAR-development-intent",
+  "findings": [],
+  "entries": [
+    {
+      "sourceKey": "da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5",
+      "candidateVersion": 4,
+      "verdict": "CLEAR",
+      "disposition": "clear-development-intent",
+      "route": {
+        "cut": 305,
+        "period": "early",
+        "rawDisk": 1,
+        "fieldType": 65,
+        "location": "Undersea Cavern",
+        "bank": 22,
+        "directory": 919
+      },
+      "sourceBindings": [
+        {
+          "renderKey": "c90c422113981fd55d0ca5331f4e52a3bb6fca124b7b6d0479d9ca341dc8010b:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "d087c0e7a81b0774a8f70787521dd8f0a1325a10f89ca140589d63d05f90bde2",
+          "size": 636
+        },
+        {
+          "index": 1,
+          "sha256": "802681fca49ee34e0a60093783542058b82427af51f69298f6aa51109865c301",
+          "size": 5328
+        },
+        {
+          "index": 2,
+          "sha256": "687aa8c39e2e7ede7afd28161f0df3871456d6d2a52e7d568b21f8fe8d742d0c",
+          "size": 3976
+        },
+        {
+          "index": 3,
+          "sha256": "d68d6566169a38ab797011af18b2395df68f9e26f9313c35571e5c99278347d0",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "b4d7486afb6832aa251a92420f1d7d230f6a3b51aa526e24ac9c54b39a745b0c",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "836736d6b503ce0e1dd2b53ec88bf31644323a111b6364d14bb1cb14ecfa9d7e",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "827a5c81f739cb1f1b1444372c99318b3b64a89d6aa72ba9451fc25591daaea2",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "fe91e9281cf6076554006b212ccc9e83477c8aca1cc216e5fb0bd2d48848cffd",
+          "size": 16928
+        },
+        {
+          "index": 8,
+          "sha256": "6ccccc79e7d06ea6cb1ed313f86ee4a5247c15a0e4bd52c3c2239d43c977f07b",
+          "size": 66080
+        }
+      ],
+      "sourcePngSha256": "42dbb2a37eb2402671f79f4339aa19e3801c8e0799214f99daa3264747b0c36f",
+      "originalScenePngSha256": "55a801326c46a3d1dffe8326a5cf5c24b7a5ffac06696db9d5117251360d5371",
+      "generatedSha256": "3fbb20ce9bd1d12c600b4064ea105a86cf5dae69248d767d4cb8cca1e71f6048",
+      "outputSha256": "c8bc384b646fcf7ee6e137ead1a403213ffa6889bf28bbd12ef71598bd671b40",
+      "observedReasons": [
+        "The gray-teal side now reads as one joined shallow horizontal rim: connected pale upper paths descend into the existing dark vertical channel groups, rather than separate upright fingers or knobbly towers. The main connected turns and grouped recesses remain consistent with the native guide.",
+        "The rose/brown left patch remains localized at the left end with its rounded/stepped native footprint; no new branch or bulb changes the occupied composition.",
+        "Pale edges are more legible than native pixels, but the dark teal recesses and subdued pink material remain in the original underwater palette. At static placement the target continues the adjacent rim rather than becoming a new white object. This is acceptable development restoration, not final surface/exposure acceptance."
+      ],
+      "nextCorrections": [],
+      "findings": [],
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5/painted-input-v4.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5/image-v4.png",
+      "sourceAuthoringCrop": {
+        "method": "python-explicit-padded-authoring-crop-1",
+        "sourceCanvasSize": [
+          96,
+          64
+        ],
+        "sourceOriginNative": [
+          16,
+          23
+        ],
+        "cropRectAtTargetScale": [
+          64,
+          92,
+          320,
+          164
+        ],
+        "sourceSize": [
+          64,
+          18
+        ],
+        "targetSize": [
+          256,
+          72
+        ],
+        "sourceSilhouetteIoU": 0.9836720633827075,
+        "minimumSourceSilhouetteIoU": 0.97,
+        "generatedVisibleOutsideSourceCrop": 0,
+        "maximumOutsideSourceCropFraction": 0.01,
+        "sourceVisiblePixelsAtAuthoringTarget": 14432,
+        "originalAspectDeviationPercent": 0.0,
+        "sourceAlphaApplied": false,
+        "sourceRgbApplied": false,
+        "originalBoundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "algorithmSha256": "939125d63c15725d6c91637eb981ccbf8c667b5b13c52061d5a91345c3ba7676",
+        "croppedInputSha256": "7bfe5092366fd2ebc32233b574c68fc6e03313f7ca4540d7a9554c9ec304ae9b",
+        "algorithmPath": "scripts/crop-envhd-painted-authoring-canvas.py"
+      },
+      "structuralReplayExact": true,
+      "runtimeSelected": false,
+      "nativeAccepted": 0,
+      "finalQualityAccepted": 0
+    },
+    {
+      "sourceKey": "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
+      "candidateVersion": 4,
+      "verdict": "CLEAR",
+      "disposition": "clear-development-intent",
+      "route": {
+        "cut": 79,
+        "period": "early",
+        "rawDisk": 0,
+        "fieldType": 0,
+        "location": "Bale",
+        "bank": 21,
+        "directory": 241
+      },
+      "sourceBindings": [
+        {
+          "renderKey": "f93b0f145362e198ce148bb4e8165782871c2e89370f4084185415bbede7d212:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "e6f199840935397d12020896abbc7feeb2829a392b7bc845928309faa76b7c0b",
+          "size": 744
+        },
+        {
+          "index": 1,
+          "sha256": "dfea4e6331d6e19636f9f5ce06c98d3e754aa27599122573aba89e56aac29fef",
+          "size": 2172
+        },
+        {
+          "index": 2,
+          "sha256": "aa3d78b76464ca16ca7b1796d1405e15a71726598bdcfffb23cd1af30ba1e798",
+          "size": 1604
+        },
+        {
+          "index": 3,
+          "sha256": "0510416121b7b131c1a5566a15cff94edd5808e303bfa56ee204ad7d163385d6",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "a9d511da4f96389725a21bd5d3a3335d50740444b560c1bb6f574fc779436637",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "f9bcd4e64cfc7a4c360d77f6ca711210200db1ca50de9758b6c7f3852ea1067f",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "7a2e0034967e2bddf0f1569bca7f6cbd18febc506c3f8b4e86bfd009d21bedb5",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "8c0cc47c52cf8d14b23745ba53389ae388b798d693844306101028bebd9d06b5",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "2b62a73a68e08e41c3cd639e995eeee89db8b768a3965b3e74ed6a0f1f05005d",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "22009b16674d100f8f6aca231f1c88791a6c0636e6bd9cec8a19d225ad9b588b",
+          "size": 66080
+        }
+      ],
+      "sourcePngSha256": "2396ad3e7a95e67e7988d32baac1bea2862326107937596d3827a60b7189b1ba",
+      "originalScenePngSha256": "7c4d60522520ad9996f6ac3574981755a6c0d4c6601fc279bc4947eee9b50647",
+      "generatedSha256": "779dd3d4b4cbb4aa745c2c22ba299c8100e20c18c69b94e53dcf4a30da6356da",
+      "outputSha256": "d1806f2a083a454b295741c0877cbcb91287ffe5df8ee9d140df50cd9d535bac",
+      "observedReasons": [
+        "The left olive region is now a subdued shadow plane with weak irregular divisions, removing the earlier strongly organized stacked-block treatment.",
+        "The rust upper-right surface retains the native broad diagonal dark tonal runs. It does not resolve the ambiguous marks into readable scrolls, holes or an independent ornament; quieter weathered finish is consistent with the roof corner context.",
+        "The lower diagonal lip remains at the native slope and position with a dim gray-olive contact rather than the prior bright golden/chalky molding. Delivered crop and static roof-edge placement do not show a new projecting component."
+      ],
+      "nextCorrections": [],
+      "findings": [],
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f/painted-input-v4.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f/image-v4.png",
+      "sourceAuthoringCrop": null,
+      "structuralReplayExact": true,
+      "runtimeSelected": false,
+      "nativeAccepted": 0,
+      "finalQualityAccepted": 0
+    },
+    {
+      "sourceKey": "be023e0b5599675425e3a0e361a3cf1ae5c57a4c51d10e5d49c0d4d857f830cc",
+      "candidateVersion": 4,
+      "verdict": "CLEAR",
+      "disposition": "clear-development-intent",
+      "route": {
+        "cut": 244,
+        "period": "early",
+        "rawDisk": 1,
+        "fieldType": 65,
+        "location": "Donau",
+        "bank": 22,
+        "directory": 736
+      },
+      "sourceBindings": [
+        {
+          "renderKey": "e25f5585208ac3ba4b01fe4e033dfde29639aa25dd9558eb12bead9601027d07:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "1c8b717f6bdc7104df265fab09f579efa1a4e5258b3d1610f93937f2aab7a39d",
+          "size": 528
+        },
+        {
+          "index": 1,
+          "sha256": "5f15810f1f97f5107ba56c255da6c35abe6bef709c609445fbdd5351d7ec8fc2",
+          "size": 2100
+        },
+        {
+          "index": 2,
+          "sha256": "aed6d2bae4c2030e14a44a70ea9d10560ef9c7f617d5db3dfb89f1c2b706998f",
+          "size": 1580
+        },
+        {
+          "index": 3,
+          "sha256": "3efabedaf409ede1c12a1db02e5282ec12d3b82cb0a7c3f356c3e3750e0179a4",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "339e690e20ad3bdeb2f8175207f071efb97232980c44440d039cefe4e44e6ba0",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "0e7fae053d876010fb93299b8008332f430749cac75bc1f93afe43bede222ce9",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "8984e6ff180b1880428a69cf7d00cd994fecbd6208d29299ab59b708c4651f18",
+          "size": 66080
+        }
+      ],
+      "sourcePngSha256": "3c1382ccca38ce3eb6945154a8f101914835fb3ee611aaf538da12633faaf7c5",
+      "originalScenePngSha256": "3e1eb6f93d56ea2765607c58526c58ce5b5f86399603ea883bfee27fea75bfba",
+      "generatedSha256": "4a45edbb79905b39ab08cdf3b47dfaa2d2e923fbd0bce3ae3175e4e9328894f4",
+      "outputSha256": "93ff9fd6192a1fb6d076b566af1ca3d268cb9ab376730a05dc342bf538dc02e6",
+      "observedReasons": [
+        "Two narrow smooth supports, the clipped top bar, thin dark upper-quarter separation and broad lower support band preserve the native composition.",
+        "The previous large repeated pits/holes on the supports and lower band are removed; their current diffuse olive-beige planes fit the quiet native highlights and shadows.",
+        "The center remains indistinct low-contrast pale/darker tonal groups without writing, runes, recognizable new figures or deep carved geometry. The softly worn treatment retains ambiguity in the authoritative native marks and fits the original hall placement."
+      ],
+      "nextCorrections": [],
+      "findings": [],
+      "generatedPath": "integrations/envhd/production/bespoke-field-candidates/be023e0b5599675425e3a0e361a3cf1ae5c57a4c51d10e5d49c0d4d857f830cc/painted-input-v4.png",
+      "outputPath": "integrations/envhd/production/bespoke-field-candidates/be023e0b5599675425e3a0e361a3cf1ae5c57a4c51d10e5d49c0d4d857f830cc/image-v4.png",
+      "sourceAuthoringCrop": null,
+      "structuralReplayExact": true,
+      "runtimeSelected": false,
+      "nativeAccepted": 0,
+      "finalQualityAccepted": 0
+    }
+  ],
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "runtimeSelected": 0
+}
