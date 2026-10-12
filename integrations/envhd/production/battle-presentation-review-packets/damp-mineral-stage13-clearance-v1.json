@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "reviewer": "independent Spec actual-original art/layout reviewer undersea_spec",
+  "snapshot": "941c4f54dd9104e8eb6b75ed4a1f159303dbd6f7",
+  "packetSha256": "dbe9df4c43fa8f3d73efea079ebadce452f9831682bc9a89d4eb9547e1c00de8",
+  "authorManifestSha256": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
+  "scope": "Only three existing stage13 static candidates; fresh actual-original source and deterministic recipe replay plus visual material/layout review. No runtime selection or mapped scene, seam, native rendering, physical Steam Deck or final beauty acceptance. Whole-game presentation remains ongoing.",
+  "sourceModelSha256": "bac29f112260efbb701786061285ec592fec22e36630567fe7d3a582042d8185",
+  "sourceTimSha256": "c923b35253f534937b857138f998e4330e12293c34c309d5c4bab3e25e748e2d",
+  "sourceModelFile": "SECT/DRGN0.BIN/2510/0/0",
+  "sourceTimFile": "SECT/DRGN0.BIN/2510/2",
+  "comparisons": [
+    {
+      "sourceKey": "4f0f6022edbd7bd6d2e6192250f3529fb77032527deec398d770a8f83174916e",
+      "sourceSize": [
+        72,
+        112
+      ],
+      "sourceBindings": [
+        {
+          "stage": 13,
+          "page": 7,
+          "clut": 15772,
+          "parts": [
+            1
+          ],
+          "sourceCrop": [
+            184,
+            120,
+            256,
+            232
+          ],
+          "sourceUvOrigin": [
+            184,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "88894682755dbe41b47cd266f67988851745c4de188780bbe47d2de598c89877",
+      "outputSha256": "c37eebd21acdc09c4ef5ae0f13f7c5ff669c6b0038ae0ba3b4e56d08167397f6",
+      "priorCandidateSha256": "3a628d28140cbd06fc997d36bc2515a41a978c2e98444d14b856183a29db7bba",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Retains the upper dim olive rectangular material, original broad soft value patches, top/left neighboring strips, and exact hanging tapered strand arrangement and negative gaps. Added subdued mossy/mineral grain stays within the original shapes without new leaves, apertures or broad relief. Hanging features keep their source counts/lengths and original dark reading.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "babab8a2baf09318dc65af4537f0e40a8419142023073050b4979b650c4ec244",
+      "sourceSize": [
+        136,
+        64
+      ],
+      "sourceBindings": [
+        {
+          "stage": 13,
+          "page": 7,
+          "clut": 15836,
+          "parts": [
+            2
+          ],
+          "sourceCrop": [
+            0,
+            184,
+            136,
+            248
+          ],
+          "sourceUvOrigin": [
+            0,
+            184
+          ]
+        }
+      ],
+      "generatedSha256": "76cba3944198a61b922cea08995a4d26e495563051b9ad0bd26b6a89a1a82d76",
+      "outputSha256": "5eccb5c5f0a5da5b2bbd74ea56ee59ff42c8ada722a9f607edd779f050aef174",
+      "priorCandidateSha256": "8125c09caf103c5b987fab4126003278babeaf13ec3ac61d34208fd8cd592705",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Preserves the broad tapering pillar count/positions, drooping connecting surfaces, hanging pointed strands, top/bottom/right neighboring fragments and original black intervals. Fine damp olive mineral detail follows existing silhouettes; no new major rock formation, hanging object, aperture or light source observed. Subdued palette and broad source shading remain recognizable.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "e85bdb71bc0d501c0ab8340c6cc943fd6f709eac62963d1ae21bfa8260149a6a",
+      "sourceSize": [
+        80,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 13,
+          "page": 7,
+          "clut": 15900,
+          "parts": [
+            6
+          ],
+          "sourceCrop": [
+            120,
+            184,
+            200,
+            232
+          ],
+          "sourceUvOrigin": [
+            120,
+            184
+          ]
+        }
+      ],
+      "generatedSha256": "90ce31a4be9ef7ef0e6cd7f36054edf7d5d62f262dafaed6faa148736d859866",
+      "outputSha256": "9cd7672665f49f3723c02583e4f6e305fe5d81f89859845734d3bfb7d8229d2c",
+      "priorCandidateSha256": "9a21fa343eced9d3baf5d4947d6a83c7b8703bd5eca74d3e16c9105aaa79a5b7",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "REVISE",
+      "reason": "The main lattice connections, right parallel ribs and large dark cavities remain positioned correctly, and exact STP/black classes pass. However, the candidate introduces a dense fine cobweb-like network of secondary crossing filaments through dark interior regions between the original broader strands, especially left/lower-center and across the central spans. The actual original establishes a much sparser lattice; the prompt/spec explicitly forbids new netting or extra threads. Restrict fibrous detail to the existing strand footprints and remove the unsupported interstitial fine webbing, while retaining original ribs/cavities and muted gray-violet values.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "counts": {
+    "clear": 2,
+    "revise": 1,
+    "runtimeSelectedByThisReview": 0
+  },
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "privateFullReviewSha256": "62e64fcd70be67598e139d8bb949000b9579fd79eedb6ee50bb47be97656f730"
+}
