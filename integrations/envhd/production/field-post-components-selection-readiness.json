@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "scope": "One previously original-reviewed Palace post correction selected through explicit bounded component replay. Prior72 painted recipes and4958runtime records exact.",
+  "integrationBaseCommit": "a81dc46c29ce1f9b89a418644f1ac75c3338086f",
+  "authoringSourceCommit": "3b19956a0078fcf311431ee21631365fcbf62665",
+  "sourceReviewCommit": "21a7e40fceb1f139ba43fc0ed3cd5edb0a7e9816",
+  "selectionManifest": "field-bespoke-post-components-reviewed-selection.json",
+  "selectionManifestSha256": "b03a5641e55b69e986881a94a2c2e1403009a330ae746e338234c4dbdaa0560a",
+  "independentReview": "field-independent-post-components-review.json",
+  "independentReviewSha256": "9dff31cca8c20a06944966a44243c6705ad6b1e42dc2b5624b14c38930525ba4",
+  "fieldRuntimeSha256": "600e53f6d535839108e37f89efcbaa2d7389f9e2608ccb4f8f9cbb8e7b61d289",
+  "currentSourcePreflightCandidates": 73,
+  "currentSourcePreflightLogSha256": "db5616b519c406cb890e1e5254f61099899f2636e4d012325ea749ec1de23e2d",
+  "sourcePreflightAndSelectionSinglePass": true,
+  "priorSelectedCandidateRecordsExact": 72,
+  "priorRuntimeAssetRecordsExact": 4958,
+  "onlyAddedSourceKeys": [
+    "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5"
+  ],
+  "protectedCutsExact": true,
+  "selectedFields": 4959,
+  "selectedPaintings": 73,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 203,
+  "knownRemainingStaticImages": 204,
+  "helperAlgorithmPath": "scripts/repair-envhd-painted-components.py",
+  "helperAlgorithmSha256": "984dcbc7cefab7249f8c988e40cd4c8cfd73aba0f265bb6c91669eb2b7cd8f14",
+  "mainVerifierSha256": "ac9ddfd0796530bbcd565bf10eba704eac5573cf09db9cee65d150f599c336b9",
+  "tests": {
+    "helper": {
+      "passed": 11,
+      "logSha256": "f71187458195fc6e8240a7a6ce7be155badc4baeb1173e03dc25b4d0cc866d7c"
+    },
+    "fields": {
+      "passed": 45,
+      "logSha256": "1b660b762181e1e043a38c4e82c008c4c02e093400472e8653a9dfe220e6b5d6"
+    }
+  },
+  "componentProvenance": "builtin-imagegen-plus-bounded-python-component-transfer",
+  "sourceAlphaExact": true,
+  "pixelsOutsideAllowedRegionExact": true,
+  "newImageGenerationCalls": 0,
+  "originalStandaloneCoverageFailureStillRejected": true,
+  "freshPackageVerified": false,
+  "unfinishedAuthoringPreservedOnOngoingBranch": true,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "acceptedBaseBattleMetadataReconciliation": {
+    "source": "a81dc46c29ce1f9b89a418644f1ac75c3338086f",
+    "changedArtwork": false,
+    "presentationMasters": 40,
+    "totalPaintedMasters": 52,
+    "selectedNeuralMasters": 466,
+    "sourceHashes": {
+      "battle-material-runtime-artwork.json": "95af427a1fa3a8b3edc37767f8d3534083ae29ad069ac1c652104e8103d8781d",
+      "battle-presentation-artwork-v1.json": "d5db1a80eff1c51598b8fac8d45499bfbd6e7c9ca0c1b6b7c7f2701b74855360"
+    },
+    "reason": "Refresh inherited coverage pins/counts after accepted Undersea and corridor battle increments; no battle pixels or runtime changes."
+  }
+}

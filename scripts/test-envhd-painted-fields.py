@@ -98,6 +98,74 @@ class PaintedFieldTests(unittest.TestCase):
             self.assertEqual((self.root/original['outputPath']).read_bytes(),runtime.read_bytes())
         self.assertEqual(new_bytes,self.output_path.read_bytes())
 
+    def component_fixture(self):
+        prefix=self.raw_path.parent
+        base=prefix/'painted-base-input-v1.png';base.write_bytes(self.raw_path.read_bytes())
+        insert=prefix/'painted-insert-input-v1.png';Image.new('RGBA',(8,8),(75,80,50,255)).save(insert)
+        regions=[dict(name='synthetic',nativeBox=[0,0,2,2],insertBox=[0,0,8,8],maskBox=[0,0,2,2],channelRatios=[[1,0,1]])]
+        composite,operation=verify.components.replay(self.source,base.read_bytes(),insert.read_bytes(),regions,[0,0,2,2])
+        composite.save(self.raw_path)
+        painted,cutout=verify.repair.repair(self.source,composite);painted.save(self.output_path)
+        recorded=dict(operation,algorithmPath='scripts/repair-envhd-painted-components.py',algorithmSha256=verify.COMPONENTS_SHA256,
+            **{role+field:value for role,path in [('base',base),('insert',insert)]
+               for field,value in [('InputPath',path.relative_to(self.root).as_posix()),('GeneratedBy','builtin-imagegen'),('Prompt','Source-faithful generated fixture')]})
+        self.candidate.update(cutout,generatedSize=list(composite.size),componentTransfer=recorded,generatedBy=verify.components.PROVENANCE,
+            generatedSha256=verify.batch.terrain.digest(self.raw_path.read_bytes()),outputSha256=verify.batch.terrain.digest(self.output_path.read_bytes()))
+        self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save()
+        return base,insert
+
+    def test_component_recipe_replays_and_requires_distinct_provenance(self):
+        self.component_fixture();self.assertEqual(1,len(self.preflight()[0]))
+        self.candidate['generatedBy']='builtin-imagegen';self.save()
+        with self.assertRaisesRegex(ValueError,'component identity'):self.preflight()
+
+    def test_component_metadata_cannot_launder_changed_input_or_output(self):
+        base,insert=self.component_fixture();before=insert.read_bytes()
+        Image.new('RGBA',(8,8),(80,70,40,255)).save(insert)
+        with self.assertRaisesRegex(ValueError,'component input bytes'):self.preflight()
+        insert.write_bytes(before);self.candidate['componentTransfer']['changedPixels']+=1;self.save()
+        with self.assertRaisesRegex(ValueError,'exact recorded transfer'):self.preflight()
+
+    def test_component_generated_dimensions_cannot_inherit_base_metadata(self):
+        self.component_fixture();self.candidate['generatedSize']=[12,12];self.save()
+        with self.assertRaisesRegex(ValueError,'component generated dimensions'):self.preflight()
+
+    def test_component_input_path_and_algorithm_pin_are_enforced(self):
+        self.component_fixture();recorded=self.candidate['componentTransfer'];original=copy.deepcopy(recorded)
+        for key,value,message in [('baseInputPath','../private.png','provenance'),('algorithmSha256','0'*64,'identity'),('insertGeneratedBy','unknown','provenance')]:
+            with self.subTest(key=key):
+                self.candidate['componentTransfer']=copy.deepcopy(original);self.candidate['componentTransfer'][key]=value;self.save()
+                with self.assertRaisesRegex(ValueError,message):self.preflight()
+
+    def test_component_recipe_rejects_composed_unrelated_repairs(self):
+        self.component_fixture();self.candidate['registration']={};self.save()
+        with self.assertRaisesRegex(ValueError,'exclusive operation'):self.preflight()
+
+    def test_component_wrong_output_header_precedes_extra_input_decoding(self):
+        self.component_fixture();data=compressed_png(4096,4096);self.output_path.write_bytes(data)
+        self.candidate['outputSha256']=verify.batch.terrain.digest(data);self.save()
+        with mock.patch.object(verify.components,'replay',side_effect=AssertionError('Extra input decoding')):
+            with self.assertRaisesRegex(ValueError,'output dimensions'):self.preflight()
+
+    def test_component_extra_headers_fail_before_pixel_allocation(self):
+        _,insert=self.component_fixture();base_data=insert.read_bytes()
+        for data in [compressed_png(),duplicate_header_png(first=(8,8))]:
+            with self.subTest(size=len(data)):
+                insert.write_bytes(data);self.candidate['componentTransfer']['insertInputSha256']=verify.batch.terrain.digest(data);self.save()
+                with mock.patch.object(self.source,'load',return_value=self.source.im):
+                    with mock.patch.object(Image.Image,'load',side_effect=AssertionError('Pixel allocation')):
+                        with self.assertRaisesRegex(ValueError,'bounded painted canvas'):self.preflight()
+        insert.write_bytes(base_data)
+
+    def test_component_changed_composite_cannot_be_rehashed_into_selection(self):
+        self.component_fixture();Image.new('RGBA',(8,8),(80,70,40,255)).save(self.raw_path)
+        self.candidate['generatedSha256']=verify.batch.terrain.digest(self.raw_path.read_bytes());self.save()
+        with self.assertRaisesRegex(ValueError,'exact recorded transfer'):self.preflight()
+
+    def test_component_provenance_without_recipe_is_rejected(self):
+        self.candidate['generatedBy']=verify.components.PROVENANCE;self.save()
+        with self.assertRaisesRegex(ValueError,'provenance'):self.preflight()
+
     def test_protected_source_is_rejected_before_reading_pixels(self):
         self.asset['owners']=['skurfa']
         with self.assertRaisesRegex(ValueError,'protected'):self.preflight()

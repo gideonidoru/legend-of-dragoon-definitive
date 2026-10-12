@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "d5b3f9f76141e31b032e8a7d7a9e1c693ef843cd plus one independently cleared registered balcony",
+  "sourceSelectionCheckpoint": "a81dc46c29ce1f9b89a418644f1ac75c3338086f plus one independently cleared Palace post correction",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "e1036b3c1dcfb82ef1ab3ad4aefc876deaf8a3ee4d8cd351d7f7687f983973ca",
-    "field-runtime-artwork.json": "d7c92594e78c49b6a29d792f441851f437abe620d9a0a4e5b4c8d9af8b4c317f",
+    "full-coverage.json": "631bd1c91c0866f1d2f12734c1b012f6cac6588802dc9b97ef432bd7b2ee3604",
+    "field-runtime-artwork.json": "600e53f6d535839108e37f89efcbaa2d7389f9e2608ccb4f8f9cbb8e7b61d289",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
-    "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
+    "battle-material-runtime-artwork.json": "95af427a1fa3a8b3edc37767f8d3534083ae29ad069ac1c652104e8103d8781d",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "field-bespoke-bedding-reviewed-selection.json": "6af60fa9447818366fda841ff1b9b362d84ad6a9a4aac2f2384a53725f75b123",
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
@@ -31,7 +31,7 @@
     "field-bespoke-table-independent-reviewed-selection.json": "addfc9dbc087ed058af2029cee7347b044161e97252a62939fa51a959a5d2db6",
     "field-independent-table-review.json": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a",
     "field-table-selection-readiness.json": "0c46044a0b825c381066bbe0407210a4bc4d126d6da0b030aebc0e34954ed811",
-    "battle-presentation-artwork-v1.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274",
+    "battle-presentation-artwork-v1.json": "d5db1a80eff1c51598b8fac8d45499bfbd6e7c9ca0c1b6b7c7f2701b74855360",
     "publication-source-5d3db5c8-generation4-snapshot.json": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f",
     "field-bespoke-donau-two-independent-reviewed-selection.json": "f7f5ab51e5afbe13c566300a863bfb25019575810368fe72d7d3f00264c295b5",
     "field-independent-donau-two-review.json": "0018f0828106bada7ac8caa41dae15f1387e3a5b29fa89f03f9ddba32f48a6b9",
@@ -53,28 +53,31 @@
     "field-precise-three-selection-readiness.json": "db30ca367d8308256f037972232ca1a16384889b24c193dd8167014354e6cfaf",
     "field-bespoke-balcony-independent-reviewed-selection.json": "cfca6a47ac0277b0e4963ab5a52debc141a5cd09d30078a4526c9663587f8171",
     "field-independent-balcony-registration-review.json": "a4494f7cab21ea646baecb5d77ab45b38f1951082ed929f18637a0a45dd22caa",
-    "field-balcony-selection-readiness.json": "837e4d748244cc48b0bfa3ea13c5e013cf3b2e9e0e5c1fa5b11841bed87bba84"
+    "field-balcony-selection-readiness.json": "837e4d748244cc48b0bfa3ea13c5e013cf3b2e9e0e5c1fa5b11841bed87bba84",
+    "field-bespoke-post-components-reviewed-selection.json": "b03a5641e55b69e986881a94a2c2e1403009a330ae746e338234c4dbdaa0560a",
+    "field-independent-post-components-review.json": "9dff31cca8c20a06944966a44243c6705ad6b1e42dc2b5624b14c38930525ba4",
+    "field-post-components-selection-readiness.json": "a245034e636001f9f020541de55fd1a613a6f1263fc4b2ef9e704363fe785af3"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 205,
+  "knownRemainingStaticImages": 204,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4958,
+      "selectedDevelopment": 4959,
       "selectedNeural": 4886,
-      "selectedPainted": 72,
-      "held": 204,
+      "selectedPainted": 73,
+      "held": 203,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 52,
+      "customHeldDraftSourceImages": 51,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Finish11 canonical revision sources and other held prototypes; continue204field holds, one terrain repair and animated/props source/state contracts.",
+      "nextTask": "Finish10 canonical revision sources and other held prototypes; continue203field holds, one terrain repair and animated/props source/state contracts.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 0,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
@@ -118,7 +121,6 @@
         "ce7b4bd9cf0135bceb97a0799a11b8430da868ab579941a08fb31d542176a994",
         "da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5",
         "da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417",
-        "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
         "de79c94862b3d13299111e7cf480c51a64bec316c49363d75ce2beda0a81bdc9",
         "df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b",
         "e0f6b532410a42b5ad4701aca0b368b6473d795f25fb94e14021a9ebda37be78",
@@ -130,8 +132,8 @@
         "f94d81a9826549e0833a5b8fa48e28bc24ea4f1859b959a010a54e25785c9cfc",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Prior53 unique unselected custom keys minus newly selected balcony;52keys subset204field holds. Repeated versions deduplicated.",
-      "independentlyReviewedCandidatesRequiringRevision": 11,
+      "draftCountMethod": "Prior52 unique unselected custom keys minus newly selected Palace post;51keys subset203field holds. Repeated versions deduplicated.",
+      "independentlyReviewedCandidatesRequiringRevision": 10,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
       "independentNewSceneryReview": {
         "source": "7262233bbffb1419bfda439b138e4bcc75f01591",
@@ -146,7 +148,7 @@
         "receipt": "field-independent-palace-eight-review.json"
       },
       "independentlyClearedCandidatesAwaitingIntegration": 0,
-      "authoringQueueScope": "83 historical canonical source keys:72selected/11revision/0pending. Every oldversion retained on ongoing authoring branch.",
+      "authoringQueueScope": "83 historical canonical source keys:73selected/10revision/0pending. Every oldversion retained on ongoing authoring branch.",
       "independentFinalEighteenReview": {
         "source": "bdfecbad260e63eb3eed1a7d6147b8e8703553a4",
         "clearedSelected": 16,
@@ -164,6 +166,11 @@
         "source": "414c001f85e446ccdaa86f74e8575a8622ddd6d0",
         "clearedSelected": 1,
         "receipt": "field-independent-balcony-registration-review.json"
+      },
+      "independentPostComponentsReview": {
+        "source": "21a7e40fceb1f139ba43fc0ed3cd5edb0a7e9816",
+        "clearedSelected": 1,
+        "receipt": "field-independent-post-components-review.json"
       }
     },
     {
@@ -187,10 +194,10 @@
       "fullEncounterContractsClosed": 0,
       "selectedAnimationFamilies": 0,
       "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette.",
-      "selectedPaintedMasters": 47,
+      "selectedPaintedMasters": 52,
       "previouslySelectedPaintedMasters": 12,
-      "newPresentationSelectedMasters": 35,
-      "selectedNeuralMasters": 471
+      "newPresentationSelectedMasters": 40,
+      "selectedNeuralMasters": 466
     },
     {
       "id": "battle-panoramas",
@@ -402,6 +409,12 @@
       "selectedNewSourceImages": 1,
       "independentReview": "field-independent-balcony-registration-review.json",
       "reason": "Muted curved balcony and original fitting marks independently cleared after existing pinned registration. Prior71recipes/4957records preserved."
+    },
+    {
+      "manifest": "field-bespoke-post-components-reviewed-selection.json",
+      "selectedNewSourceImages": 1,
+      "independentReview": "field-independent-post-components-review.json",
+      "reason": "Original-reviewed Palace post pixels replayed exactly through bounded custom component transfer; prior72recipes/4958records preserved."
     }
   ],
   "publication": {
@@ -428,8 +441,8 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 33,
-    "paintedBattleMastersAwaitingCoordinatedPublication": 13,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 34,
+    "paintedBattleMastersAwaitingCoordinatedPublication": 18,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
       "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
@@ -457,17 +470,17 @@
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "83 historical canonical source keys:72selected/11revision/0pending.52unselectedcustomkeys subset204fieldholds;205knownstatic. Native/final pending.",
+  "authoringCheckpoint": "83 historical canonical source keys:73selected/10revision/0pending.51unselectedcustomkeys subset203fieldholds;204knownstatic. Native/final pending.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "d5b3f9f76141e31b032e8a7d7a9e1c693ef843cd",
-    "fieldSelected": 4957,
-    "fieldPainted": 71,
+    "sourceCommit": "a81dc46c29ce1f9b89a418644f1ac75c3338086f",
+    "fieldSelected": 4958,
+    "fieldPainted": 72,
     "authoringCandidates": 83,
     "independentlyPending": 0,
-    "independentlyRevision": 12,
-    "heldSourceKeys": 53,
+    "independentlyRevision": 11,
+    "heldSourceKeys": 52,
     "nativeAccepted": 0,
     "finalQualityAccepted": 0,
-    "note": "Accepted base before this proposed one-balcony increment. New4958/72 selection awaits merge."
+    "note": "Accepted base before this proposed one-post increment. New4959/73 selection awaits merge."
   }
 }
