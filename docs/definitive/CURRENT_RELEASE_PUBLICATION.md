@@ -70,8 +70,23 @@ selection reaches every workflow Gradle invocation. Default film staging binds t
 carrier's fresh uploaded API IDs, hashes, sizes and exact origin, verifies the
 17 physical byte objects, and refuses a changed carrier before promoting its
 owned build output. Both format-1 and format-2 carrier states are supported; a
-format-2 carrier must additionally agree with every committed film descriptor.
+format-2 carrier must additionally close its old committed film descriptors
+against the fresh API inventory. Candidate build inputs are independently bound
+to the new Git source contract and fresh immutable IDs, so ROOT can preseed one
+approved changed film while the runtime pointer still names the old revision.
+The build neither uploads sources nor advances that pointer. Its source receipt
+records each candidate film ID/hash/size and the carrier ID. The fresh carrier
+and both old/candidate source bindings are rechecked after every candidate byte
+has been copied, immediately before any existing build-output rename.
 No aggregate source ZIP is needed by a clean format-2 build or included in its publication closure.
+
+The compile/package and package-restaging workflow steps receive the ephemeral
+GitHub job token with repository `contents: read` and `actions: read` permissions
+for bounded carrier metadata reads. CI receives no publication capability. A
+local default film build requires the GitHub CLI with authenticated read access
+(or a read-only `GH_TOKEN` supplied by the caller), alongside the Java build
+toolchain. The metadata helper inherits this read authentication. Credentials are never
+written to receipts or build output; no anonymous local fallback is claimed.
 
 ROOT selects the matching stager/publisher with `--delivery-format 2`; a different
 CI receipt format fails closed. CI member plans are canonical, checksum-bound,

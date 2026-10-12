@@ -6,6 +6,7 @@ import hashlib
 import importlib.util
 import io
 import subprocess
+import re
 import tempfile
 import unittest
 import zipfile
@@ -49,6 +50,33 @@ class Server(transaction.Server):
     def upload(self,path):
         super().upload(path)
         self.files[path.name]['created_at']='2026-10-11T12:00:00Z'
+
+
+def verify_build_metadata_auth(workflow):
+    """Check the actual steps that can invoke the split-film build task."""
+    permission=re.search(r'^permissions:\n((?:  .*\n)+)',workflow,re.M)
+    if permission is None or set(permission[1].splitlines())!={'  contents: read','  actions: read'}:
+        raise ValueError('Build metadata authentication must remain read-only')
+    steps=re.findall(r'^      - name: ([^\n]+)\n(.*?)(?=^      - name: |\Z)',workflow,re.M|re.S)
+    required={name:content for name,content in steps if './gradlew' in content and ('clean build definitivePackage' in content or 'stageDefinitivePackage' in content)}
+    if len(required)!=2:raise ValueError('Missing compile or package-restaging task')
+    for name,content in required.items():
+        if '\n          GH_TOKEN: ${{ github.token }}\n' not in content:
+            raise ValueError('Read authentication missing from '+name)
+    return required
+
+
+class WorkflowBuildAuth(unittest.TestCase):
+    def test_split_film_build_steps_receive_read_only_auth_at_invocation(self):
+        workflow=(Path(__file__).resolve().parents[1]/'.github/workflows/build.yml').read_text()
+        self.assertEqual({'Compile and package without gameplay tests','Check incremental FxHD packaging and reviewed resources'},set(verify_build_metadata_auth(workflow)))
+    def test_missing_early_step_auth_or_write_permission_fails_control(self):
+        workflow=(Path(__file__).resolve().parents[1]/'.github/workflows/build.yml').read_text()
+        for name,content in verify_build_metadata_auth(workflow).items():
+            changed=workflow.replace(content,content.replace('          GH_TOKEN: ${{ github.token }}\n',''),1)
+            with self.subTest(step=name),self.assertRaisesRegex(ValueError,'authentication missing'):verify_build_metadata_auth(changed)
+        with self.assertRaisesRegex(ValueError,'read-only'):
+            verify_build_metadata_auth(workflow.replace('  contents: read','  contents: write',1))
 
 
 class MemberPublication(unittest.TestCase):
@@ -232,6 +260,73 @@ class MemberPublication(unittest.TestCase):
                 result=film_stage.stage(self.manifest_path,self.root/('film-output-'+str(version)),lambda:current,fetch)
             self.assertEqual(17,len(reads));self.assertEqual(18,result['films'])
             self.assertEqual(17,len(list((self.root/('film-output-'+str(version))/'videos').iterdir())))
+    def test_carrier_change_during_final_film_copy_preserves_prior_output(self):
+        local=self.root/'prior-film-inputs';local.mkdir();output=self.root/'active-film-output'
+        for path,data in self.payload.items():
+            if path.startswith('gfx/fmvhd/videos/'):
+                self.server.add('file-'+sha(data),data);(local/(sha(data)+'.mp4')).write_bytes(data)
+        with patch('builtins.print'):member.fmv_contract.stage(self.manifest_path,output,local)
+        original={path.relative_to(output).as_posix():path.read_bytes() for path in output.rglob('*') if path.is_file()}
+        count=0;copy_checked=member.fmv_contract.copy_checked
+        def copy_and_change(source,destination,size,digest):
+            nonlocal count
+            copy_checked(source,destination,size,digest);count+=1
+            if count==17:
+                pointer=parse_body(self.server.record['body']);pointer['generation']+=1;self.server.record['body']=body(pointer)
+        def fetch(asset,directory):
+            path=directory/asset['name'];path.write_bytes(self.server.data[asset['name']]);return path
+        with patch('builtins.print'),patch.object(member.fmv_contract,'copy_checked',side_effect=copy_and_change):
+            with self.assertRaisesRegex(ValueError,'changed'):
+                film_stage.stage(self.manifest_path,output,lambda:dict(release=self.server.release(),assets=self.server.assets()),fetch)
+        self.assertEqual(17,count)
+        self.assertEqual(original,{path.relative_to(output).as_posix():path.read_bytes() for path in output.rglob('*') if path.is_file()})
+        self.assertFalse(list(self.root.glob('.fmv-stage-*')));self.assertFalse(list(self.root.glob('.fmv-old-*')))
+    def changed_candidate(self):
+        current=self.publish();contract=member.fmv_contract.contract(self.manifest_path)
+        data=b'approved new enhanced OPENH film';candidate_sha=sha(data)
+        contract['OPENH.sha256']=candidate_sha;contract['OPENH.bytes']=str(len(data))
+        candidate=self.root/'candidate-film.properties';candidate.write_text(''.join(k+'='+v+'\n' for k,v in sorted(contract.items())))
+        self.server.add('file-'+candidate_sha,data)
+        return current,candidate,candidate_sha,data
+    def test_changed_film_preseed_builds_against_old_format2_pointer(self):
+        published,candidate,candidate_sha,data=self.changed_candidate();old_body=self.server.record['body'];fetched=[]
+        def fetch(asset,directory):
+            fetched.append(asset['name']);path=directory/asset['name'];path.write_bytes(self.server.data[asset['name']]);return path
+        with patch('builtins.print'):
+            result=film_stage.stage(candidate,self.root/'candidate-film-output',lambda:dict(release=self.server.release(),assets=self.server.assets()),fetch)
+        self.assertEqual(data,(self.root/'candidate-film-output'/'videos'/(candidate_sha+'.mp4')).read_bytes())
+        self.assertEqual(old_body,self.server.record['body'])
+        self.assertNotEqual(published['manifest']['fmvSources']['OPENH']['sha256'],result['sourceAssets']['OPENH']['sha256'])
+        self.assertEqual(str(self.server.files['file-'+candidate_sha]['id']),result['sourceAssets']['OPENH']['id'])
+        self.assertEqual(17,len(fetched))
+    def test_changed_film_missing_corrupt_or_misbound_preseed_rejects_before_fetch(self):
+        published,candidate,candidate_sha,data=self.changed_candidate();contract=member.fmv_contract.contract(candidate)
+        current=dict(release=self.server.release(),assets=self.server.assets())
+        for change in ('missing','digest','size','origin','duplicate_id','committed_id'):
+            bad=copy.deepcopy(current);asset=next(row for row in bad['assets'] if row['name']=='file-'+candidate_sha)
+            if change=='missing':bad['assets'].remove(asset)
+            if change=='digest':asset['digest']='sha256:'+'0'*64
+            if change=='size':asset['size']+=1
+            if change=='origin':asset['browser_download_url']=asset['browser_download_url'].replace(TAG,'other-carrier')
+            if change=='duplicate_id':asset['id']=bad['assets'][0]['id']
+            if change=='committed_id':next(row for row in bad['assets'] if row['name']==published['manifest']['fmvSources']['OPENH']['name'])['id']=999999
+            with self.subTest(change=change):
+                with self.assertRaises(ValueError):
+                    film_stage.stage(candidate,self.root/'candidate-film-output',lambda:bad,lambda *_:(_ for _ in ()).throw(AssertionError('Invalid preseed reached download')))
+                self.assertFalse((self.root/'candidate-film-output').exists())
+        self.assertFalse((self.root/'candidate-film-output').exists())
+    def test_changed_candidate_source_id_changed_during_copy_rejects_before_promotion(self):
+        published,candidate,candidate_sha,data=self.changed_candidate();copy_checked=member.fmv_contract.copy_checked
+        def copy_and_rebind(source,destination,size,digest):
+            copy_checked(source,destination,size,digest)
+            if destination.name==candidate_sha+'.mp4':self.server.files['file-'+candidate_sha]['id']=999999
+        def fetch(asset,directory):
+            path=directory/asset['name'];path.write_bytes(self.server.data[asset['name']]);return path
+        with patch('builtins.print'),patch.object(member.fmv_contract,'copy_checked',side_effect=copy_and_rebind):
+            with self.assertRaisesRegex(ValueError,'changed'):
+                film_stage.stage(candidate,self.root/'candidate-film-output',lambda:dict(release=self.server.release(),assets=self.server.assets()),fetch)
+        self.assertFalse((self.root/'candidate-film-output').exists())
+        self.assertFalse(list(self.root.glob('.fmv-stage-*')))
     def test_build_film_api_bindings_and_concurrent_pointer_fail_closed(self):
         for path,data in self.payload.items():
             if path.startswith('gfx/fmvhd/videos/'):self.server.add('file-'+sha(data),data)
@@ -243,7 +338,7 @@ class MemberPublication(unittest.TestCase):
         snapshots=iter((current,next_current))
         def fetch(asset,directory):
             path=directory/asset['name'];path.write_bytes(self.server.data[asset['name']]);return path
-        with self.assertRaisesRegex(ValueError,'changed'):
+        with patch('builtins.print'),self.assertRaisesRegex(ValueError,'changed'):
             film_stage.stage(self.manifest_path,self.root/'no-partial-film-output',lambda:next(snapshots),fetch)
         self.assertFalse((self.root/'no-partial-film-output').exists())
         self.assertFalse(list(self.root.glob('.current-film-inputs-*')))

@@ -6,7 +6,7 @@ import importlib.util
 import os
 import tempfile
 from current_publication import (REPO,TAG,parse_body,index_assets,check_asset,
-    fmv_contract,canonical)
+    fmv_contract,canonical,descriptor)
 from member_publication import fetch_asset
 
 
@@ -21,14 +21,16 @@ def sources(contract, current):
     if release is None or release['tag_name']!=TAG:raise ValueError('FMV current carrier unavailable')
     pointer=parse_body(release.get('body') or '',release['id'])
     assets=index_assets(current['assets']);result={}
+    # The committed runtime revision remains closed while ROOT preseeds a future
+    # Git-pinned candidate. Its film identity must not become the candidate pin.
+    if pointer['format']==2:
+        for declared in pointer['fmvSources'].values():
+            asset=check_asset(assets.get(declared['name'],{}),declared['name'],declared['bytes'],declared['sha256'])
+            if str(asset['id'])!=declared['id']:
+                raise ValueError('Committed film source asset ID differs')
     for film in fmv_contract.NAMES:
         sha=contract[film+'.sha256'];size=int(contract[film+'.bytes']);name='file-'+sha
-        asset=check_asset(assets.get(name,{}),name,size,sha)
-        if pointer['format']==2:
-            declared=pointer['fmvSources'][film]
-            if (declared['sha256'],declared['bytes'],declared['id'])!=(sha,size,str(asset['id'])):
-                raise ValueError('Current film descriptor differs from source contract')
-        result[film]=asset
+        result[film]=check_asset(assets.get(name,{}),name,size,sha)
     return result
 
 
@@ -44,11 +46,16 @@ def stage(manifest, output, read=metadata, fetch=fetch_asset):
         for asset in {asset['name']:asset for asset in bound.values()}.values():
             path=fetch(asset,directory)
             os.link(path,directory/(asset['name'][5:]+'.mp4'))
-        fresh=read();again=sources(contract,fresh)
-        release=lambda value:(value['release']['id'],value['release']['tag_name'],value['release'].get('body'))
-        if release(fresh)!=release(current) or {film:asset['id'] for film,asset in again.items()}!={film:asset['id'] for film,asset in bound.items()}:
-            raise ValueError('Current film carrier changed during build staging')
-        return fmv_contract.stage(manifest,output,directory)
+        def guard():
+            fresh=read();again=sources(contract,fresh)
+            release=lambda value:(value['release']['id'],value['release']['tag_name'],value['release'].get('body'))
+            if release(fresh)!=release(current) or {film:asset['id'] for film,asset in again.items()}!={film:asset['id'] for film,asset in bound.items()}:
+                raise ValueError('Current film carrier changed during build staging')
+        # Recheck only after the owned candidate has copied/verified every byte,
+        # immediately before the staging helper can rename any active output.
+        result=fmv_contract.stage(manifest,output,directory,before_promote=guard)
+        result.update(sourceReleaseId=str(current['release']['id']),sourceAssets={film:descriptor(asset,'movie') for film,asset in bound.items()})
+        return result
 
 
 if __name__=='__main__':

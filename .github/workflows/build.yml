@@ -114,8 +114,12 @@ jobs:
           java -version
           ./gradlew --version
       - name: Compile and package without gameplay tests
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: ./gradlew --no-daemon --console=plain clean build definitivePackage definitiveFileDelivery portableInstaller -PreleaseTag="$RELEASE_TAG" -PcurrentDeliveryFormat="$DELIVERY_FORMAT" ${{ matrix.args }}
       - name: Check incremental FxHD packaging and reviewed resources
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           cp build/libs/mods/FxHD-v1.0.0.jar build/libs/mods/FxHD-v0.1.0.jar
           ./gradlew --no-daemon --console=plain stageDefinitivePackage ${{ matrix.args }}
