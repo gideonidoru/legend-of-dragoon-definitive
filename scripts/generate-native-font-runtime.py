@@ -18,6 +18,15 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def source_bytes(path):
+    # Read at most the source-probe limit before allocating or parsing caller inputs.
+    with path.open('rb') as stream:
+        data = stream.read(1024 * 1024 + 1)
+    if len(data) > 1024 * 1024:
+        raise ValueError('Original source exceeds 1 MiB')
+    return data
+
+
 def tim(data, offset=0):
     if struct.unpack_from('<II', data, offset) != (16, 8):
         raise ValueError('Expected indexed 4bpp TIM with palette')
@@ -77,8 +86,8 @@ def main():
     resources.mkdir()
     previews.mkdir()
     source_dir = args.files / 'SECT/DRGN0.BIN'
-    pages = {i: (source_dir / f'4113/{i}').read_bytes() for i in range(6)}
-    menu = (source_dir / '6665').read_bytes()
+    pages = {i: source_bytes(source_dir / f'4113/{i}') for i in range(6)}
+    menu = source_bytes(source_dir / '6665')
     source_events = {f'battle_hud_{i}': combined(pages[0], tim(pages[i])[0]) for i in pages}
     extra = tim(menu, 0x10460)[0][:4 * 32] + tim(menu, 0x10580)[0][:9 * 32]
     source_events.update(menu=menu, menu_numeric_extras=combined(menu, extra))
@@ -111,7 +120,7 @@ def main():
             packet_dir = root / 'integrations/uihd/production/font' / packet_name
             packet = json.loads((packet_dir / 'review-packet.json').read_text())
             for pin in packet.get('sources', []):
-                if digest((args.files / pin['path'].removeprefix('files/')).read_bytes()) != pin['sha256']:
+                if digest(source_bytes(args.files / pin['path'].removeprefix('files/'))) != pin['sha256']:
                     raise ValueError('Original source pin differs')
             for glyph in packet['glyphs']:
                 svg = packet_dir / glyph['path']

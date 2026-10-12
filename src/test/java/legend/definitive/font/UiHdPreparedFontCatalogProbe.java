@@ -240,8 +240,13 @@ public final class UiHdPreparedFontCatalogProbe {
       require(font.font() instanceof legend.core.font.PackagedFont, "Actual packaged provider retains Original HD default offer");
       require(((java.util.Map<?, ?>)field(font.font(), legend.core.font.Font.class, "glyphs")).size() == 139, "Existing 139 logical glyphs retained");
       report.put("sharedOriginalHdGlyphs", 139);
+      // A queue captures its shader on allocation: create the GPU pool before any Noop queues.
+      if(args.length == 7) {
+        api.set(GameEngine.RENDERER, previous);
+        UiHdPreparedFontGpuProbe.run(args[6], module, listener, glyphs, proof, report);
+        api.set(GameEngine.RENDERER, new NoopApi());
+      }
       headless(module, listener, glyphs, report); api.set(GameEngine.RENDERER, previous);
-      if(args.length == 7) UiHdPreparedFontGpuProbe.run(args[6], module, listener, glyphs, proof, report);
       report.put("verdict", "PASS").put("activeRouteLimit", "Direct eligible production renderer queues exercise catalog availability; eight dormant action words are not asserted active. Production caller tests are separate.");
     } catch(final Throwable problem) { failure = problem; report.put("error", problem.toString()); }
     finally {
