@@ -57,9 +57,14 @@ acceptance.
 
 The reviewed Python/Java foundation can be selected for a source-bound release
 build by dispatching `build.yml` with `releaseTag=definitive-current` and
-`deliveryFormat=2`. The release workflow's selection defaults to `1`, so the
-serialized format-1 publisher continues independently. Ordinary CI and local
-Gradle builds default to split, checksum-pinned per-film staging; an explicit
+`deliveryFormat=2`. New release dispatches and current publisher/stager commands
+default to `2` after source adoption; already running format-1 jobs retain their
+pinned source and selection. Explicit `deliveryFormat=1` and
+`--delivery-format 1` remain pre-GC compatibility controls only while the pinned
+aggregate source ZIP is retained. After verified format-2 public acceptance and
+GC remove that ZIP, a clean format-1 build fails closed on the missing pinned
+source; there is no post-GC legacy support or older-client bridge. Ordinary CI
+and local Gradle builds default to split, checksum-pinned per-film staging; an explicit
 `-PcurrentDeliveryFormat=1` retains the aggregate ZIP build/export path. The same
 selection reaches every workflow Gradle invocation. Default film staging binds the 18 logical source contracts to the current
 carrier's fresh uploaded API IDs, hashes, sizes and exact origin, verifies the

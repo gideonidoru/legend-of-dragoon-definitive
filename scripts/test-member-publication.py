@@ -5,6 +5,7 @@ import copy
 import hashlib
 import importlib.util
 import io
+import subprocess
 import tempfile
 import unittest
 import zipfile
@@ -246,6 +247,24 @@ class MemberPublication(unittest.TestCase):
             film_stage.stage(self.manifest_path,self.root/'no-partial-film-output',lambda:next(snapshots),fetch)
         self.assertFalse((self.root/'no-partial-film-output').exists())
         self.assertFalse(list(self.root.glob('.current-film-inputs-*')))
+    def test_verify_staged_rejects_oversized_cached_plan_before_parsing(self):
+        record=self.inputs['assemblyPlans']['linux-x64']
+        path=self.root/'uploads'/record['name']
+        with path.open('r+b') as stream:stream.truncate(16*1024**2+1)
+        source=subprocess.check_output(['git','rev-parse','HEAD'],cwd=Path(__file__).resolve().parents[1],text=True).strip()
+        receipt=copy.deepcopy(self.receipts['linux-x64']);receipt['sourceSha']=source
+        args=['prepare-publication-delta.py','--verify-staged','--distributions',str(self.root/'linux-x64'),
+              '--output-dir',str(self.root),'--receipt',str(self.root/'receipt.json'),
+              '--platform','linux-x64','--source-sha',source,'--run-id','18','--run-attempt','1',
+              '--repository','gideonidoru/legend-of-dragoon-definitive','--tag',TAG]
+        with patch('sys.argv',args),patch.object(delta,'collect',return_value=({},receipt['files'],{})),patch.object(delta,'bounded_json',return_value=receipt),patch.object(member,'load_plan',side_effect=AssertionError('Oversized plan reached parser')),patch.object(delta,'verify_staged',side_effect=AssertionError('Oversized plan reached later validation')):
+            with self.assertRaisesRegex(ValueError,'Cached assembly plan size'):delta.main()
+    def test_cached_plan_read_rejects_same_size_corruption_and_links(self):
+        record=self.inputs['assemblyPlans']['linux-x64'];files=self.receipts['linux-x64']['files'];path=self.root/'uploads'/record['name']
+        original=path.read_bytes();path.write_bytes(b'x'+original[1:])
+        with self.assertRaisesRegex(ValueError,'identity'):member.read_plan(path,record,self.inputs['source'],'linux-x64',files)
+        path.unlink();target=self.root/'actual-plan';target.write_bytes(original);path.symlink_to(target)
+        with self.assertRaisesRegex(ValueError,'Linked'):member.read_plan(path,record,self.inputs['source'],'linux-x64',files)
     def test_receipt_inventory_and_split_source_need_no_legacy_zip(self):
         for platform in PLATFORMS:
             expected,files,paths=delta.collect(self.root/platform,delta.context(self.inputs['source'],18,1,'gideonidoru/legend-of-dragoon-definitive',platform,TAG),include_fmv_source=False) if platform!='linux-x64' else ({},[],{})

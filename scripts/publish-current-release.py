@@ -283,7 +283,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-sha',required=True);parser.add_argument('--run',type=int,required=True)
     parser.add_argument('--output',type=Path,required=True);parser.add_argument('--initialize-release-id',type=int)
-    parser.add_argument('--delivery-format',type=int,choices=(1,2),default=1)
+    parser.add_argument('--delivery-format',type=int,choices=(1,2),default=2)
     args=parser.parse_args()
     args.output.mkdir(parents=True,exist_ok=True)
     with publication_lock():

@@ -19,7 +19,7 @@ on:
         required: false
         type: choice
         options: ['1', '2']
-        default: '1'
+        default: '2'
 
 env:
   DELIVERY_FORMAT: ${{ inputs.deliveryFormat || '2' }}

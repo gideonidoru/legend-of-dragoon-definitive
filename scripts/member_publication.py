@@ -7,6 +7,7 @@ from pathlib import Path
 import hashlib
 import os
 import subprocess
+import stat
 import tempfile
 import zipfile
 from archive_assembly import (FileIdentity, AssemblyPlan, plan_files,
@@ -61,6 +62,27 @@ def load_plan(data, source, platform, files):
     if canonical(value) != data:
         raise ValueError('Assembly plan must be canonical')
     return value
+
+
+def read_plan(path, record, source, platform, files):
+    """Validate actual cached identity before any bounded plan allocation."""
+    size=record.get('bytes');sha=record.get('sha256')
+    if type(size) is not int or not 1<=size<=MAX_RECIPE_BYTES:
+        raise ValueError('Unbounded CI assembly plan')
+    if record.get('name')!='assembly-plan-'+platform+'-'+str(sha)+'.json':
+        raise ValueError('Incorrectly named CI assembly plan')
+    path=Path(path)
+    if path.name!=record['name'] or any(parent.is_symlink() for parent in (path,*path.parents)):
+        raise ValueError('Linked or incorrectly named cached assembly plan')
+    with os.fdopen(os.open(path,os.O_RDONLY|os.O_NOFOLLOW),'rb') as stream:
+        before=os.fstat(stream.fileno())
+        if not stat.S_ISREG(before.st_mode) or before.st_size!=size:
+            raise ValueError('Cached assembly plan size or type differs')
+        # A concurrent growth cannot make this read exceed the declared bound.
+        data=stream.read(size+1);after=os.fstat(stream.fileno())
+    if (len(data),hashlib.sha256(data).hexdigest())!=(size,sha) or (before.st_size,before.st_mtime_ns,before.st_ino,before.st_dev)!=(after.st_size,after.st_mtime_ns,after.st_ino,after.st_dev):
+        raise ValueError('Cached assembly plan identity changed')
+    return load_plan(data,source,platform,files)
 
 
 def fetch_asset(asset, directory):

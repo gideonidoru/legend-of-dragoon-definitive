@@ -78,7 +78,7 @@ def materialize(record, dest, current, tag):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-sha',required=True);parser.add_argument('--run',type=int,required=True)
-    parser.add_argument('--output',type=Path,required=True);parser.add_argument('--delivery-format',type=int,choices=(1,2),default=1);args=parser.parse_args()
+    parser.add_argument('--output',type=Path,required=True);parser.add_argument('--delivery-format',type=int,choices=(1,2),default=2);args=parser.parse_args()
     if not re.fullmatch('[a-f0-9]{40}',args.source_sha) or args.run<1:
         raise ValueError('Invalid source/run')
     if gh('api','user','--jq','.login').strip()!='gideonidoru':raise ValueError('Wrong GitHub account')

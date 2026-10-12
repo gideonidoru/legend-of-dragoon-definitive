@@ -387,7 +387,7 @@ def main():
     parser.add_argument('--tag', required=True)
     parser.add_argument('--wait-seconds', type=int, default=900)
     parser.add_argument('--verify-staged', action='store_true')
-    parser.add_argument('--delivery-format', type=int, choices=(1,2), default=1)
+    parser.add_argument('--delivery-format', type=int, choices=(1,2), default=2)
     args = parser.parse_args()
     ctx = context(args.source_sha, args.run_id, args.run_attempt, args.repository, args.platform, args.tag)
     source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=Path(__file__).resolve().parents[1], text=True).strip()
@@ -399,10 +399,10 @@ def main():
         expected, files, paths = collect(args.distributions, ctx, include_fmv_source=args.delivery_format==1)
         receipt = bounded_json(args.receipt)
         if args.delivery_format == 2:
-            from member_publication import load_plan, prove_draft, film_map
+            from member_publication import read_plan, prove_draft, film_map
             record = receipt['assemblyPlan']
             if type(record.get('bytes')) is not int or not 1<=record['bytes']<=16*1024**2:raise ValueError('Unbounded CI assembly plan')
-            draft = load_plan((args.output_dir/'uploads'/record['name']).read_bytes(), ctx['sourceSha'],ctx['platform'],files)
+            draft = read_plan(args.output_dir/'uploads'/record['name'],record,ctx['sourceSha'],ctx['platform'],files)
             selected = set(draft['files']); ordinary = {row['assetName'] for row in files if row['path'] not in selected}
             for row in files:
                 if row['path'] in selected and row['assetName'] not in ordinary: expected.pop(row['assetName'])
