@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "5d857a672f1f6aef60749ea67a4337d179b75736 plus two independently cleared PhantomShip/Fueno repairs",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "342ff02811f3cdae9edd5dabe4af4534b064a2c960d907f7b73dd15a0ce767b3",
+    "full-coverage.json": "7d63b5346149e065132df3f23b171d3119de2e5f9afaea2e001c7df85d8b0607",
     "field-runtime-artwork.json": "8b187d0d794ed53b416b5f5cab5347d3e8ba34f23e9fafaad36575f92592466c",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "e499387937c77466a63770866a01e376d5385f136f04c0b1db405077f0a8d0a3",
@@ -139,7 +139,10 @@
     "field-phantom-fueno-selection-readiness.json": "e1ba01cf44a49265bf4421de9eaa4a780c05e7766cbcd8af0b4886ec44f7d37f",
     "field-phantom-fueno-authoring-main-forward.json": "bffe9ae4e78c6b0c415bacf4f6e96e4c10e2a4352e3e562eb8e08c6f9295f897",
     "field-held-draft-count-correction.json": "985ad244dd11816ebbff12d3682407418a3cf47b66e5702515709edc82e670d4",
-    "field-held-draft-count-authoring-carry.json": "13a83799975940aff913a09079d5d0e96c5bd9a776928c180d60ce4ffd04d4b0"
+    "field-held-draft-count-authoring-carry.json": "13a83799975940aff913a09079d5d0e96c5bd9a776928c180d60ce4ffd04d4b0",
+    "field-bespoke-coral-bale-tablet-reviewed-selection.json": "5028208f505a77335de251515856d07b58b82565c90d2b9c9024e00c5a74e3dd",
+    "field-coral-bale-tablet-v4-independent-art-review.json": "3fb80c2a5b131e1f00e1e3099d0bb05282a5dd52ee83a0d75da0d16e38a7f8f7",
+    "field-coral-bale-tablet79-authoring-readiness.json": "a80917a5d3ae03e24c937b086e6d58e83ccee526ed4746a4a9b09e5ece57bd0f"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -213,7 +216,7 @@
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
       "draftCountMethod": "Allongoing unselected customsource directories excluding4962acceptedmain selections;48keys subset200fieldholds. All83historicalrecipes/allversions preserved.",
-      "independentlyReviewedCandidatesRequiringRevision": 7,
+      "independentlyReviewedCandidatesRequiringRevision": 4,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
       "independentNewSceneryReview": {
         "source": "7262233bbffb1419bfda439b138e4bcc75f01591",
@@ -227,8 +230,8 @@
         "requiresRevision": 4,
         "receipt": "field-independent-palace-eight-review.json"
       },
-      "independentlyClearedCandidatesAwaitingIntegration": 0,
-      "authoringQueueScope": "83historical sourcekeys:76selected/7revision/0pending; alloldversions on ongoingauthoringbranch.",
+      "independentlyClearedCandidatesAwaitingIntegration": 3,
+      "authoringQueueScope": "83 historical source keys:76 selected,3 latest revisions independently art/structural clear awaiting integration,4 requiring revision. All old recipes and versions retained; held source counts remain48 subset200 until selection.",
       "independentFinalEighteenReview": {
         "source": "bdfecbad260e63eb3eed1a7d6147b8e8703553a4",
         "clearedSelected": 16,
@@ -285,6 +288,13 @@
         "independentCodeReviewPending": false,
         "runtimeSelectedDevelopment": true,
         "acceptedMain": "502348d5863367c93062aeb1a5ccda9cfa4e014f"
+      },
+      "coralBaleTabletV4": {
+        "originalArtAndStructuralClear": 3,
+        "prospectivePaintings": 79,
+        "selectedPaintings": 76,
+        "runtimeSelectionChanged": false,
+        "completeManifestPreflight": "PASS79"
       }
     },
     {
@@ -791,7 +801,7 @@
     "publicationCounterScope": "Deltas refer only to the retained historical generation4 source snapshot; not a fresh current-download census."
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "83historical sourcekeys:76selected/7revision/0pending; alloldrecipes/custom/heldbytes preserved.48unselectedcustomkeys subset200fieldholds,201knownstatic. Dynamic/props unknown; native/final pending.",
+  "authoringCheckpoint": "83 historical source keys:76 selected,3 latest revisions independently art/structural clear awaiting integration,4 requiring revision. All old recipes and versions retained; held source counts remain48 subset200 until selection.",
   "acceptedMainIntegrated": {
     "sourceCommit": "502348d5863367c93062aeb1a5ccda9cfa4e014f",
     "fieldSelected": 4962,

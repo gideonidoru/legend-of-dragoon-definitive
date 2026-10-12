@@ -6,7 +6,7 @@ Current static work remaining is **201 images: 200 field images and one terrain 
 
 Field selection is 4,962 development images: 4,886 neural and 76 painted.
 
-Current authoring queue:83historical canonical source keys:76selected,7requiring revision,nonepending. Alloldrecipes/custom/heldversions preserved.48unselectedcustomkeys subset200fieldholds; Skurfareused; native/finalpending.
+Current authoring queue: **83 historical source keys: 76 selected, three latest revisions independently art/structural clear awaiting integration, four requiring revision.** All old recipes and versions retained. The 48 unselected custom keys remain a subset of 200 field holds until selection.
 
 The [recorded generation4 download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8` contains 4,925 field selections/39paintings and34 battle paintings. The historical Donau increment selected4,928 fields/42paintings and retained47 battle paintings: three field paintings and13 battle paintings beyond that recorded snapshot. These are comparisons with the preserved generation4 source ledgers, not a fresh observation of the live carrier. ROOT tracks subsequent coordinated publication and installer verification. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
@@ -421,3 +421,5 @@ Fueno v3 also receives independent original-art development clearance: smooth fa
 Both code review axes return CLEAR0 at exactsourcec3d0ee6f. Prospective76 recipes and custompixels remain unchanged; runtime integration/package verification remain pending.
 
 Accepted main502348d5 merges Phantom Ship weathering and Fueno support after original-art/code reviews and exact five-file package verification. Currentfields4962/76 and201static; every preceding pending/trial statement records its creation stage. The accepted selection and allruntime assets are carried forward while preserving every83historical recipe andallcustom/held field bytes. Installer publication remains with the orchestration thread; native/Deck/final quality unaccepted.
+
+The coral rim, Bale roof corner and Donau tablet v4 now have independent source-intent and exact structural-replay clearance. Their three original generated PNGs, repaired paintings, exact prompts and pinned recipe metadata are preserved in the prospective79-painting manifest. Every prior76 selected recipe and all83 historical canonical records remain unchanged. Runtime coverage remains4,962 fields/76 paintings and201 known static holds pending complete manifest/source protocol integration. Original reference/scene images remain private; no runtime, installer, native or final quality acceptance is implied by this authoring checkpoint.
