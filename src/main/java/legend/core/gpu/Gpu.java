@@ -214,6 +214,18 @@ public class Gpu {
     this.displaySize(320, 240);
   }
 
+  /** Defer retirement of this GPU's native VRAM and optional indexed-detail textures. */
+  public void deleteVram() {
+    synchronized(this.vramLock) {
+      if(this.vramTexture15 != null) this.vramTexture15.delete();
+      if(this.vramTexture24 != null) this.vramTexture24.delete();
+      if(this.effectDetailTexture != null) this.effectDetailTexture.delete();
+      this.vramTexture15 = null;
+      this.vramTexture24 = null;
+      this.effectDetailTexture = null;
+    }
+  }
+
   public void initVram() {
     if(this.effectDetailTexture != null) this.effectDetailTexture.delete();
     this.effectDetailTexture = null;
