@@ -136,7 +136,9 @@ def preflight(files, manifest_path, root=ROOT):
                     or batch.terrain.digest(Path(components.__file__).read_bytes()) != COMPONENTS_SHA256
                     or candidate.get('generatedBy') != components.PROVENANCE):
                 raise ValueError('Painted component identity or exclusive operation changed')
-            repair.validate_png_header(raw_data, 'painted', source.size)
+            composite_size = repair.validate_png_header(raw_data, 'painted', source.size)
+            if candidate.get('generatedSize') != list(composite_size):
+                raise ValueError('Painted component generated dimensions changed')
             repair.validate_png_header(output_data, 'output', source.size)
             recorded_regions = recorded_components.get('regions')
             region_keys = ('name', 'nativeBox', 'insertBox', 'maskBox', 'channelRatios')

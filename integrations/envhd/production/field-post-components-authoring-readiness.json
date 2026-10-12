@@ -168,7 +168,7 @@
   },
   "exactToPriorClearedPrototype": true,
   "selectionManifest": "field-bespoke-post-components-reviewed-selection.json",
-  "selectionManifestSha256": "af9f9f91a3a2231005f685a2856a604337890f3266271e1d41c6b62e1bb6d149",
+  "selectionManifestSha256": "fa201632f29d9a73f7dc09ee2d6ef53b84f4e5fc335a216b6ef1df91edab156e",
   "selectedRuntimeUnchanged": true,
   "selectedFields": 4958,
   "selectedPaintings": 72,
@@ -187,12 +187,17 @@
     },
     {
       "script": "scripts/test-envhd-painted-fields.py",
-      "passed": 58,
-      "logSha256": "f82bdb149db7550a0d21846cc557d198a0f882be6f741e298938654c8faff253"
+      "passed": 59,
+      "logSha256": "0f90ec6396d51d85d9de02f8f7fcff3eb42f7c12f38e8cd3e4b5d4bdb37d58c8"
     }
   ],
   "currentSourcePreflightCandidates": 73,
-  "currentSourcePreflightLogSha256": "1d0af04cfbb64faf9299d62df50fcb42fde5aa474b106c6e37a6142556b2827d",
+  "currentSourcePreflightLogSha256": "b4b5e47d3bddcb75ee07f1f04029631abb7e1e98106dc6241794a7a7ad034e04",
   "helperAlgorithmSha256": "984dcbc7cefab7249f8c988e40cd4c8cfd73aba0f265bb6c91669eb2b7cd8f14",
-  "helperAndSelectionIndependentReview": "pending"
+  "helperAndSelectionIndependentReview": "pending",
+  "compositeGeneratedSize": [
+    280,
+    456
+  ],
+  "generatedSizeMetadataCorrection": "Correct inherited base-input size; input/output pixels and hashes unchanged. Component-specific header/metadata guard and regression fixture added."
 }

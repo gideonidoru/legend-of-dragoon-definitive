@@ -109,7 +109,7 @@ class PaintedFieldTests(unittest.TestCase):
         recorded=dict(operation,algorithmPath='scripts/repair-envhd-painted-components.py',algorithmSha256=verify.COMPONENTS_SHA256,
             **{role+field:value for role,path in [('base',base),('insert',insert)]
                for field,value in [('InputPath',path.relative_to(self.root).as_posix()),('GeneratedBy','builtin-imagegen'),('Prompt','Source-faithful generated fixture')]})
-        self.candidate.update(cutout,componentTransfer=recorded,generatedBy=verify.components.PROVENANCE,
+        self.candidate.update(cutout,generatedSize=list(composite.size),componentTransfer=recorded,generatedBy=verify.components.PROVENANCE,
             generatedSha256=verify.batch.terrain.digest(self.raw_path.read_bytes()),outputSha256=verify.batch.terrain.digest(self.output_path.read_bytes()))
         self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save()
         return base,insert
@@ -125,6 +125,10 @@ class PaintedFieldTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'component input bytes'):self.preflight()
         insert.write_bytes(before);self.candidate['componentTransfer']['changedPixels']+=1;self.save()
         with self.assertRaisesRegex(ValueError,'exact recorded transfer'):self.preflight()
+
+    def test_component_generated_dimensions_cannot_inherit_base_metadata(self):
+        self.component_fixture();self.candidate['generatedSize']=[12,12];self.save()
+        with self.assertRaisesRegex(ValueError,'component generated dimensions'):self.preflight()
 
     def test_component_input_path_and_algorithm_pin_are_enforced(self):
         self.component_fixture();recorded=self.candidate['componentTransfer'];original=copy.deepcopy(recorded)
