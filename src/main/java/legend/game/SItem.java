@@ -1014,9 +1014,9 @@ public final class SItem {
           temp.add(text.substring(startIndex, i));
           currentWidth = 0;
           startIndex = i + 1;
-        } else if(currentWidth + charWidth > maxWidth) {
+        } else if(i > startIndex && currentWidth + charWidth > maxWidth) {
           boolean advanceOverSpace = false;
-          for(int backtrack = 0; backtrack < 10; backtrack++) {
+          for(int backtrack = 0; backtrack < 10 && backtrack < i - startIndex; backtrack++) {
             if(text.charAt(i - backtrack) == ' ') {
               i -= backtrack;
               advanceOverSpace = true;
@@ -1025,7 +1025,7 @@ public final class SItem {
           }
 
           temp.add(text.substring(startIndex, i));
-          currentWidth = charWidth;
+          currentWidth = advanceOverSpace ? 0.0f : charWidth;
           startIndex = i;
 
           if(advanceOverSpace) {
@@ -1044,7 +1044,7 @@ public final class SItem {
 
     for(int i = 0; i < split.length; i++) {
       final String str = split[i];
-      renderText(str, x - font.textWidth(str) * options.getSize() / 2.0f, y + height, options, queueCallback);
+      renderText(font, str, x - font.textWidth(str) * options.getSize() / 2.0f, y + height, options, queueCallback);
       height += font.textHeight(str) * options.getSize();
     }
 

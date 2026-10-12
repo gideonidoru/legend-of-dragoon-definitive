@@ -2,11 +2,11 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **205 images: 204 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **204 images: 203 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,958 development images: 4,886 neural and 72 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
+Field selection is 4,959 development images: 4,886 neural and 73 painted. These are source-reviewed selections, not native gameplay or final Skurfa-equivalent quality acceptance. All protected Skurfa work is reused.
 
-Current authoring queue: all83 historical canonical source keys reviewed:72selected,11requiring revision and none awaiting review. All earlier recipes/custom versions remain preserved. The52 unique unselected custom source keys are a subset of204field holds. Skurfa artwork is reused; native gameplay and final quality remain pending.
+Current authoring queue: all83 historical canonical source keys reviewed:73selected,10requiring revision and none awaiting review. All earlier recipes/custom versions remain preserved. The51 unique unselected custom source keys are a subset of203field holds. Skurfa artwork is reused; native gameplay and final quality remain pending.
 
 The [recorded generation4 download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8` contains 4,925 field selections/39paintings and34 battle paintings. The historical Donau increment selected4,928 fields/42paintings and retained47 battle paintings: three field paintings and13 battle paintings beyond that recorded snapshot. These are comparisons with the preserved generation4 source ledgers, not a fresh observation of the live carrier. ROOT tracks subsequent coordinated publication and installer verification. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
@@ -127,3 +127,20 @@ All 71 paintings replay from fresh originals and 90 focused checks pass. The [re
 The [independent review](../../integrations/envhd/production/field-independent-balcony-registration-review.json) clears the corrected curved night balcony: muted fittings, subdued cap and diffuse dark front. Existing pinned perspective registration aligns the painted curve before unchanged cutout repair. The original standalone coverage failure remains recorded in authoring history; no guard or helper was changed.
 
 The [complete72-painting selection](../../integrations/envhd/production/field-bespoke-balcony-independent-reviewed-selection.json) preserves all71 prior recipes and4957 runtime records. The [readiness receipt](../../integrations/envhd/production/field-balcony-selection-readiness.json) tracks source replay and package verification. One EnvHD switch controls all four download packs. Native/script/GPU, campaign, physical Deck and final artistic acceptance remain pending.
+
+
+## Crystal Palace post correction selected
+
+The [independent review](../../integrations/envhd/production/field-independent-post-components-review.json) clears an exact replay of the already original-reviewed Palace post correction. A bounded component helper transfers the existing custom gold shaft and continuous teal base into the earlier custom rail painting. Only the explicit lower-right source region changes; the original alpha and all outside pixels are exact. Both generated inputs and prompts are retained, with distinct composite provenance. The rejected standalone full-frame correction remains rejected. No new image generation was needed.
+
+The [complete73-painting selection](../../integrations/envhd/production/field-bespoke-post-components-reviewed-selection.json) preserves all72 prior recipes and4958 runtime records. The [readiness receipt](../../integrations/envhd/production/field-post-components-selection-readiness.json) binds behavioral checks, fresh source replay and package verification. One EnvHD switch controls all four download packs. Native/script/GPU, campaign, physical Deck and final artistic acceptance remain pending.
+
+
+## Dynamic and prop inventory snapshots reconciled
+
+The [curated checkpoint](../../integrations/envhd/production/environment-dynamic-prop-inventory-checkpoint.json) keeps units separate: one authored shared water coefficient family serves eight continent parts with296 textured faces and eight palette rows; it is not eight separate restoration jobs or16,512 animation-frame jobs. The candidate remains unselected pending4x consumer/state/ownership support.
+
+The received field-material snapshot has135,279 material bindings across7,664 contexts. Ownership is unresolved for7,652 contexts;12 are source-proved CharHD. Its5,984 repeated inspection groups are priorities, not EnvHD image jobs. The snapshot explains the earlier25 absent texture hints as24 excluded outside-MRG routes plus one included sentinel, and608 absent script hints as567 present alias targets plus41 excluded outside-MRG routes. These route hints are not missing runtime assets. Mutable alias ordering, actual controller/script branches, inherited uploads and exact sampling coverage remain open. Both whole dynamic and owned-prop image denominators remain unknown. This records the retained source snapshots rather than claiming a fresh whole-game census.
+
+
+The [independent inventory review](../../integrations/envhd/production/environment-dynamic-prop-inventory-independent-review.json) clears this metadata checkpoint at source3b199 on both axes. Its4958/72 baseline is historical. Current accepted selection remains4959/73 with204knownstatic images left; this inventory update selects no new images.

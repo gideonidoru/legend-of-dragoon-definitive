@@ -193,6 +193,15 @@ public final class GlesTexture extends Texture {
   }
 
   @Override
+  public boolean hasAllocatedStorage() {
+    if(this.actuallyDeleted) return false;
+    this.use(0);
+    glActiveTexture(GL_TEXTURE0);
+    return org.lwjgl.opengles.GLES31.glGetTexLevelParameteri(GL_TEXTURE_2D, 0, org.lwjgl.opengles.GLES31.GL_TEXTURE_WIDTH) == this.width &&
+      org.lwjgl.opengles.GLES31.glGetTexLevelParameteri(GL_TEXTURE_2D, 0, org.lwjgl.opengles.GLES31.GL_TEXTURE_HEIGHT) == this.height;
+  }
+
+  @Override
   public void linearSampling(final boolean enabled) {
     this.use(0);
     glActiveTexture(GL_TEXTURE0);

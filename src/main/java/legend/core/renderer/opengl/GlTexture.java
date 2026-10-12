@@ -194,6 +194,15 @@ public final class GlTexture extends Texture {
   }
 
   @Override
+  public boolean hasAllocatedStorage() {
+    if(this.actuallyDeleted) return false;
+    this.use(0);
+    glActiveTexture(GL_TEXTURE0);
+    return org.lwjgl.opengl.GL11C.glGetTexLevelParameteri(GL_TEXTURE_2D, 0, org.lwjgl.opengl.GL11C.GL_TEXTURE_WIDTH) == this.width &&
+      org.lwjgl.opengl.GL11C.glGetTexLevelParameteri(GL_TEXTURE_2D, 0, org.lwjgl.opengl.GL11C.GL_TEXTURE_HEIGHT) == this.height;
+  }
+
+  @Override
   public void linearSampling(final boolean enabled) {
     this.use(0);
     glActiveTexture(GL_TEXTURE0);
