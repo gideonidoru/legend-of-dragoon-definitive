@@ -5,11 +5,11 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "95af427a1fa3a8b3edc37767f8d3534083ae29ad069ac1c652104e8103d8781d",
+    "battle-material-runtime-artwork.json": "026cb84f796456aad9c58860c49db807f0c21381ffe3e5437f9a24f287e55526",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "battle-presentation-artwork-v1.json": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
-    "battle-presentation-reviews/d5db1a80eff1c51598b8fac8d45499bfbd6e7c9ca0c1b6b7c7f2701b74855360.json": "d5db1a80eff1c51598b8fac8d45499bfbd6e7c9ca0c1b6b7c7f2701b74855360"
+    "battle-presentation-reviews/358947f3db72dda8c7d1dbae74ca5de77ad297047fdee19745a8f1af9d05ee1e.json": "358947f3db72dda8c7d1dbae74ca5de77ad297047fdee19745a8f1af9d05ee1e"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -20,9 +20,9 @@
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
     "newBespokeCandidates": 506,
-    "newlySelectedBespokeMasters": 40,
+    "newlySelectedBespokeMasters": 44,
     "baselineMastersStillNeedingPresentationReview": 0,
-    "pendingCandidateReviews": 466,
+    "pendingCandidateReviews": 462,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
     "uniqueDecodedSkyArtwork": 71,
@@ -3349,7 +3349,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3411,7 +3411,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3473,7 +3473,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3505,7 +3505,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {10: [0, 1]}. Source family: Marshland: muddy ground, scattered rocks and damp green surface accents. Engine random-encounter location mapping: Marshland.",
-      "presentationStatus": "new-bespoke-awaiting-independent-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },

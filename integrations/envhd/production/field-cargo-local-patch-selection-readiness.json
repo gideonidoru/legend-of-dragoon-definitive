@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "scope": "One original-art-cleared Cargo fitting correction selected through source-bound local patch replay. Prior73painted recipes and4959runtime records exact.",
+  "integrationBaseCommit": "574023dd8cd1b2a78fa30640432729191c2f6832",
+  "authoringSourceCommit": "2534925f60620d387339ced84c37a9d88eb1a3db",
+  "sourceReviewCommit": "2534925f60620d387339ced84c37a9d88eb1a3db",
+  "selectionManifest": "field-bespoke-cargo-local-patch-reviewed-selection.json",
+  "selectionManifestSha256": "05875ad367cbb90a106708e60b7a17b54020b48dc43b20485628ee0e7e6878ce",
+  "independentReview": "field-independent-cargo-local-patch-review.json",
+  "independentReviewSha256": "374900c6f15f580a0861e1f9b5fcb244297854ddb28663d0f5d4c8f14ae621e0",
+  "fieldRuntimeSha256": "4800c78e52aa5b8cec7d6b26c0cf1aa1cc11bea782585b2c9b3f4ffa2c0169c1",
+  "currentSourcePreflightCandidates": 74,
+  "currentSourcePreflightLogSha256": "9a034e468ca24b4e5d16e9559f583a846ea5f1b8dc45c0fe45d455b1dd3f4ff9",
+  "sourcePreflightAndSelectionSinglePass": true,
+  "priorSelectedCandidateRecordsExact": 73,
+  "priorRuntimeAssetRecordsExact": 4959,
+  "onlyAddedSourceKeys": [
+    "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a"
+  ],
+  "protectedCutsExact": true,
+  "selectedFields": 4960,
+  "selectedPaintings": 74,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 202,
+  "knownRemainingStaticImages": 203,
+  "helperAlgorithmPath": "scripts/repair-envhd-painted-local-patch.py",
+  "helperAlgorithmSha256": "a775b1e22b9b6e24ad93e72fe4f0bee0279be524bcb3e80ca1206a499d3eee07",
+  "mainVerifierSha256": "954bede85014ba009c780ca9ba22ad2b122e43d5f9ede47835975e111bddb161",
+  "tests": {
+    "helper": {
+      "passed": 9,
+      "logSha256": "b75b53d16636d5beadf0ee33f1cb896b32162fb6f422062cb97e66c008128054"
+    },
+    "field": {
+      "passed": 54,
+      "logSha256": "40690d3716a799bd886fc39ecdd0746601f5d2d84b7d85a76d1f77f706853d2e"
+    }
+  },
+  "patchProvenance": "builtin-imagegen-plus-source-bound-local-patch-transfer",
+  "sourceBox": [
+    83,
+    64,
+    98,
+    80
+  ],
+  "sourceAlphaExact": true,
+  "pixelsOutsideSourceBoxExact": true,
+  "sourceRgbPixelsCopied": false,
+  "newBuiltinGenerationCallsInAuthoring": 2,
+  "wholeFrameAspectFailureStillRejected": true,
+  "priorReuseVariantsStillRejected": 3,
+  "freshPackageVerified": true,
+  "unfinishedAuthoringPreservedOnOngoingBranch": true,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "buildSourceCommit": "269c74178a425739463adfc148bafd237b8124f4",
+  "buildLogSha256": "e65fdf0aa87c79749d62fb2792f1f359b78e960853cf3010e9b636423bd5065e",
+  "packageVerificationLogSha256": "ed798c5fe11590e426fcefe450792e1aa3ca0ff903f85ad2d2dddfb850ced7ba",
+  "packageSourceBindingSha256": "13dbea634368668cda49a61287f382b91bd32c17a692c8966f03d4fa2fac1823",
+  "packageFiles": {
+    "Env1HD-v0.1.0.zip": {
+      "size": 552630727,
+      "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8"
+    },
+    "Env2HD-v0.1.0.zip": {
+      "size": 573779949,
+      "sha256": "c2219971801eda267e1aefd83f74c8d28f6903b53be28917c291c6c732ab01f2"
+    },
+    "Env3HD-v0.1.0.zip": {
+      "size": 572128550,
+      "sha256": "307a1cb954f5bd88cbac2ff3341d5da2f3ae43537847656f75f4ef0c9d6add69"
+    },
+    "Env4HD-v0.1.0.zip": {
+      "size": 673939587,
+      "sha256": "d3646663ec92779b01757c7a874842f2b1dcebbe2f2efdf2a70441c5aba88894"
+    },
+    "EnvHD-v0.1.0.jar": {
+      "size": 278592833,
+      "sha256": "dd8b49c861d82681c4a4ae88e0864c124ad0c9e227920aad295759b597b568dd"
+    }
+  },
+  "rebuiltPackageFiles": [
+    "EnvHD-v0.1.0.jar",
+    "Env4HD-v0.1.0.zip"
+  ],
+  "reusedExactPreviousPacks": [
+    "Env1HD-v0.1.0.zip",
+    "Env2HD-v0.1.0.zip",
+    "Env3HD-v0.1.0.zip"
+  ],
+  "packageFieldImages": 4960,
+  "packageJarResources": 5346,
+  "packageFieldParts": 4,
+  "packageModSwitches": 1
+}
