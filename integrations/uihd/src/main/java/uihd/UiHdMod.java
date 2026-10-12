@@ -56,6 +56,12 @@ public final class UiHdMod {
     }
   }
 
+  @EventListener
+  public void font(final legend.core.font.FontSelectionEvent event) {
+    try { event.select(UiHdMod.class); }
+    catch(final IOException failure) { LOGGER.warn("UIHD retained configured font: {}", failure.getMessage()); }
+  }
+
   private static void validateEntry(final JSONObject entry) throws IOException {
     entry.getString("id");
     if(!entry.getString("sourceSha256").matches("[a-f0-9]{64}") || !entry.getString("outputSha256").matches("[a-f0-9]{64}")) throw new IOException("UI identity differs");

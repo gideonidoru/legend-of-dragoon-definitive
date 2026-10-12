@@ -1,0 +1,2962 @@
+{
+  "status": "complete-redraw-packed-art-runtime-review-pending",
+  "glyphCount": 139,
+  "sourceImageSha256": "dcf84d68a67f0f76aaaf4233d0c2d1ec3c588e8f98a2ca3fb4d873b0fee246d8",
+  "sourceMetadataSha256": "b4faacbef8f23e5fff5374484c1356e9f92134b1abaf928c491e8587e91b1c12",
+  "inputs": [
+    {
+      "packet": "integrations/uihd/production/font/original-hd-letters-v3",
+      "sha256": "8e24c1749b56d0416ae29effc6848e33d43c12b7e47cfbe9d54e78df2c0b2ebd"
+    },
+    {
+      "packet": "integrations/uihd/production/font/original-hd-controller-v2",
+      "sha256": "398114c0201546d2d95a75d7332bf51d0eb51282e15f28a466bc8d37840976a1"
+    }
+  ],
+  "vectorAtlasSha256": "4df53e1716d24c9b2c59de72880249942c32897b476a935845bc1e2f0e1c95ce",
+  "metadataSha256": "24d03675bc2b7dfd856a14b35a4197226dd244e34f72b2111600f8f4e560ab5d",
+  "atlasSha256": "3de88bc569936454390892e949033dc64a7ec111475571214c4acd7ee51f3fd8",
+  "atlasSize": [
+    2048,
+    2048
+  ],
+  "gutterPixels": 16,
+  "logicalMetricsChanged": 0,
+  "runtimeSelected": false,
+  "deviceAccepted": false,
+  "glyphs": [
+    {
+      "key": " ",
+      "vectorSha256": "e83bf4da258914b7b22c6bf4748431e58936436d5848fa07bfc0c2bb2b240f73",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 0,
+        "w": 8,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        16,
+        16,
+        64,
+        0
+      ]
+    },
+    {
+      "key": "!",
+      "vectorSha256": "81e309692e68cf363b764656717dd6ef8f14eac4c0cd6b4ed973a4cb3fe585e0",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 5,
+        "texH": 16,
+        "w": 5,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        112,
+        16,
+        40,
+        128
+      ]
+    },
+    {
+      "key": "\"",
+      "vectorSha256": "3fbaf6132b8067396ea32b347d52c752f98ca6276c1c72523739bc070a5ce491",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 16,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        184,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "#",
+      "vectorSha256": "556f07e87b364c746849b35fb084b925dabc9b8643c9326d133766c87a1457b4",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 32,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        280,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "$",
+      "vectorSha256": "3281ede278db4cbde883d188dbb094ecbd43db08d3c69b612cdcbf0a65bb01dd",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 48,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        376,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "%",
+      "vectorSha256": "83f212e84852715978daf14428d304b2529d5923d53ff6897c264fb87524dab0",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 64,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        472,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "&",
+      "vectorSha256": "3f583b8051117a66cc2087bc20265d18dfe491699f5bbc1ee269efef39e286f1",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        568,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "'",
+      "vectorSha256": "612f12eb96237cbb9d69c454c60f9370381f3338487d58253e420c4dd723833f",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 4,
+        "texH": 16,
+        "w": 4,
+        "texU": 96,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        664,
+        16,
+        32,
+        128
+      ]
+    },
+    {
+      "key": "(",
+      "vectorSha256": "bf0b7195d29ba27d596af87ed930c77cc7b38659708f89dc5fbd3500f37b3de8",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 5,
+        "texH": 16,
+        "w": 5,
+        "texU": 112,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        728,
+        16,
+        40,
+        128
+      ]
+    },
+    {
+      "key": ")",
+      "vectorSha256": "5001594b380629e90d4ec0b43cf461e5517e40b7cbb98bc40ec6cf855e0dc3c4",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 5,
+        "texH": 16,
+        "w": 5,
+        "texU": 128,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        800,
+        16,
+        40,
+        128
+      ]
+    },
+    {
+      "key": "*",
+      "vectorSha256": "eef6aaabf3b35d0d4d75e4be64d2d0be6f50f8e5cb90353df3626b8de26ef4a0",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 144,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        872,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "+",
+      "vectorSha256": "1098b96ccdf6b2a578af05a10e9ea8de90dab4a0f76df5441b20166403da89d2",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 160,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        968,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": ",",
+      "vectorSha256": "4db0bef743bd89b8d0e9af9a4a90c22380bf5ecb832a595056dd35a5457adde3",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 4,
+        "texH": 16,
+        "w": 4,
+        "texU": 176,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        1064,
+        16,
+        32,
+        128
+      ]
+    },
+    {
+      "key": "-",
+      "vectorSha256": "7bc831c8291d24e858191ed5f1e8dd86e0fbe19aed051609fa7b1d121234a328",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 192,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        1128,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": ".",
+      "vectorSha256": "15d003463d3815fc5dff2ed97ed9efda276c383d697db8d6664e9beec06032f4",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 6,
+        "texH": 16,
+        "w": 6,
+        "texU": 208,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        1224,
+        16,
+        48,
+        128
+      ]
+    },
+    {
+      "key": "/",
+      "vectorSha256": "afe91bb857f6be7e7142fb972c1fcdc76fafebf9d6308a33b371a967b95134d1",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 6,
+        "texH": 16,
+        "w": 6,
+        "texU": 224,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        1304,
+        16,
+        48,
+        128
+      ]
+    },
+    {
+      "key": "0",
+      "vectorSha256": "b3c01336efd137dc9807d2264abffddff9de0fa09a9852dc1d34e1c00aaa7d04",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 240,
+        "x": 0,
+        "h": 16,
+        "texV": 0,
+        "y": 0
+      },
+      "packedRectangle": [
+        1384,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "1",
+      "vectorSha256": "1dfc818d614ad71d879dd22a9af0ac4beb1ffe41263916efcb1b81daab866a09",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 4,
+        "texH": 16,
+        "w": 4,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        1480,
+        16,
+        32,
+        128
+      ]
+    },
+    {
+      "key": "2",
+      "vectorSha256": "5dcdc93301c434bedd28f4c19ca9e024fb2a6242d06a2facbfae207532fc7e26",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 16,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        1544,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "3",
+      "vectorSha256": "54e801682e19cf0889cf67a9291f05b1ea1f874415915cceff2ad19be27b1949",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 32,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        1640,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "4",
+      "vectorSha256": "803d2180571a8e9fa3725ca33b8d82bad9d7e39527856be9c5a0e34e7a019600",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 48,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        1736,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "5",
+      "vectorSha256": "cd0d396c7fe38b4002ddef35517e5d63a92bdf467a810d3dac597fa56082548e",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 64,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        1832,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "6",
+      "vectorSha256": "b52bd7d7376ca69694529e0b59300298633b45c9f2e43fc1b268a5f26cab923b",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        1928,
+        16,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "7",
+      "vectorSha256": "b4be90d6db0db0b6927c84d55cff8098b2bb4f5b5161e1b86beaa4b1a87d4f8e",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 96,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        16,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "8",
+      "vectorSha256": "9cd5fbd1a8b0599cbba8040e3fa168286f2bee1aa97242fb1a189564281909cb",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 112,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        112,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "9",
+      "vectorSha256": "09d62e29177b033f698afd7407ced20e8dc20b37a043ec1e7f7c46feca70d746",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 128,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        208,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": ":",
+      "vectorSha256": "3c2302a32b5d536705678d6c83c184d64935ffe47e56637d18ae69c868d5cb0f",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 4,
+        "texH": 16,
+        "w": 4,
+        "texU": 144,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        304,
+        176,
+        32,
+        128
+      ]
+    },
+    {
+      "key": ";",
+      "vectorSha256": "7fac3bb35bc9c48bde0647b0b7f8fa1257bbca9c40e31a79692d9a734be8b9c8",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 160,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        368,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "<",
+      "vectorSha256": "3a5577cd6e818f1866e6e318b0a6f456a97a4255694af2218a6df229c1bfb465",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 176,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        464,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "=",
+      "vectorSha256": "3817c86e013404f71634740aab2eb2b2a1aa8f2fa1d063a1f1f23a9de644dce7",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 192,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        560,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": ">",
+      "vectorSha256": "5f4bc983fe73224cc4d30dbed279bd672b136ce1ce1de4bb0b7b489c95a65219",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 208,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        656,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "?",
+      "vectorSha256": "2a98b6aaab1a0932c6b3506e3af18ca117480953daedd42a3e48c4fa98280823",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 224,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        752,
+        176,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "@",
+      "vectorSha256": "8b77135aee7470a47a272d2a4f2170c1e9444209a1f2b7eb7608dfb2e19f9640",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 240,
+        "x": 0,
+        "h": 16,
+        "texV": 16,
+        "y": 0
+      },
+      "packedRectangle": [
+        840,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "A",
+      "vectorSha256": "9763707b33e08935324236cc5a7c02bcbd506ef5d0e85ea954d0511a236a4db3",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        936,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "B",
+      "vectorSha256": "53deeb59bb3e431cf6a6f17559face8d32e9568eeea20726b16ecacb546510ea",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 16,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1032,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "C",
+      "vectorSha256": "4d76a19199c59be248b7013729203514009976dbd7162431aabae2ff5954a799",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 32,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1128,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "D",
+      "vectorSha256": "bf6388efe8d5af01620d148754e2fa83c6a63168932bb9f6fcf0eb09fc83a15e",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 48,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1224,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "E",
+      "vectorSha256": "c50b31434b85816eec9774eb4777e65509bd42cf54d4830bc4d6a0f3ac75f7dc",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 64,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1320,
+        176,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "F",
+      "vectorSha256": "f150930a6c558ebffc632d0a1f706e71057489f8252ad82af313bd5d68c97bd3",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1408,
+        176,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "G",
+      "vectorSha256": "d5ca51820315c84b9451497909b7e28cafd9c82456c548839bd358a84d40264b",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 96,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1496,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "H",
+      "vectorSha256": "c00c34710a82455e598e391ca0f9573764c30fa52ff52f1b70d239512566fe88",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 112,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1592,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "I",
+      "vectorSha256": "f3b5f1443cb445ce72964107323a702ad285faaf77a30123eb25d6cb598b5f31",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 3,
+        "texH": 16,
+        "w": 3,
+        "texU": 128,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1688,
+        176,
+        24,
+        128
+      ]
+    },
+    {
+      "key": "J",
+      "vectorSha256": "0465d199a34c2dc0a4287f2e19bf85e88c9e32c27d2d2e73fcf95985c08e276a",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 144,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1744,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "K",
+      "vectorSha256": "ad4bb42c813bdf6966d739ad3dbce80963d608263eefdd00d6a5b438ab839cfb",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 160,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1840,
+        176,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "L",
+      "vectorSha256": "a7f8ac0ef2250d3c72e4ff90aa9665c02bce2020762de0d6da790b30dc5fe83c",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 176,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        1936,
+        176,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "M",
+      "vectorSha256": "3de1d367a7fe8d9a9db3945bf00550583b6dfeef75c99e031589a55d0c38c365",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 192,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        16,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "N",
+      "vectorSha256": "5ee566754e0bbb2d0741d9796aad97d259d714bbfbd7ba9669c1f3849f70a051",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 208,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        112,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "O",
+      "vectorSha256": "f4335c590778e78f2447d11f23b9751b42c780a7a35e92dffeeba8a8eba701c3",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 224,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        208,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "P",
+      "vectorSha256": "ef558c2b684c3e8de3c0a0a8ab0b41204d220b5ece275e152b0bae4f03971446",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 240,
+        "x": 0,
+        "h": 16,
+        "texV": 32,
+        "y": 0
+      },
+      "packedRectangle": [
+        304,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "Q",
+      "vectorSha256": "6fff10f61a7ac156aa8e35745fc49fde4795590bdeb5866787a60178c832195a",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        400,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "R",
+      "vectorSha256": "b96d9bc4b2f478dff112de6a6f6944a2c8a20dcf79ce4089281900448a6198b5",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 16,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        496,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "S",
+      "vectorSha256": "05ba87c58d114987e05f16167a36d819d5ef7c6b2099be1e711cd6636bfc7b89",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 32,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        592,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "T",
+      "vectorSha256": "1877c25a5d7e3ef80e901333ed08591f881c133cae53ed9fb1cf344e47115e19",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 48,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        688,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "U",
+      "vectorSha256": "897d0bf0e53c5a3b59ca50e4698dd6973b0df75445200ca2b481c76b935a06f2",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 64,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        784,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "V",
+      "vectorSha256": "0b47302aba5bce0d94f27f27c2a9943ce658f459adfc820d08ba7172d73f5847",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        880,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "W",
+      "vectorSha256": "5958d19b23e1e37737b8c39c8384c2e584fe7fae769bc445b47ead176686c902",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 96,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        976,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "X",
+      "vectorSha256": "5f4c562f0e1c6835674ff88f13b15ed11b5e164d63b96dc99d1b2e574ee1b410",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 112,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        1072,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "Y",
+      "vectorSha256": "1dff76c516261aa634a748322d80982465cd9bc5f9a20722b210d1ba07fec771",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 128,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        1168,
+        336,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "Z",
+      "vectorSha256": "5c44bd59c19b5b308f4c7eea80b783e2327d1ab219f1e0547852ebb917ea5b8d",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 144,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        1256,
+        336,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "[",
+      "vectorSha256": "cee15c9babfb5a79d9e8c8f0cda059286d6457962bfffcbeb6c7174054ccc3b9",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 160,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        1344,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "\\",
+      "vectorSha256": "80a1b5d338114cc5f73e92947a4ef72a96ae11f20541bce89bba9ae8e2f31ca8",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 176,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        1440,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "]",
+      "vectorSha256": "836e74699e5d1f3167ab5e42c17c87a35e467859c632a68581abd81ec351f094",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 192,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        1536,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "^",
+      "vectorSha256": "919c8ae3f5e91b6411eedf19086a0e8e97db7663bc5a2b7270aa4f3bfd5d9a9c",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 208,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        1632,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "_",
+      "vectorSha256": "f32949f8da821fda189d134005e07ee0b9a7169cc79661a74ae976d29f0a7cea",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 224,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        1728,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "`",
+      "vectorSha256": "6348df3bb7b9b5e4ccfa07cc2abd1e1845be7379176acf19a926b19cbbf6398b",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 240,
+        "x": 0,
+        "h": 16,
+        "texV": 48,
+        "y": 0
+      },
+      "packedRectangle": [
+        1824,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "a",
+      "vectorSha256": "350a09658981e10e07988e3b1d33f2f60fdd0d000d533fd797d474c33241ab2e",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        1920,
+        336,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "b",
+      "vectorSha256": "c4040961f34933ad56fdc3c88b58eaae0bee0cdc9ce4e7a73db76a048d08a338",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 16,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        16,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "c",
+      "vectorSha256": "0669a6b171a177f0652dcdf0ae1951ac7f54239ddfaa06735dbfb846109ca597",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 32,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        104,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "d",
+      "vectorSha256": "7aac343368a03360018f10c95e2068c65f74574bf412da224adb7588fabdad41",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 48,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        192,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "e",
+      "vectorSha256": "08b4f69f3cd1700e34b19f900ad3ec0c1394e0b88f46bc233de2b1e5ee941ed4",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 64,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        280,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "f",
+      "vectorSha256": "10bd9aaf7111fd4c7c29fd436ad0193b8784767ffd75bf4add65b150393f7f6d",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 6,
+        "texH": 16,
+        "w": 6,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        368,
+        496,
+        48,
+        128
+      ]
+    },
+    {
+      "key": "g",
+      "vectorSha256": "f128f90068e248f4f79d3878a4567f72fad3776db92e55e7b82fbaeade59fe50",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 96,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        448,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "h",
+      "vectorSha256": "dd443f751452a38f14584af7a7d53af043e84d54db96e29daa40c70e5d56f9e6",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 112,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        536,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "i",
+      "vectorSha256": "3d6e9a17892515253331624fef8e6775bb35512634dc5e396f082500ad6493a0",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 4,
+        "texH": 16,
+        "w": 4,
+        "texU": 128,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        624,
+        496,
+        32,
+        128
+      ]
+    },
+    {
+      "key": "j",
+      "vectorSha256": "a38c3515731659989335594f4afaca2efec1488e965044dac3a5396cbec21230",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 5,
+        "texH": 16,
+        "w": 5,
+        "texU": 144,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        688,
+        496,
+        40,
+        128
+      ]
+    },
+    {
+      "key": "k",
+      "vectorSha256": "7e6c62723fa1600b7a26ed799a51268f8eb014ffc85f084790e43b91ae6cc67d",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 160,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        760,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "l",
+      "vectorSha256": "305b0a7d8e67c0a06c53babd54fd8d2e4dd5f90e2a28d6f2d0b971f48e819cec",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 4,
+        "texH": 16,
+        "w": 4,
+        "texU": 176,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        848,
+        496,
+        32,
+        128
+      ]
+    },
+    {
+      "key": "m",
+      "vectorSha256": "98817f571d709b288d4514bc87c5a6595130947ca2ff129ca8dcef31da671cb4",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 192,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        912,
+        496,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "n",
+      "vectorSha256": "d3e481de643c7b2995dd1853ab9b84ec131cc086679f01b01ba83abb40c04898",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 208,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        1008,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "o",
+      "vectorSha256": "dd3f9fbd8ade074d43912fae48c07cffbbcaf8e92614b8010d511c2abd70b02d",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 224,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        1096,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "p",
+      "vectorSha256": "27f4cf4d4b7bcc22a7c37464ab887389ba331d346d710078813ed7a106d32e36",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 240,
+        "x": 0,
+        "h": 16,
+        "texV": 64,
+        "y": 0
+      },
+      "packedRectangle": [
+        1184,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "q",
+      "vectorSha256": "1fdc331a08f7326cabaaf9a85530813b9bc8ce4cf791aa26043ef5800ccd00b5",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        1272,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "r",
+      "vectorSha256": "95e674da31b0880ab83906e39a9075a58e1229977499be1ffc1d1c47e6167f77",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 16,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        1360,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "s",
+      "vectorSha256": "f0bdc00d938e0d1b4b62e0c76a5d06241fc4bc4e092b120db92970f9478f7842",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 32,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        1448,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "t",
+      "vectorSha256": "4996c9c07a7982cd3d8896113e665cc5f862d4769f224310cf5d9c5e314a0716",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 6,
+        "texH": 16,
+        "w": 6,
+        "texU": 48,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        1536,
+        496,
+        48,
+        128
+      ]
+    },
+    {
+      "key": "u",
+      "vectorSha256": "52ba37a66b4bb79ff0dda580cf6d2e44284d52385461b93432c12b94c3086c7c",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 64,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        1616,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "v",
+      "vectorSha256": "0b95b3284d24a62f1e5a1a385081999b9a15e9351d4f273951e7540dab355087",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        1704,
+        496,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "w",
+      "vectorSha256": "d0957e13a61f6e1514bd1e05b06b8e62d7aeb3bd718e77302e1a0b2e1571a607",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 96,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        1792,
+        496,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "x",
+      "vectorSha256": "451fbf447da37ab0fa13733adf96efe509239003acb1ccd3721a8bd8a1963ccb",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 112,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        1888,
+        496,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "y",
+      "vectorSha256": "5be81e468a68ea95182c65b52eba6349fa4dc5449da6fb4b68e9da4f3f60a64f",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 128,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        16,
+        656,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "z",
+      "vectorSha256": "e0014f2c8c3ff47602d8a7553eb961d14f7a56b0a95dba17aab84142c3c077d8",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 144,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        104,
+        656,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "{",
+      "vectorSha256": "1b5e042e1bce967c575c228718e02fd013e6fe9385aa4e653330dfe1c348b3b4",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 160,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        192,
+        656,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "|",
+      "vectorSha256": "04cea40bbe2a0c47c1c946ea826ce7fabb0f8e5b0fcfad2e1dd7d8c848cac96b",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 176,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        288,
+        656,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "}",
+      "vectorSha256": "e42f69c9016a90009c035f3f68c99ea08cee7cba20565093d0b832c28ded48e0",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 192,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        384,
+        656,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "~",
+      "vectorSha256": "46717eefadbfd33f1bced10c002cc2d08fae68d0a475804b96380b8b7dc5c1c7",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 208,
+        "x": 0,
+        "h": 16,
+        "texV": 80,
+        "y": 0
+      },
+      "packedRectangle": [
+        480,
+        656,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "\u00b7",
+      "vectorSha256": "8d974e13a5097c5ab46bba7a8eeca4b6ba3c418da36ab00742e799f937e1a64f",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 4,
+        "texH": 16,
+        "w": 4,
+        "texU": 96,
+        "x": 0,
+        "h": 16,
+        "texV": 144,
+        "y": 0
+      },
+      "packedRectangle": [
+        576,
+        656,
+        32,
+        128
+      ]
+    },
+    {
+      "key": "\u00d7",
+      "vectorSha256": "7e5059fc009f07797c04ab3add74e3730328fb8e9a1ef1f50a39ec3bd599bbb1",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 96,
+        "x": 0,
+        "h": 16,
+        "texV": 176,
+        "y": 0
+      },
+      "packedRectangle": [
+        640,
+        656,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "0x25a1",
+      "vectorSha256": "260fca580fecd43352b5bb06aea5a8b97491c57a017e4a2c551a4decabc0c684",
+      "sourceMetrics": {
+        "colour": true,
+        "texW": 10,
+        "texH": 10,
+        "w": 10,
+        "texU": 224,
+        "x": 0,
+        "h": 10,
+        "texV": 80,
+        "y": 1
+      },
+      "packedRectangle": [
+        736,
+        656,
+        80,
+        80
+      ]
+    },
+    {
+      "key": "0xe000",
+      "vectorSha256": "c36bd73be11eff28fa5d9e7ed299f733a2992b1362b2b9d4bfe985cafbfb4e7b",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        848,
+        656,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "0xe001",
+      "vectorSha256": "5a8ccd1befae2c194eb1842977a2806ad25e80e639cc375a6cac4d8d5110ebbf",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 16,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        936,
+        656,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "0xe002",
+      "vectorSha256": "921ef3762d2ec69a0a1b8d2fc46bb1054b3366222377aef65cc8415eb1394c2e",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 5,
+        "texH": 16,
+        "w": 5,
+        "texU": 32,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        1024,
+        656,
+        40,
+        128
+      ]
+    },
+    {
+      "key": "0xe003",
+      "vectorSha256": "f308d85a5ef21d946f69fa547ddef0acfb13b95ea9450ef027482176fcf06423",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 5,
+        "texH": 16,
+        "w": 5,
+        "texU": 48,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        1096,
+        656,
+        40,
+        128
+      ]
+    },
+    {
+      "key": "0xe004",
+      "vectorSha256": "b900c0e00e4e56913d4c4d236a89941b2a03cfc8b07ac4525e21116abd516f0d",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 15,
+        "texH": 16,
+        "w": 15,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        1168,
+        656,
+        120,
+        128
+      ]
+    },
+    {
+      "key": "0xe005",
+      "vectorSha256": "f413dcbfbd5ec529c0971467dea887d057cbd9d87c86fe92a9cca56d6ec3822e",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 64,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        1320,
+        656,
+        72,
+        128
+      ]
+    },
+    {
+      "key": "0xe006",
+      "vectorSha256": "338445139fb65d937f7a637419db7a7d725b476a984f097eecdc052912278302",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 96,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        1424,
+        656,
+        72,
+        128
+      ]
+    },
+    {
+      "key": "0xe007",
+      "vectorSha256": "f36134439984b9a64a709682d0a7fb07b0b2ffddd1ef526dd0c22d71106e56db",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 10,
+        "texH": 16,
+        "w": 10,
+        "texU": 112,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        1528,
+        656,
+        80,
+        128
+      ]
+    },
+    {
+      "key": "0xe008",
+      "vectorSha256": "bab84e12b5bfce378aa15f5ba9483606b6d2a4cf40abf926eacc9ca1050fd0ff",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 128,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        1640,
+        656,
+        72,
+        128
+      ]
+    },
+    {
+      "key": "0xe009",
+      "vectorSha256": "c572ff75bbb3031813eb7443c91801c2cbdee265df2245dd6d1a6da317b88a35",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 10,
+        "texH": 16,
+        "w": 10,
+        "texU": 144,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        1744,
+        656,
+        80,
+        128
+      ]
+    },
+    {
+      "key": "0xe00a",
+      "vectorSha256": "0d48143c58fbb0ea07bf79e82aa1a35d87734ae3b83ed36ee034c0f98acb5052",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 11,
+        "texH": 16,
+        "w": 11,
+        "texU": 160,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        1856,
+        656,
+        88,
+        128
+      ]
+    },
+    {
+      "key": "0xe00b",
+      "vectorSha256": "d72980ce070d64d08050414dc82fdf77f7b6b5ef8ddeda2c3841b7b015a204a8",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 176,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        16,
+        816,
+        72,
+        128
+      ]
+    },
+    {
+      "key": "0xe00c",
+      "vectorSha256": "c3350f5db62b17ab8eef97f771cb2ac24cd2676bb8ef67c11a87f904095d32fd",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 192,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        120,
+        816,
+        72,
+        128
+      ]
+    },
+    {
+      "key": "0xe00d",
+      "vectorSha256": "a6823b7ecc783017ae2d79ab3a5bd335b3810b6b1e49413366406510b9aec5c3",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 208,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        224,
+        816,
+        56,
+        128
+      ]
+    },
+    {
+      "key": "0xe00e",
+      "vectorSha256": "ad15d6d9d9471d93f50ffd46c549b397fbd9350bb51c497b184a2195ceb44051",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 224,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        312,
+        816,
+        72,
+        128
+      ]
+    },
+    {
+      "key": "0xe00f",
+      "vectorSha256": "a693ae8ffe090bb4f9c44a3deb02cb515478b536ac7ebb8c7f032ecb7a9cafe8",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 240,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        416,
+        816,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "0xe010",
+      "vectorSha256": "80dc4b3848ae797578d584b8fca4e7dd7792c9a56c13a1a58d15e8093c242160",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 12,
+        "texH": 16,
+        "w": 12,
+        "texU": 16,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        512,
+        816,
+        96,
+        128
+      ]
+    },
+    {
+      "key": "0xe011",
+      "vectorSha256": "9714f54d720ab2719e34939bae94f9fa3a9af9558e6467b08abb6743ef2e9732",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 12,
+        "texH": 16,
+        "w": 12,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        640,
+        816,
+        96,
+        128
+      ]
+    },
+    {
+      "key": "0xe012",
+      "vectorSha256": "0ffc0ad830e355a78653d1d319e2e7e2e2609432ba404c077279886f962f6240",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 13,
+        "texH": 16,
+        "w": 13,
+        "texU": 48,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        768,
+        816,
+        104,
+        128
+      ]
+    },
+    {
+      "key": "0xe013",
+      "vectorSha256": "e60dbfdc11cb63905e948966f5905cca1ee76597b2c55223da46a70e3d47ba1b",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 13,
+        "texH": 16,
+        "w": 13,
+        "texU": 32,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        904,
+        816,
+        104,
+        128
+      ]
+    },
+    {
+      "key": "0xe014",
+      "vectorSha256": "cd23b0d23d68e4d29e1d58142ea6b964d69a22262fa6ca845c220bed73fbcc6a",
+      "sourceMetrics": {
+        "desc": "Guide",
+        "colour": false,
+        "texW": 10,
+        "texH": 14,
+        "w": 10,
+        "texU": 0,
+        "x": 0,
+        "h": 14,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        1040,
+        816,
+        80,
+        112
+      ]
+    },
+    {
+      "key": "0xe100",
+      "vectorSha256": "fe9b5595265b6f70fe26802b15b95fd5d4573aad00cd4e265f054a738c64ed98",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        1152,
+        816,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "0xe101",
+      "vectorSha256": "e85684c6014caa42c05c605d0b885b64f2ec54e40f875808fcd9de2fd165c8af",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 64,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        1248,
+        816,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "0xe102",
+      "vectorSha256": "77c3e89cc5e8accd88e9284cb416fa37c8b02932a9f0d2709c2cff8be0fe486e",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "packedRectangle": [
+        1344,
+        816,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "0xe103",
+      "vectorSha256": "cd23b0d23d68e4d29e1d58142ea6b964d69a22262fa6ca845c220bed73fbcc6a",
+      "sourceMetrics": {
+        "desc": "Xbox Guide",
+        "colour": false,
+        "texW": 10,
+        "texH": 14,
+        "w": 10,
+        "texU": 0,
+        "x": 0,
+        "h": 14,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        1440,
+        816,
+        80,
+        112
+      ]
+    },
+    {
+      "key": "0xe200",
+      "vectorSha256": "9ccbab0540a0f51f94b9df984c8c11053b0f6511b7afc3054b63a64fe62020cc",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 192,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        1552,
+        816,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "0xe201",
+      "vectorSha256": "f28b825f746bb67e0b3b1ea8237c0689b1cb56b708723f71d4f2d9b79eacff85",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 208,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        1648,
+        816,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "0xe202",
+      "vectorSha256": "b926292180a30455b1d3706633135692293f29643bb63aeb6f88bedba91946a4",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 224,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        1744,
+        816,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "0xe203",
+      "vectorSha256": "b1e6926a57a5b523cf164b407f43270808c453f72c82b83f9347222891eec4dd",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 240,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "packedRectangle": [
+        1840,
+        816,
+        64,
+        128
+      ]
+    },
+    {
+      "key": "0xe204",
+      "vectorSha256": "2acb2ae38c244dc700331e9b71767962d30dca3db60f52dca7f7bdf52df9063e",
+      "sourceMetrics": {
+        "desc": "PS Touchpad",
+        "colour": false,
+        "texW": 12,
+        "texH": 12,
+        "w": 12,
+        "texU": 32,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        1936,
+        816,
+        96,
+        96
+      ]
+    },
+    {
+      "key": "0xe205",
+      "vectorSha256": "8b216837117f2efbadeda7ff649ff95a5cfb18b677002ffeb52f1ac004639bb1",
+      "sourceMetrics": {
+        "desc": "PS Guide",
+        "colour": false,
+        "texW": 10,
+        "texH": 14,
+        "w": 10,
+        "texU": 16,
+        "x": 0,
+        "h": 14,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        16,
+        976,
+        80,
+        112
+      ]
+    },
+    {
+      "key": "0xe300",
+      "vectorSha256": "1437bbe8446131b2d10ce78b668461a0ca53eb9658562ed2647f5dc25c2c0f6a",
+      "sourceMetrics": {
+        "desc": "Paddle 1",
+        "colour": false,
+        "texW": 8,
+        "texH": 12,
+        "w": 8,
+        "texU": 48,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        128,
+        976,
+        64,
+        96
+      ]
+    },
+    {
+      "key": "0xe301",
+      "vectorSha256": "23f96ed5487aceff0ee326f2176bc2526259db3bd688d9c8f08ee3045f23cee7",
+      "sourceMetrics": {
+        "desc": "Paddle 2",
+        "colour": false,
+        "texW": 8,
+        "texH": 12,
+        "w": 8,
+        "texU": 64,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        224,
+        976,
+        64,
+        96
+      ]
+    },
+    {
+      "key": "0xe302",
+      "vectorSha256": "216453fb8efc072a48622789a3e62360b70f7f1e2e45cb75bd8f839f4b13a823",
+      "sourceMetrics": {
+        "desc": "Paddle 3",
+        "colour": false,
+        "texW": 8,
+        "texH": 12,
+        "w": 8,
+        "texU": 80,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        320,
+        976,
+        64,
+        96
+      ]
+    },
+    {
+      "key": "0xe303",
+      "vectorSha256": "e8c249c2d792ae86546e4307789fddddaf5e44aa0cd17535fff3ac3f267e0ec8",
+      "sourceMetrics": {
+        "desc": "Paddle 4",
+        "colour": false,
+        "texW": 8,
+        "texH": 12,
+        "w": 8,
+        "texU": 96,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        416,
+        976,
+        64,
+        96
+      ]
+    },
+    {
+      "key": "0xe304",
+      "vectorSha256": "c89d860175696679bf91e6a2bd338bf162a31c6d060365cbb282d71745dd1ab0",
+      "sourceMetrics": {
+        "desc": "Misc 1",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 112,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        512,
+        976,
+        72,
+        96
+      ]
+    },
+    {
+      "key": "0xe305",
+      "vectorSha256": "217c6f4abb755ab1b17d771a5a5015d6cfaed79df8ccc8338ccf4fb6f02445f1",
+      "sourceMetrics": {
+        "desc": "Misc 2",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 128,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        616,
+        976,
+        72,
+        96
+      ]
+    },
+    {
+      "key": "0xe306",
+      "vectorSha256": "0ff173956603938f34f5882c7814d09203d09cf5404e82b044eff72596bc723d",
+      "sourceMetrics": {
+        "desc": "Misc 3",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 144,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        720,
+        976,
+        72,
+        96
+      ]
+    },
+    {
+      "key": "0xe307",
+      "vectorSha256": "b7f61de3fed65d5fc3e1603d8b687aa222f6c56de72e58c871f4a165dd3e3abc",
+      "sourceMetrics": {
+        "desc": "Misc 4",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 160,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        824,
+        976,
+        72,
+        96
+      ]
+    },
+    {
+      "key": "0xe308",
+      "vectorSha256": "2ace47bd527c88d0bd94e004d78ea8d5a82e117f9946216ab5f4b61f8955f962",
+      "sourceMetrics": {
+        "desc": "Misc 5",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 176,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        928,
+        976,
+        72,
+        96
+      ]
+    },
+    {
+      "key": "0xe309",
+      "vectorSha256": "700bcf452ec20e13e6802eb6c975c5920349fe7c34b2aa3ce8702805b9eb63ac",
+      "sourceMetrics": {
+        "desc": "Misc 6",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 192,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "packedRectangle": [
+        1032,
+        976,
+        72,
+        96
+      ]
+    }
+  ]
+}

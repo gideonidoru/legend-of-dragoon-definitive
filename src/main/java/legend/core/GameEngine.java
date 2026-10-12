@@ -105,7 +105,10 @@ public final class GameEngine {
   public static final RenderEngine RENDERER = new RenderEngine();
 
   public static final FontManager FONTS = new FontManager();
-  public static Font DEFAULT_FONT = FONTS.get(Path.of("./gfx/fonts/default.json"));
+  private static final legend.core.font.EffectiveFont EFFECTIVE_FONT = new legend.core.font.EffectiveFont(FONTS.get(Path.of("./gfx/fonts/default.json")), RENDERER::retireAfterBatchReset);
+  public static Font DEFAULT_FONT = EFFECTIVE_FONT;
+
+  public static void configureDefaultFont(final Font font) { EFFECTIVE_FONT.configure(font); }
 
   private static TextureAtlas TEXTURE_ATLAS;
   private static Texture UI_TEXTURE;
@@ -249,7 +252,7 @@ public final class GameEngine {
 
     ConfigStorage.loadConfig(CONFIG, ConfigStorageLocation.GLOBAL, Path.of("config.dcnf"));
 
-    DEFAULT_FONT = FONTS.get(Path.of("gfx", "fonts", CONFIG.getConfig(CoreMod.RETAIL_FONT_CONFIG.get())));
+    configureDefaultFont(FONTS.get(Path.of("gfx", "fonts", CONFIG.getConfig(CoreMod.RETAIL_FONT_CONFIG.get()))));
 
     AUDIO_THREAD.init();
     AUDIO_THREAD.setMusicPlayerVolume(CONFIG.getConfig(CoreMod.MUSIC_VOLUME_CONFIG.get()) * CONFIG.getConfig(CoreMod.MASTER_VOLUME_CONFIG.get()));
@@ -361,6 +364,8 @@ public final class GameEngine {
       GameOverlay.addNotification(7, new I18nText("lod_core.ui.mods.wrong_version", modId));
     }
 
+    final var fontSelection = EVENTS.postEvent(new legend.core.font.FontSelectionEvent());
+    EFFECTIVE_FONT.selectOwned(fontSelection.font());
     legend.game.textures.NativeUiTextures.reselect(EVENTS::postEvent);
     GPU.reselectEffectArtwork(EVENTS::postEvent);
     final long artworkGeneration = ++uiArtworkGeneration;

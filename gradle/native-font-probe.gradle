@@ -1,0 +1,26 @@
+// Explicit optional windowless GPU proof; not part of check or normal installation.
+allprojects {
+  afterEvaluate {
+    if(project == rootProject) {
+      tasks.register('uihdFontBootProbe', JavaExec) {
+        dependsOn testClasses, 'jar', 'uihdJar'
+        classpath = files(tasks.named('jar').flatMap { it.archiveFile }) + sourceSets.test.output + configurations.testRuntimeClasspath
+        mainClass = 'legend.definitive.font.UiHdFontBootProbe'
+        jvmArgs '-Djava.awt.headless=true'
+        doFirst { args tasks.uihdJar.archiveFile.get().asFile.parentFile.absolutePath }
+      }
+      tasks.register('nativeFontProbe', JavaExec) {
+        dependsOn testClasses, 'uihdJar'
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'legend.definitive.font.NativeFontProbe'
+        jvmArgs '-Djava.awt.headless=true', '--enable-native-access=ALL-UNNAMED', '--add-opens=java.base/java.util=ALL-UNNAMED'
+        doFirst {
+          def context = providers.gradleProperty('rendererContextPath').orNull
+          def proof = providers.gradleProperty('fontProofDirectory').orNull
+          if(!context || !proof) throw new GradleException('Supply windowless rendererContextPath and a fresh private fontProofDirectory.')
+          args context, tasks.uihdJar.archiveFile.get().asFile.absolutePath, proof
+        }
+      }
+    }
+  }
+}

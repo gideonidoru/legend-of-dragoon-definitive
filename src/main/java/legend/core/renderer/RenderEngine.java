@@ -420,12 +420,23 @@ public class RenderEngine {
     return batch;
   }
 
+  private final Deque<Runnable> resourceRetirement = new LinkedList<>();
+
+  /** Defer exclusively owned resources until paused or simulated draws no longer reference them. */
+  public void retireAfterBatchReset(final Runnable retirement) {
+    synchronized(this.resourceRetirement) { this.resourceRetirement.addLast(java.util.Objects.requireNonNull(retirement)); }
+  }
+
   private void resetBatches() {
     this.mainBatch.reset();
     this.effectLights.clear();
 
     for(int i = 0; i < this.batches.size(); i++) {
       this.batches.get(i).reset();
+    }
+    synchronized(this.resourceRetirement) {
+      Runnable retirement;
+      while((retirement = this.resourceRetirement.pollFirst()) != null) retirement.run();
     }
   }
 
