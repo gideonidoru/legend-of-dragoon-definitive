@@ -1,0 +1,322 @@
+{
+  "schema": 1,
+  "reviewer": "independent Spec actual-original art/layout reviewer undersea_spec",
+  "snapshot": "941c4f54dd9104e8eb6b75ed4a1f159303dbd6f7",
+  "packetSha256": "4dec6db12b6036f581156127aec13908f6c2d29121546d2ee2cac8ddaab9a353",
+  "authorManifestSha256": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
+  "scope": "Only seven existing stage14 static source candidates, including source-shared stage92 binding. Fresh original decode, complete binding/recipe replay and individual native-aspect source/neural/candidate visual inspection, including four subregions of the wide atlas. Source/art gate only; no runtime selection, mapped scene/seams, native rendering, physical Steam Deck or final beauty acceptance. Whole-game presentation remains ongoing.",
+  "sourceScenes": [
+    {
+      "stage": 14,
+      "modelSha256": "f4bb37d777a372a3e0c535f13b99221a60dc048c60924f0269ec9972484a0c0d",
+      "timSha256": "39b98010e3cfade6fb5126b4df7cc634325f08dd372556c75bb2a68caa338d35",
+      "modelSourceFile": "SECT/DRGN0.BIN/2511/0/0",
+      "timSourceFile": "SECT/DRGN0.BIN/2511/2"
+    },
+    {
+      "stage": 92,
+      "modelSha256": "51cef5aad46af3f1b7a40bc534b9ef1265c8bc7b4b51de3a3cc21c73e4e10221",
+      "timSha256": "988094fd4c6115317ca3b52dc52d19859428222c824892fe14f88e7f417a413f",
+      "modelSourceFile": "SECT/DRGN0.BIN/2589/0/0",
+      "timSourceFile": "SECT/DRGN0.BIN/2589/2"
+    }
+  ],
+  "comparisons": [
+    {
+      "sourceKey": "03cb306758c80a5397884dcccfb37f7cdc625cd2eb19e08cf0ce4934a5ffd43e",
+      "sourceSize": [
+        136,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 14,
+          "page": 7,
+          "clut": 15388,
+          "parts": [
+            3,
+            7
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            136,
+            72
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        },
+        {
+          "stage": 92,
+          "page": 7,
+          "clut": 15388,
+          "parts": [
+            4
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            136,
+            72
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "931f9d806bbc3b8d5531dd8ee1867e330a110ea84ec4d9da8ff9945013e3a828",
+      "outputSha256": "055fd5369a751e48ac75a7677ea311c977d12ca321cf51da6558c1ba12714fa0",
+      "priorCandidateSha256": "8b59670a74e28afc5093bddda140fc0c5dd720a0143792ee3c9cd010fad8a46c",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Preserves the cool gray-blue upright folded-rock ridges, deep vertical channels, tapered lower silhouette and neighboring fragments. Fine mineral texture follows existing broad rock divisions without a new major ridge, aperture or horizontal masonry course. Complete usage includes bothstage14 andstage92; subdued broad source values remain recognizable.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "cf446d2373b5addd07d18cf76e532a18fe1070f363583bcb3fc8f42fe1b6a33c",
+      "sourceSize": [
+        256,
+        136
+      ],
+      "sourceBindings": [
+        {
+          "stage": 14,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            4,
+            6
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            256,
+            136
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "d19b25e1d6988daaef871d07d2c41f69b0b9b5ed5e0c9eb27a5ac02d712f6d9c",
+      "outputSha256": "6d4aa86f36c0b9d19843ecfa19d371bf3d66c83b84fc5436e5d68f56f29b6a4c",
+      "priorCandidateSha256": "e2668e106091a19e85b65c6547f9228c2a50d2a074d3af1c356f95d91a4e4c3f",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "All multi-material region boundaries remain source-positioned: upper-left folded rock, lower-left and upper-right lattice, smooth right oval gradient, lower vertical strip and rib neighbors. Individual region crops were inspected against actual original and installed neural. Main lattice junctions, large cavity topology and broad rock/gradient value groups remain recognizable; fibrous texture follows existing interconnections without a newly composed lattice or aperture. Original grayscale character is retained.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "814f2a1efa9505f61a3b9a006d1a0271eb9e5a65386ddc062744522614550ca9",
+      "sourceSize": [
+        80,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 14,
+          "page": 7,
+          "clut": 15516,
+          "parts": [
+            7
+          ],
+          "sourceCrop": [
+            120,
+            56,
+            200,
+            136
+          ],
+          "sourceUvOrigin": [
+            120,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "5da0484d66b332a84f9ba564f3840518e5a916ce8267c0dace4b6b56868be1af",
+      "outputSha256": "f48983c3eb5bddebce90e6420f5ba60fe2acfc1564d100ec5aa17698856004c6",
+      "priorCandidateSha256": "b6a3ac1ecf30aafd6c27bf093176be5b0753c981ed168976f4ab182b35ab723b",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Preserves the flat cool gray-blue striated panel, subdued horizontal streak direction, existing diagonal seam at right, source black gaps and neighboring fragments. Fine restrained grain improves the established stone surface without a new major fracture, sharper raised feature or water/reflection interpretation.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "2a901db10d7e78e6ee494e01378dc747606516e690868776b023d8de075f24f6",
+      "sourceSize": [
+        112,
+        96
+      ],
+      "sourceBindings": [
+        {
+          "stage": 14,
+          "page": 7,
+          "clut": 15580,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            56,
+            232,
+            152
+          ],
+          "sourceUvOrigin": [
+            120,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "d1ba7b48ede0abad493746a76c7efbcf45207f46b05f90b8b44eb2d1ab4f5b79",
+      "outputSha256": "70e4ac6516756d510e12743003c80daace44dfe0c1f4451c3438d7a1b17d1519",
+      "priorCandidateSha256": "60db095905861136e2b742196a93c31f802da0fb8787dc14c4f1b8d668700ee8",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Preserves the broad horizontal rough-stone panel, two distinct smooth rounded gradient pieces, lower-right vertical streak panel, far-right ribs and black separation. Existing broad dark seams/value patches stay in place; fine grain stays on textured surfaces, gradients retain their smooth reading, and no new recognizable object or structure appears.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "fdbef7ada10278e364799563804756a7a9f97f6630d182931d851339e936268e",
+      "sourceSize": [
+        72,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 14,
+          "page": 7,
+          "clut": 15644,
+          "parts": [
+            1,
+            2
+          ],
+          "sourceCrop": [
+            184,
+            56,
+            256,
+            136
+          ],
+          "sourceUvOrigin": [
+            184,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "c91eb13c02f25c5828bd82d2e4a7abc083c397e6d46e5c4f58d3dfd97a83d0a2",
+      "outputSha256": "76a4c1755f1c9f5390b83f8f4fb67e191cc8535075ba0e007dec797db95e38b0",
+      "priorCandidateSha256": "0381b279d0f987280194acb25b4cc47be99163fd5fa6a09c0f6d46fa8e0f3bbf",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Preserves the upper-left smooth oval gradient, upper-right mottled piece, lower-left nearly vertical pale streaks, and lower-right curved ribs. Piece count, outlines and negative gaps remain source-bound. Subtle grain improves material clarity while the original dim gray-violet values and broad smooth gradient remain recognizable.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "854cf2789797543c059726dff651ff7a59a561b2cd457777f7fa15b3247802ad",
+      "sourceSize": [
+        80,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 14,
+          "page": 7,
+          "clut": 15772,
+          "parts": [
+            5
+          ],
+          "sourceCrop": [
+            56,
+            120,
+            136,
+            168
+          ],
+          "sourceUvOrigin": [
+            56,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "1a575140e1c8729254c9f60fa53614024fdb15cfa9f8aaabd1223cdc15bac220",
+      "outputSha256": "30af549cd7c05a3f521489c5847b0ef73af293f89ca874c5136938e777a8dba9",
+      "priorCandidateSha256": "0cb1ad60bde3cb094407a54ccdb15ecc3e40d65ccf917d5f994c401a5624d65d",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Retains the original sparse major lattice directions and junctions, irregular large cavities, rounded right void and top/side fragments. Fine fibrous/mineral texture stays associated with existing pale surfaces; no new major cross-cavity connection or rearranged hole topology observed. The muted gray-violet reading remains controlled.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "acba35c69fa4b4164391efcc080f33fae6ea793a444221b30f90a1adfda15ec9",
+      "sourceSize": [
+        32,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 14,
+          "page": 7,
+          "clut": 15836,
+          "parts": [
+            5
+          ],
+          "sourceCrop": [
+            216,
+            88,
+            248,
+            136
+          ],
+          "sourceUvOrigin": [
+            216,
+            88
+          ]
+        }
+      ],
+      "generatedSha256": "c3da4d5c6040f80e97bccd83d806e5daf228761f74e2fcfb95fdf5f5236b1242",
+      "outputSha256": "0a555ac8aaefaa5974d8641cfff76f34719ac614ac6b4d32ae6a92a72c606607",
+      "priorCandidateSha256": "bdc2288fa1cd0804372a3eca97394b1ab9651a7dad47ce48c521396949f107bf",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Retains the narrow left strip, small top neighboring material and repeated curved right ribs with their original count, spacing, lengths and black openings. Fine matte grain refines existing surfaces without extra ribs, a new opening or changed broad lighting.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "counts": {
+    "clear": 7,
+    "revise": 0,
+    "runtimeSelectedByThisReview": 0
+  },
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "privateFullReviewSha256": "dcba486e7751f85113a641b85d8cacec0ee55ff3e4eb98fe5b75526e5579f393"
+}
