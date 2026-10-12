@@ -166,6 +166,7 @@ def main():
         if args.delivery_format==2:
             from member_publication import load_plan, prove_draft, film_map
             plan_record=receipts[platform]['assemblyPlan'];plan_path=staged/plan_record['name']
+            if type(plan_record.get('bytes')) is not int or not 1<=plan_record['bytes']<=16*1024**2:raise ValueError('Unbounded CI assembly plan')
             if (plan_path.stat().st_size,digest(plan_path))!=(plan_record['bytes'],plan_record['sha256']):raise ValueError('CI assembly plan descriptor differs')
             draft=load_plan(plan_path.read_bytes(),args.source_sha,platform,expected_files)
             selected=set(draft['files']);ordinary={row['assetName'] for row in expected_files if row['path'] not in selected}

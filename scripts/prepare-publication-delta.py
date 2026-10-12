@@ -400,7 +400,9 @@ def main():
         receipt = bounded_json(args.receipt)
         if args.delivery_format == 2:
             from member_publication import load_plan, prove_draft, film_map
-            record = receipt['assemblyPlan']; draft = load_plan((args.output_dir/'uploads'/record['name']).read_bytes(), ctx['sourceSha'],ctx['platform'],files)
+            record = receipt['assemblyPlan']
+            if type(record.get('bytes')) is not int or not 1<=record['bytes']<=16*1024**2:raise ValueError('Unbounded CI assembly plan')
+            draft = load_plan((args.output_dir/'uploads'/record['name']).read_bytes(), ctx['sourceSha'],ctx['platform'],files)
             selected = set(draft['files']); ordinary = {row['assetName'] for row in files if row['path'] not in selected}
             for row in files:
                 if row['path'] in selected and row['assetName'] not in ordinary: expected.pop(row['assetName'])

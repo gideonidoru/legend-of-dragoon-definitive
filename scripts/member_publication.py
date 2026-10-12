@@ -86,7 +86,7 @@ def baselines(current, platform, paths, fetch):
     """Only the committed pointer and fresh exact source IDs authorize reuse."""
     release = current['release']
     if release is None: return {}, None
-    pointer = parse_body(release.get('body') or '', release['id'], required=False)
+    pointer = parse_body(release.get('body') or '', release['id'], required=release['tag_name']==TAG)
     if pointer is None: return {}, None
     if release['tag_name'] != TAG: raise ValueError('Member baseline must use current carrier')
     assets = index_assets(current['assets'])

@@ -57,6 +57,7 @@ def validate_inputs(inputs, root):
         if group=='assemblyPlans' and inputs.get('deliveryFormat',1)==1:continue
         for key, record in inputs[group].items():
             name=record['name'] if group=='assemblyPlans' else key
+            if group=='assemblyPlans' and (type(record.get('bytes')) is not int or not 1<=record['bytes']<=16*1024**2):raise ValueError('Unbounded CI assembly plan')
             if '/' in name or name in ('.', '..'):
                 raise ValueError('Unsafe staged name')
             if 'path' in record:
