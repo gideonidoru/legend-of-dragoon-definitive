@@ -231,14 +231,15 @@ public abstract class QueuedModel<Options extends ShaderOptionsBase, T extends Q
   }
 
   void useTexture() {
+    if(this.textures[1] == null) {
+      GPU.useVramTexture();
+    }
     if(this.texturesUsed) {
       for(int i = 0; i < this.textures.length; i++) {
         if(this.textures[i] != null) {
           this.textures[i].use(i);
         }
       }
-    } else {
-      GPU.useVramTexture();
     }
     if(this.usesGlobalEffectArtwork()) GPU.useEffectArtwork();
     if(this.obj.faceDetailTexture() != null) this.obj.faceDetailTexture().use(7);

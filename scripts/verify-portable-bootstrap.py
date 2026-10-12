@@ -14,7 +14,7 @@ import zipfile
 source = (Path(__file__).resolve().parents[1] / 'delivery/Install-Definitive.sh').read_text()
 for failure in ('none', 'download', 'checksum', 'runtime', 'java', 'mktemp', 'linked-log'):
     with tempfile.TemporaryDirectory(prefix='definitive-portable-check-') as directory:
-        root = Path(directory)
+        root = Path(directory).resolve()
         tools = root / 'tools'
         tools.mkdir()
         if failure == 'linked-log':
@@ -87,7 +87,7 @@ else:raise AssertionError(sys.argv)
                 assert {'download': 'fixture download failure', 'checksum': 'checksum mismatch', 'runtime': 'fixture runtime failure'}[failure] in log
 runtime_source = Path(__file__).resolve().parents[1] / 'delivery/installer/bootstrap-java'
 with tempfile.TemporaryDirectory(prefix='definitive-java-lock-check-') as directory:
-    root = Path(directory)
+    root = Path(directory).resolve()
     tools = root / 'tools'; tools.mkdir()
     for name, code in {'mktemp': 'echo fixture temporary storage failure >&2; exit 1', 'java': 'exit 1'}.items():
         file = tools / name; file.write_text('#!/bin/bash\n' + code + '\n'); file.chmod(0o755)

@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "sourceReviewCommit": "043b51d3a75c34c69c369adb4d7ff43a878fbaef",
+  "sourceManifest": "field-bespoke-precise-six-held-drafts.json",
+  "sourceManifestSha256": "76f47e95644a62a799f83e93f594aff1d60db3bf8810a68691b41fefb29ef7de",
+  "independentReportsSha256": {
+    "spec": "bc1f53233ab2e0b338ab06df1dfcf48e4a71b286ed686113eb977271aa5e8c66",
+    "standards": "3321744bd07365ddd2c030197e00a2c9993fbd5460caed114c37cf96bf3445ea"
+  },
+  "scope": "Six corrective sources/seven versions freshly compared to original/reference/output and static placement. Three full outputs clear; other versions require revision. No prior version clearance reused.",
+  "individualDispositions": [
+    {
+      "version": "precise-correction-v1",
+      "disposition": "REVISE",
+      "reason": "The cage front, top planes, lower-left faces and cropped upper-right cage gain broad solid X/V diagonal braces. The native fine crossing lattice does not support these heavy structural bars. Restore delicate crossing strands and source-supported ribs without broad new braces.",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-precise-correction-input-v1.png",
+      "generatedSha256": "ac3c09da9d0ea881fbfbeaf97f4fdfdf15bdcf8fb8bce936cc8db3741e544765",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-precise-correction-repaired-v1.png",
+      "outputSha256": "138662e9f3a3e682f57c078fc57f5c45b757036564a5720c00962b46384e3206",
+      "repairReplay": "exact-public-pixels-pass",
+      "coverageFailure": null,
+      "decodedRgbaSha256": "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "version": "precise-correction-v1",
+      "disposition": "CLEAR",
+      "reason": "The correction removes the raised block courses, restores a flat muted violet-brown/olive mottled surface, and retains the left pale strip, disconnected upper remnants and small lower-right mark without inventing new construction.",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc/draft-precise-correction-input-v1.png",
+      "generatedSha256": "e5eae91e5feff95700aadfc14e54ccff4089da182d7e3918a0b22baf9a791981",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc/draft-precise-correction-repaired-v1.png",
+      "outputSha256": "81dbeeeef4c3c848de023a1bc834cc4c4a075741425cb3125d28adc7e07b531a",
+      "repairReplay": "exact-public-pixels-pass",
+      "coverageFailure": null,
+      "decodedRgbaSha256": "882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "version": "precise-correction-v1",
+      "disposition": "REVISE",
+      "reason": "The full raw edit independently reproduces the original-coverage rejection. It cannot enter selection; there is no valid repaired full output. Continuous post shading is closer, but the whole edit is not source-coverage valid.",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-precise-correction-input-v1.png",
+      "generatedSha256": "e0f0270a509c774ebb8cd2eb64b3a698638283691eb8a4c4924198c74e626f60",
+      "outputPath": null,
+      "outputSha256": null,
+      "repairReplay": "independently-reproduced-coverage-rejection",
+      "coverageFailure": "ValueError: Painted coverage differs too much from the source; revise the painting",
+      "decodedRgbaSha256": "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "version": "bounded-post-local-composite-v1",
+      "disposition": "REVISE",
+      "reason": "The rectangle removes blue courses and gold ring but clips the foreground post gold head into a flat/stepped top with narrow projecting strips and an abrupt join at native y64. Visible in isolated output and fresh static placement. Align/redraw the softly rounded native head and continuous shaft shading without a component-transfer cut or forks. Exact alpha/repair replay does not establish geometry fidelity.",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-post-local-composite-input-v1.png",
+      "generatedSha256": "cda6dba2e2cccf96ce9da03a218e7c19d9ff6e8bfe87bb378154098161a2c4ba",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-post-local-composite-repaired-v1.png",
+      "outputSha256": "82c6fa5d6324856cfe91e048d28e5af4eeeaf2e3d277b8204e1c074f00cfd1fb",
+      "repairReplay": "exact-public-pixels-pass",
+      "localComponentTransfer": {
+        "method": "copy-resampled-rgb-with-base-alpha-preserved",
+        "basePath": "integrations/envhd/production/bespoke-field-candidates/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/image-v1.png",
+        "baseSha256": "e0d154053606512f0fc27fed16a12b5b0bdd25b48955052cdb9f0ff1c6f49bf2",
+        "insertInputSha256": "e0f0270a509c774ebb8cd2eb64b3a698638283691eb8a4c4924198c74e626f60",
+        "insertOriginalCoverageRejected": true,
+        "sourceNativeBox": [
+          55,
+          64,
+          70,
+          114
+        ],
+        "targetBox": [
+          220,
+          256,
+          280,
+          456
+        ],
+        "resampling": "Pillow.Image.Resampling.LANCZOS",
+        "insertAlphaMinimum": 128,
+        "baseAlphaExact": true,
+        "outsideBoxPixelsExact": true,
+        "changedPixels": 8111,
+        "insertInputPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-precise-correction-input-v1.png"
+      },
+      "decodedRgbaSha256": "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "version": "precise-correction-v1",
+      "disposition": "CLEAR",
+      "reason": "The leftmost fitting is rounded and hollow rather than a boxed lantern. The unequal smaller fittings, broad stone curve, pale/blue rim bands, count and placement retain native intent.",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/867b4dc9569220985c79320571ee12cb046a6a1bdb7503b5d05778cecdedcae4/draft-precise-correction-input-v1.png",
+      "generatedSha256": "12e5fd5e465f09a324ee12aa3856b23357a77116efe03a825e5385ee4f90319d",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/867b4dc9569220985c79320571ee12cb046a6a1bdb7503b5d05778cecdedcae4/draft-precise-correction-repaired-v1.png",
+      "outputSha256": "7580be5db2470fcf95ee675baa63cc2cdf7bd9f741dd7a8f996fa378f56e768f",
+      "repairReplay": "exact-public-pixels-pass",
+      "coverageFailure": null,
+      "decodedRgbaSha256": "867b4dc9569220985c79320571ee12cb046a6a1bdb7503b5d05778cecdedcae4",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "version": "precise-correction-v1",
+      "disposition": "CLEAR",
+      "reason": "The correction restores individually unequal rounded/hollow fittings rather than repeated cut368 rectangular lanterns; tall upper fitting, cropped lower fitting, rail slope and quiet wall illumination remain source aligned.",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957/draft-precise-correction-input-v1.png",
+      "generatedSha256": "23d86144fe271c946400c6cd43f998c4fff1e3d425356670adea6d1a96395044",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957/draft-precise-correction-repaired-v1.png",
+      "outputSha256": "75878ea679073f8ad7e954161bb7978ac932923574505d259b17b2a46137cd63",
+      "repairReplay": "exact-public-pixels-pass",
+      "coverageFailure": null,
+      "decodedRgbaSha256": "7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "version": "precise-correction-v1",
+      "disposition": "REVISE",
+      "reason": "The night balcony still resolves quiet diffuse green source marks into glossy jewel-like cabochons with dark outlined sockets and pale glints. The cap stays sharply bright and front densely gold-speckled; repair leaves vertical stretched colour along the top. Mute cap, marks and front to original night illumination and remove edge streaks.",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-precise-correction-input-v1.png",
+      "generatedSha256": "d8204d484cf0a524eea951ed7ff5bb3c2dd1c051ceb7d970f0c9fc1d158bdd28",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-precise-correction-repaired-v1.png",
+      "outputSha256": "b7aa1b22d7963db5354f5832aaf6cacab49a66022b345c9bd61f0875eeb56793",
+      "repairReplay": "exact-public-pixels-pass",
+      "coverageFailure": null,
+      "decodedRgbaSha256": "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "clearedSourceKeys": [
+    "7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957",
+    "867b4dc9569220985c79320571ee12cb046a6a1bdb7503b5d05778cecdedcae4",
+    "882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc"
+  ],
+  "sourceIntegrity": "Fresh originals, files/owners/bindings and all repair/composite replays independently verified.",
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "limits": [
+    "Static source/placement development review only; native/script/depth/device/Deck/campaign/final acceptance pending.",
+    "Post full-edit coverage failure remains failed; bounded local alternative also requires visual correction."
+  ]
+}
