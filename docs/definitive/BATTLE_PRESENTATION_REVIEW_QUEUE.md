@@ -1,0 +1,21 @@
+# Battle presentation review queue
+
+The [source-bound review queue](../../integrations/envhd/production/battle-presentation-review-queue-20261011.json) records the complete existing artwork backlog at accepted main `bd78d49841729c318e50ad9a748a3ae538d24041`. It is an immutable planning snapshot, not a selector. Its input hashes, candidate output hashes, original bindings and itemized independent review evidence make each remaining decision traceable. Later selected increments do not rewrite this snapshot.
+
+Of 506 newly authored static candidates, 40 are selected at that main snapshot, four Marshland candidates are independently cleared but unselected, six need revision, and 456 await independent original-art review. Twelve earlier selected paintings are separate. The repaired candidates reuse the existing 4x atlas allocation, source UVs, native STP and visible-black classes, duplicated gutters and HD filtering. Their finer painted material detail must remain compatible with existing scene lighting, material maps and first-visit prewarming.
+
+Panoramas have a separate denominator: 74 MCQ variants resolve to 71 decoded images. There are 64 new drafts, six earlier installed paintings proposed for further review, and one uniform-black image retained native. Three new drafts need palette/value repair; 61 await independent art review. Author repetition review flags 31 drafts for repair or closer edge checks. These categories overlap; neither a small edge-difference measurement nor an unflagged contact sheet clears a panorama. No new panorama draft is selected.
+
+The 350 animation/context bindings have complete isolated stage-cycle metadata, including 341 consumer families, 104,532 observed context-image hashes and their face consumers. Those counts describe isolated state combinations, not a complete encounter artwork-job denominator. A separate incomplete-palette binding is outside those cycles. The queue preserves every binding, its timing/frame/shard hashes and open encounter contracts. Seven bindings with constant sampled and padded context receive priority for contract review; constant isolated pixels alone do not authorize replacing them.
+
+## Runtime and source seams
+
+`EnvHdMod.replace` loads static battle resources at `/envhd/battle-materials/<modelSha256>`. `BattleMaterialAtlas` validates model/TIM identity, page/CLUT, source origins, atlas geometry and gutters. `StageArtwork.create` builds a mixed mesh: selected static regions use the HD atlas; held faces retain their native indexed VRAM page/CLUT sampling. An atlas existing for a stage does not imply its held faces have HD replacements. No dynamic HD image resource is selected by this queue.
+
+`Battle.renderBattleStage` enqueues native animation slots before drawing the stage and retains native fallback while stage artwork is darkened. `gameLoop` uploads the preceding CPU VRAM state at `GPU.startFrame`, ticks engine/scripts, then executes queued copies in `GPU.endFrame`. The established queue contract executes stage slots descending and each copy sequence in reverse enqueue order. `scriptCopyVram`, encounter effect uploads, renderer presentation phase and stage lifetime remain necessary integration inputs.
+
+`SEffe.applyScreenDarkening` changes the stage CLUT using a script-driven multiplier and sets the artwork fallback flag. `ScreenDarkeningEffect` advances toward its script target and restores that target on destruction. The isolated cycle ledger does not enumerate all such parameter transitions or intervening uploads. Preserve them before clearing any held binding; do not flatten scrolling or palette effects into a static painting.
+
+`EnvHdMod.replaceSky` resolves `/envhd/skies/<sourceMcqSha256>/manifest.json`; its selected `imageFile` can reference different image revisions. Panorama work preserves original placement, clear color and repetition. Native camera/seams/shader behavior, gameplay and physical Steam Deck appearance/frame times remain separate acceptance work for every family.
+
+The public evidence contains custom candidates, hashes and binding metadata. Original pixels, sequence payloads, raw MCQ headers and private comparison boards remain outside the repository.
