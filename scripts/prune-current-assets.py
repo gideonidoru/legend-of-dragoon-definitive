@@ -13,12 +13,12 @@ import json
 import re
 import subprocess
 from datetime import datetime
-from current_publication import TAG, REPO, PLATFORMS, canonical, parse_body, check_references, index_assets, check_asset, closure, validate_manifest, unique_object
+from current_publication import TAG, REPO, PLATFORMS, canonical, parse_body, check_references, index_assets, check_asset, closure, validate_manifest, unique_object, check_assembly_references
 
 ALIASES={'Install-Definitive.desktop','Install-Definitive.sh','Definitive-Installer.zip','SHA256SUMS',
          'Legend-of-Dragoon-Definitive-linux-x64.zip','Legend-of-Dragoon-Definitive-macos-arm64.zip',
          'Definitive-Contents-linux-x64.zip','Definitive-Contents-macos-arm64.zip'}
-RECOGNIZED=re.compile(r'(?:file-[a-f0-9]{64}|manifest-[a-f0-9]{64}\.json|(?:package|contents)-(?:linux-x64|macos-arm64)-[a-f0-9]{64}\.zip|installer-[a-f0-9]{64}\.zip|entry-[a-f0-9]{64}\.sh|source-fmvhd-[a-f0-9]{64}\.zip|Env[1-4]HD-[A-Za-z0-9._-]+\.zip|FMVHD-v0\.1\.0-videos\.zip)')
+RECOGNIZED=re.compile(r'(?:file-[a-f0-9]{64}|manifest-[a-f0-9]{64}\.json|(?:package|contents)-(?:linux-x64|macos-arm64)-[a-f0-9]{64}\.zip|assembly-(?:linux-x64|macos-arm64)-[a-f0-9]{64}\.json|installer-[a-f0-9]{64}\.zip|entry-[a-f0-9]{64}\.sh|source-fmvhd-[a-f0-9]{64}\.zip|Env[1-4]HD-[A-Za-z0-9._-]+\.zip|FMVHD-v0\.1\.0-videos\.zip)')
 
 
 def time(value):
@@ -26,7 +26,7 @@ def time(value):
     return datetime.fromisoformat(value.replace('Z','+00:00'))
 
 
-def plan(manifest, assets, required, aliases):
+def plan(manifest, assets, required, aliases, recipes=None):
     indexed=index_assets(assets);sha=check_references(manifest,assets)
     if not ALIASES.issubset(aliases):raise ValueError('Incomplete bootstrap retention inventory')
     keep=set(required)|set(aliases);marker=indexed['manifest-'+sha+'.json']
@@ -34,7 +34,15 @@ def plan(manifest, assets, required, aliases):
     for name, record in {**required,**aliases}.items():
         check_asset(indexed.get(name,{}),name,record['bytes'],record['sha256'])
     # A complete, fresh publication receipt binds every current managed file.
-    if manifest['fmvSource']['name'] not in keep:raise ValueError('Pinned source input omitted')
+    if manifest['format']==1:
+        if manifest['fmvSource']['name'] not in keep:raise ValueError('Pinned source input omitted')
+    else:
+        check_assembly_references(manifest,recipes or {},assets)
+        for film in manifest['fmvSources'].values():
+            if film['name'] not in keep:raise ValueError('Pinned film source omitted')
+        for platform,recipe in recipes.items():
+            names={'file-'+sha for sha in recipe['sources']}|{manifest['platforms'][platform]['assembly']['name']}
+            if not names<=set(required):raise ValueError('Transitive recipe retention closure omitted')
     for name,asset in indexed.items():
         if name in keep:continue
         if not RECOGNIZED.fullmatch(name) or time(asset.get('created_at'))>=boundary:
@@ -74,7 +82,14 @@ def main():
     if proof.get('result')!='PASS' or proof.get('unchanged') is not False or 'closure' not in proof:
         raise ValueError('A newly verified complete publication receipt is required')
     packages={platform:tuple(args.publication.parent/'uploads'/proof['manifest']['platforms'][platform][kind]['name'] for kind in ('package','contents')) for platform in PLATFORMS}
-    complete=closure(proof['manifest'],packages)
+    recipes={}
+    if proof['manifest']['format']==2:
+        from archive_assembly import load_recipe
+        for platform in PLATFORMS:
+            record=proof['manifest']['platforms'][platform]['assembly']
+            recipes[platform]=load_recipe((args.publication.parent/'uploads'/record['name']).read_bytes())
+        if recipes!=proof.get('recipes'):raise ValueError('Verified recipe receipt differs')
+    complete=closure(proof['manifest'],packages,recipes)
     if complete!={name:(record['bytes'],record['sha256']) for name,record in proof['closure'].items()}:
         raise ValueError('Publication receipt differs from the verified complete managed inventory')
     module=importlib.util.spec_from_file_location('publisher',Path(__file__).with_name('publish-current-release.py'))
@@ -101,7 +116,7 @@ def main():
         def fetch(asset):
             return subprocess.check_output(['curl','--fail','--location','--proto','=https','--proto-redir','=https','--connect-timeout','20','--max-time','60','--max-filesize','8192','--silent','--show-error',asset['browser_download_url']])
         audit_manifests(proof['manifest'],assets,fetch)
-        return plan(proof['manifest'],assets,proof['closure'],proof['aliases'])
+        return plan(proof['manifest'],assets,proof['closure'],proof['aliases'],recipes)
     initial=verify();deleted=[]
     if args.execute:
         for asset in initial['remove']:
