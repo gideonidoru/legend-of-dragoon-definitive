@@ -5,6 +5,8 @@ import legend.core.gpu.Bpp;
 import legend.core.gte.MV;
 import legend.core.lang.TextComponent;
 import legend.core.memory.Method;
+import legend.core.platform.input.InputCodepoints;
+import legend.core.platform.input.InputGamepadType;
 import legend.core.renderer.Obj;
 import legend.core.renderer.QuadBuilder;
 import legend.core.renderer.QueuedModelStandard;
@@ -21,6 +23,16 @@ public class Font {
 
   private Texture texture;
   private Obj obj;
+  private Object resourceOwner;
+  private boolean retirementScheduled;
+
+  synchronized void claimOwnership(final Object owner) {
+    if(this.retirementScheduled || this.resourceOwner != null && this.resourceOwner != owner) throw new IllegalArgumentException("Font resources already owned or retired");
+    this.resourceOwner = owner;
+  }
+  protected boolean hasOwnedResources() { return this.texture != null || this.obj != null; }
+  synchronized boolean isOwned() { return this.resourceOwner != null; }
+  synchronized void scheduleRetirement() { this.retirementScheduled = true; }
 
   public Font(final Path path, final TextComponent name, final Char2ObjectMap<Glyph> glyphs) {
     this.path = path;
@@ -29,9 +41,9 @@ public class Font {
   }
 
   public void init() {
+    synchronized(this) { if(this.retirementScheduled) throw new IllegalStateException("Retired optional font cannot be initialized"); }
     if(this.texture == null) {
-      final String fontName = this.path.getFileName().toString();
-      this.texture = Texture.png("Font " + fontName, this.path.resolveSibling(fontName.substring(0, fontName.lastIndexOf('.')) + ".png"));
+      this.texture = this.createTexture();
       this.texture.persistent = true;
     }
 
@@ -56,8 +68,31 @@ public class Font {
     }
   }
 
+  protected Texture createTexture() {
+    final String fontName = this.path.getFileName().toString();
+    return Texture.png("Font " + fontName, this.path.resolveSibling(fontName.substring(0, fontName.lastIndexOf('.')) + ".png"));
+  }
+
+  /** Only an exclusively owned optional font may be released, after retained draw queues clear. */
+  public void releaseOwnedResources() {
+    synchronized(this) { if(this.resourceOwner == null || !this.retirementScheduled) throw new IllegalStateException("Only scheduled optional font resources may be released after queue reset"); }
+    if(this.obj != null) { this.obj.delete(); this.obj = null; }
+    if(this.texture != null) { this.texture.delete(); this.texture = null; }
+  }
+
+  /** A captured font reference can change its effective metrics without changing its identity. */
+  public long generation() { return this.inputGamepadType().ordinal(); }
+
+  protected InputGamepadType inputGamepadType() { return legend.core.GameEngine.PLATFORM.getGamepadType(); }
+
+  /** Layout, colour and drawing resolve the same platform-specific prompt symbol. */
+  private char visibleCodepoint(final char codepoint) {
+    return codepoint >= InputCodepoints.DPAD_UP && codepoint <= InputCodepoints.GUIDE
+      ? InputCodepoints.getCodepoint(this.inputGamepadType(), codepoint) : codepoint;
+  }
+
   public QueuedModelStandard queueChar(final char chr, final MV transforms) {
-    final Glyph glyph = this.glyphs.get(chr);
+    final Glyph glyph = this.glyphs.get(this.visibleCodepoint(chr));
 
     if(glyph == null) {
       final MV mv = new MV(transforms);
@@ -69,24 +104,18 @@ public class Font {
 
     return RENDERER.queueUiOrthoModel(this.obj, transforms, QueuedModelStandard.class)
       .texture(this.texture)
-      .vertices(this.glyphs.get(chr).index * 4, 4)
+      .vertices(glyph.index * 4, 4)
     ;
   }
 
   public boolean usesColour(final char chr) {
-    if(!this.glyphs.containsKey(chr)) {
-      return false;
-    }
-
-    return this.glyphs.get(chr).colour;
+    final Glyph glyph = this.glyphs.get(this.visibleCodepoint(chr));
+    return glyph != null && glyph.colour;
   }
 
   public int charWidth(final char chr) {
-    if(!this.glyphs.containsKey(chr)) {
-      return 8;
-    }
-
-    return this.glyphs.get(chr).w;
+    final Glyph glyph = this.glyphs.get(this.visibleCodepoint(chr));
+    return glyph == null ? 8 : glyph.w;
   }
 
   /** Measures the width of a single line (up to the first linebreak encountered) */
