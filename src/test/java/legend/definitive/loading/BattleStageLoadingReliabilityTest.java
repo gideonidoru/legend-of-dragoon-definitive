@@ -29,6 +29,9 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -58,7 +61,7 @@ final class BattleStageLoadingReliabilityTest {
     final Path root = Files.createDirectory(this.temporary.resolve(scenario));
     final Path output = this.temporary.resolve(scenario + ".log");
     final Process child = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(),
-      "-Djava.awt.headless=true", "-cp", System.getProperty("java.class.path"),
+      "-XX:ActiveProcessorCount=2", "-Djava.awt.headless=true", "-cp", System.getProperty("java.class.path"),
       BattleStageLoadingReliabilityTest.class.getName(), scenario, root.toString())
       .directory(root.toFile()).redirectErrorStream(true).redirectOutput(output.toFile()).start();
     try {
@@ -125,6 +128,37 @@ final class BattleStageLoadingReliabilityTest {
     this.file(path + "/mrg", "0=0;0\n1=1;0\n2=2;0\n".getBytes(java.nio.charset.StandardCharsets.UTF_8));
   }
 
+  /** Start deferred stage reads, but release their workers only after the initial draw has returned. */
+  private static void startStageLoadsOnRenderer() throws Exception {
+    final int workers = loaderExecutor().getCorePoolSize();
+    final CountDownLatch waiting = new CountDownLatch(workers);
+    final CountDownLatch release = new CountDownLatch(1);
+    final var blockers = new ArrayList<CompletableFuture<Void>>();
+    try {
+      for(int i = 0; i < workers; i++) {
+        blockers.add(Async.run(() -> {
+          waiting.countDown();
+          try {
+            assertTrue(release.await(5, TimeUnit.SECONDS), "Stage fixture must release its worker barrier");
+          } catch(final InterruptedException failure) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException("Stage fixture worker was interrupted", failure);
+          }
+        }));
+      }
+      assertTrue(waiting.await(5, TimeUnit.SECONDS), "Every actual loader worker must reach the fixture barrier");
+      rendererTasks();
+    } finally {
+      release.countDown();
+    }
+    CompletableFuture.allOf(blockers.toArray(CompletableFuture[]::new)).get(5, TimeUnit.SECONDS);
+  }
+
+  private static ThreadPoolExecutor loaderExecutor() throws Exception {
+    final var field = Async.class.getDeclaredField("EXECUTOR"); field.setAccessible(true);
+    return (ThreadPoolExecutor)field.get(null);
+  }
+
   private static void settleLoader() throws Exception {
     Async.shutdown();
     assertTrue(Async.awaitShutdown(), "Actual directory loading must settle within five seconds");
@@ -159,29 +193,29 @@ final class BattleStageLoadingReliabilityTest {
   }
 
   private void missingStageFailsOnRenderer() throws Exception {
-    battle().loadStage(0); rendererTasks(); settleLoader(); failsOnRenderer();
+    battle().loadStage(0); startStageLoadsOnRenderer(); settleLoader(); failsOnRenderer();
   }
 
   private void missingModelFailsOnRenderer() throws Exception {
     this.file("2497/0", new byte[0]); this.file("2497/1", new byte[0]); this.file("2497/2", new byte[0]);
-    battle().loadStage(0); rendererTasks(); settleLoader(); failsOnRenderer();
+    battle().loadStage(0); startStageLoadsOnRenderer(); settleLoader(); failsOnRenderer();
   }
 
   private void malformedTimFailsOnRenderer() throws Exception {
     this.emptyStage(0); this.file("2497/2", new byte[4]);
-    battle().loadStage(0); rendererTasks(); settleLoader(); failsOnRenderer();
+    battle().loadStage(0); startStageLoadsOnRenderer(); settleLoader(); failsOnRenderer();
   }
 
   private void malformedModelFailsOnRenderer() throws Exception {
     this.emptyStage(0);
     for(int i = 0; i < 3; i++) this.file("2497/0/" + i, new byte[4]);
-    battle().loadStage(0); rendererTasks(); settleLoader(); failsOnRenderer();
+    battle().loadStage(0); startStageLoadsOnRenderer(); settleLoader(); failsOnRenderer();
   }
 
   private void emptyStageWaitsForRenderer() throws Exception {
     this.emptyStage(0); final Battle battle = battle(); battle.loadStage(0);
     assertEquals(true, get(battle, "stageHasModel_800c66b8"));
-    rendererTasks(); settleLoader();
+    startStageLoadsOnRenderer(); settleLoader();
     assertEquals(true, get(battle, "stageHasModel_800c66b8"), "Worker must not commit scene state");
     rendererTasks();
     assertEquals(false, get(battle, "stageHasModel_800c66b8"), "Valid native empty-stage records remain supported");
@@ -190,7 +224,7 @@ final class BattleStageLoadingReliabilityTest {
   private void healthyTimWaitsForRenderer() throws Exception {
     this.emptyStage(0); this.file("2497/2", stageTim());
     final Battle battle = battle(); battle.loadStage(0);
-    rendererTasks(); settleLoader();
+    startStageLoadsOnRenderer(); settleLoader();
     assertEquals(0, Battle.stageDarkening_800c6958.original_000[0][0]);
     assertEquals(0, GameEngine.GPU.getPixel15(448, 240), "Worker must not upload the palette");
     rendererTasks();
@@ -210,26 +244,26 @@ final class BattleStageLoadingReliabilityTest {
   }
 
   private void staleOwnerFailureIsIgnored() throws Exception {
-    final Battle battle = battle(); battle.loadStage(0); rendererTasks(); settleLoader();
+    final Battle battle = battle(); battle.loadStage(0); startStageLoadsOnRenderer(); settleLoader();
     battle.FUN_800c8624(); rendererTasks();
     assertNotNull(battlePreloadedEntities_1f8003f4);
   }
 
   private void supersededFailureIsIgnored() throws Exception {
     this.emptyStage(1); final Battle battle = battle(); battle.loadStage(0); battle.loadStage(1);
-    rendererTasks(); settleLoader(); rendererTasks();
+    startStageLoadsOnRenderer(); settleLoader(); rendererTasks();
     assertEquals(1, get(battle, "currentStage_800c66a4"));
     assertEquals(false, get(battle, "stageHasModel_800c66b8"), "New healthy stage must survive obsolete failure");
   }
 
   private void destroyedStageFailureIsIgnored() throws Exception {
-    final Battle battle = battle(); battle.loadStage(0); rendererTasks(); settleLoader();
+    final Battle battle = battle(); battle.loadStage(0); startStageLoadsOnRenderer(); settleLoader();
     battle.FUN_800c8748(); rendererTasks(); assertNull(battlePreloadedEntities_1f8003f4);
   }
 
   private void staleEngineSuccessIsIgnored() throws Exception {
     this.emptyStage(0); this.file("2497/2", stageTim());
-    final Battle battle = battle(); battle.loadStage(0); rendererTasks(); settleLoader();
+    final Battle battle = battle(); battle.loadStage(0); startStageLoadsOnRenderer(); settleLoader();
     EngineStates.currentEngineState_8004dd04 = new Battle(); rendererTasks();
     assertEquals(true, get(battle, "stageHasModel_800c66b8"), "A replaced engine must not receive old scenery state");
     assertEquals(0, Battle.stageDarkening_800c6958.original_000[0][0]);
@@ -237,7 +271,7 @@ final class BattleStageLoadingReliabilityTest {
   }
 
   private void staleEngineFailureIsIgnored() throws Exception {
-    final Battle battle = battle(); battle.loadStage(0); rendererTasks(); settleLoader();
+    final Battle battle = battle(); battle.loadStage(0); startStageLoadsOnRenderer(); settleLoader();
     EngineStates.currentEngineState_8004dd04 = new Battle(); rendererTasks();
     assertEquals(true, get(battle, "stageHasModel_800c66b8"));
   }
@@ -267,8 +301,7 @@ final class BattleStageLoadingReliabilityTest {
 
   /** Observe actual worker retirement without closing the executor before a superseding load. */
   private static void settleWorkers() throws Exception {
-    final var field = Async.class.getDeclaredField("EXECUTOR"); field.setAccessible(true);
-    final ThreadPoolExecutor executor = (ThreadPoolExecutor)field.get(null);
+    final ThreadPoolExecutor executor = loaderExecutor();
     final long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(5);
     while(executor.getActiveCount() != 0 || !executor.getQueue().isEmpty() || Loader.getLoadingFileCount() != 0) {
       assertTrue(System.nanoTime() < deadline, "Actual controller loader/callbacks must retire within five seconds");
