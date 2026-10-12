@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "date": "2026-10-11",
-  "sourceCheckpoint": "6612a533307e5f066bc46e7870d658f8add42752",
-  "publicSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+  "date": "2026-10-12",
+  "sourceCheckpoint": "5f612ef5dfd1aad296aaf4b875ebe30d1b0983ad",
+  "publicSource": "4818f2d9c285b7541f4f4ce82cbedde5b3d19fcf",
   "publicTag": "definitive-current",
-  "mainFields": 4926,
-  "publicFields": 4925,
-  "mainFieldHolds": 236,
-  "publicFieldHolds": 237,
+  "mainFields": 4965,
+  "publicFields": 4965,
+  "mainFieldHolds": 197,
+  "publicFieldHolds": 197,
   "wholeGameAssetDenominatorKnown": false,
   "ratingsSource": {
     "name": "Project-Progress-Ratings-2026-10-11.json",
@@ -1487,9 +1487,9 @@
     "unknownOwnership": "Unresolved families remain unresolved; no automatic exemption.",
     "completionClaim": "A narrower human-approved release scope must be named as such; it does not finish deferred original full-remaster goals."
   },
-  "mainSource": "6612a533307e5f066bc46e7870d658f8add42752",
-  "publicGeneration": 4,
-  "publicBuildRun": 38171282483,
+  "mainSource": "5f612ef5dfd1aad296aaf4b875ebe30d1b0983ad",
+  "publicGeneration": 12,
+  "publicBuildRun": 38209847242,
   "inventoryCheckpoints": {
     "historicalPublic": {
       "source": "0af4f997e27f49783180cb2ff1c5a04012467289",
@@ -1602,19 +1602,35 @@
   },
   "publicEvidence": {
     "carrier": "https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-current",
-    "verification": "Publication and anonymous downloads PASS. Three consecutive full Reinstall passes using the actual downloaded manager PASS; independent read-only final census rehashed all 574 managed files and 40 preserved owner entries. Synthetic discs, headless; no gameplay, UI or physical Deck acceptance.",
-    "observedDate": "2026-10-11",
-    "source": "5d3db5c84174f2936fe7256123a11f6bb640760a",
-    "generation": 4,
-    "buildRun": 38171282483,
-    "manifestSha256": "df7f95b8d946c4b03476c560e1aa4f26421b3302ab9233a553a9eefcde66195e",
+    "observedDate": "2026-10-12",
+    "source": "4818f2d9c285b7541f4f4ce82cbedde5b3d19fcf",
+    "generation": 12,
+    "buildRun": 38209847242,
+    "deliveryFormat": 2,
+    "manifestSha256": "777b8919023df71f3a8a63a459bc9bef48965bb01b748c53309e3be245cb7ddc",
     "publication": "PASS",
     "anonymousDownloads": "PASS",
-    "publicMaintenance": "PASS for three full Reinstall passes only",
+    "publicationReceiptSha256": "4a458cc222cffaa87d0396ec2bd04518fd630d8cd0fc18b1dc2872f13f70c1f3",
+    "anonymousReceiptSha256": "1d45bf95c490a5c9ad913ff83e9acf24f316babce3823736147ef0b38f0565f5",
+    "anonymousObjects": 588,
+    "http206RangeChecks": 596,
+    "platformManagedFiles": {
+      "linux-x64": 571,
+      "macos-arm64": 574
+    },
+    "publicMaintenance": "PASS: one source-bound Update, targeted Repair and clean Reinstall using actual public manager in isolated lab; independent final census3274 checks PASS",
     "physicalDeck": false,
-    "harnessSha256": "43fed076fdf825e5436ac9ac6cfa445bdb78983b40511199d6ea124347f99e4a",
-    "downloadedManagerSha256": "12a69dfd434ecc7a033f3f23bf58d6b6847866cd84bb762eec063aa5fcda9711",
-    "scope": "No Repair/Uninstall/Update or physical acceptance inferred from Reinstall evidence."
+    "gameLaunched": false,
+    "completeFontCoverage": false,
+    "fontRuntime": {
+      "sharedOriginalGlyphs": 139,
+      "nativeSmallHudDigits": 10,
+      "selectors": 20,
+      "remainingFamilies": "required backlog; static candidates do not establish runtime coverage"
+    },
+    "downloadedManagerSha256": "cb7d73cf00c5f047b7f0b5bf961ea0e6e10d501c9378729e0f94e03d998cb998",
+    "independentMaintenanceCensusSha256": "d2d098a718c77394fd0a043421f90bf031dd1dc74c8b19e41f3753db26986021",
+    "actualMaintenanceReceiptSha256": "4549b86b010a50a24f3b20fd8e5b1764ed65806bddd4ebfe8034dad00cfe2576"
   },
   "positiveDeviceObservations": [
     {
@@ -1682,6 +1698,10 @@
     {
       "source": "5e4987edc47e8a94562713ddef0ee26c066008e2",
       "meaning": "Previous acceptance metadata checkpoint before generation4 and incremental merges47\u201354"
+    },
+    {
+      "source": "6612a533307e5f066bc46e7870d658f8add42752",
+      "scope": "Historical generation4/accepted6612 documentation checkpoint; superseded by generation12 publication below; original ratings/case history retained"
     }
   ],
   "historicalLedgerSource": "b4f2efb15c05cad4a9f2997454d9a71142151b6a",
@@ -1939,8 +1959,8 @@
     "publishedSource": "ad1a234d94b4397df681c7fd196581cf3a303a88"
   },
   "integrationPolicy": "Human-approved spiral: merge each completed, source-bound and independently reviewed increment while its owner continues unfinished work. Whole-mod completion and publication are separate gates. Preserve required content, subjective ratings and physical/campaign criteria; publish only exact accepted source after verified pointer/download closure.",
-  "mainPaintedFields": 40,
-  "mainPaintedBattleMasters": 47,
+  "mainPaintedFields": 79,
+  "mainPaintedBattleMasters": 179,
   "branchConsolidation": {
     "main": "6612a533307e5f066bc46e7870d658f8add42752",
     "result": "Completed proven ref retirements; active authoring retained",
@@ -2151,8 +2171,8 @@
     "pullRequest": 43,
     "ciWiringSource": "95b3c7f9d2a0afdca02c2e7c753532df4ae87c36"
   },
-  "publicPaintedFields": 39,
-  "publicPaintedBattleMasters": 34,
+  "publicPaintedFields": 79,
+  "publicPaintedBattleMasters": 179,
   "fmvClientIntegration": {
     "source": "8f4d52cd82a602c4b8e94bb5e93321d723e7d735",
     "pullRequest": 42,
@@ -2271,18 +2291,30 @@
         ],
         "safetyLimits": "Fixture contains an intentionally inserted stray personal release/config.conf predating the attempt; full install inventory/launch is not accepted by this safety-only check."
       }
+    },
+    {
+      "carrier": "https://github.com/gideonidoru/legend-of-dragoon-definitive/releases/tag/definitive-current",
+      "verification": "Publication and anonymous downloads PASS. Three consecutive full Reinstall passes using the actual downloaded manager PASS; independent read-only final census rehashed all 574 managed files and 40 preserved owner entries. Synthetic discs, headless; no gameplay, UI or physical Deck acceptance.",
+      "observedDate": "2026-10-11",
+      "source": "5d3db5c84174f2936fe7256123a11f6bb640760a",
+      "generation": 4,
+      "buildRun": 38171282483,
+      "manifestSha256": "df7f95b8d946c4b03476c560e1aa4f26421b3302ab9233a553a9eefcde66195e",
+      "publication": "PASS",
+      "anonymousDownloads": "PASS",
+      "publicMaintenance": "PASS for three full Reinstall passes only",
+      "physicalDeck": false,
+      "harnessSha256": "43fed076fdf825e5436ac9ac6cfa445bdb78983b40511199d6ea124347f99e4a",
+      "downloadedManagerSha256": "12a69dfd434ecc7a033f3f23bf58d6b6847866cd84bb762eec063aa5fcda9711",
+      "scope": "No Repair/Uninstall/Update or physical acceptance inferred from Reinstall evidence."
     }
   ],
   "incrementalDelivery": {
-    "mainSource": "6612a533307e5f066bc46e7870d658f8add42752",
-    "publishedSource": "5d3db5c84174f2936fe7256123a11f6bb640760a",
-    "mergedNotYetPublished": [
-      "input correction PR49",
-      "music intent PR50",
-      "13 Giganto paintings PR51",
-      "loader foundation PR52",
-      "table artwork PR54"
-    ],
-    "policy": "Publish coherent reviewed increments without waiting whole mods; physical and full-content goals remain open."
+    "mainSource": "5f612ef5dfd1aad296aaf4b875ebe30d1b0983ad",
+    "publishedSource": "4818f2d9c285b7541f4f4ce82cbedde5b3d19fcf",
+    "mergedNotYetPublished": [],
+    "deliveryFormat": 2,
+    "publicationRun": 38209847242,
+    "policy": "Publish independently reviewed complete increments without waiting for whole mods; remaining content, native campaign and physical goals remain open. Later authoring candidates are not implicitly published."
   }
 }

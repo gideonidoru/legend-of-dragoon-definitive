@@ -24,7 +24,7 @@ Painted towns, forests and interiors carry the atmosphere of *The Legend of Drag
 
 *Forest cliff · Visual enhancements off → on.*
 
-The environment library includes **4,938 field images**, with separate backgrounds and foregrounds, plus battle panoramas, world-map artwork and selected terrain and scenery textures. Hand-painted replacements add detail to woodwork, fabrics, plants and buildings across 52 field paintings and 47 painted battle materials. Foreground layers keep their original placement and depth, so your party still moves through the scene as intended.
+The environment library includes **4,965 field images**, with separate backgrounds and foregrounds, plus battle panoramas, world-map artwork and selected terrain and scenery textures. Hand-painted replacements add detail to woodwork, fabrics, plants and buildings across 79 field paintings and 179 painted battle materials. Foreground layers keep their original placement and depth, so your party still moves through the scene as intended.
 
 ![Matched battle view with all Definitive visual enhancements disabled on the left and enabled on the right](docs/definitive/images/comparisons/battle-visuals-off-on.jpg)
 
@@ -54,7 +54,7 @@ Geometry improvements cover eligible surfaces on **all nine party field models a
 
 **Sharper magic.** FxHD adds **2,160 unique 2× detail maps** to spells, transformations, attacks and animated effects. Dragoon magic, boss attacks, save points and title flames gain detail while retaining their original color changes, scrolling and transparency.
 
-**A clearer interface.** Restored portraits for all nine heroes join sharper menus, dialogue borders, save cards and world-map markers. Battle prompts keep their original size and timing, making the artwork clearer without changing the precision Additions demand. Smooth fonts are available in Graphics settings.
+**A clearer interface.** Restored portraits for all nine heroes join sharper menus, dialogue borders, save cards and world-map markers. Battle prompts keep their original size and timing, making the artwork clearer without changing the precision Additions demand. UIHD now supplies a faithful HD redraw of the shared Original font and the ten small battle HUD digits. Font choices remain available in Graphics settings.
 
 **All 18 cinematics, enhanced.** FMVHD presents the films at **1280 × 768**, preserving their original 15 fps motion and soundtrack. Streaming playback keeps memory use bounded, with original-video fallback available.
 
