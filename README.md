@@ -54,7 +54,7 @@ Geometry improvements cover eligible surfaces on **all nine party field models a
 
 **Sharper magic.** FxHD adds **2,160 unique 2× detail maps** to spells, transformations, attacks and animated effects. Dragoon magic, boss attacks, save points and title flames gain detail while retaining their original color changes, scrolling and transparency.
 
-**A clearer interface.** Restored portraits for all nine heroes join sharper menus, dialogue borders, save cards and world-map markers. Battle prompts keep their original size and timing, making the artwork clearer without changing the precision Additions demand. Smooth fonts are available in Graphics settings.
+**A clearer interface.** Restored portraits for all nine heroes join sharper menus, dialogue borders, save cards and world-map markers. Battle prompts keep their original size and timing, making the artwork clearer without changing the precision Additions demand. UIHD supplies a faithful HD redraw of the Original font and controller symbols by default. Disabling UIHD restores your configured font.
 
 **All 18 cinematics, enhanced.** FMVHD presents the films at **1280 × 768**, preserving their original 15 fps motion and soundtrack. Streaming playback keeps memory use bounded, with original-video fallback available.
 
