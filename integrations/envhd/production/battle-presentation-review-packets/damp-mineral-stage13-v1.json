@@ -1,0 +1,205 @@
+{
+  "schema": 1,
+  "scope": "Original-source art/layout review of all three existing stage13 static bespoke candidates. No selection, native or final acceptance.",
+  "authorManifestSha256": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceSize": [
+        72,
+        112
+      ],
+      "targetSize": [
+        288,
+        448
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "4f0f6022edbd7bd6d2e6192250f3529fb77032527deec398d770a8f83174916e",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "88894682755dbe41b47cd266f67988851745c4de188780bbe47d2de598c89877",
+      "outputSha256": "c37eebd21acdc09c4ef5ae0f13f7c5ff669c6b0038ae0ba3b4e56d08167397f6",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 13,
+          "page": 7,
+          "clut": 15772,
+          "parts": [
+            1
+          ],
+          "sourceCrop": [
+            184,
+            120,
+            256,
+            232
+          ],
+          "sourceUvOrigin": [
+            184,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "3a628d28140cbd06fc997d36bc2515a41a978c2e98444d14b856183a29db7bba",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/4f0f6022edbd7bd6d2e6192250f3529fb77032527deec398d770a8f83174916e/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/4f0f6022edbd7bd6d2e6192250f3529fb77032527deec398d770a8f83174916e/image-v1.png",
+      "prompt": "Edit the FIRST reference into exquisite bespoke high-resolution hand-painted battle artwork for Legend of Dragoon's gorgeous AA 2026 retro remaster. SECOND reference is original source authority; original forms, topology and values control the repair. An existing dim olive-green material atlas: large upper rectangular mottled green surface with broad indistinct source value shapes, a lower row of many long thin olive tapered hanging strands against black, and neighboring top/left strips. Retain every strand count, exact position/length and all black gaps, and the upper soft value layout. Fine subtle mossy/mineral grain only inside existing shapes, no new hanging objects, leaves, trunks or scenery. Flat full-canvas atlas crop, exactly 72:112 aspect ratio; keep all edge fragments and do not crop, rotate or add perspective. Continuous restrained painterly detail, no enlarged square source pixels or smooth neural blur in textured regions. Preserve the original dim palette and shading; smooth gradient regions remain smooth. Do not invent recognizable objects, shapes, cracks, decorations, vegetation, lighting or scenery. No stronger shadows, gloss, glow, text, outlines or borders.",
+      "references": [
+        "Current source-bound neural material and original decoded crop authority."
+      ],
+      "review": {
+        "intent": "Source-guided damp cave mineral, fibrous lattice and original gradient material. Static battle model surface; source geometry uses stage/parts {13: [1]}. Source family: Nest of Dragoon: fringed rock, stalks and skeletal/webbed organic construction. Engine random-encounter location mapping: Nest of Dragon.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "All source contours, gradient patches, hanging strand and curved strip topology retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "c37eebd21acdc09c4ef5ae0f13f7c5ff669c6b0038ae0ba3b4e56d08167397f6",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        136,
+        64
+      ],
+      "targetSize": [
+        544,
+        256
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "babab8a2baf09318dc65af4537f0e40a8419142023073050b4979b650c4ec244",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "76cba3944198a61b922cea08995a4d26e495563051b9ad0bd26b6a89a1a82d76",
+      "outputSha256": "5eccb5c5f0a5da5b2bbd74ea56ee59ff42c8ada722a9f607edd779f050aef174",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 13,
+          "page": 7,
+          "clut": 15836,
+          "parts": [
+            2
+          ],
+          "sourceCrop": [
+            0,
+            184,
+            136,
+            248
+          ],
+          "sourceUvOrigin": [
+            0,
+            184
+          ]
+        }
+      ],
+      "priorCandidateSha256": "8125c09caf103c5b987fab4126003278babeaf13ec3ac61d34208fd8cd592705",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/babab8a2baf09318dc65af4537f0e40a8419142023073050b4979b650c4ec244/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/babab8a2baf09318dc65af4537f0e40a8419142023073050b4979b650c4ec244/image-v1.png",
+      "prompt": "Edit the FIRST reference into exquisite bespoke high-resolution hand-painted battle artwork for Legend of Dragoon's gorgeous AA 2026 retro remaster. SECOND reference is original source authority; original forms, topology and values control the repair. The existing olive-green cavern-like structures against black: several broad vertical tapering pillars connected by thin drooping curved horizontal surfaces, many long slender hanging pointed strands beneath, and original neighboring strips at top/bottom. Preserve all source contours, pillar/strand counts, dark gaps and connecting shapes. Refine fine damp olive mineral grain only, no extra stalactites, growth, water, lights or new shapes. Flat full-canvas atlas crop, exactly 136:64 aspect ratio; keep all edge fragments and do not crop, rotate or add perspective. Continuous restrained painterly detail, no enlarged square source pixels or smooth neural blur in textured regions. Preserve the original dim palette and shading; smooth gradient regions remain smooth. Do not invent recognizable objects, shapes, cracks, decorations, vegetation, lighting or scenery. No stronger shadows, gloss, glow, text, outlines or borders.",
+      "references": [
+        "Current source-bound neural material and original decoded crop authority."
+      ],
+      "review": {
+        "intent": "Source-guided damp cave mineral, fibrous lattice and original gradient material. Static battle model surface; source geometry uses stage/parts {13: [2]}. Source family: Nest of Dragoon: fringed rock, stalks and skeletal/webbed organic construction. Engine random-encounter location mapping: Nest of Dragon.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "All source contours, gradient patches, hanging strand and curved strip topology retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "5eccb5c5f0a5da5b2bbd74ea56ee59ff42c8ada722a9f607edd779f050aef174",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        48
+      ],
+      "targetSize": [
+        320,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "e85bdb71bc0d501c0ab8340c6cc943fd6f709eac62963d1ae21bfa8260149a6a",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "90ce31a4be9ef7ef0e6cd7f36054edf7d5d62f262dafaed6faa148736d859866",
+      "outputSha256": "9cd7672665f49f3723c02583e4f6e305fe5d81f89859845734d3bfb7d8229d2c",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 13,
+          "page": 7,
+          "clut": 15900,
+          "parts": [
+            6
+          ],
+          "sourceCrop": [
+            120,
+            184,
+            200,
+            232
+          ],
+          "sourceUvOrigin": [
+            120,
+            184
+          ]
+        }
+      ],
+      "priorCandidateSha256": "9a21fa343eced9d3baf5d4947d6a83c7b8703bd5eca74d3e16c9105aaa79a5b7",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/e85bdb71bc0d501c0ab8340c6cc943fd6f709eac62963d1ae21bfa8260149a6a/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/e85bdb71bc0d501c0ab8340c6cc943fd6f709eac62963d1ae21bfa8260149a6a/image-v1.png",
+      "prompt": "Edit the FIRST reference into exquisite bespoke high-resolution hand-painted battle artwork for Legend of Dragoon's gorgeous AA 2026 retro remaster. SECOND reference is original source authority; original forms, topology and values control the repair. The existing pale muted gray-violet web-like organic lattice atlas: thin interconnecting strands crossing over several large black cavities, with the same curved parallel rib strips at right and pale top/left neighboring fragments. Preserve every source lattice connection, rib count, dark hole and overall silhouette; fine subtle fibrous/mineral detail only along existing strands, no new netting, extra threads or organs. Flat full-canvas atlas crop, exactly 80:48 aspect ratio; keep all edge fragments and do not crop, rotate or add perspective. Continuous restrained painterly detail, no enlarged square source pixels or smooth neural blur in textured regions. Preserve the original dim palette and shading; smooth gradient regions remain smooth. Do not invent recognizable objects, shapes, cracks, decorations, vegetation, lighting or scenery. No stronger shadows, gloss, glow, text, outlines or borders.",
+      "references": [
+        "Current source-bound neural material and original decoded crop authority."
+      ],
+      "review": {
+        "intent": "Source-guided damp cave mineral, fibrous lattice and original gradient material. Static battle model surface; source geometry uses stage/parts {13: [6]}. Source family: Nest of Dragoon: fringed rock, stalks and skeletal/webbed organic construction. Engine random-encounter location mapping: Nest of Dragon.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "All source contours, gradient patches, hanging strand and curved strip topology retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "9cd7672665f49f3723c02583e4f6e305fe5d81f89859845734d3bfb7d8229d2c",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    }
+  ]
+}
