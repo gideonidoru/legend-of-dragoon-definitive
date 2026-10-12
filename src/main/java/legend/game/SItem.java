@@ -765,6 +765,9 @@ public final class SItem {
       System.arraycopy(new legend.game.tim.Tim(data.slice(0x1_0580)).getClutData().getBytes(), 0, extra, 4 * 32, 9 * 32);
       legend.game.textures.NativeUiTextureEvent.post(new legend.game.textures.NativeUiTextureEvent("menu_character_extras",
         legend.game.textures.NativeUiTextureEvent.withPaletteData(characterTim, extra), 128, 256, 176, 496));
+      // Numeric comparisons/HP share these uploaded palettes, but sample the menu page rather than character portraits.
+      legend.game.textures.NativeUiTextureEvent.post(new legend.game.textures.NativeUiTextureEvent("menu_numeric_extras",
+        legend.game.textures.NativeUiTextureEvent.withPaletteData(new legend.game.tim.Tim(data), extra), 64, 256, 176, 496));
     } else if(whichFile == 1) {
       //LAB_800fc9e4
       uiFile_800bdc3c = UiFile.fromFile(data);

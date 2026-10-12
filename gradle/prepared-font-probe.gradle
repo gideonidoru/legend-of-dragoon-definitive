@@ -1,0 +1,21 @@
+// Optional -I runner: private source inputs and a fresh proof destination are explicit.
+allprojects {
+  afterEvaluate {
+    if(project == rootProject) {
+      tasks.register('uihdPreparedFontCatalogProbe', JavaExec) {
+        dependsOn testClasses, 'jar', 'uihdJar'
+        classpath = files(tasks.named('jar').flatMap { it.archiveFile }) + sourceSets.test.output + configurations.testRuntimeClasspath
+        mainClass = 'legend.definitive.font.UiHdPreparedFontCatalogProbe'
+        jvmArgs '-Djava.awt.headless=true', '--enable-native-access=ALL-UNNAMED', '--add-opens=java.base/java.util=ALL-UNNAMED'
+        doFirst {
+          def required = ['preparedFontSourceFiles', 'preparedFontProofDirectory', 'preparedFontCatalogSha', 'preparedFontSelectors', 'preparedFontResources']
+          def supplied = required.collect { providers.gradleProperty(it).orNull }
+          if(supplied.any { !it }) throw new GradleException('Supply all prepared font source/proof/catalog/count properties explicitly.')
+          args supplied[0], tasks.uihdJar.archiveFile.get().asFile.absolutePath, supplied[1], supplied[2], supplied[3], supplied[4]
+          def context = providers.gradleProperty('rendererContextPath').orNull
+          if(context) args context
+        }
+      }
+    }
+  }
+}

@@ -215,7 +215,7 @@ public final class NativeSpriteFontProbe {
         final byte[] metadata;try(var input=provider.getResourceAsStream("/uihd/font/native-sprites.json")){metadata=input.readAllBytes();}
         final var catalog=new JSONObject(new String(metadata,java.nio.charset.StandardCharsets.UTF_8)).getJSONArray("sprites");final var identities=new org.json.JSONArray();
         for(int i=0;i<catalog.length();i++) {
-          final var entry=catalog.getJSONObject(i);final var crop=entry.getJSONArray("crop");if(!entry.getString("family").equals(event.id))continue;
+          final var entry=catalog.getJSONObject(i);final var crop=entry.getJSONArray("crop");if(!entry.getString("family").equals(event.id)||!entry.getString("id").startsWith("native-small-"))continue;
           final var exact=NativeSpriteFont.select(new NativeUiQuad(704,256,896,304+entry.getInt("palette"),crop.getInt(0),crop.getInt(1),crop.getInt(2),crop.getInt(3)));require(exact!=null,"Every packaged small10 source token selects");
           final byte[] png;try(var input=provider.getResourceAsStream("/uihd/font/"+entry.getString("resource"))){png=input.readAllBytes();}require(hash(png).equals(entry.getString("outputSha256")),"Actual packaged glyph output identity");
           identities.put(new JSONObject().put("id",entry.getString("id")).put("resource",entry.getString("resource")).put("outputSha256",hash(png)).put("sourceSha256",entry.getString("sourceSha256")).put("crop",crop).put("palette",entry.getInt("palette")));

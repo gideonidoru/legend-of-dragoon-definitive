@@ -485,29 +485,7 @@ public class BattleHud {
           this.portraits.add(GameEngine.getTextureAtlas().getIcon(battleState_8006e398.playerBents_e40.get(charSlot).innerStruct_00.character.template.getRegistryId()));
         }
 
-        this.statObjIndices.clear();
-
-        final QuadBuilder builder = new QuadBuilder("Names/Portraits");
-
-        for(int charSlot = 0; charSlot < battleState_8006e398.getPlayerCount(); charSlot++) {
-          final IntList statObjIndices = new IntArrayList();
-          this.statObjIndices.add(statObjIndices);
-
-          for(int i = 0; i < 3; i++) {
-            final BattleHudStatLabelMetrics0c labelMetrics = battleHudStatLabelMetrics_800c6ecc[i];
-
-            statObjIndices.add(builder.currentQuadIndex() * 4);
-
-            this.buildUiTextureElement(
-              builder,
-              labelMetrics.u_04, labelMetrics.v_06,
-              labelMetrics.w_08, labelMetrics.h_0a,
-              0x2c
-            );
-          }
-        }
-
-        this.nameAndPortraitObj = builder.build();
+        this.buildStatLabels(battleState_8006e398.getPlayerCount());
       }
 
       //LAB_800f0000
@@ -647,28 +625,9 @@ public class BattleHud {
             }
 
             //LAB_800f060c
-            final BattleHudStatLabelMetrics0c labelMetrics = battleHudStatLabelMetrics_800c6ecc[i];
-
             // HP: /  MP: /  SP:
             //LAB_800f0610
-            this.uiTransforms.identity();
-            this.uiTransforms.transfer.set(displayStats.x_00 + labelMetrics.x_00, displayStats.y_02 + labelMetrics.y_02, 124.0f);
-            final QueuedModelStandard statsModel = RENDERER.queueUiOrthoModel(this.nameAndPortraitObj, this.uiTransforms, QueuedModelStandard.class)
-              .vertices(this.statObjIndices.get(charSlot).getInt(i), 4);
-
-            if(i == 2) {
-              if(!player.character.hasDragoon()) {
-                statsModel.scissor((int)this.uiTransforms.transfer.x, (int)this.uiTransforms.transfer.y, 320, 12);
-              } else if(!canTransform) {
-                statsModel.scissor((int)this.uiTransforms.transfer.x, (int)this.uiTransforms.transfer.y, 320, 24);
-              }
-            }
-
-            if(this.hudFade < 6) {
-              statsModel.monochrome(((byte)(uiTextureElementBrightness_800c71ec[brightnessIndex0] + 0x80) * this.hudFade / 6 - 0x80 & 0xff) / 128.0f);
-            } else {
-              statsModel.monochrome((uiTextureElementBrightness_800c71ec[brightnessIndex0] & 0xff) / 128.0f);
-            }
+            this.queueStatLabel(displayStats, charSlot, i, player.character.hasDragoon(), canTransform, brightnessIndex0);
           }
 
           if(canTransform) {
@@ -826,6 +785,40 @@ public class BattleHud {
       }
     }
     //LAB_800f0f2c
+  }
+
+  private void buildStatLabels(final int playerCount) {
+    this.statObjIndices.clear();
+    final QuadBuilder builder = new QuadBuilder("Names/Portraits");
+    for(int charSlot = 0; charSlot < playerCount; charSlot++) {
+      final IntList indices = new IntArrayList();
+      this.statObjIndices.add(indices);
+      for(final BattleHudStatLabelMetrics0c metrics : battleHudStatLabelMetrics_800c6ecc) {
+        indices.add(builder.currentQuadIndex() * 4);
+        this.buildUiTextureElement(builder, metrics.u_04, metrics.v_06, metrics.w_08, metrics.h_0a, 0x2c);
+      }
+    }
+    this.nameAndPortraitObj = builder.build();
+  }
+
+  private QueuedModelStandard queueStatLabel(final BattleDisplayStats144 displayStats, final int charSlot, final int label,
+                                            final boolean hasDragoon, final boolean canTransform, final int brightnessIndex) {
+    final BattleHudStatLabelMetrics0c metrics = battleHudStatLabelMetrics_800c6ecc[label];
+    this.uiTransforms.identity();
+    this.uiTransforms.transfer.set(displayStats.x_00 + metrics.x_00, displayStats.y_02 + metrics.y_02, 124.0f);
+    final QueuedModelStandard model = RENDERER.queueUiOrthoModel(this.nameAndPortraitObj, this.uiTransforms, QueuedModelStandard.class)
+      .vertices(this.statObjIndices.get(charSlot).getInt(label), 4);
+    if(label == 2) {
+      if(!hasDragoon) {
+        model.scissor((int)this.uiTransforms.transfer.x, (int)this.uiTransforms.transfer.y, 320, 12);
+      } else if(!canTransform) {
+        model.scissor((int)this.uiTransforms.transfer.x, (int)this.uiTransforms.transfer.y, 320, 24);
+      }
+    }
+    final float brightness = this.hudFade < 6
+      ? ((byte)(uiTextureElementBrightness_800c71ec[brightnessIndex] + 0x80) * this.hudFade / 6 - 0x80 & 0xff) / 128.0f
+      : (uiTextureElementBrightness_800c71ec[brightnessIndex] & 0xff) / 128.0f;
+    return model.monochrome(brightness);
   }
 
   private QueuedModelStandard queueStatDigit(final BattleDisplayStats144 displayStats, final BattleDisplayStatsDigit10 digit, final int brightnessIndex) {
