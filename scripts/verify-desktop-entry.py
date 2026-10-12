@@ -14,9 +14,10 @@ import time
 from desktop_bootstrap import LATEST, desktop_entry
 
 repo=Path(__file__).resolve().parents[1]
-parser=argparse.ArgumentParser();parser.add_argument('--entries-dir',type=Path,default=repo/'delivery')
-entries=parser.parse_args().entries_dir;text=(entries/'Install-Definitive.desktop').read_text()
-assert text==desktop_entry(), 'Shortcut must be the reviewed stable latest-release bootstrap'
+parser=argparse.ArgumentParser();parser.add_argument('--entries-dir',type=Path,default=repo/'delivery');parser.add_argument('--source-ref')
+options=parser.parse_args();entries=options.entries_dir
+text=subprocess.check_output(['git','show',options.source_ref+':delivery/Install-Definitive.desktop'],cwd=repo,text=True) if options.source_ref else (entries/'Install-Definitive.desktop').read_text()
+assert options.source_ref or text==desktop_entry(), 'Shortcut must be the reviewed stable latest-release bootstrap'
 command=next(line[5:] for line in text.splitlines() if line.startswith('Exec='))
 url=LATEST+'Install-Definitive.sh'
 
@@ -59,7 +60,7 @@ else:dest.write_text(payload)
 
 for failure,version in [('none','A'),('none','B'),('release-race','B'),('download','B'),('checksum','B'),('missing-checksum','B'),('linked-log','B'),('blocked-log','B')]:
     with tempfile.TemporaryDirectory(prefix='definitive-desktop-shell-') as temp:
-        root=Path(temp);env=fixture(root,failure,version)
+        root=Path(temp).resolve();env=fixture(root,failure,version)
         if failure=='linked-log':
             (root/'victim').write_text('external file retained')
             (root/'home/.cache/legend-of-dragoon-definitive/desktop-bootstrap.log').symlink_to(root/'victim')
@@ -82,6 +83,27 @@ for failure,version in [('none','A'),('none','B'),('release-race','B'),('downloa
             assert ('fixture download failure' if failure=='download' else 'checksum mismatch') in (root/'log').read_text()
         assert not (root/'stage').exists(),'Bootstrap left its temporary files'
         print('PASS: saved shortcut',failure,version)
+failures=[]
+for linked in ['home-parent','cache-parent','cache-root']:
+    with tempfile.TemporaryDirectory(prefix='definitive-desktop-linked-path-') as temp:
+        root=Path(temp).resolve();env=fixture(root)
+        outside=root/'outside';outside.mkdir();(outside/'owner-note').write_text('preserve me')
+        home=root/'home'
+        if linked=='home-parent':
+            parent=root/'linked';parent.symlink_to(root,target_is_directory=True);env['HOME']=str(parent/'home')
+        else:
+            target=home/'.cache' if linked=='cache-parent' else home/'.cache/legend-of-dragoon-definitive'
+            target.rename(root/'retained-cache');target.symlink_to(outside,target_is_directory=True)
+        run=subprocess.run(['/bin/bash','-c',command],env=env,input='',capture_output=True,text=True,timeout=10)
+        try:
+            assert run.returncode!=0 and not (root/'curl-args.json').exists() and not (root/'result').exists(),'Linked cache reached downloads or installer'
+            assert 'real installer cache' in run.stdout+run.stderr,'Missing path rejection message'
+            assert sorted(f.name for f in outside.iterdir())==['owner-note'] and (outside/'owner-note').read_text()=='preserve me','External directory changed'
+            assert sorted(f.name for f in (root/'stage').iterdir())==[],'Staging started before path rejection'
+            print('PASS: saved shortcut',linked)
+        except AssertionError as failure:
+            failures.append(linked+': '+str(failure));print('FAIL: saved shortcut',failures[-1])
+if failures:raise SystemExit('\n'.join(failures))
 assert 'Terminal=true' in text.splitlines()
 assert all(c not in command.removeprefix('/bin/bash -c "').removesuffix('"') for c in ('\\','"','$','`','%'))
 print('PASS: the identical saved Desktop fetches changing latest releases, checks real SHA256, retries publication races and never executes bad/missing checksums')
@@ -91,7 +113,7 @@ gio=ctypes.CDLL(ctypes.util.find_library('gio-2.0'))
 gio.g_desktop_app_info_new_from_filename.argtypes=[ctypes.c_char_p];gio.g_desktop_app_info_new_from_filename.restype=ctypes.c_void_p
 gio.g_app_info_launch.argtypes=[ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p,ctypes.c_void_p];gio.g_app_info_launch.restype=ctypes.c_int
 with tempfile.TemporaryDirectory(prefix='definitive-desktop-native-') as temp:
-    root=Path(temp);os.environ.update(fixture(root,version='B'))
+    root=Path(temp).resolve();os.environ.update(fixture(root,version='B'))
     entry=root/'fixture.desktop';entry.write_text(text.replace('Terminal=true','Terminal=false'))
     app=gio.g_desktop_app_info_new_from_filename(str(entry).encode());assert app,'Native Linux parser rejected shortcut'
     assert gio.g_app_info_launch(app,None,None,None),'Native shortcut launch failed'
