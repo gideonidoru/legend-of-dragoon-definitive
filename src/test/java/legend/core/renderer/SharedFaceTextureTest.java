@@ -60,6 +60,30 @@ class SharedFaceTextureTest {
     try(final var lease = cache.retain("body", image)) { assertNotNull(lease.texture()); assertEquals(2, count.get()); }
   }
 
+  @Test void silentAllocationFailureRetiresTheTextureAndRetries() {
+    final var failed = new CountingTexture(); failed.allocated = false;
+    final var good = new CountingTexture(); final var count = new AtomicInteger();
+    final var cache = new SharedFaceTexture((name, pixels) -> count.getAndIncrement() == 0 ? failed : good);
+    final var image = image();
+    assertThrows(IllegalStateException.class, () -> cache.retain("body", image));
+    assertTrue(failed.deleted); assertFalse(failed.persistent); assertEquals(1, failed.deletions);
+    try(final var lease = cache.retain("body", image)) {
+      assertSame(good, lease.texture()); assertEquals(2, count.get());
+    }
+    Texture.deleteTextures(); assertEquals(1, failed.deletions); assertEquals(1, good.deletions);
+  }
+
+  @Test void verificationFailureRetiresTheTextureAndRetries() {
+    final var failed = new CountingTexture(); failed.verificationFails = true;
+    final var good = new CountingTexture(); final var count = new AtomicInteger();
+    final var cache = new SharedFaceTexture((name, pixels) -> count.getAndIncrement() == 0 ? failed : good);
+    final var image = image();
+    assertThrows(IllegalStateException.class, () -> cache.retain("body", image));
+    assertEquals(1, failed.deletions);
+    try(final var lease = cache.retain("body", image)) { assertSame(good, lease.texture()); }
+    assertEquals(2, count.get());
+  }
+
   @Test void oldContextOwnersCannotDeleteAReplacementUpload() {
     final var cache = new SharedFaceTexture((name, pixels) -> texture()); final var image = image();
     final var old = cache.retain("body", image); old.texture().delete();
@@ -85,6 +109,12 @@ class SharedFaceTextureTest {
 
   private static final class CountingTexture extends Texture {
     int deletions;
+    boolean allocated = true;
+    boolean verificationFails;
+    @Override public boolean hasAllocatedStorage() {
+      if(this.verificationFails) throw new IllegalStateException("backend verification failed");
+      return this.allocated;
+    }
     CountingTexture() { super("backend retirement fixture", 2, 2); }
     @Override protected void performDelete() { this.deletions++; }
     @Override public void data(int x,int y,int w,int h,TextureDataType type,ByteBuffer data) { }

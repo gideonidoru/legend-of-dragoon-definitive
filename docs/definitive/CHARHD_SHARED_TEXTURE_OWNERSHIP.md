@@ -15,6 +15,8 @@ This increment fixes resource ownership without selecting new character artwork 
 
 `TmdFaceDetail.Image` owns immutable pixel storage separately from per-part UVs. The CharHD loader caches this image by validated texture checksum and dimensions. `SharedFaceTexture` gives each rendered part a lease on one GPU upload. `Obj` releases the lease when it retires the mesh, after retained draws can use it.
 
+Before caching, GL and GLES backends query level-zero dimensions on the newly created texture. Missing storage or a verification exception retires the failed allocation immediately and leaves acquisition retryable. The engine already requires GL 3.3 or GLES 3.2, which support these queries. The no-op backend explicitly simulates storage for headless tests.
+
 The cache is confined to the existing renderer thread. This change introduces no background upload, disk cache, rendering setting or image-quality transformation. It does not include the draft alpha-cutout support or alter texture-unit binding behavior.
 
 ## Verification boundaries

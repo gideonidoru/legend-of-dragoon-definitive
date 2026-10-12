@@ -72,9 +72,8 @@ class ReconstructedCharactersTest {
 
   @Test void distinctPartsShareDecodedPixelsButKeepIndependentUvBindings() throws Exception {
     final var fixture = fixture();
-    final var secondSource = new TmdObjTable1c("second synthetic part",
-      new Vector3f[]{new Vector3f(10,0,-5),new Vector3f(13,0,-5),new Vector3f(10,3,-5)},
-      fixture.source.normal_top_08, fixture.source.primitives_10);
+    final var secondSource = source();
+    for(final var vertex : secondSource.vert_top_00) vertex.x += 10;
     final String secondId = TmdGeometryPack.identity(new TmdObjTable1c[]{secondSource});
     final var secondPack = JsonParser.parseString(new String(fixture.resources.get("fixture/part.json"), java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
     secondPack.addProperty("sourceGeometrySha256", secondId);

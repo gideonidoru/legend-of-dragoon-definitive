@@ -30,6 +30,12 @@ public final class SharedFaceTexture {
     // Forced renderer teardown retires textures even while old mesh owners exist.
     if(entry == null || entry.texture.deleted) {
       final Texture texture = java.util.Objects.requireNonNull(this.upload.apply(name, image));
+      try {
+        if(texture.deleted || !texture.hasAllocatedStorage()) throw new IllegalStateException("Face texture upload did not allocate storage: " + name);
+      } catch(final RuntimeException | Error failure) {
+        texture.deleteOwnedCacheEntry();
+        throw failure;
+      }
       texture.persistent = true;
       entry = new Entry(texture);
       this.images.put(image, entry);
