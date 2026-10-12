@@ -1,0 +1,343 @@
+{
+  "schema": 1,
+  "scope": "Source snapshot reconciliation and separate units for remaining EnvHD dynamic/prop discovery. No original image/palette/model/script contents or private absolute paths. This is not a fresh complete census or gameplay proof.",
+  "authoringCheckpoint": "db5a2a989f601265d8d5a90424f27e2304887dc6",
+  "fieldStatic": {
+    "selectedDevelopment": 4958,
+    "selectedPainted": 72,
+    "knownFieldHolds": 204,
+    "knownTerrainHolds": 1,
+    "knownStaticRemainder": 205,
+    "heldCustomSourceKeys": 52,
+    "heldKeysAreSubsetOfFieldHolds": true,
+    "clearedPostAwaitingCheckedIntegration": 1
+  },
+  "worldWater": {
+    "sourceAudit": "world-water-source-audit.json",
+    "sourceAuditSha256": "b9339bbf59cb3518e32766ca4f5f52d69d08ce490ae30e4dc4bdef246a6bdb0b",
+    "candidateArt": "world-water-candidate-artwork.json",
+    "candidateArtSha256": "dd766f4a7d04dfd4b3b97bf9b5ac15e0e71bcb9700a0c31723484f0c61147748",
+    "sourceSnapshot": "ba5fe285ea8f9341ee40acd13fb7b57d01e2ca61",
+    "knownSharedSourceFamilies": 1,
+    "animatedContinentParts": 8,
+    "part0TexturedFaces": 296,
+    "sourcePixels": [
+      64,
+      64
+    ],
+    "paletteRows": 8,
+    "authoredCoefficientFamilies": 1,
+    "authoredEncodedCandidates": 1,
+    "diagnosticPalettePreviews": 8,
+    "selectedFamilies": 0,
+    "completeAnimatedEnvironmentImageJobDenominator": null,
+    "continentConsumers": [
+      {
+        "bank": 0,
+        "region": "South Serdio",
+        "bankSourceDirectory": "SECT/DRGN0.BIN/5697",
+        "modelSourceFile": "SECT/DRGN0.BIN/5705",
+        "modelSha256": "9d301400bd004ef6f4ae9776d0eec9570cb09cb3ad038f9d1f92f8f260b571fd",
+        "texturedFaceCount": 40,
+        "materialEnvelopes": [
+          {
+            "page": 7,
+            "uvBounds": [
+              0,
+              0,
+              63,
+              63
+            ],
+            "nativeWordEnvelope": [
+              448,
+              0,
+              16,
+              64
+            ],
+            "initializedEnvelopeWords": 1024,
+            "totalEnvelopeWords": 1024,
+            "envelopeNotRasterCoverageProof": true
+          }
+        ]
+      },
+      {
+        "bank": 1,
+        "region": "North Serdio",
+        "bankSourceDirectory": "SECT/DRGN0.BIN/5698",
+        "modelSourceFile": "SECT/DRGN0.BIN/5706",
+        "modelSha256": "15c9a48d76dae4f8b03766598e8b6b0bd8c31d88522b418bfd6c938cfd047140",
+        "texturedFaceCount": 16,
+        "materialEnvelopes": [
+          {
+            "page": 7,
+            "uvBounds": [
+              0,
+              0,
+              63,
+              63
+            ],
+            "nativeWordEnvelope": [
+              448,
+              0,
+              16,
+              64
+            ],
+            "initializedEnvelopeWords": 1024,
+            "totalEnvelopeWords": 1024,
+            "envelopeNotRasterCoverageProof": true
+          }
+        ]
+      },
+      {
+        "bank": 2,
+        "region": "Tiberoa",
+        "bankSourceDirectory": "SECT/DRGN0.BIN/5699",
+        "modelSourceFile": "SECT/DRGN0.BIN/5707",
+        "modelSha256": "3abcfbf7683c7805690fd0ba44f7e15b49a39862a2465b1c59acc184a4905cc3",
+        "texturedFaceCount": 38,
+        "materialEnvelopes": [
+          {
+            "page": 7,
+            "uvBounds": [
+              0,
+              0,
+              63,
+              63
+            ],
+            "nativeWordEnvelope": [
+              448,
+              0,
+              16,
+              64
+            ],
+            "initializedEnvelopeWords": 1024,
+            "totalEnvelopeWords": 1024,
+            "envelopeNotRasterCoverageProof": true
+          }
+        ]
+      },
+      {
+        "bank": 3,
+        "region": "Illisa Bay",
+        "bankSourceDirectory": "SECT/DRGN0.BIN/5700",
+        "modelSourceFile": "SECT/DRGN0.BIN/5708",
+        "modelSha256": "67e55741b0be5d33d622f288ed3ebc89165e1635efd43d7f4e4964fcb854f112",
+        "texturedFaceCount": 49,
+        "materialEnvelopes": [
+          {
+            "page": 7,
+            "uvBounds": [
+              0,
+              0,
+              63,
+              63
+            ],
+            "nativeWordEnvelope": [
+              448,
+              0,
+              16,
+              64
+            ],
+            "initializedEnvelopeWords": 1024,
+            "totalEnvelopeWords": 1024,
+            "envelopeNotRasterCoverageProof": true
+          }
+        ]
+      },
+      {
+        "bank": 4,
+        "region": "Mille Seseau",
+        "bankSourceDirectory": "SECT/DRGN0.BIN/5701",
+        "modelSourceFile": "SECT/DRGN0.BIN/5709",
+        "modelSha256": "55d99b1d6733daef9eba59e1d22ff41e7c72c05d969bd6af3ba75913b62bf127",
+        "texturedFaceCount": 37,
+        "materialEnvelopes": [
+          {
+            "page": 7,
+            "uvBounds": [
+              0,
+              0,
+              63,
+              63
+            ],
+            "nativeWordEnvelope": [
+              448,
+              0,
+              16,
+              64
+            ],
+            "initializedEnvelopeWords": 1024,
+            "totalEnvelopeWords": 1024,
+            "envelopeNotRasterCoverageProof": true
+          }
+        ]
+      },
+      {
+        "bank": 5,
+        "region": "Gloriano",
+        "bankSourceDirectory": "SECT/DRGN0.BIN/5702",
+        "modelSourceFile": "SECT/DRGN0.BIN/5710",
+        "modelSha256": "53016f4ed4f1cc5dbdb186b261e03ef327312fe15f802358e064f20f30321977",
+        "texturedFaceCount": 34,
+        "materialEnvelopes": [
+          {
+            "page": 7,
+            "uvBounds": [
+              0,
+              0,
+              63,
+              63
+            ],
+            "nativeWordEnvelope": [
+              448,
+              0,
+              16,
+              64
+            ],
+            "initializedEnvelopeWords": 1024,
+            "totalEnvelopeWords": 1024,
+            "envelopeNotRasterCoverageProof": true
+          }
+        ]
+      },
+      {
+        "bank": 6,
+        "region": "Death Frontier",
+        "bankSourceDirectory": "SECT/DRGN0.BIN/5703",
+        "modelSourceFile": "SECT/DRGN0.BIN/5711",
+        "modelSha256": "2b5c28cd6905c6b6e38964b24f3f9443c8c5fc009547926c1eb57f4a63dcfba4",
+        "texturedFaceCount": 32,
+        "materialEnvelopes": [
+          {
+            "page": 7,
+            "uvBounds": [
+              0,
+              0,
+              63,
+              63
+            ],
+            "nativeWordEnvelope": [
+              448,
+              0,
+              16,
+              64
+            ],
+            "initializedEnvelopeWords": 1024,
+            "totalEnvelopeWords": 1024,
+            "envelopeNotRasterCoverageProof": true
+          }
+        ]
+      },
+      {
+        "bank": 7,
+        "region": "Endiness",
+        "bankSourceDirectory": "SECT/DRGN0.BIN/5704",
+        "modelSourceFile": "SECT/DRGN0.BIN/5712",
+        "modelSha256": "3007635a3a7e2abdbe7a4536df2c12314792b450150cd2462bf2068b45bfb554",
+        "texturedFaceCount": 50,
+        "materialEnvelopes": [
+          {
+            "page": 7,
+            "uvBounds": [
+              0,
+              0,
+              63,
+              63
+            ],
+            "nativeWordEnvelope": [
+              448,
+              0,
+              16,
+              64
+            ],
+            "initializedEnvelopeWords": 1024,
+            "totalEnvelopeWords": 1024,
+            "envelopeNotRasterCoverageProof": true
+          }
+        ]
+      }
+    ],
+    "fullReachableStateContractClosed": false,
+    "nextRequiredContracts": [
+      "Consumer-local4x indexed coefficient support preserving primary native indices/live palettes/rowcopies",
+      "Ordered asynchronous upload/lifetime/menus/Coolon/zoom/mode/script guards",
+      "EnvHDterrain ownership; QueenFurywake/FxHD/shared consumers require per-consumer switching and native fallback"
+    ],
+    "counterPeriodsAreNotArtworkJobCounts": true
+  },
+  "fieldProps": {
+    "sourceSnapshot": "14d7aca56b3b8f8b88a7c16f6e76c7e636324c07",
+    "receivedInventorySha256": "e07fa2c228aea7cd887a45b543cccc551cd9e8f1efe4f2caddb2a98d769cb792",
+    "previousReceived18FileHashProofReused": true,
+    "newlyReadMetadataFileBindings": {
+      "material-consumer-summary.json": {
+        "bytes": 1612,
+        "sha256": "76b28076bba4651316c17eaa377ce5a0c5b3a51562ffbb3ae114833d5dc05613"
+      },
+      "consumer-alias-runtime-slot-reconciliation.json": {
+        "bytes": 9635247,
+        "sha256": "bdadaeb9b963bcc00e8e7d9d65b45c3f43e35505f2763bc4ea90fdcc1105cf9b"
+      },
+      "source-proved-owner-handoff.json": {
+        "bytes": 859469,
+        "sha256": "7ab40024761616d275912ad5a1eb5120c0560ca733589109c8e1279b348834e1"
+      },
+      "repeated-source-covered-material-inspection-priorities.json": {
+        "bytes": 6575476,
+        "sha256": "2aa4f9f101a243c82a7a6d25a20738462380c407836f373d24bb01241fd85f5c"
+      }
+    },
+    "materialConsumerBindings": 135279,
+    "consumerContexts": 7664,
+    "nativeDistinctModelPayloadHashes": 1024,
+    "repeatedInspectionGroups": 5984,
+    "repeatedGroupsAreNotOwnedImageJobs": true,
+    "ownerContexts": {
+      "unresolved": 7652,
+      "CharHD": 12
+    },
+    "confirmedEnvhdOwnedMaterials": 0,
+    "completeEnvhdMaterialImageJobDenominator": null,
+    "animationContextStatus": {
+      "noRecordedActivationNotStaticProof": 6747,
+      "contextsWithSourceOrScriptAnimationHold": 917
+    },
+    "imageEnvelopeHoldBindings": 20,
+    "paletteEnvelopeHoldBindings": 73,
+    "envelopeHoldsMayOverlap": true,
+    "routeHintResolutionSnapshot": {
+      "fieldRows": 6993,
+      "runtimeIncludedFieldRows": 6918,
+      "excludedFieldRows": 75,
+      "previous25MissingTextureHints": {
+        "outsideMRGExcluded": 24,
+        "includedSentinel": 1
+      },
+      "previous608MissingScriptHints": {
+        "aliasTargetsPresent": 567,
+        "outsideMRGExcluded": 41
+      },
+      "sourceHashMismatches": 0,
+      "all567ScriptAliasTargetsPresent": true,
+      "modelResolution": {
+        "physical": 6993
+      },
+      "overlayDistinctModelSources": 467,
+      "overlayDistinctTextureSources": 467
+    },
+    "nextRequiredContracts": [
+      "Static disassembly does not prove executed branches or applied patch configuration",
+      "Model aliases retain mutable shared native table state; alias draw order not replayed",
+      "Full controller-script state/geometry reassignment and all reachable image/CLUT cycles remain unresolved",
+      "Overlay-only rows require associated field-bank/palette inheritance replay",
+      "Existing texture override/CharHD/FxHD state not simulated by this native baseline snapshot",
+      "Conservative UV bounding envelopes are not exact rasterized sampler coverage"
+    ],
+    "nextAction": "Classify actual environment consumers among source-covered repeated groups, then establish exact material/page/palette/crop and complete controller/upload states. Do not use routeRole or lack of recorded activation as ownership/static proof."
+  },
+  "wholeCampaignImageJobDenominator": null,
+  "newArtworkJobsInferred": 0,
+  "newRuntimeSelections": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0
+}

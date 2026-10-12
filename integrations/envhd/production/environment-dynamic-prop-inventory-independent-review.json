@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "scope": "Independent metadata-only review of retained dynamic/prop discovery snapshot; no new census or original pixels.",
+  "sourceReviewCommit": "3b19956a0078fcf311431ee21631365fcbf62665",
+  "checkpoint": "environment-dynamic-prop-inventory-checkpoint.json",
+  "checkpointSha256": "c10cf7106b178fe3e8769f76958206dceb91b0355772f9417601f2edca2bb4c3",
+  "axes": {
+    "spec": {
+      "sourceCommit": "3b19956a0078fcf311431ee21631365fcbf62665",
+      "result": "CLEAR",
+      "findings": 0,
+      "reportSha256": "cf760234f8387b891f77a9e5298c2ef7e8e87270d9b48ae5751a6681ad4dcfe6"
+    },
+    "standards": {
+      "sourceCommit": "3b19956a0078fcf311431ee21631365fcbf62665",
+      "result": "CLEAR",
+      "findings": 0,
+      "reportSha256": "70de4f6f2d9f43c40ca10fe8c40a197c1c95ec4cdfde3dcae03656e8cbeac2b6"
+    }
+  },
+  "originalEighteenFileProofReused": true,
+  "newMetadataFilesIndependentlyBound": 4,
+  "wholeOwnedPropImageDenominator": null,
+  "wholeDynamicEnvironmentImageDenominator": null,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "privateOriginalsAndAbsolutePathsExcluded": true
+}
