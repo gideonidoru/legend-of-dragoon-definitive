@@ -24,7 +24,7 @@ import java.util.Map;
 /** Source-bound character upgrades. Geometry and its new UV material are one optional replacement. */
 final class ReconstructedCharacters {
   @FunctionalInterface interface Resources { byte[] read(String path, int limit) throws IOException; }
-  private record Detail(String geometry, float[][] uv, ByteBuffer pixels, int width, int height) { }
+  private record Detail(String geometry, float[][] uv, TmdFaceDetail.Image image) { }
   private record Part(String baseline, String geometry, byte[] pack, Detail detail) { }
   private final Map<String, Part> parts;
 
@@ -46,7 +46,7 @@ final class ReconstructedCharacters {
       final var entries = manifest.getAsJsonArray("parts");
       if(entries.isEmpty() || entries.size() > 512) throw new IOException("Invalid character part count");
       final Map<String, Part> parts = new HashMap<>();
-      final Map<String, ByteBuffer> images = new HashMap<>();
+      final Map<String, TmdFaceDetail.Image> images = new HashMap<>();
       for(final var row : entries) {
         final var entry = row.getAsJsonObject();
         final String source = hash(entry, "sourceGeometrySha256"), geometry = hash(entry, "geometrySha256");
@@ -72,12 +72,12 @@ final class ReconstructedCharacters {
           final int width = TmdGeometryPack.integer(entry.get("width")), height = TmdGeometryPack.integer(entry.get("height"));
           if(width < 1 || height < 1 || width > 2048 || height > 2048) throw new IOException("Character image exceeds pixel budget");
           final String imageKey = hash(entry, "textureSha256") + ":" + width + ":" + height;
-          ByteBuffer pixels = images.get(imageKey);
-          if(pixels == null) {
-            pixels = pixels(checked(resources, entry, "texture", 8 * 1024 * 1024), width, height);
-            images.put(imageKey, pixels);
+          TmdFaceDetail.Image image = images.get(imageKey);
+          if(image == null) {
+            image = new TmdFaceDetail.Image(pixels(checked(resources, entry, "texture", 8 * 1024 * 1024), width, height), width, height);
+            images.put(imageKey, image);
           }
-          detail = new Detail(geometry, coordinates, pixels, width, height);
+          detail = new Detail(geometry, coordinates, image);
         }
         if(parts.put(source, new Part(hash(entry, "baselineGeometrySha256"), geometry, pack, detail)) != null)
           throw new IOException("Duplicate character source identity");
@@ -97,7 +97,8 @@ final class ReconstructedCharacters {
     // Only our recorded ModelsHD baseline may hand off its geometry. Other geometry owners keep priority.
     if(event.geometry != event.source && !part.baseline.equals(TmdGeometryPack.identity(new TmdObjTable1c[]{event.geometry}))) return false;
     final var replacement = TmdGeometryPack.read(new ByteArrayInputStream(part.pack), originals)[0];
-    if(!part.geometry.equals(TmdGeometryPack.identity(new TmdObjTable1c[]{replacement}))) throw new IOException("Character geometry binding differs");
+    final String actual = TmdGeometryPack.identity(new TmdObjTable1c[]{replacement});
+    if(!part.geometry.equals(actual)) throw new IOException("Character geometry binding differs: expected " + part.geometry + ", read " + actual);
     final var appearance = part.detail == null ? replacement : paint(replacement, part.detail);
     event.appearance = appearance;
     return true;
@@ -134,7 +135,7 @@ final class ReconstructedCharacters {
     result.sourceFaces(sources, java.util.Arrays.stream(sources).max().orElseThrow() + 1);
     result.faceSurfaces(surfaces);
     result.surfaceMaterial(geometry.surfaceMaterial());
-    result.faceDetail(new TmdFaceDetail(detail.pixels.duplicate(), detail.width, detail.height, uv));
+    result.faceDetail(new TmdFaceDetail(detail.image, uv));
     return result;
   }
 

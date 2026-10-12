@@ -69,6 +69,39 @@ class ReconstructedCharactersTest {
     assertEquals(4,event.appearance.vert_top_00[1].x);assertEquals(3,source.vert_top_00[1].x);assertArrayEquals(before,source.primitives_10[0].data()[0]);
     assertNotNull(event.appearance.faceDetail());assertEquals(2,event.appearance.faceDetail().width);assertTrue(event.appearance.faceDetail().pixels().isDirect());
   }
+
+  @Test void distinctPartsShareDecodedPixelsButKeepIndependentUvBindings() throws Exception {
+    final var fixture = fixture();
+    final var secondSource = new TmdObjTable1c("second synthetic part",
+      new Vector3f[]{new Vector3f(10,0,-5),new Vector3f(13,0,-5),new Vector3f(10,3,-5)},
+      fixture.source.normal_top_08, fixture.source.primitives_10);
+    final String secondId = TmdGeometryPack.identity(new TmdObjTable1c[]{secondSource});
+    final var secondPack = JsonParser.parseString(new String(fixture.resources.get("fixture/part.json"), java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
+    secondPack.addProperty("sourceGeometrySha256", secondId);
+    final byte[] packBytes = secondPack.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8);
+    final var secondUv = JsonParser.parseString(new String(fixture.resources.get("fixture/uv.json"), java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
+    secondUv.addProperty("sourceGeometrySha256", secondId);
+    secondUv.getAsJsonArray("uvs").get(0).getAsJsonArray().set(0, new JsonPrimitive(.25f));
+    final byte[] uvBytes = secondUv.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8);
+    final var secondEntry = fixture.manifest.getAsJsonArray("parts").get(0).getAsJsonObject().deepCopy();
+    secondEntry.addProperty("sourceGeometrySha256", secondId);
+    secondEntry.addProperty("baselineGeometrySha256", secondId);
+    secondEntry.addProperty("pack", "fixture/second-part.json");
+    secondEntry.addProperty("packSha256", TexturePilot.sha256(packBytes));
+    secondEntry.addProperty("uv", "fixture/second-uv.json");
+    secondEntry.addProperty("uvSha256", TexturePilot.sha256(uvBytes));
+    fixture.manifest.getAsJsonArray("parts").add(secondEntry);
+    fixture.resources.put("fixture/second-part.json", packBytes);
+    fixture.resources.put("fixture/second-uv.json", uvBytes);
+    final var characters = fixture.load();
+    final var first = new TmdAppearanceEvent(fixture.source, fixture.source, 0);
+    final var second = new TmdAppearanceEvent(secondSource, secondSource, 0);
+    assertTrue(characters.apply(first)); assertTrue(characters.apply(second));
+    assertSame(first.appearance.faceDetail().image(), second.appearance.faceDetail().image());
+    assertEquals(0, first.appearance.faceDetail().u(0, 0));
+    assertEquals(.25f, second.appearance.faceDetail().u(0, 0));
+    assertEquals(3, fixture.source.vert_top_00[1].x); assertEquals(13, secondSource.vert_top_00[1].x);
+  }
   @Test void otherGeometryAndAppearanceOwnersKeepPriority() throws Exception {
     final var fixture=fixture();final var upgrade=fixture.load();final var source=fixture.source;
     final var own=new TmdObjTable1c("another mod",new Vector3f[]{new Vector3f(),new Vector3f(8,0,0),new Vector3f(0,8,0)},source.normal_top_08,source.primitives_10);
@@ -107,6 +140,7 @@ class ReconstructedCharactersTest {
     final var mapped=TmdObjLoader.fromObjTableMapped("body atlas plus head",fixture.source,(clut,u,v,header)->new float[]{.125f,.25f});
     final var nativeMesh=TmdObjLoader.fromObjTable("native texture plus head",fixture.source);
     assertEquals(2,mapped.faceDetailTexture().width);assertEquals(2,nativeMesh.faceDetailTexture().width);
+    assertSame(mapped.faceDetailTexture(), nativeMesh.faceDetailTexture());
     mapped.delete();nativeMesh.delete();java.lang.ref.Reference.reachabilityFence(listener);
   }
 }
