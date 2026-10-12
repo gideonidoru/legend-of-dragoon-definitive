@@ -6,8 +6,20 @@ TAG=definitive-current
 # Updated by scripts/assemble-installer.py after building the small portable UI package.
 EXPECTED=1b1e365d23e53da35202d5c868a0a73e64bf824de4eb4dfd5b8567089d820b6f
 CACHE="$HOME/.cache/legend-of-dragoon-definitive"
+# Inspect every lexical component, including links before .., before any cache IO.
+require_real_path() {
+  local rest="$1" prefix='' part
+  [[ "$rest" == /* ]] || rest="$PWD/$rest"
+  rest="${rest#/}"
+  while [[ -n "$rest" ]]; do
+    part="${rest%%/*}"
+    if [[ "$rest" == */* ]]; then rest="${rest#*/}"; else rest=''; fi
+    prefix="$prefix/$part"
+    [[ ! -L "$prefix" ]] || { echo 'Choose a real installer cache directory; parent folders must not be linked.' >&2; return 1; }
+  done
+}
+require_real_path "$CACHE"
 mkdir -p -- "$CACHE"
-[[ ! -L "$CACHE" ]] || { echo 'Choose a real installer cache directory.' >&2; exit 1; }
 LOG="$CACHE/installer-bootstrap.log"
 LOCK="$CACHE/.portable-lock"
 # Keep the lock inode; its existence is not ownership. The kernel releases the
