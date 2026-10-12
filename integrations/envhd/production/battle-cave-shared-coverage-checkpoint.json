@@ -29,5 +29,20 @@
   "publishedInstallerSnapshotRefreshed": false,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "originalsAndPrivatePathsExcluded": true
+  "originalsAndPrivatePathsExcluded": true,
+  "independentSourceReviewCommit": "6caa4884ff545c62a95597d05bb0cb848f4e6638",
+  "independentAxes": {
+    "spec": {
+      "sourceCommit": "6caa4884ff545c62a95597d05bb0cb848f4e6638",
+      "result": "CLEAR",
+      "findings": 0,
+      "privateFullReportSha256": "9fcda952d3ef3ff3d721288dab14a27f6f104b7e5a6a212bd8146b7173a4a62c"
+    },
+    "standards": {
+      "sourceCommit": "6caa4884ff545c62a95597d05bb0cb848f4e6638",
+      "result": "CLEAR",
+      "findings": 0,
+      "privateFullReportSha256": "2d59e60f2aaa7645424e51a22455e1cfe564f64e1ba768eb9af36f75870bbe10"
+    }
+  }
 }
