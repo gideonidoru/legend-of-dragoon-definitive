@@ -363,3 +363,10 @@ The [authoring receipt](../../integrations/envhd/production/field-post-component
 
 
 The [post helper/selection review](../../integrations/envhd/production/field-independent-post-components-review.json) is now CLEAR on both axes at source21a7. Its composite size is corrected to280x456 and enforced by a regression check. All73 candidate records remain exact after adding this review metadata; the source-preflight receipt retains the original manifest hash and explicitly records this carry. Runtime remains72 paintings until checked integration/package verification. Canonical queue:72selected,10revision,one cleared awaiting integration.
+
+
+## Dynamic and prop inventory snapshots reconciled
+
+The [curated checkpoint](../../integrations/envhd/production/environment-dynamic-prop-inventory-checkpoint.json) keeps units separate: one authored shared water coefficient family serves eight continent parts with296 textured faces and eight palette rows; it is not eight separate restoration jobs or16,512 animation-frame jobs. The candidate remains unselected pending4x consumer/state/ownership support.
+
+The received field-material snapshot has135,279 material bindings across7,664 contexts. Ownership is unresolved for7,652 contexts;12 are source-proved CharHD. Its5,984 repeated inspection groups are priorities, not EnvHD image jobs. The snapshot explains the earlier25 absent texture hints as24 excluded outside-MRG routes plus one included sentinel, and608 absent script hints as567 present alias targets plus41 excluded outside-MRG routes. These route hints are not missing runtime assets. Mutable alias ordering, actual controller/script branches, inherited uploads and exact sampling coverage remain open. Both whole dynamic and owned-prop image denominators remain unknown. This records the retained source snapshots rather than claiming a fresh whole-game census.
