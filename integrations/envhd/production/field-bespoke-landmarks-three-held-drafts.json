@@ -1,0 +1,316 @@
+{
+  "schema": 1,
+  "scope": "Three existing revision sources: Rouge lattice, Phantom Ship column and Bale roof corner. Two unchanged cutout repairs pass structural gates but fresh original-art review is pending. Bale fails coverage and has no repaired output. This records custom drafts only; selection and source job denominator unchanged.",
+  "priorAuthoringCommit": "b72b435c45a7d72095fd40955c62c0b057f970fd",
+  "newUniqueSourceImages": 0,
+  "newBuiltinImageCalls": 3,
+  "candidates": [
+    {
+      "key": "147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a",
+      "sourceSize": [
+        76,
+        86
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "5e1227fc5079d4e6427a467283bf867043d183ce54eaeb684ddf2fd4ea61e01e:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "route": {
+        "cut": 567,
+        "period": "early",
+        "rawDisk": 3,
+        "fieldType": 65,
+        "location": "Rouge",
+        "bank": 24,
+        "directory": 604
+      },
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "8f70d2b1359748d4ca49686cca739df4519c6ac1ccf0662631d044c9f6ad5060",
+          "size": 492
+        },
+        {
+          "index": 1,
+          "sha256": "73113dd63d2689954799a066893b55ecdf1e0f83a48e444012f726213bd91bfe",
+          "size": 1836
+        },
+        {
+          "index": 2,
+          "sha256": "ca3b257b7fde63a7ff884a16414ee404ff925a042bc1598692ce9ea186a17b03",
+          "size": 1388
+        },
+        {
+          "index": 3,
+          "sha256": "f5ae2cda34ae90ee085b47f6a833c77013389bbbd9d90a079830845242a01ee3",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "ca89491faa370994f0cd1f3ba24d45edd68cf0fb8cdd93730fde19a061dc0480",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "2844fc90e46b5439d1c5c129a338a689996753efa5b4eb2a802879f81e869e57",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "0f934cf79f8a99a92cf884bd1fe2e24aeec82f53e60823e530cc34c900d6cecb",
+          "size": 66080
+        },
+        {
+          "index": 7,
+          "sha256": "f6828a0bf2b0388f4c69e7d9ace501a6c0065b19baeaa5e4a92a6b74d9c25c46",
+          "size": 66080
+        }
+      ],
+      "priorGeneratedPath": "integrations/envhd/production/bespoke-field-candidates/147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a/painted-input-v1.png",
+      "priorGeneratedSha256": "e8828cc1be4d9b7867302330aa8ba790871590851d4151c7956c32840802be86",
+      "priorOutputPath": "integrations/envhd/production/bespoke-field-candidates/147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a/image-v1.png",
+      "priorOutputSha256": "02834fba54385b2b3f60ecd8562d27fb8841c3a02d518b47bafec485dc7531fa",
+      "generatedSha256": "b269c611fa1d62242b5dfc5720de0840e0afb7436ea75eb08547731d832e6a72",
+      "prompt": "Use case: source-faithful HD game texture restoration. Image1 is the authoritative original source crop enlarged with nearest-neighbor sampling solely to expose native landmarks. Image2 is the original complete game scene for placement, material role and lighting. Output only a painted HD version of image1. Preserve its entire canvas, aspect, crop contacts, silhouette, every internal opening, local planes, feature positions and original exposure. Replace the coarse pixel mosaic with continuous restrained hand-painted material detail suitable for faithful modern Skurfa-style RPG environments. Ambiguous marks stay ambiguous but retain their exact spatial/color grouping. No new geometry, relighting, emblems, mechanisms, writing, borders, margin, padding or completion of cropped objects. Real alpha transparency only where the original is transparent; visible black remains occupied dark material. Exactly one isolated finished texture; never output the whole scene, reference guide or a comparison board.\n\nRouge cut567 foreground4. Original76:86 full canvas, request1216x1376. This is the front-room warm orange/brown wooden balustrade with repeated interlocking open lattice, two darker stout uprights, diagonal top/bottom rails, and two existing cropped round barrel/plank fragments at lower-right. Trace the exact connecting bars and opening corners from image1 before adding fine aged timber finish. The upper little open cells and the lower long interlocking bar row have continuous narrow connectors, not random detached rectangular fragments. Keep the strong dark upright near the center in precisely its position and lean. Every black/transparent lattice gap must lie between coherent painted connecting bars; do not repaint a more regular alternate fence then mask it to the original. The bottom warm diagonal plank plane and barrel top arcs retain their source sizes and coordinates. Fine soft wood grain/joinery, subdued warm highlights, no metallic rims or very bright new edges.",
+      "newBuiltinImageCalls": 1,
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "repairPassed": true,
+      "disposition": "Independent visual review pending",
+      "runtimeSelected": false,
+      "nativeAccepted": 0,
+      "finalQualityAccepted": 0,
+      "generatedBy": "builtin-imagegen",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a/draft-landmarks-input-v3.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/147875bb3c20f4c4e676c5134174364083d5ba855bd4ffee4b6162ed066cd69a/draft-landmarks-repaired-v3.png",
+      "outputSha256": "6a33fc32dfc4a93ea963b246bdbbf289834e6b85e5cc5463a9d70f0e5aae5a32",
+      "generatedSize": [
+        1179,
+        1334
+      ],
+      "targetSize": [
+        304,
+        344
+      ],
+      "cutout": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 66128,
+        "paintedGapPixelsExtended": 4909,
+        "paintedUncoveredSourcePixels": 3444,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 50,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "independentArtReview": "pending"
+    },
+    {
+      "key": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+      "sourceSize": [
+        36,
+        62
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "1fee3f003f01bba4d60081f78eb5273934fc2f3eaa60a939e62aa18924021c82:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "route": {
+        "cut": 291,
+        "period": "early",
+        "rawDisk": 1,
+        "fieldType": 65,
+        "location": "Phantom Ship",
+        "bank": 22,
+        "directory": 877
+      },
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "11aaace65d17232e702f3326fda8bcfba5c3470102e94e06b939afaa39bbdc8e",
+          "size": 564
+        },
+        {
+          "index": 1,
+          "sha256": "fe27893412e41d2dde57dd683e15a5679b615fd7591b1a0d73d9ebdf4d27c64a",
+          "size": 1644
+        },
+        {
+          "index": 2,
+          "sha256": "c1b247c9c86971199f8effe9387f4104f88835f3647989df1b60688e1c5660ae",
+          "size": 1236
+        },
+        {
+          "index": 3,
+          "sha256": "03d46d5d691cc6145d87536f50babc41019212e60be947c0c919e1460f9669fb",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "a0e430657f6606e3d228be3711947763660216c7af489840d69d2dfc7caccc28",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "93a78315593a1a104e5eb227434f7582cbbb3bb0c661836141e1b9668dd7f95c",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "7c6d846653907ae1cf128af6981fd326cf8b101451d250082c4870d2071a3689",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "76a8cedba05955aeda00e27843c8c86064abface5ad59026336ec45da1b3773d",
+          "size": 66080
+        }
+      ],
+      "priorGeneratedPath": "integrations/envhd/production/bespoke-field-candidates/63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612/painted-input-v1.png",
+      "priorGeneratedSha256": "a305f5bf82b8dbf0ea40e1538036d9c95577b2d5169039fc7cda9deffca183b6",
+      "priorOutputPath": "integrations/envhd/production/bespoke-field-candidates/63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612/image-v1.png",
+      "priorOutputSha256": "855553364a7a607bf918f346a0dbe4ce7813d50cef6f1f3462c1e0de7c92bf73",
+      "generatedSha256": "4cc7835564b43bcb3b8a49e133f02bb674652b858a3075b8f46aac5714cef120",
+      "prompt": "Use case: source-faithful HD game texture restoration. Image1 is the authoritative original source crop enlarged with nearest-neighbor sampling solely to expose native landmarks. Image2 is the original complete game scene for placement, material role and lighting. Output only a painted HD version of image1. Preserve its entire canvas, aspect, crop contacts, silhouette, every internal opening, local planes, feature positions and original exposure. Replace the coarse pixel mosaic with continuous restrained hand-painted material detail suitable for faithful modern Skurfa-style RPG environments. Ambiguous marks stay ambiguous but retain their exact spatial/color grouping. No new geometry, relighting, emblems, mechanisms, writing, borders, margin, padding or completion of cropped objects. Real alpha transparency only where the original is transparent; visible black remains occupied dark material. Exactly one isolated finished texture; never output the whole scene, reference guide or a comparison board.\n\nPhantom Ship cut291 foreground5. Original36:62 narrow portrait canvas, request864x1488. This source occupies almost all width: blue/grey weathered left face, deep dark narrow central groove and muted green right face with original stepped lower base. Preserve the low-contrast pale left weathering as several irregular separated patches in exactly the source positions, not one long bright connected stripe, glyph, person or heraldry. The thin brown/grey diagonal lower cross-band on the left is at native rows40\u201342, roughly65\u201368percent of canvas height; its endpoints and original lean must remain there, not move down to43\u201345. It continues toward the right stepped green ledges in the original scene. Keep all right-face ledge positions, weak grooves and dim blue-green haunted-ship lighting. Fine worn painted grain without new huge splits, raised molding, clear lettering, added top/bottom or extra transparent side padding.",
+      "newBuiltinImageCalls": 1,
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "repairPassed": true,
+      "disposition": "Independent visual review pending",
+      "runtimeSelected": false,
+      "nativeAccepted": 0,
+      "finalQualityAccepted": 0,
+      "generatedBy": "builtin-imagegen",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612/draft-landmarks-input-v3.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612/draft-landmarks-repaired-v3.png",
+      "outputSha256": "580f4e1a10d059330372906c6ba8900fcdeb2c70c19198d300d093cf61857d2b",
+      "generatedSize": [
+        955,
+        1647
+      ],
+      "targetSize": [
+        144,
+        248
+      ],
+      "cutout": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 30352,
+        "paintedGapPixelsExtended": 247,
+        "paintedUncoveredSourcePixels": 20,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 1,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "independentArtReview": "pending"
+    },
+    {
+      "key": "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
+      "sourceSize": [
+        22,
+        26
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "f93b0f145362e198ce148bb4e8165782871c2e89370f4084185415bbede7d212:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "route": {
+        "cut": 79,
+        "period": "early",
+        "rawDisk": 0,
+        "fieldType": 0,
+        "location": "Bale",
+        "bank": 21,
+        "directory": 241
+      },
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "e6f199840935397d12020896abbc7feeb2829a392b7bc845928309faa76b7c0b",
+          "size": 744
+        },
+        {
+          "index": 1,
+          "sha256": "dfea4e6331d6e19636f9f5ce06c98d3e754aa27599122573aba89e56aac29fef",
+          "size": 2172
+        },
+        {
+          "index": 2,
+          "sha256": "aa3d78b76464ca16ca7b1796d1405e15a71726598bdcfffb23cd1af30ba1e798",
+          "size": 1604
+        },
+        {
+          "index": 3,
+          "sha256": "0510416121b7b131c1a5566a15cff94edd5808e303bfa56ee204ad7d163385d6",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "a9d511da4f96389725a21bd5d3a3335d50740444b560c1bb6f574fc779436637",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "f9bcd4e64cfc7a4c360d77f6ca711210200db1ca50de9758b6c7f3852ea1067f",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "7a2e0034967e2bddf0f1569bca7f6cbd18febc506c3f8b4e86bfd009d21bedb5",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "8c0cc47c52cf8d14b23745ba53389ae388b798d693844306101028bebd9d06b5",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "2b62a73a68e08e41c3cd639e995eeee89db8b768a3965b3e74ed6a0f1f05005d",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "22009b16674d100f8f6aca231f1c88791a6c0636e6bd9cec8a19d225ad9b588b",
+          "size": 66080
+        }
+      ],
+      "priorGeneratedPath": "integrations/envhd/production/bespoke-field-candidates/8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f/painted-input-v1.png",
+      "priorGeneratedSha256": "495c55a3d141905cc62e4b89c44057d79336f7233d7e6d520573fdf4d815a06c",
+      "priorOutputPath": "integrations/envhd/production/bespoke-field-candidates/8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f/image-v1.png",
+      "priorOutputSha256": "acaf56f748d693199677dca6cc7585fd641421926ba8e3d09cbdfd3c7b2049a5",
+      "generatedSha256": "9570579949e6d931097a3db77194f0562dad7399c43639a839155046c6666b17",
+      "prompt": "Use case: source-faithful HD game texture restoration. Image1 is the authoritative original source crop enlarged with nearest-neighbor sampling solely to expose native landmarks. Image2 is the original complete game scene for placement, material role and lighting. Output only a painted HD version of image1. Preserve its entire canvas, aspect, crop contacts, silhouette, every internal opening, local planes, feature positions and original exposure. Replace the coarse pixel mosaic with continuous restrained hand-painted material detail suitable for faithful modern Skurfa-style RPG environments. Ambiguous marks stay ambiguous but retain their exact spatial/color grouping. No new geometry, relighting, emblems, mechanisms, writing, borders, margin, padding or completion of cropped objects. Real alpha transparency only where the original is transparent; visible black remains occupied dark material. Exactly one isolated finished texture; never output the whole scene, reference guide or a comparison board.\n\nBale cut79 foreground2. Original22:26 full canvas, request704x832. The original scene places this at a tiny roof/facade corner. Preserve the dim olive-brown LEFT region as diffuse continuous shadowed material, with its sparse unequal pale/dark patches; it must not turn into a crisply stacked masonry strip or a new regular series of joints. The rust/terracotta upper-right region retains its source rounded irregular low-contrast dark strokes and warm tonal groupings. Preserve the continuous DULL ochre diagonal lower edge, its uneven width and source shadow, not a bright detailed molding, metallic rim or beveled trim. Paint the existing material with quiet fine surface finish and source-matched lighting, keeping the vaguely rounded rust marks at the original positions without resolving them into a new emblem or construction. Restore subtle source-shaped variation without coarse cracked blocks, pronounced new brick joints, glittering edge contrast or a blank featureless slab.",
+      "newBuiltinImageCalls": 1,
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "repairPassed": false,
+      "disposition": "HELD structural gate",
+      "runtimeSelected": false,
+      "nativeAccepted": 0,
+      "finalQualityAccepted": 0,
+      "generatedBy": "builtin-imagegen",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f/draft-landmarks-input-v3.png",
+      "reason": "Painted coverage differs too much from the source; revise the painting"
+    }
+  ],
+  "selectedFieldsUnchanged": 4960,
+  "selectedPaintingsUnchanged": 74,
+  "knownStaticRemainingUnchanged": 203,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalsReferencesAndPrivatePathsExcluded": true
+}

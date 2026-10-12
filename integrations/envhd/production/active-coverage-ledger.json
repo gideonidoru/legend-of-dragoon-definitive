@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "574023dd8cd1b2a78fa30640432729191c2f6832 plus one independently cleared Cargo fitting correction",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "655aa731cb71b73b6524b31b4adaa4dc88d17abc05e0d2217ce7b8de95ebb063",
+    "full-coverage.json": "845e975083f3cc1f2ead1ff2214e94670e413545c94ff2b266833508481e8f03",
     "field-runtime-artwork.json": "4800c78e52aa5b8cec7d6b26c0cf1aa1cc11bea782585b2c9b3f4ffa2c0169c1",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "026cb84f796456aad9c58860c49db807f0c21381ffe3e5437f9a24f287e55526",
@@ -125,7 +125,8 @@
     "field-cargo-local-patch-art-review.json": "c318b44b67f8265d2998fe8b4264766d3876907fd654f6e3b2276c37b330a737",
     "field-independent-cargo-local-patch-review.json": "374900c6f15f580a0861e1f9b5fcb244297854ddb28663d0f5d4c8f14ae621e0",
     "field-cargo-local-patch-selection-readiness.json": "b78420d0a4ccaac3d941e8034bb175089326c816801df7179aa362bb2cc5b1bf",
-    "field-cargo-local-patch-authoring-main-forward.json": "fd177f239fc345a9dfa54ae6f35c0267c52807754a71e5c8ff31d4ff3364fdc5"
+    "field-cargo-local-patch-authoring-main-forward.json": "fd177f239fc345a9dfa54ae6f35c0267c52807754a71e5c8ff31d4ff3364fdc5",
+    "field-bespoke-landmarks-three-held-drafts.json": "8a2e619c77bec2ec8d56dcc4f1b26f10264e296b674c4f235245eea7a0158a28"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -252,6 +253,12 @@
         "runtimeIntegrationPending": false,
         "runtimeSelectedDevelopment": true,
         "acceptedMain": "5fbda0d5fa37dfc73c6158c857dd88130d7915fd"
+      },
+      "landmarkRevisionDrafts": {
+        "sourceKeysAreExistingHoldSubset": true,
+        "structuralPassIndependentArtPending": 2,
+        "structuralCoverageRejected": 1,
+        "manifest": "field-bespoke-landmarks-three-held-drafts.json"
       }
     },
     {
