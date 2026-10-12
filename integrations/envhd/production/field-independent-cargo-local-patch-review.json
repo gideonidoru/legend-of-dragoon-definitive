@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "scope": "Independent original-fidelity and Standards review of exactsource2534925f local Cargo patch/helper/preflight/publicprovenance. Prior73recipes/4959runtime records exact. Native/final pending.",
+  "sourceReviewCommit": "2534925f60620d387339ced84c37a9d88eb1a3db",
+  "sourceKey": "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
+  "outputSha256": "2f9cabfff63f3ebb0af0aae016139984ccb322550d750691df9950165de46da5",
+  "selectionManifest": "field-bespoke-cargo-local-patch-reviewed-selection.json",
+  "selectionManifestSha256": "05875ad367cbb90a106708e60b7a17b54020b48dc43b20485628ee0e7e6878ce",
+  "independentAxes": {
+    "spec": {
+      "sourceCommit": "2534925f60620d387339ced84c37a9d88eb1a3db",
+      "result": "CLEAR",
+      "findings": 0,
+      "privateFullReportSha256": "c0b92dec1f0cd80654386f5045916ca134438511047f770482ed91e10270de37"
+    },
+    "standards": {
+      "sourceCommit": "2534925f60620d387339ced84c37a9d88eb1a3db",
+      "result": "CLEAR",
+      "findings": 0,
+      "privateFullReportSha256": "f07aac8304875cff38cef089e0e0232cc1f6032b1fac8652100da7dc3e8d61ab"
+    }
+  },
+  "originalArtReview": "field-cargo-local-patch-art-review.json",
+  "originalArtReviewSha256": "c318b44b67f8265d2998fe8b4264766d3876907fd654f6e3b2276c37b330a737",
+  "helperAlgorithmPath": "scripts/repair-envhd-painted-local-patch.py",
+  "helperAlgorithmSha256": "a775b1e22b9b6e24ad93e72fe4f0bee0279be524bcb3e80ca1206a499d3eee07",
+  "sourceAlphaExact": true,
+  "outsideSourceBoxExact": true,
+  "sourceRgbPixelsCopied": false,
+  "sourceBox": [
+    83,
+    64,
+    98,
+    80
+  ],
+  "helperFixtureTests": 9,
+  "authorFieldFixtureTests": 68,
+  "freshSourcePreflightCandidates": 74,
+  "freshSourcePreflightLogSha256": "9a034e468ca24b4e5d16e9559f583a846ea5f1b8dc45c0fe45d455b1dd3f4ff9",
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalsReferencesAndPrivatePathsExcluded": true
+}
