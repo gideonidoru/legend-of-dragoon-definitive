@@ -317,3 +317,8 @@ The [complete68-painting selection](../../integrations/envhd/production/field-be
 ## Ongoing authoring after sixteen scenery selections
 
 Accepted main selects4,954 fields with68 paintings; all83 historical recipes and every prior custom/held version remain preserved. Current canonical queue0 independent-pending/15 reviewed revisions;56 unique unselected custom source keys within208field holds. Organic/scenic, local-feature and feature-blend drafts remain held separately. Known static remainder209 includes208fields and one terrain repair; animation/props denominators remain unresolved. Native/state/campaign/final acceptance is pending.
+
+
+## Held precise corrections after sixteen scenery selections
+
+[Six targeted built-in edits](../../integrations/envhd/production/field-bespoke-precise-six-held-drafts.json) address fine cage lattice, flat Shrine wall shading, palace-post construction, curved rail fittings and subdued balcony details. Five pass unchanged cutout repair. One fails the original silhouette coverage check; its raw input stays failed and a separate bounded Python component-transfer proposal preserves the earlier canvas and alpha. These are held review candidates, adding no selected or unique source keys. Every prior recipe/version remains; custom paintings and prompts are public while original/reference/placement pixels remain private. Native/script/Deck/campaign/final acceptance remains pending.

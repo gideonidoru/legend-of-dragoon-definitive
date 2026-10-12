@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "fec6eaeeefb7173b609a3c5caeff6a1125a8e1d7 accepted sixteen scenery crops; ongoing83 recipes/all held versions preserved",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "c764ff23188ab53880cab8d96a8a2b96fb8ccd4b16d61d9bccb2968df5fab857",
+    "full-coverage.json": "9c5e61c41a1e9bff5e752338f02957285a3515677d1ad1e90eb851371fee6612",
     "field-runtime-artwork.json": "e4c73652147c91a7d02cc17888f5e2566d0a3e8a85cdbd0353c39169744004e8",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
@@ -99,7 +99,8 @@
     "field-bespoke-scenery-sixteen-independent-reviewed-selection.json": "491ac230f77f871128d8df0ddf90b96f58fd8bef568dcbbca612b6f66fd29124",
     "field-independent-final-eighteen-review.json": "41d5f9b479133dc8f5f0c7d3522cbffd1c71fefa7f9c002b89c732f061ba0936",
     "field-scenery-sixteen-selection-readiness.json": "f675547c7aa877d04fbf9c2ca6e8f1f214b6ba11c8ee8fb1eb7d56a505fa40ba",
-    "field-scenery-sixteen-authoring-main-forward.json": "fcb4b39a2355459b06705807d6b7244140dd6298ca8b6102962882558ba25cf4"
+    "field-scenery-sixteen-authoring-main-forward.json": "fcb4b39a2355459b06705807d6b7244140dd6298ca8b6102962882558ba25cf4",
+    "field-bespoke-precise-six-held-drafts.json": "76f47e95644a62a799f83e93f594aff1d60db3bf8810a68691b41fefb29ef7de"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -598,6 +599,14 @@
       "selectedNewSourceImages": 16,
       "independentReview": "field-independent-final-eighteen-review.json",
       "reason": "Sixteen original-fidelity clear scenery/furnishing crops selected. Queen Fury cage mesh and Shrine flat wall patch require revision; all other unfinished work remains held. Prior52/4938 exact."
+    },
+    {
+      "manifest": "field-bespoke-precise-six-held-drafts.json",
+      "newUniqueHeldSourceImages": 0,
+      "heldSourceImages": 6,
+      "generatedVersions": 6,
+      "boundedLocalVersions": 1,
+      "reason": "Targeted mesh/wall/post/rail/night-detail corrections; five model edits repaired and one original-coverage failure preserved with separate bounded component-transfer proposal. All held until independent fidelity review."
     }
   ],
   "publication": {

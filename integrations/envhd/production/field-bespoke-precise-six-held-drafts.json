@@ -1,0 +1,761 @@
+{
+  "schema": 1,
+  "scope": "Six built-in corrective edits targeting original-reference review findings. Five full edits pass pinned repair; one fails original coverage and retains raw input only, with a separate bounded Python component-transfer prototype. All unselected pending independent review; every earlier recipe/version retained.",
+  "authoringSourceCommit": "07d069b5dfa7f8fc0cc8fac1cb33182db5d25828",
+  "mode": "builtin-imagegen-edit-batch-plus-user-authorized-python-repair",
+  "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+  "generatedVersions": 6,
+  "repairedFullEdits": 5,
+  "coverageFailures": 1,
+  "boundedLocalAlternatives": 1,
+  "newUniqueSourceImages": 0,
+  "holdsCleared": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "decodedRgbaSha256": "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
+      "generatedSha256": "ac3c09da9d0ea881fbfbeaf97f4fdfdf15bdcf8fb8bce936cc8db3741e544765",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit.\nAsset type: EnvHD faithful hand-painted environment texture, Queen Fury cut284 foreground6 cargo cages.\nInput images: Image1 is the authoritative original reference for object identity, geometry, marks and exposure. Image2 is the current HD edit target. Edit Image2 only, using Image1 to correct the identified mismatch.\nPrimary request: Correct only the cage lattice and exposure. Restore the original closely spaced fine crossing mesh with its diagonal ribs, as visible in Image1. The current Image2 has invented heavy widely spaced orthogonal bars, a few big square cells and sharp bright rims: replace those with the original fine dense lattice directions and subdued dark wooden surfaces. Preserve the exact stacks, perspective, individual crate frames, visible top planes, overlapping silhouettes, cropped upper-right cage fragment and separate small tan lower-right fitting. Mesh must read as many delicate crossing strands at original pitch, not oversized iron prison bars.\nStyle: restrained hand-painted modern HD environment art; preserve existing painted quality and original game intent.\nCanvas: exact full original canvas width:height 98:80 (1.22500000 aspect ratio). Keep this full canvas and all relative feature positions. Fill the complete frame without recentering, added margins, crop, inset, padding or change of perspective.\nTransparency: actual transparent background around the exact source silhouette and holes; preserve all original transparency. No black painted backdrop, checkerboard, scene background, text, watermark, border or labels.\nInvariants: change only the requested features; all other geometry, layout and material colours remain unchanged. Image1 always controls ambiguous details; do not invent structure from low-resolution marks.",
+      "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+      "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/image-v1.png",
+      "parentOutputSha256": "d2e08a10d2971985b7c10f99ef6d4aa8862a7531dffeab7a3d7e0f04593eb7e3",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "248583f2b89a5ed1069e5b6406f54515cd412ec561b2720fbd94fc934e1f7b4f:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "235bbfb8c15652874e4148191b7f369d57c6d80975537400b9b61a040719ac4c",
+          "size": 528
+        },
+        {
+          "index": 1,
+          "sha256": "39ca7fdb2f462a20d5ae51bdc19559d393af3f12eb264c90b7505ffb6d5aea9f",
+          "size": 1836
+        },
+        {
+          "index": 2,
+          "sha256": "6a5a7165fe4f04368ca5064b79350848d5a52c5510c4e9b383c635aa55907417",
+          "size": 1364
+        },
+        {
+          "index": 3,
+          "sha256": "821e617572869d6e17423d3404b4eb64e6cec1756ec10a710c11504c3dad226d",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "c31b790f37481328d37d98ac8626f11b07a23b012dce218804f9f6b4fda9b328",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "bc026474b23547214404dceb472f512d4fcc8d6fae5cf95b762ba060ae26d084",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "292c2b95c80e75868200299594337f0bbe11f1693fe8e0e4692d35afece77526",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "The Queen Fury",
+      "representativeCut": 284,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 71536,
+      "paintedGapPixelsExtended": 2068,
+      "paintedUncoveredSourcePixels": 1098,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 61,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "outputSha256": "138662e9f3a3e682f57c078fc57f5c45b757036564a5720c00962b46384e3206",
+      "sourceSize": [
+        98,
+        80
+      ],
+      "targetSize": [
+        392,
+        320
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-precise-correction-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-precise-correction-repaired-v1.png",
+      "verdict": "held-independent-fidelity-review-pending",
+      "visualEvidenceViewed": "Raw generated images and all five passing repaired comparisons/static placements inspected. Not native gameplay."
+    },
+    {
+      "decodedRgbaSha256": "882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc",
+      "generatedSha256": "e5eae91e5feff95700aadfc14e54ccff4089da182d7e3918a0b22baf9a791981",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit.\nAsset type: EnvHD faithful hand-painted environment texture, Shirley Shrine cut153 foreground2 flat wall material patch.\nInput images: Image1 is the authoritative original reference for object identity, geometry, marks and exposure. Image2 is the current HD edit target. Edit Image2 only, using Image1 to correct the identified mismatch.\nPrimary request: Restore this surface to the original nearly flat quiet material. Match Image1: muted violet-brown across the upper portion, moss-olive across the lower portion, and the exact disconnected pale gray marks near the upper edge, pale strip along the left and tiny lower-right pale mark. The edit target has invented stone block courses, deep joints and strong relief; remove that construction. Render gentle irregular colour/wear and fine restrained painterly texture with smooth broad values. Do not invent mortar seams, block grid, strong cracks, raised stones or a dense field of white speckles. Keep every source mark's position, area and overall understated brightness.\nStyle: restrained hand-painted modern HD environment art; preserve existing painted quality and original game intent.\nCanvas: exact full original canvas width:height 30:30 (1.00000000 aspect ratio). Keep this full canvas and all relative feature positions. Fill the complete frame without recentering, added margins, crop, inset, padding or change of perspective.\nTransparency: actual transparent background around the exact source silhouette and holes; preserve all original transparency. No black painted backdrop, checkerboard, scene background, text, watermark, border or labels.\nInvariants: change only the requested features; all other geometry, layout and material colours remain unchanged. Image1 always controls ambiguous details; do not invent structure from low-resolution marks.",
+      "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+      "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc/image-v1.png",
+      "parentOutputSha256": "53a297f0d5df6886ce7ad44151ff1d7e2b80997dda624e191701bca324259836",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "feb547ceb0efb4200a92cba866c89073bfd46d79335fcb11fca9d63b71875049:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "ad94b0ca51dc85fec675bc38f022e0f5a935f0463788031ef39020603e7164ae",
+          "size": 348
+        },
+        {
+          "index": 1,
+          "sha256": "9c5fd9f1f1ad9b9aeef061744eab9ad223975c8e29705ed57ac870d77452a3fc",
+          "size": 4416
+        },
+        {
+          "index": 2,
+          "sha256": "ddcfa24032d9ecbf256acdc413ab9adbde359c43eb5028a83d434853bfef149b",
+          "size": 3200
+        },
+        {
+          "index": 3,
+          "sha256": "b452efd1a2aef04c97c4573d5c69845fbc7945d6124e7cdbb652ca204b6253dd",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "a2b743ed68b42f71029ae9474176a0212efa2fc5c1da21c03ce4ce823523e6cc",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "2716df6159fdad6b7883fedf99bbd4f8ce3b24fb85f115418da1ea957317e626",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "d003883e639bb0ab5acae942be81a2730e446eef7c4d25bad1de5cc336759e89",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "b2e51b117393960a506191c67cd1f48fb14ae3412abb3f0e03cd601897a7ea10",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "Shirley's Shrine",
+      "representativeCut": 153,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 13456,
+      "paintedGapPixelsExtended": 0,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 0,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "outputSha256": "81dbeeeef4c3c848de023a1bc834cc4c4a075741425cb3125d28adc7e07b531a",
+      "sourceSize": [
+        30,
+        30
+      ],
+      "targetSize": [
+        120,
+        120
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc/draft-precise-correction-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/882a951d6f0cca63edc76b8d45409bb6d8b957cd32acea8a30c106f0b0e05bbc/draft-precise-correction-repaired-v1.png",
+      "verdict": "held-independent-fidelity-review-pending",
+      "visualEvidenceViewed": "Raw generated images and all five passing repaired comparisons/static placements inspected. Not native gameplay."
+    },
+    {
+      "decodedRgbaSha256": "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
+      "generatedSha256": "e0f0270a509c774ebb8cd2eb64b3a698638283691eb8a4c4924198c74e626f60",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit.\nAsset type: EnvHD faithful hand-painted environment texture, Crystal Palace cut368 foreground3 diagonal rail and two tall posts.\nInput images: Image1 is the authoritative original reference for object identity, geometry, marks and exposure. Image2 is the current HD edit target. Edit Image2 only, using Image1 to correct the identified mismatch.\nPrimary request: Correct ONLY the tall post at the lower-right end. Its original Image1 blue lower base is a continuous softly divided coloured surface, and its gold shaft has soft longitudinal shading. Remove the unsupported stacked blue block courses and heavy horizontal gold ring/seam introduced in Image2. Make the lower-right post's blue base continuous and its gold shaft smooth, with only source-supported tonal divisions. Preserve the original continuous base contour, cropped right boundary and pale curved foot. Keep the diagonal rail, all four small fittings, upper-left tall post and separate upper-left post sliver exactly as Image2; do not redesign the rail fittings in this edit.\nStyle: restrained hand-painted modern HD environment art; preserve existing painted quality and original game intent.\nCanvas: exact full original canvas width:height 70:114 (0.61403509 aspect ratio). Keep this full canvas and all relative feature positions. Fill the complete frame without recentering, added margins, crop, inset, padding or change of perspective.\nTransparency: actual transparent background around the exact source silhouette and holes; preserve all original transparency. No black painted backdrop, checkerboard, scene background, text, watermark, border or labels.\nInvariants: change only the requested features; all other geometry, layout and material colours remain unchanged. Image1 always controls ambiguous details; do not invent structure from low-resolution marks.",
+      "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+      "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/image-v1.png",
+      "parentOutputSha256": "e0d154053606512f0fc27fed16a12b5b0bdd25b48955052cdb9f0ff1c6f49bf2",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "55022c2b991e387741ac21809da3317b4eff11dd0be8308b20fdcb447026a06c:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "06186522f72a23d7ea79106dc6a1d4094a17bb8bb35967f04f19f7332560253b",
+          "size": 528
+        },
+        {
+          "index": 1,
+          "sha256": "93d62173359bf6143fd849343c228357fa240dc776194097b01a59ebdc31af0d",
+          "size": 2460
+        },
+        {
+          "index": 2,
+          "sha256": "8b7ede9fb3075f48cbc862f461c0e5c9c54465fa482458104e854e8669498046",
+          "size": 1796
+        },
+        {
+          "index": 3,
+          "sha256": "c1b076299d6d136d0b5bb3db148b08dc33dd54e8840073310ae35ab8b97d711c",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "74aedd2d86b058e1c9c6d97a6a226a524689b3122dfc9ca336d8edc668c87502",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "e480e9168b89bb82d1a310869f0625760088bbe116e8367c8b0658bf2254fc41",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "83f9e3ac8cdbace13ffe0bed34477e47959d15dea508601dd217a58f917aafdc",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "78cad5a85d4026eb9d0c4e6b9daa583aef04c96123c3b0ca091fd548c27a7a92",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "230d3df7def864e3b3bc4b2dadab3f5073add5f751e73daae3e134b2fa2dac82",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "924b16226f66425f5a0b2794eeaaffc2236a0d0bc5c5dc4129a7d97342ba16f3",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "Crystal Palace",
+      "representativeCut": 368,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": false,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairError": "ValueError: Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-precise-correction-input-v1.png",
+      "verdict": "held-original-coverage-failure",
+      "visualEvidenceViewed": "Raw generated images and all five passing repaired comparisons/static placements inspected. Not native gameplay.",
+      "boundedLocalAlternative": {
+        "decodedRgbaSha256": "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
+        "generatedSha256": "cda6dba2e2cccf96ce9da03a218e7c19d9ff6e8bfe87bb378154098161a2c4ba",
+        "generatedBy": "builtin-imagegen-plus-bounded-python-component-transfer",
+        "prompt": "Use case: precise-object-edit.\nAsset type: EnvHD faithful hand-painted environment texture, Crystal Palace cut368 foreground3 diagonal rail and two tall posts.\nInput images: Image1 is the authoritative original reference for object identity, geometry, marks and exposure. Image2 is the current HD edit target. Edit Image2 only, using Image1 to correct the identified mismatch.\nPrimary request: Correct ONLY the tall post at the lower-right end. Its original Image1 blue lower base is a continuous softly divided coloured surface, and its gold shaft has soft longitudinal shading. Remove the unsupported stacked blue block courses and heavy horizontal gold ring/seam introduced in Image2. Make the lower-right post's blue base continuous and its gold shaft smooth, with only source-supported tonal divisions. Preserve the original continuous base contour, cropped right boundary and pale curved foot. Keep the diagonal rail, all four small fittings, upper-left tall post and separate upper-left post sliver exactly as Image2; do not redesign the rail fittings in this edit.\nStyle: restrained hand-painted modern HD environment art; preserve existing painted quality and original game intent.\nCanvas: exact full original canvas width:height 70:114 (0.61403509 aspect ratio). Keep this full canvas and all relative feature positions. Fill the complete frame without recentering, added margins, crop, inset, padding or change of perspective.\nTransparency: actual transparent background around the exact source silhouette and holes; preserve all original transparency. No black painted backdrop, checkerboard, scene background, text, watermark, border or labels.\nInvariants: change only the requested features; all other geometry, layout and material colours remain unchanged. Image1 always controls ambiguous details; do not invent structure from low-resolution marks.",
+        "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+        "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/image-v1.png",
+        "parentOutputSha256": "e0d154053606512f0fc27fed16a12b5b0bdd25b48955052cdb9f0ff1c6f49bf2",
+        "sourceOwners": [
+          "envhd"
+        ],
+        "sourceBindings": [
+          {
+            "renderKey": "55022c2b991e387741ac21809da3317b4eff11dd0be8308b20fdcb447026a06c:-1",
+            "kind": "foreground",
+            "slot": 3,
+            "canDeriveFromBackground": false
+          }
+        ],
+        "sourceFiles": [
+          {
+            "index": 0,
+            "sha256": "06186522f72a23d7ea79106dc6a1d4094a17bb8bb35967f04f19f7332560253b",
+            "size": 528
+          },
+          {
+            "index": 1,
+            "sha256": "93d62173359bf6143fd849343c228357fa240dc776194097b01a59ebdc31af0d",
+            "size": 2460
+          },
+          {
+            "index": 2,
+            "sha256": "8b7ede9fb3075f48cbc862f461c0e5c9c54465fa482458104e854e8669498046",
+            "size": 1796
+          },
+          {
+            "index": 3,
+            "sha256": "c1b076299d6d136d0b5bb3db148b08dc33dd54e8840073310ae35ab8b97d711c",
+            "size": 33312
+          },
+          {
+            "index": 4,
+            "sha256": "74aedd2d86b058e1c9c6d97a6a226a524689b3122dfc9ca336d8edc668c87502",
+            "size": 33312
+          },
+          {
+            "index": 5,
+            "sha256": "e480e9168b89bb82d1a310869f0625760088bbe116e8367c8b0658bf2254fc41",
+            "size": 33312
+          },
+          {
+            "index": 6,
+            "sha256": "83f9e3ac8cdbace13ffe0bed34477e47959d15dea508601dd217a58f917aafdc",
+            "size": 33312
+          },
+          {
+            "index": 7,
+            "sha256": "78cad5a85d4026eb9d0c4e6b9daa583aef04c96123c3b0ca091fd548c27a7a92",
+            "size": 33312
+          },
+          {
+            "index": 8,
+            "sha256": "230d3df7def864e3b3bc4b2dadab3f5073add5f751e73daae3e134b2fa2dac82",
+            "size": 33312
+          },
+          {
+            "index": 9,
+            "sha256": "924b16226f66425f5a0b2794eeaaffc2236a0d0bc5c5dc4129a7d97342ba16f3",
+            "size": 66080
+          }
+        ],
+        "representativeLocation": "Crystal Palace",
+        "representativeCut": 368,
+        "sourceFilesFreshlyVerified": true,
+        "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+        "repairPassed": true,
+        "runtimeSelected": false,
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 29920,
+        "paintedGapPixelsExtended": 2,
+        "paintedUncoveredSourcePixels": 0,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 1,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false,
+        "outputSha256": "82c6fa5d6324856cfe91e048d28e5af4eeeaf2e3d277b8204e1c074f00cfd1fb",
+        "sourceSize": [
+          70,
+          114
+        ],
+        "targetSize": [
+          280,
+          456
+        ],
+        "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+        "localComponentTransfer": {
+          "method": "copy-resampled-rgb-with-base-alpha-preserved",
+          "basePath": "integrations/envhd/production/bespoke-field-candidates/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/image-v1.png",
+          "baseSha256": "e0d154053606512f0fc27fed16a12b5b0bdd25b48955052cdb9f0ff1c6f49bf2",
+          "insertInputSha256": "e0f0270a509c774ebb8cd2eb64b3a698638283691eb8a4c4924198c74e626f60",
+          "insertOriginalCoverageRejected": true,
+          "sourceNativeBox": [
+            55,
+            64,
+            70,
+            114
+          ],
+          "targetBox": [
+            220,
+            256,
+            280,
+            456
+          ],
+          "resampling": "Pillow.Image.Resampling.LANCZOS",
+          "insertAlphaMinimum": 128,
+          "baseAlphaExact": true,
+          "outsideBoxPixelsExact": true,
+          "changedPixels": 8111,
+          "insertInputPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-precise-correction-input-v1.png"
+        },
+        "generatedPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-post-local-composite-input-v1.png",
+        "outputPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-post-local-composite-repaired-v1.png",
+        "verdict": "held-independent-fidelity-review-pending",
+        "visualEvidenceViewed": "Source/prior/local component comparison inspected; altered post shading still requires independent fidelity review."
+      },
+      "sourceSize": [
+        70,
+        114
+      ]
+    },
+    {
+      "decodedRgbaSha256": "867b4dc9569220985c79320571ee12cb046a6a1bdb7503b5d05778cecdedcae4",
+      "generatedSha256": "12e5fd5e465f09a324ee12aa3856b23357a77116efe03a825e5385ee4f90319d",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit.\nAsset type: EnvHD faithful hand-painted environment texture, Crystal Palace cut369 foreground1 curved crest-to-valley railing.\nInput images: Image1 is the authoritative original reference for object identity, geometry, marks and exposure. Image2 is the current HD edit target. Edit Image2 only, using Image1 to correct the identified mismatch.\nPrimary request: Correct ONLY the first large gold-green fitting on the upper-right slope immediately after the central valley. Image2 wrongly makes it a box-shaped lantern. Image1 shows a rounded irregular hollow curved shell/profile: restore its curved open silhouette, original dark interior opening, uneven shoulders and source-supported muted gold/green shading. Do not copy the square lantern geometry from other Crystal Palace cuts. Keep the other fittings, full crest-to-valley band, rail curve, segmented surface colours, all fitting positions and overall lighting unchanged. No added petals, gemstone, lamp glow, filigree or new components.\nStyle: restrained hand-painted modern HD environment art; preserve existing painted quality and original game intent.\nCanvas: exact full original canvas width:height 186:86 (2.16279070 aspect ratio). Keep this full canvas and all relative feature positions. Fill the complete frame without recentering, added margins, crop, inset, padding or change of perspective.\nTransparency: actual transparent background around the exact source silhouette and holes; preserve all original transparency. No black painted backdrop, checkerboard, scene background, text, watermark, border or labels.\nInvariants: change only the requested features; all other geometry, layout and material colours remain unchanged. Image1 always controls ambiguous details; do not invent structure from low-resolution marks.",
+      "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+      "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/867b4dc9569220985c79320571ee12cb046a6a1bdb7503b5d05778cecdedcae4/image-v1.png",
+      "parentOutputSha256": "28f4c958de361c6d317f81d244914f9273fce75ce3e21bdb926a18477cb8d90c",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "e1b3176346f070ca8d9ecf851e766d6994ac34f91d4256cd196708b85c5d503b:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "6c3c7ce77f9df04961e6af766c118201cca2898c47e48871dc707e6a2485f3df",
+          "size": 996
+        },
+        {
+          "index": 1,
+          "sha256": "2a5f03589fde010187972fb4b62fc8091a08533cdf341d8f5e9b0fe4b197e46f",
+          "size": 4044
+        },
+        {
+          "index": 2,
+          "sha256": "9cab1796221cd0a4a9286b01b965ec6819affdef3346b92061d97bef529a9d57",
+          "size": 2964
+        },
+        {
+          "index": 3,
+          "sha256": "c1062d5ad37563afb2120298b0b58ba44d1666a8fc728a2d234e933160569f1f",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "360532d633d746cc6b491d979360ce27602d9b4b9fb8f3e524f1efe1548642f9",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "f47445d6dd48e02bb52fcabfafea9e6179b79af40a4dbc8cead501ca3664cec2",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "d0e5db651acfb6a0ffcc7d4fe9143f79d457b8e4b804b1f01ebbbd24d6df9c3e",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "728ca51dfdb6ff8fe36ee44950136686cba82d8beb59eaf017e06b4136345a41",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "c5cbcec298f6940728ada52bf61fe3411cefc38ca3ac293e7ecc4b6875a25563",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "3b89d7a97e2ef68a4a7359de0cc5364cda6ddc8bb1d9a2667988575c8f358280",
+          "size": 66080
+        },
+        {
+          "index": 10,
+          "sha256": "4640d9c66f9b26e2a67844569021cbaa3bb48557df5fe5fd9fc931dc6a4ee487",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "Crystal Palace",
+      "representativeCut": 369,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 62144,
+      "paintedGapPixelsExtended": 4205,
+      "paintedUncoveredSourcePixels": 3694,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 160,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "outputSha256": "7580be5db2470fcf95ee675baa63cc2cdf7bd9f741dd7a8f996fa378f56e768f",
+      "sourceSize": [
+        186,
+        86
+      ],
+      "targetSize": [
+        744,
+        344
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/867b4dc9569220985c79320571ee12cb046a6a1bdb7503b5d05778cecdedcae4/draft-precise-correction-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/867b4dc9569220985c79320571ee12cb046a6a1bdb7503b5d05778cecdedcae4/draft-precise-correction-repaired-v1.png",
+      "verdict": "held-independent-fidelity-review-pending",
+      "visualEvidenceViewed": "Raw generated images and all five passing repaired comparisons/static placements inspected. Not native gameplay."
+    },
+    {
+      "decodedRgbaSha256": "7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957",
+      "generatedSha256": "23d86144fe271c946400c6cd43f998c4fff1e3d425356670adea6d1a96395044",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit.\nAsset type: EnvHD faithful hand-painted environment texture, Crystal Palace cut369 foreground0 descending railing.\nInput images: Image1 is the authoritative original reference for object identity, geometry, marks and exposure. Image2 is the current HD edit target. Edit Image2 only, using Image1 to correct the identified mismatch.\nPrimary request: Correct only the repeated fittings along the descending diagonal rail, including the tall cropped fitting at the upper-left. Image2 made them repeated square lantern frames. Restore the individualized curved hollow forms shown in Image1: each has its own rounded irregular profile, source-shaped dark opening and muted green/gold edge, with unequal sizes matching the reference. Keep exactly the source fitting count, positions, occupied areas, slope and gaps. Do not invent uniform rectangular boxes, new petals, elaborate flowers, lamps or glowing centres. Preserve the rest of the diagonal green rail, thin trim, brown-grey wall below, crop and exposure unchanged.\nStyle: restrained hand-painted modern HD environment art; preserve existing painted quality and original game intent.\nCanvas: exact full original canvas width:height 82:98 (0.83673469 aspect ratio). Keep this full canvas and all relative feature positions. Fill the complete frame without recentering, added margins, crop, inset, padding or change of perspective.\nTransparency: actual transparent background around the exact source silhouette and holes; preserve all original transparency. No black painted backdrop, checkerboard, scene background, text, watermark, border or labels.\nInvariants: change only the requested features; all other geometry, layout and material colours remain unchanged. Image1 always controls ambiguous details; do not invent structure from low-resolution marks.",
+      "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+      "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957/image-v1.png",
+      "parentOutputSha256": "046e45ae852b042205db85dee645cf6b1d2c207b670b496c7b280437330096b1",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "e1b3176346f070ca8d9ecf851e766d6994ac34f91d4256cd196708b85c5d503b:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "6c3c7ce77f9df04961e6af766c118201cca2898c47e48871dc707e6a2485f3df",
+          "size": 996
+        },
+        {
+          "index": 1,
+          "sha256": "2a5f03589fde010187972fb4b62fc8091a08533cdf341d8f5e9b0fe4b197e46f",
+          "size": 4044
+        },
+        {
+          "index": 2,
+          "sha256": "9cab1796221cd0a4a9286b01b965ec6819affdef3346b92061d97bef529a9d57",
+          "size": 2964
+        },
+        {
+          "index": 3,
+          "sha256": "c1062d5ad37563afb2120298b0b58ba44d1666a8fc728a2d234e933160569f1f",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "360532d633d746cc6b491d979360ce27602d9b4b9fb8f3e524f1efe1548642f9",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "f47445d6dd48e02bb52fcabfafea9e6179b79af40a4dbc8cead501ca3664cec2",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "d0e5db651acfb6a0ffcc7d4fe9143f79d457b8e4b804b1f01ebbbd24d6df9c3e",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "728ca51dfdb6ff8fe36ee44950136686cba82d8beb59eaf017e06b4136345a41",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "c5cbcec298f6940728ada52bf61fe3411cefc38ca3ac293e7ecc4b6875a25563",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "3b89d7a97e2ef68a4a7359de0cc5364cda6ddc8bb1d9a2667988575c8f358280",
+          "size": 66080
+        },
+        {
+          "index": 10,
+          "sha256": "4640d9c66f9b26e2a67844569021cbaa3bb48557df5fe5fd9fc931dc6a4ee487",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "Crystal Palace",
+      "representativeCut": 369,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 34832,
+      "paintedGapPixelsExtended": 360,
+      "paintedUncoveredSourcePixels": 247,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 25,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "outputSha256": "75878ea679073f8ad7e954161bb7978ac932923574505d259b17b2a46137cd63",
+      "sourceSize": [
+        82,
+        98
+      ],
+      "targetSize": [
+        328,
+        392
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957/draft-precise-correction-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/7e14ff8026b6a775da1bf536ff031cd1c9a4be474d3cb95aaf5f4a12a2444957/draft-precise-correction-repaired-v1.png",
+      "verdict": "held-independent-fidelity-review-pending",
+      "visualEvidenceViewed": "Raw generated images and all five passing repaired comparisons/static placements inspected. Not native gameplay."
+    },
+    {
+      "decodedRgbaSha256": "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
+      "generatedSha256": "d8204d484cf0a524eea951ed7ff5bb3c2dd1c051ceb7d970f0c9fc1d158bdd28",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: precise-object-edit.\nAsset type: EnvHD faithful hand-painted environment texture, Twin Castle cut222 foreground8 dim curved night balcony.\nInput images: Image1 is the authoritative original reference for object identity, geometry, marks and exposure. Image2 is the current HD edit target. Edit Image2 only, using Image1 to correct the identified mismatch.\nPrimary request: Correct only the brightness and material treatment of the small teal round fittings and the top cap/trim. Match the dim night exposure in Image1: small soft low-contrast muted teal round fittings, subtly readable edges and subdued brown-brass cap. Image2 has shiny jewel sockets and bright crisp gold trim: remove the jewel-like facets, bright specular reflections and strong polished gold. Retain the original exact fittings' positions/count, curve, thin vertical divisions, dark brown wall values, texture and contour. Do not introduce fleur-de-lis, new decoration, glow, extra sockets or daylight exposure.\nStyle: restrained hand-painted modern HD environment art; preserve existing painted quality and original game intent.\nCanvas: exact full original canvas width:height 102:74 (1.37837838 aspect ratio). Keep this full canvas and all relative feature positions. Fill the complete frame without recentering, added margins, crop, inset, padding or change of perspective.\nTransparency: actual transparent background around the exact source silhouette and holes; preserve all original transparency. No black painted backdrop, checkerboard, scene background, text, watermark, border or labels.\nInvariants: change only the requested features; all other geometry, layout and material colours remain unchanged. Image1 always controls ambiguous details; do not invent structure from low-resolution marks.",
+      "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+      "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/image-v1.png",
+      "parentOutputSha256": "64a2d2dc79e5a453a98bc733f4b89cb6064f63ca7d195e0a5f8366c078d7568e",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "111e8b8d3783750c4de5226fb39ec4a7640ec8e53960331654b2f01f1185b675:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "e23d5282163db4d2729f9f6f63574d9ee4e0ac232b2111189b47ae8af8623460",
+          "size": 996
+        },
+        {
+          "index": 1,
+          "sha256": "a1a40c3967d4c216ef693fa917955f18b9e151ccdce9e7ce8452e93438c2c823",
+          "size": 3660
+        },
+        {
+          "index": 2,
+          "sha256": "35fef56b2f356c3c6656b68b4cc4e7d2a7d9b554eeb45ed9f19264a11459989f",
+          "size": 2756
+        },
+        {
+          "index": 3,
+          "sha256": "8d5036689601d034435e88b070b144643e2da08dcb8c4143263afcc3ee288dd6",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "036a368b511c99a5707a27f4cb037547554f6cfa22a172e8632e4fd685b503a4",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "75e7beee53a5f6765b4ef47b40493cdd611f997c036cd74859d2fd76667f0c04",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "c70291d5b8636ce3996b52949f13ac0420ff3faa282a161a945d2677956841bf",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "42eeec2adf6a91ead5adba3b131a7c6629266f4bf0134154c68354f85388900a",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "a56e907b8d377b6a9c1e3abb40ea6d07488a51e6f4ed3481ffb2628f1251908b",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "9a44d441383ff830119d6d857290b236e3866ab9fc7d5af7e522185ffd5a3296",
+          "size": 33312
+        },
+        {
+          "index": 10,
+          "sha256": "b5c54a9d45c1750a087364a19eaa651265c9ef5318a713e96077c4b141640e0c",
+          "size": 33312
+        },
+        {
+          "index": 11,
+          "sha256": "f68570130ba4abf8b42b0f76c45c2a61069b246face266e10da142deebd7bcbf",
+          "size": 66080
+        },
+        {
+          "index": 12,
+          "sha256": "31b58f0fcb603f35f0108da5a474f546a70cc4ccbdd2e9d473e986583ac1d8d3",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "Twin Castle",
+      "representativeCut": 222,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 43056,
+      "paintedGapPixelsExtended": 4412,
+      "paintedUncoveredSourcePixels": 4052,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 221,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "outputSha256": "b7aa1b22d7963db5354f5832aaf6cacab49a66022b345c9bd61f0875eeb56793",
+      "sourceSize": [
+        102,
+        74
+      ],
+      "targetSize": [
+        408,
+        296
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-precise-correction-input-v1.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-precise-correction-repaired-v1.png",
+      "verdict": "held-independent-fidelity-review-pending",
+      "visualEvidenceViewed": "Raw generated images and all five passing repaired comparisons/static placements inspected. Not native gameplay."
+    }
+  ]
+}
