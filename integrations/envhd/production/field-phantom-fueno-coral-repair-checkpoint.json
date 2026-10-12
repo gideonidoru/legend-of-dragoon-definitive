@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "scope": "Three existing source revisions; two original-art development clearances and one unchanged structural hold. No new source jobs.",
+  "newUniqueSourceImages": 0,
+  "newBuiltinImageCalls": 3,
+  "prospectiveManifest": "field-bespoke-phantom-fueno-reviewed-selection.json",
+  "prospectiveManifestSha256": "8388460d16c4486b5a123b8e04517dfaabe7fae74ac4819db05065e9ecf0ce81",
+  "independentCodeReviewPending": true,
+  "runtimeSelectionChanged": false,
+  "currentSelectedFields": 4960,
+  "currentSelectedFieldPaintings": 74,
+  "knownStaticRemaining": 203,
+  "entries": [
+    {
+      "sourceKey": "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
+      "disposition": "Original-art CLEAR development; protocol/integration pending",
+      "artReview": "field-phantom-weathering-local-art-review.json"
+    },
+    {
+      "sourceKey": "a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f",
+      "disposition": "Original-art CLEAR development; integration pending",
+      "artReview": "field-fueno-v3-art-review.json"
+    },
+    {
+      "sourceKey": "da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5",
+      "disposition": "HELD structural gate",
+      "reason": "Painted cutout changed the source canvas aspect ratio",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5/draft-landmarks-input-v3.png",
+      "generatedSha256": "a29d03fe64db614da4a4d2f5215d278bc81c83be300e7bf5b8a8533ca019f731",
+      "prompt": "Use case: source-faithful high-definition game foreground texture restoration. Image1 is the authoritative original source enlarged with nearest-neighbor sampling; Image2 is its COMPLETE original game scene and controls material role and lighting. Repaint ONLY Image1 into continuous restrained hand-painted modern game art compatible with Skurfa HD environments. Keep the exact full Image1 canvas, aspect, framing, occupied footprint, cropped contacts, perspective, existing features, negative space and original color/value groups. Do not recenter, pad, extend or complete cropped shapes. Original source controls geometry, branch positions and faint marks; add fine surface finish without inventing new geometry or interpreting ambiguous marks as readable symbols. Original black material remains dark occupied material. Real transparency only where source is missing. No scene, background, comparison, labels, border, writing, letters, emblem, glow or new objects. Exactly one finished isolated texture. Undersea Cavern cut305 foreground1, original64:18 very wide strip, request1280x360. This is a LOW connected coral/mineral rim above the right pool in the complete scene. Source left16nativepixels holds muted pink/lilac uneven small growth; source right48nativepixels holds subdued grey/green pale interconnected curving bands with narrow deep-green recesses. Follow the actual pale paths and their turns/joins from Image1, not a generic coral garden. Pale bands are a shallow continuous encrusted surface viewed at this angle, not a forest of new knobbly upright fingers, pillars or stalks. Preserve their original number, directions and heights and the flat cropped bottom/right contacts. No enlarged coral branches, tall white caps, rugged masonry, white rim lighting or extra decorative surface growth. Keep low contrast and original underwater exposure. Fine quiet mineral wear only, softly shaded shallow pale band relief, exact existing dark gaps and pink patch footprint. Wide64:18 canvas must contain the same entire strip.\n",
+      "runtimeSelected": false
+    }
+  ],
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesAndPrivatePathsExcluded": true
+}

@@ -166,20 +166,49 @@ class PaintedFieldTests(unittest.TestCase):
         self.candidate['generatedBy']=verify.components.PROVENANCE;self.save()
         with self.assertRaisesRegex(ValueError,'provenance'):self.preflight()
 
-    def local_patch_fixture(self):
+    def local_patch_fixture(self,rgb=False):
+        helper=verify.rgb_local_patch if rgb else verify.local_patch
+        path='scripts/repair-envhd-painted-rgb-local-patch.py' if rgb else 'scripts/repair-envhd-painted-local-patch.py'
+        pin=verify.RGB_LOCAL_PATCH_SHA256 if rgb else verify.LOCAL_PATCH_SHA256
         prefix=self.raw_path.parent
         base=prefix/'painted-base-input-v1.png';base.write_bytes(self.raw_path.read_bytes())
-        insert=prefix/'painted-patch-input-v1.png';Image.new('RGBA',(4,4),(75,80,50,255)).save(insert)
-        composite,operation=verify.local_patch.replay(self.source,base.read_bytes(),insert.read_bytes(),[0,0,1,1])
+        insert=prefix/'painted-patch-input-v1.png';Image.new('RGB' if rgb else 'RGBA',(4,4),(75,80,50) if rgb else (75,80,50,255)).save(insert)
+        composite,operation=helper.replay(self.source,base.read_bytes(),insert.read_bytes(),[0,0,1,1])
         composite.save(self.raw_path)
         painted,cutout=verify.repair.repair(self.source,composite);painted.save(self.output_path)
-        recorded=dict(operation,algorithmPath='scripts/repair-envhd-painted-local-patch.py',algorithmSha256=verify.LOCAL_PATCH_SHA256,
+        recorded=dict(operation,algorithmPath=path,algorithmSha256=pin,
             **{role+field:value for role,path in [('base',base),('patch',insert)]
                for field,value in [('InputPath',path.relative_to(self.root).as_posix()),('GeneratedBy','builtin-imagegen'),('Prompt','Source-faithful generated fixture')]})
-        self.candidate.update(cutout,generatedSize=list(composite.size),localPatchTransfer=recorded,generatedBy=verify.local_patch.PROVENANCE,
+        self.candidate.update(cutout,generatedSize=list(composite.size),localPatchTransfer=recorded,generatedBy=helper.PROVENANCE,
             generatedSha256=verify.batch.terrain.digest(self.raw_path.read_bytes()),outputSha256=verify.batch.terrain.digest(self.output_path.read_bytes()))
         self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save()
         return base,insert
+
+    def test_rgb_local_patch_replays_original_rgb_with_distinct_provenance(self):
+        self.local_patch_fixture(rgb=True);self.assertEqual(1,len(self.preflight()[0]))
+        self.candidate['generatedBy']=verify.local_patch.PROVENANCE;self.save()
+        with self.assertRaisesRegex(ValueError,'local patch identity'):self.preflight()
+
+    def test_rgb_local_patch_nested_repack_receipt_cannot_be_forged(self):
+        self.local_patch_fixture(rgb=True);self.candidate['localPatchTransfer']['rgbPatchRepack']['rgbPixelsExact']=False;self.save()
+        with self.assertRaisesRegex(ValueError,'exact recorded transfer'):self.preflight()
+
+    def test_rgb_local_patch_original_pixels_cannot_be_rehashed_into_selection(self):
+        _,insert=self.local_patch_fixture(rgb=True);Image.new('RGB',(4,4),(10,20,30)).save(insert)
+        self.candidate['localPatchTransfer']['patchInputSha256']=verify.batch.terrain.digest(insert.read_bytes());self.save()
+        with self.assertRaisesRegex(ValueError,'exact recorded transfer'):self.preflight()
+
+    def test_rgb_local_patch_cannot_change_wrapper_identity(self):
+        self.local_patch_fixture(rgb=True);self.candidate['localPatchTransfer']['algorithmPath']='scripts/unknown.py';self.save()
+        with self.assertRaisesRegex(ValueError,'local patch identity'):self.preflight()
+
+    def test_rgb_local_patch_rejects_top_level_combined_operations(self):
+        self.local_patch_fixture(rgb=True);self.candidate['sourceRgbContainerRepack']={};self.save()
+        with self.assertRaises(ValueError):self.preflight()
+
+    def test_rgb_local_patch_missing_recipe_cannot_claim_its_provenance(self):
+        self.candidate['generatedBy']=verify.rgb_local_patch.PROVENANCE;self.save()
+        with self.assertRaisesRegex(ValueError,'provenance'):self.preflight()
 
     def test_local_patch_recipe_replays_and_requires_distinct_provenance(self):
         self.local_patch_fixture();self.assertEqual(1,len(self.preflight()[0]))

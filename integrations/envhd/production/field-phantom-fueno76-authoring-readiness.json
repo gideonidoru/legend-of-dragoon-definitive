@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "priorAuthoringCommit": "12a7c20b4564df151cdbb61dded9df8dd11881a3",
+  "scope": "Two original-art-cleared repairs prepared; code/provenance review pending. No runtime selection or package/publication change.",
+  "prospectivePaintings": 76,
+  "prior74RecipesExact": true,
+  "knownCurrentStaticRemaining": 203,
+  "currentSelectedFields": 4960,
+  "currentSelectedFieldPaintings": 74,
+  "newUniqueSourceImages": 0,
+  "newBuiltinImageCalls": 3,
+  "helperPins": {
+    "rgbWrapper": {
+      "path": "scripts/repair-envhd-painted-rgb-local-patch.py",
+      "sha256": "d34c70fd79c7d9c0566f6cec8a34f928420f4436bd123f97333385034ffe1cb5"
+    },
+    "originalLocalPatch": {
+      "path": "scripts/repair-envhd-painted-local-patch.py",
+      "sha256": "a775b1e22b9b6e24ad93e72fe4f0bee0279be524bcb3e80ca1206a499d3eee07"
+    },
+    "rgbRepack": {
+      "path": "scripts/repack-envhd-painted-rgb.py",
+      "sha256": "fce3e10260df107249fe85ec0583b3edbf0581c9f5ecc21dc1c94f77508a83ba"
+    },
+    "cutout": {
+      "path": "scripts/repair-envhd-painted-cutout.py",
+      "sha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a"
+    },
+    "verifier": {
+      "path": "scripts/verify-envhd-painted-fields.py",
+      "sha256": "1096168f469f62c2929f92acbee1bc534750ad3b955d8df7fcc6075ffd0fcd21"
+    }
+  },
+  "checks": {
+    "wrapperTests": {
+      "privateLogSha256": "2152a2a11a3d95d85b8a3be4620c9e8f16062cd8513d379ee425ab4ed8ac9269",
+      "passedCount": 6,
+      "result": "PASS"
+    },
+    "authoringFixtures": {
+      "privateLogSha256": "e79023077c1993615485e61b993ef78919b082182313da194b442618bc8e64d6",
+      "passedCount": 74,
+      "result": "PASS"
+    },
+    "sourceBoundPreflight75": {
+      "privateLogSha256": "725696fa4c1a150a0f8970b76ce4109f79e1e96bbac0e2a712799f3ae90c3651",
+      "passedCount": 75,
+      "result": "PASS"
+    },
+    "sourceBoundPreflight76": {
+      "privateLogSha256": "0080c58f360b1c24b6f461aafa35b386a3a8ad7974d4354e2cebc005ef91bb40",
+      "passedCount": 76,
+      "result": "PASS"
+    }
+  },
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "independentCodeReviewPending": true,
+  "originalSourcesAndPrivatePathsExcluded": true
+}
