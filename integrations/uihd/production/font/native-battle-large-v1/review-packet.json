@@ -1,0 +1,1169 @@
+{
+  "format": 1,
+  "name": "Native battle large and baked menu sprite redraw v1",
+  "status": "development candidate; independent art review pending",
+  "authoredSprites": 23,
+  "requiredMeaningfulSprites": 23,
+  "artAccepted": 0,
+  "runtimeSelected": 0,
+  "deviceAccepted": 0,
+  "counts": {
+    "largeDamageDigits": 10,
+    "bigNumberSharedDigitAliases": 10,
+    "additionalBigNumberCells": 3,
+    "labels": 2,
+    "meaningfulBakedMenuWords": 8,
+    "rawMenuMetricEntries": 9,
+    "nonFontRawMetricEntries": 1
+  },
+  "sources": [
+    {
+      "path": "files/SECT/DRGN0.BIN/4113/0",
+      "sha256": "f2c1e95184598a2db058a078affd4f9e3c9cbea749f90843e1d665b682ca52e4",
+      "purpose": "indexed page and/or alternate native CLUT; unmodified source not distributed"
+    },
+    {
+      "path": "files/SECT/DRGN0.BIN/4113/1",
+      "sha256": "d3aeb37db7ae1c3951933ee1dd89c1537c0f6bab6b29a926e25a14bc2c41100d",
+      "purpose": "indexed page and/or alternate native CLUT; unmodified source not distributed"
+    },
+    {
+      "path": "files/SECT/DRGN0.BIN/4113/2",
+      "sha256": "b2a7ea197b475dde056a444bc217f3ea102cf2c3243ed9da7b3cc112d3eeffef",
+      "purpose": "indexed page and/or alternate native CLUT; unmodified source not distributed"
+    },
+    {
+      "path": "files/SECT/DRGN0.BIN/4113/3",
+      "sha256": "e9cf1cea7ae493b7c6575150c0a7743319e210f1057e5bfec9245da9dbaf5fea",
+      "purpose": "indexed page and/or alternate native CLUT; unmodified source not distributed"
+    },
+    {
+      "path": "files/SECT/DRGN0.BIN/4113/4",
+      "sha256": "578f8eecd5377a6be20091248500f4a2908d316ceb166b460dd14e598654c162",
+      "purpose": "indexed page and/or alternate native CLUT; unmodified source not distributed"
+    },
+    {
+      "path": "files/SECT/DRGN0.BIN/4113/5",
+      "sha256": "2cca72ddc1e65d9f26e4a4adabc84fb51081515249ec093505783fd4f98b5990",
+      "purpose": "indexed page and/or alternate native CLUT; unmodified source not distributed"
+    }
+  ],
+  "attribution": "Custom Definitive vector artwork reconstructed against the original Legend of Dragoon battle UI. Original game design attribution remains Sony Computer Entertainment; engine extraction and metric conventions from Severed Chains contributors. Original extracted page and diagnostic source crops stay private.",
+  "paletteContract": {
+    "transparentIndex": 0,
+    "faceIndex": 1,
+    "bevelIndices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "darkOutlineIndex": 15,
+    "svgFill": "#fff is geometry diagnostic; data-palette-index retains live CLUT identity",
+    "ordering": "15 outer silhouette then14..2 inset curved bevel bands then1 face. Ten digits have bounded upper-left offset and separate index5 right/index9 lower bevel masks; symbols and words unchanged."
+  },
+  "authoringMethod": "Individually hand-composed family-native M/L/Q/Z skeletons; offline headless Java2D stroked-area expansion and continuous quadratic outline reconstruction. No host font, bitmap outline tracing or default-font digit resampling.",
+  "glyphs": [
+    {
+      "designIntent": "Individually reconstructed tall native 0; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow. Directional indexed bevel: bright upper-left face, index5 right edge and index9 lower edge; retain narrow digit metrics.",
+      "path": "large-0.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        5,
+        9
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "large-0",
+      "label": "0",
+      "crop": [
+        16,
+        40,
+        8,
+        16
+      ],
+      "sha256": "88301af3cf44ff4c00a97d344d39f5f870486ba5895dab6d989979c5ad7e390c",
+      "sourceIndexCropSha256": "4c02fded1cad6f364711bf8276ddc80ce4dff4a1a4370d6c1fe8fa91e8418157",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 16,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "1c43e977c68fe002d94b81cc1d661451f4c269146120d70bc21009bbbc7e9f1f",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleHud.type3FloatingDigits[0]",
+        "BattleUiParts.bigNumber[0]"
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed tall native 1; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow. Directional indexed bevel: bright upper-left face, index5 right edge and index9 lower edge; retain narrow digit metrics.",
+      "path": "large-1.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        5,
+        9
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "large-1",
+      "label": "1",
+      "crop": [
+        24,
+        40,
+        8,
+        16
+      ],
+      "sha256": "a677a0cfbd0a5d40be98d7b769d266fd19607de2ffc55c8fbe13269eeaa3e4e1",
+      "sourceIndexCropSha256": "6b8fe39b259099d8a78eb112d9b6969a020b4d960ab637503d138e50a546f827",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 24,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "ff66a48e0cd748682cb1e0e4364403cd0c1ba65ce289c752d11d5812aaede68d",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleHud.type3FloatingDigits[1]",
+        "BattleUiParts.bigNumber[1]"
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed tall native 2; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow. Directional indexed bevel: bright upper-left face, index5 right edge and index9 lower edge; retain narrow digit metrics.",
+      "path": "large-2.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        5,
+        9
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "large-2",
+      "label": "2",
+      "crop": [
+        32,
+        40,
+        8,
+        16
+      ],
+      "sha256": "95b71eac9a08ef53ce374748310ac56fcf2147f61141636202f40b7f5a5fc448",
+      "sourceIndexCropSha256": "abc5d0b5dbb5e1f554d697d5c195f02d3b89e799453e04b9612f72242f2cb3ab",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 32,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "a03a21b6773877bf0cd1e9142148d3768de0dffb88fe7603cb3c9f44331f0bee",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleHud.type3FloatingDigits[2]",
+        "BattleUiParts.bigNumber[2]"
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed tall native 3; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow. Directional indexed bevel: bright upper-left face, index5 right edge and index9 lower edge; retain narrow digit metrics.",
+      "path": "large-3.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        5,
+        9
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "large-3",
+      "label": "3",
+      "crop": [
+        40,
+        40,
+        8,
+        16
+      ],
+      "sha256": "372f1e29a0de5312d16d96d8527a5a30fe52c1168fb10219f623dddfffc13b72",
+      "sourceIndexCropSha256": "53e8c4ba8f3ba331d74c6dbb484b177388f643d755f0b724d95d80668d9d126c",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 40,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "402d4722aac6ae7a5ac782188259afd75ff7f3f6e354a836bfd2b76a1b88b44c",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleHud.type3FloatingDigits[3]",
+        "BattleUiParts.bigNumber[3]"
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed tall native 4; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow. Directional indexed bevel: bright upper-left face, index5 right edge and index9 lower edge; retain narrow digit metrics.",
+      "path": "large-4.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        5,
+        9
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "large-4",
+      "label": "4",
+      "crop": [
+        48,
+        40,
+        8,
+        16
+      ],
+      "sha256": "b5b1dbaac7485bebc7fd9da2867ad8b662a72d39dbafe3f3cc634ec3596a384d",
+      "sourceIndexCropSha256": "bd90bb6aaeb08617f7e677d635212e79dd653b0120f27f0a78afe0f78e414448",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 48,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "7495b8944ae94cfea34a085a0aecdd4ecae7cf917b621f210e2d83dfa942e123",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleHud.type3FloatingDigits[4]",
+        "BattleUiParts.bigNumber[4]"
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed tall native 5; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow. Directional indexed bevel: bright upper-left face, index5 right edge and index9 lower edge; retain narrow digit metrics.",
+      "path": "large-5.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        5,
+        9
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "large-5",
+      "label": "5",
+      "crop": [
+        56,
+        40,
+        8,
+        16
+      ],
+      "sha256": "499d1ca9471c4050fc1bcb226803a4eb8b75fde69d005a312c3a6fff7fc569cb",
+      "sourceIndexCropSha256": "6ec7a4e8db31625e0677cca372f5f5d4400d021b681cddd0d0b572b7c9fb2f0f",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 56,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "8627e91fa1276961e48c6bb5c6a2a10bd1d275399f8db639d80652a8fbabafa5",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleHud.type3FloatingDigits[5]",
+        "BattleUiParts.bigNumber[5]"
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed tall native 6; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow. Directional indexed bevel: bright upper-left face, index5 right edge and index9 lower edge; retain narrow digit metrics.",
+      "path": "large-6.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        5,
+        9
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "large-6",
+      "label": "6",
+      "crop": [
+        64,
+        40,
+        8,
+        16
+      ],
+      "sha256": "015e47b2cc2db361856e80dbe787cbf710eccd52863956f5cd29755be4b30128",
+      "sourceIndexCropSha256": "dbb37746ff42854cb82da7dcdf327acc4d97e838e669e2889a0056d2f65c430a",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 64,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "e5661d162113bb73425c29eddbfdf4e57e42a2ba022eff6a88c47d9dd51af55d",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleHud.type3FloatingDigits[6]",
+        "BattleUiParts.bigNumber[6]"
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed tall native 7; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow. Directional indexed bevel: bright upper-left face, index5 right edge and index9 lower edge; retain narrow digit metrics.",
+      "path": "large-7.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        5,
+        9
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "large-7",
+      "label": "7",
+      "crop": [
+        72,
+        40,
+        8,
+        16
+      ],
+      "sha256": "f94578c2dcfe25aca8204f655cc38d919e4385390d0ca1b65caa8f2a8fdae9e0",
+      "sourceIndexCropSha256": "b0f6f1c54a7edcf9d74069043bf966d634726d9c55f1a234b9c2ca7ad4783aa9",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 72,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "4f10d096f9a82faeecaa09076ae7dbc4bfbd8ba2e10532f59a8fc9993a272424",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleHud.type3FloatingDigits[7]",
+        "BattleUiParts.bigNumber[7]"
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed tall native 8; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow. Directional indexed bevel: bright upper-left face, index5 right edge and index9 lower edge; retain narrow digit metrics.",
+      "path": "large-8.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        5,
+        9
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "large-8",
+      "label": "8",
+      "crop": [
+        80,
+        40,
+        8,
+        16
+      ],
+      "sha256": "485e11c0d78a5000594bfff2e5184a36d73d1c6ac1caefbfc390189408e35fe5",
+      "sourceIndexCropSha256": "7ed0cb9429866dc03c1833b66965fef580aa2554788a8901dd6c332a9ca61a27",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 80,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "3df61370db37d6628c4b94938ddc021294b8af9638598f1f0785b02a1c9a60f8",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleHud.type3FloatingDigits[8]",
+        "BattleUiParts.bigNumber[8]"
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed tall native 9; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow. Directional indexed bevel: bright upper-left face, index5 right edge and index9 lower edge; retain narrow digit metrics.",
+      "path": "large-9.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        5,
+        9
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "large-9",
+      "label": "9",
+      "crop": [
+        88,
+        40,
+        8,
+        16
+      ],
+      "sha256": "47797c347887891727c48ca7795fa699f0fdbe6f7a0e4600b98c776db74ee435",
+      "sourceIndexCropSha256": "4f2e5e83a3b1c9ae7aca4179e57412c659fb988797b83e73a8787252b0984c05",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 88,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "6d1676a274c52624d08947047c3f69d073ca1af9bfa3b6a8473d9147787ce1d4",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleHud.type3FloatingDigits[9]",
+        "BattleUiParts.bigNumber[9]"
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed tall native +; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow.",
+      "path": "symbol-plus.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "symbol-plus",
+      "label": "+",
+      "crop": [
+        96,
+        40,
+        8,
+        16
+      ],
+      "sha256": "a1748146f82a44b8164e8375b7c8737b13de9057fe35c410b44e2c2f52903990",
+      "sourceIndexCropSha256": "c4a937abe52c9e62fdafa5f5f964f5a61b582276212a43604d4a6dc525ce087d",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 96,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "aef5f4a0a8cbf318d7fa44dc3a80e441560d4a01e599caf9fbcab144b56ea645",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleUiParts.bigNumber[10]"
+      ],
+      "semanticEvidence": "SpTextEffect40 queues cell10 for +, then cell11 and12 as SP."
+    },
+    {
+      "designIntent": "Individually reconstructed tall native S; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow.",
+      "path": "symbol-S.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "symbol-S",
+      "label": "S",
+      "crop": [
+        104,
+        40,
+        8,
+        16
+      ],
+      "sha256": "b229fd556447008659f555cbd9f80832b5b1d667a14335905a5ec929689a775a",
+      "sourceIndexCropSha256": "02a9ca2532546b4667ed710085573b2e1656e0a9dc3ef59663c3e1d54a518bee",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 104,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "6bb84785b096608c61b98f754963e680e097869c184bf6b0cdbfc8841518ca5b",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleUiParts.bigNumber[11]"
+      ],
+      "semanticEvidence": "SpTextEffect40 queues cell10 for +, then cell11 and12 as SP."
+    },
+    {
+      "designIntent": "Individually reconstructed tall native P; preserve narrow battle proportions, continuous bowls/diagonals and indexed metallic face, bevel and dark outer shadow.",
+      "path": "symbol-P.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "symbol-P",
+      "label": "P",
+      "crop": [
+        112,
+        40,
+        8,
+        16
+      ],
+      "sha256": "fa891d9aeb234650216d23a1755c85ad0e07bdf0e4208165f6a787490881bde5",
+      "sourceIndexCropSha256": "ec448fa9945c779d6334b6367d4715dfb150f51be305af4b4bb841d3a43b0c94",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 112,
+        "v": 40,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "40eb661e24c4862f99adbfa59fc886966c96b9b05c1fad09d2c1a980f1322782",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate",
+      "aliases": [
+        "BattleUiParts.bigNumber[12]"
+      ],
+      "semanticEvidence": "SpTextEffect40 queues cell10 for +, then cell11 and12 as SP."
+    },
+    {
+      "designIntent": "Source-native lowercase points with narrower strokes and individually spaced p/o/i/n/t/s. Distinct i dot y4..5.1 and separated stem y7..11.2. Preserve logical32x16 crop and p descender.",
+      "path": "Points.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "Points",
+      "label": "points",
+      "crop": [
+        120,
+        40,
+        32,
+        16
+      ],
+      "sha256": "169bd62d93e1b6eb343c6809077689cdc5a213dbd1a6cc6c985bd8da97a1d383",
+      "sourceIndexCropSha256": "643d8759d0fd1c6f2c9df5fbda132cb360d682d53717780d003d0e9a3cf59428",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 120,
+        "v": 40,
+        "width": 32,
+        "height": 16
+      },
+      "sourceMetricsSha256": "cfb8e4cb774a116da24672d09994e952fdf0b20b117125d8f8ca392f6c2c8989",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate"
+    },
+    {
+      "designIntent": "Reconstruct native Miss casing, dedicated larger label proportions and indexed edge/shadow; no host or general UI font substitution.",
+      "path": "MISS.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 8,
+      "paletteFile": 4,
+      "id": "MISS",
+      "label": "Miss",
+      "crop": [
+        72,
+        128,
+        36,
+        16
+      ],
+      "sha256": "38c0fd1c929442a7265e56a1c2ef3acefad3dcb16f468cb6cb3255084dd587d1",
+      "sourceIndexCropSha256": "07ed3cdfdd51867abc51755ff3894e15cec0d85c48845997b289924015fd3642",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 72,
+        "v": 128,
+        "width": 36,
+        "height": 16
+      },
+      "sourceMetricsSha256": "fd66db6e69628e380e61c523b027c5e22e439fa0ae02156afcf20a0f48aba591",
+      "runtimeStatus": "existing native sprite source; HD runtime binding separate"
+    },
+    {
+      "designIntent": "Native condensed GUARD lettering with bespoke continuous bowls, diagonals and source-width placement; layered palette indices retain live CLUT colour.",
+      "path": "word-0.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 1,
+      "paletteFile": 2,
+      "id": "word-0",
+      "label": "GUARD",
+      "crop": [
+        48,
+        56,
+        32,
+        8
+      ],
+      "sha256": "2a720462294c06ee5629b1b7a5af95e10569e7cac3d8ffa95556b9f158e6fa6f",
+      "sourceIndexCropSha256": "1f6a77023b13a63954b718f276b685894aef55379151729dff9d3314c3a8a43f",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 48,
+        "v": 56,
+        "width": 32,
+        "height": 8
+      },
+      "sourceMetricsSha256": "c7dddb0bba28e41b8391f02d140862d4964543ab8243ebbedca816f2ce017c6e",
+      "runtimeStatus": "baked quad currently constructed but unused by RetailBattleAction label draw"
+    },
+    {
+      "designIntent": "Native condensed DRAGOON lettering with bespoke continuous bowls, diagonals and source-width placement; layered palette indices retain live CLUT colour.",
+      "path": "word-1.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 0,
+      "paletteFile": 1,
+      "id": "word-1",
+      "label": "DRAGOON",
+      "crop": [
+        144,
+        88,
+        40,
+        8
+      ],
+      "sha256": "afafd0130a7ae6a256ac6606dd4d8976c5dfd286233060aa9c076d85da505bae",
+      "sourceIndexCropSha256": "9e5f635445d989117cf0f08016f48f19b9e43b7a646c940995b7705f3af6a0f2",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 144,
+        "v": 88,
+        "width": 40,
+        "height": 8
+      },
+      "sourceMetricsSha256": "a8b55b713145b2159e5dbe140824cd413bd39806d7b4bd38b22a306b4fa13a0f",
+      "runtimeStatus": "baked quad currently constructed but unused by RetailBattleAction label draw"
+    },
+    {
+      "designIntent": "Native condensed MAGIC lettering with bespoke continuous bowls, diagonals and source-width placement; layered palette indices retain live CLUT colour.",
+      "path": "word-2.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 14,
+      "paletteFile": 0,
+      "id": "word-2",
+      "label": "MAGIC",
+      "crop": [
+        144,
+        72,
+        32,
+        8
+      ],
+      "sha256": "639089048fdaa0be68ed5610dd08b7d0632c7bd23e656b7dd6b5e24471f93036",
+      "sourceIndexCropSha256": "efadcba2711b98c6414a56b6dff923cb14ce35d188af83159df8212d5e9afe29",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 144,
+        "v": 72,
+        "width": 32,
+        "height": 8
+      },
+      "sourceMetricsSha256": "26882064a77f4b49823719a5416a95d12dfc19e4e55f1ea66c58c9322a49d59c",
+      "runtimeStatus": "baked quad currently constructed but unused by RetailBattleAction label draw"
+    },
+    {
+      "designIntent": "Native condensed ATTACK lettering with bespoke continuous bowls, diagonals and source-width placement; layered palette indices retain live CLUT colour.",
+      "path": "word-3.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 1,
+      "paletteFile": 2,
+      "id": "word-3",
+      "label": "ATTACK",
+      "crop": [
+        16,
+        56,
+        32,
+        8
+      ],
+      "sha256": "09d209df83bfd8278a6012c15a2bd2af85006c8cf157714d79521ccae687e9ef",
+      "sourceIndexCropSha256": "97d40040414b4dc40904d0d3258dfbc65969313e38e11a917a7bc3423ae5122e",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 16,
+        "v": 56,
+        "width": 32,
+        "height": 8
+      },
+      "sourceMetricsSha256": "82bc14dae7208edeaf84423e35101ef88b387257ffb855014e45246a828fe5dc",
+      "runtimeStatus": "baked quad currently constructed but unused by RetailBattleAction label draw"
+    },
+    {
+      "designIntent": "Native condensed ITEMS lettering with bespoke continuous bowls, diagonals and source-width placement; layered palette indices retain live CLUT colour.",
+      "path": "word-4.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 1,
+      "paletteFile": 2,
+      "id": "word-4",
+      "label": "ITEMS",
+      "crop": [
+        144,
+        64,
+        32,
+        8
+      ],
+      "sha256": "47951b629f9d15af2e8898ffca7104e53fbbaa1bafecb087fede37ddc5f8ede9",
+      "sourceIndexCropSha256": "5e6b809e2bd7da0f42e216faba05357913f5aad87be0e2f636da842839b62fa3",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 144,
+        "v": 64,
+        "width": 32,
+        "height": 8
+      },
+      "sourceMetricsSha256": "36768da1a893fdbab711382eca6e41ad0389895b48f83a8dbe6778f9584ecd0a",
+      "runtimeStatus": "baked quad currently constructed but unused by RetailBattleAction label draw"
+    },
+    {
+      "designIntent": "Native condensed ESCAPE lettering with bespoke continuous bowls, diagonals and source-width placement; layered palette indices retain live CLUT colour.",
+      "path": "word-5.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 1,
+      "paletteFile": 2,
+      "id": "word-5",
+      "label": "ESCAPE",
+      "crop": [
+        144,
+        80,
+        32,
+        8
+      ],
+      "sha256": "53890d5c30343060f89af071a317db2949f1b5ef163f34d30ddb22c15f04eae5",
+      "sourceIndexCropSha256": "567690a97c594a2beff522853c745bfc14a880305caa6574384bb3ffc2789430",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 144,
+        "v": 80,
+        "width": 32,
+        "height": 8
+      },
+      "sourceMetricsSha256": "c78a36f9ed4567db1f2919c0aacfd67b1c67403809ee247e16e54eefd8a089b7",
+      "runtimeStatus": "baked quad currently constructed but unused by RetailBattleAction label draw"
+    },
+    {
+      "designIntent": "Native condensed SPECIAL lettering with bespoke continuous bowls, diagonals and source-width placement; layered palette indices retain live CLUT colour.",
+      "path": "word-6.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 15,
+      "paletteFile": 0,
+      "id": "word-6",
+      "label": "SPECIAL",
+      "crop": [
+        144,
+        104,
+        40,
+        8
+      ],
+      "sha256": "d05a2dcd034ffbff187930bb1d375ec09238d63b3180861eee11aec5a89d418d",
+      "sourceIndexCropSha256": "cd6cb202a38c796393c7f1e67a4b2bf3bd6a46b1b0c7135f7f5c538a0e9a6e43",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 144,
+        "v": 104,
+        "width": 40,
+        "height": 8
+      },
+      "sourceMetricsSha256": "2fc4015cfa9aafd5312d9ba1b513b9b890e463734b08a4b63ff7ea4b1e493d89",
+      "runtimeStatus": "baked quad currently constructed but unused by RetailBattleAction label draw"
+    },
+    {
+      "designIntent": "Native condensed D-ATTACK lettering with bespoke continuous bowls, diagonals and source-width placement; layered palette indices retain live CLUT colour.",
+      "path": "word-8.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "paletteRow": 14,
+      "paletteFile": 0,
+      "id": "word-8",
+      "label": "D-ATTACK",
+      "crop": [
+        144,
+        96,
+        40,
+        8
+      ],
+      "sha256": "253c816d11024387537bc8fda8d0bd6060f4bfdb51fbd9423a955e93695ec3c8",
+      "sourceIndexCropSha256": "bb5bd7caea56e7ae49ebfc358a91ab8dcee13aa83d508d1d510a2e481ef020ad",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 144,
+        "v": 96,
+        "width": 40,
+        "height": 8
+      },
+      "sourceMetricsSha256": "725ff9b9453d2d1869d5f7f18d27456305c3f3b7ad9870a3643dac1d68f851c8",
+      "runtimeStatus": "baked quad currently constructed but unused by RetailBattleAction label draw"
+    }
+  ],
+  "nonFontMetrics": [
+    {
+      "index": 7,
+      "sourceMetrics": {
+        "u": 0,
+        "v": 16,
+        "width": 32,
+        "height": 8,
+        "clutOffset": 0
+      },
+      "status": "non-letter texture source; constructed metric retained; no fabricated word SVG",
+      "callSites": [
+        "BattleMenuStruct58.java:initIconObjs constructs all9 metrics",
+        "RetailBattleAction.java:draw uses translated Text.renderText rather than actionIconTextObjOffset",
+        "LodBattleActions.java:registers retail icons1..7 and9; no icon8 registration"
+      ],
+      "dormancyEvidence": "No production read of actionIconTextObjOffset beyond construction; custom external mods not ruled out."
+    }
+  ],
+  "verification": {
+    "headlessJava2DAllSourceAndCandidateBoards": true,
+    "serializedCoordinateBounds": true,
+    "strictCompletePathTokenSyntax": true,
+    "allSvgPaletteIndices1Through15": true,
+    "sourceMetricsUnchanged": true
+  },
+  "visualLimits": [
+    "Independent fidelity, bevel strength and spacing review pending.",
+    "Baked menu words are presently dormant for selected-label rendering; that path already uses the separate text font.",
+    "Private 8x/2x Java2D comparisons are not game/GPU/live CLUT or Steam Deck acceptance."
+  ],
+  "privateComparisonBoards": [
+    "/Users/markmurray/Downloads/Definitive-Delivery-Review-2026-10-10/Font-All-Paths-20261011/battle-large/comparison-01.png",
+    "/Users/markmurray/Downloads/Definitive-Delivery-Review-2026-10-10/Font-All-Paths-20261011/battle-large/comparison-02.png",
+    "/Users/markmurray/Downloads/Definitive-Delivery-Review-2026-10-10/Font-All-Paths-20261011/battle-large/comparison-03.png"
+  ],
+  "revisionControls": {
+    "priorPacketSha256": "f4a45481617a6beb62cb37b4cac7c08ba5c3a67aa5c55500e236808fd2911026",
+    "changedGlyphs": [
+      "large-0",
+      "large-1",
+      "large-2",
+      "large-3",
+      "large-4",
+      "large-5",
+      "large-6",
+      "large-7",
+      "large-8",
+      "large-9",
+      "Points"
+    ],
+    "unchangedOtherSvgBytesVerified": true,
+    "reason": "Independent blocker: points i crowding and material directional metallic-bevel fidelity"
+  }
+}

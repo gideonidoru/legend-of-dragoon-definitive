@@ -1,0 +1,318 @@
+{
+  "schema": 1,
+  "reviewer": "independent Spec actual-original art/layout reviewer undersea_standards",
+  "snapshot": "669d5b9746e143019f70bc4df9110c95857482cf",
+  "packetSha256": "4e352467f357dc9985da1b7a2b8baaca44d0eb91dae581b4356fc0edf9316ac2",
+  "authorManifestSha256": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
+  "scope": "Only six existing stage29 static candidates. Fresh stage29 actual-original decode and complete binding/fingerprint checks; raw/output/prior neural hashes and pinned recipe pixels, metrics and encoded output replay. All six original/current-neural/candidate boards inspected plus inset, rectangular trim and inverted-V detail crops. Source/art gate only; no runtime selection, native rendering, mapped seams, physical Steam Deck or final beauty acceptance.",
+  "sourceScenes": [
+    {
+      "stage": 29,
+      "modelSha256": "004fbe119236ab6ab88eac5539312baad99e71d71961a7270f3c78c96f9c05de",
+      "timSha256": "d9a98e9433b52139ab841c1a10ba5138cababa174125f60083854aaf4141aad9",
+      "modelSourceFile": "SECT/DRGN0.BIN/2526/0/0",
+      "timSourceFile": "SECT/DRGN0.BIN/2526/2"
+    }
+  ],
+  "comparisons": [
+    {
+      "sourceKey": "3f469f59830511e1e7ad2cd166368b0d3e4d600d2b15a7a2aefe1d0e01d199a0",
+      "sourceSize": [
+        72,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 29,
+          "page": 7,
+          "clut": 15388,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            72,
+            72
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "2dc1be6fb056a270aaf44ff275a0a85f356b0d34c4eadd01a3a76569a642d45c",
+      "outputSha256": "1235e934f054fc30a6566c556670825d4314ce3c2576f50f2182e5ac2b759f61",
+      "priorCandidateSha256": "dbf7c95f6b8be5e27f2c7c978b0913d949914ecb4d34d470ed317436c6891e69",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The dark brown-gray surface retains the original broad diagonal and lateral cloudy value patches, narrow plain right strip and bottom fragments. Fine continuous mineral grain follows those existing masses without introducing a connected fracture network, brick courses, a new object or changed opening. The broad subdued brown illumination remains aligned with the source.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "87c532fd17ce5120a51f3320938d10cce475004e676e14faeb89161805bcccc7",
+      "sourceSize": [
+        80,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 29,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            0,
+            136,
+            72
+          ],
+          "sourceUvOrigin": [
+            56,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "aaf77c651b8541abb7941bf98f73bb0c408a6ac4cc58d0b8ad717ea920ea9bb2",
+      "outputSha256": "ecaef605a0fc5d629d98bb00ee5a80f60857c0370540d3c0f9c29dc28c561ae4",
+      "priorCandidateSha256": "a56dcc490c080a8d4dcbe0ee7780791823cfcddb280c0780f9d3dd6c16e9a160",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "Enlarged inset inspection preserves the softly lit yellow-olive upper rim, dark inner arch-shaped interval and diffuse lower highlight within the original rounded footprint. The left jagged strip, clipped right round fragment and bottom edge remain in place. Added surface grain does not create a lamp, glyph, second opening or stronger halo outside the original illuminated area.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "24f50d0da3e1d49a971479634427c01afa81cc7ea5931c2558ab3bc50fa28a7c",
+      "sourceSize": [
+        72,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 29,
+          "page": 7,
+          "clut": 15644,
+          "parts": [
+            0,
+            2
+          ],
+          "sourceCrop": [
+            0,
+            56,
+            72,
+            136
+          ],
+          "sourceUvOrigin": [
+            0,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "0605324f49a7e6bdc30a2715a15f0b37c21ec68e18ea75cfdb5467bb21c6234f",
+      "outputSha256": "6f159074e56ee03608c0568553472e0420ca102aeb6cd836c985f4cd9ed29d3d",
+      "priorCandidateSha256": "344c9fbeecbe0f98e5e36142ff7cf95fb4eb7a9c91b031b8dd691786bf999652",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The original mottled brown panel keeps its broad dark and pale patches and their relative positions. The narrow irregular right column and top/bottom fragments preserve their existing silhouettes and intervals. Refinement remains shallow grain inside those forms without a new joint grid, structural crack, relief object or directional light.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "0be99ffe472f763533b1b7d2aa84b7757e63bc7b5d3860b6b5994e909a466de9",
+      "sourceSize": [
+        80,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 29,
+          "page": 7,
+          "clut": 15708,
+          "parts": [
+            2
+          ],
+          "sourceCrop": [
+            56,
+            56,
+            136,
+            136
+          ],
+          "sourceUvOrigin": [
+            56,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "e5c35f28908bb35a121fbd65fa2dc60b32271558ade662841308f26605909643",
+      "outputSha256": "a166d260d76e6d1181e6c15bc597d12e2fd89cadeaf9ce9121ad016420bfbc49",
+      "priorCandidateSha256": "bbf10ebebdc66ff0ff484a990cf04a149d3eb9461a68a17b8e4d6562fe63a2bb",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "Individual trim inspection retains the original rectangular border, its corner connections, single existing diagonal yellow stroke near the lower right and the surrounding clipped fragments. The cloudy interior preserves its source value arrangement without a new inscription, additional decorative stroke or subdivided masonry. The more continuous trim follows the existing yellow-brown marking rather than adding a new motif.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "62077b7d96fd9f22be8c7e3b92d10c2115f54b5603a6b569a5c2d4d670a82875",
+      "sourceSize": [
+        72,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 29,
+          "page": 7,
+          "clut": 15900,
+          "parts": [
+            2
+          ],
+          "sourceCrop": [
+            0,
+            120,
+            72,
+            200
+          ],
+          "sourceUvOrigin": [
+            0,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "85d7463fbc46f2f49eaccd33a44a6498787b403adbf1fe1b86636993b56215d0",
+      "outputSha256": "68e866600bcecfabd32242967d04202bcda66c7cfe2738a2600f2b5ce771a348",
+      "priorCandidateSha256": "cd1d41e6e8a87bb3c3bd84fafa4abe2c6976554fc7452697b27dec8a90e4b9c1",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The two stacked surfaces retain the original horizontal boundary, very dark upper field and comparatively lighter lower field, including the narrow bright transition, top fragments and right strip. Continuous mottled grain respects those source masses without adding a panel frame, tile courses, broad crack, separate object or new lighting pattern.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "368098daea9001149716f387c41f66918bcf757b3a43d8b5beb29e6db751881f",
+      "sourceSize": [
+        80,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 29,
+          "page": 7,
+          "clut": 15964,
+          "parts": [
+            2
+          ],
+          "sourceCrop": [
+            56,
+            120,
+            136,
+            168
+          ],
+          "sourceUvOrigin": [
+            56,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "a84a4ff1d585e5c09edd119329d45673886e4a30f01db9d470f6552b5a284b81",
+      "outputSha256": "c63b39d914a90ffd5e90b5c8b6c6c1ad6eb198182cbe4b4e33112abf677d0d28",
+      "priorCandidateSha256": "d4fb44d848c369151e6a03f0eff3d225006b8927fabef591c9a1a2999665034a",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "Enlarged outline inspection keeps the two original diagonal arms, single centered apex, open interior, dark intervals and surrounding fragment strips. The yellow-brown line follows the original inverted-V footprint and endpoints without an emblem, third arm, extra border or depicted object. Fine surface and line detail retain the existing restrained rock/trim composition; mapped lighting and seam appearance remain pending.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "counts": {
+    "reviewed": 6,
+    "clear": 6,
+    "revise": 0,
+    "runtimeSelectedByThisReview": 0
+  },
+  "privateFullReviewSha256": "d7aabaf59a5491263c1f13bc6091421349abe3a7a24e9e3f65893ca29b41be67"
+}

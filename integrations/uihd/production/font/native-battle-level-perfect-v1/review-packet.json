@@ -1,0 +1,958 @@
+{
+  "format": 1,
+  "name": "Native LEVEL UP and PERFECT vector redraw v1",
+  "status": "development art candidate; independent source/art review pending",
+  "authoredGlyphCrops": 13,
+  "requiredUniqueGlyphCrops": 13,
+  "physicalUvOrigins": 10,
+  "artAccepted": 0,
+  "runtimeSelected": 0,
+  "deviceAccepted": 0,
+  "counts": {
+    "levelPlacements": 8,
+    "uniqueLevelCrops": 6,
+    "perfectPlacements": 8,
+    "uniquePerfectCrops": 7,
+    "sharedUvOriginsWithDifferentWidths": 3
+  },
+  "sources": [
+    {
+      "path": "files/SECT/DRGN0.BIN/4113/0",
+      "sha256": "f2c1e95184598a2db058a078affd4f9e3c9cbea749f90843e1d665b682ca52e4"
+    },
+    {
+      "path": "files/SECT/DRGN0.BIN/4113/2",
+      "sha256": "b2a7ea197b475dde056a444bc217f3ea102cf2c3243ed9da7b3cc112d3eeffef"
+    },
+    {
+      "path": "files/SECT/DRGN0.BIN/4113/4",
+      "sha256": "578f8eecd5377a6be20091248500f4a2908d316ceb166b460dd14e598654c162"
+    }
+  ],
+  "attribution": "Custom Definitive vector artwork reconstructed against original Legend of Dragoon LEVEL UP/PERFECT battle UI. Original game design attribution Sony Computer Entertainment; native extraction and metric conventions Severed Chains contributors. No unmodified source page/crops distributed.",
+  "paletteContract": {
+    "transparentIndex": 0,
+    "faceIndex": 1,
+    "bevelIndices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "darkOutlineIndex": 15,
+    "svgFill": "#fff describes geometry; data-palette-index binds live CLUT index",
+    "order": "15 dark silhouette,14..2 continuous inset edge bands,1 broad native face,8 bounded right-facing metallic bevel"
+  },
+  "glyphs": [
+    {
+      "designIntent": "Individually reconstructed L of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "level-L.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 10,
+      "paletteFile": 4,
+      "id": "level-L",
+      "label": "L",
+      "crop": [
+        200,
+        64,
+        7,
+        16
+      ],
+      "sha256": "451ff0701c0806c4d9841f2bed50fa89337c22e9af58ca5a7237e9ef55321fb7",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 200,
+        "v": 64,
+        "width": 7,
+        "height": 16
+      },
+      "sourceMetricsSha256": "a78b29c1a2dd26859a89d15a7824f05306b28c9bba170982ab476cd1d5aa4dc4",
+      "sourceIndexCropSha256": "3d352eecf3986353caa6de332944bfb3fb28940a16ffe80f23d1c0ecf85927b7",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 4,
+          "row": 10,
+          "packedClut": "0x4a"
+        },
+        {
+          "file": 4,
+          "row": 2,
+          "packedClut": "0x42"
+        },
+        {
+          "file": 4,
+          "row": 3,
+          "packedClut": "0x43"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed E of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "level-E.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 10,
+      "paletteFile": 4,
+      "id": "level-E",
+      "label": "E",
+      "crop": [
+        208,
+        64,
+        7,
+        16
+      ],
+      "sha256": "220d5ecf3efc32bb1a09f4c96f8e97abb589b2759fb3d8380b88cd37b0ae8083",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 208,
+        "v": 64,
+        "width": 7,
+        "height": 16
+      },
+      "sourceMetricsSha256": "475a9344a97a3c5637b1d0113e44f43d71a2062ebec7ee64a91e670f05de0240",
+      "sourceIndexCropSha256": "14c57e00c8ccfcedf85f9e6721d03d2f5fd94a54f67718be843bdd151c214773",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 4,
+          "row": 10,
+          "packedClut": "0x4a"
+        },
+        {
+          "file": 4,
+          "row": 2,
+          "packedClut": "0x42"
+        },
+        {
+          "file": 4,
+          "row": 3,
+          "packedClut": "0x43"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed V of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "level-V.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 10,
+      "paletteFile": 4,
+      "id": "level-V",
+      "label": "V",
+      "crop": [
+        216,
+        64,
+        7,
+        16
+      ],
+      "sha256": "41dc5607dc9ea69b0ccff04ab67b8c81e4669d0e17f0098c2f85a7c0ec5aeac1",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 216,
+        "v": 64,
+        "width": 7,
+        "height": 16
+      },
+      "sourceMetricsSha256": "fde28a6984f963869f60fab31112e4be164de2fa8450806233cf8c20c78ade93",
+      "sourceIndexCropSha256": "cd1d68dee2c0dfc23c848e14d13b09ea05d7755348efaff6ae6648d7cd6409bc",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 4,
+          "row": 10,
+          "packedClut": "0x4a"
+        },
+        {
+          "file": 4,
+          "row": 2,
+          "packedClut": "0x42"
+        },
+        {
+          "file": 4,
+          "row": 3,
+          "packedClut": "0x43"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed U of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "level-U.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 10,
+      "paletteFile": 4,
+      "id": "level-U",
+      "label": "U",
+      "crop": [
+        224,
+        64,
+        7,
+        16
+      ],
+      "sha256": "c13bf94c6257db69e1853a7067f19a41b400365863daa7f82952ca59ee19708d",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 224,
+        "v": 64,
+        "width": 7,
+        "height": 16
+      },
+      "sourceMetricsSha256": "9b99a548162b98fa7aa6e1a3c06987ba14d8bf9de658dddf5e99c78fc1280f41",
+      "sourceIndexCropSha256": "482be0e7ff131b40b4e56918f327a1bcaae09c572b1751a518aa0c4a4b8f67d0",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 4,
+          "row": 10,
+          "packedClut": "0x4a"
+        },
+        {
+          "file": 4,
+          "row": 2,
+          "packedClut": "0x42"
+        },
+        {
+          "file": 4,
+          "row": 3,
+          "packedClut": "0x43"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed P of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "level-P.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 10,
+      "paletteFile": 4,
+      "id": "level-P",
+      "label": "P",
+      "crop": [
+        232,
+        64,
+        7,
+        16
+      ],
+      "sha256": "b6f03f0288ab75e877d09a87f4983422a6483303269c0dcd935b2c8cb271ac91",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 232,
+        "v": 64,
+        "width": 7,
+        "height": 16
+      },
+      "sourceMetricsSha256": "85929313f05beb78a50136a62a769f365f26828930a573e67cefb3eee2f90cb3",
+      "sourceIndexCropSha256": "b8b74d6ed91d11eb0f19549a03e41960f183842c19fae953734e73e4c5907e18",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 4,
+          "row": 10,
+          "packedClut": "0x4a"
+        },
+        {
+          "file": 4,
+          "row": 2,
+          "packedClut": "0x42"
+        },
+        {
+          "file": 4,
+          "row": 3,
+          "packedClut": "0x43"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed ! of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "level-exclamation.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 10,
+      "paletteFile": 4,
+      "id": "level-exclamation",
+      "label": "!",
+      "crop": [
+        240,
+        64,
+        7,
+        16
+      ],
+      "sha256": "2c96ebeca422d066ecbd411f4cd2127ce2656af49cbf0cdb1acf3bb7caa54e11",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 240,
+        "v": 64,
+        "width": 7,
+        "height": 16
+      },
+      "sourceMetricsSha256": "3e82fa4284a718d4084c6b698b6b00b6cf95a91d7fb5e48b2cdec0eff86d6afc",
+      "sourceIndexCropSha256": "4449cc526ece4d63cc986164e293134608f785757ab3d64a4f0c86a2bc16f156",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 4,
+          "row": 10,
+          "packedClut": "0x4a"
+        },
+        {
+          "file": 4,
+          "row": 2,
+          "packedClut": "0x42"
+        },
+        {
+          "file": 4,
+          "row": 3,
+          "packedClut": "0x43"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed P of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "perfect-P.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 9,
+      "paletteFile": 2,
+      "id": "perfect-P",
+      "label": "P",
+      "crop": [
+        232,
+        64,
+        8,
+        16
+      ],
+      "sha256": "da3603eaac90eae23972c9b52b46ee9cff3642eac2dd0a728e84e64d0243d64c",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 232,
+        "v": 64,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "35c22278862900ddf10017ad79ab6154c5f662154740ab60b8020ee50ec75fa7",
+      "sourceIndexCropSha256": "994774073a39e96e94cc3357609a4b6b1fd1982e7f5de4d065e0c5342d2e7df1",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 2,
+          "row": 9,
+          "packedClut": "0x29"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed E of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "perfect-E.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 9,
+      "paletteFile": 2,
+      "id": "perfect-E",
+      "label": "E",
+      "crop": [
+        208,
+        64,
+        8,
+        16
+      ],
+      "sha256": "2ef076136395bd21ddb8d4dbf1c4e761a30ec99d90078ff5d6861f3e6ca59527",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 208,
+        "v": 64,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "5fd6680892198a06a0ec0056ab696b824390d4ce0f66bfd8ab38a55aca61a2e5",
+      "sourceIndexCropSha256": "8cc64512394cfae0d6637c0a86a4fb79be634efda7559a323b94bc65b95c3287",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 2,
+          "row": 9,
+          "packedClut": "0x29"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed R of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "perfect-R.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 9,
+      "paletteFile": 2,
+      "id": "perfect-R",
+      "label": "R",
+      "crop": [
+        40,
+        128,
+        8,
+        16
+      ],
+      "sha256": "bc670e1c1940aaa601dde32dbe73349763fd20e85b7d5c4537e44da4a322b577",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 40,
+        "v": 128,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "8c8b5128952a3213a1a1a5ddc3f536be14149d416c6b6d8c543ce8b7a9a785dd",
+      "sourceIndexCropSha256": "8bccf204883785971517beaa97d896b0c1ffa628aa5d12b3f88d0a5bef63df6e",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 2,
+          "row": 9,
+          "packedClut": "0x29"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed F of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "perfect-F.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 9,
+      "paletteFile": 2,
+      "id": "perfect-F",
+      "label": "F",
+      "crop": [
+        48,
+        128,
+        8,
+        16
+      ],
+      "sha256": "1bee817da33ad19431827bb1e7c36be77cba399aab2fb4275e029cbb642ae36b",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 48,
+        "v": 128,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "2187b4dc7c86e5094618972850b4bb043115ba78f333a7bfcac2edd671b0f243",
+      "sourceIndexCropSha256": "d259dc24e9946f06cca459be1c559400082f04d8aca530911b71be30005398c0",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 2,
+          "row": 9,
+          "packedClut": "0x29"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed C of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "perfect-C.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 9,
+      "paletteFile": 2,
+      "id": "perfect-C",
+      "label": "C",
+      "crop": [
+        56,
+        128,
+        8,
+        16
+      ],
+      "sha256": "2a50dd17b65e25b07dacb0c9c51569655515acc8d6bee1fabd22fb8d6712e00b",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 56,
+        "v": 128,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "3291b63cc2dd4e21499a71e11ad7f69d062a4e15ffbcfe01d74956b4a685df69",
+      "sourceIndexCropSha256": "7168b9e5286effa84ff6b148e51452db6d88d2c49d9362a6af3470a27f244272",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 2,
+          "row": 9,
+          "packedClut": "0x29"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed T of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "perfect-T.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 9,
+      "paletteFile": 2,
+      "id": "perfect-T",
+      "label": "T",
+      "crop": [
+        64,
+        128,
+        8,
+        16
+      ],
+      "sha256": "de308415977b150a427bf019e8ba9ebba777f7317fbf0487fd21d9b2c2640da9",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 64,
+        "v": 128,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "7ec6878889be0dec5b1bbbb6e31c3ef6e9095f6506438ccd9ab96aaf79fb7465",
+      "sourceIndexCropSha256": "bbfcb6f6768cc9b8b07a1f32c0d459e5129d782ff3b225800320958549f52f85",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 2,
+          "row": 9,
+          "packedClut": "0x29"
+        }
+      ]
+    },
+    {
+      "designIntent": "Individually reconstructed ! of the native bold LEVEL UP/PERFECT family. Preserve flat terminal faces, square straight-stem joins, limited rounded bowls, narrow crop metrics and right-facing indexed gold/red bevel. Shared UVs retain separate7/8-pixel crops.",
+      "path": "perfect-exclamation.svg",
+      "paletteIndices": [
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        8
+      ],
+      "paletteRow": 9,
+      "paletteFile": 2,
+      "id": "perfect-exclamation",
+      "label": "!",
+      "crop": [
+        240,
+        64,
+        8,
+        16
+      ],
+      "sha256": "ffcfa6d552f5c70dadfe0a849f43849c694d4c68428c5ba96776ca681f9d1578",
+      "sourceBinding": "files/SECT/DRGN0.BIN/4113/0",
+      "sourceMetrics": {
+        "u": 240,
+        "v": 64,
+        "width": 8,
+        "height": 16
+      },
+      "sourceMetricsSha256": "2f200e2ea2e88ed1bf6e4b739fa1832cc50e122ddd551fbd5505c197e92a51e7",
+      "sourceIndexCropSha256": "570f8fc9c11daab5f7568114c4b8d3d6330e8e3a6f6ff4dffcbe77dab61896e8",
+      "logicalMetricsChanged": false,
+      "runtimeStatus": "existing active native quad route; HD asset selection separate",
+      "sourcePaletteAliases": [
+        {
+          "file": 2,
+          "row": 9,
+          "packedClut": "0x29"
+        }
+      ]
+    }
+  ],
+  "placements": {
+    "level": [
+      {
+        "index": 0,
+        "glyph": "level-L",
+        "x": 0,
+        "width": 7,
+        "height": 16
+      },
+      {
+        "index": 1,
+        "glyph": "level-E",
+        "x": 8,
+        "width": 7,
+        "height": 16
+      },
+      {
+        "index": 2,
+        "glyph": "level-V",
+        "x": 16,
+        "width": 7,
+        "height": 16
+      },
+      {
+        "index": 3,
+        "glyph": "level-E",
+        "x": 24,
+        "width": 7,
+        "height": 16
+      },
+      {
+        "index": 4,
+        "glyph": "level-L",
+        "x": 32,
+        "width": 7,
+        "height": 16
+      },
+      {
+        "index": 5,
+        "glyph": "level-U",
+        "x": 47,
+        "width": 7,
+        "height": 16
+      },
+      {
+        "index": 6,
+        "glyph": "level-P",
+        "x": 55,
+        "width": 7,
+        "height": 16
+      },
+      {
+        "index": 7,
+        "glyph": "level-exclamation",
+        "x": 63,
+        "width": 7,
+        "height": 16
+      }
+    ],
+    "perfect": [
+      {
+        "index": 0,
+        "glyph": "perfect-P",
+        "x": 0,
+        "width": 8,
+        "height": 16
+      },
+      {
+        "index": 1,
+        "glyph": "perfect-E",
+        "x": 8,
+        "width": 8,
+        "height": 16
+      },
+      {
+        "index": 2,
+        "glyph": "perfect-R",
+        "x": 16,
+        "width": 8,
+        "height": 16
+      },
+      {
+        "index": 3,
+        "glyph": "perfect-F",
+        "x": 24,
+        "width": 8,
+        "height": 16
+      },
+      {
+        "index": 4,
+        "glyph": "perfect-E",
+        "x": 32,
+        "width": 8,
+        "height": 16
+      },
+      {
+        "index": 5,
+        "glyph": "perfect-C",
+        "x": 40,
+        "width": 8,
+        "height": 16
+      },
+      {
+        "index": 6,
+        "glyph": "perfect-T",
+        "x": 48,
+        "width": 8,
+        "height": 16
+      },
+      {
+        "index": 7,
+        "glyph": "perfect-exclamation",
+        "x": 56,
+        "width": 8,
+        "height": 16
+      }
+    ]
+  },
+  "sharedSources": [
+    {
+      "levelGlyph": "level-P",
+      "perfectGlyph": "perfect-P",
+      "sameUv": true,
+      "sameLogicalWidth": false,
+      "geometryShared": true,
+      "cropWidths": [
+        7,
+        8
+      ]
+    },
+    {
+      "levelGlyph": "level-E",
+      "perfectGlyph": "perfect-E",
+      "sameUv": true,
+      "sameLogicalWidth": false,
+      "geometryShared": true,
+      "cropWidths": [
+        7,
+        8
+      ]
+    },
+    {
+      "levelGlyph": "level-exclamation",
+      "perfectGlyph": "perfect-exclamation",
+      "sameUv": true,
+      "sameLogicalWidth": false,
+      "geometryShared": true,
+      "cropWidths": [
+        7,
+        8
+      ]
+    }
+  ],
+  "sourceCallSites": [
+    "Scus94491BpeSegment.levelUpUs_8001032c =200,208,216,208,200,224,232,240",
+    "SBtld.levelUpOffsets_80010334 =8,8,8,8,15,8,8,0",
+    "SBtld.addLevelUpOverlay sets0x4a; render flash palette table0x42/0x43",
+    "SEffe.perfectDaddyGlyphUs/Vs eight placements with E repeated",
+    "BattleUiParts.queueDaddyPerfect uses8x16 and CLUT0x29"
+  ],
+  "authoringMethod": "Individually hand-composed family-native M/L/Q/Z contours. Offline headless Java2D stroked-area expansion uses square joins for straight native forms, bevelled V terminus, continuous bowl curves, then serializes filled quadratic vectors. No host fonts, bitmap-contour tracing or Default digit resampling.",
+  "verification": {
+    "all13StrictCompleteTokenSyntax": true,
+    "allSerializedControlCoordinatesWithinExactSourceCrop": true,
+    "sourcePaletteMappingsAuditedAgainstProductionQueue": true,
+    "assembledLevelNormalAndBothFlashPalettesRendered": true,
+    "assembledPerfectPaletteRendered": true,
+    "sourceAndCandidate8x2x1xPrivateComparisonsInspected": true
+  },
+  "visualLimits": [
+    "Independent fidelity, face/bevel strength and tiny scale legibility acceptance pending.",
+    "1x/2x boards use private headless Java2D vector render plus image reduction; not runtime GPU/live palette, animation or Steam Deck proof."
+  ],
+  "privateBoards": [
+    "/Users/markmurray/Downloads/Definitive-Delivery-Review-2026-10-10/Font-All-Paths-20261011/battle-level-perfect/all-source.png",
+    "/Users/markmurray/Downloads/Definitive-Delivery-Review-2026-10-10/Font-All-Paths-20261011/battle-level-perfect/all-reconstructed-comparison.png",
+    "/Users/markmurray/Downloads/Definitive-Delivery-Review-2026-10-10/Font-All-Paths-20261011/battle-level-perfect/assembled-palette-comparison.png"
+  ]
+}

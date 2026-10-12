@@ -1,0 +1,463 @@
+{
+  "schema": 1,
+  "reviewer": "independent Spec actual-original art/layout reviewer undersea_spec",
+  "snapshot": "554987c255978e65023d3f1c8bfd1404388461b2",
+  "packetSha256": "8f228ec3669480048f20a5f0f7db359dbb2b960e026cef95c1b677dab2d8be2f",
+  "authorManifestSha256": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
+  "scope": "Only nine existing stage22 static candidates. Fresh actual-original decode, complete bindings/fingerprints, generated/output/prior neural hashes, exact recipe pixels/metrics and encoded output replay. All nine native-aspect original/current-neural/candidate boards inspected, with individual flat-stone, pillar-stroke and stylized-crest detail crops. Source/art gate only; no runtime selection, mapped seams, native rendering, physical Steam Deck or final beauty acceptance. Whole-game presentation remains ongoing.",
+  "sourceScenes": [
+    {
+      "stage": 22,
+      "modelSha256": "0e1457a9db8d1f70de93d9ee2f510071bccae49de2cbd552e2c62e96e64c76f7",
+      "timSha256": "a47a56a8c3a5da7eff6a57187c1604e33fbb9c4140fca18f3a0c4493268ffc58",
+      "modelSourceFile": "SECT/DRGN0.BIN/2519/0/0",
+      "timSourceFile": "SECT/DRGN0.BIN/2519/2"
+    }
+  ],
+  "comparisons": [
+    {
+      "sourceKey": "f59a23f386c9d538b862c3d4cf7788d9e788162807af60a5a92b22b17017bfcc",
+      "sourceSize": [
+        80,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 22,
+          "page": 7,
+          "clut": 15389,
+          "parts": [
+            9
+          ],
+          "sourceCrop": [
+            120,
+            184,
+            200,
+            232
+          ],
+          "sourceUvOrigin": [
+            120,
+            184
+          ]
+        }
+      ],
+      "generatedSha256": "6c5376ad36d84381393f7d6de4d11881cbc8aeab7a2d30dc2b7f1c5242410a9d",
+      "outputSha256": "636f3fd6ea4b4e99e5eeb4daa7bde9f881af62c34a72f8023d4a5512509e4b97",
+      "priorCandidateSha256": "280058decdcc0d68fba51a9a419cbf78930fb91a33b53fc99200858b4e51c8f6",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The original smooth gray-green ledge/panel, pale diagonal marks, dark upper opening, rounded upper-right inset, pale left band and lower trim retain their source positions and broad values. Restrained continuous surface grain does not introduce a new large vein, opening, carved motif or directional light.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "2cc758a65cc53fc57440d16ada7ab9b08217d5d379020921d5dee54138cc914a",
+      "sourceSize": [
+        80,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 22,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            5,
+            9
+          ],
+          "sourceCrop": [
+            56,
+            0,
+            136,
+            72
+          ],
+          "sourceUvOrigin": [
+            56,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "7f15ce2ddd516318186696134ede1d1e63196f7d0c7d2bc8315fa5556c31e114",
+      "outputSha256": "3a65cead0d8f3cf44001424d0ae3325a35423bf52a096d3f063f3e3cf2569a40",
+      "priorCandidateSha256": "887bae0b9a7a01c728b38e271d8357064c74035c5e995176c99e083f539eadcf",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The original upper block rows and two narrow horizontal trims retain their joint arrangement. The four large middle stone rectangles remain the same count, with the source sparse pale marks, very dark lower field and pale bottom strip preserved. Grain stays within those existing divisions rather than adding a new mortar grid or extra block course.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "1986eadb0e48c21cbb76f7a59c02d2639f3c2141982781fafe719fba118c08a8",
+      "sourceSize": [
+        72,
+        32
+      ],
+      "sourceBindings": [
+        {
+          "stage": 22,
+          "page": 7,
+          "clut": 15453,
+          "parts": [
+            8
+          ],
+          "sourceCrop": [
+            184,
+            184,
+            256,
+            216
+          ],
+          "sourceUvOrigin": [
+            184,
+            184
+          ]
+        }
+      ],
+      "generatedSha256": "15dc31c521b92776c19672158a03542cce3f98bfa8786268974f6ef339be74c9",
+      "outputSha256": "3dc46b151bbe31e1b592f91219e3aa8c364495c893edeebbdfc8cd03c3b46e45",
+      "priorCandidateSha256": "d9bce02b7515926c2dc6f71a9a6edbc1029e87e022b0dc4e8bbb59e8c816e032",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The slender horizontal rod retains its two original triangular/barbed forms at the same positions, with no extra head or ornament. Upper-left horizontal bands, dark pale-green circular inset and narrow adjacent strips remain aligned. Fine material detail preserves the original subdued green values and cutouts.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "ca820d405a69f0e1f3b6984c80433bf7c65e7065876ad956ca95f2181a369a30",
+      "sourceSize": [
+        80,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 22,
+          "page": 7,
+          "clut": 15516,
+          "parts": [
+            5
+          ],
+          "sourceCrop": [
+            120,
+            0,
+            200,
+            72
+          ],
+          "sourceUvOrigin": [
+            120,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "c04a60a8326c56089c09c0d968a72e1ab89bff366da63855f646a129be4c359c",
+      "outputSha256": "6d5847417ed812cb7346f1955c4e20dcf1a823abe385c631fc7bb39efac8bbdc",
+      "priorCandidateSha256": "00778d111273512faa3d9ea36c2bf3cc81d4f52287eda50a5e329afaa3b0096f",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "REVISE",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "REVISE",
+      "reason": "The broad diagonal stone pattern and border columns remain aligned, but the candidate renders thin connected/forking dark fracture lines through the lower-left/middle panel where the actual original presents diffuse cloudy diagonal material variation. Enlarged source comparison shows the neural baseline already sharpening those regions; reproducing and sharpening that network does not establish original fidelity. This exceeds fine continuous grain and the requirement for a rough flat panel without new sharp cracks. Restore the original soft cloudy streaks and remove the unsupported connected fracture lines while retaining the few pale source marks, border joints and bottom fragment.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "48b54ce0a674486ed9327702a44ee8c10520f7b1f3ea50159894d4103afdbb07",
+      "sourceSize": [
+        40,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 22,
+          "page": 7,
+          "clut": 15644,
+          "parts": [
+            5
+          ],
+          "sourceCrop": [
+            216,
+            0,
+            256,
+            72
+          ],
+          "sourceUvOrigin": [
+            216,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "d4747d0a4207a17bc778404c9fcbb3a1bcb3efcaebaa707e2c57a8478f8515e5",
+      "outputSha256": "8fe04aec9ca265d3b99ae69ab9f2be4feb3e49ddcabb54906e5e07ae33856c3c",
+      "priorCandidateSha256": "e3aac68ab82308c75697730bdfb72d9fd1120023f1e51ed7b3396a3751a09c1f",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The plain pale-green inset retains its original size and softly shaded flat interior, without panes, a symbol, depicted scene or added glow halo. Original border bevels, irregular surrounding block paths and sparse pale marks remain aligned; the correction adds shallow grain within the existing boundaries without a new course or joint topology.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "3867e10258b113799af0ad0dc71c168bc954924834729584bfad6c0d340016ca",
+      "sourceSize": [
+        40,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 22,
+          "page": 7,
+          "clut": 15708,
+          "parts": [
+            0,
+            5
+          ],
+          "sourceCrop": [
+            0,
+            56,
+            40,
+            136
+          ],
+          "sourceUvOrigin": [
+            0,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "a60526141c04da13fbb50a448656a857829828d698c3bdd54a773e1fc8034f31",
+      "outputSha256": "0ab9cf05f19f3c8860dbc4b9c875be588086b7f5ad5de89e91b63886d8fffe66",
+      "priorCandidateSha256": "15a62f1c83a09b4f49319085f9f89d07678f77d1d395819c05d577f2ebb35fc9",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The narrow pillar keeps the original irregular masonry courses, upper-right banded capital, right trim, upper-left cutout and lower bands. Enlarged inspection preserves the positions of the existing sparse interior strokes alongside the source joint network; it does not add a separate block subdivision or new ornament. The added detail remains shallow under the original green illumination.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "d4239a529dfa55d647555bab1735ac0d61cd8052bbaa10b9d4c06d4ca7551aa7",
+      "sourceSize": [
+        72,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 22,
+          "page": 7,
+          "clut": 15900,
+          "parts": [
+            9
+          ],
+          "sourceCrop": [
+            0,
+            120,
+            72,
+            200
+          ],
+          "sourceUvOrigin": [
+            0,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "8fb5dd59e823d2db7607105a08b4e8c35d789b9baba1a17bddf35ac8cf3aff14",
+      "outputSha256": "d4c3c3793d3d345c841b6bb34c2fa7808061508aac570e410bc3bdaf90a5a70f",
+      "priorCandidateSha256": "2210e6422e19490b9632e66507d91dbb576b5930b9a197a5276a7792e652b9f5",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The two strong diagonal bars retain their angles and spacing, with the original horizontal band sequence and existing joint paths. The pale top inset, surrounding fragments and dark intervals remain source-aligned. Fine green stone texture does not add a new stair tread, railing, hardware or structural band.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "cb0f271a5bb3500f250891aa0230b69487d0aaabbc92c8b5fabf21414a58e399",
+      "sourceSize": [
+        72,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 22,
+          "page": 7,
+          "clut": 16284,
+          "parts": [
+            5
+          ],
+          "sourceCrop": [
+            0,
+            184,
+            72,
+            232
+          ],
+          "sourceUvOrigin": [
+            0,
+            184
+          ]
+        }
+      ],
+      "generatedSha256": "d75762574ad84734de5f99ceb58ab3d80307c56e1773a3930f8b551e842ee736",
+      "outputSha256": "9e6448e2bcc44d4cbcf567e5285aca87153f31964da2747575d1e5cf3c919a31",
+      "priorCandidateSha256": "6e31b5725d1b9a2054a1684e8ad7b4af3023a7985d582cd422b70b27aef32cd4",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "Individual crest inspection retains the source two pale slanted eye highlights, lower central V/muzzle value shape and broad diagonal planes. The stylized abstraction adds no pupils, nostrils, teeth, horns or other readable anatomy. Continuous matte grain follows the original green plane values and keeps the adjacent masonry fragments in place.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "b81223a4e4c0f3ad60974ed325ae4dab1b522c29ed84f7dfbf768e0d517bfb1e",
+      "sourceSize": [
+        80,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 22,
+          "page": 7,
+          "clut": 16348,
+          "parts": [
+            9
+          ],
+          "sourceCrop": [
+            56,
+            184,
+            136,
+            232
+          ],
+          "sourceUvOrigin": [
+            56,
+            184
+          ]
+        }
+      ],
+      "generatedSha256": "e597103fbc92a21309d7fca1d97d37b9a336ed402f36353f013ead23aabc715e",
+      "outputSha256": "4492f08776d5741e4b5dcd99dcb4d4e9dffa5ca7cd3b70e8882acbf8e85bb16d",
+      "priorCandidateSha256": "14cd719110285e509e11652c144975e6214d678c2fa3c0ea9942d620be9ca438",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The broad mottled inset, thin rectangular trim and original joins retain their source placement. The burnt-orange rectangle keeps its flat broad color, size and outline without an inscription, ornament, new seam or depicted object. Fine surface grain does not replace the original green/orange value arrangement or adjoining fragments.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "counts": {
+    "reviewed": 9,
+    "clear": 8,
+    "revise": 1,
+    "runtimeSelectedByThisReview": 0
+  },
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "privateFullReviewSha256": "7e586d2a2bfdcf867bbbd84d1f3e8bc3461e319d5a8feabe858f9358e9730bdb"
+}

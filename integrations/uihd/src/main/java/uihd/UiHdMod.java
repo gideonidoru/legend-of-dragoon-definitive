@@ -29,8 +29,11 @@ import static legend.core.GameEngine.EVENTS;
 public final class UiHdMod {
   private static final Logger LOGGER = LogManager.getLogger(UiHdMod.class);
   private final List<JSONObject> assets = new ArrayList<>();
+  private legend.game.textures.NativeSpriteFontAssets spriteFonts;
 
   public UiHdMod() {
+    try { this.spriteFonts = legend.game.textures.NativeSpriteFontAssets.load(UiHdMod.class); }
+    catch(final IOException failure) { LOGGER.warn("UIHD retained native sprite fonts: {}", failure.getMessage()); }
     try {
       final var catalog = new JSONObject(new String(ArtworkResources.read(UiHdMod.class, "/uihd/catalog.json", 2 * 1024 * 1024), StandardCharsets.UTF_8));
       final JSONArray entries = catalog.getJSONArray("assets");
@@ -174,6 +177,7 @@ public final class UiHdMod {
 
   @EventListener
   public void nativeTexture(final NativeUiTextureEvent event) {
+    if(this.spriteFonts != null) this.spriteFonts.select(this, event);
     NativeUiTextures.beginSelection(this, event.slot);
     // A reused upload slot retires its derived palettes even when new metadata
     // no longer qualifies as the player marker (or names a different family).

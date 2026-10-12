@@ -1,0 +1,1223 @@
+{
+  "schema": 1,
+  "scope": "Original-source art/layout review of 19 existing pending stage45b static bespoke candidates. No selection, native or final acceptance.",
+  "authorManifestSha256": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
+  "candidates": [
+    {
+      "scale": 4,
+      "sourceSize": [
+        24,
+        32
+      ],
+      "targetSize": [
+        96,
+        128
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "b443c81e5b8df73e3ae1ce11b3eb8e07e065f1c91ce7e8c242ea08768b1abc72",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "398623685d36c0cca409e151f5634c5f5bc7e95ec53a5bb0563039787ec291b8",
+      "outputSha256": "b09b7f2b8c0e1da49067452ce3cd3da9cc4ce1157856d68442c363dec035ab86",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 15838,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            232,
+            120,
+            256,
+            152
+          ],
+          "sourceUvOrigin": [
+            232,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "ec4c7d914d8468b13ebd8338aa15cf961168f27f50c12df4695ac1f6ceadb38c",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/b443c81e5b8df73e3ae1ce11b3eb8e07e065f1c91ce7e8c242ea08768b1abc72/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/b443c81e5b8df73e3ae1ce11b3eb8e07e065f1c91ce7e8c242ea08768b1abc72/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 24:32; requested canvas 576x768 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep the short upper partial cap, single squat mint rectangular central inset and bottom partial black slot/neighbor edges. Do not add ornate framing or increase glow. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "b09b7f2b8c0e1da49067452ce3cd3da9cc4ce1157856d68442c363dec035ab86",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        48
+      ],
+      "targetSize": [
+        192,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "98d0371932165f24a091da0be0d69f558667ab6a89f99f7496a6e356f41a3f07",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "a7e1301e0be5a422a43ce8e4a062ec327068a88291555b9a748286696451a035",
+      "outputSha256": "609f7e105178a429b9269c1d405da1beba57a2799e7cd427f337842d104e6a30",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 15901,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            168,
+            168,
+            216
+          ],
+          "sourceUvOrigin": [
+            120,
+            168
+          ]
+        }
+      ],
+      "priorCandidateSha256": "5794d0cc6171089604fd3c98a41900097759e4a03727089849c154d7439364e7",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/98d0371932165f24a091da0be0d69f558667ab6a89f99f7496a6e356f41a3f07/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/98d0371932165f24a091da0be0d69f558667ab6a89f99f7496a6e356f41a3f07/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 48:48; requested canvas 1152x1152 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep two main large irregular mint lobes with their diagonal joining dark band and three smaller left/top marks; retain asymmetry, tilted contours, spacing and partial edge architecture. Do not resolve into a regular hourglass icon. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "609f7e105178a429b9269c1d405da1beba57a2799e7cd427f337842d104e6a30",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        24,
+        32
+      ],
+      "targetSize": [
+        96,
+        128
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "6667881df768dc85f1468c10178115520297cf45a8ecc907e330d60c182b90bb",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "251329c05d5c2266fe9684fec29383d710be2f6cbb4c0c9d56dd2b22cdcd6cf7",
+      "outputSha256": "90b0ba9f4b77ca2724129ee0bbb595e9016686125ac52e83b160f4274c7b2f40",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 15902,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            232,
+            200,
+            256,
+            232
+          ],
+          "sourceUvOrigin": [
+            232,
+            200
+          ]
+        }
+      ],
+      "priorCandidateSha256": "39ccb21faa11cd1cc726d50d7437dfcdbce915f6a2374e409c3e54c4c3cfb402",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/6667881df768dc85f1468c10178115520297cf45a8ecc907e330d60c182b90bb/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/6667881df768dc85f1468c10178115520297cf45a8ecc907e330d60c182b90bb/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 24:32; requested canvas 576x768 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep extremely dark green plane with few disconnected black angular notches at left center and faint narrow vertical variation. Only very restrained fine stone grain, no new motif, illumination or crack. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "90b0ba9f4b77ca2724129ee0bbb595e9016686125ac52e83b160f4274c7b2f40",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        64
+      ],
+      "targetSize": [
+        320,
+        256
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "28df59968ff0dea8dac3df5c8ec1e40fe7c5005576c0bcf09265e72e1de14df2",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "c9c938ae241246b5583ce751bdb6c3664bb194cf40ac614c2613133d68af37ce",
+      "outputSha256": "ae658cc74b8fe384573698eec8ec40813ded31ddc11a9d535235f73d490edd2b",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 15964,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            88,
+            200,
+            152
+          ],
+          "sourceUvOrigin": [
+            120,
+            88
+          ]
+        }
+      ],
+      "priorCandidateSha256": "65d8ef508b934f92c06485a6081ca851faee711d4777f994fa5e32b1802170fa",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/28df59968ff0dea8dac3df5c8ec1e40fe7c5005576c0bcf09265e72e1de14df2/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/28df59968ff0dea8dac3df5c8ec1e40fe7c5005576c0bcf09265e72e1de14df2/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 80:64; requested canvas 1920x1536 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep the existing broad diagonal fan of five uneven folded pointed lobes from upper-left to right, original negative gaps and separate top/bottom neighboring fragments. No new foliage or cloth design, preserve all original fan tips. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "ae658cc74b8fe384573698eec8ec40813ded31ddc11a9d535235f73d490edd2b",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        48
+      ],
+      "targetSize": [
+        192,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "79e3deebebc7f48fa6780d0ed706c93d214a6e80ed99c4989007a8e2c595fea5",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "26b322ebdaa381cfb8596545def0c0eee7c4876aea9ac0f8d8d71880525d0d99",
+      "outputSha256": "a7d3513042a1d39c77c33bd6d94f6357a004302cfb9b9c6058a72d2865c557f4",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 15965,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            152,
+            168,
+            200,
+            216
+          ],
+          "sourceUvOrigin": [
+            152,
+            168
+          ]
+        }
+      ],
+      "priorCandidateSha256": "b4260d052f302083a87c038353b815dd0860d0db19edefac34b177728b48ac86",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/79e3deebebc7f48fa6780d0ed706c93d214a6e80ed99c4989007a8e2c595fea5/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/79e3deebebc7f48fa6780d0ed706c93d214a6e80ed99c4989007a8e2c595fea5/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 48:48; requested canvas 1152x1152 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep original eight uneven rounded mint insets at their exact positions, dark separating bars and lower partial strip. No uniform circles, regular tile grid or glyph reinterpretation. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "a7d3513042a1d39c77c33bd6d94f6357a004302cfb9b9c6058a72d2865c557f4",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        24,
+        32
+      ],
+      "targetSize": [
+        96,
+        128
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "3bbeb61560e98ef63a9261b6f98011408378e396c50139e02909d7088501ff60",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "cad5463ca6c0cbb2078feca5dbb06958ba9110e9f1e2ee6d75faff66ae207e6b",
+      "outputSha256": "2f0bb6c243b9372f8328825c23d3cf7c95c79f48dbc95eac93490353091614bd",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 15966,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            216,
+            24,
+            248
+          ],
+          "sourceUvOrigin": [
+            0,
+            216
+          ]
+        }
+      ],
+      "priorCandidateSha256": "52bc5559bf3328cbfd0b20ee648bb3a8280c202603c714bd91ac39e81c01b415",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/3bbeb61560e98ef63a9261b6f98011408378e396c50139e02909d7088501ff60/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/3bbeb61560e98ef63a9261b6f98011408378e396c50139e02909d7088501ff60/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 24:32; requested canvas 576x768 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep exactly two bent mint chevrons near top-left over the broad lower bright rectangle and partial bottom segmented neighbor strips. Preserve sharp uneven bends and source widths, no new sigil. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "2f0bb6c243b9372f8328825c23d3cf7c95c79f48dbc95eac93490353091614bd",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        56,
+        64
+      ],
+      "targetSize": [
+        224,
+        256
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "81b36bf830daaa01a2cbea082d52b8848d9b258d3dd6a9fe9a43f2060c75e41f",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "d5b683bf2df522f9d80ea7ef87bda72dc5bc9ed45ed2c3c458de23b0dbb7f74e",
+      "outputSha256": "2b3e79409fba543b628bb75f78ce61664bd7a624a60d69d3c7f325e0390ab6b1",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16028,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            200,
+            40,
+            256,
+            104
+          ],
+          "sourceUvOrigin": [
+            200,
+            40
+          ]
+        }
+      ],
+      "priorCandidateSha256": "6c81c07da27978e9d465f8ab84f472510483503fe21253f4847cc17a24b3f6fa",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/81b36bf830daaa01a2cbea082d52b8848d9b258d3dd6a9fe9a43f2060c75e41f/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/81b36bf830daaa01a2cbea082d52b8848d9b258d3dd6a9fe9a43f2060c75e41f/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 56:64; requested canvas 1344x1536 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep the two broad extremely dark scalloped bowl-shaped lobes stacked vertically with dim turquoise underside ribs and left/lower adjacent fragments. Retain near-black interiors; do not brighten, fill or decorate them. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "2b3e79409fba543b628bb75f78ce61664bd7a624a60d69d3c7f325e0390ab6b1",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        48
+      ],
+      "targetSize": [
+        192,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "0174a0e8822d38b4f47b13d169bd0612aa497b17876b90fae4e78429ea184cec",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "8272567282e79cc4214cb48163a538b629912189d4a012e6430e3ed207455cd0",
+      "outputSha256": "e4ade164cac2a2d6e1dfe0f63981d43176919fbc92233e174570d9e05796ca77",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16029,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            168,
+            232,
+            216
+          ],
+          "sourceUvOrigin": [
+            184,
+            168
+          ]
+        }
+      ],
+      "priorCandidateSha256": "1d171efc98d5cad2d776040891dae87fb224fd91cd7464bfce79735e949f49aa",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/0174a0e8822d38b4f47b13d169bd0612aa497b17876b90fae4e78429ea184cec/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/0174a0e8822d38b4f47b13d169bd0612aa497b17876b90fae4e78429ea184cec/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 48:48; requested canvas 1152x1152 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep tall central mint column, two small left bars, upper-left short bright inset and two lower-right bent chevrons below irregular right upper lobes. Do not redesign as a rune, regularize curves or add glow. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "e4ade164cac2a2d6e1dfe0f63981d43176919fbc92233e174570d9e05796ca77",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        32,
+        32
+      ],
+      "targetSize": [
+        128,
+        128
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "7856de832ebaae9409601e9e8943fe40adbc230eb06173925924e0820b556231",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "12d3d5e8e89eee240b37104932ac9c36779064e86255e9732e4f0d5022bdfbcc",
+      "outputSha256": "6892393fcf71c82b3dd8283980853f0a3b7c4888d424d0a4353bf254cf4e8c94",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16030,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            8,
+            216,
+            40,
+            248
+          ],
+          "sourceUvOrigin": [
+            8,
+            216
+          ]
+        }
+      ],
+      "priorCandidateSha256": "b55ea931110708ecba07651d64b4ca78267a0d6ff79b899074131b808f0d79fa",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/7856de832ebaae9409601e9e8943fe40adbc230eb06173925924e0820b556231/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/7856de832ebaae9409601e9e8943fe40adbc230eb06173925924e0820b556231/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 32:32; requested canvas 768x768 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep sparse partial upper-left bent bands, single tall narrow right mint strip interrupted by one black notch and bottom fragmented small neighbor row. No new joints or design. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "6892393fcf71c82b3dd8283980853f0a3b7c4888d424d0a4353bf254cf4e8c94",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        64
+      ],
+      "targetSize": [
+        256,
+        256
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "2d92cfbe60548fa5e7fd908a5593fb4924f3e068a14a6cb35ef2af7ef2866405",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "6762ef7fceb56caf4d80d2859d69b4fad36de3a7a73a7b8a03364ebc793ff454",
+      "outputSha256": "ed990bcb61ce56d9feff73a91688b66d30f6674deb133559af13f7b5ff5d4d08",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16092,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            88,
+            248,
+            152
+          ],
+          "sourceUvOrigin": [
+            184,
+            88
+          ]
+        }
+      ],
+      "priorCandidateSha256": "bb046460c082e2528ef5768c6f96b940c42721010332b711265d0beaeb5b3bc4",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/2d92cfbe60548fa5e7fd908a5593fb4924f3e068a14a6cb35ef2af7ef2866405/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/2d92cfbe60548fa5e7fd908a5593fb4924f3e068a14a6cb35ef2af7ef2866405/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 64:64; requested canvas 1536x1536 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep two broad dim horizontal scalloped planes and their sparse turquoise faceted underside highlights, upper narrow fragments and right upright pale strip. Preserve near-black values, original fragment count and spatial relationship. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "ed990bcb61ce56d9feff73a91688b66d30f6674deb133559af13f7b5ff5d4d08",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        24,
+        40
+      ],
+      "targetSize": [
+        96,
+        160
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "1a011a070d862da1d26b89effbecdfefdceeca61ef85eeee3877d113ec3fdd19",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "28c199e54d19ef3e54f716ca6558a3d1c4677273af58690f961c81433e930452",
+      "outputSha256": "3349827e3321b65685d814dff4afe2a4b6eb499af58f1c9c2f460b9eca19b174",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16093,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            232,
+            0,
+            256,
+            40
+          ],
+          "sourceUvOrigin": [
+            232,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "b299f007b0d2557ccada0beb7c54f48148e34b25c6ba24330f1a6bb74a76b635",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/1a011a070d862da1d26b89effbecdfefdceeca61ef85eeee3877d113ec3fdd19/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/1a011a070d862da1d26b89effbecdfefdceeca61ef85eeee3877d113ec3fdd19/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 24:40; requested canvas 576x960 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep dim curved arch rim on right with four angled horizontal internal braces and separate partial lower-left fragment. Preserve slant, intersections, black margin and very low illumination; do not add structure. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "3349827e3321b65685d814dff4afe2a4b6eb499af58f1c9c2f460b9eca19b174",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        32
+      ],
+      "targetSize": [
+        192,
+        128
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "b015a8449747b3151495b4ec478911168865ac96164fb3a5b495e4efbb1a98ea",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "54838ee37b1f2f0489eca0e68de1987e785c1d7a92c2f6b3c6dc0e9e4ae034cc",
+      "outputSha256": "5e1c770ecd917bd206f344bba107e4e820dde56f398522d26509a8e676b28f77",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16094,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            24,
+            216,
+            72,
+            248
+          ],
+          "sourceUvOrigin": [
+            24,
+            216
+          ]
+        }
+      ],
+      "priorCandidateSha256": "d49ad1190a32b16144227c59e4c8186645cd1bdcb27ad59083e4e9e305e3f068",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/b015a8449747b3151495b4ec478911168865ac96164fb3a5b495e4efbb1a98ea/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/b015a8449747b3151495b4ec478911168865ac96164fb3a5b495e4efbb1a98ea/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 48:32; requested canvas 1152x768 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep the broad green middle face, tall plain left strip and one diagonal dark channel near right within existing pale inset; bottom segmented scraps stay separate. No invented floor tiles, joints or new trim. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "5e1c770ecd917bd206f344bba107e4e820dde56f398522d26509a8e676b28f77",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        40,
+        48
+      ],
+      "targetSize": [
+        160,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "b0f14cca283958cf1b9b7759c1f29608f794faa42ad4a88a2085a3be66a2f64c",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "856d17fedcf84fed1ebcf283b47828937086e0ff77e1b48b677ec3f691a80359",
+      "outputSha256": "31361f0e2bc39036e9a946dad60944e43ef20b5750c74e46c7865ed932382ad5",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16157,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            216,
+            168,
+            256,
+            216
+          ],
+          "sourceUvOrigin": [
+            216,
+            168
+          ]
+        }
+      ],
+      "priorCandidateSha256": "9146e0c6551c60f5958aa23ca7a02a4b1b42944c28ca5dcfdef2e3bbded7af94",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/b0f14cca283958cf1b9b7759c1f29608f794faa42ad4a88a2085a3be66a2f64c/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/b0f14cca283958cf1b9b7759c1f29608f794faa42ad4a88a2085a3be66a2f64c/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 40:48; requested canvas 960x1152 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep plain dark green broad central rectangle bordered by stepped black cutouts at top/left and disconnected lower angular fragments. Fine subtle stone grain only; avoid new ornaments or cracks. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "31361f0e2bc39036e9a946dad60944e43ef20b5750c74e46c7865ed932382ad5",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        32
+      ],
+      "targetSize": [
+        192,
+        128
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "812af65c308161b8d2d9bc96f660fcdf60eb375409fab6a8052dc50a150e070e",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "75e95d137da2eedb2bd656f3fbe82a63d8cfffc8d37b94e9a1cbfa6e33fc99e7",
+      "outputSha256": "7297df2c4b53226f2829534910126dab7be16b8efd6a4fd189ccb0dbe2cddd38",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16158,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            216,
+            232,
+            248
+          ],
+          "sourceUvOrigin": [
+            184,
+            216
+          ]
+        }
+      ],
+      "priorCandidateSha256": "6ac291174482d5fc9c3a01507dc4d30a795707e4c2ab6dc8ede1b04e845fd32a",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/812af65c308161b8d2d9bc96f660fcdf60eb375409fab6a8052dc50a150e070e/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/812af65c308161b8d2d9bc96f660fcdf60eb375409fab6a8052dc50a150e070e/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 48:32; requested canvas 1152x768 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep extremely dark lower broad plane, top thin architecture/fragments and existing faint vertical bars. Do not brighten into a wall or invent a recognizable symbol. Fine surface grain stays subtle. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "7297df2c4b53226f2829534910126dab7be16b8efd6a4fd189ccb0dbe2cddd38",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        48
+      ],
+      "targetSize": [
+        192,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "d428e642da7672f50f1fae0dd6a013a0c842e1895969d5980e6a3e0a75ce3c8a",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "3a0068f2f7d8b2532a6eded7823f69a87d7a4c67d4ce681fb8dd43e247782979",
+      "outputSha256": "05e8a74834f973366e2cd1be2707e64dae3e5e7d5d289e84a39aff6e2319cf88",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16220,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            56,
+            104,
+            104
+          ],
+          "sourceUvOrigin": [
+            56,
+            56
+          ]
+        }
+      ],
+      "priorCandidateSha256": "3bf470e13fb005e66b79a0eba49c98c88ce8bacf27fd38800f048f2373ce80be",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/d428e642da7672f50f1fae0dd6a013a0c842e1895969d5980e6a3e0a75ce3c8a/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/d428e642da7672f50f1fae0dd6a013a0c842e1895969d5980e6a3e0a75ce3c8a/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 48:48; requested canvas 1152x1152 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep exactly four dim unequal horizontal bars in the middle/lower dark navy plane and partial top/side green architecture. Retain broad rectangular bar positions and very dark palette without introducing light. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "05e8a74834f973366e2cd1be2707e64dae3e5e7d5d289e84a39aff6e2319cf88",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        40,
+        48
+      ],
+      "targetSize": [
+        160,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "7e9d9efb0cc1daf83bd3b48543528a6135810e96cb1176fff7c3773cf8486f19",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "ae30aec7f78c7426ff99dcc09032d37951d4987b436d6f3b774ff1b93b2c3979",
+      "outputSha256": "4a5721fd1fb1c68f017320d2b5f2ebdfe57039661d7fd246bac246b0e82a09d1",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16221,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            184,
+            40,
+            232
+          ],
+          "sourceUvOrigin": [
+            0,
+            184
+          ]
+        }
+      ],
+      "priorCandidateSha256": "395e651a7e4b718b976b5e14e86d4fd95dbae3d7bbbc6ed1feef81e2a54dfb13",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/7e9d9efb0cc1daf83bd3b48543528a6135810e96cb1176fff7c3773cf8486f19/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/7e9d9efb0cc1daf83bd3b48543528a6135810e96cb1176fff7c3773cf8486f19/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 40:48; requested canvas 960x1152 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep essentially flat pale cyan/white irregular solid field and all surrounding original black notches, cuts and small perimeter strips. Add only near-invisible fine paperlike surface grain, no clouds, lightbeams, cracks, emblem or color shift. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "4a5721fd1fb1c68f017320d2b5f2ebdfe57039661d7fd246bac246b0e82a09d1",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        24,
+        48
+      ],
+      "targetSize": [
+        96,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "72dc4b42ce81acadbe3025fc44389caa05641c93ffc0e318758ebb2b73fdcc96",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "d96785628e771eed36d01c5672dac706bfadd3a7004086a9f5dcfdf949fd341b",
+      "outputSha256": "935a37f32ee6edf2fee2fea507d823394022793e19f89600cda160cd0a13bf0f",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16285,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            232,
+            88,
+            256,
+            136
+          ],
+          "sourceUvOrigin": [
+            232,
+            88
+          ]
+        }
+      ],
+      "priorCandidateSha256": "9b75382134a33063f7a8ba099979f4ded128f3534a3cf37585e7b70b3e732b46",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/72dc4b42ce81acadbe3025fc44389caa05641c93ffc0e318758ebb2b73fdcc96/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/72dc4b42ce81acadbe3025fc44389caa05641c93ffc0e318758ebb2b73fdcc96/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 24:48; requested canvas 576x1152 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep original top thin row of unequal tiny roundish inserts, upper curved cap and two broad stacked mint rectangles with their central narrow stem. Do not change into a new glyph or regularize original spacings. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "935a37f32ee6edf2fee2fea507d823394022793e19f89600cda160cd0a13bf0f",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        48,
+        48
+      ],
+      "targetSize": [
+        192,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "e48242f2099c3b215931d43eada5fb9dd311019eca9f62fd14a256f66137b004",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "b39dbd00fc60d28353ea9485d4a7a857153a45661155c3f39c5624bc449b9f44",
+      "outputSha256": "1f1b04f8489ad6a79ec9a26f43182eb0c767528dc8ec8c4b8d79442f259280d0",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16348,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            88,
+            136,
+            136,
+            184
+          ],
+          "sourceUvOrigin": [
+            88,
+            136
+          ]
+        }
+      ],
+      "priorCandidateSha256": "b64a395032f71c605d4026cdd7c04337d8bab8f8d216a85129812078d4be1465",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/e48242f2099c3b215931d43eada5fb9dd311019eca9f62fd14a256f66137b004/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/e48242f2099c3b215931d43eada5fb9dd311019eca9f62fd14a256f66137b004/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 48:48; requested canvas 1152x1152 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep broad central plain ribbed panel with original many horizontal narrow bands, its lower ragged cutouts and the partial right neighbor fragments. Retain count/positions, add material grain without new brick joints. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "1f1b04f8489ad6a79ec9a26f43182eb0c767528dc8ec8c4b8d79442f259280d0",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        32,
+        48
+      ],
+      "targetSize": [
+        128,
+        192
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "8bc4f745faeaa766e358e74af8225e5dddcf6958d990f376ad756435dc87cbea",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "57c98f1a130a29597883a7d8d755f606cfdd8792e242ea072618ec9518e655e2",
+      "outputSha256": "7931850d54c07b592982812b5129aa41a40f0a967f12aebbfc48612b94e4fd76",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 45,
+          "page": 7,
+          "clut": 16349,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            24,
+            184,
+            56,
+            232
+          ],
+          "sourceUvOrigin": [
+            24,
+            184
+          ]
+        }
+      ],
+      "priorCandidateSha256": "eb0fb424e111d730898b004b04c0fe4696b0c8212e4180c06dee059f86772c39",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/8bc4f745faeaa766e358e74af8225e5dddcf6958d990f376ad756435dc87cbea/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/8bc4f745faeaa766e358e74af8225e5dddcf6958d990f376ad756435dc87cbea/image-v1.png",
+      "prompt": "Edit the FIRST image, an existing source-bound enhanced battle texture atlas. The SECOND image is its original game artwork controlling topology, fragment layout and broad palette. Produce ONLY the same flat UV texture canvas, exact aspect ratio 32:48; requested canvas 768x1152 or an exactly proportional canvas. Do not create a scene, board, border, label or perspective render. Keep every region, partial neighbor and black gap at identical normalized coordinates. Very restrained bespoke painterly material refinement for a gorgeous AA 2026 retro game: replace smooth neural blur and enlarged pixel blocks with continuous fine satin stone/aged architectural surface grain on material faces. Original teal/green palette and illumination are immutable; bright inserts stay flat at the original brightness with NO new halo, shine, directional light or bloom. Keep relief edges, counts and silhouettes; never invent masonry joints, cracks, pipes, symbols or objects. Keep partial original top cap, row of unequal small upper inserts, large irregular mint patch on left and smaller diagonal lower fragment; central dark upright and right patterned strip remain exactly positioned. No new ornament. Treat the first image as a minimally editable layout template. Refine texture within existing forms only. Keep exact outer crop and all tiny atlas scraps. Opaque texture output with black gaps maintained; runtime STP is restored separately from the original.",
+      "references": [],
+      "review": {
+        "intent": "Fine continuous source-faithful aged teal architectural material and relief grain, with original inserted mint/blue forms and subdued lighting. Static battle model surface; source geometry uses stage/parts {45: [0]}. Source family: aqua/green architectural panels, ports, ribs, carved forms and decorative lit motifs.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Original atlas positions, partial fragments, silhouettes, unequal motifs and broad values compared against original and current baseline; fine surface grain only. Independent scene/beauty review pending. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "7931850d54c07b592982812b5129aa41a40f0a967f12aebbfc48612b94e4fd76",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    }
+  ]
+}

@@ -51,6 +51,8 @@ uniform bool uiPaletteDetailEnabled;
 uniform vec4 uiArtworkBounds;
 uniform sampler2D uiArtworkTex;
 uniform sampler2D uiSourceTex;
+uniform bool spriteFontEnabled;
+uniform int spriteFontBlend;
 
 // Neural detail is a bounded mixture of live palette entries, never a frozen RGB palette.
 // Native index/color remain authoritative for STP, black/discard, and both render passes.
@@ -90,6 +92,9 @@ void main() {
   outColour = vertColour;
 
   int translucencyMode = int(translucency);
+  bool spriteGlyph = spriteFontEnabled && uiLayer && vertBpp == 0;
+  float spriteCoverage = 1.0;
+  bool spriteStp = false;
 
   // Textured
   if(textured) {
@@ -131,9 +136,37 @@ void main() {
       }
     }
 
+    if(spriteGlyph) {
+      vec2 local = vertUv + uvOffset - uiArtworkBounds.xy;
+      if(any(lessThan(local, vec2(0.0))) || any(greaterThanEqual(local, uiArtworkBounds.zw))) discard;
+      int expectedIndex = int(round(texelFetch(uiSourceTex, ivec2(local), 0).r * 255.0));
+      // An overwritten native nibble uses its current native colour and coverage, never old artwork.
+      if(nativeIndex == expectedIndex) {
+        vec2 uv = local / uiArtworkBounds.zw;
+        ivec2 size = textureSize(uiArtworkTex, 0);
+        int authoredIndex = int(round(texelFetch(uiArtworkTex, clamp(ivec2(uv * vec2(size)), ivec2(0), size - 1), 0).r * 255.0));
+        spriteCoverage = texture(uiArtworkTex, uv).a;
+        uint pixel = texelFetch(tex15, ivec2(vertClut.x + authoredIndex, vertClut.y), 0).r;
+        texColour = vec4(vec3(pixel & 31u, (pixel >> 5) & 31u, (pixel >> 10) & 31u) / 31.0, float(pixel >> 15 & 1u) / 31.0);
+      }
+      spriteStp = texColour.a != 0.0;
+      if(useTextureAlpha != 0.0 && !spriteStp) discard;
+      if(spriteCoverage <= 0.0 || texColour.a == 0.0 && all(equal(texColour.rgb, vec3(0.0)))) discard;
+      bool nativeBlend = spriteFontBlend != 0 && spriteStp;
+      // Fully covered authored opaque interiors keep native depth/order. Smooth edges never
+      // write an old binary silhouette; they blend later, alongside the caller's STP pixels.
+      if(discardTranslucency == 1.0) {
+        if(nativeBlend || spriteCoverage < 1.0 || translucencyMode != 0) discard;
+      } else {
+        if(!nativeBlend && spriteCoverage >= 1.0) discard;
+        int requiredMode = nativeBlend ? spriteFontBlend : 1;
+        if(translucencyMode != requiredMode) discard;
+      }
+    }
+
     // Keep live palette changes and original STP/discard authoritative. The reference
     // is decoded locally from the owner's TIM, never shipped as original game data.
-    if(uiLayer && uiArtworkEnabled && vertBpp == 0) {
+    if(!spriteGlyph && uiLayer && uiArtworkEnabled && vertBpp == 0) {
       vec2 local = vertUv + uvOffset - uiArtworkBounds.xy;
       if(all(greaterThanEqual(local, vec2(0.0))) && all(lessThan(local, uiArtworkBounds.zw))) {
         ivec2 pixel = ivec2(local);
@@ -155,12 +188,12 @@ void main() {
     }
 
     // Discard if (0, 0, 0, 0), or if alpha is 0 and we're using texture alpha mode
-    if(texColour.a == 0 && (useTextureAlpha != 0 || texColour.r == 0 && texColour.g == 0 && texColour.b == 0)) {
+    if(!spriteGlyph && texColour.a == 0 && (useTextureAlpha != 0 || texColour.r == 0 && texColour.g == 0 && texColour.b == 0)) {
       discard;
     }
 
     // If translucent primitive and texture pixel translucency bit is set, pixel is translucent so we defer rendering
-    if(discardTranslucency == 1 && translucent && texColour.a != 0 || discardTranslucency == 2 && (!translucent || texColour.a == 0)) {
+    if(!spriteGlyph && (discardTranslucency == 1 && translucent && texColour.a != 0 || discardTranslucency == 2 && (!translucent || texColour.a == 0))) {
       discard;
     }
 
@@ -174,7 +207,17 @@ void main() {
 
   outColour.rgb *= recolour;
 
-  if(alpha != -1) {
+  if(spriteGlyph) {
+    // Texture alpha remains native even when the primitive has no blend override.
+    float nativeAlpha = useTextureAlpha != 0.0 ? (spriteStp ? 1.0 / 31.0 : 0.0) * (alpha != -1.0 ? alpha : 1.0)
+      : (alpha != -1.0 ? alpha : (spriteFontBlend == 1 ? 0.5 : 1.0));
+    outColour.a = spriteCoverage * nativeAlpha;
+    if(translucencyMode == 2 || translucencyMode == 3 || translucencyMode == 4) {
+      // Add/subtract hardware blends use ONE: coverage belongs in RGB there. Explicit
+      // caller alpha only multiplied RGB in the original texture-alpha path.
+      outColour.rgb *= spriteCoverage * (translucencyMode != 4 && alpha != -1.0 && useTextureAlpha != 0.0 ? nativeAlpha : 1.0);
+    }
+  } else if(alpha != -1) {
     if(useTextureAlpha == 0) {
       outColour.a = alpha;
     } else {
