@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "a81dc46c29ce1f9b89a418644f1ac75c3338086f plus one independently cleared Palace post correction",
+  "sourceSelectionCheckpoint": "574023dd8cd1b2a78fa30640432729191c2f6832 plus one independently cleared Cargo fitting correction",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "cf90438cdc0248b1c286d3344253cc0224ba85fc91d421e04fb78917c741764d",
-    "field-runtime-artwork.json": "600e53f6d535839108e37f89efcbaa2d7389f9e2608ccb4f8f9cbb8e7b61d289",
+    "full-coverage.json": "655aa731cb71b73b6524b31b4adaa4dc88d17abc05e0d2217ce7b8de95ebb063",
+    "field-runtime-artwork.json": "4800c78e52aa5b8cec7d6b26c0cf1aa1cc11bea782585b2c9b3f4ffa2c0169c1",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
-    "battle-material-runtime-artwork.json": "95af427a1fa3a8b3edc37767f8d3534083ae29ad069ac1c652104e8103d8781d",
+    "battle-material-runtime-artwork.json": "026cb84f796456aad9c58860c49db807f0c21381ffe3e5437f9a24f287e55526",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "field-bespoke-bedding-reviewed-selection.json": "6af60fa9447818366fda841ff1b9b362d84ad6a9a4aac2f2384a53725f75b123",
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
@@ -44,7 +44,7 @@
     "field-bespoke-interior-supports-held-drafts.json": "8353026af1811a7e1d17b3bfc922324c546057c12dd48af953b7bb2975abb685",
     "field-bespoke-carved-furnishings-reviewed-selection.json": "9519da7e89c246b6d2d9e3edbe8a12d29a8a6f41cb1402becb4fc1bbebedf369",
     "field-bespoke-carved-furnishings-held-drafts.json": "34245d3334340c4b9ef12ecd9248015fad1dea7101055ab582aa02153670c5de",
-    "battle-presentation-artwork-v1.json": "d5db1a80eff1c51598b8fac8d45499bfbd6e7c9ca0c1b6b7c7f2701b74855360",
+    "battle-presentation-artwork-v1.json": "358947f3db72dda8c7d1dbae74ca5de77ad297047fdee19745a8f1af9d05ee1e",
     "field-accepted-main-integration.json": "8fcbda28fda91ec1a7db2bff3f39195e831d1137eb3e69494d718a32a2e7ce69",
     "field-bespoke-small-furnishings-reviewed-selection.json": "aa797a92cc22bb62127a6aa6a0999818d0a833cf8d4627ea2eed5ddf8062b06a",
     "field-bespoke-small-furnishings-held-drafts.json": "2dcdc533083a076dddb8fd3b8ccc5ae2de8b0a4e35a34a1b0ce12694122867ad",
@@ -123,28 +123,30 @@
     "field-bespoke-cargo-fitting-held-drafts.json": "c8826a8aef95f48f47fc9a7d9696f2bf4bfa26c1209796de1c173970f8b71a83",
     "field-bespoke-cargo-local-patch-reviewed-selection.json": "05875ad367cbb90a106708e60b7a17b54020b48dc43b20485628ee0e7e6878ce",
     "field-cargo-local-patch-art-review.json": "c318b44b67f8265d2998fe8b4264766d3876907fd654f6e3b2276c37b330a737",
-    "field-independent-cargo-local-patch-review.json": "374900c6f15f580a0861e1f9b5fcb244297854ddb28663d0f5d4c8f14ae621e0"
+    "field-independent-cargo-local-patch-review.json": "374900c6f15f580a0861e1f9b5fcb244297854ddb28663d0f5d4c8f14ae621e0",
+    "field-cargo-local-patch-selection-readiness.json": "b78420d0a4ccaac3d941e8034bb175089326c816801df7179aa362bb2cc5b1bf",
+    "field-cargo-local-patch-authoring-main-forward.json": "fd177f239fc345a9dfa54ae6f35c0267c52807754a71e5c8ff31d4ff3364fdc5"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 204,
+  "knownRemainingStaticImages": 203,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4959,
+      "selectedDevelopment": 4960,
       "selectedNeural": 4886,
-      "selectedPainted": 73,
-      "held": 203,
+      "selectedPainted": 74,
+      "held": 202,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 51,
+      "customHeldDraftSourceImages": 50,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Finish10 canonical revision sources and other held prototypes; continue203field holds, one terrain repair and animated/props source/state contracts.",
+      "nextTask": "Finish9canonical revision sources and other held prototypes; continue202field holds, one terrain repair and animated/props source/state contracts.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 0,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
@@ -193,14 +195,13 @@
         "e0f6b532410a42b5ad4701aca0b368b6473d795f25fb94e14021a9ebda37be78",
         "e22a7b2917dc0277ef411a3573333b54e4f6d56662bb68bc472c05a746537116",
         "ed28e7d93d5636f737f4e2175ea43d33600dda3bde450f0738406d4a035cc7b8",
-        "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
         "f32d16052e97853b1dff1762df2bb5195bc9dc90fa8037c8c2d23fe281d41120",
         "f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813",
         "f94d81a9826549e0833a5b8fa48e28bc24ea4f1859b959a010a54e25785c9cfc",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique ongoing unselected source directories excluding4959 acceptedmain selections;51keys subset203field holds. All83historical recipes and repeatedversions preserved.",
-      "independentlyReviewedCandidatesRequiringRevision": 10,
+      "draftCountMethod": "Unique ongoing unselected source directories excluding4960acceptedmainselections;50keys subset202fieldholds. All83historicalrecipes andallversions preserved.",
+      "independentlyReviewedCandidatesRequiringRevision": 9,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
       "independentNewSceneryReview": {
         "source": "7262233bbffb1419bfda439b138e4bcc75f01591",
@@ -215,7 +216,7 @@
         "receipt": "field-independent-palace-eight-review.json"
       },
       "independentlyClearedCandidatesAwaitingIntegration": 0,
-      "authoringQueueScope": "83 historical canonical source keys:73selected/10revision/0pending. Every oldversion retained on ongoing authoring branch.",
+      "authoringQueueScope": "83historical canonical source keys:74selected/9revision/0pending. Every oldversion retained on ongoing authoring branch.",
       "independentFinalEighteenReview": {
         "source": "bdfecbad260e63eb3eed1a7d6147b8e8703553a4",
         "clearedSelected": 16,
@@ -239,17 +240,18 @@
         "clearedSelected": 1,
         "receipt": "field-independent-post-components-review.json"
       },
+      "independentCargoLocalPatchReview": {
+        "source": "2534925f60620d387339ced84c37a9d88eb1a3db",
+        "clearedSelected": 1,
+        "receipt": "field-independent-cargo-local-patch-review.json"
+      },
       "cargoFittingTrialStatus": {
-        "manifest": "field-bespoke-cargo-fitting-held-drafts.json",
-        "sourceKey": "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
-        "reusedVariantsRequiringRevision": 3,
-        "wholeGenerationGeometryRejected": 1,
-        "sourceIsSubsetOfExistingFieldHolds": true,
+        "sourceIsSubsetOfFormerFieldHolds": true,
         "isolatedPatchVisualReviewClear": 1,
-        "independentCodeReviewPending": false,
-        "prospectivePaintings": 74,
         "independentCodeReviewClear": true,
-        "runtimeIntegrationPending": true
+        "runtimeIntegrationPending": false,
+        "runtimeSelectedDevelopment": true,
+        "acceptedMain": "5fbda0d5fa37dfc73c6158c857dd88130d7915fd"
       }
     },
     {
@@ -273,10 +275,10 @@
       "fullEncounterContractsClosed": 0,
       "selectedAnimationFamilies": 0,
       "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette.",
-      "selectedPaintedMasters": 52,
+      "selectedPaintedMasters": 56,
       "previouslySelectedPaintedMasters": 12,
-      "newPresentationSelectedMasters": 40,
-      "selectedNeuralMasters": 466
+      "newPresentationSelectedMasters": 44,
+      "selectedNeuralMasters": 462
     },
     {
       "id": "battle-panoramas",
@@ -494,6 +496,12 @@
       "selectedNewSourceImages": 1,
       "independentReview": "field-independent-post-components-review.json",
       "reason": "Original-reviewed Palace post pixels replayed exactly through bounded custom component transfer; prior72recipes/4958records preserved."
+    },
+    {
+      "manifest": "field-bespoke-cargo-local-patch-reviewed-selection.json",
+      "selectedNewSourceImages": 1,
+      "independentReview": "field-independent-cargo-local-patch-review.json",
+      "reason": "Original-reviewed Cargo fitting patch replayed exactly through bounded source-local transfer; prior73recipes/4959records preserved."
     },
     {
       "manifest": "field-bespoke-organic-storage-reviewed-selection.json",
@@ -714,8 +722,8 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 34,
-    "paintedBattleMastersAwaitingCoordinatedPublication": 18,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 35,
+    "paintedBattleMastersAwaitingCoordinatedPublication": 22,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
       "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
@@ -743,15 +751,15 @@
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "83 historical canonical source keys:73selected/10revision/0pending; allhistorical andheld variants preserved.51unselectedcustomkeys subset203fieldholds,204knownstatic. Cargo fitting next localized repair; dynamic/prop denominators unknown. Native/final pending.",
+  "authoringCheckpoint": "83historical canonical sourcekeys:74selected/9revision/0pending; allhistorical/custom/heldbytes preserved.50unselectedcustomkeys subset202fieldholds,203knownstatic. Dynamic/prop image denominators unknown; native/final pending.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "6e831d587c44243a13c86ca8f5e507bed021d273",
-    "fieldSelected": 4959,
-    "fieldPainted": 73,
+    "sourceCommit": "5fbda0d5fa37dfc73c6158c857dd88130d7915fd",
+    "fieldSelected": 4960,
+    "fieldPainted": 74,
     "authoringCandidates": 83,
     "independentlyPending": 0,
-    "independentlyRevision": 10,
-    "heldSourceKeys": 51,
+    "independentlyRevision": 9,
+    "heldSourceKeys": 50,
     "nativeAccepted": 0,
     "finalQualityAccepted": 0
   }
