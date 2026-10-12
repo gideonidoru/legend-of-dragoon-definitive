@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "scope": "Owner-requested reviewed neural and source-verified painted development installation; Skurfa and remaining held/unreviewed sources remain native",
-  "runtimeSelected": 4938,
+  "runtimeSelected": 4954,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
   "protectedCuts": [
@@ -79226,9 +79226,265 @@
           "canDeriveFromBackground": false
         }
       ]
+    },
+    {
+      "decodedRgbaSha256": "b525081b77578354e5eaf8dc82b7f83bc1d57ab5849f6c127f7ae4b365a655d2",
+      "outputSha256": "b37563127548434bb8c5cff48bc739ab70e5710016e53fb1685d5e8cd3dcf57c",
+      "sourceSize": [
+        20,
+        46
+      ],
+      "bindings": [
+        {
+          "renderKey": "6597329e92442b8aacb4b54265b3922b2803dacf7d248b3fb7a2a1ee340e9f8b:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28",
+      "outputSha256": "90db98babbfa478fd63e158288c0f2e0823d57e62ccf36f4f271c3a6d18d6eaf",
+      "sourceSize": [
+        68,
+        88
+      ],
+      "bindings": [
+        {
+          "renderKey": "2b30ed6792a5e41f18eed30ed2fa5b24a26c80234a38c576af91863dff86da65:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "cae03a38ef095431e37c8c02444f3ac0e5601a7633b6b78193c0e37339cbc77f",
+      "outputSha256": "41b641ec0fdc18d8cac0b8e9fca8cb718a4f84e21643d1e8da99635621a2af92",
+      "sourceSize": [
+        40,
+        42
+      ],
+      "bindings": [
+        {
+          "renderKey": "ba8659f654b4d5edd128f95fb04896ea2ab1d04f71e123494b9e98c1103d79fe:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "e6bea3e159ef60b60feb564cc6a70ac9f1278263d30bfacf9258b7a2ea7d662a",
+      "outputSha256": "b6e46f9ff5aa1d960214a1620c9ec5c20c6657a1ace2cfe92bfce498ca807788",
+      "sourceSize": [
+        50,
+        118
+      ],
+      "bindings": [
+        {
+          "renderKey": "25d39d6bf5069f2216aa1f0be1b188613114df301b46df79bea5b791c6e78e92:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "f49c19350faa7b6d8baff4e376061ce1d7b80965648b2ef797c2d276a0e86d2a",
+      "outputSha256": "2f1b3b675db58daff427ed62f0300d77c832d1f6290ad88eb5a74743453005de",
+      "sourceSize": [
+        56,
+        118
+      ],
+      "bindings": [
+        {
+          "renderKey": "113b37bc5240e5bffe453a1c9a84c9f6f0ae3f093fecfc0766b7469d3f1b7834:-1",
+          "kind": "foreground",
+          "slot": 0,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "9ff5730dc191a7dd1091844f4505b77d9f0c1f6a8e75336630fc9e8267ff15df",
+      "outputSha256": "d335fbbfcffab6b28e9900243561a242a270eacabf2c5964227c4243fd46a7e2",
+      "sourceSize": [
+        34,
+        54
+      ],
+      "bindings": [
+        {
+          "renderKey": "5c496b3f2ce267fcf9cf5c0a5be6ba5be3e59ec7ec5e8d0b24ded99c2d667dbb:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "aa05988943ca081f21a6590703116b1ee20e90eeb8910cf4ba1be2fb8d6c2e2f",
+      "outputSha256": "658d5a749b1f8a3323983f2f973067fd2a14108e5fd81ff3475b3597d6d39e8a",
+      "sourceSize": [
+        44,
+        98
+      ],
+      "bindings": [
+        {
+          "renderKey": "1018e3b684e4b9b9550c221151e5d28969789ba0d46d5ab37f7fd5c19a73f851:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "80701be87325066059c4a6b4de4cef1bf2ebc129929e8ec01ce84fa45aaa3a2f",
+      "outputSha256": "bfd5a0ec7be9402568f2a425a62cfb76a37ef20128238d3c2b3080a89dc28427",
+      "sourceSize": [
+        48,
+        34
+      ],
+      "bindings": [
+        {
+          "renderKey": "0ee1037f39f02d33f18a726a5a051126fb5f20fec49ea65723f3c65d52bd8f0c:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "86c7cc84c0b847bed2d30b59a1e80a118941f5a93d9132bd63cd738203a367a5",
+      "outputSha256": "401b796c2e337945596700d995508485adbcb576602f8228b5dc5bc562f44046",
+      "sourceSize": [
+        42,
+        26
+      ],
+      "bindings": [
+        {
+          "renderKey": "5d88d0002e9c4c84b4e04eddc164c1c56c8e80174ced0cbbcc01473639dc3c7f:-1",
+          "kind": "foreground",
+          "slot": 9,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "9d6ee81a6a9584c4f5d2ae829238be015881ae8235ec43458a27d78969fbb62e",
+      "outputSha256": "703d35e7b86c6a9f3c7ab324d77bf953227af3fd26d2a892fc367480ada0af18",
+      "sourceSize": [
+        68,
+        110
+      ],
+      "bindings": [
+        {
+          "renderKey": "02a5fa6bce3fa4dccc8ede5476b07893ea885d9e0665fdcc9965632ace691f90:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "8f9db059c123cfcd782f2cccaa83a3e331c36712985d12dcd32d443328ba8866",
+      "outputSha256": "72b4ec5efde1274fda629ccfc2242bca43a44cc1927138470b6380bfaa03b661",
+      "sourceSize": [
+        46,
+        34
+      ],
+      "bindings": [
+        {
+          "renderKey": "2729034499314e73adaafbcd9fca1f8f1bedf7e129eaf317e3eb71842ee2ed05:-1",
+          "kind": "foreground",
+          "slot": 4,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "a2ef10ffa4712d71a8cd05cf664fefa3f59b9d004eee24c0fa8107e8a14a81e3",
+      "outputSha256": "10fbd881227c0e89efda9674f13fbd5ed0cde9d17dbc59b4ed5e702e8182209d",
+      "sourceSize": [
+        38,
+        52
+      ],
+      "bindings": [
+        {
+          "renderKey": "2729034499314e73adaafbcd9fca1f8f1bedf7e129eaf317e3eb71842ee2ed05:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "8462d7a2aafb4c8e944575f6c37c7821e02b9d88dd3c7da4e8b55e292a3e4315",
+      "outputSha256": "680ac54b9d15856d7a12307a49a483aea8e163b2fd79a3038225a9ade623ea22",
+      "sourceSize": [
+        24,
+        28
+      ],
+      "bindings": [
+        {
+          "renderKey": "f4a5e340ea39e1979e6b3d1cadb3091fb7212b8ad8e8508d0f7b711bb378708f:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "4bd51eba14de1496e5d55996992fbe6d031841e9f31087697319336c4dc21796",
+      "outputSha256": "5f75c58d6f3b0f666729b94ff5138b15baf2a3e0d5722ee764dd2ff28f5494b4",
+      "sourceSize": [
+        18,
+        14
+      ],
+      "bindings": [
+        {
+          "renderKey": "eb9b947e46f0d0c3ba1a39d01adc5e290ee0c10ed407482fd2166323aa4ec168:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "6c348a68d190c40bb47a3b5b3b0a0051849a80eaf03b2bb0070dad83775f06c1",
+      "outputSha256": "1a918672965116ac8a63a934ebb16328c04da93c56bb6ada90285bac2cd90547",
+      "sourceSize": [
+        14,
+        20
+      ],
+      "bindings": [
+        {
+          "renderKey": "e1b3176346f070ca8d9ecf851e766d6994ac34f91d4256cd196708b85c5d503b:-1",
+          "kind": "foreground",
+          "slot": 7,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "66ce8f14cdce7e5aa0b763cb76e1765592237eba73dbd86fab97abe41bdfa1a2",
+      "outputSha256": "d5722588757de73cd9984b1925e67fddec6308a4d33ef51804655ef8cb02b599",
+      "sourceSize": [
+        30,
+        26
+      ],
+      "bindings": [
+        {
+          "renderKey": "6b0ff27d856c8828c82704f92f278c9c3a694766432b8f5c23fa0e02beb98930:-1",
+          "kind": "foreground",
+          "slot": 5,
+          "canDeriveFromBackground": false
+        }
+      ]
     }
   ],
   "reviewReceiptSha256": "f2845bdff322c04b8496a0eff151389da53594de54446ec25dfb0d42cab9ea51",
-  "paintedReviewReceiptSha256": "6a7a42680b7b366cc5229d60f48ce4e26d669fb34b5c89d1d9db0bfa8167a262",
-  "paintedRuntimeSelected": 52
+  "paintedReviewReceiptSha256": "491ac230f77f871128d8df0ddf90b96f58fd8bef568dcbbca612b6f66fd29124",
+  "paintedRuntimeSelected": 68
 }
