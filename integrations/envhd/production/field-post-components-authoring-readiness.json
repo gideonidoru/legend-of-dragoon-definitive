@@ -1,0 +1,198 @@
+{
+  "schema": 1,
+  "scope": "New helper/code validation pending; no runtime selection. Exact old independent visual CLEAR prototype preserved, with reproducible bounded component recipe.",
+  "priorAuthoringCommit": "3c7e5971748a0ed8829565936a8398dc4e24de9f",
+  "sourceReviewCommit": "5365e60974241b64645e5b1be6186c7c7ac4eab8",
+  "sourceReviewReportSha256": "64e63476d7afa98523bcf864976f42c41abcf2da9e688cf640bbcf251c02056d",
+  "sourceKey": "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
+  "generatedSha256": "342fa0bca346d5bd342f6453a7f6cc99e1e9296e721bab425e4119e8311beeac",
+  "outputSha256": "fa6b88b348888472d05fede8df291df45d6c56210af6e70daadc651163b702f8",
+  "componentRecipe": {
+    "method": "python-painted-component-transfer-1",
+    "sourceSize": [
+      70,
+      114
+    ],
+    "targetSize": [
+      280,
+      456
+    ],
+    "insertSize": [
+      983,
+      1601
+    ],
+    "scale": 4,
+    "allowedNativeBox": [
+      55,
+      64,
+      70,
+      114
+    ],
+    "regions": [
+      {
+        "name": "gold-body",
+        "nativeBox": [
+          55,
+          65,
+          65,
+          91
+        ],
+        "insertBox": [
+          785,
+          855,
+          883,
+          1188
+        ],
+        "maskBox": [
+          55,
+          64,
+          66,
+          91
+        ],
+        "channelRatios": [
+          [
+            0,
+            2,
+            1.35
+          ],
+          [
+            1,
+            2,
+            1.35
+          ]
+        ],
+        "sourceMaskPixels": 188,
+        "sourceMeanRgb": [
+          120.29787234042553,
+          122.85106382978724,
+          64.63829787234043
+        ],
+        "paintMeanRgb": [
+          162.018156424581,
+          150.6937849162011,
+          85.60998603351955
+        ],
+        "channelGain": [
+          0.7424962423666625,
+          0.815236433925282,
+          0.7550322207392032
+        ],
+        "sourceMaskHdPixels": 2864,
+        "paintedUncoveredMaskPixels": 36
+      },
+      {
+        "name": "teal-base",
+        "nativeBox": [
+          55,
+          90,
+          66,
+          109
+        ],
+        "insertBox": [
+          772,
+          1190,
+          916,
+          1467
+        ],
+        "maskBox": [
+          55,
+          90,
+          66,
+          109
+        ],
+        "channelRatios": [
+          [
+            1,
+            0,
+            1.08
+          ],
+          [
+            2,
+            0,
+            1.08
+          ]
+        ],
+        "sourceMaskPixels": 164,
+        "sourceMeanRgb": [
+          40.53658536585366,
+          79.3170731707317,
+          79.5609756097561
+        ],
+        "paintMeanRgb": [
+          50.6108993902439,
+          87.35365853658537,
+          95.06935975609755
+        ],
+        "channelGain": [
+          0.80094576176743,
+          0.9079994415747591,
+          0.836872950589669
+        ],
+        "sourceMaskHdPixels": 2624,
+        "paintedUncoveredMaskPixels": 0
+      }
+    ],
+    "maskResampling": "NEAREST4x",
+    "maskBlurRadiusHdPixels": 0.8,
+    "rgbResampling": "LANCZOS",
+    "rounding": "numpy.rintclipuint8",
+    "changedPixels": 6184,
+    "baseAlphaExact": true,
+    "outsideAllowedBoxExact": true,
+    "sourceRgbPixelsCopied": false,
+    "minimumPaintedCoverageAlpha": 16,
+    "minimumPaintedAnchorAlpha": 128,
+    "maximumUncoveredMaskFraction": 0.1,
+    "baseCutoutRepair": {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 29920,
+      "paintedGapPixelsExtended": 1482,
+      "paintedUncoveredSourcePixels": 1014,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 68,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false
+    },
+    "baseInputSha256": "457afe8001b690e142179928fe0647db79340479e28595c6aa08ff2a81d10a47",
+    "insertInputSha256": "e0f0270a509c774ebb8cd2eb64b3a698638283691eb8a4c4924198c74e626f60",
+    "algorithmPath": "scripts/repair-envhd-painted-components.py",
+    "algorithmSha256": "984dcbc7cefab7249f8c988e40cd4c8cfd73aba0f265bb6c91669eb2b7cd8f14",
+    "baseInputPath": "integrations/envhd/production/bespoke-field-candidates/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/painted-base-input-v2.png",
+    "baseGeneratedBy": "builtin-imagegen",
+    "basePrompt": "Use case: precise-object-edit. Edit FIRST native reference into faithful detailed hand-painted HD foreground art for Legend of Dragoon EnvHD. FIRST controls exact camera, silhouette, all shapes, dimensions, edge crop, palette, illumination, structure and fine markings. SECOND is complete original scene for context only. THIRD is an existing custom Crystal Palace railing painting for compatible fine-grained material finish only; never copy its layout, object counts, panel divisions, palette or light. Retain original FIRST composition and internal landmarks. Output isolated FIRST fragment on real transparency, exactly same canvas aspect and source crop; no centering, resizing subject, margin, padding, rotation, perspective shift or new surrounding scene. Preserve every original transparency opening and black recess. Fine understated worn material detail; no new objects, symbols, writing, ornaments, added joints/block courses, bright glow, chrome, extra lights, checkerboard, labels or watermark. Native70x114,35:57 portrait. Source is long diagonal dark green balustrade descending from upper-left to lower-right, with cropped green architectural sliver at extreme left, taller gold/green post near top-left and another tall gold/blue-green post near bottom-right on curved pale base. Preserve each small yellow-gold inset/fitting on the sloping rail in its exact source position and original count. Main green rail has narrow source divisions and low-contrast worn surface marks; restore those details without new panel rows, additional crossbars or readable engraving. Top-left dark square inset remains DARK, not a glowing lamp; gold fittings remain dim yellow/ochre. Upper sliver stays separate where native transparent gaps separate it. Keep original cool dark green/teal surfaces, warm dull gold faces and blue-green lower post; no recoloring to the brown palette of another railing. Preserve exact post widths, slopes, source dark outlines and small gaps.",
+    "insertInputPath": "integrations/envhd/production/bespoke-field-candidates/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/painted-insert-input-v2.png",
+    "insertGeneratedBy": "builtin-imagegen",
+    "insertPrompt": "Use case: precise-object-edit.\nAsset type: EnvHD faithful hand-painted environment texture, Crystal Palace cut368 foreground3 diagonal rail and two tall posts.\nInput images: Image1 is the authoritative original reference for object identity, geometry, marks and exposure. Image2 is the current HD edit target. Edit Image2 only, using Image1 to correct the identified mismatch.\nPrimary request: Correct ONLY the tall post at the lower-right end. Its original Image1 blue lower base is a continuous softly divided coloured surface, and its gold shaft has soft longitudinal shading. Remove the unsupported stacked blue block courses and heavy horizontal gold ring/seam introduced in Image2. Make the lower-right post's blue base continuous and its gold shaft smooth, with only source-supported tonal divisions. Preserve the original continuous base contour, cropped right boundary and pale curved foot. Keep the diagonal rail, all four small fittings, upper-left tall post and separate upper-left post sliver exactly as Image2; do not redesign the rail fittings in this edit.\nStyle: restrained hand-painted modern HD environment art; preserve existing painted quality and original game intent.\nCanvas: exact full original canvas width:height 70:114 (0.61403509 aspect ratio). Keep this full canvas and all relative feature positions. Fill the complete frame without recentering, added margins, crop, inset, padding or change of perspective.\nTransparency: actual transparent background around the exact source silhouette and holes; preserve all original transparency. No black painted backdrop, checkerboard, scene background, text, watermark, border or labels.\nInvariants: change only the requested features; all other geometry, layout and material colours remain unchanged. Image1 always controls ambiguous details; do not invent structure from low-resolution marks."
+  },
+  "exactToPriorClearedPrototype": true,
+  "selectionManifest": "field-bespoke-post-components-reviewed-selection.json",
+  "selectionManifestSha256": "af9f9f91a3a2231005f685a2856a604337890f3266271e1d41c6b62e1bb6d149",
+  "selectedRuntimeUnchanged": true,
+  "selectedFields": 4958,
+  "selectedPaintings": 72,
+  "prospectivePaintings": 73,
+  "newUniqueSourceImages": 0,
+  "newImageGenerationCalls": 0,
+  "originalStandaloneCoverageFailureStillRejected": true,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "privateSourcesAndDiagnosticsExcluded": true,
+  "tests": [
+    {
+      "script": "scripts/test-envhd-painted-components.py",
+      "passed": 11,
+      "logSha256": "c72493ebf54b36c1875df25b433b3e7ac9188401d160e2125b2cf6c1e6701c48"
+    },
+    {
+      "script": "scripts/test-envhd-painted-fields.py",
+      "passed": 58,
+      "logSha256": "f82bdb149db7550a0d21846cc557d198a0f882be6f741e298938654c8faff253"
+    }
+  ],
+  "currentSourcePreflightCandidates": 73,
+  "currentSourcePreflightLogSha256": "1d0af04cfbb64faf9299d62df50fcb42fde5aa474b106c6e37a6142556b2827d",
+  "helperAlgorithmSha256": "984dcbc7cefab7249f8c988e40cd4c8cfd73aba0f265bb6c91669eb2b7cd8f14",
+  "helperAndSelectionIndependentReview": "pending"
+}

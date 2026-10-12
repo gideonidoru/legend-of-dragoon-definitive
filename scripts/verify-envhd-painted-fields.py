@@ -25,6 +25,7 @@ canvas_fit = module('painted_field_canvas_fit', 'normalize-envhd-painted-canvas.
 surround = module('painted_field_surround', 'repair-envhd-painted-surround.py')
 authoring_crop = module('painted_field_authoring_crop', 'crop-envhd-painted-authoring-canvas.py')
 rgb_repack = module('painted_field_rgb_repack', 'repack-envhd-painted-rgb.py')
+components = module('painted_field_components', 'repair-envhd-painted-components.py')
 REPAIR_SHA256 = 'd94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a'
 REGISTRATION_SHA256 = '7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784'
 OPAQUE_BORDER_SHA256 = 'd5a6b3b9b9177b2292863ee3391720065e7e9155f943b221ee1edcd2b73365bc'
@@ -32,6 +33,7 @@ CANVAS_FIT_SHA256 = '375f8284c4ca6a558e099c018f58c21f419e428d15e3662f6c81d051f87
 SURROUND_SHA256 = '11017bae4bf16c21bdd6e923b36dc46dae63a023ed0c8d0a26dfe70da1e3d767'
 AUTHORING_CROP_SHA256 = '939125d63c15725d6c91637eb981ccbf8c667b5b13c52061d5a91345c3ba7676'
 RGB_REPACK_SHA256 = 'fce3e10260df107249fe85ec0583b3edbf0581c9f5ecc21dc1c94f77508a83ba'
+COMPONENTS_SHA256 = '984dcbc7cefab7249f8c988e40cd4c8cfd73aba0f265bb6c91669eb2b7cd8f14'
 METHOD = 'python-painted-cutout-nearest-colour-exact-visibility-1'
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
 ROOT = Path(__file__).resolve().parents[1]
@@ -123,6 +125,46 @@ def preflight(files, manifest_path, root=ROOT):
                                    originalGeneratedPath=prefix + 'painted-rgb-input-v1.png')
             if recorded_repack != expected_repack or raw_data != converted_data:
                 raise ValueError('Painted RGB container differs from its recorded original painting')
+        transferring = 'componentTransfer' in candidate
+        if transferring:
+            recorded_components = candidate['componentTransfer']
+            if (not isinstance(recorded_components, dict)
+                    or any(k in candidate for k in ('registration', 'opaqueBorderRepair', 'sourceCanvasNormalization',
+                                                   'sourceSurroundRestore', 'sourceAuthoringCrop', 'sourceRgbContainerRepack'))
+                    or recorded_components.get('algorithmPath') != 'scripts/repair-envhd-painted-components.py'
+                    or recorded_components.get('algorithmSha256') != COMPONENTS_SHA256
+                    or batch.terrain.digest(Path(components.__file__).read_bytes()) != COMPONENTS_SHA256
+                    or candidate.get('generatedBy') != components.PROVENANCE):
+                raise ValueError('Painted component identity or exclusive operation changed')
+            repair.validate_png_header(raw_data, 'painted', source.size)
+            repair.validate_png_header(output_data, 'output', source.size)
+            recorded_regions = recorded_components.get('regions')
+            region_keys = ('name', 'nativeBox', 'insertBox', 'maskBox', 'channelRatios')
+            if (not isinstance(recorded_regions, list)
+                    or any(not isinstance(region, dict) or any(k not in region for k in region_keys)
+                           for region in recorded_regions)):
+                raise ValueError('Painted component region controls changed')
+            inputs = {}
+            for role in ('base', 'insert'):
+                expected_path = prefix + f'painted-{role}-input-v{version}.png'
+                if (recorded_components.get(role + 'InputPath') != expected_path
+                        or recorded_components.get(role + 'GeneratedBy') != 'builtin-imagegen'
+                        or not isinstance(recorded_components.get(role + 'Prompt'), str)
+                        or not recorded_components[role + 'Prompt'].strip()):
+                    raise ValueError('Painted component input provenance changed')
+                inputs[role] = batch.terrain.bounded_read(batch.battle.staging_path(root, expected_path), 32 * 1024 * 1024)
+                if batch.terrain.digest(inputs[role]) != recorded_components.get(role + 'InputSha256'):
+                    raise ValueError('Painted component input bytes changed')
+            composite, component_operation = components.replay(source, inputs['base'], inputs['insert'],
+                [{k:region[k] for k in region_keys} for region in recorded_regions], recorded_components.get('allowedNativeBox'))
+            stream = io.BytesIO()
+            composite.save(stream, format='PNG')
+            expected_components = dict(component_operation, algorithmPath='scripts/repair-envhd-painted-components.py',
+                algorithmSha256=COMPONENTS_SHA256,
+                **{role + field: recorded_components[role + field] for role in ('base', 'insert')
+                   for field in ('InputPath', 'GeneratedBy', 'Prompt')})
+            if recorded_components != expected_components or raw_data != stream.getvalue():
+                raise ValueError('Painted component output differs from its exact recorded transfer')
         cropping = 'sourceAuthoringCrop' in candidate
         if cropping:
             recorded_crop = candidate['sourceAuthoringCrop']
@@ -227,7 +269,8 @@ def preflight(files, manifest_path, root=ROOT):
         if any(candidate.get(k) != v for k, v in operation.items()):
             raise ValueError('Painted field repair measurements changed')
         if (candidate.get('targetSize') != list(expected.size) or candidate.get('algorithmSha256') != REPAIR_SHA256
-                or candidate.get('method') != METHOD or candidate.get('generatedBy') != 'builtin-imagegen'
+                or candidate.get('method') != METHOD
+                or candidate.get('generatedBy') != (components.PROVENANCE if transferring else 'builtin-imagegen')
                 or not isinstance(candidate.get('prompt'), str) or not candidate['prompt'].strip()
                 or candidate.get('nativeAcceptance') != 'pending' or candidate.get('finalQualityAcceptance') != 'pending'
                 or candidate.get('runtimeSelected') is not False):
