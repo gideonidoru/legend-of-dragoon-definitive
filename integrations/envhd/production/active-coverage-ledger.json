@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "0d29fc7536e01d355c13db427154005dbd8b329c accepted three correctedwall/rails;ongoing83recipes/allheldversions retained",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "64cb80cf8c6c6790564e6f8ed71cfb8f671e86ec9eb7f96946fff5bcbc267c2f",
+    "full-coverage.json": "34651cd73970d312e9830d3e42386e08d4989db8809b9886bd23e58d64b8be1c",
     "field-runtime-artwork.json": "f335c89ee476da5f11b1036705758d6cec140db45698d60d980193ee1bade143",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
@@ -106,7 +106,8 @@
     "field-bespoke-balcony-exposure-held-draft.json": "6ccb49216899bb938986ac71034099063da1f261d243b2cf77535ce74ba5792f",
     "field-precise-three-authoring-readiness.json": "4239a36630bdb229b7961e9fca3487e61f17b7904e671653e1cb522cfdf3efad",
     "field-precise-three-selection-readiness.json": "db30ca367d8308256f037972232ca1a16384889b24c193dd8167014354e6cfaf",
-    "field-precise-three-authoring-main-forward.json": "6d9d230e17a303a7b45be8f2ffa0102a434402d28f140af8d4bb407fa8f9a6ce"
+    "field-precise-three-authoring-main-forward.json": "6d9d230e17a303a7b45be8f2ffa0102a434402d28f140af8d4bb407fa8f9a6ce",
+    "field-bespoke-source-constrained-three-held-drafts.json": "c0135dd9f61294ec7117a4909c00021a0b6258889a42494283b1fc3ebddd8e40"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -627,6 +628,14 @@
       "selectedNewSourceImages": 3,
       "independentReview": "field-independent-precise-six-review.json",
       "reason": "Flat Shrine wall and two rounded Palace rail fittings independently cleared; cargo lattice, post seam/coverage and balcony finish remain held. Prior68/4954 exact; v1history retained."
+    },
+    {
+      "manifest": "field-bespoke-source-constrained-three-held-drafts.json",
+      "newUniqueSourceImages": 0,
+      "priorExistingRevisionSources": 3,
+      "heldVersions": 3,
+      "builtinCalls": 2,
+      "reason": "Source-targeted cargo/balcony edits and bounded postalignment; allheld untilreview, balcony unchangedcoveragegatefailed. Existing53unselectedkeys/12revisions only; no expansion."
     }
   ],
   "publication": {

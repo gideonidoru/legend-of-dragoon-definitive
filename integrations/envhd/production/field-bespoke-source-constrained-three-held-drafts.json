@@ -1,0 +1,393 @@
+{
+  "schema": 1,
+  "authoringSourceCommit": "982a08068add03800a8ebb20ceacf8232e185ef8",
+  "scope": "Three existing reviewed revision sourcekeys only: two source-targetedbuiltin edits and one boundedPython alignment prototype. No new uniquejobs; originalv1/allpriorversions retained. Cargo passescutout; balcony fullfootprintfails; postprototype structuralpassonly. No runtime selection.",
+  "newUniqueSourceImages": 0,
+  "newBuiltinImageCalls": 2,
+  "deferredPostBuiltinImageCall": true,
+  "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+  "candidates": [
+    {
+      "decodedRgbaSha256": "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
+      "generatedSha256": "e45902b0bca7be0bb76345a605cf542bdaf349b47837a23cdb84620d05d921f7",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer.\nAsset type: source-faithful EnvHD environment texture; Queen Fury cut284 foreground6 cargo cages.\nInput images: Image1 is the authoritative original crop and the edit target. Image2 is the same original crop with diagnostic brighter exposure for fine mesh visibility; it controls geometry only. Image3 is the whole original scene for lighting/context only. Output only the HD version of Image1, never the whole scene.\nPrimary request: Render the original cargo stack as faithful restrained modern painted HD. The mesh is a dense delicate woven diagonal crossing lattice, many small diamond openings, with thin understated diagonal ribs exactly where visible in the source. Preserve the exact cropped top-left cage, stacked cage frame positions, individual top planes, middle-right separated cage, black triangular/rectangular gaps, upper-right cropped cage fragment and detached small tan lower-right fitting. Do not add broad X or V timber braces across the fronts or top surfaces; each source strand stays narrow and the fine lattice pitch follows the original. Muted dark gray-brown/green wood and fine subdued mesh; keep the original dim ship-hold exposure and no glowing bright rims. The brightened guide exposes geometry only and must not brighten the delivered texture.\nCanvas: complete original width:height 98:80, exactly 1568x1280 pixels if supported; preserve this exact aspect, relative layout and every cropped edge. Keep each source feature at its original normalized coordinate. No added margin, crop, padding, inset, recentering or new perspective.\nStyle: fine restrained hand-painted HD detail consistent with modern faithful pre-rendered RPG environment art. The original controls every ambiguous mark; clarify what is there without inventing detail.\nTransparency: real alpha transparency around the original silhouette and in every source hole. Preserve the transparent canvas; no black backdrop, checkerboard, border, labels, writing, watermark or scene background.",
+      "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+      "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/image-v1.png",
+      "parentOutputSha256": "d2e08a10d2971985b7c10f99ef6d4aa8862a7531dffeab7a3d7e0f04593eb7e3",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "248583f2b89a5ed1069e5b6406f54515cd412ec561b2720fbd94fc934e1f7b4f:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "235bbfb8c15652874e4148191b7f369d57c6d80975537400b9b61a040719ac4c",
+          "size": 528
+        },
+        {
+          "index": 1,
+          "sha256": "39ca7fdb2f462a20d5ae51bdc19559d393af3f12eb264c90b7505ffb6d5aea9f",
+          "size": 1836
+        },
+        {
+          "index": 2,
+          "sha256": "6a5a7165fe4f04368ca5064b79350848d5a52c5510c4e9b383c635aa55907417",
+          "size": 1364
+        },
+        {
+          "index": 3,
+          "sha256": "821e617572869d6e17423d3404b4eb64e6cec1756ec10a710c11504c3dad226d",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "c31b790f37481328d37d98ac8626f11b07a23b012dce218804f9f6b4fda9b328",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "bc026474b23547214404dceb472f512d4fcc8d6fae5cf95b762ba060ae26d084",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "292c2b95c80e75868200299594337f0bbe11f1693fe8e0e4692d35afece77526",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "The Queen Fury",
+      "representativeCut": 284,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 71536,
+      "paintedGapPixelsExtended": 1014,
+      "paintedUncoveredSourcePixels": 382,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 13,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "outputSha256": "f23bb8c2c7c3bede8284a855955ad6a5035b0f0f5cf744112c8b29e8d5a1ddf7",
+      "sourceSize": [
+        98,
+        80
+      ],
+      "targetSize": [
+        392,
+        320
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-source-constrained-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-source-constrained-repaired-v2.png",
+      "verdict": "held-independent-review-pending"
+    },
+    {
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 29920,
+      "paintedGapPixelsExtended": 11,
+      "paintedUncoveredSourcePixels": 0,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 1,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "decodedRgbaSha256": "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
+      "generatedSha256": "342fa0bca346d5bd342f6453a7f6cc99e1e9296e721bab425e4119e8311beeac",
+      "outputSha256": "fa6b88b348888472d05fede8df291df45d6c56210af6e70daadc651163b702f8",
+      "sourceSize": [
+        70,
+        114
+      ],
+      "targetSize": [
+        280,
+        456
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "runtimeSelected": false,
+      "generatedBy": "builtin-imagegen-plus-bounded-python-component-transfer",
+      "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/image-v1.png",
+      "parentOutputSha256": "e0d154053606512f0fc27fed16a12b5b0bdd25b48955052cdb9f0ff1c6f49bf2",
+      "insertPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-precise-correction-input-v1.png",
+      "insertSha256": "e0f0270a509c774ebb8cd2eb64b3a698638283691eb8a4c4924198c74e626f60",
+      "fullInsertCoverageFailureStillRejected": true,
+      "operations": [
+        {
+          "name": "gold-body",
+          "nativeBox": [
+            55,
+            65,
+            65,
+            91
+          ],
+          "insertBox": [
+            785,
+            855,
+            883,
+            1188
+          ],
+          "sourceMaskRule": "zone x55..65,y64..108,alpha>0; goldy64..90 R>1.35B G>1.35B",
+          "sourceMaskPixels": 188,
+          "sourceMeanRgb": [
+            120.29787234042553,
+            122.85106382978724,
+            64.63829787234043
+          ],
+          "paintMeanRgb": [
+            162.018156424581,
+            150.6937849162011,
+            85.60998603351955
+          ],
+          "channelGain": [
+            0.7424962423666625,
+            0.815236433925282,
+            0.7550322207392032
+          ],
+          "maskResampling": "NEAREST4x",
+          "maskBlurRadiusHdPixels": 0.8,
+          "rgbResampling": "LANCZOS",
+          "rounding": "numpy.rintclipuint8"
+        },
+        {
+          "name": "teal-base",
+          "nativeBox": [
+            55,
+            90,
+            66,
+            109
+          ],
+          "insertBox": [
+            772,
+            1190,
+            916,
+            1467
+          ],
+          "sourceMaskRule": "samezone;bluey90..108 G>1.08R B>1.08R",
+          "sourceMaskPixels": 164,
+          "sourceMeanRgb": [
+            40.53658536585366,
+            79.3170731707317,
+            79.5609756097561
+          ],
+          "paintMeanRgb": [
+            50.6108993902439,
+            87.35365853658537,
+            95.06935975609755
+          ],
+          "channelGain": [
+            0.80094576176743,
+            0.9079994415747591,
+            0.836872950589669
+          ],
+          "maskResampling": "NEAREST4x",
+          "maskBlurRadiusHdPixels": 0.8,
+          "rgbResampling": "LANCZOS",
+          "rounding": "numpy.rintclipuint8"
+        }
+      ],
+      "baseAlphaExact": true,
+      "outsideNativeBoxPixelsExact": [
+        55,
+        64,
+        70,
+        114
+      ],
+      "changedPixels": 6184,
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "06186522f72a23d7ea79106dc6a1d4094a17bb8bb35967f04f19f7332560253b",
+          "size": 528
+        },
+        {
+          "index": 1,
+          "sha256": "93d62173359bf6143fd849343c228357fa240dc776194097b01a59ebdc31af0d",
+          "size": 2460
+        },
+        {
+          "index": 2,
+          "sha256": "8b7ede9fb3075f48cbc862f461c0e5c9c54465fa482458104e854e8669498046",
+          "size": 1796
+        },
+        {
+          "index": 3,
+          "sha256": "c1b076299d6d136d0b5bb3db148b08dc33dd54e8840073310ae35ab8b97d711c",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "74aedd2d86b058e1c9c6d97a6a226a524689b3122dfc9ca336d8edc668c87502",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "e480e9168b89bb82d1a310869f0625760088bbe116e8367c8b0658bf2254fc41",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "83f9e3ac8cdbace13ffe0bed34477e47959d15dea508601dd217a58f917aafdc",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "78cad5a85d4026eb9d0c4e6b9daa583aef04c96123c3b0ca091fd548c27a7a92",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "230d3df7def864e3b3bc4b2dadab3f5073add5f751e73daae3e134b2fa2dac82",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "924b16226f66425f5a0b2794eeaaffc2236a0d0bc5c5dc4129a7d97342ba16f3",
+          "size": 66080
+        }
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "55022c2b991e387741ac21809da3317b4eff11dd0be8308b20fdcb447026a06c:-1",
+          "kind": "foreground",
+          "slot": 3,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFilesFreshlyVerified": true,
+      "repairPassed": true,
+      "held": true,
+      "nativeAccepted": 0,
+      "finalQualityAccepted": 0,
+      "scope": "Bounded priorcustom component realignment and aggregateexposure match; not builtin-only, no sourceRGB copied or fullfailedinput guard waived. Visualreview/helper-selection support pending.",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-aligned-component-input-v2.png",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5/draft-aligned-component-repaired-v2.png",
+      "representativeLocation": "Crystal Palace",
+      "representativeCut": 368,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "verdict": "held-independent-review-pending",
+      "prompt": "No additional imagegen call. Bounded Python alignment/exposure repair from two earlier builtin-generated custom paintings. Operation/binding hashes recorded; full failed insert remains rejected. Component helper selection support and visual clearance pending."
+    },
+    {
+      "decodedRgbaSha256": "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
+      "generatedSha256": "480911019dbe61ff77d0b883f8a968089e013e5e24261d1d84530a1be7ee6e86",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer.\nAsset type: source-faithful EnvHD environment texture; Twin Castle cut222 foreground8 dim curved night balcony.\nInput images: Image1 is the authoritative original crop and the edit target. Image2 is the whole original scene for lighting/context only. Output only the HD version of Image1, never the whole scene.\nPrimary request: Render the original Twin Castle curved balcony crop as faithful restrained modern painted HD. Keep its entire original curve, crop, seven small muted teal fitting marks and original positions; these marks are softly shaded rounded dark forms with little contrast, not jeweled cabochons or dark ring sockets. The narrow top cap stays dim subdued brown-green/gray with a soft edge, not a shiny gold band. The broad front stays dark diffuse umber-gray with sparse soft mottling, not gold speckling, engraved grain or metallic scratches. Preserve the original night exposure, broad illumination and original faint marks. Fill exactly the original visible silhouette up to the canvas boundary; preserve top/bottom curve positions and all original transparent spaces, so no gap requires vertical color streaking. No new pale glints, gleaming gems, dark socket outlines, glossy raised fittings or bright embellishments.\nCanvas: complete original width:height 102:74, exactly 1632x1184 pixels if supported; preserve this exact aspect, relative layout and every cropped edge. Keep each source feature at its original normalized coordinate. No added margin, crop, padding, inset, recentering or new perspective.\nStyle: fine restrained hand-painted HD detail consistent with modern faithful pre-rendered RPG environment art. The original controls every ambiguous mark; clarify what is there without inventing detail.\nTransparency: real alpha transparency around the original silhouette and in every source hole. Preserve the transparent canvas; no black backdrop, checkerboard, border, labels, writing, watermark or scene background.",
+      "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+      "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/image-v1.png",
+      "parentOutputSha256": "64a2d2dc79e5a453a98bc733f4b89cb6064f63ca7d195e0a5f8366c078d7568e",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "111e8b8d3783750c4de5226fb39ec4a7640ec8e53960331654b2f01f1185b675:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "e23d5282163db4d2729f9f6f63574d9ee4e0ac232b2111189b47ae8af8623460",
+          "size": 996
+        },
+        {
+          "index": 1,
+          "sha256": "a1a40c3967d4c216ef693fa917955f18b9e151ccdce9e7ce8452e93438c2c823",
+          "size": 3660
+        },
+        {
+          "index": 2,
+          "sha256": "35fef56b2f356c3c6656b68b4cc4e7d2a7d9b554eeb45ed9f19264a11459989f",
+          "size": 2756
+        },
+        {
+          "index": 3,
+          "sha256": "8d5036689601d034435e88b070b144643e2da08dcb8c4143263afcc3ee288dd6",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "036a368b511c99a5707a27f4cb037547554f6cfa22a172e8632e4fd685b503a4",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "75e7beee53a5f6765b4ef47b40493cdd611f997c036cd74859d2fd76667f0c04",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "c70291d5b8636ce3996b52949f13ac0420ff3faa282a161a945d2677956841bf",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "42eeec2adf6a91ead5adba3b131a7c6629266f4bf0134154c68354f85388900a",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "a56e907b8d377b6a9c1e3abb40ea6d07488a51e6f4ed3481ffb2628f1251908b",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "9a44d441383ff830119d6d857290b236e3866ab9fc7d5af7e522185ffd5a3296",
+          "size": 33312
+        },
+        {
+          "index": 10,
+          "sha256": "b5c54a9d45c1750a087364a19eaa651265c9ef5318a713e96077c4b141640e0c",
+          "size": 33312
+        },
+        {
+          "index": 11,
+          "sha256": "f68570130ba4abf8b42b0f76c45c2a61069b246face266e10da142deebd7bcbf",
+          "size": 66080
+        },
+        {
+          "index": 12,
+          "sha256": "31b58f0fcb603f35f0108da5a474f546a70cc4ccbdd2e9d473e986583ac1d8d3",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "Twin Castle",
+      "representativeCut": 222,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": false,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "repairError": "ValueError: Painted coverage differs too much from the source; revise the painting",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-source-constrained-input-v2.png",
+      "verdict": "held-original-coverage-rejected"
+    }
+  ],
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0
+}

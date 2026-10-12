@@ -334,3 +334,10 @@ The [fresh six-source review](../../integrations/envhd/production/field-independ
 The [six-source review](../../integrations/envhd/production/field-independent-precise-six-review.json) clears the flat Shrine wall and two Palace rail fittings with the original rounded forms. Cargo lattice, palace-post coverage/transfer seams and balcony fitting/illumination issues remain held. The [complete 71-painting selection](../../integrations/envhd/production/field-bespoke-precise-three-independent-reviewed-selection.json) retains all prior 68 recipes and uses version 2 candidate filenames for the corrections, preserving earlier artwork. Runtime resource names and the single EnvHD switch remain unchanged.
 
 All 71 paintings replay from fresh originals and 90 focused checks pass. The [readiness receipt](../../integrations/envhd/production/field-precise-three-selection-readiness.json) binds this increment; ROOT coordinates installer publication. Protected Skurfa artwork and all 4,954 prior runtime assets remain exact. Native, script-state, Deck, campaign and final artistic acceptance remain pending.
+
+
+## Existing cargo, balcony and post revisions
+
+[Three further versions](../../integrations/envhd/production/field-bespoke-source-constrained-three-held-drafts.json) address existing reviewed revision sources. Two builtin edits use the original crops and scenes: cargo mesh passes the unchanged cutout checks, while the balcony footprint still fails and has no repaired output. The palace post uses a bounded Python alignment of earlier custom gold and teal components with aggregate exposure matching; source alpha and pixels outside the component remain exact. Its visual quality and selection-helper support remain unresolved. No extra post generation call was made.
+
+All versions remain held for review. Current selection stays 4,957 fields / 71 paintings, with 206 known static holds, 53 unique unselected custom keys and 12 reviewed canonical revision sources. Original crops, exposure guide and comparisons remain private.
