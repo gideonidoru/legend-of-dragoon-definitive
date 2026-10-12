@@ -1,0 +1,189 @@
+{
+  "schema": 1,
+  "authoringParentCommit": "5365e60974241b64645e5b1be6186c7c7ac4eab8",
+  "scope": "Separate geometry-registered variant from existing builtinbalconyraw, using alreadyapproved publicperspectivehelper, thenunchangedcutout. Standalonefullrawcoveragefailed recipe remainsfailed. No newimagegeneration or helper/guard changes.",
+  "newUniqueSourceImages": 0,
+  "newImageGenerationCalls": 0,
+  "parentManifest": "field-bespoke-source-constrained-three-held-drafts.json",
+  "parentManifestSha256": "c0135dd9f61294ec7117a4909c00021a0b6258889a42494283b1fc3ebddd8e40",
+  "candidates": [
+    {
+      "decodedRgbaSha256": "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
+      "generatedSha256": "480911019dbe61ff77d0b883f8a968089e013e5e24261d1d84530a1be7ee6e86",
+      "generatedBy": "builtin-imagegen",
+      "prompt": "Use case: style-transfer.\nAsset type: source-faithful EnvHD environment texture; Twin Castle cut222 foreground8 dim curved night balcony.\nInput images: Image1 is the authoritative original crop and the edit target. Image2 is the whole original scene for lighting/context only. Output only the HD version of Image1, never the whole scene.\nPrimary request: Render the original Twin Castle curved balcony crop as faithful restrained modern painted HD. Keep its entire original curve, crop, seven small muted teal fitting marks and original positions; these marks are softly shaded rounded dark forms with little contrast, not jeweled cabochons or dark ring sockets. The narrow top cap stays dim subdued brown-green/gray with a soft edge, not a shiny gold band. The broad front stays dark diffuse umber-gray with sparse soft mottling, not gold speckling, engraved grain or metallic scratches. Preserve the original night exposure, broad illumination and original faint marks. Fill exactly the original visible silhouette up to the canvas boundary; preserve top/bottom curve positions and all original transparent spaces, so no gap requires vertical color streaking. No new pale glints, gleaming gems, dark socket outlines, glossy raised fittings or bright embellishments.\nCanvas: complete original width:height 102:74, exactly 1632x1184 pixels if supported; preserve this exact aspect, relative layout and every cropped edge. Keep each source feature at its original normalized coordinate. No added margin, crop, padding, inset, recentering or new perspective.\nStyle: fine restrained hand-painted HD detail consistent with modern faithful pre-rendered RPG environment art. The original controls every ambiguous mark; clarify what is there without inventing detail.\nTransparency: real alpha transparency around the original silhouette and in every source hole. Preserve the transparent canvas; no black backdrop, checkerboard, border, labels, writing, watermark or scene background.",
+      "parentCanonicalManifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+      "parentOutputPath": "integrations/envhd/production/bespoke-field-candidates/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/image-v1.png",
+      "parentOutputSha256": "64a2d2dc79e5a453a98bc733f4b89cb6064f63ca7d195e0a5f8366c078d7568e",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "111e8b8d3783750c4de5226fb39ec4a7640ec8e53960331654b2f01f1185b675:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "e23d5282163db4d2729f9f6f63574d9ee4e0ac232b2111189b47ae8af8623460",
+          "size": 996
+        },
+        {
+          "index": 1,
+          "sha256": "a1a40c3967d4c216ef693fa917955f18b9e151ccdce9e7ce8452e93438c2c823",
+          "size": 3660
+        },
+        {
+          "index": 2,
+          "sha256": "35fef56b2f356c3c6656b68b4cc4e7d2a7d9b554eeb45ed9f19264a11459989f",
+          "size": 2756
+        },
+        {
+          "index": 3,
+          "sha256": "8d5036689601d034435e88b070b144643e2da08dcb8c4143263afcc3ee288dd6",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "036a368b511c99a5707a27f4cb037547554f6cfa22a172e8632e4fd685b503a4",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "75e7beee53a5f6765b4ef47b40493cdd611f997c036cd74859d2fd76667f0c04",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "c70291d5b8636ce3996b52949f13ac0420ff3faa282a161a945d2677956841bf",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "42eeec2adf6a91ead5adba3b131a7c6629266f4bf0134154c68354f85388900a",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "a56e907b8d377b6a9c1e3abb40ea6d07488a51e6f4ed3481ffb2628f1251908b",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "9a44d441383ff830119d6d857290b236e3866ab9fc7d5af7e522185ffd5a3296",
+          "size": 33312
+        },
+        {
+          "index": 10,
+          "sha256": "b5c54a9d45c1750a087364a19eaa651265c9ef5318a713e96077c4b141640e0c",
+          "size": 33312
+        },
+        {
+          "index": 11,
+          "sha256": "f68570130ba4abf8b42b0f76c45c2a61069b246face266e10da142deebd7bcbf",
+          "size": 66080
+        },
+        {
+          "index": 12,
+          "sha256": "31b58f0fcb603f35f0108da5a474f546a70cc4ccbdd2e9d473e986583ac1d8d3",
+          "size": 66080
+        }
+      ],
+      "representativeLocation": "Twin Castle",
+      "representativeCut": 222,
+      "sourceFilesFreshlyVerified": true,
+      "sourceWorklistSha256": "a684a55c3c0a043daf50030e2f92b2e945bcf563798486039497cb9e068ae206",
+      "repairPassed": true,
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "registration": {
+        "method": "python-painted-cutout-perspective-registration-1",
+        "algorithmSha256": "7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784",
+        "sourceQuad": [
+          [
+            0,
+            40
+          ],
+          [
+            102,
+            0
+          ],
+          [
+            102,
+            22
+          ],
+          [
+            0,
+            74
+          ]
+        ],
+        "paintedQuad": [
+          [
+            0,
+            45.107
+          ],
+          [
+            102,
+            0
+          ],
+          [
+            102,
+            23.835
+          ],
+          [
+            0,
+            74
+          ]
+        ],
+        "sourceSize": [
+          102,
+          74
+        ],
+        "targetSize": [
+          408,
+          296
+        ],
+        "scale": 4,
+        "resampling": "bicubic",
+        "sourceAlphaApplied": false,
+        "algorithmPath": "scripts/register-envhd-painted-cutout.py",
+        "registeredInputSha256": "a3333b0724b0319035a4be950b82b44df17954bc2b3722bfae590d81edcd03f8"
+      },
+      "standaloneInputCoverageStillRejected": true,
+      "registrationControlPointsBasis": "Source and painted full-canvas visible silhouette endpoints; sourceleft40..74/right0..22 native, paintedleft45.107..74/right0..23.835. No manual alpha or original RGB applied.",
+      "scale": 4,
+      "sourceVisiblePixelsAtTargetScale": 43056,
+      "paintedGapPixelsExtended": 1916,
+      "paintedUncoveredSourcePixels": 1718,
+      "minimumPaintedCoverageAlpha": 16,
+      "minimumPaintedAnchorAlpha": 128,
+      "maximumExtensionSquaredTargetPixels": 146,
+      "sourceAlphaExact": true,
+      "visibleBlackExact": true,
+      "edgeAveraging": false,
+      "outputSha256": "71578f9831408ece0eb09e5271bf22725254558e15edd9519605b8216fcaed55",
+      "sourceSize": [
+        102,
+        74
+      ],
+      "targetSize": [
+        408,
+        296
+      ],
+      "algorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "method": "python-painted-cutout-nearest-colour-exact-visibility-1",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-registered-repaired-v2.png",
+      "generatedPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-source-constrained-input-v2.png",
+      "registeredInputPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-registered-input-v2.png",
+      "verdict": "held-independent-review-pending"
+    }
+  ],
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0
+}

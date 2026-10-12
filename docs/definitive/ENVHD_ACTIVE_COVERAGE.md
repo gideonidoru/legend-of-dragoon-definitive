@@ -341,3 +341,8 @@ All 71 paintings replay from fresh originals and 90 focused checks pass. The [re
 [Three further versions](../../integrations/envhd/production/field-bespoke-source-constrained-three-held-drafts.json) address existing reviewed revision sources. Two builtin edits use the original crops and scenes: cargo mesh passes the unchanged cutout checks, while the balcony footprint still fails and has no repaired output. The palace post uses a bounded Python alignment of earlier custom gold and teal components with aggregate exposure matching; source alpha and pixels outside the component remain exact. Its visual quality and selection-helper support remain unresolved. No extra post generation call was made.
 
 All versions remain held for review. Current selection stays 4,957 fields / 71 paintings, with 206 known static holds, 53 unique unselected custom keys and 12 reviewed canonical revision sources. Original crops, exposure guide and comparisons remain private.
+
+
+## Existing balcony painting registered
+
+A [separate balcony variant](../../integrations/envhd/production/field-bespoke-balcony-registered-held-draft.json) reuses the same generated painting. The existing perspective-registration helper maps explicitly recorded painted silhouette endpoints to original endpoints without applying original alpha or RGB. The unchanged cutout recipe then passes. The standalone input coverage failure stays recorded; this is a separate operation and version, still held for visual review. No new generation, helper or guard changes were needed. Current runtime/counts remain unchanged.
