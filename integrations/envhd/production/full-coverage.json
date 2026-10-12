@@ -17,7 +17,7 @@
     "field-repair-receipt.json": "b59c2e3e2af128b0b30bd08d9237647fc9cfcb15a60fc8a98f66120d4f5ac221",
     "field-review-receipt.json": "f2845bdff322c04b8496a0eff151389da53594de54446ec25dfb0d42cab9ea51",
     "field-artwork.json": "d2e03bf46ac238025063ee8a463371131a3ea85a49dcef0db91fe216a593664d",
-    "field-runtime-artwork.json": "f335c89ee476da5f11b1036705758d6cec140db45698d60d980193ee1bade143",
+    "field-runtime-artwork.json": "d7c92594e78c49b6a29d792f441851f437abe620d9a0a4e5b4c8d9af8b4c317f",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "field-bespoke-foliage.json": "a5ed3d3c90fbf07ec82a745c5058c766d51b32fbbf53a67301d32e40a639d270",
     "battle-bespoke-motifs.json": "96fd0ca29e85e4fc4e3a96c4bb3e87b05f5874365bfcd57d9af9a04920512053",
@@ -109,7 +109,11 @@
     "field-precise-three-selection-readiness.json": "db30ca367d8308256f037972232ca1a16384889b24c193dd8167014354e6cfaf",
     "field-precise-three-authoring-main-forward.json": "6d9d230e17a303a7b45be8f2ffa0102a434402d28f140af8d4bb407fa8f9a6ce",
     "field-bespoke-source-constrained-three-held-drafts.json": "c0135dd9f61294ec7117a4909c00021a0b6258889a42494283b1fc3ebddd8e40",
-    "field-bespoke-balcony-registered-held-draft.json": "a728ced4fc64df0e22275633dd916e89d47a91b62d6eae1e9c59d553c7568a46"
+    "field-bespoke-balcony-registered-held-draft.json": "a728ced4fc64df0e22275633dd916e89d47a91b62d6eae1e9c59d553c7568a46",
+    "field-bespoke-balcony-independent-reviewed-selection.json": "cfca6a47ac0277b0e4963ab5a52debc141a5cd09d30078a4526c9663587f8171",
+    "field-independent-balcony-registration-review.json": "a4494f7cab21ea646baecb5d77ab45b38f1951082ed929f18637a0a45dd22caa",
+    "field-balcony-selection-readiness.json": "837e4d748244cc48b0bfa3ea13c5e013cf3b2e9e0e5c1fa5b11841bed87bba84",
+    "field-balcony-authoring-main-forward.json": "74c30713142b74ecc17167cf79b8600216522ed98ab9aaa1afb91c94f30023e2"
   },
   "categories": [
     {
@@ -168,12 +172,10 @@
       "adapter": "Eight source-bound static atlases selected for the default EnvHD installation; native gameplay and final quality pending.",
       "ledger": "terrain-runtime-artwork.json",
       "remaining": [
-        "Independently review the Tiberoa stair candidate and contiguous uploaded-source contract; apply any accepted corner lift before ModelsHD interpolation. Hold remains native.",
+        "Repair wrapped Tiberoa material with source-faithful tiled UV handling.",
         "Native continent and ModelsHD interaction validation.",
         "Final bespoke quality refinement."
-      ],
-      "pendingCrossPageCandidateMasters": 1,
-      "pendingCrossPageArtworkLedger": "tiberoa-stairs-pending-artwork.json"
+      ]
     },
     {
       "id": "battle-floors-walls-and-scenery",
@@ -246,7 +248,7 @@
       "adapter": "Source-bound independent background/foreground selection with per-slot cropped placement and protected Skurfa cuts; missing/held/unreviewed layers remain native.",
       "ledger": "field-ownership.json",
       "remaining": [
-        "Repair205 remaining field source-identity, geometry, signage, motif or fine-detail holds.71 former neural holds have independently reviewed development paintings. Native/campaign/final acceptance pending.",
+        "Repair204 remaining field source-identity, geometry, signage, motif or detail holds.72 former neural holds have independently reviewed development paintings. Native/campaign/final acceptance pending.",
         "Validate script reachability and all movable/hidden/translucent/alternate foreground-state families; exact pixel deduplication is complete for the decoded available source configurations.",
         "Reuse all 38 Skurfa packs and audit every protected alias; never regenerate them.",
         "Validate every cut/period/renderable source route, script state, occlusion and native gameplay, and complete final painted-quality review.",
@@ -261,30 +263,30 @@
       "nativeMissingTextureSlots": 7,
       "pixelSourceLedger": "field-source-worklist.json",
       "independentNativePixelAgreement": "650/650 configurations and 5528/5528 unique decodes",
-      "envhdPublishedCandidateMasters": 4957,
+      "envhdPublishedCandidateMasters": 4958,
       "generationReceipt": "field-generation-receipt.json",
-      "generationStage": "Three revised source-faithful wall/rail paintings selected:4957 fields,4886 neural+71painted. Prior4954 runtime and68recipes exact; all71 replay from currentoriginals. Cargo/post/balcony corrections remain held. Native/device/final pending. All83 historicalrecipes/v1 assets and every heldcustom/prototype retained on ongoingauthoring.71selected/12revision/0pending.",
+      "generationStage": "One corrected registered balcony selected:4958 fields=4886neural+72painted. Prior4957records/71recipes andSkurfa exact; all72 replayed from current originals. Native/device/final acceptance pending. Ongoing authoring retains all83 historical recipes and all custom/held variants.",
       "envhdRepairedMasters": 5162,
       "sourceGuardedBackgroundMasters": 342,
       "individuallyComparedMasters": 5162,
-      "reviewedDevelopmentMasters": 4957,
-      "bespokeRevisionMasters": 205,
+      "reviewedDevelopmentMasters": 4958,
+      "bespokeRevisionMasters": 204,
       "unreviewedMasters": 0,
       "backgroundMastersCompared": 608,
       "foregroundMastersCompared": 4554,
       "repairReceipt": "field-repair-receipt.json",
       "reviewReceipt": "field-review-receipt.json",
       "selectedConfigurationsMeaning": "At least one reviewed image selected; not complete scene coverage or proven route reachability",
-      "envhdSelectedMasters": 4957,
+      "envhdSelectedMasters": 4958,
       "runtimeLedger": "field-runtime-artwork.json",
       "envhdNeuralCandidateMasters": 4886,
-      "envhdPaintedCandidateMasters": 71,
+      "envhdPaintedCandidateMasters": 72,
       "neuralReviewedDevelopmentMasters": 4886,
       "neuralBespokeRevisionMasters": 276,
-      "paintedReviewReceipt": "field-bespoke-precise-three-independent-reviewed-selection.json",
+      "paintedReviewReceipt": "field-bespoke-balcony-independent-reviewed-selection.json",
       "publishedInstallerSelectedMasters": 4925,
       "envhdHeldPaintedCandidateMasters": 1,
-      "unselectedCustomDraftSourceMasters": 53,
+      "unselectedCustomDraftSourceMasters": 52,
       "heldPaintedCandidateMastersMeaning": "The existing envhdHeldPaintedCandidateMasters1 is the explicitly held full Deningrad bed from the legacy selection manifest; all current unselected draft sources counted separately."
     },
     {
@@ -403,6 +405,27 @@
     "finalArtAccepted": 0,
     "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
     "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
+  },
+  "historicalPublishedInstaller": {
+    "tag": "definitive-alpha-2026-10-11-envhd",
+    "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
+    "entrypointMetadataSource": "0b8df09ab1aa5cfab8dc3c7051cbc49708be8b64",
+    "fieldSelectedMasters": 4892,
+    "battleNewSelectedMasters": 506,
+    "battleNewSelectedBindings": 513,
+    "battleTotalSelectedBindings": 537,
+    "paintedBattleReplacements": 0,
+    "nativeArtAccepted": 0,
+    "finalArtAccepted": 0
+  },
+  "candidateSelectionCheckpoints": {
+    "fieldSource": "373b34a94a1fe52beb4547b215d451df14557633",
+    "battleSource": "3f127a55a664109a971062b336eba902d5e86eee",
+    "fieldSelectedMasters": 4925,
+    "paintedFieldReplacements": 39,
+    "fieldHolds": 237,
+    "paintedBattleReplacements": 34,
+    "published": false
   },
   "previousPublishedInstallerSnapshots": [
     {

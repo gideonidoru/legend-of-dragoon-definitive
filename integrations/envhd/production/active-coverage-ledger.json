@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "0d29fc7536e01d355c13db427154005dbd8b329c accepted three correctedwall/rails;ongoing83recipes/allheldversions retained",
+  "sourceSelectionCheckpoint": "d5b3f9f76141e31b032e8a7d7a9e1c693ef843cd plus one independently cleared registered balcony",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "2455904daf66512311853ff33571446b2ce4b15066c35eafdf827dcadf6a09ab",
-    "field-runtime-artwork.json": "f335c89ee476da5f11b1036705758d6cec140db45698d60d980193ee1bade143",
+    "full-coverage.json": "0f133ca17ece2cae1d3d3acd78256e526148fd1d634ec2a60e417fc767167f7d",
+    "field-runtime-artwork.json": "d7c92594e78c49b6a29d792f441851f437abe620d9a0a4e5b4c8d9af8b4c317f",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
@@ -108,28 +108,32 @@
     "field-precise-three-selection-readiness.json": "db30ca367d8308256f037972232ca1a16384889b24c193dd8167014354e6cfaf",
     "field-precise-three-authoring-main-forward.json": "6d9d230e17a303a7b45be8f2ffa0102a434402d28f140af8d4bb407fa8f9a6ce",
     "field-bespoke-source-constrained-three-held-drafts.json": "c0135dd9f61294ec7117a4909c00021a0b6258889a42494283b1fc3ebddd8e40",
-    "field-bespoke-balcony-registered-held-draft.json": "a728ced4fc64df0e22275633dd916e89d47a91b62d6eae1e9c59d553c7568a46"
+    "field-bespoke-balcony-registered-held-draft.json": "a728ced4fc64df0e22275633dd916e89d47a91b62d6eae1e9c59d553c7568a46",
+    "field-bespoke-balcony-independent-reviewed-selection.json": "cfca6a47ac0277b0e4963ab5a52debc141a5cd09d30078a4526c9663587f8171",
+    "field-independent-balcony-registration-review.json": "a4494f7cab21ea646baecb5d77ab45b38f1951082ed929f18637a0a45dd22caa",
+    "field-balcony-selection-readiness.json": "837e4d748244cc48b0bfa3ea13c5e013cf3b2e9e0e5c1fa5b11841bed87bba84",
+    "field-balcony-authoring-main-forward.json": "74c30713142b74ecc17167cf79b8600216522ed98ab9aaa1afb91c94f30023e2"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 206,
+  "knownRemainingStaticImages": 205,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4957,
+      "selectedDevelopment": 4958,
       "selectedNeural": 4886,
-      "selectedPainted": 71,
-      "held": 205,
+      "selectedPainted": 72,
+      "held": 204,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 53,
+      "customHeldDraftSourceImages": 52,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Correct12 independently reviewed canonical revisions and other held prototypes; continue205field holds, one terrain repair and animated/props source/state contracts.",
+      "nextTask": "Finish11 canonical revision sources and other held prototypes; continue204field holds, one terrain repair and animated/props source/state contracts.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 0,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
@@ -183,13 +187,11 @@
         "f32d16052e97853b1dff1762df2bb5195bc9dc90fa8037c8c2d23fe281d41120",
         "f8aff62d815852771d98301bfec262574ab5c86ac2645793c49ba01b98860813",
         "f94d81a9826549e0833a5b8fa48e28bc24ea4f1859b959a010a54e25785c9cfc",
-        "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique ongoingunselectedsource directories excluding4957mainselections;53keys subset205fieldholds. Versionhistory deduplicated;83historicalrecipes retained.",
-      "independentlyReviewedCandidatesRequiringRevision": 12,
+      "draftCountMethod": "Unique ongoing unselected source directories excluding4958 acceptedmain selections;52keys subset204field holds. All83historical recipes and repeatedversions preserved.",
+      "independentlyReviewedCandidatesRequiringRevision": 11,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
-      "independentlyClearedCandidatesAwaitingIntegration": 0,
       "independentNewSceneryReview": {
         "source": "7262233bbffb1419bfda439b138e4bcc75f01591",
         "clearedSelected": 5,
@@ -202,6 +204,8 @@
         "requiresRevision": 4,
         "receipt": "field-independent-palace-eight-review.json"
       },
+      "independentlyClearedCandidatesAwaitingIntegration": 0,
+      "authoringQueueScope": "83 historical canonical source keys:72selected/11revision/0pending. Every oldversion retained on ongoing authoring branch.",
       "independentFinalEighteenReview": {
         "source": "bdfecbad260e63eb3eed1a7d6147b8e8703553a4",
         "clearedSelected": 16,
@@ -209,12 +213,16 @@
         "receipt": "field-independent-final-eighteen-review.json",
         "staticPlacementLimits": "Two Lohan source layers fully occluded in static all-layer composites; visible script-state placements remain unverified."
       },
-      "authoringQueueScope": "83 historical canonical source keys:71 selected through corrected versions,12 revision,0 pending. All historicalv1 recipes and held versions retained on authoring source11da6fb59d5e8902b3e26a81c1847782a32798a3.",
       "independentPreciseSixReview": {
         "source": "043b51d3a75c34c69c369adb4d7ff43a878fbaef",
         "clearedSelected": 3,
         "requiresRevision": 3,
         "receipt": "field-independent-precise-six-review.json"
+      },
+      "independentBalconyRegistrationReview": {
+        "source": "414c001f85e446ccdaa86f74e8575a8622ddd6d0",
+        "clearedSelected": 1,
+        "receipt": "field-independent-balcony-registration-review.json"
       }
     },
     {
@@ -225,9 +233,7 @@
       "selectedDevelopmentMasters": 292,
       "intentionalNativeUniformBindings": 1,
       "held": 1,
-      "nextTask": "Independent mapping/artwork review; if accepted, explicit original-corner integration compatible with ModelsHD and legacy atlases; otherwise retain native hold",
-      "pendingCustomCandidateImages": 1,
-      "pendingArtworkAndMappingContract": "tiberoa-stairs-pending-artwork.json"
+      "nextTask": "Resolve Tiberoa wrapped native UVs without guessing or changing geometry."
     },
     {
       "id": "battle-materials",
@@ -409,6 +415,54 @@
       "reason": "Independent Standards CLEAR and image-level Spec7development-intent clear at16b74. Rouge lattice and Phantom column request revision and remain unselected. Prior32painted and all4918selected records exact; native/final acceptance pending."
     },
     {
+      "manifest": "field-bespoke-table-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 1,
+      "independentReview": "field-independent-table-review.json",
+      "reason": "Crystal Palace table clear for development; prior39 painting and4925 runtime records exact. No unrelated drafts added."
+    },
+    {
+      "manifest": "field-bespoke-donau-two-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 2,
+      "independentReview": "field-independent-donau-two-review.json",
+      "reason": "Donau column/arch and larger exterior wall clear for development; tablet excluded. Prior40 selected recipes and4926 runtime records exact. Unfinished authoring remains on ongoing branch."
+    },
+    {
+      "manifest": "field-bespoke-twin-fragment-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 1,
+      "independentReview": "field-independent-twin-fragment-review.json",
+      "reason": "Twin Castle clipped hanging unanimously clear for development; two-panel motif disagreement and three-panel star/fitting revisions excluded. Prior42 selected recipes and4928 runtime records exact. Unfinished authoring remains ongoing."
+    },
+    {
+      "manifest": "field-bespoke-scenery-five-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 5,
+      "independentReview": "field-independent-scenery-eight-review.json",
+      "reason": "Shrine arch and left finial fragment, Moon radial layer, Queen Fury crate and Ulara rim independently clear for development. Three other scoped crops require revision and stay excluded. Prior43/4929 exact."
+    },
+    {
+      "manifest": "field-bespoke-palace-four-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 4,
+      "independentReview": "field-independent-palace-eight-review.json",
+      "reason": "Crystal Palace two-panel rail, rising rail and baluster/support, plus Twin Castle ornamented rim independently clear for development. Four other scoped crops require revision and stay excluded. Prior48/4934 exact."
+    },
+    {
+      "manifest": "field-bespoke-scenery-sixteen-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 16,
+      "independentReview": "field-independent-final-eighteen-review.json",
+      "reason": "Sixteen original-fidelity clear scenery/furnishing crops selected. Queen Fury cage mesh and Shrine flat wall patch require revision; all other unfinished work remains held. Prior52/4938 exact."
+    },
+    {
+      "manifest": "field-bespoke-precise-three-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 3,
+      "independentReview": "field-independent-precise-six-review.json",
+      "reason": "Flat Shrine wall and two rounded Palace rail fittings independently cleared; cargo lattice, post seam/coverage and balcony finish remain held. Prior68/4954 exact; v1history retained."
+    },
+    {
+      "manifest": "field-bespoke-balcony-independent-reviewed-selection.json",
+      "selectedNewSourceImages": 1,
+      "independentReview": "field-independent-balcony-registration-review.json",
+      "reason": "Muted curved balcony and original fitting marks independently cleared after existing pinned registration. Prior71recipes/4957records preserved."
+    },
+    {
       "manifest": "field-bespoke-organic-storage-reviewed-selection.json",
       "newUniqueHeldSourceImages": 2,
       "reason": "Moon radial layer and Queen Fury open crate author-reviewed and independently pending; all47 prior candidate records exact."
@@ -540,18 +594,6 @@
       "reason": "Six first versions held: hall1 fails source86:84 aspect, other1s overinterpret relief/motifs/window/material. Three corrected2s remain source-fidelity held. Hall/tablet/larger exterior2 separately independent-pending. No guard waived."
     },
     {
-      "manifest": "field-bespoke-table-independent-reviewed-selection.json",
-      "selectedNewSourceImages": 1,
-      "independentReview": "field-independent-table-review.json",
-      "reason": "Crystal Palace table clear for development; prior39 painting and4925 runtime records exact. No unrelated drafts added."
-    },
-    {
-      "manifest": "field-bespoke-donau-two-independent-reviewed-selection.json",
-      "selectedNewSourceImages": 2,
-      "independentReview": "field-independent-donau-two-review.json",
-      "reason": "Donau column/arch and larger exterior wall clear for development; tablet excluded. Prior40 selected recipes and4926 runtime records exact. Unfinished authoring remains on ongoing branch."
-    },
-    {
       "manifest": "field-bespoke-twin-hangings-held-drafts.json",
       "newUniqueHeldSourceImages": 5,
       "heldSourceImages": 5,
@@ -567,23 +609,11 @@
       "reason": "Five local corrections do not resolve native mark/material fidelity: four repaired holds and third warm narrow coverage failure. Prior candidate83 and all held histories exact; no guard waived or runtime selected."
     },
     {
-      "manifest": "field-bespoke-twin-fragment-independent-reviewed-selection.json",
-      "selectedNewSourceImages": 1,
-      "independentReview": "field-independent-twin-fragment-review.json",
-      "reason": "Twin Castle clipped hanging unanimously clear for development; two-panel motif disagreement and three-panel star/fitting revisions excluded. Prior42 selected recipes and4928 runtime records exact. Unfinished authoring remains ongoing."
-    },
-    {
       "manifest": "field-bespoke-organic-scenery-held-drafts.json",
       "newUniqueHeldSourceImages": 8,
       "heldSourceImages": 8,
       "heldVersions": 8,
       "reason": "First organic/scenic batch7 structural repairs/1 coverage failure held; fine material/motif relationships require review or revision. Separate independently cleared scenery integration proceeds without waiting."
-    },
-    {
-      "manifest": "field-bespoke-scenery-five-independent-reviewed-selection.json",
-      "selectedNewSourceImages": 5,
-      "independentReview": "field-independent-scenery-eight-review.json",
-      "reason": "Shrine arch and left finial fragment, Moon radial layer, Queen Fury crate and Ulara rim independently clear for development. Three other scoped crops require revision and stay excluded. Prior43/4929 exact."
     },
     {
       "manifest": "field-bespoke-source-feature-three-held-drafts.json",
@@ -593,23 +623,11 @@
       "reason": "Local source-feature restoration improves mark shapes but leaves visibly soft patches; all three remain held and reuse existing public painting inputs."
     },
     {
-      "manifest": "field-bespoke-palace-four-independent-reviewed-selection.json",
-      "selectedNewSourceImages": 4,
-      "independentReview": "field-independent-palace-eight-review.json",
-      "reason": "Crystal Palace two-panel rail, rising rail and baluster/support, plus Twin Castle ornamented rim independently clear for development. Four other scoped crops require revision and stay excluded. Prior48/4934 exact."
-    },
-    {
       "manifest": "field-bespoke-feature-blend-three-held-drafts.json",
       "newUniqueHeldSourceImages": 0,
       "heldSourceImages": 3,
       "heldVersions": 3,
       "reason": "Source-feature blend refinements held:two structural repairs/one unchanged-aspect failure; native marks and lighting still need source-fidelity review."
-    },
-    {
-      "manifest": "field-bespoke-scenery-sixteen-independent-reviewed-selection.json",
-      "selectedNewSourceImages": 16,
-      "independentReview": "field-independent-final-eighteen-review.json",
-      "reason": "Sixteen original-fidelity clear scenery/furnishing crops selected. Queen Fury cage mesh and Shrine flat wall patch require revision; all other unfinished work remains held. Prior52/4938 exact."
     },
     {
       "manifest": "field-bespoke-precise-six-held-drafts.json",
@@ -623,12 +641,6 @@
       "manifest": "field-bespoke-precise-three-independent-reviewed-selection.json",
       "independentlyClearedCandidatesAwaitingIntegration": 3,
       "reason": "Three corrected source-faithful versions cleared; legacyv1 recipes/assets retained and newartworkVersion2 filenames prevent history overwrite. Not yet selected or merged."
-    },
-    {
-      "manifest": "field-bespoke-precise-three-independent-reviewed-selection.json",
-      "selectedNewSourceImages": 3,
-      "independentReview": "field-independent-precise-six-review.json",
-      "reason": "Flat Shrine wall and two rounded Palace rail fittings independently cleared; cargo lattice, post seam/coverage and balcony finish remain held. Prior68/4954 exact; v1history retained."
     },
     {
       "manifest": "field-bespoke-source-constrained-three-held-drafts.json",
@@ -669,7 +681,7 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 32,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 33,
     "paintedBattleMastersAwaitingCoordinatedPublication": 13,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
@@ -698,15 +710,15 @@
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "83historicalcanonical sourcekeys:71selected/12revision/0pending/0clearedawaitingmain. Allv1/v2 andheldversions retained;53unselectedcustomkeys subset205fieldholds;206knownstatic. Native/finalpending.",
+  "authoringCheckpoint": "83 historical canonical source keys:72selected/11revision/0pending; allhistorical andheld variants preserved.52unselectedcustomkeys subset204fieldholds,205knownstatic. Postprototypeclear needsselection support;cargo fitting needslocalizedrepair. Native/final pending.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "0d29fc7536e01d355c13db427154005dbd8b329c",
-    "fieldSelected": 4957,
-    "fieldPainted": 71,
+    "sourceCommit": "db05497ef74e60579fdead09e47afdeaf16ddeb4",
+    "fieldSelected": 4958,
+    "fieldPainted": 72,
     "authoringCandidates": 83,
     "independentlyPending": 0,
-    "independentlyRevision": 12,
-    "heldSourceKeys": 53,
+    "independentlyRevision": 11,
+    "heldSourceKeys": 52,
     "nativeAccepted": 0,
     "finalQualityAccepted": 0
   }

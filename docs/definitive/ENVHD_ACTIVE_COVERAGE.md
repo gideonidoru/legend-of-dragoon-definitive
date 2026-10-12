@@ -2,11 +2,11 @@
 
 [The active ledger](../../integrations/envhd/production/active-coverage-ledger.json) records current selected development assets, held work, custom drafts, unknown denominators and next tasks in one place. Its hashes bind the underlying source and selection ledgers. Different units must not be added into a whole-campaign image count.
 
-Current static work remaining is **206 images: 205 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
+Current static work remaining is **205 images: 204 field images and one terrain repair**. Battle materials additionally have **351 held bindings**, including 350 animation/context bindings and one incomplete palette. Their complete image-job denominator is unknown. Eight animated continent parts and environment props/overlays also need source/state/ownership contracts before their image denominators can be established.
 
-Field selection is 4,957 development images: 4,886 neural and 71 painted.
+Field selection is 4,958 development images: 4,886 neural and 72 painted.
 
-Current authoring queue: all 83 historical canonical source keys reviewed: 71 selected, 12 requiring revision and none awaiting review or integration. All earlier recipes and custom versions remain preserved. The 53 unique unselected custom source keys are a subset of 205 field holds. Skurfa artwork is reused; native gameplay and final quality remain pending.
+Current authoring queue: all83 historical canonical source keys reviewed:72selected,11requiring revision and none awaiting review or integration. Earlier recipes/custom versions remain preserved.52unique unselected custom keys are a subset of204field holds. Skurfa artwork is reused; native gameplay and finalquality remain pending.
 
 The [recorded generation4 download snapshot](../../integrations/envhd/production/publication-source-5d3db5c8-generation4-snapshot.json) at source `5d3db5c8` contains 4,925 field selections/39paintings and34 battle paintings. The historical Donau increment selected4,928 fields/42paintings and retained47 battle paintings: three field paintings and13 battle paintings beyond that recorded snapshot. These are comparisons with the preserved generation4 source ledgers, not a fresh observation of the live carrier. ROOT tracks subsequent coordinated publication and installer verification. Earlier source0af/d731 snapshots remain preserved as history. The [Tiberoa stair investigation](ENVHD_TIBEROA_MAPPING.md) has one pending terrain painting and mapping proposal, a subset of the existing terrain hold.
 
@@ -346,3 +346,10 @@ All versions remain held for review. Current selection stays 4,957 fields / 71 p
 ## Existing balcony painting registered
 
 A [separate balcony variant](../../integrations/envhd/production/field-bespoke-balcony-registered-held-draft.json) reuses the same generated painting. The existing perspective-registration helper maps explicitly recorded painted silhouette endpoints to original endpoints without applying original alpha or RGB. The unchanged cutout recipe then passes. The standalone input coverage failure stays recorded; this is a separate operation and version, still held for visual review. No new generation, helper or guard changes were needed. Current runtime/counts remain unchanged.
+
+
+## Corrected Twin Castle balcony selected
+
+The [independent review](../../integrations/envhd/production/field-independent-balcony-registration-review.json) clears the corrected curved night balcony: muted fittings, subdued cap and diffuse dark front. Existing pinned perspective registration aligns the painted curve before unchanged cutout repair. The original standalone coverage failure remains recorded in authoring history; no guard or helper was changed.
+
+The [complete72-painting selection](../../integrations/envhd/production/field-bespoke-balcony-independent-reviewed-selection.json) preserves all71 prior recipes and4957 runtime records. The [readiness receipt](../../integrations/envhd/production/field-balcony-selection-readiness.json) tracks source replay and package verification. One EnvHD switch controls all four download packs. Native/script/GPU, campaign, physical Deck and final artistic acceptance remain pending.
