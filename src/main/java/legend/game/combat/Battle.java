@@ -641,6 +641,7 @@ public class Battle extends EngineState<Battle> {
   @Override
   public void destroy() {
     super.destroy();
+    for(final CombatantStruct1a8 combatant : this.combatants_8005e398) retireCombatantVram(combatant);
     sssqResetStuff();
   }
 
@@ -2831,6 +2832,7 @@ public class Battle extends EngineState<Battle> {
   public void clearCombatants() {
     //LAB_800c8ef4
     //NOTE: zeroes 0x50 bytes after this array of structs ends
+    for(final CombatantStruct1a8 combatant : this.combatants_8005e398) retireCombatantVram(combatant);
     Arrays.fill(this.combatants_8005e398, null);
   }
 
@@ -2890,9 +2892,21 @@ public class Battle extends EngineState<Battle> {
 
     //LAB_800c9020
     //LAB_800c902c
+    retireCombatantVram(combatant);
     this.combatants_8005e398[combatantIndex] = null;
 
     this.combatantCount_800c66a0--;
+  }
+
+  /** Final owner retirement; temporary model deallocation keeps the texture until replacement arrives. */
+  private static void retireCombatantVram(@Nullable final CombatantStruct1a8 combatant) {
+    if(combatant == null) return;
+    combatant.materials.invalidate();
+    if(combatant.texture != null) {
+      combatant.texture.deleteVram();
+      combatant.texture = null;
+    }
+    combatant.tim = null;
   }
 
   @Method(0x800c9060L)
