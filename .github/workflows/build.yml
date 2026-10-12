@@ -169,6 +169,10 @@ jobs:
           if [ "${{ runner.os }}" = "Linux" ]; then
             python3 scripts/verify-desktop-entry.py --entries-dir build/distributions
           fi
+      - name: Verify bootstrap path guards and offline runtime recovery
+        run: |
+          python3 scripts/verify-bootstrap-paths.py
+          python3 scripts/verify-runtime-recovery.py
       - name: Verify portable setup progress and failure cleanup
         run: python3 scripts/verify-portable-bootstrap.py
       - name: Verify immutable runtime pins and safe version upgrades
