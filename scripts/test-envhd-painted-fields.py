@@ -57,6 +57,47 @@ class PaintedFieldTests(unittest.TestCase):
         before=self.output_path.read_bytes();records,receipt=self.preflight()
         self.assertEqual(self.key,records[0]['decodedRgbaSha256']);self.assertEqual(64,len(receipt));self.assertEqual(before,self.output_path.read_bytes())
 
+    def versioned_fixture(self):
+        original=copy.deepcopy(self.candidate)
+        self.raw_path=self.raw_path.with_name('painted-input-v2.png')
+        self.output_path=self.output_path.with_name('image-v2.png')
+        Image.new('RGBA',(8,8),(55,45,25,255)).save(self.raw_path)
+        painted,operation=verify.repair.repair(self.source,Image.open(self.raw_path));painted.save(self.output_path)
+        self.candidate.update(operation,artworkVersion=2,generatedPath=self.raw_path.relative_to(self.root).as_posix(),outputPath=self.output_path.relative_to(self.root).as_posix(),generatedSha256=verify.batch.terrain.digest(self.raw_path.read_bytes()),outputSha256=verify.batch.terrain.digest(self.output_path.read_bytes()))
+        self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save()
+        return original
+
+    def test_corrected_version_replays_without_overwriting_prior_recipe(self):
+        before={p:p.read_bytes() for p in (self.raw_path,self.output_path)}
+        original=self.versioned_fixture();revised=copy.deepcopy(self.candidate)
+        self.assertEqual(1,len(self.preflight()[0]))
+        self.manifest['candidates']=[original];self.save();self.assertEqual(1,len(self.preflight()[0]))
+        for path,data in before.items():self.assertEqual(data,path.read_bytes())
+        self.assertNotEqual(original['outputSha256'],revised['outputSha256'])
+
+    def test_version_label_cannot_select_another_versions_paths(self):
+        self.candidate['artworkVersion']=2;self.save()
+        with self.assertRaisesRegex(ValueError,'candidate path'):self.preflight()
+        self.versioned_fixture();self.candidate['outputPath']=self.candidate['outputPath'].replace('v2.png','v1.png');self.save()
+        with self.assertRaisesRegex(ValueError,'candidate path'):self.preflight()
+
+    def test_version_type_and_bounds_are_enforced(self):
+        for version in [True,False,'2',2.0,None,0,-1,1000]:
+            with self.subTest(version=version):
+                self.candidate['artworkVersion']=version;self.save()
+                with self.assertRaisesRegex(ValueError,'artwork version'):self.preflight()
+
+    def test_versioned_runtime_selection_can_restore_the_older_painting(self):
+        original=self.versioned_fixture();new_bytes=self.output_path.read_bytes()
+        for name,value in [('field-artwork.json',dict(assets=[])),('field-review-receipt.json',dict(reviews={})),('field-ownership.json',dict(scenes=[dict(owner='skurfa',mappings=[dict(cut=37)])]))]:
+            (self.prod/name).write_text(json.dumps(value))
+        runtime=self.root/'integrations/envhd/runtime-assets/envhd/fields'/self.key/'image-v1.png'
+        with mock.patch.object(selector,'ROOT',self.root),mock.patch.object(selector.tools,'module',return_value=verify):
+            selector.select(self.root/'private-files',self.manifest_path);self.assertEqual(new_bytes,runtime.read_bytes())
+            self.manifest['candidates']=[original];self.save();selector.select(self.root/'private-files',self.manifest_path)
+            self.assertEqual((self.root/original['outputPath']).read_bytes(),runtime.read_bytes())
+        self.assertEqual(new_bytes,self.output_path.read_bytes())
+
     def test_protected_source_is_rejected_before_reading_pixels(self):
         self.asset['owners']=['skurfa']
         with self.assertRaisesRegex(ValueError,'protected'):self.preflight()

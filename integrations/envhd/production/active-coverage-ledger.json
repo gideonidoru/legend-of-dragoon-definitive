@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "fec6eaeeefb7173b609a3c5caeff6a1125a8e1d7 accepted sixteen scenery crops; ongoing83 recipes/all held versions preserved",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "9c5e61c41a1e9bff5e752338f02957285a3515677d1ad1e90eb851371fee6612",
+    "full-coverage.json": "b2101724c246214ad70b6a2ca6c57bc9f62d6dbb6e3379aabf12cdfc660a91a3",
     "field-runtime-artwork.json": "e4c73652147c91a7d02cc17888f5e2566d0a3e8a85cdbd0353c39169744004e8",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
@@ -100,7 +100,11 @@
     "field-independent-final-eighteen-review.json": "41d5f9b479133dc8f5f0c7d3522cbffd1c71fefa7f9c002b89c732f061ba0936",
     "field-scenery-sixteen-selection-readiness.json": "f675547c7aa877d04fbf9c2ca6e8f1f214b6ba11c8ee8fb1eb7d56a505fa40ba",
     "field-scenery-sixteen-authoring-main-forward.json": "fcb4b39a2355459b06705807d6b7244140dd6298ca8b6102962882558ba25cf4",
-    "field-bespoke-precise-six-held-drafts.json": "76f47e95644a62a799f83e93f594aff1d60db3bf8810a68691b41fefb29ef7de"
+    "field-bespoke-precise-six-held-drafts.json": "76f47e95644a62a799f83e93f594aff1d60db3bf8810a68691b41fefb29ef7de",
+    "field-bespoke-precise-three-independent-reviewed-selection.json": "53e6d3fc9558d2e02b27610112d06744088a4fc5a89303674bdee3a54fcbea93",
+    "field-independent-precise-six-review.json": "7091538ad3ef1c1d7de233b2ab6fe8f875bea4ec0e4bec12f0d47eee79f6dff6",
+    "field-bespoke-balcony-exposure-held-draft.json": "6ccb49216899bb938986ac71034099063da1f261d243b2cf77535ce74ba5792f",
+    "field-precise-three-authoring-readiness.json": "4239a36630bdb229b7961e9fca3487e61f17b7904e671653e1cb522cfdf3efad"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -121,7 +125,7 @@
       "customHeldDraftSourceImages": 56,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Correct15 independently reviewed canonical revisions and remaining held organic/scenic/motif/material drafts; continue208field holds and source/state/native/final checks.",
+      "nextTask": "Integrate three independently cleared corrected wall/rail versions; continue12 reviewed canonical revisions and remaining208field holds. Cargo lattice, palace-post transfer seam and balcony fitting/illumination corrections remain held.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 0,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
@@ -182,9 +186,9 @@
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
       "draftCountMethod": "Unique unselected source-key directories across candidate/held history excluding4954selections.56keys subset208field holds; repeated versions deduplicated.83historical canonical records and all held records preserved; latest main selection tracked separately.",
-      "independentlyReviewedCandidatesRequiringRevision": 15,
+      "independentlyReviewedCandidatesRequiringRevision": 12,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
-      "independentlyClearedCandidatesAwaitingIntegration": 0,
+      "independentlyClearedCandidatesAwaitingIntegration": 3,
       "independentNewSceneryReview": {
         "source": "7262233bbffb1419bfda439b138e4bcc75f01591",
         "clearedSelected": 5,
@@ -204,7 +208,7 @@
         "receipt": "field-independent-final-eighteen-review.json",
         "staticPlacementLimits": "Two Lohan source layers fully occluded in static all-layer composites; visible script-state placements remain unverified."
       },
-      "authoringQueueScope": "All83 historical canonical candidates on ongoing authoring sourcebdfecbad:68 selected/15 revisions/0 independent-pending after this increment; other held drafts and versions counted separately."
+      "authoringQueueScope": "All83 historical canonical source keys:68selected/12revision/3corrected versions clear awaiting integration/0pending. Priorv1 artwork and recipes retained."
     },
     {
       "id": "static-terrain",
@@ -607,6 +611,11 @@
       "generatedVersions": 6,
       "boundedLocalVersions": 1,
       "reason": "Targeted mesh/wall/post/rail/night-detail corrections; five model edits repaired and one original-coverage failure preserved with separate bounded component-transfer proposal. All held until independent fidelity review."
+    },
+    {
+      "manifest": "field-bespoke-precise-three-independent-reviewed-selection.json",
+      "independentlyClearedCandidatesAwaitingIntegration": 3,
+      "reason": "Three corrected source-faithful versions cleared; legacyv1 recipes/assets retained and newartworkVersion2 filenames prevent history overwrite. Not yet selected or merged."
     }
   ],
   "publication": {
@@ -662,7 +671,7 @@
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "83historical canonical recipes preserved; acceptedmain4954/68.0pending/15revisions/0cleared-awaiting-integration;56unselected custom sources within208fields;209knownstatic. All organic/local-feature/feature-blend versions held; native/final pending.",
+  "authoringCheckpoint": "83historical canonical source keys retained:68selected/12reviewed revisions/3revised versions cleared awaitingmain/0pending. Prospective71selection prepared; current runtime4954/68 remains acceptedfec6. All held prototypes retained.",
   "acceptedMainIntegrated": {
     "sourceCommit": "fec6eaeeefb7173b609a3c5caeff6a1125a8e1d7",
     "fieldSelected": 4954,

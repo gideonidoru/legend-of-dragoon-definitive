@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "sourceCommit": "043b51d3a75c34c69c369adb4d7ff43a878fbaef",
+  "mode": "user-authorized-python-colour-repair",
+  "newUniqueSourceImages": 0,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "candidates": [
+    {
+      "schema": 1,
+      "method": "global-channel-mean-gain-on-existing-custom-painting",
+      "parentOutputSha256": "b7aa1b22d7963db5354f5832aaf6cacab49a66022b345c9bd61f0875eeb56793",
+      "originalSourceFingerprint": "f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0",
+      "sourceMeanRGB": [
+        38.45113340765515,
+        32.57971014492754,
+        28.444444444444443
+      ],
+      "parentMeanRGB": [
+        44.472663507989594,
+        34.769068190263845,
+        26.679324600520253
+      ],
+      "gainRGB": [
+        0.8646015411410503,
+        0.9370314431967038,
+        1.066160589533431
+      ],
+      "rounding": "numpy.rint then clip0..255 uint8",
+      "alphaExact": true,
+      "visibleBlackExact": true,
+      "outputSha256": "ba493080ee205e46323a5f2fa3030ee1e1158df9480589c3524a8f9195b52a1f",
+      "runtimeSelected": false,
+      "verdict": "held-revision-needed",
+      "outputPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-mean-exposure-prototype-v1.png",
+      "parentOutputPath": "integrations/envhd/production/held-field-art-drafts/f9f0e8537d0b90c0fcc65fdfb64506641ca12970a56dfc8dbe6a0f617297a7e0/draft-precise-correction-repaired-v1.png",
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "e23d5282163db4d2729f9f6f63574d9ee4e0ac232b2111189b47ae8af8623460",
+          "size": 996
+        },
+        {
+          "index": 1,
+          "sha256": "a1a40c3967d4c216ef693fa917955f18b9e151ccdce9e7ce8452e93438c2c823",
+          "size": 3660
+        },
+        {
+          "index": 2,
+          "sha256": "35fef56b2f356c3c6656b68b4cc4e7d2a7d9b554eeb45ed9f19264a11459989f",
+          "size": 2756
+        },
+        {
+          "index": 3,
+          "sha256": "8d5036689601d034435e88b070b144643e2da08dcb8c4143263afcc3ee288dd6",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "036a368b511c99a5707a27f4cb037547554f6cfa22a172e8632e4fd685b503a4",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "75e7beee53a5f6765b4ef47b40493cdd611f997c036cd74859d2fd76667f0c04",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "c70291d5b8636ce3996b52949f13ac0420ff3faa282a161a945d2677956841bf",
+          "size": 33312
+        },
+        {
+          "index": 7,
+          "sha256": "42eeec2adf6a91ead5adba3b131a7c6629266f4bf0134154c68354f85388900a",
+          "size": 33312
+        },
+        {
+          "index": 8,
+          "sha256": "a56e907b8d377b6a9c1e3abb40ea6d07488a51e6f4ed3481ffb2628f1251908b",
+          "size": 33312
+        },
+        {
+          "index": 9,
+          "sha256": "9a44d441383ff830119d6d857290b236e3866ab9fc7d5af7e522185ffd5a3296",
+          "size": 33312
+        },
+        {
+          "index": 10,
+          "sha256": "b5c54a9d45c1750a087364a19eaa651265c9ef5318a713e96077c4b141640e0c",
+          "size": 33312
+        },
+        {
+          "index": 11,
+          "sha256": "f68570130ba4abf8b42b0f76c45c2a61069b246face266e10da142deebd7bcbf",
+          "size": 66080
+        },
+        {
+          "index": 12,
+          "sha256": "31b58f0fcb603f35f0108da5a474f546a70cc4ccbdd2e9d473e986583ac1d8d3",
+          "size": 66080
+        }
+      ],
+      "sourceBindings": [
+        {
+          "renderKey": "111e8b8d3783750c4de5226fb39ec4a7640ec8e53960331654b2f01f1185b675:-1",
+          "kind": "foreground",
+          "slot": 8,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceOwners": [
+        "envhd"
+      ],
+      "reason": "Matching average colour alone leaves the independently identified glossy fitting/bright cap/gold speckle and edge-streak issues. Not selected; no claim of new visual clearance."
+    }
+  ]
+}

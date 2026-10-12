@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "reviewSourceCommit": "043b51d3a75c34c69c369adb4d7ff43a878fbaef",
+  "scope": "Three independently cleared corrected wall/rail versions prepared for next main integration; current4954/68runtime preserved.",
+  "selectedManifest": "field-bespoke-precise-three-independent-reviewed-selection.json",
+  "selectedManifestSha256": "53e6d3fc9558d2e02b27610112d06744088a4fc5a89303674bdee3a54fcbea93",
+  "historical83Manifest": "field-bespoke-twin-hangings-reviewed-selection.json",
+  "historical83ManifestSha256": "3bddc850f1660de9f53c8d1b352688800a4473ca2f28cb46526ce848cddec76e",
+  "prospectiveCandidatesVerified": 71,
+  "historicalCandidatesVerified": 83,
+  "paintedFieldTestsPassed": 50,
+  "proofLogSha256": {
+    "authoring-preflight": "0b77ac7ed42301312b36c4ebac6998f2880c5ff862f1c77f2263ba5fabacdb37",
+    "historical-preflight": "2a31fe39e41bf290c72e491c57820ab6127f90b2c70aa6804704c0ede9c34882",
+    "versioned-tests": "b95eb91e4a3f011d194f12359bc9d669c06d449d459beb25e3fcc7ab9de5b856"
+  },
+  "verifierSha256": "ddab734af11f8e77f2cf4ea4c8dabf1ed3086223e2165e210d1ea3f44ce0baef",
+  "testSha256": "c4adbe8571d3fa94e810e48e98874d45d6a391a6d54ec5fd8b4a49be0adde2c5",
+  "prior68CandidateRecipesExact": true,
+  "legacyVersionOneAssetsPreserved": true,
+  "runtimeChanged": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "privateReferencePixelsExcluded": true
+}

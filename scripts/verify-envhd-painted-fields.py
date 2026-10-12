@@ -90,7 +90,11 @@ def preflight(files, manifest_path, root=ROOT):
                 or candidate.get('representativeLocation') != route['location']):
             raise ValueError('Painted field usage context changed')
         prefix = f'integrations/envhd/production/bespoke-field-candidates/{key}/'
-        if candidate.get('generatedPath') != prefix + 'painted-input-v1.png' or candidate.get('outputPath') != prefix + 'image-v1.png':
+        version = candidate.get('artworkVersion', 1)
+        if type(version) is not int or not 1 <= version <= 999:
+            raise ValueError('Painted field artwork version must be a bounded positive integer')
+        if (candidate.get('generatedPath') != prefix + f'painted-input-v{version}.png'
+                or candidate.get('outputPath') != prefix + f'image-v{version}.png'):
             raise ValueError('Painted field candidate path changed')
         raw_path = batch.battle.staging_path(root, candidate['generatedPath'])
         output_path = batch.battle.staging_path(root, candidate['outputPath'])
@@ -106,7 +110,7 @@ def preflight(files, manifest_path, root=ROOT):
                     or recorded_repack.get('algorithmPath') != 'scripts/repack-envhd-painted-rgb.py'
                     or recorded_repack.get('algorithmSha256') != RGB_REPACK_SHA256
                     or batch.terrain.digest(Path(rgb_repack.__file__).read_bytes()) != RGB_REPACK_SHA256
-                    or recorded_repack.get('originalGeneratedPath') != prefix + 'painted-rgb-input-v1.png'
+                    or recorded_repack.get('originalGeneratedPath') != prefix + f'painted-rgb-input-v{version}.png'
                     or candidate.get('generatedInputMode') != 'RGBA'):
                 raise ValueError('Painted RGB repack identity or exclusive operation changed')
             original_path = batch.battle.staging_path(root, recorded_repack['originalGeneratedPath'])
