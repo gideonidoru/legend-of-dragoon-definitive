@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "e499387937c77466a63770866a01e376d5385f136f04c0b1db405077f0a8d0a3",
+    "battle-material-runtime-artwork.json": "7bd5b03268306ed8b34124c23678c11910ed18f2454bc6c91aa8d1ae1a754962",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "f99514b78c7f597afa4f68b218b0f3206b9945fb4068b9b24b902f25055e449f"
+    "battle-presentation-artwork-v1.json": "f6985e5b907f0b7239af19a96cbbd095db36da64bdb0c83ca81f81994b6f6e84"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 53,
-    "newlySelectedBespokeMasters": 53,
-    "baselineMastersStillNeedingPresentationReview": 453,
+    "newBespokeCandidates": 59,
+    "newlySelectedBespokeMasters": 59,
+    "baselineMastersStillNeedingPresentationReview": 447,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -345,7 +345,14 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "1db4b88136590d79cf4ab87d8eb1b974f39a127bbfbc06f5c306beeeb82bd7ec",
+        "62f8c36eae5ed612725c9e52d5aa5d9d1b4b0821edcb50f6a359f37f2e75dd94",
+        "886455c43c5226077d59990c2fcceb04d6dba7c5039a5b6eb366c8452263ab35",
+        "a5c78981c4f601d5cf33e5b1bd18109bda46b164a1aa7d4a096a7922cf958ed7",
+        "b139612bc6533967482620ee08fec67747652fe0c23ee932560e752ede24dca4",
+        "f2db88cc3df3d3d1f6d20835bc1b336584d24d2d4fe59ed1640b9884c8c361c9"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3785,7 +3792,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3816,7 +3823,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3847,7 +3854,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3878,7 +3885,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3909,7 +3916,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3940,7 +3947,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },

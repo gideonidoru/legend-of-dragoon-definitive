@@ -11,7 +11,7 @@
   "runtimeSelected": 0,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "visualReviewedBespokeCandidates": 53,
+  "visualReviewedBespokeCandidates": 59,
   "candidates": [
     {
       "scale": 4,
@@ -3573,6 +3573,402 @@
         "layout": "All source contours, gradient patches, hanging strand and curved strip topology retained. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
         "verdict": "visual-reviewed-runtime-pending",
         "outputSha256": "0a555ac8aaefaa5974d8641cfff76f34719ac614ac6b4d32ae6a92a72c606607",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        72,
+        72
+      ],
+      "targetSize": [
+        288,
+        288
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "b139612bc6533967482620ee08fec67747652fe0c23ee932560e752ede24dca4",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "c888068eba8f4e22b6a86b79065b9763ff6d549f515721d97dc4cd8d99f96369",
+      "outputSha256": "0b1d73907bbe91adf7a21af7b4fc560a9322eb3d96a5eeadd6744834905fb364",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 16,
+          "page": 7,
+          "clut": 15388,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            72,
+            72
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "b438db1b2a12dd240955a4aa846480f752def3d02be770cbe557f4cdb6c18e54",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/b139612bc6533967482620ee08fec67747652fe0c23ee932560e752ede24dca4/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/b139612bc6533967482620ee08fec67747652fe0c23ee932560e752ede24dca4/image-v1.png",
+      "prompt": "Edit the FIRST reference into an exquisite bespoke high-resolution hand-painted battle material for Legend of Dragoon's gorgeous AA 2026 retro remaster. SECOND reference is original source authority: preserve all major source forms, original palette and layout from it. Muted gray-green weathered stone with the existing round-topped raised ledge in the upper left-center and the larger angular stone-edged dark recess toward lower right. Preserve their exact contours, shading and positions. Fine mineral grain only, no added alcoves, brick joints or new cracks. Retain the right thin leafy/rock fragment and bottom neighboring stone cutouts. Flat atlas crop with exactly the same 72:72 aspect ratio and full-canvas composition. Make continuous fine hand-painted surface detail, removing enlarged square source pixels and blurry neural smears; keep the original broad material pattern subdued, without increasing relief depth. No new recognizable objects, buildings, ornaments, symbols, moss patches, roots, cracks, branches, reflections or scenery. No extra directional lighting, strong specular glare, bloom, dramatic shadows, text, perspective, framing, cropping or rotation. Preserve black and white source empty areas.",
+      "references": [
+        "Existing source-bound neural candidate plus exact original crop authority."
+      ],
+      "review": {
+        "intent": "Gray-green stone ledges and existing leafy vegetation; the original motif shapes and value patterns are retained. Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Source arrangement, atlas neighbors and cutout/empty regions preserved; only existing surface detail refined. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "0b1d73907bbe91adf7a21af7b4fc560a9322eb3d96a5eeadd6744834905fb364",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        72
+      ],
+      "targetSize": [
+        256,
+        288
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "f2db88cc3df3d3d1f6d20835bc1b336584d24d2d4fe59ed1640b9884c8c361c9",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "b945a3111c8c9fec71278a7361d32d77aac8a4815c7db0530d3e914bf068724a",
+      "outputSha256": "0f924a96a6688975bc094b4d4697c850574ce81ba63c38bd343c46de4388b0dc",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 16,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            0,
+            120,
+            72
+          ],
+          "sourceUvOrigin": [
+            56,
+            0
+          ]
+        }
+      ],
+      "priorCandidateSha256": "4ebade62354bd2795acb145cc26b0493d633cb5597b6ea2455a06f3a29abce65",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/f2db88cc3df3d3d1f6d20835bc1b336584d24d2d4fe59ed1640b9884c8c361c9/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/f2db88cc3df3d3d1f6d20835bc1b336584d24d2d4fe59ed1640b9884c8c361c9/image-v1.png",
+      "prompt": "Edit the FIRST reference into an exquisite bespoke high-resolution hand-painted battle material for Legend of Dragoon's gorgeous AA 2026 retro remaster. SECOND reference is original source authority: preserve all major source forms, original palette and layout from it. Existing tall green leafy vegetation rising in several irregular narrow vertical masses against black, with pale gray-green stone/stem areas lower down. Preserve every mass silhouette, opening and broad pale vertical marking from the source. Refine leaves within the existing canopy using tiny varied original olive greens, no newly drawn branches/trunks. Keep left/right/bottom neighbor strips. Flat atlas crop with exactly the same 64:72 aspect ratio and full-canvas composition. Make continuous fine hand-painted surface detail, removing enlarged square source pixels and blurry neural smears; keep the original broad material pattern subdued, without increasing relief depth. No new recognizable objects, buildings, ornaments, symbols, moss patches, roots, cracks, branches, reflections or scenery. No extra directional lighting, strong specular glare, bloom, dramatic shadows, text, perspective, framing, cropping or rotation. Preserve black and white source empty areas.",
+      "references": [
+        "Existing source-bound neural candidate plus exact original crop authority."
+      ],
+      "review": {
+        "intent": "Gray-green stone ledges and existing leafy vegetation; the original motif shapes and value patterns are retained. Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Source arrangement, atlas neighbors and cutout/empty regions preserved; only existing surface detail refined. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "0f924a96a6688975bc094b4d4697c850574ce81ba63c38bd343c46de4388b0dc",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        72,
+        80
+      ],
+      "targetSize": [
+        288,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "62f8c36eae5ed612725c9e52d5aa5d9d1b4b0821edcb50f6a359f37f2e75dd94",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "ced2644f39ef4ec480597a9c6284d57601ea3cb146e29b343f20c8a854f6f74e",
+      "outputSha256": "955f0d50b46cec31dfb2dbf0832eb80bdbae4178bc05f2e1b0f746851c30fe6c",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 16,
+          "page": 7,
+          "clut": 15772,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            120,
+            72,
+            200
+          ],
+          "sourceUvOrigin": [
+            0,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "56d8d892a7df8872bb4c608a46667dda6bd64eec1f1dfdfd9d5a800749cf2659",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/62f8c36eae5ed612725c9e52d5aa5d9d1b4b0821edcb50f6a359f37f2e75dd94/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/62f8c36eae5ed612725c9e52d5aa5d9d1b4b0821edcb50f6a359f37f2e75dd94/image-v1.png",
+      "prompt": "Edit the FIRST reference into an exquisite bespoke high-resolution hand-painted battle material for Legend of Dragoon's gorgeous AA 2026 retro remaster. SECOND reference is original source authority: preserve all major source forms, original palette and layout from it. Muted gray-green rock surface with the existing broad irregular pale highlighted ledges and dark shallow crevices. Preserve exactly the large upper uneven patch, lower bright rim and all relative rock shape positions. Fine continuous mineral grain only, no new large fractures or invented stone blocks. Keep bottom dark flat strip and all narrow neighbors. Flat atlas crop with exactly the same 72:80 aspect ratio and full-canvas composition. Make continuous fine hand-painted surface detail, removing enlarged square source pixels and blurry neural smears; keep the original broad material pattern subdued, without increasing relief depth. No new recognizable objects, buildings, ornaments, symbols, moss patches, roots, cracks, branches, reflections or scenery. No extra directional lighting, strong specular glare, bloom, dramatic shadows, text, perspective, framing, cropping or rotation. Preserve black and white source empty areas.",
+      "references": [
+        "Existing source-bound neural candidate plus exact original crop authority."
+      ],
+      "review": {
+        "intent": "Gray-green stone ledges and existing leafy vegetation; the original motif shapes and value patterns are retained. Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Source arrangement, atlas neighbors and cutout/empty regions preserved; only existing surface detail refined. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "955f0d50b46cec31dfb2dbf0832eb80bdbae4178bc05f2e1b0f746851c30fe6c",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        80
+      ],
+      "targetSize": [
+        320,
+        320
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "886455c43c5226077d59990c2fcceb04d6dba7c5039a5b6eb366c8452263ab35",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "960cd755ce35db6d970d57bcfc79e655b3cdf843e448c24a790a1b8087750b78",
+      "outputSha256": "ccf6fe9d01c41dc9d05d2261b025854ae1cab0aa63ba52af2642984e7691e4ea",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 16,
+          "page": 7,
+          "clut": 15836,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            120,
+            136,
+            200
+          ],
+          "sourceUvOrigin": [
+            56,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "14479dcc22df2fc03616010b11931022a657bbd2b3dbfc2272a35860795925e3",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/886455c43c5226077d59990c2fcceb04d6dba7c5039a5b6eb366c8452263ab35/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/886455c43c5226077d59990c2fcceb04d6dba7c5039a5b6eb366c8452263ab35/image-v1.png",
+      "prompt": "Edit the FIRST reference into an exquisite bespoke high-resolution hand-painted battle material for Legend of Dragoon's gorgeous AA 2026 retro remaster. SECOND reference is original source authority: preserve all major source forms, original palette and layout from it. Muted gray-green rock with many existing uneven shallow raised formations. Preserve the original broad light/dark stone pattern and irregular crevice positions. Fine weathered mineral grain, with no new crack network or orderly block courses. Keep upper neighboring pale stone fragments, thin edge fragments and dark bottom strip. Flat atlas crop with exactly the same 80:80 aspect ratio and full-canvas composition. Make continuous fine hand-painted surface detail, removing enlarged square source pixels and blurry neural smears; keep the original broad material pattern subdued, without increasing relief depth. No new recognizable objects, buildings, ornaments, symbols, moss patches, roots, cracks, branches, reflections or scenery. No extra directional lighting, strong specular glare, bloom, dramatic shadows, text, perspective, framing, cropping or rotation. Preserve black and white source empty areas.",
+      "references": [
+        "Existing source-bound neural candidate plus exact original crop authority."
+      ],
+      "review": {
+        "intent": "Gray-green stone ledges and existing leafy vegetation; the original motif shapes and value patterns are retained. Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Source arrangement, atlas neighbors and cutout/empty regions preserved; only existing surface detail refined. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "ccf6fe9d01c41dc9d05d2261b025854ae1cab0aa63ba52af2642984e7691e4ea",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        80,
+        64
+      ],
+      "targetSize": [
+        320,
+        256
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "1db4b88136590d79cf4ab87d8eb1b974f39a127bbfbc06f5c306beeeb82bd7ec",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "5d2b0a3481d9a99898d21f5b464be5f813bb7d3687d52c48e21eb275fbf9530f",
+      "outputSha256": "8fbdf9c937e168a6203dbd82dcfa9ce333ab60405f4f9ab2663e91bf990575d9",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 16,
+          "page": 7,
+          "clut": 15964,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            120,
+            200,
+            184
+          ],
+          "sourceUvOrigin": [
+            120,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "9b3215195a65e6b391d093bf12bfc18736a8a8b5ebee7a45f886c0350806e1ed",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/1db4b88136590d79cf4ab87d8eb1b974f39a127bbfbc06f5c306beeeb82bd7ec/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/1db4b88136590d79cf4ab87d8eb1b974f39a127bbfbc06f5c306beeeb82bd7ec/image-v1.png",
+      "prompt": "Edit the FIRST reference into an exquisite bespoke high-resolution hand-painted battle material for Legend of Dragoon's gorgeous AA 2026 retro remaster. SECOND reference is original source authority: preserve all major source forms, original palette and layout from it. Muted gray-green horizontally layered natural rock with the original broad dark valleys and several thin pale horizontal ledges. Preserve every ledge outline and its exact spacing. Fine weathering and shallow mineral grain only; no added layers, new fissures or brick joints. Keep the top and left neighbors and dark empty lower portion. Flat atlas crop with exactly the same 80:64 aspect ratio and full-canvas composition. Make continuous fine hand-painted surface detail, removing enlarged square source pixels and blurry neural smears; keep the original broad material pattern subdued, without increasing relief depth. No new recognizable objects, buildings, ornaments, symbols, moss patches, roots, cracks, branches, reflections or scenery. No extra directional lighting, strong specular glare, bloom, dramatic shadows, text, perspective, framing, cropping or rotation. Preserve black and white source empty areas.",
+      "references": [
+        "Existing source-bound neural candidate plus exact original crop authority."
+      ],
+      "review": {
+        "intent": "Gray-green stone ledges and existing leafy vegetation; the original motif shapes and value patterns are retained. Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Source arrangement, atlas neighbors and cutout/empty regions preserved; only existing surface detail refined. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "8fbdf9c937e168a6203dbd82dcfa9ce333ab60405f4f9ab2663e91bf990575d9",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending"
+      }
+    },
+    {
+      "scale": 4,
+      "sourceSize": [
+        64,
+        64
+      ],
+      "targetSize": [
+        256,
+        256
+      ],
+      "sourceStpExact": true,
+      "discardAndVisibleBlackExact": true,
+      "edgeAveraging": false,
+      "internalFeatureAlignment": "individual-source-comparison-required",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "decodedRgbaSha256": "a5c78981c4f601d5cf33e5b1bd18109bda46b164a1aa7d4a096a7922cf958ed7",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+      "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+      "generatedSha256": "0480724cc39264ee36be8af65e7accb290f5bdcb5b7d8e4c73ffd1fcc616e3c7",
+      "outputSha256": "8e1afe61144e275153485f657236eac9594f7ead83b653ea769214eb815ff418",
+      "generatedInputMode": "RGB",
+      "sourceOwners": [
+        "envhd"
+      ],
+      "sourceBindings": [
+        {
+          "stage": 16,
+          "page": 7,
+          "clut": 16028,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            120,
+            248,
+            184
+          ],
+          "sourceUvOrigin": [
+            184,
+            120
+          ]
+        }
+      ],
+      "priorCandidateSha256": "3256786c7b26563ddcc8907b9a3eec56085b19cf2b3226854336559b6941fbe2",
+      "generatedPath": "integrations/envhd/production/battle-presentation-candidates/a5c78981c4f601d5cf33e5b1bd18109bda46b164a1aa7d4a096a7922cf958ed7/painted-input-v1.png",
+      "outputPath": "integrations/envhd/production/battle-presentation-candidates/a5c78981c4f601d5cf33e5b1bd18109bda46b164a1aa7d4a096a7922cf958ed7/image-v1.png",
+      "prompt": "Edit the FIRST reference into an exquisite bespoke high-resolution hand-painted battle material for Legend of Dragoon's gorgeous AA 2026 retro remaster. SECOND reference is original source authority: preserve all major source forms, original palette and layout from it. An irregular source-defined broad mass of small olive-green leaves against black, narrowing toward a thin existing base; several source negative-space holes within. Preserve the exact whole silhouette, each opening and every attached fragment. Refine interior leaves in varied original green values without adding new trunk/branches. Retain the thin upper neighbor band and left vertical stone strip. Flat atlas crop with exactly the same 64:64 aspect ratio and full-canvas composition. Make continuous fine hand-painted surface detail, removing enlarged square source pixels and blurry neural smears; keep the original broad material pattern subdued, without increasing relief depth. No new recognizable objects, buildings, ornaments, symbols, moss patches, roots, cracks, branches, reflections or scenery. No extra directional lighting, strong specular glare, bloom, dramatic shadows, text, perspective, framing, cropping or rotation. Preserve black and white source empty areas.",
+      "references": [
+        "Existing source-bound neural candidate plus exact original crop authority."
+      ],
+      "review": {
+        "intent": "Gray-green stone ledges and existing leafy vegetation; the original motif shapes and value patterns are retained. Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
+        "style": "Clear continuous painterly material detail rather than enlarged source blocks or smooth neural blur. Source palette and subdued illumination retained. Author-reviewed development candidate; independent scene/beauty acceptance pending. Skurfa/pilot resources unchanged.",
+        "layout": "Source arrangement, atlas neighbors and cutout/empty regions preserved; only existing surface detail refined. Original, neural baseline and repaired 4x compared. Exact source STP/discard/visible-black restored; internal feature fidelity and scene/seam acceptance remain visual review responsibilities.",
+        "verdict": "visual-reviewed-runtime-pending",
+        "outputSha256": "8e1afe61144e275153485f657236eac9594f7ead83b653ea769214eb815ff418",
         "nativeAcceptance": "pending",
         "finalQualityAcceptance": "pending"
       }
