@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "d6d8d3d892447f4b6eb0211552762842e8f705bc4048f4b1b8c1d322bffc4623",
+    "battle-material-runtime-artwork.json": "95030795e976ef93b4689fb1dcad8bc4f8d5a40882ef182ad055ec0059a398dc",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "e23e9967f15353aa88dfdb31c77e569ad7831e56e71a624cfc6207e70a29b8cf"
+    "battle-presentation-artwork-v1.json": "249cdcce51be7a1e445029a02bf51efecf1443cd76d16d1e1ed465ab8eeaefb8"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 116,
-    "newlySelectedBespokeMasters": 116,
-    "baselineMastersStillNeedingPresentationReview": 390,
+    "newBespokeCandidates": 123,
+    "newlySelectedBespokeMasters": 123,
+    "baselineMastersStillNeedingPresentationReview": 383,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -91,7 +91,9 @@
         4096,
         992
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "2d9f72bf6112737d0e44b4fe8ebe537341fb7ef67534ca7f8a2947e0c3f6fcca"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -130,7 +132,14 @@
         4096,
         380
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "2e0acd3ddd621070ff393264efcf9a59732217c2cb30782ee8206315ee3dfb3f",
+        "5ed72f7c937a8eeaf74ef033b5527b216fe06e8f7f8df29892986c247e30c511",
+        "78b7dacab594bdd3347342e010b45f8f0e0ddeb29a72460bbc5af4173d03df87",
+        "f93bf10b723acfa3d4b945e2bcd5e8ef347fe8b880d35bc0fd6974ced1c56c18",
+        "fa04eb9e48f8ea56fe0533930a030d350ed6cec5ec8d6cf890c86c1860230948",
+        "ffc7a2cd693ee6dfb7ec7488cb60b11b495a28f926c81ee431fb60ea18631c2a"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -1942,7 +1951,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {2: [8]}. Source family: Giganto Home: wooden machinery, wheels, rough masonry and red surface accents. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2035,7 +2044,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2128,7 +2137,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2221,7 +2230,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2252,7 +2261,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2283,7 +2292,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -2314,7 +2323,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {4: [0]}. Source family: timber construction, stone courtyard, gates, doors, shields and polearm racks.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },

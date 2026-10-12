@@ -1,0 +1,1513 @@
+{
+  "snapshot": "f3a641b8f732ec707b1c93f012fd8163be6c22c3",
+  "packetSha256": "235827fd65c14114ccbfe26f0c828139bfebe5f6abd4149e6e9fa90dfddeba53",
+  "authorManifestSha256": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
+  "sourceScenes": [
+    {
+      "stage": 2,
+      "modelSha256": "3e0f616f7a3ee6770293ba55d083b195928f1672894660bf93f3f6062cfd4d7b",
+      "timSha256": "faf6a3c450087f1a63851da64ebbfcc0fb32d4e128b224bd922d9a85c04a0f16",
+      "modelSourceFile": "SECT/DRGN0.BIN/2499/0/0",
+      "timSourceFile": "SECT/DRGN0.BIN/2499/2"
+    },
+    {
+      "stage": 4,
+      "modelSha256": "5d24b9bd46c80b2e82cfd64892c627a3ebe38ee957c71ddac6e1e05bff52cd78",
+      "timSha256": "1d2a9c5bfa6f37b9dcbfaf845b2246f72832c064c70725177ef1eb0657d4c856",
+      "modelSourceFile": "SECT/DRGN0.BIN/2501/0/0",
+      "timSourceFile": "SECT/DRGN0.BIN/2501/2"
+    }
+  ],
+  "comparisons": [
+    {
+      "sourceKey": "ffc7a2cd693ee6dfb7ec7488cb60b11b495a28f926c81ee431fb60ea18631c2a",
+      "sourceSize": [
+        40,
+        40
+      ],
+      "sourceBindings": [
+        {
+          "stage": 4,
+          "page": 7,
+          "clut": 15389,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            168,
+            208,
+            208,
+            248
+          ],
+          "sourceUvOrigin": [
+            168,
+            208
+          ]
+        }
+      ],
+      "generatedSha256": "736b0fbc9c4232035109b3fdefc6ae29caf6d9de31be6698cac6cf0f81ff1af4",
+      "outputSha256": "5b02662c9cd709d650d7a93d18123558b966ca3ae209ea34717546364336d73b",
+      "priorCandidateSha256": "c64b1cb08110b6004b17752e2c94b86d93c42de63db4aa93634f1e7b5367d791",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "ffc7a2cd693ee6dfb7ec7488cb60b11b495a28f926c81ee431fb60ea18631c2a",
+        "rawSha256Observed": "736b0fbc9c4232035109b3fdefc6ae29caf6d9de31be6698cac6cf0f81ff1af4",
+        "outputSha256Observed": "5b02662c9cd709d650d7a93d18123558b966ca3ae209ea34717546364336d73b",
+        "priorNeuralSha256Observed": "c64b1cb08110b6004b17752e2c94b86d93c42de63db4aa93634f1e7b5367d791",
+        "recipeEncodedSha256Observed": "5b02662c9cd709d650d7a93d18123558b966ca3ae209ea34717546364336d73b",
+        "sourceSizeObserved": [
+          40,
+          40
+        ],
+        "targetSizeObserved": [
+          160,
+          160
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            40,
+            40
+          ],
+          "targetSize": [
+            160,
+            160
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The rectangular gate panel, small inset hatch, existing horizontal rails and vertical slat groups retain their original positions, widths and division pattern. Fine warm-brown wood grain clarifies that established material without adding a brace, opening or emblem. The dark upper surround, small neighboring stone fragments and lower edge remain source-bound; texture contrast stays within the existing brown/gold lighting family.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              66.22222222222223,
+              39.47222222222222,
+              17.25925925925926
+            ],
+            "meanLumaNonblackSourceMask": 43.55549629629629
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              56.93882275132275,
+              31.759589947089946,
+              10.312913359788359
+            ],
+            "meanLumaNonblackSourceMask": 35.56424479166667
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              84.28753306878306,
+              53.364169973544975,
+              21.744460978835978
+            ],
+            "meanLumaNonblackSourceMask": 57.655533978174596
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "075675a7cb1e37cbdae7446953d3cbccb009561fbaf75bca821985c62060b299",
+      "sourceSize": [
+        80,
+        70
+      ],
+      "sourceBindings": [
+        {
+          "stage": 4,
+          "page": 7,
+          "clut": 15516,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            0,
+            200,
+            70
+          ],
+          "sourceUvOrigin": [
+            120,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "8973e7d52d44941b925095df58a7f4532915189ba4386a278ba5cc06694d5e84",
+      "outputSha256": "48c14ad16dfa6a1868c3fbe335455ded1f64527815588fc787954bfea465a34c",
+      "priorCandidateSha256": "144861724a1600b66043a36144a593fb448f4e0f51df1e279273a4a6ffa7e70c",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "075675a7cb1e37cbdae7446953d3cbccb009561fbaf75bca821985c62060b299",
+        "rawSha256Observed": "8973e7d52d44941b925095df58a7f4532915189ba4386a278ba5cc06694d5e84",
+        "outputSha256Observed": "48c14ad16dfa6a1868c3fbe335455ded1f64527815588fc787954bfea465a34c",
+        "priorNeuralSha256Observed": "144861724a1600b66043a36144a593fb448f4e0f51df1e279273a4a6ffa7e70c",
+        "recipeEncodedSha256Observed": "48c14ad16dfa6a1868c3fbe335455ded1f64527815588fc787954bfea465a34c",
+        "sourceSizeObserved": [
+          80,
+          70
+        ],
+        "targetSizeObserved": [
+          320,
+          280
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            80,
+            70
+          ],
+          "targetSize": [
+            320,
+            280
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "REVISE",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "REVISE",
+      "reason": "The inward-sloping wall planes and horizontal block courses are established by the original, but the right-hand blocks retain the neural baseline's long connected branching cracks, including strongly outlined fractures in the upper-right and lower-right faces. The source contains irregular mottling and coarse block boundaries, not that resolved fracture network. Restore the subdued source surface pattern without inventing fissures inside the existing blocks; the central dark wedge and adjoining lower fragments already align.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              34.882808181315646,
+              19.213930348258707,
+              11.347705914870094
+            ],
+            "meanLumaNonblackSourceMask": 21.977192371475955
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              31.362930716786437,
+              15.706928321356182,
+              7.735212824765064
+            ],
+            "meanLumaNonblackSourceMask": 18.459836571770776
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              42.42069743873226,
+              22.140570296664823,
+              9.489784871936614
+            ],
+            "meanLumaNonblackSourceMask": 25.53873861940298
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "f93bf10b723acfa3d4b945e2bcd5e8ef347fe8b880d35bc0fd6974ced1c56c18",
+      "sourceSize": [
+        56,
+        79
+      ],
+      "sourceBindings": [
+        {
+          "stage": 4,
+          "page": 7,
+          "clut": 15772,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            56,
+            176,
+            135
+          ],
+          "sourceUvOrigin": [
+            120,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "7e085d7a3297b800ee9971f6d8f5c8da078d785dbdfcbe33cb7b52f72ee0fbd0",
+      "outputSha256": "84707d0cbf5b69d684b7ce9607f3dcacfccfc6735e27d007d515bfb0912951a0",
+      "priorCandidateSha256": "543339abd477719690e7d07863f734d2cf20b910d7f5812665d550ecb2a5f74a",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "f93bf10b723acfa3d4b945e2bcd5e8ef347fe8b880d35bc0fd6974ced1c56c18",
+        "rawSha256Observed": "7e085d7a3297b800ee9971f6d8f5c8da078d785dbdfcbe33cb7b52f72ee0fbd0",
+        "outputSha256Observed": "84707d0cbf5b69d684b7ce9607f3dcacfccfc6735e27d007d515bfb0912951a0",
+        "priorNeuralSha256Observed": "543339abd477719690e7d07863f734d2cf20b910d7f5812665d550ecb2a5f74a",
+        "recipeEncodedSha256Observed": "84707d0cbf5b69d684b7ce9607f3dcacfccfc6735e27d007d515bfb0912951a0",
+        "sourceSizeObserved": [
+          56,
+          79
+        ],
+        "targetSizeObserved": [
+          224,
+          316
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            56,
+            79
+          ],
+          "targetSize": [
+            224,
+            316
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The repeated oval/dark mark groups in the upper band, upper rectangular divisions and lower lattice retain the source-defined counts, intervals and crossbar positions. The warm-brown uprights and deep dark intervals remain separated; fine grain follows the existing bars instead of adding a new rail or opening. Side masonry, bottom fragments and negative-space contours remain aligned. This clears the source/art crop, while its mapped appearance and seams remain pending.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              64.82389122693428,
+              39.01230171576562,
+              19.045322110715443
+            ],
+            "meanLumaNonblackSourceMask": 43.058229718355456
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              56.0718679184202,
+              31.045160246034314,
+              11.092849627711233
+            ],
+            "meanLumaNonblackSourceMask": 34.925281470540625
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              90.48490611848494,
+              56.58882324376821,
+              25.187378601489154
+            ],
+            "meanLumaNonblackSourceMask": 61.52794615976044
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "bcaa757ab085f602173783b986fc7e5e0386182e36a0ebe2b33e9d7b1650a9f1",
+      "sourceSize": [
+        48,
+        64
+      ],
+      "sourceBindings": [
+        {
+          "stage": 4,
+          "page": 7,
+          "clut": 15836,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            168,
+            56,
+            216,
+            120
+          ],
+          "sourceUvOrigin": [
+            168,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "11ec77804f723069eccc15980003eeba7e3c372dfb416da67a30ac3a789630e1",
+      "outputSha256": "5accc579e7e1c37f4c81d1eeb63e642b3c09cd3abacb84066b31202491f7923c",
+      "priorCandidateSha256": "79226c507f023cf7670e8d0a3137a963e50915118b743b08cc0a9361b4d3fa54",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "bcaa757ab085f602173783b986fc7e5e0386182e36a0ebe2b33e9d7b1650a9f1",
+        "rawSha256Observed": "11ec77804f723069eccc15980003eeba7e3c372dfb416da67a30ac3a789630e1",
+        "outputSha256Observed": "5accc579e7e1c37f4c81d1eeb63e642b3c09cd3abacb84066b31202491f7923c",
+        "priorNeuralSha256Observed": "79226c507f023cf7670e8d0a3137a963e50915118b743b08cc0a9361b4d3fa54",
+        "recipeEncodedSha256Observed": "5accc579e7e1c37f4c81d1eeb63e642b3c09cd3abacb84066b31202491f7923c",
+        "sourceSizeObserved": [
+          48,
+          64
+        ],
+        "targetSizeObserved": [
+          192,
+          256
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            48,
+            64
+          ],
+          "targetSize": [
+            192,
+            256
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "REVISE",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "REVISE",
+      "reason": "The two pale pointed groups and long brown U-shaped element follow the original silhouettes. However, the small upper adjoining pale/gray fragment field is resolved into specific hollow linked coils with bright continuous silver outlines, inherited from the neural baseline. The original supports a fragmented metallic group and coarse gaps, but does not establish that particular articulated linked-loop construction. Preserve its native fragment grouping and ambiguity rather than importing the precise coil/hardware interpretation; retain the faithful pointed and U-shaped elements.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              81.00302571860817,
+              72.72617246596067,
+              59.04236006051437
+            ],
+            "meanLumaNonblackSourceMask": 73.4978602118003
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              69.47844175491679,
+              62.53328290468986,
+              50.58235627836611
+            ],
+            "meanLumaNonblackSourceMask": 63.14696677382753
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              80.2051815431165,
+              67.39353252647504,
+              52.536686838124055
+            ],
+            "meanLumaNonblackSourceMask": 69.04462484871408
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "bd8628eeba5110c22ade865244e77255e1d0612a2806e43fd2356ce179a2fdac",
+      "sourceSize": [
+        135,
+        79
+      ],
+      "sourceBindings": [
+        {
+          "stage": 4,
+          "page": 7,
+          "clut": 15900,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            120,
+            135,
+            199
+          ],
+          "sourceUvOrigin": [
+            0,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "519c6d4a545f4ea6535674f19fba7d152b6b71cd841894d17823d757289fb560",
+      "outputSha256": "554110e34b2b6afbdabf682c7467df749563a71d47c1e603db813ab9c4c88b5a",
+      "priorCandidateSha256": "6a1e5ae039b6c7f5420f3de18d6291a5981d0d226111c1b77fbaff7af541537f",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "bd8628eeba5110c22ade865244e77255e1d0612a2806e43fd2356ce179a2fdac",
+        "rawSha256Observed": "519c6d4a545f4ea6535674f19fba7d152b6b71cd841894d17823d757289fb560",
+        "outputSha256Observed": "554110e34b2b6afbdabf682c7467df749563a71d47c1e603db813ab9c4c88b5a",
+        "priorNeuralSha256Observed": "6a1e5ae039b6c7f5420f3de18d6291a5981d0d226111c1b77fbaff7af541537f",
+        "recipeEncodedSha256Observed": "554110e34b2b6afbdabf682c7467df749563a71d47c1e603db813ab9c4c88b5a",
+        "sourceSizeObserved": [
+          135,
+          79
+        ],
+        "targetSizeObserved": [
+          540,
+          316
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            135,
+            79
+          ],
+          "targetSize": [
+            540,
+            316
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "REVISE",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "REVISE",
+      "reason": "The broad rounded stone groups and their placements largely follow the source, but several lower stones retain the baseline's connected dark fissures and sharply cracked internal faces. The original lower groups are made of soft brown mottling and broad stone edges rather than those resolved crack junctions. The repair also emphasizes brighter orange-brown relief. Keep the original stone counts, gaps and subdued values while restoring shallow continuous grain without the unsupported fracture network.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              64.64733000384172,
+              43.97310795236266,
+              35.17162888974261
+            ],
+            "meanLumaNonblackSourceMask": 47.73298077218593
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              62.7850376968882,
+              42.65457524971187,
+              34.67440813484441
+            ],
+            "meanLumaNonblackSourceMask": 46.35814350028813
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              92.16098612178256,
+              54.706600557049555,
+              34.756705003841724
+            ],
+            "meanLumaNonblackSourceMask": 61.22902046917019
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "78b7dacab594bdd3347342e010b45f8f0e0ddeb29a72460bbc5af4173d03df87",
+      "sourceSize": [
+        39,
+        61
+      ],
+      "sourceBindings": [
+        {
+          "stage": 4,
+          "page": 7,
+          "clut": 15964,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            120,
+            159,
+            181
+          ],
+          "sourceUvOrigin": [
+            120,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "568e56b280d6ef3ff6d0dd3d467a88458fdebbce28b644a7dd937d51e3ff4f2c",
+      "outputSha256": "b1d09e79196accbf7d4d2dc9df33f258383e4c9ddcd4c205a488bc35a95f08f9",
+      "priorCandidateSha256": "8d1718bb04b3c59725ba01eafef277381ae1128cbcafcd931cbcb4c044fa0c4d",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "78b7dacab594bdd3347342e010b45f8f0e0ddeb29a72460bbc5af4173d03df87",
+        "rawSha256Observed": "568e56b280d6ef3ff6d0dd3d467a88458fdebbce28b644a7dd937d51e3ff4f2c",
+        "outputSha256Observed": "b1d09e79196accbf7d4d2dc9df33f258383e4c9ddcd4c205a488bc35a95f08f9",
+        "priorNeuralSha256Observed": "8d1718bb04b3c59725ba01eafef277381ae1128cbcafcd931cbcb4c044fa0c4d",
+        "recipeEncodedSha256Observed": "b1d09e79196accbf7d4d2dc9df33f258383e4c9ddcd4c205a488bc35a95f08f9",
+        "sourceSizeObserved": [
+          39,
+          61
+        ],
+        "targetSizeObserved": [
+          156,
+          244
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            39,
+            61
+          ],
+          "targetSize": [
+            156,
+            244
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The diagonal wooden brace, vertical plank divisions, top and bottom beams and adjoining lattice remain at their original positions and proportions. Fine directional wood grain follows those established surfaces and the original broad warm-brown modulation. Neighboring side and lower fragments preserve their source shapes; no additional brace, joint sequence, aperture or lighting motif is introduced.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              66.97294538029607,
+              32.90045941807045,
+              6.248085758039816
+            ],
+            "meanLumaNonblackSourceMask": 38.2199685553854
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              57.15833971413987,
+              26.79830270546197,
+              2.515664880040837
+            ],
+            "meanLumaNonblackSourceMask": 31.499640122511483
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              75.04147524247065,
+              41.65757401735579,
+              10.088884635017866
+            ],
+            "meanLumaNonblackSourceMask": 46.47573204441041
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "fa04eb9e48f8ea56fe0533930a030d350ed6cec5ec8d6cf890c86c1860230948",
+      "sourceSize": [
+        64,
+        63
+      ],
+      "sourceBindings": [
+        {
+          "stage": 4,
+          "page": 7,
+          "clut": 16156,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            168,
+            184,
+            231
+          ],
+          "sourceUvOrigin": [
+            120,
+            168
+          ]
+        }
+      ],
+      "generatedSha256": "0f6e3216f0828f10327c2d8e48e4d4834317c5a3a19d62343da2ca2089a5286a",
+      "outputSha256": "a9f21fb58e6738912e526c5a9abf807ad807140eafc293a26eec5a9650b2f9c7",
+      "priorCandidateSha256": "0ca0f86ca09f7391a037d99d9c540e7e9aa09af497de8d1e2646a83508dbe7a4",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "fa04eb9e48f8ea56fe0533930a030d350ed6cec5ec8d6cf890c86c1860230948",
+        "rawSha256Observed": "0f6e3216f0828f10327c2d8e48e4d4834317c5a3a19d62343da2ca2089a5286a",
+        "outputSha256Observed": "a9f21fb58e6738912e526c5a9abf807ad807140eafc293a26eec5a9650b2f9c7",
+        "priorNeuralSha256Observed": "0ca0f86ca09f7391a037d99d9c540e7e9aa09af497de8d1e2646a83508dbe7a4",
+        "recipeEncodedSha256Observed": "a9f21fb58e6738912e526c5a9abf807ad807140eafc293a26eec5a9650b2f9c7",
+        "sourceSizeObserved": [
+          64,
+          63
+        ],
+        "targetSizeObserved": [
+          256,
+          252
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            64,
+            63
+          ],
+          "targetSize": [
+            256,
+            252
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The original radial stone groups and dark directional marks around the arch, side masonry courses, dark recess and barred panel retain their source placement and repetition. Detail clarifies the existing radial pattern and warm-brown surfaces without adding another voussoir row, opening, symbol or rail. The neighboring upper/right fragments, broad recessed darkness and source-defined negative spaces remain intact. Native and mapped-scene acceptance are still pending.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              62.982714468629965,
+              35.821062740076826,
+              16.78393085787452
+            ],
+            "meanLumaNonblackSourceMask": 40.221148975672214
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              53.67759683098591,
+              28.435919494238156,
+              10.319962387964148
+            ],
+            "meanLumaNonblackSourceMask": 32.49432799295775
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              71.21170774647888,
+              41.788512323943664,
+              18.344610275288094
+            ],
+            "meanLumaNonblackSourceMask": 46.35123394286171
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "2e0acd3ddd621070ff393264efcf9a59732217c2cb30782ee8206315ee3dfb3f",
+      "sourceSize": [
+        79,
+        45
+      ],
+      "sourceBindings": [
+        {
+          "stage": 4,
+          "page": 7,
+          "clut": 16284,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            184,
+            135,
+            229
+          ],
+          "sourceUvOrigin": [
+            56,
+            184
+          ]
+        }
+      ],
+      "generatedSha256": "2b307ed85295b3529e4134ed36f5ff5706e68d4a51779f1cfa1f8851111dfb8c",
+      "outputSha256": "84548efe91c4329bf66413cd24216b32ec845c6e521e903276639e5459b75b3f",
+      "priorCandidateSha256": "5cb04b40074a282d254ad4906c430f86b60b7b43e85db72ad00b4a55e58f93c7",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "2e0acd3ddd621070ff393264efcf9a59732217c2cb30782ee8206315ee3dfb3f",
+        "rawSha256Observed": "2b307ed85295b3529e4134ed36f5ff5706e68d4a51779f1cfa1f8851111dfb8c",
+        "outputSha256Observed": "84548efe91c4329bf66413cd24216b32ec845c6e521e903276639e5459b75b3f",
+        "priorNeuralSha256Observed": "5cb04b40074a282d254ad4906c430f86b60b7b43e85db72ad00b4a55e58f93c7",
+        "recipeEncodedSha256Observed": "84548efe91c4329bf66413cd24216b32ec845c6e521e903276639e5459b75b3f",
+        "sourceSizeObserved": [
+          79,
+          45
+        ],
+        "targetSizeObserved": [
+          316,
+          180
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            79,
+            45
+          ],
+          "targetSize": [
+            316,
+            180
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "All four narrow supports, the uneven horizontal crosspiece, their varying heights and bends, and the original black gaps retain their source positions. The separate upper rounded fragments and green accents remain distinct, with the right edge pattern and left scraps preserved. Fine grain stays inside the existing brown/tan material and green-edged fragments; it does not add posts, foliage, an emblem or a light source.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              74.50414937759336,
+              59.34923928077455,
+              34.39004149377593
+            ],
+            "meanLumaNonblackSourceMask": 60.76911908713692
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              67.45275760719225,
+              50.560771092669434,
+              22.989496887966805
+            ],
+            "meanLumaNonblackSourceMask": 52.16136142807745
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              78.54979253112033,
+              59.344917012448136,
+              28.098288381742737
+            ],
+            "meanLumaNonblackSourceMask": 61.171866960580914
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "5ed72f7c937a8eeaf74ef033b5527b216fe06e8f7f8df29892986c247e30c511",
+      "sourceSize": [
+        40,
+        38
+      ],
+      "sourceBindings": [
+        {
+          "stage": 4,
+          "page": 7,
+          "clut": 16348,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            200,
+            200,
+            240,
+            238
+          ],
+          "sourceUvOrigin": [
+            200,
+            200
+          ]
+        }
+      ],
+      "generatedSha256": "c8a8225eb630bded625cf93070ffa7cbba39b54da89563abc0c8865c78879e16",
+      "outputSha256": "aca5d44d887dceda5eb2273a695d4c3167f19cd03d9f71743d6998dc774c11e0",
+      "priorCandidateSha256": "b622208817a99b211f4107f8d8c2f6c37547d4d1db43d90711217526a0804f83",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "5ed72f7c937a8eeaf74ef033b5527b216fe06e8f7f8df29892986c247e30c511",
+        "rawSha256Observed": "c8a8225eb630bded625cf93070ffa7cbba39b54da89563abc0c8865c78879e16",
+        "outputSha256Observed": "aca5d44d887dceda5eb2273a695d4c3167f19cd03d9f71743d6998dc774c11e0",
+        "priorNeuralSha256Observed": "b622208817a99b211f4107f8d8c2f6c37547d4d1db43d90711217526a0804f83",
+        "recipeEncodedSha256Observed": "aca5d44d887dceda5eb2273a695d4c3167f19cd03d9f71743d6998dc774c11e0",
+        "sourceSizeObserved": [
+          40,
+          38
+        ],
+        "targetSizeObserved": [
+          160,
+          152
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            40,
+            38
+          ],
+          "targetSize": [
+            160,
+            152
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The curved upper band, two pale gray horizontal fittings and warm triangular central field with its existing dark diagonals retain their source footprints. Brushed/fine surface detail clarifies those bands while maintaining their warm beige/brown and gray material separation. The original central gradient and dark surrounding space remain recognizable, without new internal divisions, an emblem, aperture or emissive lighting.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              67.75953079178886,
+              42.42815249266862,
+              28.730205278592376
+            ],
+            "meanLumaNonblackSourceMask": 46.82461173020528
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              61.14974340175953,
+              36.82725439882698,
+              22.092558651026394
+            ],
+            "meanLumaNonblackSourceMask": 40.93437052785924
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              82.35905425219941,
+              51.973973607038126,
+              31.04407991202346
+            ],
+            "meanLumaNonblackSourceMask": 56.92270342741935
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "a9891770eec8e466d015588688d0797e31aaf80a2ccd202787b4036c220c5069",
+      "sourceSize": [
+        72,
+        71
+      ],
+      "sourceBindings": [
+        {
+          "stage": 4,
+          "page": 7,
+          "clut": 15580,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            0,
+            256,
+            71
+          ],
+          "sourceUvOrigin": [
+            184,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "529dc65f90c567c51960876f64ddcad1929868eceb3317a86456f3d4c4e62cdf",
+      "outputSha256": "d852606b4266225a0b1702dedb0b4f0d4025621937684f09b178e894fe69fab0",
+      "priorCandidateSha256": "c92f201156b4a403a6fd2aab4829166f192a4fef71c0e1af67f9387cf625fb62",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "a9891770eec8e466d015588688d0797e31aaf80a2ccd202787b4036c220c5069",
+        "rawSha256Observed": "529dc65f90c567c51960876f64ddcad1929868eceb3317a86456f3d4c4e62cdf",
+        "outputSha256Observed": "d852606b4266225a0b1702dedb0b4f0d4025621937684f09b178e894fe69fab0",
+        "priorNeuralSha256Observed": "c92f201156b4a403a6fd2aab4829166f192a4fef71c0e1af67f9387cf625fb62",
+        "recipeEncodedSha256Observed": "d852606b4266225a0b1702dedb0b4f0d4025621937684f09b178e894fe69fab0",
+        "sourceSizeObserved": [
+          72,
+          71
+        ],
+        "targetSizeObserved": [
+          288,
+          284
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            72,
+            71
+          ],
+          "targetSize": [
+            288,
+            284
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "REVISE",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "REVISE",
+      "reason": "The converging block courses and dark central recess remain aligned, but the walls and especially the lower adjoining floor retain the neural baseline's strong connected fissures and sharply outlined angular stone plates. The original has coarse masonry divisions above and soft irregular brown ground mottling below, not that continuous crack/flagstone system. Restore the source-specific shallow patches and broad dim values while keeping the existing planes, course spacing and dark recess.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              48.430636461704424,
+              27.453505933117583,
+              14.102481121898597
+            ],
+            "meanLumaNonblackSourceMask": 30.949299892125136
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              40.90521844660194,
+              21.86306634304207,
+              9.773368392664509
+            ],
+            "meanLumaNonblackSourceMask": 25.03855168824164
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              53.1105312837109,
+              30.073948220064725,
+              11.311340345199568
+            ],
+            "meanLumaNonblackSourceMask": 33.616865490830634
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "d21c83cd340e7ae73d581c1a52e67da08ac1f0e32c8e60cecd3f0bdeec19aa5f",
+      "sourceSize": [
+        72,
+        232
+      ],
+      "sourceBindings": [
+        {
+          "stage": 2,
+          "page": 7,
+          "clut": 15388,
+          "parts": [
+            0,
+            1,
+            2,
+            8
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            72,
+            232
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "5acb28106e6beaa7f8532f5c2f60883dfd94fe7aacdb6a2341f87b9018ec8454",
+      "outputSha256": "4c50b08f76c75fcfca777b1a52b6ddd71a1e921143ce31592face57fe5ff4468",
+      "priorCandidateSha256": "bb7063c33f5fe32ef992cbeab1ac0192cbfeb85da277b50c6818e0825d0ea22b",
+      "method": "python-reviewed-painted-battle-material-source-canvas-2",
+      "recipePins": {
+        "algorithmSha256": "761cdc65c761a09c3ba68b4c8e9f50ae358e8c496fbf2850576c758053d802ab",
+        "boundsAlgorithmSha256": "9ce1124c2e611ec1d358dc0ac177b7cfd067d973d515f5f5365c50aae4c6bbe8",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "d21c83cd340e7ae73d581c1a52e67da08ac1f0e32c8e60cecd3f0bdeec19aa5f",
+        "rawSha256Observed": "5acb28106e6beaa7f8532f5c2f60883dfd94fe7aacdb6a2341f87b9018ec8454",
+        "outputSha256Observed": "4c50b08f76c75fcfca777b1a52b6ddd71a1e921143ce31592face57fe5ff4468",
+        "priorNeuralSha256Observed": "bb7063c33f5fe32ef992cbeab1ac0192cbfeb85da277b50c6818e0825d0ea22b",
+        "recipeEncodedSha256Observed": "4c50b08f76c75fcfca777b1a52b6ddd71a1e921143ce31592face57fe5ff4468",
+        "sourceSizeObserved": [
+          72,
+          232
+        ],
+        "targetSizeObserved": [
+          288,
+          928
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            72,
+            232
+          ],
+          "targetSize": [
+            288,
+            928
+          ],
+          "sourceCanvasSize": [
+            256,
+            256
+          ],
+          "sourceCanvasRect": [
+            92,
+            12,
+            72,
+            232
+          ],
+          "paintedCropPixels": [
+            451,
+            59,
+            803,
+            1195
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "REVISE",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "REVISE",
+      "reason": "The tall upper ground field changes its source's broad soft brown/gray mottling into a dense network of hard dark connected cracks and raised angular rocky plates. Unlike the earlier cases, much of that resolved relief is introduced by the bespoke repair rather than merely retained from the soft neural field. Restore the original broad mottling and shallow grain without the crack network or plate subdivision. Source red-color classes, fragmented lower objects, wheel, bars and native negative spaces remain protected, but that does not clear the whole page.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              129.48348953315232,
+              56.03494788473329,
+              46.2047823421214
+            ],
+            "meanLumaNonblackSourceMask": 70.94036988701059
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              123.9053659017255,
+              49.81182118770255,
+              40.94796684768328
+            ],
+            "meanLumaNonblackSourceMask": 64.92413851055443
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              120.9629773583253,
+              56.74420819830078,
+              44.73543290706841
+            ],
+            "meanLumaNonblackSourceMask": 69.53008494569502
+          }
+        }
+      }
+    },
+    {
+      "sourceKey": "2d9f72bf6112737d0e44b4fe8ebe537341fb7ef67534ca7f8a2947e0c3f6fcca",
+      "sourceSize": [
+        256,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 2,
+          "page": 7,
+          "clut": 15836,
+          "parts": [
+            8
+          ],
+          "sourceCrop": [
+            0,
+            168,
+            256,
+            216
+          ],
+          "sourceUvOrigin": [
+            0,
+            168
+          ]
+        }
+      ],
+      "generatedSha256": "45d7124afbf77d5efaf9ca2bbaca616bd8c0e184e8a5a33e7a80fa55b34f3397",
+      "outputSha256": "c9cc79edd1aa707fc2cbc761a0085eac64bd53000863d120c34d9b41b0075edd",
+      "priorCandidateSha256": "4e327a074ad9d9b28c29498bc45a316b19c3774b5de0ffecda78bd25e7d82a56",
+      "method": "python-reviewed-painted-battle-material-source-canvas-2",
+      "recipePins": {
+        "algorithmSha256": "761cdc65c761a09c3ba68b4c8e9f50ae358e8c496fbf2850576c758053d802ab",
+        "boundsAlgorithmSha256": "9ce1124c2e611ec1d358dc0ac177b7cfd067d973d515f5f5365c50aae4c6bbe8",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "privateDecodedSourcePixelsExact": true,
+      "sourceStpClassesExact": true,
+      "discardAndVisibleBlackClassesExact": true,
+      "recipeReplayAssertions": {
+        "originalFingerprintObserved": "2d9f72bf6112737d0e44b4fe8ebe537341fb7ef67534ca7f8a2947e0c3f6fcca",
+        "rawSha256Observed": "45d7124afbf77d5efaf9ca2bbaca616bd8c0e184e8a5a33e7a80fa55b34f3397",
+        "outputSha256Observed": "c9cc79edd1aa707fc2cbc761a0085eac64bd53000863d120c34d9b41b0075edd",
+        "priorNeuralSha256Observed": "4e327a074ad9d9b28c29498bc45a316b19c3774b5de0ffecda78bd25e7d82a56",
+        "recipeEncodedSha256Observed": "c9cc79edd1aa707fc2cbc761a0085eac64bd53000863d120c34d9b41b0075edd",
+        "sourceSizeObserved": [
+          256,
+          48
+        ],
+        "targetSizeObserved": [
+          1024,
+          192
+        ],
+        "metricsObserved": {
+          "scale": 4,
+          "sourceSize": [
+            256,
+            48
+          ],
+          "targetSize": [
+            1024,
+            192
+          ],
+          "sourceCanvasSize": [
+            256,
+            256
+          ],
+          "sourceCanvasRect": [
+            0,
+            104,
+            256,
+            48
+          ],
+          "paintedCropPixels": [
+            0,
+            509,
+            1254,
+            745
+          ],
+          "sourceStpExact": true,
+          "discardAndVisibleBlackExact": true,
+          "edgeAveraging": false,
+          "internalFeatureAlignment": "individual-source-comparison-required",
+          "runtimeSelected": false,
+          "nativeAcceptance": "pending",
+          "finalQualityAcceptance": "pending"
+        },
+        "pixelsExact": true,
+        "metricsExact": true,
+        "encodedPngExact": true,
+        "sourceStpClassesExact": true,
+        "discardAndVisibleBlackClassesExact": true
+      },
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The existing eight-spoke wheel and central ring, curved hanging element and bucket, lower vertical strip, rough horizontally grouped field, pale mottled field and right grille preserve their original arrangements. Individual region inspection confirms the wheel count, curve/bucket positions, original shallow rough-field grouping, soft pale-field values and grille intervals. Fine wood/mineral grain does not add joints, fractures, objects or a new lighting motif. Neighboring scraps and black gaps remain aligned.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "mappedSceneAndSeamAcceptance": "pending",
+      "physicalDeckAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "corroboratingPaletteMetrics": {
+        "scope": "Actual nonblack-source mask; corroboration only, not a numeric acceptance threshold",
+        "measurements": {
+          "original": {
+            "meanRgbNonblackSourceMask": [
+              85.19926053083323,
+              54.69430872837713,
+              38.85791628152648
+            ],
+            "meanLumaNonblackSourceMask": 60.03627394691668
+          },
+          "neural": {
+            "meanRgbNonblackSourceMask": [
+              76.11649115277962,
+              47.05025254192526,
+              32.188275782384785
+            ],
+            "meanLumaNonblackSourceMask": 52.15670014855408
+          },
+          "candidate": {
+            "meanRgbNonblackSourceMask": [
+              93.54866796513932,
+              64.24018717813284,
+              41.38454047273208
+            ],
+            "meanLumaNonblackSourceMask": 68.82099250132048
+          }
+        }
+      }
+    }
+  ],
+  "schema": "definitive-battle-source-art-independent-review-1",
+  "reviewer": "independent-spec-original-fidelity-review",
+  "scope": "Twelve existing stage2/4 static candidates at fixed author f3a641b8f732ec707b1c93f012fd8163be6c22c3 only. Fresh actual-original model/TIM decoding, complete page/CLUT/crop/part bindings, source fingerprint and raw/output/prior-neural hashes, exact v1/v2 recipe RGBA/metrics/encoded-PNG replay and full alpha/STP/RGB-black-class assertions. Independently inspected all twelve supplied boards, all twelve fresh native-aspect boards and fourteen technical detail regions. Layout CLEAR verifies source/crop/size/STP/black classes, not internal-art or mapped-scene/seam acceptance. No generation, selection, runtime writes, builds, tests, source-audit suite or GUI action.",
+  "counts": {
+    "reviewed": 12,
+    "clear": 7,
+    "revise": 5,
+    "runtimeSelectedByThisReview": 0
+  },
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "mappedSceneAndSeamAcceptance": "pending",
+  "physicalDeckAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "privateFullReviewSha256": "aa23570f53dc5bd954d82cc012eb2941856f574b1082b66b7a2d9d84470976df"
+}

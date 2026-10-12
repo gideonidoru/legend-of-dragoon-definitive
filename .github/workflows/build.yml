@@ -64,6 +64,7 @@ jobs:
         run: |
           test -n "$JAVA_HOME"
           "$RUNNER_TEMP/definitive-visual-checks/bin/python" scripts/test-envhd-battle-families.py
+          "$RUNNER_TEMP/definitive-visual-checks/bin/python" scripts/test-native-sprite-font.py
   build:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.runner }}
