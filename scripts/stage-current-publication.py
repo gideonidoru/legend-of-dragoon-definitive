@@ -68,7 +68,7 @@ def materialize(record, dest, current, tag):
     check_asset(asset,name,record['size'],record['sha256'],tag)
     with tempfile.NamedTemporaryFile(dir=dest.parent,prefix='.descriptor-') as temporary:
         temp=Path(temporary.name)
-        subprocess.run(['curl','--fail','--location','--proto','=https','--proto-redir','=https','--connect-timeout','20','--max-time','300','--retry','2','--silent','--show-error','--output',str(temp),asset['browser_download_url']],check=True)
+        subprocess.run(['curl','--fail','--location','--proto','=https','--proto-redir','=https','--connect-timeout','20','--max-time',str(1800 if record['size']>16*1024**2 else 300),'--max-filesize',str(record['size']),'--retry','2','--silent','--show-error','--output',str(temp),asset['browser_download_url']],check=True)
         if (temp.stat().st_size,digest(temp))!=(record['size'],record['sha256']):
             raise ValueError('Reused public descriptor checksum differs')
         # Keep partial downloads out of the reusable staged namespace.
@@ -78,7 +78,7 @@ def materialize(record, dest, current, tag):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-sha',required=True);parser.add_argument('--run',type=int,required=True)
-    parser.add_argument('--output',type=Path,required=True);args=parser.parse_args()
+    parser.add_argument('--output',type=Path,required=True);parser.add_argument('--delivery-format',type=int,choices=(1,2),default=1);args=parser.parse_args()
     if not re.fullmatch('[a-f0-9]{40}',args.source_sha) or args.run<1:
         raise ValueError('Invalid source/run')
     if gh('api','user','--jq','.login').strip()!='gideonidoru':raise ValueError('Wrong GitHub account')
@@ -112,6 +112,7 @@ def main():
             if any(receipt.get(k)!=v or type(receipt.get(k)) is not type(v) for k,v in {'format':1,'sourceSha':args.source_sha,'runId':args.run,'repository':REPO,'tag':TAG,'platform':platform,'runAttempt':run['run_attempt']}.items()):
                 raise ValueError('CI receipt source/run/platform differs')
             if not isinstance(receipt.get('assets'),list) or not 1<=len(receipt['assets'])<=1000:raise ValueError('Unbounded CI upload inventory')
+            if receipt.get('deliveryFormat',1)!=args.delivery_format:raise ValueError('CI delivery format differs from selected publication')
             receipts[platform]=receipt;seen=set()
             for record in receipt['assets']:
                 name=record['name']
@@ -119,7 +120,7 @@ def main():
                     raise ValueError('Unsafe/duplicate CI asset receipt')
                 seen.add(name)
                 if name in records and (record['size'],record['sha256'])!=(records[name]['size'],records[name]['sha256']):raise ValueError('Platform asset hashes disagree')
-                records[name]=record
+                if record['disposition']!='linux' or name not in records:records[name]=record
                 remote_name(record)
                 if record['disposition']=='upload':
                     found=[e for n,e in entries.items() if n.split('/')[-1]==name and not e.is_dir()]
@@ -144,7 +145,7 @@ def main():
         if record['disposition']=='linux':
             prior=linux.get(record['name'])
             if prior is None or (record['size'],record['sha256'])!=(prior['size'],prior['sha256']):raise ValueError('Missing/different Linux shared payload')
-    required={};aliases={};descriptor_inputs={}
+    required={};aliases={};descriptor_inputs={};assembly_plans={};movie_map=None
     for platform in PLATFORMS:
         paths=[]
         for kind,prefix in [('package','Legend-of-Dragoon-Definitive-'),('contents','Definitive-Contents-')]:
@@ -162,10 +163,33 @@ def main():
         expected_files=[dict(path=name,sha256=sha,size=int(sizes[name]),assetName='file-'+sha) for name,sha in sorted(hashes.items())]
         if receipts[platform].get('files')!=expected_files:raise ValueError('CI complete managed file receipt differs from verified contents')
         expected=file_delivery_assets(*paths,include_env_aliases=False)
+        if args.delivery_format==2:
+            from member_publication import load_plan, prove_draft, film_map
+            plan_record=receipts[platform]['assemblyPlan'];plan_path=staged/plan_record['name']
+            if (plan_path.stat().st_size,digest(plan_path))!=(plan_record['bytes'],plan_record['sha256']):raise ValueError('CI assembly plan descriptor differs')
+            draft=load_plan(plan_path.read_bytes(),args.source_sha,platform,expected_files)
+            selected=set(draft['files']);ordinary={row['assetName'] for row in expected_files if row['path'] not in selected}
+            for row in expected_files:
+                if row['path'] in selected and row['assetName'] not in ordinary:expected.pop(row['assetName'])
+            source_paths={}
+            for sha,row in draft['sources'].items():
+                name='file-'+sha;record=records[name]
+                if (record['size'],record['sha256'])!=(row['bytes'],sha):raise ValueError('CI plan source receipt differs')
+                materialize(record,staged/name,current,latest['tag_name']);source_paths[sha]=staged/name
+                expected[name]=(row['bytes'],sha)
+            prove_draft(draft,expected_files,source_paths)
+            assembly_plans[platform]=dict(plan_record,path=plan_record['name'])
+            manifest_name='file-'+hashes['gfx/fmvhd/manifest.properties'];record=records[manifest_name]
+            materialize(record,staged/manifest_name,current,latest['tag_name'])
+            approved=subprocess.check_output(['git','show',args.source_sha+':integrations/fmvhd/src/main/resources/fmvhd/assets.properties'],cwd=Path(__file__).resolve().parents[1])
+            if (staged/manifest_name).read_bytes()!=approved:raise ValueError('Managed film source manifest differs from exact source')
+            films=film_map(staged/manifest_name,expected_files)
+            if receipts[platform]['fmvSources']!=films or movie_map is not None and movie_map!=films:raise ValueError('Platform film source maps disagree')
+            movie_map=films
         for name,(size,sha) in expected.items():
             record=records.get(name)
             if record is None or (record['size'],record['sha256'])!=(size,sha):raise ValueError('CI receipt omits/changes required package file')
-            required[name]=dict(bytes=size,sha256=sha,**({'path':name} if (staged/name).exists() else {}))
+            required[name]=dict(bytes=size,sha256=sha,**({'path':name} if (staged/name).exists() else {}),**({'id':str(record['assetId'])} if record['disposition']=='reuse' else {}))
     for kind,name in [('installer','Definitive-Installer.zip'),('entry','Install-Definitive.sh')]:
         record=records[name];path=staged/name;materialize(record,path,current,latest['tag_name'])
         immutable=descriptor_name(kind,record['sha256']);target=staged/immutable
@@ -180,24 +204,26 @@ def main():
     from desktop_bootstrap import desktop_entry
     if (staged/name).read_text()!=desktop_entry():raise ValueError('Desktop does not fetch the latest verified installer')
     aliases[name]=dict(bytes=record['size'],sha256=record['sha256'],path=name)
-    source_name='FMVHD-v0.1.0-videos.zip';record=records[source_name]
-    lock=properties(subprocess.check_output(['git','show',args.source_sha+':integrations/fmvhd/release.properties'],cwd=Path(__file__).resolve().parents[1]))
-    if record['sha256']!=lock.get('sha256'):raise ValueError('FMV build input pin differs')
-    immutable=descriptor_name('fmvSource',record['sha256'])
-    if (staged/source_name).exists() and not (staged/immutable).exists():os.link(staged/source_name,staged/immutable)
-    required[immutable]=dict(bytes=record['size'],sha256=record['sha256'],**({'path':immutable} if (staged/immutable).exists() else {}))
-    descriptor_inputs['fmvSource']=immutable
-    source_asset=reused_asset(record,current,latest) if record['disposition']=='reuse' else current.get(remote_name(record))
     source_rename=None
-    if source_asset is not None and source_asset['name']!=immutable:
-        source_rename=dict(id=source_asset['id'],oldName=source_asset['name'],name=immutable,bytes=record['size'],sha256=record['sha256'])
+    if args.delivery_format==1:
+        source_name='FMVHD-v0.1.0-videos.zip';record=records[source_name]
+        lock=properties(subprocess.check_output(['git','show',args.source_sha+':integrations/fmvhd/release.properties'],cwd=Path(__file__).resolve().parents[1]))
+        if record['sha256']!=lock.get('sha256'):raise ValueError('FMV build input pin differs')
+        immutable=descriptor_name('fmvSource',record['sha256'])
+        if (staged/source_name).exists() and not (staged/immutable).exists():os.link(staged/source_name,staged/immutable)
+        required[immutable]=dict(bytes=record['size'],sha256=record['sha256'],**({'path':immutable} if (staged/immutable).exists() else {}))
+        descriptor_inputs['fmvSource']=immutable
+        source_asset=reused_asset(record,current,latest) if record['disposition']=='reuse' else current.get(remote_name(record))
+        source_rename=None
+        if source_asset is not None and source_asset['name']!=immutable:
+            source_rename=dict(id=source_asset['id'],oldName=source_asset['name'],name=immutable,bytes=record['size'],sha256=record['sha256'])
     # Reject omitted files and unexpected CI payloads, not only the desired subset.
-    expected_names={n for n in required if n.startswith('file-')}|set(aliases)|{source_name}
+    expected_names={n for n in required if n.startswith('file-')}|set(aliases)|({source_name} if args.delivery_format==1 else {r['name'] for r in assembly_plans.values()})
     if set(records)!=expected_names:raise ValueError('CI receipt includes unexpected or incomplete assets')
     result=dict(format=1,result='STAGED',source=args.source_sha,run=args.run,runAttempt=run['run_attempt'],tag=TAG,
                 baselineRelease=dict(id=latest['id'],tag=latest['tag_name'],bodySha256=hashlib.sha256((latest.get('body') or '').encode()).hexdigest()),
                 immutable=required,aliases=aliases,descriptors=descriptor_inputs,receipts=receipts,
-                sourceRename=source_rename,
+                sourceRename=source_rename,deliveryFormat=args.delivery_format,assemblyPlans=assembly_plans,fmvSources=movie_map,
                 rawArtifacts=[dict(id=a['id'],name=a['name'],digest=a['digest']) for a in artifacts if a['name'].startswith('delivery-')])
     (root/'publication-inputs.json').write_bytes(canonical(result)+b'\n')
     print('PASS: staged complete source-bound publication; unchanged media stays on the server.',flush=True)

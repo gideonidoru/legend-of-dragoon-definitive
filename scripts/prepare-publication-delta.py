@@ -92,7 +92,7 @@ def current_assets(metadata):
     return dict(id=release['id'], tag=release['tag_name'], publishedAt=release['published_at']), assets
 
 
-def collect(distributions, ctx):
+def collect(distributions, ctx, include_fmv_source=True):
     distributions = Path(distributions)
     platform = ctx['platform']
     package = distributions / f'Legend-of-Dragoon-Definitive-{platform}.zip'
@@ -122,7 +122,7 @@ def collect(distributions, ctx):
             expected[name] = identity(path)
             paths[name] = path
         verify_installer(paths['Definitive-Installer.zip'])
-        if 'bundled-mods/FMVHD-v0.1.0.jar' in hashes:
+        if include_fmv_source and 'bundled-mods/FMVHD-v0.1.0.jar' in hashes:
             path = distributions / FMV_SOURCE
             expected[path.name] = identity(path)
             lock = properties((Path(__file__).resolve().parents[1] / 'integrations/fmvhd/release.properties').read_bytes())
@@ -169,7 +169,8 @@ def verify_linux(receipt, ctx):
         if not isinstance(item, dict) or not isinstance(item.get('path'), str) or item['path'] in files:
             raise ValueError('Duplicate or malformed Linux file receipt')
         asset = assets.get(item.get('assetName'))
-        if not asset or (item.get('size'), item.get('sha256')) != (asset['size'], asset['sha256']):
+        assembled = receipt.get('deliveryFormat') == 2 and item.get('path') in __import__('member_publication').selected_paths(receipt['files'])
+        if not assembled and (not asset or (item.get('size'), item.get('sha256')) != (asset['size'], asset['sha256'])):
             raise ValueError('Linux file and blob identities disagree')
         files[item['path']] = item
     return assets, files
@@ -386,6 +387,7 @@ def main():
     parser.add_argument('--tag', required=True)
     parser.add_argument('--wait-seconds', type=int, default=900)
     parser.add_argument('--verify-staged', action='store_true')
+    parser.add_argument('--delivery-format', type=int, choices=(1,2), default=1)
     args = parser.parse_args()
     ctx = context(args.source_sha, args.run_id, args.run_attempt, args.repository, args.platform, args.tag)
     source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=Path(__file__).resolve().parents[1], text=True).strip()
@@ -394,8 +396,27 @@ def main():
     if not all((args.distributions, args.output_dir, args.receipt)):
         raise ValueError('Supply distributions, staging output and receipt paths')
     if args.verify_staged:
-        expected, files, paths = collect(args.distributions, ctx)
-        verify_staged(bounded_json(args.receipt), ctx, expected, files, args.output_dir)
+        expected, files, paths = collect(args.distributions, ctx, include_fmv_source=args.delivery_format==1)
+        receipt = bounded_json(args.receipt)
+        if args.delivery_format == 2:
+            from member_publication import load_plan, prove_draft, film_map
+            record = receipt['assemblyPlan']; draft = load_plan((args.output_dir/'uploads'/record['name']).read_bytes(), ctx['sourceSha'],ctx['platform'],files)
+            selected = set(draft['files']); ordinary = {row['assetName'] for row in files if row['path'] not in selected}
+            for row in files:
+                if row['path'] in selected and row['assetName'] not in ordinary: expected.pop(row['assetName'])
+            source_paths = {}
+            all_records = {row['name']:row for row in receipt['assets']}
+            for sha,row in draft['sources'].items():
+                name = 'file-'+sha; expected[name] = (row['bytes'],sha)
+                source_paths[sha] = args.output_dir/'uploads'/name if all_records[name]['disposition']=='upload' else args.output_dir.parent/'member-inputs'/name
+            # The whole reconstruction was proved before staging. Re-prove on
+            # the retained local source cache, including Linux-assigned bundles.
+            prove_draft(draft, files, source_paths)
+            expected[record['name']] = (record['bytes'],record['sha256'])
+            expected.pop(FMV_SOURCE,None)
+            if receipt['fmvSources'] != film_map(Path(__file__).resolve().parents[1]/'integrations/fmvhd/src/main/resources/fmvhd/assets.properties',files): raise ValueError('Film map changed')
+        elif receipt.get('deliveryFormat',1) != 1: raise ValueError('Receipt delivery format differs')
+        verify_staged(receipt, ctx, expected, files, args.output_dir)
         print('Full publication receipt and staged delta remain exact after checks')
         return
     current = bounded_json(args.current_metadata) if args.current_metadata else fetch_current(ctx['repository'])
@@ -406,8 +427,14 @@ def main():
         if not args.linux_download_dir:
             raise ValueError('Mac requires a same-run Linux receipt handoff')
         linux = download_linux(ctx, args.linux_download_dir, args.wait_seconds)
-    expected, files, paths = collect(args.distributions, ctx)
+    expected, files, paths = collect(args.distributions, ctx, include_fmv_source=args.delivery_format==1)
+    member = None
+    if args.delivery_format == 2:
+        from member_publication import prepare, film_map
+        expected, paths, member, draft = prepare(ctx, expected, files, paths, current, args.output_dir.parent/'member-inputs')
     receipt = plan(ctx, expected, files, current, linux)
+    if member:
+        receipt.update(deliveryFormat=2, assemblyPlan=member, fmvSources=film_map(Path(__file__).resolve().parents[1]/'integrations/fmvhd/src/main/resources/fmvhd/assets.properties',files))
     stage(receipt, paths, args.output_dir, args.receipt)
     print(json.dumps(dict(platform=ctx['platform'], assets=len(receipt['assets']), uploads=len(receipt['uploadPaths']), reused=sum(a['disposition'] == 'reuse' for a in receipt['assets']), linuxAssigned=sum(a['disposition'] == 'linux' for a in receipt['assets']))))
 

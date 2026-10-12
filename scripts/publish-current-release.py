@@ -16,8 +16,9 @@ import subprocess
 import tempfile
 import os
 import stat
+import copy
 from current_publication import (REPO, TAG, PLATFORMS, canonical, digest, body,
-    parse_body, index_assets, check_asset, check_references, descriptor, closure)
+    parse_body, index_assets, check_asset, check_references, descriptor, closure, check_assembly_references)
 
 
 def load_stager():
@@ -52,8 +53,10 @@ def snapshot(release):
 def validate_inputs(inputs, root):
     if inputs.get('format') != 1 or inputs.get('result') != 'STAGED' or inputs.get('tag') != TAG:
         raise ValueError('Wrong staged publication format')
-    for group in ('immutable', 'aliases'):
-        for name, record in inputs[group].items():
+    for group in ('immutable', 'aliases', 'assemblyPlans'):
+        if group=='assemblyPlans' and inputs.get('deliveryFormat',1)==1:continue
+        for key, record in inputs[group].items():
+            name=record['name'] if group=='assemblyPlans' else key
             if '/' in name or name in ('.', '..'):
                 raise ValueError('Unsafe staged name')
             if 'path' in record:
@@ -63,9 +66,23 @@ def validate_inputs(inputs, root):
                 if path.is_symlink() or not path.is_file() or (path.stat().st_size, digest(path)) != (record['bytes'], record['sha256']):
                     raise ValueError('Staged publication bytes changed: ' + name)
 
+    if inputs.get('deliveryFormat',1)==2:
+        from member_publication import load_plan, prove_draft, film_map
+        if set(inputs['assemblyPlans'])!=set(PLATFORMS):raise ValueError('Both CI plans required')
+        for platform in PLATFORMS:
+            record=inputs['assemblyPlans'][platform]
+            files=inputs['receipts'][platform]['files']
+            draft=load_plan((root/'uploads'/record['path']).read_bytes(),inputs['source'],platform,files)
+            prove_draft(draft,files,{sha:root/'uploads'/('file-'+sha) for sha in draft['sources']})
+            row=next(row for row in files if row['path']=='gfx/fmvhd/manifest.properties')
+            manifest_path=root/'uploads'/row['assetName']
+            if (manifest_path.stat().st_size,digest(manifest_path))!=(row['size'],row['sha256']):raise ValueError('Managed film manifest differs')
+            if film_map(manifest_path,files)!=inputs['fmvSources']:raise ValueError('Staged film contract differs')
+
 
 def publish(inputs, root, server, now=None):
     """Transport-independent transaction, exercised with failure-injection tests."""
+    inputs=copy.deepcopy(inputs)
     validate_inputs(inputs, root)
     baseline = server.release()
     if baseline.get('draft') or baseline.get('prerelease') or snapshot(baseline) != inputs['baselineRelease']:
@@ -75,10 +92,16 @@ def publish(inputs, root, server, now=None):
         raise ValueError('Current carrier lacks a valid committed manifest')
     if original is not None and baseline['tag_name'] != TAG:
         raise ValueError('Manifest is on the wrong carrier')
+    if inputs.get('deliveryFormat',1)==2 and baseline['tag_name']!=TAG:raise ValueError('Member activation requires established current carrier')
     uploaded = {}; reused = {}; renamed = []
     # Keep one inventory while staging immutable objects. Refresh after each
     # mutation and verify the entire closure again before committing the pointer.
     assets = index_assets(server.assets())
+    if inputs.get('deliveryFormat',1)==2:
+        missing=(set(inputs['immutable'])|set(inputs['aliases'])|{'SHA256SUMS'})-set(assets)
+        # Reserve two bound recipes and the immutable pointer before uploads;
+        # never fill the carrier with an uncommittable candidate.
+        if len(assets)+len(missing)+3>1000:raise ValueError('Current carrier asset budget exhausted; no pointer committed')
 
     def guard():
         current = server.release()
@@ -90,6 +113,7 @@ def publish(inputs, root, server, now=None):
         guard()
         asset = assets.get(name)
         if asset is None:
+            if len(assets)>=1000:raise ValueError('Current carrier asset budget exhausted; no pointer committed')
             if 'path' not in record:
                 raise ValueError('Missing immutable server asset without verified upload: ' + name)
             path = root / 'uploads' / record['path']
@@ -101,7 +125,9 @@ def publish(inputs, root, server, now=None):
             asset = assets.get(name, {})
         else:
             reused[name] = dict(id=asset['id'], bytes=record['bytes'])
-        return check_asset(asset, name, record['bytes'], record['sha256'], baseline['tag_name'])
+        checked=check_asset(asset, name, record['bytes'], record['sha256'], baseline['tag_name'])
+        if 'id' in record and str(checked['id'])!=record['id']:raise ValueError('Bound source asset ID changed')
+        return checked
 
     # Migration moves the already pinned source ZIP; its ID and bytes stay intact.
     rename = inputs.get('sourceRename')
@@ -121,13 +147,37 @@ def publish(inputs, root, server, now=None):
             if new['id'] != rename['id']:
                 raise ValueError('Source asset rename did not preserve its identity')
     selected = {name: ensure(name, record) for name, record in sorted(inputs['immutable'].items())}
+    delivery_format=inputs.get('deliveryFormat',1);recipes={}
+    if delivery_format==2:
+        from member_publication import load_plan
+        from archive_assembly import AssemblyPlan, FileIdentity, bind_recipe
+        if baseline['tag_name']!=TAG:raise ValueError('Member activation requires established current carrier')
+        for platform in PLATFORMS:
+            record=inputs['assemblyPlans'][platform]
+            draft=load_plan((root/'uploads'/record['path']).read_bytes(),inputs['source'],platform,inputs['receipts'][platform]['files'])
+            identities={row['path']:FileIdentity('/unopened-inventory-target',row['sha256'],row['size']) for row in inputs['receipts'][platform]['files'] if row['path'] in draft['files']}
+            plan=AssemblyPlan({sha:row['bytes'] for sha,row in draft['sources'].items()},draft['files'],{},identities)
+            ids={}
+            for sha,row in draft['sources'].items():
+                asset=selected['file-'+sha]
+                if (asset['size'],asset['digest'])!=(row['bytes'],'sha256:'+sha):raise ValueError('Plan source differs from selected carrier asset')
+                ids[sha]=str(asset['id'])
+            recipe=bind_recipe(plan,inputs['source'],platform,TAG,ids);recipes[platform]=recipe
+            data=canonical(recipe);sha=hashlib.sha256(data).hexdigest();name='assembly-'+platform+'-'+sha+'.json'
+            (root/'uploads'/name).write_bytes(data)
+            required=dict(bytes=len(data),sha256=sha,path=name)
+            selected[name]=ensure(name,required);inputs['immutable'][name]=required
+            inputs['descriptors'][platform+'.assembly']=name
+    elif delivery_format!=1:raise ValueError('Unknown delivery format')
     descriptors = {}
     for platform in PLATFORMS:
         descriptors[platform] = {kind: descriptor(selected[inputs['descriptors'][platform+'.'+kind]], kind, platform)
-                                 for kind in ('package', 'contents')}
-    fixed = {kind: descriptor(selected[inputs['descriptors'][kind]], kind) for kind in ('installer', 'entry', 'fmvSource')}
-    unchanged = bool(original and original['sourceRevision'] == inputs['source'] and original['buildRun'] == inputs['run'] and original['platforms'] == descriptors and all(original[k] == v for k,v in fixed.items()))
-    manifest = original if unchanged else dict(format=1, generation=(original['generation']+1 if original else 1),
+                                 for kind in (('package','contents') if delivery_format==1 else ('package','contents','assembly'))}
+    fixed = {kind: descriptor(selected[inputs['descriptors'][kind]], kind) for kind in ('installer','entry')}
+    if delivery_format==1:fixed['fmvSource']=descriptor(selected[inputs['descriptors']['fmvSource']],'fmvSource')
+    else:fixed['fmvSources']={film:descriptor(selected[row['name']],'movie') for film,row in inputs['fmvSources'].items()}
+    unchanged = bool(original and original['format']==delivery_format and original['sourceRevision'] == inputs['source'] and original['buildRun'] == inputs['run'] and original['platforms'] == descriptors and all(original[k] == v for k,v in fixed.items()))
+    manifest = original if unchanged else dict(format=delivery_format, generation=(original['generation']+1 if original else 1),
                     sourceRevision=inputs['source'], buildRun=inputs['run'], releaseId=str(baseline['id']),
                     releaseTag=TAG, publishedAt=now or datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
                     platforms=descriptors, **fixed)
@@ -135,6 +185,13 @@ def publish(inputs, root, server, now=None):
     name = 'manifest-'+sha+'.json'; (root/'uploads'/name).write_bytes(data)
     ensure(name, dict(bytes=len(data), sha256=sha, path=name))
     check_references(manifest, server.assets(), baseline['tag_name'])
+    if delivery_format==2:
+        packages={platform:tuple(root/'uploads'/inputs['descriptors'][platform+'.'+kind] for kind in ('package','contents')) for platform in PLATFORMS}
+        complete=closure(manifest,packages,recipes)
+        expected={name:(row['bytes'],row['sha256']) for name,row in inputs['immutable'].items()}
+        expected['manifest-'+sha+'.json']=(len(data),sha)
+        if complete!=expected:raise ValueError('Staged member closure differs from package inventory')
+        check_assembly_references(manifest,recipes,server.assets())
     # Small bootstrap aliases may change. The committed runtime pointer still
     # names immutable files; incomplete aliases fail their existing checksum gate.
     aliases = dict(inputs['aliases'])
@@ -160,6 +217,7 @@ def publish(inputs, root, server, now=None):
     guard()
     assets = index_assets(server.assets())
     check_references(manifest, list(assets.values()), baseline['tag_name'])
+    check_assembly_references(manifest,recipes,list(assets.values()))
     for name, record in inputs['immutable'].items():
         check_asset(assets.get(name, {}), name, record['bytes'], record['sha256'], baseline['tag_name'])
     notes = 'Legend of Dragoon: Definitive\n\nCurrent test download for Steam Deck and macOS.\nRendering, viewport and input fixes; verified incremental installation and repair.\n'
@@ -169,13 +227,14 @@ def publish(inputs, root, server, now=None):
         raise ValueError('Publication commit could not be verified; do not clean up')
     assets = index_assets(server.assets())
     check_references(manifest, list(assets.values()))
+    check_assembly_references(manifest,recipes,list(assets.values()))
     for name, record in inputs['immutable'].items():
         check_asset(assets.get(name, {}), name, record['bytes'], record['sha256'])
     return dict(result='PASS', unchanged=unchanged, manifest=manifest, manifestSha256=sha,
                 buildAttempt=inputs['runAttempt'],
                 uploaded=uploaded, reused=reused, renamed=renamed,
                 uploadedBytes=sum(uploaded.values()), reusedBytes=sum(v['bytes'] for v in reused.values()),
-                closure={**inputs['immutable'], 'manifest-'+sha+'.json':dict(bytes=len(data),sha256=sha)}, aliases=aliases)
+                recipes=recipes,closure={**inputs['immutable'], 'manifest-'+sha+'.json':dict(bytes=len(data),sha256=sha)}, aliases=aliases)
 
 
 class GitHub:
@@ -223,11 +282,12 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-sha',required=True);parser.add_argument('--run',type=int,required=True)
     parser.add_argument('--output',type=Path,required=True);parser.add_argument('--initialize-release-id',type=int)
+    parser.add_argument('--delivery-format',type=int,choices=(1,2),default=1)
     args=parser.parse_args()
     args.output.mkdir(parents=True,exist_ok=True)
     with publication_lock():
         subprocess.run(['python3',str(Path(__file__).with_name('stage-current-publication.py')),
-                        '--source-sha',args.source_sha,'--run',str(args.run),'--output',str(args.output)],check=True)
+                        '--source-sha',args.source_sha,'--run',str(args.run),'--output',str(args.output),'--delivery-format',str(args.delivery_format)],check=True)
         inputs=json.loads((args.output/'publication-inputs.json').read_text())
         server=GitHub(inputs['baselineRelease']['id'])
         latest=server.api(f'repos/{REPO}/releases/latest')
