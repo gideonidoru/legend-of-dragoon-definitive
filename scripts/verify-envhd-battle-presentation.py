@@ -25,6 +25,11 @@ painted = module('presentation_painted', 'verify-envhd-painted-battle.py')
 battle = painted.battle
 recipe = painted.material
 PINS = painted.MATERIAL_PINS
+canvas_recipe = module('presentation_source_canvas_v2', 'repair-envhd-painted-battle-canvas-v2.py')
+CANVAS_PINS = dict(PINS,
+    algorithmSha256='761cdc65c761a09c3ba68b4c8e9f50ae358e8c496fbf2850576c758053d802ab',
+    boundsAlgorithmSha256='9ce1124c2e611ec1d358dc0ac177b7cfd067d973d515f5f5365c50aae4c6bbe8')
+RECIPES = {recipe.METHOD: (recipe, PINS), canvas_recipe.METHOD: (canvas_recipe, CANVAS_PINS)}
 ROOT = Path(__file__).resolve().parents[1]
 PIPELINE = 'envhd-bespoke-battle-presentation-1'
 
@@ -59,6 +64,16 @@ def preflight(files, manifest_path, root=ROOT):
         raise ValueError('Duplicate battle presentation source')
     verified = []
     for candidate in candidates:
+        pair = RECIPES.get(candidate.get('method'))
+        if pair is None:
+            raise ValueError('Battle presentation review or acceptance changed')
+        candidate_recipe, candidate_pins = pair
+        for name, script in [('algorithmSha256', candidate_recipe.__file__),
+                             ('boundsAlgorithmSha256', candidate_recipe.bounds.__file__),
+                             ('stpAlgorithmSha256', candidate_recipe.terrain.__file__),
+                             ('outputWriterSha256', candidate_recipe.writer.__file__)]:
+            if battle.terrain.digest(Path(script).read_bytes()) != candidate_pins[name]:
+                raise ValueError('Battle presentation candidate recipe identity changed')
         key = candidate['decodedRgbaSha256']
         item, previous = masters.get(key), history.get(key)
         if (item is None or previous is None or previous['reviewStatus'] != 'visual-reviewed-runtime-pending'
@@ -79,27 +94,27 @@ def preflight(files, manifest_path, root=ROOT):
                 or note['verdict'] != 'visual-reviewed-runtime-pending'
                 or note['nativeAcceptance'] != 'pending' or note['finalQualityAcceptance'] != 'pending'
                 or note['outputSha256'] != candidate.get('outputSha256')
-                or candidate.get('method') != recipe.METHOD or candidate.get('runtimeSelected') is not False
+                or candidate.get('method') != candidate_recipe.METHOD or candidate.get('runtimeSelected') is not False
                 or not isinstance(candidate.get('prompt'), str) or not candidate['prompt'].strip()):
             raise ValueError('Battle presentation review or acceptance changed')
-        raw_data = recipe.bounds.bounded_read(battle.staging_path(root, candidate['generatedPath']))
-        output_data = recipe.bounds.bounded_read(battle.staging_path(root, candidate['outputPath']))
+        raw_data = candidate_recipe.bounds.bounded_read(battle.staging_path(root, candidate['generatedPath']))
+        output_data = candidate_recipe.bounds.bounded_read(battle.staging_path(root, candidate['outputPath']))
         if (battle.terrain.digest(raw_data) != candidate.get('generatedSha256')
                 or battle.terrain.digest(output_data) != candidate.get('outputSha256')):
             raise ValueError('Battle presentation artwork bytes changed')
-        raw_size = recipe.bounds.validate_png_header(raw_data, 'painted', source.size, allow_rgb=True)
-        output_size = recipe.bounds.validate_png_header(output_data, 'output', source.size)
+        raw_size = candidate_recipe.bounds.validate_png_header(raw_data, 'painted', source.size, allow_rgb=True)
+        output_size = candidate_recipe.bounds.validate_png_header(output_data, 'output', source.size)
         with Image.open(io.BytesIO(raw_data)) as raw:
             mode = 'RGB' if raw_data[25] == 2 else 'RGBA'
-            recipe.bounds.validate_opened_png(raw, raw_size, 'painted', source.size, mode)
+            candidate_recipe.bounds.validate_opened_png(raw, raw_size, 'painted', source.size, mode)
             if candidate.get('generatedInputMode') != raw.mode:
                 raise ValueError('Battle presentation input mode changed')
-            expected, _, metrics = recipe.repair(source, raw)
+            expected, _, metrics = candidate_recipe.repair(source, raw)
         with Image.open(io.BytesIO(output_data)) as output:
-            recipe.bounds.validate_opened_png(output, output_size, 'output', source.size)
+            candidate_recipe.bounds.validate_opened_png(output, output_size, 'output', source.size)
             if not np.array_equal(np.asarray(output), np.asarray(expected)):
                 raise ValueError('Battle presentation pixels differ from pinned source recipe')
-        if any(candidate.get(k) != v for k, v in (metrics | PINS).items()):
+        if any(candidate.get(k) != v for k, v in (metrics | candidate_pins).items()):
             raise ValueError('Battle presentation operation receipt changed')
         verified.append(dict(candidate=candidate, image=np.asarray(expected).copy()))
     identity = battle.terrain.digest(data)

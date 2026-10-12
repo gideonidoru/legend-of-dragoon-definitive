@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "7bd5b03268306ed8b34124c23678c11910ed18f2454bc6c91aa8d1ae1a754962",
+    "battle-material-runtime-artwork.json": "862df266a72f62f19556656dba22e627ecd8afc42e98261e5956b4ab1f332809",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "f6985e5b907f0b7239af19a96cbbd095db36da64bdb0c83ca81f81994b6f6e84"
+    "battle-presentation-artwork-v1.json": "c4d46ee5a949b5b3347cbc3ba30b044012c65b3dd689771eb17452bdda1570f0"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 59,
-    "newlySelectedBespokeMasters": 59,
-    "baselineMastersStillNeedingPresentationReview": 447,
+    "newBespokeCandidates": 71,
+    "newlySelectedBespokeMasters": 71,
+    "baselineMastersStillNeedingPresentationReview": 435,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -370,7 +370,17 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "06148916abfb2e97f3e673b13f7fb2b170ed4accc456a43a8574d94dc239a025",
+        "41d134f179997f57cea1ed0ef8746ef9785ceb8de27f4b11918af6463b0ca8e6",
+        "4c41a6d3476d8096342f3ed779a7a56b900d090f9a4bf64b48b81ee92b640d55",
+        "67c8351417215da49ef45858375ac5268f6a33ea51615cefdf8ea228172e7821",
+        "7fc9a259f2f120d432a34d38ab75fb8e8415cf4a2fd83ab6bebbd728ad52884f",
+        "8ca225d62cdd16c24ab98f0e5acac2d11209a64bde24b0f34b82453d67d8b3e0",
+        "e93e7a9a26452bacb44a6fd258c3fc52a48175314e95a7ddb0f4d8e110f3b307",
+        "ef223ce7b1fcf1f495666743935740ca6ec34d38f025c750f9c46dd9d63365de",
+        "f2bb695890f6f4ef0af4db8f3d86c508973059282f9907aa984245eacc381405"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -401,7 +411,11 @@
         4096,
         1056
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "5c08c368c2ed598b719826cdb493581bf5f52b2ee7488bc7505409eade5a1d07",
+        "9b8925e3d123e5a27f54166968a24e0327633141b9d3b0bc45225ea4d58870c3",
+        "b889ce74f7fb4f0c114d20b68d5c81a0e0f7023adc2377c1f6d3e419aca1c4c5"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3978,7 +3992,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4009,7 +4023,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4102,7 +4116,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4133,7 +4147,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4164,7 +4178,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4195,7 +4209,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4226,7 +4240,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4257,7 +4271,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4288,7 +4302,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4322,7 +4336,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {21: [0, 1, 2, 4]}. Source family: green stone, gates, panels, pillars and decorative markings.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4420,7 +4434,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {21: [6]}. Source family: green stone, gates, panels, pillars and decorative markings.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4452,7 +4466,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {21: [3, 5]}. Source family: green stone, gates, panels, pillars and decorative markings.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
