@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "88c9f04b84e96aeb49a4709f357e75bb4ca055eec66fc8b3f154c4ad16e4b5c7",
+    "battle-material-runtime-artwork.json": "8fb590166db1221d9e6ca3507cc7699ed72cef62ebfa585d36021b1959179c58",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "cf941b9332ef804c9a3e0a4e69348199e31e57fd4ed2eaeb3e51af93323cbffb"
+    "battle-presentation-artwork-v1.json": "bb7ac5c2de322fc39d52d1785cfcca9862013874c4d14f5c5fba3a2989d9d7db"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 86,
-    "newlySelectedBespokeMasters": 86,
-    "baselineMastersStillNeedingPresentationReview": 420,
+    "newBespokeCandidates": 101,
+    "newlySelectedBespokeMasters": 101,
+    "baselineMastersStillNeedingPresentationReview": 405,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -610,7 +610,19 @@
         4096,
         1340
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "100d9faf2bc7613f5b509c368feabab8efe0ed0b386898a64256624856cafbe3",
+        "1cba3f0253c910f32420467916126d38e1b714b926df9a624e8cedf03b522413",
+        "1d5f7b1a773cfc74bd0ad5463afd56e1e6ff9affab5d2012622d4e812b181385",
+        "20baf20f28006200d923d3e5cc36cf5e632f70fd63328f39be71dc6ddd17b06a",
+        "5e0da9a70687b9f7d92b57ecab9378ef8ff68121ecbc27e140dab71fe558e789",
+        "7c216fab98c7785feb2aa53110f2d2045fe36fa5bf35e374150938deea6bb68f",
+        "aca09af6232a7e6fde41adde399485278df460609578cdf8979906e21c31842d",
+        "b1106ade93ef1221150667d5bbed2b71f3b289cc546e30ac922e0b57505dddbb",
+        "d4607de5ffe2cf6b96dd98f834d2bc0ca661542cecc5c34dd785366fa8e27e6a",
+        "f220f94c5a60491f0915c767c7df0692bd8b51e281d01f8c431ec8f404b11db8",
+        "fcf97576e2624138b0700ca5cfdb53c8be32ca7d567ad6acc59faa349f88f2ea"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -628,7 +640,9 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "6f2b0efb4191047ef5e7caf235ff7946da4261f762457e0618ef0db07d651183"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -668,7 +682,9 @@
         4096,
         320
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "435825b8cdaebc1d3ac0e8596c01de45cf5f1d447dac8743199490eea418331a"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -749,7 +765,10 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "70d218fc47ea912641634c72bb487a1069095b4868b49b14fabaedb1b76923db",
+        "7574e26476c210a8f198670b86cf33f552a2f7549a6864cc3cc588182ec20588"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5716,7 +5735,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5747,7 +5766,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5902,7 +5921,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5995,7 +6014,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6181,7 +6200,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6243,7 +6262,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6305,7 +6324,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6336,7 +6355,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6367,7 +6386,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6398,7 +6417,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6460,7 +6479,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6492,7 +6511,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {31: [0, 1]}. Source family: worn timber surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6678,7 +6697,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {35: [0]}. Source family: brown branch/root silhouette.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7174,7 +7193,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {39: [0]}. Source family: Mortal Dragon Mountain: cold blue cliffs, cave opening and rough rock. Engine random-encounter location mapping: Mortal Dr Mt..",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7268,7 +7287,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {39: [2]}. Source family: Mortal Dragon Mountain: cold blue cliffs, cave opening and rough rock. Engine random-encounter location mapping: Mortal Dr Mt..",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
