@@ -1,10 +1,8 @@
 {
-  "format": 1,
-  "capturedDate": "2026-10-11",
+  "format": 2,
+  "capturedDate": "2026-10-12",
   "platform": "macOS arm64; native SDL/OpenGL game renderer",
-  "engineSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
-  "releaseTag": "definitive-alpha-2026-10-11-envhd",
-  "packageVerification": "Engine and all seven module JARs and four Env resource ZIPs match the published package file manifest.",
+  "packageVerification": "Each figure records its exact engine and module/resource hashes. Battle engine and custom model/artwork modules were built from main source 4818f2d9c; unchanged Skurfa and inactive FMVHD code packages are retained. The earlier field figure retains its original source and published package hashes.",
   "modules": {
     "off": [],
     "on": [
@@ -97,90 +95,92 @@
         417
       ]
     },
-    "DartYawRadians": {
-      "battle": 4.102,
-      "field": 0
-    },
-    "characterKeyframe": 0
+    "characterKeyframe": 0,
+    "configuredFont": "Refreshed battle: Original (default.json) on both sides; UIHD supplies Original HD and small native digits only on the enhanced side."
   },
-  "captureMethod": "Read default framebuffer GL_FRONT RGBA on renderer thread; flip rows for PNG storage. Isolated native game sessions using the published engine and artwork. Fresh game state, seeded RNG; battle fixture performs one Guard action before capture. Freeze actor animations and use renderer debug frame advancement to refresh identical camera studies. Field views start from a separate fresh title-to-field fixture, invoke normal title resource cleanup, load cut 5/scene 0, then pause scripts and freeze actor keyframes. All field actor pose and native camera logs match between sessions. Meru uses a separate seeded battle fixture with her as the sole active party member; normal title resource cleanup runs before the scene transition. Camera, position, rotation, keyframe and actor scale logs match between sessions.",
+  "captureMethod": "Native GL_FRONT framebuffer read on renderer thread; rows flipped for storage. Isolated Mac sessions, fresh seeded game states and frozen animation keyframes. Battle camera/pose logs match and assertions verify Original HD font ownership only in the enhanced sessions. Separate original field capture retained.",
   "captureLimitation": "The published engine reproduced a zero-tick viewport shrink in initial paused captures. Final captures advance a simulation step on each presentation; no production shader or renderer correction was applied. This does not establish a fix, normal continuous gameplay, or physical Steam Deck acceptance.",
-  "scope": "All seven HD modules and listed Definitive visual rendering options disabled versus enabled; native engine, resolution and gameplay conveniences held constant. Dart battle camera views, Meru battle view and one native field scene. Static images do not demonstrate every asset, spells, films, audio, animation behavior or performance.",
+  "scope": "Three static Evergreen Forest battle views plus one earlier native field view. These demonstrate visible artwork and font changes, not every effect, film, audio, animation route or Steam Deck performance.",
   "imageProcessing": "Matched frames placed side by side without resizing, cropping, retouching or extra sharpening; separate labels and gutter added. JPEG encoding only.",
-  "runtimeFiles": [
-    {
-      "file": "lod-game-0af4f997e27f49783180cb2ff1c5a04012467289.jar",
-      "sha256": "33009ed625ca54e9581425e29aa612c608d4e548a1c5c2c9dcd7630668f53dc7"
-    },
-    {
-      "file": "bundled-mods/CharHD-v0.3.0.jar",
-      "sha256": "9a3b2ea351eae81ff84fecf55826a04b1bd987479584e8d623f5cce3a1af5ca0"
-    },
-    {
-      "file": "bundled-mods/Env1HD-v0.1.0.zip",
-      "sha256": "56f35210c2bde4d50b85e2acf587e6f3d1ad9b479d98b469d8b7611a48e32547"
-    },
-    {
-      "file": "bundled-mods/Env2HD-v0.1.0.zip",
-      "sha256": "114b7a334973b2aacc8691b35e88e86ac3617a63db90b3335e1d6d00e0575216"
-    },
-    {
-      "file": "bundled-mods/Env3HD-v0.1.0.zip",
-      "sha256": "482234308bd406faafcab89a173444a982f2416738f144ac7d7e091bab441b07"
-    },
-    {
-      "file": "bundled-mods/Env4HD-v0.1.0.zip",
-      "sha256": "6667f28b5355e3e0b046bc4dfd864c342475e0ded8db9ebe79a84c5642ddc60e"
-    },
-    {
-      "file": "bundled-mods/EnvHD-v0.1.0.jar",
-      "sha256": "e43db1253cf0af76f70765e2d0c604e67c05f5c563a3605ecf2299d2ffd85064"
-    },
-    {
-      "file": "bundled-mods/FMVHD-v0.1.0.jar",
-      "sha256": "9c7fff0ec15bccc2ea69d3586847d67c1c069c26782185e177eee643034f3ecc"
-    },
-    {
-      "file": "bundled-mods/FxHD-v1.0.0.jar",
-      "sha256": "ad2a2592b8c540ca6c01a97218ea5b134caa19c85f3752d13ca541d409a4e59d"
-    },
-    {
-      "file": "bundled-mods/ModelsHD-0.4.0.jar",
-      "sha256": "50906df44212a4535787dd23117671c5878484d1d8a71d28c89539e9b54790e6"
-    },
-    {
-      "file": "bundled-mods/Skurfas-HDR-Backgrounds-v1.1.0.jar",
-      "sha256": "139a7da47b51bd0da631ed16e8a0b7f92a0376a37568f6bcb460387b7814b4da"
-    },
-    {
-      "file": "bundled-mods/UIHD-v0.3.0.jar",
-      "sha256": "899dbd57fae70213b5a056e6578912f0310dbe33e99c286d4b9519fa1a44264e"
-    }
-  ],
   "figures": [
     {
       "file": "battle-visuals-off-on.jpg",
-      "sha256": "4a85b7229375f3b8af479266a8300501d50bab485c1dcda192e920c0abed4f75",
+      "sha256": "c81ef981624bca19927c4cf14eaafc46f4ba6f60b4a1d469608cc6dcf30bdcac",
       "dimensions": [
         2576,
         906
       ],
-      "scene": "battle encounter 0, stage 0; Dart and Berserk Mouse",
+      "scene": "Evergreen Forest; encounter 0, stage 36",
       "view": "wide",
-      "viewpoint": [
-        7715,
-        -1488,
-        -2246
+      "engineSource": "4818f2d9c285b7541f4f4ce82cbedde5b3d19fcf",
+      "runtimeFiles": [
+        {
+          "file": "lod-game-snapshot.jar",
+          "sha256": "4364aac325e7643d8f34d7a90bc6f0633441abcc21854b6a9ddb847f99e54b78"
+        },
+        {
+          "file": "mods/CharHD-v0.3.0.jar",
+          "sha256": "99478ef05262c9b6e2626a2fcc3afc83cbbcf0a4b0c27a8736e120e494c32db0"
+        },
+        {
+          "file": "mods/Env1HD-v0.1.0.zip",
+          "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8"
+        },
+        {
+          "file": "mods/Env2HD-v0.1.0.zip",
+          "sha256": "52c6ede383e665f6565e4dc972f6c7ca479bb3b12f620fb385e1e0a6a2fa3aa8"
+        },
+        {
+          "file": "mods/Env3HD-v0.1.0.zip",
+          "sha256": "38c3b4a9abfd270a99f9f1b0ff94902d2fea8d11b5b101801d4a718bc213a5c9"
+        },
+        {
+          "file": "mods/Env4HD-v0.1.0.zip",
+          "sha256": "480d9f1cedb9533f3be26fabf83bd038fc4fdf786f53bfded7e9afb3f6b745d7"
+        },
+        {
+          "file": "mods/EnvHD-v0.1.0.jar",
+          "sha256": "25a7e02e1a92c872f282d925bc23d559b08b1bb1c2b9d627c9d495fa246d4efa"
+        },
+        {
+          "file": "mods/FMVHD-v0.1.0.jar",
+          "sha256": "502d694d6b8644e22ef5596af7bc43ce8c1fc050536a3f65d9166306d0eb5f8f"
+        },
+        {
+          "file": "mods/FxHD-v1.0.0.jar",
+          "sha256": "ad2a2592b8c540ca6c01a97218ea5b134caa19c85f3752d13ca541d409a4e59d"
+        },
+        {
+          "file": "mods/ModelsHD-0.4.0.jar",
+          "sha256": "50906df44212a4535787dd23117671c5878484d1d8a71d28c89539e9b54790e6"
+        },
+        {
+          "file": "mods/Skurfas-HDR-Backgrounds-v1.1.0.jar",
+          "sha256": "139a7da47b51bd0da631ed16e8a0b7f92a0376a37568f6bcb460387b7814b4da"
+        },
+        {
+          "file": "mods/UIHD-v0.3.0.jar",
+          "sha256": "b671050c87a610ea4791966cf39bcd48a8d6baa555847a808ed07c68b35eb459"
+        }
       ],
-      "reference": [
-        1660,
-        -826,
-        58.47
+      "font": {
+        "off": "configured Original (default.json); no owned font",
+        "on": "automatic UIHD Original HD override; configured preference remains default.json",
+        "glyphCount": 139,
+        "nativeBattleDigits": "UIHD small native digits active; HP/MP/SP labels and other font families retain their current native paths; complete font coverage is not claimed",
+        "atlasSha256": "3de88bc569936454390892e949033dc64a7ec111475571214c4acd7ee51f3fd8"
+      },
+      "poseAndCameraLog": "[README] angle=0 viewpoint=( 7.715E+3 -1.488E+3 -2.246E+3) reference=( 1.660E+3 -8.260E+2  5.847E+1) dart position=( 2.560E+3  0.000E+0  0.000E+0) rotation=( 0.000E+0  4.102E+0  0.000E+0) scale=( 1.000E+0  1.000E+0  1.000E+0)",
+      "actorScale": [
+        1,
+        1,
+        1
       ],
+      "characterKeyframe": 0,
       "inputs": {
         "off": {
           "file": "battle-0.png",
-          "sha256": "2facf851e16a83ff76665cd379adfd4f2c92c9b44ed96c6ac55ca6e73ea70313",
+          "sha256": "ac9789af28bee16c582d167a928b7f7a8178bb52b3361455e01adcf1cc720cdb",
           "dimensions": [
             1280,
             800
@@ -188,51 +188,110 @@
         },
         "on": {
           "file": "battle-0.png",
-          "sha256": "de14f67bd4ef2458f8ec1a129bd816abb7943814acddaa74a3a2f4c097eda0da",
+          "sha256": "1aa4c5de728db5ece267b47ffc709502b0f7063ece7b4124e22cd20807983e83",
           "dimensions": [
             1280,
             800
           ]
         }
-      }
+      },
+      "capturedDate": "2026-10-12",
+      "paintedStaticMaterialRegions": 13
     },
     {
       "file": "battle-detail-off-on.jpg",
-      "sha256": "6c0c7b2ad445ef9bd5604e195a0a20eeba42709702f8fbdd7c18555951da0a55",
+      "sha256": "a9d988a9557f432d8279918bb7c1cb2c627cd83d585bbbb82b76cb17c46a7ffc",
       "dimensions": [
         2576,
         906
       ],
-      "scene": "battle encounter 0, stage 0; Dart and Berserk Mouse",
-      "view": "closer",
-      "viewpoint": [
-        5000,
-        -1400,
-        -1850
+      "scene": "Evergreen Forest; encounter 0, stage 36",
+      "view": "Dart detail",
+      "engineSource": "4818f2d9c285b7541f4f4ce82cbedde5b3d19fcf",
+      "runtimeFiles": [
+        {
+          "file": "lod-game-snapshot.jar",
+          "sha256": "4364aac325e7643d8f34d7a90bc6f0633441abcc21854b6a9ddb847f99e54b78"
+        },
+        {
+          "file": "mods/CharHD-v0.3.0.jar",
+          "sha256": "99478ef05262c9b6e2626a2fcc3afc83cbbcf0a4b0c27a8736e120e494c32db0"
+        },
+        {
+          "file": "mods/Env1HD-v0.1.0.zip",
+          "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8"
+        },
+        {
+          "file": "mods/Env2HD-v0.1.0.zip",
+          "sha256": "52c6ede383e665f6565e4dc972f6c7ca479bb3b12f620fb385e1e0a6a2fa3aa8"
+        },
+        {
+          "file": "mods/Env3HD-v0.1.0.zip",
+          "sha256": "38c3b4a9abfd270a99f9f1b0ff94902d2fea8d11b5b101801d4a718bc213a5c9"
+        },
+        {
+          "file": "mods/Env4HD-v0.1.0.zip",
+          "sha256": "480d9f1cedb9533f3be26fabf83bd038fc4fdf786f53bfded7e9afb3f6b745d7"
+        },
+        {
+          "file": "mods/EnvHD-v0.1.0.jar",
+          "sha256": "25a7e02e1a92c872f282d925bc23d559b08b1bb1c2b9d627c9d495fa246d4efa"
+        },
+        {
+          "file": "mods/FMVHD-v0.1.0.jar",
+          "sha256": "502d694d6b8644e22ef5596af7bc43ce8c1fc050536a3f65d9166306d0eb5f8f"
+        },
+        {
+          "file": "mods/FxHD-v1.0.0.jar",
+          "sha256": "ad2a2592b8c540ca6c01a97218ea5b134caa19c85f3752d13ca541d409a4e59d"
+        },
+        {
+          "file": "mods/ModelsHD-0.4.0.jar",
+          "sha256": "50906df44212a4535787dd23117671c5878484d1d8a71d28c89539e9b54790e6"
+        },
+        {
+          "file": "mods/Skurfas-HDR-Backgrounds-v1.1.0.jar",
+          "sha256": "139a7da47b51bd0da631ed16e8a0b7f92a0376a37568f6bcb460387b7814b4da"
+        },
+        {
+          "file": "mods/UIHD-v0.3.0.jar",
+          "sha256": "b671050c87a610ea4791966cf39bcd48a8d6baa555847a808ed07c68b35eb459"
+        }
       ],
-      "reference": [
-        2200,
-        -700,
-        58.47
+      "font": {
+        "off": "configured Original (default.json); no owned font",
+        "on": "automatic UIHD Original HD override; configured preference remains default.json",
+        "glyphCount": 139,
+        "nativeBattleDigits": "UIHD small native digits active; HP/MP/SP labels and other font families retain their current native paths; complete font coverage is not claimed",
+        "atlasSha256": "3de88bc569936454390892e949033dc64a7ec111475571214c4acd7ee51f3fd8"
+      },
+      "poseAndCameraLog": "[README] angle=4 viewpoint=( 5.000E+3 -1.400E+3 -1.850E+3) reference=( 2.200E+3 -7.000E+2  5.847E+1) dart position=( 2.560E+3  0.000E+0  0.000E+0) rotation=( 0.000E+0  4.712E+0  0.000E+0) scale=( 1.000E+0  1.000E+0  1.000E+0)",
+      "actorScale": [
+        1,
+        1,
+        1
       ],
+      "characterKeyframe": 0,
       "inputs": {
         "off": {
-          "file": "battle-1.png",
-          "sha256": "88bbbeed046f7eecab5abccef7ddcaca23b96266531ee42574f18037298ad947",
+          "file": "battle-4.png",
+          "sha256": "847964837bf72d75876f4ed68590a088a6e8df62e83aae0765a1a0fc910ccee5",
           "dimensions": [
             1280,
             800
           ]
         },
         "on": {
-          "file": "battle-1.png",
-          "sha256": "da1fa030dd36f8a1c4b6bfb326e9d9b8bf36ccb79910034fee12e2dc5ce17a0c",
+          "file": "battle-4.png",
+          "sha256": "fc53d8255ec1fd0026b84fa1bf64e5a7fd7c3fb07182bbd94d2d4689d26388b3",
           "dimensions": [
             1280,
             800
           ]
         }
-      }
+      },
+      "capturedDate": "2026-10-12",
+      "paintedStaticMaterialRegions": 13
     },
     {
       "file": "field-visuals-off-on.jpg",
@@ -324,44 +383,138 @@
             800
           ]
         }
-      }
+      },
+      "engineSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
+      "runtimeFiles": [
+        {
+          "file": "lod-game-0af4f997e27f49783180cb2ff1c5a04012467289.jar",
+          "sha256": "33009ed625ca54e9581425e29aa612c608d4e548a1c5c2c9dcd7630668f53dc7"
+        },
+        {
+          "file": "bundled-mods/CharHD-v0.3.0.jar",
+          "sha256": "9a3b2ea351eae81ff84fecf55826a04b1bd987479584e8d623f5cce3a1af5ca0"
+        },
+        {
+          "file": "bundled-mods/Env1HD-v0.1.0.zip",
+          "sha256": "56f35210c2bde4d50b85e2acf587e6f3d1ad9b479d98b469d8b7611a48e32547"
+        },
+        {
+          "file": "bundled-mods/Env2HD-v0.1.0.zip",
+          "sha256": "114b7a334973b2aacc8691b35e88e86ac3617a63db90b3335e1d6d00e0575216"
+        },
+        {
+          "file": "bundled-mods/Env3HD-v0.1.0.zip",
+          "sha256": "482234308bd406faafcab89a173444a982f2416738f144ac7d7e091bab441b07"
+        },
+        {
+          "file": "bundled-mods/Env4HD-v0.1.0.zip",
+          "sha256": "6667f28b5355e3e0b046bc4dfd864c342475e0ded8db9ebe79a84c5642ddc60e"
+        },
+        {
+          "file": "bundled-mods/EnvHD-v0.1.0.jar",
+          "sha256": "e43db1253cf0af76f70765e2d0c604e67c05f5c563a3605ecf2299d2ffd85064"
+        },
+        {
+          "file": "bundled-mods/FMVHD-v0.1.0.jar",
+          "sha256": "9c7fff0ec15bccc2ea69d3586847d67c1c069c26782185e177eee643034f3ecc"
+        },
+        {
+          "file": "bundled-mods/FxHD-v1.0.0.jar",
+          "sha256": "ad2a2592b8c540ca6c01a97218ea5b134caa19c85f3752d13ca541d409a4e59d"
+        },
+        {
+          "file": "bundled-mods/ModelsHD-0.4.0.jar",
+          "sha256": "50906df44212a4535787dd23117671c5878484d1d8a71d28c89539e9b54790e6"
+        },
+        {
+          "file": "bundled-mods/Skurfas-HDR-Backgrounds-v1.1.0.jar",
+          "sha256": "139a7da47b51bd0da631ed16e8a0b7f92a0376a37568f6bcb460387b7814b4da"
+        },
+        {
+          "file": "bundled-mods/UIHD-v0.3.0.jar",
+          "sha256": "899dbd57fae70213b5a056e6578912f0310dbe33e99c286d4b9519fa1a44264e"
+        }
+      ],
+      "capturedDate": "2026-10-11"
     },
     {
       "file": "meru-native-off-on.jpg",
-      "sha256": "4714e8fe5811b0376b2e42d0bd37fb787ca9afb7e7e4d5d0d7d45f495abf0954",
+      "sha256": "4c3e3a230fbb7cee8a061a6bfb83c76b44753d77a39fa8899d93d65e66b1de68",
       "dimensions": [
         2576,
         906
       ],
-      "scene": "Battle encounter 0, stage 0; Meru and Berserk Mouse",
-      "view": "front-facing character camera",
-      "characterId": 6,
-      "characterKeyframe": 0,
+      "scene": "Evergreen Forest; encounter 0, stage 36",
+      "view": "Meru detail",
+      "engineSource": "4818f2d9c285b7541f4f4ce82cbedde5b3d19fcf",
+      "runtimeFiles": [
+        {
+          "file": "lod-game-snapshot.jar",
+          "sha256": "4364aac325e7643d8f34d7a90bc6f0633441abcc21854b6a9ddb847f99e54b78"
+        },
+        {
+          "file": "mods/CharHD-v0.3.0.jar",
+          "sha256": "99478ef05262c9b6e2626a2fcc3afc83cbbcf0a4b0c27a8736e120e494c32db0"
+        },
+        {
+          "file": "mods/Env1HD-v0.1.0.zip",
+          "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8"
+        },
+        {
+          "file": "mods/Env2HD-v0.1.0.zip",
+          "sha256": "52c6ede383e665f6565e4dc972f6c7ca479bb3b12f620fb385e1e0a6a2fa3aa8"
+        },
+        {
+          "file": "mods/Env3HD-v0.1.0.zip",
+          "sha256": "38c3b4a9abfd270a99f9f1b0ff94902d2fea8d11b5b101801d4a718bc213a5c9"
+        },
+        {
+          "file": "mods/Env4HD-v0.1.0.zip",
+          "sha256": "480d9f1cedb9533f3be26fabf83bd038fc4fdf786f53bfded7e9afb3f6b745d7"
+        },
+        {
+          "file": "mods/EnvHD-v0.1.0.jar",
+          "sha256": "25a7e02e1a92c872f282d925bc23d559b08b1bb1c2b9d627c9d495fa246d4efa"
+        },
+        {
+          "file": "mods/FMVHD-v0.1.0.jar",
+          "sha256": "502d694d6b8644e22ef5596af7bc43ce8c1fc050536a3f65d9166306d0eb5f8f"
+        },
+        {
+          "file": "mods/FxHD-v1.0.0.jar",
+          "sha256": "ad2a2592b8c540ca6c01a97218ea5b134caa19c85f3752d13ca541d409a4e59d"
+        },
+        {
+          "file": "mods/ModelsHD-0.4.0.jar",
+          "sha256": "50906df44212a4535787dd23117671c5878484d1d8a71d28c89539e9b54790e6"
+        },
+        {
+          "file": "mods/Skurfas-HDR-Backgrounds-v1.1.0.jar",
+          "sha256": "139a7da47b51bd0da631ed16e8a0b7f92a0376a37568f6bcb460387b7814b4da"
+        },
+        {
+          "file": "mods/UIHD-v0.3.0.jar",
+          "sha256": "b671050c87a610ea4791966cf39bcd48a8d6baa555847a808ed07c68b35eb459"
+        }
+      ],
+      "font": {
+        "off": "configured Original (default.json); no owned font",
+        "on": "automatic UIHD Original HD override; configured preference remains default.json",
+        "glyphCount": 139,
+        "nativeBattleDigits": "UIHD small native digits active; HP/MP/SP labels and other font families retain their current native paths; complete font coverage is not claimed",
+        "atlasSha256": "3de88bc569936454390892e949033dc64a7ec111475571214c4acd7ee51f3fd8"
+      },
+      "poseAndCameraLog": "[README-MERU] viewpoint=( 5.000E+3 -1.400E+3 -1.850E+3) ref=( 2.200E+3 -7.000E+2  5.847E+1) root=( 2.560E+3  0.000E+0  0.000E+0) rotate=( 0.000E+0  5.673E+0  0.000E+0) scale=( 1.000E+0  1.000E+0  1.000E+0)",
       "actorScale": [
         1,
         1,
         1
       ],
-      "position": [
-        2560,
-        0,
-        0
-      ],
-      "yawRadiansApprox": 5.673,
-      "viewpoint": [
-        5000,
-        -1400,
-        -1850
-      ],
-      "reference": [
-        2200,
-        -700,
-        58.47
-      ],
+      "characterKeyframe": 0,
       "inputs": {
         "off": {
           "file": "meru.png",
-          "sha256": "1ddb4c92f67c3a4e984cb87f573a93e57dd9378fe9d9c9441b950178472b8e29",
+          "sha256": "5d09d31b37a2101a9d854f4de784fd9afa95915b99b9d70681697319d4ec7eb2",
           "dimensions": [
             1280,
             800
@@ -369,13 +522,15 @@
         },
         "on": {
           "file": "meru.png",
-          "sha256": "b144c4f9a86ca7ed9cfad5af7269d840d8e0456bf86654b8a53e3b72e61171ca",
+          "sha256": "317942151caa376cf4ce5be8d68ce560e3aa1caafa86c8d505fe14205cde6b9e",
           "dimensions": [
             1280,
             800
           ]
         }
-      }
+      },
+      "capturedDate": "2026-10-12",
+      "paintedStaticMaterialRegions": 13
     }
   ]
 }

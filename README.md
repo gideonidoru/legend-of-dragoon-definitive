@@ -28,7 +28,7 @@ The environment library includes **4,938 field images**, with separate backgroun
 
 ![Matched battle view with all Definitive visual enhancements disabled on the left and enabled on the right](docs/definitive/images/comparisons/battle-visuals-off-on.jpg)
 
-*Battle scene · Visual enhancements off → on.*
+*Evergreen Forest · Repainted ground, bark and foliage. Visual enhancements off → on.*
 
 **About the comparisons:** all four pairs on this page were captured in the native Mac game renderer at 1280 × 800, with matching cameras, poses and normal character scale. HD modules and visual rendering options are off on the left and on on the right. [Capture details](docs/definitive/images/comparisons/README.md#matched-in-engine-visual-comparisons).
 
