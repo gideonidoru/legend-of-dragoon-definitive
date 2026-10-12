@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "scope": "Clean main-forward increment selecting sixteen independently cleared scenery/furnishing crops; prior52 recipes and4938 runtime records exact.",
+  "integrationBaseCommit": "abadb46a8c767336a83198928b44a9206c2280b0",
+  "authoringSourceCommit": "bdfecbad260e63eb3eed1a7d6147b8e8703553a4",
+  "selectionManifest": "field-bespoke-scenery-sixteen-independent-reviewed-selection.json",
+  "selectionManifestSha256": "491ac230f77f871128d8df0ddf90b96f58fd8bef568dcbbca612b6f66fd29124",
+  "independentReview": "field-independent-final-eighteen-review.json",
+  "independentReviewSha256": "41d5f9b479133dc8f5f0c7d3522cbffd1c71fefa7f9c002b89c732f061ba0936",
+  "fieldRuntimeSha256": "e4c73652147c91a7d02cc17888f5e2566d0a3e8a85cdbd0353c39169744004e8",
+  "currentSourcePreflightCandidates": 68,
+  "currentSourcePreflightLogSha256": "cc3b345fb930dca2471ebff47f1b8c5c9394b29c5f9725cc80b78944c6e4e1ce",
+  "priorSelectedCandidateRecordsExact": 52,
+  "priorRuntimeAssetRecordsExact": 4938,
+  "onlyAddedSourceKeys": [
+    "4bd51eba14de1496e5d55996992fbe6d031841e9f31087697319336c4dc21796",
+    "66ce8f14cdce7e5aa0b763cb76e1765592237eba73dbd86fab97abe41bdfa1a2",
+    "6c348a68d190c40bb47a3b5b3b0a0051849a80eaf03b2bb0070dad83775f06c1",
+    "80701be87325066059c4a6b4de4cef1bf2ebc129929e8ec01ce84fa45aaa3a2f",
+    "8462d7a2aafb4c8e944575f6c37c7821e02b9d88dd3c7da4e8b55e292a3e4315",
+    "86c7cc84c0b847bed2d30b59a1e80a118941f5a93d9132bd63cd738203a367a5",
+    "8f9db059c123cfcd782f2cccaa83a3e331c36712985d12dcd32d443328ba8866",
+    "9d6ee81a6a9584c4f5d2ae829238be015881ae8235ec43458a27d78969fbb62e",
+    "9ff5730dc191a7dd1091844f4505b77d9f0c1f6a8e75336630fc9e8267ff15df",
+    "a2ef10ffa4712d71a8cd05cf664fefa3f59b9d004eee24c0fa8107e8a14a81e3",
+    "aa05988943ca081f21a6590703116b1ee20e90eeb8910cf4ba1be2fb8d6c2e2f",
+    "b525081b77578354e5eaf8dc82b7f83bc1d57ab5849f6c127f7ae4b365a655d2",
+    "b77b50c3dd97a25de00e4ac822e28ea975cd3b804b11468dbb0a619816100d28",
+    "cae03a38ef095431e37c8c02444f3ac0e5601a7633b6b78193c0e37339cbc77f",
+    "e6bea3e159ef60b60feb564cc6a70ac9f1278263d30bfacf9258b7a2ea7d662a",
+    "f49c19350faa7b6d8baff4e376061ce1d7b80965648b2ef797c2d276a0e86d2a"
+  ],
+  "protectedCutsExact": true,
+  "selectedFields": 4954,
+  "selectedPaintings": 68,
+  "selectedNeural": 4886,
+  "knownRemainingFieldImages": 208,
+  "knownRemainingStaticImages": 209,
+  "tests": [
+    {
+      "script": "scripts/test-envhd-painted-fields.py",
+      "passed": 32
+    },
+    {
+      "script": "scripts/test-envhd-install-selection.py",
+      "passed": 3
+    },
+    {
+      "script": "scripts/test-archive-assembly.py",
+      "passed": 39
+    },
+    {
+      "script": "scripts/test-envhd-battle-presentation-pack.py",
+      "passed": 12
+    }
+  ],
+  "freshPackageVerified": false,
+  "twoRevisionCandidatesExcluded": true,
+  "unfinishedAuthoringPreservedOnOngoingBranch": true,
+  "skurfaRegenerated": false,
+  "engineChanged": false,
+  "installerUiChanged": false,
+  "workflowChanged": false,
+  "publicReleasePublished": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true
+}
