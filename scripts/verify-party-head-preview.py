@@ -69,7 +69,7 @@ def main(candidates=CANDIDATES):
         result = staging.stage(candidates, overlay)
         accepted = json.loads((staging.ACCEPTED / 'characters.json').read_text())
         dart = [row for row in result['parts'] if row['character'] == 'dart']
-        assert len(dart) == len(accepted['parts']) == 12
+        assert len(dart) == len(accepted['parts']) == 15
         for row, original in zip(dart, accepted['parts']):
             for key in ('sourceGeometrySha256', 'geometrySha256', 'baselineGeometrySha256', 'packSha256', 'uvSha256', 'textureSha256'):
                 assert row.get(key) == original.get(key)
@@ -84,11 +84,11 @@ def main(candidates=CANDIDATES):
                 pass
             else:
                 raise AssertionError('Invalid ' + name + ' accepted')
-    baseline = json.loads((PARTY / 'original-design-v3.json').read_text())['runtimeBaseline']
+    baseline = json.loads((PARTY / 'accepted-main-baseline-v1.json').read_text())['runtimeBaseline']
     runtime = ROOT / 'integrations/charhd/runtime-assets'
     actual = {str(p.relative_to(runtime)): hashlib.sha256(p.read_bytes()).hexdigest() for p in runtime.rglob('*') if p.is_file()}
     assert actual == baseline
-    print(json.dumps({'headsVerified': 16, 'characters': 8, 'trianglesPerHead': 6000, 'nativeCrownJawScale': 'verified against authored source controls', 'acceptedDartPartsUnchanged': 12, 'runtimeFilesUnchanged': len(actual), 'negativeChecks': 3, 'nativeGameplay': False, 'steamDeck': False}))
+    print(json.dumps({'headsVerified': 16, 'characters': 8, 'trianglesPerHead': 6000, 'nativeCrownJawScale': 'verified against authored source controls', 'acceptedDartBindingsUnchanged': 15, 'runtimeFilesUnchanged': len(actual), 'negativeChecks': 3, 'nativeGameplay': False, 'steamDeck': False}))
 
 
 if __name__ == '__main__':
