@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "packetSha256": "d0460da8364e6ce48cde048a6dd6f516ad19e7d64f8569578681ad2149193583",
+  "reviewer": "root independent original-reference visual review",
+  "acceptanceScope": "Source/art comparison only; selection rebuild, package tests, mapped scene/seams and physical Deck acceptance remain separate.",
+  "comparisons": [
+    {
+      "sourceKey": "bcd4e05db0ec8fe64ba0c2ac3cd591ae5b6203e60f781d45d4b51f56140cc48a",
+      "sourceSize": [
+        72,
+        72
+      ],
+      "verdict": "revise",
+      "reason": "The broad pale tapered source patch reads as a diffuse flat light area. The candidate retains the neural interpretation as a domed protruding stone with a dark boundary/shadow. Repair this semantic relief before selecting.",
+      "hashes": {
+        "generatedPath": "c1135837ed33bc90640598bc08f9ef8eda9b8a12a8ed0fdd8f5da9b8c0fcc8c6",
+        "outputPath": "6d0cf2de440ed35769869590ff649f788ff8c9dd14acdfd7fe24c78c73198b2c",
+        "currentNeuralPath": "dd70209dbbcac7fc2ada21fd22bfdd84a8cb162d85097f71b4f0afcdd2ea6d7e"
+      }
+    },
+    {
+      "sourceKey": "d6133bb99d918696b4de9bd430d09174f67918c359aa0a576014ef1a5b3f2e3e",
+      "sourceSize": [
+        80,
+        72
+      ],
+      "verdict": "revise",
+      "reason": "The original pale oval is a diffuse region. The candidate retains a strong surrounding arched rim and aperture-like shading from the neural baseline. Reduce relief/depth and retain the diffuse source interpretation.",
+      "hashes": {
+        "generatedPath": "76779f475f689c2d0b892e3d2bdc99e2e64b3106b9cca831856f673263a3552a",
+        "outputPath": "0bc1360995b1e16012092897482220c0e5b9c99d4c49f219f6728de97ea29129",
+        "currentNeuralPath": "55e470ec15a06ad69e3576bfe0ac67a8bba389d76e2516d341e0faca6e3f60ea"
+      }
+    },
+    {
+      "sourceKey": "5a7b472007a7f1a701e390de5d8fac555ca5320809820155f815e078e49ccd5e",
+      "sourceSize": [
+        80,
+        72
+      ],
+      "verdict": "clear",
+      "reason": "Retains pale upper diffuse gradient, shallow lower stone divisions, side/bottom fragments and subdued gray-green values. Fine grain adds detail without a new cavern opening or large ridge.",
+      "hashes": {
+        "generatedPath": "440f27d575d66e8bca6f4737c0ded42eae6261f7e61ccc932f0d0a80a976100c",
+        "outputPath": "638968476623ccf85d24d4ef27d1c5b32e3dadf21590e0656004dc8d85d3e66a",
+        "currentNeuralPath": "21f0cf0d07385df53d8da810f36e250376e4a293e2699c6cf649fa362f2d5299"
+      }
+    },
+    {
+      "sourceKey": "ea80f659c5b213376cfea423d84bab720281c3ffde58002ddd0d4070277a58b7",
+      "sourceSize": [
+        72,
+        72
+      ],
+      "verdict": "clear",
+      "reason": "Retains asymmetric oblique/vertical broad rock divisions and muted gray-green material, plain neighbor strip and bottom fragments. Fine mineral detail preserves the source structure.",
+      "hashes": {
+        "generatedPath": "d130da1d38a6c7811feb415261eafed02e54cbc3cc38ce3aae2a1d4a26a3a37e",
+        "outputPath": "ea843b6bd630825e80214440562a3b70072d82c1da786fc4d9568698de6b816b",
+        "currentNeuralPath": "0abd7ebfec8fb3570ed901ad9e777c087f8746fa8fa69bc8294694bbf7a61ecd"
+      }
+    },
+    {
+      "sourceKey": "17778cdbca7a2bb6e9e68a67cd9a4592e065974e7acfe159bd39b467a92815d1",
+      "sourceSize": [
+        72,
+        80
+      ],
+      "verdict": "clear",
+      "reason": "Retains two largest irregular pits and the smaller source marks in their relative positions, bottom fragments and subdued palette. No regularized repeated circles or additional major pit observed.",
+      "hashes": {
+        "generatedPath": "5eb5ddb373df04d697123f7aebf92c8d48f5262ef61fd40a0bdfa9c09cfb2189",
+        "outputPath": "46fcbaedb8129fced75a14a2ba82312c2754e0459e0c2ceef3b5dd305bbbccb8",
+        "currentNeuralPath": "283b441a6e2f3f68f40d1bcd25dc40d642bbe20510db8dc890543393fa498e78"
+      }
+    }
+  ],
+  "counts": {
+    "clear": 3,
+    "revise": 2,
+    "runtimeSelectedByThisReview": 0
+  }
+}

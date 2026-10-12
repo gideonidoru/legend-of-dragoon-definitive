@@ -9,6 +9,8 @@ import subprocess
 import tarfile
 import tempfile
 
+# TemporaryDirectory can return a linked macOS /var or /tmp alias. These are
+# fixture-owned roots; pass their physical path to the production bootstrap.
 repo = Path(__file__).resolve().parents[1]
 source = (repo / 'delivery/installer/bootstrap-java').read_text()
 assert 'downloads/latest' not in source and 'VERSION=25.0.4.10.1' in source
@@ -21,7 +23,7 @@ for (platform, machine), (artifact_platform, relative, official_digest) in pins.
     assert official_digest in source
     for corrupt in (False, True):
         with tempfile.TemporaryDirectory(prefix='definitive-runtime-pin-') as directory:
-            root = Path(directory); tools = root / 'tools'; tools.mkdir()
+            root = Path(directory).resolve(); tools = root / 'tools'; tools.mkdir()
             payload = b"#!/bin/sh\necho 'java.specification.version = 25' >&2\necho 'java.vendor.version = Corretto-25.0.4.10.1' >&2\n"
             archive = io.BytesIO()
             with tarfile.open(fileobj=archive, mode='w:gz') as tar:
@@ -67,7 +69,7 @@ else:shutil.copyfile(os.environ['FIXTURE_ASSET'],path)
 # Portable setup's JVM lives in a shared cache, outside the installation root.
 # The recorded executable must support the first offline Play without another download.
 with tempfile.TemporaryDirectory(prefix='definitive-runtime-offline-') as directory:
-    root = Path(directory); install = root / 'install'; install.mkdir(); tools = root / 'tools'; tools.mkdir()
+    root = Path(directory).resolve(); install = root / 'install'; install.mkdir(); tools = root / 'tools'; tools.mkdir()
     external = root / 'cache/runtime-jdk25.0.4.10.1/bin/java'; external.parent.mkdir(parents=True)
     external.write_text("#!/bin/sh\necho 'java.vendor.version = Corretto-25.0.4.10.1' >&2\n"); external.chmod(0o755)
     (install / '.java-path').write_text(str(external) + '\n')
@@ -80,7 +82,7 @@ with tempfile.TemporaryDirectory(prefix='definitive-runtime-offline-') as direct
     print('PASS recorded external reviewed runtime is reused for first offline launch')
 for receipt_kind in ('verified', 'missing', 'linked', 'forced-upgrade'):
     with tempfile.TemporaryDirectory(prefix='definitive-runtime-migration-') as directory:
-        root = Path(directory); install = root / 'install'; install.mkdir(); tools = root / 'tools'; tools.mkdir()
+        root = Path(directory).resolve(); install = root / 'install'; install.mkdir(); tools = root / 'tools'; tools.mkdir()
         legacy = root / 'cache/runtime-jdk25/bin/java'; legacy.parent.mkdir(parents=True)
         legacy.write_text("#!/bin/sh\necho 'java.specification.version = 25' >&2\necho 'java.vendor.version = Corretto-25.0.0.36.2' >&2\n"); legacy.chmod(0o755)
         (install / '.java-path').write_text(str(legacy) + '\n')
