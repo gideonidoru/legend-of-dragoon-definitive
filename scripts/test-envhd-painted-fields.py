@@ -166,6 +166,77 @@ class PaintedFieldTests(unittest.TestCase):
         self.candidate['generatedBy']=verify.components.PROVENANCE;self.save()
         with self.assertRaisesRegex(ValueError,'provenance'):self.preflight()
 
+    def local_patch_fixture(self):
+        prefix=self.raw_path.parent
+        base=prefix/'painted-base-input-v1.png';base.write_bytes(self.raw_path.read_bytes())
+        insert=prefix/'painted-patch-input-v1.png';Image.new('RGBA',(4,4),(75,80,50,255)).save(insert)
+        composite,operation=verify.local_patch.replay(self.source,base.read_bytes(),insert.read_bytes(),[0,0,1,1])
+        composite.save(self.raw_path)
+        painted,cutout=verify.repair.repair(self.source,composite);painted.save(self.output_path)
+        recorded=dict(operation,algorithmPath='scripts/repair-envhd-painted-local-patch.py',algorithmSha256=verify.LOCAL_PATCH_SHA256,
+            **{role+field:value for role,path in [('base',base),('patch',insert)]
+               for field,value in [('InputPath',path.relative_to(self.root).as_posix()),('GeneratedBy','builtin-imagegen'),('Prompt','Source-faithful generated fixture')]})
+        self.candidate.update(cutout,generatedSize=list(composite.size),localPatchTransfer=recorded,generatedBy=verify.local_patch.PROVENANCE,
+            generatedSha256=verify.batch.terrain.digest(self.raw_path.read_bytes()),outputSha256=verify.batch.terrain.digest(self.output_path.read_bytes()))
+        self.candidate['review']['outputSha256']=self.candidate['outputSha256'];self.save()
+        return base,insert
+
+    def test_local_patch_recipe_replays_and_requires_distinct_provenance(self):
+        self.local_patch_fixture();self.assertEqual(1,len(self.preflight()[0]))
+        self.candidate['generatedBy']='builtin-imagegen';self.save()
+        with self.assertRaisesRegex(ValueError,'local patch identity'):self.preflight()
+
+    def test_local_patch_metadata_cannot_launder_changed_input_or_output(self):
+        base,insert=self.local_patch_fixture();before=insert.read_bytes()
+        Image.new('RGBA',(4,4),(80,70,40,255)).save(insert)
+        with self.assertRaisesRegex(ValueError,'local patch input bytes'):self.preflight()
+        insert.write_bytes(before);self.candidate['localPatchTransfer']['changedPixels']+=1;self.save()
+        with self.assertRaisesRegex(ValueError,'exact recorded transfer'):self.preflight()
+
+    def test_local_patch_generated_dimensions_cannot_inherit_base_metadata(self):
+        self.local_patch_fixture();self.candidate['generatedSize']=[12,12];self.save()
+        with self.assertRaisesRegex(ValueError,'local patch generated dimensions'):self.preflight()
+
+    def test_local_patch_input_path_algorithm_and_prompts_are_enforced(self):
+        self.local_patch_fixture();original=copy.deepcopy(self.candidate['localPatchTransfer'])
+        for key,value,message in [('baseInputPath','../private.png','provenance'),('algorithmSha256','0'*64,'identity'),('patchGeneratedBy','unknown','provenance'),('patchPrompt',' ','provenance')]:
+            with self.subTest(key=key):
+                self.candidate['localPatchTransfer']=copy.deepcopy(original);self.candidate['localPatchTransfer'][key]=value;self.save()
+                with self.assertRaisesRegex(ValueError,message):self.preflight()
+
+    def test_local_patch_recipe_rejects_composed_unrelated_repairs(self):
+        self.local_patch_fixture()
+        for key in ['componentTransfer','registration','opaqueBorderRepair','sourceCanvasNormalization','sourceSurroundRestore','sourceAuthoringCrop','sourceRgbContainerRepack']:
+            with self.subTest(key=key):
+                self.candidate[key]={};self.save()
+                with self.assertRaises(ValueError):self.preflight()
+                del self.candidate[key]
+
+    def test_local_patch_wrong_output_header_precedes_extra_input_decoding(self):
+        self.local_patch_fixture();data=compressed_png(4096,4096);self.output_path.write_bytes(data)
+        self.candidate['outputSha256']=verify.batch.terrain.digest(data);self.save()
+        with mock.patch.object(verify.local_patch,'replay',side_effect=AssertionError('Extra input decoding')):
+            with self.assertRaisesRegex(ValueError,'output dimensions'):self.preflight()
+
+    def test_local_patch_extra_headers_fail_before_pixel_allocation(self):
+        _,insert=self.local_patch_fixture();before=insert.read_bytes()
+        for data in [compressed_png(),duplicate_header_png(first=(4,4))]:
+            with self.subTest(size=len(data)):
+                insert.write_bytes(data);self.candidate['localPatchTransfer']['patchInputSha256']=verify.batch.terrain.digest(data);self.save()
+                with mock.patch.object(self.source,'load',return_value=self.source.im):
+                    with mock.patch.object(Image.Image,'load',side_effect=AssertionError('Pixel allocation')):
+                        with self.assertRaisesRegex(ValueError,'bounded painted canvas'):self.preflight()
+        insert.write_bytes(before)
+
+    def test_local_patch_changed_composite_cannot_be_rehashed_into_selection(self):
+        self.local_patch_fixture();Image.new('RGBA',(8,8),(80,70,40,255)).save(self.raw_path)
+        self.candidate['generatedSha256']=verify.batch.terrain.digest(self.raw_path.read_bytes());self.save()
+        with self.assertRaisesRegex(ValueError,'exact recorded transfer'):self.preflight()
+
+    def test_local_patch_provenance_without_recipe_is_rejected(self):
+        self.candidate['generatedBy']=verify.local_patch.PROVENANCE;self.save()
+        with self.assertRaisesRegex(ValueError,'provenance'):self.preflight()
+
     def test_protected_source_is_rejected_before_reading_pixels(self):
         self.asset['owners']=['skurfa']
         with self.assertRaisesRegex(ValueError,'protected'):self.preflight()

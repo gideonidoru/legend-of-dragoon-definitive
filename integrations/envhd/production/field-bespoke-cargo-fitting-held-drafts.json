@@ -1,0 +1,742 @@
+{
+  "schema": 1,
+  "scope": "Three reused component variants independentlyREVISE; whole-frame generation rejected by geometry; isolated patch art CLEAR for development. Exact reproducible helper and74-record prospective recipe prepared; independent code/provenance review and runtime selection pending. Counts unchanged.",
+  "sourceKey": "f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a",
+  "priorAuthoringCommit": "5479c073f4134f5042d80ac43f38b7decfe4c165",
+  "sourceSize": [
+    98,
+    80
+  ],
+  "sourceBindings": [
+    {
+      "renderKey": "248583f2b89a5ed1069e5b6406f54515cd412ec561b2720fbd94fc934e1f7b4f:-1",
+      "kind": "foreground",
+      "slot": 6,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "sourceFiles": [
+    {
+      "index": 0,
+      "sha256": "235bbfb8c15652874e4148191b7f369d57c6d80975537400b9b61a040719ac4c",
+      "size": 528
+    },
+    {
+      "index": 1,
+      "sha256": "39ca7fdb2f462a20d5ae51bdc19559d393af3f12eb264c90b7505ffb6d5aea9f",
+      "size": 1836
+    },
+    {
+      "index": 2,
+      "sha256": "6a5a7165fe4f04368ca5064b79350848d5a52c5510c4e9b383c635aa55907417",
+      "size": 1364
+    },
+    {
+      "index": 3,
+      "sha256": "821e617572869d6e17423d3404b4eb64e6cec1756ec10a710c11504c3dad226d",
+      "size": 33312
+    },
+    {
+      "index": 4,
+      "sha256": "c31b790f37481328d37d98ac8626f11b07a23b012dce218804f9f6b4fda9b328",
+      "size": 33312
+    },
+    {
+      "index": 5,
+      "sha256": "bc026474b23547214404dceb472f512d4fcc8d6fae5cf95b762ba060ae26d084",
+      "size": 33312
+    },
+    {
+      "index": 6,
+      "sha256": "292c2b95c80e75868200299594337f0bbe11f1693fe8e0e4692d35afece77526",
+      "size": 66080
+    }
+  ],
+  "representativeCut": 284,
+  "representativeLocation": "The Queen Fury",
+  "drafts": [
+    {
+      "variant": "whole-earlier-fitting",
+      "generatedBy": "existing-builtin-images-plus-bounded-python-component-transfer",
+      "composite": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-reuse-whole-earlier-fitting-composite-v3.png",
+        "sha256": "91aa4bc334f36e1c8229ec56260df460f3bdac3240e8d70ad6e5dfa603e6e307"
+      },
+      "output": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-reuse-whole-earlier-fitting-repaired-v3.png",
+        "sha256": "622b62a32942ecf6cb143068d46587f60f209816a76bc7951af46b1da32be320"
+      },
+      "basePath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-source-constrained-input-v2.png",
+      "baseSha256": "e45902b0bca7be0bb76345a605cf542bdaf349b47837a23cdb84620d05d921f7",
+      "basePrompt": "Use case: style-transfer.\nAsset type: source-faithful EnvHD environment texture; Queen Fury cut284 foreground6 cargo cages.\nInput images: Image1 is the authoritative original crop and the edit target. Image2 is the same original crop with diagnostic brighter exposure for fine mesh visibility; it controls geometry only. Image3 is the whole original scene for lighting/context only. Output only the HD version of Image1, never the whole scene.\nPrimary request: Render the original cargo stack as faithful restrained modern painted HD. The mesh is a dense delicate woven diagonal crossing lattice, many small diamond openings, with thin understated diagonal ribs exactly where visible in the source. Preserve the exact cropped top-left cage, stacked cage frame positions, individual top planes, middle-right separated cage, black triangular/rectangular gaps, upper-right cropped cage fragment and detached small tan lower-right fitting. Do not add broad X or V timber braces across the fronts or top surfaces; each source strand stays narrow and the fine lattice pitch follows the original. Muted dark gray-brown/green wood and fine subdued mesh; keep the original dim ship-hold exposure and no glowing bright rims. The brightened guide exposes geometry only and must not brighten the delivered texture.\nCanvas: complete original width:height 98:80, exactly 1568x1280 pixels if supported; preserve this exact aspect, relative layout and every cropped edge. Keep each source feature at its original normalized coordinate. No added margin, crop, padding, inset, recentering or new perspective.\nStyle: fine restrained hand-painted HD detail consistent with modern faithful pre-rendered RPG environment art. The original controls every ambiguous mark; clarify what is there without inventing detail.\nTransparency: real alpha transparency around the original silhouette and in every source hole. Preserve the transparent canvas; no black backdrop, checkerboard, border, labels, writing, watermark or scene background.",
+      "insertPath": "integrations/envhd/production/bespoke-field-candidates/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/painted-input-v1.png",
+      "insertSha256": "b46ff5a3df5704198c97a2b72d306c280a4ecf07a5ac7095d521fe8b67c86837",
+      "insertPrompt": "Use case: precise-object-edit. Edit FIRST original game foreground fragment into faithful modern painted HD artwork. FIRST controls exact98x80 native canvas aspect49:40, every cropped boundary, camera angle, material construction, source palette, dark lighting and transparency. SECOND shows the same original with brightness raised ONLY to reveal construction; do not use its exposure. THIRD is the complete Queen Fury cargo-hold scene for material/object context. FOURTH Skurfa HD is surface-finish reference only, not scene/palette/light. Output FIRST fragment only, exactly unchanged framing, genuine transparent source gaps. The crates in this source are OPEN LATTICE CARGO CAGES: slender weathered wood frames with dense fine narrow crossing bars/mesh divisions and dark visible interiors, not broad solid wood plank boxes. Retain several overlapping cages including partial upper-left at canvas edge, lower-left fine-grid face, central fine-grid front and top rim, lower-right large open cage rim, separate upper-right cage corner fragment and small warm tan fitting at extreme lower-right. Trace original arrangement, existing thin diagonal ribs and repeated thin vertical/horizontal bars at their source positions. Existing faces must remain fine dark lattice, including the large lower-left face; no broad opaque planks, new X braces, big studs or heavy ornamental ironwork. Preserve sparse rim highlights and very dark brown/olive wood, restrained small pale edge scuffs; no extra handles, ropes, labels, contents or items. Avoid silhouette expansion, moved rim diagonals, connected transparent gaps, new patterns, text, symbols, glow or bright showcase exposure. Use conservative worn wood detail appropriate to ship transport cages.",
+      "sourceBindings": [
+        {
+          "renderKey": "248583f2b89a5ed1069e5b6406f54515cd412ec561b2720fbd94fc934e1f7b4f:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "235bbfb8c15652874e4148191b7f369d57c6d80975537400b9b61a040719ac4c",
+          "size": 528
+        },
+        {
+          "index": 1,
+          "sha256": "39ca7fdb2f462a20d5ae51bdc19559d393af3f12eb264c90b7505ffb6d5aea9f",
+          "size": 1836
+        },
+        {
+          "index": 2,
+          "sha256": "6a5a7165fe4f04368ca5064b79350848d5a52c5510c4e9b383c635aa55907417",
+          "size": 1364
+        },
+        {
+          "index": 3,
+          "sha256": "821e617572869d6e17423d3404b4eb64e6cec1756ec10a710c11504c3dad226d",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "c31b790f37481328d37d98ac8626f11b07a23b012dce218804f9f6b4fda9b328",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "bc026474b23547214404dceb472f512d4fcc8d6fae5cf95b762ba060ae26d084",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "292c2b95c80e75868200299594337f0bbe11f1693fe8e0e4692d35afece77526",
+          "size": 66080
+        }
+      ],
+      "componentTransfer": {
+        "method": "python-painted-component-transfer-1",
+        "sourceSize": [
+          98,
+          80
+        ],
+        "targetSize": [
+          392,
+          320
+        ],
+        "insertSize": [
+          1389,
+          1132
+        ],
+        "scale": 4,
+        "allowedNativeBox": [
+          83,
+          64,
+          98,
+          80
+        ],
+        "regions": [
+          {
+            "name": "earlier-soft-fitting",
+            "nativeBox": [
+              84,
+              65,
+              98,
+              80
+            ],
+            "insertBox": [
+              1191,
+              920,
+              1389,
+              1132
+            ],
+            "maskBox": [
+              84,
+              65,
+              98,
+              80
+            ],
+            "channelRatios": [
+              [
+                0,
+                2,
+                0.5
+              ]
+            ],
+            "sourceMaskPixels": 177,
+            "sourceMeanRgb": [
+              83.52542372881356,
+              68.88135593220339,
+              48.58757062146893
+            ],
+            "paintMeanRgb": [
+              107.55296610169492,
+              85.08686440677967,
+              55.55402542372882
+            ],
+            "channelGain": [
+              0.7765980498374865,
+              0.8095415950798037,
+              0.8746003597556712
+            ],
+            "sourceMaskHdPixels": 2832,
+            "paintedUncoveredMaskPixels": 165
+          }
+        ],
+        "maskResampling": "NEAREST4x",
+        "maskBlurRadiusHdPixels": 0.8,
+        "rgbResampling": "LANCZOS",
+        "rounding": "numpy.rintclipuint8",
+        "changedPixels": 2832,
+        "baseAlphaExact": true,
+        "outsideAllowedBoxExact": true,
+        "sourceRgbPixelsCopied": false,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumUncoveredMaskFraction": 0.1,
+        "baseCutoutRepair": {
+          "scale": 4,
+          "sourceVisiblePixelsAtTargetScale": 71536,
+          "paintedGapPixelsExtended": 1014,
+          "paintedUncoveredSourcePixels": 382,
+          "minimumPaintedCoverageAlpha": 16,
+          "minimumPaintedAnchorAlpha": 128,
+          "maximumExtensionSquaredTargetPixels": 13,
+          "sourceAlphaExact": true,
+          "visibleBlackExact": true,
+          "edgeAveraging": false
+        },
+        "baseInputSha256": "e45902b0bca7be0bb76345a605cf542bdaf349b47837a23cdb84620d05d921f7",
+        "insertInputSha256": "b46ff5a3df5704198c97a2b72d306c280a4ecf07a5ac7095d521fe8b67c86837"
+      },
+      "cutout": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 71536,
+        "paintedGapPixelsExtended": 113,
+        "paintedUncoveredSourcePixels": 0,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 4,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "helperSha256": "984dcbc7cefab7249f8c988e40cd4c8cfd73aba0f265bb6c91669eb2b7cd8f14",
+      "disposition": "REVISE",
+      "independentReportSha256": "3c06f8385d34174780e1afc36ab2f4f0e26451c35a86fba11653516971ff2fd5",
+      "runtimeSelected": false
+    },
+    {
+      "variant": "soft-masses",
+      "generatedBy": "existing-builtin-images-plus-bounded-python-component-transfer",
+      "composite": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-reuse-soft-masses-composite-v3.png",
+        "sha256": "bb53d8525e20aea95fc21546c7271f1fa91f962e2fa29f7fcafb037e1ef6e531"
+      },
+      "output": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-reuse-soft-masses-repaired-v3.png",
+        "sha256": "77e2786c02cde9a12886b116f54260030c84af8520740d92afc7bc9ebf9294d4"
+      },
+      "basePath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-source-constrained-input-v2.png",
+      "baseSha256": "e45902b0bca7be0bb76345a605cf542bdaf349b47837a23cdb84620d05d921f7",
+      "basePrompt": "Use case: style-transfer.\nAsset type: source-faithful EnvHD environment texture; Queen Fury cut284 foreground6 cargo cages.\nInput images: Image1 is the authoritative original crop and the edit target. Image2 is the same original crop with diagnostic brighter exposure for fine mesh visibility; it controls geometry only. Image3 is the whole original scene for lighting/context only. Output only the HD version of Image1, never the whole scene.\nPrimary request: Render the original cargo stack as faithful restrained modern painted HD. The mesh is a dense delicate woven diagonal crossing lattice, many small diamond openings, with thin understated diagonal ribs exactly where visible in the source. Preserve the exact cropped top-left cage, stacked cage frame positions, individual top planes, middle-right separated cage, black triangular/rectangular gaps, upper-right cropped cage fragment and detached small tan lower-right fitting. Do not add broad X or V timber braces across the fronts or top surfaces; each source strand stays narrow and the fine lattice pitch follows the original. Muted dark gray-brown/green wood and fine subdued mesh; keep the original dim ship-hold exposure and no glowing bright rims. The brightened guide exposes geometry only and must not brighten the delivered texture.\nCanvas: complete original width:height 98:80, exactly 1568x1280 pixels if supported; preserve this exact aspect, relative layout and every cropped edge. Keep each source feature at its original normalized coordinate. No added margin, crop, padding, inset, recentering or new perspective.\nStyle: fine restrained hand-painted HD detail consistent with modern faithful pre-rendered RPG environment art. The original controls every ambiguous mark; clarify what is there without inventing detail.\nTransparency: real alpha transparency around the original silhouette and in every source hole. Preserve the transparent canvas; no black backdrop, checkerboard, border, labels, writing, watermark or scene background.",
+      "insertPath": "integrations/envhd/production/bespoke-field-candidates/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/painted-input-v1.png",
+      "insertSha256": "b46ff5a3df5704198c97a2b72d306c280a4ecf07a5ac7095d521fe8b67c86837",
+      "insertPrompt": "Use case: precise-object-edit. Edit FIRST original game foreground fragment into faithful modern painted HD artwork. FIRST controls exact98x80 native canvas aspect49:40, every cropped boundary, camera angle, material construction, source palette, dark lighting and transparency. SECOND shows the same original with brightness raised ONLY to reveal construction; do not use its exposure. THIRD is the complete Queen Fury cargo-hold scene for material/object context. FOURTH Skurfa HD is surface-finish reference only, not scene/palette/light. Output FIRST fragment only, exactly unchanged framing, genuine transparent source gaps. The crates in this source are OPEN LATTICE CARGO CAGES: slender weathered wood frames with dense fine narrow crossing bars/mesh divisions and dark visible interiors, not broad solid wood plank boxes. Retain several overlapping cages including partial upper-left at canvas edge, lower-left fine-grid face, central fine-grid front and top rim, lower-right large open cage rim, separate upper-right cage corner fragment and small warm tan fitting at extreme lower-right. Trace original arrangement, existing thin diagonal ribs and repeated thin vertical/horizontal bars at their source positions. Existing faces must remain fine dark lattice, including the large lower-left face; no broad opaque planks, new X braces, big studs or heavy ornamental ironwork. Preserve sparse rim highlights and very dark brown/olive wood, restrained small pale edge scuffs; no extra handles, ropes, labels, contents or items. Avoid silhouette expansion, moved rim diagonals, connected transparent gaps, new patterns, text, symbols, glow or bright showcase exposure. Use conservative worn wood detail appropriate to ship transport cages.",
+      "sourceBindings": [
+        {
+          "renderKey": "248583f2b89a5ed1069e5b6406f54515cd412ec561b2720fbd94fc934e1f7b4f:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "235bbfb8c15652874e4148191b7f369d57c6d80975537400b9b61a040719ac4c",
+          "size": 528
+        },
+        {
+          "index": 1,
+          "sha256": "39ca7fdb2f462a20d5ae51bdc19559d393af3f12eb264c90b7505ffb6d5aea9f",
+          "size": 1836
+        },
+        {
+          "index": 2,
+          "sha256": "6a5a7165fe4f04368ca5064b79350848d5a52c5510c4e9b383c635aa55907417",
+          "size": 1364
+        },
+        {
+          "index": 3,
+          "sha256": "821e617572869d6e17423d3404b4eb64e6cec1756ec10a710c11504c3dad226d",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "c31b790f37481328d37d98ac8626f11b07a23b012dce218804f9f6b4fda9b328",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "bc026474b23547214404dceb472f512d4fcc8d6fae5cf95b762ba060ae26d084",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "292c2b95c80e75868200299594337f0bbe11f1693fe8e0e4692d35afece77526",
+          "size": 66080
+        }
+      ],
+      "componentTransfer": {
+        "method": "python-painted-component-transfer-1",
+        "sourceSize": [
+          98,
+          80
+        ],
+        "targetSize": [
+          392,
+          320
+        ],
+        "insertSize": [
+          1389,
+          1132
+        ],
+        "scale": 4,
+        "allowedNativeBox": [
+          83,
+          64,
+          98,
+          80
+        ],
+        "regions": [
+          {
+            "name": "soft-upper-mass",
+            "nativeBox": [
+              84,
+              65,
+              98,
+              77
+            ],
+            "insertBox": [
+              1200,
+              930,
+              1308,
+              1050
+            ],
+            "maskBox": [
+              84,
+              65,
+              98,
+              77
+            ],
+            "channelRatios": [
+              [
+                0,
+                2,
+                0.5
+              ]
+            ],
+            "sourceMaskPixels": 154,
+            "sourceMeanRgb": [
+              87.16883116883118,
+              71.16883116883118,
+              49.97402597402598
+            ],
+            "paintMeanRgb": [
+              127.25324675324676,
+              99.02232142857143,
+              64.13149350649351
+            ],
+            "channelGain": [
+              0.6850028065520233,
+              0.7187150345709473,
+              0.7792431337805341
+            ],
+            "sourceMaskHdPixels": 2464,
+            "paintedUncoveredMaskPixels": 5
+          },
+          {
+            "name": "soft-lower-support",
+            "nativeBox": [
+              84,
+              77,
+              98,
+              80
+            ],
+            "insertBox": [
+              1196,
+              1054,
+              1290,
+              1099
+            ],
+            "maskBox": [
+              84,
+              77,
+              98,
+              80
+            ],
+            "channelRatios": [
+              [
+                0,
+                2,
+                0.5
+              ]
+            ],
+            "sourceMaskPixels": 23,
+            "sourceMeanRgb": [
+              59.130434782608695,
+              53.56521739130435,
+              39.30434782608695
+            ],
+            "paintMeanRgb": [
+              48.65489130434783,
+              42.57065217391305,
+              29.942934782608695
+            ],
+            "channelGain": [
+              1.2153029879921808,
+              1.258266309204647,
+              1.3126418005263634
+            ],
+            "sourceMaskHdPixels": 368,
+            "paintedUncoveredMaskPixels": 23
+          }
+        ],
+        "maskResampling": "NEAREST4x",
+        "maskBlurRadiusHdPixels": 0.8,
+        "rgbResampling": "LANCZOS",
+        "rounding": "numpy.rintclipuint8",
+        "changedPixels": 2832,
+        "baseAlphaExact": true,
+        "outsideAllowedBoxExact": true,
+        "sourceRgbPixelsCopied": false,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumUncoveredMaskFraction": 0.1,
+        "baseCutoutRepair": {
+          "scale": 4,
+          "sourceVisiblePixelsAtTargetScale": 71536,
+          "paintedGapPixelsExtended": 1014,
+          "paintedUncoveredSourcePixels": 382,
+          "minimumPaintedCoverageAlpha": 16,
+          "minimumPaintedAnchorAlpha": 128,
+          "maximumExtensionSquaredTargetPixels": 13,
+          "sourceAlphaExact": true,
+          "visibleBlackExact": true,
+          "edgeAveraging": false
+        },
+        "baseInputSha256": "e45902b0bca7be0bb76345a605cf542bdaf349b47837a23cdb84620d05d921f7",
+        "insertInputSha256": "b46ff5a3df5704198c97a2b72d306c280a4ecf07a5ac7095d521fe8b67c86837"
+      },
+      "cutout": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 71536,
+        "paintedGapPixelsExtended": 15,
+        "paintedUncoveredSourcePixels": 0,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 4,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "helperSha256": "984dcbc7cefab7249f8c988e40cd4c8cfd73aba0f265bb6c91669eb2b7cd8f14",
+      "disposition": "REVISE",
+      "independentReportSha256": "3c06f8385d34174780e1afc36ab2f4f0e26451c35a86fba11653516971ff2fd5",
+      "runtimeSelected": false
+    },
+    {
+      "variant": "soft-body",
+      "generatedBy": "existing-builtin-images-plus-bounded-python-component-transfer",
+      "composite": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-reuse-soft-body-composite-v3.png",
+        "sha256": "9d4e6178fd42cb1c415e2b61bb8d6faaebdb9b1507d55822d0d27e658e5d0674"
+      },
+      "output": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-reuse-soft-body-repaired-v3.png",
+        "sha256": "9d4e6178fd42cb1c415e2b61bb8d6faaebdb9b1507d55822d0d27e658e5d0674"
+      },
+      "basePath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-source-constrained-input-v2.png",
+      "baseSha256": "e45902b0bca7be0bb76345a605cf542bdaf349b47837a23cdb84620d05d921f7",
+      "basePrompt": "Use case: style-transfer.\nAsset type: source-faithful EnvHD environment texture; Queen Fury cut284 foreground6 cargo cages.\nInput images: Image1 is the authoritative original crop and the edit target. Image2 is the same original crop with diagnostic brighter exposure for fine mesh visibility; it controls geometry only. Image3 is the whole original scene for lighting/context only. Output only the HD version of Image1, never the whole scene.\nPrimary request: Render the original cargo stack as faithful restrained modern painted HD. The mesh is a dense delicate woven diagonal crossing lattice, many small diamond openings, with thin understated diagonal ribs exactly where visible in the source. Preserve the exact cropped top-left cage, stacked cage frame positions, individual top planes, middle-right separated cage, black triangular/rectangular gaps, upper-right cropped cage fragment and detached small tan lower-right fitting. Do not add broad X or V timber braces across the fronts or top surfaces; each source strand stays narrow and the fine lattice pitch follows the original. Muted dark gray-brown/green wood and fine subdued mesh; keep the original dim ship-hold exposure and no glowing bright rims. The brightened guide exposes geometry only and must not brighten the delivered texture.\nCanvas: complete original width:height 98:80, exactly 1568x1280 pixels if supported; preserve this exact aspect, relative layout and every cropped edge. Keep each source feature at its original normalized coordinate. No added margin, crop, padding, inset, recentering or new perspective.\nStyle: fine restrained hand-painted HD detail consistent with modern faithful pre-rendered RPG environment art. The original controls every ambiguous mark; clarify what is there without inventing detail.\nTransparency: real alpha transparency around the original silhouette and in every source hole. Preserve the transparent canvas; no black backdrop, checkerboard, border, labels, writing, watermark or scene background.",
+      "insertPath": "integrations/envhd/production/bespoke-field-candidates/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/painted-input-v1.png",
+      "insertSha256": "b46ff5a3df5704198c97a2b72d306c280a4ecf07a5ac7095d521fe8b67c86837",
+      "insertPrompt": "Use case: precise-object-edit. Edit FIRST original game foreground fragment into faithful modern painted HD artwork. FIRST controls exact98x80 native canvas aspect49:40, every cropped boundary, camera angle, material construction, source palette, dark lighting and transparency. SECOND shows the same original with brightness raised ONLY to reveal construction; do not use its exposure. THIRD is the complete Queen Fury cargo-hold scene for material/object context. FOURTH Skurfa HD is surface-finish reference only, not scene/palette/light. Output FIRST fragment only, exactly unchanged framing, genuine transparent source gaps. The crates in this source are OPEN LATTICE CARGO CAGES: slender weathered wood frames with dense fine narrow crossing bars/mesh divisions and dark visible interiors, not broad solid wood plank boxes. Retain several overlapping cages including partial upper-left at canvas edge, lower-left fine-grid face, central fine-grid front and top rim, lower-right large open cage rim, separate upper-right cage corner fragment and small warm tan fitting at extreme lower-right. Trace original arrangement, existing thin diagonal ribs and repeated thin vertical/horizontal bars at their source positions. Existing faces must remain fine dark lattice, including the large lower-left face; no broad opaque planks, new X braces, big studs or heavy ornamental ironwork. Preserve sparse rim highlights and very dark brown/olive wood, restrained small pale edge scuffs; no extra handles, ropes, labels, contents or items. Avoid silhouette expansion, moved rim diagonals, connected transparent gaps, new patterns, text, symbols, glow or bright showcase exposure. Use conservative worn wood detail appropriate to ship transport cages.",
+      "sourceBindings": [
+        {
+          "renderKey": "248583f2b89a5ed1069e5b6406f54515cd412ec561b2720fbd94fc934e1f7b4f:-1",
+          "kind": "foreground",
+          "slot": 6,
+          "canDeriveFromBackground": false
+        }
+      ],
+      "sourceFiles": [
+        {
+          "index": 0,
+          "sha256": "235bbfb8c15652874e4148191b7f369d57c6d80975537400b9b61a040719ac4c",
+          "size": 528
+        },
+        {
+          "index": 1,
+          "sha256": "39ca7fdb2f462a20d5ae51bdc19559d393af3f12eb264c90b7505ffb6d5aea9f",
+          "size": 1836
+        },
+        {
+          "index": 2,
+          "sha256": "6a5a7165fe4f04368ca5064b79350848d5a52c5510c4e9b383c635aa55907417",
+          "size": 1364
+        },
+        {
+          "index": 3,
+          "sha256": "821e617572869d6e17423d3404b4eb64e6cec1756ec10a710c11504c3dad226d",
+          "size": 33312
+        },
+        {
+          "index": 4,
+          "sha256": "c31b790f37481328d37d98ac8626f11b07a23b012dce218804f9f6b4fda9b328",
+          "size": 33312
+        },
+        {
+          "index": 5,
+          "sha256": "bc026474b23547214404dceb472f512d4fcc8d6fae5cf95b762ba060ae26d084",
+          "size": 33312
+        },
+        {
+          "index": 6,
+          "sha256": "292c2b95c80e75868200299594337f0bbe11f1693fe8e0e4692d35afece77526",
+          "size": 66080
+        }
+      ],
+      "componentTransfer": {
+        "method": "python-painted-component-transfer-1",
+        "sourceSize": [
+          98,
+          80
+        ],
+        "targetSize": [
+          392,
+          320
+        ],
+        "insertSize": [
+          1389,
+          1132
+        ],
+        "scale": 4,
+        "allowedNativeBox": [
+          83,
+          64,
+          98,
+          80
+        ],
+        "regions": [
+          {
+            "name": "soft-continuous-mass",
+            "nativeBox": [
+              84,
+              65,
+              98,
+              80
+            ],
+            "insertBox": [
+              1200,
+              944,
+              1300,
+              1040
+            ],
+            "maskBox": [
+              84,
+              65,
+              98,
+              80
+            ],
+            "channelRatios": [
+              [
+                0,
+                2,
+                0.5
+              ]
+            ],
+            "sourceMaskPixels": 177,
+            "sourceMeanRgb": [
+              83.52542372881356,
+              68.88135593220339,
+              48.58757062146893
+            ],
+            "paintMeanRgb": [
+              127.7143361581921,
+              99.25670903954803,
+              64.40572033898304
+            ],
+            "channelGain": [
+              0.6540019409047049,
+              0.6939717888969921,
+              0.7543983727802541
+            ],
+            "sourceMaskHdPixels": 2832,
+            "paintedUncoveredMaskPixels": 0
+          }
+        ],
+        "maskResampling": "NEAREST4x",
+        "maskBlurRadiusHdPixels": 0.8,
+        "rgbResampling": "LANCZOS",
+        "rounding": "numpy.rintclipuint8",
+        "changedPixels": 2832,
+        "baseAlphaExact": true,
+        "outsideAllowedBoxExact": true,
+        "sourceRgbPixelsCopied": false,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumUncoveredMaskFraction": 0.1,
+        "baseCutoutRepair": {
+          "scale": 4,
+          "sourceVisiblePixelsAtTargetScale": 71536,
+          "paintedGapPixelsExtended": 1014,
+          "paintedUncoveredSourcePixels": 382,
+          "minimumPaintedCoverageAlpha": 16,
+          "minimumPaintedAnchorAlpha": 128,
+          "maximumExtensionSquaredTargetPixels": 13,
+          "sourceAlphaExact": true,
+          "visibleBlackExact": true,
+          "edgeAveraging": false
+        },
+        "baseInputSha256": "e45902b0bca7be0bb76345a605cf542bdaf349b47837a23cdb84620d05d921f7",
+        "insertInputSha256": "b46ff5a3df5704198c97a2b72d306c280a4ecf07a5ac7095d521fe8b67c86837"
+      },
+      "cutout": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 71536,
+        "paintedGapPixelsExtended": 0,
+        "paintedUncoveredSourcePixels": 0,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 0,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "helperSha256": "984dcbc7cefab7249f8c988e40cd4c8cfd73aba0f265bb6c91669eb2b7cd8f14",
+      "disposition": "REVISE",
+      "independentReportSha256": "3c06f8385d34174780e1afc36ab2f4f0e26451c35a86fba11653516971ff2fd5",
+      "runtimeSelected": false
+    },
+    {
+      "variant": "whole-frame-targeted-generation",
+      "generatedBy": "builtin-imagegen",
+      "generated": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-whole-frame-input-v3.png",
+        "sha256": "8684ee2ce9d07ff6666ac042e5d24180166feb8c6cb52ed1f76306679d157bcd"
+      },
+      "prompt": "Use case: precise-object-edit.\nAsset type: faithful modern hand-painted EnvHD environment foreground, Legend of Dragoon Queen Fury cargo hold cut284 foreground6.\nInput images: Image1 is the authoritative ORIGINAL whole native98x80 foreground crop, controlling every shape, position, mark and exposure. Image2 is the current HD edit target with already corrected fine cargo mesh. Image3 is an enlarged diagnostic ORIGINAL fitting, nearest and smooth views; use its shapes only, never copy its labels or board. Image4 is the original whole scene for context only.\nPrimary request: Edit ONLY the small detached tan fitting at the extreme lower-right of Image2, occupying native coordinates x84..98 and y65..79 in the original98x80 canvas. Its source is an irregular softly varied tan mass with two small irregular DARK PATCHES at their exact original positions and scale, and a distinct PALE LOWER FEATURE with adjoining curved gold shape. Trace the source's ambiguous shapes faithfully without identifying or inventing a mechanical object. Remove the rigid flat lid/plate, regular rectangular slots, round fasteners and square latch invented in Image2. Preserve the source two dark patches, softly rounded body, separate pale lower feature, original uneven outer contour and cropped right edge. Keep marks softly bounded and dark; the pale lower feature is an irregular light mass, not a regular metal tab or fastener. Do not turn any dark patch into an open cup, neck, tube or ring. Do not replace the body with an undifferentiated mottled blob or long bright diagonal rim.\nStyle: restrained finely painted HD at the same dim ship-hold exposure, warm dull tan/brown material and subdued small source highlights. Conservative detail follows the original; no added mechanism or hardware.\nInvariants: All cages, delicate diagonal crossing mesh, wooden frames, top planes, crop, overlaps, dark gaps and the small gold curved adjoining shape outside the fitting stay exactly as Image2. No cage redesign, broad braces, stronger highlights or rearrangement.\nCanvas: output the COMPLETE Image2 foreground canvas with exact original98:80 aspect ratio, preferably1568x1280. Keep every source feature in its original normalized location, no zoom, margins, centering, perspective change or crop. Genuine transparent background and all source holes, no black backdrop, checkerboard, text, labels, border or watermark. Only the specified fitting changes.\n",
+      "generatedSize": [
+        1552,
+        1013
+      ],
+      "sourceSize": [
+        98,
+        80
+      ],
+      "repairPassed": false,
+      "disposition": "HELD geometry gate",
+      "reason": "Generated full canvas aspect exceeds unchanged1percent source gate; no composite or runtime output produced from it.",
+      "runtimeSelected": false
+    },
+    {
+      "variant": "isolated-source-fitted-patch",
+      "generatedBy": "builtin-imagegen-plus-source-bound-local-patch-transfer-prototype",
+      "generated": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-isolated-input-v4.png",
+        "sha256": "da9198fc1995313a38d5ebcf816f80639aeaac57b7c413747779831868142707"
+      },
+      "generatedSize": [
+        1214,
+        1295
+      ],
+      "patchCutout": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-isolated-cutout-v4.png",
+        "sha256": "437127e739722771d041b3186e9333996ef1055024fc519957282fd7b21307f7"
+      },
+      "composite": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-isolated-composite-v4.png",
+        "sha256": "2f9cabfff63f3ebb0af0aae016139984ccb322550d750691df9950165de46da5"
+      },
+      "output": {
+        "path": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-fitting-isolated-repaired-v4.png",
+        "sha256": "2f9cabfff63f3ebb0af0aae016139984ccb322550d750691df9950165de46da5"
+      },
+      "patchPrompt": "Use case: style-transfer.\nAsset type: isolated faithful painted EnvHD foreground fitting fragment, Queen Fury cargo hold.\nInput images: Image1 is the authoritative native15x16 fitting crop and the ONLY edit target. Image2 is the same source crop enlarged with nearest pixels; it controls composition and mark locations. Image3 is the original complete scene for dim exposure/context only. Output only Image1's isolated fragment, not the ship scene or cargo cages.\nPrimary request: Paint a faithful high-detail HD version of the original small ambiguous fitting, preserving its softly varied warm tan upper mass, two small irregular dark patches in their original positions, distinct irregular pale lower feature, curved adjoining golden/brown form and dark lower support. Retain the original shape and feature arrangement without naming or inventing a mechanism. The tiny source dark patches stay softly bounded irregular dark marks, not holes with hardware, cup/neck, rectangular slots or rings. The small pale lower feature stays an irregular softly shaded light form, not a square latch, button, stud or fastener.\nStyle: restrained fine hand-painted material detail, dull warm tan/brown and dark olive-brown, dim ship-hold lighting. No bright showcase highlights, large scratches, shiny metal, ornate grain or generic mottling that erases the original marks.\nCanvas: COMPLETE original15:16 portrait canvas, preferably960x1024. Include the exact one-native-pixel transparent top/left margin and bottom transparent row of Image1. Original silhouette and all transparent spaces control the entire crop. Each mark stays at its original normalized location; no recentering, zoom, perspective or framing change.\nAvoid: flat top lid or plate, discrete fasteners, latch-box construction, open cup, regular circular knob, long bright rim, invented seams, labels, text, background, checkerboard or watermark. Preserve actual transparency. Never paste the pixelated source; produce faithful painted detail without invented geometry.\n",
+      "basePrompt": "Use case: style-transfer.\nAsset type: source-faithful EnvHD environment texture; Queen Fury cut284 foreground6 cargo cages.\nInput images: Image1 is the authoritative original crop and the edit target. Image2 is the same original crop with diagnostic brighter exposure for fine mesh visibility; it controls geometry only. Image3 is the whole original scene for lighting/context only. Output only the HD version of Image1, never the whole scene.\nPrimary request: Render the original cargo stack as faithful restrained modern painted HD. The mesh is a dense delicate woven diagonal crossing lattice, many small diamond openings, with thin understated diagonal ribs exactly where visible in the source. Preserve the exact cropped top-left cage, stacked cage frame positions, individual top planes, middle-right separated cage, black triangular/rectangular gaps, upper-right cropped cage fragment and detached small tan lower-right fitting. Do not add broad X or V timber braces across the fronts or top surfaces; each source strand stays narrow and the fine lattice pitch follows the original. Muted dark gray-brown/green wood and fine subdued mesh; keep the original dim ship-hold exposure and no glowing bright rims. The brightened guide exposes geometry only and must not brighten the delivered texture.\nCanvas: complete original width:height 98:80, exactly 1568x1280 pixels if supported; preserve this exact aspect, relative layout and every cropped edge. Keep each source feature at its original normalized coordinate. No added margin, crop, padding, inset, recentering or new perspective.\nStyle: fine restrained hand-painted HD detail consistent with modern faithful pre-rendered RPG environment art. The original controls every ambiguous mark; clarify what is there without inventing detail.\nTransparency: real alpha transparency around the original silhouette and in every source hole. Preserve the transparent canvas; no black backdrop, checkerboard, border, labels, writing, watermark or scene background.",
+      "baseGeneratedPath": "integrations/envhd/production/held-field-art-drafts/f0fd6611d23f3d7625d5d5b8e8e86c5837c1aafba8bd165daec9d529b002032a/draft-source-constrained-input-v2.png",
+      "baseGeneratedSha256": "e45902b0bca7be0bb76345a605cf542bdaf349b47837a23cdb84620d05d921f7",
+      "sourceBox": [
+        83,
+        64,
+        98,
+        80
+      ],
+      "patchSourceSize": [
+        15,
+        16
+      ],
+      "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+      "baseCutout": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 71536,
+        "paintedGapPixelsExtended": 1014,
+        "paintedUncoveredSourcePixels": 382,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 13,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "patchCutoutOperation": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 2976,
+        "paintedGapPixelsExtended": 65,
+        "paintedUncoveredSourcePixels": 21,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 8,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "fullCutout": {
+        "scale": 4,
+        "sourceVisiblePixelsAtTargetScale": 71536,
+        "paintedGapPixelsExtended": 0,
+        "paintedUncoveredSourcePixels": 0,
+        "minimumPaintedCoverageAlpha": 16,
+        "minimumPaintedAnchorAlpha": 128,
+        "maximumExtensionSquaredTargetPixels": 0,
+        "sourceAlphaExact": true,
+        "visibleBlackExact": true,
+        "edgeAveraging": false
+      },
+      "changedPixels": 2976,
+      "outsideSourceBoxExact": true,
+      "baseAlphaExact": true,
+      "sourceRgbPixelsCopied": false,
+      "disposition": "Original-art CLEAR for development; independent code/provenance review and integration pending",
+      "runtimeSelected": false,
+      "independentArtReviewSha256": "0de3f97078c968fcfd015a7007856f5b5e6884c4b988783b9d2b57490452e077",
+      "publicArtReviewManifest": "field-cargo-local-patch-art-review.json",
+      "publicArtReviewManifestSha256": "c318b44b67f8265d2998fe8b4264766d3876907fd654f6e3b2276c37b330a737"
+    }
+  ],
+  "newBuiltinImageGenerationCalls": 2,
+  "reusedComponentVariants": 3,
+  "newUniqueSourceImages": 0,
+  "selectedFieldsUnchanged": 4959,
+  "selectedPaintingsUnchanged": 73,
+  "knownStaticRemainingUnchanged": 204,
+  "runtimeSelected": 0,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesReferencesAndComparisonsExcluded": true
+}

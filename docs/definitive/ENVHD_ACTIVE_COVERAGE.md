@@ -380,3 +380,13 @@ The [complete73-painting selection](../../integrations/envhd/production/field-be
 
 
 The [independent inventory review](../../integrations/envhd/production/environment-dynamic-prop-inventory-independent-review.json) is CLEAR on both axes at source3b199. The inventory checkpoint retains its historical4958/72 baseline; accepted current selection is4959/73. Unknown dynamic and owned-prop image denominators remain explicit.
+
+
+## Cargo fitting localized trials
+
+The [held repair worklist](../../integrations/envhd/production/field-bespoke-cargo-fitting-held-drafts.json) preserves three component reuse trials that original-art review rejected. They leave the corrected cage mesh exact but retain unsupported mechanisms or erase the fitting marks. A targeted full-frame edit failed the unchanged aspect gate and is not used. A separate builtin-generated15x16 patch preserves the two irregular dark marks and pale lower feature more closely; unchanged cutout repair and an explicit local transfer retain every outside pixel and the original alpha. Fresh visual review and reproducible helper/code support are still required. All versions remain held, with4959fields/73paintings selected and204knownstatic images left. Original references and comparisons remain private.
+
+
+## Cargo isolated fitting art cleared, recipe review pending
+
+[Original-art review](../../integrations/envhd/production/field-cargo-local-patch-art-review.json) clears the isolated fitting correction for development intent: two irregular dark marks, soft tan mass and a pale lower feature survive without invented cup, slots or fasteners. The mesh outside the source rectangle remains exact. The [prospective74 recipe](../../integrations/envhd/production/field-bespoke-cargo-local-patch-reviewed-selection.json) retains all73 selected records and uses separate original builtin base/patch inputs, exact prompts and a pinned deterministic transfer. Nine local patch fixtures and68 authoring preflight fixtures pass. Independent helper/code/provenance review and integration remain required; runtime counts are unchanged4959/73 with204known static holds. Native gameplay, physical Deck and final visual acceptance remain pending.

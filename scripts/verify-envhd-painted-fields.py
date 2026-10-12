@@ -26,6 +26,7 @@ surround = module('painted_field_surround', 'repair-envhd-painted-surround.py')
 authoring_crop = module('painted_field_authoring_crop', 'crop-envhd-painted-authoring-canvas.py')
 rgb_repack = module('painted_field_rgb_repack', 'repack-envhd-painted-rgb.py')
 components = module('painted_field_components', 'repair-envhd-painted-components.py')
+local_patch = module('painted_field_local_patch', 'repair-envhd-painted-local-patch.py')
 REPAIR_SHA256 = 'd94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a'
 REGISTRATION_SHA256 = '7b0458bef46ae0fe5dacd90243951dcb155e58529f23252aacc36f06db949784'
 OPAQUE_BORDER_SHA256 = 'd5a6b3b9b9177b2292863ee3391720065e7e9155f943b221ee1edcd2b73365bc'
@@ -34,6 +35,7 @@ SURROUND_SHA256 = '11017bae4bf16c21bdd6e923b36dc46dae63a023ed0c8d0a26dfe70da1e3d
 AUTHORING_CROP_SHA256 = '939125d63c15725d6c91637eb981ccbf8c667b5b13c52061d5a91345c3ba7676'
 RGB_REPACK_SHA256 = 'fce3e10260df107249fe85ec0583b3edbf0581c9f5ecc21dc1c94f77508a83ba'
 COMPONENTS_SHA256 = '984dcbc7cefab7249f8c988e40cd4c8cfd73aba0f265bb6c91669eb2b7cd8f14'
+LOCAL_PATCH_SHA256 = 'a775b1e22b9b6e24ad93e72fe4f0bee0279be524bcb3e80ca1206a499d3eee07'
 METHOD = 'python-painted-cutout-nearest-colour-exact-visibility-1'
 REVIEW_KEYS = {'intent', 'style', 'layout', 'verdict', 'outputSha256', 'nativeAcceptance', 'finalQualityAcceptance'}
 ROOT = Path(__file__).resolve().parents[1]
@@ -125,6 +127,42 @@ def preflight(files, manifest_path, root=ROOT):
                                    originalGeneratedPath=prefix + 'painted-rgb-input-v1.png')
             if recorded_repack != expected_repack or raw_data != converted_data:
                 raise ValueError('Painted RGB container differs from its recorded original painting')
+        patching = 'localPatchTransfer' in candidate
+        if patching:
+            recorded_patch = candidate['localPatchTransfer']
+            if (not isinstance(recorded_patch, dict)
+                    or any(k in candidate for k in ('componentTransfer', 'registration', 'opaqueBorderRepair',
+                                                   'sourceCanvasNormalization', 'sourceSurroundRestore',
+                                                   'sourceAuthoringCrop', 'sourceRgbContainerRepack'))
+                    or recorded_patch.get('algorithmPath') != 'scripts/repair-envhd-painted-local-patch.py'
+                    or recorded_patch.get('algorithmSha256') != LOCAL_PATCH_SHA256
+                    or batch.terrain.digest(Path(local_patch.__file__).read_bytes()) != LOCAL_PATCH_SHA256
+                    or candidate.get('generatedBy') != local_patch.PROVENANCE):
+                raise ValueError('Painted local patch identity or exclusive operation changed')
+            composite_size = repair.validate_png_header(raw_data, 'painted', source.size)
+            if candidate.get('generatedSize') != list(composite_size):
+                raise ValueError('Painted local patch generated dimensions changed')
+            repair.validate_png_header(output_data, 'output', source.size)
+            inputs = {}
+            for role in ('base', 'patch'):
+                expected_path = prefix + f'painted-{role}-input-v{version}.png'
+                if (recorded_patch.get(role + 'InputPath') != expected_path
+                        or recorded_patch.get(role + 'GeneratedBy') != 'builtin-imagegen'
+                        or not isinstance(recorded_patch.get(role + 'Prompt'), str)
+                        or not recorded_patch[role + 'Prompt'].strip()):
+                    raise ValueError('Painted local patch input provenance changed')
+                inputs[role] = batch.terrain.bounded_read(batch.battle.staging_path(root, expected_path), 32 * 1024 * 1024)
+                if batch.terrain.digest(inputs[role]) != recorded_patch.get(role + 'InputSha256'):
+                    raise ValueError('Painted local patch input bytes changed')
+            composite, patch_operation = local_patch.replay(source, inputs['base'], inputs['patch'], recorded_patch.get('sourceBox'))
+            stream = io.BytesIO()
+            composite.save(stream, format='PNG')
+            expected_patch = dict(patch_operation, algorithmPath='scripts/repair-envhd-painted-local-patch.py',
+                algorithmSha256=LOCAL_PATCH_SHA256,
+                **{role + field: recorded_patch[role + field] for role in ('base', 'patch')
+                   for field in ('InputPath', 'GeneratedBy', 'Prompt')})
+            if recorded_patch != expected_patch or raw_data != stream.getvalue():
+                raise ValueError('Painted local patch output differs from its exact recorded transfer')
         transferring = 'componentTransfer' in candidate
         if transferring:
             recorded_components = candidate['componentTransfer']
@@ -272,7 +310,7 @@ def preflight(files, manifest_path, root=ROOT):
             raise ValueError('Painted field repair measurements changed')
         if (candidate.get('targetSize') != list(expected.size) or candidate.get('algorithmSha256') != REPAIR_SHA256
                 or candidate.get('method') != METHOD
-                or candidate.get('generatedBy') != (components.PROVENANCE if transferring else 'builtin-imagegen')
+                or candidate.get('generatedBy') != (local_patch.PROVENANCE if patching else components.PROVENANCE if transferring else 'builtin-imagegen')
                 or not isinstance(candidate.get('prompt'), str) or not candidate['prompt'].strip()
                 or candidate.get('nativeAcceptance') != 'pending' or candidate.get('finalQualityAcceptance') != 'pending'
                 or candidate.get('runtimeSelected') is not False):
