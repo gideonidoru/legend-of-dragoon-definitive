@@ -48,6 +48,6 @@ public class RetailFontConfigEntry extends StringConfigEntry {
   @Override
   public void onChange(final ConfigCollection configCollection, final String oldValue, final String newValue) {
     super.onChange(configCollection, oldValue, newValue);
-    GameEngine.DEFAULT_FONT = FONTS.get(Path.of("gfx", "fonts").resolve(newValue));
+    GameEngine.configureDefaultFont(FONTS.get(Path.of("gfx", "fonts").resolve(newValue)));
   }
 }

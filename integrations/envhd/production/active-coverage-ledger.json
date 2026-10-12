@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "574023dd8cd1b2a78fa30640432729191c2f6832 plus one independently cleared Cargo fitting correction",
+  "sourceSelectionCheckpoint": "5d857a672f1f6aef60749ea67a4337d179b75736 plus two independently cleared PhantomShip/Fueno repairs",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "3494cc379c9761d573302c03eaa956192afe05eede7e9421b4cc7492ee8479f6",
-    "field-runtime-artwork.json": "4800c78e52aa5b8cec7d6b26c0cf1aa1cc11bea782585b2c9b3f4ffa2c0169c1",
+    "full-coverage.json": "b381123b07bf3f86ae87432760004b4114e63a983ddd8e72a6094552c2ac0a73",
+    "field-runtime-artwork.json": "8b187d0d794ed53b416b5f5cab5347d3e8ba34f23e9fafaad36575f92592466c",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
-    "battle-material-runtime-artwork.json": "026cb84f796456aad9c58860c49db807f0c21381ffe3e5437f9a24f287e55526",
+    "battle-material-runtime-artwork.json": "e499387937c77466a63770866a01e376d5385f136f04c0b1db405077f0a8d0a3",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "field-bespoke-bedding-reviewed-selection.json": "6af60fa9447818366fda841ff1b9b362d84ad6a9a4aac2f2384a53725f75b123",
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
@@ -31,7 +31,7 @@
     "field-bespoke-table-independent-reviewed-selection.json": "addfc9dbc087ed058af2029cee7347b044161e97252a62939fa51a959a5d2db6",
     "field-independent-table-review.json": "87f2332ef6f47f041b6debe24a03f87e6feb832988ce6acb4e4f7c90251a6a5a",
     "field-table-selection-readiness.json": "0c46044a0b825c381066bbe0407210a4bc4d126d6da0b030aebc0e34954ed811",
-    "battle-presentation-artwork-v1.json": "358947f3db72dda8c7d1dbae74ca5de77ad297047fdee19745a8f1af9d05ee1e",
+    "battle-presentation-artwork-v1.json": "f99514b78c7f597afa4f68b218b0f3206b9945fb4068b9b24b902f25055e449f",
     "publication-source-5d3db5c8-generation4-snapshot.json": "e9175154d0479fdba424fd37f2afdea3b890e6e7bece7719d220dc2b549a823f",
     "field-bespoke-donau-two-independent-reviewed-selection.json": "f7f5ab51e5afbe13c566300a863bfb25019575810368fe72d7d3f00264c295b5",
     "field-independent-donau-two-review.json": "0018f0828106bada7ac8caa41dae15f1387e3a5b29fa89f03f9ddba32f48a6b9",
@@ -62,28 +62,36 @@
     "field-bespoke-cargo-local-patch-reviewed-selection.json": "05875ad367cbb90a106708e60b7a17b54020b48dc43b20485628ee0e7e6878ce",
     "field-cargo-local-patch-art-review.json": "c318b44b67f8265d2998fe8b4264766d3876907fd654f6e3b2276c37b330a737",
     "field-independent-cargo-local-patch-review.json": "374900c6f15f580a0861e1f9b5fcb244297854ddb28663d0f5d4c8f14ae621e0",
-    "field-cargo-local-patch-selection-readiness.json": "b78420d0a4ccaac3d941e8034bb175089326c816801df7179aa362bb2cc5b1bf"
+    "field-cargo-local-patch-selection-readiness.json": "b78420d0a4ccaac3d941e8034bb175089326c816801df7179aa362bb2cc5b1bf",
+    "battle-cave-shared-coverage-checkpoint.json": "db6f6e5a03f542ac74e1367b29c87add5693026aa2d212cd4dd26948792935ab",
+    "field-bespoke-phantom-fueno-reviewed-selection.json": "8388460d16c4486b5a123b8e04517dfaabe7fae74ac4819db05065e9ecf0ce81",
+    "field-bespoke-phantom-rgb-local-patch-reviewed-selection.json": "e389326c77a91fd9cb70ff8a4e9a8d54c909ac2a24d6021a348bef03e22a156c",
+    "field-phantom-weathering-local-art-review.json": "02142375bd5ba0398407008de38d8594f075244c20360d99dd9134599149b7c0",
+    "field-fueno-v3-art-review.json": "720e9ee5a42602b002fc0d70e12421b2f5fc157c0b52aa7eed3c21d61052797c",
+    "field-independent-phantom-fueno76-code-review.json": "48a5d21bf62e3269c04b949defbc5a64da2e909954473c1fb8940f52b8bd028e",
+    "field-phantom-fueno-selection-readiness.json": "e1ba01cf44a49265bf4421de9eaa4a780c05e7766cbcd8af0b4886ec44f7d37f",
+    "field-held-draft-count-correction.json": "985ad244dd11816ebbff12d3682407418a3cf47b66e5702515709edc82e670d4"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 203,
+  "knownRemainingStaticImages": 201,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4960,
+      "selectedDevelopment": 4962,
       "selectedNeural": 4886,
-      "selectedPainted": 74,
-      "held": 202,
+      "selectedPainted": 76,
+      "held": 200,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 50,
+      "customHeldDraftSourceImages": 48,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Finish9canonical revision sources and other held prototypes; continue202field holds, one terrain repair and animated/props source/state contracts.",
+      "nextTask": "Finish7canonical revisions andother200fieldholds,1terrain repair, and unknown animated/owned-prop image coverage.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 0,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
@@ -95,7 +103,6 @@
         "54cca4847c56b1096cb8adc5e8c2fea76baa7f3f10d13b0b6d8adb67fd6be101",
         "5c24ecb4d0be733009b0249acf747904cb49b52d12deefcf94beb880db93bddc",
         "626f0e6b422a2ee050de53078ebaaa2fda94a47df0fddf03d3e08981af63fbb1",
-        "63b0c9af6c9bda4609c62c049a653fcef860bd5a4740ccb5e1aa5c6c5a5b9612",
         "66c780d5d756368b2558714d35236014a1b15e18ec70098854dd62b08cb3f943",
         "6ca24f005553c031d0d27b507ad335ce95fec5d7a9443a2854fd1a23fd0639e1",
         "745736c6a0d1c9a694b2295793ff1e4573a9861c9f999995ce85fdbecafd3d90",
@@ -118,7 +125,6 @@
         "93c6bbad7b079b3488c3abebbf3e7195568727ad527cc65c7954fcf22caa30ba",
         "9b74793a802626789aa46bf4776e968c5af1c3e749fe9033af7dcc1e96dcc66b",
         "a140afbf54871254044b4154ed8c67df9fa3cb6519e00fd18b9e44a7f4d3cdab",
-        "a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f",
         "a8b3d4919642e0c982522322730ae602f3f33b5ec4ac1e38f6449aa2f8f4c390",
         "ae3d002cd7ad47d37fe78e51a52145ef1afc615596ef2b67e511d4b74abe860a",
         "afbeac9fe135e0741e6f55247509b4d15e6a8e5bff6cc955de98e361642caa19",
@@ -137,8 +143,8 @@
         "f94d81a9826549e0833a5b8fa48e28bc24ea4f1859b959a010a54e25785c9cfc",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Prior51unique unselected custom keys minus newly selected Cargo fitting;50keys subset202field holds. Repeated versions deduplicated.",
-      "independentlyReviewedCandidatesRequiringRevision": 9,
+      "draftCountMethod": "Prior50 unselected customkeys minus2selected repairs;48keys subset200fieldholds.",
+      "independentlyReviewedCandidatesRequiringRevision": 7,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
       "independentNewSceneryReview": {
         "source": "7262233bbffb1419bfda439b138e4bcc75f01591",
@@ -153,7 +159,7 @@
         "receipt": "field-independent-palace-eight-review.json"
       },
       "independentlyClearedCandidatesAwaitingIntegration": 0,
-      "authoringQueueScope": "83historical canonical source keys:74selected/9revision/0pending. Every oldversion retained on ongoing authoring branch.",
+      "authoringQueueScope": "83historical sourcekeys:76selected/7revision/0pending; alloldversions on ongoingauthoringbranch.",
       "independentFinalEighteenReview": {
         "source": "bdfecbad260e63eb3eed1a7d6147b8e8703553a4",
         "clearedSelected": 16,
@@ -204,10 +210,10 @@
       "fullEncounterContractsClosed": 0,
       "selectedAnimationFamilies": 0,
       "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette.",
-      "selectedPaintedMasters": 56,
+      "selectedPaintedMasters": 65,
       "previouslySelectedPaintedMasters": 12,
-      "newPresentationSelectedMasters": 44,
-      "selectedNeuralMasters": 462
+      "newPresentationSelectedMasters": 53,
+      "selectedNeuralMasters": 453
     },
     {
       "id": "battle-panoramas",
@@ -431,6 +437,12 @@
       "selectedNewSourceImages": 1,
       "independentReview": "field-independent-cargo-local-patch-review.json",
       "reason": "Original-reviewed Cargo fitting patch replayed exactly through bounded source-local transfer; prior73recipes/4959records preserved."
+    },
+    {
+      "manifest": "field-bespoke-phantom-fueno-reviewed-selection.json",
+      "selectedNewSourceImages": 2,
+      "independentReview": "field-independent-phantom-fueno76-code-review.json",
+      "reason": "Source-art/code-reviewed Phantom weathering andFueno support repairs; prior74recipes/4960records exact."
     }
   ],
   "publication": {
@@ -457,8 +469,8 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 35,
-    "paintedBattleMastersAwaitingCoordinatedPublication": 22,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 37,
+    "paintedBattleMastersAwaitingCoordinatedPublication": 31,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
       "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
@@ -483,20 +495,20 @@
         "nativeArtAccepted": 0,
         "finalArtAccepted": 0
       }
-    ]
+    ],
+    "publicationCounterScope": "Deltas refer only to the retained historical generation4 source snapshot; not a fresh current-download census."
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "83historical canonical source keys:74selected/9revision/0pending.50unselectedcustomkeys subset202fieldholds;203knownstatic. Native/final pending.",
+  "authoringCheckpoint": "83historical canonical keys:76selected/7revision/0pending.48customheldkeys subset200fieldholds;201static. Dynamic/props unknown; native/final pending.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "574023dd8cd1b2a78fa30640432729191c2f6832",
-    "fieldSelected": 4959,
-    "fieldPainted": 73,
+    "sourceCommit": "5d857a672f1f6aef60749ea67a4337d179b75736",
+    "fieldSelected": 4960,
+    "fieldPainted": 74,
     "authoringCandidates": 83,
-    "independentlyPending": 0,
-    "independentlyRevision": 10,
-    "heldSourceKeys": 51,
+    "independentlyRevision": 9,
+    "heldSourceKeys": 50,
     "nativeAccepted": 0,
     "finalQualityAccepted": 0,
-    "note": "Accepted base before this proposed one-cargo increment. New4960/74selection awaits merge."
+    "note": "Accepted base before this two-repair selection; new4962/76 awaits merge."
   }
 }

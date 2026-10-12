@@ -1,6 +1,6 @@
 # UIHD production and enhanced rendering
 
-UIHD 0.3 completes the audited default HUD, portrait and interface source denominator in one deliverable. Its738 custom outputs cover gameplay/menu/save portraits, all HUD palettes, dialogue, world-map/exploration cues, every chapter animation/shadow state, the356 raster credits, title/end screens and loading eye. The [complete source ledger](UIHD_COVERAGE.md) distinguishes retained fonts/procedural UI, other mods' scene art and remaining hardware/artistic acceptance.
+UIHD 0.3 completes the audited default HUD, portrait and interface source denominator in one deliverable. Its738 custom outputs cover gameplay/menu/save portraits, all HUD palettes, dialogue, world-map/exploration cues, every chapter animation/shadow state, the356 raster credits, title/end screens and loading eye. The [complete source ledger](UIHD_COVERAGE.md) distinguishes the separately integrated HD font and retained procedural UI, other mods' scene art and remaining hardware/artistic acceptance.
 
 The target remains a gorgeous 2026 AA retro presentation with readable combat cues and responsive timing. Source/component coverage is complete; all-screen visual acceptance, combined gameplay and physical Steam Deck measurements remain unverified. The earlier 259-resource whole-game claim was incomplete and is superseded by the source-denominator audit.
 
@@ -10,7 +10,7 @@ UIHD remains independent in the existing Mods manager and enters the normal Defi
 
 The catalog contains30 PNG atlas entries, 26 native-source atlas entries, 13 ordinary PNGs, 665 native variants from 424 families and4 direct rasters. Every output includes source/output identities, dimensions, processing pins, coverage identity and development review status. Palette and animation variants are resources, not extra screens.
 
-The approved offline Real-ESRGAN-x4plus pipeline blends70% reconstructed RGB with30% nearest source artwork. It restores exact ordinary PNG alpha and native STP/black visibility classes after reconstruction. Small icons/portraits use 4×; full HUD/menu/world-map pages and large background/Game Over rasters use 2×. Font choice and existing HD title assets remain integrated. Source-layout inspection covered all nine portraits, every additional chapter/credit source and the added HUD/direct raster families; this is not final player artistic acceptance.
+The approved offline Real-ESRGAN-x4plus pipeline blends70% reconstructed RGB with30% nearest source artwork. It restores exact ordinary PNG alpha and native STP/black visibility classes after reconstruction. Small icons/portraits use 4×; full HUD/menu/world-map pages and large background/Game Over rasters use 2×. UIHD also supplies the faithful 139-glyph Original HD font by default while preserving the configured font for fallback when UIHD is disabled. Existing HD title assets remain integrated. Source-layout inspection covered all nine portraits, every additional chapter/credit source and the added HUD/direct raster families; this is not final player artistic acceptance.
 
 ## Engine integration and residency
 

@@ -1,0 +1,857 @@
+{
+  "status": "controller-hand-redraw-development-candidate-independent-art-review-pending",
+  "sourceImage": "gfx/fonts/default.png",
+  "sourceMetadata": "gfx/fonts/default.json",
+  "sourceImageSha256": "dcf84d68a67f0f76aaaf4233d0c2d1ec3c588e8f98a2ca3fb4d873b0fee246d8",
+  "sourceMetadataSha256": "b4faacbef8f23e5fff5374484c1356e9f92134b1abaf928c491e8587e91b1c12",
+  "attribution": "Original font/reference symbols from Severed Chains and The Legend of Dragoon; preserve project upstream attribution and applicable existing notices. Custom controller SVG redraws authored for Legend of Dragoon: Definitive. No claim of ownership of controller trademarks.",
+  "authoredRedraws": 41,
+  "requiredGlyphs": 41,
+  "artAccepted": 0,
+  "runtimeSelected": 0,
+  "deviceAccepted": 0,
+  "logicalMetricsChanged": 0,
+  "scope": "All and only the 41 drawable private-area atlas glyphs; EF00 is not a drawable atlas symbol. ASCII and other nonprivate glyphs are excluded.",
+  "glyphs": [
+    {
+      "key": "0xe000",
+      "codepoint": "U+E000",
+      "label": "D-pad Up",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "5c98c2c1475237cbe6255611d7f247360d30667d586ab4b999786fad5b702390",
+      "path": "ue000.svg",
+      "sha256": "c36bd73be11eff28fa5d9e7ed299f733a2992b1362b2b9d4bfe985cafbfb4e7b",
+      "designIntent": "Straight triangular outline replaces stepped diagonals; keep the wide horizontal foot, hollow centre and compact apex."
+    },
+    {
+      "key": "0xe001",
+      "codepoint": "U+E001",
+      "label": "D-pad Down",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 16,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "06c6a8d3d4878fc279e3931fa7d8cd27f0c9061a56fc65c8603bbc76a1d45fcd",
+      "path": "ue001.svg",
+      "sha256": "5a8ccd1befae2c194eb1842977a2806ad25e80e639cc375a6cac4d8d5110ebbf",
+      "designIntent": "Downward hollow triangle mirrors the source orientation, full-width cap and fine diagonal sides."
+    },
+    {
+      "key": "0xe002",
+      "codepoint": "U+E002",
+      "label": "D-pad Left",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 5,
+        "texH": 16,
+        "w": 5,
+        "texU": 32,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "a17c5c1c5920498378afc5fee0318cd59c129af7bd206421f63be67005e6ffe4",
+      "path": "ue002.svg",
+      "sha256": "921ef3762d2ec69a0a1b8d2fc46bb1054b3366222377aef65cc8415eb1394c2e",
+      "designIntent": "Continuous left-pointing diagonal outline keeps the tall right stem and hollow interior."
+    },
+    {
+      "key": "0xe003",
+      "codepoint": "U+E003",
+      "label": "D-pad Right",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 5,
+        "texH": 16,
+        "w": 5,
+        "texU": 48,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "23a19de4558361515d2799509df2eb9f2f773ec5b523b7594dd289cf2fb1d3b8",
+      "path": "ue003.svg",
+      "sha256": "f308d85a5ef21d946f69fa547ddef0acfb13b95ea9450ef027482176fcf06423",
+      "designIntent": "Continuous right-pointing diagonal outline keeps the tall left stem and hollow interior."
+    },
+    {
+      "key": "0xe004",
+      "codepoint": "U+E004",
+      "label": "Select / SEL",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 15,
+        "texH": 16,
+        "w": 15,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "46b9055f276f0121e48ed18c00ddcab2774bce0651f9c947850bce02123dc6b7",
+      "path": "ue004.svg",
+      "sha256": "b900c0e00e4e56913d4c4d236a89941b2a03cfc8b07ac4525e21116abd516f0d",
+      "designIntent": "Individually reconstruct the original SEL label, maintaining its three-letter identity and one-unit strokes; S shoulders use curves."
+    },
+    {
+      "key": "0xe005",
+      "codepoint": "U+E005",
+      "label": "Start",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 64,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "92f7f37d69d99f81c348aef6d4bdb83c52ba018f7e5d41136afebd284fcc3f94",
+      "path": "ue005.svg",
+      "sha256": "f413dcbfbd5ec529c0971467dea887d057cbd9d87c86fe92a9cca56d6ec3822e",
+      "designIntent": "Preserve the hollow rightward Start wedge with square left end and continuous tapered sides."
+    },
+    {
+      "key": "0xe006",
+      "codepoint": "U+E006",
+      "label": "Left Bumper / LB",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 96,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "12f3e61e681bb50f051b3100d41e37d20d628c237dde418cb7264965362d8612",
+      "path": "ue006.svg",
+      "sha256": "338445139fb65d937f7a637419db7a7d725b476a984f097eecdc052912278302",
+      "designIntent": "Keep the thin LB shoulder label with squared L and separately rounded, open-counter B bowls."
+    },
+    {
+      "key": "0xe007",
+      "codepoint": "U+E007",
+      "label": "Left Trigger / LT",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 10,
+        "texH": 16,
+        "w": 10,
+        "texU": 112,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "bc725d81bc5d0115893631ff7a476b6996854fa2977ebe56687f1db01ac2e81c",
+      "path": "ue007.svg",
+      "sha256": "f36134439984b9a64a709682d0a7fb07b0b2ffddd1ef526dd0c22d71106e56db",
+      "designIntent": "Keep the thin LT label, exact letter separation and straight source terminals."
+    },
+    {
+      "key": "0xe008",
+      "codepoint": "U+E008",
+      "label": "Left Stick / circled L",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 128,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "01c4bb4239d26d54a177c3124725d1aaa21559c099f7559ba7c7f0fcd45f1b88",
+      "path": "ue008.svg",
+      "sha256": "bab84e12b5bfce378aa15f5ba9483606b6d2a4cf40abf926eacc9ca1050fd0ff",
+      "designIntent": "Reconstruct circular stick shell with continuous curves; retain the small thin L centred inside the original round button."
+    },
+    {
+      "key": "0xe009",
+      "codepoint": "U+E009",
+      "label": "Right Bumper / RB",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 10,
+        "texH": 16,
+        "w": 10,
+        "texU": 144,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "bd99e732dca2ed9e567c8223a87ddc2e74e1021835cfe9a8a6c614caebbc81e9",
+      "path": "ue009.svg",
+      "sha256": "c572ff75bbb3031813eb7443c91801c2cbdee265df2245dd6d1a6da317b88a35",
+      "designIntent": "Keep the RB label, curved bowls and distinct continuous R leg without inventing a new enclosure."
+    },
+    {
+      "key": "0xe00a",
+      "codepoint": "U+E00A",
+      "label": "Right Trigger / RT",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 11,
+        "texH": 16,
+        "w": 11,
+        "texU": 160,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "62f3f323ad2a0aae0ac1443ff4ef88bbc1ab23c80579604a2574885271001860",
+      "path": "ue00a.svg",
+      "sha256": "0d48143c58fbb0ea07bf79e82aa1a35d87734ae3b83ed36ee034c0f98acb5052",
+      "designIntent": "Keep the thin RT label, continuous R bowl/leg and full-width squared T cap."
+    },
+    {
+      "key": "0xe00b",
+      "codepoint": "U+E00B",
+      "label": "Right Stick / circled R",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 176,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "6c912697aef596bed679c78abc897ebb60129da2eab527704b48b6d88eafb6f0",
+      "path": "ue00b.svg",
+      "sha256": "d72980ce070d64d08050414dc82fdf77f7b6b5ef8ddeda2c3841b7b015a204a8",
+      "designIntent": "Reconstruct the circular stick shell and compact R, preserving its counter and diagonal leg."
+    },
+    {
+      "key": "0xe00c",
+      "codepoint": "U+E00C",
+      "label": "A button",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 192,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "8bff5d0e87c9ccbd9be5df81652a6ba2419b38de630575e891f94dc2e110abe3",
+      "path": "ue00c.svg",
+      "sha256": "c3350f5db62b17ab8eef97f771cb2ac24cd2676bb8ef67c11a87f904095d32fd",
+      "designIntent": "Keep the broader controller A separate from ASCII A: bold flat apex, heavy continuous diagonals and low crossbar."
+    },
+    {
+      "key": "0xe00d",
+      "codepoint": "U+E00D",
+      "label": "B button",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 7,
+        "texH": 16,
+        "w": 7,
+        "texU": 208,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "76700de7862b5ea57329b17503d20169ef95a7e5739b7446259a2fe6b4dc7e2a",
+      "path": "ue00d.svg",
+      "sha256": "a6823b7ecc783017ae2d79ab3a5bd335b3810b6b1e49413366406510b9aec5c3",
+      "designIntent": "Preserve the heavy left stem and two compact controller B bowls; individually reconstruct their curved transitions."
+    },
+    {
+      "key": "0xe00e",
+      "codepoint": "U+E00E",
+      "label": "X button",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 9,
+        "texH": 16,
+        "w": 9,
+        "texU": 224,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "fac69847b3d2b65711822c104105a18bc49c636c1e847d1825f2dc882848ba3a",
+      "path": "ue00e.svg",
+      "sha256": "ad15d6d9d9471d93f50ffd46c549b397fbd9350bb51c497b184a2195ceb44051",
+      "designIntent": "Preserve the wider bold controller X, broad terminals and symmetric continuous crossing diagonals."
+    },
+    {
+      "key": "0xe00f",
+      "codepoint": "U+E00F",
+      "label": "Y button",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 240,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "920b102293b9d24abcbd3ea4149d8f48a11b1d14b1ca32e880ae495f8ef88b8c",
+      "path": "ue00f.svg",
+      "sha256": "a693ae8ffe090bb4f9c44a3deb02cb515478b536ac7ebb8c7f032ecb7a9cafe8",
+      "designIntent": "Retain bold forked Y shoulders and two-unit vertical foot with smooth continuous diagonal arms."
+    },
+    {
+      "key": "0xe010",
+      "codepoint": "U+E010",
+      "label": "Left Axis X",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 12,
+        "texH": 16,
+        "w": 12,
+        "texU": 16,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "272351c5b251368c352baf666d486735d217c4ef25df2df5e94d4b4bd6c78946",
+      "path": "ue010.svg",
+      "sha256": "80dc4b3848ae797578d584b8fca4e7dd7792c9a56c13a1a58d15e8093c242160",
+      "designIntent": "Retain L and separated left/right chevrons: two intentional top/bottom gaps distinguish the horizontal axis diamond."
+    },
+    {
+      "key": "0xe011",
+      "codepoint": "U+E011",
+      "label": "Left Axis Y",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 12,
+        "texH": 16,
+        "w": 12,
+        "texU": 0,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "1e7c84abbbc7ae3c4cc440fbec0e563e670f4fceca8ebca9d6e9d7ec3112934f",
+      "path": "ue011.svg",
+      "sha256": "9714f54d720ab2719e34939bae94f9fa3a9af9558e6467b08abb6743ef2e9732",
+      "designIntent": "Retain L and separated upper/lower chevrons: lateral gaps distinguish the vertical axis diamond."
+    },
+    {
+      "key": "0xe012",
+      "codepoint": "U+E012",
+      "label": "Right Axis X",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 13,
+        "texH": 16,
+        "w": 13,
+        "texU": 48,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "8a878488d10cb457aa6d2c24264454afb30f609e3096709ad4335e1feaea7bc8",
+      "path": "ue012.svg",
+      "sha256": "0ffc0ad830e355a78653d1d319e2e7e2e2609432ba404c077279886f962f6240",
+      "designIntent": "Retain R and horizontal split diamond at its original one-unit wider placement; preserve both directional gaps."
+    },
+    {
+      "key": "0xe013",
+      "codepoint": "U+E013",
+      "label": "Right Axis Y",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 13,
+        "texH": 16,
+        "w": 13,
+        "texU": 32,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "979ea01e71dec780c0e1b6b05bc856890ff922ede8262a7cae32aaec599cdeb6",
+      "path": "ue013.svg",
+      "sha256": "e60dbfdc11cb63905e948966f5905cca1ee76597b2c55223da46a70e3d47ba1b",
+      "designIntent": "Retain R and vertical split diamond at its original one-unit wider placement; preserve both lateral gaps."
+    },
+    {
+      "key": "0xe014",
+      "codepoint": "U+E014",
+      "label": "Generic Guide",
+      "sourceMetrics": {
+        "desc": "Guide",
+        "colour": false,
+        "texW": 10,
+        "texH": 14,
+        "w": 10,
+        "texU": 0,
+        "x": 0,
+        "h": 14,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "efc213dd7b68f032197d13dd0fc4bd73c0fccc684ea85df3061aecbf90f5747e",
+      "path": "ue014.svg",
+      "sha256": "cd23b0d23d68e4d29e1d58142ea6b964d69a22262fa6ca845c220bed73fbcc6a",
+      "designIntent": "Individually reconstruct the source crossed-ribbon Guide silhouette with sweeping arms and separated lower legs; no added circular enclosure."
+    },
+    {
+      "key": "0xe100",
+      "codepoint": "U+E100",
+      "label": "Xbox Back / cropped SE",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "ed795c73ec4098b03c13a1ae6f39efadf0dd05b760fb7e8174b8207594a1bee0",
+      "path": "ue100.svg",
+      "sha256": "fe9b5595265b6f70fe26802b15b95fd5d4573aad00cd4e265f054a738c64ed98",
+      "designIntent": "Retain the unusual original two-letter SE crop within eight units; smooth the S while keeping the cropped E, rather than inventing BACK text."
+    },
+    {
+      "key": "0xe101",
+      "codepoint": "U+E101",
+      "label": "Xbox Menu",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 64,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "35ede8a140e330e8f7857a339598f888992e2e885794a925084e46a550316059",
+      "path": "ue101.svg",
+      "sha256": "e85684c6014caa42c05c605d0b885b64f2ec54e40f875808fcd9de2fd165c8af",
+      "designIntent": "Three genuinely straight one-unit menu bars preserve their exact horizontal extent and vertical spacing."
+    },
+    {
+      "key": "0xe102",
+      "codepoint": "U+E102",
+      "label": "Xbox View",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 80,
+        "x": 0,
+        "h": 16,
+        "texV": 224,
+        "y": 0
+      },
+      "sourceMetricsSha256": "56679b57999eafbcbc833aff0900cb70e7da493668a457e76ded8bdb66bfa69b",
+      "path": "ue102.svg",
+      "sha256": "77c3e89cc5e8accd88e9284cb416fa37c8b02932a9f0d2709c2cff8be0fe486e",
+      "designIntent": "Preserve two overlapping view rectangles: exposed upper-left corners and a complete lower-right framed square."
+    },
+    {
+      "key": "0xe103",
+      "codepoint": "U+E103",
+      "label": "Xbox Guide",
+      "sourceMetrics": {
+        "desc": "Xbox Guide",
+        "colour": false,
+        "texW": 10,
+        "texH": 14,
+        "w": 10,
+        "texU": 0,
+        "x": 0,
+        "h": 14,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "ff9492fd8c73e68b8271b890f2e4461a471730b1f9d7eb7abe98200acb63fcae",
+      "path": "ue103.svg",
+      "sha256": "cd23b0d23d68e4d29e1d58142ea6b964d69a22262fa6ca845c220bed73fbcc6a",
+      "designIntent": "Preserve the source identity shared with generic Guide, independently recorded at the Xbox codepoint; continuous crossed ribbons, no invented circle."
+    },
+    {
+      "key": "0xe200",
+      "codepoint": "U+E200",
+      "label": "PlayStation Cross",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 192,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "18fdf0c885ebe5d7629c1c357f31abc11a8c13cb424a12036386cc53b708b14c",
+      "path": "ue200.svg",
+      "sha256": "9ccbab0540a0f51f94b9df984c8c11053b0f6511b7afc3054b63a64fe62020cc",
+      "designIntent": "Preserve the smaller PlayStation cross independently from controller X: continuous diagonals in the original seven-unit ink height."
+    },
+    {
+      "key": "0xe201",
+      "codepoint": "U+E201",
+      "label": "PlayStation Circle",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 208,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "fc837e798e126a9cee631c8506a67a25ac2a2e003382dbc82e8423b0dddaaed5",
+      "path": "ue201.svg",
+      "sha256": "f28b825f746bb67e0b3b1ea8237c0689b1cb56b708723f71d4f2d9b79eacff85",
+      "designIntent": "Continuous round outer/inner curves preserve the hollow Circle symbol and one-unit stroke, distinct from the circled stick letters."
+    },
+    {
+      "key": "0xe202",
+      "codepoint": "U+E202",
+      "label": "PlayStation Square",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 224,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "3620cc789ccb8b928edde0a5e26d82db492b408c2e6585dae2419d3337671c16",
+      "path": "ue202.svg",
+      "sha256": "b926292180a30455b1d3706633135692293f29643bb63aeb6f88bedba91946a4",
+      "designIntent": "Keep the genuinely rectangular Square with original heavy two-unit sides and lighter one-unit horizontal caps."
+    },
+    {
+      "key": "0xe203",
+      "codepoint": "U+E203",
+      "label": "PlayStation Triangle",
+      "sourceMetrics": {
+        "colour": false,
+        "texW": 8,
+        "texH": 16,
+        "w": 8,
+        "texU": 240,
+        "x": 0,
+        "h": 16,
+        "texV": 240,
+        "y": 0
+      },
+      "sourceMetricsSha256": "8512db0069d9807b310538f2ff7767e65f8616d17b4838bda586c11217ef15ee",
+      "path": "ue203.svg",
+      "sha256": "b1e6926a57a5b523cf164b407f43270808c453f72c82b83f9347222891eec4dd",
+      "designIntent": "Reconstruct continuous tapered Triangle sides while preserving its narrow flat apex, hollow counter and full-width base."
+    },
+    {
+      "key": "0xe204",
+      "codepoint": "U+E204",
+      "label": "PlayStation Touchpad",
+      "sourceMetrics": {
+        "desc": "PS Touchpad",
+        "colour": false,
+        "texW": 12,
+        "texH": 12,
+        "w": 12,
+        "texU": 32,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "864b74aca2582433f196d5bc6ce8c0c80a943f6993a35a31c4bb25bd80d86189",
+      "path": "ue204.svg",
+      "sha256": "2acb2ae38c244dc700331e9b71767962d30dca3db60f52dca7f7bdf52df9063e",
+      "designIntent": "Keep the broad tapered touchpad outline and small internal curved-arrow marking; individually redraw shoulder curves, not a generic rounded rectangle."
+    },
+    {
+      "key": "0xe205",
+      "codepoint": "U+E205",
+      "label": "PlayStation Guide",
+      "sourceMetrics": {
+        "desc": "PS Guide",
+        "colour": false,
+        "texW": 10,
+        "texH": 14,
+        "w": 10,
+        "texU": 16,
+        "x": 0,
+        "h": 14,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "bb18e1bb4c9e719ac254ee4412ed751cfb4073dc9fed47c9825b354558554830",
+      "path": "ue205.svg",
+      "sha256": "8b216837117f2efbadeda7ff649ff95a5cfb18b677002ffeb52f1ac004639bb1",
+      "designIntent": "Individually reconstruct the source stacked P/S guide mark: tall P spine, upper bowl and two lower perspective wings; preserve asymmetry and descender."
+    },
+    {
+      "key": "0xe300",
+      "codepoint": "U+E300",
+      "label": "Paddle 1",
+      "sourceMetrics": {
+        "desc": "Paddle 1",
+        "colour": false,
+        "texW": 8,
+        "texH": 12,
+        "w": 8,
+        "texU": 48,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "7faccb154694316d044bd6a3a43b76c3a1bf0986461be94738ad83facc61d475",
+      "path": "ue300.svg",
+      "sha256": "1437bbe8446131b2d10ce78b668461a0ca53eb9658562ed2647f5dc25c2c0f6a",
+      "designIntent": "Reconstruct the hooked paddle shell with curved transitions and the original compact numeral 1; retain the narrower shoulder and flared lower-right edge."
+    },
+    {
+      "key": "0xe301",
+      "codepoint": "U+E301",
+      "label": "Paddle 2",
+      "sourceMetrics": {
+        "desc": "Paddle 2",
+        "colour": false,
+        "texW": 8,
+        "texH": 12,
+        "w": 8,
+        "texU": 64,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "52e50ba1fd142a081f625f7606de2456cf86d355c4ff23d430e2ee55e8fc4253",
+      "path": "ue301.svg",
+      "sha256": "23f96ed5487aceff0ee326f2176bc2526259db3bd688d9c8f08ee3045f23cee7",
+      "designIntent": "Reconstruct the hooked paddle shell with curved transitions and the original compact numeral 2; retain the narrower shoulder and flared lower-right edge. The numeral 2 has a curved shoulder and continuous descending diagonal rather than square stair corners."
+    },
+    {
+      "key": "0xe302",
+      "codepoint": "U+E302",
+      "label": "Paddle 3",
+      "sourceMetrics": {
+        "desc": "Paddle 3",
+        "colour": false,
+        "texW": 8,
+        "texH": 12,
+        "w": 8,
+        "texU": 80,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "b39e0ac12e83fba12a5ea257795a0493eb3ec9ff79180623892e68079470a908",
+      "path": "ue302.svg",
+      "sha256": "216453fb8efc072a48622789a3e62360b70f7f1e2e45cb75bd8f839f4b13a823",
+      "designIntent": "Reconstruct the hooked paddle shell with curved transitions and the original compact numeral 3; retain the narrower shoulder and flared lower-right edge."
+    },
+    {
+      "key": "0xe303",
+      "codepoint": "U+E303",
+      "label": "Paddle 4",
+      "sourceMetrics": {
+        "desc": "Paddle 4",
+        "colour": false,
+        "texW": 8,
+        "texH": 12,
+        "w": 8,
+        "texU": 96,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "3129e42e19b38c09b7608f1fa7ce484c9965fbbdfd36270f7f3ca9756f74fdb3",
+      "path": "ue303.svg",
+      "sha256": "e8c249c2d792ae86546e4307789fddddaf5e44aa0cd17535fff3ac3f267e0ec8",
+      "designIntent": "Reconstruct the hooked paddle shell with curved transitions and the original compact numeral 4; retain the narrower shoulder and flared lower-right edge."
+    },
+    {
+      "key": "0xe304",
+      "codepoint": "U+E304",
+      "label": "Misc 1",
+      "sourceMetrics": {
+        "desc": "Misc 1",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 112,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "fdb74358364d3159782ce68147211073910b6cceeb25654474677d71b474cbaf",
+      "path": "ue304.svg",
+      "sha256": "c89d860175696679bf91e6a2bd338bf162a31c6d060365cbb282d71745dd1ab0",
+      "designIntent": "Reconstruct the continuous circular Misc shell and individually drawn numeral 1, preserving the narrow internal label and original round-button extent."
+    },
+    {
+      "key": "0xe305",
+      "codepoint": "U+E305",
+      "label": "Misc 2",
+      "sourceMetrics": {
+        "desc": "Misc 2",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 128,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "01e5d75556dc5ae3c30321ec8f9a1f5fe655ca6ebd8f9ff16ff0a6edc1677b9e",
+      "path": "ue305.svg",
+      "sha256": "217c6f4abb755ab1b17d771a5a5015d6cfaed79df8ccc8338ccf4fb6f02445f1",
+      "designIntent": "Reconstruct the continuous circular Misc shell and individually drawn numeral 2, preserving the narrow internal label and original round-button extent. The numeral 2 has a curved shoulder and continuous descending diagonal rather than square stair corners."
+    },
+    {
+      "key": "0xe306",
+      "codepoint": "U+E306",
+      "label": "Misc 3",
+      "sourceMetrics": {
+        "desc": "Misc 3",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 144,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "85ea6bc4eda87f5896327d18889f36e592d8739521bcb955b10364cfbd40ee8f",
+      "path": "ue306.svg",
+      "sha256": "0ff173956603938f34f5882c7814d09203d09cf5404e82b044eff72596bc723d",
+      "designIntent": "Reconstruct the continuous circular Misc shell and individually drawn numeral 3, preserving the narrow internal label and original round-button extent."
+    },
+    {
+      "key": "0xe307",
+      "codepoint": "U+E307",
+      "label": "Misc 4",
+      "sourceMetrics": {
+        "desc": "Misc 4",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 160,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "658fe34ff2b1ce96a5fe1d38b931d9c3bebcedc4de4838f6ad17106438d7441f",
+      "path": "ue307.svg",
+      "sha256": "b7f61de3fed65d5fc3e1603d8b687aa222f6c56de72e58c871f4a165dd3e3abc",
+      "designIntent": "Reconstruct the continuous circular Misc shell and individually drawn numeral 4, preserving the narrow internal label and original round-button extent."
+    },
+    {
+      "key": "0xe308",
+      "codepoint": "U+E308",
+      "label": "Misc 5",
+      "sourceMetrics": {
+        "desc": "Misc 5",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 176,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "f69c3be249e4b2830c97c3e8df2e0bce0f19456553772487e7e1d4c735cba71c",
+      "path": "ue308.svg",
+      "sha256": "2ace47bd527c88d0bd94e004d78ea8d5a82e117f9946216ab5f4b61f8955f962",
+      "designIntent": "Reconstruct the continuous circular Misc shell and individually drawn numeral 5, preserving the narrow internal label and original round-button extent."
+    },
+    {
+      "key": "0xe309",
+      "codepoint": "U+E309",
+      "label": "Misc 6",
+      "sourceMetrics": {
+        "desc": "Misc 6",
+        "colour": false,
+        "texW": 9,
+        "texH": 12,
+        "w": 9,
+        "texU": 192,
+        "x": 0,
+        "h": 12,
+        "texV": 208,
+        "y": 0
+      },
+      "sourceMetricsSha256": "cefdd9ca2c3b8d2806b1c894dc0960198ab35706cf8f0000d7811bbd51ed662f",
+      "path": "ue309.svg",
+      "sha256": "700bcf452ec20e13e6802eb6c975c5920349fe7c34b2aa3ce8702805b9eb63ac",
+      "designIntent": "Reconstruct the continuous circular Misc shell and individually drawn numeral 6, preserving the narrow internal label and original round-button extent."
+    }
+  ],
+  "visualLimitations": [
+    "All 41 glyphs are authoring candidates, independently unaccepted.",
+    "Headless Java2D comparison boards assess source identity and static shape only; final texture rasterization, scale/filtering, controller prompts and Steam Deck readability remain unverified.",
+    "Guide logos, the compact paddle-number counters and thin axis gaps require independent small-scale art review.",
+    "No automatic runtime selection or saved font configuration change is included."
+  ]
+}

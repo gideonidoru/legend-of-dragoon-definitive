@@ -24,7 +24,7 @@ The selected catalog has 738 custom outputs: 30 PNG atlas entries, 26 native-sou
 
 These are explicit members of the source audit, rather than missing UIHD raster replacements:
 
-* `gfx/fonts/default.png` and `smooth.png`, including controller glyphs, use the engine font renderer. The original retro font and existing 1024² smooth font remain selectable in the graphics configuration. UIHD does not override that choice.
+* UIHD automatically supplies the faithful Original HD font: 98 text/punctuation glyphs and 41 controller symbols packed in a 2048² atlas, with all Original logical metrics preserved. The font atlas is separate from the 738 interface outputs counted above. The engine keeps the configured font for fallback and restores it when UIHD is disabled; no separate HD-font option is added. See [font source and runtime evidence](UIHD_ORIGINAL_HD_FONT.md).
 * Existing HD `gfx/ui/logo.png` and `title_menu.png` remain authored title artwork; the additional native title sources above are upgraded. `credits_fade.png` is a procedural gradient mask.
 * HUD bars, borders, Addition reticles, panel backgrounds and credit gradients use geometry. They retain resolution-independent drawing and protected UI scope.
 * Dabas/PocketStation renders an emulated monochrome display; its pixel identity is gameplay state, not a restoration source. The OS window icon is application metadata.

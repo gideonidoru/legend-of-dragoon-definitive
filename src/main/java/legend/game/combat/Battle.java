@@ -3023,18 +3023,20 @@ public class Battle extends EngineState<Battle> {
   public static void loadCombatantModelAndAnimation(final Battle battle, final BattleEntity27c bent, final CombatantStruct1a8 combatant) {
     bent.model_148.deleteModelParts();
 
-    final CContainer tmd;
-    final byte[] materialModelSource;
+    final FileData modelSource;
     if(combatant._1a4 >= 0) {
-      materialModelSource = boundedMaterialSource(battleState_8006e398.getGlobalAsset(combatant._1a4).data_00);
-      tmd = new CContainer(bent.model_148.name, battleState_8006e398.getGlobalAsset(combatant._1a4).data_00);
+      modelSource = battleState_8006e398.getGlobalAsset(combatant._1a4).data_00;
       //LAB_800c9590
     } else if(combatant.mrg_00 != null && combatant.mrg_00.get(32).hasVirtualSize()) {
-      materialModelSource = boundedMaterialSource(combatant.mrg_00.get(32));
-      tmd = new CContainer(bent.model_148.name, combatant.mrg_00.get(32));
+      modelSource = combatant.mrg_00.get(32);
     } else {
       throw new RuntimeException("Invalid state");
     }
+
+    final byte[] materialModelSource = boundedMaterialSource(modelSource);
+    // Packet normalization mutates parser input. Keep the cached source identity stable for later HD reloads.
+    final CContainer tmd = new CContainer(bent.model_148.name,
+      materialModelSource == null ? modelSource : new FileData(materialModelSource.clone()));
 
     //LAB_800c95bc
     combatant.tmd_08 = tmd;

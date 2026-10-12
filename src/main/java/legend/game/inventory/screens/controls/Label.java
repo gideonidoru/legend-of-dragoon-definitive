@@ -19,6 +19,7 @@ public class Label extends Control {
   private VerticalAlign verticalAlign = VerticalAlign.TOP;
   private boolean autoSize = true;
   private Font font = GameEngine.DEFAULT_FONT;
+  private long fontGeneration = -1;
   private final FontOptions fontOptions = new FontOptions().colour(TextColour.BROWN).shadowColour(TextColour.MIDDLE_BROWN);
 
   public Label(final TextComponent text) {
@@ -44,7 +45,19 @@ public class Label extends Control {
 
   public void setFont(final Font font) {
     this.font = font;
+    this.updateTextSize();
+    this.updateAutoSize();
   }
+
+  private void refreshFontMetrics() {
+    if(this.fontGeneration != this.font.generation()) {
+      this.updateTextSize();
+      this.updateAutoSize();
+    }
+  }
+
+  @Override public int getWidth() { this.refreshFontMetrics(); return super.getWidth(); }
+  @Override public int getHeight() { this.refreshFontMetrics(); return super.getHeight(); }
 
   public Font getFont() {
     return this.font;
@@ -79,6 +92,7 @@ public class Label extends Control {
   }
 
   private void updateTextSize() {
+    this.fontGeneration = this.font.generation();
     this.textWidth = this.font.textWidth(this.text.get()) * this.getScale();
     this.textHeight = this.font.textHeight(this.text.get()) * this.getScale();
   }
@@ -98,6 +112,8 @@ public class Label extends Control {
 
   @Override
   protected void render(final int x, final int y) {
+    this.font.init();
+    this.refreshFontMetrics();
     final float offsetX = switch(this.fontOptions.getHorizontalAlign()) {
       case LEFT -> 0;
       case CENTRE -> this.getWidth() / 2.0f;
