@@ -1,0 +1,330 @@
+{
+  "schema": 1,
+  "reviewer": "independent Spec actual-original art/layout reviewer undersea_spec",
+  "snapshot": "a4bb7d3d14fae81b0a0ebc6f9d9643ffb500a9ff",
+  "packetSha256": "2dafe0caf74894daf851646d37bb147e34e45a88a3a12e301fe474d6ec5c3aeb",
+  "authorManifestSha256": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
+  "scope": "Only eight existing Marshland stage10 static candidates. Actual-original source/art/layout gate; no runtime selection or mapped scene, seams, native, physical Steam Deck or final beauty acceptance. Whole-game presentation remains ongoing.",
+  "sourceModelSha256": "8a8a983c352fa208304f74575fc2979f53c73f30602afbbf15c2d8d3db5990c4",
+  "sourceTimSha256": "0ec3efdc6acf73922731ed378ac1e610d11f13d33f377fae9407166b848c89e2",
+  "sourceModelFile": "SECT/DRGN0.BIN/2507/0/0",
+  "sourceTimFile": "SECT/DRGN0.BIN/2507/2",
+  "comparisons": [
+    {
+      "sourceKey": "aed9171ced7062941ac461488392cdb96b8adebf9648d5b4e91cdd409164e780",
+      "sourceSize": [
+        72,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 10,
+          "page": 7,
+          "clut": 15580,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            0,
+            256,
+            72
+          ],
+          "sourceUvOrigin": [
+            184,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "a7dcf9d976c623f5ca098a66a3c9f2148950589cdaad8c0b3c80a07b4a0d1414",
+      "outputSha256": "74dd887bae7af555b882af37c7721b972dc866621101cac8ca14622686df04d7",
+      "priorCandidateSha256": "0c5823b0a933f84c10633d11d8a183affb42c7202b082e81c695957f76a20e21",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Preserves the main ochre earth/rock divisions, broad subdued gray-green area at right/lower center, original tiny pale marks and left/bottom neighboring fragments. Added grain refines existing muddy material without a new major pit, opening or macro ridge.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "414cc6a7991c4ec54403df9d8007852b1f8c560da7b2028d92619859033a1c0c",
+      "sourceSize": [
+        72,
+        79
+      ],
+      "sourceBindings": [
+        {
+          "stage": 10,
+          "page": 7,
+          "clut": 15836,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            56,
+            256,
+            135
+          ],
+          "sourceUvOrigin": [
+            184,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "a6f096de10cbf07dcc61b39f2cddaedb5f16a10baf59957933490cf971329d11",
+      "outputSha256": "46087729e0daec08011266479c48aeeaf9e365030b4149b0017540c52a5a0982",
+      "priorCandidateSha256": "1f2a5b098d534371e0cd89aa68fbe22c8f02d99844cc7f86d65c373cfaaf80db",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "REVISE",
+      "reason": "The central gray-green source patches remain in approximately the same area, but the candidate gives them crisply bounded angular slab shapes and an overlapping X-like arrangement with pronounced dark separations. The actual original supports soft damp green patches more clearly than discrete stacked slate. Reduce the hard geometric boundaries/relief and keep the broad damp source reading; retain the original muddy divisions and neighboring strips.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "e29f905598c53e8e46c1847d816e4bad9bcc6bf48a95473e66def6d6884d2c0e",
+      "sourceSize": [
+        71,
+        79
+      ],
+      "sourceBindings": [
+        {
+          "stage": 10,
+          "page": 7,
+          "clut": 15900,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            120,
+            71,
+            199
+          ],
+          "sourceUvOrigin": [
+            0,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "45c2aeadf74d4c4101601e16d08133a43f6b6a4d98808fabdb8a1b5b57a26014",
+      "outputSha256": "d51cc766728b5bf1b24da26b9e04c1a305fcb085fe7e37eb2c9a5bf491bb2595",
+      "priorCandidateSha256": "564ce9d44815253a834761423076b2bcbb8c14d8815d8cb0c26c407c7cbabf39",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Retains the large irregular darker center/lower-left patch, ochre surrounding earthy divisions, narrow left strip, upper/right fragments and original pale corner class. Fine low-contrast grain adds material clarity without a new major opening or rearranged large feature.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "74f59e6f5771ab9b5de638c62ec95f77f71d0edbf4568155c7870cf874b71434",
+      "sourceSize": [
+        79,
+        79
+      ],
+      "sourceBindings": [
+        {
+          "stage": 10,
+          "page": 7,
+          "clut": 15964,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            56,
+            120,
+            135,
+            199
+          ],
+          "sourceUvOrigin": [
+            56,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "f9d4b97b3f09a77dcae1560a10082ebc8af0af1e50fa0a3a7731cf8832686979",
+      "outputSha256": "4026f300ce345a11bdd1b51e39c6e98172a67a21fbad9700e519bb6636b69b35",
+      "priorCandidateSha256": "16a7553db5c1b3170d1e6d6596750763a71c8967e65bec4d39382faed48c6c3c",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "REVISE",
+      "reason": "The upper-left green-gray source area and smaller lower patch are sharpened into distinct angular stone slabs with dark encircling divisions. Their positions are broadly retained, but this hard slate/raised-rock interpretation overstates the diffuse damp patches in the actual original. Flatten/soften those green accents while preserving the original muddy divisions and neighboring atlas fragments.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "054c87e1a55d9104492e518cc88aada8278f67a6894827d5c81bb18d6ba36be6",
+      "sourceSize": [
+        80,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 10,
+          "page": 7,
+          "clut": 16028,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            120,
+            200,
+            200
+          ],
+          "sourceUvOrigin": [
+            120,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "6067b72a25428da0677426dd118e2a2f567ff697d40f675a1391fc3e07dcfa2f",
+      "outputSha256": "d5724f90070a2ba6f90c9059805e98e6d76406cfd0f477755da800b015eabe74",
+      "priorCandidateSha256": "5d1b6ecd8943fd1ff8f0da5ce3c8130231f5eb93a0761e86641193a1ea651244",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Preserves the broad low-contrast mottled earth pattern and shallow ochre/dark divisions, top/right neighboring fragments and lower pale class. Added grain remains restrained; no new recognizable pit, opening or strongly raised structure observed.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "b3c1198fac68c1f5c167ca50cab6099a07f513f89737a9a6ef398d0640ab8d03",
+      "sourceSize": [
+        72,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 10,
+          "page": 7,
+          "clut": 16092,
+          "parts": [
+            0,
+            1
+          ],
+          "sourceCrop": [
+            184,
+            120,
+            256,
+            168
+          ],
+          "sourceUvOrigin": [
+            184,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "a61e3e6c1168a39881b1bc65a22338000d6a7e2602ebced3ab2792b0d9f96f28",
+      "outputSha256": "0678aed7f427cafc59040b1d4567337b8f3ba7a46c86098e5187daa8cfda9d89",
+      "priorCandidateSha256": "dab25fee6a3544695fe836429d0c9515f58e85feebbdb57c64d6e8478a45c011",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "CLEAR",
+      "reason": "Preserves the pale green-gray island/ridge arrangement and dark negative intervals across the central material, with upper/left/lower fragments retained. Fine grain follows the existing source divisions without a new major stone or pit arrangement; overall cool damp reading remains subdued.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "b42b77cd7a5c0c6d8d4374f6ef0bad7b5cc2a4f7273b4ebcc0ffcf0b2bef80bb",
+      "sourceSize": [
+        72,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 10,
+          "page": 7,
+          "clut": 16156,
+          "parts": [
+            0,
+            1
+          ],
+          "sourceCrop": [
+            184,
+            152,
+            256,
+            200
+          ],
+          "sourceUvOrigin": [
+            184,
+            152
+          ]
+        }
+      ],
+      "generatedSha256": "4824f481266f00afddf2b0e1cef0133f893b68040d58891ef326c8262c61dac6",
+      "outputSha256": "18abe2f0c32c2c0b54bc031289ee3b40dc5377eb4ff02a50acef9fdd34ddea46",
+      "priorCandidateSha256": "80c2e19cfab0248c6d6c9f687223a956b25e2509e4bf93c2de1a876b06fff781",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "REVISE",
+      "reason": "The broad left cool-gray and right mossy-earth distribution is retained, but the candidate introduces a branching network of crisp dark fracture lines through the pale central/lower slabs. These thin internal fractures are not established by the actual original soft mottled areas and give substantially stronger stone relief. Keep the broad original divisions, reducing unsupported fine fissures and hard slab edges; preserve neighboring fragments.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "11d8fd5665d3aa7b327ea04aafccfaef33a37613cb6f40bef160a52353cc116d",
+      "sourceSize": [
+        72,
+        48
+      ],
+      "sourceBindings": [
+        {
+          "stage": 10,
+          "page": 7,
+          "clut": 16220,
+          "parts": [
+            0,
+            1
+          ],
+          "sourceCrop": [
+            0,
+            184,
+            72,
+            232
+          ],
+          "sourceUvOrigin": [
+            0,
+            184
+          ]
+        }
+      ],
+      "generatedSha256": "4eedd2b15ee46c742e68e31870ef9e4500214dabe9309585adac76510c7f16f9",
+      "outputSha256": "3c6a6e41caa1e9811e7c9d37e6fd70155565232c18e1529ae296e6182f82a168",
+      "priorCandidateSha256": "e4f23fe1887c326156b943d1102ad8831dcde7dbae6372e26ceecef1ecdc2a9d",
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipePinsExact": true,
+      "verdict": "REVISE",
+      "reason": "The original subdued green/brown mottling is converted into much more distinct bright yellow-green moss/leaf-like clumps, regularly separated by dark earth. The broad coverage is similar, but individual clumps become recognizable and higher contrast, shifting the source from soft damp accents toward new foliage. Restore softer muted green variation without discrete leaf-like motifs or stronger glow; keep the existing negative-space boundary.",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "counts": {
+    "clear": 4,
+    "revise": 4,
+    "runtimeSelectedByThisReview": 0
+  },
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "privateFullReviewSha256": "66410e380b3089cab8d0131b68fd13d7f50efa66a5ed256342113f618b659419"
+}
