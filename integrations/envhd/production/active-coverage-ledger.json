@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "scope": "One current EnvHD progress ledger. Source totals use different units by category and must not be added as an image denominator. Native fallback and passing source tests do not complete required HD art.",
-  "sourceSelectionCheckpoint": "d5b3f9f76141e31b032e8a7d7a9e1c693ef843cd plus one independently cleared registered balcony",
+  "sourceSelectionCheckpoint": "a81dc46c29ce1f9b89a418644f1ac75c3338086f plus one independently cleared Palace post correction",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "05de25c56f923a54024ec662c6a523bec32d8518f29a9fb4d3be6f01c032bcf0",
-    "field-runtime-artwork.json": "d7c92594e78c49b6a29d792f441851f437abe620d9a0a4e5b4c8d9af8b4c317f",
+    "full-coverage.json": "31b5c2227e4d4e817afadcafab9ca7db3c2b978f268f58ac569600e90fd5c4b0",
+    "field-runtime-artwork.json": "600e53f6d535839108e37f89efcbaa2d7389f9e2608ccb4f8f9cbb8e7b61d289",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
-    "battle-material-runtime-artwork.json": "213882ea75f0608dce17b41b3e23ef65e34070efec86075515fe0b9ff2fc22eb",
+    "battle-material-runtime-artwork.json": "95af427a1fa3a8b3edc37767f8d3534083ae29ad069ac1c652104e8103d8781d",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
     "field-bespoke-bedding-reviewed-selection.json": "6af60fa9447818366fda841ff1b9b362d84ad6a9a4aac2f2384a53725f75b123",
     "field-bespoke-stone-ground-held-drafts.json": "ae69c180860f75cf1880bd2689bbae04397b23b0642c8398884a56e5de62afa2",
@@ -44,7 +44,7 @@
     "field-bespoke-interior-supports-held-drafts.json": "8353026af1811a7e1d17b3bfc922324c546057c12dd48af953b7bb2975abb685",
     "field-bespoke-carved-furnishings-reviewed-selection.json": "9519da7e89c246b6d2d9e3edbe8a12d29a8a6f41cb1402becb4fc1bbebedf369",
     "field-bespoke-carved-furnishings-held-drafts.json": "34245d3334340c4b9ef12ecd9248015fad1dea7101055ab582aa02153670c5de",
-    "battle-presentation-artwork-v1.json": "2e3f1eec9a814d5f65b7a5d59fec81224627a8e53c21ca0ca6eff4f6d5d9d274",
+    "battle-presentation-artwork-v1.json": "d5db1a80eff1c51598b8fac8d45499bfbd6e7c9ca0c1b6b7c7f2701b74855360",
     "field-accepted-main-integration.json": "8fcbda28fda91ec1a7db2bff3f39195e831d1137eb3e69494d718a32a2e7ce69",
     "field-bespoke-small-furnishings-reviewed-selection.json": "aa797a92cc22bb62127a6aa6a0999818d0a833cf8d4627ea2eed5ddf8062b06a",
     "field-bespoke-small-furnishings-held-drafts.json": "2dcdc533083a076dddb8fd3b8ccc5ae2de8b0a4e35a34a1b0ce12694122867ad",
@@ -116,28 +116,31 @@
     "field-post-components-authoring-readiness.json": "4efed0f7290ec6814f867cd052dc3da3db7861c8ef0696063b0e4f07f175a8b6",
     "field-bespoke-post-components-reviewed-selection.json": "b03a5641e55b69e986881a94a2c2e1403009a330ae746e338234c4dbdaa0560a",
     "field-independent-post-components-review.json": "9dff31cca8c20a06944966a44243c6705ad6b1e42dc2b5624b14c38930525ba4",
-    "environment-dynamic-prop-inventory-checkpoint.json": "c10cf7106b178fe3e8769f76958206dceb91b0355772f9417601f2edca2bb4c3"
+    "environment-dynamic-prop-inventory-checkpoint.json": "c10cf7106b178fe3e8769f76958206dceb91b0355772f9417601f2edca2bb4c3",
+    "field-post-components-selection-readiness.json": "34ba0225b34ae2862e839cf6b18e905f46de375d3b840131f40a3112fd92c580",
+    "field-post-components-authoring-main-forward.json": "fb6e9f0894c156c09302e564b3d720db3a77bb7054f810fe7af3d389add19f9b",
+    "environment-dynamic-prop-inventory-independent-review.json": "5e29889e16a165c59075c003ffecbc520e0b373203abcc026258ecae33f1d8e0"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
   "nativeAcceptedCustomImages": 0,
   "finalQualityAcceptedCustomImages": 0,
-  "knownRemainingStaticImages": 205,
+  "knownRemainingStaticImages": 204,
   "knownRemainingBattleMaterialBindings": 351,
   "categories": [
     {
       "id": "field-images",
       "unit": "unique nonuniform EnvHD-owned decoded images",
       "totalKnown": 5162,
-      "selectedDevelopment": 4958,
+      "selectedDevelopment": 4959,
       "selectedNeural": 4886,
-      "selectedPainted": 72,
-      "held": 204,
+      "selectedPainted": 73,
+      "held": 203,
       "unreviewed": 0,
-      "customHeldDraftSourceImages": 52,
+      "customHeldDraftSourceImages": 51,
       "draftsAreSubsetOfHolds": true,
       "publishedInstallerSelected": 4925,
-      "nextTask": "Integrate cleared Palace post, then10 canonical revision sources and other holds. Continue dynamic/props source ownership/state contracts.",
+      "nextTask": "Finish10 canonical revision sources and other held prototypes; continue203field holds, one terrain repair and animated/props source/state contracts.",
       "newAuthorReviewedCandidateImagesAwaitingIndependentReview": 0,
       "customHeldDraftSourceKeys": [
         "05376f9a1aac8604d4abecef9ee0da6588c90deab867e80fbc83d00595907531",
@@ -181,7 +184,6 @@
         "ce7b4bd9cf0135bceb97a0799a11b8430da868ab579941a08fb31d542176a994",
         "da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5",
         "da66e5d5e56a29291fa95e3e2619f8df8b2c88bf1e06ea84373ac469577d1417",
-        "db35113bd034a5b5e24ae668255a30589d049bf958beaf71b544cf7d0c70c2d5",
         "de79c94862b3d13299111e7cf480c51a64bec316c49363d75ce2beda0a81bdc9",
         "df09f0440b90d80a113ea64f3c0871e519168041ce28bfc48b37e5b09c0fcb6b",
         "e0f6b532410a42b5ad4701aca0b368b6473d795f25fb94e14021a9ebda37be78",
@@ -193,7 +195,7 @@
         "f94d81a9826549e0833a5b8fa48e28bc24ea4f1859b959a010a54e25785c9cfc",
         "fb2c6e19710d53412ea0efc556886ab5e77d399d0f43333d3114f903e34bf589"
       ],
-      "draftCountMethod": "Unique ongoing unselected source directories excluding4958 acceptedmain selections;52keys subset204field holds. All83historical recipes and repeatedversions preserved.",
+      "draftCountMethod": "Unique ongoing unselected source directories excluding4959 acceptedmain selections;51keys subset203field holds. All83historical recipes and repeatedversions preserved.",
       "independentlyReviewedCandidatesRequiringRevision": 10,
       "publishedInstallerSnapshotEvidence": "publication-source-5d3db5c8-generation4-snapshot.json",
       "independentNewSceneryReview": {
@@ -208,8 +210,8 @@
         "requiresRevision": 4,
         "receipt": "field-independent-palace-eight-review.json"
       },
-      "independentlyClearedCandidatesAwaitingIntegration": 1,
-      "authoringQueueScope": "83 historical canonical source keys:72selected/10revision/1cleared-awaiting-integration/0pending; post candidate exact prototype with bounded helper review CLEAR. Runtime remains4958/72.",
+      "independentlyClearedCandidatesAwaitingIntegration": 0,
+      "authoringQueueScope": "83 historical canonical source keys:73selected/10revision/0pending. Every oldversion retained on ongoing authoring branch.",
       "independentFinalEighteenReview": {
         "source": "bdfecbad260e63eb3eed1a7d6147b8e8703553a4",
         "clearedSelected": 16,
@@ -227,6 +229,11 @@
         "source": "414c001f85e446ccdaa86f74e8575a8622ddd6d0",
         "clearedSelected": 1,
         "receipt": "field-independent-balcony-registration-review.json"
+      },
+      "independentPostComponentsReview": {
+        "source": "21a7e40fceb1f139ba43fc0ed3cd5edb0a7e9816",
+        "clearedSelected": 1,
+        "receipt": "field-independent-post-components-review.json"
       }
     },
     {
@@ -250,10 +257,10 @@
       "fullEncounterContractsClosed": 0,
       "selectedAnimationFamilies": 0,
       "nextTask": "Resolve encounter uploads, darkening, frame lifetime and padding before factoring complete authored families; resolve incomplete palette.",
-      "selectedPaintedMasters": 47,
+      "selectedPaintedMasters": 52,
       "previouslySelectedPaintedMasters": 12,
-      "newPresentationSelectedMasters": 35,
-      "selectedNeuralMasters": 471
+      "newPresentationSelectedMasters": 40,
+      "selectedNeuralMasters": 466
     },
     {
       "id": "battle-panoramas",
@@ -465,6 +472,12 @@
       "selectedNewSourceImages": 1,
       "independentReview": "field-independent-balcony-registration-review.json",
       "reason": "Muted curved balcony and original fitting marks independently cleared after existing pinned registration. Prior71recipes/4957records preserved."
+    },
+    {
+      "manifest": "field-bespoke-post-components-reviewed-selection.json",
+      "selectedNewSourceImages": 1,
+      "independentReview": "field-independent-post-components-review.json",
+      "reason": "Original-reviewed Palace post pixels replayed exactly through bounded custom component transfer; prior72recipes/4958records preserved."
     },
     {
       "manifest": "field-bespoke-organic-storage-reviewed-selection.json",
@@ -685,8 +698,8 @@
       "entrypointMetadataSource": "d6544902b254a5b4d8c93fcbe9692423c0ffa9ea",
       "entrypointEvidence": "Accepted main0c18 publication record; not a new entrypoint observation."
     },
-    "selectedFieldImagesAwaitingCoordinatedPublication": 33,
-    "paintedBattleMastersAwaitingCoordinatedPublication": 13,
+    "selectedFieldImagesAwaitingCoordinatedPublication": 34,
+    "paintedBattleMastersAwaitingCoordinatedPublication": 18,
     "historicalPublishedInstaller": {
       "tag": "definitive-alpha-2026-10-11-envhd",
       "packageSource": "0af4f997e27f49783180cb2ff1c5a04012467289",
@@ -714,15 +727,15 @@
     ]
   },
   "nativeValidation": "No game launch, live renderer or Steam Deck validation performed for this checkpoint.",
-  "authoringCheckpoint": "83 historical canonical source keys:72selected/10revision/1cleared-awaiting-integration.52uniqueunselectedcustomkeys subset204fieldholds;205static remains. Currentselectedruntimeunchanged; prospective73postreviewed.",
+  "authoringCheckpoint": "83 historical canonical source keys:73selected/10revision/0pending; allhistorical andheld variants preserved.51unselectedcustomkeys subset203fieldholds,204knownstatic. Cargo fitting next localized repair; dynamic/prop denominators unknown. Native/final pending.",
   "acceptedMainIntegrated": {
-    "sourceCommit": "db05497ef74e60579fdead09e47afdeaf16ddeb4",
-    "fieldSelected": 4958,
-    "fieldPainted": 72,
+    "sourceCommit": "6e831d587c44243a13c86ca8f5e507bed021d273",
+    "fieldSelected": 4959,
+    "fieldPainted": 73,
     "authoringCandidates": 83,
     "independentlyPending": 0,
-    "independentlyRevision": 11,
-    "heldSourceKeys": 52,
+    "independentlyRevision": 10,
+    "heldSourceKeys": 51,
     "nativeAccepted": 0,
     "finalQualityAccepted": 0
   }
