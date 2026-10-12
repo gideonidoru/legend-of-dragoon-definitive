@@ -40,7 +40,7 @@ final class UiHdPreparedFontGpuProbe {
     final var transform = new MV(); transform.transfer.set(8, 8, 124);
     final var queued = ui ? GameEngine.RENDERER.queueUiOrthoModel(obj, transform, QueuedModelStandard.class)
       : GameEngine.RENDERER.queueOrthoModel(obj, transform, QueuedModelStandard.class);
-    if(controlled) queued.alpha(.5f).useTextureAlpha().monochrome(.75f).scissor(10, 8, 30, 16);
+    if(controlled) queued.translucency(Translucency.HALF_B_PLUS_HALF_F).alpha(.5f).useTextureAlpha().monochrome(.75f).scissor(10, 8, 30, 16);
     queued.hasTranslucency();
     if(ui) require(field(queued, QueuedModelStandard.class, "spriteFont") != null, "GPU eligible queue must use packaged coverage");
     final var render = RenderEngine.class.getDeclaredMethod("renderBatch", RenderBatch.class); render.setAccessible(true); render.invoke(GameEngine.RENDERER, batch);
@@ -68,6 +68,13 @@ final class UiHdPreparedFontGpuProbe {
   }
   private static JSONObject pin(final Pixels pixels) throws Exception {
     return new JSONObject().put("colourSha256", hash(pixels.colour)).put("emissionSha256", hash(pixels.emission));
+  }
+  private static int foreground(final Pixels pixels) {
+    int count = 0;
+    for(int p = 0; p < pixels.colour.length; p += 4) {
+      if((pixels.colour[p] & 255) != 51 || (pixels.colour[p + 1] & 255) != 51 || (pixels.colour[p + 2] & 255) != 51) count++;
+    }
+    return count;
   }
   private static void save(final Path directory, final String name, final Pixels pixels) throws Exception {
     Files.write(directory.resolve(name + ".rgba"), pixels.colour, StandardOpenOption.CREATE_NEW);
@@ -146,12 +153,19 @@ final class UiHdPreparedFontGpuProbe {
         // its pixels are retained separately and never described as approved redraw artwork.
         final Glyph one = familyGlyphs.getFirst(); clear(); final Obj obj = object(one);
         try {
+          final int[] controlledMemory = original.clone(); final int clutAddress = one.quad().clutY() * 1024 + one.quad().clutX();
+          controlledMemory[clutAddress] = 0;
+          for(int index = 1; index < 16; index++) controlledMemory[clutAddress + index] = 0x83e0;
+          GameEngine.GPU.vramTexture15.data(0, 0, 1024, 512, TextureDataType.UINT, controlledMemory);
           final Pixels baseline = draw(obj, batch, api, target, colour, emission, false, true);
           require(NativeSpriteFont.register(UiHdPreparedFontGpuProbe.class, "synthetic-nearest", one.quad(), one.indices(), nearest(one.indices())), "Synthetic coverage control");
           final Pixels coverage = draw(obj, batch, api, target, colour, emission, true, true);
+          require(foreground(baseline) > 0 && foreground(coverage) > 0, "Controlled blend/scissor/tint oracle must render visible native and coverage pixels");
           require(Arrays.equals(baseline.colour, coverage.colour) && Arrays.equals(baseline.emission, coverage.emission), "Controlled blend/scissor/tint preserves native RGBA attachments: " + family);
           save(gpuProof, family + "-synthetic-native", baseline); save(gpuProof, family + "-synthetic-coverage", coverage);
-          controls.put(new JSONObject().put("family", family).put("syntheticControlOnly", true).put("native", pin(baseline)).put("coverage", pin(coverage)));
+          controls.put(new JSONObject().put("family", family).put("syntheticControlOnly", true).put("diagnosticLivePalette", "index0 transparent; indices1..15 STP green0x83e0")
+            .put("blend", "HALF_B_PLUS_HALF_F").put("alpha", .5).put("tint", .75).put("scissor", new int[]{10, 8, 30, 16})
+            .put("nativeForegroundPixels", foreground(baseline)).put("coverageForegroundPixels", foreground(coverage)).put("native", pin(baseline)).put("coverage", pin(coverage)));
         } finally { clear(); obj.delete(); }
       }
       report.put("gpuSelectors", draws).put("gpuResourceControls", controls).put("gpuUniqueResources", retained.size()).put("gpuDimensions", new int[]{WIDTH, HEIGHT});
