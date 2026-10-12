@@ -71,10 +71,12 @@ final class ReconstructedCharacters {
           }
           final int width = TmdGeometryPack.integer(entry.get("width")), height = TmdGeometryPack.integer(entry.get("height"));
           if(width < 1 || height < 1 || width > 2048 || height > 2048) throw new IOException("Character image exceeds pixel budget");
+          // Validate every declared resource, including rows reusing already decoded pixels.
+          final byte[] png = checked(resources, entry, "texture", 8 * 1024 * 1024);
           final String imageKey = hash(entry, "textureSha256") + ":" + width + ":" + height;
           TmdFaceDetail.Image image = images.get(imageKey);
           if(image == null) {
-            image = new TmdFaceDetail.Image(pixels(checked(resources, entry, "texture", 8 * 1024 * 1024), width, height), width, height);
+            image = new TmdFaceDetail.Image(pixels(png, width, height), width, height);
             images.put(imageKey, image);
           }
           detail = new Detail(geometry, coordinates, image);

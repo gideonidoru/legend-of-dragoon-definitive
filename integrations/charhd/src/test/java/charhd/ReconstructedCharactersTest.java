@@ -100,6 +100,11 @@ class ReconstructedCharactersTest {
     assertEquals(0, first.appearance.faceDetail().u(0, 0));
     assertEquals(.25f, second.appearance.faceDetail().u(0, 0));
     assertEquals(3, fixture.source.vert_top_00[1].x); assertEquals(13, secondSource.vert_top_00[1].x);
+    // A verified image identity does not excuse a dangling or invalid declared resource.
+    secondEntry.addProperty("texture", "fixture/missing.png");
+    assertThrows(IOException.class, fixture::load);
+    secondEntry.addProperty("texture", "../escape.png");
+    assertThrows(IOException.class, fixture::load);
   }
   @Test void otherGeometryAndAppearanceOwnersKeepPriority() throws Exception {
     final var fixture=fixture();final var upgrade=fixture.load();final var source=fixture.source;
