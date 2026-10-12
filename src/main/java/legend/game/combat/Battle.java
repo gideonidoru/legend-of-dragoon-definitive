@@ -2907,6 +2907,7 @@ public class Battle extends EngineState<Battle> {
       combatant.texture = null;
     }
     combatant.tim = null;
+    combatant.uploadedTim = null;
   }
 
   @Method(0x800c9060L)

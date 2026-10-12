@@ -41,6 +41,8 @@ public class CombatantStruct1a8 {
   public final legend.definitive.materials.CharacterMaterialState materials = new legend.definitive.materials.CharacterMaterialState();
   public legend.game.types.Model124 materialModel;
   public Tim tim;
+  /** Source installed into private VRAM by the rendering thread. */
+  public Tim uploadedTim;
   public Gpu texture;
   /**
    * Not just char index
