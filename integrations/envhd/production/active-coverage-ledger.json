@@ -4,7 +4,7 @@
   "sourceSelectionCheckpoint": "a81dc46c29ce1f9b89a418644f1ac75c3338086f plus one independently cleared Palace post correction",
   "battleSourceCycleCheckpoint": "036d7cfedef528a8993cfb20666800d370065ecc",
   "sourceControls": {
-    "full-coverage.json": "a61bc8af659bcb7c8b34e52d6e84efeb4f5443bdb9c952dc44f1a54f2a56cf3e",
+    "full-coverage.json": "cf90438cdc0248b1c286d3344253cc0224ba85fc91d421e04fb78917c741764d",
     "field-runtime-artwork.json": "600e53f6d535839108e37f89efcbaa2d7389f9e2608ccb4f8f9cbb8e7b61d289",
     "terrain-runtime-artwork.json": "1d6ba9026e1419bad0ab1ba34c74fbf54146da897ac1c7eb9ffdb5827dc5c090",
     "battle-material-runtime-artwork.json": "95af427a1fa3a8b3edc37767f8d3534083ae29ad069ac1c652104e8103d8781d",
@@ -122,7 +122,8 @@
     "environment-dynamic-prop-inventory-independent-review.json": "5e29889e16a165c59075c003ffecbc520e0b373203abcc026258ecae33f1d8e0",
     "field-bespoke-cargo-fitting-held-drafts.json": "c8826a8aef95f48f47fc9a7d9696f2bf4bfa26c1209796de1c173970f8b71a83",
     "field-bespoke-cargo-local-patch-reviewed-selection.json": "05875ad367cbb90a106708e60b7a17b54020b48dc43b20485628ee0e7e6878ce",
-    "field-cargo-local-patch-art-review.json": "c318b44b67f8265d2998fe8b4264766d3876907fd654f6e3b2276c37b330a737"
+    "field-cargo-local-patch-art-review.json": "c318b44b67f8265d2998fe8b4264766d3876907fd654f6e3b2276c37b330a737",
+    "field-independent-cargo-local-patch-review.json": "374900c6f15f580a0861e1f9b5fcb244297854ddb28663d0f5d4c8f14ae621e0"
   },
   "wholeCampaignImageDenominator": null,
   "goalComplete": false,
@@ -245,8 +246,10 @@
         "wholeGenerationGeometryRejected": 1,
         "sourceIsSubsetOfExistingFieldHolds": true,
         "isolatedPatchVisualReviewClear": 1,
-        "independentCodeReviewPending": true,
-        "prospectivePaintings": 74
+        "independentCodeReviewPending": false,
+        "prospectivePaintings": 74,
+        "independentCodeReviewClear": true,
+        "runtimeIntegrationPending": true
       }
     },
     {
