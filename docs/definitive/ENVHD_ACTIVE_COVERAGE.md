@@ -143,7 +143,7 @@ The [curated checkpoint](../../integrations/envhd/production/environment-dynamic
 The received field-material snapshot has135,279 material bindings across7,664 contexts. Ownership is unresolved for7,652 contexts;12 are source-proved CharHD. Its5,984 repeated inspection groups are priorities, not EnvHD image jobs. The snapshot explains the earlier25 absent texture hints as24 excluded outside-MRG routes plus one included sentinel, and608 absent script hints as567 present alias targets plus41 excluded outside-MRG routes. These route hints are not missing runtime assets. Mutable alias ordering, actual controller/script branches, inherited uploads and exact sampling coverage remain open. Both whole dynamic and owned-prop image denominators remain unknown. This records the retained source snapshots rather than claiming a fresh whole-game census.
 
 
-The [independent inventory review](../../integrations/envhd/production/environment-dynamic-prop-inventory-independent-review.json) clears this metadata checkpoint at source3b199 on both axes. Its4958/72 baseline is historical. Current accepted selection remains4959/73 with204knownstatic images left; this inventory update selects no new images.
+The [independent inventory review](../../integrations/envhd/production/environment-dynamic-prop-inventory-independent-review.json) clears this metadata checkpoint at source3b199 on both axes. Its4958/72 baseline is historical. At the historical inventory integration checkpoint (PR99/e246), selection was4959/73 with204knownstatic images left; that metadata update selected no new images.
 
 
 ## Queen Fury cargo fitting correction selected

@@ -49,7 +49,7 @@
   "newBuiltinGenerationCallsInAuthoring": 2,
   "wholeFrameAspectFailureStillRejected": true,
   "priorReuseVariantsStillRejected": 3,
-  "freshPackageVerified": false,
+  "freshPackageVerified": true,
   "unfinishedAuthoringPreservedOnOngoingBranch": true,
   "skurfaRegenerated": false,
   "engineChanged": false,
@@ -58,5 +58,44 @@
   "publicReleasePublished": false,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "originalSourcesReferencesAndComparisonsExcluded": true
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "buildSourceCommit": "269c74178a425739463adfc148bafd237b8124f4",
+  "buildLogSha256": "e65fdf0aa87c79749d62fb2792f1f359b78e960853cf3010e9b636423bd5065e",
+  "packageVerificationLogSha256": "ed798c5fe11590e426fcefe450792e1aa3ca0ff903f85ad2d2dddfb850ced7ba",
+  "packageSourceBindingSha256": "13dbea634368668cda49a61287f382b91bd32c17a692c8966f03d4fa2fac1823",
+  "packageFiles": {
+    "Env1HD-v0.1.0.zip": {
+      "size": 552630727,
+      "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8"
+    },
+    "Env2HD-v0.1.0.zip": {
+      "size": 573779949,
+      "sha256": "c2219971801eda267e1aefd83f74c8d28f6903b53be28917c291c6c732ab01f2"
+    },
+    "Env3HD-v0.1.0.zip": {
+      "size": 572128550,
+      "sha256": "307a1cb954f5bd88cbac2ff3341d5da2f3ae43537847656f75f4ef0c9d6add69"
+    },
+    "Env4HD-v0.1.0.zip": {
+      "size": 673939587,
+      "sha256": "d3646663ec92779b01757c7a874842f2b1dcebbe2f2efdf2a70441c5aba88894"
+    },
+    "EnvHD-v0.1.0.jar": {
+      "size": 278592833,
+      "sha256": "dd8b49c861d82681c4a4ae88e0864c124ad0c9e227920aad295759b597b568dd"
+    }
+  },
+  "rebuiltPackageFiles": [
+    "EnvHD-v0.1.0.jar",
+    "Env4HD-v0.1.0.zip"
+  ],
+  "reusedExactPreviousPacks": [
+    "Env1HD-v0.1.0.zip",
+    "Env2HD-v0.1.0.zip",
+    "Env3HD-v0.1.0.zip"
+  ],
+  "packageFieldImages": 4960,
+  "packageJarResources": 5346,
+  "packageFieldParts": 4,
+  "packageModSwitches": 1
 }
