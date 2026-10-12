@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Two source-art/code-cleared development repairs selected; all74priorrecipes and4960runtime records exact. Fresh package and independent main review pending.",
+  "scope": "Two source-art/code-cleared development repairs selected and exact EnvHD five-file package verified. Prior74 recipes/4960runtime records preserved; installer publication/native/final acceptance pending.",
   "integrationBaseCommit": "5d857a672f1f6aef60749ea67a4337d179b75736",
   "authoringSourceCommit": "c3d0ee6f8136856d6b0ae20800d4e62ef127871a",
   "selectionManifest": "field-bespoke-phantom-fueno-reviewed-selection.json",
@@ -45,7 +45,7 @@
     39
   ],
   "coralAspectFailureStillHeld": true,
-  "freshPackageVerified": false,
+  "freshPackageVerified": true,
   "authoringBranchPreservesAllHistoricalCustomVersions": true,
   "skurfaRegenerated": false,
   "engineChanged": false,
@@ -54,5 +54,61 @@
   "publicReleasePublished": false,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "originalSourcesAndPrivatePathsExcluded": true
+  "originalSourcesAndPrivatePathsExcluded": true,
+  "packageSourceCommit": "5b8e20cb55b06a2ca1e28f8f41aceaae9eeee553",
+  "packageSourceBindingSha256": "ba5899eb6110b24d5497fac22d60428346f990b36ae95d82dcbf1fb08d399bc9",
+  "packageVerificationLogSha256": "91425797d6e547ed28ad9816b922f7eadbc2734f267a28193be65d792c828107",
+  "packageVerification": {
+    "selectedFields": 4962,
+    "jarResourceCount": 5348,
+    "fieldDownloadParts": 4,
+    "modIds": 1,
+    "result": "PASS"
+  },
+  "packageFiles": {
+    "Env1HD-v0.1.0.zip": {
+      "size": 552630727,
+      "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8"
+    },
+    "Env2HD-v0.1.0.zip": {
+      "size": 573837672,
+      "sha256": "52c6ede383e665f6565e4dc972f6c7ca479bb3b12f620fb385e1e0a6a2fa3aa8"
+    },
+    "Env3HD-v0.1.0.zip": {
+      "size": 572200440,
+      "sha256": "5692da778716973bbde6c3f51e878041e224d86fbd3962f6447561f975af7d28"
+    },
+    "Env4HD-v0.1.0.zip": {
+      "size": 673939587,
+      "sha256": "d3646663ec92779b01757c7a874842f2b1dcebbe2f2efdf2a70441c5aba88894"
+    },
+    "EnvHD-v0.1.0.jar": {
+      "size": 278858801,
+      "sha256": "4d6f7ed15da13b4d92250a38f5726b82252256c43215acf1792223e352eb5a40"
+    }
+  },
+  "rebuiltPackageFiles": [
+    "EnvHD-v0.1.0.jar",
+    "Env2HD-v0.1.0.zip",
+    "Env3HD-v0.1.0.zip"
+  ],
+  "reusedExactPreviousPacks": [
+    "Env1HD-v0.1.0.zip",
+    "Env4HD-v0.1.0.zip"
+  ],
+  "mainIndependentSourceReviewCommit": "5b8e20cb55b06a2ca1e28f8f41aceaae9eeee553",
+  "mainIndependentAxes": {
+    "spec": {
+      "sourceCommit": "5b8e20cb55b06a2ca1e28f8f41aceaae9eeee553",
+      "result": "CLEAR",
+      "findings": 0,
+      "privateFullReportSha256": "216702a4f1430abf3842f0263e7d41e5059a08c20e9188d620d18b243eb3347c"
+    },
+    "standards": {
+      "sourceCommit": "5b8e20cb55b06a2ca1e28f8f41aceaae9eeee553",
+      "result": "CLEAR",
+      "findings": 0,
+      "privateFullReportSha256": "4b79fb1e9660f112c208a7baa3c885c595ff490d7a72234d46590e35e3e4968f"
+    }
+  }
 }
