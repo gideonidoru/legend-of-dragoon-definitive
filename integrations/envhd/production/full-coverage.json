@@ -138,7 +138,9 @@
     "field-phantom-fueno76-authoring-readiness.json": "97d7ce787b42c0b2af6260ae7ec103312b0056469ac1735aba22b90fe92ab482",
     "field-independent-phantom-fueno76-code-review.json": "48a5d21bf62e3269c04b949defbc5a64da2e909954473c1fb8940f52b8bd028e",
     "field-phantom-fueno-selection-readiness.json": "e1ba01cf44a49265bf4421de9eaa4a780c05e7766cbcd8af0b4886ec44f7d37f",
-    "field-phantom-fueno-authoring-main-forward.json": "bffe9ae4e78c6b0c415bacf4f6e96e4c10e2a4352e3e562eb8e08c6f9295f897"
+    "field-phantom-fueno-authoring-main-forward.json": "bffe9ae4e78c6b0c415bacf4f6e96e4c10e2a4352e3e562eb8e08c6f9295f897",
+    "field-held-draft-count-correction.json": "985ad244dd11816ebbff12d3682407418a3cf47b66e5702515709edc82e670d4",
+    "field-held-draft-count-authoring-carry.json": "13a83799975940aff913a09079d5d0e96c5bd9a776928c180d60ce4ffd04d4b0"
   },
   "categories": [
     {
@@ -313,7 +315,7 @@
       "publishedInstallerSelectedMasters": 4925,
       "envhdHeldPaintedCandidateMasters": 1,
       "unselectedCustomDraftSourceMasters": 48,
-      "heldPaintedCandidateMastersMeaning": "The existing envhdHeldPaintedCandidateMasters1 is the explicitly held full Deningrad bed from the legacy selection manifest; all current unselected draft sources counted separately."
+      "heldPaintedCandidateMastersMeaning": "The legacy envhdHeldPaintedCandidateMasters value of 1 describes the explicitly held full Deningrad bed. The current 48 unselected custom draft source keys include that bed and are a subset of the 200 field holds; neither count is additional image work."
     },
     {
       "id": "field-environment-props-and-scene-overlays",
