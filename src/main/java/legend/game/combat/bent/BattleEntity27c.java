@@ -745,24 +745,26 @@ public abstract class BattleEntity27c extends BattleObject {
   @Method(0x800ec974L)
   private void renderBttlModel(final Model124 model, final CombatantStruct1a8 combatant) {
     Battle.applyCombatantMaterials(this.battle, model, combatant);
-    if(combatant.vramSlot_1a0 == -1 && combatant.texture == null) {
-      // This isn't the dumbest thing I've ever done, but it's up there
-      combatant.texture = new Gpu();
-
-      final Rect4i combatantTimRect = combatantTimRects_800fa6e0[1];
-      combatant.texture.uploadData15(combatantTimRect, combatant.tim.getImageData());
-
-      if(combatant.tim.hasClut()) {
-        final Rect4i clutRect = combatant.tim.getClutRect();
-        clutRect.x = combatantTimRect.x;
-        clutRect.y = combatantTimRect.y + 240;
-
-        //LAB_800ca884
-        combatant.texture.uploadData15(clutRect, combatant.tim.getClutData());
+    if(combatant.vramSlot_1a0 == -1) {
+      // A first model can arrive before its TIM; temporary reloads retain the prior source.
+      final var tim = combatant.tim;
+      if(tim == null) return;
+      if(combatant.texture == null) {
+        combatant.texture = new Gpu();
+        combatant.texture.initVram();
       }
-
-      combatant.texture.initVram();
-      combatant.texture.updateVramTexture();
+      if(combatant.uploadedTim != tim) {
+        final Rect4i combatantTimRect = combatantTimRects_800fa6e0[1];
+        combatant.texture.uploadData15(combatantTimRect, tim.getImageData());
+        if(tim.hasClut()) {
+          final Rect4i clutRect = tim.getClutRect();
+          clutRect.x = combatantTimRect.x;
+          clutRect.y = combatantTimRect.y + 240;
+          combatant.texture.uploadData15(clutRect, tim.getClutData());
+        }
+        combatant.texture.updateVramTexture();
+        combatant.uploadedTim = tim;
+      }
     }
 
     tmdGp0Tpage_1f8003ec = model.tpage_108;
