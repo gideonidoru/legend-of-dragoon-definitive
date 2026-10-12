@@ -46,7 +46,7 @@ class HttpsRedirect(urllib.request.HTTPRedirectHandler):
         if urllib.parse.urlparse(newurl).scheme!='https': raise ValueError('Unsafe movie redirect')
         return super().redirect_request(req,fp,code,msg,headers,newurl)
 
-def stage(manifest, output, local=None):
+def stage(manifest, output, local=None, before_promote=None):
     p=contract(manifest); resources=manifest.parent
     for name,key in [('provenance.json','provenanceSha256'),('NOTICE.txt','noticeSha256')]:
         file=resources/name
@@ -97,6 +97,7 @@ def stage(manifest, output, local=None):
                 with opener.open(CARRIER+'file-'+digest, timeout=30) as stream: copy_checked(stream,destination,size,digest)
             print('FMVHD verified movie',name,flush=True)
         if archive is not None: archive.close();archive=None
+        if before_promote is not None:before_promote()
         if output.exists():
             backup=Path(tempfile.mkdtemp(prefix='.fmv-old-',dir=output.parent));backup.rmdir();output.rename(backup)
         try:
