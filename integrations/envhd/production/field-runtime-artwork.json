@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "scope": "Owner-requested reviewed neural and source-verified painted development installation; Skurfa and remaining held/unreviewed sources remain native",
-  "runtimeSelected": 4962,
+  "runtimeSelected": 4965,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
   "protectedCuts": [
@@ -79610,9 +79610,57 @@
           "canDeriveFromBackground": false
         }
       ]
+    },
+    {
+      "decodedRgbaSha256": "da1004a8e02512061b01d13f77e83f810c85a96d52e9761bf85401a2bf2c9eb5",
+      "outputSha256": "c8bc384b646fcf7ee6e137ead1a403213ffa6889bf28bbd12ef71598bd671b40",
+      "sourceSize": [
+        64,
+        18
+      ],
+      "bindings": [
+        {
+          "renderKey": "c90c422113981fd55d0ca5331f4e52a3bb6fca124b7b6d0479d9ca341dc8010b:-1",
+          "kind": "foreground",
+          "slot": 1,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "8ef1e2f1eb1de19c8c2c9e5fcbecc6b2db6e01eac12ac006056eb2256864822f",
+      "outputSha256": "d1806f2a083a454b295741c0877cbcb91287ffe5df8ee9d140df50cd9d535bac",
+      "sourceSize": [
+        22,
+        26
+      ],
+      "bindings": [
+        {
+          "renderKey": "f93b0f145362e198ce148bb4e8165782871c2e89370f4084185415bbede7d212:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ]
+    },
+    {
+      "decodedRgbaSha256": "be023e0b5599675425e3a0e361a3cf1ae5c57a4c51d10e5d49c0d4d857f830cc",
+      "outputSha256": "93ff9fd6192a1fb6d076b566af1ca3d268cb9ab376730a05dc342bf538dc02e6",
+      "sourceSize": [
+        52,
+        26
+      ],
+      "bindings": [
+        {
+          "renderKey": "e25f5585208ac3ba4b01fe4e033dfde29639aa25dd9558eb12bead9601027d07:-1",
+          "kind": "foreground",
+          "slot": 2,
+          "canDeriveFromBackground": false
+        }
+      ]
     }
   ],
   "reviewReceiptSha256": "f2845bdff322c04b8496a0eff151389da53594de54446ec25dfb0d42cab9ea51",
-  "paintedReviewReceiptSha256": "8388460d16c4486b5a123b8e04517dfaabe7fae74ac4819db05065e9ecf0ce81",
-  "paintedRuntimeSelected": 76
+  "paintedReviewReceiptSha256": "defafcac5d9d9dc41f9e7a840f7ec516c743c42126160f0b63a507f2f17b1c1e",
+  "paintedRuntimeSelected": 79
 }
