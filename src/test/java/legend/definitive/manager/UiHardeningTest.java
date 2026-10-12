@@ -208,7 +208,7 @@ class UiHardeningTest {
     assertFalse(Files.exists(store.root().resolve("releases").resolve(recovered.state().getProperty("version"))));
     final var view = new AtomicReference<ManagerView>(); SwingUtilities.invokeAndWait(() -> view.set(new ManagerView(null, pack, store.root())));
     final JButton acknowledge = awaitButton(view.get(), "Use verified recovered state"); SwingUtilities.invokeAndWait(acknowledge::doClick);
-    final JButton reinstall = awaitButton(view.get(), "Reinstall"); assertEquals("false", recovered.state().getProperty("recoveryPending"));
+    final JButton reinstall = awaitButton(view.get(), "Install Definitive"); assertEquals("false", recovered.state().getProperty("recoveryPending"));
     SwingUtilities.invokeAndWait(reinstall::doClick); assertNotNull(awaitButton(view.get(), "Choose disc files"));
     assertEquals("preserved-save", Files.readString(recovered.data(recovered.state()).resolve("saves/owner"))); assertFalse(Boolean.parseBoolean(recovered.state().getProperty("uninstalled", "false")));
     assertFalse(recovered.state().containsKey("recoveryNotice"), "Clean reinstall clears obsolete recovery state");

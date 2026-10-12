@@ -53,6 +53,40 @@ class InstallerFlowTest {
     PackageManifest.read(active).verify(active, PackageManifest.hostPlatform());
     SwingUtilities.invokeAndWait(() -> assertNotNull(button(panel.get(), "Choose disc files")));
   }
+  @Test void reopeningDownloadedInstallerAfterUninstallOffersInstallInsteadOfRepair() throws Exception {
+    final Path source = this.pack("return-package", PackageManifest.hostPlatform());
+    final Path target = this.temporary.resolve("return-install");
+    final var store = new InstallStore(target); store.install(source);
+    final Path save = store.data(store.state()).resolve("saves/retained.dsav");
+    Files.writeString(save, "player save");
+    InstallLocation.record(store);
+    store.uninstall(false, InstallProgress.NONE);
+    assertEquals(target, InstallLocation.discover().orElseThrow(), "Retained location should still help find saves");
+    final var panel = new AtomicReference<ManagerView>();
+    SwingUtilities.invokeAndWait(() -> panel.set(new ManagerView(null, source, target)));
+    awaitIdle(panel.get());
+    SwingUtilities.invokeAndWait(() -> {
+      final var all = new ArrayList<Component>(); collect(panel.get(), all);
+      assertTrue(all.stream().anyMatch(c -> c instanceof JButton b && b.getText().equals("Install Definitive")),
+        "A downloaded installer must offer Install after uninstall, not claim an existing installation");
+      assertFalse(all.stream().anyMatch(c -> c instanceof JButton b && b.getText().equals("Repair")));
+    });
+    assertEquals("player save", Files.readString(save));
+    SwingUtilities.invokeAndWait(() -> button(panel.get(), "Install Definitive").doClick());
+    awaitIdle(panel.get()); store.verifyInstalled();
+    assertFalse(Boolean.parseBoolean(store.state().getProperty("uninstalled", "false")));
+    assertEquals("player save", Files.readString(store.data(store.state()).resolve("saves/retained.dsav")));
+  }
+  @Test void reopeningInterruptedFirstInstallDoesNotClaimGameIsInstalled() throws Exception {
+    final Path target = this.temporary.resolve("interrupted-first-install"); new InstallStore(target);
+    final var panel = new AtomicReference<ManagerView>();
+    SwingUtilities.invokeAndWait(() -> {
+      panel.set(new ManagerView(null, this.temporary, target));
+      assertNotNull(button(panel.get(), "Install Definitive"));
+      final var all = new ArrayList<Component>(); collect(panel.get(), all);
+      assertFalse(all.stream().anyMatch(c -> c instanceof JButton b && b.getText().equals("Repair")));
+    });
+  }
   @Test void progressDoesNotBounceWithoutShowingActualWork() throws Exception {
     final Path source = this.pack("progress-package", PackageManifest.hostPlatform());
     final var ref = new AtomicReference<ManagerView>();
@@ -102,6 +136,61 @@ class InstallerFlowTest {
       assertTrue(position.y + retry.getHeight() <= 700, "Retry and failure must be visible on the Deck screen");
       snapshot(ref.get(), "failure");
     });
+  }
+  @Test void transferDetailsFitDeckAndNeverLabelLocalWorkAsNetworkSpeed() throws Exception {
+    SwingUtilities.invokeAndWait(() -> {
+      try {
+        final var panel = new ManagerView(null, this.temporary, this.temporary.resolve("transfer-install"));
+        final var body = ManagerView.class.getDeclaredField("body"); body.setAccessible(true); ((JPanel)body.get(panel)).removeAll();
+        final var heading = ManagerView.class.getDeclaredMethod("heading", String.class, String.class); heading.setAccessible(true); heading.invoke(panel, "Installing Definitive", "Keep this window open while this step finishes.");
+        final var started = ManagerView.class.getDeclaredField("started"); started.setAccessible(true); started.setLong(panel, System.nanoTime());
+        final var busy = ManagerView.class.getDeclaredField("busy"); busy.setAccessible(true); busy.setBoolean(panel, true);
+        final var visible = ManagerView.class.getDeclaredField("progressPanel"); visible.setAccessible(true); ((JPanel)visible.get(panel)).setVisible(true);
+        panel.applyProgress(new InstallProgress.Update("Downloading FMVHD", "Opening cinematic", 10, 75, 128_000_000, 240_000_000, "fmv/Opening-Cinematic.mp4", 128_000_000, 240_000_000, 128_000_000, 8_200_000));
+        final var all = new ArrayList<Component>(); collect(panel, all);
+        final JLabel size = all.stream().filter(c -> c instanceof JLabel l && "Current file size".equals(l.getAccessibleContext().getAccessibleName())).map(c -> (JLabel)c).findFirst().orElseThrow();
+        final JLabel speed = all.stream().filter(c -> c instanceof JLabel l && "Download speed".equals(l.getAccessibleContext().getAccessibleName())).map(c -> (JLabel)c).findFirst().orElseThrow();
+        assertEquals("128.0 MB of 240.0 MB", size.getText()); assertEquals("8.2 MB/s", speed.getText());
+        panel.setSize(1024, 700); InstallStoreTest.layout(panel);
+        for(final JLabel item : new JLabel[]{size, speed}) {
+          final Point position = SwingUtilities.convertPoint(item.getParent(), item.getLocation(), panel);
+          assertTrue(position.y + item.getHeight() <= 700); assertTrue(item.getWidth() >= item.getPreferredSize().width, "Transfer details must not clip on Deck");
+        }
+        snapshot(panel, "transfer-details");
+        panel.applyProgress(new InstallProgress.Update("Reusing FMVHD", "Verified local file", 10, 75, 240_000_000, 240_000_000, "fmv/Opening-Cinematic.mp4", 240_000_000, 240_000_000));
+        assertEquals("", speed.getText(), "Copies and checksum reuse must not appear as downloads");
+        assertEquals("240.0 MB of 240.0 MB", size.getText());
+        panel.applyProgress(new InstallProgress.Update("Downloading release", "Downloading", 0, 80, 1_000_000, 20_000_000).withNetwork(new InstallProgress.Network(1_000_000, 500_000)));
+        assertEquals("1.0 MB of 20.0 MB", size.getText()); assertEquals("500 KB/s", speed.getText());
+        panel.applyProgress(new InstallProgress.Update("Downloading release", "Downloading", 0, 80, 1_000_000, -1).withNetwork(new InstallProgress.Network(1_000_000, 500_000)));
+        assertEquals("1.0 MB downloaded", size.getText());
+        panel.applyProgress(new InstallProgress.Update("Downloading EnvHD", "Env3HD.zip", 0, 80, 1_000_000, -1, "Env3HD.zip", 1_000_000, -1, 1_000_000, 500_000));
+        assertEquals("1.0 MB downloaded", size.getText());
+        final var reported = ManagerView.class.getDeclaredField("networkReportedAt"); reported.setAccessible(true); reported.setLong(panel, System.nanoTime() - 4_000_000_000L);
+        final var tick = ManagerView.class.getDeclaredMethod("progressStatus"); tick.setAccessible(true); tick.invoke(panel);
+        assertEquals("Waiting for data", speed.getText(), "Idle transfers must not keep displaying a positive speed");
+      } catch(final ReflectiveOperationException error) { throw new RuntimeException(error); }
+    });
+  }
+  @Test void pausedDownloadButtonRetriesTheActualWorker() throws Exception {
+    final var panel = new AtomicReference<ManagerView>();
+    final var attempts = new java.util.concurrent.atomic.AtomicInteger();
+    final var finished = new java.util.concurrent.atomic.AtomicBoolean();
+    final Class<?> actionType = Class.forName("legend.definitive.manager.ManagerView$Action");
+    final Object action = java.lang.reflect.Proxy.newProxyInstance(actionType.getClassLoader(), new Class<?>[]{actionType}, (proxy, method, arguments) -> {
+      if(attempts.incrementAndGet() == 1) throw new FileDelivery.DownloadPaused(new java.io.IOException("Fixture connection timeout"));
+      return "Download complete";
+    });
+    SwingUtilities.invokeAndWait(() -> {
+      try {
+        panel.set(new ManagerView(null, this.temporary, this.temporary.resolve("paused-download")));
+        final var run = ManagerView.class.getDeclaredMethod("run", String.class, actionType, Runnable.class); run.setAccessible(true);
+        run.invoke(panel.get(), "Installing Definitive", action, (Runnable)() -> finished.set(true));
+      } catch(final ReflectiveOperationException error) { throw new RuntimeException(error); }
+    });
+    awaitIdle(panel.get()); assertEquals(1, attempts.get()); assertFalse(finished.get());
+    SwingUtilities.invokeAndWait(() -> { snapshot(panel.get(), "download-paused"); button(panel.get(), "Retry download").doClick(); });
+    awaitIdle(panel.get()); assertEquals(2, attempts.get()); assertTrue(finished.get());
   }
   @Test void relativeDestinationCannotInstallInsideTemporaryBootstrap() throws Exception {
     assertThrows(java.io.IOException.class, () -> ManagerView.installationPath("Games/Definitive"));

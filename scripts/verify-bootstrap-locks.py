@@ -93,3 +93,9 @@ sys.exit(22)
                     process.communicate(timeout=5)
 if failures:raise SystemExit('\n'.join(failures))
 print('PASS: both real bootstraps, concurrent exclusion, orphan exclusion, forced-kill retry, legacy/link preservation')
+
+# Keep forced-kill storage recovery in the existing hosted bootstrap gate.
+stages = [sys.executable, str(repo / 'scripts/verify-bootstrap-stages.py')]
+if options.source_ref:
+    stages.extend(['--source-ref', options.source_ref])
+subprocess.run(stages, check=True)

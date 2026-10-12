@@ -20,6 +20,8 @@ public final class InstallStore {
   private final Path root;
   @FunctionalInterface interface BootstrapPublisher { void publish(Path staged, Path target) throws IOException; }
   private final BootstrapPublisher bootstrapPublisher;
+  @FunctionalInterface interface AvailableSpace { long bytes(Path root) throws IOException; }
+  private final AvailableSpace availableSpace;
   private final ThreadLocal<HeldOperation> held = new ThreadLocal<>();
   private static final long MAX_ARCHIVE_BYTES = 8L * 1024 * 1024 * 1024;
   static final long PREPARATION_RESERVE_BYTES = 6L * 1024 * 1024 * 1024;
@@ -27,8 +29,12 @@ public final class InstallStore {
   public InstallStore(final Path root) throws IOException { this(root, InstallStore::replaceFile, false); }
   static InstallStore forMaintenance(final Path root) throws IOException { return new InstallStore(root, InstallStore::replaceFile, true); }
   InstallStore(final Path root, final BootstrapPublisher bootstrapPublisher) throws IOException { this(root, bootstrapPublisher, false); }
+  InstallStore(final Path root, final AvailableSpace availableSpace) throws IOException { this(root, InstallStore::replaceFile, false, availableSpace); }
   private InstallStore(final Path root, final BootstrapPublisher bootstrapPublisher, final boolean deferRecovery) throws IOException {
-    this.bootstrapPublisher = bootstrapPublisher;
+    this(root, bootstrapPublisher, deferRecovery, path -> Files.getFileStore(path).getUsableSpace());
+  }
+  private InstallStore(final Path root, final BootstrapPublisher bootstrapPublisher, final boolean deferRecovery, final AvailableSpace availableSpace) throws IOException {
+    this.bootstrapPublisher = bootstrapPublisher; this.availableSpace = availableSpace;
     this.root = root.toAbsolutePath().normalize();
     if(this.root.toString().matches("(?s).*[:\\n\\r].*")) throw new IOException("Choose a folder without colons or line breaks.");
     for(Path p = this.root; p != null; p = p.getParent()) if(Files.isSymbolicLink(p)) throw new IOException("Choose a real installation folder, not a linked folder.");
@@ -92,6 +98,7 @@ public final class InstallStore {
       this.recoverDiscs();
       this.recoverBootstrap();
       CleanReinstall.recover(this, InstallProgress.NONE);
+      InstallStage.cleanup(this.root);
       return new Operation(owned);
     } catch(final IOException | RuntimeException failure) {
       try { if(owned.gameLease != null) owned.gameLease.close(); }
@@ -161,6 +168,15 @@ public final class InstallStore {
     return this.install(source, releaseAssetId, publishedAt, progress, fullReinstall, null);
   }
   String install(final Path source, final String releaseAssetId, final java.time.Instant publishedAt, final InstallProgress progress, final boolean fullReinstall, final ReleaseUpdates.CurrentRevision revision) throws IOException {
+    return this.install(source, releaseAssetId, publishedAt, progress, fullReinstall, revision, null);
+  }
+  String installVerifiedStage(final InstallStage stage, final String releaseAssetId, final java.time.Instant publishedAt, final InstallProgress progress, final boolean fullReinstall, final ReleaseUpdates.CurrentRevision revision) throws IOException {
+    stage.requireOwned(this.root);
+    final String result = this.install(stage.path(), releaseAssetId, publishedAt, progress, fullReinstall, revision, stage);
+    stage.completed();
+    return result;
+  }
+  private String install(final Path source, final String releaseAssetId, final java.time.Instant publishedAt, final InstallProgress progress, final boolean fullReinstall, final ReleaseUpdates.CurrentRevision revision, final InstallStage deliveryStage) throws IOException {
     try(final var operation = this.operation()) {
       final Properties active = this.state();
       if(revision != null) CurrentRelease.requireAllowed(active, revision);
@@ -171,14 +187,16 @@ public final class InstallStore {
         catch(final java.time.DateTimeException failure) { throw new IOException("Invalid installed release ordering. No update was activated.", failure); }
         if(!releaseAssetId.equals(active.getProperty("releaseAssetId", "")) && !publishedAt.isAfter(installed)) throw new IOException("A newer release is already installed. Check for updates again.");
       }
-      this.requireInstallSpace(source);
+      if(deliveryStage == null) this.requireSpace(this.requiredInstallBytes(source, fullReinstall), "install and prepare your discs");
+      else this.requireSpace(this.requiredFileDeliveryBytes(0, PackageManifest.read(source).id(), fullReinstall), "activate the verified files and prepare your discs");
       progress.phase("Installing game and HD artwork", "Unpacking the verified package into " + this.root, 65);
-      final Path staged = Files.createTempDirectory(this.root, ".package-");
+      final InstallStage localStage = deliveryStage == null ? InstallStage.create(this.root) : null;
+      final Path staged = localStage == null ? deliveryStage.path() : localStage.path();
       try {
         if(Files.isDirectory(source, LinkOption.NOFOLLOW_LINKS)) {
           PackageManifest.read(source).verify(source, PackageManifest.hostPlatform());
-          if(this.root.startsWith(source.toAbsolutePath().normalize())) throw new IOException("Choose a package outside the installation folder.");
-          copyTree(source, staged);
+          if(deliveryStage == null && this.root.startsWith(source.toAbsolutePath().normalize())) throw new IOException("Choose a package outside the installation folder.");
+          if(deliveryStage == null) copyTree(source, staged);
         }
         else extractZip(source, staged, progress);
         progress.phase("Verifying installed files", "Checking the engine, libraries, artwork and license inventory", 82);
@@ -188,6 +206,9 @@ public final class InstallStore {
         forceTree(staged);
         final Properties old = this.state();
         try(final var clean = fullReinstall ? CleanReinstall.prepare(this, old, manifest) : null) {
+        // Older distinct snapshots and root owner files are measured by preservation,
+        // not just active data. Check actual remaining headroom before any activation.
+        if(fullReinstall) this.requireSpace(PREPARATION_RESERVE_BYTES + 1024L * 1024 * 1024, "complete reinstall and prepare your discs after preserving personal files");
         final Path release = this.root.resolve("releases").resolve(manifest.id());
         if(Files.exists(release)) {
           if(Files.isSymbolicLink(release)) throw new IOException("Unexpected linked release. No external files were changed.");
@@ -271,7 +292,7 @@ public final class InstallStore {
         if(fullReinstall) return "Complete reinstall finished. Old application versions and extracted files were removed. Your disc images, saves, configurations and custom mods are preserved; distinct older personal files are in recovered-reinstall. Prepare your discs again.";
         return old.containsKey("version") ? "Update installed. Previous engine and pre-update data are retained for rollback." : "Installed. Import your discs, then add Play Game.sh to Steam.";
         }
-      } finally { if(!Files.exists(this.root.resolve(".release-repair-transaction.properties"), LinkOption.NOFOLLOW_LINKS)) deleteOwnedTree(staged); }
+      } finally { if(localStage != null) localStage.close(); }
     }
   }
 
@@ -383,7 +404,8 @@ public final class InstallStore {
   }
 
   /** Space for a fully staged package, a snapshot and next data generation. */
-  public long requiredInstallBytes(final Path source) throws IOException {
+  public long requiredInstallBytes(final Path source) throws IOException { return this.requiredInstallBytes(source, false); }
+  private long requiredInstallBytes(final Path source, final boolean fullReinstall) throws IOException {
     long payload = 0;
     String candidateId = "";
     if(Files.isDirectory(source, LinkOption.NOFOLLOW_LINKS)) { payload = treeBytes(source); candidateId = PackageManifest.read(source).id(); }
@@ -400,19 +422,43 @@ public final class InstallStore {
     }
     final Properties state = this.state();
     final long privateBytes = state.containsKey("data") ? treeBytes(this.data(state)) : 0;
-    final long preparation = candidateId.equals(state.getProperty("version", "")) && this.discsPrepared() ? 0 : PREPARATION_RESERVE_BYTES;
-    return addBytes(addBytes(addBytes(payload, addBytes(privateBytes, privateBytes)), preparation), 1024L * 1024 * 1024);
+    final long preparation = !fullReinstall && candidateId.equals(state.getProperty("version", "")) && !Boolean.parseBoolean(state.getProperty("uninstalled", "false")) && this.discsPrepared() ? 0 : PREPARATION_RESERVE_BYTES;
+    return deliveryBudget(payload, privateBytes, preparation).required();
   }
   public void requireInstallSpace(final Path source) throws IOException {
     final long required = this.requiredInstallBytes(source);
-    if(Files.getFileStore(this.root).getUsableSpace() < required) throw new IOException("Installation needs " + String.format(java.util.Locale.ROOT, "%.1f GB", required / 1073741824.0) + " free, including retained saves, custom artwork and recovery copies.");
+    this.requireSpace(required, "install and prepare your discs");
   }
-  void requireFileDeliverySpace(final long payload, final String candidateId) throws IOException {
+  long requiredFileDeliveryBytes(final long payload, final String candidateId) throws IOException { return this.requiredFileDeliveryBytes(payload, candidateId, false); }
+  long requiredFileDeliveryBytes(final long payload, final String candidateId, final boolean fullReinstall) throws IOException {
+    if(payload < 0 || payload > MAX_ARCHIVE_BYTES) throw new IOException("Invalid staged package size.");
     final Properties state = this.state();
     final long privateBytes = state.containsKey("data") ? treeBytes(this.data(state)) : 0;
-    final long preparation = candidateId.equals(state.getProperty("version", "")) && this.discsPrepared() ? 0 : PREPARATION_RESERVE_BYTES;
-    final long required = addBytes(addBytes(addBytes(payload, payload), addBytes(privateBytes, privateBytes)), addBytes(preparation, 1024L * 1024 * 1024));
-    if(Files.getFileStore(this.root).getUsableSpace() < required) throw new IOException("Not enough space to stage and activate the complete verified file set. Free space and retry.");
+    final long preparation = !fullReinstall && candidateId.equals(state.getProperty("version", "")) && !Boolean.parseBoolean(state.getProperty("uninstalled", "false")) && this.discsPrepared() ? 0 : PREPARATION_RESERVE_BYTES;
+    return deliveryBudget(payload, privateBytes, preparation).required();
+  }
+  record StorageBudget(long simultaneousBytes, long futureBytes) {
+    long required() { return Math.max(this.simultaneousBytes, this.futureBytes); }
+  }
+  private static StorageBudget deliveryBudget(final long payload, final long privateBytes, final long preparation) throws IOException {
+    final long simultaneous = addBytes(addBytes(payload, addBytes(privateBytes, privateBytes)), 1024L * 1024 * 1024);
+    // Logical file sizes cannot prove space reclaimed from shared extents, clones,
+    // hard links or filesystem snapshots. Keep future preparation headroom intact.
+    return new StorageBudget(simultaneous, addBytes(simultaneous, preparation));
+  }
+  void requireFileDeliverySpace(final long payload, final String candidateId, final boolean fullReinstall) throws IOException {
+    this.requireSpace(this.requiredFileDeliveryBytes(payload, candidateId, fullReinstall), "download, install and prepare your discs");
+  }
+  void requirePersonalPreservationSpace(final Path source) throws IOException { this.requirePersonalPreservationSpace(treeBytes(source)); }
+  void requirePersonalPreservationSpace(final long additionalBytes) throws IOException {
+    if(additionalBytes == 0) return; // Empty generations and verified deduplicated files need no payload allocation.
+    if(additionalBytes < 0) throw new IOException("Invalid personal preservation size.");
+    this.requireSpace(addBytes(additionalBytes, PREPARATION_RESERVE_BYTES + 1024L * 1024 * 1024), "preserve personal files and prepare your discs");
+  }
+  private void requireSpace(final long required, final String purpose) throws IOException {
+    final long available = this.availableSpace.bytes(this.root);
+    if(available < required) throw new IOException(String.format(java.util.Locale.ROOT,
+      "To %s, %.2f GiB free is required; %.2f GiB is available. This covers simultaneous files and personal-data recovery copies, disc preparation when needed (6 GiB), and safety space (1 GiB).", purpose, required / 1073741824.0, available / 1073741824.0));
   }
   private static long addBytes(final long one, final long two) throws IOException {
     try { return Math.addExact(one, two); } catch(final ArithmeticException failure) { throw new IOException("Installation size exceeds supported limits.", failure); }
@@ -773,11 +819,9 @@ public final class InstallStore {
         final Path target = this.root.resolve(name); if(Files.isSymbolicLink(target)) throw new IOException("Unexpected linked installation file. No files were removed."); if(Files.exists(target)) targets.add(target);
       }
       if(deleteIsos) targets.add(this.root.resolve("isos"));
-      try(final var paths = Files.list(this.root)) {
-        for(final Path path : paths.toList()) if(path.getFileName().toString().matches("(?:release-recovery|disc-extraction-recovery" + (deleteIsos ? "|disc-recovery" : "") + ")-[a-f0-9-]{36}")) {
-          if(Files.isSymbolicLink(path)) throw new IOException("Unexpected linked recovery folder. No files were removed."); targets.add(path);
-        }
-      }
+      // A recovery-looking name is not proof of ownership. Transaction recovery above
+      // resolves active backups; unreferenced recovery folders may contain owner files.
+      InstallStage.cleanup(this.root, true);
       // Recoverable state is published before removal so an interrupted uninstall offers Reinstall.
       state.setProperty("uninstalled", "true"); atomicProperties(this.root.resolve("state.properties"), state);
       int number = 0;

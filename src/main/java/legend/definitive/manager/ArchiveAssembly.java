@@ -28,11 +28,15 @@ final class ArchiveAssembly {
   private final Map<Chunk, List<Local>> local = new HashMap<>();
   private final Set<String> indexed = new HashSet<>();
   private final ReleaseUpdates.AssetDownload connection;
-  private final long deadline = System.nanoTime() + Duration.ofMinutes(30).toNanos();
+  private final java.util.function.LongSupplier clock;
   private int requests, localEntries;
   private long indexedBytes;
 
   ArchiveAssembly(final Recipe recipe, final Path current, final Recipe cache, final ReleaseUpdates.AssetDownload connection) throws IOException {
+    this(recipe, current, cache, connection, System::nanoTime);
+  }
+  ArchiveAssembly(final Recipe recipe, final Path current, final Recipe cache, final ReleaseUpdates.AssetDownload connection, final java.util.function.LongSupplier clock) throws IOException {
+    this.clock = clock;
     this.recipe = recipe; this.current = current; this.connection = connection;
     if(current != null && cache != null) for(final var entry : cache.files().entrySet()) {
       long offset = 0;
@@ -103,11 +107,15 @@ final class ArchiveAssembly {
   }
   static Recipe fetch(final ReleaseUpdates.CurrentRevision revision, final FileDelivery.Contents contents, final Path scratch,
                       final ReleaseUpdates.AssetDownload connection) throws IOException, InterruptedException {
+    return fetch(revision, contents, scratch, connection, InstallProgress.NONE, new InstallProgress.NetworkSampler());
+  }
+  static Recipe fetch(final ReleaseUpdates.CurrentRevision revision, final FileDelivery.Contents contents, final Path scratch,
+                      final ReleaseUpdates.AssetDownload connection, final InstallProgress progress, final InstallProgress.NetworkSampler network) throws IOException, InterruptedException {
     final var descriptor = revision.assembly();
     if(descriptor == null) return null;
     final Path path = Files.createTempFile(scratch, ".assembly-", ".json");
     try {
-      ReleaseUpdates.download(new ReleaseUpdates.Candidate("definitive-current", descriptor.id(), descriptor.url(), descriptor.sha256()), path, InstallProgress.NONE, connection, MAX_BYTES);
+      ReleaseUpdates.download(new ReleaseUpdates.Candidate("definitive-current", descriptor.id(), descriptor.url(), descriptor.sha256()), path, progress, connection, MAX_BYTES, network);
       if(Files.size(path) != descriptor.bytes() || !PackageManifest.sha256(path).equals(descriptor.sha256())) throw bad();
       return read(Files.readAllBytes(path), revision.sourceRevision(), contents.manifest().platform(), contents.manifest().hashes(), contents.sizes(), revision.sources());
     } finally { Files.deleteIfExists(path); }
@@ -116,10 +124,19 @@ final class ArchiveAssembly {
 
   /** SHA-checked bounded buffers prevent local mutation between verification and copying. */
   long assemble(final String name, final Path target, final boolean reuse, final java.util.function.LongConsumer progress) throws IOException, InterruptedException {
-    final List<Span> spans = this.recipe.files().get(name); long reused = 0, completed = 0;
+    return assemble(name, target, reuse, progress, (bytes, network) -> { }, new InstallProgress.NetworkSampler());
+  }
+  long assemble(final String name, final Path target, final boolean reuse, final java.util.function.LongConsumer progress,
+                final java.util.function.BiConsumer<Long, InstallProgress.Network> networkProgress, final InstallProgress.NetworkSampler network) throws IOException, InterruptedException {
+    final List<Span> spans = this.recipe.files().get(name);
     if(reuse) index(name);
-    try(final var output = Files.newOutputStream(target, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS)) {
-      for(int at = 0; at < spans.size();) {
+    try(final var channel = FileChannel.open(target, StandardOpenOption.CREATE, StandardOpenOption.READ, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS)) {
+      final Prefix retained = prefix(channel, spans);
+      channel.truncate(retained.bytes()); channel.position(retained.bytes());
+      final var output = java.nio.channels.Channels.newOutputStream(channel);
+      long reused = retained.bytes(), completed = retained.bytes();
+      if(completed > 0) progress.accept(completed);
+      for(int at = retained.spans(); at < spans.size();) {
         PackageManifest.checkCancelled();
         final Span first = spans.get(at); final byte[] cached = reuse ? local(first) : null;
         if(cached != null) { output.write(cached); reused += cached.length; completed += cached.length; progress.accept(completed); at++; continue; }
@@ -129,17 +146,32 @@ final class ArchiveAssembly {
           if(!next.source().equals(first.source()) || next.offset() != first.offset() + length || length + next.bytes() > MAX_BYTES || reuse && hasLocal(next)) break;
           length += next.bytes(); end++;
         }
-        final byte[] bytes = range(first.source(), first.offset(), length);
-        int offset = 0;
-        for(int row = at; row < end; row++) {
-          final Span span = spans.get(row);
-          if(!digest(bytes, offset, span.bytes()).equals(span.sha256())) throw new InvalidRange("Archive chunk checksum mismatch.");
-          offset += span.bytes();
-        }
-        output.write(bytes); completed += length; progress.accept(completed); at = end;
+        final long base = completed;
+        range(first.source(), first.offset(), length, spans.subList(at, end), (bytes, offset, count) -> {
+          output.write(bytes, offset, count);
+          progress.accept(channel.position()); networkProgress.accept(channel.position(), network.snapshot());
+        }, (received, telemetry) -> networkProgress.accept(base + received, telemetry), network);
+        completed += length; at = end;
       }
+      return reused;
     }
-    return reused;
+  }
+  private record Prefix(int spans, long bytes) { }
+  private static Prefix prefix(final FileChannel channel, final List<Span> spans) throws IOException {
+    long bytes = 0; int count = 0;
+    for(final Span span : spans) {
+      PackageManifest.checkCancelled();
+      if(bytes > channel.size() - span.bytes() || !PackageManifest.digest(RawArchive.read(channel, bytes, span.bytes())).equals(span.sha256())) break;
+      bytes += span.bytes(); count++;
+    }
+    return new Prefix(count, bytes);
+  }
+  /** Discard only the unverified suffix of receipt-owned scratch before budgeting remaining space. */
+  long retainVerifiedPrefix(final String name, final Path target) throws IOException {
+    if(!Files.exists(target, LinkOption.NOFOLLOW_LINKS)) return 0;
+    try(final var channel = FileChannel.open(target, StandardOpenOption.READ, StandardOpenOption.WRITE, LinkOption.NOFOLLOW_LINKS)) {
+      final long bytes = prefix(channel, this.recipe.files().get(name)).bytes(); channel.truncate(bytes); return bytes;
+    }
   }
   private void remember(final String digest, final int bytes, final Path path, final long offset) {
     if(this.localEntries >= MAX_SPANS) return;
@@ -172,26 +204,31 @@ final class ArchiveAssembly {
   private void index(final String name) throws IOException {
     if(this.current == null || !this.indexed.add(name)) return;
     final Path path = this.current.resolve(name); if(!safe(path)) return;
+    final long deadline = this.clock.getAsLong() + Duration.ofMinutes(2).toNanos();
     try(final var channel = FileChannel.open(path, StandardOpenOption.READ, LinkOption.NOFOLLOW_LINKS)) {
       for(final var range : RawArchive.ranges(channel, name.endsWith(".zip") || name.endsWith(".jar"))) {
         PackageManifest.checkCancelled();
-        if(this.localEntries >= MAX_SPANS || this.indexedBytes + range.bytes() > 8L * 1024 * 1024 * 1024 || System.nanoTime() >= this.deadline) return;
+        if(this.localEntries >= MAX_SPANS || this.indexedBytes + range.bytes() > 8L * 1024 * 1024 * 1024 || this.clock.getAsLong() - deadline >= 0) return;
         this.indexedBytes += range.bytes();
         remember(PackageManifest.digest(RawArchive.read(channel, range.offset(), range.bytes())), range.bytes(), path, range.offset());
       }
     } catch(final java.io.InterruptedIOException cancelled) { throw cancelled; }
     catch(final IOException unavailable) { /* Malformed old archives do not block a verified download. */ }
   }
-  private byte[] range(final String source, final long offset, final int bytes) throws IOException, InterruptedException {
+  @FunctionalInterface private interface VerifiedChunk { void write(byte[] bytes, int offset, int count) throws IOException; }
+  /** Coalesced requests commit each checksum-verified chunk, even when a later chunk stalls. */
+  private void range(final String source, final long offset, final int bytes, final List<Span> spans, final VerifiedChunk sink,
+                       final java.util.function.BiConsumer<Long, InstallProgress.Network> progress, final InstallProgress.NetworkSampler network) throws IOException, InterruptedException {
     final Source identity = this.recipe.sources().get(source);
-    final long end = offset + bytes - 1; IOException last = null;
+    final long end = offset + bytes - 1; IOException last = null; final int[] accepted = {0};
     for(int attempt = 0; attempt < 3; attempt++) {
       PackageManifest.checkCancelled();
-      final long remaining = this.deadline - System.nanoTime();
-      if(remaining <= 0 || ++this.requests > MAX_SPANS * 3) throw new IOException("Archive assembly exceeded its transfer budget.");
+      if(accepted[0] == spans.size()) return;
+      if(++this.requests > MAX_SPANS * 3) throw new IOException("Archive assembly exceeded its request budget.");
+      final long start = spans.get(accepted[0]).offset(); final int remainingBytes = (int)(end - start + 1);
       final var request = HttpRequest.newBuilder(URI.create(BASE + "file-" + source))
-        .header("Range", "bytes=" + offset + "-" + end).header("Accept-Encoding", "identity")
-        .timeout(Duration.ofNanos(Math.min(remaining, Duration.ofSeconds(30).toNanos()))).GET().build();
+        .header("Range", "bytes=" + start + "-" + end).header("Accept-Encoding", "identity")
+        .timeout(Duration.ofSeconds(30)).GET().build();
       try {
         final var response = this.connection.send(request);
         try(final var input = response.body()) {
@@ -200,21 +237,42 @@ final class ArchiveAssembly {
             if(cooldown.matches("[0-9]{1,8}") && Long.parseLong(cooldown) > 2) throw new InvalidRange("Server requests a longer wait. Retry this update later.");
             throw new IOException("Archive source is temporarily unavailable.");
           }
-          if(response.statusCode() != 206 || !response.headers().allValues("Content-Range").equals(List.of("bytes " + offset + "-" + end + "/" + identity.bytes()))
+          if(response.statusCode() != 206 || !response.headers().allValues("Content-Range").equals(List.of("bytes " + start + "-" + end + "/" + identity.bytes()))
             || response.headers().allValues("Content-Encoding").stream().anyMatch(value -> !value.equalsIgnoreCase("identity"))) throw new InvalidRange("Archive source returned an invalid byte range.");
           final var lengths = response.headers().allValues("Content-Length");
-          if(!lengths.isEmpty() && !lengths.equals(List.of(Integer.toString(bytes)))) throw new InvalidRange("Archive source returned an invalid body size.");
-          final var output = new ByteArrayOutputStream(bytes);
-          final long timeout = this.deadline - System.nanoTime(); if(timeout <= 0) throw new IOException("Archive transfer took too long.");
-          DownloadBody.copy(input, output, bytes, Duration.ofNanos(timeout));
-          if(output.size() != bytes) throw new InvalidRange("Archive source returned a truncated byte range.");
-          return output.toByteArray();
+          if(!lengths.isEmpty() && !lengths.equals(List.of(Integer.toString(remainingBytes)))) throw new InvalidRange("Archive source returned an invalid body size.");
+          final class RangeBuffer extends ByteArrayOutputStream {
+            private int checked;
+            RangeBuffer() { super(remainingBytes); }
+            void append(final byte[] data, final int offset, final int count) throws IOException {
+              super.write(data, offset, count);
+              while(accepted[0] < spans.size()) {
+                final Span span = spans.get(accepted[0]);
+                if(this.count - this.checked < span.bytes()) break;
+                if(!digest(this.buf, this.checked, span.bytes()).equals(span.sha256())) throw new InvalidRange("Archive chunk checksum mismatch.");
+                sink.write(this.buf, this.checked, span.bytes()); this.checked += span.bytes(); accepted[0]++;
+              }
+            }
+          }
+          final var output = new RangeBuffer();
+          final var collector = new OutputStream() {
+            @Override public void write(final int value) throws IOException { this.write(new byte[]{(byte)value}, 0, 1); }
+            @Override public void write(final byte[] data, final int offset, final int count) throws IOException { output.append(data, offset, count); }
+          };
+          final var received = network.transfer();
+          progress.accept(start - offset, network.snapshot());
+          DownloadBody.copy(input, collector, remainingBytes, Duration.ofMinutes(30), completed -> {
+            received.accept(completed); progress.accept(start - offset + completed, network.snapshot());
+          });
+          if(output.size() != remainingBytes) throw new InvalidRange("Archive source returned a truncated byte range.");
+          return;
         }
-      } catch(final InvalidRange | DownloadBody.SizeLimitException | DownloadBody.WorkerCleanupException | DownloadBody.WriteException permanent) { throw permanent; }
+      } catch(final DownloadBody.WriteException failure) { if(failure.getCause() instanceof InvalidRange invalid) throw invalid; throw failure; }
+      catch(final InvalidRange | DownloadBody.SizeLimitException | DownloadBody.WorkerCleanupException permanent) { throw permanent; }
       catch(final IOException retry) { last = retry; }
       if(attempt < 2) Thread.sleep(250L << attempt);
     }
-    throw new IOException("Archive transfer failed after bounded retries.", last);
+    throw new ReleaseUpdates.TransportFailure("Archive transfer failed after bounded retries.", last);
   }
   static Recipe cache(final Path root, final Path current) throws IOException {
     if(current == null) return null;

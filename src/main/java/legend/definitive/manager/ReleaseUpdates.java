@@ -359,6 +359,9 @@ public final class ReleaseUpdates {
     download(candidate, file, progress, connection, MAX_PACKAGE_BYTES);
   }
   static void download(final Candidate candidate, final Path file, final InstallProgress progress, final AssetDownload connection, final long maxBytes) throws IOException, InterruptedException {
+    download(candidate, file, progress, connection, maxBytes, new InstallProgress.NetworkSampler());
+  }
+  static void download(final Candidate candidate, final Path file, final InstallProgress progress, final AssetDownload connection, final long maxBytes, final InstallProgress.NetworkSampler network) throws IOException, InterruptedException {
     final long deadline = System.nanoTime() + Duration.ofMinutes(30).toNanos();
     String etag = ""; IOException failure = null;
     for(int attempt = 0; attempt < 3; attempt++) {
@@ -395,13 +398,19 @@ public final class ReleaseUpdates {
           if(total > maxBytes || start > maxBytes || length < -1) throw new InvalidDownload("Release download is larger than the supported package limit.");
           final long usable = Files.getFileStore(file).getUsableSpace();
           final long downloadReserve = 1024L * 1024 * 1024;
-          if(usable < downloadReserve || total >= 0 && total - start > usable - downloadReserve) throw new InvalidDownload("Not enough free installation storage to download this release safely. Free space and retry; the current game is unchanged.");
+          final long required = downloadReserve + Math.max(0, total - start);
+          if(usable < required) throw new InvalidDownload(String.format(java.util.Locale.ROOT,
+            "To download this release, %s%.2f GiB free is required; %.2f GiB is available. Required space includes 1 GiB safety space. Free space and retry; the current game is unchanged.", total < 0 ? "at least " : "", required / 1073741824.0, usable / 1073741824.0));
           final long completed = start, size = total;
-          progress.bytes("Downloading Definitive + HD mods", 10, 60, completed, size);
+          progress.bytes("Downloading Definitive + HD mods", 10, 60, completed, size, network.snapshot());
           final long bodyRemaining = deadline - System.nanoTime();
           if(bodyRemaining <= 0) throw new IOException("Release download took too long.");
           try(final var output = Files.newOutputStream(file, StandardOpenOption.WRITE, start == 0 ? StandardOpenOption.TRUNCATE_EXISTING : StandardOpenOption.APPEND, LinkOption.NOFOLLOW_LINKS)) {
-            DownloadBody.copy(input, output, Math.min(bodyLimit, maxBytes - completed), Duration.ofNanos(bodyRemaining), bytes -> progress.bytes("Downloading Definitive + HD mods", 10, 60, completed + bytes, size));
+            final var received = network.transfer();
+            DownloadBody.copy(input, output, Math.min(bodyLimit, maxBytes - completed), Duration.ofNanos(bodyRemaining), bytes -> {
+              received.accept(bytes);
+              progress.bytes("Downloading Definitive + HD mods", 10, 60, completed + bytes, size, network.snapshot());
+            });
           }
           if(total >= 0 && Files.size(file) != total) throw new IOException("Release transfer stopped before its expected size.");
           return;
@@ -410,8 +419,9 @@ public final class ReleaseUpdates {
       catch(final IOException transientFailure) { failure = transientFailure; }
       if(attempt < 2) Thread.sleep(250L << attempt);
     }
-    throw new IOException("Release download could not complete after bounded retries. Your current installation is unchanged.", failure);
+    throw new TransportFailure("Release download could not complete after bounded retries. Your current installation is unchanged.", failure);
   }
+  static final class TransportFailure extends IOException { TransportFailure(final String message, final IOException cause) { super(message, cause); } }
   private static final class InvalidDownload extends IOException { InvalidDownload(final String message) { super(message); } }
 
   /** Bounded JSON reader for GitHub metadata; no executable expressions or external dependencies. */
