@@ -1,0 +1,1026 @@
+{
+  "schema": 1,
+  "scope": "Bounded source/geometry audit of seven constant-context candidates, not a cleared encounter contract or static HD replacement.",
+  "familyLedgerSha256": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
+  "sourceFiles": {
+    "src/main/java/legend/game/Scus94491BpeSegment.java": "1fc3659812de30f17e949d1b59042e744e01a19fd4d1d1b48aad0b5d98a11fa4",
+    "src/main/java/legend/core/gpu/Gpu.java": "00f4c037d1fcca08f61fb46f8b7c8df647ef983c0709bbe5972a5b315b8a1e11",
+    "src/main/java/legend/game/combat/Battle.java": "b7e88fa445f92574862844d67e3a274209e3fb66ab2ae15f0edf6fefd8f5a54d",
+    "src/main/java/legend/game/combat/SEffe.java": "abf3f07c95eab9ab5a9cf7bab9ff43132326a09c0d1732d4037d77de4068064c",
+    "src/main/java/legend/game/combat/effects/ScreenDarkeningEffect.java": "8afb26cef9d9874bb9eb2d7580e3aa259945191b1ac7205ccf3ed251a28ea3b0",
+    "src/main/java/legend/definitive/artwork/StageArtwork.java": "1e22133e3acf13334a65ce9d474150910e3408cdf3ac90a263b4e73abbf510a4",
+    "src/main/java/legend/definitive/artwork/BattleMaterialAtlas.java": "a865bd4a01b4ccaded30af1f0d610e2229d217299fd9ca24f708ebae595ebb2b",
+    "integrations/envhd/src/main/java/envhd/EnvHdMod.java": "5e324a2d87f9efa8e1cb2932a542bdd94752cfdb4e0162f54c59cd816a3670c6"
+  },
+  "familyLedgerSourceMethods": [
+    {
+      "path": "src/main/java/legend/game/combat/Battle.java",
+      "signature": "public void applyBattleStageTextureAnimations(",
+      "bodySha256": "cb6228022ac4f1b1b7376ea3a906cd1c5b6dd8c695c305e5265866435a038d96"
+    },
+    {
+      "path": "src/main/java/legend/game/combat/Battle.java",
+      "signature": "public void FUN_800ec86c(",
+      "bodySha256": "2ab282be808cd561999c742da56af94232b1ca827972123927324c6a290f7e90"
+    },
+    {
+      "path": "src/main/java/legend/game/combat/Battle.java",
+      "signature": "public void renderBattleStage(",
+      "bodySha256": "c7c4644bd161e4ee7c68fcdeb1aa926164183f493bc468d7bd30c5e3a328000b"
+    },
+    {
+      "path": "src/main/java/legend/game/combat/Battle.java",
+      "signature": "public void loadStageTim(",
+      "bodySha256": "84e0b1b17cb1a5abe7110ab9cb04a83bc81b159bb9d149fb239d2b1a54e57ed4"
+    },
+    {
+      "path": "src/main/java/legend/game/combat/Battle.java",
+      "signature": "public void backupStageClut(",
+      "bodySha256": "c5d00361a32e28183ead582eafaa501d5d011f10c2cbd70264d5a9a6e985de93"
+    },
+    {
+      "path": "src/main/java/legend/game/combat/Battle.java",
+      "signature": "public FlowControl scriptCopyVram(",
+      "bodySha256": "34be6e5507d49bd0a9fd64bfbda096ab469f5e167f4978aad34942be614b12a8"
+    },
+    {
+      "path": "src/main/java/legend/game/types/CContainer.java",
+      "signature": "public CContainer(final String name, final FileData data, final int subfileSize)",
+      "bodySha256": "f065f7a76ca7df1b9a4dd8fb35920ad8dbea2c03777fe13d97332ab33c3e76fc"
+    },
+    {
+      "path": "src/main/java/legend/game/types/CContainerSubfile2.java",
+      "signature": "public CContainerSubfile2(",
+      "bodySha256": "5cf0ccbc7a95341893980a766b2965ca879d0cb7e9a67ae70e349b6066d294fd"
+    },
+    {
+      "path": "src/main/java/legend/core/gpu/GpuCommandCopyVramToVram.java",
+      "signature": "public GpuCommandCopyVramToVram(",
+      "bodySha256": "d11f7a8289d3733ee9fe01d8cd9bb6b789ec17307c6691e30f8c4793791f7251"
+    },
+    {
+      "path": "src/main/java/legend/core/gpu/Gpu.java",
+      "signature": "private void tick()",
+      "bodySha256": "4033db7e50b753ed2ee8f9bed86fe11787691c8e01a230af4a2382435defc48b"
+    },
+    {
+      "path": "src/main/java/legend/core/gpu/Gpu.java",
+      "signature": "public void queueCommand(final int z,",
+      "bodySha256": "c29d5a170a70c4d630c16791c9e3273e9bfa837349573cc3764383d2fac2724e"
+    },
+    {
+      "path": "src/main/java/legend/core/gpu/Gpu.java",
+      "signature": "public void copyVramToVram(",
+      "bodySha256": "4b80cdeda24379d9e8f7f2fec498000ebd72dd7cdb62fd9d4af4eb69502c98f7"
+    },
+    {
+      "path": "src/main/java/legend/game/Graphics.java",
+      "signature": "public static void endFrame()",
+      "bodySha256": "363f36ff763ff7a77d2cfc9f13c3069d82ce7f7b8a79fe1614b3c5a52b6b5815"
+    },
+    {
+      "path": "src/main/java/legend/game/combat/SEffe.java",
+      "signature": "public static void applyScreenDarkening(",
+      "bodySha256": "4de2652def5953a6674040bf96dc1103c4d3c6cf1bf29ef6aeb17429d7eea970"
+    }
+  ],
+  "counts": {
+    "bindings": 7,
+    "stages": 6,
+    "texturedFaceReferences": 378,
+    "sampledContextAndFullPaletteConstantInIsolatedCycle": 7,
+    "palettesInsideDarkeningUpload": 7,
+    "fullEncounterContractsClosed": 0,
+    "runtimeSelected": 0,
+    "holdsCleared": 0,
+    "completeImageJobDenominator": null
+  },
+  "darkeningUploadRect": [
+    448,
+    240,
+    64,
+    16
+  ],
+  "bindings": [
+    {
+      "stage": 3,
+      "page": 7,
+      "clut": 15580,
+      "faces": 161,
+      "faceIndicesByPart": {
+        "0": [
+          121,
+          202,
+          232,
+          245,
+          246,
+          258,
+          259,
+          269,
+          270,
+          271,
+          272,
+          273,
+          274,
+          275,
+          276,
+          277,
+          279,
+          280,
+          281,
+          282,
+          283,
+          284,
+          285,
+          286,
+          287,
+          288,
+          289,
+          290,
+          291,
+          292,
+          293,
+          294,
+          295,
+          296,
+          297,
+          298,
+          299,
+          300,
+          301,
+          302,
+          303,
+          304,
+          305,
+          306,
+          307,
+          308,
+          309,
+          310,
+          311,
+          312,
+          313,
+          314,
+          315,
+          316,
+          317,
+          318,
+          319,
+          320,
+          321,
+          322,
+          323,
+          324,
+          325,
+          327,
+          328,
+          329,
+          330,
+          331,
+          332,
+          333,
+          334,
+          335,
+          336,
+          337,
+          338,
+          339,
+          340,
+          341,
+          342,
+          343,
+          344,
+          345,
+          404,
+          405,
+          406,
+          407,
+          408,
+          409,
+          410,
+          411,
+          412,
+          413,
+          414,
+          415,
+          416,
+          417,
+          418,
+          419,
+          420,
+          421,
+          422,
+          423,
+          430,
+          431,
+          432,
+          433,
+          434,
+          435,
+          436,
+          437,
+          438,
+          439,
+          440,
+          441,
+          442,
+          443,
+          444,
+          445,
+          446,
+          447,
+          448,
+          449,
+          450,
+          451,
+          452,
+          453,
+          454,
+          455,
+          456,
+          457,
+          458,
+          459,
+          460,
+          461,
+          462,
+          463,
+          464,
+          465,
+          466,
+          467,
+          468,
+          469,
+          470,
+          471,
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          478,
+          479,
+          480,
+          481,
+          482,
+          483,
+          504,
+          505,
+          506,
+          507,
+          508
+        ]
+      },
+      "texturedFaceContractSha256": "404cd4651f6678c4c4739fe3ed5529fb1eaa057a52e9bc1d1f8d4016295eeecc",
+      "modelSha256": "27834adda47889238c36574ac8e1e11f903b22829e417607efbe4e1691efd07f",
+      "timSha256": "f85b670e689de77ce877f46d6a2f794d60100ae0919aecac55a1d7d07b0f181b",
+      "familySha256": "f29a61698343c2f4ca4948f20a102b79505dad69b1977a3eae412b45e25e5faf",
+      "controllerCycleSha256": "46ada6e5729c957e90998d9fdb03a7bf7b8c3ccd172c94cf66829711e33d7150",
+      "periodTicks": 32,
+      "contextSize": [
+        80,
+        72
+      ],
+      "sourceReadAudit": {
+        "sampledImage": {
+          "vramRect": [
+            492,
+            0,
+            16,
+            64
+          ],
+          "words": 1024,
+          "uninitializedWords": 0
+        },
+        "conservativePadding": {
+          "vramRect": [
+            490,
+            0,
+            20,
+            72
+          ],
+          "words": 1440,
+          "uninitializedWords": 0
+        },
+        "fullPalette": {
+          "vramRect": [
+            448,
+            243,
+            16,
+            1
+          ],
+          "words": 16,
+          "uninitializedWords": 0
+        }
+      },
+      "paddedSourceVramBounds": [
+        490,
+        0,
+        20,
+        72
+      ],
+      "paletteVramBounds": [
+        448,
+        243,
+        16,
+        1
+      ],
+      "paletteInsideCounterattackDarkeningUpload": true,
+      "metadataShard": "battle-stage-family-details/stage-003.json.gz",
+      "frameTableSha256": "04ed2790435a02f61e8c854d89c5ab313b53c27b725e5dc24b801246ba428837",
+      "frameScheduleSha256": "9cb0d333ba184232298a6aea9c55adff0c7eebc0fadd1ee5b8b06c021a3b683f",
+      "remainingContracts": [
+        "encounter-script-and-effect-upload-interference",
+        "counterattack-darkening-parameter-and-transition-provenance",
+        "renderer-presentation-timing-and-lifetime",
+        "independent-art-and-gameplay-acceptance"
+      ],
+      "runtimeSelected": false,
+      "holdCleared": false
+    },
+    {
+      "stage": 4,
+      "page": 7,
+      "clut": 15708,
+      "faces": 46,
+      "faceIndicesByPart": {
+        "0": [
+          292,
+          293,
+          294,
+          297,
+          298,
+          300,
+          303,
+          304,
+          307,
+          308,
+          313,
+          314,
+          325,
+          327,
+          330,
+          332,
+          337,
+          339,
+          342,
+          344,
+          347,
+          348,
+          351,
+          354,
+          357,
+          360,
+          365,
+          366,
+          367,
+          368,
+          369,
+          374,
+          376,
+          377,
+          387,
+          388,
+          389,
+          392,
+          393,
+          397,
+          398,
+          399,
+          400,
+          404,
+          406,
+          407
+        ]
+      },
+      "texturedFaceContractSha256": "4e4ec55bd24d80e2bfd345cc31943be73e4b74afd6133284c286700038bd356a",
+      "modelSha256": "5d24b9bd46c80b2e82cfd64892c627a3ebe38ee957c71ddac6e1e05bff52cd78",
+      "timSha256": "1d2a9c5bfa6f37b9dcbfaf845b2246f72832c064c70725177ef1eb0657d4c856",
+      "familySha256": "6b8e864245f94d1a20aea199254e45b984c4fa545432f0eea031a153c98e674a",
+      "controllerCycleSha256": "46ada6e5729c957e90998d9fdb03a7bf7b8c3ccd172c94cf66829711e33d7150",
+      "periodTicks": 32,
+      "contextSize": [
+        80,
+        80
+      ],
+      "sourceReadAudit": {
+        "sampledImage": {
+          "vramRect": [
+            464,
+            64,
+            16,
+            64
+          ],
+          "words": 1024,
+          "uninitializedWords": 0
+        },
+        "conservativePadding": {
+          "vramRect": [
+            462,
+            56,
+            20,
+            80
+          ],
+          "words": 1600,
+          "uninitializedWords": 0
+        },
+        "fullPalette": {
+          "vramRect": [
+            448,
+            245,
+            16,
+            1
+          ],
+          "words": 16,
+          "uninitializedWords": 0
+        }
+      },
+      "paddedSourceVramBounds": [
+        462,
+        56,
+        20,
+        80
+      ],
+      "paletteVramBounds": [
+        448,
+        245,
+        16,
+        1
+      ],
+      "paletteInsideCounterattackDarkeningUpload": true,
+      "metadataShard": "battle-stage-family-details/stage-004.json.gz",
+      "frameTableSha256": "1a3e03d8246ac9ef6e1c081b8e3826f9f7b1d346fd5c5306775e15ac93ca79c8",
+      "frameScheduleSha256": "fca85c8a0ef8b2ad4991854a6d05d97388f22d11a0fbc22910362c73b0579fe0",
+      "remainingContracts": [
+        "encounter-script-and-effect-upload-interference",
+        "counterattack-darkening-parameter-and-transition-provenance",
+        "renderer-presentation-timing-and-lifetime",
+        "independent-art-and-gameplay-acceptance"
+      ],
+      "runtimeSelected": false,
+      "holdCleared": false
+    },
+    {
+      "stage": 9,
+      "page": 7,
+      "clut": 15516,
+      "faces": 117,
+      "faceIndicesByPart": {
+        "0": [
+          45,
+          52,
+          242,
+          258,
+          259,
+          264,
+          265,
+          266,
+          267,
+          268,
+          269,
+          270,
+          271,
+          272,
+          273,
+          274,
+          275,
+          277,
+          278,
+          279,
+          280,
+          281,
+          282,
+          283,
+          284,
+          285,
+          287,
+          288,
+          290,
+          291,
+          292,
+          293,
+          294,
+          296,
+          297,
+          298,
+          299,
+          300,
+          301,
+          302,
+          303,
+          304,
+          305,
+          306,
+          307,
+          310,
+          311,
+          312,
+          313,
+          314,
+          315,
+          317,
+          318,
+          319,
+          320,
+          321,
+          323,
+          324,
+          325,
+          326,
+          329,
+          330,
+          331,
+          334,
+          337,
+          348,
+          351,
+          352,
+          353,
+          354,
+          355,
+          356,
+          357,
+          358,
+          367,
+          371,
+          372,
+          378,
+          380,
+          382,
+          384,
+          385,
+          390,
+          392,
+          394,
+          395,
+          400,
+          401,
+          402,
+          403,
+          404,
+          407,
+          408,
+          409,
+          411,
+          412,
+          421,
+          423,
+          425,
+          426,
+          440,
+          442,
+          444,
+          445,
+          454,
+          455,
+          456,
+          457,
+          458,
+          459,
+          460,
+          461,
+          462,
+          463,
+          485,
+          490,
+          491
+        ]
+      },
+      "texturedFaceContractSha256": "55b8560558b426b0cdc2b063849b41729a16e16e724d9cbe29833459f217d575",
+      "modelSha256": "d7e075901689ec3d62618eb82242b02485a51aa01314cb650943079c25617e23",
+      "timSha256": "cc2ff5790ec9549d34abdda4cbdfb3b8f6ad43f030c909c0f79c7fd44a2bf731",
+      "familySha256": "5ea6164ab2e3f4272244227364f0595f5daa0bf3adec8463ee2bf3adcd800aa1",
+      "controllerCycleSha256": "de30e220e18ff671c0ca1a11b27e089d876083a850b405cf9a7a1ad0f2ede16c",
+      "periodTicks": 16,
+      "contextSize": [
+        80,
+        72
+      ],
+      "sourceReadAudit": {
+        "sampledImage": {
+          "vramRect": [
+            480,
+            0,
+            16,
+            64
+          ],
+          "words": 1024,
+          "uninitializedWords": 0
+        },
+        "conservativePadding": {
+          "vramRect": [
+            478,
+            0,
+            20,
+            72
+          ],
+          "words": 1440,
+          "uninitializedWords": 0
+        },
+        "fullPalette": {
+          "vramRect": [
+            448,
+            242,
+            16,
+            1
+          ],
+          "words": 16,
+          "uninitializedWords": 0
+        }
+      },
+      "paddedSourceVramBounds": [
+        478,
+        0,
+        20,
+        72
+      ],
+      "paletteVramBounds": [
+        448,
+        242,
+        16,
+        1
+      ],
+      "paletteInsideCounterattackDarkeningUpload": true,
+      "metadataShard": "battle-stage-family-details/stage-009.json.gz",
+      "frameTableSha256": "fa34226884d7484312fa9d0c2e4abaeddf15942ed1da30a9844bfe5f0509c76a",
+      "frameScheduleSha256": "af8ae706db4aa8ccd87827e847446dd80b1b298770ad0775ef4abf3b0a743711",
+      "remainingContracts": [
+        "encounter-script-and-effect-upload-interference",
+        "counterattack-darkening-parameter-and-transition-provenance",
+        "renderer-presentation-timing-and-lifetime",
+        "independent-art-and-gameplay-acceptance"
+      ],
+      "runtimeSelected": false,
+      "holdCleared": false
+    },
+    {
+      "stage": 9,
+      "page": 7,
+      "clut": 15708,
+      "faces": 6,
+      "faceIndicesByPart": {
+        "0": [
+          46,
+          289,
+          295,
+          308,
+          316,
+          379
+        ]
+      },
+      "texturedFaceContractSha256": "f0e43e56c15f40d3bb57e5b185f2d7db0c85dbae0ad50501d5f45b259405eef6",
+      "modelSha256": "d7e075901689ec3d62618eb82242b02485a51aa01314cb650943079c25617e23",
+      "timSha256": "cc2ff5790ec9549d34abdda4cbdfb3b8f6ad43f030c909c0f79c7fd44a2bf731",
+      "familySha256": "6e021b1717e54fc63d8e5f69294487066d700a0789758a46aabde9f989823888",
+      "controllerCycleSha256": "de30e220e18ff671c0ca1a11b27e089d876083a850b405cf9a7a1ad0f2ede16c",
+      "periodTicks": 16,
+      "contextSize": [
+        40,
+        80
+      ],
+      "sourceReadAudit": {
+        "sampledImage": {
+          "vramRect": [
+            480,
+            64,
+            6,
+            64
+          ],
+          "words": 384,
+          "uninitializedWords": 0
+        },
+        "conservativePadding": {
+          "vramRect": [
+            478,
+            56,
+            10,
+            80
+          ],
+          "words": 800,
+          "uninitializedWords": 0
+        },
+        "fullPalette": {
+          "vramRect": [
+            448,
+            245,
+            16,
+            1
+          ],
+          "words": 16,
+          "uninitializedWords": 0
+        }
+      },
+      "paddedSourceVramBounds": [
+        478,
+        56,
+        10,
+        80
+      ],
+      "paletteVramBounds": [
+        448,
+        245,
+        16,
+        1
+      ],
+      "paletteInsideCounterattackDarkeningUpload": true,
+      "metadataShard": "battle-stage-family-details/stage-009.json.gz",
+      "frameTableSha256": "11b342e18895942f31cc2c999ead9f0a9cc04c6cc12715d488dbbf0e7b0dacab",
+      "frameScheduleSha256": "01c563c299156d32ae46a86749ba3b3101c212b7dbb9c5c23d5c253266806650",
+      "remainingContracts": [
+        "encounter-script-and-effect-upload-interference",
+        "counterattack-darkening-parameter-and-transition-provenance",
+        "renderer-presentation-timing-and-lifetime",
+        "independent-art-and-gameplay-acceptance"
+      ],
+      "runtimeSelected": false,
+      "holdCleared": false
+    },
+    {
+      "stage": 29,
+      "page": 7,
+      "clut": 15516,
+      "faces": 8,
+      "faceIndicesByPart": {
+        "2": [
+          285,
+          286,
+          293,
+          294,
+          295,
+          296,
+          297,
+          298
+        ]
+      },
+      "texturedFaceContractSha256": "31b2731323d763e71da3cfcfe2b2a2995cbf00452ed3cadb749061e058b9e8f9",
+      "modelSha256": "004fbe119236ab6ab88eac5539312baad99e71d71961a7270f3c78c96f9c05de",
+      "timSha256": "d9a98e9433b52139ab841c1a10ba5138cababa174125f60083854aaf4141aad9",
+      "familySha256": "1af947083ec7adb325c2e2cf9c543408db9076eeccf87294ecadd7ac0c28a82f",
+      "controllerCycleSha256": "46ada6e5729c957e90998d9fdb03a7bf7b8c3ccd172c94cf66829711e33d7150",
+      "periodTicks": 32,
+      "contextSize": [
+        48,
+        72
+      ],
+      "sourceReadAudit": {
+        "sampledImage": {
+          "vramRect": [
+            480,
+            0,
+            8,
+            64
+          ],
+          "words": 512,
+          "uninitializedWords": 0
+        },
+        "conservativePadding": {
+          "vramRect": [
+            478,
+            0,
+            12,
+            72
+          ],
+          "words": 864,
+          "uninitializedWords": 0
+        },
+        "fullPalette": {
+          "vramRect": [
+            448,
+            242,
+            16,
+            1
+          ],
+          "words": 16,
+          "uninitializedWords": 0
+        }
+      },
+      "paddedSourceVramBounds": [
+        478,
+        0,
+        12,
+        72
+      ],
+      "paletteVramBounds": [
+        448,
+        242,
+        16,
+        1
+      ],
+      "paletteInsideCounterattackDarkeningUpload": true,
+      "metadataShard": "battle-stage-family-details/stage-029.json.gz",
+      "frameTableSha256": "3f38d51a545ba414488a2f82597a0f23528a7f3054f5d1f5ac08677463737485",
+      "frameScheduleSha256": "45e837c9b80c2089eda15da1aecf72c97718729ab5608ce30ac15dc9ab4c1e3e",
+      "remainingContracts": [
+        "encounter-script-and-effect-upload-interference",
+        "counterattack-darkening-parameter-and-transition-provenance",
+        "renderer-presentation-timing-and-lifetime",
+        "independent-art-and-gameplay-acceptance"
+      ],
+      "runtimeSelected": false,
+      "holdCleared": false
+    },
+    {
+      "stage": 82,
+      "page": 7,
+      "clut": 15516,
+      "faces": 8,
+      "faceIndicesByPart": {
+        "0": [
+          333,
+          334,
+          341,
+          342,
+          343,
+          344,
+          345,
+          346
+        ]
+      },
+      "texturedFaceContractSha256": "5a876d80d604d3d2534135b41161ff92af15e5df92fe09041f0177a23c873e97",
+      "modelSha256": "3e18796ce8f9c06d19c386967e74b4227257432ecfc84495b848c40836967060",
+      "timSha256": "64398859da85d7230d811e547921313e9d55a55bdb92a69a4611d8edc919e92d",
+      "familySha256": "251da60ee699983f85375c8860bb51ea270cec7bb2c376813f37633e96df7a49",
+      "controllerCycleSha256": "d47f64f8885e935872d0943a9b303540cb7e7da3f9ca1435576905dfe69907d9",
+      "periodTicks": 32,
+      "contextSize": [
+        48,
+        72
+      ],
+      "sourceReadAudit": {
+        "sampledImage": {
+          "vramRect": [
+            480,
+            0,
+            8,
+            64
+          ],
+          "words": 512,
+          "uninitializedWords": 0
+        },
+        "conservativePadding": {
+          "vramRect": [
+            478,
+            0,
+            12,
+            72
+          ],
+          "words": 864,
+          "uninitializedWords": 0
+        },
+        "fullPalette": {
+          "vramRect": [
+            448,
+            242,
+            16,
+            1
+          ],
+          "words": 16,
+          "uninitializedWords": 0
+        }
+      },
+      "paddedSourceVramBounds": [
+        478,
+        0,
+        12,
+        72
+      ],
+      "paletteVramBounds": [
+        448,
+        242,
+        16,
+        1
+      ],
+      "paletteInsideCounterattackDarkeningUpload": true,
+      "metadataShard": "battle-stage-family-details/stage-082.json.gz",
+      "frameTableSha256": "ebbf4bef5633722be2472704a85a51ace4945da8eda2650f088642cbbe1572ef",
+      "frameScheduleSha256": "2a8df0ad6b708b2f10ac7693c858b28e1da2f37f81fbe99618de593fae63d98d",
+      "remainingContracts": [
+        "encounter-script-and-effect-upload-interference",
+        "counterattack-darkening-parameter-and-transition-provenance",
+        "renderer-presentation-timing-and-lifetime",
+        "independent-art-and-gameplay-acceptance"
+      ],
+      "runtimeSelected": false,
+      "holdCleared": false
+    },
+    {
+      "stage": 86,
+      "page": 7,
+      "clut": 15964,
+      "faces": 32,
+      "faceIndicesByPart": {
+        "0": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ]
+      },
+      "texturedFaceContractSha256": "475199b57e646fe3420f5406896ba00553402fbad35028c79f591551038861fe",
+      "modelSha256": "086402cede155974d5c07021ccc6b1ab0ba7d4a710d6b9bae7cc2f1fef15fbe3",
+      "timSha256": "cfcc0e70c78e1d52a12d2c817e91b0be82ee99f514b3840528c639c5ac8a9e36",
+      "familySha256": "9d469673c24f17a3922611a5fe2ebc6b0b41f099f1c7eef14ceec0c0978bdbcb",
+      "controllerCycleSha256": "52a8e0bda5ea95372dbe1c5c8ac9350011d562bb1804273c660cb838ee2e2f34",
+      "periodTicks": 256,
+      "contextSize": [
+        40,
+        64
+      ],
+      "sourceReadAudit": {
+        "sampledImage": {
+          "vramRect": [
+            504,
+            128,
+            8,
+            48
+          ],
+          "words": 384,
+          "uninitializedWords": 0
+        },
+        "conservativePadding": {
+          "vramRect": [
+            502,
+            120,
+            10,
+            64
+          ],
+          "words": 640,
+          "uninitializedWords": 0
+        },
+        "fullPalette": {
+          "vramRect": [
+            448,
+            249,
+            16,
+            1
+          ],
+          "words": 16,
+          "uninitializedWords": 0
+        }
+      },
+      "paddedSourceVramBounds": [
+        502,
+        120,
+        10,
+        64
+      ],
+      "paletteVramBounds": [
+        448,
+        249,
+        16,
+        1
+      ],
+      "paletteInsideCounterattackDarkeningUpload": true,
+      "metadataShard": "battle-stage-family-details/stage-086.json.gz",
+      "frameTableSha256": "874c89696f04fa561e3c1288ba9386f374cb1f35b07bdca12a9296e0d217dc28",
+      "frameScheduleSha256": "03b26b347c8e2705e5567dca5716fb48199bc9980959664c03d23e3d633755ff",
+      "remainingContracts": [
+        "encounter-script-and-effect-upload-interference",
+        "counterattack-darkening-parameter-and-transition-provenance",
+        "renderer-presentation-timing-and-lifetime",
+        "independent-art-and-gameplay-acceptance"
+      ],
+      "runtimeSelected": false,
+      "holdCleared": false
+    }
+  ],
+  "conclusions": [
+    "All seven full palette rectangles lie within the native stage-darkening upload area. Isolated constant image hashes cannot make them permanently static across encounters.",
+    "The native fallback flag follows the script multiplier. Preserve every reached target, transition, destruction restore and renderer presentation phase; this audit does not enumerate them.",
+    "scriptCopyVram parameters and encounter TIM/effect uploads can affect sampled words, padding or palette. Reachable writes/interleaving have not been closed.",
+    "Current mixed HD/native stage meshes retain native sampling for all seven bindings; existing stage atlas resources do not authorize these faces.",
+    "A future bounded integration must preserve native output whenever the exact source/context/palette/presented phase contract is unproved, without per-frame texture/mesh allocation or changing stage ownership/lifetime."
+  ],
+  "nativeAcceptance": "pending",
+  "physicalDeckPerformance": "unmeasured",
+  "finalBeautyAcceptance": "pending"
+}

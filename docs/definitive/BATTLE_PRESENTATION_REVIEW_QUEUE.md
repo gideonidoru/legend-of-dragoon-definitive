@@ -18,4 +18,6 @@ The 350 animation/context bindings have complete isolated stage-cycle metadata, 
 
 `EnvHdMod.replaceSky` resolves `/envhd/skies/<sourceMcqSha256>/manifest.json`; its selected `imageFile` can reference different image revisions. Panorama work preserves original placement, clear color and repetition. Native camera/seams/shader behavior, gameplay and physical Steam Deck appearance/frame times remain separate acceptance work for every family.
 
+The [constant-context contract audit](../../integrations/envhd/production/battle-constant-context-contract-review-v1.json) narrows the first dynamic review to seven bindings across six stages, used by 378 textured face references. All seven palettes lie inside the native stage-darkening upload rectangle. Their constant isolated frames therefore do not establish constant encounter appearance. The audit pins the source code and retained frame/consumer metadata, keeps every native hold, and leaves parameter reachability, intervening uploads and presented phase open. It does not introduce a runtime adapter or count seven finished artwork jobs.
+
 The public evidence contains custom candidates, hashes and binding metadata. Original pixels, sequence payloads, raw MCQ headers and private comparison boards remain outside the repository.
