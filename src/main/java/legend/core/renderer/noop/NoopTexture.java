@@ -48,6 +48,10 @@ public final class NoopTexture extends Texture {
 
   }
 
+  /** Simulated storage for headless renderer tests; no GPU validation. */
+  @Override
+  public boolean hasAllocatedStorage() { return true; }
+
   @Override
   public TextureInternalFormat internalFormat() {
     return this.internalFormat;

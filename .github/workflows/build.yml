@@ -14,7 +14,16 @@ on:
         required: false
         type: string
 
+      deliveryFormat:
+        description: Current delivery format (2 enables member bundles and split FMVs)
+        required: false
+        type: choice
+        options: ['1', '2']
+        default: '2'
+
 env:
+  DELIVERY_FORMAT: ${{ inputs.deliveryFormat || '2' }}
+  ORG_GRADLE_PROJECT_currentDeliveryFormat: ${{ inputs.deliveryFormat || '2' }}
   RELEASE_TAG: ${{ inputs.releaseTag || format('ci-{0}', github.sha) }}
 
 permissions:
@@ -105,8 +114,12 @@ jobs:
           java -version
           ./gradlew --version
       - name: Compile and package without gameplay tests
-        run: ./gradlew --no-daemon --console=plain clean build definitivePackage definitiveFileDelivery portableInstaller -PreleaseTag="$RELEASE_TAG" ${{ matrix.args }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./gradlew --no-daemon --console=plain clean build definitivePackage definitiveFileDelivery portableInstaller -PreleaseTag="$RELEASE_TAG" -PcurrentDeliveryFormat="$DELIVERY_FORMAT" ${{ matrix.args }}
       - name: Check incremental FxHD packaging and reviewed resources
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           cp build/libs/mods/FxHD-v1.0.0.jar build/libs/mods/FxHD-v0.1.0.jar
           ./gradlew --no-daemon --console=plain stageDefinitivePackage ${{ matrix.args }}
@@ -134,7 +147,7 @@ jobs:
             --receipt "build/publication-receipts/publication-$PLATFORM.json" \
             --platform "$PLATFORM" --source-sha "$(git rev-parse HEAD)" \
             --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" \
-            --repository "$GITHUB_REPOSITORY" --tag "$RELEASE_TAG" "${HANDOFF[@]}"
+            --repository "$GITHUB_REPOSITORY" --tag "$RELEASE_TAG" --delivery-format "$DELIVERY_FORMAT" "${HANDOFF[@]}"
       - name: Hand off small same-run Linux publication receipt
         if: runner.os == 'Linux' && github.event_name == 'workflow_dispatch' && inputs.releaseTag != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -189,6 +202,7 @@ jobs:
           python3 scripts/test-current-staging.py
           python3 scripts/test-current-publication-transaction.py
           python3 scripts/test-current-retention.py
+          python3 scripts/test-member-publication.py
       - name: Verify native archive fixtures
         run: python3 scripts/verify-disc-archives.py
       - name: Cross-check original material fixtures in Python and Java
@@ -206,7 +220,7 @@ jobs:
             --receipt "build/publication-receipts/publication-$PLATFORM.json" \
             --platform "$PLATFORM" --source-sha "$(git rev-parse HEAD)" \
             --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT" \
-            --repository "$GITHUB_REPOSITORY" --tag "$RELEASE_TAG"
+            --repository "$GITHUB_REPOSITORY" --tag "$RELEASE_TAG" --delivery-format "$DELIVERY_FORMAT"
       - name: Retain missing publication payloads and verification reports
         if: always() && github.event_name == 'workflow_dispatch' && inputs.releaseTag != ''
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2

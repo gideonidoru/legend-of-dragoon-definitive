@@ -138,6 +138,11 @@ public abstract class Texture {
   public abstract void use(int activeTexture);
   public abstract void use();
 
+  /** Renderer-thread validation before publishing a newly allocated shared image.
+   * Backends must explicitly confirm level-zero storage; unsupported backends fail closed.
+   */
+  public boolean hasAllocatedStorage() { return false; }
+
   /** Scoped linear sampling for renderer-owned post-process inputs; restores constructor filters. */
   public void linearSampling(final boolean enabled) { }
 
