@@ -46,7 +46,7 @@
       "logSha256": "f171c7420121b9ba46e2114a27e443bb209380294b2181b2ce3ca21449c73c21"
     }
   ],
-  "freshPackageVerified": false,
+  "freshPackageVerified": true,
   "otherThreeCorrectionSourcesRemainHeld": true,
   "unfinishedAuthoringPreservedOnOngoingBranch": true,
   "skurfaRegenerated": false,
@@ -56,5 +56,49 @@
   "publicReleasePublished": false,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "originalSourcesReferencesAndComparisonsExcluded": true
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "buildSourceCommit": "1a6c496a661f277dd3a46efaba28f80523e2a077",
+  "buildLogSha256": "abafb5b24543ad7d931a8736db3e1edfbb8b0db10ec896bd7a7c413f7396b543",
+  "packageVerificationLogSha256": "81fc470c4d76b5e671e3bdfc032a22d8fc7814a2707dbd95edf97180adf226eb",
+  "packageSourceBindingSha256": "62c0392c87b46396b94f40690b13f52b1663008a6c5bbbd54bbe7894a39030c1",
+  "packageFiles": {
+    "EnvHD-v0.1.0.jar": {
+      "size": 278301635,
+      "sha256": "7139430797cfe9e0d0604efbf7ea74f93eaf2d237ef378e923cb6e873657cdb3"
+    },
+    "Env1HD-v0.1.0.zip": {
+      "size": 552630727,
+      "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8"
+    },
+    "Env2HD-v0.1.0.zip": {
+      "size": 573779949,
+      "sha256": "c2219971801eda267e1aefd83f74c8d28f6903b53be28917c291c6c732ab01f2"
+    },
+    "Env3HD-v0.1.0.zip": {
+      "size": 572128550,
+      "sha256": "307a1cb954f5bd88cbac2ff3341d5da2f3ae43537847656f75f4ef0c9d6add69"
+    },
+    "Env4HD-v0.1.0.zip": {
+      "size": 673618827,
+      "sha256": "0565cbd285f69c7f4c85619d09593558fec49d97ae1b7e2ee73c2091ebf0ac9e"
+    }
+  },
+  "packageFieldImages": 4957,
+  "packageJarResources": 5343,
+  "packageFieldParts": 4,
+  "packageModSwitches": 1,
+  "independentMainReviews": {
+    "spec": {
+      "sourceCommit": "1a6c496a661f277dd3a46efaba28f80523e2a077",
+      "reportSha256": "b4b48feeff8ab0fd8ef6b00b2491ed3f73bb78cdc8fe137459b27742415556c2",
+      "result": "CLEAR",
+      "findings": 0
+    },
+    "standards": {
+      "sourceCommit": "1a6c496a661f277dd3a46efaba28f80523e2a077",
+      "reportSha256": "8e7b44b65fcf4c5250b230c059f9b8185327b1aad9ec528f44f87634df15f1e6",
+      "result": "CLEAR",
+      "findings": 0
+    }
+  }
 }
