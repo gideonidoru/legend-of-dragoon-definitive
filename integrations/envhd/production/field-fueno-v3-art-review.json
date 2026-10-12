@@ -1,0 +1,73 @@
+{
+  "sourceKey": "a15bb2891e11e9e0d3304d5e4e5402a709279d0b83915bd6c56fe007a6beda7f",
+  "result": "CLEAR-development-intent",
+  "findings": [],
+  "route": {
+    "cut": 314,
+    "period": "early",
+    "rawDisk": 1,
+    "fieldType": 0,
+    "location": "Fueno",
+    "bank": 22,
+    "directory": 946
+  },
+  "sourceBindings": [
+    {
+      "renderKey": "af6ffd2fe470a39996173584a4197ebc6cd43a514e23aad2442b807660fceeb3:-1",
+      "kind": "foreground",
+      "slot": 2,
+      "canDeriveFromBackground": false
+    }
+  ],
+  "sourceFiles": [
+    {
+      "index": 0,
+      "sha256": "5c36f7fdaf59936ee7165e6f2b09bd307d6cc2ee63df1c555b3a7976789c9b84",
+      "size": 312
+    },
+    {
+      "index": 1,
+      "sha256": "10da40acb6f07ed4dfa1d10d35c2037a9fc6e8704071a00f0f89446c22c79ff1",
+      "size": 720
+    },
+    {
+      "index": 2,
+      "sha256": "84d180c68b2d125c9f6e712b91309946793ba0bb81e62d56d86a9c4708f8dc8a",
+      "size": 560
+    },
+    {
+      "index": 3,
+      "sha256": "1d628d8d6c14491f2ab1285426c6e3dae178a456854b436960ed07e3f7e31a4c",
+      "size": 33312
+    },
+    {
+      "index": 4,
+      "sha256": "a07c8793df8328110cc803b529e319e86e4a6ce8dae5473ebba42113675f6e4b",
+      "size": 33312
+    },
+    {
+      "index": 5,
+      "sha256": "d854ecbb47d4d46e3531a0e6655a6afd9768af12e28384736e064dd0e8d844aa",
+      "size": 33312
+    },
+    {
+      "index": 6,
+      "sha256": "46c3c52908b173c3394d6ba2e751b40c2e903033208d77f5d9fce1f8ddf03589",
+      "size": 66080
+    }
+  ],
+  "generatedSha256": "5872d3f1d5c9baf22f93e3ef1ebcb79382958425f49e23d96c633d9f1739a959",
+  "outputSha256": "9a4fea5d4647730f92bffad3019cf8fe815e2242d3c32b5976b0b68d8093d045",
+  "schema": 1,
+  "scope": "Original-art development clearance only; source images and private evidence paths excluded.",
+  "privateFullArtReviewSha256": "ea0f8924bf4de32ea779b6c37c3eca5c9acd703a28b0d9079c5b6b85693fa897",
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "runtimeSelected": 0,
+  "observedReasons": [
+    "The upright now follows the original smooth flowing/curling marks rather than the previous polygonal raised blocks; the marks remain decorative curves without a new readable emblem or object identity.",
+    "The broad lower ledge now has quiet dark worn planes and soft divisions; the fractured stone-like courses and bright golden edge highlights that caused the previous hold are removed.",
+    "The dim olive/brown value family, curved inner edge and projecting ledge remain compatible with the controlling original room. At the static placement scale the carving is readable without visibly relighting the dark support.",
+    "The result sharpens the faint source marks into restrained shallow relief; this is acceptable development restoration, rather than exact replication of native pixel blur."
+  ]
+}
