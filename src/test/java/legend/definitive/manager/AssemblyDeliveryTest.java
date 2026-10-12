@@ -70,6 +70,31 @@ class AssemblyDeliveryTest {
   @Test void initialInstallDownloadsAllExactRangesWithoutVirtualWholeArchiveObject() throws Exception {
     final var fixture=new Fixture();fixture.install(false);assertEquals(resource("new.zip").length,fixture.transferred);assertNotNull(ArchiveAssembly.cache(fixture.store.root(),fixture.active()));assertEquals("2",fixture.store.state().getProperty("acceptedGeneration"));
   }
+  @org.junit.jupiter.params.ParameterizedTest
+  @org.junit.jupiter.params.provider.ValueSource(booleans = {false, true})
+  void repairRetryPreservesCompletedFilesAndResumesActualPublisherArchive(final boolean firstFullReinstall) throws Exception {
+    final var fixture = new Fixture(); final var initialWholeRequests = new ArrayList<String>();
+    final FileDelivery.DownloadPaused failure = assertThrows(FileDelivery.DownloadPaused.class, () -> FileDelivery.install(fixture.store, fixture.candidate, InstallProgress.NONE, request -> {
+      final String name = Path.of(request.uri().getPath()).getFileName().toString();
+      if(request.headers().firstValue("Range").orElse("").equals("bytes=116-187")) throw new IOException("Env archive connection lost after two chunks");
+      if(request.headers().firstValue("Range").isEmpty()) initialWholeRequests.add(name);
+      return fixture.transport(false).send(request);
+    }, false, firstFullReinstall));
+    assertTrue(failure.getMessage().contains("Completed files are saved"));
+    final Path staged;
+    try(final var stage = InstallStage.open(fixture.store.root(), fixture.candidate.contents().sha256(), false)) { staged = stage.path(); }
+    assertArrayEquals(Arrays.copyOf(resource("new.zip"), 116), Files.readAllBytes(staged.resolve(NAME)));
+    final var retryWholeRequests = new ArrayList<String>(); fixture.transferred = 0; fixture.ranges.clear();
+    FileDelivery.install(fixture.store, fixture.candidate, InstallProgress.NONE, request -> {
+      if(request.headers().firstValue("Range").isEmpty()) retryWholeRequests.add(Path.of(request.uri().getPath()).getFileName().toString());
+      return fixture.transport(false).send(request);
+    }, true, false);
+    fixture.store.verifyInstalled(); assertArrayEquals(resource("new.zip"), Files.readAllBytes(fixture.active().resolve(NAME)));
+    assertEquals(List.of("bytes=116-187", "bytes=46-228"), fixture.ranges); assertEquals(255, fixture.transferred);
+    assertTrue(initialWholeRequests.stream().anyMatch(name -> name.startsWith("file-")));
+    for(final String completed : initialWholeRequests) if(completed.startsWith("file-")) assertFalse(retryWholeRequests.contains(completed), "Completed payload requested on Repair retry: " + completed);
+    assertFalse(Files.exists(staged));
+  }
   @Test void updateReusesCompressedEntriesRepairFetchesOneChunkReinstallFetchesAllAndKeepsSaves() throws Exception {
     final var fixture=new Fixture();fixture.store.install(fixture.old);Files.writeString(fixture.store.data(fixture.store.state()).resolve("saves/owner"),"keep");
     fixture.install(false);assertEquals(229,fixture.transferred);final var cached=ArchiveAssembly.cache(fixture.store.root(),fixture.active());assertNotNull(cached);

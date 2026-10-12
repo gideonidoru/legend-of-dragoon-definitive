@@ -50,6 +50,41 @@ class FileDeliveryTest {
   private static String releaseJson(final ReleaseUpdates.Candidate candidate, final String date) {
     return "{\"draft\":false,\"tag_name\":\"" + candidate.tag() + "\",\"published_at\":\"" + date + "\",\"assets\":[{\"id\":2,\"name\":\"Legend-of-Dragoon-Definitive-" + PackageManifest.hostPlatform() + ".zip\",\"digest\":\"sha256:" + candidate.sha256() + "\",\"browser_download_url\":\"" + candidate.url() + "\"},{\"id\":3,\"name\":\"Definitive-Contents-" + PackageManifest.hostPlatform() + ".zip\",\"digest\":\"sha256:" + candidate.contents().sha256() + "\",\"browser_download_url\":\"" + candidate.contents().url() + "\"}]}";
   }
+  @Test void selectiveDeliveryReportsOnlyReceivedBodiesAsNetworkAndRetainsFileSizes() throws Exception {
+    final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("telemetry-install")); store.install(original);
+    final Path next = this.temporary.resolve("telemetry-next"); InstallStore.copyTree(original, next);
+    Files.writeString(next.resolve("lod-game-test.jar"), "changed engine fixture"); refresh(next);
+    final Map<String, byte[]> served = new HashMap<>(); final var candidate = contents(next, served);
+    final var requested = new ArrayList<String>(); final var updates = new ArrayList<InstallProgress.Update>();
+    ReleaseUpdates.install(store, candidate, updates::add, connection(served, requested));
+    final long received = requested.stream().mapToLong(name -> served.get(name).length).sum();
+    assertEquals(2, requested.size()); assertEquals(received, updates.stream().mapToLong(InstallProgress.Update::networkBytes).max().orElseThrow());
+    final var copies = updates.stream().filter(update -> update.phase().equals("Reusing verified files")).toList();
+    assertFalse(copies.isEmpty()); assertTrue(copies.stream().allMatch(update -> update.networkBytes() == -1 && update.networkBytesPerSecond() == 0));
+    assertTrue(copies.stream().anyMatch(update -> update.fileCompleted() == update.fileTotal() && update.fileTotal() > 0));
+    final var engine = updates.stream().filter(update -> update.phase().startsWith("Downloading ") && update.file().equals("lod-game-test.jar")).toList();
+    assertFalse(engine.isEmpty()); assertEquals(Files.size(next.resolve("lod-game-test.jar")), engine.getLast().fileTotal());
+    assertEquals(engine.getLast().fileTotal(), engine.getLast().fileCompleted()); assertEquals(received, engine.getLast().networkBytes());
+    store.verifyInstalled();
+  }
+  @Test void retryOfSameInventoryKeepsCompletedFilesAndDoesNotRequestThemAgain() throws Exception {
+    final Path pack = pack(); final var store = new InstallStore(this.temporary.resolve("resume-install"));
+    final var served = new HashMap<String, byte[]>(); final var candidate = contents(pack, served);
+    final var names = new TreeSet<>(PackageManifest.read(pack).hashes().stringPropertyNames());
+    final String failureName = names.stream().skip(2).findFirst().orElseThrow();
+    final String failedBlob = "file-" + PackageManifest.read(pack).hashes().getProperty(failureName);
+    final var first = new ArrayList<String>();
+    assertThrows(FileDelivery.DownloadPaused.class, () -> ReleaseUpdates.install(store, candidate, InstallProgress.NONE, request -> {
+      final String name = request.uri().getPath().substring(request.uri().getPath().lastIndexOf('/') + 1);
+      if(name.equals(failedBlob)) { first.add(name); throw new IOException("Connection lost after two completed files"); }
+      return connection(served, first).send(request);
+    }));
+    final var retry = new ArrayList<String>();
+    ReleaseUpdates.install(store, candidate, InstallProgress.NONE, connection(served, retry));
+    for(final String completed : names.stream().limit(2).toList()) assertFalse(retry.contains("file-" + PackageManifest.read(pack).hashes().getProperty(completed)), "Verified completed file downloaded twice: " + completed);
+    assertFalse(retry.contains(candidate.contents().url().getPath().substring(candidate.contents().url().getPath().lastIndexOf('/') + 1)), "Verified bound inventory downloaded twice");
+    store.verifyInstalled(); assertEquals(PackageManifest.read(pack).id(), store.state().getProperty("version"));
+  }
   @Test void repairOfRetiredReleaseSelectivelyRestoresCurrentReleaseAndKeepsPersonalData() throws Exception {
     final Path original = pack(); final var store = new InstallStore(this.temporary.resolve("retired-install")); store.install(original);
     final Path oldData = store.data(store.state()); Files.writeString(oldData.resolve("saves/owner.txt"), "personal");
@@ -194,7 +229,7 @@ class FileDeliveryTest {
     final Path pack = pack(); final InstallStore store = new InstallStore(this.temporary.resolve("installed")); store.install(pack); final byte[] state = Files.readAllBytes(store.root().resolve("state.properties"));
     final Path next = this.temporary.resolve("next"); InstallStore.copyTree(pack, next); Files.writeString(next.resolve("lod-game-test.jar"), "new"); refresh(next);
     final Map<String, byte[]> served = new HashMap<>(); final var candidate = contents(next, served); served.put("file-" + PackageManifest.sha256(next.resolve("lod-game-test.jar")), "bad".getBytes());
-    assertThrows(IOException.class, () -> ReleaseUpdates.install(store, candidate, InstallProgress.NONE, connection(served, new ArrayList<>()))); assertArrayEquals(state, Files.readAllBytes(store.root().resolve("state.properties"))); store.verifyInstalled();
+    final IOException failure = assertThrows(IOException.class, () -> ReleaseUpdates.install(store, candidate, InstallProgress.NONE, connection(served, new ArrayList<>()))); assertFalse(failure instanceof FileDelivery.DownloadPaused); assertArrayEquals(state, Files.readAllBytes(store.root().resolve("state.properties"))); store.verifyInstalled();
     try(final var files = Files.list(store.root())) { assertFalse(files.anyMatch(path -> path.getFileName().toString().startsWith(".files-"))); }
   }
   @Test void fullReinstallReplacesEvenHealthyApplicationAndCreatesFreshWorkspace() throws Exception {

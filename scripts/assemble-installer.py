@@ -16,7 +16,14 @@ archive = root / 'build/distributions/Definitive-Installer.zip'
 template = root / 'delivery/Install-Definitive.sh'
 script = args.output_dir / 'Install-Definitive.sh'
 digest = hashlib.sha256(archive.read_bytes()).hexdigest()
-text = re.sub(r'^EXPECTED=.*$', 'EXPECTED=' + digest, template.read_text(), flags=re.M)
+template_text = template.read_text()
+# Preserve the actual reviewed entrypoint, including interrupted-stage recovery;
+# generate only the requested archive digest/tag and current Desktop shortcut.
+if template_text.count('# definitive-owned-stage-v1:') != 1 or 'recover_owned_stages "$CACHE" ".portable." "portable"' not in template_text:
+    raise ValueError('Portable template is missing owned-stage startup recovery')
+text, count = re.subn(r'^EXPECTED=.*$', 'EXPECTED=' + digest, template_text, flags=re.M)
+if count != 1:
+    raise ValueError('Portable template needs exactly one installer digest')
 if args.tag:
     if not re.fullmatch(r'[A-Za-z0-9._-]+', args.tag):raise ValueError('Invalid release tag')
     text = re.sub(r'^TAG=.*$', 'TAG=' + args.tag, text, flags=re.M)

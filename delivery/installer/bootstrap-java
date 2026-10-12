@@ -16,6 +16,67 @@ require_real_path() {
   done
 }
 require_real_path "$ROOT"
+mkdir -p -- "$ROOT"
+ROOT=$(cd -- "$ROOT" && pwd -P)
+# Serialize downloads, including the final rename. Never nest one runtime inside another.
+LOCK="$ROOT/.java-bootstrap-lock"
+# Keep the lock inode; its existence is not ownership. The kernel releases the
+# lock after the last inheriting process ends, including untrappable termination.
+[[ ! -L "$LOCK" ]] || { echo "Unexpected linked setup lock: $LOCK" >&2; exit 1; }
+[[ ! -d "$LOCK" ]] || { echo "An older setup left a directory lock. Close older installers, then remove that empty directory and retry: $LOCK" >&2; exit 1; }
+exec 9>> "$LOCK"
+if command -v flock >/dev/null; then
+  flock -n 9 || { echo 'Another setup is still running. Wait for it to finish and retry.' >&2; exit 1; }
+elif command -v lockf >/dev/null; then
+  lockf -s -t 0 9 || { echo 'Another setup is still running. Wait for it to finish and retry.' >&2; exit 1; }
+else
+  echo 'The operating-system file-lock tool is unavailable. Setup has stopped without downloading.' >&2; exit 1
+fi
+# definitive-owned-stage-v1: recovery runs only while fd9 holds the setup lock.
+# Unknown root contents or links are preserved; a name alone never grants ownership.
+stage_is_owned() {
+  local candidate="$1" kind="$2" receipt="$1/.definitive-stage-owner" entry base mode owned_receipt=0
+  [[ -d "$candidate" && ! -L "$candidate" && -O "$candidate" ]] || return 1
+  case "$(uname -s)" in
+    Linux) mode=$(stat -c '%a' -- "$candidate") ;;
+    Darwin) mode=$(stat -f '%Lp' "$candidate") ;;
+    *) return 1 ;;
+  esac
+  [[ "$mode" == 700 ]] || return 1
+  if [[ -e "$receipt" || -L "$receipt" ]]; then
+    [[ -f "$receipt" && ! -L "$receipt" && -O "$receipt" && $(wc -c < "$receipt") -le 8192 ]] || return 1
+    [[ "$(cat "$receipt")" == "$(printf 'definitive-stage-v1\n%s\n%s\n%s\n' "$kind" "$(id -u)" "$candidate")" ]] || return 1
+    owned_receipt=1
+  fi
+  # Legacy stages qualify only for a closed shallow download shape. A valid
+  # receipt also owns the known unpack directory; rm never follows its symlinks.
+  for entry in "$candidate"/* "$candidate"/.[!.]* "$candidate"/..?*; do
+    [[ -e "$entry" || -L "$entry" ]] || continue
+    base="${entry##*/}"
+    if [[ -d "$entry" && ! -L "$entry" && -O "$entry" && "$owned_receipt" == 1 ]]; then
+      case "$kind:$base" in portable:installer|java:jdk) continue ;; esac
+    fi
+    [[ -f "$entry" && ! -L "$entry" && -O "$entry" ]] || return 1
+    case "$kind:$base" in
+      portable:installer.zip|portable:bootstrap.log|portable:java-path|java:runtime.tar.gz|*:.definitive-stage-owner) ;;
+      *) return 1 ;;
+    esac
+  done
+}
+recover_owned_stages() {
+  local parent="$1" prefix="$2" kind="$3" candidate suffix
+  for candidate in "$parent/$prefix"*; do
+    [[ -e "$candidate" || -L "$candidate" ]] || continue
+    suffix="${candidate##*/}"; suffix="${suffix#"$prefix"}"
+    [[ "$suffix" =~ ^[A-Za-z0-9]{6}$ ]] || { printf 'Preserved unexpected setup stage: %s\n' "$candidate" >&2; continue; }
+    if stage_is_owned "$candidate" "$kind"; then
+      rm -rf -- "$candidate" || printf 'Could not remove interrupted setup files; preserved remaining stage: %s\n' "$candidate" >&2
+    else
+      printf 'Preserved unrecognized interrupted setup files: %s\n' "$candidate" >&2
+    fi
+  done
+}
+recover_owned_stages "$ROOT" ".java-download." "java"
 is_java25() { "$1" -XshowSettings:properties -version 2>&1 | grep -q 'java.specification.version = 25$'; }
 if [[ "${DEFINITIVE_MANAGED_JAVA:-0}" != 1 && -n "${JAVA_HOME:-}" && -x "$JAVA_HOME/bin/java" ]] && is_java25 "$JAVA_HOME/bin/java"; then printf '%s\n' "$JAVA_HOME/bin/java"; exit 0; fi
 # Reviewed upstream release: https://github.com/corretto/corretto-25/releases/tag/25.0.4.10.1
@@ -58,27 +119,13 @@ JAVA="$ROOT/runtime-jdk$VERSION/$relative"
 if [[ -x "$JAVA" ]] && is_pinned_java "$JAVA"; then printf '%s\n' "$JAVA"; exit 0; fi
 if [[ "${DEFINITIVE_MANAGED_JAVA:-0}" != 1 ]] && command -v java >/dev/null && is_java25 "$(command -v java)"; then command -v java; exit 0; fi
 if [[ -e "$ROOT/runtime-jdk$VERSION" ]]; then echo 'Existing runtime is not Java 25. It has been preserved; configure JAVA_HOME or choose another folder.' >&2; exit 1; fi
-mkdir -p -- "$ROOT"
-# Serialize downloads, including the final rename. Never nest one runtime inside another.
-LOCK="$ROOT/.java-bootstrap-lock"
-# Keep the lock inode; its existence is not ownership. The kernel releases the
-# lock after the last inheriting process ends, including untrappable termination.
-[[ ! -L "$LOCK" ]] || { echo "Unexpected linked setup lock: $LOCK" >&2; exit 1; }
-[[ ! -d "$LOCK" ]] || { echo "An older setup left a directory lock. Close older installers, then remove that empty directory and retry: $LOCK" >&2; exit 1; }
-exec 9>> "$LOCK"
-if command -v flock >/dev/null; then
-  flock -n 9 || { echo 'Another setup is still running. Wait for it to finish and retry.' >&2; exit 1; }
-elif command -v lockf >/dev/null; then
-  lockf -s -t 0 9 || { echo 'Another setup is still running. Wait for it to finish and retry.' >&2; exit 1; }
-else
-  echo 'The operating-system file-lock tool is unavailable. Setup has stopped without downloading.' >&2; exit 1
-fi
 STAGE=''
 cleanup() {
   [[ -z "$STAGE" ]] || rm -rf -- "$STAGE"
 }
 trap cleanup EXIT
 STAGE=$(mktemp -d "$ROOT/.java-download.XXXXXX")
+printf 'definitive-stage-v1\n%s\n%s\n%s\n' 'java' "$(id -u)" "$STAGE" > "$STAGE/.definitive-stage-owner"
 printf '%s\n' 'Downloading Java 25 from Amazon Corretto; first setup needs internet access…' >&2
 curl --fail --location --silent --show-error --proto '=https' --proto-redir '=https' --connect-timeout 20 --max-time 900 --speed-limit 1024 --speed-time 60 --retry 2 "https://corretto.aws/downloads/resources/$VERSION/$artifact" --output "$STAGE/runtime.tar.gz"
 if command -v sha256sum >/dev/null; then ACTUAL=$(sha256sum "$STAGE/runtime.tar.gz" | awk '{print $1}'); else ACTUAL=$(shasum -a 256 "$STAGE/runtime.tar.gz" | awk '{print $1}'); fi

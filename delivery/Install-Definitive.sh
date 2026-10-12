@@ -20,6 +20,7 @@ require_real_path() {
 }
 require_real_path "$CACHE"
 mkdir -p -- "$CACHE"
+CACHE=$(cd -- "$CACHE" && pwd -P)
 LOG="$CACHE/installer-bootstrap.log"
 LOCK="$CACHE/.portable-lock"
 # Keep the lock inode; its existence is not ownership. The kernel releases the
@@ -34,12 +35,58 @@ elif command -v lockf >/dev/null; then
 else
   echo 'The operating-system file-lock tool is unavailable. Setup has stopped without downloading.' >&2; exit 1
 fi
+# definitive-owned-stage-v1: recovery runs only while fd9 holds the setup lock.
+# Unknown root contents or links are preserved; a name alone never grants ownership.
+stage_is_owned() {
+  local candidate="$1" kind="$2" receipt="$1/.definitive-stage-owner" entry base mode owned_receipt=0
+  [[ -d "$candidate" && ! -L "$candidate" && -O "$candidate" ]] || return 1
+  case "$(uname -s)" in
+    Linux) mode=$(stat -c '%a' -- "$candidate") ;;
+    Darwin) mode=$(stat -f '%Lp' "$candidate") ;;
+    *) return 1 ;;
+  esac
+  [[ "$mode" == 700 ]] || return 1
+  if [[ -e "$receipt" || -L "$receipt" ]]; then
+    [[ -f "$receipt" && ! -L "$receipt" && -O "$receipt" && $(wc -c < "$receipt") -le 8192 ]] || return 1
+    [[ "$(cat "$receipt")" == "$(printf 'definitive-stage-v1\n%s\n%s\n%s\n' "$kind" "$(id -u)" "$candidate")" ]] || return 1
+    owned_receipt=1
+  fi
+  # Legacy stages qualify only for a closed shallow download shape. A valid
+  # receipt also owns the known unpack directory; rm never follows its symlinks.
+  for entry in "$candidate"/* "$candidate"/.[!.]* "$candidate"/..?*; do
+    [[ -e "$entry" || -L "$entry" ]] || continue
+    base="${entry##*/}"
+    if [[ -d "$entry" && ! -L "$entry" && -O "$entry" && "$owned_receipt" == 1 ]]; then
+      case "$kind:$base" in portable:installer|java:jdk) continue ;; esac
+    fi
+    [[ -f "$entry" && ! -L "$entry" && -O "$entry" ]] || return 1
+    case "$kind:$base" in
+      portable:installer.zip|portable:bootstrap.log|portable:java-path|java:runtime.tar.gz|*:.definitive-stage-owner) ;;
+      *) return 1 ;;
+    esac
+  done
+}
+recover_owned_stages() {
+  local parent="$1" prefix="$2" kind="$3" candidate suffix
+  for candidate in "$parent/$prefix"*; do
+    [[ -e "$candidate" || -L "$candidate" ]] || continue
+    suffix="${candidate##*/}"; suffix="${suffix#"$prefix"}"
+    [[ "$suffix" =~ ^[A-Za-z0-9]{6}$ ]] || { printf 'Preserved unexpected setup stage: %s\n' "$candidate" >&2; continue; }
+    if stage_is_owned "$candidate" "$kind"; then
+      rm -rf -- "$candidate" || printf 'Could not remove interrupted setup files; preserved remaining stage: %s\n' "$candidate" >&2
+    else
+      printf 'Preserved unrecognized interrupted setup files: %s\n' "$candidate" >&2
+    fi
+  done
+}
+recover_owned_stages "$CACHE" ".portable." "portable"
 STAGE=''
 cleanup() {
   [[ -z "$STAGE" ]] || rm -rf -- "$STAGE"
 }
 trap cleanup EXIT
 STAGE=$(mktemp -d "$CACHE/.portable.XXXXXX")
+printf 'definitive-stage-v1\n%s\n%s\n%s\n' 'portable' "$(id -u)" "$STAGE" > "$STAGE/.definitive-stage-owner"
 # Open a private inode first; atomically replace the log name without following links.
 exec 8> "$STAGE/bootstrap.log"
 case "$(uname -s)" in

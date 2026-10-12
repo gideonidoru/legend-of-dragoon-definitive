@@ -28,12 +28,15 @@ final class ManagerView extends JPanel {
   private final JPanel fileProgressPanel = column();
   private final JProgressBar fileProgress = new JProgressBar();
   private final JLabel fileStatus = label("", 12, MUTED);
+  private final JLabel transferSize = label("", 12, MUTED);
+  private final JLabel transferSpeed = label("", 12, MUTED);
   private final JLabel progressPhase = label("Starting…", 18, INK);
   private final JLabel progressPercent = label("0%", 14, MUTED);
   private final JLabel progressElapsed = label("", 12, MUTED);
   private final JTextField destination;
   private boolean busy;
   private boolean failed;
+  private Runnable retryDownload;
   private long operation;
   enum Screen {
     INSTALL, DISCS, STEAM, MAINTENANCE, UNINSTALLED, LAUNCHER, UPDATE, UPDATED, STORAGE, RECOVERY;
@@ -45,6 +48,7 @@ final class ManagerView extends JPanel {
   private long identityRequest;
   private boolean inspectingIdentity;
   private boolean identityReady;
+  private boolean installationRemoved;
   private boolean recoveryPending;
   private String recoveryNotice = "";
   private String recoveryRestoredRelease = "";
@@ -61,6 +65,9 @@ final class ManagerView extends JPanel {
   private InstallProgress currentProgress = InstallProgress.NONE;
   private long started;
   private String progressDetail = "";
+  private long networkReportedAt;
+  private double networkRate;
+  private boolean networkActive;
   private final Timer elapsed = new Timer(1000, e -> this.progressStatus());
 
   ManagerView(final JFrame frame, final Path packageRoot, final Path root) {
@@ -75,7 +82,7 @@ final class ManagerView extends JPanel {
     this.frame = frame; this.packageRoot = packageRoot; this.root = root;
     if(Files.isRegularFile(root.resolve("state.properties")) || Files.isRegularFile(root.resolve(".definitive-owned"))) {
       this.inspectingIdentity = Files.isRegularFile(root.resolve("state.properties"));
-      this.screen = !Files.isRegularFile(root.resolve("state.properties")) ? Screen.MAINTENANCE : packageRoot == null ? Screen.LAUNCHER : Files.isRegularFile(root.resolve(".definitive-owned")) ? Screen.MAINTENANCE : Screen.INSTALL;
+      this.screen = !Files.isRegularFile(root.resolve("state.properties")) ? packageRoot != null && !Files.exists(root.resolve(".state-last-good.properties"), LinkOption.NOFOLLOW_LINKS) ? Screen.INSTALL : Screen.MAINTENANCE : packageRoot == null ? Screen.LAUNCHER : Files.isRegularFile(root.resolve(".definitive-owned")) ? Screen.MAINTENANCE : Screen.INSTALL;
     }
     this.destination = new JTextField(root.toString()); this.destination.setFont(font(15, false)); this.destination.setAlignmentX(LEFT_ALIGNMENT);
     this.destination.setBackground(Color.WHITE); this.destination.setForeground(INK); this.destination.setBorder(BorderFactory.createCompoundBorder(roundedBorder(), BorderFactory.createEmptyBorder(12, 14, 12, 14)));
@@ -102,7 +109,12 @@ final class ManagerView extends JPanel {
     this.fileProgress.setAlignmentX(LEFT_ALIGNMENT); this.fileProgress.setMaximumSize(new Dimension(520, 6)); this.fileProgress.setPreferredSize(new Dimension(520, 6)); this.fileProgress.setForeground(GREEN); this.fileProgress.setBorderPainted(false);
     this.fileProgress.getAccessibleContext().setAccessibleName("Current file progress");
     this.progress.getAccessibleContext().setAccessibleName("Overall installation progress");
-    this.fileStatus.setMaximumSize(new Dimension(520, 20)); this.fileProgressPanel.add(this.fileStatus); this.fileProgressPanel.add(Box.createVerticalStrut(6)); this.fileProgressPanel.add(this.fileProgress); this.fileProgressPanel.add(Box.createVerticalStrut(10)); this.fileProgressPanel.setVisible(false); this.progressPanel.add(this.fileProgressPanel);
+    this.fileStatus.setMaximumSize(new Dimension(520, 20)); this.fileProgressPanel.add(this.fileStatus); this.fileProgressPanel.add(Box.createVerticalStrut(6)); this.fileProgressPanel.add(this.fileProgress);
+    final JPanel transfer = new JPanel(new BorderLayout(12, 0)); transfer.setOpaque(false); transfer.setAlignmentX(LEFT_ALIGNMENT); transfer.setMaximumSize(new Dimension(520, 22));
+    this.transferSize.getAccessibleContext().setAccessibleName("Current file size"); this.transferSpeed.getAccessibleContext().setAccessibleName("Download speed");
+    this.transferSize.setVisible(false); this.transferSpeed.setVisible(false);
+    transfer.add(this.transferSize, BorderLayout.CENTER); transfer.add(this.transferSpeed, BorderLayout.EAST);
+    this.fileProgressPanel.add(Box.createVerticalStrut(6)); this.fileProgressPanel.add(transfer); this.fileProgressPanel.add(Box.createVerticalStrut(10)); this.fileProgressPanel.setVisible(false); this.progressPanel.add(this.fileProgressPanel);
     this.status.setMaximumSize(new Dimension(480, 90)); this.progressPanel.add(this.status);
     this.progressPanel.add(Box.createVerticalStrut(10)); this.progressPanel.add(this.progressElapsed); this.progressPanel.setVisible(false);
     content.add(this.progressPanel); content.add(Box.createVerticalStrut(12)); content.add(Box.createVerticalGlue());
@@ -235,7 +247,7 @@ final class ManagerView extends JPanel {
       }
     }
   }
-  private void install() { this.install(false); }
+  private void install() { this.install(this.installationRemoved); }
   private void install(final boolean fullReinstall) {
     try { this.root = installationPath(this.destination.getText()); this.destination.setText(this.root.toString()); }
     catch(final Exception error) { this.showFailure(error); return; }
@@ -313,7 +325,7 @@ final class ManagerView extends JPanel {
     this.body.add(Box.createVerticalStrut(18));
     this.primary("Use verified recovered state", () -> this.run("Acknowledging recovered state", () -> {
       final var store = new InstallStore(this.root); store.acknowledgeRecovery();
-      if(Boolean.parseBoolean(store.state().getProperty("uninstalled", "false"))) return this.packageRoot == null ? Screen.UNINSTALLED : Screen.MAINTENANCE;
+      if(Boolean.parseBoolean(store.state().getProperty("uninstalled", "false"))) return this.packageRoot == null ? Screen.UNINSTALLED : Screen.INSTALL;
       try { DiscImporter.validateSet(this.root.resolve("isos")); return store.discsPrepared() ? Screen.LAUNCHER : Screen.DISCS; } catch(final java.io.IOException missingDiscs) { return Screen.DISCS; }
     }, next -> { this.recoveryPending = false; this.screen = next; this.loadInstallationInfo(); this.render(); }));
     this.body.add(Box.createVerticalStrut(12)); final JButton preserved = button("Review preserved data", false); preserved.addActionListener(event -> this.loadStorage()); this.body.add(preserved);
@@ -481,7 +493,7 @@ final class ManagerView extends JPanel {
       @Override protected void done() {
         if(request != ManagerView.this.identityRequest) return;
         ManagerView.this.inspectingIdentity = false;
-        try { final var info = this.get(); ManagerView.this.installedIdentity = info.label(); ManagerView.this.fullIdentity = info.full(); ManagerView.this.restoreAvailable = info.restorable(); ManagerView.this.identityReady = info.identifiable(); ManagerView.this.recoveryPending = info.pending(); ManagerView.this.recoveryNotice = info.notice(); ManagerView.this.recoveryRestoredRelease = info.restoredRelease(); ManagerView.this.recoveryRestoredData = info.restoredData(); ManagerView.this.recoveryPreservedLocations = info.preservedLocations(); if(info.pending() && ManagerView.this.screen != Screen.STORAGE) ManagerView.this.screen = Screen.RECOVERY; else if(info.uninstalled() && ManagerView.this.screen != Screen.STORAGE) ManagerView.this.screen = ManagerView.this.packageRoot == null ? Screen.UNINSTALLED : Screen.MAINTENANCE; else if(!info.prepared() && ManagerView.this.screen == Screen.LAUNCHER) ManagerView.this.screen = Screen.DISCS; }
+        try { final var info = this.get(); ManagerView.this.installationRemoved = info.uninstalled(); ManagerView.this.installedIdentity = info.label(); ManagerView.this.fullIdentity = info.full(); ManagerView.this.restoreAvailable = info.restorable(); ManagerView.this.identityReady = info.identifiable(); ManagerView.this.recoveryPending = info.pending(); ManagerView.this.recoveryNotice = info.notice(); ManagerView.this.recoveryRestoredRelease = info.restoredRelease(); ManagerView.this.recoveryRestoredData = info.restoredData(); ManagerView.this.recoveryPreservedLocations = info.preservedLocations(); if(info.pending() && ManagerView.this.screen != Screen.STORAGE) ManagerView.this.screen = Screen.RECOVERY; else if(info.uninstalled() && ManagerView.this.screen != Screen.STORAGE) ManagerView.this.screen = ManagerView.this.packageRoot == null ? Screen.UNINSTALLED : Screen.INSTALL; else if(!info.prepared() && ManagerView.this.screen == Screen.LAUNCHER) ManagerView.this.screen = Screen.DISCS; }
         catch(final Exception failure) { ManagerView.this.identityReady = false; ManagerView.this.restoreAvailable = false; InstallerLog.write("Could not inspect installed identity: " + failure.getMessage()); }
         if(!ManagerView.this.busy && !ManagerView.this.failed) { ManagerView.this.render(); if(!ManagerView.this.recoveryPending && ManagerView.this.screen == Screen.DISCS) ManagerView.this.inspectExistingDiscs(); }
       }
@@ -511,8 +523,9 @@ final class ManagerView extends JPanel {
   private <T> void run(final String working, final Action<T> action, final java.util.function.Consumer<T> done) {
     if(this.busy || this.inspectingIdentity) return;
     final long ticket = ++this.operation;
-    this.busy = true; this.started = System.nanoTime(); this.progressDetail = "Starting…";
-    this.fileProgressPanel.setVisible(false); this.fileProgress.setValue(0);
+    this.retryDownload = () -> this.run(working, action, done);
+    this.failed = false; this.busy = true; this.started = System.nanoTime(); this.progressDetail = "Starting…";
+    this.fileProgressPanel.setVisible(false); this.fileProgress.setValue(0); this.transferSize.setText(""); this.transferSpeed.setText("");
     this.progress.setValue(0); this.progress.setString(working); this.progressPhase.setText("Starting…"); this.progressPercent.setText("0%"); this.progress.setVisible(true); this.progressPanel.setVisible(!working.equals("Game running"));
     this.body.removeAll(); if(!this.screen.launcher()) this.stages(); this.heading(working, working.equals("Game running") ? "Close the game to return to the launcher." : "Keep this window open while this step finishes.");
     this.body.revalidate(); this.body.repaint();
@@ -535,14 +548,7 @@ final class ManagerView extends JPanel {
       @Override protected void process(final List<InstallProgress.Update> updates) {
         if(updates.isEmpty() || ticket != ManagerView.this.operation || !ManagerView.this.busy) return;
         final var update = updates.getLast();
-        ManagerView.this.progress.setValue(Math.max(ManagerView.this.progress.getValue(), update.percent()));
-        ManagerView.this.progress.setString(update.phase());
-        ManagerView.this.progressPhase.setText(update.phase()); ManagerView.this.progressPercent.setText(ManagerView.this.progress.getValue() + "%");
-        ManagerView.this.fileProgressPanel.setVisible(!update.file().isEmpty());
-        ManagerView.this.fileProgress.setIndeterminate(!update.file().isEmpty() && update.fileTotal() <= 0); ManagerView.this.fileProgress.setValue(update.filePercent());
-        ManagerView.this.fileStatus.setText((update.fileTotal() > 0 ? update.filePercent() + "% · " : "") + locationLabel(update.file())); ManagerView.this.fileStatus.setToolTipText(update.file()); ManagerView.this.fileStatus.getAccessibleContext().setAccessibleDescription(update.file());
-        ManagerView.this.progressPanel.revalidate();
-        ManagerView.this.progressDetail = update.detail(); ManagerView.this.progressStatus();
+        ManagerView.this.applyProgress(update);
       }
       @Override protected void done() {
         ManagerView.this.busy = false; ManagerView.this.elapsed.stop(); ManagerView.this.currentProgress = InstallProgress.NONE;
@@ -555,7 +561,42 @@ final class ManagerView extends JPanel {
       }
     }.execute();
   }
+  void applyProgress(final InstallProgress.Update update) {
+    this.progress.setValue(Math.max(this.progress.getValue(), update.percent()));
+    this.progress.setString(update.phase());
+    this.progressPhase.setText(update.phase()); this.progressPercent.setText(this.progress.getValue() + "%");
+    final boolean archiveDownload = update.file().isEmpty() && update.networkBytes() >= 0;
+    final String file = archiveDownload ? "Release download" : update.file();
+    final long total = archiveDownload ? update.total() : update.fileTotal();
+    final long completed = archiveDownload ? update.completed() : update.fileCompleted();
+    final int percent = total > 0 ? (int)(100 * Math.min(1.0, (double)Math.max(0, completed) / total)) : 0;
+    this.fileProgressPanel.setVisible(!file.isEmpty());
+    this.fileProgress.setIndeterminate(!file.isEmpty() && total <= 0); this.fileProgress.setValue(percent);
+    this.fileStatus.setText((total > 0 ? percent + "% · " : "") + locationLabel(file));
+    this.fileStatus.setToolTipText(file); this.fileStatus.getAccessibleContext().setAccessibleDescription(file);
+    this.transferSize.setText(total > 0 ? transferBytes(Math.min(Math.max(0, completed), total)) + " of " + transferBytes(total) : update.networkBytes() >= 0 ? transferBytes(Math.max(0, completed)) + " downloaded" : "");
+    this.transferSize.setVisible(!this.transferSize.getText().isEmpty());
+    this.transferSize.getAccessibleContext().setAccessibleDescription(this.transferSize.getText());
+    this.networkActive = update.networkBytes() >= 0;
+    this.networkRate = Math.max(0, update.networkBytesPerSecond()); this.networkReportedAt = System.nanoTime();
+    this.refreshTransferSpeed();
+    this.progressPanel.revalidate();
+    this.progressDetail = update.detail(); this.progressStatus();
+  }
+  private static String transferBytes(final double bytes) {
+    if(bytes >= 1_000_000_000) return String.format(java.util.Locale.ROOT, "%.2f GB", bytes / 1_000_000_000);
+    if(bytes >= 1_000_000) return String.format(java.util.Locale.ROOT, "%.1f MB", bytes / 1_000_000);
+    if(bytes >= 1_000) return String.format(java.util.Locale.ROOT, "%.0f KB", bytes / 1_000);
+    return String.format(java.util.Locale.ROOT, "%.0f B", Math.max(0, bytes));
+  }
+  private void refreshTransferSpeed() {
+    final long idle = Math.max(0, System.nanoTime() - this.networkReportedAt);
+    this.transferSpeed.setText(!this.networkActive ? "" : idle >= 3_000_000_000L || this.networkRate == 0 ? "Waiting for data" : transferBytes(this.networkRate * Math.exp(-Math.max(0, idle - 150_000_000L) / 1_500_000_000.0)) + "/s");
+    this.transferSpeed.setVisible(this.networkActive);
+    this.transferSpeed.getAccessibleContext().setAccessibleDescription(this.transferSpeed.getText());
+  }
   private void progressStatus() {
+    this.refreshTransferSpeed();
     final long seconds = Math.max(0, (System.nanoTime() - this.started) / 1_000_000_000L);
     // Keep a changing timer from reflowing file paths or crowding out the work detail.
     this.message(progressSummary(this.progressDetail));
@@ -574,10 +615,11 @@ final class ManagerView extends JPanel {
     InstallerLog.failure(failure);
     this.body.removeAll();
     this.progressPanel.setVisible(false);
-    this.heading(this.screen.launcher() ? "Couldn’t finish this step" : "Setup stopped", "Review the error, then return to this step to try again.");
+    final boolean paused = failure instanceof FileDelivery.DownloadPaused && this.retryDownload != null;
+    this.heading(paused ? "Download paused" : this.screen.launcher() ? "Couldn’t finish this step" : "Setup stopped", paused ? "Completed files are saved. Retry to continue." : "Review the error, then return to this step to try again.");
     final String reason = failure.getMessage() == null ? "See the log for details." : failure.getMessage();
     this.body.add(infoCard("WHAT HAPPENED", "This step didn’t complete", reason.length() > 180 ? reason.substring(0, 177) + "…" : reason)); this.body.add(Box.createVerticalStrut(22));
-    this.primary(this.screen.launcher() ? this.screen == Screen.UPDATE ? "Back to update" : this.screen == Screen.STORAGE ? "Back to storage" : this.screen == Screen.RECOVERY ? "Back to recovery" : "Back to launcher" : "Back to setup", () -> this.render()); this.body.add(Box.createVerticalStrut(12));
+    this.primary(paused ? "Retry download" : this.screen.launcher() ? this.screen == Screen.UPDATE ? "Back to update" : this.screen == Screen.STORAGE ? "Back to storage" : this.screen == Screen.RECOVERY ? "Back to recovery" : "Back to launcher" : "Back to setup", paused ? this.retryDownload : () -> this.render()); this.body.add(Box.createVerticalStrut(12));
     final JButton details = button("Show error details", false);
     details.addActionListener(e -> new SwingWorker<String, Void>() {
       @Override protected String doInBackground() { return DiagnosticsReport.collect(ManagerView.this.root); }

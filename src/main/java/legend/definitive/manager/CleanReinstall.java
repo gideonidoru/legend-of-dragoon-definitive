@@ -35,6 +35,7 @@ final class CleanReinstall {
       final Path active = old.containsKey("data") ? store.data(old) : null;
       if(active != null) {
         final Properties original = inventory(active);
+        store.requirePersonalPreservationSpace(active);
         copier.copy(active, preserved);
         if(!original.equals(inventory(active)) || !original.equals(inventory(preserved))) throw new IOException("Active personal data copy differs from its original size/hash inventory.");
       }
@@ -43,26 +44,26 @@ final class CleanReinstall {
         for(final Path entry : entries.sorted().toList()) {
           checkCancelled();
           final String name = entry.getFileName().toString();
-          if(entry.equals(preserved) || entry.equals(receiptFile) || KEEP.contains(name) && !Set.of("data", "snapshots", "workspaces", "releases").contains(name)) continue;
+          if(InstallStage.ownedEntry(root, entry) || entry.equals(preserved) || entry.equals(receiptFile) || KEEP.contains(name) && !Set.of("data", "snapshots", "workspaces", "releases").contains(name)) continue;
           if(name.equals("data") || name.equals("snapshots")) {
             try(final var generations = Files.list(entry)) {
-              for(final Path generation : generations.sorted().toList()) if(!generation.equals(active)) preserveTree(root, generation, preserved, active);
+              for(final Path generation : generations.sorted().toList()) if(!generation.equals(active)) preserveTree(store, generation, preserved, active);
             }
           } else if(name.equals("workspaces") || name.equals("releases")) {
             try(final var applications = Files.list(entry)) {
-              for(final Path application : applications.toList()) preserveApplication(root, application, preserved, active, name.equals("workspaces"), next);
+              for(final Path application : applications.toList()) preserveApplication(store, application, preserved, active, name.equals("workspaces"), next);
             }
           } else if(name.equals("files") || PackageManifest.SUPPORT.contains(name)) {
-            preserveFlatDirectory(root, entry, preserved, active, next);
+            preserveFlatDirectory(store, entry, preserved, active, next);
           } else if(PRIVATE.contains(name)) {
-            preserveTree(root, entry, preserved, active);
+            preserveTree(store, entry, preserved, active);
           } else if(name.startsWith("disc-extraction-recovery-")) {
-            preserveExtraction(root, entry, preserved, active);
+            preserveExtraction(store, entry, preserved, active);
           } else if(name.startsWith("release-recovery-")) {
-            preserveApplication(root, entry, preserved, active, false, next);
+            preserveApplication(store, entry, preserved, active, false, next);
           } else if(!application(name) && !runtimeRoot(root, name)) {
             // Unknown owner files are preserved, never guessed to be obsolete application data.
-            preserveTree(root, entry, preserved, active);
+            preserveTree(store, entry, preserved, active);
           }
         }
       }
@@ -77,7 +78,8 @@ final class CleanReinstall {
       throw failure;
     }
   }
-  private static void preserveExtraction(final Path root, final Path source, final Path staged, final Path active) throws IOException {
+  private static void preserveExtraction(final InstallStore store, final Path source, final Path staged, final Path active) throws IOException {
+    final Path root = store.root();
     if(Files.isSymbolicLink(source)) throw new IOException("Linked extraction backup prevents personal-data census.");
     try(final var paths = Files.walk(source)) {
       final var bounded = paths.limit(100001).toList();
@@ -88,11 +90,12 @@ final class CleanReinstall {
         if(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) continue;
         if(!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) throw new IOException("Unsupported extraction backup entry.");
         final String name = source.relativize(path).toString().replace('\\', '/');
-        if(name.matches("(?i).*\\.(iso|cue|chd|img|mdf)") || !generatedExtraction("files/" + name)) preserveTree(root, path, staged, active);
+        if(name.matches("(?i).*\\.(iso|cue|chd|img|mdf)") || !generatedExtraction("files/" + name)) preserveTree(store, path, staged, active);
       }
     }
   }
-  private static void preserveFlatDirectory(final Path root, final Path source, final Path staged, final Path active, final PackageManifest next) throws IOException {
+  private static void preserveFlatDirectory(final InstallStore store, final Path source, final Path staged, final Path active, final PackageManifest next) throws IOException {
+    final Path root = store.root();
     if(Files.isSymbolicLink(source)) throw new IOException("Linked flat application folder prevents personal-data census: " + source);
     final Set<String> known = new HashSet<>();
     if(next != null) known.addAll(next.hashes().stringPropertyNames());
@@ -111,16 +114,17 @@ final class CleanReinstall {
         final String name = root.relativize(path).toString().replace('\\', '/');
         final boolean image = name.matches("(?i).*\\.(iso|cue|chd|img|mdf)");
         final boolean app = known.contains(name) || generatedExtraction(name) || name.startsWith("bundled-mods/") && bundledArchive(path.getFileName().toString());
-        if(image || !app) preserveTree(root, path, staged, active);
+        if(image || !app) preserveTree(store, path, staged, active);
       }
     }
   }
   private static boolean generatedExtraction(final String name) {
     return name.matches("files/(?:SECT|STR|XA|OVL)/.*") || Set.of("files/version", "files/.gitignore").contains(name);
   }
-  private static void preserveApplication(final Path root, final Path source, final Path staged, final Path active, final boolean workspace, final PackageManifest next) throws IOException {
+  private static void preserveApplication(final InstallStore store, final Path source, final Path staged, final Path active, final boolean workspace, final PackageManifest next) throws IOException {
+    final Path root = store.root();
     if(Files.isSymbolicLink(source)) throw new IOException("Linked old application folder prevents personal-data census: " + source);
-    if(!Files.isDirectory(source, LinkOption.NOFOLLOW_LINKS)) { preserveTree(root, source, staged, active); return; }
+    if(!Files.isDirectory(source, LinkOption.NOFOLLOW_LINKS)) { preserveTree(store, source, staged, active); return; }
     final Set<String> known = new HashSet<>();
     if(next != null) known.addAll(next.hashes().stringPropertyNames());
     if(!workspace) {
@@ -166,7 +170,7 @@ final class CleanReinstall {
         final boolean generated = workspace && (generatedExtraction(relative)
           || Set.of("gamecontrollerdb.txt", "log4j2.xml", "launcher.log").contains(relative));
         final boolean appArchive = !workspace && first.equals("bundled-mods") && bundledArchive(path.getFileName().toString());
-        if(image || !generated && !appArchive && !known.contains(relative)) preserveTree(root, path, staged, active);
+        if(image || !generated && !appArchive && !known.contains(relative)) preserveTree(store, path, staged, active);
       }
     }
   }
@@ -181,7 +185,7 @@ final class CleanReinstall {
       || name.equals(PackageManifest.METADATA) || name.equals(PackageManifest.HASHES) || name.equals(FileDelivery.SIZES)
       || name.matches("lod-game-.*\\.jar") || name.equals("files") || name.equals("steam-artwork") || Set.of("launcher.log", "installer.log", "installer-bootstrap.log", "desktop-bootstrap.log").contains(name)
       || name.matches("(?:release-recovery|disc-extraction-recovery|state-recovery)-.*")
-      || name.matches("\\.update-[0-9]+\\.zip") || name.startsWith(".package-") || name.startsWith(".files-") || name.startsWith(".contents-")
+      || name.matches("\\.update-[0-9]+\\.zip")
       || name.startsWith(".source-build-") || name.startsWith(".bootstrap-") || name.startsWith(".java-path-") || name.startsWith(".state-")
       || name.equals(".disc-transaction.properties") || name.equals(".release-repair-transaction.properties");
   }
@@ -189,7 +193,8 @@ final class CleanReinstall {
     final Path runtime = Path.of(System.getProperty("java.home")).toAbsolutePath().normalize();
     return runtime.startsWith(root.resolve(name));
   }
-  private static void preserveTree(final Path root, final Path source, final Path staged, final Path active) throws IOException {
+  private static void preserveTree(final InstallStore store, final Path source, final Path staged, final Path active) throws IOException {
+    final Path root = store.root();
     if(Files.isSymbolicLink(source)) throw new IOException("Linked personal data cannot be preserved: " + source);
     try(final var paths = Files.walk(source)) {
       for(final Path path : paths.sorted().toList()) {
@@ -213,8 +218,8 @@ final class CleanReinstall {
         final String digest = PackageManifest.sha256(path);
         final Path target = preservationTarget(staged, root.relativize(path), size, digest);
         if(target == null) continue; // An identical, independently verified staged copy already survives cleanup.
+        store.requirePersonalPreservationSpace(size);
         Files.createDirectories(target.getParent());
-        if(Files.getFileStore(staged).getUsableSpace() < size + 1024L * 1024 * 1024) throw new IOException("Not enough space to preserve all older personal files before clean reinstall.");
         try(final var input = Files.newInputStream(path, LinkOption.NOFOLLOW_LINKS); final var output = Files.newOutputStream(target, StandardOpenOption.CREATE_NEW)) {
           final byte[] buffer = new byte[65536];
           for(int count; (count = input.read(buffer)) != -1;) { checkCancelled(); output.write(buffer, 0, count); }

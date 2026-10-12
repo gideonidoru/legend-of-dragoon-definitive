@@ -48,9 +48,9 @@ class MaintenanceTest {
     assertFalse(Files.exists(this.store.root().resolve("Play Game.sh"))); assertEquals("private image", Files.readString(this.store.root().resolve("isos/owner.iso"))); assertEquals("unknown", Files.readString(this.store.root().resolve("owner-note.txt")));
     this.store.install(this.pack); this.store.verifyInstalled(); final Path restored = this.store.data(this.store.state()); assertEquals("save", Files.readString(restored.resolve("saves/owner.txt"))); assertEquals("mod", Files.readString(restored.resolve("mods/owner.jar")));
   }
-  @Test void deleteIsosIsExplicitAndIncludesDiscRecoveryCopies() throws Exception {
+  @Test void deleteIsosIsExplicitButDoesNotGuessOwnershipOfRecoveryFolders() throws Exception {
     Files.writeString(this.store.root().resolve("isos/owner.iso"), "private image"); final Path recovery = Files.createDirectory(this.store.root().resolve("disc-recovery-" + UUID.randomUUID())); Files.writeString(recovery.resolve("owner.iso"), "older image");
-    this.store.uninstall(true, InstallProgress.NONE); assertFalse(Files.exists(recovery)); try(final var paths = Files.list(this.store.root().resolve("isos"))) { assertEquals(0, paths.count()); }
+    this.store.uninstall(true, InstallProgress.NONE); assertEquals("older image", Files.readString(recovery.resolve("owner.iso"))); try(final var paths = Files.list(this.store.root().resolve("isos"))) { assertEquals(0, paths.count()); }
     assertTrue(Files.isDirectory(this.store.data(this.store.state())));
   }
   @Test void uninstallCannotRunWhileAnOperationOrGameHoldsTheLock() throws Exception {
