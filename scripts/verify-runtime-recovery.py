@@ -2,6 +2,7 @@
 """Exercise the real runtime bootstrap offline with isolated JVM stand-ins."""
 from pathlib import Path
 import os
+import fcntl
 import subprocess
 import tempfile
 
@@ -32,6 +33,16 @@ for scenario in ('empty-receipt', 'newline-less-receipt', 'oversized-receipt', '
         else:
             assert result.returncode == 0 and result.stdout.strip() == str(java), result
         assert 'forbidden-download' not in result.stderr, 'Offline recovery unexpectedly attempted a download'
-        assert java.is_file() and not (cache / '.java-bootstrap-lock').exists()
+        assert java.is_file()
+        lock = cache / '.java-bootstrap-lock'
+        if scenario == 'linked-root':
+            assert not lock.exists(), 'Rejected linked cache must not create a lock'
+        else:
+            # Startup recovery intentionally acquires the persistent inode even
+            # when a usable runtime is cached. Existence is not a held lease.
+            assert lock.is_file() and not lock.is_symlink() and lock.stat().st_mode & 0o077 == 0
+            with lock.open('rb') as stream:
+                fcntl.flock(stream.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                fcntl.flock(stream.fileno(), fcntl.LOCK_UN)
         print('PASS', scenario)
 print('PASS: malformed/truncated receipt falls back offline, linked cache rejected')
