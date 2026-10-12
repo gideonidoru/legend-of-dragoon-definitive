@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "authoringParent": "443c1474b2dd8708b31a22bb9fc58a5afa14ad52",
+  "acceptedMain": "8fc793446c113d974994d85d737198961b7c4d11",
+  "prospectiveManifest": "field-bespoke-coral-bale-tablet-reviewed-selection.json",
+  "prospectiveManifestSha256": "defafcac5d9d9dc41f9e7a840f7ec516c743c42126160f0b63a507f2f17b1c1e",
+  "priorManifest": "field-bespoke-phantom-fueno-reviewed-selection.json",
+  "priorManifestSha256": "8388460d16c4486b5a123b8e04517dfaabe7fae74ac4819db05065e9ecf0ce81",
+  "priorRecipesExact": 76,
+  "newOriginalArtAndStructuralClear": 3,
+  "prospectivePaintings": 79,
+  "selectedPaintings": 76,
+  "selectedFieldImages": 4962,
+  "knownStaticRemaining": 201,
+  "fieldHolds": 200,
+  "uniqueUnselectedCustomDraftSourceKeys": 48,
+  "historicalCanonicalRecipesPreserved": 83,
+  "latestCanonicalStatus": {
+    "selected": 76,
+    "clearedAwaitingIntegration": 3,
+    "revision": 4
+  },
+  "completeManifestPreflight": "PASS",
+  "mainSourceProtocolIntegration": "pending for existing pinned explicit authoring-crop helper; direct cutout recipes already supported",
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalSourcesAndPrivatePathsExcluded": true,
+  "sourceReplay": {
+    "logSha256": "4a401e95f02041dd27039c9d8ad576a73b30f59a8dbd166c0ab4fdd9fed2ab2a",
+    "verifiedPaintedCandidates": 79,
+    "manifestSha256": "defafcac5d9d9dc41f9e7a840f7ec516c743c42126160f0b63a507f2f17b1c1e",
+    "actualFreshSourcePreflight": true,
+    "allPrior76RecipesUnchanged": true,
+    "runtimeSelected": 0,
+    "nativeAccepted": 0,
+    "finalQualityAccepted": 0
+  },
+  "independentAuthoringManifestReview": "CLEAR both axes",
+  "metadataScopeCorrection": "Prospective manifest now states complete79 preflight passed and main integration remains pending; exact final manifest replayed after scope correction.",
+  "sourceReviewCommit": "74c9e9be9078c9461c133bd6f507e0fb3a517f45",
+  "independentAuthoringManifestReviewReceipt": "field-independent-coral-bale-tablet79-code-review.json",
+  "independentAuthoringManifestReviewReceiptSha256": "8e28aab5388546425eb027e133667d037a80b69b38865e741a7f969de3d31553"
+}
