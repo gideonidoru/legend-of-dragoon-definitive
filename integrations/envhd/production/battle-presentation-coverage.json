@@ -5,10 +5,10 @@
   "allBattlePresentationAccepted": false,
   "sourceControls": {
     "battle-material-artwork.json": "fc0154a9638e88456b7291f72146a4c535fc5bb4a6595214edecbd897d5764ed",
-    "battle-material-runtime-artwork.json": "e499387937c77466a63770866a01e376d5385f136f04c0b1db405077f0a8d0a3",
+    "battle-material-runtime-artwork.json": "d6d8d3d892447f4b6eb0211552762842e8f705bc4048f4b1b8c1d322bffc4623",
     "battle-skies.json": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
     "battle-stage-family-ledger.json": "2e7038adac76411e54c22d94e7e20ac64fad56d5c92b0fdf7c4e454988eb1bb6",
-    "battle-presentation-artwork-v1.json": "f99514b78c7f597afa4f68b218b0f3206b9945fb4068b9b24b902f25055e449f"
+    "battle-presentation-artwork-v1.json": "e23e9967f15353aa88dfdb31c77e569ad7831e56e71a624cfc6207e70a29b8cf"
   },
   "counts": {
     "nonemptyModelStages": 89,
@@ -18,9 +18,9 @@
     "selectedNewStaticBindings": 525,
     "selectedNewStaticMasters": 518,
     "previouslySelectedPaintedMasters": 12,
-    "newBespokeCandidates": 53,
-    "newlySelectedBespokeMasters": 53,
-    "baselineMastersStillNeedingPresentationReview": 453,
+    "newBespokeCandidates": 116,
+    "newlySelectedBespokeMasters": 116,
+    "baselineMastersStillNeedingPresentationReview": 390,
     "pendingCandidateReviews": 0,
     "dynamicOrContextBindingHolds": 350,
     "incompletePaletteBindingHolds": 1,
@@ -345,7 +345,14 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "1db4b88136590d79cf4ab87d8eb1b974f39a127bbfbc06f5c306beeeb82bd7ec",
+        "62f8c36eae5ed612725c9e52d5aa5d9d1b4b0821edcb50f6a359f37f2e75dd94",
+        "886455c43c5226077d59990c2fcceb04d6dba7c5039a5b6eb366c8452263ab35",
+        "a5c78981c4f601d5cf33e5b1bd18109bda46b164a1aa7d4a096a7922cf958ed7",
+        "b139612bc6533967482620ee08fec67747652fe0c23ee932560e752ede24dca4",
+        "f2db88cc3df3d3d1f6d20835bc1b336584d24d2d4fe59ed1640b9884c8c361c9"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -363,7 +370,17 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "06148916abfb2e97f3e673b13f7fb2b170ed4accc456a43a8574d94dc239a025",
+        "41d134f179997f57cea1ed0ef8746ef9785ceb8de27f4b11918af6463b0ca8e6",
+        "4c41a6d3476d8096342f3ed779a7a56b900d090f9a4bf64b48b81ee92b640d55",
+        "67c8351417215da49ef45858375ac5268f6a33ea51615cefdf8ea228172e7821",
+        "7fc9a259f2f120d432a34d38ab75fb8e8415cf4a2fd83ab6bebbd728ad52884f",
+        "8ca225d62cdd16c24ab98f0e5acac2d11209a64bde24b0f34b82453d67d8b3e0",
+        "e93e7a9a26452bacb44a6fd258c3fc52a48175314e95a7ddb0f4d8e110f3b307",
+        "ef223ce7b1fcf1f495666743935740ca6ec34d38f025c750f9c46dd9d63365de",
+        "f2bb695890f6f4ef0af4db8f3d86c508973059282f9907aa984245eacc381405"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -394,7 +411,11 @@
         4096,
         1056
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "5c08c368c2ed598b719826cdb493581bf5f52b2ee7488bc7505409eade5a1d07",
+        "9b8925e3d123e5a27f54166968a24e0327633141b9d3b0bc45225ea4d58870c3",
+        "b889ce74f7fb4f0c114d20b68d5c81a0e0f7023adc2377c1f6d3e419aca1c4c5"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -412,7 +433,16 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "1986eadb0e48c21cbb76f7a59c02d2639f3c2141982781fafe719fba118c08a8",
+        "2cc758a65cc53fc57440d16ada7ab9b08217d5d379020921d5dee54138cc914a",
+        "3867e10258b113799af0ad0dc71c168bc954924834729584bfad6c0d340016ca",
+        "48b54ce0a674486ed9327702a44ee8c10520f7b1f3ea50159894d4103afdbb07",
+        "b81223a4e4c0f3ad60974ed325ae4dab1b522c29ed84f7dfbf768e0d517bfb1e",
+        "cb0f271a5bb3500f250891aa0230b69487d0aaabbc92c8b5fabf21414a58e399",
+        "d4239a529dfa55d647555bab1735ac0d61cd8052bbaa10b9d4c06d4ca7551aa7",
+        "f59a23f386c9d538b862c3d4cf7788d9e788162807af60a5a92b22b17017bfcc"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -451,7 +481,9 @@
         4096,
         352
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "56d56fa966b44f3627b8558ad5a955ad73ec43f88efbd50befca9dd1fb0cd9a2"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -554,7 +586,14 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "0be99ffe472f763533b1b7d2aa84b7757e63bc7b5d3860b6b5994e909a466de9",
+        "24f50d0da3e1d49a971479634427c01afa81cc7ea5931c2558ab3bc50fa28a7c",
+        "368098daea9001149716f387c41f66918bcf757b3a43d8b5beb29e6db751881f",
+        "3f469f59830511e1e7ad2cd166368b0d3e4d600d2b15a7a2aefe1d0e01d199a0",
+        "62077b7d96fd9f22be8c7e3b92d10c2115f54b5603a6b569a5c2d4d670a82875",
+        "87c532fd17ce5120a51f3320938d10cce475004e676e14faeb89161805bcccc7"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -571,7 +610,19 @@
         4096,
         1340
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "100d9faf2bc7613f5b509c368feabab8efe0ed0b386898a64256624856cafbe3",
+        "1cba3f0253c910f32420467916126d38e1b714b926df9a624e8cedf03b522413",
+        "1d5f7b1a773cfc74bd0ad5463afd56e1e6ff9affab5d2012622d4e812b181385",
+        "20baf20f28006200d923d3e5cc36cf5e632f70fd63328f39be71dc6ddd17b06a",
+        "5e0da9a70687b9f7d92b57ecab9378ef8ff68121ecbc27e140dab71fe558e789",
+        "7c216fab98c7785feb2aa53110f2d2045fe36fa5bf35e374150938deea6bb68f",
+        "aca09af6232a7e6fde41adde399485278df460609578cdf8979906e21c31842d",
+        "b1106ade93ef1221150667d5bbed2b71f3b289cc546e30ac922e0b57505dddbb",
+        "d4607de5ffe2cf6b96dd98f834d2bc0ca661542cecc5c34dd785366fa8e27e6a",
+        "f220f94c5a60491f0915c767c7df0692bd8b51e281d01f8c431ec8f404b11db8",
+        "fcf97576e2624138b0700ca5cfdb53c8be32ca7d567ad6acc59faa349f88f2ea"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -589,7 +640,9 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "6f2b0efb4191047ef5e7caf235ff7946da4261f762457e0618ef0db07d651183"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -629,7 +682,9 @@
         4096,
         320
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "435825b8cdaebc1d3ac0e8596c01de45cf5f1d447dac8743199490eea418331a"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -710,7 +765,10 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "70d218fc47ea912641634c72bb487a1069095b4868b49b14fabaedb1b76923db",
+        "7574e26476c210a8f198670b86cf33f552a2f7549a6864cc3cc588182ec20588"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -746,7 +804,10 @@
         4096,
         384
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "03e9384e5eb908db993dfb534bdca9077f7c0fd025e4a8f3da51c813c61d657d",
+        "d62c1e2a5b7848577e67e9f8d7b9135467a111d2da968ea452fe4300a6319f2f"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -763,7 +824,12 @@
         4096,
         608
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "1d7ca715b77ae671c66c45fd210a23f855ab33aa5aa903c4fce784d35ca4c60d",
+        "7832408aa9310980344b3cdd465355d2200a0ad3158355c9922863b92e762d0c",
+        "915ea7e602df052c441e50b5435dd93ce09a1d56fe00b2e467f276ebc0d6c390",
+        "ef4a708d86d097e6033fd29c4d3c7dc8e6d08513aaa0b7794ac652cc5414f77a"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -780,7 +846,17 @@
         4096,
         968
       ],
-      "authoredNewPresentationMasters": [],
+      "authoredNewPresentationMasters": [
+        "0e36156a50ad2db5f2e6a6ba845880277d69d6ef331fbe8e90a4ec1958f9988a",
+        "292786ab6dfa34676999a25e6344b164ea30ca7b79088fda2b13bf58143de424",
+        "334e399e2166c4ac9fba3d5ea3afe2f983bc2cfd9fc47e1b2a933a7dd2283a1a",
+        "3880bf6a9db60ecea2bc725ebd9fd11f9015eab223a7cc46113ad70690abe175",
+        "561f0ece3fa3e92904a3c08d5e1ae42f0f41f4c8fbe2c6dd811e67522e6d4358",
+        "59b36974ce5da2c737bcf22e8fec5921972a9e3f88a326ba0db065c80f91258e",
+        "7b171eb8cdaba610afeea7daffe5a7cdd4b0957347f3102850230817c1409848",
+        "9aef5cea9abf8c9f8102161ccd6e98f5175b12bbfa0f090b04a8cbc7e3a2711a",
+        "d2b61cac7f814f974b2420b547fcd8b53be3810b5392807b2194231b3dda90ff"
+      ],
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3785,7 +3861,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3816,7 +3892,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3847,7 +3923,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3878,7 +3954,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3909,7 +3985,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3940,7 +4016,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {16: [0]}. Source family: grey stone cliffs and vegetation.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -3971,7 +4047,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4002,7 +4078,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4095,7 +4171,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4126,7 +4202,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4157,7 +4233,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4188,7 +4264,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4219,7 +4295,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4250,7 +4326,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4281,7 +4357,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {17: [0]}. Source family: grey/brown courtyard architecture, columns, gates, stairs and hanging decoration.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4315,7 +4391,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {21: [0, 1, 2, 4]}. Source family: green stone, gates, panels, pillars and decorative markings.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4413,7 +4489,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {21: [6]}. Source family: green stone, gates, panels, pillars and decorative markings.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4445,7 +4521,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {21: [3, 5]}. Source family: green stone, gates, panels, pillars and decorative markings.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4476,7 +4552,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {22: [9]}. Source family: green masonry, metal trim, floor panels, doors and carved motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4508,7 +4584,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {22: [5, 9]}. Source family: green masonry, metal trim, floor panels, doors and carved motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4539,7 +4615,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {22: [8]}. Source family: green masonry, metal trim, floor panels, doors and carved motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4601,7 +4677,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {22: [5]}. Source family: green masonry, metal trim, floor panels, doors and carved motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4633,7 +4709,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {22: [0, 5]}. Source family: green masonry, metal trim, floor panels, doors and carved motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4664,7 +4740,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {22: [9]}. Source family: green masonry, metal trim, floor panels, doors and carved motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4695,7 +4771,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {22: [5]}. Source family: green masonry, metal trim, floor panels, doors and carved motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4726,7 +4802,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {22: [9]}. Source family: green masonry, metal trim, floor panels, doors and carved motifs.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -4882,7 +4958,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {24: [0]}. Source family: pink radial architectural panel and pale blue surface gradients.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5428,7 +5504,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [0]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5459,7 +5535,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [0]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5491,7 +5567,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [0, 2]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5522,7 +5598,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [2]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5553,7 +5629,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [2]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5584,7 +5660,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {29: [2]}. Source family: Giganto Home: dark mottled rock, highlighted openings and trim. Engine random-encounter location mapping: Giganto Home.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5677,7 +5753,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5708,7 +5784,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5863,7 +5939,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -5956,7 +6032,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6142,7 +6218,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6204,7 +6280,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6266,7 +6342,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6297,7 +6373,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6328,7 +6404,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6359,7 +6435,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6421,7 +6497,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {30: [0]}. Source family: royal architecture: carpets, chairs, banners, crests, fabric, stone and gold ornament.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6453,7 +6529,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {31: [0, 1]}. Source family: worn timber surfaces.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -6639,7 +6715,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {35: [0]}. Source family: brown branch/root silhouette.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7135,7 +7211,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {39: [0]}. Source family: Mortal Dragon Mountain: cold blue cliffs, cave opening and rough rock. Engine random-encounter location mapping: Mortal Dr Mt..",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7229,7 +7305,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {39: [2]}. Source family: Mortal Dragon Mountain: cold blue cliffs, cave opening and rough rock. Engine random-encounter location mapping: Mortal Dr Mt..",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7356,7 +7432,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {41: [0]}. Source family: green forest ground/vegetation and pale ground patches.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7387,7 +7463,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {41: [0]}. Source family: green forest ground/vegetation and pale ground patches.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7480,7 +7556,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7511,7 +7587,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7542,7 +7618,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7573,7 +7649,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {42: [0]}. Source family: Flanvel Tower/Kashua Glacier: ice ledges, snow and cold blue stone. Engine random-encounter location mapping: Flanvel Tower, Kashua Glacier.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7697,7 +7773,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7790,7 +7866,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7821,7 +7897,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7914,7 +7990,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7945,7 +8021,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -7976,7 +8052,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8007,7 +8083,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8038,7 +8114,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },
@@ -8100,7 +8176,7 @@
         }
       ],
       "intent": "Static battle model surface; source geometry uses stage/parts {44: [0]}. Source family: Flanvel Tower: organic stone, vines, lattice motifs, maze-like markings and lit openings. Engine random-encounter location mapping: Flanvel Tower.",
-      "presentationStatus": "neural-baseline-needs-presentation-review",
+      "presentationStatus": "new-bespoke-development-selection-pending-native-review",
       "nativeSceneAccepted": false,
       "finalBeautyAccepted": false
     },

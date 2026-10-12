@@ -1,0 +1,468 @@
+{
+  "schema": 1,
+  "reviewer": "independent Spec actual-original art/layout reviewer undersea_standards",
+  "snapshot": "f3a641b8f732ec707b1c93f012fd8163be6c22c3",
+  "packetSha256": "7c7bc7c4cbc81b8cc48b7b3e7c9a8f2bbf42ff86c0175b06754d87474eec673e",
+  "authorManifestSha256": "bb442f075495b9631dba371f1f0e50af5bd2e69c0453778dabc3caee72855793",
+  "scope": "Nine existing pending static candidates bound to stages41 and42. Fresh actual-original decodes, full bindings/fingerprints, raw/output/prior-neural hashes and exact pinned recipe pixels, metrics and encoded-output replays. All original/current-neural/candidate boards and individual forest-ground/ice-ledges/full-page-islands/stepped-cliff detail crops inspected. Source/art gate only; no runtime selection, mapped seams, native rendering, physical Steam Deck or final beauty acceptance.",
+  "sourceScenes": [
+    {
+      "stage": 41,
+      "modelSha256": "27bf1b44f8fae6f159304943dbf467cbab5e0c73e9e8b3a2fc86a0f67786a83e",
+      "timSha256": "df2dc5399e4cfa975619e7b8de0fb7a1febd07ac8ceb7d1d3dc4ff1276d8154a",
+      "modelSourceFile": "SECT/DRGN0.BIN/2538/0/0",
+      "timSourceFile": "SECT/DRGN0.BIN/2538/2"
+    },
+    {
+      "stage": 42,
+      "modelSha256": "e209ea2bf97f8c01f13d9bec12fd5b2f1adebae53498281932f6274584a37e2e",
+      "timSha256": "d0704b7d0dea92922da940bd5a9d004deb21931c375e786855ab0a29ddb3d044",
+      "modelSourceFile": "SECT/DRGN0.BIN/2539/0/0",
+      "timSourceFile": "SECT/DRGN0.BIN/2539/2"
+    }
+  ],
+  "comparisons": [
+    {
+      "sourceKey": "ff3214e80256e31090bcc3dd03169b1a2adaffe3144db110a2614f60b25c1577",
+      "sourceSize": [
+        72,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 41,
+          "page": 7,
+          "clut": 15388,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            72,
+            72
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "39b17fea35da1e6077c273f3f8892ed0554bc1760c4e980d267266e1456e6f4d",
+      "outputSha256": "8f16a657c31d4e09704e5a05c4993788dbe87a6de85ee34c3bbca6942dfdbe00",
+      "priorCandidateSha256": "bf6fab2c36eca161ab13e60bb498f18da11eb43b5a59ee39c02d5b05cd1bc0e5",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "REVISE",
+      "layoutVerdict": "REVISE",
+      "artVerdict": "REVISE",
+      "reason": "The original lower field contains uneven vertical green-gray grass/root-like marks with broad diffuse gaps. Enlarged inspection shows those marks interpreted as many evenly spaced fence-like bars and cross-connected lattice divisions, while the upper diffuse rock patches gain a connected dark crack network. This inherited neural structure is unsupported by the original ground material. Preserve the irregular widths and source mottling without regular bars, crossbars or additional fractures.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "d62c1e2a5b7848577e67e9f8d7b9135467a111d2da968ea452fe4300a6319f2f",
+      "sourceSize": [
+        72,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 41,
+          "page": 7,
+          "clut": 15644,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            56,
+            256,
+            136
+          ],
+          "sourceUvOrigin": [
+            184,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "dc86a59da52d4f0e02e8f6937d4ea7b31c28a08b516c80122646d630cc6a5c2b",
+      "outputSha256": "073f6dcfa3c3f74872a68a2fdd9aa813b9512c4119b778f16424e9f0cfbf1270",
+      "priorCandidateSha256": "02d339ee9b71c4d71e0513fc8ab0f79b2aac89e77eb2cb363a5004d33c60e1ef",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The original broad dark forest-green foliage masses, irregular lighter islands and vertical breaks retain their source placement. Fine leaf grain stays within the existing masses without a new trunk, branch, oversized leaf or bright light patch. The upper/bottom neighboring fragments and restrained overall green illumination remain aligned with the original.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "03e9384e5eb908db993dfb534bdca9077f7c0fd025e4a8f3da51c813c61d657d",
+      "sourceSize": [
+        72,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 41,
+          "page": 7,
+          "clut": 15900,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            120,
+            256,
+            200
+          ],
+          "sourceUvOrigin": [
+            184,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "04d57bee44096c6ac56d0a8cc83d3b0a560fc83b207977b61fcdbb1e31ffa996",
+      "outputSha256": "ff6c14f640427445d721a8b8a1ca56e74a014089c45f32703b4ac1145c26359b",
+      "priorCandidateSha256": "3c271a5150624b55fc7d3685f30ac88ee3e59bd2f23ecc766efbbf7324a080ba",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The irregular pale ground patches retain their original outlines and positions within the lower green foliage, including isolated smaller pale patches and surrounding dark gaps. Continuous foliage detail adds no path, tree trunk, new ground island or light source. The pale top fragments and plain lower strip remain in their source locations and the broad green/pale value arrangement is preserved.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "842c425c6ec17e5120517560e6f4b9f6f0e39e257f120a5c3b6124fd67aead08",
+      "sourceSize": [
+        136,
+        72
+      ],
+      "sourceBindings": [
+        {
+          "stage": 42,
+          "page": 7,
+          "clut": 15388,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            136,
+            72
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "1a7de64c6d73ca9863687d5da812fa1b74b5b69e9f57a0cecc4bf7b1dc823445",
+      "outputSha256": "e751f0635fa645223c069c34e45e00901aee26b62011e2ae9ca077b1b7b5377e",
+      "priorCandidateSha256": "2f8495b82bf8ef4c283d3c1b312c24a79c1197216d44b6cd240e0f6d691f5e90",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "REVISE",
+      "layoutVerdict": "REVISE",
+      "artVerdict": "REVISE",
+      "reason": "The two main snow-shelf heights remain aligned, but enlarged lower-shelf inspection shows the original broad unequal hanging blue/white ridges transformed into additional long sharp icicle points and stronger angular glacier facets around the violet patch. The left shallow plane becomes a sharply projecting triangular lip, and the pale/dark face divisions become more deeply carved. Preserve the existing unequal ridge contours and muted ledge values without the new pointed/raised interpretation.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "ab10a5b25d6c6f5aa30125dca82b14b1e408c0b183d87ad90c0cd2ac90bf9c7f",
+      "sourceSize": [
+        256,
+        136
+      ],
+      "sourceBindings": [
+        {
+          "stage": 42,
+          "page": 7,
+          "clut": 15452,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            0,
+            256,
+            136
+          ],
+          "sourceUvOrigin": [
+            0,
+            0
+          ]
+        }
+      ],
+      "generatedSha256": "a6eba585f8ff89c6b86f6eb3a156187e9fbeb6c41567116e13641d1e4fbb2491",
+      "outputSha256": "64a9f03c503144d80d5078be2ab329223d7f70b80d94229ccfd14b461197437b",
+      "priorCandidateSha256": "be63c4e6afc5a5d637f65eea355aed13c91c0d8b5c35b9cd612eb93e4f37d61a",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "REVISE",
+      "layoutVerdict": "REVISE",
+      "artVerdict": "REVISE",
+      "reason": "The four material-island footprints and existing opening remain source-bound, but individual island inspections reveal unsupported internal structure. The upper-right snow cliff acquires a dense set of needle-like hanging icicles beyond the original broad uneven ridges; the lower-right mottled snow/rock is interpreted as sharper outlined chips and polygonal slab facets, including a new angular division near its lower left. Matching the neural baseline does not clear those extra forms. Keep the original shelf/ridge shapes and diffuse mottling, with restrained continuous grain rather than new icicles or slab subdivisions.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "1d7ca715b77ae671c66c45fd210a23f855ab33aa5aa903c4fce784d35ca4c60d",
+      "sourceSize": [
+        80,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 42,
+          "page": 7,
+          "clut": 15516,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            56,
+            200,
+            136
+          ],
+          "sourceUvOrigin": [
+            120,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "12687cedf34e3ccf2a9e0c9de98e68dd48b6365b756be2427b159064d0a8bd0b",
+      "outputSha256": "dd500dd7589440ee10b3e744213090ca377812433e0be0f8041c8ab8ba918823",
+      "priorCandidateSha256": "0746f22a497219f6b9e48aee620ed8a8816cb6275cb9a31549b80ebd013b9f1e",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The very pale white snow slab retains the original sparse, faint lavender-blue diagonal marks, diffuse white field and adjacent side/bottom fragments. The fine powder grain remains subtle, with no added broad crack, dark shadow, new directional light or altered seam layout. Its restrained brightness and soft source values are preserved.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "915ea7e602df052c441e50b5435dd93ce09a1d56fe00b2e467f276ebc0d6c390",
+      "sourceSize": [
+        72,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 42,
+          "page": 7,
+          "clut": 15580,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            184,
+            56,
+            256,
+            136
+          ],
+          "sourceUvOrigin": [
+            184,
+            56
+          ]
+        }
+      ],
+      "generatedSha256": "3e4f2ef63aa7d0409b633b5314eaa8c5cecbb4dcf761a3b8a78283c353d74b4b",
+      "outputSha256": "d33ee373dc104662a1dad994f064ec43d55c1c5350266b9a04a1a4ce798d9ac8",
+      "priorCandidateSha256": "e4f1e1ff07447fef919a37acc77b5313e6e0debe85671c69b921d74fb6fcb21c",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The original branching lavender-blue shallow marks and faint upper vertical fragments remain in their original positions over the soft near-white surface. Added powder grain does not form a new fissure web, sharpen the broad pattern into deep fractures or increase its overall contrast materially. The flat lavender lower strip and source light arrangement remain intact.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "7832408aa9310980344b3cdd465355d2200a0ad3158355c9922863b92e762d0c",
+      "sourceSize": [
+        136,
+        80
+      ],
+      "sourceBindings": [
+        {
+          "stage": 42,
+          "page": 7,
+          "clut": 15644,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            0,
+            120,
+            136,
+            200
+          ],
+          "sourceUvOrigin": [
+            0,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "740c458033275f400379c6d3f56133427a27c7918826aa9fe76aab98a14a8190",
+      "outputSha256": "5c2c74eb8512a4ae4674fd9f319e1881656c55994839acdaf947900a4e7bb735",
+      "priorCandidateSha256": "2b9cd81d63d56657ef47eb8bf6fc0bbabd832ed0a620d016be69059ced518caa",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "The original wide sparse curved and diagonal blue marks remain softly distributed across the pale white surface. Fine powder grain follows that existing pattern without another strong seam, crack network or darkened plane. The narrow neighboring strips and plain lavender bottom band retain their source placement and broad values.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "sourceKey": "ef4a708d86d097e6033fd29c4d3c7dc8e6d08513aaa0b7794ac652cc5414f77a",
+      "sourceSize": [
+        112,
+        112
+      ],
+      "sourceBindings": [
+        {
+          "stage": 42,
+          "page": 7,
+          "clut": 15708,
+          "parts": [
+            0
+          ],
+          "sourceCrop": [
+            120,
+            120,
+            232,
+            232
+          ],
+          "sourceUvOrigin": [
+            120,
+            120
+          ]
+        }
+      ],
+      "generatedSha256": "2c78a0c3c3360be2757fbf1d33304b188af8ac6e4f1bc60db50c2e9f3fa370da",
+      "outputSha256": "c86cf0077cc43fbf3bae8ef20937f859b66edb03fa0295ee1acb51ee0bbc085f",
+      "priorCandidateSha256": "07c736e792abd78573f3ca871de2c79e35b97e36305c270b059bc13977d10c7b",
+      "method": "python-reviewed-painted-battle-material-exact-stp-1",
+      "recipePins": {
+        "algorithmSha256": "c148003990a8cbd3d682c608387503b47a270c8cdb70bf7e26222a8761648e73",
+        "boundsAlgorithmSha256": "d94733e201ae2450dabbe0a0aa3915f9c60833672ad3d06b14621c8e70adcd2a",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+      },
+      "decodedSourceFingerprintExact": true,
+      "allBindingsExact": true,
+      "recipePixelsAndMetricsExact": true,
+      "recipeEncodedOutputSha256Exact": true,
+      "verdict": "CLEAR",
+      "layoutVerdict": "CLEAR",
+      "artVerdict": "CLEAR",
+      "reason": "Individual inspection of both separate ice-cliff islands retains the original shelf sequence, unequal ledge heights, angled/curved transitions and clipped outer silhouettes. Fine ice grain stays within the existing vertical faces without another shelf, hanging icicle, opening or stepped island. Source black gaps and plain lavender area remain intact; the cool blue-lavender composition is preserved, with native mapped seams and lighting still pending.",
+      "runtimeSelected": false,
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "counts": {
+    "reviewed": 9,
+    "clear": 6,
+    "revise": 3,
+    "runtimeSelectedByThisReview": 0
+  },
+  "privateFullReviewSha256": "41026a7afcf165d8d60a4be29e5d272e18c04871da1681bb1eeb76471385089e"
+}
