@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "scope": "Metadata-only refresh to accepted CavePR100; source imagery/runtime already accepted and unchanged by this checkpoint.",
+  "acceptedCaveCommit": "153ccaa005604a3b24f6aadf7e892124aea3eaf8",
+  "acceptedFieldCommit": "5fbda0d5fa37dfc73c6158c857dd88130d7915fd",
+  "battlePresentationSelectedMasters": 53,
+  "battlePriorPaintedMasters": 12,
+  "battleTotalPaintedSelectedMasters": 65,
+  "battleSelectedNeuralMasters": 453,
+  "battleRuntimeSelectedMasters": 518,
+  "battleRuntimeSelectedBindings": 525,
+  "sourceHashes": {
+    "battle-material-runtime-artwork.json": "e499387937c77466a63770866a01e376d5385f136f04c0b1db405077f0a8d0a3",
+    "battle-presentation-artwork-v1.json": "f99514b78c7f597afa4f68b218b0f3206b9945fb4068b9b24b902f25055e449f",
+    "field-runtime-artwork.json": "4800c78e52aa5b8cec7d6b26c0cf1aa1cc11bea782585b2c9b3f4ffa2c0169c1",
+    "environment-dynamic-prop-inventory-checkpoint.json": "c10cf7106b178fe3e8769f76958206dceb91b0355772f9417601f2edca2bb4c3",
+    "environment-dynamic-prop-inventory-independent-review.json": "5e29889e16a165c59075c003ffecbc520e0b373203abcc026258ecae33f1d8e0"
+  },
+  "selectedFields": 4960,
+  "selectedFieldPaintings": 74,
+  "knownRemainingStaticImages": 203,
+  "knownRemainingFieldImages": 202,
+  "knownRemainingTerrainImages": 1,
+  "wholeDynamicImageDenominator": null,
+  "wholeOwnedPropImageDenominator": null,
+  "runtimeSelectionChanged": false,
+  "sourcePixelFilesChanged": false,
+  "packageChanged": false,
+  "publishedInstallerSnapshotRefreshed": false,
+  "nativeAccepted": 0,
+  "finalQualityAccepted": 0,
+  "originalsAndPrivatePathsExcluded": true
+}
