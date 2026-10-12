@@ -1,0 +1,322 @@
+{
+  "schema": 1,
+  "scope": "Independent actual-original source/art and repeated-image review of existing stage3/4/30 panorama drafts; no native/final acceptance or runtime selection.",
+  "authorManifestSha256": "b59164ddcf1901c8e5b3d97e6aa4dfe3755cd3a1c63c7362910f0aa457395793",
+  "toolHashes": {
+    "repair-envhd-painted-battle-panorama.py": "a717b9cc9f7841a671496a2d81de130aef324a6278b1cf1765eea43edc73902b",
+    "bounded-envhd-battle-panorama.py": "e5e40735b3c41e87ef763595b6a941697cd85bbc042162ae326b1476154c55d0",
+    "batch-envhd-terrain.py": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+    "write-envhd-painted-candidate.py": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57"
+  },
+  "sourceLedgerSha256": "2f639409f7dcc25724babb6cd3e1e49f855417e012df7c7635ce4a0ece8b30f7",
+  "candidates": [
+    {
+      "sourceMcqSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
+      "decodedRgbaSha256": "e054eb92eb8cb2f71419616a6f1b0c067b326e1c84a7b1c3344c94c2bc6e96b5",
+      "sourceBindings": [
+        {
+          "sourceMcqSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
+          "decodedRgbaSha256": "e054eb92eb8cb2f71419616a6f1b0c067b326e1c84a7b1c3344c94c2bc6e96b5",
+          "generationMasterSourceSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
+          "sourceFiles": [
+            "SECT/DRGN0.BIN/2500/1"
+          ],
+          "stages": [
+            3
+          ],
+          "sourceSize": [
+            256,
+            384
+          ],
+          "targetSize": [
+            1024,
+            1536
+          ]
+        }
+      ],
+      "generatedPath": "integrations/envhd/production/battle-panorama-candidates/4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704/generated-v1.png",
+      "outputPath": "integrations/envhd/production/battle-panorama-candidates/4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704/image-v1.png",
+      "recipe": {
+        "scale": 4,
+        "sourceSize": [
+          256,
+          384
+        ],
+        "targetSize": [
+          1024,
+          1536
+        ],
+        "sourceCanvasSize": [
+          384,
+          384
+        ],
+        "sourceCanvasRect": [
+          64,
+          0,
+          256,
+          384
+        ],
+        "paintedCropPixels": [
+          209,
+          0,
+          1045,
+          1254
+        ],
+        "sourceStpExact": true,
+        "discardAndVisibleBlackExact": true,
+        "edgeAveraging": false,
+        "internalFeatureAlignment": "individual-source-comparison-required",
+        "runtimeSelected": false,
+        "wrapAcceptance": "pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "decodedRgbaSha256": "e054eb92eb8cb2f71419616a6f1b0c067b326e1c84a7b1c3344c94c2bc6e96b5",
+        "method": "python-reviewed-painted-battle-panorama-source-canvas-1",
+        "algorithmSha256": "a717b9cc9f7841a671496a2d81de130aef324a6278b1cf1765eea43edc73902b",
+        "boundsAlgorithmSha256": "e5e40735b3c41e87ef763595b6a941697cd85bbc042162ae326b1476154c55d0",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+        "generatedSha256": "14ff836c5eaaaa4cb17ab716e655be6abdacace20de114f5d2127ad0a28cc89b",
+        "outputSha256": "e381ece0c0c9866f2dd2642cb83c90ea92cc3d705ebe408382cf6f5a7dbab602"
+      },
+      "prompt": "Create a beautiful bespoke SOURCE-FAITHFUL painterly repair of this Legend of Dragoon battle panorama, matching a polished AA2026 game that presents its original retro art. Edit the supplied SQUARE authoring canvas, keep it EXACTLY square, preferably1536x1536. Reference1 is the authoritative original. Reference2 is the existing neural development baseline, only a boundary aid; original topology controls. The panorama occupies ONLY the preregistered rectangle [64, 0, 256, 384] in a384x384 coordinate grid. Keep every exterior padding pixel black. Preserve that rectangle placement and all internal feature positions and proportions. Do not zoom, reframe, rotate or extend the panorama.\nScene intent: Dark ochre cavern, hanging rock points, multiple ledges, ladders and small barred openings. Source positions and scene identity compared directly with original.\nRefine enlarged pixels and neural blur into continuous polished painted surfaces, fine source-supported material detail and graceful gradients. Keep the ORIGINAL palette, illumination, darkness, haze and soft distant depth; do not increase saturation/contrast to make a dramatic new scene. Preserve every original window/arch/motif/rib, large cloud group, shoreline, ridge, branch, reflection and ambiguous shape. No invented lights, extra clouds/objects, larger mountains, new cracks, readable symbols, transformed architecture, sparkles or lighting beams. Existing soft uniform sky/fog/glow remains soft. No added directional lighting that conflicts with the game lighting. Preserve both original edge compositions exactly for later repeated-panorama seam review; do not average or mirror edges. Fine organic surfaces stay matte, no wool fibers or glossy strands. Output opaque square RGB/RGBA image, no text, frame or border. This is a source-bound texture repair, not a newly composed landscape.",
+      "references": [],
+      "reviewStatus": "layout-reviewed-wrap-pending",
+      "runtimeSelected": false,
+      "independentReview": "pending",
+      "wrapAcceptance": "pending",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "review": {
+        "intent": "Dark ochre cavern, hanging rock points, multiple ledges, ladders and small barred openings. Source positions and scene identity compared directly with original.",
+        "style": "Fine source-supported painterly surfaces and graceful gradients retain the original palette and authored light; avoid invented scene objects.",
+        "layout": "Retains organic building apertures, platform/ladder placements, diagonal walkway and lower shadow platforms.",
+        "wrap": "Original edge compositions preserved without averaging or mirroring. Repeated-panorama and native camera acceptance remain pending."
+      },
+      "rejectedVersions": []
+    },
+    {
+      "sourceMcqSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30",
+      "decodedRgbaSha256": "44413504e4779c99e9ea7874214b1efb028441b1bb58eb3e0ed5e29d8b2de351",
+      "sourceBindings": [
+        {
+          "sourceMcqSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30",
+          "decodedRgbaSha256": "44413504e4779c99e9ea7874214b1efb028441b1bb58eb3e0ed5e29d8b2de351",
+          "generationMasterSourceSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30",
+          "sourceFiles": [
+            "SECT/DRGN0.BIN/2501/1"
+          ],
+          "stages": [
+            4
+          ],
+          "sourceSize": [
+            256,
+            384
+          ],
+          "targetSize": [
+            1024,
+            1536
+          ]
+        }
+      ],
+      "generatedPath": "integrations/envhd/production/battle-panorama-candidates/a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30/generated-v1.png",
+      "outputPath": "integrations/envhd/production/battle-panorama-candidates/a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30/image-v1.png",
+      "recipe": {
+        "scale": 4,
+        "sourceSize": [
+          256,
+          384
+        ],
+        "targetSize": [
+          1024,
+          1536
+        ],
+        "sourceCanvasSize": [
+          384,
+          384
+        ],
+        "sourceCanvasRect": [
+          64,
+          0,
+          256,
+          384
+        ],
+        "paintedCropPixels": [
+          209,
+          0,
+          1045,
+          1254
+        ],
+        "sourceStpExact": true,
+        "discardAndVisibleBlackExact": true,
+        "edgeAveraging": false,
+        "internalFeatureAlignment": "individual-source-comparison-required",
+        "runtimeSelected": false,
+        "wrapAcceptance": "pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "decodedRgbaSha256": "44413504e4779c99e9ea7874214b1efb028441b1bb58eb3e0ed5e29d8b2de351",
+        "method": "python-reviewed-painted-battle-panorama-source-canvas-1",
+        "algorithmSha256": "a717b9cc9f7841a671496a2d81de130aef324a6278b1cf1765eea43edc73902b",
+        "boundsAlgorithmSha256": "e5e40735b3c41e87ef763595b6a941697cd85bbc042162ae326b1476154c55d0",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+        "generatedSha256": "9e8415224bc02691c241c49fce1afd5621efa55639b14c848370156ee3d0823d",
+        "outputSha256": "f1cd06f1abba9d1494263899bacbf4c79117f6fe65873e72200fd7d9ab6cc0b5"
+      },
+      "prompt": "Create a beautiful bespoke SOURCE-FAITHFUL painterly repair of this Legend of Dragoon battle panorama, matching a polished AA2026 game that presents its original retro art. Edit the supplied SQUARE authoring canvas, keep it EXACTLY square, preferably1536x1536. Reference1 is the authoritative original. Reference2 is the existing neural development baseline, only a boundary aid; original topology controls. The panorama occupies ONLY the preregistered rectangle [64, 0, 256, 384] in a384x384 coordinate grid. Keep every exterior padding pixel black. Preserve that rectangle placement and all internal feature positions and proportions. Do not zoom, reframe, rotate or extend the panorama.\nScene intent: Near-black multi-tier wall bands with small amber lights and repeated dark openings. Source-backed usage: stages4; stage-bound panorama, no documented field random-encounter alias.\nRefine enlarged pixels and neural blur into continuous polished painted surfaces, fine source-supported material detail and graceful gradients. Keep the ORIGINAL palette, illumination, darkness, haze and soft distant depth; do not increase saturation/contrast to make a dramatic new scene. Preserve every original window/arch/motif/rib, large cloud group, shoreline, ridge, branch, reflection and ambiguous shape. No invented lights, extra clouds/objects, larger mountains, new cracks, readable symbols, transformed architecture, sparkles or lighting beams. Existing soft uniform sky/fog/glow remains soft. No added directional lighting that conflicts with the game lighting. Preserve both original edge compositions exactly for later repeated-panorama seam review; do not average or mirror edges. Fine organic surfaces stay matte, no wool fibers or glossy strands. Output opaque square RGB/RGBA image, no text, frame or border. This is a source-bound texture repair, not a newly composed landscape.\nCONSERVATIVE SOURCE REPAIR REQUIRED: Diffuse amber patches must remain diffuse: no bright bulbs, torch flames or pin-point lamps. Keep each original aperture shape and count. Material brick detail should remain subdued.\nThe previous draft was rejected for adding detail to empty or softly ambiguous areas. Original softness is intentional art. An excellent result can be gently smooth without crisp features. Keep the scene's broad brightness close to reference1. Return the same exact square padding and panorama rectangle.",
+      "references": [],
+      "reviewStatus": "layout-reviewed-wrap-pending",
+      "runtimeSelected": false,
+      "independentReview": "pending",
+      "wrapAcceptance": "pending",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "review": {
+        "intent": "Near-black multi-tier wall bands with small amber lights and repeated dark openings. Source-backed usage: stages4; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Fine source-supported painterly surfaces and graceful gradients retain the original palette and authored light; avoid invented scene objects.",
+        "layout": "Source aperture rows and diffuse glow placements retained; conservative retry avoids newly placed lamps.",
+        "wrap": "Original edge compositions preserved without averaging or mirroring. Repeated-panorama and native camera acceptance remain pending."
+      },
+      "rejectedVersions": [
+        {
+          "generatedPath": "integrations/envhd/production/battle-panorama-candidates/a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30/rejected-generated-v1.png",
+          "generatedSha256": "2e65a4560006bacc4c51d157048c53aa2b451d86d03b5e7bda4973ac8916bc74",
+          "prompt": "Create a beautiful bespoke SOURCE-FAITHFUL painterly repair of this Legend of Dragoon battle panorama, matching a polished AA2026 game that presents its original retro art. Edit the supplied SQUARE authoring canvas, keep it EXACTLY square, preferably1536x1536. Reference1 is the authoritative original. Reference2 is the existing neural development baseline, only a boundary aid; original topology controls. The panorama occupies ONLY the preregistered rectangle [64, 0, 256, 384] in a384x384 coordinate grid. Keep every exterior padding pixel black. Preserve that rectangle placement and all internal feature positions and proportions. Do not zoom, reframe, rotate or extend the panorama.\nScene intent: Near-black multi-tier wall bands with small amber lights and repeated dark openings. Source-backed usage: stages4; stage-bound panorama, no documented field random-encounter alias.\nRefine enlarged pixels and neural blur into continuous polished painted surfaces, fine source-supported material detail and graceful gradients. Keep the ORIGINAL palette, illumination, darkness, haze and soft distant depth; do not increase saturation/contrast to make a dramatic new scene. Preserve every original window/arch/motif/rib, large cloud group, shoreline, ridge, branch, reflection and ambiguous shape. No invented lights, extra clouds/objects, larger mountains, new cracks, readable symbols, transformed architecture, sparkles or lighting beams. Existing soft uniform sky/fog/glow remains soft. No added directional lighting that conflicts with the game lighting. Preserve both original edge compositions exactly for later repeated-panorama seam review; do not average or mirror edges. Fine organic surfaces stay matte, no wool fibers or glossy strands. Output opaque square RGB/RGBA image, no text, frame or border. This is a source-bound texture repair, not a newly composed landscape.",
+          "references": [],
+          "reason": "Bright pin-point lamps appeared inside diffuse amber architectural patches; soften them to source glow without invented lamps."
+        }
+      ]
+    },
+    {
+      "sourceMcqSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f",
+      "decodedRgbaSha256": "02ba20a1908a42371affce7fa01651ab08191cf6faf871a24e49f63f6fb1057a",
+      "sourceBindings": [
+        {
+          "sourceMcqSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f",
+          "decodedRgbaSha256": "02ba20a1908a42371affce7fa01651ab08191cf6faf871a24e49f63f6fb1057a",
+          "generationMasterSourceSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f",
+          "sourceFiles": [
+            "SECT/DRGN0.BIN/2527/1"
+          ],
+          "stages": [
+            30
+          ],
+          "sourceSize": [
+            256,
+            384
+          ],
+          "targetSize": [
+            1024,
+            1536
+          ]
+        }
+      ],
+      "generatedPath": "integrations/envhd/production/battle-panorama-candidates/cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f/generated-v1.png",
+      "outputPath": "integrations/envhd/production/battle-panorama-candidates/cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f/image-v1.png",
+      "recipe": {
+        "scale": 4,
+        "sourceSize": [
+          256,
+          384
+        ],
+        "targetSize": [
+          1024,
+          1536
+        ],
+        "sourceCanvasSize": [
+          384,
+          384
+        ],
+        "sourceCanvasRect": [
+          64,
+          0,
+          256,
+          384
+        ],
+        "paintedCropPixels": [
+          209,
+          0,
+          1045,
+          1254
+        ],
+        "sourceStpExact": true,
+        "discardAndVisibleBlackExact": true,
+        "edgeAveraging": false,
+        "internalFeatureAlignment": "individual-source-comparison-required",
+        "runtimeSelected": false,
+        "wrapAcceptance": "pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "decodedRgbaSha256": "02ba20a1908a42371affce7fa01651ab08191cf6faf871a24e49f63f6fb1057a",
+        "method": "python-reviewed-painted-battle-panorama-source-canvas-1",
+        "algorithmSha256": "a717b9cc9f7841a671496a2d81de130aef324a6278b1cf1765eea43edc73902b",
+        "boundsAlgorithmSha256": "e5e40735b3c41e87ef763595b6a941697cd85bbc042162ae326b1476154c55d0",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+        "generatedSha256": "806ab66161a89eeac611440e0692a61b801b58443cc2aee9d24cbee051f89879",
+        "outputSha256": "7655788e4ee944fcf3c02f5585c531d3378c2a08eee7efe4a89982de7b0032d0"
+      },
+      "prompt": "Create a beautiful bespoke SOURCE-FAITHFUL painterly repair of this Legend of Dragoon battle panorama, matching a polished AA2026 game that presents its original retro art. Edit the supplied SQUARE authoring canvas, keep it EXACTLY square, preferably1536x1536. Reference1 is the authoritative original. Reference2 is the existing neural development baseline, only a boundary aid; original topology controls. The panorama occupies ONLY the preregistered rectangle [64, 0, 256, 384] in a384x384 coordinate grid. Keep every exterior padding pixel black. Preserve that rectangle placement and all internal feature positions and proportions. Do not zoom, reframe, rotate or extend the panorama.\nScene intent: Bright blue open sea and straight horizon beneath pale layered cloud banks. Source-backed usage: stages30; stage-bound panorama, no documented field random-encounter alias.\nRefine enlarged pixels and neural blur into continuous polished painted surfaces, fine source-supported material detail and graceful gradients. Keep the ORIGINAL palette, illumination, darkness, haze and soft distant depth; do not increase saturation/contrast to make a dramatic new scene. Preserve every original window/arch/motif/rib, large cloud group, shoreline, ridge, branch, reflection and ambiguous shape. No invented lights, extra clouds/objects, larger mountains, new cracks, readable symbols, transformed architecture, sparkles or lighting beams. Existing soft uniform sky/fog/glow remains soft. No added directional lighting that conflicts with the game lighting. Preserve both original edge compositions exactly for later repeated-panorama seam review; do not average or mirror edges. Fine organic surfaces stay matte, no wool fibers or glossy strands. Output opaque square RGB/RGBA image, no text, frame or border. This is a source-bound texture repair, not a newly composed landscape.",
+      "references": [],
+      "reviewStatus": "layout-reviewed-wrap-pending",
+      "runtimeSelected": false,
+      "independentReview": "pending",
+      "wrapAcceptance": "pending",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending",
+      "review": {
+        "intent": "Bright blue open sea and straight horizon beneath pale layered cloud banks. Source-backed usage: stages30; stage-bound panorama, no documented field random-encounter alias.",
+        "style": "Fine source-supported painterly surfaces and graceful gradients retain the original palette and authored light; avoid invented scene objects.",
+        "layout": "Original sparse upper cloud groups, larger lower cloud bank and flat ocean horizon retained.",
+        "wrap": "Original edge compositions preserved without averaging or mirroring. Repeated-panorama and native camera acceptance remain pending."
+      },
+      "rejectedVersions": []
+    }
+  ],
+  "authorWrapObservations": [
+    {
+      "stage": 3,
+      "sourceMcqSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
+      "sourceEdgeMeanDifference": 6.63194465637207,
+      "outputEdgeMeanDifference": 5.48155403137207,
+      "authorWrapVerdict": "no-new-obvious-wrap-cut-at-contact-sheet-scale",
+      "reason": "No obvious new vertical value step observed at the inspected comparison scale; native/mip/camera review remains pending.",
+      "outputSha256": "e381ece0c0c9866f2dd2642cb83c90ea92cc3d705ebe408382cf6f5a7dbab602",
+      "decodedRgbaSha256": "e054eb92eb8cb2f71419616a6f1b0c067b326e1c84a7b1c3344c94c2bc6e96b5",
+      "runtimeSelected": false,
+      "independentReview": "pending",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "stage": 4,
+      "sourceMcqSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30",
+      "sourceEdgeMeanDifference": 3.277777671813965,
+      "outputEdgeMeanDifference": 4.17578125,
+      "authorWrapVerdict": "no-new-obvious-wrap-cut-at-contact-sheet-scale",
+      "reason": "No obvious new vertical value step observed at the inspected comparison scale; native/mip/camera review remains pending.",
+      "outputSha256": "f1cd06f1abba9d1494263899bacbf4c79117f6fe65873e72200fd7d9ab6cc0b5",
+      "decodedRgbaSha256": "44413504e4779c99e9ea7874214b1efb028441b1bb58eb3e0ed5e29d8b2de351",
+      "runtimeSelected": false,
+      "independentReview": "pending",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "stage": 30,
+      "sourceMcqSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f",
+      "sourceEdgeMeanDifference": 3.194444417953491,
+      "outputEdgeMeanDifference": 5.475043296813965,
+      "authorWrapVerdict": "no-new-obvious-wrap-cut-at-contact-sheet-scale",
+      "reason": "No obvious new vertical value step observed at the inspected comparison scale; native/mip/camera review remains pending.",
+      "outputSha256": "7655788e4ee944fcf3c02f5585c531d3378c2a08eee7efe4a89982de7b0032d0",
+      "decodedRgbaSha256": "02ba20a1908a42371affce7fa01651ab08191cf6faf871a24e49f63f6fb1057a",
+      "runtimeSelected": false,
+      "independentReview": "pending",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "runtimeSelected": false
+}

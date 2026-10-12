@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "reviewer": "independent Spec source/original/repeated-image reviewer undersea_spec",
+  "snapshot": "a4bb7d3d14fae81b0a0ebc6f9d9643ffb500a9ff",
+  "packetSha256": "c66c5f252546b20ebb3422e29dca3bef01b8fcec9a334000479256df9da14772",
+  "authorManifestSha256": "b59164ddcf1901c8e5b3d97e6aa4dfe3755cd3a1c63c7362910f0aa457395793",
+  "scope": "Actual-original source, art and repeated-image inspection only; no runtime selection, native rendering, physical Steam Deck or final beauty acceptance. Three existing drafts only; whole-game presentation remains ongoing.",
+  "comparisons": [
+    {
+      "stage": 3,
+      "sourceMcqSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
+      "decodedRgbaSha256": "e054eb92eb8cb2f71419616a6f1b0c067b326e1c84a7b1c3344c94c2bc6e96b5",
+      "sourceBindings": [
+        {
+          "sourceMcqSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
+          "decodedRgbaSha256": "e054eb92eb8cb2f71419616a6f1b0c067b326e1c84a7b1c3344c94c2bc6e96b5",
+          "generationMasterSourceSha256": "4bb987962c00926c5475db0703deeb0123909fa03c42162889f92c67fa268704",
+          "sourceFiles": [
+            "SECT/DRGN0.BIN/2500/1"
+          ],
+          "stages": [
+            3
+          ],
+          "sourceSize": [
+            256,
+            384
+          ],
+          "targetSize": [
+            1024,
+            1536
+          ]
+        }
+      ],
+      "sourceAliasesAndFingerprintExact": true,
+      "deterministicReceiptAndOutputByteReplayExact": true,
+      "recipe": {
+        "scale": 4,
+        "sourceSize": [
+          256,
+          384
+        ],
+        "targetSize": [
+          1024,
+          1536
+        ],
+        "sourceCanvasSize": [
+          384,
+          384
+        ],
+        "sourceCanvasRect": [
+          64,
+          0,
+          256,
+          384
+        ],
+        "paintedCropPixels": [
+          209,
+          0,
+          1045,
+          1254
+        ],
+        "sourceStpExact": true,
+        "discardAndVisibleBlackExact": true,
+        "edgeAveraging": false,
+        "internalFeatureAlignment": "individual-source-comparison-required",
+        "runtimeSelected": false,
+        "wrapAcceptance": "pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "decodedRgbaSha256": "e054eb92eb8cb2f71419616a6f1b0c067b326e1c84a7b1c3344c94c2bc6e96b5",
+        "method": "python-reviewed-painted-battle-panorama-source-canvas-1",
+        "algorithmSha256": "a717b9cc9f7841a671496a2d81de130aef324a6278b1cf1765eea43edc73902b",
+        "boundsAlgorithmSha256": "e5e40735b3c41e87ef763595b6a941697cd85bbc042162ae326b1476154c55d0",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+        "generatedSha256": "14ff836c5eaaaa4cb17ab716e655be6abdacace20de114f5d2127ad0a28cc89b",
+        "outputSha256": "e381ece0c0c9866f2dd2642cb83c90ea92cc3d705ebe408382cf6f5a7dbab602"
+      },
+      "runtimeManifestSha256": "07db6f7abcdefa87996e8ab87b85668d616ade561c8bc5692ffce04e59ce8a45",
+      "runtimeOutputSha256": "17eef86a506ed0f2af408f5eb936e5a2c1efedabd5612ada4628adac9c381319",
+      "runtimeImageFile": "image-v2.png",
+      "verdict": "REVISE",
+      "reason": "Broad layout is faithful: apertures, ladders, hanging points, diagonal walkway and lower ledges remain in source positions; repeated contact shows inherited original discontinuities without new reflected geometry. However, the repaired middle/lower rock and occupied ochre wall areas are visibly brighter and warmer than the actual original, lifting the original dim cavern reading. At native BOX scale mean RGB changes from [40.11,26.34,17.15] to [53.00,33.72,21.62], and mean Rec.709 luma rises from28.60 to36.94 (+29%). Restore the original broad values/darkness while retaining finer material detail; mean luma is corroborating evidence, not a standalone acceptance threshold.",
+      "sourceLayoutVerdict": "CLEAR",
+      "repeatInspection": "No new reflected objects or major new structural boundary found in original/neural/draft repeated-image inspection. Inherited original discontinuities remain; no native camera seam acceptance.",
+      "wrapAcceptance": "pending",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "stage": 4,
+      "sourceMcqSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30",
+      "decodedRgbaSha256": "44413504e4779c99e9ea7874214b1efb028441b1bb58eb3e0ed5e29d8b2de351",
+      "sourceBindings": [
+        {
+          "sourceMcqSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30",
+          "decodedRgbaSha256": "44413504e4779c99e9ea7874214b1efb028441b1bb58eb3e0ed5e29d8b2de351",
+          "generationMasterSourceSha256": "a766f0f2126c1cbabe078c4c05f42e3e473a52a33236af23bfcd8fe1553f4c30",
+          "sourceFiles": [
+            "SECT/DRGN0.BIN/2501/1"
+          ],
+          "stages": [
+            4
+          ],
+          "sourceSize": [
+            256,
+            384
+          ],
+          "targetSize": [
+            1024,
+            1536
+          ]
+        }
+      ],
+      "sourceAliasesAndFingerprintExact": true,
+      "deterministicReceiptAndOutputByteReplayExact": true,
+      "recipe": {
+        "scale": 4,
+        "sourceSize": [
+          256,
+          384
+        ],
+        "targetSize": [
+          1024,
+          1536
+        ],
+        "sourceCanvasSize": [
+          384,
+          384
+        ],
+        "sourceCanvasRect": [
+          64,
+          0,
+          256,
+          384
+        ],
+        "paintedCropPixels": [
+          209,
+          0,
+          1045,
+          1254
+        ],
+        "sourceStpExact": true,
+        "discardAndVisibleBlackExact": true,
+        "edgeAveraging": false,
+        "internalFeatureAlignment": "individual-source-comparison-required",
+        "runtimeSelected": false,
+        "wrapAcceptance": "pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "decodedRgbaSha256": "44413504e4779c99e9ea7874214b1efb028441b1bb58eb3e0ed5e29d8b2de351",
+        "method": "python-reviewed-painted-battle-panorama-source-canvas-1",
+        "algorithmSha256": "a717b9cc9f7841a671496a2d81de130aef324a6278b1cf1765eea43edc73902b",
+        "boundsAlgorithmSha256": "e5e40735b3c41e87ef763595b6a941697cd85bbc042162ae326b1476154c55d0",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+        "generatedSha256": "9e8415224bc02691c241c49fce1afd5621efa55639b14c848370156ee3d0823d",
+        "outputSha256": "f1cd06f1abba9d1494263899bacbf4c79117f6fe65873e72200fd7d9ab6cc0b5"
+      },
+      "runtimeManifestSha256": "c58701bff8a5299a7d5c84323bfc048c0e4f7a8051b584641027a19adaf1230f",
+      "runtimeOutputSha256": "1d37019f4819ea513800db1d7652d33736a681d69e5b045dfc3f43a2e180da3d",
+      "runtimeImageFile": "image-v1.png",
+      "verdict": "REVISE",
+      "reason": "Wall tiers, original apertures and diffuse glow positions remain recognizable; repeated contact shows no additional structural seam beyond the original dark-band discontinuities. The draft nonetheless raises the dim masonry/glow field and shifts it toward stronger amber, with native-scale mean RGB changing from[14.49,10.20,7.29] to[20.45,12.53,6.30] and mean luma from10.90 to13.76 (+26%). Restore the source subdued warm values and darkness. No new pinpoint lamp is asserted: the current concern is broad lighting/palette uplift rather than the rejected first-version lamp issue.",
+      "sourceLayoutVerdict": "CLEAR",
+      "repeatInspection": "No new reflected objects or major new structural boundary found in original/neural/draft repeated-image inspection. Inherited original discontinuities remain; no native camera seam acceptance.",
+      "wrapAcceptance": "pending",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    },
+    {
+      "stage": 30,
+      "sourceMcqSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f",
+      "decodedRgbaSha256": "02ba20a1908a42371affce7fa01651ab08191cf6faf871a24e49f63f6fb1057a",
+      "sourceBindings": [
+        {
+          "sourceMcqSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f",
+          "decodedRgbaSha256": "02ba20a1908a42371affce7fa01651ab08191cf6faf871a24e49f63f6fb1057a",
+          "generationMasterSourceSha256": "cb6ac9066b1604d19fea3cb52bf647b788f8404ca47a2ce72ad2d2db7f04b10f",
+          "sourceFiles": [
+            "SECT/DRGN0.BIN/2527/1"
+          ],
+          "stages": [
+            30
+          ],
+          "sourceSize": [
+            256,
+            384
+          ],
+          "targetSize": [
+            1024,
+            1536
+          ]
+        }
+      ],
+      "sourceAliasesAndFingerprintExact": true,
+      "deterministicReceiptAndOutputByteReplayExact": true,
+      "recipe": {
+        "scale": 4,
+        "sourceSize": [
+          256,
+          384
+        ],
+        "targetSize": [
+          1024,
+          1536
+        ],
+        "sourceCanvasSize": [
+          384,
+          384
+        ],
+        "sourceCanvasRect": [
+          64,
+          0,
+          256,
+          384
+        ],
+        "paintedCropPixels": [
+          209,
+          0,
+          1045,
+          1254
+        ],
+        "sourceStpExact": true,
+        "discardAndVisibleBlackExact": true,
+        "edgeAveraging": false,
+        "internalFeatureAlignment": "individual-source-comparison-required",
+        "runtimeSelected": false,
+        "wrapAcceptance": "pending",
+        "nativeAcceptance": "pending",
+        "finalQualityAcceptance": "pending",
+        "decodedRgbaSha256": "02ba20a1908a42371affce7fa01651ab08191cf6faf871a24e49f63f6fb1057a",
+        "method": "python-reviewed-painted-battle-panorama-source-canvas-1",
+        "algorithmSha256": "a717b9cc9f7841a671496a2d81de130aef324a6278b1cf1765eea43edc73902b",
+        "boundsAlgorithmSha256": "e5e40735b3c41e87ef763595b6a941697cd85bbc042162ae326b1476154c55d0",
+        "stpAlgorithmSha256": "2e182287e873db6aa46cbede3bf18339c894608dc7a8610abf78fe8c8ee64751",
+        "outputWriterSha256": "fb11cff951cba94590dd6071934fa63f1ce9da475fd70f4921298efa33d2db57",
+        "generatedSha256": "806ab66161a89eeac611440e0692a61b801b58443cc2aee9d24cbee051f89879",
+        "outputSha256": "7655788e4ee944fcf3c02f5585c531d3378c2a08eee7efe4a89982de7b0032d0"
+      },
+      "runtimeManifestSha256": "3f384da5ef018db1f0e19055288416419ce1676b05f419d950e2c97357cde591",
+      "runtimeOutputSha256": "884af132f2b8bd65bbdc7154c7638b7db30c0f53ed80028c8390786050f719a1",
+      "runtimeImageFile": "image-v1.png",
+      "verdict": "REVISE",
+      "reason": "Horizon and major cloud groups remain source-positioned; repeated contact retains inherited cloud/edge compositions without mirrored duplicates. The ocean and sky are substantially more vivid blue/cyan than the source: native mean RGB [35.91,97.02,151.30] becomes[40.58,112.19,183.13], mean luma87.95 becomes102.09 (+16%); ocean mean blue125.26 becomes156.51. This changes the source calm muted presentation and makes the inherited water/sky wrap transition more visible. Restore source broad blue/cyan values and cloud brightness, keeping the detailed water and source cloud shapes. Numeric means corroborate the visible shift; they are not a fixed acceptance threshold.",
+      "sourceLayoutVerdict": "CLEAR",
+      "repeatInspection": "No new reflected objects or major new structural boundary found in original/neural/draft repeated-image inspection. Inherited original discontinuities remain; no native camera seam acceptance.",
+      "wrapAcceptance": "pending",
+      "nativeAcceptance": "pending",
+      "finalQualityAcceptance": "pending"
+    }
+  ],
+  "counts": {
+    "clear": 0,
+    "revise": 3,
+    "runtimeSelectedByThisReview": 0
+  },
+  "runtimeSelected": false,
+  "nativeAcceptance": "pending",
+  "finalQualityAcceptance": "pending",
+  "privateFullReviewSha256": "2733d0bdec24ac856f17bfdc7b19518bc5404b248b31c5a6a35f458dee12db7e"
+}
