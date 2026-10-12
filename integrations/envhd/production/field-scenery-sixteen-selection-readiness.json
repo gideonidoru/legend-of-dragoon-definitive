@@ -54,7 +54,7 @@
       "passed": 12
     }
   ],
-  "freshPackageVerified": false,
+  "freshPackageVerified": true,
   "twoRevisionCandidatesExcluded": true,
   "unfinishedAuthoringPreservedOnOngoingBranch": true,
   "skurfaRegenerated": false,
@@ -64,5 +64,55 @@
   "publicReleasePublished": false,
   "nativeAccepted": 0,
   "finalQualityAccepted": 0,
-  "originalSourcesReferencesAndComparisonsExcluded": true
+  "originalSourcesReferencesAndComparisonsExcluded": true,
+  "packageVerifiedSourceCommit": "73115af9baae93bdade88a8e04446375e3cd4e5b",
+  "build": "PASS: frozen source73115af9; Java25/Gradle9.1 EnvHD JAR and four field packs.",
+  "packageVerification": {
+    "scope": "EnvHD normal-package resource subset; full installer/public carrier closure coordinator-owned.",
+    "selectedFields": 4954,
+    "jarResources": 5340,
+    "parts": 4,
+    "oneModSwitch": true,
+    "allSelectedResourceNamesSizesAndBytesExact": true,
+    "unchangedParts": [
+      1
+    ],
+    "files": [
+      {
+        "name": "EnvHD-v0.1.0.jar",
+        "bytes": 278299676,
+        "sha256": "65fc7fd7150ea62ca3cc4e608999097d5d00d938b0e43913c33f8b0af180e752",
+        "exactToPriorAcceptedPackage": false
+      },
+      {
+        "name": "Env1HD-v0.1.0.zip",
+        "bytes": 552630727,
+        "sha256": "e545f3040cd1f0bdc25212b439015c71effed98f38f251bb9f75fe649829bfb8",
+        "exactToPriorAcceptedPackage": true
+      },
+      {
+        "name": "Env2HD-v0.1.0.zip",
+        "bytes": 573689900,
+        "sha256": "4f4ade0d2c143fba9d5433bc3ce214d560b565eb1ee9f1f708fbfe667af77974",
+        "exactToPriorAcceptedPackage": false
+      },
+      {
+        "name": "Env3HD-v0.1.0.zip",
+        "bytes": 571952752,
+        "sha256": "6b3c37353f75a243ba335a68c3f4e1e49dd2ccb7461f31df93a9a6ebf301ea46",
+        "exactToPriorAcceptedPackage": false
+      },
+      {
+        "name": "Env4HD-v0.1.0.zip",
+        "bytes": 673618827,
+        "sha256": "0565cbd285f69c7f4c85619d09593558fec49d97ae1b7e2ee73c2091ebf0ac9e",
+        "exactToPriorAcceptedPackage": false
+      }
+    ]
+  },
+  "evidenceLogSha256": {
+    "envhd-scenery-sixteen-preflight.log": "cc3b345fb930dca2471ebff47f1b8c5c9394b29c5f9725cc80b78944c6e4e1ce",
+    "envhd-scenery-sixteen-build.log": "40b77fc7614abd231972a555257638ac98e8d426b02503dfce8d694f1055dc3c",
+    "envhd-scenery-sixteen-package-verification.log": "d4fbcbf96c9d1ca1ae3d19483e09b51cae7f7bebb64cfd22761a18dc8dc55264"
+  }
 }
